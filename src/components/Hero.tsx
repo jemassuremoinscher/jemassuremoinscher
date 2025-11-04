@@ -1,13 +1,14 @@
 import { Card } from "@/components/ui/card";
 import { Car, Heart, Home, CreditCard, Users } from "lucide-react";
 import heroImage from "@/assets/hero-insurance.jpg";
+import { Link } from "react-router-dom";
 
 const categories = [
-  { icon: Car, label: "AUTO", color: "text-primary" },
-  { icon: Heart, label: "SANTÉ", color: "text-primary" },
-  { icon: Users, label: "ANIMAUX", color: "text-primary" },
-  { icon: Home, label: "HABITATION", color: "text-primary" },
-  { icon: CreditCard, label: "PRÊT", color: "text-primary" },
+  { icon: Car, label: "AUTO", color: "text-primary", link: "/assurance-auto" },
+  { icon: Heart, label: "SANTÉ", color: "text-primary", link: "/assurance-sante" },
+  { icon: Users, label: "ANIMAUX", color: "text-primary", link: "/assurance-animaux" },
+  { icon: Home, label: "HABITATION", color: "text-primary", link: "/assurance-habitation" },
+  { icon: CreditCard, label: "PRÊT", color: "text-primary", link: "/assurance-pret" },
 ];
 
 const Hero = () => {
@@ -43,17 +44,16 @@ const Hero = () => {
           {/* Category Cards */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {categories.map((category, index) => (
-              <Card
-                key={index}
-                className="p-6 hover:shadow-[var(--shadow-hover)] transition-all duration-300 cursor-pointer group bg-card"
-              >
-                <div className="flex flex-col items-center gap-3">
-                  <div className="p-3 rounded-full bg-primary/5 group-hover:bg-primary/10 transition-colors">
-                    <category.icon className={`h-8 w-8 ${category.color}`} />
+              <Link key={index} to={category.link}>
+                <Card className="p-6 hover:shadow-[var(--shadow-hover)] transition-all duration-300 cursor-pointer group bg-card">
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="p-3 rounded-full bg-primary/5 group-hover:bg-primary/10 transition-colors">
+                      <category.icon className={`h-8 w-8 ${category.color}`} />
+                    </div>
+                    <span className="font-bold text-sm text-card-foreground">{category.label}</span>
                   </div>
-                  <span className="font-bold text-sm text-card-foreground">{category.label}</span>
-                </div>
-              </Card>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
