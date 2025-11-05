@@ -1,4 +1,5 @@
 import { Shield } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -18,33 +19,33 @@ const Footer = () => {
           <div>
             <h3 className="font-bold mb-4">Nos assurances</h3>
             <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li><a href="/assurance-auto" className="hover:text-accent transition-colors">Assurance Auto</a></li>
-              <li><a href="/assurance-sante" className="hover:text-accent transition-colors">Mutuelle Santé</a></li>
-              <li><a href="/assurance-moto" className="hover:text-accent transition-colors">Assurance Moto</a></li>
-              <li><a href="/assurance-habitation" className="hover:text-accent transition-colors">Assurance Habitation</a></li>
-              <li><a href="/assurance-animaux" className="hover:text-accent transition-colors">Assurance Animaux</a></li>
+              <li><Link to="/assurance-auto" className="hover:text-accent transition-colors">Assurance Auto</Link></li>
+              <li><Link to="/assurance-sante" className="hover:text-accent transition-colors">Mutuelle Santé</Link></li>
+              <li><Link to="/assurance-moto" className="hover:text-accent transition-colors">Assurance Moto</Link></li>
+              <li><Link to="/assurance-habitation" className="hover:text-accent transition-colors">Assurance Habitation</Link></li>
+              <li><Link to="/assurance-animaux" className="hover:text-accent transition-colors">Assurance Animaux</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-bold mb-4">À propos</h3>
             <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li><a href="/qui-sommes-nous" className="hover:text-accent transition-colors">Qui sommes-nous ?</a></li>
-              <li><a href="/nos-partenaires" className="hover:text-accent transition-colors">Nos partenaires</a></li>
-              <li><a href="/avis-clients" className="hover:text-accent transition-colors">Avis clients</a></li>
-              <li><a href="/blog" className="hover:text-accent transition-colors">Blog</a></li>
+              <li><Link to="/qui-sommes-nous" className="hover:text-accent transition-colors">Qui sommes-nous ?</Link></li>
+              <li><Link to="/nos-partenaires" className="hover:text-accent transition-colors">Nos partenaires</Link></li>
+              <li><Link to="/avis-clients" className="hover:text-accent transition-colors">Avis clients</Link></li>
+              <li><Link to="/blog" className="hover:text-accent transition-colors">Blog</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className="font-bold mb-4">Informations</h3>
             <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li><a href="/politique-cookies" className="hover:text-accent transition-colors">Politique de cookies</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Mentions légales</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">CGU</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Politique de confidentialité</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Contact</a></li>
-              <li><a href="#" className="hover:text-accent transition-colors">Gérer mon abonnement newsletter</a></li>
+              <li><Link to="/politique-cookies" className="hover:text-accent transition-colors">Politique de cookies</Link></li>
+              <li><Link to="/mentions-legales" className="hover:text-accent transition-colors">Mentions légales</Link></li>
+              <li><Link to="/cgu" className="hover:text-accent transition-colors">CGU</Link></li>
+              <li><Link to="/politique-confidentialite" className="hover:text-accent transition-colors">Politique de confidentialité</Link></li>
+              <li><Link to="/contact" className="hover:text-accent transition-colors">Contact</Link></li>
+              <li><Link to="/newsletter-gestion" className="hover:text-accent transition-colors">Gérer mon abonnement newsletter</Link></li>
             </ul>
           </div>
         </div>
