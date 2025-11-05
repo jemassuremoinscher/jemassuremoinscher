@@ -19,6 +19,9 @@ import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
+import { InsuranceComparisonTool } from "@/components/comparison/InsuranceComparisonTool";
+import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
+import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
 
 const formSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
@@ -471,6 +474,15 @@ const AssuranceAuto = () => {
             },
           ]}
         />
+
+        {/* Comparison Tool */}
+        <InsuranceComparisonTool />
+
+        {/* Savings Calculator */}
+        <SavingsCalculator />
+
+        {/* Quote Request Form */}
+        <QuoteRequestForm />
 
         {/* Testimonials */}
         <Testimonials />

@@ -9,6 +9,7 @@ import { blogArticles } from "@/data/blogArticles";
 import SEO from "@/components/SEO";
 import ReactMarkdown from "react-markdown";
 import { useToast } from "@/hooks/use-toast";
+import { CommentsSection } from "@/components/blog/CommentsSection";
 
 const BlogArticle = () => {
   const { slug } = useParams();
@@ -161,9 +162,12 @@ const BlogArticle = () => {
             </div>
           </Card>
 
+          {/* Comments Section */}
+          <CommentsSection articleSlug={article.slug} />
+
           {/* Related articles */}
           {relatedArticles.length > 0 && (
-            <div>
+            <div className="mt-16">
               <h2 className="text-3xl font-bold mb-6">Articles similaires</h2>
               <div className="grid md:grid-cols-3 gap-6">
                 {relatedArticles.map((relArticle) => (

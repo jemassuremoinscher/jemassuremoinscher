@@ -14,6 +14,75 @@ export type Database = {
   }
   public: {
     Tables: {
+      blog_comments: {
+        Row: {
+          article_slug: string
+          author_email: string
+          author_name: string
+          content: string
+          created_at: string
+          id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          article_slug: string
+          author_email: string
+          author_name: string
+          content: string
+          created_at?: string
+          id?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          article_slug?: string
+          author_email?: string
+          author_name?: string
+          content?: string
+          created_at?: string
+          id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      insurance_quotes: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          insurance_type: string
+          phone: string
+          quote_data: Json
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          insurance_type: string
+          phone: string
+          quote_data: Json
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          insurance_type?: string
+          phone?: string
+          quote_data?: Json
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       newsletter_subscribers: {
         Row: {
           confirmation_token: string | null
