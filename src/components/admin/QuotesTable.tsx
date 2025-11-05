@@ -4,11 +4,12 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { FileText, Mail, Phone, MapPin, Calendar, CheckCircle, XCircle } from 'lucide-react';
+import { FileText, Mail, Phone, MapPin, Calendar, CheckCircle, XCircle, Download } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import { exportToCSV, formatQuotesForExport } from '@/utils/exportCSV';
 
 interface Quote {
   id: string;
@@ -75,6 +76,12 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
     return types[type] || type;
   };
 
+  const handleExport = () => {
+    const formattedData = formatQuotesForExport(filteredQuotes);
+    exportToCSV(formattedData, 'devis-assurance');
+    toast.success(`${filteredQuotes.length} devis exportés`);
+  };
+
   return (
     <Card className="p-6">
       <div className="flex items-center justify-between mb-6">
@@ -88,18 +95,29 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
           </p>
         </div>
         
-        <Select value={filterStatus} onValueChange={setFilterStatus}>
-          <SelectTrigger className="w-48">
-            <SelectValue placeholder="Filtrer par statut" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">Tous les statuts</SelectItem>
-            <SelectItem value="pending">En attente</SelectItem>
-            <SelectItem value="contacted">Contacté</SelectItem>
-            <SelectItem value="converted">Converti</SelectItem>
-            <SelectItem value="rejected">Rejeté</SelectItem>
-          </SelectContent>
-        </Select>
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleExport}
+            disabled={filteredQuotes.length === 0}
+          >
+            <Download className="h-4 w-4 mr-2" />
+            Export CSV
+          </Button>
+          <Select value={filterStatus} onValueChange={setFilterStatus}>
+            <SelectTrigger className="w-48">
+              <SelectValue placeholder="Filtrer par statut" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Tous les statuts</SelectItem>
+              <SelectItem value="pending">En attente</SelectItem>
+              <SelectItem value="contacted">Contacté</SelectItem>
+              <SelectItem value="converted">Converti</SelectItem>
+              <SelectItem value="rejected">Rejeté</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       <div className="overflow-x-auto">

@@ -11,12 +11,15 @@ import { CallbacksTable } from '@/components/admin/CallbacksTable';
 import { ChartsSection } from '@/components/admin/ChartsSection';
 import { GlobalSearch } from '@/components/admin/GlobalSearch';
 import { EmailTrackingTable } from '@/components/admin/EmailTrackingTable';
+import { LeadsFilters, FilterOptions } from '@/components/admin/LeadsFilters';
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const [quotes, setQuotes] = useState<any[]>([]);
   const [callbacks, setCallbacks] = useState<any[]>([]);
+  const [filteredQuotes, setFilteredQuotes] = useState<any[]>([]);
+  const [filteredCallbacks, setFilteredCallbacks] = useState<any[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
   const quotesTableRef = useRef<HTMLDivElement>(null);
@@ -71,10 +74,54 @@ const Admin = () => {
         .order('created_at', { ascending: false }),
     ]);
 
-    if (quotesResult.data) setQuotes(quotesResult.data);
-    if (callbacksResult.data) setCallbacks(callbacksResult.data);
+    if (quotesResult.data) {
+      setQuotes(quotesResult.data);
+      setFilteredQuotes(quotesResult.data);
+    }
+    if (callbacksResult.data) {
+      setCallbacks(callbacksResult.data);
+      setFilteredCallbacks(callbacksResult.data);
+    }
     
     setIsRefreshing(false);
+  };
+
+  const applyFilters = (filters: FilterOptions) => {
+    // Filter quotes
+    let newFilteredQuotes = quotes.filter(quote => {
+      const matchesSearch = !filters.searchQuery || 
+        quote.full_name.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
+        quote.email.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
+        quote.phone.includes(filters.searchQuery);
+      
+      const matchesType = filters.insuranceType === 'all' || quote.insurance_type === filters.insuranceType;
+      const matchesStatus = filters.status === 'all' || quote.status === filters.status;
+      
+      const quoteDate = new Date(quote.created_at);
+      const matchesDateFrom = !filters.dateFrom || quoteDate >= filters.dateFrom;
+      const matchesDateTo = !filters.dateTo || quoteDate <= filters.dateTo;
+
+      return matchesSearch && matchesType && matchesStatus && matchesDateFrom && matchesDateTo;
+    });
+
+    // Filter callbacks
+    let newFilteredCallbacks = callbacks.filter(callback => {
+      const matchesSearch = !filters.searchQuery || 
+        callback.full_name.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
+        callback.email.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
+        callback.phone.includes(filters.searchQuery);
+      
+      const matchesStatus = filters.status === 'all' || callback.status === filters.status;
+      
+      const callbackDate = new Date(callback.created_at);
+      const matchesDateFrom = !filters.dateFrom || callbackDate >= filters.dateFrom;
+      const matchesDateTo = !filters.dateTo || callbackDate <= filters.dateTo;
+
+      return matchesSearch && matchesStatus && matchesDateFrom && matchesDateTo;
+    });
+
+    setFilteredQuotes(newFilteredQuotes);
+    setFilteredCallbacks(newFilteredCallbacks);
   };
 
   const handleSignOut = async () => {
@@ -115,8 +162,8 @@ const Admin = () => {
     );
   }
 
-  const pendingQuotes = quotes.filter(q => q.status === 'pending').length;
-  const pendingCallbacks = callbacks.filter(c => c.status === 'pending').length;
+  const pendingQuotes = filteredQuotes.filter(q => q.status === 'pending').length;
+  const pendingCallbacks = filteredCallbacks.filter(c => c.status === 'pending').length;
 
   return (
     <div className="min-h-screen bg-background">
@@ -177,13 +224,15 @@ const Admin = () => {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <StatsCards
-          quotesCount={quotes.length}
-          callbacksCount={callbacks.length}
+          quotesCount={filteredQuotes.length}
+          callbacksCount={filteredCallbacks.length}
           pendingQuotes={pendingQuotes}
           pendingCallbacks={pendingCallbacks}
         />
 
-        <ChartsSection quotes={quotes} callbacks={callbacks} />
+        <ChartsSection quotes={filteredQuotes} callbacks={filteredCallbacks} />
+
+        <LeadsFilters onFilterChange={applyFilters} />
 
         <div className="mb-8">
           <EmailTrackingTable />
@@ -191,10 +240,10 @@ const Admin = () => {
 
         <div className="space-y-8">
           <div ref={quotesTableRef}>
-            <QuotesTable quotes={quotes} onUpdate={fetchData} highlightedId={highlightedId} />
+            <QuotesTable quotes={filteredQuotes} onUpdate={fetchData} highlightedId={highlightedId} />
           </div>
           <div ref={callbacksTableRef}>
-            <CallbacksTable callbacks={callbacks} onUpdate={fetchData} highlightedId={highlightedId} />
+            <CallbacksTable callbacks={filteredCallbacks} onUpdate={fetchData} highlightedId={highlightedId} />
           </div>
         </div>
       </main>
