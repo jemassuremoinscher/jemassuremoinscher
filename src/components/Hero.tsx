@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
-import { Car, Heart, Home, CreditCard, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Car, Heart, Home, CreditCard, Users, TrendingDown, Shield, CheckCircle } from "lucide-react";
 import heroImage from "@/assets/hero-insurance.jpg";
 import { Link } from "react-router-dom";
 
@@ -30,8 +31,9 @@ const Hero = () => {
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl py-20">
-          <p className="text-primary-foreground/90 text-lg font-semibold mb-4 uppercase tracking-wider animate-fade-in">
-            ✨ Comparateur Assurance
+          <p className="text-primary-foreground/90 text-lg font-semibold mb-4 uppercase tracking-wider animate-fade-in flex items-center gap-2">
+            <Shield className="h-5 w-5" />
+            Comparateur N°1 en France
           </p>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-primary-foreground mb-6 leading-tight animate-fade-in" style={{ animationDelay: '0.1s' }}>
             COMPAREZ<br />
@@ -39,14 +41,60 @@ const Hero = () => {
               ÉCONOMISEZ
             </span>
           </h1>
-          <div className="inline-block mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          
+          <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 animate-fade-in" style={{ animationDelay: '0.15s' }}>
+            Plus de 120 assureurs comparés pour trouver la meilleure offre adaptée à vos besoins
+          </p>
+
+          <div className="inline-block mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <p className="text-2xl md:text-3xl font-bold text-primary-foreground">
               EN MOYENNE <span className="text-accent border-b-4 border-accent px-2 inline-block transform hover:scale-110 transition-transform">947€</span> PAR AN*
             </p>
           </div>
 
+          {/* Statistics */}
+          <div className="grid grid-cols-3 gap-4 mb-10 animate-fade-in" style={{ animationDelay: '0.25s' }}>
+            <div className="bg-card/20 backdrop-blur-md rounded-lg p-4 border border-primary-foreground/20">
+              <div className="flex items-center gap-2 text-accent mb-1">
+                <TrendingDown className="h-5 w-5" />
+                <span className="text-2xl md:text-3xl font-bold">-35%</span>
+              </div>
+              <p className="text-primary-foreground/80 text-xs md:text-sm">d'économies moyennes</p>
+            </div>
+            <div className="bg-card/20 backdrop-blur-md rounded-lg p-4 border border-primary-foreground/20">
+              <div className="flex items-center gap-2 text-accent mb-1">
+                <CheckCircle className="h-5 w-5" />
+                <span className="text-2xl md:text-3xl font-bold">2min</span>
+              </div>
+              <p className="text-primary-foreground/80 text-xs md:text-sm">pour comparer</p>
+            </div>
+            <div className="bg-card/20 backdrop-blur-md rounded-lg p-4 border border-primary-foreground/20">
+              <div className="flex items-center gap-2 text-accent mb-1">
+                <Shield className="h-5 w-5" />
+                <span className="text-2xl md:text-3xl font-bold">100%</span>
+              </div>
+              <p className="text-primary-foreground/80 text-xs md:text-sm">gratuit & sans engagement</p>
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="mb-12 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            <Button 
+              size="lg" 
+              className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-8 py-6 h-auto rounded-full shadow-2xl hover:shadow-accent/50 transition-all duration-300 hover:scale-105"
+              asChild
+            >
+              <Link to="/assurance-auto">
+                Comparer maintenant - C'est gratuit !
+              </Link>
+            </Button>
+            <p className="text-primary-foreground/70 text-sm mt-3">
+              ✓ Sans engagement • ✓ Devis instantané • ✓ 100% gratuit
+            </p>
+          </div>
+
           {/* Category Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 animate-fade-in" style={{ animationDelay: '0.35s' }}>
             {categories.map((category, index) => (
               <Link key={index} to={category.link}>
                 <Card className="p-6 hover-lift cursor-pointer group bg-card/95 backdrop-blur-sm border-2 border-transparent hover:border-accent/50">
