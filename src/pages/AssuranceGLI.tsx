@@ -22,7 +22,6 @@ const formSchema = z.object({
     required_error: 'Veuillez sélectionner un type de bien',
   }),
   monthlyRent: z.string().min(1, 'Montant requis'),
-  propertyValue: z.string().min(1, 'Valeur requise'),
   tenantType: z.enum(['individual', 'company', 'student'], {
     required_error: 'Veuillez sélectionner un type de locataire',
   }),
@@ -39,7 +38,6 @@ const AssuranceGLI = () => {
     defaultValues: {
       propertyType: undefined,
       monthlyRent: '',
-      propertyValue: '',
       tenantType: undefined,
       postalCode: '',
     },
@@ -195,20 +193,6 @@ const AssuranceGLI = () => {
                               <FormLabel>Loyer mensuel (€)</FormLabel>
                               <FormControl>
                                 <Input type="number" placeholder="1200" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name="propertyValue"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Valeur du bien (€)</FormLabel>
-                              <FormControl>
-                                <Input type="number" placeholder="250000" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
