@@ -1,28 +1,42 @@
-import { Shield, ChevronDown } from "lucide-react";
+import { Shield, ChevronDown, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 const Header = () => {
-  return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between py-4">
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="p-1.5 rounded-lg bg-primary">
-              <Shield className="h-6 w-6 text-white" />
-            </div>
-            <div className="flex flex-col leading-tight">
-              <span className="text-xs font-semibold text-primary uppercase tracking-wide">Le Comparateur</span>
-              <span className="text-lg font-black text-primary uppercase">Assurance</span>
-            </div>
-          </Link>
-        </div>
-      </div>
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-      {/* Navigation Menu */}
-      <nav className="bg-gray-50 border-t border-gray-200">
+  return (
+    <>
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between py-4">
+            <Link to="/" className="flex items-center gap-2 group">
+              <div className="p-1.5 rounded-lg bg-primary">
+                <Shield className="h-6 w-6 text-white" />
+              </div>
+              <div className="flex flex-col leading-tight">
+                <span className="text-xs font-semibold text-primary uppercase tracking-wide">Le Comparateur</span>
+                <span className="text-lg font-black text-primary uppercase">Assurance</span>
+              </div>
+            </Link>
+
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
+        </div>
+
+        {/* Desktop Navigation Menu */}
+        <nav className="hidden lg:block bg-gray-50 border-t border-gray-200">
+          <div className="container mx-auto px-4">
           <div className="flex items-center justify-center gap-8 py-3 overflow-x-auto">
             <Link
               to="/assurance-auto"
@@ -127,7 +141,138 @@ const Header = () => {
         </div>
       </nav>
     </header>
-  );
+
+    {/* Mobile Menu */}
+    {isMobileMenuOpen && (
+      <>
+        {/* Overlay */}
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+        
+        {/* Mobile Menu Drawer */}
+        <div className="fixed top-[73px] left-0 right-0 bottom-0 bg-white z-50 overflow-y-auto lg:hidden animate-slide-in-left">
+          <nav className="p-4">
+            <div className="space-y-1">
+              <Link
+                to="/assurance-auto"
+                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Assurance Auto
+              </Link>
+              <Link
+                to="/assurance-sante"
+                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Mutuelle Santé
+              </Link>
+              <Link
+                to="/assurance-moto"
+                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Assurance Moto
+              </Link>
+              <Link
+                to="/assurance-habitation"
+                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Assurance Habitation
+              </Link>
+              <Link
+                to="/assurance-pret"
+                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Assurance de prêt
+              </Link>
+              <Link
+                to="/assurance-prevoyance"
+                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Prévoyance
+              </Link>
+              <Link
+                to="/assurance-animaux"
+                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Assurance Animaux
+              </Link>
+              <Link
+                to="/assurance-vie"
+                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Assurance vie
+              </Link>
+
+              {/* Section séparée pour les autres pages */}
+              <div className="border-t border-gray-200 mt-4 pt-4">
+                <h3 className="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+                  Assurances Pro
+                </h3>
+                <Link
+                  to="/assurance-mrp"
+                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  MRP
+                </Link>
+                <Link
+                  to="/assurance-rc-pro"
+                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  RC Pro
+                </Link>
+              </div>
+
+              <div className="border-t border-gray-200 mt-4 pt-4">
+                <h3 className="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
+                  À propos
+                </h3>
+                <Link
+                  to="/qui-sommes-nous"
+                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Qui sommes-nous
+                </Link>
+                <Link
+                  to="/nos-partenaires"
+                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Nos partenaires
+                </Link>
+                <Link
+                  to="/avis-clients"
+                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Avis clients
+                </Link>
+                <Link
+                  to="/blog"
+                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Blog
+                </Link>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </>
+    )}
+  </>
+);
 };
 
 export default Header;
