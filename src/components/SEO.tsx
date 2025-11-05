@@ -8,6 +8,7 @@ interface SEOProps {
   ogImage?: string;
   keywords?: string;
   noindex?: boolean;
+  jsonLd?: object | object[];
 }
 
 const SEO = ({ 
@@ -16,10 +17,11 @@ const SEO = ({
   canonical, 
   ogImage, 
   keywords,
-  noindex = false 
+  noindex = false,
+  jsonLd 
 }: SEOProps) => {
   const location = useLocation();
-  const baseUrl = 'https://votre-domaine.fr';
+  const baseUrl = 'https://www.assurmoinschere.fr';
   
   const defaultTitle = 'Le Comparateur Assurance - Économisez jusqu\'à 947€/an';
   const defaultDescription = 'Comparez gratuitement les meilleures assurances auto, santé, habitation, animaux et prêt en France. Devis en 2 minutes.';
@@ -58,8 +60,10 @@ const SEO = ({
     updateMetaTag('og:description', pageDescription, true);
     updateMetaTag('og:url', pageCanonical, true);
     updateMetaTag('og:image', pageImage, true);
+    updateMetaTag('og:type', 'website', true);
 
     // Twitter
+    updateMetaTag('twitter:card', 'summary_large_image');
     updateMetaTag('twitter:title', pageTitle);
     updateMetaTag('twitter:description', pageDescription);
     updateMetaTag('twitter:image', pageImage);
@@ -72,7 +76,22 @@ const SEO = ({
       document.head.appendChild(canonicalLink);
     }
     canonicalLink.setAttribute('href', pageCanonical);
-  }, [pageTitle, pageDescription, pageCanonical, pageImage, keywords, noindex]);
+
+    // JSON-LD structured data
+    const existingJsonLd = document.querySelectorAll('script[type="application/ld+json"]');
+    existingJsonLd.forEach(script => script.remove());
+
+    if (jsonLd) {
+      const schemas = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+      schemas.forEach((schema, index) => {
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.text = JSON.stringify(schema);
+        script.setAttribute('data-schema-index', index.toString());
+        document.head.appendChild(script);
+      });
+    }
+  }, [pageTitle, pageDescription, pageCanonical, pageImage, keywords, noindex, jsonLd]);
 
   return null;
 };

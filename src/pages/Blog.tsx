@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, Search } from "lucide-react";
 import { blogArticles, blogCategories } from "@/data/blogArticles";
+import { addBreadcrumbSchema } from "@/utils/seoUtils";
 
 const Blog = () => {
   const navigate = useNavigate();
@@ -25,13 +26,31 @@ const Blog = () => {
     return matchesCategory && matchesSearch;
   });
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Blog", url: "https://www.assurmoinschere.fr/blog" }
+  ]);
+
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Blog Assurance - Le Comparateur Assurance",
+    "description": "Conseils, guides pratiques et actualités sur les assurances en France",
+    "url": "https://www.assurmoinschere.fr/blog",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Le Comparateur Assurance"
+    }
+  };
+
   return (
     <div className="min-h-screen">
       <SEO 
         title="Blog Assurance - Conseils, Guides et Actualités | Le Comparateur Assurance"
         description="Découvrez nos articles sur les assurances : guides pratiques, actualités légales (loi Lemoine, Hamon), conseils d'experts pour bien choisir et économiser."
         keywords="blog assurance, conseils assurance, loi lemoine, loi hamon, guide assurance, actualités assurance"
-        canonical="https://votre-domaine.fr/blog"
+        canonical="https://www.assurmoinschere.fr/blog"
+        jsonLd={[breadcrumbSchema, blogSchema]}
       />
       <Header />
       

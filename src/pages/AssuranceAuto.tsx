@@ -22,6 +22,7 @@ import Testimonials from "@/components/Testimonials";
 import { InsuranceComparisonTool } from "@/components/comparison/InsuranceComparisonTool";
 import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
 import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   marque: z.string().min(1, "Champ requis"),
@@ -140,13 +141,41 @@ const AssuranceAuto = () => {
     }
   };
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Assurance Auto", url: "https://www.assurmoinschere.fr/assurance-auto" }
+  ]);
+
+  const serviceSchema = addServiceSchema({
+    name: "Comparateur Assurance Auto",
+    description: "Comparez les meilleures offres d'assurance auto en France. Devis gratuit et personnalisé en 2 minutes. Économisez jusqu'à 400€ par an.",
+    provider: "Le Comparateur Assurance",
+    areaServed: "France"
+  });
+
+  const faqSchema = addFAQSchema([
+    {
+      question: "Quelle assurance auto choisir ?",
+      answer: "Le choix dépend de votre profil, votre véhicule et votre budget. Notre comparateur vous aide à trouver l'offre la mieux adaptée parmi les assurances au tiers, tiers étendu ou tous risques."
+    },
+    {
+      question: "Combien coûte une assurance auto ?",
+      answer: "Le prix varie selon votre âge, votre véhicule, votre historique et votre lieu de résidence. En moyenne, une assurance auto coûte entre 400€ et 800€ par an."
+    },
+    {
+      question: "Puis-je changer d'assurance auto à tout moment ?",
+      answer: "Oui, grâce à la loi Hamon, vous pouvez résilier votre assurance auto après un an sans frais ni justification. Avant un an, la résiliation est possible dans certains cas (vente du véhicule, déménagement...)."
+    }
+  ]);
+
   return (
     <div className="min-h-screen">
       <SEO 
         title="Assurance Auto - Comparez et Économisez | Le Comparateur Assurance"
         description="Comparez les meilleures assurances auto en France. Devis gratuit en 2 minutes. Économisez jusqu'à 400€/an avec nos partenaires Allianz, AXA, Direct Assurance, Groupama."
         keywords="assurance auto, devis assurance voiture, assurance auto pas cher, comparateur assurance auto, assurance tous risques"
-        canonical="https://votre-domaine.fr/assurance-auto"
+        canonical="https://www.assurmoinschere.fr/assurance-auto"
+        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />
       
