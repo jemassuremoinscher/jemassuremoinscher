@@ -143,7 +143,7 @@ export const InsuranceQuiz = () => {
     try {
       const recommendations = getRecommendation();
       
-      const { error } = await supabase.from('quiz_leads').insert({
+      const { error } = await supabase.from('quiz_leads' as any).insert({
         full_name: fullName,
         email,
         answers,
