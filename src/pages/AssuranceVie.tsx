@@ -16,6 +16,7 @@ import { getLifeInsuranceInsurers } from "@/utils/insurerData";
 import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
+import Testimonials from "@/components/Testimonials";
 import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
@@ -463,6 +464,9 @@ const AssuranceVie = () => {
             },
           ]}
         />
+
+        {/* Testimonials */}
+        <Testimonials />
       </main>
       <Footer />
     </div>

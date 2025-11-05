@@ -15,6 +15,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { generateInsurerOffers, InsurerConfig } from "@/utils/insurerData";
 import SEO from "@/components/SEO";
+import Testimonials from "@/components/Testimonials";
 
 const formSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
@@ -322,6 +323,9 @@ const AssuranceMRP = () => {
             )}
           </Card>
         </div>
+
+        {/* Testimonials */}
+        <Testimonials />
       </main>
       <Footer />
     </div>

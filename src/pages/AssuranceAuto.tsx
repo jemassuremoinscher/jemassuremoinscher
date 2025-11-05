@@ -18,6 +18,7 @@ import SEO from "@/components/SEO";
 import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
+import Testimonials from "@/components/Testimonials";
 
 const formSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
@@ -446,33 +447,33 @@ const AssuranceAuto = () => {
 
         {/* FAQ */}
         <InsuranceFAQ
+          title="Questions fréquentes sur l'assurance auto"
           faqs={[
             {
-              question: "Quelle est la différence entre l'assurance au tiers et tous risques ?",
-              answer: "L'assurance au tiers est la formule minimale obligatoire qui couvre uniquement les dommages causés aux tiers. L'assurance tous risques offre une protection complète incluant les dommages à votre propre véhicule, le vol, l'incendie, et bien plus encore, même si vous êtes responsable de l'accident.",
-            },
-            {
-              question: "Puis-je changer d'assurance auto à tout moment ?",
-              answer: "Oui, depuis la loi Hamon de 2015, vous pouvez résilier votre assurance auto à tout moment après la première année de contrat, sans frais ni pénalités. C'est votre nouvel assureur qui se charge des démarches de résiliation.",
-            },
-            {
-              question: "Quels documents sont nécessaires pour obtenir un devis ?",
-              answer: "Pour obtenir un devis précis, vous aurez besoin de votre permis de conduire, de la carte grise du véhicule, de votre relevé d'information (historique de sinistres), et éventuellement votre dernier avis d'échéance si vous êtes déjà assuré.",
+              question: "Quelle est la différence entre une assurance au tiers et tous risques ?",
+              answer: "L'assurance au tiers est la formule minimale obligatoire qui couvre uniquement les dommages causés aux tiers. L'assurance tous risques offre une protection complète incluant les dommages à votre propre véhicule, même en cas d'accident responsable."
             },
             {
               question: "Comment est calculé le prix de mon assurance auto ?",
-              answer: "Le tarif dépend de nombreux critères : votre profil (âge, ancienneté du permis, historique de sinistres), les caractéristiques de votre véhicule (marque, modèle, puissance), votre lieu de résidence, l'usage du véhicule, et la formule de garanties choisie.",
+              answer: "Le tarif dépend de plusieurs critères : votre âge, votre ancienneté de permis, votre historique de sinistres (bonus-malus), le type de véhicule, son usage et votre lieu de résidence."
+            },
+            {
+              question: "Puis-je résilier mon assurance auto à tout moment ?",
+              answer: "Oui, depuis la loi Hamon de 2015, vous pouvez résilier votre contrat à tout moment après un an d'engagement, sans frais ni pénalités. Votre nouvel assureur se charge des démarches."
             },
             {
               question: "Qu'est-ce que le bonus-malus ?",
-              answer: "Le coefficient de bonus-malus (ou CRM) est un système qui fait évoluer votre prime d'assurance en fonction de votre sinistralité. Sans accident responsable, vous bénéficiez d'une réduction de 5% par an (bonus). En cas d'accident responsable, votre coefficient augmente de 25% (malus).",
+              answer: "C'est un coefficient qui fait varier votre prime d'assurance selon votre historique de conduite. Sans accident responsable, vous gagnez 5% de bonus par an. En cas d'accident responsable, vous subissez un malus de 25%."
             },
             {
-              question: "L'assurance auto est-elle obligatoire ?",
-              answer: "Oui, l'assurance auto est obligatoire en France, au minimum avec la garantie responsabilité civile (au tiers). Circuler sans assurance est un délit passible d'amendes importantes et de la suspension du permis de conduire.",
+              question: "Mon assurance couvre-t-elle la conduite à l'étranger ?",
+              answer: "Oui, votre assurance auto française vous couvre dans tous les pays de l'Union Européenne et certains autres pays. Pour voyager hors UE, vérifiez votre contrat et demandez une carte verte si nécessaire."
             },
           ]}
         />
+
+        {/* Testimonials */}
+        <Testimonials />
       </main>
       <Footer />
     </div>

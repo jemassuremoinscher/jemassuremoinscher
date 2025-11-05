@@ -18,6 +18,7 @@ import SEO from "@/components/SEO";
 import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
+import Testimonials from "@/components/Testimonials";
 
 const formSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
@@ -493,6 +494,9 @@ const AssuranceMoto = () => {
             },
           ]}
         />
+
+        {/* Testimonials */}
+        <Testimonials />
       </main>
       <Footer />
     </div>

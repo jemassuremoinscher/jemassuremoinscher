@@ -18,6 +18,7 @@ import SEO from "@/components/SEO";
 import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
+import Testimonials from "@/components/Testimonials";
 
 const formSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
@@ -425,30 +426,29 @@ const AssuranceHabitation = () => {
           faqs={[
             {
               question: "L'assurance habitation est-elle obligatoire ?",
-              answer: "Elle est obligatoire pour les locataires et les copropriétaires. Pour les propriétaires occupants, elle n'est pas obligatoire mais fortement recommandée. Sans assurance, vous devrez assumer tous les dommages de votre poche, ce qui peut représenter des sommes considérables.",
+              answer: "Elle est obligatoire pour les locataires et fortement recommandée pour les propriétaires. En copropriété, elle est obligatoire même pour les propriétaires occupants."
             },
             {
-              question: "Que signifie la valeur à neuf ?",
-              answer: "La garantie valeur à neuf permet d'être indemnisé au prix d'achat d'un bien neuf équivalent, sans déduction pour vétusté. C'est particulièrement intéressant pour le mobilier, l'électroménager et les équipements. Cette option augmente légèrement la prime mais offre une meilleure protection.",
+              question: "Que couvre la responsabilité civile habitation ?",
+              answer: "La RC habitation vous protège contre les dommages causés à des tiers (voisins, visiteurs) dans le cadre de votre vie privée. Elle est incluse dans toutes les assurances habitation."
             },
             {
-              question: "Comment calculer le capital mobilier à assurer ?",
-              answer: "Le capital mobilier correspond à la valeur de tous vos biens : meubles, électroménager, vêtements, objets de valeur, équipements hi-fi/informatique. En moyenne, on estime entre 300€ et 500€ par m² de surface habitable. Faites un inventaire précis et conservez vos factures.",
+              question: "Comment estimer la valeur de mes biens ?",
+              answer: "Faites un inventaire détaillé de vos biens : mobilier, électroménager, vêtements, objets de valeur. Conservez les factures et photos. La plupart des assureurs proposent des grilles d'évaluation."
             },
             {
-              question: "Que faire en cas de sinistre ?",
-              answer: "Contactez immédiatement votre assureur (dans les 5 jours pour la plupart des sinistres, 2 jours pour un vol). Prenez des photos des dégâts, rassemblez les preuves (factures, témoignages) et ne jetez rien avant le passage de l'expert. Faites les réparations d'urgence pour éviter l'aggravation des dommages.",
+              question: "Qu'est-ce qu'une franchise en assurance habitation ?",
+              answer: "La franchise est le montant qui reste à votre charge en cas de sinistre. Elle varie selon les garanties (souvent 150-300€ pour le vol, inexistante pour l'incendie)."
             },
             {
-              question: "La colocation nécessite-t-elle une assurance spécifique ?",
-              answer: "Chaque colocataire doit souscrire sa propre assurance habitation ou être nommé sur le contrat. Il existe des assurances spéciales colocation qui couvrent tous les occupants. Attention : si un seul colocataire est assuré, les autres ne seront pas couverts en cas de sinistre.",
-            },
-            {
-              question: "Puis-je résilier mon assurance habitation à tout moment ?",
-              answer: "Oui, depuis la loi Hamon, vous pouvez résilier votre contrat à tout moment après la première année, sans frais ni pénalités. Il suffit d'envoyer une lettre recommandée. La résiliation prend effet 1 mois après la réception par l'assureur. Votre nouvel assureur peut s'en charger.",
+              question: "Mon assurance couvre-t-elle mes biens en voyage ?",
+              answer: "Certains contrats incluent une garantie villégiature qui couvre vos biens lors de vos déplacements temporaires. Vérifiez les conditions et plafonds de votre contrat."
             },
           ]}
         />
+
+        {/* Testimonials */}
+        <Testimonials />
       </main>
       <Footer />
     </div>
