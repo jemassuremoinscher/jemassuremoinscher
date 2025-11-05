@@ -13,6 +13,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { InsuranceComparison } from "@/components/InsuranceComparison";
+import { useInsuranceQuotes } from "@/hooks/useInsuranceQuotes";
 
 const formSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
@@ -31,6 +33,8 @@ const AssuranceAuto = () => {
   const { toast } = useToast();
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [submittedFormData, setSubmittedFormData] = useState<any>(null);
+  const { quotes, isLoading: quotesLoading } = useInsuranceQuotes('auto', submittedFormData);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -86,6 +90,11 @@ const AssuranceAuto = () => {
       if (error) throw error;
 
       setEstimatedPrice(price);
+      setSubmittedFormData({
+        driverAge: parseInt(values.age),
+        vehicleYear: parseInt(values.annee),
+        fuelType: values.carburant,
+      });
       toast({
         title: "Demande envoyée !",
         description: "Vous allez recevoir votre devis par email.",
@@ -297,6 +306,26 @@ const AssuranceAuto = () => {
               </Form>
             )}
           </Card>
+
+          {quotesLoading && (
+            <div className="text-center py-8">
+              <p className="text-muted-foreground">Recherche des meilleures offres...</p>
+            </div>
+          )}
+
+          {quotes.length > 0 && (
+            <div className="mt-8">
+              <InsuranceComparison 
+                quotes={quotes}
+                onSelectQuote={(quoteId) => {
+                  toast({
+                    title: "Offre sélectionnée",
+                    description: "Nous vous contacterons pour finaliser votre souscription.",
+                  });
+                }}
+              />
+            </div>
+          )}
         </div>
       </main>
       <Footer />
