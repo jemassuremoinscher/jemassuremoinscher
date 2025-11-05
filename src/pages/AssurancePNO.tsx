@@ -31,7 +31,6 @@ const formSchema = z.object({
 
 const AssurancePNO = () => {
   const [showComparison, setShowComparison] = useState(false);
-  const [estimatedPrice, setEstimatedPrice] = useState(0);
   const [submittedFormData, setSubmittedFormData] = useState<any>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -46,35 +45,92 @@ const AssurancePNO = () => {
   });
 
   const calculatePrice = (values: z.infer<typeof formSchema>) => {
-    let basePrice = 15;
+    let basePrice = 9; // Tarif minimum PNO à 9€/mois
     const surface = parseInt(values.surface);
     const rooms = parseInt(values.rooms);
     
     // Based on property type
-    if (values.propertyType === 'house') basePrice += 10;
-    if (values.propertyType === 'apartment') basePrice += 5;
-    if (values.propertyType === 'commercial') basePrice += 20;
+    if (values.propertyType === 'house') basePrice += 8;
+    if (values.propertyType === 'apartment') basePrice += 4;
+    if (values.propertyType === 'commercial') basePrice += 18;
     
     // Based on surface
-    if (surface > 50) basePrice += 8;
-    if (surface > 100) basePrice += 15;
+    if (surface > 50) basePrice += 6;
+    if (surface > 100) basePrice += 12;
     
     // Based on rooms
-    if (rooms > 2) basePrice += 5;
-    if (rooms > 4) basePrice += 10;
+    if (rooms > 2) basePrice += 4;
+    if (rooms > 4) basePrice += 8;
     
     // Based on occupancy
-    if (values.occupancyStatus === 'vacant') basePrice += 12;
-    if (values.occupancyStatus === 'secondary') basePrice += 8;
+    if (values.occupancyStatus === 'vacant') basePrice += 10;
+    if (values.occupancyStatus === 'secondary') basePrice += 6;
 
-    return Math.round(basePrice);
+    const basePriceRounded = Math.round(basePrice);
+    
+    // Generate insurers list
+    const insurers = [
+      {
+        name: 'Luko',
+        price: basePriceRounded,
+        coverage: ['Protection bâtiment', 'Responsabilité civile', 'Dégâts des eaux', 'Incendie'],
+        discount: '-20% en ligne'
+      },
+      {
+        name: 'Direct Assurance',
+        price: Math.round(basePriceRounded * 1.15),
+        coverage: ['Garantie complète', 'Catastrophes naturelles', 'Protection juridique', 'Assistance 24/7']
+      },
+      {
+        name: 'Allianz',
+        price: Math.round(basePriceRounded * 1.25),
+        coverage: ['Tous risques', 'Vol et vandalisme', 'Bris de glace', 'Dommages électriques']
+      },
+      {
+        name: 'AXA',
+        price: Math.round(basePriceRounded * 1.32),
+        coverage: ['Protection maximale', 'Garantie loyers', 'Assistance propriétaire', 'Service premium']
+      },
+      {
+        name: 'MAIF',
+        price: Math.round(basePriceRounded * 1.40),
+        coverage: ['Couverture étendue', 'Protection complète', 'Accompagnement personnalisé', 'Franchise réduite']
+      },
+      {
+        name: 'Matmut',
+        price: Math.round(basePriceRounded * 1.48),
+        coverage: ['Offre complète', 'Tous dommages', 'Assistance juridique', 'Garantie rééquipement'],
+        discount: '-10% 1er mois'
+      },
+      {
+        name: 'GMF',
+        price: Math.round(basePriceRounded * 1.55),
+        coverage: ['Protection premium', 'Garantie étendue', 'Service client dédié', 'Indemnisation rapide']
+      },
+      {
+        name: 'Groupama',
+        price: Math.round(basePriceRounded * 1.10),
+        coverage: ['Couverture standard', 'RC propriétaire', 'Protection incendie', 'Activation rapide']
+      },
+      {
+        name: 'MACIF',
+        price: Math.round(basePriceRounded * 1.20),
+        coverage: ['Garantie complète', 'Protection bâtiment', 'Assistance 7j/7', 'Dommages couverts']
+      },
+      {
+        name: 'MMA',
+        price: Math.round(basePriceRounded * 1.18),
+        coverage: ['Protection standard', 'Bâtiment couvert', 'Catastrophes incluses', 'Plateforme digitale']
+      }
+    ];
+
+    return insurers;
   };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const price = calculatePrice(values);
-      setEstimatedPrice(price);
-      setSubmittedFormData(values);
+      const insurers = calculatePrice(values);
+      setSubmittedFormData({ ...values, insurers });
       
       const { error } = await supabase.from('insurance_quotes').insert({
         insurance_type: 'pno',
@@ -291,17 +347,23 @@ const AssurancePNO = () => {
 
         <Footer />
 
-{showComparison && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg p-6 max-w-md w-full">
-              <h3 className="text-2xl font-bold mb-4">Devis PNO</h3>
-              <p className="text-3xl font-bold text-primary mb-4">{estimatedPrice}€/mois</p>
-              <p className="text-gray-600 mb-6">
-                Votre devis a été généré. Nos conseillers vous contacteront sous 24h.
-              </p>
-              <Button onClick={() => setShowComparison(false)} className="w-full">
-                Fermer
+        {showComparison && submittedFormData?.insurers && (
+          <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
+            <div className="bg-background rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto p-6 relative">
+              <Button
+                variant="ghost"
+                className="absolute top-4 right-4"
+                onClick={() => setShowComparison(false)}
+              >
+                ✕
               </Button>
+              
+              <InsuranceComparison
+                insurers={submittedFormData.insurers}
+                onNewQuote={() => setShowComparison(false)}
+                formData={submittedFormData}
+                insuranceType="pno"
+              />
             </div>
           </div>
         )}
