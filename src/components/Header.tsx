@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Car, Heart, Home, CreditCard, Users, Shield, Menu } from "lucide-react";
+import { Car, Heart, Home, CreditCard, Users, Shield, Menu, Bike } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -27,6 +27,12 @@ const Header = () => {
               <Link to="/assurance-sante">
                 <Heart className="h-4 w-4" />
                 Mutuelle Santé
+              </Link>
+            </Button>
+            <Button variant="ghost" className="gap-2 hover:bg-primary/5 hover:text-primary transition-all" asChild>
+              <Link to="/assurance-moto">
+                <Bike className="h-4 w-4" />
+                Assurance Moto
               </Link>
             </Button>
             <Button variant="ghost" className="gap-2 hover:bg-primary/5 hover:text-primary transition-all" asChild>
