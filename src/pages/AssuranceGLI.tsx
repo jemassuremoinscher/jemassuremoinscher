@@ -31,7 +31,6 @@ const formSchema = z.object({
 
 const AssuranceGLI = () => {
   const [showComparison, setShowComparison] = useState(false);
-  const [estimatedPrice, setEstimatedPrice] = useState(0);
   const [submittedFormData, setSubmittedFormData] = useState<any>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -60,63 +59,71 @@ const AssuranceGLI = () => {
     if (values.tenantType === 'student') basePercentage += 0.4;
     if (values.tenantType === 'company') basePercentage -= 0.3;
 
-    return parseFloat(basePercentage.toFixed(2));
-  };
-
-  const generateOffers = (basePercentage: number, monthlyRent: number) => {
-    return [
+    const baseMonthlyPrice = Math.round((rent * basePercentage) / 100);
+    
+    // Generate insurers list
+    const insurers = [
       {
         name: 'Garantme',
-        percentage: basePercentage,
-        monthlyPrice: Math.round((monthlyRent * basePercentage) / 100),
-        features: ['Paiement en ligne', 'Activation en 24h', 'Sans franchise'],
-        rating: 4.8,
-        recommended: true
+        price: baseMonthlyPrice,
+        coverage: ['Paiement en ligne', 'Activation en 24h', 'Sans franchise', 'Loyers impayés couverts'],
+        discount: '-15% en ligne'
       },
       {
         name: 'SmartGarant',
-        percentage: basePercentage + 0.3,
-        monthlyPrice: Math.round((monthlyRent * (basePercentage + 0.3)) / 100),
-        features: ['Couverture dégradations', 'Assistance juridique', 'Protection juridique'],
-        rating: 4.6
+        price: Math.round(baseMonthlyPrice * 1.12),
+        coverage: ['Couverture dégradations', 'Assistance juridique', 'Protection juridique', 'Indemnisation rapide']
       },
       {
         name: 'Locatme',
-        percentage: basePercentage + 0.5,
-        monthlyPrice: Math.round((monthlyRent * (basePercentage + 0.5)) / 100),
-        features: ['Garantie étendue', 'Frais de procédure inclus', 'Accompagnement personnalisé'],
-        rating: 4.5
+        price: Math.round(baseMonthlyPrice * 1.20),
+        coverage: ['Garantie étendue', 'Frais de procédure inclus', 'Accompagnement personnalisé', 'Service client dédié']
       },
       {
         name: 'Cautioneo',
-        percentage: basePercentage + 0.7,
-        monthlyPrice: Math.round((monthlyRent * (basePercentage + 0.7)) / 100),
-        features: ['Service premium', 'Gestion complète', 'Indemnisation rapide'],
-        rating: 4.4
+        price: Math.round(baseMonthlyPrice * 1.28),
+        coverage: ['Service premium', 'Gestion complète', 'Indemnisation rapide', 'Suivi en ligne']
       },
       {
         name: 'Unkle',
-        percentage: basePercentage + 0.9,
-        monthlyPrice: Math.round((monthlyRent * (basePercentage + 0.9)) / 100),
-        features: ['Garantie maximale', 'Protection intégrale', 'Assistance 24/7'],
-        rating: 4.3
+        price: Math.round(baseMonthlyPrice * 1.36),
+        coverage: ['Garantie maximale', 'Protection intégrale', 'Assistance 24/7', 'Couverture dégradations étendue']
       },
       {
         name: 'Wemind',
-        percentage: basePercentage + 1.2,
-        monthlyPrice: Math.round((monthlyRent * (basePercentage + 1.2)) / 100),
-        features: ['Offre complète', 'Tous risques', 'Service VIP'],
-        rating: 4.2
+        price: Math.round(baseMonthlyPrice * 1.48),
+        coverage: ['Offre complète', 'Tous risques', 'Service VIP', 'Gestionnaire dédié'],
+        discount: '-10% 1er mois'
+      },
+      {
+        name: 'GarantMe Pro',
+        price: Math.round(baseMonthlyPrice * 1.55),
+        coverage: ['Protection premium', 'Garantie locataire', 'Assistance juridique renforcée', 'Indemnisation express']
+      },
+      {
+        name: 'Paytop',
+        price: Math.round(baseMonthlyPrice * 1.10),
+        coverage: ['Couverture standard', 'Loyers impayés', 'Protection juridique', 'Activation rapide']
+      },
+      {
+        name: 'Solly Azza',
+        price: Math.round(baseMonthlyPrice * 1.25),
+        coverage: ['Garantie étendue', 'Protection complète', 'Assistance 7j/7', 'Frais de relocation']
+      },
+      {
+        name: 'Rentila',
+        price: Math.round(baseMonthlyPrice * 1.18),
+        coverage: ['Protection standard', 'Loyers impayés couverts', 'Dégradations incluses', 'Plateforme digitale']
       }
     ];
+
+    return insurers;
   };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const percentage = calculatePrice(values);
-      const rent = parseInt(values.monthlyRent);
-      setEstimatedPrice(percentage);
-      setSubmittedFormData({ ...values, offers: generateOffers(percentage, rent) });
+      const insurers = calculatePrice(values);
+      setSubmittedFormData({ ...values, insurers });
       
       const { error } = await supabase.from('insurance_quotes').insert({
         insurance_type: 'gli',
@@ -318,78 +325,25 @@ const AssuranceGLI = () => {
 
         <Footer />
 
-        {showComparison && submittedFormData?.offers && (
-          <section className="py-16 bg-white">
-            <div className="container mx-auto px-4">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="max-w-4xl mx-auto"
+        {showComparison && submittedFormData?.insurers && (
+          <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
+            <div className="bg-background rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto p-6 relative">
+              <Button
+                variant="ghost"
+                className="absolute top-4 right-4"
+                onClick={() => setShowComparison(false)}
               >
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold mb-4">Meilleures offres GLI</h2>
-                  <p className="text-muted-foreground">
-                    Tarifs en pourcentage du loyer mensuel ({submittedFormData.monthlyRent}€)
-                  </p>
-                </div>
-
-                <div className="space-y-4">
-                  {submittedFormData.offers.map((offer: any, index: number) => (
-                    <Card 
-                      key={index} 
-                      className={`p-6 transition-all hover:shadow-lg ${
-                        offer.recommended ? 'border-2 border-primary shadow-md' : ''
-                      }`}
-                    >
-                      {offer.recommended && (
-                        <div className="bg-primary text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">
-                          ⭐ Recommandé
-                        </div>
-                      )}
-                      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <h3 className="text-xl font-bold">{offer.name}</h3>
-                            <div className="flex items-center gap-1">
-                              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                              <span className="text-sm text-muted-foreground">{offer.rating}/5</span>
-                            </div>
-                          </div>
-                          <div className="flex flex-wrap gap-2 mt-3">
-                            {offer.features.map((feature: string, i: number) => (
-                              <Badge key={i} variant="outline" className="text-xs">
-                                {feature}
-                              </Badge>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-3xl font-bold text-primary mb-1">
-                            {offer.percentage}%
-                          </div>
-                          <div className="text-sm text-muted-foreground mb-3">
-                            soit {offer.monthlyPrice}€/mois
-                          </div>
-                          <Button 
-                            variant={offer.recommended ? "subscribe-best" : "subscribe"}
-                            size="lg"
-                          >
-                            Souscrire
-                          </Button>
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-
-                <div className="text-center mt-8">
-                  <Button variant="outline" onClick={() => setShowComparison(false)}>
-                    Nouvelle recherche
-                  </Button>
-                </div>
-              </motion.div>
+                ✕
+              </Button>
+              
+              <InsuranceComparison
+                insurers={submittedFormData.insurers}
+                onNewQuote={() => setShowComparison(false)}
+                formData={submittedFormData}
+                insuranceType="gli"
+              />
             </div>
-          </section>
+          </div>
         )}
       </div>
     </>
