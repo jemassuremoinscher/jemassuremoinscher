@@ -39,13 +39,32 @@ const Header = () => {
               </div>
             </Link>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <Button 
                 variant="outline" 
-                className="hidden md:flex border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold"
+                size="sm"
+                className="hidden lg:flex border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold"
                 asChild
               >
                 <Link to="/assurance-prevoyance">Prévoyance</Link>
+              </Button>
+              
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="hidden lg:flex border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold"
+                asChild
+              >
+                <Link to="/assurance-mrp">MRP</Link>
+              </Button>
+
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="hidden lg:flex border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold"
+                asChild
+              >
+                <Link to="/assurance-rc-pro">RC Pro</Link>
               </Button>
               
               <Button 
