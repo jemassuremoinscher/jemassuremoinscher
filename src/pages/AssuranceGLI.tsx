@@ -11,10 +11,11 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import InsuranceComparison from '@/components/InsuranceComparison';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
-import { Shield, Home, Euro, Users, TrendingUp, CheckCircle } from 'lucide-react';
+import { Shield, Home, Euro, Users, TrendingUp, CheckCircle, Star } from 'lucide-react';
 import InsuranceFAQ from '@/components/insurance/InsuranceFAQ';
 
 const formSchema = z.object({
@@ -44,29 +45,78 @@ const AssuranceGLI = () => {
   });
 
   const calculatePrice = (values: z.infer<typeof formSchema>) => {
-    let basePrice = 25;
+    let basePercentage = 2.5; // 2.5% base
     const rent = parseInt(values.monthlyRent);
     
     // Based on property type
-    if (values.propertyType === 'house') basePrice += 8;
-    if (values.propertyType === 'commercial') basePrice += 15;
+    if (values.propertyType === 'house') basePercentage += 0.3;
+    if (values.propertyType === 'commercial') basePercentage += 0.5;
     
     // Based on rent amount
-    if (rent > 1500) basePrice += 15;
-    if (rent > 2000) basePrice += 25;
+    if (rent > 1500) basePercentage += 0.2;
+    if (rent > 2000) basePercentage += 0.3;
     
     // Based on tenant type
-    if (values.tenantType === 'student') basePrice += 5;
-    if (values.tenantType === 'company') basePrice -= 5;
+    if (values.tenantType === 'student') basePercentage += 0.4;
+    if (values.tenantType === 'company') basePercentage -= 0.3;
 
-    return Math.round(basePrice + (rent * 0.025));
+    return parseFloat(basePercentage.toFixed(2));
+  };
+
+  const generateOffers = (basePercentage: number, monthlyRent: number) => {
+    return [
+      {
+        name: 'Garantme',
+        percentage: basePercentage,
+        monthlyPrice: Math.round((monthlyRent * basePercentage) / 100),
+        features: ['Paiement en ligne', 'Activation en 24h', 'Sans franchise'],
+        rating: 4.8,
+        recommended: true
+      },
+      {
+        name: 'SmartGarant',
+        percentage: basePercentage + 0.3,
+        monthlyPrice: Math.round((monthlyRent * (basePercentage + 0.3)) / 100),
+        features: ['Couverture dégradations', 'Assistance juridique', 'Protection juridique'],
+        rating: 4.6
+      },
+      {
+        name: 'Locatme',
+        percentage: basePercentage + 0.5,
+        monthlyPrice: Math.round((monthlyRent * (basePercentage + 0.5)) / 100),
+        features: ['Garantie étendue', 'Frais de procédure inclus', 'Accompagnement personnalisé'],
+        rating: 4.5
+      },
+      {
+        name: 'Cautioneo',
+        percentage: basePercentage + 0.7,
+        monthlyPrice: Math.round((monthlyRent * (basePercentage + 0.7)) / 100),
+        features: ['Service premium', 'Gestion complète', 'Indemnisation rapide'],
+        rating: 4.4
+      },
+      {
+        name: 'Unkle',
+        percentage: basePercentage + 0.9,
+        monthlyPrice: Math.round((monthlyRent * (basePercentage + 0.9)) / 100),
+        features: ['Garantie maximale', 'Protection intégrale', 'Assistance 24/7'],
+        rating: 4.3
+      },
+      {
+        name: 'Wemind',
+        percentage: basePercentage + 1.2,
+        monthlyPrice: Math.round((monthlyRent * (basePercentage + 1.2)) / 100),
+        features: ['Offre complète', 'Tous risques', 'Service VIP'],
+        rating: 4.2
+      }
+    ];
   };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const price = calculatePrice(values);
-      setEstimatedPrice(price);
-      setSubmittedFormData(values);
+      const percentage = calculatePrice(values);
+      const rent = parseInt(values.monthlyRent);
+      setEstimatedPrice(percentage);
+      setSubmittedFormData({ ...values, offers: generateOffers(percentage, rent) });
       
       const { error } = await supabase.from('insurance_quotes').insert({
         insurance_type: 'gli',
@@ -268,19 +318,78 @@ const AssuranceGLI = () => {
 
         <Footer />
 
-{showComparison && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-lg p-6 max-w-md w-full">
-              <h3 className="text-2xl font-bold mb-4">Devis GLI</h3>
-              <p className="text-3xl font-bold text-primary mb-4">{estimatedPrice}€/mois</p>
-              <p className="text-gray-600 mb-6">
-                Votre devis a été généré. Nos conseillers vous contacteront sous 24h.
-              </p>
-              <Button onClick={() => setShowComparison(false)} className="w-full">
-                Fermer
-              </Button>
+        {showComparison && submittedFormData?.offers && (
+          <section className="py-16 bg-white">
+            <div className="container mx-auto px-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="max-w-4xl mx-auto"
+              >
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-4">Meilleures offres GLI</h2>
+                  <p className="text-muted-foreground">
+                    Tarifs en pourcentage du loyer mensuel ({submittedFormData.monthlyRent}€)
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  {submittedFormData.offers.map((offer: any, index: number) => (
+                    <Card 
+                      key={index} 
+                      className={`p-6 transition-all hover:shadow-lg ${
+                        offer.recommended ? 'border-2 border-primary shadow-md' : ''
+                      }`}
+                    >
+                      {offer.recommended && (
+                        <div className="bg-primary text-white text-sm font-semibold px-3 py-1 rounded-full inline-block mb-4">
+                          ⭐ Recommandé
+                        </div>
+                      )}
+                      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <h3 className="text-xl font-bold">{offer.name}</h3>
+                            <div className="flex items-center gap-1">
+                              <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                              <span className="text-sm text-muted-foreground">{offer.rating}/5</span>
+                            </div>
+                          </div>
+                          <div className="flex flex-wrap gap-2 mt-3">
+                            {offer.features.map((feature: string, i: number) => (
+                              <Badge key={i} variant="outline" className="text-xs">
+                                {feature}
+                              </Badge>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-3xl font-bold text-primary mb-1">
+                            {offer.percentage}%
+                          </div>
+                          <div className="text-sm text-muted-foreground mb-3">
+                            soit {offer.monthlyPrice}€/mois
+                          </div>
+                          <Button 
+                            variant={offer.recommended ? "subscribe-best" : "subscribe"}
+                            size="lg"
+                          >
+                            Souscrire
+                          </Button>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+
+                <div className="text-center mt-8">
+                  <Button variant="outline" onClick={() => setShowComparison(false)}>
+                    Nouvelle recherche
+                  </Button>
+                </div>
+              </motion.div>
             </div>
-          </div>
+          </section>
         )}
       </div>
     </>
