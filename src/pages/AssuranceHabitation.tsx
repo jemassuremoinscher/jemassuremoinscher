@@ -19,7 +19,7 @@ import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   typeLogement: z.string().min(1, "Champ requis"),
@@ -129,6 +129,12 @@ const AssuranceHabitation = () => {
     areaServed: "France"
   });
 
+  const ratingSchema = addAggregateRatingSchema(
+    "Comparateur Assurance Habitation",
+    4.7,
+    1435
+  );
+
   const faqSchema = addFAQSchema([
     {
       question: "Quelle assurance habitation choisir ?",
@@ -151,7 +157,7 @@ const AssuranceHabitation = () => {
         description="Comparez les assurances habitation en France. Devis gratuit pour maison, appartement, locataire ou propriétaire. Économisez jusqu'à 300€/an sur votre assurance habitation."
         keywords="assurance habitation, assurance maison, assurance appartement, assurance locataire, assurance propriétaire"
         canonical="https://www.assurmoinschere.fr/assurance-habitation"
-        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
+        jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]}
       />
       <Header />
       

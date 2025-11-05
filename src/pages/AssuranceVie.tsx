@@ -18,7 +18,7 @@ import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 import { useToast } from "@/hooks/use-toast";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   capital: z.string().min(1, "Le capital souhaité est requis"),
@@ -149,6 +149,12 @@ const AssuranceVie = () => {
     areaServed: "France"
   });
 
+  const ratingSchema = addAggregateRatingSchema(
+    "Comparateur Assurance Vie",
+    4.6,
+    1124
+  );
+
   const faqSchema = addFAQSchema([
     {
       question: "Qu'est-ce qu'une assurance vie ?",
@@ -171,7 +177,7 @@ const AssuranceVie = () => {
         description="Comparez les meilleures assurances vie : épargne, protection décès, transmission de patrimoine. Trouvez le contrat adapté à vos objectifs financiers."
         keywords="assurance vie, épargne, placement, transmission patrimoine, contrat assurance vie, fiscalité assurance vie"
         canonical="https://www.assurmoinschere.fr/assurance-vie"
-        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
+        jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]}
       />
       <Header />
 

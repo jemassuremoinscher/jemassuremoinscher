@@ -19,7 +19,7 @@ import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   marque: z.string().min(1, "Champ requis"),
@@ -133,6 +133,12 @@ const AssuranceMoto = () => {
     areaServed: "France"
   });
 
+  const ratingSchema = addAggregateRatingSchema(
+    "Comparateur Assurance Moto",
+    4.5,
+    987
+  );
+
   const faqSchema = addFAQSchema([
     {
       question: "Quelle assurance moto choisir ?",
@@ -155,7 +161,7 @@ const AssuranceMoto = () => {
         description="Comparez les assurances moto et scooter. Devis gratuit en ligne pour tous types de deux-roues. Économisez jusqu'à 35% avec nos partenaires assureurs."
         keywords="assurance moto, assurance scooter, assurance deux roues, comparateur assurance moto, assurance moto pas cher"
         canonical="https://www.assurmoinschere.fr/assurance-moto"
-        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
+        jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]}
       />
       <Header />
       
