@@ -14,6 +14,47 @@ export type Database = {
   }
   public: {
     Tables: {
+      agent_performance: {
+        Row: {
+          agent_id: string
+          avg_conversion_time_days: number | null
+          conversion_rate: number | null
+          converted_leads: number
+          id: string
+          insurance_type: string
+          last_updated: string
+          total_leads: number
+        }
+        Insert: {
+          agent_id: string
+          avg_conversion_time_days?: number | null
+          conversion_rate?: number | null
+          converted_leads?: number
+          id?: string
+          insurance_type: string
+          last_updated?: string
+          total_leads?: number
+        }
+        Update: {
+          agent_id?: string
+          avg_conversion_time_days?: number | null
+          conversion_rate?: number | null
+          converted_leads?: number
+          id?: string
+          insurance_type?: string
+          last_updated?: string
+          total_leads?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_performance_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "sales_agents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       blog_comments: {
         Row: {
           article_slug: string
@@ -331,6 +372,45 @@ export type Database = {
         }
         Relationships: []
       }
+      sales_agents: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          is_active: boolean
+          max_daily_leads: number
+          phone: string | null
+          specializations: string[] | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          is_active?: boolean
+          max_daily_leads?: number
+          phone?: string | null
+          specializations?: string[] | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          is_active?: boolean
+          max_daily_leads?: number
+          phone?: string | null
+          specializations?: string[] | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -357,7 +437,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      calculate_assignment_score: {
+        Args: {
+          p_agent_id: string
+          p_insurance_type: string
+          p_lead_score: number
+        }
+        Returns: number
+      }
       cleanup_old_deleted_items: { Args: never; Returns: undefined }
+      get_agent_current_load: { Args: { p_agent_id: string }; Returns: number }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

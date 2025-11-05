@@ -21,8 +21,13 @@ import {
   Filter,
   ArrowRight,
 } from 'lucide-react';
-import { format } from 'date-fns';
+import { format, formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
+
+interface SalesAgent {
+  full_name: string;
+  email: string;
+}
 
 interface Lead {
   id: string;
@@ -39,6 +44,7 @@ interface Lead {
   notes?: string;
   assigned_to?: string;
   type: 'quote' | 'callback';
+  sales_agents?: SalesAgent;
 }
 
 const getScoreColor = (score: number) => {
@@ -73,19 +79,33 @@ export const CRMDashboard = () => {
       const [quotesResult, callbacksResult] = await Promise.all([
         supabase
           .from('insurance_quotes')
-          .select('*')
+          .select(`
+            *,
+            assigned_agent:sales_agents(full_name, email)
+          `)
           .is('deleted_at', null)
           .order('lead_score', { ascending: false }),
         supabase
           .from('contact_callbacks')
-          .select('*')
+          .select(`
+            *,
+            assigned_agent:sales_agents(full_name, email)
+          `)
           .is('deleted_at', null)
           .order('lead_score', { ascending: false }),
       ]);
 
       const allLeads: Lead[] = [
-        ...(quotesResult.data?.map((q) => ({ ...q, type: 'quote' as const })) || []),
-        ...(callbacksResult.data?.map((c) => ({ ...c, type: 'callback' as const })) || []),
+        ...(quotesResult.data?.map((q: any) => ({ 
+          ...q, 
+          type: 'quote' as const,
+          sales_agents: q.assigned_agent 
+        })) || []),
+        ...(callbacksResult.data?.map((c: any) => ({ 
+          ...c, 
+          type: 'callback' as const,
+          sales_agents: c.assigned_agent 
+        })) || []),
       ];
 
       setLeads(allLeads);
@@ -308,6 +328,11 @@ export const CRMDashboard = () => {
                                 {lead.insurance_type}
                               </Badge>
                             )}
+                            {lead.sales_agents && (
+                              <p className="text-xs text-muted-foreground">
+                                👤 {lead.sales_agents.full_name}
+                              </p>
+                            )}
                             <p className="text-xs text-muted-foreground flex items-center gap-1">
                               <Calendar className="h-3 w-3" />
                               {format(new Date(lead.created_at), 'dd MMM', { locale: fr })}
@@ -350,6 +375,16 @@ export const CRMDashboard = () => {
                               <p className="text-sm text-muted-foreground mb-1">Source</p>
                               <Badge variant="outline">{selectedLead.lead_source}</Badge>
                             </div>
+
+                            {selectedLead.sales_agents && (
+                              <div>
+                                <p className="text-sm text-muted-foreground mb-1">Commercial assigné</p>
+                                <div className="p-3 bg-muted rounded-lg">
+                                  <div className="font-medium">{selectedLead.sales_agents.full_name}</div>
+                                  <div className="text-sm text-muted-foreground">{selectedLead.sales_agents.email}</div>
+                                </div>
+                              </div>
+                            )}
 
                             <div>
                               <p className="text-sm text-muted-foreground mb-2">Changer le statut</p>
