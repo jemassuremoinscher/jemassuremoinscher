@@ -17,12 +17,14 @@ const Hero = () => {
   return (
     <section className="relative min-h-[700px] flex items-center overflow-hidden" aria-label="Section principale - Comparateur d'assurances">
       {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/40" />
-      </div>
+      <img 
+        src={heroImage}
+        alt="Famille heureuse avec assurance"
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+        fetchPriority="high"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-primary/40" />
 
       {/* Animated Geometric Shapes */}
       <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-accent/20 transform skew-x-[-8deg] translate-x-1/4 animate-pulse" />

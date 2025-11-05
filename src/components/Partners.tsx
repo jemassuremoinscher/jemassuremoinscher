@@ -100,6 +100,8 @@ const Partners = () => {
                       src={partner.logo} 
                       alt={`Logo ${partner.name}`}
                       className="max-h-16 max-w-full object-contain"
+                      loading="lazy"
+                      decoding="async"
                     />
                   ) : (
                     <span className="font-bold text-primary text-base text-center group-hover:text-accent transition-colors">
