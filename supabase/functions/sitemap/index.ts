@@ -17,7 +17,7 @@ serve(async (req) => {
   <!-- Homepage -->
   <url>
     <loc>https://votre-domaine.fr/</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -25,111 +25,123 @@ serve(async (req) => {
   <!-- Main Pages -->
   <url>
     <loc>https://votre-domaine.fr/comparateur</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://votre-domaine.fr/comparateur-garanties</loc>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/blog</loc>
-    <lastmod>2025-01-15</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/contact</loc>
-    <lastmod>2025-01-10</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/qui-sommes-nous</loc>
-    <lastmod>2025-01-10</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/nos-partenaires</loc>
-    <lastmod>2025-01-10</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/avis-clients</loc>
-    <lastmod>2025-01-10</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://votre-domaine.fr/gestion-locative</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <!-- Insurance Pages - High Priority -->
   <url>
     <loc>https://votre-domaine.fr/assurance-auto</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/assurance-moto</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/assurance-habitation</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/assurance-sante</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/assurance-vie</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/assurance-pret</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/assurance-animaux</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/assurance-pno</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/assurance-gli</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/assurance-mrp</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/assurance-prevoyance</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://votre-domaine.fr/assurance-rc-pro</loc>
-    <lastmod>2025-01-12</lastmod>
+    <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
