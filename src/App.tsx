@@ -13,6 +13,10 @@ const Index = lazy(() => import("./pages/Index"));
 const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
 const LandingAds = lazy(() => import("./pages/LandingAds"));
+const LandingAuto = lazy(() => import("./pages/landing/LandingAuto"));
+const LandingSante = lazy(() => import("./pages/landing/LandingSante"));
+const LandingHabitation = lazy(() => import("./pages/landing/LandingHabitation"));
+const LandingMoto = lazy(() => import("./pages/landing/LandingMoto"));
 const Comparateur = lazy(() => import("./pages/Comparateur"));
 const ComparateurGaranties = lazy(() => import("./pages/ComparateurGaranties"));
 const AssuranceAuto = lazy(() => import("./pages/AssuranceAuto"));
@@ -62,6 +66,10 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/landing/assurance" element={<LandingAds />} />
+            <Route path="/landing/auto" element={<LandingAuto />} />
+            <Route path="/landing/sante" element={<LandingSante />} />
+            <Route path="/landing/habitation" element={<LandingHabitation />} />
+            <Route path="/landing/moto" element={<LandingMoto />} />
             <Route path="/comparateur" element={<Comparateur />} />
             <Route path="/comparateur-garanties" element={<ComparateurGaranties />} />
             <Route path="/assurance-auto" element={<AssuranceAuto />} />
