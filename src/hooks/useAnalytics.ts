@@ -18,7 +18,9 @@ export type AnalyticsEvent =
   | 'faq_open'
   | 'phone_click'
   | 'email_click'
-  | 'ads_form_submit';
+  | 'ads_form_submit'
+  | 'quiz_answer'
+  | 'quiz_complete';
 
 interface EventParams {
   category?: string;

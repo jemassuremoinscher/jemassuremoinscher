@@ -11,6 +11,7 @@ import { CallbackForm } from "@/components/contact/CallbackForm";
 import { TrustBadges } from "@/components/trust/TrustBadges";
 import { SocialProof } from "@/components/trust/SocialProof";
 import { ReviewsWidget } from "@/components/trust/ReviewsWidget";
+import { InsuranceQuiz } from "@/components/quiz/InsuranceQuiz";
 
 const Index = () => {
   return (
@@ -26,6 +27,7 @@ const Index = () => {
         <Hero />
         <TrustBadges />
         <Features />
+        <InsuranceQuiz />
         <SocialProof />
         <Partners />
         <ReviewsWidget />
