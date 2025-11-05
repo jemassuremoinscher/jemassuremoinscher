@@ -58,6 +58,24 @@ const LandingAds = () => {
 
       if (error) throw error;
 
+      // Envoyer l'email de confirmation
+      const { error: emailError } = await supabase.functions.invoke('send-quote-email', {
+        body: {
+          name: data.fullName,
+          email: data.email,
+          phone: data.phone,
+          type: data.insuranceType,
+          details: {
+            source: 'google_ads_landing',
+          },
+          estimatedPrice: 35,
+        },
+      });
+
+      if (emailError) {
+        console.error("Error sending email:", emailError);
+      }
+
       // Track conversion
       trackConversion('ads_lead_form', 150);
       trackEvent('quote_request', {

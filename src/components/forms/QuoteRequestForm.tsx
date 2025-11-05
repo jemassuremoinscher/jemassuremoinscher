@@ -74,6 +74,26 @@ export const QuoteRequestForm = () => {
 
       if (error) throw error;
 
+      // Envoyer l'email de confirmation
+      const { error: emailError } = await supabase.functions.invoke('send-quote-email', {
+        body: {
+          name: data.fullName,
+          email: data.email,
+          phone: data.phone,
+          type: data.insuranceType,
+          details: {
+            postalCode: data.postalCode,
+            currentInsurer: data.currentInsurer || 'Non renseigné',
+          },
+          estimatedPrice: 35,
+        },
+      });
+
+      if (emailError) {
+        console.error("Error sending email:", emailError);
+        // Ne pas bloquer le processus si l'email échoue
+      }
+
       setIsSuccess(true);
       toast({
         title: "Demande envoyée !",
