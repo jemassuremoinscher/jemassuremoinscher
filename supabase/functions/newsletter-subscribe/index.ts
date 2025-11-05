@@ -4,6 +4,50 @@ import { Resend } from "https://esm.sh/resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
+// Rate limiting: track requests by IP
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
+const MAX_REQUESTS_PER_WINDOW = 5;
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return true;
+  }
+
+  if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+    return false;
+  }
+
+  record.count++;
+  return true;
+}
+
+function validateEmail(email: string): { valid: boolean; error?: string } {
+  if (!email || typeof email !== 'string') {
+    return { valid: false, error: 'Email is required' };
+  }
+  
+  const trimmedEmail = email.trim().toLowerCase();
+  
+  if (trimmedEmail.length === 0) {
+    return { valid: false, error: 'Email cannot be empty' };
+  }
+  
+  if (trimmedEmail.length > 255) {
+    return { valid: false, error: 'Email must be less than 255 characters' };
+  }
+  
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+    return { valid: false, error: 'Invalid email format' };
+  }
+  
+  return { valid: true };
+}
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
@@ -28,6 +72,26 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Get client IP for rate limiting
+    const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0] || 
+                     req.headers.get('x-real-ip') || 
+                     'unknown';
+
+    // Check rate limit
+    if (!checkRateLimit(clientIP)) {
+      console.warn(`Rate limit exceeded for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ 
+          success: false,
+          message: "Trop de requêtes. Veuillez réessayer plus tard." 
+        }),
+        {
+          status: 429,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
     const supabase = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
@@ -119,9 +183,10 @@ const handler = async (req: Request): Promise<Response> => {
     // Handle new subscription (default action)
     const { email }: SubscribeRequest = await req.json();
 
-    // Validate email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    // Validate email with improved validation
+    const validation = validateEmail(email);
+    if (!validation.valid) {
+      console.warn("Invalid email format:", validation.error);
       return new Response(
         JSON.stringify({ 
           success: false, 
@@ -134,11 +199,14 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    // Normalize email for consistency
+    const normalizedEmail = email.trim().toLowerCase();
+
     // Check if email already exists
     const { data: existingSubscriber } = await supabase
       .from("newsletter_subscribers")
       .select("*")
-      .eq("email", email)
+      .eq("email", normalizedEmail)
       .single();
 
     if (existingSubscriber) {
@@ -174,7 +242,7 @@ const handler = async (req: Request): Promise<Response> => {
     const { error: insertError } = await supabase
       .from("newsletter_subscribers")
       .insert({
-        email,
+        email: normalizedEmail,
         status: "pending",
         confirmation_token: confirmationToken,
       });
@@ -198,7 +266,7 @@ const handler = async (req: Request): Promise<Response> => {
     
     const { error: emailError } = await resend.emails.send({
       from: "Le Comparateur Assurance <onboarding@resend.dev>",
-      to: [email],
+      to: [normalizedEmail],
       subject: "Confirmez votre abonnement à notre newsletter",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -246,7 +314,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log("Newsletter subscription created successfully for:", email);
+    console.log("Newsletter subscription created successfully at:", new Date().toISOString());
 
     return new Response(
       JSON.stringify({ 
@@ -263,7 +331,7 @@ const handler = async (req: Request): Promise<Response> => {
     return new Response(
       JSON.stringify({ 
         success: false, 
-        message: error.message || "Une erreur est survenue" 
+        message: "Une erreur est survenue. Veuillez réessayer plus tard." 
       }),
       {
         status: 500,

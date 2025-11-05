@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.7.1';
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -17,15 +18,103 @@ interface QuoteRequest {
   estimatedPrice: number;
 }
 
+// Rate limiting: track requests by IP
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
+const MAX_REQUESTS_PER_WINDOW = 3;
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return true;
+  }
+
+  if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+    return false;
+  }
+
+  record.count++;
+  return true;
+}
+
+function validateQuoteRequest(data: any): { valid: boolean; errors: string[] } {
+  const errors: string[] = [];
+
+  if (!data.name || typeof data.name !== 'string' || data.name.trim().length === 0) {
+    errors.push('Name is required and must be a non-empty string');
+  } else if (data.name.length > 100) {
+    errors.push('Name must be less than 100 characters');
+  }
+
+  if (!data.email || typeof data.email !== 'string') {
+    errors.push('Email is required');
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    errors.push('Invalid email format');
+  } else if (data.email.length > 255) {
+    errors.push('Email must be less than 255 characters');
+  }
+
+  if (!data.phone || typeof data.phone !== 'string' || data.phone.trim().length === 0) {
+    errors.push('Phone is required');
+  } else if (data.phone.length > 20) {
+    errors.push('Phone must be less than 20 characters');
+  }
+
+  if (!data.type || typeof data.type !== 'string' || data.type.trim().length === 0) {
+    errors.push('Insurance type is required');
+  }
+
+  if (typeof data.estimatedPrice !== 'number' || data.estimatedPrice < 0) {
+    errors.push('Estimated price must be a positive number');
+  }
+
+  return { valid: errors.length === 0, errors };
+}
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { name, email, phone, type, details, estimatedPrice }: QuoteRequest = await req.json();
+    // Get client IP for rate limiting
+    const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0] || 
+                     req.headers.get('x-real-ip') || 
+                     'unknown';
 
-    console.log("Sending quote email for:", { name, email, type });
+    // Check rate limit
+    if (!checkRateLimit(clientIP)) {
+      console.warn(`Rate limit exceeded for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ error: "Too many requests. Please try again later." }),
+        {
+          status: 429,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    const requestData = await req.json();
+    
+    // Validate input data
+    const validation = validateQuoteRequest(requestData);
+    if (!validation.valid) {
+      console.warn("Invalid quote request:", validation.errors);
+      return new Response(
+        JSON.stringify({ error: "Invalid request data", details: validation.errors }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    const { name, email, phone, type, details, estimatedPrice }: QuoteRequest = requestData;
+
+    console.log("Sending quote email for:", { type, timestamp: new Date().toISOString() });
 
     // Email au propriétaire du site
     const ownerEmail = await resend.emails.send({
@@ -89,7 +178,7 @@ const handler = async (req: Request): Promise<Response> => {
   } catch (error: any) {
     console.error("Error in send-quote-email function:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: "An error occurred while processing your request. Please try again later." }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },
