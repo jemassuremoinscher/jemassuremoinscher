@@ -1,4 +1,4 @@
-import { Shield, ChevronDown, Menu, X } from "lucide-react";
+import { Shield, ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,26 @@ import { useState } from "react";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openPopover, setOpenPopover] = useState<string | null>(null);
+
+  const assurancesParticuliers = [
+    { to: "/assurance-auto", label: "Auto", icon: Car },
+    { to: "/assurance-moto", label: "Moto", icon: Bike },
+    { to: "/assurance-habitation", label: "Habitation", icon: Home },
+    { to: "/assurance-sante", label: "Santé", icon: Heart },
+    { to: "/assurance-animaux", label: "Animaux", icon: Heart },
+  ];
+
+  const assurancesPro = [
+    { to: "/assurance-rc-pro", label: "RC Pro", icon: Building2 },
+    { to: "/assurance-mrp", label: "MRP", icon: Building2 },
+  ];
+
+  const assurancesVieEpargne = [
+    { to: "/assurance-vie", label: "Assurance Vie", icon: PiggyBank },
+    { to: "/assurance-pret", label: "Assurance de Prêt", icon: FileText },
+    { to: "/assurance-prevoyance", label: "Prévoyance", icon: Users },
+  ];
 
   return (
     <>
@@ -17,12 +37,12 @@ const Header = () => {
               className="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
               aria-label="Retour à la page d'accueil - Le Comparateur Assurance"
             >
-              <div className="p-1.5 rounded-lg bg-primary">
+              <div className="p-2 rounded-lg bg-gradient-to-br from-primary to-primary/80 shadow-md">
                 <Shield className="h-6 w-6 text-white" aria-hidden="true" />
               </div>
               <div className="flex flex-col leading-tight">
                 <span className="text-xs font-semibold text-primary uppercase tracking-wide">Le Comparateur</span>
-                <span className="text-lg font-black text-primary uppercase">Assurance</span>
+                <span className="text-xl font-black text-primary uppercase">Assurance</span>
               </div>
             </Link>
 
@@ -42,232 +62,229 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation Menu */}
-        <nav className="hidden lg:block bg-gray-50 border-t border-gray-200" role="navigation" aria-label="Navigation principale">
+        <nav className="hidden lg:block bg-gradient-to-r from-gray-50 to-gray-100/50 border-t border-gray-200" role="navigation" aria-label="Navigation principale">
           <div className="container mx-auto px-4">
-          <div className="flex items-center justify-center gap-8 py-3 overflow-x-auto">
-            <Link
-              to="/comparateur-garanties"
-              className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1"
-            >
-              Comparateur Garanties
-            </Link>
-            <Link
-              to="/assurance-auto"
-              className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1"
-            >
-              Assurance Auto
-            </Link>
-            <Link
-              to="/assurance-sante"
-              className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1"
-            >
-              Mutuelle Santé
-            </Link>
-            <Link
-              to="/assurance-moto"
-              className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1"
-            >
-              Assurance Moto
-            </Link>
-            <Link
-              to="/assurance-habitation"
-              className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1"
-            >
-              Assurance Habitation
-            </Link>
-            <Link
-              to="/assurance-pret"
-              className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1"
-            >
-              Assurance de prêt
-            </Link>
-            <Link
-              to="/assurance-prevoyance"
-              className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1"
-            >
-              Prévoyance
-            </Link>
-            <Link
-              to="/assurance-animaux"
-              className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1"
-            >
-              Assurance Animaux
-            </Link>
-            <Link
-              to="/assurance-vie"
-              className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1"
-            >
-              Assurance vie
-            </Link>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="text-sm font-medium text-gray-700 hover:text-primary hover:bg-transparent whitespace-nowrap h-auto p-0 flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1"
-                  aria-label="Plus d'assurances - Ouvrir le menu déroulant"
-                  aria-haspopup="true"
-                >
-                  Plus d'assurances
-                  <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent 
-                className="w-56 p-2 bg-white z-[100] border border-gray-200 shadow-lg" 
-                align="start"
-                role="menu"
-                aria-label="Menu assurances professionnelles"
+            <div className="flex items-center justify-center gap-2 py-3">
+              <Link
+                to="/comparateur-garanties"
+                className="px-4 py-2 text-sm font-semibold text-white bg-primary hover:bg-primary/90 rounded-lg shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               >
-                <div className="flex flex-col gap-1">
-                  <Link
-                    to="/assurance-mrp"
-                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:bg-gray-50"
-                    role="menuitem"
-                  >
-                    MRP
-                  </Link>
-                  <Link
-                    to="/assurance-rc-pro"
-                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:bg-gray-50"
-                    role="menuitem"
-                  >
-                    RC Pro
-                  </Link>
-                </div>
-              </PopoverContent>
-            </Popover>
-          </div>
-        </div>
-      </nav>
-    </header>
+                Comparateur Garanties
+              </Link>
 
-    {/* Mobile Menu */}
-    {isMobileMenuOpen && (
-      <>
-        {/* Overlay */}
+              <Popover open={openPopover === "particuliers"} onOpenChange={(open) => setOpenPopover(open ? "particuliers" : null)}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
+                  >
+                    Particuliers
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-64 p-2 bg-white shadow-lg border border-gray-200" align="start">
+                  <div className="space-y-1">
+                    {assurancesParticuliers.map(({ to, label, icon: Icon }) => (
+                      <Link
+                        key={to}
+                        to={to}
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                        onClick={() => setOpenPopover(null)}
+                      >
+                        <Icon className="h-4 w-4 text-primary" />
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
+
+              <Popover open={openPopover === "pro"} onOpenChange={(open) => setOpenPopover(open ? "pro" : null)}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
+                  >
+                    Professionnels
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-64 p-2 bg-white shadow-lg border border-gray-200" align="start">
+                  <div className="space-y-1">
+                    {assurancesPro.map(({ to, label, icon: Icon }) => (
+                      <Link
+                        key={to}
+                        to={to}
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                        onClick={() => setOpenPopover(null)}
+                      >
+                        <Icon className="h-4 w-4 text-primary" />
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
+
+              <Popover open={openPopover === "epargne"} onOpenChange={(open) => setOpenPopover(open ? "epargne" : null)}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
+                  >
+                    Vie & Épargne
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-64 p-2 bg-white shadow-lg border border-gray-200" align="start">
+                  <div className="space-y-1">
+                    {assurancesVieEpargne.map(({ to, label, icon: Icon }) => (
+                      <Link
+                        key={to}
+                        to={to}
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                        onClick={() => setOpenPopover(null)}
+                      >
+                        <Icon className="h-4 w-4 text-primary" />
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
+
+              <div className="h-6 w-px bg-gray-300 mx-2" aria-hidden="true" />
+
+              <Link
+                to="/qui-sommes-nous"
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+              >
+                Qui sommes-nous ?
+              </Link>
+              <Link
+                to="/nos-partenaires"
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+              >
+                Nos Partenaires
+              </Link>
+              <Link
+                to="/avis-clients"
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+              >
+                Avis Clients
+              </Link>
+              <Link
+                to="/blog"
+                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+              >
+                Blog
+              </Link>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      {/* Overlay for mobile menu */}
+      {isMobileMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden backdrop-blur-sm"
           onClick={() => setIsMobileMenuOpen(false)}
           aria-hidden="true"
         />
-        
-        {/* Mobile Menu Drawer */}
+      )}
+      
+      {/* Mobile Menu Drawer */}
+      {isMobileMenuOpen && (
         <div 
           id="mobile-menu"
           className="fixed top-[73px] left-0 right-0 bottom-0 bg-white z-50 overflow-y-auto lg:hidden animate-slide-in-left"
           role="dialog"
           aria-label="Menu de navigation mobile"
         >
-          <nav className="p-4" role="navigation" aria-label="Navigation mobile principale">
-            <div className="space-y-1">
+          <nav className="p-4 space-y-6" role="navigation" aria-label="Navigation mobile principale">
+            <div>
               <Link
                 to="/comparateur-garanties"
-                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                className="block px-4 py-3 mb-3 text-base font-semibold text-white bg-primary hover:bg-primary/90 rounded-lg transition-all text-center shadow-md"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Comparateur Garanties
               </Link>
-              <Link
-                to="/assurance-auto"
-                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Assurance Auto
-              </Link>
-              <Link
-                to="/assurance-sante"
-                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Mutuelle Santé
-              </Link>
-              <Link
-                to="/assurance-moto"
-                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Assurance Moto
-              </Link>
-              <Link
-                to="/assurance-habitation"
-                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Assurance Habitation
-              </Link>
-              <Link
-                to="/assurance-pret"
-                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Assurance de prêt
-              </Link>
-              <Link
-                to="/assurance-prevoyance"
-                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Prévoyance
-              </Link>
-              <Link
-                to="/assurance-animaux"
-                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Assurance Animaux
-              </Link>
-              <Link
-                to="/assurance-vie"
-                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Assurance vie
-              </Link>
+            </div>
 
-              {/* Section séparée pour les autres pages */}
-              <div className="border-t border-gray-200 mt-4 pt-4">
-                <h3 className="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                  Assurances Pro
-                </h3>
-                <Link
-                  to="/assurance-mrp"
-                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  MRP
-                </Link>
-                <Link
-                  to="/assurance-rc-pro"
-                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  RC Pro
-                </Link>
+            <div>
+              <h3 className="px-4 py-2 text-xs font-bold text-gray-500 uppercase tracking-wider">Particuliers</h3>
+              <div className="space-y-1 mt-2">
+                {assurancesParticuliers.map(({ to, label, icon: Icon }) => (
+                  <Link
+                    key={to}
+                    to={to}
+                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Icon className="h-5 w-5 text-primary" />
+                    {label}
+                  </Link>
+                ))}
               </div>
+            </div>
 
-              <div className="border-t border-gray-200 mt-4 pt-4">
-                <h3 className="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                  À propos
-                </h3>
+            <div>
+              <h3 className="px-4 py-2 text-xs font-bold text-gray-500 uppercase tracking-wider">Professionnels</h3>
+              <div className="space-y-1 mt-2">
+                {assurancesPro.map(({ to, label, icon: Icon }) => (
+                  <Link
+                    key={to}
+                    to={to}
+                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Icon className="h-5 w-5 text-primary" />
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="px-4 py-2 text-xs font-bold text-gray-500 uppercase tracking-wider">Vie & Épargne</h3>
+              <div className="space-y-1 mt-2">
+                {assurancesVieEpargne.map(({ to, label, icon: Icon }) => (
+                  <Link
+                    key={to}
+                    to={to}
+                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Icon className="h-5 w-5 text-primary" />
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t border-gray-200 pt-4">
+              <div className="space-y-1">
                 <Link
                   to="/qui-sommes-nous"
                   className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Qui sommes-nous
+                  Qui sommes-nous ?
                 </Link>
                 <Link
                   to="/nos-partenaires"
                   className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Nos partenaires
+                  Nos Partenaires
                 </Link>
                 <Link
                   to="/avis-clients"
                   className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Avis clients
+                  Avis Clients
                 </Link>
                 <Link
                   to="/blog"
@@ -280,10 +297,9 @@ const Header = () => {
             </div>
           </nav>
         </div>
-      </>
-    )}
-  </>
-);
+      )}
+    </>
+  );
 };
 
 export default Header;
