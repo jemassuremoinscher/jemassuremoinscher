@@ -60,7 +60,7 @@ const LandingAds = () => {
 
       // Track conversion
       trackConversion('ads_lead_form', 150);
-      trackEvent('ads_form_submit', {
+      trackEvent('quote_request', {
         category: 'lead_generation',
         label: 'google_ads_landing',
         insurance_type: data.insuranceType,
