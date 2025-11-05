@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Check, TrendingDown, AlertCircle, Star, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { SubscriptionModal } from './SubscriptionModal';
 
 interface InsuranceOffer {
   id: string;
@@ -72,6 +73,13 @@ export const InteractiveComparator = () => {
   const [insuranceType, setInsuranceType] = useState('auto');
   const [currentPrice, setCurrentPrice] = useState([65]);
   const [sortBy, setSortBy] = useState<'price' | 'savings' | 'rating'>('savings');
+  const [selectedOffer, setSelectedOffer] = useState<InsuranceOffer | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSubscribe = (offer: InsuranceOffer) => {
+    setSelectedOffer(offer);
+    setIsModalOpen(true);
+  };
 
   const filteredOffers = useMemo(() => {
     return mockOffers
@@ -271,6 +279,7 @@ export const InteractiveComparator = () => {
 
                   <Button
                     size="lg"
+                    onClick={() => handleSubscribe(offer)}
                     className={cn(
                       'w-full sm:w-auto lg:w-full',
                       index === 0 && 'bg-green-600 hover:bg-green-700'
@@ -297,6 +306,20 @@ export const InteractiveComparator = () => {
           Parler à un expert gratuitement
         </Button>
       </Card>
+
+      {/* Subscription Modal */}
+      {selectedOffer && (
+        <SubscriptionModal
+          open={isModalOpen}
+          onOpenChange={setIsModalOpen}
+          offerDetails={{
+            insurer: selectedOffer.insurer,
+            price: selectedOffer.price,
+            coverage: selectedOffer.coverage,
+            insuranceType: insuranceType,
+          }}
+        />
+      )}
     </div>
   );
 };
