@@ -39,6 +39,7 @@ const Footer = () => {
           <div>
             <h3 className="font-bold mb-4">Informations</h3>
             <ul className="space-y-2 text-sm text-primary-foreground/80">
+              <li><a href="/politique-cookies" className="hover:text-accent transition-colors">Politique de cookies</a></li>
               <li><a href="#" className="hover:text-accent transition-colors">Mentions légales</a></li>
               <li><a href="#" className="hover:text-accent transition-colors">CGU</a></li>
               <li><a href="#" className="hover:text-accent transition-colors">Politique de confidentialité</a></li>
