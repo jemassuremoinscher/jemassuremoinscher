@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Car, Heart, Home, CreditCard, Users, Shield, Menu, Bike, X } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Car, Heart, Home, CreditCard, Users, Shield, Menu, Bike, X, ChevronDown, Briefcase } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -49,23 +50,37 @@ const Header = () => {
                 <Link to="/assurance-prevoyance">Prévoyance</Link>
               </Button>
               
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="hidden lg:flex border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold"
-                asChild
-              >
-                <Link to="/assurance-mrp">MRP</Link>
-              </Button>
-
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="hidden lg:flex border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold"
-                asChild
-              >
-                <Link to="/assurance-rc-pro">RC Pro</Link>
-              </Button>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="hidden lg:flex border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold gap-1"
+                  >
+                    <Briefcase className="h-4 w-4" />
+                    Assurance Pro
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-56 p-2" align="end">
+                  <div className="flex flex-col gap-1">
+                    <Link
+                      to="/assurance-mrp"
+                      className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                    >
+                      <Shield className="h-4 w-4" />
+                      MRP
+                    </Link>
+                    <Link
+                      to="/assurance-rc-pro"
+                      className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                    >
+                      <Shield className="h-4 w-4" />
+                      RC Pro
+                    </Link>
+                  </div>
+                </PopoverContent>
+              </Popover>
               
               <Button 
                 variant="ghost" 
