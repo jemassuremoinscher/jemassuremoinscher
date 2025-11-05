@@ -75,11 +75,12 @@ const InsuranceComparison = ({ insurers, onNewQuote, formData, insuranceType }: 
                   <div className="text-sm text-muted-foreground">par mois</div>
                 </div>
                 <Button 
-                  className="w-full md:w-auto"
-                  variant={index === 0 ? "default" : "outline"}
+                  className="w-full md:w-auto min-w-[140px]"
+                  variant={index === 0 ? "subscribe-best" : "subscribe"}
+                  size="lg"
                   onClick={() => handleSubscribe(insurer)}
                 >
-                  Souscrire
+                  {index === 0 ? "Souscrire maintenant" : "Souscrire"}
                 </Button>
               </div>
             </div>

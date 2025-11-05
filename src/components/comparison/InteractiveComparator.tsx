@@ -279,13 +279,11 @@ export const InteractiveComparator = () => {
 
                   <Button
                     size="lg"
+                    variant={index === 0 ? "subscribe-best" : "subscribe"}
                     onClick={() => handleSubscribe(offer)}
-                    className={cn(
-                      'w-full sm:w-auto lg:w-full',
-                      index === 0 && 'bg-green-600 hover:bg-green-700'
-                    )}
+                    className="w-full sm:w-auto lg:w-full"
                   >
-                    {index === 0 ? 'Souscrire maintenant' : 'Voir l\'offre'}
+                    {index === 0 ? 'Souscrire maintenant' : 'Souscrire'}
                   </Button>
                 </div>
               </div>
