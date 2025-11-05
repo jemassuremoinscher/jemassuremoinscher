@@ -129,6 +129,20 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    // Initialize Supabase client with service role for database operations
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+    const supabaseClient = createClient(supabaseUrl, supabaseServiceKey);
+
+    // Find the quote_id if it exists (look for recent quote from this email)
+    const { data: recentQuote } = await supabaseClient
+      .from('insurance_quotes')
+      .select('id')
+      .eq('email', email)
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single();
+
     // Email au propriétaire du site
     const ownerEmail = await resend.emails.send({
       from: "Comparateur Assurance <onboarding@resend.dev>",
@@ -153,6 +167,19 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
+    // Track owner email
+    if (ownerEmail.data) {
+      await supabaseClient.from('email_tracking').insert({
+        quote_id: recentQuote?.id || null,
+        recipient_email: businessEmail,
+        recipient_name: 'Admin',
+        email_type: 'quote_notification',
+        subject: `Nouvelle demande de devis - ${type}`,
+        resend_email_id: ownerEmail.data.id,
+        status: 'sent',
+      });
+    }
+
     // Email au client
     const clientEmail = await resend.emails.send({
       from: "Comparateur Assurance <onboarding@resend.dev>",
@@ -170,6 +197,19 @@ const handler = async (req: Request): Promise<Response> => {
         <p>Cordialement,<br>L'équipe Comparateur Assurance</p>
       `,
     });
+
+    // Track client email
+    if (clientEmail.data) {
+      await supabaseClient.from('email_tracking').insert({
+        quote_id: recentQuote?.id || null,
+        recipient_email: email,
+        recipient_name: name,
+        email_type: 'quote_confirmation',
+        subject: "Votre devis d'assurance",
+        resend_email_id: clientEmail.data.id,
+        status: 'sent',
+      });
+    }
 
     console.log("Emails sent successfully:", { ownerEmail, clientEmail });
 

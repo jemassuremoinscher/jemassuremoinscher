@@ -10,6 +10,7 @@ import { QuotesTable } from '@/components/admin/QuotesTable';
 import { CallbacksTable } from '@/components/admin/CallbacksTable';
 import { ChartsSection } from '@/components/admin/ChartsSection';
 import { GlobalSearch } from '@/components/admin/GlobalSearch';
+import { EmailTrackingTable } from '@/components/admin/EmailTrackingTable';
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -183,6 +184,10 @@ const Admin = () => {
         />
 
         <ChartsSection quotes={quotes} callbacks={callbacks} />
+
+        <div className="mb-8">
+          <EmailTrackingTable />
+        </div>
 
         <div className="space-y-8">
           <div ref={quotesTableRef}>

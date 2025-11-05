@@ -83,6 +83,71 @@ export type Database = {
         }
         Relationships: []
       }
+      email_tracking: {
+        Row: {
+          click_count: number
+          clicked_at: string | null
+          created_at: string
+          email_type: string
+          id: string
+          last_event_at: string
+          open_count: number
+          opened_at: string | null
+          quote_id: string | null
+          recipient_email: string
+          recipient_name: string
+          resend_email_id: string | null
+          sent_at: string
+          status: string
+          subject: string
+          updated_at: string
+        }
+        Insert: {
+          click_count?: number
+          clicked_at?: string | null
+          created_at?: string
+          email_type: string
+          id?: string
+          last_event_at?: string
+          open_count?: number
+          opened_at?: string | null
+          quote_id?: string | null
+          recipient_email: string
+          recipient_name: string
+          resend_email_id?: string | null
+          sent_at?: string
+          status?: string
+          subject: string
+          updated_at?: string
+        }
+        Update: {
+          click_count?: number
+          clicked_at?: string | null
+          created_at?: string
+          email_type?: string
+          id?: string
+          last_event_at?: string
+          open_count?: number
+          opened_at?: string | null
+          quote_id?: string | null
+          recipient_email?: string
+          recipient_name?: string
+          resend_email_id?: string | null
+          sent_at?: string
+          status?: string
+          subject?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_tracking_quote_id_fkey"
+            columns: ["quote_id"]
+            isOneToOne: false
+            referencedRelation: "insurance_quotes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       insurance_quotes: {
         Row: {
           created_at: string
