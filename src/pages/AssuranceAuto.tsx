@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Car } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -13,6 +12,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import InsuranceComparison from "@/components/InsuranceComparison";
+import { autoInsurers, generateInsurerOffers } from "@/utils/insurerData";
 
 const formSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
@@ -29,7 +30,7 @@ const formSchema = z.object({
 
 const AssuranceAuto = () => {
   const { toast } = useToast();
-  const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
+  const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -85,7 +86,8 @@ const AssuranceAuto = () => {
 
       if (error) throw error;
 
-      setEstimatedPrice(price);
+      const offers = generateInsurerOffers(price, autoInsurers);
+      setInsurerOffers(offers);
       toast({
         title: "Demande envoyée !",
         description: "Vous allez recevoir votre devis par email.",
@@ -117,13 +119,11 @@ const AssuranceAuto = () => {
           <Card className="p-8">
             <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis en 2 minutes</h2>
             
-            {estimatedPrice ? (
-              <div className="text-center py-8">
-                <h3 className="text-3xl font-bold mb-4 text-primary">Votre tarif estimé</h3>
-                <p className="text-5xl font-bold text-accent mb-6">{estimatedPrice}€/mois</p>
-                <p className="text-muted-foreground mb-4">Un conseiller vous contactera pour finaliser votre devis.</p>
-                <Button onClick={() => setEstimatedPrice(null)}>Faire une nouvelle demande</Button>
-              </div>
+            {insurerOffers.length > 0 ? (
+              <InsuranceComparison 
+                insurers={insurerOffers} 
+                onNewQuote={() => setInsurerOffers([])} 
+              />
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Shield } from "lucide-react";
+import { Bike } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -13,21 +13,23 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
-import { loanInsurers, generateInsurerOffers } from "@/utils/insurerData";
+import { motoInsurers, generateInsurerOffers } from "@/utils/insurerData";
 
 const formSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
   email: z.string().email("Email invalide").max(255),
   phone: z.string().min(10, "Numéro de téléphone invalide").max(15),
-  montantPret: z.string().min(1, "Champ requis"),
-  dureePret: z.string().min(1, "Champ requis"),
-  age: z.string().min(1, "Champ requis"),
-  statut: z.string().min(1, "Champ requis"),
-  fumeur: z.string().min(1, "Champ requis"),
+  marque: z.string().min(1, "Champ requis"),
+  modele: z.string().min(1, "Champ requis"),
+  annee: z.string().min(1, "Champ requis"),
+  typeMoto: z.string().min(1, "Champ requis"),
+  cylindree: z.string().min(1, "Champ requis"),
   codePostal: z.string().length(5, "Code postal invalide"),
+  age: z.string().min(1, "Champ requis"),
+  permis: z.string().min(1, "Champ requis"),
 });
 
-const AssurancePret = () => {
+const AssuranceMoto = () => {
   const { toast } = useToast();
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -38,45 +40,49 @@ const AssurancePret = () => {
       name: "",
       email: "",
       phone: "",
-      montantPret: "",
-      dureePret: "",
-      age: "",
-      statut: "",
-      fumeur: "",
+      marque: "",
+      modele: "",
+      annee: "",
+      typeMoto: "",
+      cylindree: "",
       codePostal: "",
+      age: "",
+      permis: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      const montant = parseInt(values.montantPret);
-      const duree = parseInt(values.dureePret);
-      const ageValue = parseInt(values.age);
-      let price = (montant / 1000) * 0.3;
+      const basePrice = 55;
+      const ageDriver = parseInt(values.age);
+      const yearVehicle = parseInt(values.annee);
+      const cylindreeValue = parseInt(values.cylindree);
+      let price = basePrice;
       
-      if (duree > 20) price += 5;
-      if (ageValue > 45) price += 10;
-      if (values.fumeur === "oui") price += 8;
-      if (values.statut === "profession-risque") price += 12;
+      if (ageDriver < 25) price += 20;
+      if (yearVehicle < 2015) price += 12;
+      if (cylindreeValue > 600) price += 15;
+      if (values.typeMoto === "sportive") price += 25;
       
-      const randomVariation = Math.floor(Math.random() * 10) - 5;
+      const randomVariation = Math.floor(Math.random() * 20) - 10;
       price += randomVariation;
-      price = Math.round(price);
 
       const { data, error } = await supabase.functions.invoke("send-quote-email", {
         body: {
           name: values.name,
           email: values.email,
           phone: values.phone,
-          type: "Assurance Prêt Immobilier",
+          type: "Assurance Moto",
           details: {
-            montantPret: values.montantPret,
-            dureePret: values.dureePret,
-            age: values.age,
-            statut: values.statut,
-            fumeur: values.fumeur,
+            marque: values.marque,
+            modele: values.modele,
+            annee: values.annee,
+            typeMoto: values.typeMoto,
+            cylindree: values.cylindree,
             codePostal: values.codePostal,
+            age: values.age,
+            permis: values.permis,
           },
           estimatedPrice: price,
         },
@@ -84,7 +90,7 @@ const AssurancePret = () => {
 
       if (error) throw error;
 
-      const offers = generateInsurerOffers(price, loanInsurers);
+      const offers = generateInsurerOffers(price, motoInsurers);
       setInsurerOffers(offers);
       toast({
         title: "Demande envoyée !",
@@ -109,9 +115,9 @@ const AssurancePret = () => {
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
             <div className="p-3 rounded-full bg-primary/10">
-              <Shield className="h-8 w-8 text-primary" />
+              <Bike className="h-8 w-8 text-primary" />
             </div>
-            <h1 className="text-4xl font-bold text-foreground">Assurance Prêt Immobilier</h1>
+            <h1 className="text-4xl font-bold text-foreground">Assurance Moto</h1>
           </div>
 
           <Card className="p-8">
@@ -169,12 +175,12 @@ const AssurancePret = () => {
 
                   <FormField
                     control={form.control}
-                    name="montantPret"
+                    name="marque"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Montant du prêt (€)</FormLabel>
+                        <FormLabel>Marque de la moto</FormLabel>
                         <FormControl>
-                          <Input type="number" placeholder="200000" {...field} />
+                          <Input placeholder="Ex: Yamaha, Honda..." {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -183,73 +189,76 @@ const AssurancePret = () => {
 
                   <FormField
                     control={form.control}
-                    name="dureePret"
+                    name="modele"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Durée du prêt</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Sélectionner" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="10">10 ans</SelectItem>
-                            <SelectItem value="15">15 ans</SelectItem>
-                            <SelectItem value="20">20 ans</SelectItem>
-                            <SelectItem value="25">25 ans</SelectItem>
-                            <SelectItem value="30">30 ans</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="age"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Votre âge</FormLabel>
+                        <FormLabel>Modèle</FormLabel>
                         <FormControl>
-                          <Input type="number" placeholder="35" {...field} />
+                          <Input placeholder="Ex: MT-07, CBR..." {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
 
-                  <FormField
-                    control={form.control}
-                    name="statut"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Statut professionnel</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Sélectionner" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="salarie">Salarié</SelectItem>
-                            <SelectItem value="fonctionnaire">Fonctionnaire</SelectItem>
-                            <SelectItem value="independant">Indépendant</SelectItem>
-                            <SelectItem value="profession-risque">Profession à risque</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  <div className="grid grid-cols-2 gap-4">
+                    <FormField
+                      control={form.control}
+                      name="annee"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Année</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Sélectionner" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="2024">2024</SelectItem>
+                              <SelectItem value="2023">2023</SelectItem>
+                              <SelectItem value="2022">2022</SelectItem>
+                              <SelectItem value="2021">2021</SelectItem>
+                              <SelectItem value="2020">2020</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="typeMoto"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Type de moto</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Sélectionner" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              <SelectItem value="roadster">Roadster</SelectItem>
+                              <SelectItem value="sportive">Sportive</SelectItem>
+                              <SelectItem value="custom">Custom</SelectItem>
+                              <SelectItem value="trail">Trail</SelectItem>
+                              <SelectItem value="scooter">Scooter</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
 
                   <FormField
                     control={form.control}
-                    name="fumeur"
+                    name="cylindree"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Êtes-vous fumeur ?</FormLabel>
+                        <FormLabel>Cylindrée (cm³)</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger>
@@ -257,8 +266,12 @@ const AssurancePret = () => {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="non">Non</SelectItem>
-                            <SelectItem value="oui">Oui</SelectItem>
+                            <SelectItem value="125">125 cm³</SelectItem>
+                            <SelectItem value="300">300 cm³</SelectItem>
+                            <SelectItem value="500">500 cm³</SelectItem>
+                            <SelectItem value="600">600 cm³</SelectItem>
+                            <SelectItem value="800">800 cm³</SelectItem>
+                            <SelectItem value="1000">1000 cm³ et +</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -280,6 +293,34 @@ const AssurancePret = () => {
                     )}
                   />
 
+                  <FormField
+                    control={form.control}
+                    name="age"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Votre âge</FormLabel>
+                        <FormControl>
+                          <Input type="number" placeholder="25" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="permis"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Date d'obtention du permis</FormLabel>
+                        <FormControl>
+                          <Input type="date" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
                   <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
                     {isLoading ? "Envoi en cours..." : "Comparer les offres"}
                   </Button>
@@ -294,4 +335,4 @@ const AssurancePret = () => {
   );
 };
 
-export default AssurancePret;
+export default AssuranceMoto;

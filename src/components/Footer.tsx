@@ -20,7 +20,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-primary-foreground/80">
               <li><a href="/assurance-auto" className="hover:text-accent transition-colors">Assurance Auto</a></li>
               <li><a href="/assurance-sante" className="hover:text-accent transition-colors">Mutuelle Santé</a></li>
-              <li>Assurance Moto</li>
+              <li><a href="/assurance-moto" className="hover:text-accent transition-colors">Assurance Moto</a></li>
               <li><a href="/assurance-habitation" className="hover:text-accent transition-colors">Assurance Habitation</a></li>
               <li><a href="/assurance-animaux" className="hover:text-accent transition-colors">Assurance Animaux</a></li>
             </ul>
