@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Check, TrendingDown, AlertCircle, Star, Sparkles, Link } from 'lucide-react';
+import { Check, TrendingDown, AlertCircle, Star, Sparkles, Link, Facebook, Twitter, Linkedin, MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SubscriptionModal } from './SubscriptionModal';
 import { useToast } from '@/hooks/use-toast';
@@ -94,6 +94,28 @@ export const InteractiveComparator = () => {
     }
   };
 
+  const handleShareFacebook = () => {
+    const url = encodeURIComponent(window.location.href);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+  };
+
+  const handleShareTwitter = () => {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent('Découvrez les meilleures offres d\'assurance avec notre comparateur en temps réel !');
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=600,height=400');
+  };
+
+  const handleShareLinkedIn = () => {
+    const url = encodeURIComponent(window.location.href);
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=600,height=400');
+  };
+
+  const handleShareWhatsApp = () => {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent('Découvrez les meilleures offres d\'assurance avec notre comparateur en temps réel ! ');
+    window.open(`https://wa.me/?text=${text}${url}`, '_blank');
+  };
+
   const handleSubscribe = (offer: InsuranceOffer) => {
     setSelectedOffer(offer);
     setIsModalOpen(true);
@@ -131,15 +153,53 @@ export const InteractiveComparator = () => {
         <p className="text-lg text-muted-foreground mb-4">
           Comparez instantanément les meilleures offres du marché
         </p>
-        <Button 
-          variant="outline" 
-          size="lg"
-          onClick={handleCopyLink}
-          className="gap-2"
-        >
-          <Link className="h-4 w-4" />
-          Copier le lien
-        </Button>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <Button 
+            variant="outline" 
+            size="lg"
+            onClick={handleCopyLink}
+            className="gap-2"
+          >
+            <Link className="h-4 w-4" />
+            Copier le lien
+          </Button>
+          <Button 
+            variant="outline" 
+            size="lg"
+            onClick={handleShareFacebook}
+            className="gap-2 bg-blue-600 hover:bg-blue-700 text-white border-blue-600 hover:border-blue-700"
+          >
+            <Facebook className="h-4 w-4" />
+            Facebook
+          </Button>
+          <Button 
+            variant="outline" 
+            size="lg"
+            onClick={handleShareTwitter}
+            className="gap-2 bg-sky-500 hover:bg-sky-600 text-white border-sky-500 hover:border-sky-600"
+          >
+            <Twitter className="h-4 w-4" />
+            Twitter
+          </Button>
+          <Button 
+            variant="outline" 
+            size="lg"
+            onClick={handleShareLinkedIn}
+            className="gap-2 bg-blue-700 hover:bg-blue-800 text-white border-blue-700 hover:border-blue-800"
+          >
+            <Linkedin className="h-4 w-4" />
+            LinkedIn
+          </Button>
+          <Button 
+            variant="outline" 
+            size="lg"
+            onClick={handleShareWhatsApp}
+            className="gap-2 bg-green-600 hover:bg-green-700 text-white border-green-600 hover:border-green-700"
+          >
+            <MessageCircle className="h-4 w-4" />
+            WhatsApp
+          </Button>
+        </div>
       </div>
 
       {/* Interactive Filters */}
