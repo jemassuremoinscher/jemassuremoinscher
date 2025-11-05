@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.newsletter-subscribe]
 verify_jwt = false
+
+[functions.cleanup-deleted-items]
+verify_jwt = false

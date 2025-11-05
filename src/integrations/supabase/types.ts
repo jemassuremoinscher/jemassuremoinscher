@@ -89,6 +89,7 @@ export type Database = {
       contact_callbacks: {
         Row: {
           created_at: string
+          deleted_at: string | null
           email: string
           full_name: string
           id: string
@@ -100,6 +101,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          deleted_at?: string | null
           email: string
           full_name: string
           id?: string
@@ -111,6 +113,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          deleted_at?: string | null
           email?: string
           full_name?: string
           id?: string
@@ -190,6 +193,7 @@ export type Database = {
       insurance_quotes: {
         Row: {
           created_at: string
+          deleted_at: string | null
           email: string
           full_name: string
           id: string
@@ -201,6 +205,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          deleted_at?: string | null
           email: string
           full_name: string
           id?: string
@@ -212,6 +217,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          deleted_at?: string | null
           email?: string
           full_name?: string
           id?: string
@@ -285,6 +291,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      cleanup_old_deleted_items: { Args: never; Returns: undefined }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

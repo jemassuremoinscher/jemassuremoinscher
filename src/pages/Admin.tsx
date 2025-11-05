@@ -2,7 +2,8 @@ import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { LogOut, RefreshCw, Shield } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { LogOut, RefreshCw, Shield, LayoutDashboard, Trash2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { StatsCards } from '@/components/admin/StatsCards';
@@ -12,6 +13,7 @@ import { ChartsSection } from '@/components/admin/ChartsSection';
 import { GlobalSearch } from '@/components/admin/GlobalSearch';
 import { EmailTrackingTable } from '@/components/admin/EmailTrackingTable';
 import { LeadsFilters, FilterOptions } from '@/components/admin/LeadsFilters';
+import { TrashBin } from '@/components/admin/TrashBin';
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -67,10 +69,12 @@ const Admin = () => {
       supabase
         .from('insurance_quotes')
         .select('*')
+        .is('deleted_at', null)
         .order('created_at', { ascending: false }),
       supabase
         .from('contact_callbacks')
         .select('*')
+        .is('deleted_at', null)
         .order('created_at', { ascending: false }),
     ]);
 
@@ -223,29 +227,48 @@ const Admin = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-        <StatsCards
-          quotesCount={filteredQuotes.length}
-          callbacksCount={filteredCallbacks.length}
-          pendingQuotes={pendingQuotes}
-          pendingCallbacks={pendingCallbacks}
-        />
+        <Tabs defaultValue="dashboard" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 mb-6 max-w-md">
+            <TabsTrigger value="dashboard" className="flex items-center gap-2">
+              <LayoutDashboard className="h-4 w-4" />
+              Tableau de bord
+            </TabsTrigger>
+            <TabsTrigger value="trash" className="flex items-center gap-2">
+              <Trash2 className="h-4 w-4" />
+              Corbeille
+            </TabsTrigger>
+          </TabsList>
 
-        <ChartsSection quotes={filteredQuotes} callbacks={filteredCallbacks} />
+          <TabsContent value="dashboard" className="space-y-8">
+            <StatsCards
+              quotesCount={filteredQuotes.length}
+              callbacksCount={filteredCallbacks.length}
+              pendingQuotes={pendingQuotes}
+              pendingCallbacks={pendingCallbacks}
+            />
 
-        <LeadsFilters onFilterChange={applyFilters} />
+            <ChartsSection quotes={filteredQuotes} callbacks={filteredCallbacks} />
 
-        <div className="mb-8">
-          <EmailTrackingTable />
-        </div>
+            <LeadsFilters onFilterChange={applyFilters} />
 
-        <div className="space-y-8">
-          <div ref={quotesTableRef}>
-            <QuotesTable quotes={filteredQuotes} onUpdate={fetchData} highlightedId={highlightedId} />
-          </div>
-          <div ref={callbacksTableRef}>
-            <CallbacksTable callbacks={filteredCallbacks} onUpdate={fetchData} highlightedId={highlightedId} />
-          </div>
-        </div>
+            <div className="mb-8">
+              <EmailTrackingTable />
+            </div>
+
+            <div className="space-y-8">
+              <div ref={quotesTableRef}>
+                <QuotesTable quotes={filteredQuotes} onUpdate={fetchData} highlightedId={highlightedId} />
+              </div>
+              <div ref={callbacksTableRef}>
+                <CallbacksTable callbacks={filteredCallbacks} onUpdate={fetchData} highlightedId={highlightedId} />
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="trash">
+            <TrashBin />
+          </TabsContent>
+        </Tabs>
       </main>
     </div>
   );

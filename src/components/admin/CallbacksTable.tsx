@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Phone, Mail, Clock, Calendar, CheckCircle, XCircle, Download } from 'lucide-react';
+import { Phone, Mail, Clock, Calendar, CheckCircle, XCircle, Download, Trash2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
@@ -45,6 +45,25 @@ export const CallbacksTable = ({ callbacks, onUpdate, highlightedId }: Callbacks
       toast.error('Erreur lors de la mise à jour');
     } else {
       toast.success('Statut mis à jour');
+      onUpdate();
+    }
+  };
+
+  const deleteCallback = async (id: string, clientName: string) => {
+    if (!confirm(`Êtes-vous sûr de vouloir déplacer la demande de rappel de ${clientName} dans la corbeille ?`)) {
+      return;
+    }
+
+    const { error } = await supabase
+      .from('contact_callbacks')
+      .update({ deleted_at: new Date().toISOString() })
+      .eq('id', id);
+
+    if (error) {
+      toast.error('Erreur lors de la suppression');
+      console.error('Delete error:', error);
+    } else {
+      toast.success('Demande déplacée dans la corbeille (disponible 30 jours)');
       onUpdate();
     }
   };
@@ -175,6 +194,7 @@ export const CallbacksTable = ({ callbacks, onUpdate, highlightedId }: Callbacks
                           size="sm"
                           variant="outline"
                           onClick={() => updateCallbackStatus(callback.id, 'called')}
+                          title="Marquer comme appelé"
                         >
                           <CheckCircle className="h-4 w-4" />
                         </Button>
@@ -184,10 +204,19 @@ export const CallbacksTable = ({ callbacks, onUpdate, highlightedId }: Callbacks
                           size="sm"
                           variant="ghost"
                           onClick={() => updateCallbackStatus(callback.id, 'cancelled')}
+                          title="Annuler"
                         >
                           <XCircle className="h-4 w-4 text-red-500" />
                         </Button>
                       )}
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => deleteCallback(callback.id, callback.full_name)}
+                        title="Supprimer (déplacer dans corbeille)"
+                      >
+                        <Trash2 className="h-4 w-4 text-destructive" />
+                      </Button>
                     </div>
                   </TableCell>
                 </TableRow>

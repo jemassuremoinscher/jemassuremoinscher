@@ -50,20 +50,20 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
   };
 
   const deleteQuote = async (id: string, clientName: string) => {
-    if (!confirm(`Êtes-vous sûr de vouloir supprimer le devis de ${clientName} ? Cette action est irréversible.`)) {
+    if (!confirm(`Êtes-vous sûr de vouloir déplacer le devis de ${clientName} dans la corbeille ?`)) {
       return;
     }
 
     const { error } = await supabase
       .from('insurance_quotes')
-      .delete()
+      .update({ deleted_at: new Date().toISOString() })
       .eq('id', id);
 
     if (error) {
       toast.error('Erreur lors de la suppression');
       console.error('Delete error:', error);
     } else {
-      toast.success('Devis supprimé avec succès');
+      toast.success('Devis déplacé dans la corbeille (disponible 30 jours)');
       onUpdate();
     }
   };
