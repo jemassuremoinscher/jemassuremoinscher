@@ -47,6 +47,45 @@ export type Database = {
         }
         Relationships: []
       }
+      chatbot_transfers: {
+        Row: {
+          assigned_to: string | null
+          conversation_history: Json
+          created_at: string
+          id: string
+          status: string
+          transfer_reason: string | null
+          updated_at: string
+          visitor_email: string
+          visitor_name: string | null
+          visitor_phone: string | null
+        }
+        Insert: {
+          assigned_to?: string | null
+          conversation_history?: Json
+          created_at?: string
+          id?: string
+          status?: string
+          transfer_reason?: string | null
+          updated_at?: string
+          visitor_email: string
+          visitor_name?: string | null
+          visitor_phone?: string | null
+        }
+        Update: {
+          assigned_to?: string | null
+          conversation_history?: Json
+          created_at?: string
+          id?: string
+          status?: string
+          transfer_reason?: string | null
+          updated_at?: string
+          visitor_email?: string
+          visitor_name?: string | null
+          visitor_phone?: string | null
+        }
+        Relationships: []
+      }
       contact_callbacks: {
         Row: {
           created_at: string
