@@ -20,8 +20,10 @@ Ajoutez un enregistrement TXT dans votre configuration DNS avec le code fourni.
 ## 📤 Étape 2 : Soumettre le Sitemap
 
 1. Une fois votre site vérifié, allez dans "Sitemaps" (menu gauche)
-2. Entrez l'URL de votre sitemap : `https://votre-domaine.fr/sitemap.xml`
+2. Entrez l'URL de votre sitemap : `https://ybqxpngkbgosobtetxac.supabase.co/functions/v1/sitemap`
 3. Cliquez sur "Envoyer"
+
+**Note importante :** Une fois votre domaine personnalisé configuré, vous pourrez également utiliser `https://votre-domaine.fr/sitemap.xml`
 
 **Résultat attendu :** "Réussite" avec le nombre d'URLs découvertes
 
