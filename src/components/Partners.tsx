@@ -4,13 +4,42 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import axaLogo from "@/assets/logos/axa.png";
+import allianzLogo from "@/assets/logos/allianz.png";
+import groupamaLogo from "@/assets/logos/groupama.png";
+import maifLogo from "@/assets/logos/maif.png";
+import macifLogo from "@/assets/logos/macif.png";
+import generaliLogo from "@/assets/logos/generali.png";
+import mmaLogo from "@/assets/logos/mma.png";
+import matmutLogo from "@/assets/logos/matmut.png";
+import gmfLogo from "@/assets/logos/gmf.png";
+import directAssuranceLogo from "@/assets/logos/direct-assurance.png";
 
 const partners = [
-  "AXA", "Allianz", "Groupama", "MAIF", "MACIF", 
-  "Generali", "MMA", "Matmut", "GMF", "Direct Assurance",
-  "Amaguiz", "April", "Assurpeople", "LCL", "Swiss Life",
-  "Harmonie Mutuelle", "Mutuelle Générale", "MGEN", "Cardif",
-  "MetLife", "Luko", "Alan", "Malakoff Humanis", "AG2R"
+  { name: "AXA", logo: axaLogo },
+  { name: "Allianz", logo: allianzLogo },
+  { name: "Groupama", logo: groupamaLogo },
+  { name: "MAIF", logo: maifLogo },
+  { name: "MACIF", logo: macifLogo },
+  { name: "Generali", logo: generaliLogo },
+  { name: "MMA", logo: mmaLogo },
+  { name: "Matmut", logo: matmutLogo },
+  { name: "GMF", logo: gmfLogo },
+  { name: "Direct Assurance", logo: directAssuranceLogo },
+  { name: "Amaguiz", logo: null },
+  { name: "April", logo: null },
+  { name: "Assurpeople", logo: null },
+  { name: "LCL", logo: null },
+  { name: "Swiss Life", logo: null },
+  { name: "Harmonie Mutuelle", logo: null },
+  { name: "Mutuelle Générale", logo: null },
+  { name: "MGEN", logo: null },
+  { name: "Cardif", logo: null },
+  { name: "MetLife", logo: null },
+  { name: "Luko", logo: null },
+  { name: "Alan", logo: null },
+  { name: "Malakoff Humanis", logo: null },
+  { name: "AG2R", logo: null },
 ];
 
 const Partners = () => {
@@ -52,9 +81,17 @@ const Partners = () => {
                 className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6"
               >
                 <div className="flex items-center justify-center p-6 bg-card rounded-xl border-2 border-border hover:border-primary/30 hover-lift transition-all duration-300 group h-24">
-                  <span className="font-bold text-primary text-base text-center group-hover:text-accent transition-colors">
-                    {partner}
-                  </span>
+                  {partner.logo ? (
+                    <img 
+                      src={partner.logo} 
+                      alt={`Logo ${partner.name}`}
+                      className="max-h-16 max-w-full object-contain"
+                    />
+                  ) : (
+                    <span className="font-bold text-primary text-base text-center group-hover:text-accent transition-colors">
+                      {partner.name}
+                    </span>
+                  )}
                 </div>
               </CarouselItem>
             ))}
