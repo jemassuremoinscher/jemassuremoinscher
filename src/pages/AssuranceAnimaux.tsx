@@ -21,9 +21,6 @@ import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
-  email: z.string().email("Email invalide").max(255),
-  phone: z.string().min(10, "Numéro de téléphone invalide").max(15),
   typeAnimal: z.string().min(1, "Champ requis"),
   race: z.string().min(1, "Champ requis"),
   ageAnimal: z.string().min(1, "Champ requis"),
@@ -36,13 +33,11 @@ const AssuranceAnimaux = () => {
   const { toast } = useToast();
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
       typeAnimal: "",
       race: "",
       ageAnimal: "",
@@ -55,42 +50,35 @@ const AssuranceAnimaux = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      const basePrice = 20;
+      // Sauvegarder les données du formulaire
+      setSubmittedFormData(values);
+      
+      // Calcul prix réaliste
+      const basePrice = 25; // Base formule économique
       const age = parseInt(values.ageAnimal);
       let price = basePrice;
       
-      if (values.typeAnimal === "chien") price += 10;
-      if (age > 8) price += 8;
-      if (values.sterilise === "non") price += 5;
+      // Type d'animal (impact majeur)
+      if (values.typeAnimal === "chien") price += 15; // Chiens plus chers
+      else if (values.typeAnimal === "chat") price += 5;
       
-      const randomVariation = Math.floor(Math.random() * 10) - 5;
+      // Âge (augmente significativement avec l'âge)
+      if (age > 10) price += 25;
+      else if (age > 8) price += 15;
+      else if (age > 5) price += 8;
+      else if (age < 1) price += 5; // Jeunes animaux aussi plus chers
+      
+      // Stérilisation (réduction)
+      if (values.sterilise === "oui") price -= 3;
+      
+      const randomVariation = Math.floor(Math.random() * 12) - 6;
       price += randomVariation;
-
-      const { data, error } = await supabase.functions.invoke("send-quote-email", {
-        body: {
-          name: values.name,
-          email: values.email,
-          phone: values.phone,
-          type: "Assurance Animaux",
-          details: {
-            typeAnimal: values.typeAnimal,
-            race: values.race,
-            ageAnimal: values.ageAnimal,
-            sexe: values.sexe,
-            sterilise: values.sterilise,
-            codePostal: values.codePostal,
-          },
-          estimatedPrice: price,
-        },
-      });
-
-      if (error) throw error;
 
       const offers = generateInsurerOffers(price, petInsurers);
       setInsurerOffers(offers);
       toast({
-        title: "Demande envoyée !",
-        description: "Vous allez recevoir votre devis par email.",
+        title: "Offres générées !",
+        description: "Consultez les meilleures offres pour votre animal.",
       });
     } catch (error: any) {
       console.error("Error:", error);
@@ -155,53 +143,13 @@ const AssuranceAnimaux = () => {
             {insurerOffers.length > 0 ? (
               <InsuranceComparison 
                 insurers={insurerOffers} 
-                onNewQuote={() => setInsurerOffers([])} 
+                onNewQuote={() => setInsurerOffers([])}
+                formData={submittedFormData}
+                insuranceType="Assurance Animaux"
               />
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Nom complet</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Jean Dupont" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                          <Input type="email" placeholder="jean@exemple.fr" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Téléphone</FormLabel>
-                        <FormControl>
-                          <Input placeholder="0612345678" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
                   <FormField
                     control={form.control}
                     name="typeAnimal"

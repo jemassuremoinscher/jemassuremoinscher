@@ -21,9 +21,6 @@ import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
-  email: z.string().email("Email invalide").max(255),
-  phone: z.string().min(10, "Numéro de téléphone invalide").max(15),
   typePrevoyance: z.string().min(1, "Champ requis"),
   situation: z.string().min(1, "Champ requis"),
   age: z.string().min(1, "Champ requis"),
@@ -70,13 +67,11 @@ const AssurancePrevoyance = () => {
   const { toast } = useToast();
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
       typePrevoyance: "",
       situation: "",
       age: "",
@@ -88,44 +83,41 @@ const AssurancePrevoyance = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      const basePrice = 25;
+      // Sauvegarder les données du formulaire
+      setSubmittedFormData(values);
+      
+      // Calcul prix réaliste
+      const basePrice = 30; // Base formule standard
       let price = basePrice;
 
       const age = parseInt(values.age);
-      if (age > 50) price += 15;
-      else if (age > 40) price += 10;
-      else if (age > 30) price += 5;
+      // Âge (impact très important en prévoyance)
+      if (age > 60) price += 45;
+      else if (age > 50) price += 30;
+      else if (age > 40) price += 18;
+      else if (age > 30) price += 10;
 
-      if (values.typePrevoyance === "deces") price += 10;
-      if (values.typePrevoyance === "obseques") price += 5;
-      if (values.typePrevoyance === "dependance") price += 20;
+      // Type de prévoyance (impact majeur)
+      if (values.typePrevoyance === "deces") price += 25; // Capital décès
+      else if (values.typePrevoyance === "obseques") price += 12; // Obsèques seules
+      else if (values.typePrevoyance === "dependance") price += 40; // Dépendance très chère
+      else if (values.typePrevoyance === "complete") price += 50; // Formule complète
 
-      if (values.profession === "risque") price += 15;
+      // Situation familiale
+      if (values.situation === "marie-enfants") price += 15;
+      else if (values.situation === "marie") price += 8;
 
-      const { error } = await supabase.functions.invoke("send-quote-email", {
-        body: {
-          name: values.name,
-          email: values.email,
-          phone: values.phone,
-          type: "Prévoyance",
-          details: {
-            typePrevoyance: values.typePrevoyance,
-            situation: values.situation,
-            age: values.age,
-            profession: values.profession,
-            codePostal: values.codePostal,
-          },
-          estimatedPrice: price,
-        },
-      });
+      // Profession à risque
+      if (values.profession === "risque") price += 25;
 
-      if (error) throw error;
+      const randomVariation = Math.floor(Math.random() * 15) - 7;
+      price += randomVariation;
 
       const offers = generateInsurerOffers(price, prevoyanceInsurers);
       setInsurerOffers(offers);
       toast({
-        title: "Demande envoyée !",
-        description: "Vous allez recevoir votre devis par email.",
+        title: "Offres générées !",
+        description: "Consultez les meilleures offres de prévoyance.",
       });
     } catch (error: any) {
       console.error("Error:", error);
@@ -187,53 +179,16 @@ const AssurancePrevoyance = () => {
           <Card className="p-8">
             <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis personnalisé</h2>
             {insurerOffers.length > 0 ? (
-              <InsuranceComparison insurers={insurerOffers} onNewQuote={() => setInsurerOffers([])} />
+              <InsuranceComparison 
+                insurers={insurerOffers} 
+                onNewQuote={() => setInsurerOffers([])}
+                formData={submittedFormData}
+                insuranceType="Prévoyance"
+              />
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
-                    <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Nom complet</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Votre nom" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <Input type="email" placeholder="votre@email.com" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="phone"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Téléphone</FormLabel>
-                          <FormControl>
-                            <Input placeholder="06 12 34 56 78" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
                     <FormField
                       control={form.control}
                       name="typePrevoyance"

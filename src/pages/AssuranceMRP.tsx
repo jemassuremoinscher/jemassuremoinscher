@@ -18,9 +18,6 @@ import SEO from "@/components/SEO";
 import Testimonials from "@/components/Testimonials";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
-  email: z.string().email("Email invalide").max(255),
-  phone: z.string().min(10, "Numéro de téléphone invalide").max(15),
   entreprise: z.string().min(1, "Champ requis"),
   secteur: z.string().min(1, "Champ requis"),
   effectif: z.string().min(1, "Champ requis"),
@@ -68,13 +65,11 @@ const AssuranceMRP = () => {
   const { toast } = useToast();
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
       entreprise: "",
       secteur: "",
       effectif: "",
@@ -87,46 +82,31 @@ const AssuranceMRP = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      const basePrice = 80;
+      setSubmittedFormData(values);
+      
+      const basePrice = 120;
       let price = basePrice;
 
       const effectif = parseInt(values.effectif);
-      if (effectif > 50) price += 100;
-      else if (effectif > 20) price += 60;
-      else if (effectif > 10) price += 30;
+      if (effectif > 50) price += 150;
+      else if (effectif > 20) price += 90;
+      else if (effectif > 10) price += 50;
 
-      if (values.secteur === "batiment" || values.secteur === "restauration") price += 50;
-      if (values.local === "propriete") price += 20;
+      if (values.secteur === "batiment" || values.secteur === "restauration") price += 80;
+      if (values.local === "propriete") price += 35;
 
       const ca = parseInt(values.chiffreAffaires);
-      if (ca > 500000) price += 80;
-      else if (ca > 200000) price += 40;
+      if (ca > 1000000) price += 100;
+      else if (ca > 500000) price += 60;
 
-      const { error } = await supabase.functions.invoke("send-quote-email", {
-        body: {
-          name: values.name,
-          email: values.email,
-          phone: values.phone,
-          type: "Multirisque Professionnelle",
-          details: {
-            entreprise: values.entreprise,
-            secteur: values.secteur,
-            effectif: values.effectif,
-            chiffreAffaires: values.chiffreAffaires,
-            local: values.local,
-            codePostal: values.codePostal,
-          },
-          estimatedPrice: price,
-        },
-      });
-
-      if (error) throw error;
+      const randomVariation = Math.floor(Math.random() * 25) - 12;
+      price += randomVariation;
 
       const offers = generateInsurerOffers(price, mrpInsurers);
       setInsurerOffers(offers);
       toast({
-        title: "Demande envoyée !",
-        description: "Vous allez recevoir votre devis par email.",
+        title: "Offres générées !",
+        description: "Consultez les meilleures offres pour votre entreprise.",
       });
     } catch (error: any) {
       console.error("Error:", error);
@@ -160,53 +140,16 @@ const AssuranceMRP = () => {
 
           <Card className="p-8">
             {insurerOffers.length > 0 ? (
-              <InsuranceComparison insurers={insurerOffers} onNewQuote={() => setInsurerOffers([])} />
+              <InsuranceComparison 
+                insurers={insurerOffers} 
+                onNewQuote={() => setInsurerOffers([])}
+                formData={submittedFormData}
+                insuranceType="Multirisque Professionnelle"
+              />
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
-                    <FormField
-                      control={form.control}
-                      name="name"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Nom du dirigeant</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Votre nom" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email</FormLabel>
-                          <FormControl>
-                            <Input type="email" placeholder="votre@email.com" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="phone"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Téléphone</FormLabel>
-                          <FormControl>
-                            <Input placeholder="06 12 34 56 78" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
                     <FormField
                       control={form.control}
                       name="entreprise"

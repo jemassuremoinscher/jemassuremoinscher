@@ -21,9 +21,6 @@ import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
-  email: z.string().email("Email invalide").max(255),
-  phone: z.string().min(10, "Numéro de téléphone invalide").max(15),
   montantPret: z.string().min(1, "Champ requis"),
   dureePret: z.string().min(1, "Champ requis"),
   age: z.string().min(1, "Champ requis"),
@@ -36,13 +33,11 @@ const AssurancePret = () => {
   const { toast } = useToast();
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
       montantPret: "",
       dureePret: "",
       age: "",
@@ -55,45 +50,42 @@ const AssurancePret = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
+      // Sauvegarder les données du formulaire
+      setSubmittedFormData(values);
+      
+      // Calcul prix réaliste (coût par mois)
       const montant = parseInt(values.montantPret);
       const duree = parseInt(values.dureePret);
       const ageValue = parseInt(values.age);
-      let price = (montant / 1000) * 0.3;
       
-      if (duree > 20) price += 5;
-      if (ageValue > 45) price += 10;
-      if (values.fumeur === "oui") price += 8;
-      if (values.statut === "profession-risque") price += 12;
+      // Tarification basée sur le capital assuré
+      let price = (montant / 1000) * 0.35; // Base: 0,35€ par millier
       
-      const randomVariation = Math.floor(Math.random() * 10) - 5;
+      // Facteurs d'ajustement
+      if (duree > 25) price += 15;
+      else if (duree > 20) price += 10;
+      else if (duree > 15) price += 5;
+      
+      // Âge (impact majeur)
+      if (ageValue > 55) price += 35;
+      else if (ageValue > 45) price += 20;
+      else if (ageValue > 35) price += 10;
+      
+      // Fumeur (majoration importante)
+      if (values.fumeur === "oui") price += 15;
+      
+      // Profession à risque
+      if (values.statut === "profession-risque") price += 25;
+      
+      const randomVariation = Math.floor(Math.random() * 15) - 7;
       price += randomVariation;
       price = Math.round(price);
-
-      const { data, error } = await supabase.functions.invoke("send-quote-email", {
-        body: {
-          name: values.name,
-          email: values.email,
-          phone: values.phone,
-          type: "Assurance Prêt Immobilier",
-          details: {
-            montantPret: values.montantPret,
-            dureePret: values.dureePret,
-            age: values.age,
-            statut: values.statut,
-            fumeur: values.fumeur,
-            codePostal: values.codePostal,
-          },
-          estimatedPrice: price,
-        },
-      });
-
-      if (error) throw error;
 
       const offers = generateInsurerOffers(price, loanInsurers);
       setInsurerOffers(offers);
       toast({
-        title: "Demande envoyée !",
-        description: "Vous allez recevoir votre devis par email.",
+        title: "Offres générées !",
+        description: "Consultez les meilleures offres d'assurance emprunteur.",
       });
     } catch (error: any) {
       console.error("Error:", error);
@@ -158,53 +150,13 @@ const AssurancePret = () => {
             {insurerOffers.length > 0 ? (
               <InsuranceComparison 
                 insurers={insurerOffers} 
-                onNewQuote={() => setInsurerOffers([])} 
+                onNewQuote={() => setInsurerOffers([])}
+                formData={submittedFormData}
+                insuranceType="Assurance Prêt Immobilier"
               />
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Nom complet</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Jean Dupont" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                          <Input type="email" placeholder="jean@exemple.fr" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Téléphone</FormLabel>
-                        <FormControl>
-                          <Input placeholder="0612345678" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
                   <FormField
                     control={form.control}
                     name="montantPret"
