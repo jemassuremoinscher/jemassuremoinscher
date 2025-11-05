@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Home } from "lucide-react";
+import { Home, Shield, Euro, Clock, Flame, Droplets, Lock, Zap } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -15,6 +15,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { homeInsurers, generateInsurerOffers } from "@/utils/insurerData";
 import SEO from "@/components/SEO";
+import InfoSection from "@/components/insurance/InfoSection";
+import HowItWorks from "@/components/insurance/HowItWorks";
+import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 
 const formSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
@@ -111,17 +114,44 @@ const AssuranceHabitation = () => {
         canonical="https://votre-domaine.fr/assurance-habitation"
       />
       <Header />
-      <main className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 rounded-full bg-primary/10">
-              <Home className="h-8 w-8 text-primary" />
+      
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex justify-center mb-6">
+              <div className="p-4 rounded-full bg-primary/10">
+                <Home className="h-12 w-12 text-primary" />
+              </div>
             </div>
-            <h1 className="text-4xl font-bold text-foreground">Assurance Habitation</h1>
+            <h1 className="text-5xl font-bold text-foreground mb-6">Assurance Habitation</h1>
+            <p className="text-xl text-muted-foreground mb-8">
+              Protégez votre logement avec la meilleure assurance habitation. 
+              Comparez les offres pour propriétaires et locataires et économisez jusqu'à 300€ par an.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-sm">
+              <div className="flex items-center gap-2">
+                <Shield className="h-5 w-5 text-primary" />
+                <span>Protection complète</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="h-5 w-5 text-primary" />
+                <span>Devis en 2 minutes</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Euro className="h-5 w-5 text-primary" />
+                <span>Tarifs compétitifs</span>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
 
+      <main className="container mx-auto px-4 py-12">
+        {/* Formulaire de devis */}
+        <div className="max-w-3xl mx-auto mb-16">
           <Card className="p-8">
-            <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis en 2 minutes</h2>
+            <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis personnalisé</h2>
             
             {insurerOffers.length > 0 ? (
               <InsuranceComparison 
@@ -292,6 +322,133 @@ const AssuranceHabitation = () => {
             )}
           </Card>
         </div>
+
+        {/* Garanties Section */}
+        <InfoSection
+          title="Les garanties essentielles de l'assurance habitation"
+          description="Protégez votre logement et vos biens avec des garanties adaptées"
+          items={[
+            {
+              icon: Flame,
+              title: "Incendie et Explosion",
+              description: "Prise en charge des dommages causés par un incendie, une explosion ou la foudre sur votre logement et vos biens.",
+            },
+            {
+              icon: Droplets,
+              title: "Dégâts des Eaux",
+              description: "Couverture des dommages causés par fuites, infiltrations, ruptures de canalisations et gel des conduites.",
+            },
+            {
+              icon: Lock,
+              title: "Vol et Cambriolage",
+              description: "Indemnisation en cas de vol par effraction, tentative de vol et vandalisme dans votre logement.",
+            },
+            {
+              icon: Shield,
+              title: "Responsabilité Civile",
+              description: "Protection contre les dommages que vous pourriez causer à des tiers dans votre vie privée.",
+            },
+            {
+              icon: Zap,
+              title: "Catastrophes Naturelles",
+              description: "Couverture obligatoire des dommages causés par inondations, sécheresse, tremblements de terre, tempêtes.",
+            },
+            {
+              icon: Home,
+              title: "Bris de Glace",
+              description: "Remplacement des vitres, baies vitrées, portes vitrées, miroirs et plaques de cuisson en verre.",
+            },
+          ]}
+        />
+
+        {/* Comment ça marche */}
+        <HowItWorks
+          steps={[
+            {
+              number: "1",
+              title: "Décrivez votre logement",
+              description: "Type de bien, surface, statut (locataire/propriétaire) et valeur de vos biens.",
+            },
+            {
+              number: "2",
+              title: "Comparez les offres",
+              description: "Recevez plusieurs devis adaptés à votre profil avec garanties détaillées.",
+            },
+            {
+              number: "3",
+              title: "Souscrivez en ligne",
+              description: "Choisissez votre assurance et activez votre couverture immédiatement.",
+            },
+          ]}
+        />
+
+        {/* Conseils */}
+        <section className="py-12 max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
+            Nos conseils pour bien choisir
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-3">Évaluez vos besoins</h3>
+              <p className="text-muted-foreground">
+                Faites l'inventaire de vos biens pour déterminer le capital mobilier à assurer. 
+                N'oubliez pas les objets de valeur, équipements électroniques et mobilier.
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-3">Locataire ou propriétaire ?</h3>
+              <p className="text-muted-foreground">
+                L'assurance habitation est obligatoire pour les locataires. Pour les propriétaires, 
+                bien que non obligatoire, elle reste indispensable pour protéger votre patrimoine.
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-3">Les garanties optionnelles</h3>
+              <p className="text-muted-foreground">
+                Protection juridique, assistance à domicile, remplacement à neuf : ces options 
+                peuvent être précieuses selon votre situation. Comparez-les attentivement.
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-3">Franchise et plafonds</h3>
+              <p className="text-muted-foreground">
+                Vérifiez les franchises applicables et les plafonds d'indemnisation pour chaque garantie. 
+                Un tarif bas peut cacher des franchises élevées.
+              </p>
+            </Card>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <InsuranceFAQ
+          title="Questions fréquentes sur l'assurance habitation"
+          faqs={[
+            {
+              question: "L'assurance habitation est-elle obligatoire ?",
+              answer: "Elle est obligatoire pour les locataires et les copropriétaires. Pour les propriétaires occupants, elle n'est pas obligatoire mais fortement recommandée. Sans assurance, vous devrez assumer tous les dommages de votre poche, ce qui peut représenter des sommes considérables.",
+            },
+            {
+              question: "Que signifie la valeur à neuf ?",
+              answer: "La garantie valeur à neuf permet d'être indemnisé au prix d'achat d'un bien neuf équivalent, sans déduction pour vétusté. C'est particulièrement intéressant pour le mobilier, l'électroménager et les équipements. Cette option augmente légèrement la prime mais offre une meilleure protection.",
+            },
+            {
+              question: "Comment calculer le capital mobilier à assurer ?",
+              answer: "Le capital mobilier correspond à la valeur de tous vos biens : meubles, électroménager, vêtements, objets de valeur, équipements hi-fi/informatique. En moyenne, on estime entre 300€ et 500€ par m² de surface habitable. Faites un inventaire précis et conservez vos factures.",
+            },
+            {
+              question: "Que faire en cas de sinistre ?",
+              answer: "Contactez immédiatement votre assureur (dans les 5 jours pour la plupart des sinistres, 2 jours pour un vol). Prenez des photos des dégâts, rassemblez les preuves (factures, témoignages) et ne jetez rien avant le passage de l'expert. Faites les réparations d'urgence pour éviter l'aggravation des dommages.",
+            },
+            {
+              question: "La colocation nécessite-t-elle une assurance spécifique ?",
+              answer: "Chaque colocataire doit souscrire sa propre assurance habitation ou être nommé sur le contrat. Il existe des assurances spéciales colocation qui couvrent tous les occupants. Attention : si un seul colocataire est assuré, les autres ne seront pas couverts en cas de sinistre.",
+            },
+            {
+              question: "Puis-je résilier mon assurance habitation à tout moment ?",
+              answer: "Oui, depuis la loi Hamon, vous pouvez résilier votre contrat à tout moment après la première année, sans frais ni pénalités. Il suffit d'envoyer une lettre recommandée. La résiliation prend effet 1 mois après la réception par l'assureur. Votre nouvel assureur peut s'en charger.",
+            },
+          ]}
+        />
       </main>
       <Footer />
     </div>
