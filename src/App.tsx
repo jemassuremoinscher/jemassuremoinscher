@@ -39,6 +39,7 @@ const CGU = lazy(() => import("./pages/CGU"));
 const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentialite"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NewsletterGestion = lazy(() => import("./pages/NewsletterGestion"));
+const PlanDuSite = lazy(() => import("./pages/PlanDuSite"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -87,6 +88,7 @@ const App = () => (
             <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/newsletter-gestion" element={<NewsletterGestion />} />
+            <Route path="/plan-du-site" element={<PlanDuSite />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
