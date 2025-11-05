@@ -14,6 +14,691 @@ export interface BlogArticle {
 
 export const blogArticles: BlogArticle[] = [
   {
+    id: "5",
+    title: "Mutuelle santé : Comment réduire vos frais médicaux de 40% en 2024",
+    slug: "mutuelle-sante-reduire-frais-medicaux-2024",
+    description: "Découvrez comment choisir la bonne mutuelle santé et optimiser vos remboursements pour économiser jusqu'à 40% sur vos dépenses médicales annuelles.",
+    category: "Guides Pratiques",
+    date: "18 janvier 2024",
+    readTime: "9 min",
+    author: "Dr. Marie Dupont",
+    tags: ["mutuelle santé", "économies", "remboursements", "conseils santé"],
+    content: `
+# Mutuelle Santé : Le Guide Complet pour Économiser
+
+Avec la hausse constante des frais médicaux, choisir la bonne mutuelle santé n'a jamais été aussi crucial. Voici comment optimiser vos remboursements.
+
+## Comprendre les niveaux de remboursement
+
+### Le système de base
+La Sécurité sociale rembourse selon une **base de remboursement (BR)** :
+- Consultation généraliste : 70% de 25€ = 17,50€
+- Reste à charge : 7,50€ + éventuel dépassement d'honoraires
+
+**C'est là que la mutuelle intervient !**
+
+### Les niveaux de garantie
+
+**Niveau 1 - Formule économique (30-50€/mois)**
+- Remboursement : 100% BR
+- Couverture : Consultations de base, médicaments
+- Pour qui : Personnes en bonne santé, jeunes actifs
+
+**Niveau 2 - Formule intermédiaire (50-80€/mois)**
+- Remboursement : 150-200% BR
+- Couverture : + Optique, dentaire, spécialistes
+- Pour qui : Familles, besoins réguliers
+
+**Niveau 3 - Formule premium (80-150€/mois)**
+- Remboursement : 300-400% BR
+- Couverture complète : Tout + médecines douces
+- Pour qui : Seniors, problèmes de santé
+
+## Les postes de dépenses à prioriser
+
+### 1. L'optique (30% du budget santé)
+**Sans bonne mutuelle :**
+- Lunettes : 200-500€ de reste à charge
+- Lentilles : Non remboursées par la Sécu
+
+**Avec bonne mutuelle :**
+- Forfait 100-500€ tous les 2 ans
+- Prise en charge des lentilles
+
+**Conseil :** Vérifiez la fréquence de renouvellement autorisée.
+
+### 2. Les soins dentaires (25% du budget)
+**Prothèses et orthodontie = très chers !**
+
+**Exemple :**
+- Couronne : 500-1200€ (Sécu rembourse 75€)
+- Appareil dentaire enfant : 2000-6000€
+
+**Solution :** Choisir une mutuelle avec **forfait dentaire élevé** (300-1000€/an).
+
+### 3. L'hospitalisation (20% des dépenses)
+**Coûts cachés :**
+- Chambre particulière : 50-150€/jour
+- Dépassements d'honoraires : 200-2000€
+
+**Garantie indispensable :** Chambre particulière + forfait hospitalier illimité
+
+### 4. Les médecines douces (en hausse)
+De plus en plus de Français consultent :
+- Ostéopathe : 50-80€/séance
+- Psychologue : 50-100€/séance
+- Diététicien : 40-60€/séance
+
+**Bon plan :** Forfait médecines alternatives 100-300€/an
+
+## 5 astuces pour économiser
+
+### 1. Comparez chaque année
+Les tarifs évoluent de 3-5% par an. **Ne restez pas par habitude !**
+
+**Économie potentielle :** 200-600€/an
+
+### 2. Adaptez selon votre âge
+- **20-30 ans** : Formule basique suffit
+- **30-50 ans** : Renforcez optique + dentaire
+- **50+ ans** : Privilégiez hospitalisation + spécialistes
+
+### 3. Utilisez les services inclus
+Beaucoup de mutuelles offrent gratuitement :
+- Téléconsultation illimitée
+- Assistance médicale 24/7
+- Réseau de soins avec tarifs négociés
+
+### 4. Négociez un contrat collectif
+Si vous êtes TNS ou dirigeant :
+- Contrat Madelin : Déduction fiscale
+- Contrat groupe familial : -20 à -30%
+
+**Économie :** 300-800€/an
+
+### 5. Optimisez la franchise
+Accepter 100€ de franchise peut réduire la cotisation de 15-20%.
+
+**À faire si :** Vous consultez rarement
+
+## Le contrat responsable : obligatoire
+
+Depuis 2015, tous les contrats doivent être **"responsables"** pour être défiscalisés.
+
+**Ça veut dire quoi ?**
+- Plafonnement des remboursements optique
+- Pas de remboursement sur les dépassements excessifs
+- Bonus si vous respectez le parcours de soins
+
+**Avantage fiscal :** Réduction d'impôt jusqu'à 25% de la cotisation
+
+## Checklist avant de souscrire
+
+✅ **Vérifiez vos vrais besoins**
+- Portez-vous des lunettes ?
+- Avez-vous des soins dentaires prévus ?
+- Prenez-vous des médicaments réguliers ?
+
+✅ **Comparez les plafonds**
+- Optique : Minimum 200€/an
+- Dentaire : Minimum 300€/an
+- Hospitalisation : Chambre particulière incluse
+
+✅ **Regardez les délais de carence**
+- Dentaire/Optique : 3-6 mois généralement
+- Hospitalisation : 0-3 mois
+
+✅ **Testez le réseau de soins**
+- Y a-t-il des centres agréés près de chez vous ?
+- Proposent-ils le tiers payant ?
+
+✅ **Lisez les exclusions**
+- Médecines alternatives couvertes ?
+- Dépassements d'honoraires remboursés ?
+
+## Erreurs fréquentes
+
+❌ **Choisir la moins chère** sans regarder les garanties
+❌ **Négliger l'optique** alors qu'on porte des lunettes
+❌ **Oublier les enfants** qui ont besoin d'orthodontie
+❌ **Ignorer les services** (téléconsultation, assistance)
+❌ **Ne pas comparer** chaque année
+
+## Cas pratiques
+
+**Cas 1 : Jeune actif célibataire (25 ans)**
+- Besoins : Consultations, médicaments basiques
+- Formule recommandée : Économique 35€/mois
+- Économie annuelle : 300€ vs formule trop complète
+
+**Cas 2 : Famille avec 2 enfants**
+- Besoins : Optique, dentaire, pédiatre
+- Formule recommandée : Intermédiaire+ 180€/mois
+- Économie : 500€/an grâce au forfait dentaire
+
+**Cas 3 : Senior 65 ans**
+- Besoins : Hospitalisation, spécialistes, audioprothèse
+- Formule recommandée : Premium 120€/mois
+- Économie : 2000€/an sur les restes à charge
+
+## Tableau comparatif
+
+| Garantie | Économique | Intermédiaire | Premium |
+|----------|------------|---------------|----------|
+| Prix/mois | 30-50€ | 50-80€ | 80-150€ |
+| Optique | 100€/an | 300€/an | 500€/an |
+| Dentaire | 200€/an | 400€/an | 800€/an |
+| Hospitalisation | 100% BR | 150% BR | 300% BR |
+| Médecines douces | ❌ | 100€/an | 300€/an |
+
+## Conclusion
+
+Une bonne mutuelle santé peut vous faire économiser **plusieurs milliers d'euros** par an sur vos frais médicaux. L'essentiel est de choisir une formule adaptée à votre situation réelle, pas la plus chère ou la moins chère par défaut.
+
+**Prêt à optimiser votre mutuelle ?** Comparez les offres et trouvez celle qui correspond vraiment à vos besoins.
+    `
+  },
+  {
+    id: "6",
+    title: "Assurance auto jeune conducteur : 7 astuces pour diviser le prix par 2",
+    slug: "assurance-auto-jeune-conducteur-astuces",
+    description: "Jeune conducteur et assurance auto = budget explosé ? Découvrez 7 techniques éprouvées pour réduire drastiquement votre prime d'assurance.",
+    category: "Conseils Experts",
+    date: "16 janvier 2024",
+    readTime: "8 min",
+    author: "Alexandre Petit",
+    tags: ["jeune conducteur", "assurance auto", "économies", "permis"],
+    content: `
+# Jeune Conducteur : Comment Payer Moins Cher Son Assurance Auto
+
+Vous venez d'avoir votre permis ? Félicitations ! Mais préparez-vous : l'assurance auto jeune conducteur coûte **2 à 3 fois plus cher** qu'un conducteur expérimenté. Voici comment réduire la facture.
+
+## Pourquoi c'est si cher ?
+
+### Le coefficient majoration
+**Pendant 3 ans**, vous payez une surprime :
+- Année 1 : +100% (vous payez le double)
+- Année 2 : +50%
+- Année 3 : +25%
+
+**Exemple concret :**
+- Prime normale : 600€/an
+- Jeune conducteur : 1200€ la 1ère année !
+
+### Les statistiques accablantes
+Les jeunes conducteurs représentent :
+- 25% des accidents graves
+- 20% des tués sur la route
+- Seulement 10% des conducteurs
+
+**Résultat :** Les assureurs les considèrent comme très risqués.
+
+## Les 7 astuces qui marchent vraiment
+
+### 1. La conduite accompagnée (AAC)
+**L'astuce n°1 la plus efficace !**
+
+**Économie :** 50% de réduction sur la surprime
+
+**Calcul :**
+- Sans AAC : Surprime de 100%
+- Avec AAC : Surprime de 50% seulement
+
+**Sur un contrat à 600€/an :**
+- Sans AAC : 1200€
+- Avec AAC : 900€
+- **Économie : 300€ dès la 1ère année**
+
+### 2. Être conducteur secondaire
+**La technique de l'assurance "chez les parents"**
+
+Comment ça marche ?
+1. Le parent est conducteur principal
+2. Vous êtes conducteur secondaire
+3. Vous partagez le bonus du parent !
+
+**Conditions :**
+- Habiter à la même adresse
+- Le parent utilise réellement le véhicule
+- Déclarer honnêtement l'usage
+
+**Économie :** 40-60% sur la prime
+
+**⚠️ Attention :** En cas d'accident, c'est le bonus du parent qui trinque.
+
+### 3. Choisir la bonne voiture
+**Plus la voiture est puissante = plus c'est cher !**
+
+**Voitures à éviter :**
+- Sportives (Clio RS, Golf GTI...)
+- SUV puissants
+- Véhicules > 10 CV fiscaux
+
+**Voitures recommandées :**
+- Citadines : Peugeot 208, Renault Clio
+- Essence < 90 chevaux
+- 5-6 CV fiscaux maximum
+
+**Différence de prix :**
+- Clio RS : 2500€/an
+- Clio basique : 1200€/an
+- **Économie : 1300€/an**
+
+### 4. Opter pour la formule au tiers
+**Pour une première voiture d'occasion**
+
+Si votre voiture vaut moins de 3000€ :
+- ❌ Tous risques : 1800€/an
+- ✅ Au tiers : 800€/an
+- **Économie : 1000€/an**
+
+**Bonus :** Vous pouvez mettre l'argent économisé de côté pour couvrir vous-même les dégâts éventuels.
+
+### 5. Augmenter la franchise
+**Accepter de payer plus en cas d'accident pour payer moins chaque mois**
+
+**Franchise classique :** 300€
+**Franchise élevée :** 800€
+
+**Économie sur la prime :** 15-20% soit 150-200€/an
+
+**À faire si :**
+- Vous êtes prudent
+- Vous avez une épargne de secours
+
+### 6. Installer un boîtier télématique
+**Pay as you drive = Payez selon votre conduite !**
+
+Comment ça marche ?
+- Un boîtier analyse votre conduite
+- Freinage, vitesse, virages...
+- Les bons conducteurs payent moins
+
+**Économie potentielle :** 20-30% soit 200-300€/an
+
+**Assureurs proposant cette option :**
+- Direct Assurance
+- Allianz
+- Axa
+
+### 7. Payer à l'année
+**Éviter les frais de fractionnement**
+
+**Paiement mensuel :**
+- Frais : 5-8% de majoration
+- Sur 1200€ : +60 à 96€/an
+
+**Paiement annuel :**
+- Aucun frais
+- **Économie : 60-100€/an**
+
+## Les pièges à éviter
+
+### ❌ Mentir sur son profil
+**Très tentant mais catastrophique !**
+
+Conséquences si vous mentez :
+- Nullité du contrat
+- Aucune indemnisation en cas d'accident
+- Problèmes pour vous assurer ensuite
+
+**Ne mentez jamais sur :**
+- Votre âge
+- Votre date de permis
+- Vos antécédents
+- Le conducteur principal
+
+### ❌ Prendre la moins chère sans regarder
+Méfiez-vous des offres trop alléchantes :
+- Garanties minimales
+- Franchises énormes
+- Exclusions multiples
+
+**Vérifiez toujours :**
+- Le montant des franchises
+- Les garanties incluses
+- Les avis clients
+
+### ❌ Oublier les réductions spéciales
+Certains profils ont des réductions :
+- Étudiant : -5 à -10%
+- Petit rouleur : -10 à -15%
+- Stationnement sécurisé : -10%
+
+## Comparatif : Avec vs Sans astuces
+
+**Situation de départ :**
+- Jeune conducteur 18 ans
+- Renault Clio 90 ch
+- Formule tous risques
+
+| Sans astuces | Avec astuces |
+|--------------|--------------|
+| Conduite classique | Conduite accompagnée ✅ |
+| Conducteur principal | Conducteur secondaire ✅ |
+| Clio 90ch | Clio 75ch ✅ |
+| Tous risques | Au tiers ✅ |
+| Franchise 300€ | Franchise 800€ ✅ |
+| Paiement mensuel | Paiement annuel ✅ |
+| **2400€/an** | **950€/an** |
+
+**ÉCONOMIE TOTALE : 1450€/an soit 60% !**
+
+## Le bonus après 3 ans
+
+**Bonne nouvelle :** Chaque année sans accident, vous gagnez du bonus !
+
+**Évolution du coefficient :**
+- Départ : 1 (100%)
+- Après 1 an : 0,95 (-5%)
+- Après 2 ans : 0,90 (-10%)
+- Après 3 ans : 0,85 (-15%)
+
+**Au bout de 13 ans sans accident :** Coefficient 0,50 = -50% !
+
+## Checklist jeune conducteur
+
+✅ **Ai-je fait la conduite accompagnée ?**
+✅ **Puis-je être conducteur secondaire ?**
+✅ **Ma voiture est-elle < 90 chevaux ?**
+✅ **La formule au tiers est-elle suffisante ?**
+✅ **Puis-je payer à l'année ?**
+✅ **Ai-je demandé toutes les réductions ?**
+✅ **Ai-je comparé au moins 5 offres ?**
+
+## Conclusion
+
+Être jeune conducteur ne signifie pas nécessairement payer une fortune. En combinant plusieurs de ces astuces, vous pouvez facilement **diviser votre prime par 2** voire plus.
+
+L'essentiel :
+- Anticiper (conduite accompagnée)
+- Choisir intelligemment (voiture, formule)
+- Négocier (réductions, paiement)
+
+**Vous venez d'avoir le permis ?** Comparez les assurances jeune conducteur et économisez dès maintenant !
+    `
+  },
+  {
+    id: "7",
+    title: "Résiliation d'assurance : Tous vos droits en 2024",
+    slug: "resiliation-assurance-droits-2024",
+    description: "Loi Hamon, loi Chatel, résiliation à tout moment... Découvrez tous vos droits pour résilier facilement vos contrats d'assurance et changer quand vous voulez.",
+    category: "Actualités Légales",
+    date: "14 janvier 2024",
+    readTime: "7 min",
+    author: "Sophie Martin",
+    tags: ["résiliation", "droits", "loi hamon", "loi chatel"],
+    content: `
+# Résiliation d'Assurance : Le Guide Complet de Vos Droits
+
+Résilier son assurance n'a jamais été aussi simple ! Grâce aux lois Hamon, Chatel et Lemoine, vous avez désormais le pouvoir de changer d'assureur facilement. Voici tout ce que vous devez savoir.
+
+## Les 3 grandes lois à connaître
+
+### Loi Hamon (2015) - La liberté après 1 an
+**Concerne :** Auto, Moto, Habitation
+
+**Le principe :**
+Après **12 mois d'engagement**, vous pouvez résilier à tout moment, sans frais ni justification.
+
+**Délai de préavis :** 30 jours
+**Frais de résiliation :** 0€
+
+**Exemple :**
+Vous avez souscrit le 15 mars 2023 → Vous pouvez résilier à partir du 16 mars 2024, n'importe quel jour de l'année.
+
+### Loi Chatel (2005) - L'information annuelle
+**Concerne :** Tous les contrats avec reconduction tacite
+
+**Le principe :**
+L'assureur **doit vous informer** de la date limite de résiliation au moins 15 jours avant (idéalement 3 mois).
+
+**Si l'assureur oublie de vous prévenir :**
+- Vous pouvez résilier à tout moment
+- Sans pénalité
+- Avec effet immédiat
+
+**⚠️ Attention :** Vous devez quand même respecter un préavis de 2 mois avant l'échéance annuelle.
+
+### Loi Lemoine (2022) - Spéciale assurance emprunteur
+**Concerne :** Assurance de prêt immobilier
+
+**La révolution :**
+- Résiliation à **tout moment**
+- Sans attendre la date anniversaire
+- Gratuit et sans pénalité
+
+**Impact :** Économies moyennes de 5000-15000€ sur la durée du prêt !
+
+## Comment résilier selon votre contrat ?
+
+### Assurance Auto et Moto
+
+**Option 1 : Résiliation classique à l'échéance**
+- 2 mois avant la date anniversaire
+- Lettre recommandée avec AR
+- Motif : Pas obligatoire
+
+**Option 2 : Loi Hamon (après 1 an)**
+- À tout moment après 12 mois
+- Le nouvel assureur s'en charge
+- Délai : 30 jours
+
+**Option 3 : Cas particuliers**
+- Vente du véhicule : Immédiat
+- Déménagement : Immédiat
+- Changement de situation : Immédiat
+
+### Assurance Habitation
+
+**Pour les locataires :**
+- Obligatoire de rester assuré
+- Pas de rupture de garantie
+- Le nouvel assureur gère tout
+
+**Pour les propriétaires :**
+- Facultative (sauf copropriété)
+- Plus simple de changer
+- Même démarche que auto/moto
+
+**Cas spécial déménagement :**
+Vous pouvez résilier immédiatement, même en cours d'année, si :
+- Vous déménagez
+- Le nouveau logement n'a plus les mêmes risques
+- Vous fournissez un justificatif
+
+### Assurance Santé (Mutuelle)
+
+**Mutuelle individuelle :**
+- Résiliation possible chaque année à la date anniversaire
+- Préavis : 2 mois
+- Possibilité de changer en cours d'année si hausse de tarif > 5%
+
+**Mutuelle d'entreprise :**
+- Obligatoire pendant le contrat de travail
+- Portabilité de 12 mois après départ
+- Résiliable uniquement en cas de double couverture
+
+### Assurance Emprunteur
+
+**Depuis la loi Lemoine :**
+- Résiliation libre à tout moment
+- Sans frais ni pénalité
+- L'assureur traite la demande en 10 jours ouvrés
+
+**Conditions :**
+- Garanties équivalentes obligatoires
+- Pas de rupture de garantie
+
+## Les étapes de résiliation
+
+### Étape 1 : Vérifier vos droits
+✅ Date de souscription (+ de 12 mois pour Hamon ?)
+✅ Date d'échéance annuelle
+✅ Préavis nécessaire
+✅ Motifs valables de résiliation
+
+### Étape 2 : Trouver une nouvelle assurance
+**Avant de résilier, souscrivez d'abord !**
+
+Pourquoi ?
+- Pas de rupture de garantie
+- Le nouvel assureur peut gérer la résiliation
+- Vous êtes sûr d'être couvert
+
+### Étape 3 : Envoyer la lettre de résiliation
+
+**Méthode 1 : Vous gérez**
+- Lettre recommandée avec AR obligatoire
+- Copie de votre contrat
+- Numéro de contrat visible
+
+**Méthode 2 : Délégation au nouvel assureur** (recommandé)
+- Plus simple et sans erreur
+- Gratuit
+- Pas de risque de rupture
+
+### Étape 4 : Recevoir la confirmation
+L'assureur a **30 jours** pour :
+- Confirmer la résiliation
+- Vous rembourser le trop-perçu
+- Envoyer un dernier relevé
+
+## Modèles de lettres
+
+### Résiliation à l'échéance
+
+\`\`\`
+[Vos coordonnées]
+[Date]
+
+[Assureur]
+Service Résiliation
+[Adresse]
+
+Objet : Résiliation du contrat n°[XXXXXX] à l'échéance
+
+Madame, Monsieur,
+
+Par la présente, je vous informe de ma décision de ne pas renouveler mon contrat d'assurance [auto/habitation/...] n°[XXXXXX], arrivant à échéance le [date].
+
+Conformément aux dispositions contractuelles, je souhaite que cette résiliation prenne effet à la date d'échéance.
+
+Je vous remercie de me faire parvenir une confirmation écrite de cette résiliation ainsi que le montant du remboursement des cotisations éventuellement versées par anticipation.
+
+Cordialement,
+[Signature]
+\`\`\`
+
+### Résiliation loi Hamon
+
+\`\`\`
+[Vos coordonnées]
+[Date]
+
+[Assureur]
+Service Résiliation
+[Adresse]
+
+Objet : Résiliation du contrat n°[XXXXXX] - Loi Hamon
+
+Madame, Monsieur,
+
+Par la présente, je vous informe de ma décision de résilier mon contrat d'assurance [type] n°[XXXXXX] en application de la loi Hamon (article L113-15-2 du Code des assurances).
+
+Mon contrat ayant plus d'un an d'ancienneté, je vous demande de procéder à sa résiliation dans un délai de 30 jours à compter de la réception de ce courrier.
+
+Mon nouveau contrat débutera le [date], assurant ainsi une continuité de garantie.
+
+Je vous remercie de me confirmer la bonne prise en compte de ma demande et la date effective de résiliation.
+
+Cordialement,
+[Signature]
+\`\`\`
+
+## Les cas de résiliation immédiate
+
+### Changement de situation
+- Mariage / PACS / Divorce
+- Déménagement
+- Changement de profession
+- Retraite
+
+**Justificatifs à fournir :**
+- Copie du justificatif officiel
+- Demande dans les 3 mois suivant l'événement
+- Effet : 1 mois après la demande
+
+### Augmentation de cotisation
+Si votre assureur augmente ses tarifs sans modification de votre situation :
+- Vous pouvez refuser et résilier
+- Dans les 30 jours après réception de l'avis
+- Sans pénalité
+
+### Sinistre total
+En cas de sinistre total (véhicule détruit, habitation inhabitable) :
+- Résiliation automatique possible
+- Dans les 3 mois suivant le sinistre
+- Remboursement du trop-perçu
+
+## Les pièges à éviter
+
+### ❌ Résilier avant d'avoir souscrit ailleurs
+**Risque :** Période sans assurance = Illégal + non couvert
+
+**Solution :** Toujours souscrire AVANT de résilier
+
+### ❌ Oublier de recommander la lettre
+**Risque :** Aucune preuve = Résiliation non valable
+
+**Solution :** TOUJOURS en recommandé avec AR
+
+### ❌ Se tromper de date d'échéance
+**Risque :** Résiliation non valable, contrat reconduit
+
+**Solution :** Vérifier sur votre dernier avis d'échéance
+
+### ❌ Ne pas respecter le préavis
+**Risque :** Report d'un an de la résiliation
+
+**Solution :** Envoyer la lettre au bon moment
+
+## Remboursement du trop-perçu
+
+**Vous avez droit au remboursement :**
+- Des cotisations payées d'avance
+- Calculé au prorata temporis
+- Sous 30 jours après résiliation
+
+**Exemple :**
+Vous payez 600€/an, résiliation le 15 avril :
+- Période couverte : 3,5 mois
+- Trop-perçu : 600 × 8,5/12 = 425€
+- **Remboursement : 425€**
+
+## Checklist résiliation
+
+✅ **J'ai trouvé une meilleure offre**
+✅ **J'ai souscrit le nouveau contrat**
+✅ **Je connais ma date d'échéance**
+✅ **J'ai mon numéro de contrat**
+✅ **J'envoie en recommandé avec AR**
+✅ **Je conserve une copie de tout**
+✅ **Je vérifie la continuité de garantie**
+
+## Conclusion
+
+Résilier son assurance est devenu un jeu d'enfant grâce aux nouvelles lois. N'hésitez plus à faire jouer la concurrence et à changer dès que vous trouvez mieux !
+
+**Les 3 règles d'or :**
+1. Toujours souscrire AVANT de résilier
+2. Envoyer en recommandé avec AR
+3. Vérifier la continuité de garantie
+
+**Envie de changer d'assurance ?** Comparez les offres et profitez de vos droits de résiliation dès aujourd'hui !
+    `
+  },
+  {
     id: "1",
     title: "Loi Lemoine : Tout ce qui change pour l'assurance emprunteur en 2024",
     slug: "loi-lemoine-assurance-emprunteur-2024",
