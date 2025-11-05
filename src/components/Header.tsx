@@ -3,10 +3,20 @@ import { Link } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openPopover, setOpenPopover] = useState<string | null>(null);
+  const { trackEvent } = useAnalytics();
+
+  const handleInsuranceTypeClick = (type: string, category: string) => {
+    trackEvent('insurance_type_click', {
+      category: 'navigation',
+      label: `${category}_${type}`,
+      insurance_type: type,
+    });
+  };
 
   const assurancesParticuliers = [
     { to: "/assurance-auto", label: "Auto", icon: Car },
@@ -74,6 +84,12 @@ const Header = () => {
               <Link
                 to="/comparateur-garanties"
                 className="px-4 py-2 text-sm font-semibold text-white bg-primary hover:bg-primary/90 rounded-lg shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                onClick={() => {
+                  trackEvent('insurance_type_click', {
+                    category: 'navigation',
+                    label: 'comparateur_garanties_header',
+                  });
+                }}
               >
                 Comparateur Garanties
               </Link>
@@ -95,7 +111,10 @@ const Header = () => {
                         key={to}
                         to={to}
                         className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
-                        onClick={() => setOpenPopover(null)}
+                        onClick={() => {
+                          setOpenPopover(null);
+                          handleInsuranceTypeClick(label.toLowerCase(), 'particuliers');
+                        }}
                       >
                         <Icon className="h-4 w-4 text-primary" />
                         {label}
@@ -122,7 +141,10 @@ const Header = () => {
                         key={to}
                         to={to}
                         className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
-                        onClick={() => setOpenPopover(null)}
+                        onClick={() => {
+                          setOpenPopover(null);
+                          handleInsuranceTypeClick(label.toLowerCase(), 'professionnels');
+                        }}
                       >
                         <Icon className="h-4 w-4 text-primary" />
                         {label}
@@ -149,7 +171,10 @@ const Header = () => {
                         key={to}
                         to={to}
                         className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
-                        onClick={() => setOpenPopover(null)}
+                        onClick={() => {
+                          setOpenPopover(null);
+                          handleInsuranceTypeClick(label.toLowerCase(), 'vie_epargne');
+                        }}
                       >
                         <Icon className="h-4 w-4 text-primary" />
                         {label}
@@ -176,7 +201,10 @@ const Header = () => {
                         key={to}
                         to={to}
                         className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
-                        onClick={() => setOpenPopover(null)}
+                        onClick={() => {
+                          setOpenPopover(null);
+                          handleInsuranceTypeClick(label.toLowerCase(), 'immobilier');
+                        }}
                       >
                         <Icon className="h-4 w-4 text-primary" />
                         {label}

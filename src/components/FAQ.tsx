@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { HelpCircle } from "lucide-react";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const faqData = [
   {
@@ -42,6 +43,15 @@ const faqData = [
 ];
 
 const FAQ = () => {
+  const { trackEvent } = useAnalytics();
+
+  const handleFAQOpen = (question: string) => {
+    trackEvent('faq_open', {
+      category: 'engagement',
+      label: question,
+    });
+  };
+
   return (
     <section className="py-20 bg-gradient-to-b from-muted/20 to-background relative overflow-hidden">
       {/* Decorative background */}
@@ -69,7 +79,10 @@ const FAQ = () => {
                 value={`item-${index}`}
                 className="bg-card border-2 border-border rounded-lg px-6 hover:border-primary/30 transition-colors"
               >
-                <AccordionTrigger className="text-left font-semibold text-card-foreground hover:text-primary py-6">
+                <AccordionTrigger 
+                  className="text-left font-semibold text-card-foreground hover:text-primary py-6"
+                  onClick={() => handleFAQOpen(faq.question)}
+                >
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground pb-6 leading-relaxed">

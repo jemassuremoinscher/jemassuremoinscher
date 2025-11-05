@@ -9,6 +9,7 @@ import { Check, TrendingDown, AlertCircle, Star, Sparkles, Link, Facebook, Twitt
 import { cn } from '@/lib/utils';
 import { SubscriptionModal } from './SubscriptionModal';
 import { useToast } from '@/hooks/use-toast';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 interface InsuranceOffer {
   id: string;
@@ -77,10 +78,15 @@ export const InteractiveComparator = () => {
   const [selectedOffer, setSelectedOffer] = useState<InsuranceOffer | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { toast } = useToast();
+  const { trackEvent } = useAnalytics();
 
   const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
+      trackEvent('insurance_type_click', {
+        category: 'comparator_share',
+        label: 'copy_link',
+      });
       toast({
         title: "Lien copié !",
         description: "Le lien a été copié dans votre presse-papiers",
@@ -95,28 +101,50 @@ export const InteractiveComparator = () => {
   };
 
   const handleShareFacebook = () => {
+    trackEvent('insurance_type_click', {
+      category: 'comparator_share',
+      label: 'facebook',
+    });
     const url = encodeURIComponent(window.location.href);
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
   };
 
   const handleShareTwitter = () => {
+    trackEvent('insurance_type_click', {
+      category: 'comparator_share',
+      label: 'twitter',
+    });
     const url = encodeURIComponent(window.location.href);
     const text = encodeURIComponent('Découvrez les meilleures offres d\'assurance avec notre comparateur en temps réel !');
     window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=600,height=400');
   };
 
   const handleShareLinkedIn = () => {
+    trackEvent('insurance_type_click', {
+      category: 'comparator_share',
+      label: 'linkedin',
+    });
     const url = encodeURIComponent(window.location.href);
     window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=600,height=400');
   };
 
   const handleShareWhatsApp = () => {
+    trackEvent('insurance_type_click', {
+      category: 'comparator_share',
+      label: 'whatsapp',
+    });
     const url = encodeURIComponent(window.location.href);
     const text = encodeURIComponent('Découvrez les meilleures offres d\'assurance avec notre comparateur en temps réel ! ');
     window.open(`https://wa.me/?text=${text}${url}`, '_blank');
   };
 
   const handleSubscribe = (offer: InsuranceOffer) => {
+    trackEvent('quote_request', {
+      category: 'comparator_subscription',
+      label: offer.insurer,
+      value: offer.price,
+      insurance_type: insuranceType,
+    });
     setSelectedOffer(offer);
     setIsModalOpen(true);
   };

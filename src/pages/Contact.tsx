@@ -13,6 +13,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import { useAnalytics } from '@/hooks/useAnalytics';
 
 const formSchema = z.object({
   fullName: z.string().min(2, 'Le nom doit contenir au moins 2 caractères'),
@@ -25,6 +26,7 @@ const formSchema = z.object({
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { trackEvent } = useAnalytics();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -54,6 +56,12 @@ const Contact = () => {
       if (error) throw error;
 
       toast.success('Message envoyé avec succès ! Nous vous contacterons dans les plus brefs délais.');
+      
+      trackEvent('callback_request', {
+        category: 'contact_form',
+        label: 'contact_page',
+      });
+      
       form.reset();
     } catch (error) {
       console.error('Error:', error);
@@ -289,7 +297,13 @@ const Contact = () => {
                       Nos conseillers sont disponibles du lundi au vendredi de 9h à 18h
                     </p>
                     <Button variant="secondary" size="lg" className="w-full" asChild>
-                      <a href="tel:+33XXXXXXXXX">
+                      <a 
+                        href="tel:+33XXXXXXXXX"
+                        onClick={() => trackEvent('phone_click', {
+                          category: 'contact',
+                          label: 'contact_page_cta',
+                        })}
+                      >
                         <Phone className="mr-2 h-5 w-5" />
                         Appeler maintenant
                       </a>

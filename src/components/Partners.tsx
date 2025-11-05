@@ -4,6 +4,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import axaLogo from "@/assets/logos/axa.png";
 import allianzLogo from "@/assets/logos/allianz.png";
 import groupamaLogo from "@/assets/logos/groupama.png";
@@ -57,6 +58,16 @@ const partners = [
 ];
 
 const Partners = () => {
+  const { trackEvent } = useAnalytics();
+
+  const handlePartnerClick = (partnerName: string) => {
+    trackEvent('partner_click', {
+      category: 'engagement',
+      partner_name: partnerName,
+      label: 'partner_logo',
+    });
+  };
+
   return (
     <section className="py-20 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
       {/* Decorative background */}
@@ -94,7 +105,10 @@ const Partners = () => {
                 key={index} 
                 className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6"
               >
-                <div className="flex items-center justify-center p-6 bg-card rounded-xl border-2 border-border hover:border-primary/30 hover-lift transition-all duration-300 group h-24">
+                <div 
+                  className="flex items-center justify-center p-6 bg-card rounded-xl border-2 border-border hover:border-primary/30 hover-lift transition-all duration-300 group h-24 cursor-pointer"
+                  onClick={() => handlePartnerClick(partner.name)}
+                >
                   {partner.logo ? (
                     <img 
                       src={partner.logo} 

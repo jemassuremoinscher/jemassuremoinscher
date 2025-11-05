@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Car, Heart, Home, CreditCard, Users, TrendingDown, Shield, CheckCircle, Bike } from "lucide-react";
 import heroImage from "@/assets/hero-insurance.jpg";
 import { Link } from "react-router-dom";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const categories = [
   { icon: Car, label: "AUTO", color: "text-primary", link: "/assurance-auto" },
@@ -14,6 +15,24 @@ const categories = [
 ];
 
 const Hero = () => {
+  const { trackEvent } = useAnalytics();
+
+  const handleCTAClick = () => {
+    trackEvent('insurance_type_click', {
+      category: 'hero_cta',
+      label: 'primary_cta_button',
+      insurance_type: 'auto',
+    });
+  };
+
+  const handleCategoryClick = (category: string) => {
+    trackEvent('insurance_type_click', {
+      category: 'hero_category',
+      label: category,
+      insurance_type: category.toLowerCase(),
+    });
+  };
+
   return (
     <section className="relative min-h-[700px] flex items-center overflow-hidden" aria-label="Section principale - Comparateur d'assurances">
       {/* Background Image */}
@@ -83,6 +102,7 @@ const Hero = () => {
               size="lg" 
               className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-8 py-6 h-auto rounded-full shadow-2xl hover:shadow-accent/50 transition-all duration-300 hover:scale-105"
               asChild
+              onClick={handleCTAClick}
             >
               <Link to="/assurance-auto">
                 Comparer maintenant - C'est gratuit !
@@ -96,7 +116,7 @@ const Hero = () => {
           {/* Category Cards */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 animate-fade-in" style={{ animationDelay: '0.35s' }}>
             {categories.map((category, index) => (
-              <Link key={index} to={category.link}>
+              <Link key={index} to={category.link} onClick={() => handleCategoryClick(category.label)}>
                 <Card className="p-6 hover-lift cursor-pointer group bg-card/95 backdrop-blur-sm border-2 border-transparent hover:border-accent/50">
                   <div className="flex flex-col items-center gap-3">
                     <div className="p-3 rounded-full bg-primary/5 group-hover:bg-accent/20 transition-all duration-300 group-hover:scale-110">
