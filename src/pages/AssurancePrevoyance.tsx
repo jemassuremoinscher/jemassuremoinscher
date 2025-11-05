@@ -137,6 +137,28 @@ const AssurancePrevoyance = () => {
     { name: "Assurance Prévoyance", url: "https://www.assurmoinschere.fr/assurance-prevoyance" }
   ]);
 
+  const serviceSchema = addServiceSchema({
+    name: "Comparateur Assurance Prévoyance",
+    description: "Comparez les meilleures assurances prévoyance : décès, obsèques, dépendance. Protégez votre famille et préparez l'avenir sereinement.",
+    provider: "Le Comparateur Assurance",
+    areaServed: "France"
+  });
+
+  const faqSchema = addFAQSchema([
+    {
+      question: "Quelle est la différence entre prévoyance et mutuelle santé ?",
+      answer: "La mutuelle santé rembourse vos frais médicaux (consultations, médicaments, hospitalisation). La prévoyance couvre les conséquences financières d'un accident de la vie : décès, invalidité, incapacité de travail. Elle verse un capital ou une rente pour compenser la perte de revenus et protéger votre famille."
+    },
+    {
+      question: "Ai-je besoin d'une assurance prévoyance si j'ai déjà celle de mon entreprise ?",
+      answer: "La prévoyance collective couvre uniquement pendant votre activité professionnelle et s'arrête en cas de départ de l'entreprise. De plus, elle peut être insuffisante selon votre situation familiale. Un contrat individuel complète ces garanties et vous suit tout au long de votre vie, même en cas de changement professionnel."
+    },
+    {
+      question: "Comment est calculé le montant des cotisations ?",
+      answer: "Les cotisations dépendent de plusieurs facteurs : votre âge, votre profession, votre état de santé, le montant du capital ou de la rente garantie, et les garanties choisies. Plus vous souscrivez jeune, plus les cotisations sont faibles. Un questionnaire médical peut être demandé selon le montant assuré."
+    }
+  ]);
+
   return (
     <div className="min-h-screen">
       <SEO 
@@ -144,7 +166,7 @@ const AssurancePrevoyance = () => {
         description="Comparez les meilleures assurances prévoyance : décès, obsèques, dépendance. Protégez votre famille et préparez l'avenir sereinement. Devis gratuit en 2 minutes."
         keywords="assurance prévoyance, assurance décès, assurance obsèques, assurance dépendance, protection famille"
         canonical="https://www.assurmoinschere.fr/assurance-prevoyance"
-        jsonLd={breadcrumbSchema}
+        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />
       

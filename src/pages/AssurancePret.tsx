@@ -105,6 +105,28 @@ const AssurancePret = () => {
     { name: "Assurance Prêt", url: "https://www.assurmoinschere.fr/assurance-pret" }
   ]);
 
+  const serviceSchema = addServiceSchema({
+    name: "Comparateur Assurance Prêt Immobilier",
+    description: "Comparez les assurances emprunteur et économisez des milliers d'euros sur votre crédit immobilier. Devis gratuit et changement simplifié avec la loi Lemoine.",
+    provider: "Le Comparateur Assurance",
+    areaServed: "France"
+  });
+
+  const faqSchema = addFAQSchema([
+    {
+      question: "Puis-je vraiment changer d'assurance emprunteur à tout moment ?",
+      answer: "Oui ! Depuis la loi Lemoine de juin 2022, vous pouvez résilier votre assurance emprunteur à tout moment, sans frais ni pénalités, et sans attendre la date anniversaire du contrat. La seule condition est de présenter un contrat avec des garanties équivalentes à votre banque."
+    },
+    {
+      question: "Combien puis-je économiser en changeant d'assurance ?",
+      answer: "Les économies varient selon votre profil, mais en moyenne les emprunteurs économisent entre 30% et 50% sur leur assurance, soit plusieurs milliers d'euros sur la durée du prêt. Par exemple, pour un prêt de 200 000€ sur 20 ans, vous pouvez économiser jusqu'à 15 000€."
+    },
+    {
+      question: "Ma banque peut-elle refuser ma nouvelle assurance ?",
+      answer: "Votre banque ne peut refuser qu'si les garanties proposées ne sont pas équivalentes à celles de son contrat groupe. Si les garanties sont équivalentes, elle doit accepter dans les 10 jours ouvrés et vous envoyer un avenant au contrat de prêt. En cas de refus abusif, saisissez le médiateur bancaire."
+    }
+  ]);
+
   return (
     <div className="min-h-screen">
       <SEO 
@@ -112,7 +134,7 @@ const AssurancePret = () => {
         description="Comparez les assurances emprunteur et économisez des milliers d'euros sur votre crédit immobilier. Devis gratuit et changement simplifié avec la loi Lemoine."
         keywords="assurance prêt immobilier, assurance emprunteur, délégation assurance, loi Lemoine, assurance crédit"
         canonical="https://www.assurmoinschere.fr/assurance-pret"
-        jsonLd={breadcrumbSchema}
+        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />
       
