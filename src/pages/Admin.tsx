@@ -19,6 +19,8 @@ import { SalesAgentsManager } from '@/components/admin/SalesAgentsManager';
 import { GoalsManager } from '@/components/admin/GoalsManager';
 import { CommercialSupervision } from '@/components/admin/CommercialSupervision';
 import { CommercialAlerts } from '@/components/admin/CommercialAlerts';
+import { RedistributionLog } from '@/components/admin/RedistributionLog';
+import { RedistributionButton } from '@/components/admin/RedistributionButton';
 import { RedistributionHistory } from '@/components/admin/RedistributionHistory';
 
 const Admin = () => {
@@ -289,9 +291,19 @@ const Admin = () => {
 
           <TabsContent value="supervision">
             <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-bold">Supervision Commerciale</h2>
+                <RedistributionButton />
+              </div>
               <CommercialAlerts />
-              <RedistributionHistory />
-              <CommercialSupervision />
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2">
+                  <CommercialSupervision />
+                </div>
+                <div>
+                  <RedistributionLog />
+                </div>
+              </div>
             </div>
           </TabsContent>
 
