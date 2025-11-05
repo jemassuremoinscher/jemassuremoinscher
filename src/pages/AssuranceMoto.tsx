@@ -21,9 +21,6 @@ import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
-  email: z.string().email("Email invalide").max(255),
-  phone: z.string().min(10, "Numéro de téléphone invalide").max(15),
   marque: z.string().min(1, "Champ requis"),
   modele: z.string().min(1, "Champ requis"),
   annee: z.string().min(1, "Champ requis"),
