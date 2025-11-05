@@ -11,6 +11,7 @@ import AssuranceAnimaux from "./pages/AssuranceAnimaux";
 import AssuranceHabitation from "./pages/AssuranceHabitation";
 import AssurancePret from "./pages/AssurancePret";
 import AssuranceMoto from "./pages/AssuranceMoto";
+import AssuranceVie from "./pages/AssuranceVie";
 import AssurancePrevoyance from "./pages/AssurancePrevoyance";
 import AssuranceMRP from "./pages/AssuranceMRP";
 import AssuranceRCPro from "./pages/AssuranceRCPro";
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/assurance-habitation" element={<AssuranceHabitation />} />
           <Route path="/assurance-pret" element={<AssurancePret />} />
           <Route path="/assurance-moto" element={<AssuranceMoto />} />
+          <Route path="/assurance-vie" element={<AssuranceVie />} />
           <Route path="/assurance-prevoyance" element={<AssurancePrevoyance />} />
           <Route path="/assurance-mrp" element={<AssuranceMRP />} />
           <Route path="/assurance-rc-pro" element={<AssuranceRCPro />} />

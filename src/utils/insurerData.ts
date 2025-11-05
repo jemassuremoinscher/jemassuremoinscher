@@ -3,6 +3,10 @@ export interface InsurerConfig {
   priceMultiplier: number;
   coverage: string[];
   discount?: string;
+  basePrice?: number;
+  variationFactor?: number;
+  coverageDetails?: string[];
+  logo?: string;
 }
 
 export const autoInsurers: InsurerConfig[] = [
@@ -348,4 +352,132 @@ export function generateInsurerOffers(basePrice: number, insurerConfigs: Insurer
       discount: config.discount,
     }))
     .sort((a, b) => a.price - b.price);
+}
+
+export function getLifeInsuranceInsurers(): InsurerConfig[] {
+  return [
+    {
+      name: "Generali Vie",
+      priceMultiplier: 0.92,
+      coverage: [],
+      basePrice: 80,
+      variationFactor: 0.92,
+      coverageDetails: [
+        "Gestion pilotée disponible",
+        "Frais d'entrée réduits",
+      ],
+      discount: "-20% frais de gestion",
+      logo: "/src/assets/logos/generali.png"
+    },
+    {
+      name: "Swiss Life",
+      priceMultiplier: 1.05,
+      coverage: [],
+      basePrice: 85,
+      variationFactor: 1.05,
+      coverageDetails: [
+        "Large choix de supports",
+        "Accompagnement personnalisé",
+      ],
+      logo: "/src/assets/logos/swiss-life.png"
+    },
+    {
+      name: "Axa Vie",
+      priceMultiplier: 1.08,
+      coverage: [],
+      basePrice: 82,
+      variationFactor: 1.08,
+      coverageDetails: [
+        "Options d'investissement variées",
+        "Services en ligne complets",
+      ],
+      logo: "/src/assets/logos/axa.png"
+    },
+    {
+      name: "Allianz Vie",
+      priceMultiplier: 1.02,
+      coverage: [],
+      basePrice: 88,
+      variationFactor: 1.02,
+      coverageDetails: [
+        "Garantie plancher disponible",
+        "Gestion flexible",
+      ],
+      logo: "/src/assets/logos/allianz.png"
+    },
+    {
+      name: "Cardif Assurance Vie",
+      priceMultiplier: 0.88,
+      coverage: [],
+      basePrice: 75,
+      variationFactor: 0.88,
+      coverageDetails: [
+        "Frais compétitifs",
+        "Souscription simplifiée",
+      ],
+      discount: "-15% en ligne",
+      logo: "/src/assets/logos/cardif.png"
+    },
+    {
+      name: "Metlife Assurance Vie",
+      priceMultiplier: 1.12,
+      coverage: [],
+      basePrice: 90,
+      variationFactor: 1.12,
+      coverageDetails: [
+        "Protection renforcée",
+        "Options de sortie flexibles",
+      ],
+      logo: "/src/assets/logos/metlife.png"
+    },
+    {
+      name: "AG2R La Mondiale",
+      priceMultiplier: 0.95,
+      coverage: [],
+      basePrice: 83,
+      variationFactor: 0.95,
+      coverageDetails: [
+        "Gestion responsable ISR",
+        "Conseils personnalisés",
+      ],
+      logo: "/src/assets/logos/ag2r.png"
+    },
+    {
+      name: "Malakoff Humanis Vie",
+      priceMultiplier: 1.00,
+      coverage: [],
+      basePrice: 86,
+      variationFactor: 1.00,
+      coverageDetails: [
+        "Multisupport équilibré",
+        "Frais transparents",
+      ],
+      logo: "/src/assets/logos/malakoff-humanis.png"
+    },
+    {
+      name: "Groupama Vie",
+      priceMultiplier: 0.98,
+      coverage: [],
+      basePrice: 84,
+      variationFactor: 0.98,
+      coverageDetails: [
+        "Réseau d'agences étendu",
+        "Accompagnement local",
+      ],
+      discount: "-10% nouveau client",
+      logo: "/src/assets/logos/groupama.png"
+    },
+    {
+      name: "MMA Vie",
+      priceMultiplier: 1.10,
+      coverage: [],
+      basePrice: 89,
+      variationFactor: 1.10,
+      coverageDetails: [
+        "Formule premium",
+        "Garanties étendues",
+      ],
+      logo: "/src/assets/logos/mma.png"
+    },
+  ];
 }
