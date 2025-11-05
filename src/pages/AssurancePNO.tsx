@@ -18,7 +18,7 @@ import { Shield, Home, Euro, FileCheck, TrendingUp, CheckCircle } from 'lucide-r
 import InsuranceFAQ from '@/components/insurance/InsuranceFAQ';
 
 const formSchema = z.object({
-  propertyType: z.enum(['apartment', 'house', 'studio'], {
+  propertyType: z.enum(['apartment', 'house', 'studio', 'commercial'], {
     required_error: 'Veuillez sélectionner un type de bien',
   }),
   surface: z.string().min(1, 'Surface requise'),
@@ -53,6 +53,7 @@ const AssurancePNO = () => {
     // Based on property type
     if (values.propertyType === 'house') basePrice += 10;
     if (values.propertyType === 'apartment') basePrice += 5;
+    if (values.propertyType === 'commercial') basePrice += 20;
     
     // Based on surface
     if (surface > 50) basePrice += 8;
@@ -185,6 +186,7 @@ const AssurancePNO = () => {
                                   <SelectItem value="apartment">Appartement</SelectItem>
                                   <SelectItem value="house">Maison</SelectItem>
                                   <SelectItem value="studio">Studio</SelectItem>
+                                  <SelectItem value="commercial">Local commercial</SelectItem>
                                 </SelectContent>
                               </Select>
                               <FormMessage />
