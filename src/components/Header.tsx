@@ -46,6 +46,12 @@ const Header = () => {
           <div className="container mx-auto px-4">
           <div className="flex items-center justify-center gap-8 py-3 overflow-x-auto">
             <Link
+              to="/comparateur-garanties"
+              className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1"
+            >
+              Comparateur Garanties
+            </Link>
+            <Link
               to="/assurance-auto"
               className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded px-2 py-1"
             >
@@ -153,6 +159,13 @@ const Header = () => {
         >
           <nav className="p-4" role="navigation" aria-label="Navigation mobile principale">
             <div className="space-y-1">
+              <Link
+                to="/comparateur-garanties"
+                className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Comparateur Garanties
+              </Link>
               <Link
                 to="/assurance-auto"
                 className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
