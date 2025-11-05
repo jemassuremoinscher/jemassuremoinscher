@@ -88,36 +88,54 @@ export type Database = {
       }
       contact_callbacks: {
         Row: {
+          assigned_to: string | null
           created_at: string
           deleted_at: string | null
           email: string
           full_name: string
           id: string
+          last_contacted_at: string | null
+          lead_score: number | null
+          lead_source: string | null
           message: string | null
+          next_follow_up: string | null
+          notes: string | null
           phone: string
           preferred_time: string
           status: string
           updated_at: string
         }
         Insert: {
+          assigned_to?: string | null
           created_at?: string
           deleted_at?: string | null
           email: string
           full_name: string
           id?: string
+          last_contacted_at?: string | null
+          lead_score?: number | null
+          lead_source?: string | null
           message?: string | null
+          next_follow_up?: string | null
+          notes?: string | null
           phone: string
           preferred_time: string
           status?: string
           updated_at?: string
         }
         Update: {
+          assigned_to?: string | null
           created_at?: string
           deleted_at?: string | null
           email?: string
           full_name?: string
           id?: string
+          last_contacted_at?: string | null
+          lead_score?: number | null
+          lead_source?: string | null
           message?: string | null
+          next_follow_up?: string | null
+          notes?: string | null
           phone?: string
           preferred_time?: string
           status?: string
@@ -192,36 +210,54 @@ export type Database = {
       }
       insurance_quotes: {
         Row: {
+          assigned_to: string | null
           created_at: string
           deleted_at: string | null
           email: string
           full_name: string
           id: string
           insurance_type: string
+          last_contacted_at: string | null
+          lead_score: number | null
+          lead_source: string | null
+          next_follow_up: string | null
+          notes: string | null
           phone: string
           quote_data: Json
           status: string
           updated_at: string
         }
         Insert: {
+          assigned_to?: string | null
           created_at?: string
           deleted_at?: string | null
           email: string
           full_name: string
           id?: string
           insurance_type: string
+          last_contacted_at?: string | null
+          lead_score?: number | null
+          lead_source?: string | null
+          next_follow_up?: string | null
+          notes?: string | null
           phone: string
           quote_data: Json
           status?: string
           updated_at?: string
         }
         Update: {
+          assigned_to?: string | null
           created_at?: string
           deleted_at?: string | null
           email?: string
           full_name?: string
           id?: string
           insurance_type?: string
+          last_contacted_at?: string | null
+          lead_score?: number | null
+          lead_source?: string | null
+          next_follow_up?: string | null
+          notes?: string | null
           phone?: string
           quote_data?: Json
           status?: string
