@@ -22,7 +22,7 @@ const formSchema = z.object({
     required_error: 'Veuillez sélectionner un type de bien',
   }),
   surface: z.string().min(1, 'Surface requise'),
-  propertyValue: z.string().min(1, 'Valeur requise'),
+  rooms: z.string().min(1, 'Nombre de pièces requis'),
   occupancyStatus: z.enum(['vacant', 'rental', 'secondary'], {
     required_error: 'Veuillez sélectionner un statut',
   }),
@@ -39,7 +39,7 @@ const AssurancePNO = () => {
     defaultValues: {
       propertyType: undefined,
       surface: '',
-      propertyValue: '',
+      rooms: '',
       occupancyStatus: undefined,
       postalCode: '',
     },
@@ -48,7 +48,7 @@ const AssurancePNO = () => {
   const calculatePrice = (values: z.infer<typeof formSchema>) => {
     let basePrice = 15;
     const surface = parseInt(values.surface);
-    const value = parseInt(values.propertyValue);
+    const rooms = parseInt(values.rooms);
     
     // Based on property type
     if (values.propertyType === 'house') basePrice += 10;
@@ -58,15 +58,15 @@ const AssurancePNO = () => {
     if (surface > 50) basePrice += 8;
     if (surface > 100) basePrice += 15;
     
-    // Based on value
-    if (value > 200000) basePrice += 10;
-    if (value > 400000) basePrice += 20;
+    // Based on rooms
+    if (rooms > 2) basePrice += 5;
+    if (rooms > 4) basePrice += 10;
     
     // Based on occupancy
     if (values.occupancyStatus === 'vacant') basePrice += 12;
     if (values.occupancyStatus === 'secondary') basePrice += 8;
 
-    return Math.round(basePrice + (value / 10000));
+    return Math.round(basePrice);
   };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -208,12 +208,12 @@ const AssurancePNO = () => {
 
                         <FormField
                           control={form.control}
-                          name="propertyValue"
+                          name="rooms"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Valeur du bien (€)</FormLabel>
+                              <FormLabel>Nombre de pièces</FormLabel>
                               <FormControl>
-                                <Input type="number" placeholder="250000" {...field} />
+                                <Input type="number" placeholder="3" min="1" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
