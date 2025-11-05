@@ -12,6 +12,7 @@ import SkipToMain from "@/components/SkipToMain";
 const Index = lazy(() => import("./pages/Index"));
 const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
+const Commercial = lazy(() => import("./pages/Commercial"));
 const LandingAds = lazy(() => import("./pages/LandingAds"));
 const LandingAuto = lazy(() => import("./pages/landing/LandingAuto"));
 const LandingSante = lazy(() => import("./pages/landing/LandingSante"));
@@ -73,6 +74,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/commercial" element={<Commercial />} />
             <Route path="/landing/assurance" element={<LandingAds />} />
             <Route path="/landing/auto" element={<LandingAuto />} />
             <Route path="/landing/sante" element={<LandingSante />} />
