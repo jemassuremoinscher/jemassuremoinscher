@@ -14,6 +14,12 @@ import mmaLogo from "@/assets/logos/mma.png";
 import matmutLogo from "@/assets/logos/matmut.png";
 import gmfLogo from "@/assets/logos/gmf.png";
 import directAssuranceLogo from "@/assets/logos/direct-assurance.png";
+import amaguizLogo from "@/assets/logos/amaguiz.png";
+import aprilLogo from "@/assets/logos/april.png";
+import lukoLogo from "@/assets/logos/luko.png";
+import harmonieMutuelleLogo from "@/assets/logos/harmonie-mutuelle.png";
+import mgenLogo from "@/assets/logos/mgen.png";
+import ag2rLogo from "@/assets/logos/ag2r.png";
 
 const partners = [
   { name: "AXA", logo: axaLogo },
@@ -26,20 +32,20 @@ const partners = [
   { name: "Matmut", logo: matmutLogo },
   { name: "GMF", logo: gmfLogo },
   { name: "Direct Assurance", logo: directAssuranceLogo },
-  { name: "Amaguiz", logo: null },
-  { name: "April", logo: null },
+  { name: "Amaguiz", logo: amaguizLogo },
+  { name: "April", logo: aprilLogo },
+  { name: "Luko", logo: lukoLogo },
+  { name: "Harmonie Mutuelle", logo: harmonieMutuelleLogo },
+  { name: "MGEN", logo: mgenLogo },
+  { name: "AG2R La Mondiale", logo: ag2rLogo },
   { name: "Assurpeople", logo: null },
   { name: "LCL", logo: null },
   { name: "Swiss Life", logo: null },
-  { name: "Harmonie Mutuelle", logo: null },
   { name: "Mutuelle Générale", logo: null },
-  { name: "MGEN", logo: null },
   { name: "Cardif", logo: null },
   { name: "MetLife", logo: null },
-  { name: "Luko", logo: null },
   { name: "Alan", logo: null },
   { name: "Malakoff Humanis", logo: null },
-  { name: "AG2R", logo: null },
 ];
 
 const Partners = () => {
