@@ -5,9 +5,10 @@ import { Badge } from '@/components/ui/badge';
 import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Check, TrendingDown, AlertCircle, Star, Sparkles } from 'lucide-react';
+import { Check, TrendingDown, AlertCircle, Star, Sparkles, Link } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SubscriptionModal } from './SubscriptionModal';
+import { useToast } from '@/hooks/use-toast';
 
 interface InsuranceOffer {
   id: string;
@@ -75,6 +76,23 @@ export const InteractiveComparator = () => {
   const [sortBy, setSortBy] = useState<'price' | 'savings' | 'rating'>('savings');
   const [selectedOffer, setSelectedOffer] = useState<InsuranceOffer | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { toast } = useToast();
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      toast({
+        title: "Lien copié !",
+        description: "Le lien a été copié dans votre presse-papiers",
+      });
+    } catch (err) {
+      toast({
+        title: "Erreur",
+        description: "Impossible de copier le lien",
+        variant: "destructive",
+      });
+    }
+  };
 
   const handleSubscribe = (offer: InsuranceOffer) => {
     setSelectedOffer(offer);
@@ -110,9 +128,18 @@ export const InteractiveComparator = () => {
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
           Découvrez vos économies potentielles
         </h2>
-        <p className="text-lg text-muted-foreground">
+        <p className="text-lg text-muted-foreground mb-4">
           Comparez instantanément les meilleures offres du marché
         </p>
+        <Button 
+          variant="outline" 
+          size="lg"
+          onClick={handleCopyLink}
+          className="gap-2"
+        >
+          <Link className="h-4 w-4" />
+          Copier le lien
+        </Button>
       </div>
 
       {/* Interactive Filters */}
