@@ -121,13 +121,37 @@ const AssuranceMRP = () => {
     }
   };
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Assurance MRP", url: "https://www.assurmoinschere.fr/assurance-mrp" }
+  ]);
+
+  const serviceSchema = addServiceSchema({
+    name: "Comparateur Assurance Multirisque Professionnelle",
+    description: "Comparez les assurances multirisque professionnelle pour protéger vos locaux, matériel, stock et activité. Devis adapté à votre entreprise.",
+    provider: "Le Comparateur Assurance",
+    areaServed: "France"
+  });
+
+  const faqSchema = addFAQSchema([
+    {
+      question: "Qu'est-ce qu'une assurance MRP ?",
+      answer: "L'assurance Multirisque Professionnelle protège votre entreprise contre les dommages aux locaux, équipements, stocks et inclut souvent la RC exploitation."
+    },
+    {
+      question: "Est-elle obligatoire ?",
+      answer: "Elle n'est pas obligatoire sauf pour certaines professions réglementées, mais elle est fortement recommandée pour protéger votre activité."
+    }
+  ]);
+
   return (
     <div className="min-h-screen">
       <SEO 
         title="Assurance Multirisque Professionnelle - Protégez votre entreprise"
         description="Comparez les meilleures assurances multirisque professionnelle. Protégez vos locaux, matériel, stock et activité. Devis gratuit en 2 minutes pour votre entreprise."
         keywords="assurance multirisque professionnelle, MRP, assurance entreprise, assurance local professionnel, RC exploitation"
-        canonical="https://votre-domaine.fr/assurance-mrp"
+        canonical="https://www.assurmoinschere.fr/assurance-mrp"
+        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />
       <main className="container mx-auto px-4 py-12">
