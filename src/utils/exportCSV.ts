@@ -60,3 +60,21 @@ export const formatCallbacksForExport = (callbacks: any[]) => {
     'Statut': callback.status,
   }));
 };
+
+export const formatEmailsForExport = (emails: any[]) => {
+  return emails.map(email => ({
+    'Date envoi': new Date(email.sent_at).toLocaleDateString('fr-FR', { hour: '2-digit', minute: '2-digit' }),
+    'Destinataire': email.recipient_name,
+    'Email': email.recipient_email,
+    'Type': email.email_type,
+    'Sujet': email.subject,
+    'Statut': email.clicked_at ? 'Cliqué' : email.opened_at ? 'Ouvert' : 'Envoyé',
+    'Ouvertures': email.open_count,
+    'Clics': email.click_count,
+    'Dernière activité': email.clicked_at 
+      ? new Date(email.clicked_at).toLocaleDateString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+      : email.opened_at 
+      ? new Date(email.opened_at).toLocaleDateString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+      : 'Aucune',
+  }));
+};

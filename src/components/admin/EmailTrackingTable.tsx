@@ -10,9 +10,13 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Mail, MailOpen, MousePointerClick, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Mail, MailOpen, MousePointerClick, Loader2, Download, Trash2 } from "lucide-react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
+import { toast } from "sonner";
+import { exportToCSV, formatEmailsForExport } from "@/utils/exportCSV";
 
 interface EmailTracking {
   id: string;
@@ -31,6 +35,7 @@ interface EmailTracking {
 export const EmailTrackingTable = () => {
   const [emails, setEmails] = useState<EmailTracking[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
   useEffect(() => {
     fetchEmails();
@@ -107,6 +112,47 @@ export const EmailTrackingTable = () => {
     return <Badge className={config.className}>{config.label}</Badge>;
   };
 
+  const handleExportSelected = () => {
+    const selectedEmails = emails.filter(e => selectedIds.includes(e.id));
+    const formattedData = formatEmailsForExport(selectedEmails);
+    exportToCSV(formattedData, 'suivi-emails-selection');
+    toast.success(`${selectedEmails.length} emails exportés`);
+  };
+
+  const handleDeleteSelected = async () => {
+    if (!confirm(`Êtes-vous sûr de vouloir supprimer ${selectedIds.length} entrées de suivi d'emails ?`)) {
+      return;
+    }
+
+    const { error } = await supabase
+      .from('email_tracking')
+      .delete()
+      .in('id', selectedIds);
+
+    if (error) {
+      toast.error('Erreur lors de la suppression');
+      console.error('Delete error:', error);
+    } else {
+      toast.success(`${selectedIds.length} entrées supprimées`);
+      setSelectedIds([]);
+      fetchEmails();
+    }
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedIds.length === emails.length) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(emails.map(e => e.id));
+    }
+  };
+
+  const toggleSelect = (id: string) => {
+    setSelectedIds(prev => 
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+    );
+  };
+
   if (loading) {
     return (
       <Card className="p-8">
@@ -131,14 +177,49 @@ export const EmailTrackingTable = () => {
   return (
     <Card>
       <div className="p-6">
-        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-          <Mail className="h-5 w-5 text-primary" />
-          Suivi des emails ({emails.length})
-        </h3>
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold flex items-center gap-2">
+            <Mail className="h-5 w-5 text-primary" />
+            Suivi des emails ({emails.length})
+          </h3>
+          {selectedIds.length > 0 && (
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleExportSelected}
+              >
+                <Download className="h-4 w-4 mr-2" />
+                Exporter sélection ({selectedIds.length})
+              </Button>
+              <Button
+                variant="destructive"
+                size="sm"
+                onClick={handleDeleteSelected}
+              >
+                <Trash2 className="h-4 w-4 mr-2" />
+                Supprimer sélection ({selectedIds.length})
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedIds([])}
+              >
+                Désélectionner
+              </Button>
+            </div>
+          )}
+        </div>
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow>
+                <TableHead className="w-12">
+                  <Checkbox
+                    checked={selectedIds.length === emails.length && emails.length > 0}
+                    onCheckedChange={toggleSelectAll}
+                  />
+                </TableHead>
                 <TableHead>Date d'envoi</TableHead>
                 <TableHead>Destinataire</TableHead>
                 <TableHead>Type</TableHead>
@@ -150,6 +231,12 @@ export const EmailTrackingTable = () => {
             <TableBody>
               {emails.map((email) => (
                 <TableRow key={email.id}>
+                  <TableCell>
+                    <Checkbox
+                      checked={selectedIds.includes(email.id)}
+                      onCheckedChange={() => toggleSelect(email.id)}
+                    />
+                  </TableCell>
                   <TableCell className="font-medium">
                     {format(new Date(email.sent_at), "dd MMM yyyy HH:mm", { locale: fr })}
                   </TableCell>
