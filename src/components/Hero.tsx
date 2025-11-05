@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Car, Heart, Home, CreditCard, Users, TrendingDown, Shield, CheckCircle } from "lucide-react";
+import { Car, Heart, Home, CreditCard, Users, TrendingDown, Shield, CheckCircle, Bike } from "lucide-react";
 import heroImage from "@/assets/hero-insurance.jpg";
 import { Link } from "react-router-dom";
 
@@ -10,6 +10,7 @@ const categories = [
   { icon: Users, label: "ANIMAUX", color: "text-primary", link: "/assurance-animaux" },
   { icon: Home, label: "HABITATION", color: "text-primary", link: "/assurance-habitation" },
   { icon: CreditCard, label: "PRÊT", color: "text-primary", link: "/assurance-pret" },
+  { icon: Bike, label: "MOTO", color: "text-primary", link: "/assurance-moto" },
 ];
 
 const Hero = () => {
@@ -94,7 +95,7 @@ const Hero = () => {
           </div>
 
           {/* Category Cards */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 animate-fade-in" style={{ animationDelay: '0.35s' }}>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 animate-fade-in" style={{ animationDelay: '0.35s' }}>
             {categories.map((category, index) => (
               <Link key={index} to={category.link}>
                 <Card className="p-6 hover-lift cursor-pointer group bg-card/95 backdrop-blur-sm border-2 border-transparent hover:border-accent/50">
