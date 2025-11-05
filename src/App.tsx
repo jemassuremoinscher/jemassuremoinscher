@@ -19,6 +19,7 @@ import QuiSommesNous from "./pages/QuiSommesNous";
 import NosPartenaires from "./pages/NosPartenaires";
 import AvisClients from "./pages/AvisClients";
 import Blog from "./pages/Blog";
+import BlogArticle from "./pages/BlogArticle";
 import PolitiqueCookies from "./pages/PolitiqueCookies";
 import NotFound from "./pages/NotFound";
 
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/nos-partenaires" element={<NosPartenaires />} />
           <Route path="/avis-clients" element={<AvisClients />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogArticle />} />
           <Route path="/politique-cookies" element={<PolitiqueCookies />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
