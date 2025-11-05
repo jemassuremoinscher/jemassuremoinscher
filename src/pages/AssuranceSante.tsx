@@ -3,11 +3,101 @@ import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Heart } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+
+const formSchema = z.object({
+  name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
+  email: z.string().email("Email invalide").max(255),
+  phone: z.string().min(10, "Numéro de téléphone invalide").max(15),
+  situation: z.string().min(1, "Champ requis"),
+  age: z.string().min(1, "Champ requis"),
+  regime: z.string().min(1, "Champ requis"),
+  niveau: z.string().min(1, "Champ requis"),
+  codePostal: z.string().length(5, "Code postal invalide"),
+});
 
 const AssuranceSante = () => {
+  const { toast } = useToast();
+  const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      situation: "",
+      age: "",
+      regime: "",
+      niveau: "",
+      codePostal: "",
+    },
+  });
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+    try {
+      const basePrice = 35;
+      const ageValue = parseInt(values.age);
+      let price = basePrice;
+      
+      if (values.situation === "famille") price += 40;
+      else if (values.situation === "couple") price += 25;
+      
+      if (ageValue > 50) price += 15;
+      
+      if (values.niveau === "premium") price += 30;
+      else if (values.niveau === "confort") price += 20;
+      else if (values.niveau === "equilibre") price += 10;
+      
+      const randomVariation = Math.floor(Math.random() * 15) - 7;
+      price += randomVariation;
+
+      const { data, error } = await supabase.functions.invoke("send-quote-email", {
+        body: {
+          name: values.name,
+          email: values.email,
+          phone: values.phone,
+          type: "Mutuelle Santé",
+          details: {
+            situation: values.situation,
+            age: values.age,
+            regime: values.regime,
+            niveau: values.niveau,
+            codePostal: values.codePostal,
+          },
+          estimatedPrice: price,
+        },
+      });
+
+      if (error) throw error;
+
+      setEstimatedPrice(price);
+      toast({
+        title: "Demande envoyée !",
+        description: "Vous allez recevoir votre devis par email.",
+      });
+    } catch (error: any) {
+      console.error("Error:", error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -23,65 +113,163 @@ const AssuranceSante = () => {
           <Card className="p-8">
             <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis en 2 minutes</h2>
             
-            <form className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="situation">Situation familiale</Label>
-                <Select>
-                  <SelectTrigger id="situation">
-                    <SelectValue placeholder="Sélectionner" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="celibataire">Célibataire</SelectItem>
-                    <SelectItem value="couple">En couple</SelectItem>
-                    <SelectItem value="famille">Famille</SelectItem>
-                  </SelectContent>
-                </Select>
+            {estimatedPrice ? (
+              <div className="text-center py-8">
+                <h3 className="text-3xl font-bold mb-4 text-primary">Votre tarif estimé</h3>
+                <p className="text-5xl font-bold text-accent mb-6">{estimatedPrice}€/mois</p>
+                <p className="text-muted-foreground mb-4">Un conseiller vous contactera pour finaliser votre devis.</p>
+                <Button onClick={() => setEstimatedPrice(null)}>Faire une nouvelle demande</Button>
               </div>
+            ) : (
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Nom complet</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Jean Dupont" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-              <div className="space-y-2">
-                <Label htmlFor="age-assure">Votre âge</Label>
-                <Input id="age-assure" type="number" placeholder="30" />
-              </div>
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input type="email" placeholder="jean@exemple.fr" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-              <div className="space-y-2">
-                <Label htmlFor="regime">Régime de sécurité sociale</Label>
-                <Select>
-                  <SelectTrigger id="regime">
-                    <SelectValue placeholder="Sélectionner" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="general">Régime général</SelectItem>
-                    <SelectItem value="alsace-moselle">Alsace-Moselle</SelectItem>
-                    <SelectItem value="tns">TNS</SelectItem>
-                    <SelectItem value="agricole">Agricole</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Téléphone</FormLabel>
+                        <FormControl>
+                          <Input placeholder="0612345678" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-              <div className="space-y-2">
-                <Label htmlFor="niveau">Niveau de couverture souhaité</Label>
-                <Select>
-                  <SelectTrigger id="niveau">
-                    <SelectValue placeholder="Sélectionner" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="economique">Économique</SelectItem>
-                    <SelectItem value="equilibre">Équilibré</SelectItem>
-                    <SelectItem value="confort">Confort</SelectItem>
-                    <SelectItem value="premium">Premium</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+                  <FormField
+                    control={form.control}
+                    name="situation"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Situation familiale</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Sélectionner" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="celibataire">Célibataire</SelectItem>
+                            <SelectItem value="couple">En couple</SelectItem>
+                            <SelectItem value="famille">Famille</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-              <div className="space-y-2">
-                <Label htmlFor="code-postal-sante">Code postal</Label>
-                <Input id="code-postal-sante" placeholder="75001" maxLength={5} />
-              </div>
+                  <FormField
+                    control={form.control}
+                    name="age"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Votre âge</FormLabel>
+                        <FormControl>
+                          <Input type="number" placeholder="30" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-              <Button className="w-full" size="lg">
-                Comparer les offres
-              </Button>
-            </form>
+                  <FormField
+                    control={form.control}
+                    name="regime"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Régime de sécurité sociale</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Sélectionner" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="general">Régime général</SelectItem>
+                            <SelectItem value="alsace-moselle">Alsace-Moselle</SelectItem>
+                            <SelectItem value="tns">TNS</SelectItem>
+                            <SelectItem value="agricole">Agricole</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="niveau"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Niveau de couverture souhaité</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Sélectionner" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="economique">Économique</SelectItem>
+                            <SelectItem value="equilibre">Équilibré</SelectItem>
+                            <SelectItem value="confort">Confort</SelectItem>
+                            <SelectItem value="premium">Premium</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="codePostal"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Code postal</FormLabel>
+                        <FormControl>
+                          <Input placeholder="75001" maxLength={5} {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
+                    {isLoading ? "Envoi en cours..." : "Comparer les offres"}
+                  </Button>
+                </form>
+              </Form>
+            )}
           </Card>
         </div>
       </main>
