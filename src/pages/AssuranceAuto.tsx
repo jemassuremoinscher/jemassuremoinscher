@@ -34,6 +34,7 @@ const formSchema = z.object({
   codePostal: z.string().length(5, "Code postal invalide"),
   age: z.string().min(1, "Champ requis"),
   permis: z.string().min(1, "Champ requis"),
+  bonusMalus: z.string().min(1, "Champ requis"),
 });
 
 const AssuranceAuto = () => {
@@ -92,6 +93,7 @@ const AssuranceAuto = () => {
       codePostal: "",
       age: "",
       permis: "",
+      bonusMalus: "",
     },
   });
 
@@ -102,11 +104,15 @@ const AssuranceAuto = () => {
       const basePrice = 45;
       const ageDriver = parseInt(values.age);
       const yearVehicle = parseInt(values.annee);
+      const bonusMalusCoef = parseFloat(values.bonusMalus);
       let price = basePrice;
       
       if (ageDriver < 25) price += 15;
       if (yearVehicle < 2015) price += 10;
       if (values.carburant === "electrique") price -= 5;
+      
+      // Appliquer le coefficient bonus-malus
+      price = price * bonusMalusCoef;
       
       const randomVariation = Math.floor(Math.random() * 20) - 10;
       price += randomVariation;
@@ -125,6 +131,7 @@ const AssuranceAuto = () => {
             codePostal: values.codePostal,
             age: values.age,
             permis: values.permis,
+            bonusMalus: values.bonusMalus,
           },
           estimatedPrice: price,
         },
@@ -460,6 +467,53 @@ const AssuranceAuto = () => {
                           <Input type="date" {...field} />
                         </FormControl>
                         <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="bonusMalus"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Coefficient Bonus-Malus *</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Sélectionner votre coefficient" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className="max-h-[300px]">
+                            <SelectItem value="0.50">0.50 (Bonus maximal - 13 ans sans sinistre)</SelectItem>
+                            <SelectItem value="0.53">0.53 (12 ans sans sinistre)</SelectItem>
+                            <SelectItem value="0.56">0.56 (11 ans sans sinistre)</SelectItem>
+                            <SelectItem value="0.57">0.57 (10 ans sans sinistre)</SelectItem>
+                            <SelectItem value="0.60">0.60 (9 ans sans sinistre)</SelectItem>
+                            <SelectItem value="0.63">0.63 (8 ans sans sinistre)</SelectItem>
+                            <SelectItem value="0.66">0.66 (7 ans sans sinistre)</SelectItem>
+                            <SelectItem value="0.70">0.70 (6 ans sans sinistre)</SelectItem>
+                            <SelectItem value="0.74">0.74 (5 ans sans sinistre)</SelectItem>
+                            <SelectItem value="0.78">0.78 (4 ans sans sinistre)</SelectItem>
+                            <SelectItem value="0.82">0.82 (3 ans sans sinistre)</SelectItem>
+                            <SelectItem value="0.87">0.87 (2 ans sans sinistre)</SelectItem>
+                            <SelectItem value="0.91">0.91 (1 an sans sinistre)</SelectItem>
+                            <SelectItem value="0.95">0.95 (Première année)</SelectItem>
+                            <SelectItem value="1.00">1.00 (Coefficient de référence)</SelectItem>
+                            <SelectItem value="1.25">1.25 (1 sinistre responsable)</SelectItem>
+                            <SelectItem value="1.50">1.50 (2 sinistres responsables)</SelectItem>
+                            <SelectItem value="1.75">1.75 (3 sinistres responsables)</SelectItem>
+                            <SelectItem value="2.00">2.00 (4 sinistres responsables)</SelectItem>
+                            <SelectItem value="2.25">2.25 (5 sinistres responsables)</SelectItem>
+                            <SelectItem value="2.50">2.50 (6 sinistres responsables)</SelectItem>
+                            <SelectItem value="3.00">3.00 (Malus élevé)</SelectItem>
+                            <SelectItem value="3.50">3.50 (Malus maximal)</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                        <p className="text-xs text-muted-foreground mt-2">
+                          Le coefficient bonus-malus impacte directement le montant de votre prime d'assurance. 
+                          Vous le trouverez sur votre dernier relevé d'informations.
+                        </p>
                       </FormItem>
                     )}
                   />
