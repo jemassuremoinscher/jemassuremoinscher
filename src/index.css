@@ -94,6 +94,29 @@ All colors MUST be HSL.
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* Focus visible styles for keyboard navigation */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 rounded;
+  }
+
+  /* Skip to main content link for accessibility */
+  .skip-to-main {
+    @apply absolute -top-full left-0 bg-primary text-primary-foreground px-4 py-2 z-[9999] focus:top-0 transition-all font-semibold;
+  }
+
+  /* Screen reader only content */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
 }
 
 @layer utilities {

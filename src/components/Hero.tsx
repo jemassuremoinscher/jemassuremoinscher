@@ -35,7 +35,7 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl py-20">
           <p className="text-primary-foreground/90 text-lg font-semibold mb-4 uppercase tracking-wider animate-fade-in flex items-center gap-2">
-            <Shield className="h-5 w-5" />
+            <Shield className="h-5 w-5" aria-hidden="true" />
             Comparateur N°1 en France
           </p>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-primary-foreground mb-6 leading-tight animate-fade-in" style={{ animationDelay: '0.1s' }}>

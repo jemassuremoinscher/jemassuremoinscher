@@ -18,12 +18,14 @@ const Index = () => {
         canonical="https://votre-domaine.fr/"
       />
       <Header />
-      <Hero />
-      <Features />
-      <Partners />
-      <Testimonials />
-      <FAQ />
-      <NewsletterSection />
+      <main id="main-content" role="main">
+        <Hero />
+        <Features />
+        <Partners />
+        <Testimonials />
+        <FAQ />
+        <NewsletterSection />
+      </main>
       <Footer />
     </div>
   );
