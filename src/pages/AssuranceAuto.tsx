@@ -22,7 +22,7 @@ import Testimonials from "@/components/Testimonials";
 import { InsuranceComparisonTool } from "@/components/comparison/InsuranceComparisonTool";
 import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
 import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema, addHowToSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   marque: z.string().min(1, "Champ requis"),
@@ -159,6 +159,30 @@ const AssuranceAuto = () => {
     1853
   );
 
+  const howToSchema = addHowToSchema({
+    name: "Comment obtenir un devis d'assurance auto en ligne",
+    description: "Guide étape par étape pour comparer et obtenir votre devis d'assurance auto en 2 minutes",
+    totalTime: "PT2M",
+    steps: [
+      {
+        name: "Renseignez les informations de votre véhicule",
+        text: "Indiquez la marque, le modèle, la date de mise en circulation et l'usage de votre véhicule. Ces informations permettent de calculer précisément votre prime d'assurance."
+      },
+      {
+        name: "Précisez votre profil de conducteur",
+        text: "Renseignez votre âge, votre ancienneté de permis, votre coefficient bonus-malus et vos antécédents d'assurance pour obtenir une tarification personnalisée."
+      },
+      {
+        name: "Comparez les offres disponibles",
+        text: "Recevez instantanément plusieurs devis d'assureurs partenaires. Comparez les garanties, les franchises et les prix pour trouver la meilleure offre."
+      },
+      {
+        name: "Souscrivez en ligne",
+        text: "Sélectionnez l'offre qui vous convient et finalisez votre souscription directement en ligne en quelques clics. Votre attestation d'assurance est disponible immédiatement."
+      }
+    ]
+  });
+
   const faqSchema = addFAQSchema([
     {
       question: "Quelle assurance auto choisir ?",
@@ -181,7 +205,7 @@ const AssuranceAuto = () => {
         description="Comparez les meilleures assurances auto en France. Devis gratuit en 2 minutes. Économisez jusqu'à 400€/an avec nos partenaires Allianz, AXA, Direct Assurance, Groupama."
         keywords="assurance auto, devis assurance voiture, assurance auto pas cher, comparateur assurance auto, assurance tous risques"
         canonical="https://www.assurmoinschere.fr/assurance-auto"
-        jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]}
+        jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, howToSchema, faqSchema]}
       />
       <Header />
       

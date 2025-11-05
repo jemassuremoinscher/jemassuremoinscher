@@ -19,7 +19,7 @@ import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema, addHowToSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   situation: z.string().min(1, "Champ requis"),
@@ -126,6 +126,30 @@ const AssuranceSante = () => {
     1642
   );
 
+  const howToSchema = addHowToSchema({
+    name: "Comment obtenir un devis de mutuelle santé en ligne",
+    description: "Guide pratique pour comparer et souscrire une mutuelle santé adaptée à vos besoins en quelques minutes",
+    totalTime: "PT3M",
+    steps: [
+      {
+        name: "Définissez vos besoins en santé",
+        text: "Identifiez vos besoins principaux : optique, dentaire, hospitalisation, médecines douces. Pensez à votre situation familiale et vos dépenses de santé habituelles pour choisir le bon niveau de couverture."
+      },
+      {
+        name: "Renseignez votre profil",
+        text: "Indiquez votre âge, situation familiale, régime de Sécurité sociale et les garanties souhaitées. Ces informations permettent de calculer une cotisation personnalisée."
+      },
+      {
+        name: "Comparez les devis",
+        text: "Analysez les offres reçues : comparez les remboursements pour l'optique, le dentaire, l'hospitalisation et les délais de carence. Vérifiez également les réseaux de soins partenaires."
+      },
+      {
+        name: "Souscrivez votre mutuelle",
+        text: "Choisissez l'offre qui correspond le mieux à vos besoins et budget. La souscription se fait en ligne en quelques clics et vos garanties prennent effet rapidement."
+      }
+    ]
+  });
+
   const faqSchema = addFAQSchema([
     {
       question: "Qu'est-ce qu'une mutuelle santé ?",
@@ -148,7 +172,7 @@ const AssuranceSante = () => {
         description="Comparez les mutuelles santé et complémentaires santé en France. Devis gratuit et personnalisé en 2 minutes. Trouvez la meilleure mutuelle adaptée à vos besoins."
         keywords="mutuelle santé, complémentaire santé, assurance santé, comparateur mutuelle, mutuelle pas cher"
         canonical="https://www.assurmoinschere.fr/assurance-sante"
-        jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]}
+        jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, howToSchema, faqSchema]}
       />
       <Header />
       

@@ -138,3 +138,29 @@ export const addArticleSchema = (article: {
     ...(article.image && { "image": article.image })
   };
 };
+
+export const addHowToSchema = (howTo: {
+  name: string;
+  description: string;
+  steps: Array<{
+    name: string;
+    text: string;
+    image?: string;
+  }>;
+  totalTime?: string;
+}) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": howTo.name,
+    "description": howTo.description,
+    "totalTime": howTo.totalTime || "PT5M",
+    "step": howTo.steps.map((step, index) => ({
+      "@type": "HowToStep",
+      "position": index + 1,
+      "name": step.name,
+      "text": step.text,
+      ...(step.image && { "image": step.image })
+    }))
+  };
+};

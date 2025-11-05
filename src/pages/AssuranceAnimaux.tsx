@@ -19,7 +19,7 @@ import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema, addHowToSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   typeAnimal: z.string().min(1, "Champ requis"),
@@ -105,6 +105,30 @@ const AssuranceAnimaux = () => {
     areaServed: "France"
   });
 
+  const howToSchema = addHowToSchema({
+    name: "Comment assurer son animal de compagnie",
+    description: "Guide complet pour choisir et souscrire la meilleure assurance santé pour votre chien ou chat",
+    totalTime: "PT3M",
+    steps: [
+      {
+        name: "Identifiez votre animal",
+        text: "Renseignez le type d'animal (chien ou chat), sa race, son âge et son état de santé. Ces critères déterminent le niveau de risque et influencent le tarif de l'assurance."
+      },
+      {
+        name: "Choisissez votre formule",
+        text: "Sélectionnez le niveau de couverture souhaité : formule économique pour l'essentiel, intermédiaire pour plus de confort, ou premium pour une protection maximale incluant la prévention."
+      },
+      {
+        name: "Comparez les remboursements",
+        text: "Analysez les taux de remboursement (de 50% à 100%), les plafonds annuels, les franchises et les délais de carence pour chaque type de soin (consultations, chirurgie, hospitalisation)."
+      },
+      {
+        name: "Souscrivez votre mutuelle animaux",
+        text: "Finalisez votre souscription en ligne. Votre animal est couvert après le délai de carence (généralement quelques jours pour les accidents, quelques mois pour les maladies)."
+      }
+    ]
+  });
+
   const faqSchema = addFAQSchema([
     {
       question: "Pourquoi assurer son animal ?",
@@ -127,7 +151,7 @@ const AssuranceAnimaux = () => {
         description="Comparez les assurances pour chiens et chats. Remboursement des frais vétérinaires jusqu'à 100%. Devis gratuit pour protéger votre animal de compagnie."
         keywords="assurance chien, assurance chat, assurance animaux, mutuelle animaux, frais vétérinaires"
         canonical="https://www.assurmoinschere.fr/assurance-animaux"
-        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
+        jsonLd={[breadcrumbSchema, serviceSchema, howToSchema, faqSchema]}
       />
       <Header />
       

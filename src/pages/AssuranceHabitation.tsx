@@ -19,7 +19,7 @@ import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema, addHowToSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   typeLogement: z.string().min(1, "Champ requis"),
@@ -135,6 +135,30 @@ const AssuranceHabitation = () => {
     1435
   );
 
+  const howToSchema = addHowToSchema({
+    name: "Comment souscrire une assurance habitation en ligne",
+    description: "Suivez ces étapes simples pour protéger votre logement avec la meilleure assurance habitation",
+    totalTime: "PT4M",
+    steps: [
+      {
+        name: "Déterminez votre type de logement",
+        text: "Précisez si vous êtes locataire ou propriétaire, si c'est une maison ou un appartement, et sa surface. Ces informations sont essentielles pour une couverture adaptée."
+      },
+      {
+        name: "Évaluez vos biens",
+        text: "Estimez la valeur de votre mobilier, équipements et objets de valeur. Cela permettra de définir le capital mobilier à assurer pour être correctement indemnisé en cas de sinistre."
+      },
+      {
+        name: "Choisissez vos garanties",
+        text: "Sélectionnez les garanties nécessaires : dégâts des eaux, incendie, vol, bris de glace, catastrophes naturelles. Ajoutez des options selon vos besoins (jardin, dépendances, objets précieux)."
+      },
+      {
+        name: "Comparez et souscrivez",
+        text: "Recevez plusieurs devis personnalisés, comparez les garanties et tarifs. Souscrivez en ligne et recevez votre attestation d'assurance immédiatement par email."
+      }
+    ]
+  });
+
   const faqSchema = addFAQSchema([
     {
       question: "Quelle assurance habitation choisir ?",
@@ -157,7 +181,7 @@ const AssuranceHabitation = () => {
         description="Comparez les assurances habitation en France. Devis gratuit pour maison, appartement, locataire ou propriétaire. Économisez jusqu'à 300€/an sur votre assurance habitation."
         keywords="assurance habitation, assurance maison, assurance appartement, assurance locataire, assurance propriétaire"
         canonical="https://www.assurmoinschere.fr/assurance-habitation"
-        jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]}
+        jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, howToSchema, faqSchema]}
       />
       <Header />
       
