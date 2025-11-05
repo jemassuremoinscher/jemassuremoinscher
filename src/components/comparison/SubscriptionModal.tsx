@@ -150,135 +150,123 @@ export const SubscriptionModal = ({ open, onOpenChange, offerDetails }: Subscrip
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[500px]">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-2xl">
-            <Sparkles className="h-6 w-6 text-primary" />
+      <DialogContent className="sm:max-w-[450px] max-h-[90vh] overflow-hidden flex flex-col">
+        <DialogHeader className="flex-shrink-0">
+          <DialogTitle className="flex items-center gap-2 text-xl">
+            <Sparkles className="h-5 w-5 text-primary" />
             Finaliser votre souscription
           </DialogTitle>
           <DialogDescription>
-            <div className="mt-4 space-y-3">
-              <div className="p-4 bg-primary/10 rounded-lg">
-                <p className="font-semibold text-foreground text-lg">{offerDetails.insurer}</p>
-                <p className="text-sm">
-                  {offerDetails.coverage} • <span className="text-2xl font-bold text-primary">{offerDetails.price}€</span>/mois
+            <div className="mt-3 space-y-2">
+              <div className="p-3 bg-primary/10 rounded-lg">
+                <p className="font-semibold text-foreground text-base">{offerDetails.insurer}</p>
+                <p className="text-xs">
+                  {offerDetails.coverage} • <span className="text-lg font-bold text-primary">{offerDetails.price}€</span>/mois
                 </p>
               </div>
-              
-              {offerDetails.formData && Object.keys(offerDetails.formData).length > 0 && (
-                <div className="p-4 bg-muted rounded-lg text-sm">
-                  <p className="font-semibold text-foreground mb-2">Vos informations :</p>
-                  <div className="grid grid-cols-2 gap-2 text-muted-foreground">
-                    {Object.entries(offerDetails.formData).map(([key, value]) => (
-                      <div key={key}>
-                        <span className="font-medium capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span> {value}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-              
-              <p className="text-sm text-muted-foreground">
-                Pour finaliser votre souscription, veuillez renseigner vos coordonnées ci-dessous
-              </p>
             </div>
           </DialogDescription>
         </DialogHeader>
 
-        {isSuccess ? (
-          <div className="py-8 text-center">
-            <CheckCircle2 className="h-16 w-16 text-green-600 mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2">Demande envoyée !</h3>
-            <p className="text-muted-foreground">
-              Nous vous contactons dans les 24h pour finaliser votre souscription.
-            </p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="fullName">Nom complet *</Label>
-              <Input
-                id="fullName"
-                placeholder="Jean Dupont"
-                {...register("fullName")}
-                disabled={isSubmitting}
-              />
-              {errors.fullName && (
-                <p className="text-sm text-destructive">{errors.fullName.message}</p>
-              )}
+        <div className="flex-1 overflow-y-auto px-1">
+          {isSuccess ? (
+            <div className="py-6 text-center">
+              <CheckCircle2 className="h-12 w-12 text-green-600 mx-auto mb-3" />
+              <h3 className="text-lg font-bold mb-2">Demande envoyée !</h3>
+              <p className="text-sm text-muted-foreground">
+                Nous vous contactons dans les 24h pour finaliser votre souscription.
+              </p>
             </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="email">Email *</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="jean.dupont@email.com"
-                {...register("email")}
-                disabled={isSubmitting}
-              />
-              {errors.email && (
-                <p className="text-sm text-destructive">{errors.email.message}</p>
-              )}
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="phone">Téléphone *</Label>
-              <Input
-                id="phone"
-                type="tel"
-                placeholder="06 12 34 56 78"
-                {...register("phone")}
-                disabled={isSubmitting}
-              />
-              {errors.phone && (
-                <p className="text-sm text-destructive">{errors.phone.message}</p>
-              )}
-            </div>
-
-            <div className="flex items-start space-x-3 pt-4">
-              <Checkbox
-                id="acceptTerms"
-                checked={acceptTerms}
-                onCheckedChange={(checked) => setValue("acceptTerms", checked as boolean)}
-                disabled={isSubmitting}
-              />
-              <div className="space-y-1 leading-none">
-                <Label
-                  htmlFor="acceptTerms"
-                  className="text-sm font-normal cursor-pointer"
-                >
-                  J'accepte les conditions générales et la politique de confidentialité *
-                </Label>
-                {errors.acceptTerms && (
-                  <p className="text-sm text-destructive">{errors.acceptTerms.message}</p>
+          ) : (
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 pb-2">
+              <div className="space-y-1.5">
+                <Label htmlFor="fullName" className="text-sm">Nom complet *</Label>
+                <Input
+                  id="fullName"
+                  placeholder="Jean Dupont"
+                  {...register("fullName")}
+                  disabled={isSubmitting}
+                  className="h-9"
+                />
+                {errors.fullName && (
+                  <p className="text-xs text-destructive">{errors.fullName.message}</p>
                 )}
               </div>
-            </div>
 
-            <div className="flex gap-3 pt-4">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={handleClose}
-                disabled={isSubmitting}
-                className="flex-1"
-              >
-                Annuler
-              </Button>
-              <Button type="submit" disabled={isSubmitting} className="flex-1">
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Envoi...
-                  </>
-                ) : (
-                  "Confirmer"
+              <div className="space-y-1.5">
+                <Label htmlFor="email" className="text-sm">Email *</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="jean.dupont@email.com"
+                  {...register("email")}
+                  disabled={isSubmitting}
+                  className="h-9"
+                />
+                {errors.email && (
+                  <p className="text-xs text-destructive">{errors.email.message}</p>
                 )}
-              </Button>
-            </div>
-          </form>
-        )}
+              </div>
+
+              <div className="space-y-1.5">
+                <Label htmlFor="phone" className="text-sm">Téléphone *</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  placeholder="06 12 34 56 78"
+                  {...register("phone")}
+                  disabled={isSubmitting}
+                  className="h-9"
+                />
+                {errors.phone && (
+                  <p className="text-xs text-destructive">{errors.phone.message}</p>
+                )}
+              </div>
+
+              <div className="flex items-start space-x-2 pt-2">
+                <Checkbox
+                  id="acceptTerms"
+                  checked={acceptTerms}
+                  onCheckedChange={(checked) => setValue("acceptTerms", checked as boolean)}
+                  disabled={isSubmitting}
+                />
+                <div className="space-y-1 leading-none">
+                  <Label
+                    htmlFor="acceptTerms"
+                    className="text-xs font-normal cursor-pointer"
+                  >
+                    J'accepte les conditions générales et la politique de confidentialité *
+                  </Label>
+                  {errors.acceptTerms && (
+                    <p className="text-xs text-destructive">{errors.acceptTerms.message}</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="flex gap-2 pt-3">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={handleClose}
+                  disabled={isSubmitting}
+                  className="flex-1 h-9"
+                >
+                  Annuler
+                </Button>
+                <Button type="submit" disabled={isSubmitting} className="flex-1 h-9">
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-3 w-3 animate-spin" />
+                      Envoi...
+                    </>
+                  ) : (
+                    "Confirmer"
+                  )}
+                </Button>
+              </div>
+            </form>
+          )}
+        </div>
       </DialogContent>
     </Dialog>
   );
