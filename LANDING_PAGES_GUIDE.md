@@ -10,6 +10,14 @@ Ce document explique comment utiliser les landing pages optimisées pour maximis
 2. **Mutuelle Santé** : `/landing/sante`
 3. **Assurance Habitation** : `/landing/habitation`
 4. **Assurance Moto** : `/landing/moto`
+5. **Assurance Animaux** : `/landing/animaux`
+6. **Assurance Prêt Immobilier** : `/landing/pret`
+7. **Assurance Vie** : `/landing/vie`
+8. **Assurance Prévoyance** : `/landing/prevoyance`
+9. **Assurance RC Pro** : `/landing/rc-pro`
+10. **Assurance GLI (Loyers Impayés)** : `/landing/gli`
+11. **Assurance PNO (Propriétaire Non Occupant)** : `/landing/pno`
+12. **Assurance MRP (Multirisque Professionnelle)** : `/landing/mrp`
 
 ### Exemples d'URLs avec UTM
 
@@ -25,6 +33,30 @@ https://www.assurmoinschere.fr/landing/habitation?utm_source=google&utm_medium=c
 
 # TikTok Ads - Campagne Moto
 https://www.assurmoinschere.fr/landing/moto?utm_source=tiktok&utm_medium=cpc&utm_campaign=moto_jeunes&utm_content=clip1
+
+# Google Ads - Campagne Animaux
+https://www.assurmoinschere.fr/landing/animaux?utm_source=google&utm_medium=cpc&utm_campaign=animaux_chien&utm_term=assurance+chien
+
+# Meta Ads - Campagne Prêt Immobilier
+https://www.assurmoinschere.fr/landing/pret?utm_source=facebook&utm_medium=cpc&utm_campaign=emprunteur_economie&utm_content=carousel1
+
+# Google Ads - Campagne Vie
+https://www.assurmoinschere.fr/landing/vie?utm_source=google&utm_medium=cpc&utm_campaign=epargne_placement&utm_term=assurance+vie+placement
+
+# Meta Ads - Campagne Prévoyance
+https://www.assurmoinschere.fr/landing/prevoyance?utm_source=facebook&utm_medium=cpc&utm_campaign=protection_famille&utm_content=video_temoignage
+
+# Google Ads - Campagne RC Pro
+https://www.assurmoinschere.fr/landing/rc-pro?utm_source=google&utm_medium=cpc&utm_campaign=rcpro_independants&utm_term=assurance+rc+professionnelle
+
+# Meta Ads - Campagne GLI
+https://www.assurmoinschere.fr/landing/gli?utm_source=facebook&utm_medium=cpc&utm_campaign=bailleurs_loyers_impayes&utm_content=image_investisseur
+
+# Google Ads - Campagne PNO
+https://www.assurmoinschere.fr/landing/pno?utm_source=google&utm_medium=cpc&utm_campaign=pno_proprietaires&utm_term=assurance+pno
+
+# Meta Ads - Campagne MRP
+https://www.assurmoinschere.fr/landing/mrp?utm_source=facebook&utm_medium=cpc&utm_campaign=mrp_entreprises&utm_content=video_sinistre
 ```
 
 ## 🎯 Optimisations Clés
@@ -111,6 +143,14 @@ Parameters:
 | Santé            | 3-6€      | 40€             | 100-200€            |
 | Habitation       | 1.5-3€    | 20€             | 50-100€             |
 | Moto             | 2-4€      | 25€             | 60-120€             |
+| Animaux          | 2-3€      | 20€             | 50-100€             |
+| Prêt             | 4-8€      | 50€             | 120-250€            |
+| Vie              | 5-10€     | 60€             | 150-300€            |
+| Prévoyance       | 3-6€      | 35€             | 80-150€             |
+| RC Pro           | 3-5€      | 30€             | 70-150€             |
+| GLI              | 4-7€      | 40€             | 90-180€             |
+| PNO              | 2-4€      | 25€             | 60-120€             |
+| MRP              | 3-6€      | 35€             | 80-160€             |
 
 ## 📱 Configuration Meta Ads
 

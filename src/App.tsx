@@ -19,6 +19,12 @@ const LandingHabitation = lazy(() => import("./pages/landing/LandingHabitation")
 const LandingMoto = lazy(() => import("./pages/landing/LandingMoto"));
 const LandingAnimaux = lazy(() => import("./pages/landing/LandingAnimaux"));
 const LandingPret = lazy(() => import("./pages/landing/LandingPret"));
+const LandingVie = lazy(() => import("./pages/landing/LandingVie"));
+const LandingPrevoyance = lazy(() => import("./pages/landing/LandingPrevoyance"));
+const LandingRCPro = lazy(() => import("./pages/landing/LandingRCPro"));
+const LandingGLI = lazy(() => import("./pages/landing/LandingGLI"));
+const LandingPNO = lazy(() => import("./pages/landing/LandingPNO"));
+const LandingMRP = lazy(() => import("./pages/landing/LandingMRP"));
 const Comparateur = lazy(() => import("./pages/Comparateur"));
 const ComparateurGaranties = lazy(() => import("./pages/ComparateurGaranties"));
 const AssuranceAuto = lazy(() => import("./pages/AssuranceAuto"));
@@ -74,6 +80,12 @@ const App = () => (
             <Route path="/landing/moto" element={<LandingMoto />} />
             <Route path="/landing/animaux" element={<LandingAnimaux />} />
             <Route path="/landing/pret" element={<LandingPret />} />
+            <Route path="/landing/vie" element={<LandingVie />} />
+            <Route path="/landing/prevoyance" element={<LandingPrevoyance />} />
+            <Route path="/landing/rc-pro" element={<LandingRCPro />} />
+            <Route path="/landing/gli" element={<LandingGLI />} />
+            <Route path="/landing/pno" element={<LandingPNO />} />
+            <Route path="/landing/mrp" element={<LandingMRP />} />
             <Route path="/comparateur" element={<Comparateur />} />
             <Route path="/comparateur-garanties" element={<ComparateurGaranties />} />
             <Route path="/assurance-auto" element={<AssuranceAuto />} />
