@@ -34,6 +34,11 @@ const AvisClients = lazy(() => import("./pages/AvisClients"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogArticle = lazy(() => import("./pages/BlogArticle"));
 const PolitiqueCookies = lazy(() => import("./pages/PolitiqueCookies"));
+const MentionsLegales = lazy(() => import("./pages/MentionsLegales"));
+const CGU = lazy(() => import("./pages/CGU"));
+const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentialite"));
+const Contact = lazy(() => import("./pages/Contact"));
+const NewsletterGestion = lazy(() => import("./pages/NewsletterGestion"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -77,6 +82,11 @@ const App = () => (
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogArticle />} />
             <Route path="/politique-cookies" element={<PolitiqueCookies />} />
+            <Route path="/mentions-legales" element={<MentionsLegales />} />
+            <Route path="/cgu" element={<CGU />} />
+            <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/newsletter-gestion" element={<NewsletterGestion />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
