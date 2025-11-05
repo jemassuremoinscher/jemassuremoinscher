@@ -21,6 +21,21 @@ export const addOrganizationSchema = () => {
   };
 };
 
+export const addAggregateRatingSchema = (name: string, ratingValue: number, reviewCount: number) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": name,
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": ratingValue.toString(),
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": reviewCount.toString()
+    }
+  };
+};
+
 export const addServiceSchema = (service: {
   name: string;
   description: string;

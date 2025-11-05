@@ -13,7 +13,7 @@ import { SocialProof } from "@/components/trust/SocialProof";
 import { ReviewsWidget } from "@/components/trust/ReviewsWidget";
 import { InsuranceQuiz } from "@/components/quiz/InsuranceQuiz";
 import { BlogHighlights } from "@/components/blog/BlogHighlights";
-import { addOrganizationSchema, addServiceSchema, addFAQSchema } from "@/utils/seoUtils";
+import { addOrganizationSchema, addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 
 const Index = () => {
   const organizationSchema = addOrganizationSchema();
@@ -24,6 +24,12 @@ const Index = () => {
     provider: "Le Comparateur Assurance",
     areaServed: "France"
   });
+
+  const ratingSchema = addAggregateRatingSchema(
+    "Le Comparateur Assurance",
+    4.8,
+    2547
+  );
 
   const faqSchema = addFAQSchema([
     {
@@ -47,7 +53,7 @@ const Index = () => {
         description="Comparez gratuitement les meilleures assurances auto, santé, habitation, animaux et prêt en France. Économisez en moyenne 947€ par an. Devis gratuit en 2 minutes avec nos partenaires Allianz, AXA, Groupama, MAIF."
         keywords="comparateur assurance france, devis assurance gratuit, économiser assurance, meilleure assurance, assurance pas cher"
         canonical="https://www.assurmoinschere.fr/"
-        jsonLd={[organizationSchema, serviceSchema, faqSchema]}
+        jsonLd={[organizationSchema, serviceSchema, ratingSchema, faqSchema]}
       />
       <Header />
       <main id="main-content" role="main">

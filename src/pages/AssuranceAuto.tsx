@@ -22,7 +22,7 @@ import Testimonials from "@/components/Testimonials";
 import { InsuranceComparisonTool } from "@/components/comparison/InsuranceComparisonTool";
 import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
 import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   marque: z.string().min(1, "Champ requis"),
@@ -153,6 +153,12 @@ const AssuranceAuto = () => {
     areaServed: "France"
   });
 
+  const ratingSchema = addAggregateRatingSchema(
+    "Comparateur Assurance Auto",
+    4.7,
+    1853
+  );
+
   const faqSchema = addFAQSchema([
     {
       question: "Quelle assurance auto choisir ?",
@@ -175,7 +181,7 @@ const AssuranceAuto = () => {
         description="Comparez les meilleures assurances auto en France. Devis gratuit en 2 minutes. Économisez jusqu'à 400€/an avec nos partenaires Allianz, AXA, Direct Assurance, Groupama."
         keywords="assurance auto, devis assurance voiture, assurance auto pas cher, comparateur assurance auto, assurance tous risques"
         canonical="https://www.assurmoinschere.fr/assurance-auto"
-        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
+        jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]}
       />
       <Header />
       

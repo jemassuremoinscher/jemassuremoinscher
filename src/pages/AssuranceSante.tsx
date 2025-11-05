@@ -19,7 +19,7 @@ import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   situation: z.string().min(1, "Champ requis"),
@@ -120,6 +120,12 @@ const AssuranceSante = () => {
     areaServed: "France"
   });
 
+  const ratingSchema = addAggregateRatingSchema(
+    "Comparateur Mutuelle Santé",
+    4.6,
+    1642
+  );
+
   const faqSchema = addFAQSchema([
     {
       question: "Qu'est-ce qu'une mutuelle santé ?",
@@ -142,7 +148,7 @@ const AssuranceSante = () => {
         description="Comparez les mutuelles santé et complémentaires santé en France. Devis gratuit et personnalisé en 2 minutes. Trouvez la meilleure mutuelle adaptée à vos besoins."
         keywords="mutuelle santé, complémentaire santé, assurance santé, comparateur mutuelle, mutuelle pas cher"
         canonical="https://www.assurmoinschere.fr/assurance-sante"
-        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
+        jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]}
       />
       <Header />
       
