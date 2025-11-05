@@ -1,7 +1,10 @@
-import { Shield } from "lucide-react";
+import { Shield, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4">
@@ -70,50 +73,57 @@ const Header = () => {
             >
               Assurance vie
             </Link>
-            <div className="relative group">
-              <button className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap transition-colors">
+            <div 
+              className="relative"
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
+            >
+              <button className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap transition-colors flex items-center gap-1">
                 Plus d'assurances
+                <ChevronDown className="h-3.5 w-3.5" />
               </button>
-              <div className="absolute top-full left-0 mt-1 w-56 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div className="py-2">
-                  <Link
-                    to="/assurance-mrp"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                  >
-                    MRP
-                  </Link>
-                  <Link
-                    to="/assurance-rc-pro"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                  >
-                    RC Pro
-                  </Link>
-                  <Link
-                    to="/qui-sommes-nous"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                  >
-                    Qui sommes-nous
-                  </Link>
-                  <Link
-                    to="/nos-partenaires"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                  >
-                    Nos partenaires
-                  </Link>
-                  <Link
-                    to="/avis-clients"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                  >
-                    Avis clients
-                  </Link>
-                  <Link
-                    to="/blog"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                  >
-                    Blog
-                  </Link>
+              {isDropdownOpen && (
+                <div className="absolute top-full left-0 mt-1 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50 animate-fade-in">
+                  <div className="py-2">
+                    <Link
+                      to="/assurance-mrp"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+                    >
+                      MRP
+                    </Link>
+                    <Link
+                      to="/assurance-rc-pro"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+                    >
+                      RC Pro
+                    </Link>
+                    <Link
+                      to="/qui-sommes-nous"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+                    >
+                      Qui sommes-nous
+                    </Link>
+                    <Link
+                      to="/nos-partenaires"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+                    >
+                      Nos partenaires
+                    </Link>
+                    <Link
+                      to="/avis-clients"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+                    >
+                      Avis clients
+                    </Link>
+                    <Link
+                      to="/blog"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
+                    >
+                      Blog
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
