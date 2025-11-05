@@ -26,60 +26,65 @@ const Header = () => {
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4">
-        {/* Top bar with logo and main links */}
+        {/* Horizontal layout with logo and menu side by side */}
         <div className="flex items-center justify-between py-4">
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="p-1.5 rounded-lg bg-primary">
-              <Shield className="h-6 w-6 text-white" />
-            </div>
-            <div className="flex flex-col leading-tight">
-              <span className="text-xs font-semibold text-primary uppercase tracking-wide">Le Comparateur</span>
-              <span className="text-lg font-black text-primary uppercase">Assurance</span>
-            </div>
-          </Link>
-          
-          {/* Desktop Navigation - Horizontal Menu */}
-          <nav className="hidden xl:flex items-center gap-1">
-            {navigationLinks.map((link) => (
-              <Link
-                key={link.to}
-                to={link.to}
-                className="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-200 whitespace-nowrap"
-              >
-                {link.label}
-              </Link>
-            ))}
-            
-            {/* More dropdown */}
-            <div className="relative group">
-              <button className="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-200 flex items-center gap-1">
-                Plus d'assurances
-                <ChevronDown className="h-3 w-3" />
-              </button>
-              
-              {/* Dropdown menu */}
-              <div className="absolute right-0 top-full mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                {moreLinks.map((link) => (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors first:rounded-t-lg last:rounded-b-lg"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+          <div className="flex items-center gap-8">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-2 group flex-shrink-0">
+              <div className="p-1.5 rounded-lg bg-primary">
+                <Shield className="h-6 w-6 text-white" />
               </div>
-            </div>
+              <div className="flex flex-col leading-tight">
+                <span className="text-xs font-semibold text-primary uppercase tracking-wide">Le Comparateur</span>
+                <span className="text-lg font-black text-primary uppercase">Assurance</span>
+              </div>
+            </Link>
+            
+            {/* Desktop Navigation - Horizontal Menu next to logo */}
+            <nav className="hidden xl:flex items-center gap-1">
+              {navigationLinks.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="px-3 py-2 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-200 whitespace-nowrap"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              
+              {/* More dropdown */}
+              <div className="relative group">
+                <button className="px-3 py-2 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-200 flex items-center gap-1">
+                  Plus d'assurances
+                  <ChevronDown className="h-3 w-3" />
+                </button>
+                
+                {/* Dropdown menu */}
+                <div className="absolute left-0 top-full mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  {moreLinks.map((link) => (
+                    <Link
+                      key={link.to}
+                      to={link.to}
+                      className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors first:rounded-t-lg last:rounded-b-lg"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </nav>
+          </div>
 
-            {/* Prévoyance button */}
+          {/* Right side - Prévoyance button */}
+          <div className="hidden xl:block">
             <Button 
               variant="outline" 
-              className="ml-2 border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold"
+              className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold"
               asChild
             >
               <Link to="/qui-sommes-nous">Prévoyance</Link>
             </Button>
-          </nav>
+          </div>
 
           {/* Mobile Navigation */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
