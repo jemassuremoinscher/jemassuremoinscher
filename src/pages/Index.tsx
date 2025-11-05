@@ -10,6 +10,7 @@ import SEO from "@/components/SEO";
 import { CallbackForm } from "@/components/contact/CallbackForm";
 import { TrustBadges } from "@/components/trust/TrustBadges";
 import { SocialProof } from "@/components/trust/SocialProof";
+import { ReviewsWidget } from "@/components/trust/ReviewsWidget";
 
 const Index = () => {
   return (
@@ -27,6 +28,7 @@ const Index = () => {
         <Features />
         <SocialProof />
         <Partners />
+        <ReviewsWidget />
         <Testimonials />
         <CallbackForm />
         <FAQ />
