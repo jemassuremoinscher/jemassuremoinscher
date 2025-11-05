@@ -256,11 +256,16 @@ export const CommercialSupervision = () => {
                     </div>
 
                     {/* Activité */}
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-sm font-medium">
-                        <Activity className="h-4 w-4" />
-                        Activité
-                      </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm font-medium">
+                      <Activity className="h-4 w-4" />
+                      Activité
+                      {((agent.todayLeadsCount / agent.max_daily_leads) * 100) >= 80 && (
+                        <Badge variant="destructive" className="text-xs animate-pulse">
+                          {((agent.todayLeadsCount / agent.max_daily_leads) * 100).toFixed(0)}%
+                        </Badge>
+                      )}
+                    </div>
                       <div className="space-y-1">
                         <div className="flex items-center justify-between text-xs">
                           <span className="text-muted-foreground">Aujourd'hui</span>
