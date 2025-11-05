@@ -251,12 +251,12 @@ const AssuranceAuto = () => {
                                 <SelectValue placeholder="Sélectionner" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent>
-                              <SelectItem value="2024">2024</SelectItem>
-                              <SelectItem value="2023">2023</SelectItem>
-                              <SelectItem value="2022">2022</SelectItem>
-                              <SelectItem value="2021">2021</SelectItem>
-                              <SelectItem value="2020">2020</SelectItem>
+                            <SelectContent className="max-h-[300px]">
+                              {Array.from({ length: 2025 - 1980 + 1 }, (_, i) => 2025 - i).map((year) => (
+                                <SelectItem key={year} value={year.toString()}>
+                                  {year}
+                                </SelectItem>
+                              ))}
                             </SelectContent>
                           </Select>
                           <FormMessage />
