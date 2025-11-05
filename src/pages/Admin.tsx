@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, RefreshCw, Shield, LayoutDashboard, Trash2, Target, Users, Trophy } from 'lucide-react';
+import { LogOut, RefreshCw, Shield, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { StatsCards } from '@/components/admin/StatsCards';
@@ -17,6 +17,7 @@ import { TrashBin } from '@/components/admin/TrashBin';
 import { CRMDashboard } from '@/components/admin/CRMDashboard';
 import { SalesAgentsManager } from '@/components/admin/SalesAgentsManager';
 import { GoalsManager } from '@/components/admin/GoalsManager';
+import { CommercialSupervision } from '@/components/admin/CommercialSupervision';
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -231,10 +232,14 @@ const Admin = () => {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <Tabs defaultValue="dashboard" className="w-full">
-          <TabsList className="grid w-full grid-cols-5 mb-6">
+          <TabsList className="grid w-full grid-cols-6 mb-6">
             <TabsTrigger value="dashboard" className="flex items-center gap-2">
               <LayoutDashboard className="h-4 w-4" />
               Dashboard
+            </TabsTrigger>
+            <TabsTrigger value="supervision" className="flex items-center gap-2">
+              <UserCog className="h-4 w-4" />
+              Supervision
             </TabsTrigger>
             <TabsTrigger value="crm" className="flex items-center gap-2">
               <Target className="h-4 w-4" />
@@ -278,6 +283,10 @@ const Admin = () => {
                 <CallbacksTable callbacks={filteredCallbacks} onUpdate={fetchData} highlightedId={highlightedId} />
               </div>
             </div>
+          </TabsContent>
+
+          <TabsContent value="supervision">
+            <CommercialSupervision />
           </TabsContent>
 
           <TabsContent value="crm">
