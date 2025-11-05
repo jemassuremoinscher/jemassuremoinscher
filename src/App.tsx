@@ -25,6 +25,9 @@ const AssuranceVie = lazy(() => import("./pages/AssuranceVie"));
 const AssurancePrevoyance = lazy(() => import("./pages/AssurancePrevoyance"));
 const AssuranceMRP = lazy(() => import("./pages/AssuranceMRP"));
 const AssuranceRCPro = lazy(() => import("./pages/AssuranceRCPro"));
+const AssuranceGLI = lazy(() => import("./pages/AssuranceGLI"));
+const AssurancePNO = lazy(() => import("./pages/AssurancePNO"));
+const GestionLocative = lazy(() => import("./pages/GestionLocative"));
 const QuiSommesNous = lazy(() => import("./pages/QuiSommesNous"));
 const NosPartenaires = lazy(() => import("./pages/NosPartenaires"));
 const AvisClients = lazy(() => import("./pages/AvisClients"));
@@ -65,6 +68,9 @@ const App = () => (
             <Route path="/assurance-vie" element={<AssuranceVie />} />
             <Route path="/assurance-mrp" element={<AssuranceMRP />} />
             <Route path="/assurance-rc-pro" element={<AssuranceRCPro />} />
+            <Route path="/assurance-gli" element={<AssuranceGLI />} />
+            <Route path="/assurance-pno" element={<AssurancePNO />} />
+            <Route path="/gestion-locative" element={<GestionLocative />} />
             <Route path="/qui-sommes-nous" element={<QuiSommesNous />} />
             <Route path="/nos-partenaires" element={<NosPartenaires />} />
             <Route path="/avis-clients" element={<AvisClients />} />

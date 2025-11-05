@@ -1,4 +1,4 @@
-import { Shield, ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText } from "lucide-react";
+import { Shield, ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, HomeIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
@@ -25,6 +25,12 @@ const Header = () => {
     { to: "/assurance-vie", label: "Assurance Vie", icon: PiggyBank },
     { to: "/assurance-pret", label: "Assurance de Prêt", icon: FileText },
     { to: "/assurance-prevoyance", label: "Prévoyance", icon: Users },
+  ];
+
+  const assurancesImmobilier = [
+    { to: "/assurance-gli", label: "Garantie Loyer Impayée", icon: Shield },
+    { to: "/assurance-pno", label: "PNO", icon: Home },
+    { to: "/gestion-locative", label: "Gestion Locative", icon: Building2 },
   ];
 
   return (
@@ -153,6 +159,33 @@ const Header = () => {
                 </PopoverContent>
               </Popover>
 
+              <Popover open={openPopover === "immobilier"} onOpenChange={(open) => setOpenPopover(open ? "immobilier" : null)}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
+                  >
+                    Immobilier
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-64 p-2 bg-white shadow-lg border border-gray-200" align="start">
+                  <div className="space-y-1">
+                    {assurancesImmobilier.map(({ to, label, icon: Icon }) => (
+                      <Link
+                        key={to}
+                        to={to}
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                        onClick={() => setOpenPopover(null)}
+                      >
+                        <Icon className="h-4 w-4 text-primary" />
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
+
               <div className="h-6 w-px bg-gray-300 mx-2" aria-hidden="true" />
 
               <Link
@@ -250,6 +283,23 @@ const Header = () => {
               <h3 className="px-4 py-2 text-xs font-bold text-gray-500 uppercase tracking-wider">Vie & Épargne</h3>
               <div className="space-y-1 mt-2">
                 {assurancesVieEpargne.map(({ to, label, icon: Icon }) => (
+                  <Link
+                    key={to}
+                    to={to}
+                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <Icon className="h-5 w-5 text-primary" />
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="px-4 py-2 text-xs font-bold text-gray-500 uppercase tracking-wider">Immobilier</h3>
+              <div className="space-y-1 mt-2">
+                {assurancesImmobilier.map(({ to, label, icon: Icon }) => (
                   <Link
                     key={to}
                     to={to}
