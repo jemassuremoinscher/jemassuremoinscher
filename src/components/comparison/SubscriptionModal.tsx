@@ -45,6 +45,7 @@ interface SubscriptionModalProps {
     price: number;
     coverage: string;
     insuranceType: string;
+    formData?: Record<string, any>; // Les données du formulaire initial
   };
 }
 
@@ -153,13 +154,32 @@ export const SubscriptionModal = ({ open, onOpenChange, offerDetails }: Subscrip
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-2xl">
             <Sparkles className="h-6 w-6 text-primary" />
-            Souscrire à cette offre
+            Finaliser votre souscription
           </DialogTitle>
           <DialogDescription>
-            <div className="mt-4 p-4 bg-primary/10 rounded-lg">
-              <p className="font-semibold text-foreground">{offerDetails.insurer}</p>
-              <p className="text-sm">
-                {offerDetails.coverage} • <span className="text-2xl font-bold text-primary">{offerDetails.price}€</span>/mois
+            <div className="mt-4 space-y-3">
+              <div className="p-4 bg-primary/10 rounded-lg">
+                <p className="font-semibold text-foreground text-lg">{offerDetails.insurer}</p>
+                <p className="text-sm">
+                  {offerDetails.coverage} • <span className="text-2xl font-bold text-primary">{offerDetails.price}€</span>/mois
+                </p>
+              </div>
+              
+              {offerDetails.formData && Object.keys(offerDetails.formData).length > 0 && (
+                <div className="p-4 bg-muted rounded-lg text-sm">
+                  <p className="font-semibold text-foreground mb-2">Vos informations :</p>
+                  <div className="grid grid-cols-2 gap-2 text-muted-foreground">
+                    {Object.entries(offerDetails.formData).map(([key, value]) => (
+                      <div key={key}>
+                        <span className="font-medium capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span> {value}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+              <p className="text-sm text-muted-foreground">
+                Pour finaliser votre souscription, veuillez renseigner vos coordonnées ci-dessous
               </p>
             </div>
           </DialogDescription>

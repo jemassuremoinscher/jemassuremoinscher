@@ -39,6 +39,7 @@ const AssuranceAuto = () => {
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedBrand, setSelectedBrand] = useState<string>("");
+  const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
 
   // Modèles par marque (liste des modèles populaires)
   const modelsByBrand: Record<string, string[]> = {
@@ -94,6 +95,9 @@ const AssuranceAuto = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
+      // Sauvegarder les données du formulaire
+      setSubmittedFormData(values);
+      
       // Calcul d'un prix estimé (simulation)
       const basePrice = 45;
       const ageDriver = parseInt(values.age);
@@ -111,33 +115,11 @@ const AssuranceAuto = () => {
       const randomVariation = Math.floor(Math.random() * 20) - 10;
       price += randomVariation;
 
-      const { data, error } = await supabase.functions.invoke("send-quote-email", {
-        body: {
-          name: "Prospect Auto",
-          email: "prospect@auto.fr",
-          phone: "0000000000",
-          type: "Assurance Auto",
-          details: {
-            marque: values.marque,
-            modele: values.modele,
-            annee: values.annee,
-            carburant: values.carburant,
-            codePostal: values.codePostal,
-            age: values.age,
-            permis: values.permis,
-            bonusMalus: values.bonusMalus,
-          },
-          estimatedPrice: price,
-        },
-      });
-
-      if (error) throw error;
-
       const offers = generateInsurerOffers(price, autoInsurers);
       setInsurerOffers(offers);
       toast({
-        title: "Demande envoyée !",
-        description: "Vous allez recevoir votre devis par email.",
+        title: "Offres générées !",
+        description: "Consultez les meilleures offres pour votre profil.",
       });
     } catch (error: any) {
       console.error("Error:", error);
@@ -202,7 +184,9 @@ const AssuranceAuto = () => {
             {insurerOffers.length > 0 ? (
               <InsuranceComparison 
                 insurers={insurerOffers} 
-                onNewQuote={() => setInsurerOffers([])} 
+                onNewQuote={() => setInsurerOffers([])}
+                formData={submittedFormData}
+                insuranceType="Assurance Auto"
               />
             ) : (
               <Form {...form}>

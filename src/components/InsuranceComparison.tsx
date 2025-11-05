@@ -2,6 +2,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
+import { useState } from "react";
+import { SubscriptionModal } from "./comparison/SubscriptionModal";
 
 interface Insurer {
   name: string;
@@ -14,9 +16,19 @@ interface Insurer {
 interface InsuranceComparisonProps {
   insurers: Insurer[];
   onNewQuote: () => void;
+  formData?: Record<string, any>;
+  insuranceType?: string;
 }
 
-const InsuranceComparison = ({ insurers, onNewQuote }: InsuranceComparisonProps) => {
+const InsuranceComparison = ({ insurers, onNewQuote, formData, insuranceType }: InsuranceComparisonProps) => {
+  const [selectedOffer, setSelectedOffer] = useState<Insurer | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSubscribe = (insurer: Insurer) => {
+    setSelectedOffer(insurer);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
@@ -65,6 +77,7 @@ const InsuranceComparison = ({ insurers, onNewQuote }: InsuranceComparisonProps)
                 <Button 
                   className="w-full md:w-auto"
                   variant={index === 0 ? "default" : "outline"}
+                  onClick={() => handleSubscribe(insurer)}
                 >
                   Souscrire
                 </Button>
@@ -79,6 +92,20 @@ const InsuranceComparison = ({ insurers, onNewQuote }: InsuranceComparisonProps)
           Faire une nouvelle demande
         </Button>
       </div>
+
+      {selectedOffer && (
+        <SubscriptionModal
+          open={isModalOpen}
+          onOpenChange={setIsModalOpen}
+          offerDetails={{
+            insurer: selectedOffer.name,
+            price: selectedOffer.price,
+            coverage: selectedOffer.coverage.join(", "),
+            insuranceType: insuranceType || "Assurance",
+            formData: formData,
+          }}
+        />
+      )}
     </div>
   );
 };

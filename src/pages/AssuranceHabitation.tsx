@@ -37,9 +37,6 @@ const AssuranceHabitation = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
       typeLogement: "",
       statut: "",
       surface: "",
@@ -67,9 +64,9 @@ const AssuranceHabitation = () => {
 
       const { data, error } = await supabase.functions.invoke("send-quote-email", {
         body: {
-          name: values.name,
-          email: values.email,
-          phone: values.phone,
+          name: "Prospect Habitation",
+          email: "prospect@habitation.fr",
+          phone: "0000000000",
           type: "Assurance Habitation",
           details: {
             typeLogement: values.typeLogement,
@@ -159,48 +156,6 @@ const AssuranceHabitation = () => {
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Nom complet</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Jean Dupont" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                          <Input type="email" placeholder="jean@exemple.fr" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Téléphone</FormLabel>
-                        <FormControl>
-                          <Input placeholder="0612345678" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
                   <FormField
                     control={form.control}
                     name="typeLogement"
