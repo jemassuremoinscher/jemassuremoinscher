@@ -41,6 +41,65 @@ const Header = () => {
             </Link>
 
             <div className="flex items-center gap-2">
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    className="hidden lg:flex border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold gap-1"
+                  >
+                    Nos Assurances
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-64 p-2" align="end">
+                  <div className="flex flex-col gap-1">
+                    <Link
+                      to="/assurance-auto"
+                      className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                    >
+                      <Car className="h-4 w-4" />
+                      Assurance Auto
+                    </Link>
+                    <Link
+                      to="/assurance-sante"
+                      className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                    >
+                      <Heart className="h-4 w-4" />
+                      Mutuelle Santé
+                    </Link>
+                    <Link
+                      to="/assurance-moto"
+                      className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                    >
+                      <Bike className="h-4 w-4" />
+                      Assurance Moto
+                    </Link>
+                    <Link
+                      to="/assurance-habitation"
+                      className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                    >
+                      <Home className="h-4 w-4" />
+                      Assurance Habitation
+                    </Link>
+                    <Link
+                      to="/assurance-pret"
+                      className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                    >
+                      <CreditCard className="h-4 w-4" />
+                      Assurance de prêt
+                    </Link>
+                    <Link
+                      to="/assurance-animaux"
+                      className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                    >
+                      <Users className="h-4 w-4" />
+                      Assurance Animaux
+                    </Link>
+                  </div>
+                </PopoverContent>
+              </Popover>
+
               <Button 
                 variant="outline" 
                 size="sm"
