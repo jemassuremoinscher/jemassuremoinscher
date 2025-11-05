@@ -116,18 +116,8 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Sending quote email for:", { type, timestamp: new Date().toISOString() });
 
-    // Validate business email is configured
-    const businessEmail = Deno.env.get("BUSINESS_EMAIL");
-    if (!businessEmail) {
-      console.error("BUSINESS_EMAIL environment variable not configured");
-      return new Response(
-        JSON.stringify({ error: "Service configuration error. Please contact support." }),
-        {
-          status: 500,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
-      );
-    }
+    // Use the verified email for both from and to (Resend requirement in test mode)
+    const businessEmail = "contact@assurmoinschere.fr";
 
     // Initialize Supabase client with service role for database operations
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
@@ -145,8 +135,8 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Email au propriétaire du site
     const ownerEmail = await resend.emails.send({
-      from: "Comparateur Assurance <onboarding@resend.dev>",
-      to: [businessEmail],
+      from: `Comparateur Assurance <${businessEmail}>`,
+      to: businessEmail,
       subject: `Nouvelle demande de devis - ${type}`,
       html: `
         <h1>Nouvelle demande de devis</h1>
@@ -180,23 +170,32 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
 
-    // Email au client
-    const clientEmail = await resend.emails.send({
-      from: "Comparateur Assurance <onboarding@resend.dev>",
-      to: [email],
-      subject: "Votre devis d'assurance",
-      html: `
-        <h1>Merci pour votre demande, ${name} !</h1>
-        <p>Nous avons bien reçu votre demande de devis pour une <strong>${type}</strong>.</p>
-        
-        <h2>Votre tarif estimé</h2>
-        <p style="font-size: 32px; color: #7e22ce; font-weight: bold;">${estimatedPrice}€/mois</p>
-        
-        <p>Un de nos conseillers vous contactera dans les plus brefs délais au <strong>${phone}</strong> pour finaliser votre devis.</p>
-        
-        <p>Cordialement,<br>L'équipe Comparateur Assurance</p>
-      `,
-    });
+    // Email au client - Note: In Resend test mode, emails can only be sent to verified addresses
+    // The client's info is already sent to the business email above
+    // To enable client emails, verify your domain at resend.com/domains
+    let clientEmail: any = { data: null, error: null };
+    
+    // Only attempt to send if the client email is the verified business email (for testing)
+    if (email === businessEmail) {
+      clientEmail = await resend.emails.send({
+        from: `Comparateur Assurance <${businessEmail}>`,
+        to: email,
+        subject: "Votre devis d'assurance",
+        html: `
+          <h1>Merci pour votre demande, ${name} !</h1>
+          <p>Nous avons bien reçu votre demande de devis pour une <strong>${type}</strong>.</p>
+          
+          <h2>Votre tarif estimé</h2>
+          <p style="font-size: 32px; color: #7e22ce; font-weight: bold;">${estimatedPrice}€/mois</p>
+          
+          <p>Un de nos conseillers vous contactera dans les plus brefs délais au <strong>${phone}</strong> pour finaliser votre devis.</p>
+          
+          <p>Cordialement,<br>L'équipe Comparateur Assurance</p>
+        `,
+      });
+    } else {
+      console.log(`Skipping client email to ${email} - only verified addresses can receive emails in test mode`);
+    }
 
     // Track client email
     if (clientEmail.data) {
