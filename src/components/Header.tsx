@@ -1,10 +1,9 @@
 import { Shield, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
 
 const Header = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4">
@@ -73,58 +72,57 @@ const Header = () => {
             >
               Assurance vie
             </Link>
-            <div 
-              className="relative"
-              onMouseEnter={() => setIsDropdownOpen(true)}
-              onMouseLeave={() => setIsDropdownOpen(false)}
-            >
-              <button className="text-sm font-medium text-gray-700 hover:text-primary whitespace-nowrap transition-colors flex items-center gap-1">
-                Plus d'assurances
-                <ChevronDown className="h-3.5 w-3.5" />
-              </button>
-              {isDropdownOpen && (
-                <div className="absolute top-full left-0 mt-1 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50 animate-fade-in">
-                  <div className="py-2">
-                    <Link
-                      to="/assurance-mrp"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                    >
-                      MRP
-                    </Link>
-                    <Link
-                      to="/assurance-rc-pro"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                    >
-                      RC Pro
-                    </Link>
-                    <Link
-                      to="/qui-sommes-nous"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                    >
-                      Qui sommes-nous
-                    </Link>
-                    <Link
-                      to="/nos-partenaires"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                    >
-                      Nos partenaires
-                    </Link>
-                    <Link
-                      to="/avis-clients"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                    >
-                      Avis clients
-                    </Link>
-                    <Link
-                      to="/blog"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors"
-                    >
-                      Blog
-                    </Link>
-                  </div>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="text-sm font-medium text-gray-700 hover:text-primary hover:bg-transparent whitespace-nowrap h-auto p-0 flex items-center gap-1"
+                >
+                  Plus d'assurances
+                  <ChevronDown className="h-3.5 w-3.5" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-56 p-2 bg-white z-[100]" align="start">
+                <div className="flex flex-col gap-1">
+                  <Link
+                    to="/assurance-mrp"
+                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary rounded-md transition-colors"
+                  >
+                    MRP
+                  </Link>
+                  <Link
+                    to="/assurance-rc-pro"
+                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary rounded-md transition-colors"
+                  >
+                    RC Pro
+                  </Link>
+                  <Link
+                    to="/qui-sommes-nous"
+                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary rounded-md transition-colors"
+                  >
+                    Qui sommes-nous
+                  </Link>
+                  <Link
+                    to="/nos-partenaires"
+                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary rounded-md transition-colors"
+                  >
+                    Nos partenaires
+                  </Link>
+                  <Link
+                    to="/avis-clients"
+                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary rounded-md transition-colors"
+                  >
+                    Avis clients
+                  </Link>
+                  <Link
+                    to="/blog"
+                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary rounded-md transition-colors"
+                  >
+                    Blog
+                  </Link>
                 </div>
-              )}
-            </div>
+              </PopoverContent>
+            </Popover>
           </div>
         </div>
       </nav>
