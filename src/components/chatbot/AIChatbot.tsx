@@ -2,10 +2,11 @@ import { useState, useRef, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MessageCircle, X, Send, Loader2, Bot, User } from "lucide-react";
+import { MessageCircle, X, Send, Loader2, Bot, User, UserCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { TransferDialog } from "./TransferDialog";
 
 interface Message {
   role: "user" | "assistant";
@@ -22,6 +23,8 @@ export const AIChatbot = () => {
   ]);
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showTransferDialog, setShowTransferDialog] = useState(false);
+  const [isBusinessHours, setIsBusinessHours] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { trackEvent } = useAnalytics();
 
@@ -29,9 +32,26 @@ export const AIChatbot = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const checkBusinessHours = () => {
+    const now = new Date();
+    const day = now.getDay();
+    const hour = now.getHours();
+    
+    // Lundi (1) à Vendredi (5), 9h à 18h
+    const isOpen = day >= 1 && day <= 5 && hour >= 9 && hour < 18;
+    setIsBusinessHours(isOpen);
+  };
+
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    checkBusinessHours();
+    // Vérifier toutes les minutes
+    const interval = setInterval(checkBusinessHours, 60000);
+    return () => clearInterval(interval);
+  }, []);
 
   const sendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;
@@ -164,7 +184,18 @@ export const AIChatbot = () => {
           </div>
 
           {/* Input */}
-          <div className="border-t p-4 bg-background">
+          <div className="border-t p-4 bg-background space-y-3">
+            {isBusinessHours && (
+              <Button
+                onClick={() => setShowTransferDialog(true)}
+                variant="outline"
+                size="sm"
+                className="w-full text-primary hover:bg-primary/10"
+              >
+                <UserCircle className="h-4 w-4 mr-2" />
+                Parler à un conseiller humain
+              </Button>
+            )}
             <div className="flex gap-2">
               <Input
                 value={inputMessage}
@@ -185,12 +216,19 @@ export const AIChatbot = () => {
                 <Send className="h-4 w-4" aria-hidden="true" />
               </Button>
             </div>
-            <p className="text-xs text-muted-foreground mt-2 text-center">
+            <p className="text-xs text-muted-foreground text-center">
               Assistant IA • Réponses instantanées 24/7
+              {isBusinessHours && " • Conseillers disponibles"}
             </p>
           </div>
         </Card>
       )}
+      
+      <TransferDialog
+        isOpen={showTransferDialog}
+        onClose={() => setShowTransferDialog(false)}
+        messages={messages}
+      />
     </>
   );
 };
