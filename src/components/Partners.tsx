@@ -1,7 +1,16 @@
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
+
 const partners = [
   "AXA", "Allianz", "Groupama", "MAIF", "MACIF", 
   "Generali", "MMA", "Matmut", "GMF", "Direct Assurance",
-  "Amaguiz", "April", "Assurpeople", "LCL"
+  "Amaguiz", "April", "Assurpeople", "LCL", "Swiss Life",
+  "Harmonie Mutuelle", "Mutuelle Générale", "MGEN", "Cardif",
+  "MetLife", "Luko", "Alan", "Malakoff Humanis", "AG2R"
 ];
 
 const Partners = () => {
@@ -23,16 +32,39 @@ const Partners = () => {
           <div className="w-24 h-1 bg-accent mx-auto rounded-full mt-4" />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
-          {partners.map((partner, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center p-6 bg-card rounded-xl border-2 border-border hover:border-primary/30 hover-lift transition-all duration-300 group animate-fade-in"
-              style={{ animationDelay: `${0.05 * index}s` }}
-            >
-              <span className="font-bold text-primary text-sm group-hover:text-accent transition-colors">{partner}</span>
-            </div>
-          ))}
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          plugins={[
+            Autoplay({
+              delay: 2000,
+              stopOnInteraction: false,
+            }),
+          ]}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-4">
+            {partners.map((partner, index) => (
+              <CarouselItem 
+                key={index} 
+                className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6"
+              >
+                <div className="flex items-center justify-center p-6 bg-card rounded-xl border-2 border-border hover:border-primary/30 hover-lift transition-all duration-300 group h-24">
+                  <span className="font-bold text-primary text-base text-center group-hover:text-accent transition-colors">
+                    {partner}
+                  </span>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+
+        <div className="mt-8 text-center">
+          <p className="text-sm text-muted-foreground">
+            Le carrousel défile automatiquement. Passez la souris dessus pour mettre en pause.
+          </p>
         </div>
       </div>
     </section>
