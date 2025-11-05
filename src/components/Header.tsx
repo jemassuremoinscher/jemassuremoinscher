@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Car, Heart, Home, CreditCard, Users, Shield, Menu, Bike, X, ChevronDown, Briefcase } from "lucide-react";
+import { Car, Heart, Home, CreditCard, Users, Shield, Menu, Bike, X, ChevronDown, Briefcase, Building2, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -127,14 +127,14 @@ const Header = () => {
                       to="/assurance-mrp"
                       className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
                     >
-                      <Shield className="h-4 w-4" />
+                      <Building2 className="h-4 w-4" />
                       MRP
                     </Link>
                     <Link
                       to="/assurance-rc-pro"
                       className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
                     >
-                      <Shield className="h-4 w-4" />
+                      <ShieldCheck className="h-4 w-4" />
                       RC Pro
                     </Link>
                   </div>
@@ -202,7 +202,7 @@ const Header = () => {
                 className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors duration-200 group"
               >
                 <div className="p-2 rounded-lg bg-gray-100 group-hover:bg-primary/10 transition-colors">
-                  <Briefcase className="h-5 w-5" />
+                  <Building2 className="h-5 w-5" />
                 </div>
                 <span className="font-medium">MRP</span>
               </Link>
@@ -212,7 +212,7 @@ const Header = () => {
                 className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors duration-200 group"
               >
                 <div className="p-2 rounded-lg bg-gray-100 group-hover:bg-primary/10 transition-colors">
-                  <Shield className="h-5 w-5" />
+                  <ShieldCheck className="h-5 w-5" />
                 </div>
                 <span className="font-medium">RC Pro</span>
               </Link>
