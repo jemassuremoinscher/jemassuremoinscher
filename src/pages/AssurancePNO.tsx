@@ -16,6 +16,7 @@ import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { Shield, Home, Euro, FileCheck, TrendingUp, CheckCircle } from 'lucide-react';
 import InsuranceFAQ from '@/components/insurance/InsuranceFAQ';
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from '@/utils/seoUtils';
 
 const formSchema = z.object({
   propertyType: z.enum(['apartment', 'house', 'studio', 'commercial'], {
@@ -179,12 +180,41 @@ const AssurancePNO = () => {
     }
   ];
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Assurance PNO", url: "https://www.assurmoinschere.fr/assurance-pno" }
+  ]);
+
+  const serviceSchema = addServiceSchema({
+    name: "Comparateur Assurance PNO",
+    description: "Comparez les assurances PNO (Propriétaire Non Occupant) pour protéger votre bien immobilier non occupé. Devis gratuit pour logement vide ou en location.",
+    provider: "Le Comparateur Assurance",
+    areaServed: "France"
+  });
+
+  const faqSchema = addFAQSchema([
+    {
+      question: "Qu'est-ce que l'assurance PNO ?",
+      answer: "L'assurance Propriétaire Non Occupant (PNO) protège votre bien immobilier que vous ne louez pas contre les risques comme les dégâts des eaux, incendies, ou catastrophes naturelles."
+    },
+    {
+      question: "Est-elle obligatoire ?",
+      answer: "L'assurance PNO est obligatoire pour les copropriétaires, même si le bien est vide. Elle est fortement recommandée pour tous les propriétaires non occupants."
+    },
+    {
+      question: "Quelle différence avec une assurance habitation classique ?",
+      answer: "La PNO est spécifiquement conçue pour les biens non occupés par le propriétaire. Elle est généralement moins chère qu'une assurance habitation standard car elle ne couvre pas le contenu du logement."
+    }
+  ]);
+
   return (
     <>
       <SEO 
         title="Assurance PNO (Propriétaire Non Occupant) - Comparateur"
         description="Comparez les meilleures assurances PNO pour protéger votre bien immobilier. Devis gratuit et instantané pour propriétaires non occupants."
         keywords="assurance PNO, propriétaire non occupant, assurance logement vide, assurance copropriété"
+        canonical="https://www.assurmoinschere.fr/assurance-pno"
+        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       
       <div className="min-h-screen flex flex-col">

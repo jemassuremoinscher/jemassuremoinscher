@@ -17,6 +17,7 @@ import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { Shield, Home, Euro, Users, TrendingUp, CheckCircle, Star } from 'lucide-react';
 import InsuranceFAQ from '@/components/insurance/InsuranceFAQ';
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from '@/utils/seoUtils';
 
 const formSchema = z.object({
   propertyType: z.enum(['apartment', 'house', 'commercial'], {
@@ -172,11 +173,28 @@ const AssuranceGLI = () => {
     }
   ];
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Garantie Loyer Impayé", url: "https://www.assurmoinschere.fr/assurance-gli" }
+  ]);
+
+  const serviceSchema = addServiceSchema({
+    name: "Comparateur Garantie Loyers Impayés",
+    description: "Protégez vos revenus locatifs avec une assurance GLI. Comparateur gratuit pour trouver la meilleure garantie loyer impayé.",
+  });
+
+  const faqSchema = addFAQSchema([
+    { question: "Qu'est-ce que la GLI ?", answer: "La GLI protège les propriétaires bailleurs contre les loyers impayés, dégradations et frais de procédure." },
+    { question: "Qui peut souscrire une GLI ?", answer: "Tous les propriétaires bailleurs louant un bien immobilier." }
+  ]);
+
   return (
     <>
       <SEO 
         title="Garantie Loyer Impayé (GLI) - Comparez les meilleures offres"
         description="Protégez vos revenus locatifs avec une assurance GLI. Comparateur en ligne gratuit pour trouver la meilleure garantie loyer impayé au meilleur prix."
+        canonical="https://www.assurmoinschere.fr/assurance-gli"
+        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
         keywords="assurance GLI, garantie loyer impayé, protection propriétaire, loyers impayés, assurance bailleur"
       />
       

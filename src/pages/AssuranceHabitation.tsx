@@ -19,6 +19,7 @@ import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   typeLogement: z.string().min(1, "Champ requis"),
@@ -116,13 +117,41 @@ const AssuranceHabitation = () => {
     }
   };
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Assurance Habitation", url: "https://www.assurmoinschere.fr/assurance-habitation" }
+  ]);
+
+  const serviceSchema = addServiceSchema({
+    name: "Comparateur Assurance Habitation",
+    description: "Comparez les assurances habitation pour maison, appartement, locataire ou propriétaire. Devis gratuit et rapide. Protégez votre logement au meilleur prix.",
+    provider: "Le Comparateur Assurance",
+    areaServed: "France"
+  });
+
+  const faqSchema = addFAQSchema([
+    {
+      question: "Quelle assurance habitation choisir ?",
+      answer: "Le choix dépend de votre statut (locataire ou propriétaire), type de logement (maison ou appartement) et valeur de vos biens. Comparez les garanties incendie, dégât des eaux, vol et responsabilité civile."
+    },
+    {
+      question: "Combien coûte une assurance habitation ?",
+      answer: "En moyenne, une assurance habitation coûte entre 120€ et 350€ par an selon la surface, localisation et niveau de garanties. Les locataires paient généralement moins cher que les propriétaires."
+    },
+    {
+      question: "L'assurance habitation est-elle obligatoire ?",
+      answer: "Oui pour les locataires (minimum responsabilité civile). Pour les propriétaires, elle est fortement recommandée mais pas obligatoire, sauf dans les copropriétés."
+    }
+  ]);
+
   return (
     <div className="min-h-screen">
       <SEO 
         title="Assurance Habitation - Comparez et Trouvez la Meilleure Offre"
         description="Comparez les assurances habitation en France. Devis gratuit pour maison, appartement, locataire ou propriétaire. Économisez jusqu'à 300€/an sur votre assurance habitation."
         keywords="assurance habitation, assurance maison, assurance appartement, assurance locataire, assurance propriétaire"
-        canonical="https://votre-domaine.fr/assurance-habitation"
+        canonical="https://www.assurmoinschere.fr/assurance-habitation"
+        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />
       

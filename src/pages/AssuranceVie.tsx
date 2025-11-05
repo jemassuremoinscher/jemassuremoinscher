@@ -18,6 +18,7 @@ import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 import { useToast } from "@/hooks/use-toast";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   capital: z.string().min(1, "Le capital souhaité est requis"),
@@ -136,13 +137,41 @@ const AssuranceVie = () => {
     });
   };
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Assurance Vie", url: "https://www.assurmoinschere.fr/assurance-vie" }
+  ]);
+
+  const serviceSchema = addServiceSchema({
+    name: "Comparateur Assurance Vie",
+    description: "Comparez les contrats d'assurance vie pour l'épargne, la protection décès et la transmission de patrimoine. Solutions adaptées à vos objectifs financiers.",
+    provider: "Le Comparateur Assurance",
+    areaServed: "France"
+  });
+
+  const faqSchema = addFAQSchema([
+    {
+      question: "Qu'est-ce qu'une assurance vie ?",
+      answer: "L'assurance vie est un contrat d'épargne qui permet de constituer un capital, protéger vos proches en cas de décès, et transmettre votre patrimoine avec une fiscalité avantageuse."
+    },
+    {
+      question: "Quels sont les avantages fiscaux de l'assurance vie ?",
+      answer: "Après 8 ans, vous bénéficiez d'un abattement annuel de 4 600€ (9 200€ pour un couple) sur les gains. La transmission est avantageuse avec un abattement de 152 500€ par bénéficiaire."
+    },
+    {
+      question: "Quelle est la différence entre fonds euros et unités de compte ?",
+      answer: "Le fonds euros garantit votre capital avec un rendement sécurisé mais modeste. Les unités de compte offrent un potentiel de rendement supérieur mais sans garantie du capital investi."
+    }
+  ]);
+
   return (
     <div className="min-h-screen">
       <SEO 
         title="Assurance Vie - Épargne et Protection | Le Comparateur Assurance"
         description="Comparez les meilleures assurances vie : épargne, protection décès, transmission de patrimoine. Trouvez le contrat adapté à vos objectifs financiers."
         keywords="assurance vie, épargne, placement, transmission patrimoine, contrat assurance vie, fiscalité assurance vie"
-        canonical="https://votre-domaine.fr/assurance-vie"
+        canonical="https://www.assurmoinschere.fr/assurance-vie"
+        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />
 

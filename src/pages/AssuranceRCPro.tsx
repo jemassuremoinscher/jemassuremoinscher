@@ -15,6 +15,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { generateInsurerOffers, InsurerConfig } from "@/utils/insurerData";
 import SEO from "@/components/SEO";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   entreprise: z.string().min(1, "Champ requis"),

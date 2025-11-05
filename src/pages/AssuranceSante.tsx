@@ -19,6 +19,7 @@ import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   situation: z.string().min(1, "Champ requis"),
@@ -107,13 +108,41 @@ const AssuranceSante = () => {
     }
   };
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Mutuelle Santé", url: "https://www.assurmoinschere.fr/assurance-sante" }
+  ]);
+
+  const serviceSchema = addServiceSchema({
+    name: "Comparateur Mutuelle Santé",
+    description: "Comparez les meilleures mutuelles santé et complémentaires santé en France. Devis gratuit et personnalisé adapté à vos besoins.",
+    provider: "Le Comparateur Assurance",
+    areaServed: "France"
+  });
+
+  const faqSchema = addFAQSchema([
+    {
+      question: "Qu'est-ce qu'une mutuelle santé ?",
+      answer: "Une mutuelle santé est une complémentaire santé qui rembourse tout ou partie des dépenses de santé non couvertes par la Sécurité sociale (consultations, médicaments, hospitalisation, optique, dentaire)."
+    },
+    {
+      question: "Comment choisir sa mutuelle santé ?",
+      answer: "Choisissez selon vos besoins : niveau de remboursement optique/dentaire, délais de carence, réseau de professionnels partenaires, et votre budget mensuel."
+    },
+    {
+      question: "Combien coûte une mutuelle santé ?",
+      answer: "Le prix varie selon votre âge, situation familiale et niveau de garanties. Comptez entre 45€ et 200€/mois en moyenne."
+    }
+  ]);
+
   return (
     <div className="min-h-screen">
       <SEO 
         title="Mutuelle Santé - Comparez les Meilleures Offres | Le Comparateur Assurance"
         description="Comparez les mutuelles santé et complémentaires santé en France. Devis gratuit et personnalisé en 2 minutes. Trouvez la meilleure mutuelle adaptée à vos besoins."
         keywords="mutuelle santé, complémentaire santé, assurance santé, comparateur mutuelle, mutuelle pas cher"
-        canonical="https://votre-domaine.fr/assurance-sante"
+        canonical="https://www.assurmoinschere.fr/assurance-sante"
+        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />
       

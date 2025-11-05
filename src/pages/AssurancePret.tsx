@@ -19,6 +19,7 @@ import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   montantPret: z.string().min(1, "Champ requis"),
@@ -99,13 +100,19 @@ const AssurancePret = () => {
     }
   };
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Assurance Prêt", url: "https://www.assurmoinschere.fr/assurance-pret" }
+  ]);
+
   return (
     <div className="min-h-screen">
       <SEO 
         title="Assurance Prêt Immobilier - Économisez jusqu'à 50% | Le Comparateur Assurance"
         description="Comparez les assurances emprunteur et économisez des milliers d'euros sur votre crédit immobilier. Devis gratuit et changement simplifié avec la loi Lemoine."
         keywords="assurance prêt immobilier, assurance emprunteur, délégation assurance, loi Lemoine, assurance crédit"
-        canonical="https://votre-domaine.fr/assurance-pret"
+        canonical="https://www.assurmoinschere.fr/assurance-pret"
+        jsonLd={breadcrumbSchema}
       />
       <Header />
       

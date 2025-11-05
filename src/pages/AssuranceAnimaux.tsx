@@ -19,6 +19,7 @@ import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   typeAnimal: z.string().min(1, "Champ requis"),
@@ -92,13 +93,41 @@ const AssuranceAnimaux = () => {
     }
   };
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Assurance Animaux", url: "https://www.assurmoinschere.fr/assurance-animaux" }
+  ]);
+
+  const serviceSchema = addServiceSchema({
+    name: "Comparateur Assurance Animaux",
+    description: "Comparez les assurances pour chiens et chats. Remboursement des frais vétérinaires jusqu'à 100%. Protégez votre animal de compagnie au meilleur prix.",
+    provider: "Le Comparateur Assurance",
+    areaServed: "France"
+  });
+
+  const faqSchema = addFAQSchema([
+    {
+      question: "Pourquoi assurer son animal ?",
+      answer: "L'assurance animaux permet de couvrir les frais vétérinaires souvent élevés (accidents, maladies, chirurgie). Certaines formules remboursent jusqu'à 100% des frais avec une prise en charge rapide."
+    },
+    {
+      question: "Combien coûte une assurance animaux ?",
+      answer: "Le prix varie de 10€ à 60€/mois selon l'espèce, l'âge, la race et le niveau de garanties. Les formules économiques couvrent l'essentiel, les formules premium incluent prévention et soins courants."
+    },
+    {
+      question: "À partir de quel âge peut-on assurer son animal ?",
+      answer: "La plupart des assureurs acceptent les animaux dès 2-3 mois jusqu'à 8-10 ans pour une première souscription. Passé cet âge, les garanties sont limitées."
+    }
+  ]);
+
   return (
     <div className="min-h-screen">
       <SEO 
         title="Assurance Animaux - Protégez votre chien ou chat | Le Comparateur Assurance"
         description="Comparez les assurances pour chiens et chats. Remboursement des frais vétérinaires jusqu'à 100%. Devis gratuit pour protéger votre animal de compagnie."
         keywords="assurance chien, assurance chat, assurance animaux, mutuelle animaux, frais vétérinaires"
-        canonical="https://votre-domaine.fr/assurance-animaux"
+        canonical="https://www.assurmoinschere.fr/assurance-animaux"
+        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />
       

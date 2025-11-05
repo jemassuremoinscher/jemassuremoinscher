@@ -19,6 +19,7 @@ import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   marque: z.string().min(1, "Champ requis"),
@@ -120,13 +121,41 @@ const AssuranceMoto = () => {
     }
   };
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Assurance Moto", url: "https://www.assurmoinschere.fr/assurance-moto" }
+  ]);
+
+  const serviceSchema = addServiceSchema({
+    name: "Comparateur Assurance Moto",
+    description: "Comparez les assurances moto et scooter pour tous types de deux-roues. Devis gratuit et rapide. Trouvez la meilleure offre adaptée à votre profil.",
+    provider: "Le Comparateur Assurance",
+    areaServed: "France"
+  });
+
+  const faqSchema = addFAQSchema([
+    {
+      question: "Quelle assurance moto choisir ?",
+      answer: "Le choix dépend de votre moto (cylindrée, valeur), votre profil (âge, expérience) et usage. Comparez les formules au tiers, intermédiaire et tous risques selon vos besoins."
+    },
+    {
+      question: "Combien coûte une assurance moto ?",
+      answer: "Le prix varie de 30€ à 150€/mois selon la cylindrée, votre âge et votre historique. Les motos sportives et grosses cylindrées sont plus chères à assurer."
+    },
+    {
+      question: "L'assurance moto est-elle obligatoire ?",
+      answer: "Oui, au minimum une assurance au tiers (responsabilité civile) est obligatoire pour circuler, même pour un scooter 50cc."
+    }
+  ]);
+
   return (
     <div className="min-h-screen">
       <SEO 
         title="Assurance Moto - Comparez les Meilleurs Tarifs | Le Comparateur Assurance"
         description="Comparez les assurances moto et scooter. Devis gratuit en ligne pour tous types de deux-roues. Économisez jusqu'à 35% avec nos partenaires assureurs."
         keywords="assurance moto, assurance scooter, assurance deux roues, comparateur assurance moto, assurance moto pas cher"
-        canonical="https://votre-domaine.fr/assurance-moto"
+        canonical="https://www.assurmoinschere.fr/assurance-moto"
+        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />
       

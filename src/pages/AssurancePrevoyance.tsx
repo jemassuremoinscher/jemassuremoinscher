@@ -19,6 +19,7 @@ import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
   typePrevoyance: z.string().min(1, "Champ requis"),
@@ -131,13 +132,19 @@ const AssurancePrevoyance = () => {
     }
   };
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Assurance Prévoyance", url: "https://www.assurmoinschere.fr/assurance-prevoyance" }
+  ]);
+
   return (
     <div className="min-h-screen">
       <SEO 
         title="Prévoyance - Protégez votre avenir et celui de vos proches"
         description="Comparez les meilleures assurances prévoyance : décès, obsèques, dépendance. Protégez votre famille et préparez l'avenir sereinement. Devis gratuit en 2 minutes."
         keywords="assurance prévoyance, assurance décès, assurance obsèques, assurance dépendance, protection famille"
-        canonical="https://votre-domaine.fr/assurance-prevoyance"
+        canonical="https://www.assurmoinschere.fr/assurance-prevoyance"
+        jsonLd={breadcrumbSchema}
       />
       <Header />
       
