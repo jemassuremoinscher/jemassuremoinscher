@@ -89,7 +89,7 @@ export const AIChatbot = () => {
       {!isOpen && (
         <Button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-2xl z-50 bg-primary hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-elegant hover:shadow-glow z-50 bg-gradient-primary hover:scale-110 transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 animate-pulse-subtle"
           aria-label="Ouvrir l'assistant virtuel"
         >
           <MessageCircle className="h-6 w-6" aria-hidden="true" />
@@ -98,15 +98,15 @@ export const AIChatbot = () => {
 
       {/* Chatbot Window */}
       {isOpen && (
-        <Card className="fixed bottom-6 right-6 w-[380px] h-[600px] shadow-2xl z-50 flex flex-col">
+        <Card className="fixed bottom-6 right-6 w-[380px] h-[600px] shadow-elegant z-50 flex flex-col animate-in slide-in-from-bottom-5 duration-300">
           {/* Header */}
-          <div className="bg-primary text-primary-foreground p-4 rounded-t-lg flex items-center justify-between">
+          <div className="bg-gradient-primary text-white p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="bg-primary-foreground/20 p-2 rounded-full">
+              <div className="bg-white/20 p-2 rounded-full">
                 <Bot className="h-5 w-5" aria-hidden="true" />
               </div>
               <div>
-                <h3 className="font-semibold">Assistant Assurance</h3>
+                <h3 className="font-semibold">Assistant Assurance IA</h3>
                 <p className="text-xs opacity-90">En ligne • Réponse instantanée</p>
               </div>
             </div>
@@ -114,7 +114,7 @@ export const AIChatbot = () => {
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(false)}
-              className="text-primary-foreground hover:bg-primary-foreground/20"
+              className="text-white hover:bg-white/10"
               aria-label="Fermer l'assistant"
             >
               <X className="h-5 w-5" aria-hidden="true" />

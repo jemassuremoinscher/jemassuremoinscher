@@ -7,7 +7,6 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { NewsletterSection } from "@/components/NewsletterSection";
 import SEO from "@/components/SEO";
-import { AIChatbot } from "@/components/chatbot/AIChatbot";
 import { CallbackForm } from "@/components/contact/CallbackForm";
 import { TrustBadges } from "@/components/trust/TrustBadges";
 import { SocialProof } from "@/components/trust/SocialProof";
@@ -34,7 +33,6 @@ const Index = () => {
         <NewsletterSection />
       </main>
       <Footer />
-      <AIChatbot />
     </div>
   );
 };

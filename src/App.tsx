@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import CookieBanner from "@/components/CookieBanner";
+import { AIChatbot } from "@/components/chatbot/AIChatbot";
 import SkipToMain from "@/components/SkipToMain";
 
 // Lazy load pages for better performance
@@ -72,6 +73,7 @@ const App = () => (
           </Routes>
         </Suspense>
         <CookieBanner />
+        <AIChatbot />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
