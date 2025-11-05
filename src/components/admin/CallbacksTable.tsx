@@ -24,9 +24,10 @@ interface Callback {
 interface CallbacksTableProps {
   callbacks: Callback[];
   onUpdate: () => void;
+  highlightedId?: string | null;
 }
 
-export const CallbacksTable = ({ callbacks, onUpdate }: CallbacksTableProps) => {
+export const CallbacksTable = ({ callbacks, onUpdate, highlightedId }: CallbacksTableProps) => {
   const [filterStatus, setFilterStatus] = useState<string>('all');
 
   const filteredCallbacks = filterStatus === 'all' 
@@ -111,7 +112,11 @@ export const CallbacksTable = ({ callbacks, onUpdate }: CallbacksTableProps) => 
               </TableRow>
             ) : (
               filteredCallbacks.map((callback) => (
-                <TableRow key={callback.id}>
+                <TableRow 
+                  key={callback.id}
+                  id={`row-${callback.id}`}
+                  className={`transition-colors ${highlightedId === callback.id ? 'bg-yellow-100 dark:bg-yellow-900/20' : ''}`}
+                >
                   <TableCell className="font-medium">{callback.full_name}</TableCell>
                   <TableCell>
                     <div className="space-y-1 text-sm">

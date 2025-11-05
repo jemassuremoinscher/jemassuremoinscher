@@ -24,9 +24,10 @@ interface Quote {
 interface QuotesTableProps {
   quotes: Quote[];
   onUpdate: () => void;
+  highlightedId?: string | null;
 }
 
-export const QuotesTable = ({ quotes, onUpdate }: QuotesTableProps) => {
+export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProps) => {
   const [filterStatus, setFilterStatus] = useState<string>('all');
 
   const filteredQuotes = filterStatus === 'all' 
@@ -123,7 +124,11 @@ export const QuotesTable = ({ quotes, onUpdate }: QuotesTableProps) => {
               </TableRow>
             ) : (
               filteredQuotes.map((quote) => (
-                <TableRow key={quote.id}>
+                <TableRow 
+                  key={quote.id} 
+                  id={`row-${quote.id}`}
+                  className={`transition-colors ${highlightedId === quote.id ? 'bg-yellow-100 dark:bg-yellow-900/20' : ''}`}
+                >
                   <TableCell className="font-medium">
                     {getInsuranceTypeLabel(quote.insurance_type)}
                   </TableCell>
