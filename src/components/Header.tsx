@@ -1,19 +1,57 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Car, Heart, Home, CreditCard, Users, Shield, Menu, Bike } from "lucide-react";
-import { Link } from "react-router-dom";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import { Car, Heart, Home, CreditCard, Users, Shield, Menu, Bike, ChevronDown } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navigationLinks = [
-    { to: "/assurance-auto", icon: Car, label: "Assurance Auto" },
-    { to: "/assurance-sante", icon: Heart, label: "Mutuelle Santé" },
-    { to: "/assurance-moto", icon: Bike, label: "Assurance Moto" },
-    { to: "/assurance-animaux", icon: Users, label: "Assurance Animaux" },
-    { to: "/assurance-habitation", icon: Home, label: "Assurance Habitation" },
-    { to: "/assurance-pret", icon: CreditCard, label: "Assurance Prêt" },
+    { 
+      to: "/assurance-auto", 
+      icon: Car, 
+      label: "Assurance Auto",
+      description: "Comparez les meilleures offres auto"
+    },
+    { 
+      to: "/assurance-sante", 
+      icon: Heart, 
+      label: "Mutuelle Santé",
+      description: "Trouvez votre mutuelle santé idéale"
+    },
+    { 
+      to: "/assurance-moto", 
+      icon: Bike, 
+      label: "Assurance Moto",
+      description: "Protégez votre deux-roues"
+    },
+    { 
+      to: "/assurance-animaux", 
+      icon: Users, 
+      label: "Assurance Animaux",
+      description: "Prenez soin de vos compagnons"
+    },
+    { 
+      to: "/assurance-habitation", 
+      icon: Home, 
+      label: "Assurance Habitation",
+      description: "Assurez votre logement"
+    },
+    { 
+      to: "/assurance-pret", 
+      icon: CreditCard, 
+      label: "Assurance Prêt",
+      description: "Protégez votre emprunt immobilier"
+    },
   ];
 
   return (
@@ -30,20 +68,46 @@ const Header = () => {
           </Link>
           
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-2">
-            {navigationLinks.map((link) => (
-              <Button 
-                key={link.to}
-                variant="ghost" 
-                className="gap-2 hover:bg-primary/5 hover:text-primary transition-all" 
-                asChild
-              >
-                <Link to={link.to}>
-                  <link.icon className="h-4 w-4" />
-                  {link.label}
-                </Link>
-              </Button>
-            ))}
+          <nav className="hidden lg:flex items-center gap-4">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="gap-2 hover:bg-primary/5 hover:text-primary transition-all">
+                  Nos Comparateurs
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80 bg-card/95 backdrop-blur-md">
+                {navigationLinks.map((link, index) => (
+                  <div key={link.to}>
+                    {index > 0 && <DropdownMenuSeparator />}
+                    <DropdownMenuItem 
+                      className="p-4 cursor-pointer focus:bg-primary/5 focus:text-primary"
+                      onClick={() => navigate(link.to)}
+                    >
+                      <div className="flex gap-3 items-start w-full">
+                        <div className="p-2 rounded-lg bg-primary/10 mt-0.5">
+                          <link.icon className="h-5 w-5 text-primary" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-card-foreground">{link.label}</div>
+                          <div className="text-sm text-muted-foreground mt-0.5">{link.description}</div>
+                        </div>
+                      </div>
+                    </DropdownMenuItem>
+                  </div>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            <Button variant="ghost" asChild>
+              <Link to="/qui-sommes-nous">Qui sommes-nous</Link>
+            </Button>
+            <Button variant="ghost" asChild>
+              <Link to="/nos-partenaires">Nos partenaires</Link>
+            </Button>
+            <Button variant="ghost" asChild>
+              <Link to="/avis-clients">Avis clients</Link>
+            </Button>
           </nav>
 
           {/* Mobile Navigation */}
