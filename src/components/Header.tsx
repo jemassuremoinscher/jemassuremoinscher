@@ -45,7 +45,7 @@ const Header = () => {
                 className="hidden md:flex border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold"
                 asChild
               >
-                <Link to="/qui-sommes-nous">Prévoyance</Link>
+                <Link to="/assurance-prevoyance">Prévoyance</Link>
               </Button>
               
               <Button 
@@ -104,7 +104,16 @@ const Header = () => {
           {/* Bottom CTA */}
           <div className="mt-auto p-4 border-t border-gray-200">
             <Button 
-              className="w-full bg-primary hover:bg-primary/90 text-white font-semibold"
+              className="w-full bg-primary hover:bg-primary/90 text-white font-semibold mb-2"
+              asChild
+            >
+              <Link to="/assurance-prevoyance" onClick={() => setIsOpen(false)}>
+                Prévoyance
+              </Link>
+            </Button>
+            <Button 
+              variant="outline"
+              className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold"
               asChild
             >
               <Link to="/assurance-auto" onClick={() => setIsOpen(false)}>
