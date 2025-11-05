@@ -12,6 +12,7 @@ import { TrustBadges } from "@/components/trust/TrustBadges";
 import { SocialProof } from "@/components/trust/SocialProof";
 import { ReviewsWidget } from "@/components/trust/ReviewsWidget";
 import { InsuranceQuiz } from "@/components/quiz/InsuranceQuiz";
+import { BlogHighlights } from "@/components/blog/BlogHighlights";
 
 const Index = () => {
   return (
@@ -33,6 +34,7 @@ const Index = () => {
         <ReviewsWidget />
         <Testimonials />
         <CallbackForm />
+        <BlogHighlights />
         <FAQ />
         <NewsletterSection />
       </main>
