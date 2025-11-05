@@ -1,27 +1,86 @@
 # Robots.txt pour Le Comparateur Assurance
+# https://www.assurmoinschere.fr
+
+# Règles générales pour tous les robots
 User-agent: *
 Allow: /
+
+# Pages à ne pas indexer - Administration et Authentification
+Disallow: /admin
+Disallow: /auth
 Disallow: /admin/
+Disallow: /auth/
+
+# Pages utilitaires à ne pas indexer
+Disallow: /newsletter-gestion
+Disallow: /newsletter-gestion/
+
+# APIs et fonctions backend
 Disallow: /api/
+Disallow: /*.json$
 
-# Sitemap
-Sitemap: https://votre-domaine.fr/sitemap.xml
+# Fichiers système et technique
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /*.map$
 
-# Crawl-delay pour les bots gourmands
+# Pages de résultat de recherche avec paramètres
+Disallow: /*?*
+
+# Sitemap principal
+Sitemap: https://www.assurmoinschere.fr/sitemap.xml
+
+# Configuration spécifique pour Google
 User-agent: Googlebot
 Allow: /
 Crawl-delay: 0
+Disallow: /admin
+Disallow: /auth
+Disallow: /api/
 
+# Configuration spécifique pour Bing
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
+Disallow: /admin
+Disallow: /auth
+Disallow: /api/
 
+# Configuration pour Yahoo
 User-agent: Slurp
+Allow: /
 Crawl-delay: 2
+Disallow: /admin
+Disallow: /auth
 
-# Bots spécifiques réseaux sociaux
+# Bots des réseaux sociaux - Autoriser pour Open Graph
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# Crawlers d'images
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /admin
+Disallow: /auth
+
+# Bots à bloquer complètement (scraping abusif)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
