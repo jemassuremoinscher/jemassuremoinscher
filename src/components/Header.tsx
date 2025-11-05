@@ -110,30 +110,6 @@ const Header = () => {
                   >
                     RC Pro
                   </Link>
-                  <Link
-                    to="/qui-sommes-nous"
-                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary rounded-md transition-colors"
-                  >
-                    Qui sommes-nous
-                  </Link>
-                  <Link
-                    to="/nos-partenaires"
-                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary rounded-md transition-colors"
-                  >
-                    Nos partenaires
-                  </Link>
-                  <Link
-                    to="/avis-clients"
-                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary rounded-md transition-colors"
-                  >
-                    Avis clients
-                  </Link>
-                  <Link
-                    to="/blog"
-                    className="block px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary rounded-md transition-colors"
-                  >
-                    Blog
-                  </Link>
                 </div>
               </PopoverContent>
             </Popover>
