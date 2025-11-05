@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Checkbox } from '@/components/ui/checkbox';
 import { FileText, Mail, Phone, MapPin, Calendar, CheckCircle, XCircle, Download, Trash2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
@@ -30,6 +31,7 @@ interface QuotesTableProps {
 
 export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProps) => {
   const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
   const filteredQuotes = filterStatus === 'all' 
     ? quotes 
@@ -101,6 +103,47 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
     toast.success(`${filteredQuotes.length} devis exportés`);
   };
 
+  const handleExportSelected = () => {
+    const selectedQuotes = filteredQuotes.filter(q => selectedIds.includes(q.id));
+    const formattedData = formatQuotesForExport(selectedQuotes);
+    exportToCSV(formattedData, 'devis-assurance-selection');
+    toast.success(`${selectedQuotes.length} devis exportés`);
+  };
+
+  const handleDeleteSelected = async () => {
+    if (!confirm(`Êtes-vous sûr de vouloir déplacer ${selectedIds.length} devis dans la corbeille ?`)) {
+      return;
+    }
+
+    const { error } = await supabase
+      .from('insurance_quotes')
+      .update({ deleted_at: new Date().toISOString() })
+      .in('id', selectedIds);
+
+    if (error) {
+      toast.error('Erreur lors de la suppression');
+      console.error('Delete error:', error);
+    } else {
+      toast.success(`${selectedIds.length} devis déplacés dans la corbeille`);
+      setSelectedIds([]);
+      onUpdate();
+    }
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedIds.length === filteredQuotes.length) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(filteredQuotes.map(q => q.id));
+    }
+  };
+
+  const toggleSelect = (id: string) => {
+    setSelectedIds(prev => 
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+    );
+  };
+
   return (
     <Card className="p-6">
       <div className="flex items-center justify-between mb-6">
@@ -115,27 +158,57 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
         </div>
         
         <div className="flex gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleExport}
-            disabled={filteredQuotes.length === 0}
-          >
-            <Download className="h-4 w-4 mr-2" />
-            Export CSV
-          </Button>
-          <Select value={filterStatus} onValueChange={setFilterStatus}>
-            <SelectTrigger className="w-48">
-              <SelectValue placeholder="Filtrer par statut" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">Tous les statuts</SelectItem>
-              <SelectItem value="pending">En attente</SelectItem>
-              <SelectItem value="contacted">Contacté</SelectItem>
-              <SelectItem value="converted">Converti</SelectItem>
-              <SelectItem value="rejected">Rejeté</SelectItem>
-            </SelectContent>
-          </Select>
+          {selectedIds.length > 0 ? (
+            <>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleExportSelected}
+              >
+                <Download className="h-4 w-4 mr-2" />
+                Exporter sélection ({selectedIds.length})
+              </Button>
+              <Button
+                variant="destructive"
+                size="sm"
+                onClick={handleDeleteSelected}
+              >
+                <Trash2 className="h-4 w-4 mr-2" />
+                Supprimer sélection ({selectedIds.length})
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedIds([])}
+              >
+                Désélectionner
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleExport}
+                disabled={filteredQuotes.length === 0}
+              >
+                <Download className="h-4 w-4 mr-2" />
+                Export CSV
+              </Button>
+              <Select value={filterStatus} onValueChange={setFilterStatus}>
+                <SelectTrigger className="w-48">
+                  <SelectValue placeholder="Filtrer par statut" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Tous les statuts</SelectItem>
+                  <SelectItem value="pending">En attente</SelectItem>
+                  <SelectItem value="contacted">Contacté</SelectItem>
+                  <SelectItem value="converted">Converti</SelectItem>
+                  <SelectItem value="rejected">Rejeté</SelectItem>
+                </SelectContent>
+              </Select>
+            </>
+          )}
         </div>
       </div>
 
@@ -143,6 +216,12 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead className="w-12">
+                <Checkbox
+                  checked={selectedIds.length === filteredQuotes.length && filteredQuotes.length > 0}
+                  onCheckedChange={toggleSelectAll}
+                />
+              </TableHead>
               <TableHead>Type</TableHead>
               <TableHead>Client</TableHead>
               <TableHead>Contact</TableHead>
@@ -155,7 +234,7 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
           <TableBody>
             {filteredQuotes.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+                <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
                   Aucune demande de devis trouvée
                 </TableCell>
               </TableRow>
@@ -166,6 +245,12 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                   id={`row-${quote.id}`}
                   className={`transition-colors ${highlightedId === quote.id ? 'bg-yellow-100 dark:bg-yellow-900/20' : ''}`}
                 >
+                  <TableCell>
+                    <Checkbox
+                      checked={selectedIds.includes(quote.id)}
+                      onCheckedChange={() => toggleSelect(quote.id)}
+                    />
+                  </TableCell>
                   <TableCell className="font-medium">
                     {getInsuranceTypeLabel(quote.insurance_type)}
                   </TableCell>
