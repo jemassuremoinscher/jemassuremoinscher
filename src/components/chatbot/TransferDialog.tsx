@@ -39,14 +39,14 @@ export const TransferDialog = ({ isOpen, onClose, messages }: TransferDialogProp
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.from("chatbot_transfers").insert({
-        visitor_name: formData.name,
+      const { error } = await supabase.from("chatbot_transfers").insert([{
         visitor_email: formData.email,
-        visitor_phone: formData.phone,
-        transfer_reason: formData.reason,
-        conversation_history: messages,
+        visitor_name: formData.name || null,
+        visitor_phone: formData.phone || null,
+        transfer_reason: formData.reason || null,
+        conversation_history: JSON.parse(JSON.stringify(messages)),
         status: "pending",
-      });
+      }]);
 
       if (error) throw error;
 

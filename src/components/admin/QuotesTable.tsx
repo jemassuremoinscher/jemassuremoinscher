@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { FileText, Mail, Phone, MapPin, Calendar, CheckCircle, XCircle, Download } from 'lucide-react';
+import { FileText, Mail, Phone, MapPin, Calendar, CheckCircle, XCircle, Download, Trash2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
@@ -45,6 +45,25 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
       toast.error('Erreur lors de la mise à jour');
     } else {
       toast.success('Statut mis à jour');
+      onUpdate();
+    }
+  };
+
+  const deleteQuote = async (id: string, clientName: string) => {
+    if (!confirm(`Êtes-vous sûr de vouloir supprimer le devis de ${clientName} ? Cette action est irréversible.`)) {
+      return;
+    }
+
+    const { error } = await supabase
+      .from('insurance_quotes')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      toast.error('Erreur lors de la suppression');
+      console.error('Delete error:', error);
+    } else {
+      toast.success('Devis supprimé avec succès');
       onUpdate();
     }
   };
@@ -194,6 +213,7 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                           size="sm"
                           variant="outline"
                           onClick={() => updateQuoteStatus(quote.id, 'contacted')}
+                          title="Marquer comme contacté"
                         >
                           <CheckCircle className="h-4 w-4" />
                         </Button>
@@ -203,10 +223,19 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                           size="sm"
                           variant="ghost"
                           onClick={() => updateQuoteStatus(quote.id, 'rejected')}
+                          title="Rejeter"
                         >
                           <XCircle className="h-4 w-4 text-red-500" />
                         </Button>
                       )}
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => deleteQuote(quote.id, quote.full_name)}
+                        title="Supprimer définitivement"
+                      >
+                        <Trash2 className="h-4 w-4 text-destructive" />
+                      </Button>
                     </div>
                   </TableCell>
                 </TableRow>
