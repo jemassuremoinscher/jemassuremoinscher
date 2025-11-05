@@ -47,20 +47,27 @@ const AssuranceSante = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      const basePrice = 35;
+      const basePrice = 45; // Base célibataire formule économique
       const ageValue = parseInt(values.age);
       let price = basePrice;
       
-      if (values.situation === "famille") price += 40;
-      else if (values.situation === "couple") price += 25;
+      // Situation familiale (impact très important)
+      if (values.situation === "famille") price += 150; // Famille beaucoup plus cher
+      else if (values.situation === "couple") price += 80;
       
-      if (ageValue > 50) price += 15;
+      // Âge (augmente progressivement)
+      if (ageValue > 60) price += 40;
+      else if (ageValue > 50) price += 25;
+      else if (ageValue > 40) price += 15;
+      else if (ageValue < 25) price -= 5; // Jeunes légèrement moins cher
       
-      if (values.niveau === "premium") price += 30;
-      else if (values.niveau === "confort") price += 20;
-      else if (values.niveau === "equilibre") price += 10;
+      // Niveau de couverture (impact majeur)
+      if (values.niveau === "premium") price += 80;
+      else if (values.niveau === "confort") price += 50;
+      else if (values.niveau === "equilibre") price += 25;
+      // économique = prix de base
       
-      const randomVariation = Math.floor(Math.random() * 15) - 7;
+      const randomVariation = Math.floor(Math.random() * 20) - 10;
       price += randomVariation;
 
       const { data, error } = await supabase.functions.invoke("send-quote-email", {

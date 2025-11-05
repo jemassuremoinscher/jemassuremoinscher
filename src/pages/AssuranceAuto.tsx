@@ -98,21 +98,28 @@ const AssuranceAuto = () => {
       // Sauvegarder les données du formulaire
       setSubmittedFormData(values);
       
-      // Calcul d'un prix estimé (simulation)
-      const basePrice = 45;
+      // Calcul d'un prix estimé (simulation - tarifs réalistes)
+      const basePrice = 65; // Base pour assurance tous risques
       const ageDriver = parseInt(values.age);
       const yearVehicle = parseInt(values.annee);
       const bonusMalusCoef = parseFloat(values.bonusMalus);
       let price = basePrice;
       
-      if (ageDriver < 25) price += 15;
-      if (yearVehicle < 2015) price += 10;
-      if (values.carburant === "electrique") price -= 5;
+      // Ajustements selon le profil
+      if (ageDriver < 25) price += 80; // Jeunes conducteurs paient beaucoup plus
+      else if (ageDriver < 30) price += 40;
       
-      // Appliquer le coefficient bonus-malus
+      if (yearVehicle < 2010) price += 25; // Véhicules anciens
+      else if (yearVehicle < 2015) price += 15;
+      else if (yearVehicle > 2020) price += 20; // Véhicules récents plus chers à assurer
+      
+      if (values.carburant === "electrique") price -= 15;
+      else if (values.carburant === "hybride") price -= 8;
+      
+      // Appliquer le coefficient bonus-malus (impact majeur)
       price = price * bonusMalusCoef;
       
-      const randomVariation = Math.floor(Math.random() * 20) - 10;
+      const randomVariation = Math.floor(Math.random() * 30) - 15;
       price += randomVariation;
 
       const offers = generateInsurerOffers(price, autoInsurers);

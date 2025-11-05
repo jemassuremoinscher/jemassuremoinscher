@@ -49,17 +49,33 @@ const AssuranceHabitation = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      const basePrice = 25;
+      const basePrice = 12; // Base pour appartement locataire
       const surface = parseInt(values.surface);
       const valeur = parseInt(values.valeur);
+      const pieces = parseInt(values.pieces);
       let price = basePrice;
       
-      if (values.typeLogement === "maison") price += 10;
-      if (surface > 100) price += 5;
-      if (valeur > 30000) price += 8;
-      if (values.statut === "proprietaire") price += 3;
+      // Type de logement (impact majeur)
+      if (values.typeLogement === "maison") price += 12;
       
-      const randomVariation = Math.floor(Math.random() * 12) - 6;
+      // Statut
+      if (values.statut === "proprietaire") price += 8;
+      
+      // Surface
+      if (surface > 150) price += 10;
+      else if (surface > 100) price += 6;
+      else if (surface > 70) price += 3;
+      
+      // Nombre de pièces
+      if (pieces >= 5) price += 5;
+      else if (pieces >= 4) price += 3;
+      
+      // Valeur des biens
+      if (valeur > 50000) price += 15;
+      else if (valeur > 30000) price += 8;
+      else if (valeur > 15000) price += 4;
+      
+      const randomVariation = Math.floor(Math.random() * 8) - 4;
       price += randomVariation;
 
       const { data, error } = await supabase.functions.invoke("send-quote-email", {

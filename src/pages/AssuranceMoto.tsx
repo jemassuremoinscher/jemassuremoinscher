@@ -53,18 +53,31 @@ const AssuranceMoto = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      const basePrice = 55;
+      const basePrice = 50; // Base formule intermédiaire
       const ageDriver = parseInt(values.age);
       const yearVehicle = parseInt(values.annee);
       const cylindreeValue = parseInt(values.cylindree);
       let price = basePrice;
       
-      if (ageDriver < 25) price += 20;
-      if (yearVehicle < 2015) price += 12;
-      if (cylindreeValue > 600) price += 15;
-      if (values.typeMoto === "sportive") price += 25;
+      // Facteurs d'ajustement réalistes
+      if (ageDriver < 25) price += 70; // Jeunes motards très pénalisés
+      else if (ageDriver < 30) price += 35;
       
-      const randomVariation = Math.floor(Math.random() * 20) - 10;
+      if (yearVehicle < 2015) price += 20;
+      else if (yearVehicle > 2020) price += 25; // Motos récentes
+      
+      // Impact majeur de la cylindrée
+      if (cylindreeValue > 800) price += 60;
+      else if (cylindreeValue > 600) price += 35;
+      else if (cylindreeValue > 500) price += 20;
+      else if (cylindreeValue <= 125) price -= 15; // Petit cube moins cher
+      
+      // Type de moto
+      if (values.typeMoto === "sportive") price += 80; // Sportives très chères
+      else if (values.typeMoto === "trail") price += 10;
+      else if (values.typeMoto === "scooter") price -= 10;
+      
+      const randomVariation = Math.floor(Math.random() * 25) - 12;
       price += randomVariation;
 
       const { data, error } = await supabase.functions.invoke("send-quote-email", {
