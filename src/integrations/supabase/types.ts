@@ -14,6 +14,78 @@ export type Database = {
   }
   public: {
     Tables: {
+      achievement_badges: {
+        Row: {
+          category: string
+          created_at: string
+          description: string
+          icon: string
+          id: string
+          name: string
+          points: number
+          requirement_type: string
+          requirement_value: number
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          description: string
+          icon: string
+          id?: string
+          name: string
+          points?: number
+          requirement_type: string
+          requirement_value: number
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string
+          icon?: string
+          id?: string
+          name?: string
+          points?: number
+          requirement_type?: string
+          requirement_value?: number
+        }
+        Relationships: []
+      }
+      agent_badges: {
+        Row: {
+          agent_id: string
+          badge_id: string
+          earned_at: string
+          id: string
+        }
+        Insert: {
+          agent_id: string
+          badge_id: string
+          earned_at?: string
+          id?: string
+        }
+        Update: {
+          agent_id?: string
+          badge_id?: string
+          earned_at?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_badges_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "sales_agents"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "agent_badges_badge_id_fkey"
+            columns: ["badge_id"]
+            isOneToOne: false
+            referencedRelation: "achievement_badges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       agent_performance: {
         Row: {
           agent_id: string
@@ -305,6 +377,56 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      monthly_goals: {
+        Row: {
+          agent_id: string
+          created_at: string
+          current_conversions: number
+          current_leads: number
+          current_revenue: number | null
+          goal_conversions: number
+          goal_leads: number
+          goal_revenue: number | null
+          id: string
+          month: string
+          updated_at: string
+        }
+        Insert: {
+          agent_id: string
+          created_at?: string
+          current_conversions?: number
+          current_leads?: number
+          current_revenue?: number | null
+          goal_conversions?: number
+          goal_leads?: number
+          goal_revenue?: number | null
+          id?: string
+          month: string
+          updated_at?: string
+        }
+        Update: {
+          agent_id?: string
+          created_at?: string
+          current_conversions?: number
+          current_leads?: number
+          current_revenue?: number | null
+          goal_conversions?: number
+          goal_leads?: number
+          goal_revenue?: number | null
+          id?: string
+          month?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "monthly_goals_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "sales_agents"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       newsletter_subscribers: {
         Row: {

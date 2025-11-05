@@ -5,8 +5,10 @@ import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { GoalsAndBadges } from '@/components/commercial/GoalsAndBadges';
 import { toast } from 'sonner';
-import { Target, TrendingUp, Clock, Award, LogOut, Phone, Mail } from 'lucide-react';
+import { Target, TrendingUp, Clock, Award, LogOut, Phone, Mail, LayoutDashboard, Trophy } from 'lucide-react';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
@@ -124,7 +126,20 @@ const Commercial = () => {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8 space-y-6">
+      <main className="container mx-auto px-4 py-8">
+        <Tabs defaultValue="dashboard" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2 max-w-md">
+            <TabsTrigger value="dashboard">
+              <LayoutDashboard className="h-4 w-4 mr-2" />
+              Dashboard
+            </TabsTrigger>
+            <TabsTrigger value="goals">
+              <Trophy className="h-4 w-4 mr-2" />
+              Objectifs & Badges
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="dashboard" className="space-y-6">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Card>
@@ -253,8 +268,14 @@ const Commercial = () => {
                 </div>
               ))}
             </div>
-          </CardContent>
-        </Card>
+        </CardContent>
+      </Card>
+          </TabsContent>
+
+          <TabsContent value="goals">
+            {agentData && <GoalsAndBadges agentId={agentData.id} />}
+          </TabsContent>
+        </Tabs>
       </main>
     </div>
   );
