@@ -155,7 +155,7 @@ const Header = () => {
       </header>
 
       {/* Vertical Sidebar Menu */}
-      <div className={`fixed top-[73px] left-0 h-[calc(100vh-73px)] w-80 bg-white border-r border-gray-200 shadow-2xl transform transition-transform duration-300 ease-in-out z-40 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className={`fixed top-[73px] left-0 h-[calc(100vh-73px)] w-80 bg-white border-r border-gray-200 shadow-2xl z-40 ${isOpen ? 'animate-slide-in-left' : 'animate-slide-out-left pointer-events-none'}`}>
         <nav className="flex flex-col h-full overflow-y-auto">
           {/* Main Insurance Links */}
           <div className="p-4 border-b border-gray-200">
