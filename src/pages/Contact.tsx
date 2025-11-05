@@ -288,9 +288,11 @@ const Contact = () => {
                     <p className="mb-4">
                       Nos conseillers sont disponibles du lundi au vendredi de 9h à 18h
                     </p>
-                    <Button variant="secondary" size="lg" className="w-full">
-                      <Phone className="mr-2 h-5 w-5" />
-                      Être rappelé(e)
+                    <Button variant="secondary" size="lg" className="w-full" asChild>
+                      <a href="tel:+33XXXXXXXXX">
+                        <Phone className="mr-2 h-5 w-5" />
+                        Appeler maintenant
+                      </a>
                     </Button>
                   </CardContent>
                 </Card>
