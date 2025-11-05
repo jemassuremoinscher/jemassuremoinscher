@@ -40,6 +40,44 @@ const AssuranceAuto = () => {
   const { toast } = useToast();
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedBrand, setSelectedBrand] = useState<string>("");
+
+  // Modèles par marque (liste des modèles populaires)
+  const modelsByBrand: Record<string, string[]> = {
+    "Peugeot": ["208", "308", "3008", "2008", "508", "5008", "Partner", "Expert", "Rifter"],
+    "Renault": ["Clio", "Captur", "Megane", "Kadjar", "Scenic", "Espace", "Twingo", "Zoe", "Arkana"],
+    "Citroën": ["C3", "C4", "C5 Aircross", "C3 Aircross", "Berlingo", "SpaceTourer", "Ami"],
+    "Volkswagen": ["Golf", "Polo", "Tiguan", "T-Roc", "Passat", "Touran", "ID.3", "ID.4", "Arteon"],
+    "BMW": ["Série 1", "Série 2", "Série 3", "Série 4", "Série 5", "X1", "X3", "X5", "iX3", "i4"],
+    "Mercedes-Benz": ["Classe A", "Classe B", "Classe C", "Classe E", "GLA", "GLB", "GLC", "EQC"],
+    "Audi": ["A1", "A3", "A4", "A6", "Q2", "Q3", "Q5", "Q7", "e-tron", "Q4 e-tron"],
+    "Toyota": ["Yaris", "Corolla", "C-HR", "RAV4", "Aygo", "Prius", "Camry", "Highlander"],
+    "Ford": ["Fiesta", "Focus", "Puma", "Kuga", "Mustang", "Ranger", "Transit"],
+    "Opel": ["Corsa", "Astra", "Crossland", "Grandland", "Mokka", "Combo", "Vivaro"],
+    "Fiat": ["500", "Panda", "Tipo", "500X", "500L", "Ducato"],
+    "Nissan": ["Micra", "Juke", "Qashqai", "X-Trail", "Leaf", "Ariya"],
+    "Kia": ["Picanto", "Rio", "Ceed", "XCeed", "Sportage", "Niro", "EV6"],
+    "Hyundai": ["i10", "i20", "i30", "Tucson", "Kona", "Santa Fe", "Ioniq 5"],
+    "Mazda": ["Mazda2", "Mazda3", "CX-3", "CX-30", "CX-5", "MX-5"],
+    "Honda": ["Jazz", "Civic", "CR-V", "HR-V", "e"],
+    "Seat": ["Ibiza", "Leon", "Arona", "Ateca", "Tarraco"],
+    "Skoda": ["Fabia", "Octavia", "Scala", "Kamiq", "Karoq", "Kodiaq", "Enyaq"],
+    "Dacia": ["Sandero", "Duster", "Logan", "Spring", "Jogger"],
+    "Mini": ["Cooper", "Countryman", "Clubman"],
+    "Volvo": ["XC40", "XC60", "XC90", "V60", "V90", "S60", "S90"],
+    "Tesla": ["Model 3", "Model Y", "Model S", "Model X"],
+    "DS": ["DS 3", "DS 4", "DS 7", "DS 9"],
+    "Alfa Romeo": ["Giulia", "Stelvio", "Tonale"],
+    "Jeep": ["Renegade", "Compass", "Cherokee", "Wrangler"],
+    "Land Rover": ["Defender", "Discovery", "Range Rover", "Range Rover Evoque", "Range Rover Sport"],
+    "Porsche": ["911", "Cayenne", "Macan", "Panamera", "Taycan"],
+    "Lexus": ["CT", "IS", "NX", "RX", "UX"],
+    "Jaguar": ["E-Pace", "F-Pace", "XE", "XF", "I-Pace"],
+    "Smart": ["ForTwo", "ForFour"],
+    "Suzuki": ["Ignis", "Swift", "Vitara", "S-Cross"],
+    "Mitsubishi": ["Space Star", "ASX", "Eclipse Cross", "Outlander"],
+    "Subaru": ["Impreza", "XV", "Forester", "Outback"],
+  };
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -216,7 +254,14 @@ const AssuranceAuto = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Marque du véhicule</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <Select 
+                          onValueChange={(value) => {
+                            field.onChange(value);
+                            setSelectedBrand(value);
+                            form.setValue("modele", ""); // Réinitialiser le modèle
+                          }} 
+                          defaultValue={field.value}
+                        >
                           <FormControl>
                             <SelectTrigger>
                               <SelectValue placeholder="Sélectionner une marque" />
@@ -296,9 +341,31 @@ const AssuranceAuto = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Modèle</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Ex: Clio, 308..." {...field} />
-                        </FormControl>
+                        {selectedBrand && modelsByBrand[selectedBrand] ? (
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Sélectionner un modèle" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent className="max-h-[300px]">
+                              {modelsByBrand[selectedBrand].map((model) => (
+                                <SelectItem key={model} value={model}>
+                                  {model}
+                                </SelectItem>
+                              ))}
+                              <SelectItem value="Autre">Autre</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        ) : (
+                          <FormControl>
+                            <Input 
+                              placeholder={selectedBrand ? "Sélectionnez d'abord une marque" : "Ex: Clio, 308..."} 
+                              {...field}
+                              disabled={!selectedBrand || selectedBrand === "Autre"}
+                            />
+                          </FormControl>
+                        )}
                         <FormMessage />
                       </FormItem>
                     )}
