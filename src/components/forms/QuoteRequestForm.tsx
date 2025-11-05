@@ -12,6 +12,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { FileText, Loader2, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const quoteFormSchema = z.object({
   insuranceType: z.string().min(1, "Veuillez sélectionner un type d'assurance"),
@@ -40,6 +41,7 @@ type QuoteFormData = z.infer<typeof quoteFormSchema>;
 export const QuoteRequestForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const { trackEvent, trackConversion } = useAnalytics();
 
   const form = useForm<QuoteFormData>({
     resolver: zodResolver(quoteFormSchema),
@@ -76,6 +78,14 @@ export const QuoteRequestForm = () => {
       toast({
         title: "Demande envoyée !",
         description: "Nous vous contacterons dans les 24h avec votre devis personnalisé.",
+      });
+      
+      // Track quote request conversion
+      trackConversion('quote_request', 100);
+      trackEvent('quote_request', {
+        category: 'lead_generation',
+        insurance_type: data.insuranceType,
+        value: 100,
       });
       
       form.reset();

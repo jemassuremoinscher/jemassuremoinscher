@@ -4,12 +4,14 @@ import { Input } from "@/components/ui/input";
 import { Mail, Check, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 export const NewsletterSection = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const { toast } = useToast();
+  const { trackEvent, trackConversion } = useAnalytics();
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,6 +40,12 @@ export const NewsletterSection = () => {
         toast({
           title: "Presque terminé !",
           description: data.message,
+        });
+        
+        // Track newsletter signup
+        trackConversion('newsletter_signup');
+        trackEvent('newsletter_signup', {
+          category: 'engagement',
         });
       } else {
         toast({

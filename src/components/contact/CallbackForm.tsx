@@ -11,6 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Phone, Loader2, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const callbackSchema = z.object({
   fullName: z.string()
@@ -32,6 +33,7 @@ type CallbackFormData = z.infer<typeof callbackSchema>;
 
 export const CallbackForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { trackEvent, trackConversion } = useAnalytics();
   const [isSuccess, setIsSuccess] = useState(false);
 
   const form = useForm<CallbackFormData>({
@@ -64,6 +66,13 @@ export const CallbackForm = () => {
       toast({
         title: "Demande enregistrée !",
         description: "Nous vous rappellerons dans les meilleurs délais.",
+      });
+      
+      // Track conversion
+      trackConversion('callback_request');
+      trackEvent('callback_request', {
+        category: 'lead_generation',
+        label: data.preferredTime,
       });
       
       form.reset();

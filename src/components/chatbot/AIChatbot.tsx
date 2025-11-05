@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { MessageCircle, X, Send, Loader2, Bot, User } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 interface Message {
   role: "user" | "assistant";
@@ -22,6 +23,7 @@ export const AIChatbot = () => {
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { trackEvent } = useAnalytics();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -48,6 +50,12 @@ export const AIChatbot = () => {
 
       if (data?.message) {
         setMessages(prev => [...prev, { role: "assistant", content: data.message }]);
+        
+        // Track chatbot interaction
+        trackEvent('chatbot_message', {
+          category: 'engagement',
+          label: 'ai_response_received',
+        });
       } else {
         throw new Error("Réponse invalide du serveur");
       }
