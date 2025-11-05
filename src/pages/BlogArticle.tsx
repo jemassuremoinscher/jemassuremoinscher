@@ -10,6 +10,7 @@ import SEO from "@/components/SEO";
 import ReactMarkdown from "react-markdown";
 import { useToast } from "@/hooks/use-toast";
 import { CommentsSection } from "@/components/blog/CommentsSection";
+import { addArticleSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 
 const BlogArticle = () => {
   const { slug } = useParams();
@@ -48,13 +49,45 @@ const BlogArticle = () => {
     .filter(a => a.id !== article.id && (a.category === article.category || a.tags.some(tag => article.tags.includes(tag))))
     .slice(0, 3);
 
+  // Convertir la date française en format ISO
+  const convertToISO = (frenchDate: string): string => {
+    const months: Record<string, string> = {
+      'janvier': '01', 'février': '02', 'mars': '03', 'avril': '04',
+      'mai': '05', 'juin': '06', 'juillet': '07', 'août': '08',
+      'septembre': '09', 'octobre': '10', 'novembre': '11', 'décembre': '12'
+    };
+    const parts = frenchDate.split(' ');
+    if (parts.length === 3) {
+      const day = parts[0].padStart(2, '0');
+      const month = months[parts[1].toLowerCase()] || '01';
+      const year = parts[2];
+      return `${year}-${month}-${day}`;
+    }
+    return new Date().toISOString().split('T')[0];
+  };
+
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Blog", url: "https://www.assurmoinschere.fr/blog" },
+    { name: article.title, url: `https://www.assurmoinschere.fr/blog/${article.slug}` }
+  ]);
+
+  const articleSchema = addArticleSchema({
+    headline: article.title,
+    description: article.description,
+    author: article.author,
+    datePublished: convertToISO(article.date),
+    image: "https://www.assurmoinschere.fr/opengraph-image.png"
+  });
+
   return (
     <div className="min-h-screen">
       <SEO 
         title={`${article.title} | Blog Le Comparateur Assurance`}
         description={article.description}
         keywords={article.tags.join(", ")}
-        canonical={`https://votre-domaine.fr/blog/${article.slug}`}
+        canonical={`https://www.assurmoinschere.fr/blog/${article.slug}`}
+        jsonLd={[breadcrumbSchema, articleSchema]}
       />
       <Header />
       
