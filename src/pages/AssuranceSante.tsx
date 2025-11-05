@@ -14,6 +14,7 @@ import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { healthInsurers, generateInsurerOffers } from "@/utils/insurerData";
+import SEO from "@/components/SEO";
 
 const formSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
@@ -103,6 +104,12 @@ const AssuranceSante = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Mutuelle Santé - Comparez les Meilleures Offres | Le Comparateur Assurance"
+        description="Comparez les mutuelles santé et complémentaires santé en France. Devis gratuit et personnalisé en 2 minutes. Trouvez la meilleure mutuelle adaptée à vos besoins."
+        keywords="mutuelle santé, complémentaire santé, assurance santé, comparateur mutuelle, mutuelle pas cher"
+        canonical="https://votre-domaine.fr/assurance-sante"
+      />
       <Header />
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">

@@ -15,7 +15,7 @@ const categories = [
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[700px] flex items-center overflow-hidden">
+    <section className="relative min-h-[700px] flex items-center overflow-hidden" aria-label="Section principale - Comparateur d'assurances">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
@@ -37,15 +37,12 @@ const Hero = () => {
             Comparateur N°1 en France
           </p>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-primary-foreground mb-6 leading-tight animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            COMPAREZ<br />
-            <span className="text-gradient bg-gradient-to-r from-accent via-secondary to-accent bg-clip-text text-transparent">
-              ÉCONOMISEZ
-            </span>
+            Comparez et <span className="text-gradient bg-gradient-to-r from-accent via-secondary to-accent bg-clip-text text-transparent">Économisez</span> sur vos Assurances
           </h1>
           
-          <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 animate-fade-in" style={{ animationDelay: '0.15s' }}>
+          <h2 className="text-xl md:text-2xl text-primary-foreground/90 mb-8 animate-fade-in" style={{ animationDelay: '0.15s' }}>
             Plus de 120 assureurs comparés pour trouver la meilleure offre adaptée à vos besoins
-          </p>
+          </h2>
 
           <div className="inline-block mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <p className="text-2xl md:text-3xl font-bold text-primary-foreground">

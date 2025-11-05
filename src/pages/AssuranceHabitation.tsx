@@ -14,6 +14,7 @@ import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { homeInsurers, generateInsurerOffers } from "@/utils/insurerData";
+import SEO from "@/components/SEO";
 
 const formSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
@@ -103,6 +104,12 @@ const AssuranceHabitation = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Assurance Habitation - Comparez et Trouvez la Meilleure Offre"
+        description="Comparez les assurances habitation en France. Devis gratuit pour maison, appartement, locataire ou propriétaire. Économisez jusqu'à 300€/an sur votre assurance habitation."
+        keywords="assurance habitation, assurance maison, assurance appartement, assurance locataire, assurance propriétaire"
+        canonical="https://votre-domaine.fr/assurance-habitation"
+      />
       <Header />
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">

@@ -14,6 +14,7 @@ import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { autoInsurers, generateInsurerOffers } from "@/utils/insurerData";
+import SEO from "@/components/SEO";
 
 const formSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
@@ -106,6 +107,12 @@ const AssuranceAuto = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Assurance Auto - Comparez et Économisez | Le Comparateur Assurance"
+        description="Comparez les meilleures assurances auto en France. Devis gratuit en 2 minutes. Économisez jusqu'à 400€/an avec nos partenaires Allianz, AXA, Direct Assurance, Groupama."
+        keywords="assurance auto, devis assurance voiture, assurance auto pas cher, comparateur assurance auto, assurance tous risques"
+        canonical="https://votre-domaine.fr/assurance-auto"
+      />
       <Header />
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">
