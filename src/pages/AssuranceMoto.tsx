@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Bike } from "lucide-react";
+import { Bike, Shield, Euro, Clock, Wrench, MapPin, Users } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -14,6 +14,10 @@ import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { motoInsurers, generateInsurerOffers } from "@/utils/insurerData";
+import SEO from "@/components/SEO";
+import InfoSection from "@/components/insurance/InfoSection";
+import HowItWorks from "@/components/insurance/HowItWorks";
+import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 
 const formSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
@@ -110,18 +114,51 @@ const AssuranceMoto = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Assurance Moto - Comparez les Meilleurs Tarifs | Le Comparateur Assurance"
+        description="Comparez les assurances moto et scooter. Devis gratuit en ligne pour tous types de deux-roues. Économisez jusqu'à 35% avec nos partenaires assureurs."
+        keywords="assurance moto, assurance scooter, assurance deux roues, comparateur assurance moto, assurance moto pas cher"
+        canonical="https://votre-domaine.fr/assurance-moto"
+      />
       <Header />
-      <main className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 rounded-full bg-primary/10">
-              <Bike className="h-8 w-8 text-primary" />
+      
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex justify-center mb-6">
+              <div className="p-4 rounded-full bg-primary/10">
+                <Bike className="h-12 w-12 text-primary" />
+              </div>
             </div>
-            <h1 className="text-4xl font-bold text-foreground">Assurance Moto</h1>
+            <h1 className="text-5xl font-bold text-foreground mb-6">Assurance Moto</h1>
+            <p className="text-xl text-muted-foreground mb-8">
+              Comparez les meilleures offres d'assurance moto et scooter. 
+              Protection optimale pour tous les types de deux-roues au meilleur prix.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-sm">
+              <div className="flex items-center gap-2">
+                <Shield className="h-5 w-5 text-primary" />
+                <span>Comparaison gratuite</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="h-5 w-5 text-primary" />
+                <span>Devis instantané</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Euro className="h-5 w-5 text-primary" />
+                <span>Jusqu'à 35% d'économies</span>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
 
+      <main className="container mx-auto px-4 py-12">
+        {/* Formulaire de devis */}
+        <div className="max-w-3xl mx-auto mb-16">
           <Card className="p-8">
-            <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis en 2 minutes</h2>
+            <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis personnalisé</h2>
             
             {insurerOffers.length > 0 ? (
               <InsuranceComparison 
@@ -329,6 +366,133 @@ const AssuranceMoto = () => {
             )}
           </Card>
         </div>
+
+        {/* Garanties Section */}
+        <InfoSection
+          title="Les garanties pour votre assurance moto"
+          description="Protégez votre deux-roues avec les garanties adaptées à votre usage"
+          items={[
+            {
+              icon: Shield,
+              title: "Responsabilité Civile",
+              description: "Garantie obligatoire couvrant les dommages causés aux tiers. Indispensable pour circuler légalement.",
+            },
+            {
+              icon: Bike,
+              title: "Dommages Tous Accidents",
+              description: "Protection complète de votre moto en cas d'accident, même si vous êtes responsable. Idéal pour motos récentes.",
+            },
+            {
+              icon: Wrench,
+              title: "Vol et Incendie",
+              description: "Remboursement en cas de vol ou destruction par incendie de votre deux-roues. Équipements et accessoires inclus.",
+            },
+            {
+              icon: Users,
+              title: "Garantie Conducteur",
+              description: "Indemnisation de vos blessures corporelles quel que soit le responsable de l'accident. Jusqu'à 1 000 000€.",
+            },
+            {
+              icon: MapPin,
+              title: "Assistance 0 km",
+              description: "Dépannage et remorquage dès le premier kilomètre, 24h/24. Prêt de véhicule et rapatriement inclus.",
+            },
+            {
+              icon: Euro,
+              title: "Valeur d'Achat",
+              description: "Remboursement à la valeur d'achat pendant 24 mois pour votre moto neuve ou d'occasion récente.",
+            },
+          ]}
+        />
+
+        {/* Comment ça marche */}
+        <HowItWorks
+          steps={[
+            {
+              number: "1",
+              title: "Décrivez votre moto",
+              description: "Marque, modèle, cylindrée et année de votre deux-roues pour un devis précis.",
+            },
+            {
+              number: "2",
+              title: "Recevez vos devis",
+              description: "Comparez instantanément les offres de nos assureurs partenaires spécialisés moto.",
+            },
+            {
+              number: "3",
+              title: "Souscrivez en ligne",
+              description: "Choisissez votre formule et finalisez votre contrat en quelques minutes.",
+            },
+          ]}
+        />
+
+        {/* Conseils */}
+        <section className="py-12 max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
+            Nos conseils pour bien assurer votre moto
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-3">Choisir la bonne formule</h3>
+              <p className="text-muted-foreground mb-3">
+                Pour une moto neuve ou de moins de 5 ans, privilégiez une formule tous risques. 
+                Pour un deux-roues plus ancien, une formule intermédiaire avec vol/incendie peut suffire.
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-3">La garantie conducteur</h3>
+              <p className="text-muted-foreground mb-3">
+                Souvent optionnelle mais essentielle : elle vous indemnise en cas de blessures graves. 
+                Vérifiez les plafonds d'indemnisation et les exclusions.
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-3">Équipements et accessoires</h3>
+              <p className="text-muted-foreground mb-3">
+                Déclarez vos équipements (top case, GPS, antivol) pour qu'ils soient couverts. 
+                Gardez les factures et photos comme preuves en cas de sinistre.
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-3">Réduire le coût</h3>
+              <p className="text-muted-foreground mb-3">
+                Garage fermé, faible kilométrage annuel, formation moto : plusieurs critères 
+                peuvent réduire votre prime. Pensez aussi à regrouper vos contrats chez un même assureur.
+              </p>
+            </Card>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <InsuranceFAQ
+          title="Questions fréquentes sur l'assurance moto"
+          faqs={[
+            {
+              question: "Quelle assurance est obligatoire pour une moto ?",
+              answer: "L'assurance au tiers (responsabilité civile) est la seule garantie obligatoire pour circuler en moto. Elle couvre les dommages que vous pourriez causer à autrui. Circuler sans assurance est passible d'une amende de 3 750€, d'une suspension de permis et de la confiscation du véhicule.",
+            },
+            {
+              question: "Comment assurer une moto puissante ou sportive ?",
+              answer: "Les motos sportives ou de grosse cylindrée (>600cc) sont considérées comme à risque et coûtent donc plus cher à assurer. Pour obtenir un bon tarif, privilégiez un garage fermé, une formation moto avancée et un historique sans sinistre. Comparez les offres spécialisées.",
+            },
+            {
+              question: "Faut-il assurer une moto qui ne roule pas ?",
+              answer: "Oui, même immobilisée, une moto immatriculée doit être assurée au minimum au tiers. Pour une moto qui ne circule plus, souscrivez une assurance hors circulation moins coûteuse qui couvre le vol et l'incendie si elle reste sur la voie publique.",
+            },
+            {
+              question: "Puis-je assurer une moto sans le permis A ?",
+              answer: "Non, pour assurer une moto de plus de 125cc, vous devez obligatoirement posséder le permis A, A2 ou A1 correspondant à la puissance du véhicule. Pour un scooter 125cc, le permis B + formation de 7h suffit.",
+            },
+            {
+              question: "Comment est calculé le prix d'une assurance moto ?",
+              answer: "Le tarif dépend de nombreux critères : type et puissance de la moto, votre âge et expérience, lieu de stationnement, kilométrage annuel, historique de sinistres (bonus-malus), et garanties choisies. Les motos sportives et les jeunes conducteurs paient généralement plus cher.",
+            },
+            {
+              question: "Que couvre l'assistance 0 km ?",
+              answer: "L'assistance 0 km intervient dès le 1er kilomètre de votre domicile en cas de panne, accident ou crevaison. Elle inclut le dépannage sur place, le remorquage vers un garage, le prêt d'un véhicule de remplacement et l'hébergement si nécessaire.",
+            },
+          ]}
+        />
       </main>
       <Footer />
     </div>

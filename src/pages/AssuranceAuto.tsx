@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Car } from "lucide-react";
+import { Car, Shield, Euro, Clock, FileCheck, TrendingDown, Users } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -15,6 +15,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { autoInsurers, generateInsurerOffers } from "@/utils/insurerData";
 import SEO from "@/components/SEO";
+import InfoSection from "@/components/insurance/InfoSection";
+import HowItWorks from "@/components/insurance/HowItWorks";
+import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 
 const formSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
@@ -114,17 +117,44 @@ const AssuranceAuto = () => {
         canonical="https://votre-domaine.fr/assurance-auto"
       />
       <Header />
-      <main className="container mx-auto px-4 py-12">
-        <div className="max-w-3xl mx-auto">
-          <div className="flex items-center gap-3 mb-8">
-            <div className="p-3 rounded-full bg-primary/10">
-              <Car className="h-8 w-8 text-primary" />
+      
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex justify-center mb-6">
+              <div className="p-4 rounded-full bg-primary/10">
+                <Car className="h-12 w-12 text-primary" />
+              </div>
             </div>
-            <h1 className="text-4xl font-bold text-foreground">Assurance Auto</h1>
+            <h1 className="text-5xl font-bold text-foreground mb-6">Assurance Auto</h1>
+            <p className="text-xl text-muted-foreground mb-8">
+              Comparez les meilleures offres d'assurance auto en quelques clics. 
+              Économisez jusqu'à 400€ par an avec notre comparateur gratuit et sans engagement.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-sm">
+              <div className="flex items-center gap-2">
+                <Shield className="h-5 w-5 text-primary" />
+                <span>Comparaison 100% gratuite</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="h-5 w-5 text-primary" />
+                <span>Devis en 2 minutes</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Users className="h-5 w-5 text-primary" />
+                <span>+50 000 clients satisfaits</span>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
 
+      <main className="container mx-auto px-4 py-12">
+        {/* Formulaire de devis */}
+        <div className="max-w-3xl mx-auto mb-16">
           <Card className="p-8">
-            <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis en 2 minutes</h2>
+            <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis personnalisé</h2>
             
             {insurerOffers.length > 0 ? (
               <InsuranceComparison 
@@ -305,6 +335,144 @@ const AssuranceAuto = () => {
             )}
           </Card>
         </div>
+
+        {/* Garanties Section */}
+        <InfoSection
+          title="Nos garanties d'assurance auto"
+          description="Choisissez la formule qui correspond le mieux à vos besoins"
+          items={[
+            {
+              icon: Shield,
+              title: "Responsabilité Civile",
+              description: "Obligatoire. Couvre les dommages causés aux tiers en cas d'accident responsable. Protection minimale requise par la loi.",
+            },
+            {
+              icon: Car,
+              title: "Tous Risques",
+              description: "Protection complète incluant les dommages à votre véhicule, vol, incendie, bris de glace et catastrophes naturelles.",
+            },
+            {
+              icon: Euro,
+              title: "Tiers Plus",
+              description: "Formule intermédiaire ajoutant au tiers de base le vol, l'incendie, le bris de glace et l'assistance 0 km.",
+            },
+            {
+              icon: FileCheck,
+              title: "Protection Juridique",
+              description: "Assistance et prise en charge des frais de justice en cas de litige lié à votre véhicule.",
+            },
+            {
+              icon: Users,
+              title: "Garantie du Conducteur",
+              description: "Indemnisation de vos propres blessures en cas d'accident, quelle que soit votre responsabilité.",
+            },
+            {
+              icon: TrendingDown,
+              title: "Valeur à Neuf",
+              description: "Remboursement à la valeur d'achat pendant 2 ans en cas de vol ou destruction totale de votre véhicule neuf.",
+            },
+          ]}
+        />
+
+        {/* Comment ça marche */}
+        <HowItWorks
+          steps={[
+            {
+              number: "1",
+              title: "Remplissez le formulaire",
+              description: "Indiquez vos informations et les caractéristiques de votre véhicule en 2 minutes.",
+            },
+            {
+              number: "2",
+              title: "Comparez les offres",
+              description: "Recevez instantanément plusieurs devis d'assureurs partenaires adaptés à votre profil.",
+            },
+            {
+              number: "3",
+              title: "Souscrivez en ligne",
+              description: "Choisissez la meilleure offre et finalisez votre souscription directement en ligne.",
+            },
+          ]}
+        />
+
+        {/* Avantages */}
+        <section className="py-12 max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
+            Pourquoi choisir notre comparateur ?
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                <Euro className="h-5 w-5 text-primary" />
+                Économies garanties
+              </h3>
+              <p className="text-muted-foreground">
+                Nos clients économisent en moyenne 350€ par an en comparant leur assurance auto. 
+                Notre service gratuit vous permet d'accéder aux meilleurs tarifs du marché.
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                <Shield className="h-5 w-5 text-primary" />
+                Comparaison impartiale
+              </h3>
+              <p className="text-muted-foreground">
+                Nous comparons les offres de plus de 20 assureurs partenaires pour vous présenter 
+                les meilleures options selon vos critères, en toute transparence.
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                <Clock className="h-5 w-5 text-primary" />
+                Rapidité et simplicité
+              </h3>
+              <p className="text-muted-foreground">
+                Obtenez vos devis en moins de 2 minutes. Notre formulaire simplifié vous fait 
+                gagner du temps tout en vous assurant d'obtenir les offres les plus pertinentes.
+              </p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                <FileCheck className="h-5 w-5 text-primary" />
+                Sans engagement
+              </h3>
+              <p className="text-muted-foreground">
+                La comparaison est totalement gratuite et sans engagement. Vous êtes libre de 
+                souscrire ou non, et de choisir l'offre qui vous convient le mieux.
+              </p>
+            </Card>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <InsuranceFAQ
+          faqs={[
+            {
+              question: "Quelle est la différence entre l'assurance au tiers et tous risques ?",
+              answer: "L'assurance au tiers est la formule minimale obligatoire qui couvre uniquement les dommages causés aux tiers. L'assurance tous risques offre une protection complète incluant les dommages à votre propre véhicule, le vol, l'incendie, et bien plus encore, même si vous êtes responsable de l'accident.",
+            },
+            {
+              question: "Puis-je changer d'assurance auto à tout moment ?",
+              answer: "Oui, depuis la loi Hamon de 2015, vous pouvez résilier votre assurance auto à tout moment après la première année de contrat, sans frais ni pénalités. C'est votre nouvel assureur qui se charge des démarches de résiliation.",
+            },
+            {
+              question: "Quels documents sont nécessaires pour obtenir un devis ?",
+              answer: "Pour obtenir un devis précis, vous aurez besoin de votre permis de conduire, de la carte grise du véhicule, de votre relevé d'information (historique de sinistres), et éventuellement votre dernier avis d'échéance si vous êtes déjà assuré.",
+            },
+            {
+              question: "Comment est calculé le prix de mon assurance auto ?",
+              answer: "Le tarif dépend de nombreux critères : votre profil (âge, ancienneté du permis, historique de sinistres), les caractéristiques de votre véhicule (marque, modèle, puissance), votre lieu de résidence, l'usage du véhicule, et la formule de garanties choisie.",
+            },
+            {
+              question: "Qu'est-ce que le bonus-malus ?",
+              answer: "Le coefficient de bonus-malus (ou CRM) est un système qui fait évoluer votre prime d'assurance en fonction de votre sinistralité. Sans accident responsable, vous bénéficiez d'une réduction de 5% par an (bonus). En cas d'accident responsable, votre coefficient augmente de 25% (malus).",
+            },
+            {
+              question: "L'assurance auto est-elle obligatoire ?",
+              answer: "Oui, l'assurance auto est obligatoire en France, au minimum avec la garantie responsabilité civile (au tiers). Circuler sans assurance est un délit passible d'amendes importantes et de la suspension du permis de conduire.",
+            },
+          ]}
+        />
       </main>
       <Footer />
     </div>
