@@ -116,10 +116,23 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Sending quote email for:", { type, timestamp: new Date().toISOString() });
 
+    // Validate business email is configured
+    const businessEmail = Deno.env.get("BUSINESS_EMAIL");
+    if (!businessEmail) {
+      console.error("BUSINESS_EMAIL environment variable not configured");
+      return new Response(
+        JSON.stringify({ error: "Service configuration error. Please contact support." }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
     // Email au propriétaire du site
     const ownerEmail = await resend.emails.send({
       from: "Comparateur Assurance <onboarding@resend.dev>",
-      to: ["votre-email@exemple.com"], // Remplacez par votre email
+      to: [businessEmail],
       subject: `Nouvelle demande de devis - ${type}`,
       html: `
         <h1>Nouvelle demande de devis</h1>
