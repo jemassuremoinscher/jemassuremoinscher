@@ -18,11 +18,11 @@ const Footer = () => {
           <div>
             <h3 className="font-bold mb-4">Nos assurances</h3>
             <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li>Assurance Auto</li>
-              <li>Mutuelle Santé</li>
+              <li><a href="/assurance-auto" className="hover:text-accent transition-colors">Assurance Auto</a></li>
+              <li><a href="/assurance-sante" className="hover:text-accent transition-colors">Mutuelle Santé</a></li>
               <li>Assurance Moto</li>
-              <li>Assurance Habitation</li>
-              <li>Assurance Animaux</li>
+              <li><a href="/assurance-habitation" className="hover:text-accent transition-colors">Assurance Habitation</a></li>
+              <li><a href="/assurance-animaux" className="hover:text-accent transition-colors">Assurance Animaux</a></li>
             </ul>
           </div>
 
