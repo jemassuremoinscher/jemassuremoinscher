@@ -1,119 +1,90 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
 import { Car, Heart, Home, CreditCard, Users, Shield, Menu, Bike, ChevronDown } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
 
   const navigationLinks = [
-    { 
-      to: "/assurance-auto", 
-      icon: Car, 
-      label: "Assurance Auto",
-      description: "Comparez les meilleures offres auto"
-    },
-    { 
-      to: "/assurance-sante", 
-      icon: Heart, 
-      label: "Mutuelle Santé",
-      description: "Trouvez votre mutuelle santé idéale"
-    },
-    { 
-      to: "/assurance-moto", 
-      icon: Bike, 
-      label: "Assurance Moto",
-      description: "Protégez votre deux-roues"
-    },
-    { 
-      to: "/assurance-animaux", 
-      icon: Users, 
-      label: "Assurance Animaux",
-      description: "Prenez soin de vos compagnons"
-    },
-    { 
-      to: "/assurance-habitation", 
-      icon: Home, 
-      label: "Assurance Habitation",
-      description: "Assurez votre logement"
-    },
-    { 
-      to: "/assurance-pret", 
-      icon: CreditCard, 
-      label: "Assurance Prêt",
-      description: "Protégez votre emprunt immobilier"
-    },
+    { to: "/assurance-auto", label: "Assurance Auto", icon: Car },
+    { to: "/assurance-sante", label: "Mutuelle Santé", icon: Heart },
+    { to: "/assurance-moto", label: "Assurance Moto", icon: Bike },
+    { to: "/assurance-habitation", label: "Assurance Habitation", icon: Home },
+    { to: "/assurance-pret", label: "Assurance de prêt", icon: CreditCard },
+    { to: "/assurance-animaux", label: "Assurance Animaux", icon: Users },
+  ];
+
+  const moreLinks = [
+    { to: "/qui-sommes-nous", label: "Qui sommes-nous" },
+    { to: "/nos-partenaires", label: "Nos partenaires" },
+    { to: "/avis-clients", label: "Avis clients" },
+    { to: "/blog", label: "Blog" },
   ];
 
   return (
-    <header className="bg-card/95 backdrop-blur-md border-b border-border sticky top-0 z-50 shadow-sm">
+    <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="p-2 rounded-xl bg-gradient-to-br from-primary to-primary/80 group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
-              <Shield className="h-7 w-7 text-primary-foreground" />
+        {/* Top bar with logo and main links */}
+        <div className="flex items-center justify-between py-4">
+          <Link to="/" className="flex items-center gap-2 group">
+            <div className="p-1.5 rounded-lg bg-primary">
+              <Shield className="h-6 w-6 text-white" />
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              Le Comparateur Assurance
-            </span>
+            <div className="flex flex-col leading-tight">
+              <span className="text-xs font-semibold text-primary uppercase tracking-wide">Le Comparateur</span>
+              <span className="text-lg font-black text-primary uppercase">Assurance</span>
+            </div>
           </Link>
           
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-4">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="gap-2 hover:bg-primary/5 hover:text-primary transition-all">
-                  Nos Comparateurs
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-80 bg-card/95 backdrop-blur-md">
-                {navigationLinks.map((link, index) => (
-                  <div key={link.to}>
-                    {index > 0 && <DropdownMenuSeparator />}
-                    <DropdownMenuItem 
-                      className="p-4 cursor-pointer focus:bg-primary/5 focus:text-primary"
-                      onClick={() => navigate(link.to)}
-                    >
-                      <div className="flex gap-3 items-start w-full">
-                        <div className="p-2 rounded-lg bg-primary/10 mt-0.5">
-                          <link.icon className="h-5 w-5 text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="font-semibold text-card-foreground">{link.label}</div>
-                          <div className="text-sm text-muted-foreground mt-0.5">{link.description}</div>
-                        </div>
-                      </div>
-                    </DropdownMenuItem>
-                  </div>
+          {/* Desktop Navigation - Horizontal Menu */}
+          <nav className="hidden xl:flex items-center gap-1">
+            {navigationLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-200 whitespace-nowrap"
+              >
+                {link.label}
+              </Link>
+            ))}
+            
+            {/* More dropdown */}
+            <div className="relative group">
+              <button className="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-200 flex items-center gap-1">
+                Plus d'assurances
+                <ChevronDown className="h-3 w-3" />
+              </button>
+              
+              {/* Dropdown menu */}
+              <div className="absolute right-0 top-full mt-1 w-48 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                {moreLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="block px-4 py-3 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors first:rounded-t-lg last:rounded-b-lg"
+                  >
+                    {link.label}
+                  </Link>
                 ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+              </div>
+            </div>
 
-            <Button variant="ghost" asChild>
-              <Link to="/qui-sommes-nous">Qui sommes-nous</Link>
-            </Button>
-            <Button variant="ghost" asChild>
-              <Link to="/nos-partenaires">Nos partenaires</Link>
-            </Button>
-            <Button variant="ghost" asChild>
-              <Link to="/avis-clients">Avis clients</Link>
+            {/* Prévoyance button */}
+            <Button 
+              variant="outline" 
+              className="ml-2 border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold"
+              asChild
+            >
+              <Link to="/qui-sommes-nous">Prévoyance</Link>
             </Button>
           </nav>
 
           {/* Mobile Navigation */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden hover:bg-primary/10">
+              <Button variant="ghost" size="icon" className="xl:hidden hover:bg-primary/10">
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
@@ -121,10 +92,10 @@ const Header = () => {
               <SheetHeader>
                 <SheetTitle className="flex items-center gap-2">
                   <Shield className="h-5 w-5 text-primary" />
-                  Navigation
+                  Menu
                 </SheetTitle>
               </SheetHeader>
-              <nav className="flex flex-col gap-3 mt-8">
+              <nav className="flex flex-col gap-2 mt-8">
                 {navigationLinks.map((link) => (
                   <Button 
                     key={link.to}
@@ -135,6 +106,20 @@ const Header = () => {
                   >
                     <Link to={link.to}>
                       <link.icon className="h-5 w-5" />
+                      {link.label}
+                    </Link>
+                  </Button>
+                ))}
+                <div className="h-px bg-gray-200 my-2" />
+                {moreLinks.map((link) => (
+                  <Button 
+                    key={link.to}
+                    variant="ghost" 
+                    className="justify-start h-10 text-sm hover:bg-primary/5 hover:text-primary transition-all" 
+                    asChild
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Link to={link.to}>
                       {link.label}
                     </Link>
                   </Button>
