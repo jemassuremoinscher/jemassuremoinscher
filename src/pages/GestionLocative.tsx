@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import InsuranceComparison from '@/components/InsuranceComparison';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { Building2, Home, Euro, Users, TrendingUp, Star, CheckCircle } from 'lucide-react';
@@ -33,7 +34,6 @@ const formSchema = z.object({
 
 const GestionLocative = () => {
   const [showResults, setShowResults] = useState(false);
-  const [estimatedPrice, setEstimatedPrice] = useState(0);
   const [submittedFormData, setSubmittedFormData] = useState<any>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -60,14 +60,70 @@ const GestionLocative = () => {
     if (values.propertyCount === '2-5') percentage -= 0.01;
     if (values.propertyCount === '5+') percentage -= 0.02;
 
-    return Math.round(rent * percentage);
+    const basePrice = Math.round(rent * percentage);
+    
+    // Generate insurers list for management services
+    const insurers = [
+      {
+        name: 'Loc Online',
+        price: basePrice,
+        coverage: ['Gestion 100% digitale', 'Suivi en temps réel', 'Support 7j/7', 'Encaissement automatique'],
+        discount: 'Partenaire recommandé'
+      },
+      {
+        name: 'Foncia',
+        price: Math.round(basePrice * 1.15),
+        coverage: ['Réseau national', 'Expertise reconnue', 'Services complets', 'Agence de proximité']
+      },
+      {
+        name: 'Orpi Gestion',
+        price: Math.round(basePrice * 1.10),
+        coverage: ['Proximité locale', 'Accompagnement personnalisé', 'Assurance loyers', 'Suivi travaux']
+      },
+      {
+        name: 'Century 21 Gestion',
+        price: Math.round(basePrice * 1.22),
+        coverage: ['Réseau international', 'Gestion premium', 'Assistance juridique', 'Plateforme propriétaire']
+      },
+      {
+        name: 'Nexity',
+        price: Math.round(basePrice * 1.18),
+        coverage: ['Leader national', 'Services intégrés', 'Gestion patrimoine', 'Solutions digitales']
+      },
+      {
+        name: 'Laforêt Gestion',
+        price: Math.round(basePrice * 1.25),
+        coverage: ['Expertise locale', 'Accompagnement sur-mesure', 'Garantie loyers', 'Suivi personnalisé']
+      },
+      {
+        name: 'Guy Hoquet',
+        price: Math.round(basePrice * 1.30),
+        coverage: ['Réseau reconnu', 'Gestion complète', 'Protection juridique', 'Conseiller dédié']
+      },
+      {
+        name: 'Citya Immobilier',
+        price: Math.round(basePrice * 1.12),
+        coverage: ['Gestion professionnelle', 'Outils digitaux', 'Suivi transparent', 'Accompagnement fiscal']
+      },
+      {
+        name: 'Square Habitat',
+        price: Math.round(basePrice * 1.28),
+        coverage: ['Groupe Crédit Agricole', 'Services bancaires', 'Gestion patrimoniale', 'Expertise locale']
+      },
+      {
+        name: 'Gestion Privée',
+        price: Math.round(basePrice * 1.20),
+        coverage: ['Service personnalisé', 'Gestion sur-mesure', 'Accompagnement premium', 'Reporting détaillé']
+      }
+    ];
+
+    return insurers;
   };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const price = calculatePrice(values);
-      setEstimatedPrice(price);
-      setSubmittedFormData(values);
+      const insurers = calculatePrice(values);
+      setSubmittedFormData({ ...values, insurers });
       
       const { error } = await supabase.from('insurance_quotes').insert({
         insurance_type: 'gestion_locative',
@@ -113,32 +169,6 @@ const GestionLocative = () => {
     {
       question: 'Pourquoi choisir Loc Online ?',
       answer: 'Loc Online est notre partenaire premium, offrant une gestion 100% digitale, des tarifs compétitifs et un service client disponible 7j/7. Leurs outils en ligne permettent un suivi en temps réel de vos biens.'
-    }
-  ];
-
-  // Providers avec Loc Online toujours en premier
-  const providers = [
-    {
-      name: 'Loc Online',
-      logo: '🏆',
-      rating: 4.8,
-      price: estimatedPrice,
-      features: ['Gestion 100% digitale', 'Suivi en temps réel', 'Support 7j/7'],
-      recommended: true
-    },
-    {
-      name: 'Foncia',
-      logo: '🏢',
-      rating: 4.5,
-      price: Math.round(estimatedPrice * 1.15),
-      features: ['Réseau national', 'Expertise reconnue', 'Services complets']
-    },
-    {
-      name: 'Orpi Gestion',
-      logo: '🏠',
-      rating: 4.3,
-      price: Math.round(estimatedPrice * 1.10),
-      features: ['Proximité locale', 'Accompagnement personnalisé', 'Assurance loyers']
     }
   ];
 
@@ -295,78 +325,6 @@ const GestionLocative = () => {
                   </CardContent>
                 </Card>
               </motion.div>
-
-              {/* Results */}
-              {showResults && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  className="max-w-4xl mx-auto mt-12"
-                >
-                  <h2 className="text-3xl font-bold text-center mb-8">
-                    Nos partenaires de gestion locative
-                  </h2>
-                  <div className="grid gap-6">
-                    {providers.map((provider, index) => (
-                      <Card key={index} className={provider.recommended ? 'border-2 border-primary shadow-xl' : ''}>
-                        {provider.recommended && (
-                          <div className="bg-primary text-white text-center py-2 rounded-t-lg font-semibold flex items-center justify-center gap-2">
-                            <Star className="h-4 w-4" />
-                            Partenaire Recommandé
-                          </div>
-                        )}
-                        <CardContent className="p-6">
-                          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                            <div className="flex items-center gap-4">
-                              <div className="text-4xl">{provider.logo}</div>
-                              <div>
-                                <h3 className="text-xl font-bold">{provider.name}</h3>
-                                <div className="flex items-center gap-2 mt-1">
-                                  <div className="flex">
-                                    {[...Array(5)].map((_, i) => (
-                                      <Star
-                                        key={i}
-                                        className={`h-4 w-4 ${
-                                          i < Math.floor(provider.rating)
-                                            ? 'fill-yellow-400 text-yellow-400'
-                                            : 'text-gray-300'
-                                        }`}
-                                      />
-                                    ))}
-                                  </div>
-                                  <span className="text-sm text-muted-foreground">
-                                    {provider.rating}/5
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="text-right">
-                              <div className="text-3xl font-bold text-primary">
-                                {provider.price}€
-                                <span className="text-sm text-muted-foreground">/mois</span>
-                              </div>
-                              <Button 
-                                variant={provider.recommended ? "subscribe-best" : "subscribe"}
-                                className="mt-2"
-                              >
-                                Choisir cette offre
-                              </Button>
-                            </div>
-                          </div>
-                          <div className="mt-4 flex flex-wrap gap-2">
-                            {provider.features.map((feature, i) => (
-                              <Badge key={i} variant="outline">
-                                {feature}
-                              </Badge>
-                            ))}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
             </div>
           </section>
 
@@ -389,6 +347,27 @@ const GestionLocative = () => {
         </main>
 
         <Footer />
+
+        {showResults && submittedFormData?.insurers && (
+          <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
+            <div className="bg-background rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto p-6 relative">
+              <Button
+                variant="ghost"
+                className="absolute top-4 right-4"
+                onClick={() => setShowResults(false)}
+              >
+                ✕
+              </Button>
+              
+              <InsuranceComparison
+                insurers={submittedFormData.insurers}
+                onNewQuote={() => setShowResults(false)}
+                formData={submittedFormData}
+                insuranceType="gestion_locative"
+              />
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
