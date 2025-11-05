@@ -19,6 +19,7 @@ import { SalesAgentsManager } from '@/components/admin/SalesAgentsManager';
 import { GoalsManager } from '@/components/admin/GoalsManager';
 import { CommercialSupervision } from '@/components/admin/CommercialSupervision';
 import { CommercialAlerts } from '@/components/admin/CommercialAlerts';
+import { RedistributionHistory } from '@/components/admin/RedistributionHistory';
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -289,6 +290,7 @@ const Admin = () => {
           <TabsContent value="supervision">
             <div className="space-y-6">
               <CommercialAlerts />
+              <RedistributionHistory />
               <CommercialSupervision />
             </div>
           </TabsContent>

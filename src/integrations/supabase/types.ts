@@ -378,6 +378,36 @@ export type Database = {
         }
         Relationships: []
       }
+      lead_redistribution_log: {
+        Row: {
+          created_at: string
+          from_agent: string | null
+          id: string
+          lead_id: string
+          lead_type: string
+          reason: string
+          to_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          from_agent?: string | null
+          id?: string
+          lead_id: string
+          lead_type: string
+          reason: string
+          to_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          from_agent?: string | null
+          id?: string
+          lead_id?: string
+          lead_type?: string
+          reason?: string
+          to_agent?: string | null
+        }
+        Relationships: []
+      }
       monthly_goals: {
         Row: {
           agent_id: string
@@ -576,6 +606,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      reassign_pending_leads: { Args: never; Returns: number }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
