@@ -216,9 +216,75 @@ const AssuranceAuto = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Marque du véhicule</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Ex: Renault, Peugeot..." {...field} />
-                        </FormControl>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Sélectionner une marque" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className="max-h-[300px]">
+                            <SelectItem value="Abarth">Abarth</SelectItem>
+                            <SelectItem value="Alfa Romeo">Alfa Romeo</SelectItem>
+                            <SelectItem value="Aston Martin">Aston Martin</SelectItem>
+                            <SelectItem value="Audi">Audi</SelectItem>
+                            <SelectItem value="Bentley">Bentley</SelectItem>
+                            <SelectItem value="BMW">BMW</SelectItem>
+                            <SelectItem value="Bugatti">Bugatti</SelectItem>
+                            <SelectItem value="Cadillac">Cadillac</SelectItem>
+                            <SelectItem value="Chevrolet">Chevrolet</SelectItem>
+                            <SelectItem value="Chrysler">Chrysler</SelectItem>
+                            <SelectItem value="Citroën">Citroën</SelectItem>
+                            <SelectItem value="Cupra">Cupra</SelectItem>
+                            <SelectItem value="Dacia">Dacia</SelectItem>
+                            <SelectItem value="Daewoo">Daewoo</SelectItem>
+                            <SelectItem value="Daihatsu">Daihatsu</SelectItem>
+                            <SelectItem value="Dodge">Dodge</SelectItem>
+                            <SelectItem value="DS">DS</SelectItem>
+                            <SelectItem value="Ferrari">Ferrari</SelectItem>
+                            <SelectItem value="Fiat">Fiat</SelectItem>
+                            <SelectItem value="Ford">Ford</SelectItem>
+                            <SelectItem value="Honda">Honda</SelectItem>
+                            <SelectItem value="Hummer">Hummer</SelectItem>
+                            <SelectItem value="Hyundai">Hyundai</SelectItem>
+                            <SelectItem value="Infiniti">Infiniti</SelectItem>
+                            <SelectItem value="Isuzu">Isuzu</SelectItem>
+                            <SelectItem value="Jaguar">Jaguar</SelectItem>
+                            <SelectItem value="Jeep">Jeep</SelectItem>
+                            <SelectItem value="Kia">Kia</SelectItem>
+                            <SelectItem value="Lada">Lada</SelectItem>
+                            <SelectItem value="Lamborghini">Lamborghini</SelectItem>
+                            <SelectItem value="Lancia">Lancia</SelectItem>
+                            <SelectItem value="Land Rover">Land Rover</SelectItem>
+                            <SelectItem value="Lexus">Lexus</SelectItem>
+                            <SelectItem value="Lotus">Lotus</SelectItem>
+                            <SelectItem value="Maserati">Maserati</SelectItem>
+                            <SelectItem value="Mazda">Mazda</SelectItem>
+                            <SelectItem value="McLaren">McLaren</SelectItem>
+                            <SelectItem value="Mercedes-Benz">Mercedes-Benz</SelectItem>
+                            <SelectItem value="MG">MG</SelectItem>
+                            <SelectItem value="Mini">Mini</SelectItem>
+                            <SelectItem value="Mitsubishi">Mitsubishi</SelectItem>
+                            <SelectItem value="Nissan">Nissan</SelectItem>
+                            <SelectItem value="Opel">Opel</SelectItem>
+                            <SelectItem value="Peugeot">Peugeot</SelectItem>
+                            <SelectItem value="Porsche">Porsche</SelectItem>
+                            <SelectItem value="Renault">Renault</SelectItem>
+                            <SelectItem value="Rolls-Royce">Rolls-Royce</SelectItem>
+                            <SelectItem value="Rover">Rover</SelectItem>
+                            <SelectItem value="Saab">Saab</SelectItem>
+                            <SelectItem value="Seat">Seat</SelectItem>
+                            <SelectItem value="Skoda">Skoda</SelectItem>
+                            <SelectItem value="Smart">Smart</SelectItem>
+                            <SelectItem value="SsangYong">SsangYong</SelectItem>
+                            <SelectItem value="Subaru">Subaru</SelectItem>
+                            <SelectItem value="Suzuki">Suzuki</SelectItem>
+                            <SelectItem value="Tesla">Tesla</SelectItem>
+                            <SelectItem value="Toyota">Toyota</SelectItem>
+                            <SelectItem value="Volkswagen">Volkswagen</SelectItem>
+                            <SelectItem value="Volvo">Volvo</SelectItem>
+                            <SelectItem value="Autre">Autre</SelectItem>
+                          </SelectContent>
+                        </Select>
                         <FormMessage />
                       </FormItem>
                     )}
