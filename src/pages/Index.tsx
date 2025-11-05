@@ -7,6 +7,10 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { NewsletterSection } from "@/components/NewsletterSection";
 import SEO from "@/components/SEO";
+import { AIChatbot } from "@/components/chatbot/AIChatbot";
+import { CallbackForm } from "@/components/contact/CallbackForm";
+import { TrustBadges } from "@/components/trust/TrustBadges";
+import { SocialProof } from "@/components/trust/SocialProof";
 
 const Index = () => {
   return (
@@ -20,13 +24,17 @@ const Index = () => {
       <Header />
       <main id="main-content" role="main">
         <Hero />
+        <TrustBadges />
         <Features />
+        <SocialProof />
         <Partners />
         <Testimonials />
+        <CallbackForm />
         <FAQ />
         <NewsletterSection />
       </main>
       <Footer />
+      <AIChatbot />
     </div>
   );
 };

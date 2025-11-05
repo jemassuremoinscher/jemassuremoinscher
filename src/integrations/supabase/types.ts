@@ -47,6 +47,42 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_callbacks: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          message: string | null
+          phone: string
+          preferred_time: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          message?: string | null
+          phone: string
+          preferred_time: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          message?: string | null
+          phone?: string
+          preferred_time?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       insurance_quotes: {
         Row: {
           created_at: string
