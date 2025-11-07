@@ -321,6 +321,114 @@ export type Database = {
           },
         ]
       }
+      google_ads_campaigns: {
+        Row: {
+          budget_daily: number | null
+          budget_total: number | null
+          campaign_id: string
+          campaign_name: string
+          conversion_value: number | null
+          created_at: string
+          end_date: string | null
+          id: string
+          start_date: string | null
+          status: string | null
+          total_clicks: number | null
+          total_conversions: number | null
+          total_impressions: number | null
+          total_spend: number | null
+          updated_at: string
+        }
+        Insert: {
+          budget_daily?: number | null
+          budget_total?: number | null
+          campaign_id: string
+          campaign_name: string
+          conversion_value?: number | null
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          start_date?: string | null
+          status?: string | null
+          total_clicks?: number | null
+          total_conversions?: number | null
+          total_impressions?: number | null
+          total_spend?: number | null
+          updated_at?: string
+        }
+        Update: {
+          budget_daily?: number | null
+          budget_total?: number | null
+          campaign_id?: string
+          campaign_name?: string
+          conversion_value?: number | null
+          created_at?: string
+          end_date?: string | null
+          id?: string
+          start_date?: string | null
+          status?: string | null
+          total_clicks?: number | null
+          total_conversions?: number | null
+          total_impressions?: number | null
+          total_spend?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      google_ads_conversions: {
+        Row: {
+          campaign_id: string | null
+          click_cost: number | null
+          conversion_type: string
+          conversion_value: number
+          created_at: string
+          id: string
+          insurance_type: string | null
+          lead_id: string | null
+          postal_code: string | null
+          source: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
+        }
+        Insert: {
+          campaign_id?: string | null
+          click_cost?: number | null
+          conversion_type: string
+          conversion_value: number
+          created_at?: string
+          id?: string
+          insurance_type?: string | null
+          lead_id?: string | null
+          postal_code?: string | null
+          source?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+        }
+        Update: {
+          campaign_id?: string | null
+          click_cost?: number | null
+          conversion_type?: string
+          conversion_value?: number
+          created_at?: string
+          id?: string
+          insurance_type?: string | null
+          lead_id?: string | null
+          postal_code?: string | null
+          source?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
+        }
+        Relationships: []
+      }
       insurance_quotes: {
         Row: {
           assigned_to: string | null
@@ -596,6 +704,19 @@ export type Database = {
           p_lead_score: number
         }
         Returns: number
+      }
+      calculate_campaign_metrics: {
+        Args: never
+        Returns: {
+          campaign_id: string
+          campaign_name: string
+          conversion_rate: number
+          conversion_value: number
+          cost_per_lead: number
+          roi_percentage: number
+          total_conversions: number
+          total_spend: number
+        }[]
       }
       cleanup_old_deleted_items: { Args: never; Returns: undefined }
       get_agent_current_load: { Args: { p_agent_id: string }; Returns: number }

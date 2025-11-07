@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, RefreshCw, Shield, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog } from 'lucide-react';
+import { LogOut, RefreshCw, Shield, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog, TrendingUp } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { StatsCards } from '@/components/admin/StatsCards';
@@ -22,6 +22,7 @@ import { CommercialAlerts } from '@/components/admin/CommercialAlerts';
 import { RedistributionLog } from '@/components/admin/RedistributionLog';
 import { RedistributionButton } from '@/components/admin/RedistributionButton';
 import { RedistributionHistory } from '@/components/admin/RedistributionHistory';
+import { GoogleAdsDashboard } from '@/components/admin/GoogleAdsDashboard';
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -236,10 +237,14 @@ const Admin = () => {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <Tabs defaultValue="dashboard" className="w-full">
-          <TabsList className="grid w-full grid-cols-6 mb-6">
+          <TabsList className="grid w-full grid-cols-7 mb-6">
             <TabsTrigger value="dashboard" className="flex items-center gap-2">
               <LayoutDashboard className="h-4 w-4" />
               Dashboard
+            </TabsTrigger>
+            <TabsTrigger value="google-ads" className="flex items-center gap-2">
+              <TrendingUp className="h-4 w-4" />
+              Google Ads
             </TabsTrigger>
             <TabsTrigger value="supervision" className="flex items-center gap-2">
               <UserCog className="h-4 w-4" />
@@ -287,6 +292,10 @@ const Admin = () => {
                 <CallbacksTable callbacks={filteredCallbacks} onUpdate={fetchData} highlightedId={highlightedId} />
               </div>
             </div>
+          </TabsContent>
+
+          <TabsContent value="google-ads">
+            <GoogleAdsDashboard />
           </TabsContent>
 
           <TabsContent value="supervision">

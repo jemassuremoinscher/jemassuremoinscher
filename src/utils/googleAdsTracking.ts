@@ -64,19 +64,26 @@ export const trackGoogleAdsConversion = (
 };
 
 /**
- * Track a conversion with additional parameters
+ * Track a conversion with additional parameters and save to database
  * @param type - Type of conversion
  * @param params - Additional tracking parameters
  */
-export const trackGoogleAdsConversionWithParams = (
+export const trackGoogleAdsConversionWithParams = async (
   type: ConversionType,
   params: {
     value?: number;
     insuranceType?: string;
     postalCode?: string;
     source?: string;
+    leadId?: string;
+    campaignId?: string;
+    utmSource?: string;
+    utmMedium?: string;
+    utmCampaign?: string;
+    utmContent?: string;
+    utmTerm?: string;
   }
-): void => {
+): Promise<void> => {
   if (typeof window === 'undefined' || !window.gtag) {
     console.warn('Google Ads tracking not available');
     return;
@@ -85,6 +92,7 @@ export const trackGoogleAdsConversionWithParams = (
   const config = CONVERSION_CONFIGS[type];
 
   try {
+    // Track in Google Ads
     window.gtag('event', 'conversion', {
       send_to: `${config.conversionId}/${config.conversionLabel}`,
       value: params.value ?? config.value,
@@ -94,6 +102,25 @@ export const trackGoogleAdsConversionWithParams = (
       insurance_type: params.insuranceType,
       postal_code: params.postalCode,
       source: params.source,
+    });
+
+    // Save to Supabase for analytics dashboard
+    // Dynamic import to avoid bundling issues
+    const { supabase } = await import('@/integrations/supabase/client');
+    
+    await supabase.from('google_ads_conversions').insert({
+      campaign_id: params.campaignId || params.utmCampaign || null,
+      conversion_type: type,
+      conversion_value: params.value ?? config.value,
+      insurance_type: params.insuranceType,
+      postal_code: params.postalCode,
+      source: params.source,
+      utm_source: params.utmSource,
+      utm_medium: params.utmMedium,
+      utm_campaign: params.utmCampaign,
+      utm_content: params.utmContent,
+      utm_term: params.utmTerm,
+      lead_id: params.leadId,
     });
 
     console.log(`✅ Google Ads Conversion tracked with params: ${type}`, params);

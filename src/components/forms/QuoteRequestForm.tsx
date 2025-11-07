@@ -61,7 +61,7 @@ export const QuoteRequestForm = () => {
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase.from("insurance_quotes").insert({
+      const { data: insertedQuote, error } = await supabase.from("insurance_quotes").insert({
         insurance_type: data.insuranceType,
         full_name: data.fullName,
         email: data.email,
@@ -71,7 +71,7 @@ export const QuoteRequestForm = () => {
           currentInsurer: data.currentInsurer || null,
         },
         status: "pending",
-      });
+      }).select().single();
 
       if (error) throw error;
 
@@ -110,10 +110,17 @@ export const QuoteRequestForm = () => {
       });
       
       // Track Google Ads conversion with detailed params
+      const quoteData = insertedQuote?.quote_data as any;
       trackGoogleAdsConversionWithParams('quote_request', {
         value: 100,
         insuranceType: data.insuranceType,
         postalCode: data.postalCode,
+        leadId: insertedQuote?.id,
+        utmSource: quoteData?.utm_data?.source,
+        utmMedium: quoteData?.utm_data?.medium,
+        utmCampaign: quoteData?.utm_data?.campaign,
+        utmContent: quoteData?.utm_data?.content,
+        utmTerm: quoteData?.utm_data?.term,
       });
       
       form.reset();
