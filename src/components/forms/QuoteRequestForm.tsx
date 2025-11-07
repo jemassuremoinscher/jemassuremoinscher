@@ -13,6 +13,7 @@ import { FileText, Loader2, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { trackGoogleAdsConversionWithParams } from "@/utils/googleAdsTracking";
 
 const quoteFormSchema = z.object({
   insuranceType: z.string().min(1, "Veuillez sélectionner un type d'assurance"),
@@ -106,6 +107,13 @@ export const QuoteRequestForm = () => {
         category: 'lead_generation',
         insurance_type: data.insuranceType,
         value: 100,
+      });
+      
+      // Track Google Ads conversion with detailed params
+      trackGoogleAdsConversionWithParams('quote_request', {
+        value: 100,
+        insuranceType: data.insuranceType,
+        postalCode: data.postalCode,
       });
       
       form.reset();

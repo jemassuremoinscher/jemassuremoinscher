@@ -12,6 +12,7 @@ import { Phone, Loader2, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { trackGoogleAdsConversion } from "@/utils/googleAdsTracking";
 
 const callbackSchema = z.object({
   fullName: z.string()
@@ -68,12 +69,15 @@ export const CallbackForm = () => {
         description: "Nous vous rappellerons dans les meilleurs délais.",
       });
       
-      // Track conversion
+      // Track conversions
       trackConversion('callback_request');
       trackEvent('callback_request', {
         category: 'lead_generation',
         label: data.preferredTime,
       });
+      
+      // Track Google Ads conversion
+      trackGoogleAdsConversion('callback_request');
       
       form.reset();
     } catch (error) {
