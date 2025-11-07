@@ -23,6 +23,7 @@ import { RedistributionLog } from '@/components/admin/RedistributionLog';
 import { RedistributionButton } from '@/components/admin/RedistributionButton';
 import { RedistributionHistory } from '@/components/admin/RedistributionHistory';
 import { GoogleAdsDashboard } from '@/components/admin/GoogleAdsDashboard';
+import { GoogleAdsSyncButton } from '@/components/admin/GoogleAdsSyncButton';
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -295,7 +296,10 @@ const Admin = () => {
           </TabsContent>
 
           <TabsContent value="google-ads">
-            <GoogleAdsDashboard />
+            <div className="space-y-6">
+              <GoogleAdsSyncButton />
+              <GoogleAdsDashboard />
+            </div>
           </TabsContent>
 
           <TabsContent value="supervision">
