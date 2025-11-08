@@ -4,6 +4,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import logoMobile from "@/assets/logo-mobile.png";
+import logoDesktop from "@/assets/logo-desktop.png";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -45,7 +47,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm" role="banner">
+      <header className="bg-card border-b border-border sticky top-0 z-50 shadow-sm" role="banner">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <Link 
@@ -53,13 +55,20 @@ const Header = () => {
               className="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
               aria-label="Retour à la page d'accueil - Le Comparateur Assurance"
             >
-              <div className="p-2 rounded-lg bg-gradient-to-br from-primary to-primary/80 shadow-md">
-                <Shield className="h-6 w-6 text-white" aria-hidden="true" />
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-xs font-semibold text-primary uppercase tracking-wide">Le Comparateur</span>
-                <span className="text-xl font-black text-primary uppercase">Assurance</span>
-              </div>
+              {/* Logo mobile */}
+              <img 
+                src={logoMobile} 
+                alt="Le Comparateur Assurance" 
+                className="h-10 md:hidden"
+                loading="eager"
+              />
+              {/* Logo desktop */}
+              <img 
+                src={logoDesktop} 
+                alt="Le Comparateur Assurance" 
+                className="hidden md:block h-12"
+                loading="eager"
+              />
             </Link>
 
             {/* Mobile Menu Button */}
@@ -78,7 +87,7 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation Menu */}
-        <nav className="hidden lg:block bg-gradient-to-r from-gray-50 to-gray-100/50 border-t border-gray-200" role="navigation" aria-label="Navigation principale">
+        <nav className="hidden lg:block bg-gradient-to-r from-muted to-muted/50 border-t border-border" role="navigation" aria-label="Navigation principale">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-center gap-2 py-3">
               <Link
@@ -98,19 +107,19 @@ const Header = () => {
                 <PopoverTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
+                    className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
                   >
                     Particuliers
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-64 p-2 bg-white shadow-lg border border-gray-200" align="start">
+                <PopoverContent className="w-64 p-2 bg-card shadow-lg border border-border" align="start">
                   <div className="space-y-1">
                     {assurancesParticuliers.map(({ to, label, icon: Icon }) => (
                       <Link
                         key={to}
                         to={to}
-                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
                         onClick={() => {
                           setOpenPopover(null);
                           handleInsuranceTypeClick(label.toLowerCase(), 'particuliers');
@@ -128,19 +137,19 @@ const Header = () => {
                 <PopoverTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
+                    className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
                   >
                     Professionnels
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-64 p-2 bg-white shadow-lg border border-gray-200" align="start">
+                <PopoverContent className="w-64 p-2 bg-card shadow-lg border border-border" align="start">
                   <div className="space-y-1">
                     {assurancesPro.map(({ to, label, icon: Icon }) => (
                       <Link
                         key={to}
                         to={to}
-                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
                         onClick={() => {
                           setOpenPopover(null);
                           handleInsuranceTypeClick(label.toLowerCase(), 'professionnels');
@@ -158,19 +167,19 @@ const Header = () => {
                 <PopoverTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
+                    className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
                   >
                     Vie & Épargne
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-64 p-2 bg-white shadow-lg border border-gray-200" align="start">
+                <PopoverContent className="w-64 p-2 bg-card shadow-lg border border-border" align="start">
                   <div className="space-y-1">
                     {assurancesVieEpargne.map(({ to, label, icon: Icon }) => (
                       <Link
                         key={to}
                         to={to}
-                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
                         onClick={() => {
                           setOpenPopover(null);
                           handleInsuranceTypeClick(label.toLowerCase(), 'vie_epargne');
@@ -188,19 +197,19 @@ const Header = () => {
                 <PopoverTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
+                    className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
                   >
                     Immobilier
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-64 p-2 bg-white shadow-lg border border-gray-200" align="start">
+                <PopoverContent className="w-64 p-2 bg-card shadow-lg border border-border" align="start">
                   <div className="space-y-1">
                     {assurancesImmobilier.map(({ to, label, icon: Icon }) => (
                       <Link
                         key={to}
                         to={to}
-                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-md transition-colors"
                         onClick={() => {
                           setOpenPopover(null);
                           handleInsuranceTypeClick(label.toLowerCase(), 'immobilier');
@@ -214,29 +223,29 @@ const Header = () => {
                 </PopoverContent>
               </Popover>
 
-              <div className="h-6 w-px bg-gray-300 mx-2" aria-hidden="true" />
+              <div className="h-6 w-px bg-border mx-2" aria-hidden="true" />
 
               <Link
                 to="/qui-sommes-nous"
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+                className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
               >
                 Qui sommes-nous ?
               </Link>
               <Link
                 to="/nos-partenaires"
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+                className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
               >
                 Nos Partenaires
               </Link>
               <Link
                 to="/avis-clients"
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+                className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
               >
                 Avis Clients
               </Link>
               <Link
                 to="/blog"
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+                className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
               >
                 Blog
               </Link>
@@ -258,7 +267,7 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div 
           id="mobile-menu"
-          className="fixed top-[73px] left-0 right-0 bottom-0 bg-white z-50 overflow-y-auto lg:hidden animate-slide-in-left"
+          className="fixed top-[73px] left-0 right-0 bottom-0 bg-card z-50 overflow-y-auto lg:hidden animate-slide-in-left"
           role="dialog"
           aria-label="Menu de navigation mobile"
         >
@@ -274,13 +283,13 @@ const Header = () => {
             </div>
 
             <div>
-              <h3 className="px-4 py-2 text-xs font-bold text-gray-500 uppercase tracking-wider">Particuliers</h3>
+              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">Particuliers</h3>
               <div className="space-y-1 mt-2">
                 {assurancesParticuliers.map(({ to, label, icon: Icon }) => (
                   <Link
                     key={to}
                     to={to}
-                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <Icon className="h-5 w-5 text-primary" />
@@ -291,13 +300,13 @@ const Header = () => {
             </div>
 
             <div>
-              <h3 className="px-4 py-2 text-xs font-bold text-gray-500 uppercase tracking-wider">Professionnels</h3>
+              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">Professionnels</h3>
               <div className="space-y-1 mt-2">
                 {assurancesPro.map(({ to, label, icon: Icon }) => (
                   <Link
                     key={to}
                     to={to}
-                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <Icon className="h-5 w-5 text-primary" />
@@ -308,13 +317,13 @@ const Header = () => {
             </div>
 
             <div>
-              <h3 className="px-4 py-2 text-xs font-bold text-gray-500 uppercase tracking-wider">Vie & Épargne</h3>
+              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">Vie & Épargne</h3>
               <div className="space-y-1 mt-2">
                 {assurancesVieEpargne.map(({ to, label, icon: Icon }) => (
                   <Link
                     key={to}
                     to={to}
-                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <Icon className="h-5 w-5 text-primary" />
@@ -325,13 +334,13 @@ const Header = () => {
             </div>
 
             <div>
-              <h3 className="px-4 py-2 text-xs font-bold text-gray-500 uppercase tracking-wider">Immobilier</h3>
+              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">Immobilier</h3>
               <div className="space-y-1 mt-2">
                 {assurancesImmobilier.map(({ to, label, icon: Icon }) => (
                   <Link
                     key={to}
                     to={to}
-                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-gray-700 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-lg transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <Icon className="h-5 w-5 text-primary" />
@@ -341,32 +350,32 @@ const Header = () => {
               </div>
             </div>
 
-            <div className="border-t border-gray-200 pt-4">
+            <div className="border-t border-border pt-4">
               <div className="space-y-1">
                 <Link
                   to="/qui-sommes-nous"
-                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Qui sommes-nous ?
                 </Link>
                 <Link
                   to="/nos-partenaires"
-                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Nos Partenaires
                 </Link>
                 <Link
                   to="/avis-clients"
-                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Avis Clients
                 </Link>
                 <Link
                   to="/blog"
-                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Blog
