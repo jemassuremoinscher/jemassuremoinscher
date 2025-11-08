@@ -4,8 +4,6 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
-import logoMobile from "@/assets/logo-mobile.png";
-import logoDesktop from "@/assets/logo-desktop.png";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -55,20 +53,13 @@ const Header = () => {
               className="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
               aria-label="Retour à la page d'accueil - Le Comparateur Assurance"
             >
-              {/* Logo mobile */}
-              <img 
-                src={logoMobile} 
-                alt="Le Comparateur Assurance" 
-                className="h-10 md:hidden"
-                loading="eager"
-              />
-              {/* Logo desktop */}
-              <img 
-                src={logoDesktop} 
-                alt="Le Comparateur Assurance" 
-                className="hidden md:block h-12"
-                loading="eager"
-              />
+              <div className="p-2 rounded-lg bg-gradient-to-br from-primary to-primary/80 shadow-md">
+                <Shield className="h-6 w-6 text-white" aria-hidden="true" />
+              </div>
+              <div className="flex flex-col leading-tight">
+                <span className="text-xs font-semibold text-primary uppercase tracking-wide">Le Comparateur</span>
+                <span className="text-xl font-black text-primary uppercase">Assurance</span>
+              </div>
             </Link>
 
             {/* Mobile Menu Button */}
