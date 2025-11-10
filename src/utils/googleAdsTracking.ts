@@ -16,14 +16,14 @@ interface ConversionConfig {
 // À remplacer par vos propres IDs de conversion après configuration dans Google Ads
 const CONVERSION_CONFIGS: Record<ConversionType, ConversionConfig> = {
   quote_request: {
-    conversionId: 'AW-XXXXXXXXX', // À remplacer
-    conversionLabel: 'XXXXXXXXX', // À remplacer
+    conversionId: 'AW-17717986686',
+    conversionLabel: 'XXXXXXXXX', // À configurer dans Google Ads pour "Demande de Devis"
     value: 100, // Valeur estimée d'un devis de qualité
     currency: 'EUR',
   },
   callback_request: {
-    conversionId: 'AW-XXXXXXXXX', // À remplacer
-    conversionLabel: 'XXXXXXXXX', // À remplacer
+    conversionId: 'AW-17717986686',
+    conversionLabel: 'XXXXXXXXX', // À configurer dans Google Ads pour "Demande de Rappel"
     value: 50, // Valeur estimée d'une demande de rappel
     currency: 'EUR',
   },
