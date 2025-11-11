@@ -47,15 +47,15 @@
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/avis-clients</loc>
-    <lastmod>2025-11-05</lastmod>
+    <lastmod>2025-11-11</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/gestion-locative</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2025-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <!-- Insurance Pages - High Priority -->
@@ -67,9 +67,9 @@
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/assurance-moto</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2025-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/assurance-habitation</loc>
@@ -85,9 +85,9 @@
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/assurance-vie</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2025-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/assurance-pret</loc>
@@ -97,9 +97,9 @@
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/assurance-animaux</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/assurance-pno</loc>
@@ -109,9 +109,9 @@
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/assurance-gli</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/assurance-mrp</loc>
@@ -127,21 +127,21 @@
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/assurance-rc-pro</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <!-- Blog Articles 2025 - SEO Priority -->
   <url>
     <loc>https://www.assurmoinschere.fr/blog/meilleure-assurance-auto-2025-comparatif</loc>
-    <lastmod>2025-01-02</lastmod>
+    <lastmod>2025-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/blog/top-10-meilleures-mutuelles-sante-2025</loc>
-    <lastmod>2025-01-05</lastmod>
+    <lastmod>2025-11-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -173,9 +173,9 @@
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/blog/assurance-habitation-garanties-indispensables</loc>
-    <lastmod>2024-01-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2025-11-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/blog/top-5-erreurs-assurance-habitation</loc>
@@ -237,9 +237,9 @@
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/politique-cookies</loc>
-    <lastmod>2025-01-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <lastmod>2025-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.assurmoinschere.fr/cgu</loc>

@@ -3,15 +3,24 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { useCookieConsent } from "@/hooks/useCookieConsent";
+import { addBreadcrumbSchema } from "@/utils/seoUtils";
 
 const PolitiqueCookies = () => {
   const { resetConsent } = useCookieConsent();
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Politique de Cookies", url: "https://www.assurmoinschere.fr/politique-cookies" }
+  ]);
+
   return (
     <div className="min-h-screen flex flex-col">
       <SEO
-        title="Politique de Cookies - Le Comparateur Assurance"
-        description="Consultez notre politique de cookies et gérez vos préférences de confidentialité sur Le Comparateur Assurance."
+        title="Politique de Cookies - Gestion et Préférences | Le Comparateur Assurance"
+        description="Consultez notre politique de cookies RGPD : types de cookies utilisés, gestion de vos préférences, durée de conservation. Contrôlez vos données personnelles."
+        keywords="politique cookies, gestion cookies, RGPD, confidentialité, données personnelles"
+        canonical="https://www.assurmoinschere.fr/politique-cookies"
+        jsonLd={breadcrumbSchema}
       />
       <Header />
       

@@ -17,6 +17,7 @@ import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { Building2, Home, Euro, Users, TrendingUp, Star, CheckCircle } from 'lucide-react';
 import InsuranceFAQ from '@/components/insurance/InsuranceFAQ';
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from '@/utils/seoUtils';
 
 const formSchema = z.object({
   propertyCount: z.enum(['1', '2-5', '5+'], {
@@ -153,6 +154,33 @@ const GestionLocative = () => {
     'Déclarations fiscales simplifiées'
   ];
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Gestion Locative", url: "https://www.assurmoinschere.fr/gestion-locative" }
+  ]);
+
+  const serviceSchema = addServiceSchema({
+    name: "Comparateur Gestion Locative",
+    description: "Trouvez le meilleur gestionnaire pour vos biens locatifs. Services de gestion complète, partielle ou déclarative. Honoraires compétitifs.",
+    provider: "Le Comparateur Assurance",
+    areaServed: "France"
+  });
+
+  const faqSchema = addFAQSchema([
+    {
+      question: "Qu'est-ce que la gestion locative ?",
+      answer: "La gestion locative consiste à confier la gestion quotidienne de votre bien immobilier à un professionnel : recherche de locataires, état des lieux, encaissement des loyers, gestion des travaux, etc."
+    },
+    {
+      question: "Quels sont les types de gestion proposés ?",
+      answer: "Il existe trois types principaux : la gestion complète (tout inclus), la gestion partielle (seulement certaines tâches) et la gestion déclarative (simple suivi administratif)."
+    },
+    {
+      question: "Combien coûte la gestion locative ?",
+      answer: "Les honoraires varient généralement entre 5% et 10% des loyers perçus, selon le niveau de service choisi et le nombre de biens gérés."
+    }
+  ]);
+
   const faqs = [
     {
       question: 'Qu\'est-ce que la gestion locative ?',
@@ -175,9 +203,11 @@ const GestionLocative = () => {
   return (
     <>
       <SEO 
-        title="Gestion Locative - Comparez les meilleurs services"
-        description="Confiez la gestion de votre bien immobilier à des experts. Comparez les offres de gestion locative et trouvez le service adapté à vos besoins."
-        keywords="gestion locative, gestion immobilière, loc online, administrateur de biens"
+        title="Gestion Locative - Comparez les Meilleurs Gestionnaires Immobiliers"
+        description="Comparez les offres de gestion locative pour vos biens immobiliers. Gestion complète, partielle ou déclarative. Honoraires de 5% à 10%. Trouvez le meilleur gestionnaire."
+        keywords="gestion locative, gestion immobilière, loc online, administrateur de biens, gestionnaire immobilier, honoraires gestion"
+        canonical="https://www.assurmoinschere.fr/gestion-locative"
+        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       
       <div className="min-h-screen flex flex-col">

@@ -1,7 +1,9 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import { Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 
 const testimonials = [
   {
@@ -43,8 +45,26 @@ const testimonials = [
 ];
 
 const AvisClients = () => {
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
+    { name: "Avis Clients", url: "https://www.assurmoinschere.fr/avis-clients" }
+  ]);
+
+  const ratingSchema = addAggregateRatingSchema(
+    "Le Comparateur Assurance",
+    4.9,
+    2547
+  );
+
   return (
     <div className="min-h-screen">
+      <SEO 
+        title="Avis Clients - Témoignages et Retours d'Expérience | Le Comparateur Assurance"
+        description="Découvrez les avis de nos clients sur notre comparateur d'assurance. Note moyenne de 4.9/5 sur 2 547 avis vérifiés. Témoignages authentiques sur nos services."
+        keywords="avis clients, témoignages assurance, retour expérience, satisfaction client, comparateur avis"
+        canonical="https://www.assurmoinschere.fr/avis-clients"
+        jsonLd={[breadcrumbSchema, ratingSchema]}
+      />
       <Header />
       
       <main className="container mx-auto px-4 py-16">
