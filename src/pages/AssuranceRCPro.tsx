@@ -140,7 +140,7 @@ const AssuranceRCPro = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance RC Pro",
     description: "Comparez les assurances Responsabilité Civile Professionnelle. Protégez votre activité contre les dommages causés à vos clients et tiers.",
-    provider: "Le Comparateur Assurance",
+    provider: "jemassurmoinscher",
     areaServed: "France"
   });
 

@@ -74,7 +74,7 @@ const Contact = () => {
   return (
     <>
       <SEO 
-        title="Contact - Le Comparateur Assurance"
+        title="Contact - jemassurmoinscher"
         description="Contactez-nous pour toute question sur nos services de comparaison d'assurance"
       />
       

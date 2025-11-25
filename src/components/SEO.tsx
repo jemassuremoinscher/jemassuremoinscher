@@ -23,7 +23,7 @@ const SEO = ({
   const location = useLocation();
   const baseUrl = 'https://www.assurmoinschere.fr';
   
-  const defaultTitle = 'Le Comparateur Assurance - Économisez jusqu\'à 947€/an';
+  const defaultTitle = 'jemassurmoinscher - Économisez jusqu\'à 947€/an';
   const defaultDescription = 'Comparez gratuitement les meilleures assurances auto, santé, habitation, animaux et prêt en France. Devis en 2 minutes.';
   const defaultImage = 'https://lovable.dev/opengraph-image-p98pqg.png';
 

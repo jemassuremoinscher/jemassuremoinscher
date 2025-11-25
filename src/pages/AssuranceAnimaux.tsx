@@ -101,7 +101,7 @@ const AssuranceAnimaux = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Animaux",
     description: "Comparez les assurances pour chiens et chats. Remboursement des frais vétérinaires jusqu'à 100%. Protégez votre animal de compagnie au meilleur prix.",
-    provider: "Le Comparateur Assurance",
+    provider: "jemassurmoinscher",
     areaServed: "France"
   });
 
@@ -147,7 +147,7 @@ const AssuranceAnimaux = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Assurance Animaux - Protégez votre chien ou chat | Le Comparateur Assurance"
+        title="Assurance Animaux - Protégez votre chien ou chat | jemassurmoinscher"
         description="Comparez les assurances pour chiens et chats. Remboursement des frais vétérinaires jusqu'à 100%. Devis gratuit pour protéger votre animal de compagnie."
         keywords="assurance chien, assurance chat, assurance animaux, mutuelle animaux, frais vétérinaires"
         canonical="https://www.assurmoinschere.fr/assurance-animaux"

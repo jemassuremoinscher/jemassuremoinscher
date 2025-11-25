@@ -83,7 +83,7 @@ const BlogArticle = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title={`${article.title} | Blog Le Comparateur Assurance`}
+        title={`${article.title} | Blog jemassurmoinscher`}
         description={article.description}
         keywords={article.tags.join(", ")}
         canonical={`https://www.assurmoinschere.fr/blog/${article.slug}`}

@@ -21,12 +21,12 @@ const Index = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances en Ligne",
     description: "Comparez gratuitement les meilleures offres d'assurance auto, santé, habitation, vie et animaux en France. Devis en 2 minutes.",
-    provider: "Le Comparateur Assurance",
+    provider: "jemassurmoinscher",
     areaServed: "France"
   });
 
   const ratingSchema = addAggregateRatingSchema(
-    "Le Comparateur Assurance",
+    "jemassurmoinscher",
     4.8,
     2547
   );
@@ -49,7 +49,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Le Comparateur Assurance - Économisez jusqu'à 947€/an"
+        title="jemassurmoinscher - Économisez jusqu'à 947€/an"
         description="Comparez gratuitement les meilleures assurances auto, santé, habitation, animaux et prêt en France. Économisez en moyenne 947€ par an. Devis gratuit en 2 minutes avec nos partenaires Allianz, AXA, Groupama, MAIF."
         keywords="comparateur assurance france, devis assurance gratuit, économiser assurance, meilleure assurance, assurance pas cher"
         canonical="https://www.assurmoinschere.fr/"

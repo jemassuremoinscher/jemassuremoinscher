@@ -51,7 +51,7 @@ const AvisClients = () => {
   ]);
 
   const ratingSchema = addAggregateRatingSchema(
-    "Le Comparateur Assurance",
+    "jemassurmoinscher",
     4.9,
     2547
   );
@@ -59,7 +59,7 @@ const AvisClients = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Avis Clients - Témoignages et Retours d'Expérience | Le Comparateur Assurance"
+        title="Avis Clients - Témoignages et Retours d'Expérience | jemassurmoinscher"
         description="Découvrez les avis de nos clients sur notre comparateur d'assurance. Note moyenne de 4.9/5 sur 2 547 avis vérifiés. Témoignages authentiques sur nos services."
         keywords="avis clients, témoignages assurance, retour expérience, satisfaction client, comparateur avis"
         canonical="https://www.assurmoinschere.fr/avis-clients"

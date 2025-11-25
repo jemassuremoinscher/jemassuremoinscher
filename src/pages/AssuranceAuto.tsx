@@ -149,7 +149,7 @@ const AssuranceAuto = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Auto",
     description: "Comparez les meilleures offres d'assurance auto en France. Devis gratuit et personnalisé en 2 minutes. Économisez jusqu'à 400€ par an.",
-    provider: "Le Comparateur Assurance",
+    provider: "jemassurmoinscher",
     areaServed: "France"
   });
 
@@ -201,7 +201,7 @@ const AssuranceAuto = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Assurance Auto - Comparez et Économisez | Le Comparateur Assurance"
+        title="Assurance Auto - Comparez et Économisez | jemassurmoinscher"
         description="Comparez les meilleures assurances auto en France. Devis gratuit en 2 minutes. Économisez jusqu'à 400€/an avec nos partenaires Allianz, AXA, Direct Assurance, Groupama."
         keywords="assurance auto, devis assurance voiture, assurance auto pas cher, comparateur assurance auto, assurance tous risques"
         canonical="https://www.assurmoinschere.fr/assurance-auto"

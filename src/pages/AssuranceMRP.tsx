@@ -129,7 +129,7 @@ const AssuranceMRP = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Multirisque Professionnelle",
     description: "Comparez les assurances multirisque professionnelle pour protéger vos locaux, matériel, stock et activité. Devis adapté à votre entreprise.",
-    provider: "Le Comparateur Assurance",
+    provider: "jemassurmoinscher",
     areaServed: "France"
   });
 

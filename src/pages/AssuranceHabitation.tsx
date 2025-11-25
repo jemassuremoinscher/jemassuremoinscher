@@ -125,7 +125,7 @@ const AssuranceHabitation = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Habitation",
     description: "Comparez les assurances habitation pour maison, appartement, locataire ou propriétaire. Devis gratuit et rapide. Protégez votre logement au meilleur prix.",
-    provider: "Le Comparateur Assurance",
+    provider: "jemassurmoinscher",
     areaServed: "France"
   });
 

@@ -129,7 +129,7 @@ const AssuranceMoto = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Moto",
     description: "Comparez les assurances moto et scooter pour tous types de deux-roues. Devis gratuit et rapide. Trouvez la meilleure offre adaptée à votre profil.",
-    provider: "Le Comparateur Assurance",
+    provider: "jemassurmoinscher",
     areaServed: "France"
   });
 
@@ -157,7 +157,7 @@ const AssuranceMoto = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Assurance Moto - Comparez les Meilleurs Tarifs | Le Comparateur Assurance"
+        title="Assurance Moto - Comparez les Meilleurs Tarifs | jemassurmoinscher"
         description="Comparez les assurances moto et scooter. Devis gratuit en ligne pour tous types de deux-roues. Économisez jusqu'à 35% avec nos partenaires assureurs."
         keywords="assurance moto, assurance scooter, assurance deux roues, comparateur assurance moto, assurance moto pas cher"
         canonical="https://www.assurmoinschere.fr/assurance-moto"
