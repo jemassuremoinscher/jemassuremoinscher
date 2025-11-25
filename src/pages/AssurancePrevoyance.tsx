@@ -140,7 +140,7 @@ const AssurancePrevoyance = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Prévoyance",
     description: "Comparez les meilleures assurances prévoyance : décès, obsèques, dépendance. Protégez votre famille et préparez l'avenir sereinement.",
-    provider: "Le Comparateur Assurance",
+    provider: "jemassurmoinscher",
     areaServed: "France"
   });
 

@@ -116,7 +116,7 @@ const AssuranceSante = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Mutuelle Santé",
     description: "Comparez les meilleures mutuelles santé et complémentaires santé en France. Devis gratuit et personnalisé adapté à vos besoins.",
-    provider: "Le Comparateur Assurance",
+    provider: "jemassurmoinscher",
     areaServed: "France"
   });
 
@@ -168,7 +168,7 @@ const AssuranceSante = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Mutuelle Santé - Comparez les Meilleures Offres | Le Comparateur Assurance"
+        title="Mutuelle Santé - Comparez les Meilleures Offres | jemassurmoinscher"
         description="Comparez les mutuelles santé et complémentaires santé en France. Devis gratuit et personnalisé en 2 minutes. Trouvez la meilleure mutuelle adaptée à vos besoins."
         keywords="mutuelle santé, complémentaire santé, assurance santé, comparateur mutuelle, mutuelle pas cher"
         canonical="https://www.assurmoinschere.fr/assurance-sante"

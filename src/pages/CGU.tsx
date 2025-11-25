@@ -7,8 +7,8 @@ const CGU = () => {
   return (
     <>
       <SEO 
-        title="Conditions Générales d'Utilisation - Le Comparateur Assurance"
-        description="Conditions générales d'utilisation du service Le Comparateur Assurance"
+        title="Conditions Générales d'Utilisation - jemassurmoinscher"
+        description="Conditions générales d'utilisation du service jemassurmoinscher"
       />
       
       <div className="min-h-screen flex flex-col">
@@ -28,7 +28,7 @@ const CGU = () => {
                 <CardContent>
                   <p>
                     Les présentes Conditions Générales d'Utilisation (CGU) ont pour objet de définir les modalités et conditions 
-                    d'utilisation du site Le Comparateur Assurance ainsi que les droits et obligations des utilisateurs.
+                    d'utilisation du site jemassurmoinscher ainsi que les droits et obligations des utilisateurs.
                   </p>
                   <p className="mt-2">
                     L'utilisation du site implique l'acceptation pleine et entière des présentes CGU.
@@ -47,7 +47,7 @@ const CGU = () => {
                     connexion Internet, etc.) sont à sa charge.
                   </p>
                   <p className="mt-2">
-                    Le Comparateur Assurance se réserve le droit de suspendre, d'interrompre ou de limiter l'accès à tout ou partie 
+                    jemassurmoinscher se réserve le droit de suspendre, d'interrompre ou de limiter l'accès à tout ou partie 
                     du site, notamment pour des raisons de maintenance, sans préavis ni indemnité.
                   </p>
                 </CardContent>
@@ -59,11 +59,11 @@ const CGU = () => {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Le Comparateur Assurance est un service de comparaison en ligne permettant aux utilisateurs de comparer 
+                    jemassurmoinscher est un service de comparaison en ligne permettant aux utilisateurs de comparer 
                     différentes offres d'assurance proposées par nos partenaires.
                   </p>
                   <p className="mt-2">
-                    <strong>Important :</strong> Le Comparateur Assurance n'est pas un assureur et n'émet pas de contrats d'assurance. 
+                    <strong>Important :</strong> jemassurmoinscher n'est pas un assureur et n'émet pas de contrats d'assurance.
                     Notre rôle se limite à la mise en relation entre les utilisateurs et les assureurs ou courtiers partenaires.
                   </p>
                 </CardContent>
@@ -93,7 +93,7 @@ const CGU = () => {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Le Comparateur Assurance collecte et traite vos données personnelles dans le respect du RGPD 
+                    jemassurmoinscher collecte et traite vos données personnelles dans le respect du RGPD 
                     (Règlement Général sur la Protection des Données).
                   </p>
                   <p className="mt-2">
@@ -126,7 +126,7 @@ const CGU = () => {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Le Comparateur Assurance s'efforce de fournir des informations fiables et actualisées. Cependant :
+                    jemassurmoinscher s'efforce de fournir des informations fiables et actualisées. Cependant :
                   </p>
                   <ul className="list-disc pl-6 mt-2 space-y-1">
                     <li>Les informations sont fournies à titre indicatif</li>
@@ -144,7 +144,7 @@ const CGU = () => {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Le site peut contenir des liens vers des sites externes. Le Comparateur Assurance n'exerce aucun contrôle 
+                    Le site peut contenir des liens vers des sites externes. jemassurmoinscher n'exerce aucun contrôle 
                     sur ces sites et décline toute responsabilité quant à leur contenu.
                   </p>
                 </CardContent>
@@ -156,7 +156,7 @@ const CGU = () => {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Le Comparateur Assurance se réserve le droit de modifier les présentes CGU à tout moment. 
+                    jemassurmoinscher se réserve le droit de modifier les présentes CGU à tout moment. 
                     Les modifications entrent en vigueur dès leur publication sur le site.
                   </p>
                   <p className="mt-2">

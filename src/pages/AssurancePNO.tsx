@@ -188,7 +188,7 @@ const AssurancePNO = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance PNO",
     description: "Comparez les assurances PNO (Propriétaire Non Occupant) pour protéger votre bien immobilier non occupé. Devis gratuit pour logement vide ou en location.",
-    provider: "Le Comparateur Assurance",
+    provider: "jemassurmoinscher",
     areaServed: "France"
   });
 

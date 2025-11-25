@@ -108,7 +108,7 @@ const AssurancePret = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Prêt Immobilier",
     description: "Comparez les assurances emprunteur et économisez des milliers d'euros sur votre crédit immobilier. Devis gratuit et changement simplifié avec la loi Lemoine.",
-    provider: "Le Comparateur Assurance",
+    provider: "jemassurmoinscher",
     areaServed: "France"
   });
 
@@ -130,7 +130,7 @@ const AssurancePret = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Assurance Prêt Immobilier - Économisez jusqu'à 50% | Le Comparateur Assurance"
+        title="Assurance Prêt Immobilier - Économisez jusqu'à 50% | jemassurmoinscher"
         description="Comparez les assurances emprunteur et économisez des milliers d'euros sur votre crédit immobilier. Devis gratuit et changement simplifié avec la loi Lemoine."
         keywords="assurance prêt immobilier, assurance emprunteur, délégation assurance, loi Lemoine, assurance crédit"
         canonical="https://www.assurmoinschere.fr/assurance-pret"

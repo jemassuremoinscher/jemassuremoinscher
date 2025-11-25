@@ -1,6 +1,6 @@
 # Guide d'utilisation des logos
 
-Ce guide explique quand et comment utiliser chaque version du logo de Le Comparateur Assurance.
+Ce guide explique quand et comment utiliser chaque version du logo de jemassurmoinscher.
 
 ## 📁 Fichiers disponibles
 
@@ -24,7 +24,7 @@ Ce guide explique quand et comment utiliser chaque version du logo de Le Compara
 ```tsx
 import logoMobile from '@/assets/logo-mobile.png';
 
-<img src={logoMobile} alt="Le Comparateur Assurance" className="h-8 md:hidden" />
+<img src={logoMobile} alt="jemassurmoinscher" className="h-8 md:hidden" />
 ```
 
 ### 3. **Logo Desktop** (`src/assets/logo-desktop.png`)
@@ -36,7 +36,7 @@ import logoMobile from '@/assets/logo-mobile.png';
 ```tsx
 import logoDesktop from '@/assets/logo-desktop.png';
 
-<img src={logoDesktop} alt="Le Comparateur Assurance" className="hidden md:block h-12" />
+<img src={logoDesktop} alt="jemassurmoinscher" className="hidden md:block h-12" />
 ```
 
 ### 4. **Logo HD** (`src/assets/logo-hd.png`)
@@ -54,7 +54,7 @@ import logoHD from '@/assets/logo-hd.png';
 
 <img 
   src={logoHD} 
-  alt="Le Comparateur Assurance" 
+  alt="jemassurmoinscher" 
   className="w-full max-w-2xl"
 />
 ```
@@ -75,14 +75,14 @@ export const Header = () => (
     {/* Logo mobile */}
     <img 
       src={logoMobile} 
-      alt="Le Comparateur Assurance" 
+      alt="jemassurmoinscher" 
       className="h-8 md:hidden"
     />
     
     {/* Logo desktop */}
     <img 
       src={logoDesktop} 
-      alt="Le Comparateur Assurance" 
+      alt="jemassurmoinscher" 
       className="hidden md:block h-12"
     />
   </header>
@@ -95,7 +95,7 @@ import logoDesktop from '@/assets/logo-desktop.png';
 
 <img 
   src={logoDesktop} 
-  alt="Le Comparateur Assurance" 
+  alt="jemassurmoinscher" 
   className="h-10 mb-4"
 />
 ```
@@ -117,7 +117,7 @@ Toujours inclure un texte alternatif descriptif :
 ```tsx
 <img 
   src={logoDesktop} 
-  alt="Le Comparateur Assurance - Retour à l'accueil" 
+  alt="jemassurmoinscher - Retour à l'accueil" 
 />
 ```
 

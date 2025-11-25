@@ -14,7 +14,7 @@ const PlanDuSite = () => {
   const webPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Plan du site - Le Comparateur Assurance",
+    "name": "Plan du site - jemassurmoinscher",
     "description": "Plan du site complet avec tous les liens vers nos pages d'assurances, outils, blog et pages légales.",
     "url": "https://www.assurmoinschere.fr/plan-du-site"
   };
@@ -70,7 +70,7 @@ const PlanDuSite = () => {
   return (
     <>
       <SEO 
-        title="Plan du site - Le Comparateur Assurance"
+        title="Plan du site - jemassurmoinscher"
         description="Plan du site complet avec tous les liens vers nos pages d'assurances, outils, blog et pages légales. Navigation simplifiée pour trouver rapidement l'information."
         canonical="https://www.assurmoinschere.fr/plan-du-site"
         jsonLd={[breadcrumbSchema, webPageSchema]}
