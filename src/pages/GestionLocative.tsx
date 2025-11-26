@@ -162,7 +162,7 @@ const GestionLocative = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Gestion Locative",
     description: "Trouvez le meilleur gestionnaire pour vos biens locatifs. Services de gestion complète, partielle ou déclarative. Honoraires compétitifs.",
-    provider: "jemassurmoinscher",
+    provider: "jemassuremoinscher",
     areaServed: "France"
   });
 

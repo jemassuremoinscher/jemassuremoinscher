@@ -7,8 +7,8 @@ const MentionsLegales = () => {
   return (
     <>
       <SEO 
-        title="Mentions Légales - jemassurmoinscher"
-        description="Mentions légales et informations juridiques de jemassurmoinscher"
+        title="Mentions Légales - jemassuremoinscher"
+        description="Mentions légales et informations juridiques de jemassuremoinscher"
       />
       
       <div className="min-h-screen flex flex-col">
@@ -24,7 +24,7 @@ const MentionsLegales = () => {
                   <CardTitle>Éditeur du site</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <p><strong>Raison sociale :</strong> jemassurmoinscher</p>
+                  <p><strong>Raison sociale :</strong> jemassuremoinscher</p>
                   <p><strong>Forme juridique :</strong> SAS (Société par Actions Simplifiée)</p>
                   <p><strong>Capital social :</strong> 10 000 €</p>
                   <p><strong>Siège social :</strong> [Adresse à compléter]</p>
@@ -60,7 +60,7 @@ const MentionsLegales = () => {
                   <CardTitle>Activité</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p>jemassurmoinscher est un service de comparaison en ligne d'offres d'assurance.</p>
+                  <p>jemassuremoinscher est un service de comparaison en ligne d'offres d'assurance.</p>
                   <p className="mt-2">
                     Notre activité consiste à mettre en relation des prospects avec des assureurs et courtiers partenaires. 
                     Nous ne sommes pas un organisme d'assurance et n'assurons pas directement les clients.
@@ -107,7 +107,7 @@ const MentionsLegales = () => {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    jemassurmoinscher met tout en œuvre pour offrir des informations fiables et à jour. 
+                    jemassuremoinscher met tout en œuvre pour offrir des informations fiables et à jour. 
                     Cependant, nous ne pouvons garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition.
                   </p>
                   <p className="mt-2">
@@ -124,7 +124,7 @@ const MentionsLegales = () => {
                 <CardContent>
                   <p>
                     Conformément aux dispositions du Code de la consommation concernant le règlement amiable des litiges, 
-                    jemassurmoinscher adhère au Service du Médiateur [Nom du médiateur].
+                    jemassuremoinscher adhère au Service du Médiateur [Nom du médiateur].
                   </p>
                   <p className="mt-2">
                     En cas de litige, vous pouvez déposer votre réclamation sur son site : [URL du médiateur]

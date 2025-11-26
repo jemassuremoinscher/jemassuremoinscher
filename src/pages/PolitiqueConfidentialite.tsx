@@ -8,8 +8,8 @@ const PolitiqueConfidentialite = () => {
   return (
     <>
       <SEO 
-        title="Politique de Confidentialité - jemassurmoinscher"
-        description="Politique de confidentialité et protection des données personnelles de jemassurmoinscher"
+        title="Politique de Confidentialité - jemassuremoinscher"
+        description="Politique de confidentialité et protection des données personnelles de jemassuremoinscher"
       />
       
       <div className="min-h-screen flex flex-col">
@@ -37,7 +37,7 @@ const PolitiqueConfidentialite = () => {
                 </CardHeader>
                 <CardContent>
                   <p>
-                    jemassurmoinscher accorde une grande importance à la protection de vos données personnelles. 
+                    jemassuremoinscher accorde une grande importance à la protection de vos données personnelles. 
                     Cette politique de confidentialité vous informe sur la manière dont nous collectons, utilisons et protégeons 
                     vos données conformément au RGPD (Règlement Général sur la Protection des Données).
                   </p>
@@ -52,7 +52,7 @@ const PolitiqueConfidentialite = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <p><strong>Responsable :</strong> jemassurmoinscher</p>
+                  <p><strong>Responsable :</strong> jemassuremoinscher</p>
                   <p><strong>Adresse :</strong> [Adresse à compléter]</p>
                   <p><strong>Email :</strong> contact@lecomparateurassurance.fr</p>
                   <p><strong>DPO (Délégué à la Protection des Données) :</strong> [Email DPO]</p>

@@ -16,7 +16,7 @@ const PolitiqueCookies = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEO
-        title="Politique de Cookies - Gestion et Préférences | jemassurmoinscher"
+        title="Politique de Cookies - Gestion et Préférences | jemassuremoinscher"
         description="Consultez notre politique de cookies RGPD : types de cookies utilisés, gestion de vos préférences, durée de conservation. Contrôlez vos données personnelles."
         keywords="politique cookies, gestion cookies, RGPD, confidentialité, données personnelles"
         canonical="https://www.assurmoinschere.fr/politique-cookies"

@@ -14,7 +14,7 @@ const QuiSommesNous = () => {
           </h1>
           
           <p className="text-lg text-muted-foreground mb-8">
-            jemassurmoinscher est votre partenaire de confiance pour trouver les meilleures offres d'assurance adaptées à vos besoins.
+            jemassuremoinscher est votre partenaire de confiance pour trouver les meilleures offres d'assurance adaptées à vos besoins.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 my-12">
