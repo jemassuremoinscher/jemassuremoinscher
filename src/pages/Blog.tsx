@@ -81,6 +81,167 @@ const Blog = () => {
             </div>
           </div>
 
+          {/* Quick Links Section */}
+          <div className="mb-16">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {/* Guides Pratiques */}
+              <div>
+                <h2 className="text-2xl font-bold text-primary mb-6">Guides Pratiques</h2>
+                <ul className="space-y-3">
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/meilleure-assurance-auto-2025')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Meilleure assurance auto 2025
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/top-mutuelles-sante-2025')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Top mutuelles santé
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/assurance-auto-jeune-conducteur-astuces')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Assurance jeune conducteur
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/comparatif-habitation-2025')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Comparatif habitation
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Actualités Légales */}
+              <div>
+                <h2 className="text-2xl font-bold text-primary mb-6">Actualités Légales</h2>
+                <ul className="space-y-3">
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/loi-lemoine-2025')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Loi Lemoine 2025
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/resiliation-assurance-droits-2024')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Loi Hamon résiliation
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/nouvelle-reglementation-assurance-2025')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Nouvelle réglementation
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/droits-des-assures-2025')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Droits des assurés
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Conseils Experts */}
+              <div>
+                <h2 className="text-2xl font-bold text-primary mb-6">Conseils Experts</h2>
+                <ul className="space-y-3">
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/mutuelle-sante-reduire-frais-medicaux-2024')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Économiser sur ses contrats
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/assurance-auto-jeune-conducteur-astuces')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Choisir ses garanties
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/resiliation-assurance-droits-2024')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Éviter les pièges
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/mutuelle-sante-reduire-frais-medicaux-2024')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Optimiser sa couverture
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Par Type */}
+              <div>
+                <h2 className="text-2xl font-bold text-primary mb-6">Par Type</h2>
+                <ul className="space-y-3">
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/meilleure-assurance-auto-2025')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Auto & Moto
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/top-mutuelles-sante-2025')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Santé & Prévoyance
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/comparatif-habitation-2025')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Habitation & PNO
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => navigate('/blog/loi-lemoine-2025')}
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                    >
+                      • Vie & Emprunteur
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           {/* Categories */}
           <div className="mb-8">
             <div className="flex flex-wrap gap-2 justify-center">
