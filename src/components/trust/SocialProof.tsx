@@ -82,7 +82,7 @@ export const SocialProof = () => {
             Ils nous font <span className="text-primary">confiance</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Des milliers de Français économisent chaque jour avec jemassurmoinscher
+            Des milliers de Français économisent chaque jour avec jemassuremoinscher
           </p>
         </div>
 

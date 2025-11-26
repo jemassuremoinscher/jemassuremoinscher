@@ -36,7 +36,7 @@ const Features = () => {
           <p className="text-accent font-semibold text-sm uppercase tracking-wide mb-3 animate-fade-in">Nos engagements</p>
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
             Pourquoi choisir<br />
-            <span className="text-primary">jemassurmoinscher</span> ?
+            <span className="text-primary">jemassuremoinscher</span> ?
           </h2>
           <div className="w-24 h-1 bg-accent mx-auto rounded-full animate-fade-in" style={{ animationDelay: '0.2s' }} />
         </div>
