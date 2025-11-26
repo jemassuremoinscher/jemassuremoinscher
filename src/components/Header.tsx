@@ -51,7 +51,7 @@ const Header = () => {
             <Link 
               to="/" 
               className="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
-              aria-label="Retour à la page d'accueil - jemassurmoinscher"
+              aria-label="Retour à la page d'accueil - jemassuremoinscher"
             >
               <div className="p-2 rounded-lg bg-gradient-to-br from-primary to-primary/80 shadow-md">
                 <Shield className="h-6 w-6 text-white" aria-hidden="true" />

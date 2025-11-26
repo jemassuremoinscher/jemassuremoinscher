@@ -1,6 +1,6 @@
 # Guide d'utilisation des logos
 
-Ce guide explique quand et comment utiliser chaque version du logo de jemassurmoinscher.
+Ce guide explique quand et comment utiliser chaque version du logo de jemassuremoinscher.
 
 ## 📁 Fichiers disponibles
 
@@ -24,7 +24,7 @@ Ce guide explique quand et comment utiliser chaque version du logo de jemassurmo
 ```tsx
 import logoMobile from '@/assets/logo-mobile.png';
 
-<img src={logoMobile} alt="jemassurmoinscher" className="h-8 md:hidden" />
+<img src={logoMobile} alt="jemassuremoinscher" className="h-8 md:hidden" />
 ```
 
 ### 3. **Logo Desktop** (`src/assets/logo-desktop.png`)
@@ -36,7 +36,7 @@ import logoMobile from '@/assets/logo-mobile.png';
 ```tsx
 import logoDesktop from '@/assets/logo-desktop.png';
 
-<img src={logoDesktop} alt="jemassurmoinscher" className="hidden md:block h-12" />
+<img src={logoDesktop} alt="jemassuremoinscher" className="hidden md:block h-12" />
 ```
 
 ### 4. **Logo HD** (`src/assets/logo-hd.png`)
@@ -54,7 +54,7 @@ import logoHD from '@/assets/logo-hd.png';
 
 <img 
   src={logoHD} 
-  alt="jemassurmoinscher" 
+  alt="jemassuremoinscher" 
   className="w-full max-w-2xl"
 />
 ```
@@ -75,14 +75,14 @@ export const Header = () => (
     {/* Logo mobile */}
     <img 
       src={logoMobile} 
-      alt="jemassurmoinscher" 
+      alt="jemassuremoinscher" 
       className="h-8 md:hidden"
     />
     
     {/* Logo desktop */}
     <img 
       src={logoDesktop} 
-      alt="jemassurmoinscher" 
+      alt="jemassuremoinscher" 
       className="hidden md:block h-12"
     />
   </header>
