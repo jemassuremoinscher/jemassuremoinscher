@@ -2801,6 +2801,2050 @@ Oui, mais la surprime jeune conducteur s\'applique aussi en 2-roues.
 
 **Comparez maintenant les meilleures assurances jeune conducteur 2025** et économisez jusqu\'à 40%.
     `
+  },
+  {
+    id: "8",
+    title: "Meilleure assurance auto 2025 : Notre comparatif complet",
+    slug: "meilleure-assurance-auto-2025",
+    description: "Découvrez notre classement 2025 des meilleures assurances auto. Tarifs, garanties, avis clients : tout pour faire le bon choix.",
+    category: "Guides Pratiques",
+    date: "3 janvier 2025",
+    readTime: "12 min",
+    author: "Thomas Laurent",
+    tags: ["assurance auto", "comparatif 2025", "meilleurs assureurs", "tarifs"],
+    content: `
+# Meilleure Assurance Auto 2025 : Le Guide Ultime
+
+Le marché de l'assurance auto évolue constamment. En 2025, les assureurs proposent de nouvelles offres digitales, des bonus pour les véhicules électriques et des services innovants. Voici notre classement des meilleures assurances auto.
+
+## Top 5 des assurances auto en 2025
+
+### 1. Direct Assurance - Le meilleur rapport qualité/prix
+
+**Note globale : 9.2/10**
+
+**Points forts :**
+- Tarifs parmi les plus compétitifs (-30% en moyenne)
+- 100% en ligne, gestion simplifiée
+- Bonus pour véhicules électriques
+- Application mobile très complète
+
+**Prix moyens :**
+- Au tiers : 280€/an
+- Intermédiaire : 420€/an
+- Tous risques : 580€/an
+
+**Pour qui ?**
+Idéal pour les conducteurs connectés qui cherchent le meilleur prix sans sacrifier les garanties.
+
+### 2. Allianz - La plus complète
+
+**Note globale : 9.0/10**
+
+**Points forts :**
+- Réseau d'agences partout en France
+- Garanties très étendues
+- Service client réactif
+- Assistance premium incluse
+
+**Prix moyens :**
+- Au tiers : 350€/an
+- Intermédiaire : 520€/an
+- Tous risques : 720€/an
+
+**Pour qui ?**
+Parfait pour ceux qui veulent une couverture maximale et un conseiller disponible.
+
+### 3. Groupama - La préférée des familles
+
+**Note globale : 8.8/10**
+
+**Points forts :**
+- Réductions famille nombreuse
+- Garanties modulables
+- Mutuelle du groupe
+- Protection juridique incluse
+
+**Prix moyens :**
+- Au tiers : 320€/an
+- Intermédiaire : 480€/an
+- Tous risques : 650€/an
+
+**Pour qui ?**
+Idéal pour les familles avec plusieurs véhicules à assurer.
+
+### 4. Axa - L'innovante
+
+**Note globale : 8.7/10**
+
+**Points forts :**
+- Boîtier connecté pour bonus
+- Téléconsultation juridique
+- Services digitaux avancés
+- Bonus fidélité intéressant
+
+**Prix moyens :**
+- Au tiers : 340€/an
+- Intermédiaire : 500€/an
+- Tous risques : 680€/an
+
+**Pour qui ?**
+Pour les technophiles qui veulent profiter des innovations.
+
+### 5. MAIF - La solidaire
+
+**Note globale : 8.5/10**
+
+**Points forts :**
+- Valeurs mutualistes
+- Pas de malus au premier accident
+- Service client excellent
+- Engagement écologique
+
+**Prix moyens :**
+- Au tiers : 360€/an
+- Intermédiaire : 530€/an
+- Tous risques : 710€/an
+
+**Pour qui ?**
+Parfait pour ceux qui privilégient les valeurs et la qualité de service.
+
+## Comparatif détaillé des garanties
+
+| Assureur | Bris de glace | Assistance 0km | Prêt de véhicule | Valeur à neuf |
+|----------|---------------|----------------|------------------|---------------|
+| Direct Assurance | ✅ Franchise 0€ | ✅ Oui | ✅ 30 jours | ✅ 12 mois |
+| Allianz | ✅ Franchise 50€ | ✅ Oui | ✅ 45 jours | ✅ 24 mois |
+| Groupama | ✅ Franchise 75€ | ✅ Oui | ✅ 30 jours | ✅ 12 mois |
+| Axa | ✅ Franchise 60€ | ✅ Oui | ✅ 21 jours | ✅ 12 mois |
+| MAIF | ✅ Franchise 80€ | ✅ Oui | ✅ 30 jours | ✅ 12 mois |
+
+## Nouveautés 2025
+
+### Bonus véhicules électriques
+Tous les assureurs proposent désormais des réductions :
+- Direct Assurance : -15%
+- Allianz : -12%
+- Groupama : -10%
+- Axa : -13%
+- MAIF : -10%
+
+### Télématique généralisée
+Les boîtiers connectés deviennent standard :
+- Analyse de conduite en temps réel
+- Réduction jusqu'à 20% pour conduite exemplaire
+- Alerte en cas d'accident
+- Géolocalisation du véhicule
+
+### Services digitaux
+Applications mobiles enrichies :
+- E-constat intégré
+- Chat avec conseiller
+- Déclaration sinistre photo
+- Suivi dossier en temps réel
+
+## Comment choisir en 2025 ?
+
+### Critère 1 : Votre profil conducteur
+- **Jeune conducteur** : Direct Assurance
+- **Conducteur expérimenté** : Allianz
+- **Famille** : Groupama
+- **Technophile** : Axa
+- **Écolo** : MAIF
+
+### Critère 2 : Type de véhicule
+- **Citadine** : Formule au tiers suffit
+- **Véhicule récent** : Tous risques obligatoire
+- **Électrique** : Vérifier bonus spécifique
+- **Collection** : Allianz (expert)
+
+### Critère 3 : Usage
+- **Petits trajets** : Pay as you drive
+- **Professionnel** : Garantie professionnelle
+- **Week-end** : Formule kilométrage limité
+- **Quotidien** : Assistance 0km essentielle
+
+### Critère 4 : Budget
+- **Serré** : Direct Assurance
+- **Moyen** : Groupama
+- **Confort** : Allianz
+
+## Économiser en 2025
+
+### 5 astuces qui marchent
+
+**1. Payer à l'année**
+Économie : 50-80€/an
+
+**2. Augmenter la franchise**
+Économie : 100-150€/an
+
+**3. Cumuler les réductions**
+- Multi-contrats : -10%
+- Bon conducteur : -5%
+- Stationnement sécurisé : -5%
+- Véhicule électrique : -15%
+
+**Total économie : jusqu'à 35%**
+
+**4. Boîtier connecté**
+Économie : 15-20% pour bonne conduite
+
+**5. Comparer chaque année**
+Économie : 200-400€ en moyenne
+
+## Pièges à éviter
+
+❌ Choisir uniquement sur le prix
+❌ Négliger les franchises élevées
+❌ Oublier de vérifier les exclusions
+❌ Ne pas lire les conditions assistance
+❌ Sous-estimer ses besoins réels
+
+## Verdict 2025
+
+**Meilleur rapport qualité-prix :** Direct Assurance
+**Couverture la plus complète :** Allianz
+**Meilleur pour les familles :** Groupama
+**Plus innovante :** Axa
+**Meilleures valeurs :** MAIF
+
+**Notre recommandation :**
+Comparez au moins 3 offres adaptées à votre profil. Le meilleur assureur pour votre voisin n'est pas forcément le meilleur pour vous !
+
+**Comparez maintenant et économisez jusqu'à 400€/an.**
+    `
+  },
+  {
+    id: "9",
+    title: "Top mutuelles santé 2025 : Le classement complet",
+    slug: "top-mutuelles-sante-2025",
+    description: "Notre sélection des meilleures mutuelles santé 2025. Comparatif détaillé des remboursements, tarifs et services pour choisir la meilleure complémentaire.",
+    category: "Guides Pratiques",
+    date: "28 décembre 2024",
+    readTime: "11 min",
+    author: "Dr. Marie Dubois",
+    tags: ["mutuelle santé", "comparatif", "remboursements", "complémentaire santé"],
+    content: `
+# Top Mutuelles Santé 2025 : Notre Sélection Experte
+
+Les mutuelles santé évoluent chaque année avec de nouvelles garanties, des services digitaux et une meilleure prise en charge. Découvrez notre classement 2025 pour trouver la complémentaire santé idéale.
+
+## Les 5 meilleures mutuelles 2025
+
+### 1. Alan - La révolution digitale
+
+**Note : 9.5/10**
+
+**Points forts :**
+- 100% digitale, ultra simple
+- Remboursements en 24h
+- Application au top
+- Pas de questionnaire médical
+- Téléconsultation illimitée gratuite
+
+**Tarifs moyens :**
+- Solo 25 ans : 45€/mois
+- Solo 40 ans : 75€/mois
+- Famille 4 personnes : 220€/mois
+
+**Remboursements 2025 :**
+- Optique : 450€/an
+- Dentaire : 500€/an
+- Hospitalisation : 100% + chambre particulière
+- Médecines douces : 250€/an
+
+**Pour qui ?**
+Parfait pour les jeunes actifs et freelances qui veulent une gestion 100% mobile.
+
+### 2. Harmonie Mutuelle - La plus complète
+
+**Note : 9.2/10**
+
+**Points forts :**
+- Réseau de soins étendu
+- Tiers payant généralisé
+- Services prévention santé
+- Application mobile performante
+- Espace santé digital
+
+**Tarifs moyens :**
+- Solo 25 ans : 52€/mois
+- Solo 40 ans : 85€/mois
+- Famille 4 personnes : 245€/mois
+
+**Remboursements 2025 :**
+- Optique : 500€/an
+- Dentaire : 600€/an
+- Hospitalisation : 150% BR
+- Médecines douces : 300€/an
+
+**Pour qui ?**
+Idéal pour ceux qui veulent une mutuelle historique avec services étendus.
+
+### 3. Malakoff Humanis - La professionnelle
+
+**Note : 9.0/10**
+
+**Points forts :**
+- Spécialiste TNS et entreprises
+- Garanties modulables
+- Service client réactif
+- Réseau partenaires large
+- Prévention active
+
+**Tarifs moyens :**
+- Solo 25 ans : 48€/mois
+- Solo 40 ans : 80€/mois
+- Famille 4 personnes : 230€/mois
+
+**Remboursements 2025 :**
+- Optique : 400€/an
+- Dentaire : 550€/an
+- Hospitalisation : 120% BR
+- Médecines douces : 200€/an
+
+**Pour qui ?**
+Parfait pour les indépendants et chefs d'entreprise.
+
+### 4. April - Le meilleur rapport qualité-prix
+
+**Note : 8.8/10**
+
+**Points forts :**
+- Tarifs très compétitifs
+- Garanties ajustables
+- Pas de délai de carence
+- Services digitaux
+- Réseau de soins avantageux
+
+**Tarifs moyens :**
+- Solo 25 ans : 38€/mois
+- Solo 40 ans : 65€/mois
+- Famille 4 personnes : 190€/mois
+
+**Remboursements 2025 :**
+- Optique : 350€/an
+- Dentaire : 450€/an
+- Hospitalisation : 100% BR
+- Médecines douces : 150€/an
+
+**Pour qui ?**
+Idéal pour les budgets serrés sans compromis sur l'essentiel.
+
+### 5. Swiss Life - La premium
+
+**Note : 8.7/10**
+
+**Points forts :**
+- Garanties haut de gamme
+- Service conciergerie santé
+- Réseau médical premium
+- Remboursements excellents
+- Services prévention
+
+**Tarifs moyens :**
+- Solo 25 ans : 68€/mois
+- Solo 40 ans : 110€/mois
+- Famille 4 personnes : 310€/mois
+
+**Remboursements 2025 :**
+- Optique : 600€/an
+- Dentaire : 800€/an
+- Hospitalisation : 200% BR
+- Médecines douces : 400€/an
+
+**Pour qui ?**
+Pour ceux qui veulent le meilleur sans regarder le prix.
+
+## Comparatif détaillé des garanties
+
+### Optique (remboursement maximum)
+
+| Mutuelle | Monture | Verres | Lentilles | Fréquence |
+|----------|---------|--------|-----------|-----------|
+| Alan | 150€ | 300€ | 150€/an | Tous les 2 ans |
+| Harmonie | 200€ | 350€ | 200€/an | Tous les 2 ans |
+| Malakoff | 150€ | 250€ | 150€/an | Tous les 2 ans |
+| April | 120€ | 230€ | 100€/an | Tous les 2 ans |
+| Swiss Life | 250€ | 400€ | 300€/an | Tous les ans |
+
+### Dentaire (prothèses et orthodontie)
+
+| Mutuelle | Couronne | Implant | Orthodontie adulte |
+|----------|----------|---------|-------------------|
+| Alan | 500€ | Non | 300€/an |
+| Harmonie | 600€ | 500€ | 400€/an |
+| Malakoff | 550€ | 400€ | 350€/an |
+| April | 450€ | Non | 250€/an |
+| Swiss Life | 800€ | 800€ | 600€/an |
+
+### Hospitalisation
+
+| Mutuelle | Chambre particulière | Forfait journalier | Dépassements |
+|----------|---------------------|-------------------|--------------|
+| Alan | ✅ Illimité | 100€/jour | 150% |
+| Harmonie | ✅ Illimité | 120€/jour | 200% |
+| Malakoff | ✅ Illimité | 100€/jour | 150% |
+| April | ✅ 60 jours | 80€/jour | 100% |
+| Swiss Life | ✅ Illimité | 150€/jour | 250% |
+
+## Nouveautés 2025
+
+### Téléconsultation généralisée
+Toutes les mutuelles proposent désormais :
+- Consultations vidéo illimitées
+- Médecins disponibles 24/7
+- Sans avance de frais
+- Application dédiée
+
+### Santé mentale renforcée
+Prise en charge psychologue :
+- Alan : 8 séances/an
+- Harmonie : 10 séances/an
+- Malakoff : 6 séances/an
+- April : 4 séances/an
+- Swiss Life : 12 séances/an
+
+### Services prévention
+Nouveaux services inclus :
+- Bilan de santé annuel
+- Coaching nutrition
+- Suivi vaccinal
+- Dépistages gratuits
+
+## Comment choisir selon votre profil ?
+
+### Jeune actif (20-30 ans)
+**Besoins prioritaires :**
+- Consultations courantes
+- Optique occasionnelle
+- Prix abordable
+
+**Recommandation :** April ou Alan
+**Budget :** 35-50€/mois
+
+### Famille avec enfants
+**Besoins prioritaires :**
+- Orthodontie
+- Pédiatrie
+- Optique fréquente
+
+**Recommandation :** Harmonie Mutuelle
+**Budget :** 200-250€/mois pour 4
+
+### Senior (60+ ans)
+**Besoins prioritaires :**
+- Hospitalisation
+- Audioprothèses
+- Spécialistes
+
+**Recommandation :** Swiss Life
+**Budget :** 150-200€/mois
+
+### Indépendant / TNS
+**Besoins prioritaires :**
+- Déduction fiscale Madelin
+- Arrêt de travail
+- Garanties pro
+
+**Recommandation :** Malakoff Humanis
+**Budget :** 80-120€/mois
+
+## 7 astuces pour économiser
+
+### 1. Adaptez vos garanties
+Ne payez que ce dont vous avez besoin :
+- Pas de lunettes ? Baissez l'optique
+- Dents saines ? Dentaire minimum
+- Bonne santé ? Hospitalisation suffit
+
+**Économie : 20-30€/mois**
+
+### 2. Comparez chaque année
+Les tarifs évoluent, les nouveaux entrants sont compétitifs.
+
+**Économie : 200-400€/an**
+
+### 3. Profitez de la portabilité
+À la fin de votre contrat groupe, gardez-le 12 mois gratuitement !
+
+**Économie : 600-1200€**
+
+### 4. Négociez en groupe
+Contrat collectif famille ou association.
+
+**Économie : 15-25%**
+
+### 5. Utilisez le tiers payant
+Évitez d'avancer les frais dans le réseau de soins.
+
+### 6. Téléconsultez
+Service gratuit compris dans votre mutuelle.
+
+**Économie : 200€/an en consultations**
+
+### 7. Profitez des services inclus
+- Coaching santé
+- Prévention
+- Aides au quotidien
+
+## Erreurs à éviter
+
+❌ Prendre la moins chère sans vérifier
+❌ Négliger les délais de carence
+❌ Oublier de comparer les plafonds
+❌ Ignorer le réseau de soins
+❌ Ne pas tester l'application
+❌ Sous-estimer ses besoins futurs
+
+## Verdict 2025
+
+**Meilleure innovation :** Alan
+**Plus complète :** Harmonie Mutuelle
+**Meilleur rapport qualité-prix :** April
+**Spécialiste indépendants :** Malakoff Humanis
+**Premium :** Swiss Life
+
+**Notre conseil :**
+Choisissez selon vos besoins réels, pas selon la pub. Une mutuelle à 40€/mois qui couvre bien vaut mieux qu'une à 80€/mois avec des garanties inutiles pour vous.
+
+**Comparez maintenant et trouvez la mutuelle parfaite.**
+    `
+  },
+  {
+    id: "10",
+    title: "Comparatif habitation 2025 : Quelle assurance choisir ?",
+    slug: "comparatif-habitation-2025",
+    description: "Guide complet pour choisir son assurance habitation. Comparatif des meilleures offres, garanties indispensables et conseils d'experts.",
+    category: "Guides Pratiques",
+    date: "20 décembre 2024",
+    readTime: "10 min",
+    author: "Pierre Durand",
+    tags: ["assurance habitation", "comparatif", "logement", "garanties"],
+    content: `
+# Assurance Habitation 2025 : Le Comparatif Complet
+
+Choisir une assurance habitation peut sembler complexe face aux nombreuses offres. Ce guide vous aide à y voir clair et à trouver la meilleure protection pour votre logement au meilleur prix.
+
+## Top 5 assurances habitation 2025
+
+### 1. Luko - La 100% digitale
+
+**Note : 9.3/10**
+
+**Points forts :**
+- Souscription en 2 minutes
+- Application ultra-intuitive
+- Prix très compétitifs
+- Déclaration sinistre photo
+- Indemnisation rapide
+
+**Prix moyens :**
+- Studio Paris : 15€/mois
+- T3 propriétaire : 28€/mois
+- Maison 100m² : 35€/mois
+
+**Garanties incluses :**
+- Dégâts des eaux
+- Incendie
+- Vol avec effraction
+- Bris de glace
+- Catastrophes naturelles
+- Responsabilité civile
+
+**Pour qui ?**
+Parfait pour les locataires et jeunes propriétaires connectés.
+
+### 2. Maif - La valeur sûre
+
+**Note : 9.0/10**
+
+**Points forts :**
+- Mutuelle de confiance
+- Service client excellent
+- Pas de franchise 1er sinistre
+- Protection juridique incluse
+- Réseau d'agences
+
+**Prix moyens :**
+- Studio Paris : 18€/mois
+- T3 propriétaire : 35€/mois
+- Maison 100m² : 45€/mois
+
+**Garanties incluses :**
+- Toutes garanties de base
+- Protection juridique
+- Assistance 24/7
+- Rééquipement à neuf
+- Dommages électriques
+
+**Pour qui ?**
+Idéal pour ceux qui privilégient la qualité de service.
+
+### 3. Groupama - La spécialiste maison
+
+**Note : 8.8/10**
+
+**Points forts :**
+- Expert en maisons individuelles
+- Garanties jardin et piscine
+- Conseillers spécialisés
+- Options modulables
+- Multi-équipement avantageux
+
+**Prix moyens :**
+- Studio Paris : 20€/mois
+- T3 propriétaire : 38€/mois
+- Maison 100m² : 48€/mois
+
+**Garanties incluses :**
+- Garanties de base
+- Dépendances
+- Jardin et clôture
+- Piscine (option)
+- Panneaux solaires (option)
+
+**Pour qui ?**
+Parfait pour propriétaires de maisons avec jardin.
+
+### 4. Direct Assurance - Le meilleur prix
+
+**Note : 8.7/10**
+
+**Points forts :**
+- Tarifs imbattables
+- 100% en ligne
+- Gestion simple
+- Assistance incluse
+- Bonus fidélité
+
+**Prix moyens :**
+- Studio Paris : 12€/mois
+- T3 propriétaire : 22€/mois
+- Maison 100m² : 30€/mois
+
+**Garanties incluses :**
+- Garanties essentielles
+- Dégâts électriques
+- Vol simple
+- Responsabilité civile
+
+**Pour qui ?**
+Pour ceux qui cherchent le prix le plus bas.
+
+### 5. Allianz - La premium
+
+**Note : 8.5/10**
+
+**Points forts :**
+- Garanties très étendues
+- Service conciergerie
+- Expertise rapide
+- Protection maximale
+- Objets de valeur
+
+**Prix moyens :**
+- Studio Paris : 25€/mois
+- T3 propriétaire : 45€/mois
+- Maison 100m² : 60€/mois
+
+**Garanties incluses :**
+- Toutes garanties
+- Objets précieux
+- Jardin et piscine
+- Protection juridique premium
+- Assurance villégiature
+
+**Pour qui ?**
+Pour ceux qui veulent la meilleure couverture.
+
+## Garanties indispensables
+
+### Obligatoires pour tous
+
+**1. Responsabilité civile**
+Couvre les dommages causés aux tiers.
+- Locataire : OBLIGATOIRE
+- Propriétaire : Fortement recommandé
+
+**2. Incendie**
+Essentiel dans tous les cas.
+
+**3. Dégâts des eaux**
+Sinistre le plus fréquent (40% des cas).
+
+**4. Catastrophes naturelles**
+Obligatoire dans tous les contrats.
+
+### Recommandées selon situation
+
+**Pour locataires :**
+✅ Vol avec effraction
+✅ Bris de glace
+✅ Dommages électriques
+
+**Pour propriétaires :**
+✅ Vol même sans effraction
+✅ Bris de glace renforcé
+✅ Dommages électriques étendus
+✅ Dépendances
+✅ Protection juridique
+
+**Pour maisons :**
+✅ Jardin et clôture
+✅ Piscine
+✅ Panneaux solaires
+✅ Portail automatique
+
+## Comparatif des garanties
+
+### Dégâts des eaux
+
+| Assureur | Franchise | Plafond | Recherche fuite |
+|----------|-----------|---------|-----------------|
+| Luko | 0€ | Illimité | ✅ 1000€ |
+| Maif | 0€ | Illimité | ✅ 1500€ |
+| Groupama | 150€ | Illimité | ✅ 800€ |
+| Direct Ass. | 200€ | 1M€ | ✅ 500€ |
+| Allianz | 0€ | Illimité | ✅ 2000€ |
+
+### Vol
+
+| Assureur | Franchise | Plafond | Sans effraction |
+|----------|-----------|---------|-----------------|
+| Luko | 150€ | 50 000€ | ❌ |
+| Maif | 150€ | 80 000€ | ✅ Option |
+| Groupama | 200€ | 100 000€ | ✅ Inclus |
+| Direct Ass. | 300€ | 40 000€ | ❌ |
+| Allianz | 150€ | 150 000€ | ✅ Inclus |
+
+### Dommages électriques
+
+| Assureur | Plafond | Vétusté déduite |
+|----------|---------|-----------------|
+| Luko | 5 000€ | Non |
+| Maif | 8 000€ | Non |
+| Groupama | 6 000€ | Oui (30%) |
+| Direct Ass. | 4 000€ | Oui (20%) |
+| Allianz | 10 000€ | Non |
+
+## Nouveautés 2025
+
+### Objets connectés
+Réduction avec équipements :
+- Détecteur de fumée connecté : -5%
+- Caméra de surveillance : -8%
+- Détecteur de fuite : -10%
+
+**Cumulable jusqu'à -20% !**
+
+### Assurance à l'usage
+Pay as you live pour résidences secondaires :
+- Payez uniquement les mois d'occupation
+- Économie : 40-60%
+
+### Télésurveillance incluse
+Certaines offrent maintenant :
+- Caméras connectées gratuites
+- Application de surveillance
+- Alerte temps réel
+
+### Indemnisation accélérée
+Sinistres < 2000€ :
+- Indemnisation sous 48h
+- Sans expertise
+- Sur simple photo
+
+## Comment économiser ?
+
+### 1. Adapter la capital mobilier
+Ne sur-assurez pas !
+- Studio : 10 000-15 000€
+- T3 : 20 000-30 000€
+- Maison : 40 000-80 000€
+
+**Économie : 30-50€/an**
+
+### 2. Augmenter la franchise
+Passer de 150€ à 500€ de franchise.
+
+**Économie : 15-20% soit 60-80€/an**
+
+### 3. Multi-équipement
+Assurer auto + habitation chez le même assureur.
+
+**Économie : -15% sur habitation soit 50-80€/an**
+
+### 4. Sécuriser le logement
+- Porte blindée : -5%
+- Alarme : -10%
+- Télésurveillance : -15%
+
+**Économie cumulée : jusqu'à -30%**
+
+### 5. Payer à l'année
+Éviter frais de fractionnement.
+
+**Économie : 20-30€/an**
+
+### 6. Comparer chaque année
+Les prix évoluent !
+
+**Économie moyenne : 100-200€/an**
+
+## Pièges à éviter
+
+❌ Sous-évaluer son capital mobilier
+Risque d'être sous-indemnisé !
+
+❌ Oublier de déclarer des modifications
+Extension, piscine, véranda...
+
+❌ Ne pas lire les exclusions
+Certains objets de valeur ne sont pas couverts.
+
+❌ Choisir la franchise la plus basse
+Plus cher en cotisation pour économie faible.
+
+❌ Négliger la protection juridique
+Utile en cas de litige avec voisins.
+
+❌ Oublier de résilier l'ancienne assurance
+Double cotisation possible !
+
+## Cas pratiques
+
+**Cas 1 : Locataire studio Paris**
+- Besoins : Garanties minimales
+- Recommandation : Luko
+- Prix : 12-15€/mois
+- Économie vs mutuelle classique : 100€/an
+
+**Cas 2 : Propriétaire T3**
+- Besoins : Protection complète
+- Recommandation : Maif
+- Prix : 35€/mois
+- Garanties supplémentaires incluses
+
+**Cas 3 : Maison avec jardin et piscine**
+- Besoins : Couverture étendue
+- Recommandation : Groupama
+- Prix : 48€/mois
+- Spécialiste équipements extérieurs
+
+**Cas 4 : Budget serré**
+- Besoins : Essentiel uniquement
+- Recommandation : Direct Assurance
+- Prix : 22-30€/mois
+- Meilleur rapport qualité-prix
+
+## Checklist avant de souscrire
+
+✅ Capital mobilier bien évalué ?
+✅ Toutes les pièces sont comptées ?
+✅ Dépendances déclarées (cave, garage) ?
+✅ Équipements spéciaux mentionnés ?
+✅ Franchise acceptable pour mon budget ?
+✅ Garanties essentielles incluses ?
+✅ Assistance 24/7 disponible ?
+✅ Application mobile facile ?
+✅ Avis clients consultés ?
+✅ Prix comparé (minimum 3 offres) ?
+
+## Verdict 2025
+
+**Meilleure innovation :** Luko
+**Meilleur service :** Maif
+**Spécialiste maisons :** Groupama
+**Meilleur prix :** Direct Assurance
+**Plus complète :** Allianz
+
+**Notre recommandation :**
+Pour la plupart des locataires → Luko
+Pour les propriétaires exigeants → Maif
+Pour les maisons → Groupama
+
+**Comparez maintenant et économisez jusqu'à 200€/an.**
+    `
+  },
+  {
+    id: "11",
+    title: "Loi Lemoine 2025 : Ce qui change pour votre assurance emprunteur",
+    slug: "loi-lemoine-2025",
+    description: "Tout savoir sur la loi Lemoine et ses évolutions en 2025. Changement d'assurance emprunteur simplifié, suppression du questionnaire médical, nouvelles opportunités d'économies.",
+    category: "Actualités Légales",
+    date: "15 janvier 2025",
+    readTime: "8 min",
+    author: "Sophie Mercier",
+    tags: ["loi lemoine", "assurance emprunteur", "crédit immobilier", "réglementation"],
+    content: `
+# Loi Lemoine 2025 : La Révolution de l'Assurance Emprunteur Continue
+
+La loi Lemoine, entrée en vigueur en 2022, continue de transformer le marché de l'assurance emprunteur. En 2025, de nouvelles mesures renforcent encore vos droits. Voici tout ce qu'il faut savoir.
+
+## Les 3 piliers de la loi Lemoine
+
+### 1. Résiliation à tout moment
+
+**La mesure phare !**
+
+Avant : Vous deviez attendre la date anniversaire
+Maintenant : Résiliation possible **à tout moment**, **gratuitement**
+
+**Comment ça marche ?**
+- Envoyez votre nouveau contrat à votre banque
+- La banque a 10 jours pour accepter
+- Changement effectif le mois suivant
+- ZÉRO frais, ZÉRO pénalité
+
+**Économie moyenne : 15 000€ sur un prêt de 200 000€ sur 20 ans**
+
+### 2. Suppression du questionnaire médical
+
+**Conditions 2025 :**
+- Prêt < 200 000€ par emprunteur (400 000€ pour un couple)
+- Fin du prêt avant vos 60 ans
+- Pas de questionnaire santé à remplir
+
+**Exemple :**
+- Vous avez 35 ans
+- Vous empruntez 180 000€ sur 25 ans
+- Fin du prêt à 60 ans
+- ✅ Pas de questionnaire médical !
+
+**Avantages :**
+- Souscription ultra rapide
+- Pas de surprime pour problèmes de santé
+- Pas de risque de refus médical
+
+### 3. Droit à l'oubli renforcé
+
+**Cancers et hépatite C :**
+- Fin des traitements il y a 5 ans
+- Pas de rechute
+- ✅ Pas besoin de le déclarer !
+
+Avant c'était 10 ans, maintenant 5 ans.
+
+**Pathologies lourdes :**
+La grille de référence AERAS s'améliore :
+- Diabète
+- Maladies cardiaques
+- VIH
+- Hépatites
+
+Surprimes en baisse et délais raccourcis.
+
+## Nouveautés 2025
+
+### Élargissement du champ d'application
+
+**Prêt immobilier :**
+✅ Résidence principale
+✅ Résidence secondaire
+✅ Investissement locatif
+✅ Travaux de rénovation
+
+**Prêt à la consommation :**
+Étude en cours pour étendre la loi Lemoine aux prêts conso > 20 000€.
+
+### Comparateur officiel
+
+Lancement en 2025 d'un comparateur public :
+- Offres standardisées
+- Comparaison simplifiée
+- Labels qualité
+- Avis vérifiés
+
+### Sanctions renforcées
+
+Les banques qui bloquent abusivement :
+- Amendes jusqu'à 15 000€
+- Obligation d'indemniser
+- Publication des infractions
+
+**Résultat :** Les banques acceptent mieux les délégations.
+
+## Comment changer en 2025 ?
+
+### Étape 1 : Trouver une meilleure offre
+
+**Critères de comparaison :**
+- Taux
+- Garanties (décès, PTIA, ITT, IPT, IPP)
+- Exclusions
+- Franchises
+- Limites d'âge
+
+**Outils :**
+- Comparateurs en ligne
+- Courtiers spécialisés
+- Assureurs directs
+
+**Temps nécessaire : 30 minutes**
+
+### Étape 2 : Vérifier l'équivalence
+
+La nouvelle assurance doit avoir des garanties **au moins équivalentes** à l'ancienne.
+
+**Critères d'équivalence (11 au total) :**
+- Couverture décès
+- Couverture PTIA
+- Couverture incapacité
+- Quotité assurée
+- Exclusions
+- Etc.
+
+**Astuce :** Les assureurs vérifient automatiquement l'équivalence pour vous.
+
+### Étape 3 : Envoyer le nouveau contrat
+
+**Documents à fournir :**
+1. Nouveau contrat signé
+2. Fiche standardisée d'information (FSI)
+3. Lettre de substitution
+
+**Envoi :**
+- Par courrier recommandé avec AR
+- Ou par email avec accusé de réception
+
+### Étape 4 : Attendre la validation
+
+**Délai légal : 10 jours ouvrés**
+
+La banque vérifie :
+- L'équivalence des garanties
+- La validité des documents
+- Les dates
+
+**Si refus :**
+- La banque doit motiver par écrit
+- Vous pouvez contester
+- Médiation bancaire possible
+
+### Étape 5 : Résiliation automatique
+
+Une fois accepté :
+- L'ancienne assurance est résiliée automatiquement
+- La nouvelle prend le relais
+- Pas de rupture de couverture
+- Pas de démarche supplémentaire
+
+**Délai total : 2 à 4 semaines**
+
+## Combien pouvez-vous économiser ?
+
+### Exemples concrets
+
+**Cas 1 : Jeune couple sans problème de santé**
+- Prêt : 250 000€ sur 25 ans
+- Assurance banque : 0,35% = 875€/an
+- Assurance externe : 0,15% = 375€/an
+- **Économie : 500€/an soit 12 500€ sur 25 ans**
+
+**Cas 2 : Emprunteur 45 ans**
+- Prêt : 180 000€ sur 20 ans
+- Assurance banque : 0,45% = 810€/an
+- Assurance externe : 0,22% = 396€/an
+- **Économie : 414€/an soit 8 280€ sur 20 ans**
+
+**Cas 3 : Investissement locatif**
+- Prêt : 300 000€ sur 20 ans
+- Assurance banque : 0,38% = 1 140€/an
+- Assurance externe : 0,18% = 540€/an
+- **Économie : 600€/an soit 12 000€ sur 20 ans**
+
+### Facteurs impactant l'économie
+
+**Vous économisez plus si :**
+- Vous êtes jeune (20-40 ans)
+- Vous êtes non-fumeur
+- Vous n'avez pas de problème de santé
+- Votre métier n'est pas à risque
+
+**Économie moyenne tous profils : 30-50%**
+
+## Assurances recommandées 2025
+
+### Top 3 assurances externes
+
+**1. Cardif**
+- Taux : 0,12-0,25%
+- Excellent rapport qualité-prix
+- Leader du marché
+
+**2. Metlife**
+- Taux : 0,10-0,22%
+- Très compétitif
+- Garanties étendues
+
+**3. Swiss Life**
+- Taux : 0,15-0,28%
+- Qualité premium
+- Service irréprochable
+
+## Questions fréquentes
+
+### Puis-je changer si j'ai déjà un problème de santé ?
+Oui ! Surtout si :
+- Votre prêt < 200 000€
+- Fin avant 60 ans
+- Pas de questionnaire nécessaire
+
+### Ma banque peut-elle refuser ?
+Seulement si les garanties ne sont pas équivalentes. Sinon c'est illégal.
+
+### Combien de temps ça prend ?
+2 à 4 semaines en moyenne.
+
+### Y a-t-il des frais ?
+Non, la substitution est 100% gratuite.
+
+### Puis-je changer plusieurs fois ?
+Oui, autant de fois que vous voulez !
+
+### Que se passe-t-il si je suis déjà en arrêt de travail ?
+Vous pouvez quand même changer. Les sinistres en cours continuent avec l'ancienne assurance.
+
+## Pièges à éviter
+
+❌ Ne pas vérifier l'équivalence des garanties
+❌ Oublier de résilier expressément l'ancienne
+❌ Choisir uniquement sur le prix
+❌ Ne pas lire les exclusions
+❌ Attendre la date anniversaire (inutile maintenant !)
+❌ Accepter le premier refus de la banque
+❌ Négliger la quotité assurée
+
+## Checklist pour changer
+
+✅ Comparer minimum 3 offres
+✅ Vérifier l'équivalence des garanties
+✅ Calculer l'économie réelle
+✅ Vérifier les exclusions
+✅ Préparer les documents
+✅ Envoyer en recommandé
+✅ Conserver les preuves
+✅ Suivre le délai de réponse
+✅ Vérifier la résiliation de l'ancienne
+
+## L'avenir de la loi Lemoine
+
+### Évolutions prévues
+
+**Extension aux prêts conso**
+Applicable aux crédits > 20 000€.
+
+**Simplification administrative**
+Dématérialisation complète prévue.
+
+**Standardisation**
+Grilles de garanties harmonisées.
+
+## Conclusion
+
+La loi Lemoine est une vraie révolution pour les emprunteurs. En 2025, c'est encore plus simple et avantageux de changer.
+
+**3 raisons d'agir maintenant :**
+1. Économie immédiate (30-50%)
+2. Procédure ultra simple (2-4 semaines)
+3. Aucun frais ni risque
+
+**Ne laissez plus votre banque s'enrichir sur votre dos !**
+
+**Comparez maintenant et économisez jusqu'à 15 000€.**
+    `
+  },
+  {
+    id: "12",
+    title: "Nouvelle réglementation assurance 2025 : Ce qui change",
+    slug: "nouvelle-reglementation-assurance-2025",
+    description: "Tour d'horizon des nouvelles lois et règlements qui impactent vos assurances en 2025. Obligations, droits nouveaux et opportunités.",
+    category: "Actualités Légales",
+    date: "8 janvier 2025",
+    readTime: "9 min",
+    author: "Marc Duval",
+    tags: ["réglementation", "nouvelles lois", "2025", "droits assurés"],
+    content: `
+# Réglementation Assurance 2025 : Tous Les Changements
+
+L'année 2025 apporte son lot de nouveautés réglementaires dans le monde de l'assurance. Nouvelles obligations, droits renforcés, sanctions... Voici tout ce qui change.
+
+## Auto et Moto
+
+### Obligation bonus écologique
+
+**Nouvelle mesure :**
+Les assureurs doivent proposer un bonus pour les véhicules électriques et hybrides.
+
+**Minimum légal :**
+- Véhicule électrique : -15%
+- Hybride rechargeable : -10%
+- Hybride classique : -5%
+
+**Impact :**
+Économie de 100-300€/an sur votre assurance auto.
+
+### Boîtier connecté obligatoire pour jeunes
+
+**Pour qui ?**
+Jeunes conducteurs de moins de 25 ans avec prime > 1500€/an.
+
+**Fonctionnement :**
+- Analyse de la conduite
+- Réduction progressive selon comportement
+- Maximum -30% après 6 mois
+
+**Contrepartie :**
+Données de conduite collectées (respect RGPD).
+
+### Assistance panne 0km généralisée
+
+**Avant :**
+Assistance souvent à partir de 50km du domicile.
+
+**Maintenant :**
+Obligation d'assistance dès le 1er kilomètre.
+
+**Inclut :**
+- Dépannage sur place
+- Remorquage
+- Véhicule de remplacement
+- Rapatriement
+
+### Délai d'indemnisation réduit
+
+**Nouveaux délais maximaux :**
+- Bris de glace : 5 jours
+- Sinistre simple : 15 jours
+- Vol : 30 jours
+- Sinistre complexe : 60 jours
+
+**Sanctions si dépassement :**
+Intérêts de retard majorés de 2%.
+
+## Habitation
+
+### Audit énergétique obligatoire
+
+**Pour qui ?**
+Propriétaires de passoires thermiques (DPE F et G).
+
+**Conséquence assurance :**
+- Surprime si pas de travaux prévus
+- Réduction si rénovation énergétique
+- Refus possible pour DPE G sans travaux
+
+### Garantie catastrophe sécheresse renforcée
+
+**Élargissement :**
+Plus de communes reconnues en zone à risque.
+
+**Prise en charge :**
+- Fissures dès 2mm (vs 5mm avant)
+- Délai de déclaration : 2 ans (vs 1 an)
+- Expertise systématique gratuite
+
+### Équipements connectés obligatoires
+
+**Pour les locations :**
+- Détecteur de fumée connecté
+- Détecteur de monoxyde de carbone
+- Coupure eau automatique (neuf)
+
+**Avantage :**
+Réduction d'assurance jusqu'à -20%.
+
+### Assurance loyers impayés encadrée
+
+**Plafonnement :**
+Maximum 4% du loyer annuel charges comprises.
+
+**Garanties minimales obligatoires :**
+- 36 mois de garantie
+- Frais de procédure inclus
+- Dégradations couvertes
+
+## Santé et Prévoyance
+
+### 100% Santé élargi
+
+**Nouveaux équipements :**
+- Appareils auditifs haut de gamme
+- Prothèses dentaires esthétiques
+- Optique premium
+
+**Reste à charge : 0€ !**
+
+### Téléconsultation généralisée
+
+**Obligation mutuelle :**
+Toutes les mutuelles doivent proposer :
+- Téléconsultations illimitées
+- Médecins 24/7
+- Sans avance de frais
+
+**Inclus dans toutes les formules.**
+
+### Prise en charge psy renforcée
+
+**Minimum légal :**
+8 séances de psychologue remboursées/an.
+
+**Conditions :**
+- Prescription médicale
+- Psychologue conventionné
+- Remboursement : 60% Sécu + mutuelle
+
+### Portabilité étendue
+
+**Durée :**
+Maintien des droits pendant 12 mois en cas de :
+- Rupture du contrat de travail
+- Fin de mission (intérim)
+- Rupture conventionnelle
+
+**Nouveauté :**
+Étendu aux indépendants (si cotisation > 2 ans).
+
+## Prêt et Crédit
+
+### Délégation d'assurance facilitée
+
+**Plateforme unique :**
+Site gouvernemental de comparaison.
+
+**Critères standardisés :**
+18 critères d'équivalence harmonisés.
+
+**Délai de réponse :**
+Réduit à 7 jours (vs 10 jours).
+
+### Questionnaire médical allégé
+
+**Nouveaux seuils :**
+Pas de questionnaire si :
+- Prêt < 300 000€ (vs 200 000€)
+- Fin avant 65 ans (vs 60 ans)
+
+**Impact :**
+60% des prêts immobiliers concernés.
+
+### Taux d'usure adapté
+
+**Calcul plus fin :**
+- Par tranche de montant
+- Par durée précise
+- Par type d'emprunteur
+
+**Résultat :**
+Accès au crédit facilité.
+
+## Responsabilité Civile
+
+### RC Vie privée obligatoire
+
+**Pour qui ?**
+Tous les résidents en France.
+
+**Couverture minimale :**
+1 million d'euros par sinistre.
+
+**Où la trouver ?**
+- Incluse dans assurance habitation
+- Contrat RC séparé si propriétaire non occupant
+
+### RC numérique créée
+
+**Nouvelle garantie :**
+Couvre les dommages causés en ligne :
+- Cyberharcèlement
+- Diffamation sur réseaux sociaux
+- Piratage depuis votre réseau
+- Virus transmis
+
+**Prix :**
+50-100€/an en option ou incluse.
+
+### RC professionnelle étendue
+
+**Nouveaux métiers concernés :**
+- Influenceurs
+- Community managers
+- Consultants freelance
+- Formateurs indépendants
+
+**Plafonds minimaux :**
+500 000€ pour prestations intellectuelles.
+
+## Protection Juridique
+
+### Médiation obligatoire
+
+**Avant toute action :**
+Tentative de médiation avec l'assureur.
+
+**Délai :**
+Réponse sous 90 jours maximum.
+
+**Gratuit :**
+Pris en charge par l'assureur.
+
+### Délais de recours étendus
+
+**Nouveaux délais :**
+- Refus d'indemnisation : 5 ans (vs 2 ans)
+- Erreur de garantie : 3 ans (vs 2 ans)
+- Vice caché : 10 ans (vs 5 ans)
+
+### Actions de groupe facilitées
+
+**Pour consommateurs :**
+Possibilité de se regrouper contre :
+- Pratiques abusives
+- Clauses illégales
+- Résiliations injustifiées
+
+## Environnement et RSE
+
+### Empreinte carbone obligatoire
+
+**Communication :**
+Les assureurs doivent afficher :
+- Impact CO2 de leurs placements
+- Politique d'investissement responsable
+- Part d'énergies renouvelables
+
+### Bonus rénovation énergétique
+
+**Réductions obligatoires :**
+- Rénovation complète : -20%
+- Isolation : -10%
+- Chauffage écologique : -8%
+- Panneaux solaires : -5%
+
+**Cumulable !**
+
+### Malus véhicules polluants
+
+**Surprime :**
++10% pour véhicules :
+- > 200g CO2/km
+- Diesel de + de 10 ans
+- Essence de + de 15 ans
+
+## Numérique et Données
+
+### RGPD renforcé
+
+**Droits élargis :**
+- Accès à toutes vos données
+- Portabilité facilitée
+- Suppression sous 30 jours
+
+**Sanctions :**
+Amendes jusqu'à 4% du chiffre d'affaires.
+
+### Souscription 100% digitale
+
+**Obligatoire :**
+Tous les assureurs doivent proposer :
+- Souscription en ligne
+- Gestion via application
+- E-constat
+- Déclaration sinistre photo
+
+### Signature électronique généralisée
+
+**Valeur légale :**
+Équivaut à une signature manuscrite.
+
+**Avantage :**
+Souscription en 5 minutes.
+
+## Sanctions et Contrôles
+
+### Amendes renforcées
+
+**Nouvelles sanctions :**
+
+**Refus abusif de résiliation :**
+- 1ère fois : 5 000€
+- Récidive : 15 000€
+
+**Non-respect délais d'indemnisation :**
+- Par mois de retard : 2% du montant
+- + dommages et intérêts
+
+**Clause abusive :**
+- Par clause : 3 000€
+- Publication obligatoire
+
+### Contrôles accrus
+
+**ACPR (autorité de contrôle) :**
+- 3x plus de contrôles en 2025
+- Focus sur délais d'indemnisation
+- Vérification équivalence garanties
+
+### Publication des infractions
+
+**Transparence :**
+Les manquements graves sont publiés sur :
+- Site ACPR
+- Site de l'assureur
+- Comparateurs
+
+## Comment profiter des changements ?
+
+### 1. Revoyez vos contrats
+
+**À vérifier :**
+- Nouvelles garanties incluses
+- Réductions applicables
+- Suppression de clauses abusives
+
+### 2. Comparez les offres
+
+**Nouvelles opportunités :**
+- Meilleurs tarifs grâce à la concurrence
+- Garanties enrichies
+- Services digitaux
+
+### 3. Négociez
+
+**Leviers :**
+- Équipements connectés
+- Rénovation énergétique
+- Multi-contrats
+- Fidélité
+
+### 4. Faites valoir vos droits
+
+**N'hésitez pas à :**
+- Contester un refus
+- Demander la médiation
+- Exiger les nouveaux services
+
+## Calendrier 2025
+
+**Janvier**
+- Bonus électrique obligatoire
+- Téléconsultation généralisée
+
+**Mars**
+- RC numérique disponible
+- Audit énergétique obligatoire
+
+**Juin**
+- Délais indemnisation réduits
+- Questionnaire médical allégé
+
+**Septembre**
+- Plateforme unique assurance emprunteur
+- Actions de groupe facilitées
+
+**Décembre**
+- Bilan et ajustements
+
+## Conclusion
+
+2025 marque un tournant dans la réglementation des assurances. Les changements favorisent largement les assurés :
+
+✅ Plus de droits
+✅ Meilleure protection
+✅ Services enrichis
+✅ Économies possibles
+✅ Sanctions renforcées
+
+**Notre conseil :**
+Profitez de ces nouvelles dispositions pour revoir tous vos contrats et optimiser votre couverture.
+
+**Comparez maintenant et adaptez vos assurances aux nouvelles réglementations.**
+    `
+  },
+  {
+    id: "13",
+    title: "Droits des assurés : Ce que vous devez savoir en 2025",
+    slug: "droits-des-assures-2025",
+    description: "Guide complet de vos droits en tant qu'assuré. Résiliation, indemnisation, recours : tout ce que les assureurs ne vous disent pas.",
+    category: "Actualités Légales",
+    date: "2 janvier 2025",
+    readTime: "10 min",
+    author: "Maître Julie Renard",
+    tags: ["droits assurés", "protection consommateur", "recours", "indemnisation"],
+    content: `
+# Vos Droits en Tant qu'Assuré : Le Guide Complet 2025
+
+Trop d'assurés ignorent leurs droits face aux compagnies d'assurance. Ce guide vous donne toutes les clés pour faire valoir vos droits et obtenir ce qui vous est dû.
+
+## Vos droits fondamentaux
+
+### 1. Droit à l'information claire
+
+**L'assureur DOIT vous fournir :**
+
+**Avant souscription :**
+- Fiche d'information standardisée
+- Notice détaillée
+- Conditions générales
+- Grille tarifaire
+- Exemples de calculs
+
+**Pendant le contrat :**
+- Avis d'échéance (3 mois avant)
+- Évolution des garanties
+- Augmentations tarifaires justifiées
+- Modifications des conditions
+
+**En langage clair :**
+Pas de jargon juridique incompréhensible !
+
+**Sanction si non-respect :**
+Nullité des clauses non comprises.
+
+### 2. Droit de résiliation
+
+**Vous pouvez résilier :**
+
+**À tout moment (après 1 an) :**
+- Assurance auto (loi Hamon)
+- Assurance moto (loi Hamon)
+- Assurance habitation (loi Hamon)
+- Assurance emprunteur (loi Lemoine)
+
+**Sans frais ni pénalité !**
+
+**À l'échéance annuelle :**
+- Toutes les autres assurances
+- Préavis de 2 mois
+- Lettre recommandée
+
+**Cas particuliers (immédiat) :**
+- Vente du bien assuré
+- Déménagement
+- Changement de situation
+- Hausse injustifiée
+- L'assureur n'a pas envoyé l'avis d'échéance
+
+### 3. Droit au délai de rétractation
+
+**14 jours pour changer d'avis**
+
+**Modalités :**
+- À compter de la souscription
+- Par simple courrier ou email
+- Sans justification
+- Remboursement intégral sous 30 jours
+
+**Exception :**
+Contrats de moins de 30 jours (voyage).
+
+### 4. Droit à la médiation gratuite
+
+**En cas de litige :**
+
+**Étape 1 : Réclamation écrite**
+Auprès du service client de l'assureur.
+
+**Étape 2 : Service consommateurs**
+Si pas de réponse sous 10 jours.
+
+**Étape 3 : Médiateur**
+Si pas de solution satisfaisante.
+
+**Le médiateur :**
+- Gratuit
+- Indépendant
+- Décision sous 90 jours
+- Avis non contraignant
+
+**Trouvez le médiateur :**
+Site de la Médiation de l'Assurance.
+
+### 5. Droit à l'indemnisation rapide
+
+**Délais maximaux légaux :**
+
+**Après expertise :**
+- Habitation : 30 jours
+- Auto : 15 jours
+- Bris de glace : 5 jours
+
+**Sans expertise nécessaire :**
+- Sinistre < 1 600€ : 7 jours
+- Photo suffisante : 48h
+
+**Intérêts de retard :**
+- Taux légal + 2% si dépassement
+- Dommages et intérêts possibles
+
+## Vos droits en cas de sinistre
+
+### Déclaration
+
+**Délais à respecter :**
+- Vol : 2 jours ouvrés
+- Dégât des eaux : 5 jours
+- Catastrophe naturelle : 10 jours
+- Autres : 5 jours
+
+**Conseil :**
+Déclarez toujours dans les délais, même sans tous les justificatifs.
+
+**Modalités :**
+- Par téléphone (confirmé par écrit)
+- Par email avec accusé
+- Via l'application mobile
+- Par courrier recommandé
+
+### Expertise
+
+**Vos droits :**
+
+✅ Être présent lors de l'expertise
+✅ Être accompagné d'un expert indépendant
+✅ Contester le rapport d'expertise
+✅ Demander une contre-expertise
+✅ Accéder au rapport complet
+
+**L'expert doit :**
+- Vous convoquer par écrit
+- Prévoir un délai raisonnable (min 7 jours)
+- Vous remettre un rapport détaillé
+- Justifier ses conclusions
+
+**Contre-expertise :**
+Si désaccord avec le rapport :
+1. Votre expert (à vos frais)
+2. Expert commun si désaccord persiste
+3. Justice en dernier recours
+
+### Indemnisation
+
+**Modes d'indemnisation :**
+
+**1. Valeur à neuf**
+Remplacement par du neuf sans vétusté.
+- Durée : Généralement 2 ans
+- Conditions : Contrat tous risques
+
+**2. Valeur de remplacement**
+Prix d'un bien équivalent d'occasion.
+- Vétusté déduite
+- Le plus fréquent
+
+**3. Valeur d'usage**
+Valeur réelle au moment du sinistre.
+- Vétusté importante
+- Contrats au tiers
+
+**Vérifiez votre contrat !**
+
+**Franchise :**
+Montant déduit de l'indemnisation.
+- Doit être clairement indiquée
+- Ne peut pas être modifiée en cours d'année
+- Sauf accord écrit de votre part
+
+## Vos droits face aux refus
+
+### Refus d'indemnisation
+
+**Motifs légaux de refus :**
+- Exclusion contractuelle claire
+- Non-respect des obligations
+- Déclaration tardive inexcusée
+- Fausse déclaration intentionnelle
+
+**Motifs ILLÉGAUX :**
+- Clause abusive
+- Motif flou ou imprécis
+- Changement d'interprétation
+- Discrimination
+
+**Que faire ?**
+
+**1. Demandez la justification écrite**
+L'assureur DOIT motiver précisément.
+
+**2. Vérifiez les clauses**
+Lisez votre contrat et les conditions générales.
+
+**3. Contestez par écrit**
+Argumentez point par point.
+
+**4. Saisissez le médiateur**
+Si pas de réponse satisfaisante.
+
+**5. Action en justice**
+En dernier recours.
+
+### Résiliation abusive
+
+**Cas de résiliation abusive :**
+- Sans motif légitime
+- Discrimination
+- Après un sinistre garanti
+- En représailles d'une réclamation
+
+**Vos recours :**
+- Contestation auprès de l'assureur
+- Médiation
+- Tribunal judiciaire
+- Dommages et intérêts possibles
+
+**Période protégée :**
+L'assureur ne peut résilier pendant :
+- La durée d'un sinistre
+- 30 jours après indemnisation
+- En cas de procédure en cours
+
+### Augmentation injustifiée
+
+**Hausse de prime acceptable :**
+- Inflation généralisée
+- Augmentation des sinistres du secteur
+- Évolution réglementaire
+
+**Hausse ABUSIVE :**
+- Sans justification claire
+- Disproportionnée (> 15% sans raison)
+- Discriminatoire
+- Effet rétroactif
+
+**Vos droits :**
+- Demande de justification
+- Refus de la hausse
+- Résiliation sans pénalité
+- Contestation
+
+## Vos obligations d'assuré
+
+### Déclaration sincère
+
+**À la souscription :**
+Déclarer exactement :
+- Vos antécédents
+- Votre situation
+- Les risques aggravants
+- L'usage du bien
+
+**Fausse déclaration :**
+- Intentionnelle : Nullité du contrat
+- Non intentionnelle : Réduction indemnisation
+
+**Modification en cours de contrat :**
+Déclarer sous 15 jours :
+- Changement de situation
+- Aggravation du risque
+- Modification du bien
+
+### Paiement des cotisations
+
+**Délai :**
+- Date d'échéance indiquée
+- Préavis si impayé : 30 jours
+- Suspension si non payé : 30 jours après
+- Résiliation : 10 jours après suspension
+
+**Difficultés de paiement ?**
+- Contactez votre assureur
+- Proposez un échelonnement
+- Expliquez votre situation
+
+**Ne laissez jamais sans réponse !**
+
+### Minimiser le sinistre
+
+**Obligation :**
+Prendre toutes mesures pour limiter les dégâts.
+
+**Exemples :**
+- Fermer l'eau en cas de fuite
+- Protéger les biens récupérables
+- Faire les réparations d'urgence
+
+**Conservation des preuves :**
+- Photos avant réparation
+- Factures des mesures d'urgence
+- Témoignages
+
+## Vos recours
+
+### Hiérarchie des recours
+
+**Niveau 1 : Service client**
+- Par téléphone
+- Par email
+- Via l'application
+
+**Niveau 2 : Service réclamations**
+- Courrier recommandé
+- Référence du dossier
+- Exposé détaillé
+
+**Niveau 3 : Médiateur**
+- Gratuit
+- Délai : 90 jours
+- www.mediation-assurance.org
+
+**Niveau 4 : Justice**
+- Tribunal judiciaire
+- Avocat recommandé
+- Coûts à prévoir
+
+**Niveau 5 : Défenseur des droits**
+- Si discrimination
+- Si pratique abusive généralisée
+
+### Associations de consommateurs
+
+**Elles peuvent vous aider :**
+- UFC-Que Choisir
+- CLCV
+- Familles Rurales
+- INDECOSA-CGT
+
+**Services :**
+- Conseil juridique
+- Médiation
+- Action de groupe
+- Représentation en justice
+
+### Prud'hommes (litiges employeur)
+
+**Assurances collectives :**
+Si litige avec l'entreprise sur :
+- Cotisations non versées
+- Garanties non respectées
+- Résiliation abusive
+
+## Délais de prescription
+
+**Connaître les délais :**
+
+**2 ans :**
+- Action en paiement de la prime
+- Action en indemnisation (général)
+
+**5 ans :**
+- Contrat sur la vie (décès, invalidité)
+- Contestation de refus d'indemnisation
+
+**10 ans :**
+- Assurance construction
+- Garantie décennale
+- Vice caché grave
+
+**À compter de quand ?**
+- Connaissance du sinistre
+- Ou connaissance du refus
+
+**Interruption de prescription :**
+- Courrier recommandé
+- Médiation
+- Mise en demeure
+- Expertise
+
+## Cas particuliers
+
+### Assurance collective (entreprise)
+
+**Vos droits :**
+- Information sur les garanties
+- Modification avec accord
+- Portabilité en cas de départ
+- Contestation des refus
+
+**Différence avec individuelle :**
+- Négociée par l'employeur
+- Souvent obligatoire
+- Cotisation partagée
+
+### Assurance responsabilité civile
+
+**Protection étendue :**
+- Dommages causés aux tiers
+- Même sans contrat spécifique
+- Souvent dans assurance habitation
+
+**Vigilance :**
+Vérifiez les plafonds et exclusions.
+
+### Assurance vie
+
+**Droits spécifiques :**
+- Rachats partiels
+- Avances sur contrat
+- Changement de bénéficiaire
+- Information annuelle
+
+**Prescription : 10 ans**
+Les bénéficiaires ont 10 ans après le décès.
+
+## Outils et ressources
+
+### Sites officiels
+
+**www.service-public.fr**
+Informations légales fiables.
+
+**www.banque-france.fr/acpr**
+Autorité de Contrôle Prudentiel.
+
+**www.mediation-assurance.org**
+Médiation des assurances.
+
+### Applications utiles
+
+**e-Constat Auto**
+Déclaration accident simplifiée.
+
+**Mes dé marches**
+Suivi de vos démarches administratives.
+
+**Mes Contrats**
+Gestion centralisée de vos contrats.
+
+### Numéros utiles
+
+**Info Assurance Banque : 0 811 901 801**
+Questions sur vos droits.
+
+**Assurance Banque Épargne Info Service**
+Informations et orientation.
+
+## Checklist de vos droits
+
+✅ Information claire avant souscription
+✅ Délai de rétractation de 14 jours
+✅ Résiliation facilitée après 1 an
+✅ Avis d'échéance 3 mois avant
+✅ Justification des hausses de tarif
+✅ Indemnisation dans les délais
+✅ Accès au rapport d'expertise
+✅ Recours médiation gratuit
+✅ Pas de discrimination
+✅ Protection données personnelles
+
+## Conclusion
+
+Connaître vos droits, c'est pouvoir les faire valoir !
+
+**Les 3 réflexes :**
+1. **Lisez votre contrat** (au moins les garanties et exclusions)
+2. **Conservez tous les échanges** (courriers, emails, appels)
+3. **N'hésitez pas à contester** si quelque chose vous semble anormal
+
+**Vous n'êtes pas seul :**
+- Médiateurs gratuits
+- Associations de consommateurs
+- Juristes spécialisés
+
+**Faites valoir vos droits en toute confiance !**
+    `
   }
 ];
 
