@@ -23,7 +23,7 @@ export const BlogHighlights = () => {
             Guides et Conseils Assurance 2025
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Découvrez nos articles experts pour bien choisir votre assurance et économiser jusqu\'à 947€ par an
+            Découvrez nos articles experts pour bien choisir votre assurance et économiser jusqu'à 947€ par an
           </p>
         </div>
 
@@ -62,7 +62,7 @@ export const BlogHighlights = () => {
                     navigate(`/blog/${article.slug}`);
                   }}
                 >
-                  Lire l\'article
+                  Lire l'article
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </CardContent>
