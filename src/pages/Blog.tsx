@@ -91,7 +91,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/meilleure-assurance-auto-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Meilleure assurance auto 2025
                     </button>
@@ -99,7 +99,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/top-mutuelles-sante-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Top mutuelles santé
                     </button>
@@ -107,7 +107,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/assurance-auto-jeune-conducteur-astuces')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Assurance jeune conducteur
                     </button>
@@ -115,7 +115,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/comparatif-habitation-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Comparatif habitation
                     </button>
@@ -130,7 +130,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/loi-lemoine-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Loi Lemoine 2025
                     </button>
@@ -138,7 +138,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/resiliation-assurance-droits-2024')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Loi Hamon résiliation
                     </button>
@@ -146,7 +146,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/nouvelle-reglementation-assurance-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Nouvelle réglementation
                     </button>
@@ -154,7 +154,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/droits-des-assures-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Droits des assurés
                     </button>
@@ -169,7 +169,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/mutuelle-sante-reduire-frais-medicaux-2024')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Économiser sur ses contrats
                     </button>
@@ -177,7 +177,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/assurance-auto-jeune-conducteur-astuces')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Choisir ses garanties
                     </button>
@@ -185,7 +185,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/resiliation-assurance-droits-2024')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Éviter les pièges
                     </button>
@@ -193,7 +193,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/mutuelle-sante-reduire-frais-medicaux-2024')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Optimiser sa couverture
                     </button>
@@ -208,7 +208,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/meilleure-assurance-auto-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Auto & Moto
                     </button>
@@ -216,7 +216,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/top-mutuelles-sante-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Santé & Prévoyance
                     </button>
@@ -224,7 +224,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/comparatif-habitation-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Habitation & PNO
                     </button>
@@ -232,7 +232,7 @@ const Blog = () => {
                   <li>
                     <button
                       onClick={() => navigate('/blog/loi-lemoine-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline"
                     >
                       • Vie & Emprunteur
                     </button>
