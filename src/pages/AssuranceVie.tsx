@@ -145,7 +145,7 @@ const AssuranceVie = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Vie",
     description: "Comparez les contrats d'assurance vie pour l'épargne, la protection décès et la transmission de patrimoine. Solutions adaptées à vos objectifs financiers.",
-    provider: "jemassurmoinscher",
+    provider: "jemassuremoinscher",
     areaServed: "France"
   });
 
@@ -173,7 +173,7 @@ const AssuranceVie = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Assurance Vie - Épargne et Protection | jemassurmoinscher"
+        title="Assurance Vie - Épargne et Protection | jemassuremoinscher"
         description="Comparez les meilleures assurances vie : épargne, protection décès, transmission de patrimoine. Trouvez le contrat adapté à vos objectifs financiers."
         keywords="assurance vie, épargne, placement, transmission patrimoine, contrat assurance vie, fiscalité assurance vie"
         canonical="https://www.assurmoinschere.fr/assurance-vie"

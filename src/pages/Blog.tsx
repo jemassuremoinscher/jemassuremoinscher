@@ -34,19 +34,19 @@ const Blog = () => {
   const blogSchema = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "Blog Assurance - jemassurmoinscher",
+    "name": "Blog Assurance - jemassuremoinscher",
     "description": "Conseils, guides pratiques et actualités sur les assurances en France",
     "url": "https://www.assurmoinschere.fr/blog",
     "publisher": {
       "@type": "Organization",
-      "name": "jemassurmoinscher"
+      "name": "jemassuremoinscher"
     }
   };
 
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Blog Assurance - Conseils, Guides et Actualités | jemassurmoinscher"
+        title="Blog Assurance - Conseils, Guides et Actualités | jemassuremoinscher"
         description="Découvrez nos articles sur les assurances : guides pratiques, actualités légales (loi Lemoine, Hamon), conseils d'experts pour bien choisir et économiser."
         keywords="blog assurance, conseils assurance, loi lemoine, loi hamon, guide assurance, actualités assurance"
         canonical="https://www.assurmoinschere.fr/blog"

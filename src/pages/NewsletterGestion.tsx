@@ -61,8 +61,8 @@ const NewsletterGestion = () => {
   return (
     <>
       <SEO 
-        title="Gestion Newsletter - jemassurmoinscher"
-        description="Gérez votre abonnement à la newsletter de jemassurmoinscher"
+        title="Gestion Newsletter - jemassuremoinscher"
+        description="Gérez votre abonnement à la newsletter de jemassuremoinscher"
       />
       
       <div className="min-h-screen flex flex-col">
