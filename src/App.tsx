@@ -7,6 +7,7 @@ import { lazy, Suspense } from "react";
 import CookieBanner from "@/components/CookieBanner";
 import { AIChatbot } from "@/components/chatbot/AIChatbot";
 import SkipToMain from "@/components/SkipToMain";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -64,13 +65,14 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <SkipToMain />
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center" role="status" aria-live="polite">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-            <span className="sr-only">Chargement en cours...</span>
-          </div>
-        }>
-          <Routes>
+        <ErrorBoundary>
+          <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center" role="status" aria-live="polite">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+              <span className="sr-only">Chargement en cours...</span>
+            </div>
+          }>
+            <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<Admin />} />
@@ -116,8 +118,9 @@ const App = () => (
             <Route path="/newsletter-gestion" element={<NewsletterGestion />} />
             <Route path="/plan-du-site" element={<PlanDuSite />} />
             <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
         <CookieBanner />
         <AIChatbot />
       </BrowserRouter>
