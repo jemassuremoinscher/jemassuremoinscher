@@ -20,7 +20,12 @@ const BlogArticle = () => {
   const article = blogArticles.find(a => a.slug === slug);
 
   if (!article) {
-    navigate("/blog");
+    toast({
+      title: "Article introuvable",
+      description: "L'article demandé n'existe pas ou a été déplacé. Vous allez être redirigé vers le blog.",
+      variant: "destructive",
+    });
+    setTimeout(() => navigate("/blog"), 2000);
     return null;
   }
 
