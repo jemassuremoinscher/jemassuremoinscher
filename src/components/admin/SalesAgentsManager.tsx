@@ -130,12 +130,22 @@ export const SalesAgentsManager = () => {
     },
   });
 
+  // Generate cryptographically secure password using Web Crypto API
+  const generateSecurePassword = (): string => {
+    const array = new Uint8Array(24);
+    crypto.getRandomValues(array);
+    // Convert to base64-like string with special chars for password requirements
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+    return Array.from(array, byte => chars[byte % chars.length]).join('');
+  };
+
   const handleAddAgent = async () => {
-    // Pour la démo, on crée un utilisateur fictif
-    // En production, il faudrait d'abord créer l'utilisateur dans auth.users
+    // Generate a secure password - agent will need to use password reset to access their account
+    const securePassword = generateSecurePassword();
+    
     const { data: userData, error: authError } = await supabase.auth.signUp({
       email: newAgent.email,
-      password: Math.random().toString(36).slice(-8) + "A1!",
+      password: securePassword,
       options: {
         data: {
           full_name: newAgent.full_name,
@@ -153,6 +163,8 @@ export const SalesAgentsManager = () => {
         ...newAgent,
         user_id: userData.user.id,
       });
+      // Note: Agent should use password reset flow to set their own password
+      toast.info("L'agent devra utiliser 'Mot de passe oublié' pour définir son mot de passe");
     }
   };
 
