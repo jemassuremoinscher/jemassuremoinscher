@@ -5,14 +5,82 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Message validation types and functions
+interface ValidatedMessage {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
+function validateMessages(messages: unknown): ValidatedMessage[] {
+  // Check if messages is an array
+  if (!Array.isArray(messages)) {
+    throw new Error('Messages must be an array');
+  }
+  
+  if (messages.length === 0) {
+    throw new Error('Messages array cannot be empty');
+  }
+  
+  // Limit number of messages to prevent abuse
+  if (messages.length > 50) {
+    throw new Error('Too many messages in conversation');
+  }
+  
+  return messages.map((msg, index) => {
+    // Validate message structure
+    if (!msg || typeof msg !== 'object') {
+      throw new Error(`Invalid message at index ${index}`);
+    }
+    
+    // Validate role
+    if (!msg.role || (msg.role !== 'user' && msg.role !== 'assistant')) {
+      throw new Error(`Invalid role at message ${index}`);
+    }
+    
+    // Validate content exists and is a string
+    if (typeof msg.content !== 'string') {
+      throw new Error(`Message content must be a string at index ${index}`);
+    }
+    
+    // Validate content length
+    const content = msg.content.trim();
+    if (content.length === 0) {
+      throw new Error(`Message content cannot be empty at index ${index}`);
+    }
+    
+    if (content.length > 2000) {
+      throw new Error(`Message too long at index ${index} (max 2000 characters)`);
+    }
+    
+    // Return sanitized message
+    return {
+      role: msg.role as 'user' | 'assistant',
+      content: content.substring(0, 2000), // Enforce max length
+    };
+  });
+}
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { messages } = await req.json();
-    console.log('Received messages:', messages);
+    const body = await req.json();
+    
+    // Validate and sanitize messages
+    let messages: ValidatedMessage[];
+    try {
+      messages = validateMessages(body.messages);
+    } catch (validationError) {
+      console.error('Message validation failed:', validationError);
+      return new Response(
+        JSON.stringify({ error: 'Format de message invalide' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+    
+    console.log('Validated messages count:', messages.length);
     
     const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
     if (!LOVABLE_API_KEY) {
