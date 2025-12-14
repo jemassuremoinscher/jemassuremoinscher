@@ -161,6 +161,15 @@ All colors MUST be HSL.
     50% { opacity: 0.9; transform: scale(1.05); }
   }
   
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s ease-in-out infinite;
+  }
+  
+  @keyframes bounce-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  
   .hover-lift {
     @apply transition-all duration-300;
   }

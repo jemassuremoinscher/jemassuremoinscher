@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { TransferDialog } from "./TransferDialog";
-
+import mascotteArthur from "@/assets/mascotte-arthur.png";
 interface Message {
   role: "user" | "assistant";
   content: string;
@@ -105,15 +105,24 @@ export const AIChatbot = () => {
 
   return (
     <>
-      {/* Chatbot Button */}
+      {/* Chatbot Button with Arthur mascot */}
       {!isOpen && (
-        <Button
+        <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-elegant hover:shadow-glow z-50 bg-gradient-primary hover:scale-110 transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 animate-pulse-subtle"
-          aria-label="Ouvrir l'assistant virtuel"
+          className="fixed bottom-6 right-6 z-50 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full"
+          aria-label="Ouvrir l'assistant virtuel Arthur"
         >
-          <MessageCircle className="h-6 w-6" aria-hidden="true" />
-        </Button>
+          <div className="relative">
+            <img 
+              src={mascotteArthur} 
+              alt="Arthur, votre assistant assurance" 
+              className="h-20 w-20 object-contain drop-shadow-lg hover:scale-110 transition-transform duration-300 animate-bounce-gentle"
+            />
+            <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full shadow-md animate-pulse">
+              Aide ?
+            </span>
+          </div>
+        </button>
       )}
 
       {/* Chatbot Window */}
