@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { TransferDialog } from "./TransferDialog";
-import mascotteArthur from "@/assets/mascotte-arthur.png";
+
 interface Message {
   role: "user" | "assistant";
   content: string;
@@ -105,24 +105,15 @@ export const AIChatbot = () => {
 
   return (
     <>
-      {/* Chatbot Button with Arthur mascot */}
+      {/* Chatbot Button */}
       {!isOpen && (
-        <button
+        <Button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full"
-          aria-label="Ouvrir l'assistant virtuel Arthur"
+          className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-elegant hover:shadow-glow z-50 bg-gradient-primary hover:scale-110 transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 animate-pulse-subtle"
+          aria-label="Ouvrir l'assistant virtuel"
         >
-          <div className="relative">
-            <img 
-              src={mascotteArthur} 
-              alt="Arthur, votre assistant assurance" 
-              className="h-20 w-20 object-contain drop-shadow-lg hover:scale-110 transition-transform duration-300 animate-bounce-gentle"
-            />
-            <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full shadow-md animate-pulse">
-              Aide ?
-            </span>
-          </div>
-        </button>
+          <MessageCircle className="h-6 w-6" aria-hidden="true" />
+        </Button>
       )}
 
       {/* Chatbot Window */}
@@ -131,13 +122,11 @@ export const AIChatbot = () => {
           {/* Header */}
           <div className="bg-gradient-primary text-white p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <img 
-                src={mascotteArthur} 
-                alt="Arthur" 
-                className="h-12 w-12 object-contain rounded-full bg-white/20 p-1"
-              />
+              <div className="bg-white/20 p-2 rounded-full">
+                <Bot className="h-5 w-5" aria-hidden="true" />
+              </div>
               <div>
-                <h3 className="font-semibold">Arthur</h3>
+                <h3 className="font-semibold">Assistant Assurance IA</h3>
                 <p className="text-xs opacity-90">En ligne • Réponse instantanée</p>
               </div>
             </div>
