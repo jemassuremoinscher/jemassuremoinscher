@@ -131,11 +131,13 @@ export const AIChatbot = () => {
           {/* Header */}
           <div className="bg-gradient-primary text-white p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="bg-white/20 p-2 rounded-full">
-                <Bot className="h-5 w-5" aria-hidden="true" />
-              </div>
+              <img 
+                src={mascotteArthur} 
+                alt="Arthur" 
+                className="h-12 w-12 object-contain rounded-full bg-white/20 p-1"
+              />
               <div>
-                <h3 className="font-semibold">Assistant Assurance IA</h3>
+                <h3 className="font-semibold">Arthur</h3>
                 <p className="text-xs opacity-90">En ligne • Réponse instantanée</p>
               </div>
             </div>
