@@ -62,15 +62,20 @@ export const CommentsSection = ({ articleSlug }: CommentsSectionProps) => {
   const fetchComments = async () => {
     setIsLoading(true);
     try {
-      const { data, error } = await supabase
-        .from("blog_comments")
-        .select("id, author_name, content, created_at")
-        .eq("article_slug", articleSlug)
-        .eq("status", "approved")
-        .order("created_at", { ascending: false });
-
-      if (error) throw error;
-      setComments(data || []);
+      // Use the public view that excludes email addresses for security
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/rest/v1/blog_comments_public?article_slug=eq.${encodeURIComponent(articleSlug)}&order=created_at.desc`,
+        {
+          headers: {
+            'apikey': import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      
+      if (!response.ok) throw new Error('Failed to fetch comments');
+      const commentsData = await response.json();
+      setComments(commentsData || []);
     } catch (error) {
       console.error("Error fetching comments:", error);
     } finally {
