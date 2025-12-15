@@ -33,19 +33,30 @@ const NewsletterGestion = () => {
     setIsLoading(true);
     
     try {
-      // Mettre à jour le statut à 'unsubscribed'
-      const { error } = await supabase
-        .from('newsletter_subscribers')
-        .update({ 
-          status: 'unsubscribed',
-          unsubscribed_at: new Date().toISOString()
-        })
-        .eq('email', values.email)
-        .eq('status', 'active');
+      // Use Edge Function for secure unsubscription (service role handles DB access)
+      const { data, error } = await supabase.functions.invoke('newsletter-subscribe', {
+        body: { email: values.email.trim().toLowerCase() },
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+      });
 
-      if (error) {
-        // Si aucune ligne n'a été mise à jour, l'email n'existe pas
-        toast.error('Aucun abonnement trouvé avec cet email ou déjà désinscrit');
+      // Parse query params for action - need to call with action=unsubscribe
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/newsletter-subscribe?action=unsubscribe`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+          },
+          body: JSON.stringify({ email: values.email.trim().toLowerCase() }),
+        }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        toast.error(result.message || 'Aucun abonnement trouvé avec cet email ou déjà désinscrit');
       } else {
         setIsSuccess(true);
         toast.success('Vous avez été désinscrit(e) avec succès de notre newsletter');
