@@ -694,7 +694,36 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      blog_comments_public: {
+        Row: {
+          article_slug: string | null
+          author_name: string | null
+          content: string | null
+          created_at: string | null
+          id: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          article_slug?: string | null
+          author_name?: string | null
+          content?: string | null
+          created_at?: string | null
+          id?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          article_slug?: string | null
+          author_name?: string | null
+          content?: string | null
+          created_at?: string | null
+          id?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       calculate_assignment_score: {
