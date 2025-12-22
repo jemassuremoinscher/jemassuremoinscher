@@ -4,11 +4,14 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageToggle from "@/components/LanguageToggle";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openPopover, setOpenPopover] = useState<string | null>(null);
   const { trackEvent } = useAnalytics();
+  const { t } = useLanguage();
 
   const handleInsuranceTypeClick = (type: string, category: string) => {
     trackEvent('insurance_type_click', {
@@ -19,28 +22,28 @@ const Header = () => {
   };
 
   const assurancesParticuliers = [
-    { to: "/assurance-auto", label: "Auto", icon: Car },
-    { to: "/assurance-moto", label: "Moto", icon: Bike },
-    { to: "/assurance-habitation", label: "Habitation", icon: Home },
-    { to: "/assurance-sante", label: "Santé", icon: Heart },
-    { to: "/assurance-animaux", label: "Animaux", icon: Heart },
+    { to: "/assurance-auto", label: t('insurance.auto'), icon: Car },
+    { to: "/assurance-moto", label: t('insurance.moto'), icon: Bike },
+    { to: "/assurance-habitation", label: t('insurance.home'), icon: Home },
+    { to: "/assurance-sante", label: t('insurance.health'), icon: Heart },
+    { to: "/assurance-animaux", label: t('insurance.pets'), icon: Heart },
   ];
 
   const assurancesPro = [
-    { to: "/assurance-rc-pro", label: "RC Pro", icon: Building2 },
-    { to: "/assurance-mrp", label: "MRP", icon: Building2 },
+    { to: "/assurance-rc-pro", label: t('insurance.rcPro'), icon: Building2 },
+    { to: "/assurance-mrp", label: t('insurance.mrp'), icon: Building2 },
   ];
 
   const assurancesVieEpargne = [
-    { to: "/assurance-vie", label: "Assurance Vie", icon: PiggyBank },
-    { to: "/assurance-pret", label: "Assurance de Prêt", icon: FileText },
-    { to: "/assurance-prevoyance", label: "Prévoyance", icon: Users },
+    { to: "/assurance-vie", label: t('insurance.life'), icon: PiggyBank },
+    { to: "/assurance-pret", label: t('insurance.loan'), icon: FileText },
+    { to: "/assurance-prevoyance", label: t('insurance.provident'), icon: Users },
   ];
 
   const assurancesImmobilier = [
-    { to: "/assurance-gli", label: "Garantie Loyer Impayée", icon: Shield },
-    { to: "/assurance-pno", label: "PNO", icon: Home },
-    { to: "/gestion-locative", label: "Gestion Locative", icon: Building2 },
+    { to: "/assurance-gli", label: t('insurance.gli'), icon: Shield },
+    { to: "/assurance-pno", label: t('insurance.pno'), icon: Home },
+    { to: "/gestion-locative", label: t('insurance.rentalManagement'), icon: Building2 },
   ];
 
   return (
@@ -62,18 +65,25 @@ const Header = () => {
               </div>
             </Link>
 
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="lg:hidden focus:ring-2 focus:ring-primary focus:ring-offset-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-              aria-expanded={isMobileMenuOpen}
-              aria-controls="mobile-menu"
-            >
-              {isMobileMenuOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
-            </Button>
+            <div className="flex items-center gap-2">
+              {/* Language Toggle - Desktop */}
+              <div className="hidden lg:block">
+                <LanguageToggle />
+              </div>
+              
+              {/* Mobile Menu Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="lg:hidden focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label={isMobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-menu"
+              >
+                {isMobileMenuOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
+              </Button>
+            </div>
           </div>
         </div>
 
@@ -91,7 +101,7 @@ const Header = () => {
                   });
                 }}
               >
-                Comparateur Garanties
+                {t('nav.comparator')}
               </Link>
 
               <Popover open={openPopover === "particuliers"} onOpenChange={(open) => setOpenPopover(open ? "particuliers" : null)}>
@@ -100,7 +110,7 @@ const Header = () => {
                     variant="ghost"
                     className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
                   >
-                    Particuliers
+                    {t('nav.individuals')}
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </PopoverTrigger>
@@ -130,7 +140,7 @@ const Header = () => {
                     variant="ghost"
                     className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
                   >
-                    Professionnels
+                    {t('nav.professionals')}
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </PopoverTrigger>
@@ -160,7 +170,7 @@ const Header = () => {
                     variant="ghost"
                     className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
                   >
-                    Vie & Épargne
+                    {t('nav.lifeAndSavings')}
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </PopoverTrigger>
@@ -190,7 +200,7 @@ const Header = () => {
                     variant="ghost"
                     className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1"
                   >
-                    Immobilier
+                    {t('nav.realEstate')}
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </PopoverTrigger>
@@ -220,25 +230,25 @@ const Header = () => {
                 to="/qui-sommes-nous"
                 className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
               >
-                Qui sommes-nous ?
+                {t('nav.aboutUs')}
               </Link>
               <Link
                 to="/nos-partenaires"
                 className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
               >
-                Nos Partenaires
+                {t('nav.partners')}
               </Link>
               <Link
                 to="/avis-clients"
                 className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
               >
-                Avis Clients
+                {t('nav.reviews')}
               </Link>
               <Link
                 to="/blog"
                 className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
               >
-                Blog
+                {t('nav.blog')}
               </Link>
             </div>
           </div>
@@ -263,18 +273,23 @@ const Header = () => {
           aria-label="Menu de navigation mobile"
         >
           <nav className="p-4 space-y-6" role="navigation" aria-label="Navigation mobile principale">
+            {/* Language Toggle - Mobile */}
+            <div className="flex justify-end mb-2">
+              <LanguageToggle />
+            </div>
+            
             <div>
               <Link
                 to="/comparateur-garanties"
                 className="block px-4 py-3 mb-3 text-base font-semibold text-white bg-primary hover:bg-primary/90 rounded-lg transition-all text-center shadow-md"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Comparateur Garanties
+                {t('nav.comparator')}
               </Link>
             </div>
 
             <div>
-              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">Particuliers</h3>
+              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">{t('nav.individuals')}</h3>
               <div className="space-y-1 mt-2">
                 {assurancesParticuliers.map(({ to, label, icon: Icon }) => (
                   <Link
@@ -291,7 +306,7 @@ const Header = () => {
             </div>
 
             <div>
-              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">Professionnels</h3>
+              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">{t('nav.professionals')}</h3>
               <div className="space-y-1 mt-2">
                 {assurancesPro.map(({ to, label, icon: Icon }) => (
                   <Link
@@ -308,7 +323,7 @@ const Header = () => {
             </div>
 
             <div>
-              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">Vie & Épargne</h3>
+              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">{t('nav.lifeAndSavings')}</h3>
               <div className="space-y-1 mt-2">
                 {assurancesVieEpargne.map(({ to, label, icon: Icon }) => (
                   <Link
@@ -325,7 +340,7 @@ const Header = () => {
             </div>
 
             <div>
-              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">Immobilier</h3>
+              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">{t('nav.realEstate')}</h3>
               <div className="space-y-1 mt-2">
                 {assurancesImmobilier.map(({ to, label, icon: Icon }) => (
                   <Link
@@ -348,28 +363,28 @@ const Header = () => {
                   className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Qui sommes-nous ?
+                  {t('nav.aboutUs')}
                 </Link>
                 <Link
                   to="/nos-partenaires"
                   className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Nos Partenaires
+                  {t('nav.partners')}
                 </Link>
                 <Link
                   to="/avis-clients"
                   className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Avis Clients
+                  {t('nav.reviews')}
                 </Link>
                 <Link
                   to="/blog"
                   className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Blog
+                  {t('nav.blog')}
                 </Link>
               </div>
             </div>

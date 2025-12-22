@@ -4,18 +4,20 @@ import { Car, Heart, Home, CreditCard, Users, TrendingDown, Shield, CheckCircle,
 import heroImage from "@/assets/hero-insurance.jpg";
 import { Link } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
-
-const categories = [
-  { icon: Car, label: "AUTO", color: "text-primary", link: "/assurance-auto" },
-  { icon: Heart, label: "SANTÉ", color: "text-primary", link: "/assurance-sante" },
-  { icon: Users, label: "ANIMAUX", color: "text-primary", link: "/assurance-animaux" },
-  { icon: Home, label: "HABITATION", color: "text-primary", link: "/assurance-habitation" },
-  { icon: CreditCard, label: "PRÊT", color: "text-primary", link: "/assurance-pret" },
-  { icon: Bike, label: "MOTO", color: "text-primary", link: "/assurance-moto" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
   const { trackEvent } = useAnalytics();
+  const { t } = useLanguage();
+
+  const categories = [
+    { icon: Car, label: t('category.auto'), color: "text-primary", link: "/assurance-auto" },
+    { icon: Heart, label: t('category.health'), color: "text-primary", link: "/assurance-sante" },
+    { icon: Users, label: t('category.pets'), color: "text-primary", link: "/assurance-animaux" },
+    { icon: Home, label: t('category.home'), color: "text-primary", link: "/assurance-habitation" },
+    { icon: CreditCard, label: t('category.loan'), color: "text-primary", link: "/assurance-pret" },
+    { icon: Bike, label: t('category.moto'), color: "text-primary", link: "/assurance-moto" },
+  ];
 
   const handleCTAClick = () => {
     trackEvent('insurance_type_click', {
@@ -54,19 +56,19 @@ const Hero = () => {
         <div className="max-w-4xl py-20">
           <p className="text-primary-foreground/90 text-lg font-semibold mb-4 uppercase tracking-wider animate-fade-in flex items-center gap-2">
             <Shield className="h-5 w-5" aria-hidden="true" />
-            Comparateur N°1 en France
+            {t('hero.badge')}
           </p>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-primary-foreground mb-6 leading-tight animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            Comparez et <span className="text-gradient bg-gradient-to-r from-accent via-secondary to-accent bg-clip-text text-transparent">Économisez</span> sur vos Assurances
+            {t('hero.title')} <span className="text-gradient bg-gradient-to-r from-accent via-secondary to-accent bg-clip-text text-transparent">{t('hero.titleHighlight')}</span> {t('hero.titleEnd')}
           </h1>
           
           <h2 className="text-xl md:text-2xl text-primary-foreground/90 mb-8 animate-fade-in" style={{ animationDelay: '0.15s' }}>
-            Plus de 120 assureurs comparés pour trouver la meilleure offre adaptée à vos besoins
+            {t('hero.subtitle')}
           </h2>
 
           <div className="inline-block mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
             <p className="text-2xl md:text-3xl font-bold text-primary-foreground">
-              EN MOYENNE <span className="text-accent border-b-4 border-accent px-2 inline-block transform hover:scale-110 transition-transform">947€</span> PAR AN*
+              {t('hero.savings')} <span className="text-accent border-b-4 border-accent px-2 inline-block transform hover:scale-110 transition-transform">{t('hero.savingsAmount')}</span> {t('hero.savingsPerYear')}
             </p>
           </div>
 
@@ -77,21 +79,21 @@ const Hero = () => {
                 <TrendingDown className="h-5 w-5" />
                 <span className="text-2xl md:text-3xl font-bold">-35%</span>
               </div>
-              <p className="text-primary-foreground/80 text-xs md:text-sm">d'économies moyennes</p>
+              <p className="text-primary-foreground/80 text-xs md:text-sm">{t('hero.avgSavings')}</p>
             </div>
             <div className="bg-card/20 backdrop-blur-md rounded-lg p-4 border border-primary-foreground/20">
               <div className="flex items-center gap-2 text-accent mb-1">
                 <CheckCircle className="h-5 w-5" />
                 <span className="text-2xl md:text-3xl font-bold">2min</span>
               </div>
-              <p className="text-primary-foreground/80 text-xs md:text-sm">pour comparer</p>
+              <p className="text-primary-foreground/80 text-xs md:text-sm">{t('hero.compareTime')}</p>
             </div>
             <div className="bg-card/20 backdrop-blur-md rounded-lg p-4 border border-primary-foreground/20">
               <div className="flex items-center gap-2 text-accent mb-1">
                 <Shield className="h-5 w-5" />
                 <span className="text-2xl md:text-3xl font-bold">100%</span>
               </div>
-              <p className="text-primary-foreground/80 text-xs md:text-sm">gratuit & sans engagement</p>
+              <p className="text-primary-foreground/80 text-xs md:text-sm">{t('hero.freeNoObligation')}</p>
             </div>
           </div>
 
@@ -104,11 +106,11 @@ const Hero = () => {
               onClick={handleCTAClick}
             >
               <Link to="/assurance-auto">
-                Comparer maintenant - C'est gratuit !
+                {t('hero.cta')}
               </Link>
             </Button>
             <p className="text-primary-foreground/70 text-sm mt-3">
-              ✓ Sans engagement • ✓ Devis instantané • ✓ 100% gratuit
+              {t('hero.ctaDetails')}
             </p>
           </div>
 
