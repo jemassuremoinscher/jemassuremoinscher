@@ -1,6 +1,6 @@
-import { Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import logoNew from "@/assets/logo-new.png";
 
 const Footer = () => {
   const { t, language } = useLanguage();
@@ -10,9 +10,12 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Shield className="h-6 w-6" />
-              <span className="font-bold text-lg">jemassuremoinscher</span>
+            <div className="mb-4">
+              <img 
+                src={logoNew} 
+                alt="jemassuremoinscher.fr" 
+                className="h-10 w-auto brightness-0 invert"
+              />
             </div>
             <p className="text-primary-foreground/80 text-sm">
               {t('footer.tagline')}
