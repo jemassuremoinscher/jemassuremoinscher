@@ -1,4 +1,4 @@
-import { Shield, ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, HomeIcon } from "lucide-react";
+import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, HomeIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageToggle from "@/components/LanguageToggle";
+import logoNew from "@/assets/logo-new.png";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -41,7 +42,7 @@ const Header = () => {
   ];
 
   const assurancesImmobilier = [
-    { to: "/assurance-gli", label: t('insurance.gli'), icon: Shield },
+    { to: "/assurance-gli", label: t('insurance.gli'), icon: Building2 },
     { to: "/assurance-pno", label: t('insurance.pno'), icon: Home },
     { to: "/gestion-locative", label: t('insurance.rentalManagement'), icon: Building2 },
   ];
@@ -53,16 +54,14 @@ const Header = () => {
           <div className="flex items-center justify-between py-4">
             <Link 
               to="/" 
-              className="flex items-center gap-2 group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+              className="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
               aria-label="Retour à la page d'accueil - jemassuremoinscher"
             >
-              <div className="p-2 rounded-lg bg-gradient-to-br from-primary to-primary/80 shadow-md">
-                <Shield className="h-6 w-6 text-white" aria-hidden="true" />
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-xs font-semibold text-primary uppercase tracking-wide">Le Comparateur</span>
-                <span className="text-xl font-black text-primary uppercase">Assurance</span>
-              </div>
+              <img 
+                src={logoNew} 
+                alt="jemassuremoinscher.fr" 
+                className="h-10 md:h-12 w-auto"
+              />
             </Link>
 
             <div className="flex items-center gap-2">
