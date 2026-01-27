@@ -14,7 +14,7 @@ const Footer = () => {
               <img 
                 src={logoNew} 
                 alt="jemassuremoinscher.fr" 
-                className="h-10 w-auto brightness-0 invert"
+                className="h-12 w-auto brightness-0 invert"
               />
             </div>
             <p className="text-primary-foreground/80 text-sm">
