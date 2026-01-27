@@ -9,74 +9,74 @@ All colors MUST be HSL.
 @layer base {
   :root {
     --background: 0 0% 98%;
-    --foreground: 270 50% 20%;
+    --foreground: 271 80% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 270 50% 20%;
+    --card-foreground: 271 80% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 270 50% 20%;
+    --popover-foreground: 271 80% 20%;
 
-    --primary: 270 60% 45%;
+    --primary: 271 81% 56%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 45 100% 60%;
-    --secondary-foreground: 270 50% 20%;
+    --secondary: 45 100% 55%;
+    --secondary-foreground: 271 80% 20%;
 
-    --muted: 270 10% 96%;
-    --muted-foreground: 270 20% 50%;
+    --muted: 271 15% 96%;
+    --muted-foreground: 271 25% 45%;
 
-    --accent: 45 100% 60%;
-    --accent-foreground: 270 50% 20%;
+    --accent: 45 100% 55%;
+    --accent-foreground: 271 80% 20%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 270 15% 92%;
-    --input: 270 15% 92%;
-    --ring: 270 60% 45%;
+    --border: 271 20% 90%;
+    --input: 271 20% 90%;
+    --ring: 271 81% 56%;
 
     --radius: 0.75rem;
 
     /* Custom tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(270 60% 45%), hsl(260 55% 55%));
-    --accent-gradient: linear-gradient(135deg, hsl(45 100% 60%), hsl(35 100% 55%));
-    --card-gradient: linear-gradient(135deg, hsl(0 0% 100%), hsl(270 20% 98%));
-    --shadow-card: 0 2px 8px -2px hsl(270 50% 35% / 0.08);
-    --shadow-hover: 0 8px 24px -4px hsl(270 50% 35% / 0.15);
-    --shadow-lg: 0 20px 40px -8px hsl(270 50% 35% / 0.2);
-    --shadow-elegant: 0 10px 30px -10px hsl(270 60% 45% / 0.3);
-    --shadow-glow: 0 0 40px hsl(270 60% 55% / 0.4);
+    --hero-gradient: linear-gradient(135deg, hsl(271 81% 56%), hsl(271 75% 45%));
+    --accent-gradient: linear-gradient(135deg, hsl(45 100% 55%), hsl(35 100% 50%));
+    --card-gradient: linear-gradient(135deg, hsl(0 0% 100%), hsl(271 25% 98%));
+    --shadow-card: 0 2px 8px -2px hsl(271 80% 35% / 0.08);
+    --shadow-hover: 0 8px 24px -4px hsl(271 80% 35% / 0.15);
+    --shadow-lg: 0 20px 40px -8px hsl(271 80% 35% / 0.2);
+    --shadow-elegant: 0 10px 30px -10px hsl(271 81% 56% / 0.3);
+    --shadow-glow: 0 0 40px hsl(271 81% 56% / 0.4);
   }
 
   .dark {
-    --background: 270 50% 10%;
+    --background: 271 80% 8%;
     --foreground: 0 0% 98%;
 
-    --card: 270 40% 15%;
+    --card: 271 60% 12%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 270 40% 15%;
+    --popover: 271 60% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 270 60% 55%;
+    --primary: 271 81% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 45 100% 60%;
-    --secondary-foreground: 270 50% 10%;
+    --secondary: 45 100% 55%;
+    --secondary-foreground: 271 80% 8%;
 
-    --muted: 270 30% 20%;
-    --muted-foreground: 270 10% 70%;
+    --muted: 271 40% 18%;
+    --muted-foreground: 271 15% 65%;
 
-    --accent: 45 100% 60%;
-    --accent-foreground: 270 50% 10%;
+    --accent: 45 100% 55%;
+    --accent-foreground: 271 80% 8%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 270 30% 25%;
-    --input: 270 30% 25%;
-    --ring: 270 60% 55%;
+    --border: 271 40% 22%;
+    --input: 271 40% 22%;
+    --ring: 271 81% 60%;
     
     --shadow-card: 0 2px 8px -2px hsl(0 0% 0% / 0.3);
     --shadow-hover: 0 8px 24px -4px hsl(0 0% 0% / 0.4);
