@@ -41,18 +41,18 @@ const fr: Record<string, string> = {
   'insurance.rentalManagement': 'Gestion Locative',
   
   // Hero
-  'hero.badge': 'Comparateur N°1 en France',
-  'hero.title': 'Comparez et',
-  'hero.titleHighlight': 'Économisez',
-  'hero.titleEnd': 'sur vos Assurances',
-  'hero.subtitle': 'Plus de 120 assureurs comparés pour trouver la meilleure offre adaptée à vos besoins',
+  'hero.badge': 'Arthur, votre super-héros des économies',
+  'hero.title': 'Laissez Arthur vous faire',
+  'hero.titleHighlight': 'Économiser',
+  'hero.titleEnd': 'sur vos Assurances !',
+  'hero.subtitle': 'Arthur compare plus de 120 assureurs pour dénicher la meilleure offre adaptée à vos besoins',
   'hero.savings': 'EN MOYENNE',
   'hero.savingsAmount': '947€',
   'hero.savingsPerYear': 'PAR AN*',
-  'hero.avgSavings': "d'économies moyennes",
-  'hero.compareTime': 'pour comparer',
+  'hero.avgSavings': "trouvés par Arthur",
+  'hero.compareTime': 'et c\'est réglé !',
   'hero.freeNoObligation': 'gratuit & sans engagement',
-  'hero.cta': "Comparer maintenant - C'est gratuit !",
+  'hero.cta': "Arthur compare pour vous - C'est gratuit !",
   'hero.ctaDetails': '✓ Sans engagement • ✓ Devis instantané • ✓ 100% gratuit',
   
   // Categories
@@ -80,7 +80,7 @@ const fr: Record<string, string> = {
   'faq.subtitle': 'Tout ce que vous devez savoir sur notre comparateur',
   
   // Footer
-  'footer.tagline': 'Votre comparateur d\'assurances de confiance.',
+  'footer.tagline': 'Arthur, votre super-héros des économies d\'assurance.',
   'footer.insurances': 'Assurances',
   'footer.about': 'À propos',
   'footer.info': 'Informations',
@@ -139,18 +139,18 @@ const en: Record<string, string> = {
   'insurance.rentalManagement': 'Property Management',
   
   // Hero
-  'hero.badge': '#1 Comparator in France',
-  'hero.title': 'Compare and',
+  'hero.badge': 'Arthur, your savings superhero',
+  'hero.title': 'Let Arthur help you',
   'hero.titleHighlight': 'Save',
-  'hero.titleEnd': 'on your Insurance',
-  'hero.subtitle': 'Over 120 insurers compared to find the best offer tailored to your needs',
+  'hero.titleEnd': 'on your Insurance!',
+  'hero.subtitle': 'Arthur compares over 120 insurers to find the best offer tailored to your needs',
   'hero.savings': 'ON AVERAGE',
   'hero.savingsAmount': '€947',
   'hero.savingsPerYear': 'PER YEAR*',
-  'hero.avgSavings': 'average savings',
-  'hero.compareTime': 'to compare',
+  'hero.avgSavings': 'found by Arthur',
+  'hero.compareTime': 'and you\'re done!',
   'hero.freeNoObligation': 'free & no commitment',
-  'hero.cta': "Compare now - It's free!",
+  'hero.cta': "Arthur compares for you - It's free!",
   'hero.ctaDetails': '✓ No commitment • ✓ Instant quotes • ✓ 100% free',
   
   // Categories
@@ -178,7 +178,7 @@ const en: Record<string, string> = {
   'faq.subtitle': 'Everything you need to know about our comparator',
   
   // Footer
-  'footer.tagline': 'Your trusted insurance comparator.',
+  'footer.tagline': 'Arthur, your insurance savings superhero.',
   'footer.insurances': 'Insurance',
   'footer.about': 'About',
   'footer.info': 'Information',
