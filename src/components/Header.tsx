@@ -60,7 +60,7 @@ const Header = () => {
               <img 
                 src={logoNew} 
                 alt="jemassuremoinscher.fr" 
-                className="h-10 md:h-12 w-auto"
+                className="h-12 md:h-14 lg:h-16 w-auto object-contain"
               />
             </Link>
 
