@@ -101,8 +101,7 @@ const Hero = () => {
         }} transition={{
           duration: 0.5,
           delay: 0.2
-        }} className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary-foreground mb-4 leading-tight font-[Inter]">Le comparateur pour trouver son assurance moins chère,
-sans compromis.<br />
+        }} className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary-foreground mb-4 leading-tight font-[Inter]">Le site pour trouver son assurance moins chère, sans compromis.<br />
             <span className="text-accent">sans compromis.</span>
           </motion.h1>
 
