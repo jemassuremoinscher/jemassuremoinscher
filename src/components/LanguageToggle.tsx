@@ -10,7 +10,7 @@ const LanguageToggle = () => {
     setLanguage(language === 'fr' ? 'en' : 'fr');
   };
   return <Button variant="ghost" size="sm" onClick={toggleLanguage} className="flex items-center gap-1.5 px-2 py-1 h-8 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all" aria-label={language === 'fr' ? 'Switch to English' : 'Passer en Français'}>
-      <Globe className="h-4 w-4 bg-primary-foreground text-primary-foreground" />
+      <Globe className="h-4 w-4 text-primary-foreground bg-[#9235e9]" />
       <span className="uppercase font-bold bg-primary text-primary-foreground">{language === 'fr' ? 'EN' : 'FR'}</span>
     </Button>;
 };
