@@ -1,32 +1,21 @@
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Car, Heart, Home, CreditCard, Users, TrendingDown, Shield, CheckCircle, Bike } from "lucide-react";
+import { Car, Heart, Home, PawPrint, Bike, HeartPulse, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 
 const Hero = () => {
   const { trackEvent } = useAnalytics();
-  const { t } = useLanguage();
 
   const categories = [
-    { icon: Car, label: t('category.auto'), color: "text-primary", link: "/assurance-auto" },
-    { icon: Heart, label: t('category.health'), color: "text-primary", link: "/assurance-sante" },
-    { icon: Users, label: t('category.pets'), color: "text-primary", link: "/assurance-animaux" },
-    { icon: Home, label: t('category.home'), color: "text-primary", link: "/assurance-habitation" },
-    { icon: CreditCard, label: t('category.loan'), color: "text-primary", link: "/assurance-pret" },
-    { icon: Bike, label: t('category.moto'), color: "text-primary", link: "/assurance-moto" },
+    { icon: Car, label: "Auto", link: "/assurance-auto" },
+    { icon: Bike, label: "Moto", link: "/assurance-moto" },
+    { icon: Home, label: "Habitation", link: "/assurance-habitation" },
+    { icon: HeartPulse, label: "Santé", link: "/assurance-sante" },
+    { icon: PawPrint, label: "Animaux", link: "/assurance-animaux" },
+    { icon: Heart, label: "Vie", link: "/assurance-vie" },
   ];
-
-  const handleCTAClick = () => {
-    trackEvent('insurance_type_click', {
-      category: 'hero_cta',
-      label: 'primary_cta_button',
-      insurance_type: 'auto',
-    });
-  };
 
   const handleCategoryClick = (category: string) => {
     trackEvent('insurance_type_click', {
@@ -37,122 +26,145 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-[700px] flex items-center overflow-hidden bg-primary" aria-label="Section principale - Comparateur d'assurances">
-      {/* Animated Geometric Shapes */}
-      <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-accent/20 transform skew-x-[-8deg] translate-x-1/4 animate-pulse" />
-      <div className="absolute left-1/4 top-20 w-32 h-32 bg-accent/10 rounded-full blur-3xl animate-float" />
-      <div className="absolute right-1/4 bottom-20 w-48 h-48 bg-secondary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+    <section 
+      className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90" 
+      aria-label="Section principale - Comparateur d'assurances"
+    >
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-white rounded-full blur-3xl" />
+        <div className="absolute bottom-32 right-10 w-48 h-48 bg-accent rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full" />
+      </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 items-center py-12 lg:py-20">
-          {/* Left Column - Text */}
-          <div className="max-w-2xl">
-            <p className="text-primary-foreground/90 text-lg font-semibold mb-4 uppercase tracking-wider animate-fade-in flex items-center gap-2">
-              <Shield className="h-5 w-5" aria-hidden="true" />
-              {t('hero.badge')}
-            </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-primary-foreground mb-6 leading-tight animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              {t('hero.title')} <span className="text-gradient bg-gradient-to-r from-accent via-secondary to-accent bg-clip-text text-transparent">{t('hero.titleHighlight')}</span> {t('hero.titleEnd')}
-            </h1>
-            
-            <h2 className="text-xl md:text-2xl text-primary-foreground/90 mb-8 animate-fade-in" style={{ animationDelay: '0.15s' }}>
-              {t('hero.subtitle')}
-            </h2>
-
-            <div className="inline-block mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <p className="text-2xl md:text-3xl font-bold text-primary-foreground">
-                {t('hero.savings')} <span className="text-accent border-b-4 border-accent px-2 inline-block transform hover:scale-110 transition-transform">{t('hero.savingsAmount')}</span> {t('hero.savingsPerYear')}
-              </p>
-            </div>
-
-            {/* Statistics */}
-            <div className="grid grid-cols-3 gap-4 mb-10 animate-fade-in" style={{ animationDelay: '0.25s' }}>
-              <div className="bg-card/20 backdrop-blur-md rounded-lg p-4 border border-primary-foreground/20">
-                <div className="flex items-center gap-2 text-accent mb-1">
-                  <TrendingDown className="h-5 w-5" />
-                  <span className="text-2xl md:text-3xl font-bold">-35%</span>
-                </div>
-                <p className="text-primary-foreground/80 text-xs md:text-sm">{t('hero.avgSavings')}</p>
-              </div>
-              <div className="bg-card/20 backdrop-blur-md rounded-lg p-4 border border-primary-foreground/20">
-                <div className="flex items-center gap-2 text-accent mb-1">
-                  <CheckCircle className="h-5 w-5" />
-                  <span className="text-2xl md:text-3xl font-bold">2min</span>
-                </div>
-                <p className="text-primary-foreground/80 text-xs md:text-sm">{t('hero.compareTime')}</p>
-              </div>
-              <div className="bg-card/20 backdrop-blur-md rounded-lg p-4 border border-primary-foreground/20">
-                <div className="flex items-center gap-2 text-accent mb-1">
-                  <Shield className="h-5 w-5" />
-                  <span className="text-2xl md:text-3xl font-bold">100%</span>
-                </div>
-                <p className="text-primary-foreground/80 text-xs md:text-sm">{t('hero.freeNoObligation')}</p>
-              </div>
-            </div>
-
-            {/* CTA Button */}
-            <div className="mb-8 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-              <Button 
-                size="lg" 
-                className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-lg px-8 py-6 h-auto rounded-full shadow-2xl hover:shadow-accent/50 transition-all duration-300 hover:scale-105"
-                asChild
-                onClick={handleCTAClick}
-              >
-                <Link to="/assurance-auto">
-                  {t('hero.cta')}
-                </Link>
-              </Button>
-              <p className="text-primary-foreground/70 text-sm mt-3">
-                {t('hero.ctaDetails')}
-              </p>
-            </div>
-          </div>
-
-          {/* Right Column - Arthur Mascot */}
-          <div className="hidden lg:flex justify-center items-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="relative"
-            >
+      <div className="container mx-auto px-4 relative z-10 py-8 md:py-12">
+        {/* Arthur + Title Section */}
+        <div className="text-center mb-8">
+          {/* Arthur Mascot */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center mb-6"
+          >
+            <motion.div className="relative">
               <motion.img 
                 src={arthurThumbsUp} 
-                alt="Arthur, la mascotte jemassuremoinscher" 
-                className="w-80 h-auto drop-shadow-2xl"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                alt="Arthur, votre super-héros de l'économie" 
+                className="w-28 h-auto md:w-36 lg:w-44 drop-shadow-2xl"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
               />
               {/* Speech bubble */}
               <motion.div 
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.8 }}
-                className="absolute -top-4 -right-4 bg-white rounded-2xl px-4 py-2 shadow-lg"
+                initial={{ opacity: 0, scale: 0, x: 20 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.6 }}
+                className="absolute -top-2 -right-16 md:-right-20 bg-white rounded-xl px-3 py-1.5 shadow-lg"
               >
-                <p className="text-primary font-bold text-sm">Économisez avec moi ! 🎉</p>
-                <div className="absolute -bottom-2 left-6 w-4 h-4 bg-white transform rotate-45" />
+                <p className="text-primary font-bold text-xs md:text-sm whitespace-nowrap">Moi c'est Arthur ! 👋</p>
+                <div className="absolute -bottom-1.5 left-3 w-3 h-3 bg-white transform rotate-45" />
               </motion.div>
             </motion.div>
-          </div>
+          </motion.div>
+
+          {/* Main Title */}
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary-foreground mb-4 leading-tight font-[Inter]"
+          >
+            L'assurance moins chère,
+            <br />
+            <span className="text-accent">sans compromis.</span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-lg mx-auto font-[Inter]"
+          >
+            Comparez <span className="font-bold">50+ assureurs</span> en 2 minutes.
+            <br className="hidden md:block" />
+            <span className="text-primary-foreground/80">Gratuit et sans engagement.</span>
+          </motion.p>
         </div>
 
-        {/* Category Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 animate-fade-in pb-12" style={{ animationDelay: '0.35s' }}>
+        {/* Savings Badge */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, delay: 0.4 }}
+          className="flex justify-center mb-6"
+        >
+          <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/40 rounded-full px-4 py-2 md:px-6 md:py-3">
+            <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-accent" />
+            <span className="text-sm md:text-base font-bold text-primary-foreground">
+              Économisez jusqu'à <span className="text-accent">40%</span> sur votre assurance actuelle
+            </span>
+          </div>
+        </motion.div>
+
+        {/* Category Cards Grid */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 max-w-4xl mx-auto"
+        >
           {categories.map((category, index) => (
-            <Link key={index} to={category.link} onClick={() => handleCategoryClick(category.label)}>
-              <Card className="p-6 hover-lift cursor-pointer group bg-card/95 backdrop-blur-sm border-2 border-transparent hover:border-accent/50">
-                <div className="flex flex-col items-center gap-3">
-                  <div className="p-3 rounded-full bg-primary/5 group-hover:bg-accent/20 transition-all duration-300 group-hover:scale-110">
-                    <category.icon className={`h-8 w-8 ${category.color} group-hover:text-accent transition-colors`} />
+            <motion.div
+              key={category.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.5 + index * 0.05 }}
+            >
+              <Link 
+                to={category.link} 
+                onClick={() => handleCategoryClick(category.label)}
+                className="block"
+              >
+                <Card className="p-4 md:p-6 bg-white/95 backdrop-blur-sm border-2 border-transparent hover:border-accent transition-all duration-300 hover:shadow-xl hover:shadow-accent/20 hover:-translate-y-1 cursor-pointer group">
+                  <div className="flex flex-col items-center gap-2 md:gap-3">
+                    <div className="p-3 md:p-4 rounded-full bg-primary/10 group-hover:bg-accent/20 transition-all duration-300 group-hover:scale-110">
+                      <category.icon className="h-6 w-6 md:h-8 md:w-8 text-primary group-hover:text-accent transition-colors" />
+                    </div>
+                    <span className="font-bold text-sm md:text-base text-foreground group-hover:text-primary transition-colors font-[Inter]">
+                      {category.label}
+                    </span>
                   </div>
-                  <span className="font-bold text-sm text-card-foreground group-hover:text-accent transition-colors">{category.label}</span>
-                </div>
-              </Card>
-            </Link>
+                </Card>
+              </Link>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Trust Indicators */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          className="flex flex-wrap justify-center items-center gap-4 md:gap-8 mt-8 md:mt-12 text-primary-foreground/70"
+        >
+          <div className="flex items-center gap-2">
+            <span className="text-2xl md:text-3xl font-black text-accent">50+</span>
+            <span className="text-xs md:text-sm">Assureurs<br/>partenaires</span>
+          </div>
+          <div className="w-px h-8 bg-primary-foreground/20 hidden md:block" />
+          <div className="flex items-center gap-2">
+            <span className="text-2xl md:text-3xl font-black text-accent">2min</span>
+            <span className="text-xs md:text-sm">Comparaison<br/>express</span>
+          </div>
+          <div className="w-px h-8 bg-primary-foreground/20 hidden md:block" />
+          <div className="flex items-center gap-2">
+            <span className="text-2xl md:text-3xl font-black text-accent">100%</span>
+            <span className="text-xs md:text-sm">Gratuit &<br/>sans engagement</span>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
