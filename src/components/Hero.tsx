@@ -114,7 +114,8 @@ const Hero = () => {
           duration: 0.5,
           delay: 0.3
         }} className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-lg mx-auto font-[Inter]">
-            Comparez <span className="font-bold">Le site pour trouver son assurance moins chère,</span> en 2 minutes.
+            Comparez <span className="font-bold">Le site pour trouver son assurance moins chère,
+sans compromis.</span> en 2 minutes.
             <br className="hidden md:block" />
             <span className="text-primary-foreground/80">Gratuit et sans engagement.</span>
           </motion.p>
