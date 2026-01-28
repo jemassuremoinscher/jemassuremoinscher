@@ -42,10 +42,14 @@ const Hero = () => {
   };
   return <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90" aria-label="Section principale - Comparateur d'assurances">
       {/* Subtle Background Pattern */}
-      
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-white rounded-full blur-3xl" />
+        <div className="absolute bottom-32 right-10 w-48 h-48 bg-accent rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full" />
+      </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-10 md:py-12 py-[24px]">
+      <div className="container mx-auto px-4 relative z-10 py-8 md:py-12">
         {/* Arthur + Title Section */}
         <div className="text-center mb-8">
           {/* Arthur Mascot */}
@@ -61,7 +65,7 @@ const Hero = () => {
           duration: 0.5
         }} className="flex justify-center mb-6">
             <motion.div className="relative">
-              <motion.img src={arthurThumbsUp} alt="Arthur, votre super-héros de l'économie" className="w-28 h-auto md:w-36 lg:w-44 drop-shadow-2xl object-cover" animate={{
+              <motion.img src={arthurThumbsUp} alt="Arthur, votre super-héros de l'économie" className="w-28 h-auto md:w-36 lg:w-44 drop-shadow-2xl" animate={{
               y: [0, -8, 0]
             }} transition={{
               duration: 2.5,
