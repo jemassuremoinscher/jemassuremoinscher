@@ -13,6 +13,8 @@ import { SocialProof } from "@/components/trust/SocialProof";
 import { ReviewsWidget } from "@/components/trust/ReviewsWidget";
 import { InsuranceQuiz } from "@/components/quiz/InsuranceQuiz";
 import { BlogHighlights } from "@/components/blog/BlogHighlights";
+import PartnersSlider from "@/components/trust/PartnersSlider";
+import BentoSocialProof from "@/components/trust/BentoSocialProof";
 import { addOrganizationSchema, addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 
 const Index = () => {
@@ -58,10 +60,10 @@ const Index = () => {
       <Header />
       <main id="main-content" role="main">
         <Hero />
+        <PartnersSlider />
+        <BentoSocialProof />
         <TrustBadges />
         <Features />
-        <InsuranceQuiz />
-        <SocialProof />
         <Partners />
         <ReviewsWidget />
         <Testimonials />
