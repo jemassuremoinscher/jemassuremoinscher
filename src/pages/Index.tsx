@@ -37,7 +37,7 @@ const Index = () => {
         <QuickQuoteSection />
         <PartnersSlider />
         <BentoSocialProof />
-        <WhyUsComparison />
+        <WhyUsComparison className="" />
         <HowItWorks />
         <SEOFaq />
       </main>
