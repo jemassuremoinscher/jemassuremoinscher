@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SEO from "@/components/SEO";
+import QuickQuoteSection from "@/components/quote/QuickQuoteSection";
 import PartnersSlider from "@/components/trust/PartnersSlider";
 import BentoSocialProof from "@/components/trust/BentoSocialProof";
 import HowItWorks from "@/components/sections/HowItWorks";
@@ -52,6 +53,7 @@ const Index = () => {
       <Header />
       <main id="main-content" role="main">
         <Hero />
+        <QuickQuoteSection />
         <PartnersSlider />
         <BentoSocialProof />
         <HowItWorks />
