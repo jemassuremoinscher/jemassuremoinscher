@@ -130,6 +130,8 @@ const HowItWorks = () => {
                 src={arthurRunning}
                 alt="Arthur court pour vous aider"
                 className="w-12 h-auto"
+                loading="lazy"
+                decoding="async"
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               />
