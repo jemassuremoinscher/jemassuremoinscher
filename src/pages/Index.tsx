@@ -6,6 +6,7 @@ import BentoSocialProof from "@/components/trust/BentoSocialProof";
 import HowItWorks from "@/components/sections/HowItWorks";
 import SEOFaq from "@/components/sections/SEOFaq";
 import SimpleFooter from "@/components/sections/SimpleFooter";
+import StickyCTA from "@/components/StickyCTA";
 import { addOrganizationSchema, addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 
 const Index = () => {
@@ -57,6 +58,7 @@ const Index = () => {
         <SEOFaq />
       </main>
       <SimpleFooter />
+      <StickyCTA />
     </div>
   );
 };

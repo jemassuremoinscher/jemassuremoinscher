@@ -122,6 +122,8 @@ const BentoSocialProof = () => {
                 src={arthurThinking}
                 alt="Arthur réfléchit pour vous"
                 className="w-20 h-auto md:w-28"
+                loading="lazy"
+                decoding="async"
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               />
