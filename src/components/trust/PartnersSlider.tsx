@@ -31,7 +31,7 @@ const PartnersSlider = () => {
   const duplicatedPartners = [...partners, ...partners];
   return <section className="py-8 md:py-12 bg-muted/50 overflow-hidden">
       <div className="container mx-auto px-4 mb-6">
-        <p className="text-center text-sm text-[#340e5d] font-bold md:text-4xl">Nos partenaires</p>
+        <p className="text-center text-[#340e5d] font-bold md:text-4xl text-2xl">Nos partenaires</p>
       </div>
 
       {/* Infinite Slider */}
