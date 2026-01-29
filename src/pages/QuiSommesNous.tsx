@@ -1,10 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Shield, Award, Users, TrendingUp } from "lucide-react";
-
 const QuiSommesNous = () => {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Header />
       
       <main className="container mx-auto px-4 py-16">
@@ -37,9 +35,7 @@ const QuiSommesNous = () => {
             <div className="bg-card p-6 rounded-xl border-2 border-border hover:border-primary/30 transition-all">
               <Users className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-xl font-bold mb-3">Notre communauté</h3>
-              <p className="text-muted-foreground">
-                Plus de 500 000 utilisateurs nous font confiance pour leurs comparaisons d'assurance.
-              </p>
+              <p className="text-muted-foreground">Plus de 50 000 utilisateurs nous font confiance pour leurs comparaisons d'assurance.</p>
             </div>
 
             <div className="bg-card p-6 rounded-xl border-2 border-border hover:border-primary/30 transition-all">
@@ -76,8 +72,6 @@ const QuiSommesNous = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default QuiSommesNous;
