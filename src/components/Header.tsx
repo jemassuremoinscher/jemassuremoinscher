@@ -81,7 +81,7 @@ const Header = () => {
   }];
   return <>
       <header className="bg-card border-b border-border sticky top-0 z-50 shadow-sm" role="banner">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 bg-primary">
           <div className="flex items-center justify-between py-4 bg-primary text-primary-foreground">
             <Link to="/" className="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg" aria-label="Retour à la page d'accueil - jemassuremoinscher">
               <img alt="jemassuremoinscher.fr" className="h-12 md:h-14 lg:h-16 w-auto object-contain" src="/lovable-uploads/e414ce34-9901-4441-90e4-11b2838a7db0.png" />
