@@ -4,6 +4,7 @@ import SEO from "@/components/SEO";
 import QuickQuoteSection from "@/components/quote/QuickQuoteSection";
 import PartnersSlider from "@/components/trust/PartnersSlider";
 import BentoSocialProof from "@/components/trust/BentoSocialProof";
+import WhyUsComparison from "@/components/comparison/WhyUsComparison";
 import HowItWorks from "@/components/sections/HowItWorks";
 import SEOFaq from "@/components/sections/SEOFaq";
 import SimpleFooter from "@/components/sections/SimpleFooter";
@@ -56,6 +57,7 @@ const Index = () => {
         <QuickQuoteSection />
         <PartnersSlider />
         <BentoSocialProof />
+        <WhyUsComparison />
         <HowItWorks />
         <SEOFaq />
       </main>

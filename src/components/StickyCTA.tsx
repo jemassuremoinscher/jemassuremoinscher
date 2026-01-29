@@ -32,11 +32,11 @@ const StickyCTA = () => {
           className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-gradient-to-t from-background via-background to-transparent pb-safe"
         >
           <Link
-            to="/assurance-auto"
+            to="/comparateur"
             className="flex items-center justify-center gap-2 w-full py-4 px-6 rounded-xl font-bold text-lg text-primary-foreground bg-gradient-to-r from-primary via-primary/90 to-accent shadow-lg active:scale-95 transition-transform"
-            aria-label="Comparer les assurances maintenant"
+            aria-label="Lancer mon comparatif gratuitement"
           >
-            <span>Comparer maintenant</span>
+            <span>Lancer mon comparatif gratuitement</span>
             <ArrowRight className="w-5 h-5" aria-hidden="true" />
           </Link>
         </motion.div>
