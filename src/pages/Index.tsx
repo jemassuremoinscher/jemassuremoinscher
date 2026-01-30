@@ -7,6 +7,7 @@ import BentoSocialProof from "@/components/trust/BentoSocialProof";
 import WhyUsComparison from "@/components/comparison/WhyUsComparison";
 import HowItWorks from "@/components/sections/HowItWorks";
 import SEOFaq from "@/components/sections/SEOFaq";
+import GuidesSection from "@/components/sections/GuidesSection";
 import SimpleFooter from "@/components/sections/SimpleFooter";
 import StickyCTA from "@/components/StickyCTA";
 import { addOrganizationSchema, addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
@@ -40,6 +41,7 @@ const Index = () => {
         <WhyUsComparison />
         <HowItWorks />
         <SEOFaq />
+        <GuidesSection />
       </main>
       <SimpleFooter />
       <StickyCTA />
