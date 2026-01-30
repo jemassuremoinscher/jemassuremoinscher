@@ -128,7 +128,7 @@ const HowItWorks = () => {
             <div className="flex items-center gap-4 bg-accent/10 rounded-full px-6 py-3 border border-accent/30">
               <motion.img
                 src={arthurRunning}
-                alt="Arthur court pour vous aider"
+                alt="Arthur mascotte jemassuremoinscher court - assurance moins chère en 2 minutes"
                 className="w-12 h-auto"
                 loading="lazy"
                 decoding="async"

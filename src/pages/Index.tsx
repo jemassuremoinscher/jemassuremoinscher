@@ -31,13 +31,13 @@ const Index = () => {
   }]);
   return <div className="min-h-screen">
       <SEO title="jemassuremoinscher - Économisez jusqu'à 40% sur votre assurance" description="Comparez gratuitement les meilleures assurances auto, santé, habitation, animaux et vie en France. 50+ assureurs comparés en 2 minutes. Service 100% gratuit." keywords="comparateur assurance france, devis assurance gratuit, économiser assurance, meilleure assurance, assurance pas cher" canonical="https://www.jemassuremoinscher.fr/" jsonLd={[organizationSchema, serviceSchema, ratingSchema, faqSchema]} />
-      <Header className="bg-primary" />
+      <Header />
       <main id="main-content" role="main">
         <Hero />
         <QuickQuoteSection />
         <PartnersSlider />
         <BentoSocialProof />
-        <WhyUsComparison className="" />
+        <WhyUsComparison />
         <HowItWorks />
         <SEOFaq />
       </main>

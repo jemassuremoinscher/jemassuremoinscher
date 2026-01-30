@@ -196,7 +196,7 @@ const WhyUsComparison = () => {
         once: true
       }} className="flex flex-col md:flex-row items-center justify-center gap-4 mt-10">
           <div className="relative">
-            <motion.img src={arthurThumbsUp} alt="Arthur, votre mascotte" className="w-20 h-auto md:w-24" loading="lazy" decoding="async" animate={{
+            <motion.img src={arthurThumbsUp} alt="Arthur mascotte jemassuremoinscher - votre guide pour une assurance moins chère" className="w-20 h-auto md:w-24" loading="lazy" decoding="async" animate={{
             y: [0, -5, 0]
           }} transition={{
             duration: 2,

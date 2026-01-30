@@ -65,7 +65,7 @@ const Hero = () => {
           duration: 0.5
         }} className="flex justify-center mb-6">
             <motion.div className="relative">
-              <motion.img src={arthurThumbsUp} alt="Arthur, votre super-héros de l'économie" className="w-28 h-auto md:w-36 lg:w-44 drop-shadow-2xl" loading="eager" decoding="async" fetchPriority="high" animate={{
+              <motion.img src={arthurThumbsUp} alt="Arthur mascotte jemassuremoinscher - super-héros de l'assurance moins chère" className="w-28 h-auto md:w-36 lg:w-44 drop-shadow-2xl" loading="eager" decoding="async" fetchPriority="high" animate={{
               y: [0, -8, 0]
             }} transition={{
               duration: 2.5,
