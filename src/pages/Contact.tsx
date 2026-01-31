@@ -14,6 +14,7 @@ import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import QuickHelpSection from '@/components/contact/QuickHelpSection';
 
 const formSchema = z.object({
   fullName: z.string().min(2, 'Le nom doit contenir au moins 2 caractères'),
@@ -81,10 +82,10 @@ const Contact = () => {
       <div className="min-h-screen flex flex-col">
         <Header />
         
-        <main id="main-content" className="flex-grow bg-gray-50 py-12">
+        <main id="main-content" className="flex-grow bg-muted/30 py-12">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">Contactez-nous</h1>
+              <h1 className="text-4xl font-bold text-foreground mb-4">Contactez-nous</h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 Une question ? Besoin d'aide ? Notre équipe est à votre écoute
               </p>
@@ -314,6 +315,8 @@ const Contact = () => {
             </div>
           </div>
         </main>
+
+        <QuickHelpSection />
 
         <Footer />
       </div>
