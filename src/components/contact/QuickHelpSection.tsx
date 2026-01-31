@@ -54,31 +54,29 @@ const QuickHelpSection = () => {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="flex flex-col items-center md:items-end"
+            className="flex flex-col items-center gap-4"
           >
-            <div className="relative">
-              {/* Speech bubble */}
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="absolute -top-4 -right-4 md:-top-6 md:-right-8 bg-white rounded-2xl shadow-lg p-4 max-w-[200px] md:max-w-[220px] border border-border/50"
-              >
-                <p className="text-sm md:text-base font-medium text-foreground">
-                  Une question ? Je vous réponds en moins de 2 min !
-                </p>
-                {/* Bubble tail */}
-                <div className="absolute -bottom-2 left-8 w-4 h-4 bg-white border-r border-b border-border/50 transform rotate-45" />
-              </motion.div>
+            {/* Speech bubble - positioned above mascot */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="relative bg-white rounded-2xl shadow-lg p-4 max-w-[240px] border border-border/50"
+            >
+              <p className="text-sm md:text-base font-medium text-foreground text-center">
+                Une question ? Je vous réponds en moins de 2 min !
+              </p>
+              {/* Bubble tail */}
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-r border-b border-border/50 transform rotate-45" />
+            </motion.div>
 
-              {/* Mascot */}
-              <img
-                src={arthurThinking}
-                alt="Arthur mascotte assurance moins chère - aide et support"
-                className="w-40 h-40 md:w-52 md:h-52 object-contain drop-shadow-lg"
-              />
-            </div>
+            {/* Mascot */}
+            <img
+              src={arthurThinking}
+              alt="Arthur mascotte assurance moins chère - aide et support"
+              className="w-36 h-36 md:w-44 md:h-44 object-contain drop-shadow-lg"
+            />
           </motion.div>
 
           {/* Right: Simple form */}
