@@ -1,51 +1,108 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Car, Check, ChevronRight, ChevronLeft, User, Calendar, Mail } from "lucide-react";
+import { Car, Check, ChevronRight, ChevronLeft, Calendar, Mail, Bike, Home, HeartPulse, PawPrint, Heart, Shield } from "lucide-react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
-type VehicleType = "citadine" | "berline" | "suv" | "";
-type DriverAge = "18-25" | "26-35" | "36-50" | "50+" | "";
+
+type InsuranceType = "auto" | "moto" | "habitation" | "sante" | "animaux" | "vie" | "";
+type VehicleType = "citadine" | "berline" | "suv" | "sportive" | "scooter" | "routiere" | "";
+type PropertyType = "appartement" | "maison" | "studio" | "";
+type PetType = "chien" | "chat" | "nac" | "";
+type CoverageLevel = "essentiel" | "confort" | "premium" | "";
+type AgeRange = "18-25" | "26-35" | "36-50" | "50+" | "";
 
 interface QuoteData {
-  vehicleType: VehicleType;
-  driverAge: DriverAge;
+  insuranceType: InsuranceType;
+  specificChoice: string;
+  ageRange: AgeRange;
   email: string;
 }
 
 const QuickQuoteSection = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
+  const [direction, setDirection] = useState(1);
   const [quoteData, setQuoteData] = useState<QuoteData>({
-    vehicleType: "",
-    driverAge: "",
+    insuranceType: "",
+    specificChoice: "",
+    ageRange: "",
     email: "",
   });
 
-  const totalSteps = 3;
+  const totalSteps = 4;
 
-  const vehicleOptions = [
-    {
-      value: "citadine",
-      label: "Citadine",
-      description: "Petite voiture de ville",
-      icon: "🚗",
-    },
-    {
-      value: "berline",
-      label: "Berline",
-      description: "Confort et espace",
-      icon: "🚙",
-    },
-    {
-      value: "suv",
-      label: "SUV / 4x4",
-      description: "Tout-terrain",
-      icon: "🚐",
-    },
+  // Step 1: Insurance types
+  const insuranceTypes = [
+    { value: "auto", label: "Auto", icon: Car, emoji: "🚗" },
+    { value: "moto", label: "Moto", icon: Bike, emoji: "🏍️" },
+    { value: "habitation", label: "Habitation", icon: Home, emoji: "🏠" },
+    { value: "sante", label: "Santé", icon: HeartPulse, emoji: "💊" },
+    { value: "animaux", label: "Animaux", icon: PawPrint, emoji: "🐾" },
+    { value: "vie", label: "Vie", icon: Heart, emoji: "❤️" },
   ];
+
+  // Step 2: Specific options based on insurance type
+  const getSpecificOptions = () => {
+    switch (quoteData.insuranceType) {
+      case "auto":
+        return [
+          { value: "citadine", label: "Citadine", description: "Petite voiture de ville", icon: "🚗" },
+          { value: "berline", label: "Berline", description: "Confort et espace", icon: "🚙" },
+          { value: "suv", label: "SUV / 4x4", description: "Tout-terrain", icon: "🚐" },
+        ];
+      case "moto":
+        return [
+          { value: "scooter", label: "Scooter", description: "Moins de 125cc", icon: "🛵" },
+          { value: "routiere", label: "Routière", description: "Moto de route", icon: "🏍️" },
+          { value: "sportive", label: "Sportive", description: "Haute performance", icon: "🏎️" },
+        ];
+      case "habitation":
+        return [
+          { value: "studio", label: "Studio", description: "Moins de 30m²", icon: "🏢" },
+          { value: "appartement", label: "Appartement", description: "2 pièces et plus", icon: "🏬" },
+          { value: "maison", label: "Maison", description: "Avec ou sans jardin", icon: "🏠" },
+        ];
+      case "sante":
+        return [
+          { value: "essentiel", label: "Essentiel", description: "Couverture de base", icon: "💊" },
+          { value: "confort", label: "Confort", description: "Bon rapport qualité/prix", icon: "🏥" },
+          { value: "premium", label: "Premium", description: "Couverture maximale", icon: "⭐" },
+        ];
+      case "animaux":
+        return [
+          { value: "chien", label: "Chien", description: "Toutes races", icon: "🐕" },
+          { value: "chat", label: "Chat", description: "Toutes races", icon: "🐈" },
+          { value: "nac", label: "NAC", description: "Nouveaux animaux", icon: "🐰" },
+        ];
+      case "vie":
+        return [
+          { value: "deces", label: "Décès", description: "Protection famille", icon: "🛡️" },
+          { value: "epargne", label: "Épargne", description: "Constitution capital", icon: "💰" },
+          { value: "retraite", label: "Retraite", description: "Préparer l'avenir", icon: "🌅" },
+        ];
+      default:
+        return [];
+    }
+  };
+
+  const getStep2Question = () => {
+    switch (quoteData.insuranceType) {
+      case "auto": return "Quel est votre véhicule ?";
+      case "moto": return "Quel type de deux-roues ?";
+      case "habitation": return "Quel type de logement ?";
+      case "sante": return "Quel niveau de couverture ?";
+      case "animaux": return "Quel type d'animal ?";
+      case "vie": return "Quel type d'assurance vie ?";
+      default: return "Précisez votre besoin";
+    }
+  };
+
+  const getStep2Icon = () => {
+    const type = insuranceTypes.find(t => t.value === quoteData.insuranceType);
+    return type?.icon || Shield;
+  };
 
   const ageOptions = [
     { value: "18-25", label: "18-25 ans", icon: "👤" },
@@ -68,16 +125,7 @@ const QuickQuoteSection = () => {
     }
   };
 
-  const handleVehicleSelect = (value: VehicleType) => {
-    setQuoteData((prev) => ({ ...prev, vehicleType: value }));
-  };
-
-  const handleAgeSelect = (value: DriverAge) => {
-    setQuoteData((prev) => ({ ...prev, driverAge: value }));
-  };
-
   const handleSubmit = () => {
-    // TODO: Handle form submission
     console.log("Quote data:", quoteData);
   };
 
@@ -99,24 +147,27 @@ const QuickQuoteSection = () => {
   const canProceed = () => {
     switch (currentStep) {
       case 1:
-        return quoteData.vehicleType !== "";
+        return quoteData.insuranceType !== "";
       case 2:
-        return quoteData.driverAge !== "";
+        return quoteData.specificChoice !== "";
       case 3:
+        return quoteData.ageRange !== "";
+      case 4:
         return quoteData.email.includes("@");
       default:
         return false;
     }
   };
 
+  const Step2Icon = getStep2Icon();
+
   return (
     <section
       className="py-12 md:py-16 bg-gradient-to-b from-background to-muted/30"
       aria-labelledby="quick-quote-title"
     >
-      {/* SEO Hidden Title */}
       <h2 id="quick-quote-title" className="sr-only">
-        Simulateur d'assurance auto et santé
+        Simulateur d'assurance - Auto, Moto, Habitation, Santé, Animaux, Vie
       </h2>
 
       <div className="container mx-auto px-4">
@@ -166,7 +217,7 @@ const QuickQuoteSection = () => {
               </div>
               {index < totalSteps - 1 && (
                 <div
-                  className={`w-8 md:w-16 h-1 mx-1 rounded-full transition-all duration-300 ${
+                  className={`w-6 md:w-12 h-1 mx-1 rounded-full transition-all duration-300 ${
                     index + 1 < currentStep ? "bg-primary" : "bg-muted"
                   }`}
                 />
@@ -178,7 +229,7 @@ const QuickQuoteSection = () => {
         {/* Question Container */}
         <div className="max-w-2xl mx-auto bg-card rounded-2xl shadow-lg border border-border/50 p-6 md:p-8 overflow-hidden">
           <AnimatePresence mode="wait" custom={direction}>
-            {/* Step 1: Vehicle Type */}
+            {/* Step 1: Insurance Type */}
             {currentStep === 1 && (
               <motion.div
                 key="step1"
@@ -191,33 +242,99 @@ const QuickQuoteSection = () => {
               >
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 rounded-lg bg-primary/10">
-                    <Car className="w-5 h-5 text-primary" />
+                    <Shield className="w-5 h-5 text-primary" />
                   </div>
                   <h4 className="text-lg md:text-xl font-bold text-foreground">
-                    Quel est votre véhicule ?
+                    Quelle assurance recherchez-vous ?
                   </h4>
                 </div>
 
                 <RadioGroup
-                  value={quoteData.vehicleType}
-                  onValueChange={(value) => handleVehicleSelect(value as VehicleType)}
-                  className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                  value={quoteData.insuranceType}
+                  onValueChange={(value) => setQuoteData((prev) => ({ ...prev, insuranceType: value as InsuranceType, specificChoice: "" }))}
+                  className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4"
                 >
-                  {vehicleOptions.map((option) => (
+                  {insuranceTypes.map((option) => (
                     <Label
                       key={option.value}
-                      htmlFor={option.value}
+                      htmlFor={`insurance-${option.value}`}
                       className="cursor-pointer"
                     >
                       <div
-                        className={`relative p-4 md:p-6 rounded-xl border-2 transition-all duration-300 card-hover ${
-                          quoteData.vehicleType === option.value
+                        className={`relative p-4 md:p-5 rounded-xl border-2 transition-all duration-300 card-hover ${
+                          quoteData.insuranceType === option.value
                             ? "border-primary bg-primary/5 shadow-md"
                             : "border-border hover:border-primary/50 bg-card"
                         }`}
                       >
-                        {/* Checkmark */}
-                        {quoteData.vehicleType === option.value && (
+                        {quoteData.insuranceType === option.value && (
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="absolute top-2 right-2 w-5 h-5 rounded-full bg-primary flex items-center justify-center"
+                          >
+                            <Check className="w-3 h-3 text-primary-foreground" />
+                          </motion.div>
+                        )}
+
+                        <div className="flex flex-col items-center text-center gap-2">
+                          <span className="text-3xl">{option.emoji}</span>
+                          <span className="font-bold text-foreground text-sm md:text-base">
+                            {option.label}
+                          </span>
+                        </div>
+
+                        <RadioGroupItem
+                          value={option.value}
+                          id={`insurance-${option.value}`}
+                          className="sr-only"
+                        />
+                      </div>
+                    </Label>
+                  ))}
+                </RadioGroup>
+              </motion.div>
+            )}
+
+            {/* Step 2: Specific Choice */}
+            {currentStep === 2 && (
+              <motion.div
+                key="step2"
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 rounded-lg bg-primary/10">
+                    <Step2Icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <h4 className="text-lg md:text-xl font-bold text-foreground">
+                    {getStep2Question()}
+                  </h4>
+                </div>
+
+                <RadioGroup
+                  value={quoteData.specificChoice}
+                  onValueChange={(value) => setQuoteData((prev) => ({ ...prev, specificChoice: value }))}
+                  className="grid grid-cols-1 md:grid-cols-3 gap-4"
+                >
+                  {getSpecificOptions().map((option) => (
+                    <Label
+                      key={option.value}
+                      htmlFor={`specific-${option.value}`}
+                      className="cursor-pointer"
+                    >
+                      <div
+                        className={`relative p-4 md:p-6 rounded-xl border-2 transition-all duration-300 card-hover ${
+                          quoteData.specificChoice === option.value
+                            ? "border-primary bg-primary/5 shadow-md"
+                            : "border-border hover:border-primary/50 bg-card"
+                        }`}
+                      >
+                        {quoteData.specificChoice === option.value && (
                           <motion.div
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
@@ -239,7 +356,7 @@ const QuickQuoteSection = () => {
 
                         <RadioGroupItem
                           value={option.value}
-                          id={option.value}
+                          id={`specific-${option.value}`}
                           className="sr-only"
                         />
                       </div>
@@ -249,10 +366,10 @@ const QuickQuoteSection = () => {
               </motion.div>
             )}
 
-            {/* Step 2: Driver Age */}
-            {currentStep === 2 && (
+            {/* Step 3: Age */}
+            {currentStep === 3 && (
               <motion.div
-                key="step2"
+                key="step3"
                 custom={direction}
                 variants={slideVariants}
                 initial="enter"
@@ -270,8 +387,8 @@ const QuickQuoteSection = () => {
                 </div>
 
                 <RadioGroup
-                  value={quoteData.driverAge}
-                  onValueChange={(value) => handleAgeSelect(value as DriverAge)}
+                  value={quoteData.ageRange}
+                  onValueChange={(value) => setQuoteData((prev) => ({ ...prev, ageRange: value as AgeRange }))}
                   className="grid grid-cols-2 md:grid-cols-4 gap-4"
                 >
                   {ageOptions.map((option) => (
@@ -282,12 +399,12 @@ const QuickQuoteSection = () => {
                     >
                       <div
                         className={`relative p-4 rounded-xl border-2 transition-all duration-300 card-hover ${
-                          quoteData.driverAge === option.value
+                          quoteData.ageRange === option.value
                             ? "border-primary bg-primary/5 shadow-md"
                             : "border-border hover:border-primary/50 bg-card"
                         }`}
                       >
-                        {quoteData.driverAge === option.value && (
+                        {quoteData.ageRange === option.value && (
                           <motion.div
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
@@ -316,10 +433,10 @@ const QuickQuoteSection = () => {
               </motion.div>
             )}
 
-            {/* Step 3: Email */}
-            {currentStep === 3 && (
+            {/* Step 4: Email */}
+            {currentStep === 4 && (
               <motion.div
-                key="step3"
+                key="step4"
                 custom={direction}
                 variants={slideVariants}
                 initial="enter"
