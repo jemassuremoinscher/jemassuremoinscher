@@ -5,7 +5,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
+import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
 type VehicleType = "citadine" | "berline" | "suv" | "";
 type DriverAge = "18-25" | "26-35" | "36-50" | "50+" | "";
 
@@ -120,19 +120,31 @@ const QuickQuoteSection = () => {
       </h2>
 
       <div className="container mx-auto px-4">
-        {/* Visible Title */}
+        {/* Visible Title with Arthur */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-            Mon Devis Rapide
-          </h3>
-          <p className="text-muted-foreground">
-            Obtenez une estimation en 30 secondes
-          </p>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <motion.img
+              src={arthurThinking}
+              alt="Arthur réfléchit à votre devis"
+              className="w-16 h-auto md:w-20"
+              loading="lazy"
+              animate={{ rotate: [0, -5, 5, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <div className="text-left">
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-1">
+                Mon Devis Rapide
+              </h3>
+              <p className="text-muted-foreground">
+                Arthur calcule votre économie en 30 secondes
+              </p>
+            </div>
+          </div>
         </motion.div>
 
         {/* Stepper */}

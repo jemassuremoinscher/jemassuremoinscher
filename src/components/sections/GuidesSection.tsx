@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/drawer";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { BookOpen, FileText, Scale, X } from "lucide-react";
-
+import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 interface Article {
   id: number;
   title: string;
@@ -124,7 +124,7 @@ const GuidesSection = () => {
   return (
     <section className="py-16 md:py-24 bg-muted/30" aria-labelledby="guides-title">
       <div className="container mx-auto px-4">
-        {/* Title */}
+        {/* Title with Arthur */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -132,11 +132,37 @@ const GuidesSection = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-10"
         >
+          <div className="flex justify-center mb-4">
+            <motion.div className="relative">
+              <motion.img
+                src={arthurFlying}
+                alt="Arthur vole pour vous apporter les meilleurs conseils"
+                className="w-20 h-auto md:w-28"
+                loading="lazy"
+                animate={{ 
+                  y: [0, -10, 0],
+                  rotate: [0, 3, -3, 0]
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+              {/* Speech bubble */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                className="absolute -top-2 -right-16 md:-right-24 bg-accent text-accent-foreground rounded-lg px-3 py-1.5 text-xs md:text-sm font-bold whitespace-nowrap shadow-lg"
+              >
+                À lire ! 📚
+                <div className="absolute -bottom-1.5 left-3 w-3 h-3 bg-accent transform rotate-45" />
+              </motion.div>
+            </motion.div>
+          </div>
           <h2 id="guides-title" className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Tout savoir pour payer moins cher
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Nos experts partagent leurs meilleurs conseils pour optimiser vos contrats d'assurance
+            Arthur partage ses meilleurs conseils pour optimiser vos contrats d'assurance
           </p>
         </motion.div>
 
