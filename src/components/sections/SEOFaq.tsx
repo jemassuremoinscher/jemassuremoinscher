@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
+import arthurStanding from "@/assets/mascotte/arthur-standing.png";
 
 const FAQS = [
   {
@@ -64,6 +65,28 @@ const SEOFaq = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Arthur CTA */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row items-center justify-center gap-4 mt-10"
+        >
+          <motion.img
+            src={arthurStanding}
+            alt="Arthur mascotte jemassuremoinscher - disponible pour vous aider"
+            className="w-16 h-auto md:w-20"
+            loading="lazy"
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <div className="bg-primary/10 border border-primary/20 rounded-xl px-5 py-3 text-center md:text-left">
+            <p className="text-sm md:text-base font-medium text-foreground">
+              D'autres questions ? <span className="text-primary font-bold">Arthur</span> est là pour vous !
+            </p>
+          </div>
+        </motion.div>
 
         {/* Schema.org FAQ structured data for SEO */}
         <script
