@@ -4,8 +4,11 @@ import SEO from "@/components/SEO";
 import QuickQuoteSection from "@/components/quote/QuickQuoteSection";
 import PartnersSlider from "@/components/trust/PartnersSlider";
 import WhyUsComparison from "@/components/comparison/WhyUsComparison";
-import ContactSection from "@/components/sections/ContactSection";
+import HowItWorks from "@/components/sections/HowItWorks";
+import SEOFaq from "@/components/sections/SEOFaq";
+import GuidesSection from "@/components/sections/GuidesSection";
 import SimpleFooter from "@/components/sections/SimpleFooter";
+import StickyCTA from "@/components/StickyCTA";
 import { addOrganizationSchema, addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 
 const Index = () => {
@@ -29,7 +32,7 @@ const Index = () => {
   }]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <SEO
         title="jemassuremoinscher - Économisez jusqu'à 40% sur votre assurance"
         description="Comparez gratuitement les meilleures assurances auto, santé, habitation, animaux et vie en France. 50+ assureurs comparés en 2 minutes. Service 100% gratuit."
@@ -43,9 +46,12 @@ const Index = () => {
         <QuickQuoteSection />
         <PartnersSlider />
         <WhyUsComparison />
-        <ContactSection />
+        <HowItWorks />
+        <SEOFaq />
+        <GuidesSection />
       </main>
       <SimpleFooter />
+      <StickyCTA />
     </div>
   );
 };

@@ -10,80 +10,75 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 265 50% 15%;
+    --background: 0 0% 98%;
+    --foreground: 271 80% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 265 50% 15%;
+    --card-foreground: 271 80% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 265 50% 15%;
+    --popover-foreground: 271 80% 20%;
 
-    /* Deep Purple - Primary */
-    --primary: 265 70% 35%;
+    --primary: 271 81% 56%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 265 60% 95%;
 
-    /* Gold - Secondary/Accent for CTAs */
-    --secondary: 42 100% 50%;
-    --secondary-foreground: 265 50% 15%;
+    --secondary: 45 100% 55%;
+    --secondary-foreground: 271 80% 20%;
 
-    --muted: 265 10% 96%;
-    --muted-foreground: 265 20% 45%;
+    --muted: 271 15% 96%;
+    --muted-foreground: 271 25% 45%;
 
-    /* Gold Accent */
-    --accent: 42 100% 50%;
-    --accent-foreground: 265 50% 15%;
+    --accent: 45 100% 55%;
+    --accent-foreground: 271 80% 20%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 265 15% 90%;
-    --input: 265 15% 90%;
-    --ring: 265 70% 35%;
+    --border: 271 20% 90%;
+    --input: 271 20% 90%;
+    --ring: 271 81% 56%;
 
     --radius: 0.75rem;
 
     /* Custom tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(265 70% 35%), hsl(265 65% 25%));
-    --accent-gradient: linear-gradient(135deg, hsl(42 100% 50%), hsl(38 100% 45%));
-    --card-gradient: linear-gradient(135deg, hsl(0 0% 100%), hsl(265 20% 98%));
-    --shadow-card: 0 2px 8px -2px hsl(265 50% 25% / 0.08);
-    --shadow-hover: 0 8px 24px -4px hsl(265 50% 25% / 0.15);
-    --shadow-lg: 0 20px 40px -8px hsl(265 50% 25% / 0.2);
-    --shadow-elegant: 0 10px 30px -10px hsl(265 70% 35% / 0.3);
-    --shadow-glow: 0 0 40px hsl(265 70% 35% / 0.4);
-    --shadow-gold: 0 4px 20px -4px hsl(42 100% 50% / 0.4);
+    --hero-gradient: linear-gradient(135deg, hsl(271 81% 56%), hsl(271 75% 45%));
+    --accent-gradient: linear-gradient(135deg, hsl(45 100% 55%), hsl(35 100% 50%));
+    --card-gradient: linear-gradient(135deg, hsl(0 0% 100%), hsl(271 25% 98%));
+    --shadow-card: 0 2px 8px -2px hsl(271 80% 35% / 0.08);
+    --shadow-hover: 0 8px 24px -4px hsl(271 80% 35% / 0.15);
+    --shadow-lg: 0 20px 40px -8px hsl(271 80% 35% / 0.2);
+    --shadow-elegant: 0 10px 30px -10px hsl(271 81% 56% / 0.3);
+    --shadow-glow: 0 0 40px hsl(271 81% 56% / 0.4);
   }
 
   .dark {
-    --background: 265 60% 6%;
+    --background: 271 80% 8%;
     --foreground: 0 0% 98%;
 
-    --card: 265 50% 10%;
+    --card: 271 60% 12%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 265 50% 10%;
+    --popover: 271 60% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 265 70% 50%;
+    --primary: 271 81% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 42 100% 50%;
-    --secondary-foreground: 265 50% 10%;
+    --secondary: 45 100% 55%;
+    --secondary-foreground: 271 80% 8%;
 
-    --muted: 265 40% 15%;
-    --muted-foreground: 265 15% 65%;
+    --muted: 271 40% 18%;
+    --muted-foreground: 271 15% 65%;
 
-    --accent: 42 100% 50%;
-    --accent-foreground: 265 50% 10%;
+    --accent: 45 100% 55%;
+    --accent-foreground: 271 80% 8%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 265 40% 20%;
-    --input: 265 40% 20%;
-    --ring: 265 70% 50%;
+    --border: 271 40% 22%;
+    --input: 271 40% 22%;
+    --ring: 271 81% 60%;
     
     --shadow-card: 0 2px 8px -2px hsl(0 0% 0% / 0.3);
     --shadow-hover: 0 8px 24px -4px hsl(0 0% 0% / 0.4);
@@ -150,10 +145,6 @@ All colors MUST be HSL.
   .shadow-glow {
     box-shadow: var(--shadow-glow);
   }
-
-  .shadow-gold {
-    box-shadow: var(--shadow-gold);
-  }
   
   .animate-float {
     animation: float 3s ease-in-out infinite;
@@ -197,36 +188,11 @@ All colors MUST be HSL.
   
   .card-hover:hover {
     @apply -translate-y-2;
-    box-shadow: 0 12px 32px -8px hsl(265 50% 25% / 0.25);
+    box-shadow: 0 12px 32px -8px hsl(271 80% 35% / 0.25);
   }
 
   /* Button active press effect */
   .btn-press:active {
     @apply scale-95;
-  }
-
-  /* Geometric background shape */
-  .geometric-bg::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 80%;
-    height: 150%;
-    background: hsl(265 70% 35% / 0.03);
-    border-radius: 50%;
-    pointer-events: none;
-  }
-
-  .geometric-bg::after {
-    content: '';
-    position: absolute;
-    bottom: -30%;
-    left: -10%;
-    width: 50%;
-    height: 100%;
-    background: hsl(42 100% 50% / 0.02);
-    border-radius: 50%;
-    pointer-events: none;
   }
 }

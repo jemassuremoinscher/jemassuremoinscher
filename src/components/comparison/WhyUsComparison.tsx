@@ -53,7 +53,7 @@ const WhyUsComparison = () => {
       y: 0
     }
   };
-  return <section id="pourquoi-nous" className="py-12 md:py-20 bg-muted/30" aria-labelledby="why-us-title">
+  return <section className="py-12 md:py-20 bg-muted/30" aria-labelledby="why-us-title">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div initial={{
