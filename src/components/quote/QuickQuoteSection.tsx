@@ -109,7 +109,7 @@ const QuickQuoteSection = () => {
         return false;
     }
   };
-  return <section className="py-12 md:py-16 bg-gradient-to-b from-background to-muted/30" aria-labelledby="quick-quote-title">
+  return <section id="assurances" className="py-12 md:py-16 bg-gradient-to-b from-background to-muted/30" aria-labelledby="quick-quote-title">
       {/* SEO Hidden Title */}
       <h2 id="quick-quote-title" className="sr-only">
         Simulateur d'assurance auto et santé
