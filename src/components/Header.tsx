@@ -1,325 +1,135 @@
-import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, HomeIcon } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import { useAnalytics } from "@/hooks/useAnalytics";
-import { useLanguage } from "@/contexts/LanguageContext";
-import LanguageToggle from "@/components/LanguageToggle";
+import { useState, useEffect } from "react";
 import logoNew from "@/assets/logo-new.png";
+
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openPopover, setOpenPopover] = useState<string | null>(null);
-  const {
-    trackEvent
-  } = useAnalytics();
-  const {
-    t
-  } = useLanguage();
-  const handleInsuranceTypeClick = (type: string, category: string) => {
-    trackEvent('insurance_type_click', {
-      category: 'navigation',
-      label: `${category}_${type}`,
-      insurance_type: type
-    });
-  };
-  const assurancesParticuliers = [{
-    to: "/assurance-auto",
-    label: t('insurance.auto'),
-    icon: Car
-  }, {
-    to: "/assurance-moto",
-    label: t('insurance.moto'),
-    icon: Bike
-  }, {
-    to: "/assurance-habitation",
-    label: t('insurance.home'),
-    icon: Home
-  }, {
-    to: "/assurance-sante",
-    label: t('insurance.health'),
-    icon: Heart
-  }, {
-    to: "/assurance-animaux",
-    label: t('insurance.pets'),
-    icon: Heart
-  }];
-  const assurancesPro = [{
-    to: "/assurance-rc-pro",
-    label: t('insurance.rcPro'),
-    icon: Building2
-  }, {
-    to: "/assurance-mrp",
-    label: t('insurance.mrp'),
-    icon: Building2
-  }];
-  const assurancesVieEpargne = [{
-    to: "/assurance-vie",
-    label: t('insurance.life'),
-    icon: PiggyBank
-  }, {
-    to: "/assurance-pret",
-    label: t('insurance.loan'),
-    icon: FileText
-  }, {
-    to: "/assurance-prevoyance",
-    label: t('insurance.provident'),
-    icon: Users
-  }];
-  const assurancesImmobilier = [{
-    to: "/assurance-gli",
-    label: t('insurance.gli'),
-    icon: Building2
-  }, {
-    to: "/assurance-pno",
-    label: t('insurance.pno'),
-    icon: Home
-  }, {
-    to: "/gestion-locative",
-    label: t('insurance.rentalManagement'),
-    icon: Building2
-  }];
-  return <>
-      <header className="bg-card border-b border-border sticky top-0 z-50 shadow-sm" role="banner">
-        <div className="container mx-auto px-4 bg-primary">
-          <div className="flex items-center justify-between py-4 bg-primary text-primary-foreground">
-            <Link to="/" className="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg" aria-label="Retour à la page d'accueil - jemassuremoinscher">
-              <img alt="jemassuremoinscher.fr" className="h-12 md:h-14 lg:h-16 w-auto object-contain" src="/lovable-uploads/e414ce34-9901-4441-90e4-11b2838a7db0.png" />
-            </Link>
+  const [isScrolled, setIsScrolled] = useState(false);
 
-            <div className="flex items-center gap-2">
-              {/* Language Toggle - Desktop */}
-              <div className="hidden lg:block">
-                <LanguageToggle />
-              </div>
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
+  const navLinks = [
+    { label: "Nos Assurances", id: "assurances" },
+    { label: "Pourquoi nous ?", id: "pourquoi-nous" },
+    { label: "Contact", id: "contact" },
+  ];
+
+  return (
+    <>
+      <header 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled 
+            ? "bg-white/95 backdrop-blur-md shadow-md" 
+            : "bg-white"
+        }`} 
+        role="banner"
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
+            <a 
+              href="#" 
+              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              className="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg" 
+              aria-label="Retour en haut - jemassuremoinscher"
+            >
+              <img 
+                alt="jemassuremoinscher.fr" 
+                className="h-10 md:h-12 w-auto object-contain" 
+                src={logoNew} 
+              />
+            </a>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-8" role="navigation" aria-label="Navigation principale">
+              {navLinks.map((link) => (
+                <button
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </button>
+              ))}
               
-              {/* Mobile Menu Button */}
-              <Button variant="ghost" size="icon" className="lg:hidden focus:ring-2 focus:ring-primary focus:ring-offset-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label={isMobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')} aria-expanded={isMobileMenuOpen} aria-controls="mobile-menu">
-                {isMobileMenuOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
+              <Button 
+                onClick={() => scrollToSection("devis")}
+                className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold px-6 py-2 shadow-gold btn-press"
+              >
+                Devis Rapide
               </Button>
-            </div>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="lg:hidden focus:ring-2 focus:ring-primary focus:ring-offset-2" 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+              aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"} 
+              aria-expanded={isMobileMenuOpen}
+            >
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
           </div>
         </div>
-
-        {/* Desktop Navigation Menu */}
-        <nav className="hidden lg:block bg-gradient-to-r from-muted to-muted/50 border-t border-border" role="navigation" aria-label="Navigation principale">
-          <div className="container mx-auto px-4">
-            <div className="flex items-center justify-center gap-2 py-3">
-              <Link to="/comparateur-garanties" className="px-4 py-2 text-sm font-semibold text-white bg-primary hover:bg-primary/90 rounded-lg shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" onClick={() => {
-              trackEvent('insurance_type_click', {
-                category: 'navigation',
-                label: 'comparateur_garanties_header'
-              });
-            }}>
-                {t('nav.comparator')}
-              </Link>
-
-              <Popover open={openPopover === "particuliers"} onOpenChange={open => setOpenPopover(open ? "particuliers" : null)}>
-                <PopoverTrigger asChild>
-                  <Button variant="ghost" className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1">
-                    {t('nav.individuals')}
-                    <ChevronDown className="h-4 w-4" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-64 p-2 bg-card shadow-lg border border-border" align="start">
-                  <div className="space-y-1">
-                    {assurancesParticuliers.map(({
-                    to,
-                    label,
-                    icon: Icon
-                  }) => <Link key={to} to={to} className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-md transition-colors" onClick={() => {
-                    setOpenPopover(null);
-                    handleInsuranceTypeClick(label.toLowerCase(), 'particuliers');
-                  }}>
-                        <Icon className="h-4 w-4 text-primary" />
-                        {label}
-                      </Link>)}
-                  </div>
-                </PopoverContent>
-              </Popover>
-
-              <Popover open={openPopover === "pro"} onOpenChange={open => setOpenPopover(open ? "pro" : null)}>
-                <PopoverTrigger asChild>
-                  <Button variant="ghost" className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1">
-                    {t('nav.professionals')}
-                    <ChevronDown className="h-4 w-4" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-64 p-2 bg-card shadow-lg border border-border" align="start">
-                  <div className="space-y-1">
-                    {assurancesPro.map(({
-                    to,
-                    label,
-                    icon: Icon
-                  }) => <Link key={to} to={to} className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-md transition-colors" onClick={() => {
-                    setOpenPopover(null);
-                    handleInsuranceTypeClick(label.toLowerCase(), 'professionnels');
-                  }}>
-                        <Icon className="h-4 w-4 text-primary" />
-                        {label}
-                      </Link>)}
-                  </div>
-                </PopoverContent>
-              </Popover>
-
-              <Popover open={openPopover === "epargne"} onOpenChange={open => setOpenPopover(open ? "epargne" : null)}>
-                <PopoverTrigger asChild>
-                  <Button variant="ghost" className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1">
-                    {t('nav.lifeAndSavings')}
-                    <ChevronDown className="h-4 w-4" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-64 p-2 bg-card shadow-lg border border-border" align="start">
-                  <div className="space-y-1">
-                    {assurancesVieEpargne.map(({
-                    to,
-                    label,
-                    icon: Icon
-                  }) => <Link key={to} to={to} className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-md transition-colors" onClick={() => {
-                    setOpenPopover(null);
-                    handleInsuranceTypeClick(label.toLowerCase(), 'vie_epargne');
-                  }}>
-                        <Icon className="h-4 w-4 text-primary" />
-                        {label}
-                      </Link>)}
-                  </div>
-                </PopoverContent>
-              </Popover>
-
-              <Popover open={openPopover === "immobilier"} onOpenChange={open => setOpenPopover(open ? "immobilier" : null)}>
-                <PopoverTrigger asChild>
-                  <Button variant="ghost" className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all flex items-center gap-1">
-                    {t('nav.realEstate')}
-                    <ChevronDown className="h-4 w-4" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-64 p-2 bg-card shadow-lg border border-border" align="start">
-                  <div className="space-y-1">
-                    {assurancesImmobilier.map(({
-                    to,
-                    label,
-                    icon: Icon
-                  }) => <Link key={to} to={to} className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-md transition-colors" onClick={() => {
-                    setOpenPopover(null);
-                    handleInsuranceTypeClick(label.toLowerCase(), 'immobilier');
-                  }}>
-                        <Icon className="h-4 w-4 text-primary" />
-                        {label}
-                      </Link>)}
-                  </div>
-                </PopoverContent>
-              </Popover>
-
-              <div className="h-6 w-px bg-border mx-2" aria-hidden="true" />
-
-              <Link to="/qui-sommes-nous" className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all">
-                {t('nav.aboutUs')}
-              </Link>
-              <Link to="/nos-partenaires" className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all">
-                {t('nav.partners')}
-              </Link>
-              <Link to="/avis-clients" className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all">
-                {t('nav.reviews')}
-              </Link>
-              <Link to="/blog" className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-all">
-                {t('nav.blog')}
-              </Link>
-            </div>
-          </div>
-        </nav>
       </header>
 
-      {/* Overlay for mobile menu */}
-      {isMobileMenuOpen && <div className="fixed inset-0 bg-black/50 z-40 lg:hidden backdrop-blur-sm" onClick={() => setIsMobileMenuOpen(false)} aria-hidden="true" />}
+      {/* Spacer for fixed header */}
+      <div className="h-16 md:h-20" />
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden backdrop-blur-sm" 
+          onClick={() => setIsMobileMenuOpen(false)} 
+        />
+      )}
       
-      {/* Mobile Menu Drawer */}
-      {isMobileMenuOpen && <div id="mobile-menu" className="fixed top-[73px] left-0 right-0 bottom-0 bg-card z-50 overflow-y-auto lg:hidden animate-slide-in-left" role="dialog" aria-label="Menu de navigation mobile">
-          <nav className="p-4 space-y-6" role="navigation" aria-label="Navigation mobile principale">
-            {/* Language Toggle - Mobile */}
-            <div className="flex justify-end mb-2">
-              <LanguageToggle />
-            </div>
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed top-16 left-0 right-0 bg-white z-50 lg:hidden shadow-lg animate-slide-in-left"
+          role="dialog" 
+          aria-label="Menu de navigation mobile"
+        >
+          <nav className="p-6 space-y-4" role="navigation">
+            {navLinks.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => scrollToSection(link.id)}
+                className="block w-full text-left px-4 py-3 text-lg font-medium text-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors"
+              >
+                {link.label}
+              </button>
+            ))}
             
-            <div>
-              <Link to="/comparateur-garanties" className="block px-4 py-3 mb-3 text-base font-semibold text-white bg-primary hover:bg-primary/90 rounded-lg transition-all text-center shadow-md" onClick={() => setIsMobileMenuOpen(false)}>
-                {t('nav.comparator')}
-              </Link>
-            </div>
-
-            <div>
-              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">{t('nav.individuals')}</h3>
-              <div className="space-y-1 mt-2">
-                {assurancesParticuliers.map(({
-              to,
-              label,
-              icon: Icon
-            }) => <Link key={to} to={to} className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Icon className="h-5 w-5 text-primary" />
-                    {label}
-                  </Link>)}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">{t('nav.professionals')}</h3>
-              <div className="space-y-1 mt-2">
-                {assurancesPro.map(({
-              to,
-              label,
-              icon: Icon
-            }) => <Link key={to} to={to} className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Icon className="h-5 w-5 text-primary" />
-                    {label}
-                  </Link>)}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">{t('nav.lifeAndSavings')}</h3>
-              <div className="space-y-1 mt-2">
-                {assurancesVieEpargne.map(({
-              to,
-              label,
-              icon: Icon
-            }) => <Link key={to} to={to} className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Icon className="h-5 w-5 text-primary" />
-                    {label}
-                  </Link>)}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">{t('nav.realEstate')}</h3>
-              <div className="space-y-1 mt-2">
-                {assurancesImmobilier.map(({
-              to,
-              label,
-              icon: Icon
-            }) => <Link key={to} to={to} className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Icon className="h-5 w-5 text-primary" />
-                    {label}
-                  </Link>)}
-              </div>
-            </div>
-
-            <div className="border-t border-border pt-4">
-              <div className="space-y-1">
-                <Link to="/qui-sommes-nous" className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                  {t('nav.aboutUs')}
-                </Link>
-                <Link to="/nos-partenaires" className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                  {t('nav.partners')}
-                </Link>
-                <Link to="/avis-clients" className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                  {t('nav.reviews')}
-                </Link>
-                <Link to="/blog" className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted hover:text-primary rounded-lg transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
-                  {t('nav.blog')}
-                </Link>
-              </div>
-            </div>
+            <Button 
+              onClick={() => scrollToSection("devis")}
+              className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-bold py-3 shadow-gold btn-press"
+            >
+              Devis Rapide
+            </Button>
           </nav>
-        </div>}
-    </>;
+        </div>
+      )}
+    </>
+  );
 };
+
 export default Header;
