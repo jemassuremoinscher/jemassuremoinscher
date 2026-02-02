@@ -80,21 +80,38 @@ const Header = () => {
     icon: Building2
   }];
   return <>
-      <header className="bg-card border-b border-border sticky top-0 z-50 shadow-sm" role="banner">
-        <div className="container mx-auto px-4 bg-primary">
-          <div className="flex items-center justify-between py-4 bg-primary text-primary-foreground">
-            <Link to="/" className="flex items-center focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg" aria-label="Retour à la page d'accueil - jemassuremoinscher">
-              <img alt="jemassuremoinscher.fr" className="h-12 md:h-14 lg:h-16 w-auto object-contain" src="/lovable-uploads/e414ce34-9901-4441-90e4-11b2838a7db0.png" />
+      <header className="bg-primary border-b border-border sticky top-0 z-50 shadow-sm" role="banner">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-center py-6 md:py-8 relative">
+            {/* Centered Logo Text */}
+            <Link 
+              to="/" 
+              className="flex items-center focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-primary rounded-lg" 
+              aria-label="Retour à la page d'accueil - jemassuremoinscher"
+            >
+              <span className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+                <span className="text-white">jemassure</span>
+                <span className="text-amber-400">moinscher.fr</span>
+              </span>
             </Link>
 
-            <div className="flex items-center gap-2">
+            {/* Right side controls */}
+            <div className="absolute right-0 flex items-center gap-2">
               {/* Language Toggle - Desktop */}
               <div className="hidden lg:block">
                 <LanguageToggle />
               </div>
               
               {/* Mobile Menu Button */}
-              <Button variant="ghost" size="icon" className="lg:hidden focus:ring-2 focus:ring-primary focus:ring-offset-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label={isMobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')} aria-expanded={isMobileMenuOpen} aria-controls="mobile-menu">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="lg:hidden focus:ring-2 focus:ring-white/50 text-white hover:bg-white/10" 
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+                aria-label={isMobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')} 
+                aria-expanded={isMobileMenuOpen} 
+                aria-controls="mobile-menu"
+              >
                 {isMobileMenuOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
               </Button>
             </div>
