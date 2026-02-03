@@ -49,15 +49,6 @@ All colors MUST be HSL.
     --shadow-lg: 0 20px 40px -8px hsl(271 80% 35% / 0.2);
     --shadow-elegant: 0 10px 30px -10px hsl(271 81% 56% / 0.3);
     --shadow-glow: 0 0 40px hsl(271 81% 56% / 0.4);
-    
-    /* Futuristic 2026 tokens */
-    --titanium-white: 0 0% 97%;
-    --moon-gray: 240 5% 84%;
-    --neon-purple: 271 100% 70%;
-    --neon-gold: 45 100% 65%;
-    --glass-bg: 0 0% 100% / 0.7;
-    --glass-border: 0 0% 100% / 0.3;
-    --glass-blur: 20px;
   }
 
   .dark {
@@ -203,77 +194,5 @@ All colors MUST be HSL.
   /* Button active press effect */
   .btn-press:active {
     @apply scale-95;
-  }
-
-  /* ===== Futuristic 2026 Glass UI ===== */
-  .glass-panel {
-    background: hsl(var(--glass-bg));
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid hsl(var(--glass-border));
-  }
-  
-  .glass-pill {
-    background: hsl(0 0% 100% / 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid hsl(0 0% 100% / 0.4);
-    border-radius: 9999px;
-    box-shadow: 
-      0 4px 16px -4px hsl(271 80% 35% / 0.1),
-      inset 0 1px 0 hsl(0 0% 100% / 0.5);
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-  
-  .glass-pill:hover {
-    background: hsl(0 0% 100% / 0.95);
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 
-      0 8px 24px -4px hsl(271 80% 35% / 0.2),
-      inset 0 1px 0 hsl(0 0% 100% / 0.6),
-      0 0 0 1px hsl(var(--neon-purple) / 0.3);
-  }
-  
-  .glass-pill-active {
-    background: linear-gradient(135deg, hsl(var(--neon-purple)), hsl(271 81% 50%));
-    color: white;
-    border-color: transparent;
-    box-shadow: 
-      0 4px 20px -4px hsl(271 81% 56% / 0.5),
-      inset 0 1px 0 hsl(0 0% 100% / 0.2);
-  }
-  
-  .neon-glow-subtle {
-    box-shadow: 0 0 20px hsl(var(--neon-purple) / 0.2);
-  }
-  
-  .neon-text {
-    text-shadow: 0 0 20px hsl(var(--neon-purple) / 0.5);
-  }
-  
-  @keyframes float-gentle {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-3px); }
-  }
-  
-  .animate-float-gentle {
-    animation: float-gentle 4s ease-in-out infinite;
-  }
-  
-  /* Volumetric light effect */
-  .volumetric-light {
-    position: relative;
-  }
-  
-  .volumetric-light::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200%;
-    height: 100%;
-    background: radial-gradient(ellipse at center, hsl(271 81% 56% / 0.08) 0%, transparent 70%);
-    pointer-events: none;
   }
 }
