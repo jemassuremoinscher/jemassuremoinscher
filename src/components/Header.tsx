@@ -96,7 +96,7 @@ const Header = () => {
                 className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 object-contain drop-shadow-lg"
               />
               {/* Text Logo */}
-              <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">
+              <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold tracking-tight">
                 <span className="text-white">jemassure</span>
                 <span className="text-amber-400">moinscher.fr</span>
               </span>
