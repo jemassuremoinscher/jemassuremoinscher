@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageToggle from "@/components/LanguageToggle";
-import logoNew from "@/assets/logo-new.png";
+import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openPopover, setOpenPopover] = useState<string | null>(null);
@@ -82,14 +82,21 @@ const Header = () => {
   return <>
       <header className="bg-primary border-b border-border sticky top-0 z-50 shadow-sm" role="banner">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-center py-6 md:py-8 relative">
-            {/* Centered Logo Text */}
+          <div className="flex items-center justify-center py-3 md:py-4 relative">
+            {/* Centered Logo with Mascot */}
             <Link 
               to="/" 
-              className="flex items-center focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-primary rounded-lg" 
+              className="flex items-center gap-2 md:gap-3 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-primary rounded-lg" 
               aria-label="Retour à la page d'accueil - jemassuremoinscher"
             >
-              <span className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+              {/* Arthur Mascot */}
+              <img 
+                src={arthurThumbsUp} 
+                alt="Arthur, la mascotte" 
+                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 object-contain drop-shadow-lg"
+              />
+              {/* Text Logo */}
+              <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight">
                 <span className="text-white">jemassure</span>
                 <span className="text-amber-400">moinscher.fr</span>
               </span>
