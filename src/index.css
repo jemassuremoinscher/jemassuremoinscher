@@ -212,6 +212,12 @@ All colors MUST be HSL.
     -webkit-backdrop-filter: blur(var(--glass-blur));
   }
 
+  .glass-card {
+    background: hsl(0 0% 100% / 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
   .glass-pill {
     @apply rounded-full px-4 py-2 transition-all duration-200;
     background: hsl(var(--titanium) / 0.8);
@@ -233,6 +239,7 @@ All colors MUST be HSL.
   .nav-pill {
     @apply rounded-full px-4 py-2 text-sm font-medium transition-all duration-200;
     background: transparent;
+    color: hsl(var(--foreground));
   }
 
   .nav-pill:hover {
@@ -243,5 +250,23 @@ All colors MUST be HSL.
     background: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
     box-shadow: 0 2px 12px hsl(var(--neon-accent) / 0.3);
+  }
+
+  /* 2026 Rounded corners - 32px standard */
+  .rounded-2026 {
+    border-radius: 2rem;
+  }
+
+  /* Hero sections with glassmorphism */
+  .hero-glass {
+    @apply rounded-[2rem];
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.05), hsl(var(--accent) / 0.08));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Variable font weight utility */
+  .font-variable {
+    font-variation-settings: 'wght' var(--font-weight, 400);
   }
 }
