@@ -1,8 +1,10 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Shield, Award, Users, TrendingUp } from "lucide-react";
+
 const QuiSommesNous = () => {
-  return <div className="min-h-screen">
+  return (
+    <div className="min-h-screen">
       <Header />
       
       <main className="container mx-auto px-4 py-16">
@@ -15,8 +17,8 @@ const QuiSommesNous = () => {
             jemassuremoinscher est votre partenaire de confiance pour trouver les meilleures offres d'assurance adaptées à vos besoins.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-8 my-12">
-            <div className="bg-card p-6 rounded-xl border-2 border-border hover:border-primary/30 transition-all">
+          <div className="grid md:grid-cols-2 gap-6 my-12">
+            <div className="glass-card p-6 rounded-[2rem] hover:shadow-[var(--shadow-hover)] transition-all duration-300">
               <Shield className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-xl font-bold mb-3">Notre mission</h3>
               <p className="text-muted-foreground">
@@ -24,7 +26,7 @@ const QuiSommesNous = () => {
               </p>
             </div>
 
-            <div className="bg-card p-6 rounded-xl border-2 border-border hover:border-primary/30 transition-all">
+            <div className="glass-card p-6 rounded-[2rem] hover:shadow-[var(--shadow-hover)] transition-all duration-300">
               <Award className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-xl font-bold mb-3">Notre expertise</h3>
               <p className="text-muted-foreground">
@@ -32,13 +34,13 @@ const QuiSommesNous = () => {
               </p>
             </div>
 
-            <div className="bg-card p-6 rounded-xl border-2 border-border hover:border-primary/30 transition-all">
+            <div className="glass-card p-6 rounded-[2rem] hover:shadow-[var(--shadow-hover)] transition-all duration-300">
               <Users className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-xl font-bold mb-3">Notre communauté</h3>
               <p className="text-muted-foreground">Plus de 50 000 utilisateurs nous font confiance pour leurs comparaisons d'assurance.</p>
             </div>
 
-            <div className="bg-card p-6 rounded-xl border-2 border-border hover:border-primary/30 transition-all">
+            <div className="glass-card p-6 rounded-[2rem] hover:shadow-[var(--shadow-hover)] transition-all duration-300">
               <TrendingUp className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-xl font-bold mb-3">Nos résultats</h3>
               <p className="text-muted-foreground">
@@ -47,7 +49,7 @@ const QuiSommesNous = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8 rounded-xl">
+          <div className="glass-card p-8 rounded-[2rem] bg-gradient-to-br from-primary/5 to-accent/5">
             <h2 className="text-2xl font-bold mb-4">Nos valeurs</h2>
             <ul className="space-y-3 text-muted-foreground">
               <li className="flex items-start">
@@ -72,6 +74,8 @@ const QuiSommesNous = () => {
       </main>
 
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default QuiSommesNous;

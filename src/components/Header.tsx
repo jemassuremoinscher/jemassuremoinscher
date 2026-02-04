@@ -89,16 +89,17 @@ const Header = () => {
         role="banner"
       >
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between py-2 md:py-3">
+          {/* Main Header Row */}
+          <div className="flex items-center justify-between py-3 md:py-4">
             
-            {/* Left: Smart Back Button or Logo */}
-            <div className="flex items-center gap-3">
+            {/* Left: Smart Back Button + Logo */}
+            <div className="flex items-center gap-2 min-w-0 shrink-0">
               {!isHomePage && (
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={handleBack}
-                  className="nav-pill h-10 w-10 rounded-full hover:bg-muted/80"
+                  className="h-10 w-10 rounded-full hover:bg-muted/80 shrink-0"
                   aria-label="Retour"
                 >
                   <ArrowLeft className="h-5 w-5 text-foreground" />
@@ -113,17 +114,79 @@ const Header = () => {
                 <img 
                   src={arthurThumbsUp} 
                   alt="Arthur, la mascotte" 
-                  className="h-8 w-8 sm:h-10 sm:w-10 object-contain"
+                  className="h-9 w-9 sm:h-10 sm:w-10 object-contain shrink-0"
                 />
-                <span className="text-base sm:text-lg font-bold tracking-tight hidden sm:block">
+                <span className="text-base sm:text-lg font-bold tracking-tight whitespace-nowrap">
                   <span className="text-primary">jemassure</span>
                   <span className="text-secondary">moinscher</span>
                 </span>
               </Link>
             </div>
 
-            {/* Center: Navigation Pills - Desktop */}
-            <nav className="hidden lg:flex items-center gap-1" role="navigation" aria-label="Navigation principale">
+            {/* Right: Actions + Language + Mobile Toggle */}
+            <div className="flex items-center gap-1 shrink-0">
+              {/* Unified Actions Menu */}
+              <Popover open={actionsOpen} onOpenChange={setActionsOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-10 w-10 rounded-full hover:bg-muted/80 hidden sm:flex"
+                    aria-label="Plus d'actions"
+                  >
+                    <MoreHorizontal className="h-5 w-5 text-foreground" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-48 p-2 rounded-3xl bg-card/95 backdrop-blur-xl shadow-lg" align="end" sideOffset={8}>
+                  <div className="space-y-0.5">
+                    <button 
+                      onClick={handleShare}
+                      className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                    >
+                      <Share2 className="h-4 w-4 text-primary" />
+                      Partager
+                    </button>
+                    <button 
+                      className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                      onClick={() => setActionsOpen(false)}
+                    >
+                      <BookmarkPlus className="h-4 w-4 text-primary" />
+                      Favoris
+                    </button>
+                    <button 
+                      onClick={handlePrint}
+                      className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                    >
+                      <Printer className="h-4 w-4 text-primary" />
+                      Imprimer
+                    </button>
+                  </div>
+                </PopoverContent>
+              </Popover>
+
+              {/* Language Toggle - Desktop */}
+              <div className="hidden lg:block">
+                <LanguageToggle />
+              </div>
+              
+              {/* Mobile Menu Button */}
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="lg:hidden h-10 w-10 rounded-full hover:bg-muted/80" 
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+                aria-label={isMobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')} 
+                aria-expanded={isMobileMenuOpen} 
+                aria-controls="mobile-menu"
+              >
+                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
+            </div>
+          </div>
+
+          {/* Desktop Navigation - Separate Row */}
+          <nav className="hidden lg:block pb-3" role="navigation" aria-label="Navigation principale">
+            <div className="flex items-center justify-center gap-1 flex-wrap">
               <Link 
                 to="/comparateur-garanties" 
                 className="nav-pill active"
@@ -139,13 +202,13 @@ const Header = () => {
                     <ChevronDown className="h-3 w-3 opacity-60" />
                   </button>
                 </PopoverTrigger>
-                <PopoverContent className="w-56 p-2 rounded-2xl bg-card/95 backdrop-blur-xl shadow-lg" align="center" sideOffset={8}>
+                <PopoverContent className="w-56 p-2 rounded-3xl bg-card/95 backdrop-blur-xl shadow-lg" align="center" sideOffset={8}>
                   <div className="space-y-0.5">
                     {assurancesParticuliers.map(({ to, label, icon: Icon }) => (
                       <Link 
                         key={to} 
                         to={to} 
-                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                         onClick={() => {
                           setOpenPopover(null);
                           handleInsuranceTypeClick(label.toLowerCase(), 'particuliers');
@@ -166,13 +229,13 @@ const Header = () => {
                     <ChevronDown className="h-3 w-3 opacity-60" />
                   </button>
                 </PopoverTrigger>
-                <PopoverContent className="w-56 p-2 rounded-2xl bg-card/95 backdrop-blur-xl shadow-lg" align="center" sideOffset={8}>
+                <PopoverContent className="w-56 p-2 rounded-3xl bg-card/95 backdrop-blur-xl shadow-lg" align="center" sideOffset={8}>
                   <div className="space-y-0.5">
                     {assurancesPro.map(({ to, label, icon: Icon }) => (
                       <Link 
                         key={to} 
                         to={to} 
-                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                         onClick={() => {
                           setOpenPopover(null);
                           handleInsuranceTypeClick(label.toLowerCase(), 'professionnels');
@@ -193,13 +256,13 @@ const Header = () => {
                     <ChevronDown className="h-3 w-3 opacity-60" />
                   </button>
                 </PopoverTrigger>
-                <PopoverContent className="w-56 p-2 rounded-2xl bg-card/95 backdrop-blur-xl shadow-lg" align="center" sideOffset={8}>
+                <PopoverContent className="w-56 p-2 rounded-3xl bg-card/95 backdrop-blur-xl shadow-lg" align="center" sideOffset={8}>
                   <div className="space-y-0.5">
                     {assurancesVieEpargne.map(({ to, label, icon: Icon }) => (
                       <Link 
                         key={to} 
                         to={to} 
-                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                         onClick={() => {
                           setOpenPopover(null);
                           handleInsuranceTypeClick(label.toLowerCase(), 'vie_epargne');
@@ -220,13 +283,13 @@ const Header = () => {
                     <ChevronDown className="h-3 w-3 opacity-60" />
                   </button>
                 </PopoverTrigger>
-                <PopoverContent className="w-56 p-2 rounded-2xl bg-card/95 backdrop-blur-xl shadow-lg" align="center" sideOffset={8}>
+                <PopoverContent className="w-56 p-2 rounded-3xl bg-card/95 backdrop-blur-xl shadow-lg" align="center" sideOffset={8}>
                   <div className="space-y-0.5">
                     {assurancesImmobilier.map(({ to, label, icon: Icon }) => (
                       <Link 
                         key={to} 
                         to={to} 
-                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
+                        className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                         onClick={() => {
                           setOpenPopover(null);
                           handleInsuranceTypeClick(label.toLowerCase(), 'immobilier');
@@ -241,72 +304,13 @@ const Header = () => {
               </Popover>
 
               {/* Subtle visual separator using spacing only */}
-              <div className="w-2" aria-hidden="true" />
+              <div className="w-3" aria-hidden="true" />
 
               <Link to="/qui-sommes-nous" className="nav-pill">{t('nav.aboutUs')}</Link>
+              <Link to="/nos-partenaires" className="nav-pill">{t('nav.partners')}</Link>
               <Link to="/blog" className="nav-pill">{t('nav.blog')}</Link>
-            </nav>
-
-            {/* Right: Actions Menu + Language + Mobile Toggle */}
-            <div className="flex items-center gap-1">
-              {/* Unified Actions Menu */}
-              <Popover open={actionsOpen} onOpenChange={setActionsOpen}>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="nav-pill h-10 w-10 rounded-full hidden sm:flex"
-                    aria-label="Plus d'actions"
-                  >
-                    <MoreHorizontal className="h-5 w-5 text-foreground" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-48 p-2 rounded-2xl bg-card/95 backdrop-blur-xl shadow-lg" align="end" sideOffset={8}>
-                  <div className="space-y-0.5">
-                    <button 
-                      onClick={handleShare}
-                      className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
-                    >
-                      <Share2 className="h-4 w-4 text-primary" />
-                      Partager
-                    </button>
-                    <button 
-                      className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
-                      onClick={() => setActionsOpen(false)}
-                    >
-                      <BookmarkPlus className="h-4 w-4 text-primary" />
-                      Favoris
-                    </button>
-                    <button 
-                      onClick={handlePrint}
-                      className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
-                    >
-                      <Printer className="h-4 w-4 text-primary" />
-                      Imprimer
-                    </button>
-                  </div>
-                </PopoverContent>
-              </Popover>
-
-              {/* Language Toggle - Desktop */}
-              <div className="hidden lg:block">
-                <LanguageToggle />
-              </div>
-              
-              {/* Mobile Menu Button */}
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="lg:hidden nav-pill h-10 w-10 rounded-full" 
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
-                aria-label={isMobileMenuOpen ? t('nav.closeMenu') : t('nav.openMenu')} 
-                aria-expanded={isMobileMenuOpen} 
-                aria-controls="mobile-menu"
-              >
-                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </Button>
             </div>
-          </div>
+          </nav>
         </div>
       </header>
 
@@ -323,7 +327,7 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div 
           id="mobile-menu" 
-          className="fixed top-[56px] left-0 right-0 bottom-0 bg-card/98 backdrop-blur-xl z-50 overflow-y-auto lg:hidden"
+          className="fixed top-[64px] left-0 right-0 bottom-0 bg-card/98 backdrop-blur-xl z-50 overflow-y-auto lg:hidden"
           role="dialog" 
           aria-label="Menu de navigation mobile"
         >
@@ -336,7 +340,7 @@ const Header = () => {
             <div>
               <Link 
                 to="/comparateur-garanties" 
-                className="block px-4 py-3 mb-3 text-base font-semibold text-primary-foreground bg-primary rounded-2xl transition-all text-center shadow-lg"
+                className="block px-4 py-3 mb-3 text-base font-semibold text-primary-foreground bg-primary rounded-[2rem] transition-all text-center shadow-lg"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t('nav.comparator')}
@@ -350,7 +354,7 @@ const Header = () => {
                   <Link 
                     key={to} 
                     to={to} 
-                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <Icon className="h-5 w-5 text-primary" />
@@ -367,7 +371,7 @@ const Header = () => {
                   <Link 
                     key={to} 
                     to={to} 
-                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <Icon className="h-5 w-5 text-primary" />
@@ -384,7 +388,7 @@ const Header = () => {
                   <Link 
                     key={to} 
                     to={to} 
-                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <Icon className="h-5 w-5 text-primary" />
@@ -401,7 +405,7 @@ const Header = () => {
                   <Link 
                     key={to} 
                     to={to} 
-                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
+                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <Icon className="h-5 w-5 text-primary" />
@@ -412,32 +416,32 @@ const Header = () => {
             </div>
 
             {/* Secondary links - no border separator */}
-            <div className="pt-4 bg-muted/30 -mx-4 px-4 rounded-t-3xl">
+            <div className="pt-4 bg-muted/30 -mx-4 px-4 rounded-t-[2rem]">
               <div className="space-y-0.5">
                 <Link 
                   to="/qui-sommes-nous" 
-                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
+                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {t('nav.aboutUs')}
                 </Link>
                 <Link 
                   to="/nos-partenaires" 
-                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
+                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {t('nav.partners')}
                 </Link>
                 <Link 
                   to="/avis-clients" 
-                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
+                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {t('nav.reviews')}
                 </Link>
                 <Link 
                   to="/blog" 
-                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-xl transition-colors"
+                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {t('nav.blog')}

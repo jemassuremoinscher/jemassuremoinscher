@@ -70,29 +70,29 @@ const Blog = () => {
           {/* Search bar */}
           <div className="mb-8 max-w-2xl mx-auto">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
               <Input
                 type="text"
                 placeholder="Rechercher un article (ex: loi lemoine, assurance auto...)"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 py-6 text-lg"
+                className="pl-12 py-6 text-lg rounded-full"
               />
             </div>
           </div>
 
           {/* Quick Links Section */}
           <div className="mb-16">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Guides Pratiques */}
-              <div>
-                <h2 className="text-2xl font-bold text-primary mb-6">Guides Pratiques</h2>
-                <ul className="space-y-3">
+              <div className="glass-card p-6 rounded-[2rem]">
+                <h2 className="text-xl font-bold text-primary mb-4">Guides Pratiques</h2>
+                <ul className="space-y-2">
                   <li>
                     <button
                       type="button"
                       onClick={() => navigate('/blog/meilleure-assurance-auto-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Meilleure assurance auto 2025
                     </button>
@@ -101,7 +101,7 @@ const Blog = () => {
                     <button
                       type="button"
                       onClick={() => navigate('/blog/top-mutuelles-sante-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Top mutuelles santé
                     </button>
@@ -110,7 +110,7 @@ const Blog = () => {
                     <button
                       type="button"
                       onClick={() => navigate('/blog/assurance-auto-jeune-conducteur-astuces')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Assurance jeune conducteur
                     </button>
@@ -119,7 +119,7 @@ const Blog = () => {
                     <button
                       type="button"
                       onClick={() => navigate('/blog/comparatif-habitation-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Comparatif habitation
                     </button>
@@ -128,14 +128,14 @@ const Blog = () => {
               </div>
 
               {/* Actualités Légales */}
-              <div>
-                <h2 className="text-2xl font-bold text-primary mb-6">Actualités Légales</h2>
-                <ul className="space-y-3">
+              <div className="glass-card p-6 rounded-[2rem]">
+                <h2 className="text-xl font-bold text-primary mb-4">Actualités Légales</h2>
+                <ul className="space-y-2">
                   <li>
                     <button
                       type="button"
                       onClick={() => navigate('/blog/loi-lemoine-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Loi Lemoine 2025
                     </button>
@@ -144,7 +144,7 @@ const Blog = () => {
                     <button
                       type="button"
                       onClick={() => navigate('/blog/resiliation-assurance-droits-2024')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Loi Hamon résiliation
                     </button>
@@ -153,7 +153,7 @@ const Blog = () => {
                     <button
                       type="button"
                       onClick={() => navigate('/blog/nouvelle-reglementation-assurance-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Nouvelle réglementation
                     </button>
@@ -162,7 +162,7 @@ const Blog = () => {
                     <button
                       type="button"
                       onClick={() => navigate('/blog/droits-des-assures-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Droits des assurés
                     </button>
@@ -171,14 +171,14 @@ const Blog = () => {
               </div>
 
               {/* Conseils Experts */}
-              <div>
-                <h2 className="text-2xl font-bold text-primary mb-6">Conseils Experts</h2>
-                <ul className="space-y-3">
+              <div className="glass-card p-6 rounded-[2rem]">
+                <h2 className="text-xl font-bold text-primary mb-4">Conseils Experts</h2>
+                <ul className="space-y-2">
                   <li>
                     <button
                       type="button"
                       onClick={() => navigate('/blog/mutuelle-sante-reduire-frais-medicaux-2024')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Économiser sur ses contrats
                     </button>
@@ -187,7 +187,7 @@ const Blog = () => {
                     <button
                       type="button"
                       onClick={() => navigate('/blog/assurance-auto-jeune-conducteur-astuces')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Choisir ses garanties
                     </button>
@@ -196,7 +196,7 @@ const Blog = () => {
                     <button
                       type="button"
                       onClick={() => navigate('/blog/resiliation-assurance-droits-2024')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Éviter les pièges
                     </button>
@@ -205,7 +205,7 @@ const Blog = () => {
                     <button
                       type="button"
                       onClick={() => navigate('/blog/mutuelle-sante-reduire-frais-medicaux-2024')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Optimiser sa couverture
                     </button>
@@ -214,14 +214,14 @@ const Blog = () => {
               </div>
 
               {/* Par Type */}
-              <div>
-                <h2 className="text-2xl font-bold text-primary mb-6">Par Type</h2>
-                <ul className="space-y-3">
+              <div className="glass-card p-6 rounded-[2rem]">
+                <h2 className="text-xl font-bold text-primary mb-4">Par Type</h2>
+                <ul className="space-y-2">
                   <li>
                     <button
                       type="button"
                       onClick={() => navigate('/blog/meilleure-assurance-auto-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Auto & Moto
                     </button>
@@ -230,7 +230,7 @@ const Blog = () => {
                     <button
                       type="button"
                       onClick={() => navigate('/blog/top-mutuelles-sante-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Santé & Prévoyance
                     </button>
@@ -239,7 +239,7 @@ const Blog = () => {
                     <button
                       type="button"
                       onClick={() => navigate('/blog/comparatif-habitation-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Habitation & PNO
                     </button>
@@ -248,7 +248,7 @@ const Blog = () => {
                     <button
                       type="button"
                       onClick={() => navigate('/blog/loi-lemoine-2025')}
-                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0"
+                      className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                     >
                       • Vie & Emprunteur
                     </button>
@@ -267,6 +267,7 @@ const Blog = () => {
                   variant={selectedCategory === category ? "default" : "outline"}
                   onClick={() => setSelectedCategory(category)}
                   size="sm"
+                  className="rounded-full"
                 >
                   {category}
                 </Button>
@@ -285,11 +286,11 @@ const Blog = () => {
               {filteredArticles.map((article) => (
                 <Card 
                   key={article.id} 
-                  className="hover:shadow-lg transition-all hover-lift cursor-pointer group"
+                  className="hover:shadow-[var(--shadow-hover)] cursor-pointer group"
                   onClick={() => navigate(`/blog/${article.slug}`)}
                 >
                   <CardHeader>
-                    <Badge className="mb-3 w-fit">{article.category}</Badge>
+                    <Badge className="mb-3 w-fit rounded-full">{article.category}</Badge>
                     <CardTitle className="text-xl group-hover:text-primary transition-colors">
                       {article.title}
                     </CardTitle>
@@ -310,7 +311,7 @@ const Blog = () => {
                     </div>
                     <div className="flex flex-wrap gap-1">
                       {article.tags.slice(0, 3).map((tag, idx) => (
-                        <Badge key={idx} variant="outline" className="text-xs">
+                        <Badge key={idx} variant="outline" className="text-xs rounded-full">
                           {tag}
                         </Badge>
                       ))}
@@ -324,13 +325,13 @@ const Blog = () => {
               <p className="text-lg text-muted-foreground mb-4">
                 Aucun article ne correspond à votre recherche
               </p>
-              <Button onClick={() => { setSearchQuery(""); setSelectedCategory("Tous les articles"); }}>
+              <Button onClick={() => { setSearchQuery(""); setSelectedCategory("Tous les articles"); }} className="rounded-full">
                 Réinitialiser les filtres
               </Button>
             </Card>
           )}
 
-          <div className="mt-16 bg-gradient-to-br from-primary/10 to-accent/10 p-8 rounded-xl text-center">
+          <div className="mt-16 hero-glass p-8 text-center">
             <h2 className="text-2xl font-bold mb-4">Restez informé</h2>
             <p className="text-muted-foreground mb-6">
               Abonnez-vous à notre newsletter pour recevoir nos derniers articles et conseils directement dans votre boîte mail.
