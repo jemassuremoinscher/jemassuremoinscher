@@ -49,6 +49,15 @@ All colors MUST be HSL.
     --shadow-lg: 0 20px 40px -8px hsl(271 80% 35% / 0.2);
     --shadow-elegant: 0 10px 30px -10px hsl(271 81% 56% / 0.3);
     --shadow-glow: 0 0 40px hsl(271 81% 56% / 0.4);
+    
+    /* 2026 Futuristic Design Tokens */
+    --glass-bg: hsl(0 0% 100% / 0.7);
+    --glass-border: hsl(0 0% 100% / 0.2);
+    --glass-blur: 20px;
+    --titanium: 0 0% 96%;
+    --moon-gray: 220 10% 94%;
+    --neon-accent: 271 81% 65%;
+    --surface-subtle: hsl(0 0% 0% / 0.02);
   }
 
   .dark {
@@ -194,5 +203,45 @@ All colors MUST be HSL.
   /* Button active press effect */
   .btn-press:active {
     @apply scale-95;
+  }
+
+  /* 2026 Glassmorphism Header */
+  .glass-header {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+  }
+
+  .glass-pill {
+    @apply rounded-full px-4 py-2 transition-all duration-200;
+    background: hsl(var(--titanium) / 0.8);
+  }
+
+  .glass-pill:hover {
+    background: hsl(var(--titanium));
+    box-shadow: 0 4px 16px hsl(var(--neon-accent) / 0.15);
+  }
+
+  /* Borderless separators using subtle backgrounds */
+  .separator-subtle {
+    background: var(--surface-subtle);
+    height: 100%;
+    width: 1px;
+  }
+
+  /* Floating navigation pills */
+  .nav-pill {
+    @apply rounded-full px-4 py-2 text-sm font-medium transition-all duration-200;
+    background: transparent;
+  }
+
+  .nav-pill:hover {
+    background: hsl(var(--moon-gray));
+  }
+
+  .nav-pill.active {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 2px 12px hsl(var(--neon-accent) / 0.3);
   }
 }
