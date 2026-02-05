@@ -5,6 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Check, X, Car, Bike, Home, Heart } from "lucide-react";
 import SEO from "@/components/SEO";
+import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
+import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
+import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 
 const ComparateurGaranties = () => {
   const autoGaranties = [
@@ -373,7 +376,7 @@ const ComparateurGaranties = () => {
   );
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-muted/30 to-background">
       <SEO 
         title="Comparateur de Garanties - Toutes les Formules Détaillées"
         description="Comparez en détail les garanties des formules économique, confort et premium pour l'assurance auto, moto, habitation et santé. Tableaux comparatifs complets."
@@ -382,106 +385,143 @@ const ComparateurGaranties = () => {
       />
       <Header />
       
-      <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl font-bold text-foreground mb-6">Comparateur de Garanties</h1>
+      <section className="hero-glass py-16 md:py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+        <div className="container mx-auto px-4 relative">
+          <div className="max-w-4xl mx-auto text-center relative">
+            {/* Arthur thinking - positioned on the left */}
+            <img 
+              src={arthurThinking} 
+              alt="Arthur réfléchit" 
+              className="hidden lg:block absolute -left-32 top-1/2 -translate-y-1/2 w-28 h-auto drop-shadow-lg"
+            />
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 tracking-tight">
+              Comparateur de Garanties
+            </h1>
             <p className="text-xl text-muted-foreground mb-8">
               Comparez en détail les garanties de nos formules Économique, Confort et Premium 
               pour trouver la protection idéale adaptée à vos besoins et votre budget.
             </p>
+            
+            {/* Speech bubble */}
+            <div className="glass-card inline-block px-6 py-3 rounded-2026 mt-4 relative">
+              <p className="text-sm font-medium text-foreground">
+                💡 Je décrypte chaque garantie pour vous aider à choisir !
+              </p>
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-card/80 rotate-45" />
+            </div>
           </div>
         </div>
       </section>
 
       <main className="container mx-auto px-4 py-12">
         <Tabs defaultValue="auto" className="w-full">
-          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-4 mb-8">
-            <TabsTrigger value="auto" className="flex items-center gap-2">
+          <TabsList className="glass-card grid w-full max-w-2xl mx-auto grid-cols-4 mb-8 p-2 rounded-2026">
+            <TabsTrigger value="auto" className="flex items-center gap-2 rounded-2026 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
               <Car className="h-4 w-4" />
               <span className="hidden sm:inline">Auto</span>
             </TabsTrigger>
-            <TabsTrigger value="moto" className="flex items-center gap-2">
+            <TabsTrigger value="moto" className="flex items-center gap-2 rounded-2026 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
               <Bike className="h-4 w-4" />
               <span className="hidden sm:inline">Moto</span>
             </TabsTrigger>
-            <TabsTrigger value="habitation" className="flex items-center gap-2">
+            <TabsTrigger value="habitation" className="flex items-center gap-2 rounded-2026 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
               <Home className="h-4 w-4" />
               <span className="hidden sm:inline">Habitation</span>
             </TabsTrigger>
-            <TabsTrigger value="sante" className="flex items-center gap-2">
+            <TabsTrigger value="sante" className="flex items-center gap-2 rounded-2026 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">
               <Heart className="h-4 w-4" />
               <span className="hidden sm:inline">Santé</span>
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="auto">
-            <Card className="p-6">
-              <div className="mb-6">
-                <h2 className="text-3xl font-bold mb-2">Assurance Auto</h2>
-                <p className="text-muted-foreground">
+            <Card className="glass-card p-6 md:p-8 rounded-2026 border-0">
+              <div className="mb-6 flex items-start gap-4">
+                <img src={arthurThumbsUp} alt="Arthur" className="w-16 h-auto hidden md:block" />
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-2">Assurance Auto</h2>
+                  <p className="text-muted-foreground">
                   Comparez les garanties selon votre niveau de protection souhaité
                 </p>
+                </div>
               </div>
               {renderTable(autoGaranties, "65€", "95€", "145€")}
             </Card>
           </TabsContent>
 
           <TabsContent value="moto">
-            <Card className="p-6">
-              <div className="mb-6">
-                <h2 className="text-3xl font-bold mb-2">Assurance Moto</h2>
-                <p className="text-muted-foreground">
+            <Card className="glass-card p-6 md:p-8 rounded-2026 border-0">
+              <div className="mb-6 flex items-start gap-4">
+                <img src={arthurThumbsUp} alt="Arthur" className="w-16 h-auto hidden md:block" />
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-2">Assurance Moto</h2>
+                  <p className="text-muted-foreground">
                   Protection adaptée à votre deux-roues et votre pratique
                 </p>
+                </div>
               </div>
               {renderTable(motoGaranties, "50€", "85€", "135€")}
             </Card>
           </TabsContent>
 
           <TabsContent value="habitation">
-            <Card className="p-6">
-              <div className="mb-6">
-                <h2 className="text-3xl font-bold mb-2">Assurance Habitation</h2>
-                <p className="text-muted-foreground">
+            <Card className="glass-card p-6 md:p-8 rounded-2026 border-0">
+              <div className="mb-6 flex items-start gap-4">
+                <img src={arthurThumbsUp} alt="Arthur" className="w-16 h-auto hidden md:block" />
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-2">Assurance Habitation</h2>
+                  <p className="text-muted-foreground">
                   Protégez votre logement et vos biens selon vos besoins
                 </p>
+                </div>
               </div>
               {renderTable(habitationGaranties, "12€", "22€", "38€")}
             </Card>
           </TabsContent>
 
           <TabsContent value="sante">
-            <Card className="p-6">
-              <div className="mb-6">
-                <h2 className="text-3xl font-bold mb-2">Mutuelle Santé</h2>
-                <p className="text-muted-foreground">
+            <Card className="glass-card p-6 md:p-8 rounded-2026 border-0">
+              <div className="mb-6 flex items-start gap-4">
+                <img src={arthurThumbsUp} alt="Arthur" className="w-16 h-auto hidden md:block" />
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-2">Mutuelle Santé</h2>
+                  <p className="text-muted-foreground">
                   Choisissez votre niveau de remboursement pour vos frais de santé
                 </p>
+                </div>
               </div>
               {renderTable(santeGaranties, "45€", "85€", "145€")}
             </Card>
           </TabsContent>
         </Tabs>
 
-        <section className="mt-16 max-w-4xl mx-auto">
-          <Card className="p-8 bg-gradient-to-br from-primary/5 to-primary/10">
+        <section className="mt-16 max-w-4xl mx-auto relative">
+          {/* Arthur flying on the right */}
+          <img 
+            src={arthurFlying} 
+            alt="Arthur vole" 
+            className="hidden lg:block absolute -right-24 top-1/2 -translate-y-1/2 w-24 h-auto drop-shadow-lg"
+          />
+          
+          <Card className="glass-card p-8 rounded-2026 border-0">
             <h2 className="text-2xl font-bold mb-4 text-center">Comment choisir ?</h2>
             <div className="grid md:grid-cols-3 gap-6 mt-6">
               <div className="text-center">
-                <Badge variant="outline" className="mb-3">Économique</Badge>
+                <Badge variant="outline" className="mb-3 rounded-2026 px-4 py-1">Économique</Badge>
                 <p className="text-sm text-muted-foreground">
                   Idéal pour les petits budgets avec les garanties essentielles obligatoires
                 </p>
               </div>
               <div className="text-center">
-                <Badge className="mb-3">Confort</Badge>
+                <Badge className="mb-3 rounded-2026 px-4 py-1">Confort</Badge>
                 <p className="text-sm text-muted-foreground">
                   Le meilleur rapport qualité-prix avec une protection équilibrée et complète
                 </p>
               </div>
               <div className="text-center">
-                <Badge variant="secondary" className="mb-3">Premium</Badge>
+                <Badge variant="secondary" className="mb-3 rounded-2026 px-4 py-1">Premium</Badge>
                 <p className="text-sm text-muted-foreground">
                   Protection maximale sans franchise avec les meilleures garanties du marché
                 </p>
