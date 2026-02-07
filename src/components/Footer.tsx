@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Shield, Lock, FileCheck, X } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Dialog,
   DialogContent,
@@ -16,26 +17,25 @@ type ModalType = "mentions" | "cgu" | "confidentialite" | null;
 
 const Footer = () => {
   const [openModal, setOpenModal] = useState<ModalType>(null);
+  const { t } = useLanguage();
 
   const insuranceLinks = [
-    { to: "/assurance-auto", label: "Assurance Auto" },
-    { to: "/assurance-moto", label: "Assurance Moto" },
-    { to: "/assurance-habitation", label: "Assurance Habitation" },
-    { to: "/assurance-sante", label: "Mutuelle Santé" },
-    { to: "/assurance-auto", label: "Assurance Jeune Conducteur" },
-    { to: "/assurance-auto", label: "Assurance Malus" },
-    { to: "/assurance-animaux", label: "Assurance Animaux" },
-    { to: "/assurance-pret", label: "Assurance Prêt" },
-    { to: "/assurance-vie", label: "Assurance Vie" },
-    { to: "/assurance-prevoyance", label: "Prévoyance" },
-    { to: "/assurance-rc-pro", label: "RC Professionnelle" },
-    { to: "/assurance-pno", label: "Assurance PNO" },
+    { to: "/assurance-auto", labelKey: "insurance.auto" },
+    { to: "/assurance-moto", labelKey: "insurance.moto" },
+    { to: "/assurance-habitation", labelKey: "insurance.home" },
+    { to: "/assurance-sante", labelKey: "insurance.health" },
+    { to: "/assurance-animaux", labelKey: "insurance.pets" },
+    { to: "/assurance-pret", labelKey: "insurance.loan" },
+    { to: "/assurance-vie", labelKey: "insurance.life" },
+    { to: "/assurance-prevoyance", labelKey: "insurance.provident" },
+    { to: "/assurance-rc-pro", labelKey: "insurance.rcPro" },
+    { to: "/assurance-pno", labelKey: "insurance.pno" },
   ];
 
   const trustBadges = [
-    { icon: Lock, label: "Paiement Sécurisé" },
-    { icon: Shield, label: "Données Protégées RGPD" },
-    { icon: FileCheck, label: "Site Vérifié" },
+    { icon: Lock, labelKey: "footer.securePayment" },
+    { icon: Shield, labelKey: "footer.gdprProtected" },
+    { icon: FileCheck, labelKey: "footer.verifiedSite" },
   ];
 
   return (
@@ -44,15 +44,15 @@ const Footer = () => {
         {/* Zone 1: SEO Links */}
         <div className="border-b border-primary-foreground/10">
           <div className="container mx-auto px-4 py-10">
-            <h3 className="text-lg font-bold mb-6 text-center">Nos Assurances</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            <h3 className="text-lg font-bold mb-6 text-center">{t('footer.insurances')}</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
               {insuranceLinks.map((link, index) => (
                 <Link
                   key={index}
                   to={link.to}
                   className="text-sm text-primary-foreground/70 hover:text-accent transition-colors py-2 px-3 rounded-lg hover:bg-primary-foreground/5 text-center"
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </Link>
               ))}
             </div>
@@ -66,14 +66,14 @@ const Footer = () => {
               {trustBadges.map((badge, index) => (
                 <div key={index} className="flex items-center gap-2 text-primary-foreground/80">
                   <badge.icon className="h-5 w-5 text-accent" />
-                  <span className="text-sm font-medium">{badge.label}</span>
+                  <span className="text-sm font-medium">{t(badge.labelKey)}</span>
                 </div>
               ))}
               <button
                 onClick={() => setOpenModal("confidentialite")}
                 className="text-sm text-accent hover:underline font-medium"
               >
-                Charte de Confidentialité
+                {t('footer.privacyCharter')}
               </button>
             </div>
           </div>
@@ -88,37 +88,36 @@ const Footer = () => {
               className="h-10 w-auto brightness-0 invert"
             />
             <p className="text-xs text-primary-foreground/50 max-w-2xl leading-relaxed">
-              Jemassuremoinscher.fr est un comparateur indépendant. Les tarifs affichés sont indicatifs et peuvent varier selon votre profil. 
-              Ce site ne se substitue pas aux conseils d'un professionnel de l'assurance.
+              {t('footer.disclaimer')}
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-xs text-primary-foreground/40 mt-2">
               <button
                 onClick={() => setOpenModal("mentions")}
                 className="hover:text-accent transition-colors"
               >
-                Mentions Légales
+                {t('footer.legal')}
               </button>
               <span>•</span>
               <button
                 onClick={() => setOpenModal("cgu")}
                 className="hover:text-accent transition-colors"
               >
-                CGU
+                {t('footer.terms')}
               </button>
               <span>•</span>
               <button
                 onClick={() => setOpenModal("confidentialite")}
                 className="hover:text-accent transition-colors"
               >
-                Confidentialité
+                {t('footer.privacy')}
               </button>
               <span>•</span>
               <Link to="/contact" className="hover:text-accent transition-colors">
-                Contact
+                {t('footer.contact')}
               </Link>
             </div>
             <p className="text-xs text-primary-foreground/40 mt-4">
-              © {new Date().getFullYear()} Jemassuremoinscher.fr - Tous droits réservés
+              © {new Date().getFullYear()} Jemassuremoinscher.fr - {t('footer.rights')}
             </p>
           </div>
         </div>
@@ -128,7 +127,7 @@ const Footer = () => {
       <Dialog open={openModal === "mentions"} onOpenChange={() => setOpenModal(null)}>
         <DialogContent className="max-w-2xl max-h-[85vh] p-0 backdrop-blur-sm bg-background/95">
           <DialogHeader className="p-6 pb-0 flex flex-row items-center justify-between">
-            <DialogTitle className="text-2xl font-bold">Mentions Légales</DialogTitle>
+            <DialogTitle className="text-2xl font-bold">{t('footer.legal')}</DialogTitle>
             <DialogClose asChild>
               <Button variant="ghost" size="icon" className="h-8 w-8">
                 <X className="h-5 w-5" />
@@ -173,7 +172,7 @@ const Footer = () => {
           </ScrollArea>
           <div className="p-6 pt-0">
             <Button onClick={() => setOpenModal(null)} className="w-full">
-              Fermer
+              {t('common.close')}
             </Button>
           </div>
         </DialogContent>
@@ -183,7 +182,7 @@ const Footer = () => {
       <Dialog open={openModal === "cgu"} onOpenChange={() => setOpenModal(null)}>
         <DialogContent className="max-w-2xl max-h-[85vh] p-0 backdrop-blur-sm bg-background/95">
           <DialogHeader className="p-6 pb-0 flex flex-row items-center justify-between">
-            <DialogTitle className="text-2xl font-bold">Conditions Générales d'Utilisation</DialogTitle>
+            <DialogTitle className="text-2xl font-bold">{t('footer.terms')}</DialogTitle>
             <DialogClose asChild>
               <Button variant="ghost" size="icon" className="h-8 w-8">
                 <X className="h-5 w-5" />
@@ -232,7 +231,7 @@ const Footer = () => {
           </ScrollArea>
           <div className="p-6 pt-0">
             <Button onClick={() => setOpenModal(null)} className="w-full">
-              Fermer
+              {t('common.close')}
             </Button>
           </div>
         </DialogContent>
@@ -242,7 +241,7 @@ const Footer = () => {
       <Dialog open={openModal === "confidentialite"} onOpenChange={() => setOpenModal(null)}>
         <DialogContent className="max-w-2xl max-h-[85vh] p-0 backdrop-blur-sm bg-background/95">
           <DialogHeader className="p-6 pb-0 flex flex-row items-center justify-between">
-            <DialogTitle className="text-2xl font-bold">Politique de Confidentialité</DialogTitle>
+            <DialogTitle className="text-2xl font-bold">{t('footer.privacy')}</DialogTitle>
             <DialogClose asChild>
               <Button variant="ghost" size="icon" className="h-8 w-8">
                 <X className="h-5 w-5" />
@@ -297,7 +296,7 @@ const Footer = () => {
           </ScrollArea>
           <div className="p-6 pt-0">
             <Button onClick={() => setOpenModal(null)} className="w-full">
-              Fermer
+              {t('common.close')}
             </Button>
           </div>
         </DialogContent>

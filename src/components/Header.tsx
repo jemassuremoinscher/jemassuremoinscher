@@ -144,21 +144,21 @@ const Header = () => {
                       className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                     >
                       <Share2 className="h-4 w-4 text-primary" />
-                      Partager
+                      {t('nav.share')}
                     </button>
                     <button 
                       className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                       onClick={() => setActionsOpen(false)}
                     >
                       <BookmarkPlus className="h-4 w-4 text-primary" />
-                      Favoris
+                      {t('nav.favorites')}
                     </button>
                     <button 
                       onClick={handlePrint}
                       className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                     >
                       <Printer className="h-4 w-4 text-primary" />
-                      Imprimer
+                      {t('nav.print')}
                     </button>
                   </div>
                 </PopoverContent>
@@ -187,13 +187,6 @@ const Header = () => {
           {/* Desktop Navigation - Separate Row */}
           <nav className="hidden lg:block pb-3" role="navigation" aria-label="Navigation principale">
             <div className="flex items-center justify-center gap-1 flex-wrap">
-              <Link 
-                to="/comparateur-garanties" 
-                className="nav-pill active"
-                onClick={() => trackEvent('insurance_type_click', { category: 'navigation', label: 'comparateur_garanties_header' })}
-              >
-                {t('nav.comparator')}
-              </Link>
 
               <Popover open={openPopover === "particuliers"} onOpenChange={open => setOpenPopover(open ? "particuliers" : null)}>
                 <PopoverTrigger asChild>
@@ -337,15 +330,6 @@ const Header = () => {
               <LanguageToggle />
             </div>
             
-            <div>
-              <Link 
-                to="/comparateur-garanties" 
-                className="block px-4 py-3 mb-3 text-base font-semibold text-primary-foreground bg-primary rounded-[2rem] transition-all text-center shadow-lg"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t('nav.comparator')}
-              </Link>
-            </div>
 
             <div>
               <h3 className="px-4 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">{t('nav.individuals')}</h3>
