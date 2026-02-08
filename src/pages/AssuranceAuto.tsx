@@ -234,7 +234,7 @@ const AssuranceAuto = () => {
             <img 
               src={arthurThumbsUp} 
               alt="Arthur" 
-              className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto transform -scale-x-100"
+              className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto"
             />
             
             <div className="flex justify-center mb-6">
@@ -529,12 +529,12 @@ const AssuranceAuto = () => {
 
         {/* CTA Bottom - Centré et large */}
         <section className="max-w-2xl mx-auto text-center mb-16">
-          <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-hidden">
+          <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
             {/* Arthur flying */}
             <img 
               src={arthurFlying} 
               alt="Arthur" 
-              className="absolute -right-4 -top-4 w-20 h-auto opacity-90 hidden sm:block"
+              className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block"
             />
             <h2 className="text-2xl font-bold mb-4">Prêt à économiser sur votre assurance auto ?</h2>
             <p className="text-muted-foreground mb-6">
