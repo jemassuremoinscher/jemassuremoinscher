@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Car, Shield, Euro, Clock, ChevronDown } from "lucide-react";
+import { Car, Shield, Euro, Clock } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -20,6 +20,8 @@ import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
 import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema, addHowToSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
+import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 
 const formSchema = z.object({
   marque: z.string().min(1, "Champ requis"),
@@ -225,9 +227,16 @@ const AssuranceAuto = () => {
       <Header />
       
       {/* Hero Section with CTA */}
-      <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16">
+      <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto text-center relative">
+            {/* Arthur thumbs up - left side on desktop */}
+            <img 
+              src={arthurThumbsUp} 
+              alt="Arthur" 
+              className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto transform -scale-x-100"
+            />
+            
             <div className="flex justify-center mb-6">
               <div className="p-4 rounded-full bg-primary/10">
                 <Car className="h-12 w-12 text-primary" />
@@ -520,7 +529,13 @@ const AssuranceAuto = () => {
 
         {/* CTA Bottom - Centré et large */}
         <section className="max-w-2xl mx-auto text-center mb-16">
-          <Card className="p-8 bg-primary/5 border-primary/20">
+          <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-hidden">
+            {/* Arthur flying */}
+            <img 
+              src={arthurFlying} 
+              alt="Arthur" 
+              className="absolute -right-4 -top-4 w-20 h-auto opacity-90 hidden sm:block"
+            />
             <h2 className="text-2xl font-bold mb-4">Prêt à économiser sur votre assurance auto ?</h2>
             <p className="text-muted-foreground mb-6">
               Comparez gratuitement les meilleures offres en 2 minutes.
