@@ -4,25 +4,22 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Car, Shield, Euro, Clock, FileCheck, TrendingDown, Users } from "lucide-react";
+import { Car, Shield, Euro, Clock, ChevronDown } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { autoInsurers, generateInsurerOffers } from "@/utils/insurerData";
 import SEO from "@/components/SEO";
-import InfoSection from "@/components/insurance/InfoSection";
-import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
-import { InsuranceComparisonTool } from "@/components/comparison/InsuranceComparisonTool";
 import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
 import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema, addHowToSchema } from "@/utils/seoUtils";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const formSchema = z.object({
   marque: z.string().min(1, "Champ requis"),
@@ -41,8 +38,8 @@ const AssuranceAuto = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedBrand, setSelectedBrand] = useState<string>("");
   const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
+  const formRef = useRef<HTMLDivElement>(null);
 
-  // Modèles par marque (liste des modèles populaires)
   const modelsByBrand: Record<string, string[]> = {
     "Peugeot": ["208", "308", "3008", "2008", "508", "5008", "Partner", "Expert", "Rifter"],
     "Renault": ["Clio", "Captur", "Megane", "Kadjar", "Scenic", "Espace", "Twingo", "Zoe", "Arkana"],
@@ -93,31 +90,31 @@ const AssuranceAuto = () => {
     },
   });
 
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      // Sauvegarder les données du formulaire
       setSubmittedFormData(values);
       
-      // Calcul d'un prix estimé (simulation - tarifs réalistes)
-      const basePrice = 65; // Base pour assurance tous risques
+      const basePrice = 65;
       const ageDriver = parseInt(values.age);
       const yearVehicle = parseInt(values.annee);
       const bonusMalusCoef = parseFloat(values.bonusMalus);
       let price = basePrice;
       
-      // Ajustements selon le profil
-      if (ageDriver < 25) price += 80; // Jeunes conducteurs paient beaucoup plus
+      if (ageDriver < 25) price += 80;
       else if (ageDriver < 30) price += 40;
       
-      if (yearVehicle < 2010) price += 25; // Véhicules anciens
+      if (yearVehicle < 2010) price += 25;
       else if (yearVehicle < 2015) price += 15;
-      else if (yearVehicle > 2020) price += 20; // Véhicules récents plus chers à assurer
+      else if (yearVehicle > 2020) price += 20;
       
       if (values.carburant === "electrique") price -= 15;
       else if (values.carburant === "hybride") price -= 8;
       
-      // Appliquer le coefficient bonus-malus (impact majeur)
       price = price * bonusMalusCoef;
       
       const randomVariation = Math.floor(Math.random() * 30) - 15;
@@ -166,19 +163,19 @@ const AssuranceAuto = () => {
     steps: [
       {
         name: "Renseignez les informations de votre véhicule",
-        text: "Indiquez la marque, le modèle, la date de mise en circulation et l'usage de votre véhicule. Ces informations permettent de calculer précisément votre prime d'assurance."
+        text: "Indiquez la marque, le modèle, la date de mise en circulation et l'usage de votre véhicule."
       },
       {
         name: "Précisez votre profil de conducteur",
-        text: "Renseignez votre âge, votre ancienneté de permis, votre coefficient bonus-malus et vos antécédents d'assurance pour obtenir une tarification personnalisée."
+        text: "Renseignez votre âge, votre ancienneté de permis et votre coefficient bonus-malus."
       },
       {
         name: "Comparez les offres disponibles",
-        text: "Recevez instantanément plusieurs devis d'assureurs partenaires. Comparez les garanties, les franchises et les prix pour trouver la meilleure offre."
+        text: "Recevez instantanément plusieurs devis d'assureurs partenaires."
       },
       {
         name: "Souscrivez en ligne",
-        text: "Sélectionnez l'offre qui vous convient et finalisez votre souscription directement en ligne en quelques clics. Votre attestation d'assurance est disponible immédiatement."
+        text: "Sélectionnez l'offre qui vous convient et finalisez votre souscription."
       }
     ]
   });
@@ -186,30 +183,48 @@ const AssuranceAuto = () => {
   const faqSchema = addFAQSchema([
     {
       question: "Quelle assurance auto choisir ?",
-      answer: "Le choix dépend de votre profil, votre véhicule et votre budget. Notre comparateur vous aide à trouver l'offre la mieux adaptée parmi les assurances au tiers, tiers étendu ou tous risques."
+      answer: "Le choix dépend de votre profil, votre véhicule et votre budget. Notre comparateur vous aide à trouver l'offre la mieux adaptée."
     },
     {
       question: "Combien coûte une assurance auto ?",
-      answer: "Le prix varie selon votre âge, votre véhicule, votre historique et votre lieu de résidence. En moyenne, une assurance auto coûte entre 400€ et 800€ par an."
+      answer: "Le prix varie selon votre âge, votre véhicule, votre historique et votre lieu de résidence. En moyenne, entre 400€ et 800€ par an."
     },
     {
       question: "Puis-je changer d'assurance auto à tout moment ?",
-      answer: "Oui, grâce à la loi Hamon, vous pouvez résilier votre assurance auto après un an sans frais ni justification. Avant un an, la résiliation est possible dans certains cas (vente du véhicule, déménagement...)."
+      answer: "Oui, grâce à la loi Hamon, vous pouvez résilier après un an sans frais ni justification."
     }
   ]);
+
+  const advantages = [
+    {
+      icon: Euro,
+      title: "Jusqu'à 400€ d'économies",
+      description: "Comparez et économisez sur votre assurance auto."
+    },
+    {
+      icon: Clock,
+      title: "Devis en 2 minutes",
+      description: "Simple, rapide et 100% gratuit."
+    },
+    {
+      icon: Shield,
+      title: "20+ assureurs comparés",
+      description: "Les meilleures offres du marché."
+    }
+  ];
 
   return (
     <div className="min-h-screen">
       <SEO 
         title="Assurance Auto - Comparez et Économisez | jemassuremoinscher"
-        description="Comparez les meilleures assurances auto en France. Devis gratuit en 2 minutes. Économisez jusqu'à 400€/an avec nos partenaires Allianz, AXA, Direct Assurance, Groupama."
-        keywords="assurance auto, devis assurance voiture, assurance auto pas cher, comparateur assurance auto, assurance tous risques"
+        description="Comparez les meilleures assurances auto en France. Devis gratuit en 2 minutes. Économisez jusqu'à 400€/an."
+        keywords="assurance auto, devis assurance voiture, assurance auto pas cher, comparateur assurance auto"
         canonical="https://www.assurmoinschere.fr/assurance-auto"
         jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, howToSchema, faqSchema]}
       />
       <Header />
       
-      {/* Hero Section */}
+      {/* Hero Section with CTA */}
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -218,32 +233,37 @@ const AssuranceAuto = () => {
                 <Car className="h-12 w-12 text-primary" />
               </div>
             </div>
-            <h1 className="text-5xl font-bold text-foreground mb-6">Assurance Auto</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Assurance Auto</h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Comparez les meilleures offres d'assurance auto en quelques clics. 
-              Économisez jusqu'à 400€ par an avec notre comparateur gratuit et sans engagement.
+              Comparez les meilleures offres et économisez jusqu'à 400€ par an.
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <div className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-primary" />
-                <span>Comparaison 100% gratuite</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-primary" />
-                <span>Devis en 2 minutes</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Users className="h-5 w-5 text-primary" />
-                <span>+50 000 clients satisfaits</span>
-              </div>
-            </div>
+            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">
+              Comparer maintenant
+            </Button>
           </div>
         </div>
       </section>
 
       <main className="container mx-auto px-4 py-12">
+        {/* 3 Avantages Cards */}
+        <section className="max-w-4xl mx-auto mb-12">
+          <div className="grid md:grid-cols-3 gap-6">
+            {advantages.map((item, index) => (
+              <Card key={index} className="p-6 text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 rounded-full bg-primary/10">
+                    <item.icon className="h-8 w-8 text-primary" />
+                  </div>
+                </div>
+                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                <p className="text-muted-foreground text-sm">{item.description}</p>
+              </Card>
+            ))}
+          </div>
+        </section>
+
         {/* Formulaire de devis */}
-        <div className="max-w-3xl mx-auto mb-16">
+        <div ref={formRef} className="max-w-3xl mx-auto mb-16">
           <Card className="p-8">
             <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis personnalisé</h2>
             
@@ -267,7 +287,7 @@ const AssuranceAuto = () => {
                           onValueChange={(value) => {
                             field.onChange(value);
                             setSelectedBrand(value);
-                            form.setValue("modele", ""); // Réinitialiser le modèle
+                            form.setValue("modele", "");
                           }} 
                           defaultValue={field.value}
                         >
@@ -277,65 +297,9 @@ const AssuranceAuto = () => {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent className="max-h-[300px]">
-                            <SelectItem value="Abarth">Abarth</SelectItem>
-                            <SelectItem value="Alfa Romeo">Alfa Romeo</SelectItem>
-                            <SelectItem value="Aston Martin">Aston Martin</SelectItem>
-                            <SelectItem value="Audi">Audi</SelectItem>
-                            <SelectItem value="Bentley">Bentley</SelectItem>
-                            <SelectItem value="BMW">BMW</SelectItem>
-                            <SelectItem value="Bugatti">Bugatti</SelectItem>
-                            <SelectItem value="Cadillac">Cadillac</SelectItem>
-                            <SelectItem value="Chevrolet">Chevrolet</SelectItem>
-                            <SelectItem value="Chrysler">Chrysler</SelectItem>
-                            <SelectItem value="Citroën">Citroën</SelectItem>
-                            <SelectItem value="Cupra">Cupra</SelectItem>
-                            <SelectItem value="Dacia">Dacia</SelectItem>
-                            <SelectItem value="Daewoo">Daewoo</SelectItem>
-                            <SelectItem value="Daihatsu">Daihatsu</SelectItem>
-                            <SelectItem value="Dodge">Dodge</SelectItem>
-                            <SelectItem value="DS">DS</SelectItem>
-                            <SelectItem value="Ferrari">Ferrari</SelectItem>
-                            <SelectItem value="Fiat">Fiat</SelectItem>
-                            <SelectItem value="Ford">Ford</SelectItem>
-                            <SelectItem value="Honda">Honda</SelectItem>
-                            <SelectItem value="Hummer">Hummer</SelectItem>
-                            <SelectItem value="Hyundai">Hyundai</SelectItem>
-                            <SelectItem value="Infiniti">Infiniti</SelectItem>
-                            <SelectItem value="Isuzu">Isuzu</SelectItem>
-                            <SelectItem value="Jaguar">Jaguar</SelectItem>
-                            <SelectItem value="Jeep">Jeep</SelectItem>
-                            <SelectItem value="Kia">Kia</SelectItem>
-                            <SelectItem value="Lada">Lada</SelectItem>
-                            <SelectItem value="Lamborghini">Lamborghini</SelectItem>
-                            <SelectItem value="Lancia">Lancia</SelectItem>
-                            <SelectItem value="Land Rover">Land Rover</SelectItem>
-                            <SelectItem value="Lexus">Lexus</SelectItem>
-                            <SelectItem value="Lotus">Lotus</SelectItem>
-                            <SelectItem value="Maserati">Maserati</SelectItem>
-                            <SelectItem value="Mazda">Mazda</SelectItem>
-                            <SelectItem value="McLaren">McLaren</SelectItem>
-                            <SelectItem value="Mercedes-Benz">Mercedes-Benz</SelectItem>
-                            <SelectItem value="MG">MG</SelectItem>
-                            <SelectItem value="Mini">Mini</SelectItem>
-                            <SelectItem value="Mitsubishi">Mitsubishi</SelectItem>
-                            <SelectItem value="Nissan">Nissan</SelectItem>
-                            <SelectItem value="Opel">Opel</SelectItem>
-                            <SelectItem value="Peugeot">Peugeot</SelectItem>
-                            <SelectItem value="Porsche">Porsche</SelectItem>
-                            <SelectItem value="Renault">Renault</SelectItem>
-                            <SelectItem value="Rolls-Royce">Rolls-Royce</SelectItem>
-                            <SelectItem value="Rover">Rover</SelectItem>
-                            <SelectItem value="Saab">Saab</SelectItem>
-                            <SelectItem value="Seat">Seat</SelectItem>
-                            <SelectItem value="Skoda">Skoda</SelectItem>
-                            <SelectItem value="Smart">Smart</SelectItem>
-                            <SelectItem value="SsangYong">SsangYong</SelectItem>
-                            <SelectItem value="Subaru">Subaru</SelectItem>
-                            <SelectItem value="Suzuki">Suzuki</SelectItem>
-                            <SelectItem value="Tesla">Tesla</SelectItem>
-                            <SelectItem value="Toyota">Toyota</SelectItem>
-                            <SelectItem value="Volkswagen">Volkswagen</SelectItem>
-                            <SelectItem value="Volvo">Volvo</SelectItem>
+                            {Object.keys(modelsByBrand).sort().map((brand) => (
+                              <SelectItem key={brand} value={brand}>{brand}</SelectItem>
+                            ))}
                             <SelectItem value="Autre">Autre</SelectItem>
                           </SelectContent>
                         </Select>
@@ -359,9 +323,7 @@ const AssuranceAuto = () => {
                             </FormControl>
                             <SelectContent className="max-h-[300px]">
                               {modelsByBrand[selectedBrand].map((model) => (
-                                <SelectItem key={model} value={model}>
-                                  {model}
-                                </SelectItem>
+                                <SelectItem key={model} value={model}>{model}</SelectItem>
                               ))}
                               <SelectItem value="Autre">Autre</SelectItem>
                             </SelectContent>
@@ -369,9 +331,9 @@ const AssuranceAuto = () => {
                         ) : (
                           <FormControl>
                             <Input 
-                              placeholder={selectedBrand ? "Sélectionnez d'abord une marque" : "Ex: Clio, 308..."} 
+                              placeholder={selectedBrand ? "Entrez le modèle" : "Sélectionnez d'abord une marque"} 
                               {...field}
-                              disabled={!selectedBrand || selectedBrand === "Autre"}
+                              disabled={!selectedBrand}
                             />
                           </FormControl>
                         )}
@@ -395,9 +357,7 @@ const AssuranceAuto = () => {
                             </FormControl>
                             <SelectContent className="max-h-[300px]">
                               {Array.from({ length: 2025 - 1980 + 1 }, (_, i) => 2025 - i).map((year) => (
-                                <SelectItem key={year} value={year.toString()}>
-                                  {year}
-                                </SelectItem>
+                                <SelectItem key={year} value={year.toString()}>{year}</SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
@@ -478,7 +438,7 @@ const AssuranceAuto = () => {
                     name="bonusMalus"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Coefficient Bonus-Malus *</FormLabel>
+                        <FormLabel>Coefficient Bonus-Malus</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger>
@@ -486,36 +446,17 @@ const AssuranceAuto = () => {
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent className="max-h-[300px]">
-                            <SelectItem value="0.50">0.50 (Bonus maximal - 13 ans sans sinistre)</SelectItem>
-                            <SelectItem value="0.53">0.53 (12 ans sans sinistre)</SelectItem>
-                            <SelectItem value="0.56">0.56 (11 ans sans sinistre)</SelectItem>
-                            <SelectItem value="0.57">0.57 (10 ans sans sinistre)</SelectItem>
+                            <SelectItem value="0.50">0.50 (Bonus maximal)</SelectItem>
                             <SelectItem value="0.60">0.60 (9 ans sans sinistre)</SelectItem>
-                            <SelectItem value="0.63">0.63 (8 ans sans sinistre)</SelectItem>
-                            <SelectItem value="0.66">0.66 (7 ans sans sinistre)</SelectItem>
                             <SelectItem value="0.70">0.70 (6 ans sans sinistre)</SelectItem>
-                            <SelectItem value="0.74">0.74 (5 ans sans sinistre)</SelectItem>
-                            <SelectItem value="0.78">0.78 (4 ans sans sinistre)</SelectItem>
-                            <SelectItem value="0.82">0.82 (3 ans sans sinistre)</SelectItem>
-                            <SelectItem value="0.87">0.87 (2 ans sans sinistre)</SelectItem>
-                            <SelectItem value="0.91">0.91 (1 an sans sinistre)</SelectItem>
-                            <SelectItem value="0.95">0.95 (Première année)</SelectItem>
+                            <SelectItem value="0.80">0.80 (3 ans sans sinistre)</SelectItem>
+                            <SelectItem value="0.90">0.90 (1 an sans sinistre)</SelectItem>
                             <SelectItem value="1.00">1.00 (Coefficient de référence)</SelectItem>
                             <SelectItem value="1.25">1.25 (1 sinistre responsable)</SelectItem>
-                            <SelectItem value="1.50">1.50 (2 sinistres responsables)</SelectItem>
-                            <SelectItem value="1.75">1.75 (3 sinistres responsables)</SelectItem>
-                            <SelectItem value="2.00">2.00 (4 sinistres responsables)</SelectItem>
-                            <SelectItem value="2.25">2.25 (5 sinistres responsables)</SelectItem>
-                            <SelectItem value="2.50">2.50 (6 sinistres responsables)</SelectItem>
-                            <SelectItem value="3.00">3.00 (Malus élevé)</SelectItem>
-                            <SelectItem value="3.50">3.50 (Malus maximal)</SelectItem>
+                            <SelectItem value="1.50">1.50 (2+ sinistres)</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
-                        <p className="text-xs text-muted-foreground mt-2">
-                          Le coefficient bonus-malus impacte directement le montant de votre prime d'assurance. 
-                          Vous le trouverez sur votre dernier relevé d'informations.
-                        </p>
                       </FormItem>
                     )}
                   />
@@ -529,152 +470,66 @@ const AssuranceAuto = () => {
           </Card>
         </div>
 
-        {/* Garanties Section */}
-        <InfoSection
-          title="Nos garanties d'assurance auto"
-          description="Choisissez la formule qui correspond le mieux à vos besoins"
-          items={[
-            {
-              icon: Shield,
-              title: "Responsabilité Civile",
-              description: "Obligatoire. Couvre les dommages causés aux tiers en cas d'accident responsable. Protection minimale requise par la loi.",
-            },
-            {
-              icon: Car,
-              title: "Tous Risques",
-              description: "Protection complète incluant les dommages à votre véhicule, vol, incendie, bris de glace et catastrophes naturelles.",
-            },
-            {
-              icon: Euro,
-              title: "Tiers Plus",
-              description: "Formule intermédiaire ajoutant au tiers de base le vol, l'incendie, le bris de glace et l'assistance 0 km.",
-            },
-            {
-              icon: FileCheck,
-              title: "Protection Juridique",
-              description: "Assistance et prise en charge des frais de justice en cas de litige lié à votre véhicule.",
-            },
-            {
-              icon: Users,
-              title: "Garantie du Conducteur",
-              description: "Indemnisation de vos propres blessures en cas d'accident, quelle que soit votre responsabilité.",
-            },
-            {
-              icon: TrendingDown,
-              title: "Valeur à Neuf",
-              description: "Remboursement à la valeur d'achat pendant 2 ans en cas de vol ou destruction totale de votre véhicule neuf.",
-            },
-          ]}
-        />
+        {/* Accordéon "En savoir plus" pour le contenu SEO */}
+        <section className="max-w-4xl mx-auto mb-16">
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="learn-more" className="border rounded-lg">
+              <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                <span className="text-lg font-semibold flex items-center gap-2">
+                  En savoir plus sur l'assurance auto
+                </span>
+              </AccordionTrigger>
+              <AccordionContent className="px-6 pb-6">
+                <div className="space-y-12">
+                  {/* FAQ */}
+                  <InsuranceFAQ
+                    title="Questions fréquentes"
+                    faqs={[
+                      {
+                        question: "Quelle est la différence entre une assurance au tiers et tous risques ?",
+                        answer: "L'assurance au tiers couvre uniquement les dommages causés aux tiers. L'assurance tous risques offre une protection complète incluant les dommages à votre propre véhicule."
+                      },
+                      {
+                        question: "Comment est calculé le prix de mon assurance auto ?",
+                        answer: "Le tarif dépend de votre âge, ancienneté de permis, historique de sinistres, type de véhicule et lieu de résidence."
+                      },
+                      {
+                        question: "Puis-je résilier mon assurance auto à tout moment ?",
+                        answer: "Oui, depuis la loi Hamon, vous pouvez résilier après un an d'engagement, sans frais ni pénalités."
+                      },
+                      {
+                        question: "Qu'est-ce que le bonus-malus ?",
+                        answer: "C'est un coefficient qui fait varier votre prime selon votre historique de conduite. Sans accident, vous gagnez 5% de bonus par an."
+                      },
+                    ]}
+                  />
 
-        {/* Comment ça marche */}
-        <HowItWorks
-          steps={[
-            {
-              number: "1",
-              title: "Remplissez le formulaire",
-              description: "Indiquez vos informations et les caractéristiques de votre véhicule en 2 minutes.",
-            },
-            {
-              number: "2",
-              title: "Comparez les offres",
-              description: "Recevez instantanément plusieurs devis d'assureurs partenaires adaptés à votre profil.",
-            },
-            {
-              number: "3",
-              title: "Souscrivez en ligne",
-              description: "Choisissez la meilleure offre et finalisez votre souscription directement en ligne.",
-            },
-          ]}
-        />
+                  {/* Savings Calculator */}
+                  <SavingsCalculator />
 
-        {/* Avantages */}
-        <section className="py-12 max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
-            Pourquoi choisir notre comparateur ?
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                <Euro className="h-5 w-5 text-primary" />
-                Économies garanties
-              </h3>
-              <p className="text-muted-foreground">
-                Nos clients économisent en moyenne 350€ par an en comparant leur assurance auto. 
-                Notre service gratuit vous permet d'accéder aux meilleurs tarifs du marché.
-              </p>
-            </Card>
-            <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                <Shield className="h-5 w-5 text-primary" />
-                Comparaison impartiale
-              </h3>
-              <p className="text-muted-foreground">
-                Nous comparons les offres de plus de 20 assureurs partenaires pour vous présenter 
-                les meilleures options selon vos critères, en toute transparence.
-              </p>
-            </Card>
-            <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                <Clock className="h-5 w-5 text-primary" />
-                Rapidité et simplicité
-              </h3>
-              <p className="text-muted-foreground">
-                Obtenez vos devis en moins de 2 minutes. Notre formulaire simplifié vous fait 
-                gagner du temps tout en vous assurant d'obtenir les offres les plus pertinentes.
-              </p>
-            </Card>
-            <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                <FileCheck className="h-5 w-5 text-primary" />
-                Sans engagement
-              </h3>
-              <p className="text-muted-foreground">
-                La comparaison est totalement gratuite et sans engagement. Vous êtes libre de 
-                souscrire ou non, et de choisir l'offre qui vous convient le mieux.
-              </p>
-            </Card>
-          </div>
+                  {/* Quote Request Form */}
+                  <QuoteRequestForm />
+
+                  {/* Testimonials */}
+                  <Testimonials />
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </section>
 
-        {/* FAQ */}
-        <InsuranceFAQ
-          title="Questions fréquentes sur l'assurance auto"
-          faqs={[
-            {
-              question: "Quelle est la différence entre une assurance au tiers et tous risques ?",
-              answer: "L'assurance au tiers est la formule minimale obligatoire qui couvre uniquement les dommages causés aux tiers. L'assurance tous risques offre une protection complète incluant les dommages à votre propre véhicule, même en cas d'accident responsable."
-            },
-            {
-              question: "Comment est calculé le prix de mon assurance auto ?",
-              answer: "Le tarif dépend de plusieurs critères : votre âge, votre ancienneté de permis, votre historique de sinistres (bonus-malus), le type de véhicule, son usage et votre lieu de résidence."
-            },
-            {
-              question: "Puis-je résilier mon assurance auto à tout moment ?",
-              answer: "Oui, depuis la loi Hamon de 2015, vous pouvez résilier votre contrat à tout moment après un an d'engagement, sans frais ni pénalités. Votre nouvel assureur se charge des démarches."
-            },
-            {
-              question: "Qu'est-ce que le bonus-malus ?",
-              answer: "C'est un coefficient qui fait varier votre prime d'assurance selon votre historique de conduite. Sans accident responsable, vous gagnez 5% de bonus par an. En cas d'accident responsable, vous subissez un malus de 25%."
-            },
-            {
-              question: "Mon assurance couvre-t-elle la conduite à l'étranger ?",
-              answer: "Oui, votre assurance auto française vous couvre dans tous les pays de l'Union Européenne et certains autres pays. Pour voyager hors UE, vérifiez votre contrat et demandez une carte verte si nécessaire."
-            },
-          ]}
-        />
-
-        {/* Comparison Tool */}
-        <InsuranceComparisonTool />
-
-        {/* Savings Calculator */}
-        <SavingsCalculator />
-
-        {/* Quote Request Form */}
-        <QuoteRequestForm />
-
-        {/* Testimonials */}
-        <Testimonials />
+        {/* CTA Bottom - Centré et large */}
+        <section className="max-w-2xl mx-auto text-center mb-16">
+          <Card className="p-8 bg-primary/5 border-primary/20">
+            <h2 className="text-2xl font-bold mb-4">Prêt à économiser sur votre assurance auto ?</h2>
+            <p className="text-muted-foreground mb-6">
+              Comparez gratuitement les meilleures offres en 2 minutes.
+            </p>
+            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">
+              Comparer les offres maintenant
+            </Button>
+          </Card>
+        </section>
       </main>
       <Footer />
     </div>
