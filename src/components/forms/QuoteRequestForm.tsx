@@ -13,6 +13,7 @@ import { FileText, Loader2, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useHoneypot } from "@/hooks/useHoneypot";
 import { trackGoogleAdsConversionWithParams } from "@/utils/googleAdsTracking";
 
 const quoteFormSchema = z.object({
@@ -43,6 +44,7 @@ export const QuoteRequestForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { trackEvent, trackConversion } = useAnalytics();
+  const { honeypotRef, isBot } = useHoneypot();
 
   const form = useForm<QuoteFormData>({
     resolver: zodResolver(quoteFormSchema),
@@ -58,8 +60,9 @@ export const QuoteRequestForm = () => {
   });
 
   const onSubmit = async (data: QuoteFormData) => {
+    if (isBot()) { setIsSuccess(true); return; }
     setIsSubmitting(true);
-    
+
     try {
       const { data: insertedQuote, error } = await supabase.from("insurance_quotes").insert({
         insurance_type: data.insuranceType,
@@ -170,6 +173,7 @@ export const QuoteRequestForm = () => {
         <Card className="p-8">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <input ref={honeypotRef} type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0 }} />
               <FormField
                 control={form.control}
                 name="insuranceType"

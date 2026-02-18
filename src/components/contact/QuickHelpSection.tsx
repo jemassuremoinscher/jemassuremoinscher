@@ -4,7 +4,11 @@ import { Phone, Loader2, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
+
+const PHONE_NUMBER = "+33686122820";
+const PHONE_DISPLAY = "06 86 12 28 20";
 
 const QuickHelpSection = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,20 +20,34 @@ const QuickHelpSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.prenom || !formData.email || !formData.sujet) {
       toast.error("Veuillez remplir tous les champs");
       return;
     }
 
     setIsLoading(true);
-    
-    // Simulate sending
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    toast.success("Message envoyé ! Nous vous répondons dans les 2 minutes.");
-    setFormData({ prenom: "", email: "", sujet: "" });
-    setIsLoading(false);
+
+    try {
+      const { error } = await supabase.from("contact_callbacks").insert({
+        full_name: formData.prenom,
+        email: formData.email,
+        phone: "",
+        preferred_time: "morning",
+        message: formData.sujet,
+        status: "pending",
+      });
+
+      if (error) throw error;
+
+      toast.success("Message envoyé ! Nous vous répondons rapidement.");
+      setFormData({ prenom: "", email: "", sujet: "" });
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      toast.error("Erreur. Veuillez réessayer.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -56,7 +74,7 @@ const QuickHelpSection = () => {
             viewport={{ once: true }}
             className="flex flex-col items-center gap-4"
           >
-            {/* Speech bubble - positioned above mascot */}
+            {/* Speech bubble */}
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
@@ -67,7 +85,6 @@ const QuickHelpSection = () => {
               <p className="text-sm md:text-base font-medium text-foreground text-center">
                 Une question ? Je vous réponds en moins de 2 min !
               </p>
-              {/* Bubble tail */}
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-r border-b border-border/50 transform rotate-45" />
             </motion.div>
 
@@ -145,26 +162,24 @@ const QuickHelpSection = () => {
           transition={{ delay: 0.3 }}
           className="mt-10 flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
         >
-          {/* Call button */}
           <Button
             asChild
             size="lg"
             className="flex-1 h-14 text-base font-semibold bg-[#4CAF50] hover:bg-[#43A047] text-white active:scale-95 transition-transform"
           >
-            <a href="tel:+33123456789">
+            <a href={`tel:${PHONE_NUMBER}`}>
               <Phone className="mr-2 h-5 w-5" />
-              Appeler
+              {PHONE_DISPLAY}
             </a>
           </Button>
 
-          {/* WhatsApp button */}
           <Button
             asChild
             size="lg"
             className="flex-1 h-14 text-base font-semibold bg-[#25D366] hover:bg-[#20BD5A] text-white active:scale-95 transition-transform"
           >
             <a
-              href="https://wa.me/33123456789?text=Bonjour, j'ai une question concernant mon assurance."
+              href={`https://wa.me/${PHONE_NUMBER.replace('+', '')}?text=Bonjour, j'ai une question concernant mon assurance.`}
               target="_blank"
               rel="noopener noreferrer"
             >

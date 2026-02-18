@@ -16,13 +16,13 @@ interface ConversionConfig {
 // À remplacer par vos propres IDs de conversion après configuration dans Google Ads
 const CONVERSION_CONFIGS: Record<ConversionType, ConversionConfig> = {
   quote_request: {
-    conversionId: 'AW-17717986686',
+    conversionId: 'AW-972332620',
     conversionLabel: 'XXXXXXXXX', // À configurer dans Google Ads pour "Demande de Devis"
     value: 100, // Valeur estimée d'un devis de qualité
     currency: 'EUR',
   },
   callback_request: {
-    conversionId: 'AW-17717986686',
+    conversionId: 'AW-972332620',
     conversionLabel: 'XXXXXXXXX', // À configurer dans Google Ads pour "Demande de Rappel"
     value: 50, // Valeur estimée d'une demande de rappel
     currency: 'EUR',
@@ -39,7 +39,6 @@ export const trackGoogleAdsConversion = (
   customValue?: number
 ): void => {
   if (typeof window === 'undefined' || !window.gtag) {
-    console.warn('Google Ads tracking not available');
     return;
   }
 
@@ -54,12 +53,13 @@ export const trackGoogleAdsConversion = (
       transaction_id: generateTransactionId(),
     });
 
-    console.log(`✅ Google Ads Conversion tracked: ${type}`, {
-      value,
-      currency: config.currency,
-    });
+    if (import.meta.env.DEV) {
+      console.log(`Google Ads Conversion tracked: ${type}`, { value, currency: config.currency });
+    }
   } catch (error) {
-    console.error('Error tracking Google Ads conversion:', error);
+    if (import.meta.env.DEV) {
+      console.error('Error tracking Google Ads conversion:', error);
+    }
   }
 };
 
@@ -85,7 +85,6 @@ export const trackGoogleAdsConversionWithParams = async (
   }
 ): Promise<void> => {
   if (typeof window === 'undefined' || !window.gtag) {
-    console.warn('Google Ads tracking not available');
     return;
   }
 
@@ -123,9 +122,13 @@ export const trackGoogleAdsConversionWithParams = async (
       lead_id: params.leadId,
     });
 
-    console.log(`✅ Google Ads Conversion tracked with params: ${type}`, params);
+    if (import.meta.env.DEV) {
+      console.log(`Google Ads Conversion tracked with params: ${type}`, params);
+    }
   } catch (error) {
-    console.error('Error tracking Google Ads conversion:', error);
+    if (import.meta.env.DEV) {
+      console.error('Error tracking Google Ads conversion:', error);
+    }
   }
 };
 
@@ -151,15 +154,17 @@ export const isGoogleAdsConfigured = (): boolean => {
  * Log configuration status (for debugging)
  */
 export const logGoogleAdsStatus = (): void => {
+  if (!import.meta.env.DEV) return;
+
   if (typeof window === 'undefined') {
-    console.log('🔴 Google Ads: Window not available (SSR)');
+    console.log('Google Ads: Window not available (SSR)');
     return;
   }
 
   const isConfigured = isGoogleAdsConfigured();
   const hasGtag = typeof window.gtag === 'function';
 
-  console.log('📊 Google Ads Status:', {
+  console.log('Google Ads Status:', {
     configured: isConfigured,
     gtagAvailable: hasGtag,
     conversions: Object.keys(CONVERSION_CONFIGS),
@@ -167,7 +172,7 @@ export const logGoogleAdsStatus = (): void => {
 
   if (!isConfigured) {
     console.warn(
-      '⚠️ Google Ads conversions not configured. Update CONVERSION_CONFIGS in googleAdsTracking.ts'
+      'Google Ads conversions not configured. Update CONVERSION_CONFIGS in googleAdsTracking.ts'
     );
   }
 };

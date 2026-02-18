@@ -9,8 +9,8 @@ const PolitiqueCookies = () => {
   const { resetConsent } = useCookieConsent();
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Politique de Cookies", url: "https://www.assurmoinschere.fr/politique-cookies" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Politique de Cookies", url: "https://www.jemassuremoinscher.fr/politique-cookies" }
   ]);
 
   return (
@@ -19,7 +19,7 @@ const PolitiqueCookies = () => {
         title="Politique de Cookies - Gestion et Préférences | jemassuremoinscher"
         description="Consultez notre politique de cookies RGPD : types de cookies utilisés, gestion de vos préférences, durée de conservation. Contrôlez vos données personnelles."
         keywords="politique cookies, gestion cookies, RGPD, confidentialité, données personnelles"
-        canonical="https://www.assurmoinschere.fr/politique-cookies"
+        canonical="https://www.jemassuremoinscher.fr/politique-cookies"
         jsonLd={breadcrumbSchema}
       />
       <Header />
@@ -120,7 +120,7 @@ const PolitiqueCookies = () => {
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">Contact</h2>
               <p className="text-gray-600 leading-relaxed">
-                Pour toute question concernant notre politique de cookies ou pour exercer vos droits, vous pouvez nous contacter à l'adresse : <a href="mailto:contact@lecomparateurassurance.fr" className="text-primary hover:underline">contact@lecomparateurassurance.fr</a>
+                Pour toute question concernant notre politique de cookies ou pour exercer vos droits, vous pouvez nous contacter à l'adresse : <a href="mailto:contact@jemassuremoinscher.fr" className="text-primary hover:underline">contact@jemassuremoinscher.fr</a>
               </p>
             </section>
 

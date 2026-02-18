@@ -12,43 +12,43 @@ Utilisez ces URLs pour vos campagnes Google Ads :
 
 ```
 Assurance Auto
-https://votre-domaine.fr/landing/auto
+https://www.jemassuremoinscher.fr/landing/auto
 
 Assurance Habitation
-https://votre-domaine.fr/landing/habitation
+https://www.jemassuremoinscher.fr/landing/habitation
 
 Assurance Santé
-https://votre-domaine.fr/landing/sante
+https://www.jemassuremoinscher.fr/landing/sante
 
 Assurance Moto
-https://votre-domaine.fr/landing/moto
+https://www.jemassuremoinscher.fr/landing/moto
 
 Assurance Animaux
-https://votre-domaine.fr/landing/animaux
+https://www.jemassuremoinscher.fr/landing/animaux
 
 Assurance Prêt
-https://votre-domaine.fr/landing/pret
+https://www.jemassuremoinscher.fr/landing/pret
 
 Assurance Vie
-https://votre-domaine.fr/landing/vie
+https://www.jemassuremoinscher.fr/landing/vie
 
 Assurance Prévoyance
-https://votre-domaine.fr/landing/prevoyance
+https://www.jemassuremoinscher.fr/landing/prevoyance
 
 RC Professionnelle
-https://votre-domaine.fr/landing/rc-pro
+https://www.jemassuremoinscher.fr/landing/rc-pro
 
 Garantie Loyers Impayés
-https://votre-domaine.fr/landing/gli
+https://www.jemassuremoinscher.fr/landing/gli
 
 Protection Non Occupant
-https://votre-domaine.fr/landing/pno
+https://www.jemassuremoinscher.fr/landing/pno
 
 Multirisque Professionnelle
-https://votre-domaine.fr/landing/mrp
+https://www.jemassuremoinscher.fr/landing/mrp
 
 Landing Générique
-https://votre-domaine.fr/landing/assurance
+https://www.jemassuremoinscher.fr/landing/assurance
 ```
 
 ### URLs avec Tracking UTM (Recommandé)
@@ -57,13 +57,13 @@ Ajoutez toujours les paramètres UTM pour suivre vos campagnes :
 
 ```
 # Campagne Auto
-https://votre-domaine.fr/landing/auto?utm_source=google&utm_medium=cpc&utm_campaign=auto_2025&utm_term=assurance+auto+pas+cher
+https://www.jemassuremoinscher.fr/landing/auto?utm_source=google&utm_medium=cpc&utm_campaign=auto_2025&utm_term=assurance+auto+pas+cher
 
 # Campagne Habitation
-https://votre-domaine.fr/landing/habitation?utm_source=google&utm_medium=cpc&utm_campaign=habitation_2025&utm_term=assurance+habitation
+https://www.jemassuremoinscher.fr/landing/habitation?utm_source=google&utm_medium=cpc&utm_campaign=habitation_2025&utm_term=assurance+habitation
 
 # Campagne Santé
-https://votre-domaine.fr/landing/sante?utm_source=google&utm_medium=cpc&utm_campaign=sante_2025&utm_term=mutuelle+pas+chere
+https://www.jemassuremoinscher.fr/landing/sante?utm_source=google&utm_medium=cpc&utm_campaign=sante_2025&utm_term=mutuelle+pas+chere
 ```
 
 ## ✅ Fonctionnalités Déjà Actives
@@ -138,9 +138,9 @@ Description 1 : Comparez 30+ assureurs. Expert dédié vous rappelle sous 2h. Sa
 
 Description 2 : ✓ Gratuit ✓ Rapide ✓ 15 000 clients satisfaits ✓ Note 4.8/5 ⭐ Offre limitée -40% !
 
-URL finale : https://votre-domaine.fr/landing/auto?utm_source=google&utm_medium=cpc&utm_campaign=auto_2025
+URL finale : https://www.jemassuremoinscher.fr/landing/auto?utm_source=google&utm_medium=cpc&utm_campaign=auto_2025
 
-Chemin URL affiché : votre-domaine.fr › Devis-Auto › Gratuit
+Chemin URL affiché : jemassuremoinscher.fr › Devis-Auto › Gratuit
 ```
 
 #### Exemple Annonce Habitation
@@ -153,7 +153,7 @@ Description 1 : Comparez 30+ assureurs habitation. Locataire ou propriétaire. E
 
 Description 2 : ✓ Sans engagement ✓ 15k clients satisfaits ✓ Service 5⭐ ✓ Économies garanties ou remboursé
 
-URL finale : https://votre-domaine.fr/landing/habitation?utm_source=google&utm_medium=cpc&utm_campaign=habitation_2025
+URL finale : https://www.jemassuremoinscher.fr/landing/habitation?utm_source=google&utm_medium=cpc&utm_campaign=habitation_2025
 ```
 
 ### Étape 4 : Extensions d'Annonce

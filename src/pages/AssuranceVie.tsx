@@ -138,8 +138,8 @@ const AssuranceVie = () => {
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Assurance Vie", url: "https://www.assurmoinschere.fr/assurance-vie" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Assurance Vie", url: "https://www.jemassuremoinscher.fr/assurance-vie" }
   ]);
 
   const serviceSchema = addServiceSchema({
@@ -176,7 +176,7 @@ const AssuranceVie = () => {
         title="Assurance Vie - Épargne et Protection | jemassuremoinscher"
         description="Comparez les meilleures assurances vie : épargne, protection décès, transmission de patrimoine. Trouvez le contrat adapté à vos objectifs financiers."
         keywords="assurance vie, épargne, placement, transmission patrimoine, contrat assurance vie, fiscalité assurance vie"
-        canonical="https://www.assurmoinschere.fr/assurance-vie"
+        canonical="https://www.jemassuremoinscher.fr/assurance-vie"
         jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]}
       />
       <Header />

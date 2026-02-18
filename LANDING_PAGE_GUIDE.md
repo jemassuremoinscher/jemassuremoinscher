@@ -13,12 +13,12 @@ La landing page `/landing/assurance` est optimisée pour maximiser les conversio
 
 ### URL de base
 ```
-https://votre-domaine.fr/landing/assurance
+https://www.jemassuremoinscher.fr/landing/assurance
 ```
 
 ### URLs avec tracking UTM (recommandé)
 ```
-https://votre-domaine.fr/landing/assurance?utm_source=google&utm_medium=cpc&utm_campaign=assurance_auto_2025
+https://www.jemassuremoinscher.fr/landing/assurance?utm_source=google&utm_medium=cpc&utm_campaign=assurance_auto_2025
 ```
 
 ### Exemples par campagne
@@ -119,7 +119,7 @@ Titre 2 : Devis Gratuit en 2 Min
 Titre 3 : Économisez Jusqu'à 947€/an
 Description 1 : Comparez 30+ assureurs. Expert dédié vous rappelle sous 2h. Sans engagement.
 Description 2 : ✓ Gratuit ✓ Rapide ✓ 15 000 clients satisfaits. Offre limitée -30% !
-URL finale : https://votre-domaine.fr/landing/assurance?utm_source=google&utm_medium=cpc&utm_campaign=auto_search
+URL finale : https://www.jemassuremoinscher.fr/landing/assurance?utm_source=google&utm_medium=cpc&utm_campaign=auto_search
 ```
 
 ### 2. Audiences de remarketing

@@ -11,7 +11,7 @@ const LandingAuto = () => {
     addServiceSchema({
       name: 'Assurance Auto pas chère',
       description: 'Comparez les meilleures assurances auto et économisez jusqu\'à 600€/an. Devis gratuit en 2 minutes.',
-      provider: 'Le Comparateur Assurance',
+      provider: 'jemassuremoinscher',
       areaServed: 'France',
     }),
     addAggregateRatingSchema('Assurance Auto', 4.8, 2847),

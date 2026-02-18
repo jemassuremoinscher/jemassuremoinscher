@@ -133,8 +133,8 @@ const AssurancePrevoyance = () => {
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Assurance Prévoyance", url: "https://www.assurmoinschere.fr/assurance-prevoyance" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Assurance Prévoyance", url: "https://www.jemassuremoinscher.fr/assurance-prevoyance" }
   ]);
 
   const serviceSchema = addServiceSchema({
@@ -165,7 +165,7 @@ const AssurancePrevoyance = () => {
         title="Prévoyance - Protégez votre avenir et celui de vos proches"
         description="Comparez les meilleures assurances prévoyance : décès, obsèques, dépendance. Protégez votre famille et préparez l'avenir sereinement. Devis gratuit en 2 minutes."
         keywords="assurance prévoyance, assurance décès, assurance obsèques, assurance dépendance, protection famille"
-        canonical="https://www.assurmoinschere.fr/assurance-prevoyance"
+        canonical="https://www.jemassuremoinscher.fr/assurance-prevoyance"
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />

@@ -30,7 +30,7 @@ const MentionsLegales = () => {
                   <p><strong>Siège social :</strong> [Adresse à compléter]</p>
                   <p><strong>RCS :</strong> [Numéro à compléter]</p>
                   <p><strong>SIRET :</strong> [Numéro à compléter]</p>
-                  <p><strong>Email :</strong> contact@lecomparateurassurance.fr</p>
+                  <p><strong>Email :</strong> contact@jemassuremoinscher.fr</p>
                   <p><strong>Téléphone :</strong> [Numéro à compléter]</p>
                 </CardContent>
               </Card>

@@ -8,7 +8,6 @@ import { Heart, Shield, Euro, Stethoscope, Eye, Pill, Baby, Clock } from "lucide
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -71,31 +70,8 @@ const AssuranceSante = () => {
       const randomVariation = Math.floor(Math.random() * 20) - 10;
       price += randomVariation;
 
-      const { data, error } = await supabase.functions.invoke("send-quote-email", {
-        body: {
-          name: "Prospect Santé",
-          email: "prospect@sante.fr",
-          phone: "0000000000",
-          type: "Mutuelle Santé",
-          details: {
-            situation: values.situation,
-            age: values.age,
-            regime: values.regime,
-            niveau: values.niveau,
-            codePostal: values.codePostal,
-          },
-          estimatedPrice: price,
-        },
-      });
-
-      if (error) throw error;
-
       const offers = generateInsurerOffers(price, healthInsurers);
       setInsurerOffers(offers);
-      toast({
-        title: "Demande envoyée !",
-        description: "Vous allez recevoir votre devis par email.",
-      });
     } catch (error: any) {
       console.error("Error:", error);
       toast({
@@ -109,8 +85,8 @@ const AssuranceSante = () => {
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Mutuelle Santé", url: "https://www.assurmoinschere.fr/assurance-sante" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Mutuelle Santé", url: "https://www.jemassuremoinscher.fr/assurance-sante" }
   ]);
 
   const serviceSchema = addServiceSchema({
@@ -171,7 +147,7 @@ const AssuranceSante = () => {
         title="Mutuelle Santé - Comparez les Meilleures Offres | jemassuremoinscher"
         description="Comparez les mutuelles santé et complémentaires santé en France. Devis gratuit et personnalisé en 2 minutes. Trouvez la meilleure mutuelle adaptée à vos besoins."
         keywords="mutuelle santé, complémentaire santé, assurance santé, comparateur mutuelle, mutuelle pas cher"
-        canonical="https://www.assurmoinschere.fr/assurance-sante"
+        canonical="https://www.jemassuremoinscher.fr/assurance-sante"
         jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, howToSchema, faqSchema]}
       />
       <Header />

@@ -7,8 +7,8 @@ import { Shield } from "lucide-react";
 
 const PlanDuSite = () => {
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr" },
-    { name: "Plan du site", url: "https://www.assurmoinschere.fr/plan-du-site" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr" },
+    { name: "Plan du site", url: "https://www.jemassuremoinscher.fr/plan-du-site" }
   ]);
 
   const webPageSchema = {
@@ -16,7 +16,7 @@ const PlanDuSite = () => {
     "@type": "WebPage",
     "name": "Plan du site - jemassuremoinscher",
     "description": "Plan du site complet avec tous les liens vers nos pages d'assurances, outils, blog et pages légales.",
-    "url": "https://www.assurmoinschere.fr/plan-du-site"
+    "url": "https://www.jemassuremoinscher.fr/plan-du-site"
   };
 
   const sections = [
@@ -42,7 +42,6 @@ const PlanDuSite = () => {
       title: "Outils & Services",
       links: [
         { name: "Comparateur d'assurances", path: "/comparateur" },
-        { name: "Comparateur de garanties", path: "/comparateur-garanties" },
         { name: "Gestion locative", path: "/gestion-locative" },
         { name: "Nos partenaires assureurs", path: "/nos-partenaires" },
         { name: "Avis clients", path: "/avis-clients" },
@@ -72,7 +71,7 @@ const PlanDuSite = () => {
       <SEO 
         title="Plan du site - jemassuremoinscher"
         description="Plan du site complet avec tous les liens vers nos pages d'assurances, outils, blog et pages légales. Navigation simplifiée pour trouver rapidement l'information."
-        canonical="https://www.assurmoinschere.fr/plan-du-site"
+        canonical="https://www.jemassuremoinscher.fr/plan-du-site"
         jsonLd={[breadcrumbSchema, webPageSchema]}
       />
       <Header />

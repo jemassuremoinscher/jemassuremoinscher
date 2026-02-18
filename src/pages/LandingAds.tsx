@@ -42,6 +42,15 @@ const LandingAds = () => {
     setIsSubmitting(true);
 
     try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const utmData = {
+        source: urlParams.get('utm_source') || 'direct',
+        medium: urlParams.get('utm_medium') || 'organic',
+        campaign: urlParams.get('utm_campaign') || 'none',
+        term: urlParams.get('utm_term') || null,
+        content: urlParams.get('utm_content') || null,
+      };
+
       const { error } = await supabase.from('insurance_quotes').insert({
         insurance_type: data.insuranceType,
         full_name: data.fullName,
@@ -49,9 +58,7 @@ const LandingAds = () => {
         phone: data.phone,
         quote_data: {
           source: 'google_ads_landing',
-          utm_source: new URLSearchParams(window.location.search).get('utm_source'),
-          utm_medium: new URLSearchParams(window.location.search).get('utm_medium'),
-          utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign'),
+          utm_data: utmData,
         },
         status: 'pending',
       });
@@ -140,7 +147,7 @@ const LandingAds = () => {
         title="Économisez jusqu'à 947€/an sur votre Assurance - Devis Gratuit en 2 min"
         description="Comparez gratuitement les meilleures assurances. Nos experts vous rappellent sous 2h avec votre devis personnalisé. +15 000 clients satisfaits. Sans engagement."
         keywords="assurance pas cher, devis assurance gratuit, économiser assurance, comparateur assurance"
-        canonical={`https://votre-domaine.fr${window.location.pathname}`}
+        canonical={`https://www.jemassuremoinscher.fr${window.location.pathname}`}
       />
       
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">

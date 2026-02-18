@@ -27,8 +27,8 @@ const Blog = () => {
   });
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Blog", url: "https://www.assurmoinschere.fr/blog" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Blog", url: "https://www.jemassuremoinscher.fr/blog" }
   ]);
 
   const blogSchema = {
@@ -36,7 +36,7 @@ const Blog = () => {
     "@type": "Blog",
     "name": "Blog Assurance - jemassuremoinscher",
     "description": "Conseils, guides pratiques et actualités sur les assurances en France",
-    "url": "https://www.assurmoinschere.fr/blog",
+    "url": "https://www.jemassuremoinscher.fr/blog",
     "publisher": {
       "@type": "Organization",
       "name": "jemassuremoinscher"
@@ -49,7 +49,7 @@ const Blog = () => {
         title="Blog Assurance - Conseils, Guides et Actualités | jemassuremoinscher"
         description="Découvrez nos articles sur les assurances : guides pratiques, actualités légales (loi Lemoine, Hamon), conseils d'experts pour bien choisir et économiser."
         keywords="blog assurance, conseils assurance, loi lemoine, loi hamon, guide assurance, actualités assurance"
-        canonical="https://www.assurmoinschere.fr/blog"
+        canonical="https://www.jemassuremoinscher.fr/blog"
         jsonLd={[breadcrumbSchema, blogSchema]}
       />
       <Header />

@@ -6,7 +6,7 @@ export interface RouteConfig {
 }
 
 // Configuration centralisée de toutes les routes du site
-export const SITE_URL = "https://www.assurmoinschere.fr";
+export const SITE_URL = "https://www.jemassuremoinscher.fr";
 
 export const routes: RouteConfig[] = [
   // Homepage

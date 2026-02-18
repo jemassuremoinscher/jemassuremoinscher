@@ -125,20 +125,7 @@ const GestionLocative = () => {
     try {
       const insurers = calculatePrice(values);
       setSubmittedFormData({ ...values, insurers });
-      
-      const { error } = await supabase.from('insurance_quotes').insert({
-        insurance_type: 'gestion_locative',
-        full_name: 'Prospect Gestion',
-        email: 'prospect@example.com',
-        phone: '0000000000',
-        quote_data: values,
-        status: 'pending',
-      });
-
-      if (error) throw error;
-
       setShowResults(true);
-      toast.success('Devis de gestion locative généré !');
     } catch (error) {
       console.error('Error:', error);
       toast.error('Erreur lors de la génération du devis');
@@ -155,8 +142,8 @@ const GestionLocative = () => {
   ];
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Gestion Locative", url: "https://www.assurmoinschere.fr/gestion-locative" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Gestion Locative", url: "https://www.jemassuremoinscher.fr/gestion-locative" }
   ]);
 
   const serviceSchema = addServiceSchema({
@@ -206,7 +193,7 @@ const GestionLocative = () => {
         title="Gestion Locative - Comparez les Meilleurs Gestionnaires Immobiliers"
         description="Comparez les offres de gestion locative pour vos biens immobiliers. Gestion complète, partielle ou déclarative. Honoraires de 5% à 10%. Trouvez le meilleur gestionnaire."
         keywords="gestion locative, gestion immobilière, loc online, administrateur de biens, gestionnaire immobilier, honoraires gestion"
-        canonical="https://www.assurmoinschere.fr/gestion-locative"
+        canonical="https://www.jemassuremoinscher.fr/gestion-locative"
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       

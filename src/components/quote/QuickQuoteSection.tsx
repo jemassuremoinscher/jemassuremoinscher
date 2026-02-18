@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Car, Check, ChevronRight, ChevronLeft, User, Calendar, Mail } from "lucide-react";
+import { Car, Check, ChevronRight, ChevronLeft, User, Calendar, Mail, Phone, Loader2, CheckCircle2 } from "lucide-react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+import { useAnalytics } from "@/hooks/useAnalytics";
+import { useHoneypot } from "@/hooks/useHoneypot";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
 type VehicleType = "citadine" | "berline" | "suv" | "";
 type DriverAge = "18-25" | "26-35" | "36-50" | "50+" | "";
@@ -12,14 +16,22 @@ interface QuoteData {
   vehicleType: VehicleType;
   driverAge: DriverAge;
   email: string;
+  phone: string;
 }
+const PHONE_REGEX = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+
 const QuickQuoteSection = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
+  const [direction, setDirection] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const { trackEvent, trackConversion } = useAnalytics();
+  const { honeypotRef, isBot } = useHoneypot();
   const [quoteData, setQuoteData] = useState<QuoteData>({
     vehicleType: "",
     driverAge: "",
-    email: ""
+    email: "",
+    phone: ""
   });
   const totalSteps = 3;
   const vehicleOptions = [{
@@ -79,9 +91,58 @@ const QuickQuoteSection = () => {
       driverAge: value
     }));
   };
-  const handleSubmit = () => {
-    // TODO: Handle form submission
-    console.log("Quote data:", quoteData);
+  const handleSubmit = async () => {
+    if (isSubmitting) return;
+    if (isBot()) { setIsSuccess(true); return; }
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase.from('insurance_quotes').insert({
+        insurance_type: 'auto',
+        full_name: '',
+        email: quoteData.email,
+        phone: quoteData.phone,
+        quote_data: {
+          source: 'quick_quote',
+          vehicleType: quoteData.vehicleType,
+          driverAge: quoteData.driverAge,
+        },
+        status: 'pending',
+      });
+
+      if (error) throw error;
+
+      await supabase.functions.invoke('send-quote-email', {
+        body: {
+          name: 'Prospect Devis Rapide',
+          email: quoteData.email,
+          phone: quoteData.phone,
+          type: 'auto',
+          details: {
+            source: 'quick_quote',
+            vehicleType: quoteData.vehicleType,
+            driverAge: quoteData.driverAge,
+          },
+          estimatedPrice: 35,
+        },
+      }).catch(err => console.error('Email error:', err));
+
+      trackConversion('quick_quote', 150);
+      trackEvent('quote_request', {
+        category: 'quick_quote',
+        label: `auto_${quoteData.vehicleType}_${quoteData.driverAge}`,
+        insurance_type: 'auto',
+        value: 150,
+      });
+
+      setIsSuccess(true);
+      toast.success('Demande envoyée ! Nous vous contactons très vite.');
+    } catch (error) {
+      console.error('Error submitting quick quote:', error);
+      toast.error('Erreur. Veuillez réessayer.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   const slideVariants = {
     enter: (direction: number) => ({
@@ -104,11 +165,28 @@ const QuickQuoteSection = () => {
       case 2:
         return quoteData.driverAge !== "";
       case 3:
-        return quoteData.email.includes("@");
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(quoteData.email) && PHONE_REGEX.test(quoteData.phone);
       default:
         return false;
     }
   };
+  if (isSuccess) {
+    return <section className="py-12 md:py-16 bg-gradient-to-b from-background to-muted/30">
+      <div className="container mx-auto px-4">
+        <div className="max-w-2xl mx-auto bg-card rounded-2xl shadow-lg border border-border/50 p-8 text-center animate-scale-in">
+          <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/20 mx-auto mb-4 flex items-center justify-center">
+            <CheckCircle2 className="h-8 w-8 text-green-600" />
+          </div>
+          <h3 className="text-2xl font-bold mb-3">Demande envoyée !</h3>
+          <p className="text-muted-foreground mb-4">
+            Un expert vous rappelle dans les <span className="font-bold text-primary">2 heures</span> pour vous proposer le meilleur tarif.
+          </p>
+          <p className="text-sm text-muted-foreground">Vérifiez votre téléphone et votre email.</p>
+        </div>
+      </div>
+    </section>;
+  }
+
   return <section className="py-12 md:py-16 bg-gradient-to-b from-background to-muted/30" aria-labelledby="quick-quote-title">
       {/* SEO Hidden Title */}
       <h2 id="quick-quote-title" className="sr-only">
@@ -157,6 +235,7 @@ const QuickQuoteSection = () => {
 
         {/* Question Container */}
         <div className="max-w-2xl mx-auto bg-card rounded-2xl shadow-lg border border-border/50 p-6 md:p-8 overflow-hidden">
+          <input ref={honeypotRef} type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0 }} />
           <AnimatePresence mode="wait" custom={direction}>
             {/* Step 1: Vehicle Type */}
             {currentStep === 1 && <motion.div key="step1" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{
@@ -238,7 +317,7 @@ const QuickQuoteSection = () => {
                 </RadioGroup>
               </motion.div>}
 
-            {/* Step 3: Email */}
+            {/* Step 3: Contact Info */}
             {currentStep === 3 && <motion.div key="step3" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{
             duration: 0.3,
             ease: "easeInOut"
@@ -248,23 +327,33 @@ const QuickQuoteSection = () => {
                     <Mail className="w-5 h-5 text-primary" />
                   </div>
                   <h4 className="text-lg md:text-xl font-bold text-foreground">
-                    Où envoyer votre devis ?
+                    Vos coordonnées pour le devis
                   </h4>
                 </div>
 
                 <div className="space-y-4">
                   <div>
-                    <Label htmlFor="email" className="text-sm font-medium text-foreground">
+                    <Label htmlFor="qq-email" className="text-sm font-medium text-foreground">
                       Votre email
                     </Label>
-                    <Input id="email" type="email" placeholder="exemple@email.com" value={quoteData.email} onChange={e => setQuoteData(prev => ({
+                    <Input id="qq-email" type="email" placeholder="exemple@email.com" value={quoteData.email} onChange={e => setQuoteData(prev => ({
                   ...prev,
                   email: e.target.value
-                }))} className="mt-2 h-12 text-base" />
+                }))} className="mt-2 h-12 text-base" disabled={isSubmitting} />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="qq-phone" className="text-sm font-medium text-foreground">
+                      Votre téléphone
+                    </Label>
+                    <Input id="qq-phone" type="tel" placeholder="06 12 34 56 78" value={quoteData.phone} onChange={e => setQuoteData(prev => ({
+                  ...prev,
+                  phone: e.target.value
+                }))} className="mt-2 h-12 text-base" disabled={isSubmitting} />
                   </div>
 
                   <p className="text-xs text-muted-foreground">
-                    En soumettant ce formulaire, vous acceptez de recevoir votre devis par email.
+                    Un expert vous rappelle pour vous proposer le meilleur tarif.
                     Vos données sont protégées et ne seront jamais partagées.
                   </p>
                 </div>
@@ -275,15 +364,14 @@ const QuickQuoteSection = () => {
           <div className="flex items-center justify-between mt-8 pt-6 border-t border-border/50">
             <Button variant="ghost" onClick={handlePrev} disabled={currentStep === 1} className="gap-2">
               <ChevronLeft className="w-4 h-4" />
-              Retour
+              <span>Retour</span>
             </Button>
 
             {currentStep < totalSteps ? <Button onClick={handleNext} disabled={!canProceed()} className="gap-2 bg-primary hover:bg-primary/90">
-                Continuer
+                <span>Continuer</span>
                 <ChevronRight className="w-4 h-4" />
-              </Button> : <Button onClick={handleSubmit} disabled={!canProceed()} className="gap-2 bg-gradient-to-r from-primary to-accent text-primary-foreground font-bold">
-                Recevoir mon devis
-                <ChevronRight className="w-4 h-4" />
+              </Button> : <Button onClick={handleSubmit} disabled={!canProceed() || isSubmitting} className="gap-2 bg-gradient-to-r from-primary to-accent text-primary-foreground font-bold">
+                {isSubmitting ? <><Loader2 className="w-4 h-4 animate-spin" /><span>Envoi en cours...</span></> : <><span>Recevoir mon devis</span><ChevronRight className="w-4 h-4" /></>}
               </Button>}
           </div>
         </div>

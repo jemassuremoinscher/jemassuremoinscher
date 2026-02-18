@@ -8,7 +8,6 @@ import { Home, Shield, Euro, Clock, Flame, Droplets, Lock, Zap } from "lucide-re
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -79,26 +78,6 @@ const AssuranceHabitation = () => {
       const randomVariation = Math.floor(Math.random() * 8) - 4;
       price += randomVariation;
 
-      const { data, error } = await supabase.functions.invoke("send-quote-email", {
-        body: {
-          name: "Prospect Habitation",
-          email: "prospect@habitation.fr",
-          phone: "0000000000",
-          type: "Assurance Habitation",
-          details: {
-            typeLogement: values.typeLogement,
-            statut: values.statut,
-            surface: values.surface,
-            pieces: values.pieces,
-            codePostal: values.codePostal,
-            valeur: values.valeur,
-          },
-          estimatedPrice: price,
-        },
-      });
-
-      if (error) throw error;
-
       const offers = generateInsurerOffers(price, homeInsurers);
       setInsurerOffers(offers);
       toast({
@@ -118,8 +97,8 @@ const AssuranceHabitation = () => {
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Assurance Habitation", url: "https://www.assurmoinschere.fr/assurance-habitation" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Assurance Habitation", url: "https://www.jemassuremoinscher.fr/assurance-habitation" }
   ]);
 
   const serviceSchema = addServiceSchema({
@@ -180,7 +159,7 @@ const AssuranceHabitation = () => {
         title="Assurance Habitation - Comparez et Trouvez la Meilleure Offre"
         description="Comparez les assurances habitation en France. Devis gratuit pour maison, appartement, locataire ou propriétaire. Économisez jusqu'à 300€/an sur votre assurance habitation."
         keywords="assurance habitation, assurance maison, assurance appartement, assurance locataire, assurance propriétaire"
-        canonical="https://www.assurmoinschere.fr/assurance-habitation"
+        canonical="https://www.jemassuremoinscher.fr/assurance-habitation"
         jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, howToSchema, faqSchema]}
       />
       <Header />

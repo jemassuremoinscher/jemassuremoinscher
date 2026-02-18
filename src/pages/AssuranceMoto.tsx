@@ -8,7 +8,6 @@ import { Bike, Shield, Euro, Clock, Wrench, MapPin, Users } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -54,61 +53,32 @@ const AssuranceMoto = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      const basePrice = 50; // Base formule intermédiaire
+      const basePrice = 50;
       const ageDriver = parseInt(values.age);
       const yearVehicle = parseInt(values.annee);
       const cylindreeValue = parseInt(values.cylindree);
       let price = basePrice;
-      
-      // Facteurs d'ajustement réalistes
-      if (ageDriver < 25) price += 70; // Jeunes motards très pénalisés
+
+      if (ageDriver < 25) price += 70;
       else if (ageDriver < 30) price += 35;
-      
+
       if (yearVehicle < 2015) price += 20;
-      else if (yearVehicle > 2020) price += 25; // Motos récentes
-      
-      // Impact majeur de la cylindrée
+      else if (yearVehicle > 2020) price += 25;
+
       if (cylindreeValue > 800) price += 60;
       else if (cylindreeValue > 600) price += 35;
       else if (cylindreeValue > 500) price += 20;
-      else if (cylindreeValue <= 125) price -= 15; // Petit cube moins cher
-      
-      // Type de moto
-      if (values.typeMoto === "sportive") price += 80; // Sportives très chères
+      else if (cylindreeValue <= 125) price -= 15;
+
+      if (values.typeMoto === "sportive") price += 80;
       else if (values.typeMoto === "trail") price += 10;
       else if (values.typeMoto === "scooter") price -= 10;
-      
+
       const randomVariation = Math.floor(Math.random() * 25) - 12;
       price += randomVariation;
 
-      const { data, error } = await supabase.functions.invoke("send-quote-email", {
-        body: {
-          name: "Prospect Moto",
-          email: "prospect@moto.fr",
-          phone: "0000000000",
-          type: "Assurance Moto",
-          details: {
-            marque: values.marque,
-            modele: values.modele,
-            annee: values.annee,
-            typeMoto: values.typeMoto,
-            cylindree: values.cylindree,
-            codePostal: values.codePostal,
-            age: values.age,
-            permis: values.permis,
-          },
-          estimatedPrice: price,
-        },
-      });
-
-      if (error) throw error;
-
       const offers = generateInsurerOffers(price, motoInsurers);
       setInsurerOffers(offers);
-      toast({
-        title: "Demande envoyée !",
-        description: "Vous allez recevoir votre devis par email.",
-      });
     } catch (error: any) {
       console.error("Error:", error);
       toast({
@@ -122,8 +92,8 @@ const AssuranceMoto = () => {
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Assurance Moto", url: "https://www.assurmoinschere.fr/assurance-moto" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Assurance Moto", url: "https://www.jemassuremoinscher.fr/assurance-moto" }
   ]);
 
   const serviceSchema = addServiceSchema({
@@ -160,7 +130,7 @@ const AssuranceMoto = () => {
         title="Assurance Moto - Comparez les Meilleurs Tarifs | jemassuremoinscher"
         description="Comparez les assurances moto et scooter. Devis gratuit en ligne pour tous types de deux-roues. Économisez jusqu'à 35% avec nos partenaires assureurs."
         keywords="assurance moto, assurance scooter, assurance deux roues, comparateur assurance moto, assurance moto pas cher"
-        canonical="https://www.assurmoinschere.fr/assurance-moto"
+        canonical="https://www.jemassuremoinscher.fr/assurance-moto"
         jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]}
       />
       <Header />
@@ -204,9 +174,10 @@ const AssuranceMoto = () => {
             <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis personnalisé</h2>
             
             {insurerOffers.length > 0 ? (
-              <InsuranceComparison 
-                insurers={insurerOffers} 
-                onNewQuote={() => setInsurerOffers([])} 
+              <InsuranceComparison
+                insurers={insurerOffers}
+                onNewQuote={() => setInsurerOffers([])}
+                insuranceType="moto"
               />
             ) : (
               <Form {...form}>

@@ -2,21 +2,21 @@ export const addOrganizationSchema = () => {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Le Comparateur Assurance",
-    "url": "https://www.assurmoinschere.fr",
-    "logo": "https://www.assurmoinschere.fr/logo.png",
+    "name": "jemassuremoinscher",
+    "url": "https://www.jemassuremoinscher.fr",
+    "logo": "https://www.jemassuremoinscher.fr/logo.png",
     "description": "Comparateur d'assurances en ligne - Auto, Santé, Habitation, Vie, Animaux",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+33-1-XX-XX-XX-XX",
+      "telephone": "+33-6-86-12-28-20",
       "contactType": "Service Client",
       "areaServed": "FR",
       "availableLanguage": "French"
     },
     "sameAs": [
-      "https://www.facebook.com/assurmoinschere",
-      "https://twitter.com/assurmoinschere",
-      "https://www.linkedin.com/company/assurmoinschere"
+      "https://www.facebook.com/jemassuremoinscher",
+      "https://twitter.com/jemassuremoinscher",
+      "https://www.linkedin.com/company/jemassuremoinscher"
     ]
   };
 };
@@ -49,7 +49,7 @@ export const addServiceSchema = (service: {
     "description": service.description,
     "provider": {
       "@type": "Organization",
-      "name": service.provider || "Le Comparateur Assurance"
+      "name": service.provider || "jemassuremoinscher"
     },
     "areaServed": {
       "@type": "Country",
@@ -123,14 +123,14 @@ export const addArticleSchema = (article: {
     "description": article.description,
     "author": {
       "@type": "Organization",
-      "name": article.author || "Le Comparateur Assurance"
+      "name": article.author || "jemassuremoinscher"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Le Comparateur Assurance",
+      "name": "jemassuremoinscher",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.assurmoinschere.fr/logo.png"
+        "url": "https://www.jemassuremoinscher.fr/logo.png"
       }
     },
     "datePublished": article.datePublished,

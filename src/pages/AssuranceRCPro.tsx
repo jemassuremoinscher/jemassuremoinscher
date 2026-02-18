@@ -133,8 +133,8 @@ const AssuranceRCPro = () => {
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "RC Pro", url: "https://www.assurmoinschere.fr/assurance-rc-pro" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "RC Pro", url: "https://www.jemassuremoinscher.fr/assurance-rc-pro" }
   ]);
 
   const serviceSchema = addServiceSchema({
@@ -161,7 +161,7 @@ const AssuranceRCPro = () => {
         title="RC Pro - Responsabilité Civile Professionnelle | Comparateur"
         description="Comparez les assurances RC Pro. Protégez votre activité professionnelle contre les dommages causés à vos clients. Devis gratuit et rapide pour tous secteurs."
         keywords="RC Pro, responsabilité civile professionnelle, assurance RC, protection professionnelle, garantie décennale"
-        canonical="https://www.assurmoinschere.fr/assurance-rc-pro"
+        canonical="https://www.jemassuremoinscher.fr/assurance-rc-pro"
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />

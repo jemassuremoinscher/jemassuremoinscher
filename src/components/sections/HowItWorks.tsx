@@ -46,8 +46,8 @@ const HowItWorks = () => {
         <div className="max-w-4xl mx-auto">
           {/* Desktop Layout */}
           <div className="hidden md:flex items-start justify-between relative">
-            {/* Connecting Line */}
-            <div className="absolute top-16 left-[15%] right-[15%] h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full" />
+            {/* Connecting Line - centered on the step number circles (h-12 = 48px, center = 24px = top-6) */}
+            <div className="absolute top-6 left-[15%] right-[15%] h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full" />
 
             {steps.map((step, index) => (
               <motion.div

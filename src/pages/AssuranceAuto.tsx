@@ -141,8 +141,8 @@ const AssuranceAuto = () => {
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Assurance Auto", url: "https://www.assurmoinschere.fr/assurance-auto" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Assurance Auto", url: "https://www.jemassuremoinscher.fr/assurance-auto" }
   ]);
 
   const serviceSchema = addServiceSchema({
@@ -221,7 +221,7 @@ const AssuranceAuto = () => {
         title="Assurance Auto - Comparez et Économisez | jemassuremoinscher"
         description="Comparez les meilleures assurances auto en France. Devis gratuit en 2 minutes. Économisez jusqu'à 400€/an."
         keywords="assurance auto, devis assurance voiture, assurance auto pas cher, comparateur assurance auto"
-        canonical="https://www.assurmoinschere.fr/assurance-auto"
+        canonical="https://www.jemassuremoinscher.fr/assurance-auto"
         jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, howToSchema, faqSchema]}
       />
       <Header />

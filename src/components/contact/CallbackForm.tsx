@@ -12,6 +12,7 @@ import { Phone, Loader2, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useHoneypot } from "@/hooks/useHoneypot";
 import { trackGoogleAdsConversion } from "@/utils/googleAdsTracking";
 
 const callbackSchema = z.object({
@@ -35,6 +36,7 @@ type CallbackFormData = z.infer<typeof callbackSchema>;
 export const CallbackForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { trackEvent, trackConversion } = useAnalytics();
+  const { honeypotRef, isBot } = useHoneypot();
   const [isSuccess, setIsSuccess] = useState(false);
 
   const form = useForm<CallbackFormData>({
@@ -49,8 +51,9 @@ export const CallbackForm = () => {
   });
 
   const onSubmit = async (data: CallbackFormData) => {
+    if (isBot()) { setIsSuccess(true); return; }
     setIsSubmitting(true);
-    
+
     try {
       const { error } = await supabase.from("contact_callbacks").insert({
         full_name: data.fullName,
@@ -62,6 +65,22 @@ export const CallbackForm = () => {
       });
 
       if (error) throw error;
+
+      // Notify broker via email
+      await supabase.functions.invoke('send-quote-email', {
+        body: {
+          name: data.fullName,
+          email: data.email,
+          phone: data.phone,
+          type: 'Demande de rappel',
+          details: {
+            source: 'callback_form',
+            preferredTime: data.preferredTime,
+            message: data.message || '',
+          },
+          estimatedPrice: 0,
+        },
+      }).catch(err => console.error('Email notification error:', err));
 
       setIsSuccess(true);
       toast({
@@ -126,6 +145,7 @@ export const CallbackForm = () => {
         <Card className="p-8">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <input ref={honeypotRef} type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0 }} />
               <div className="grid md:grid-cols-2 gap-6">
                 <FormField
                   control={form.control}

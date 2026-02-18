@@ -10,6 +10,7 @@ import { CheckCircle2, Loader2, Phone, Sparkles } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { useHoneypot } from '@/hooks/useHoneypot';
 
 const simplifiedLeadSchema = z.object({
   fullName: z.string().trim().min(2, 'Nom requis').max(100),
@@ -28,6 +29,7 @@ export const SimplifiedLeadForm = ({ insuranceType, insuranceLabel }: Simplified
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { trackEvent, trackConversion } = useAnalytics();
+  const { honeypotRef, isBot } = useHoneypot();
 
   const form = useForm<SimplifiedLeadData>({
     resolver: zodResolver(simplifiedLeadSchema),
@@ -39,6 +41,7 @@ export const SimplifiedLeadForm = ({ insuranceType, insuranceLabel }: Simplified
   });
 
   const onSubmit = async (data: SimplifiedLeadData) => {
+    if (isBot()) { setIsSuccess(true); return; }
     setIsSubmitting(true);
 
     try {
@@ -154,6 +157,7 @@ export const SimplifiedLeadForm = ({ insuranceType, insuranceLabel }: Simplified
       </div>
 
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <input ref={honeypotRef} type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0 }} />
         <div>
           <Label htmlFor="fullName" className="text-base font-semibold mb-2 block">
             Nom complet *

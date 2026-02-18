@@ -94,8 +94,8 @@ const AssuranceAnimaux = () => {
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Assurance Animaux", url: "https://www.assurmoinschere.fr/assurance-animaux" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Assurance Animaux", url: "https://www.jemassuremoinscher.fr/assurance-animaux" }
   ]);
 
   const serviceSchema = addServiceSchema({
@@ -150,7 +150,7 @@ const AssuranceAnimaux = () => {
         title="Assurance Animaux - Protégez votre chien ou chat | jemassuremoinscher"
         description="Comparez les assurances pour chiens et chats. Remboursement des frais vétérinaires jusqu'à 100%. Devis gratuit pour protéger votre animal de compagnie."
         keywords="assurance chien, assurance chat, assurance animaux, mutuelle animaux, frais vétérinaires"
-        canonical="https://www.assurmoinschere.fr/assurance-animaux"
+        canonical="https://www.jemassuremoinscher.fr/assurance-animaux"
         jsonLd={[breadcrumbSchema, serviceSchema, howToSchema, faqSchema]}
       />
       <Header />

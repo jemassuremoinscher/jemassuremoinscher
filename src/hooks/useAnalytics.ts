@@ -1,6 +1,12 @@
 import { useCallback } from 'react';
+import {
+  GA4_MEASUREMENT_ID,
+  GOOGLE_ADS_ID,
+  GOOGLE_ADS_CONVERSION_LABEL,
+  isGA4Configured,
+  isAdsConversionConfigured,
+} from '@/config/analytics';
 
-// Google Analytics 4 event tracking
 declare global {
   interface Window {
     gtag?: (command: string, ...args: any[]) => void;
@@ -8,7 +14,7 @@ declare global {
   }
 }
 
-export type AnalyticsEvent = 
+export type AnalyticsEvent =
   | 'callback_request'
   | 'quote_request'
   | 'newsletter_signup'
@@ -33,7 +39,6 @@ interface EventParams {
 
 export const useAnalytics = () => {
   const trackEvent = useCallback((eventName: AnalyticsEvent, params?: EventParams) => {
-    // Google Analytics 4
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', eventName, {
         event_category: params?.category || 'engagement',
@@ -43,20 +48,19 @@ export const useAnalytics = () => {
       });
     }
 
-    // Microsoft Clarity custom tags
     if (typeof window !== 'undefined' && window.clarity) {
       window.clarity('event', eventName);
     }
 
-    // Console log in development
     if (import.meta.env.DEV) {
       console.log('Analytics Event:', eventName, params);
     }
   }, []);
 
   const trackPageView = useCallback((path: string, title?: string) => {
+    if (!isGA4Configured()) return;
     if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', 'G-XXXXXXXXXX', {
+      window.gtag('config', GA4_MEASUREMENT_ID, {
         page_path: path,
         page_title: title,
       });
@@ -64,9 +68,9 @@ export const useAnalytics = () => {
   }, []);
 
   const trackConversion = useCallback((conversionType: string, value?: number) => {
-    if (typeof window !== 'undefined' && window.gtag) {
+    if (typeof window !== 'undefined' && window.gtag && isAdsConversionConfigured()) {
       window.gtag('event', 'conversion', {
-        send_to: 'AW-CONVERSION-ID',
+        send_to: `${GOOGLE_ADS_ID}/${GOOGLE_ADS_CONVERSION_LABEL}`,
         value: value || 0,
         currency: 'EUR',
         transaction_id: `${Date.now()}-${Math.random()}`,
@@ -74,7 +78,6 @@ export const useAnalytics = () => {
       });
     }
 
-    // Track in Clarity
     if (typeof window !== 'undefined' && window.clarity) {
       window.clarity('event', 'conversion', conversionType);
     }

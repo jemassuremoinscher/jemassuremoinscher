@@ -72,9 +72,9 @@ const BlogArticle = () => {
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Blog", url: "https://www.assurmoinschere.fr/blog" },
-    { name: article.title, url: `https://www.assurmoinschere.fr/blog/${article.slug}` }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Blog", url: "https://www.jemassuremoinscher.fr/blog" },
+    { name: article.title, url: `https://www.jemassuremoinscher.fr/blog/${article.slug}` }
   ]);
 
   const articleSchema = addArticleSchema({
@@ -82,7 +82,7 @@ const BlogArticle = () => {
     description: article.description,
     author: article.author,
     datePublished: convertToISO(article.date),
-    image: "https://www.assurmoinschere.fr/opengraph-image.png"
+    image: "https://www.jemassuremoinscher.fr/opengraph-image.png"
   });
 
   return (
@@ -91,7 +91,7 @@ const BlogArticle = () => {
         title={`${article.title} | Blog jemassuremoinscher`}
         description={article.description}
         keywords={article.tags.join(", ")}
-        canonical={`https://www.assurmoinschere.fr/blog/${article.slug}`}
+        canonical={`https://www.jemassuremoinscher.fr/blog/${article.slug}`}
         jsonLd={[breadcrumbSchema, articleSchema]}
       />
       <Header />

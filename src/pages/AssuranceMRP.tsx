@@ -122,8 +122,8 @@ const AssuranceMRP = () => {
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Assurance MRP", url: "https://www.assurmoinschere.fr/assurance-mrp" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Assurance MRP", url: "https://www.jemassuremoinscher.fr/assurance-mrp" }
   ]);
 
   const serviceSchema = addServiceSchema({
@@ -150,7 +150,7 @@ const AssuranceMRP = () => {
         title="Assurance Multirisque Professionnelle - Protégez votre entreprise"
         description="Comparez les meilleures assurances multirisque professionnelle. Protégez vos locaux, matériel, stock et activité. Devis gratuit en 2 minutes pour votre entreprise."
         keywords="assurance multirisque professionnelle, MRP, assurance entreprise, assurance local professionnel, RC exploitation"
-        canonical="https://www.assurmoinschere.fr/assurance-mrp"
+        canonical="https://www.jemassuremoinscher.fr/assurance-mrp"
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />

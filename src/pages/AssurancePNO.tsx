@@ -132,20 +132,7 @@ const AssurancePNO = () => {
     try {
       const insurers = calculatePrice(values);
       setSubmittedFormData({ ...values, insurers });
-      
-      const { error } = await supabase.from('insurance_quotes').insert({
-        insurance_type: 'pno',
-        full_name: 'Prospect PNO',
-        email: 'prospect@example.com',
-        phone: '0000000000',
-        quote_data: values,
-        status: 'pending',
-      });
-
-      if (error) throw error;
-
       setShowComparison(true);
-      toast.success('Devis PNO généré avec succès !');
     } catch (error) {
       console.error('Error:', error);
       toast.error('Erreur lors de la génération du devis');
@@ -181,8 +168,8 @@ const AssurancePNO = () => {
   ];
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Assurance PNO", url: "https://www.assurmoinschere.fr/assurance-pno" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Assurance PNO", url: "https://www.jemassuremoinscher.fr/assurance-pno" }
   ]);
 
   const serviceSchema = addServiceSchema({
@@ -213,7 +200,7 @@ const AssurancePNO = () => {
         title="Assurance PNO (Propriétaire Non Occupant) - Comparateur"
         description="Comparez les meilleures assurances PNO pour protéger votre bien immobilier. Devis gratuit et instantané pour propriétaires non occupants."
         keywords="assurance PNO, propriétaire non occupant, assurance logement vide, assurance copropriété"
-        canonical="https://www.assurmoinschere.fr/assurance-pno"
+        canonical="https://www.jemassuremoinscher.fr/assurance-pno"
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       

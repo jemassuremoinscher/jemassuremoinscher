@@ -54,7 +54,7 @@ const PolitiqueConfidentialite = () => {
                 <CardContent className="space-y-2">
                   <p><strong>Responsable :</strong> jemassuremoinscher</p>
                   <p><strong>Adresse :</strong> [Adresse à compléter]</p>
-                  <p><strong>Email :</strong> contact@lecomparateurassurance.fr</p>
+                  <p><strong>Email :</strong> contact@jemassuremoinscher.fr</p>
                   <p><strong>DPO (Délégué à la Protection des Données) :</strong> [Email DPO]</p>
                 </CardContent>
               </Card>
@@ -186,7 +186,7 @@ const PolitiqueConfidentialite = () => {
                   
                   <div className="mt-4 p-3 bg-primary/10 rounded-lg">
                     <p className="font-semibold text-sm">Pour exercer vos droits :</p>
-                    <p className="text-sm mt-1">Contactez-nous par email : contact@lecomparateurassurance.fr</p>
+                    <p className="text-sm mt-1">Contactez-nous par email : contact@jemassuremoinscher.fr</p>
                     <p className="text-sm">Ou par courrier à notre adresse avec justificatif d'identité</p>
                   </div>
 
@@ -262,7 +262,7 @@ const PolitiqueConfidentialite = () => {
                     Pour toute question concernant cette politique de confidentialité ou le traitement de vos données personnelles :
                   </p>
                   <div className="mt-3 space-y-1">
-                    <p><strong>Email :</strong> contact@lecomparateurassurance.fr</p>
+                    <p><strong>Email :</strong> contact@jemassuremoinscher.fr</p>
                     <p><strong>DPO :</strong> [Email DPO]</p>
                     <p><strong>Page de contact :</strong> <a href="/contact" className="text-primary hover:underline">Formulaire de contact</a></p>
                   </div>

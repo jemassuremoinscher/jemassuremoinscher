@@ -23,40 +23,40 @@ Ce document explique comment utiliser les landing pages optimisées pour maximis
 
 ```
 # Google Ads - Campagne Auto
-https://www.assurmoinschere.fr/landing/auto?utm_source=google&utm_medium=cpc&utm_campaign=auto_paris&utm_term=assurance+auto+pas+cher&utm_content=annonce1
+https://www.jemassuremoinscher.fr/landing/auto?utm_source=google&utm_medium=cpc&utm_campaign=auto_paris&utm_term=assurance+auto+pas+cher&utm_content=annonce1
 
 # Meta Ads - Campagne Santé
-https://www.assurmoinschere.fr/landing/sante?utm_source=facebook&utm_medium=cpc&utm_campaign=mutuelle_janvier&utm_content=video1
+https://www.jemassuremoinscher.fr/landing/sante?utm_source=facebook&utm_medium=cpc&utm_campaign=mutuelle_janvier&utm_content=video1
 
 # Google Ads - Campagne Habitation
-https://www.assurmoinschere.fr/landing/habitation?utm_source=google&utm_medium=cpc&utm_campaign=habitation_locataire&utm_term=assurance+habitation
+https://www.jemassuremoinscher.fr/landing/habitation?utm_source=google&utm_medium=cpc&utm_campaign=habitation_locataire&utm_term=assurance+habitation
 
 # TikTok Ads - Campagne Moto
-https://www.assurmoinschere.fr/landing/moto?utm_source=tiktok&utm_medium=cpc&utm_campaign=moto_jeunes&utm_content=clip1
+https://www.jemassuremoinscher.fr/landing/moto?utm_source=tiktok&utm_medium=cpc&utm_campaign=moto_jeunes&utm_content=clip1
 
 # Google Ads - Campagne Animaux
-https://www.assurmoinschere.fr/landing/animaux?utm_source=google&utm_medium=cpc&utm_campaign=animaux_chien&utm_term=assurance+chien
+https://www.jemassuremoinscher.fr/landing/animaux?utm_source=google&utm_medium=cpc&utm_campaign=animaux_chien&utm_term=assurance+chien
 
 # Meta Ads - Campagne Prêt Immobilier
-https://www.assurmoinschere.fr/landing/pret?utm_source=facebook&utm_medium=cpc&utm_campaign=emprunteur_economie&utm_content=carousel1
+https://www.jemassuremoinscher.fr/landing/pret?utm_source=facebook&utm_medium=cpc&utm_campaign=emprunteur_economie&utm_content=carousel1
 
 # Google Ads - Campagne Vie
-https://www.assurmoinschere.fr/landing/vie?utm_source=google&utm_medium=cpc&utm_campaign=epargne_placement&utm_term=assurance+vie+placement
+https://www.jemassuremoinscher.fr/landing/vie?utm_source=google&utm_medium=cpc&utm_campaign=epargne_placement&utm_term=assurance+vie+placement
 
 # Meta Ads - Campagne Prévoyance
-https://www.assurmoinschere.fr/landing/prevoyance?utm_source=facebook&utm_medium=cpc&utm_campaign=protection_famille&utm_content=video_temoignage
+https://www.jemassuremoinscher.fr/landing/prevoyance?utm_source=facebook&utm_medium=cpc&utm_campaign=protection_famille&utm_content=video_temoignage
 
 # Google Ads - Campagne RC Pro
-https://www.assurmoinschere.fr/landing/rc-pro?utm_source=google&utm_medium=cpc&utm_campaign=rcpro_independants&utm_term=assurance+rc+professionnelle
+https://www.jemassuremoinscher.fr/landing/rc-pro?utm_source=google&utm_medium=cpc&utm_campaign=rcpro_independants&utm_term=assurance+rc+professionnelle
 
 # Meta Ads - Campagne GLI
-https://www.assurmoinschere.fr/landing/gli?utm_source=facebook&utm_medium=cpc&utm_campaign=bailleurs_loyers_impayes&utm_content=image_investisseur
+https://www.jemassuremoinscher.fr/landing/gli?utm_source=facebook&utm_medium=cpc&utm_campaign=bailleurs_loyers_impayes&utm_content=image_investisseur
 
 # Google Ads - Campagne PNO
-https://www.assurmoinschere.fr/landing/pno?utm_source=google&utm_medium=cpc&utm_campaign=pno_proprietaires&utm_term=assurance+pno
+https://www.jemassuremoinscher.fr/landing/pno?utm_source=google&utm_medium=cpc&utm_campaign=pno_proprietaires&utm_term=assurance+pno
 
 # Meta Ads - Campagne MRP
-https://www.assurmoinschere.fr/landing/mrp?utm_source=facebook&utm_medium=cpc&utm_campaign=mrp_entreprises&utm_content=video_sinistre
+https://www.jemassuremoinscher.fr/landing/mrp?utm_source=facebook&utm_medium=cpc&utm_campaign=mrp_entreprises&utm_content=video_sinistre
 ```
 
 ## 🎯 Optimisations Clés
@@ -125,7 +125,7 @@ Parameters:
       Titre 2 : Devis Gratuit en 2 Minutes
       Titre 3 : Rappel Sous 2h Garanti
       Description : Comparez 30+ assureurs gratuitement...
-      URL finale : https://www.assurmoinschere.fr/landing/auto
+      URL finale : https://www.jemassuremoinscher.fr/landing/auto
 ```
 
 ### Extensions d'Annonce

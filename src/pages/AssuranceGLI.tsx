@@ -125,20 +125,7 @@ const AssuranceGLI = () => {
     try {
       const insurers = calculatePrice(values);
       setSubmittedFormData({ ...values, insurers });
-      
-      const { error } = await supabase.from('insurance_quotes').insert({
-        insurance_type: 'gli',
-        full_name: 'Prospect GLI',
-        email: 'prospect@example.com',
-        phone: '0000000000',
-        quote_data: values,
-        status: 'pending',
-      });
-
-      if (error) throw error;
-
       setShowComparison(true);
-      toast.success('Devis GLI généré avec succès !');
     } catch (error) {
       console.error('Error:', error);
       toast.error('Erreur lors de la génération du devis');
@@ -174,8 +161,8 @@ const AssuranceGLI = () => {
   ];
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Garantie Loyer Impayé", url: "https://www.assurmoinschere.fr/assurance-gli" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Garantie Loyer Impayé", url: "https://www.jemassuremoinscher.fr/assurance-gli" }
   ]);
 
   const serviceSchema = addServiceSchema({
@@ -193,7 +180,7 @@ const AssuranceGLI = () => {
       <SEO 
         title="Garantie Loyer Impayé (GLI) - Comparez les meilleures offres"
         description="Protégez vos revenus locatifs avec une assurance GLI. Comparateur en ligne gratuit pour trouver la meilleure garantie loyer impayé au meilleur prix."
-        canonical="https://www.assurmoinschere.fr/assurance-gli"
+        canonical="https://www.jemassuremoinscher.fr/assurance-gli"
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
         keywords="assurance GLI, garantie loyer impayé, protection propriétaire, loyers impayés, assurance bailleur"
       />

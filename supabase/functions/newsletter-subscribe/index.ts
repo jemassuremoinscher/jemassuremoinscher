@@ -100,10 +100,23 @@ const handler = async (req: Request): Promise<Response> => {
     const url = new URL(req.url);
     const action = url.searchParams.get("action");
 
-    // Handle email confirmation
+    // Handle email confirmation (supports GET from email link or POST with body)
     if (action === "confirm") {
-      const { token }: ConfirmRequest = await req.json();
-      
+      let token: string;
+      if (req.method === "GET") {
+        token = url.searchParams.get("token") || "";
+      } else {
+        const body: ConfirmRequest = await req.json();
+        token = body.token;
+      }
+
+      if (!token) {
+        return new Response(
+          JSON.stringify({ success: false, message: "Token manquant" }),
+          { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+        );
+      }
+
       const { data: subscriber, error } = await supabase
         .from("newsletter_subscribers")
         .update({
@@ -262,15 +275,15 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     // Send confirmation email
-    const confirmationUrl = `${Deno.env.get("SUPABASE_URL")}/functions/v1/newsletter-subscribe?action=confirm`;
+    const confirmationUrl = `${Deno.env.get("SUPABASE_URL")}/functions/v1/newsletter-subscribe?action=confirm&token=${confirmationToken}`;
     
     const { error: emailError } = await resend.emails.send({
-      from: "Le Comparateur Assurance <onboarding@resend.dev>",
+      from: "jemassuremoinscher <onboarding@resend.dev>",
       to: [normalizedEmail],
       subject: "Confirmez votre abonnement à notre newsletter",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h1 style="color: #6b46c1; margin-bottom: 20px;">Bienvenue chez Le Comparateur Assurance !</h1>
+          <h1 style="color: #6b46c1; margin-bottom: 20px;">Bienvenue chez jemassuremoinscher !</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333;">
             Merci de vous être inscrit à notre newsletter ! Vous êtes à un clic de recevoir nos meilleurs conseils en assurance.
@@ -294,7 +307,7 @@ const handler = async (req: Request): Promise<Response> => {
           <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
           
           <p style="font-size: 12px; color: #999; text-align: center;">
-            © ${new Date().getFullYear()} Le Comparateur Assurance. Tous droits réservés.
+            © ${new Date().getFullYear()} jemassuremoinscher. Tous droits réservés.
           </p>
         </div>
       `,

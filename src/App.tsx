@@ -9,6 +9,7 @@ import { AIChatbot } from "@/components/chatbot/AIChatbot";
 import SkipToMain from "@/components/SkipToMain";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import RouteTracker from "@/components/RouteTracker";
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -66,6 +67,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <RouteTracker />
           <SkipToMain />
           <ErrorBoundary>
             <Suspense fallback={

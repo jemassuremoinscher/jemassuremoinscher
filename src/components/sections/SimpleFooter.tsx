@@ -106,7 +106,7 @@ const SimpleFooter = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-background/20">
           <p className="text-center text-background/60 text-sm">
-            © 2024 Jemassuremoinscher.fr - Tous droits réservés
+            © {new Date().getFullYear()} Jemassuremoinscher.fr - Tous droits réservés
           </p>
         </div>
       </div>

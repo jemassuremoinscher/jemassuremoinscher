@@ -23,7 +23,7 @@ Ajoutez un enregistrement TXT dans votre configuration DNS avec le code fourni.
 2. Entrez l'URL de votre sitemap : `https://ybqxpngkbgosobtetxac.supabase.co/functions/v1/sitemap`
 3. Cliquez sur "Envoyer"
 
-**Note importante :** Une fois votre domaine personnalisé configuré, vous pourrez également utiliser `https://votre-domaine.fr/sitemap.xml`
+**Note importante :** Une fois votre domaine personnalisé configuré, vous pourrez également utiliser `https://www.jemassuremoinscher.fr/sitemap.xml`
 
 **Résultat attendu :** "Réussite" avec le nombre d'URLs découvertes
 
@@ -31,15 +31,15 @@ Ajoutez un enregistrement TXT dans votre configuration DNS avec le code fourni.
 
 ### Pages à indexer immédiatement :
 ```
-https://votre-domaine.fr/
-https://votre-domaine.fr/comparateur
-https://votre-domaine.fr/blog
-https://votre-domaine.fr/blog/meilleure-assurance-auto-2025-comparatif
-https://votre-domaine.fr/blog/top-10-meilleures-mutuelles-sante-2025
-https://votre-domaine.fr/blog/assurance-jeune-conducteur-2025-moins-cher
-https://votre-domaine.fr/assurance-auto
-https://votre-domaine.fr/assurance-sante
-https://votre-domaine.fr/assurance-habitation
+https://www.jemassuremoinscher.fr/
+https://www.jemassuremoinscher.fr/comparateur
+https://www.jemassuremoinscher.fr/blog
+https://www.jemassuremoinscher.fr/blog/meilleure-assurance-auto-2025-comparatif
+https://www.jemassuremoinscher.fr/blog/top-10-meilleures-mutuelles-sante-2025
+https://www.jemassuremoinscher.fr/blog/assurance-jeune-conducteur-2025-moins-cher
+https://www.jemassuremoinscher.fr/assurance-auto
+https://www.jemassuremoinscher.fr/assurance-sante
+https://www.jemassuremoinscher.fr/assurance-habitation
 ```
 
 ### Procédure :

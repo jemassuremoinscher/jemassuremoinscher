@@ -46,8 +46,8 @@ const testimonials = [
 
 const AvisClients = () => {
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Avis Clients", url: "https://www.assurmoinschere.fr/avis-clients" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Avis Clients", url: "https://www.jemassuremoinscher.fr/avis-clients" }
   ]);
 
   const ratingSchema = addAggregateRatingSchema(
@@ -62,7 +62,7 @@ const AvisClients = () => {
         title="Avis Clients - Témoignages et Retours d'Expérience | jemassuremoinscher"
         description="Découvrez les avis de nos clients sur notre comparateur d'assurance. Note moyenne de 4.9/5 sur 2 547 avis vérifiés. Témoignages authentiques sur nos services."
         keywords="avis clients, témoignages assurance, retour expérience, satisfaction client, comparateur avis"
-        canonical="https://www.assurmoinschere.fr/avis-clients"
+        canonical="https://www.jemassuremoinscher.fr/avis-clients"
         jsonLd={[breadcrumbSchema, ratingSchema]}
       />
       <Header />

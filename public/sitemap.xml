@@ -2,248 +2,220 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage -->
   <url>
-    <loc>https://www.assurmoinschere.fr/</loc>
-    <lastmod>2025-11-05</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-  
+
   <!-- Main Pages -->
   <url>
-    <loc>https://www.assurmoinschere.fr/comparateur</loc>
-    <lastmod>2025-11-05</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/comparateur</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/comparateur-garanties</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.assurmoinschere.fr/blog</loc>
-    <lastmod>2025-11-05</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/blog</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/contact</loc>
-    <lastmod>2025-11-05</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/qui-sommes-nous</loc>
-    <lastmod>2025-11-05</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/qui-sommes-nous</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/nos-partenaires</loc>
-    <lastmod>2025-11-05</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/nos-partenaires</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/avis-clients</loc>
-    <lastmod>2025-11-11</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/avis-clients</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/gestion-locative</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://www.jemassuremoinscher.fr/gestion-locative</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- Insurance Pages - High Priority -->
+
+  <!-- Insurance Pages -->
   <url>
-    <loc>https://www.assurmoinschere.fr/assurance-auto</loc>
-    <lastmod>2025-11-05</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/assurance-auto</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/assurance-moto</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.assurmoinschere.fr/assurance-habitation</loc>
-    <lastmod>2025-11-05</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/assurance-moto</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/assurance-sante</loc>
-    <lastmod>2025-11-05</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/assurance-habitation</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/assurance-vie</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://www.jemassuremoinscher.fr/assurance-sante</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/assurance-pret</loc>
-    <lastmod>2025-11-05</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/assurance-vie</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/assurance-pret</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/assurance-animaux</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://www.jemassuremoinscher.fr/assurance-animaux</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/assurance-pno</loc>
-    <lastmod>2025-11-05</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/assurance-pno</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/assurance-gli</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.assurmoinschere.fr/assurance-mrp</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.assurmoinschere.fr/assurance-prevoyance</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.assurmoinschere.fr/assurance-rc-pro</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- Blog Articles 2025 - SEO Priority -->
-  <url>
-    <loc>https://www.assurmoinschere.fr/blog/meilleure-assurance-auto-2025-comparatif</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.assurmoinschere.fr/blog/top-10-meilleures-mutuelles-sante-2025</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.assurmoinschere.fr/blog/assurance-jeune-conducteur-2025-moins-cher</loc>
-    <lastmod>2025-01-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- Blog Articles 2024 -->
-  <url>
-    <loc>https://www.assurmoinschere.fr/blog/loi-lemoine-assurance-emprunteur-2024</loc>
-    <lastmod>2024-01-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.assurmoinschere.fr/blog/loi-hamon-resiliation-assurance</loc>
-    <lastmod>2024-01-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.assurmoinschere.fr/blog/guide-choisir-assurance-auto-2024</loc>
-    <lastmod>2024-01-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.assurmoinschere.fr/blog/assurance-habitation-garanties-indispensables</loc>
-    <lastmod>2025-11-11</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/assurance-gli</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/blog/top-5-erreurs-assurance-habitation</loc>
-    <lastmod>2024-01-06</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.jemassuremoinscher.fr/assurance-mrp</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/blog/assurance-animaux-comparatif-2024</loc>
-    <lastmod>2024-01-05</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://www.jemassuremoinscher.fr/assurance-prevoyance</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/blog/mutuelle-dentaire-remboursement-optimal</loc>
-    <lastmod>2024-01-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.assurmoinschere.fr/blog/assurance-pret-immobilier-deleguation</loc>
-    <lastmod>2024-01-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.assurmoinschere.fr/blog/comparatif-mutuelle-sante-seniors</loc>
-    <lastmod>2024-01-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.assurmoinschere.fr/blog/choisir-mutuelle-sante-2024</loc>
-    <lastmod>2023-12-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- Landing Pages -->
-  <url>
-    <loc>https://www.assurmoinschere.fr/landing/assurance</loc>
-    <lastmod>2025-01-10</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/assurance-rc-pro</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
+  <!-- Blog Articles (matching actual slugs in blogArticles.ts) -->
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/meilleure-assurance-auto-2025-comparatif</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/top-10-meilleures-mutuelles-sante-2025</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-jeune-conducteur-2025-moins-cher</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/meilleure-assurance-auto-2025</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/top-mutuelles-sante-2025</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/comparatif-habitation-2025</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/loi-lemoine-2025</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/nouvelle-reglementation-assurance-2025</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/droits-des-assures-2025</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/loi-lemoine-assurance-emprunteur-2024</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/loi-hamon-resiliation-assurance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/guide-choisir-assurance-auto-2024</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-habitation-garanties-indispensables</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/mutuelle-sante-reduire-frais-medicaux-2024</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-jeune-conducteur-astuces</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/resiliation-assurance-droits-2024</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/10-conseils-economiser-assurances</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/bien-choisir-mutuelle-sante</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Legal Pages -->
   <url>
-    <loc>https://www.assurmoinschere.fr/mentions-legales</loc>
-    <lastmod>2025-01-05</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/mentions-legales</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/politique-confidentialite</loc>
-    <lastmod>2025-01-05</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/politique-confidentialite</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/politique-cookies</loc>
-    <lastmod>2025-11-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://www.jemassuremoinscher.fr/politique-cookies</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.assurmoinschere.fr/cgu</loc>
-    <lastmod>2025-01-05</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/cgu</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

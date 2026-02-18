@@ -101,8 +101,8 @@ const AssurancePret = () => {
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.assurmoinschere.fr/" },
-    { name: "Assurance Prêt", url: "https://www.assurmoinschere.fr/assurance-pret" }
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Assurance Prêt", url: "https://www.jemassuremoinscher.fr/assurance-pret" }
   ]);
 
   const serviceSchema = addServiceSchema({
@@ -133,7 +133,7 @@ const AssurancePret = () => {
         title="Assurance Prêt Immobilier - Économisez jusqu'à 50% | jemassuremoinscher"
         description="Comparez les assurances emprunteur et économisez des milliers d'euros sur votre crédit immobilier. Devis gratuit et changement simplifié avec la loi Lemoine."
         keywords="assurance prêt immobilier, assurance emprunteur, délégation assurance, loi Lemoine, assurance crédit"
-        canonical="https://www.assurmoinschere.fr/assurance-pret"
+        canonical="https://www.jemassuremoinscher.fr/assurance-pret"
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />

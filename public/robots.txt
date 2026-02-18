@@ -1,57 +1,22 @@
 # Robots.txt pour jemassuremoinscher
-# https://www.assurmoinschere.fr
+# https://www.jemassuremoinscher.fr
 
-# Règles générales pour tous les robots
 User-agent: *
 Allow: /
 
-# Pages à ne pas indexer - Administration et Authentification
+# Pages privées
 Disallow: /admin
-Disallow: /auth
 Disallow: /admin/
+Disallow: /auth
 Disallow: /auth/
-
-# Pages utilitaires à ne pas indexer
 Disallow: /newsletter-gestion
 Disallow: /newsletter-gestion/
-
-# APIs et fonctions backend
+Disallow: /commercial
+Disallow: /commercial/
 Disallow: /api/
-Disallow: /*.json$
-
-# Fichiers système et technique
-Disallow: /*.js$
-Disallow: /*.css$
 Disallow: /*.map$
 
-# Pages de résultat de recherche avec paramètres
-Disallow: /*?*
-
-# Sitemap principal
-Sitemap: https://www.assurmoinschere.fr/sitemap.xml
-
-# Configuration spécifique pour Google
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-Disallow: /admin
-Disallow: /auth
-Disallow: /api/
-
-# Configuration spécifique pour Bing
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-Disallow: /admin
-Disallow: /auth
-Disallow: /api/
-
-# Configuration pour Yahoo
-User-agent: Slurp
-Allow: /
-Crawl-delay: 2
-Disallow: /admin
-Disallow: /auth
+Sitemap: https://www.jemassuremoinscher.fr/sitemap.xml
 
 # Bots des réseaux sociaux - Autoriser pour Open Graph
 User-agent: Twitterbot
@@ -66,13 +31,7 @@ Allow: /
 User-agent: WhatsApp
 Allow: /
 
-# Crawlers d'images
-User-agent: Googlebot-Image
-Allow: /
-Disallow: /admin
-Disallow: /auth
-
-# Bots à bloquer complètement (scraping abusif)
+# Bots à bloquer (scraping abusif)
 User-agent: AhrefsBot
 Disallow: /
 

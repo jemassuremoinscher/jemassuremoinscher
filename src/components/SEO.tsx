@@ -21,11 +21,11 @@ const SEO = ({
   jsonLd 
 }: SEOProps) => {
   const location = useLocation();
-  const baseUrl = 'https://www.assurmoinschere.fr';
+  const baseUrl = 'https://www.jemassuremoinscher.fr';
   
   const defaultTitle = 'jemassuremoinscher - Économisez jusqu\'à 947€/an';
   const defaultDescription = 'Comparez gratuitement les meilleures assurances auto, santé, habitation, animaux et prêt en France. Devis en 2 minutes.';
-  const defaultImage = 'https://lovable.dev/opengraph-image-p98pqg.png';
+  const defaultImage = 'https://www.jemassuremoinscher.fr/opengraph-image.png';
 
   const pageTitle = title || defaultTitle;
   const pageDescription = description || defaultDescription;
