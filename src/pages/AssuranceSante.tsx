@@ -8,7 +8,7 @@ import { Heart, Shield, Euro, Stethoscope, Eye, Pill, Baby, Clock } from "lucide
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
@@ -29,7 +29,7 @@ const formSchema = z.object({
 });
 
 const AssuranceSante = () => {
-  const { toast } = useToast();
+
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -74,10 +74,8 @@ const AssuranceSante = () => {
       setInsurerOffers(offers);
     } catch (error: any) {
       console.error("Error:", error);
-      toast({
-        title: "Erreur",
+      toast.error("Erreur", {
         description: "Une erreur est survenue. Veuillez réessayer.",
-        variant: "destructive",
       });
     } finally {
       setIsLoading(false);

@@ -34,8 +34,29 @@ export const TransferDialog = ({ isOpen, onClose, messages }: TransferDialogProp
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const PHONE_REGEX = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+
+    if (!trimmedName || trimmedName.length < 2) {
+      toast.error("Veuillez renseigner votre nom (2 caractères minimum)");
+      return;
+    }
+
+    if (!trimmedEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+      toast.error("Veuillez entrer une adresse email valide");
+      return;
+    }
+
+    if (formData.phone && !PHONE_REGEX.test(formData.phone)) {
+      toast.error("Numéro de téléphone invalide (format français attendu)");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {

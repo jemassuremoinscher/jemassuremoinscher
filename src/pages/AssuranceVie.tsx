@@ -17,7 +17,7 @@ import InfoSection from "@/components/insurance/InfoSection";
 import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 
 const formSchema = z.object({
@@ -33,7 +33,7 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 const AssuranceVie = () => {
-  const { toast } = useToast();
+
   const [showComparison, setShowComparison] = useState(false);
   const [insurers, setInsurers] = useState<Array<{
     name: string;
@@ -131,8 +131,7 @@ const AssuranceVie = () => {
     setInsurers(calculatedInsurers);
     setShowComparison(true);
     
-    toast({
-      title: "Comparaison générée !",
+    toast.success("Comparaison générée !", {
       description: "Voici les meilleures offres pour votre profil.",
     });
   };

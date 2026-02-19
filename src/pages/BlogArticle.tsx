@@ -8,22 +8,20 @@ import { Calendar, Clock, User, ArrowLeft, Share2 } from "lucide-react";
 import { blogArticles } from "@/data/blogArticles";
 import SEO from "@/components/SEO";
 import ReactMarkdown from "react-markdown";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { CommentsSection } from "@/components/blog/CommentsSection";
 import { addArticleSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 
 const BlogArticle = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { toast } = useToast();
+
   
   const article = blogArticles.find(a => a.slug === slug);
 
   if (!article) {
-    toast({
-      title: "Article introuvable",
+    toast.error("Article introuvable", {
       description: "L'article demandé n'existe pas ou a été déplacé. Vous allez être redirigé vers le blog.",
-      variant: "destructive",
     });
     setTimeout(() => navigate("/blog"), 2000);
     return null;
@@ -43,8 +41,7 @@ const BlogArticle = () => {
     } else {
       // Fallback: copier l'URL
       navigator.clipboard.writeText(window.location.href);
-      toast({
-        title: "Lien copié !",
+      toast.success("Lien copié !", {
         description: "Le lien de l'article a été copié dans le presse-papier.",
       });
     }

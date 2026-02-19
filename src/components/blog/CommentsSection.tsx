@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { MessageSquare, User, Loader2, Send } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 
@@ -97,18 +97,15 @@ export const CommentsSection = ({ articleSlug }: CommentsSectionProps) => {
 
       if (error) throw error;
 
-      toast({
-        title: "Commentaire envoyé !",
+      toast.success("Commentaire envoyé !", {
         description: "Votre commentaire sera publié après modération.",
       });
       
       form.reset();
     } catch (error) {
       console.error("Error submitting comment:", error);
-      toast({
-        title: "Erreur",
+      toast.error("Erreur", {
         description: "Une erreur est survenue. Veuillez réessayer.",
-        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);

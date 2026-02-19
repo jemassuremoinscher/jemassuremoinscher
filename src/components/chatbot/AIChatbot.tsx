@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { MessageCircle, X, Send, Loader2, Bot, User, UserCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { TransferDialog } from "./TransferDialog";
 
@@ -81,10 +81,8 @@ export const AIChatbot = () => {
       }
     } catch (error) {
       console.error('Chatbot error:', error);
-      toast({
-        title: "Erreur",
+      toast.error("Erreur", {
         description: "Impossible de contacter l'assistant. Veuillez réessayer.",
-        variant: "destructive",
       });
       
       setMessages(prev => [...prev, {

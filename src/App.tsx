@@ -1,5 +1,4 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -49,6 +48,8 @@ const NosPartenaires = lazy(() => import("./pages/NosPartenaires"));
 const AvisClients = lazy(() => import("./pages/AvisClients"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogArticle = lazy(() => import("./pages/BlogArticle"));
+const Glossaire = lazy(() => import("./pages/Glossaire"));
+const GlossaireTerme = lazy(() => import("./pages/GlossaireTerme"));
 const PolitiqueCookies = lazy(() => import("./pages/PolitiqueCookies"));
 const MentionsLegales = lazy(() => import("./pages/MentionsLegales"));
 const CGU = lazy(() => import("./pages/CGU"));
@@ -65,7 +66,6 @@ const App = () => (
     <LanguageProvider>
       <TooltipProvider>
         <Toaster />
-        <Sonner />
         <BrowserRouter>
           <RouteTracker />
           <SkipToMain />
@@ -114,6 +114,8 @@ const App = () => (
                 <Route path="/avis-clients" element={<AvisClients />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogArticle />} />
+                <Route path="/glossaire" element={<Glossaire />} />
+                <Route path="/glossaire/:slug" element={<GlossaireTerme />} />
                 <Route path="/politique-cookies" element={<PolitiqueCookies />} />
                 <Route path="/mentions-legales" element={<MentionsLegales />} />
                 <Route path="/cgu" element={<CGU />} />

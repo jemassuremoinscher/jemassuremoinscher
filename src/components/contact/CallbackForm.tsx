@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Phone, Loader2, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useHoneypot } from "@/hooks/useHoneypot";
 import { trackGoogleAdsConversion } from "@/utils/googleAdsTracking";
@@ -83,8 +83,7 @@ export const CallbackForm = () => {
       }).catch(err => console.error('Email notification error:', err));
 
       setIsSuccess(true);
-      toast({
-        title: "Demande enregistrée !",
+      toast.success("Demande enregistrée !", {
         description: "Nous vous rappellerons dans les meilleurs délais.",
       });
       
@@ -101,10 +100,8 @@ export const CallbackForm = () => {
       form.reset();
     } catch (error) {
       console.error("Error submitting callback request:", error);
-      toast({
-        title: "Erreur",
+      toast.error("Erreur", {
         description: "Une erreur est survenue. Veuillez réessayer.",
-        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);

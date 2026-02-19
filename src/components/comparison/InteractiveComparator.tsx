@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Check, TrendingDown, AlertCircle, Star, Sparkles, Link, Facebook, Twitter, Linkedin, MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { SubscriptionModal } from './SubscriptionModal';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
 
 interface InsuranceOffer {
@@ -77,7 +77,7 @@ export const InteractiveComparator = () => {
   const [sortBy, setSortBy] = useState<'price' | 'savings' | 'rating'>('savings');
   const [selectedOffer, setSelectedOffer] = useState<InsuranceOffer | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { toast } = useToast();
+
   const { trackEvent } = useAnalytics();
 
   const handleCopyLink = async () => {
@@ -87,15 +87,12 @@ export const InteractiveComparator = () => {
         category: 'comparator_share',
         label: 'copy_link',
       });
-      toast({
-        title: "Lien copié !",
+      toast.success("Lien copié !", {
         description: "Le lien a été copié dans votre presse-papiers",
       });
     } catch (err) {
-      toast({
-        title: "Erreur",
+      toast.error("Erreur", {
         description: "Impossible de copier le lien",
-        variant: "destructive",
       });
     }
   };

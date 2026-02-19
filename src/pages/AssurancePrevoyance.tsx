@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
@@ -65,7 +65,7 @@ const prevoyanceInsurers: InsurerConfig[] = [
 ];
 
 const AssurancePrevoyance = () => {
-  const { toast } = useToast();
+
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
@@ -116,16 +116,13 @@ const AssurancePrevoyance = () => {
 
       const offers = generateInsurerOffers(price, prevoyanceInsurers);
       setInsurerOffers(offers);
-      toast({
-        title: "Offres générées !",
+      toast.success("Offres générées !", {
         description: "Consultez les meilleures offres de prévoyance.",
       });
     } catch (error: any) {
       console.error("Error:", error);
-      toast({
-        title: "Erreur",
+      toast.error("Erreur", {
         description: "Une erreur est survenue. Veuillez réessayer.",
-        variant: "destructive",
       });
     } finally {
       setIsLoading(false);

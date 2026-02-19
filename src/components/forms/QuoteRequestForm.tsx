@@ -11,7 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { FileText, Loader2, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useHoneypot } from "@/hooks/useHoneypot";
 import { trackGoogleAdsConversionWithParams } from "@/utils/googleAdsTracking";
@@ -99,8 +99,7 @@ export const QuoteRequestForm = () => {
       }
 
       setIsSuccess(true);
-      toast({
-        title: "Demande envoyée !",
+      toast.success("Demande envoyée !", {
         description: "Nous vous contacterons dans les 24h avec votre devis personnalisé.",
       });
       
@@ -129,10 +128,8 @@ export const QuoteRequestForm = () => {
       form.reset();
     } catch (error) {
       console.error("Error submitting quote:", error);
-      toast({
-        title: "Erreur",
+      toast.error("Erreur", {
         description: "Une erreur est survenue. Veuillez réessayer.",
-        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);

@@ -8,7 +8,7 @@ import { Home, Shield, Euro, Clock, Flame, Droplets, Lock, Zap } from "lucide-re
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
@@ -30,7 +30,7 @@ const formSchema = z.object({
 });
 
 const AssuranceHabitation = () => {
-  const { toast } = useToast();
+
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -80,16 +80,13 @@ const AssuranceHabitation = () => {
 
       const offers = generateInsurerOffers(price, homeInsurers);
       setInsurerOffers(offers);
-      toast({
-        title: "Demande envoyée !",
+      toast.success("Demande envoyée !", {
         description: "Vous allez recevoir votre devis par email.",
       });
     } catch (error: any) {
       console.error("Error:", error);
-      toast({
-        title: "Erreur",
+      toast.error("Erreur", {
         description: "Une erreur est survenue. Veuillez réessayer.",
-        variant: "destructive",
       });
     } finally {
       setIsLoading(false);

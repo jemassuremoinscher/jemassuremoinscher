@@ -50,9 +50,10 @@ const PlanDuSite = () => {
       ]
     },
     {
-      title: "Blog & Actualités",
+      title: "Blog & Ressources",
       links: [
         { name: "Tous les articles", path: "/blog" },
+        { name: "Glossaire de l'assurance", path: "/glossaire" },
       ]
     },
     {

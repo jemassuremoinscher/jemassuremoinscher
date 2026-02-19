@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { useAnalytics } from '@/hooks/useAnalytics';
 
@@ -55,7 +55,7 @@ export const InsuranceQuiz = () => {
   const [fullName, setFullName] = useState('');
   const [showResults, setShowResults] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
+
   const { trackEvent, trackConversion } = useAnalytics();
 
   const progress = ((currentQuestion + 1) / questions.length) * 100;
@@ -129,11 +129,19 @@ export const InsuranceQuiz = () => {
   };
 
   const handleSubmit = async () => {
-    if (!email || !fullName) {
-      toast({
-        title: 'Informations manquantes',
-        description: 'Veuillez renseigner votre nom et email',
-        variant: 'destructive',
+    const trimmedName = fullName.trim();
+    const trimmedEmail = email.trim();
+
+    if (!trimmedName || trimmedName.length < 2) {
+      toast.error('Nom invalide', {
+        description: 'Veuillez renseigner votre nom (2 caractères minimum)',
+      });
+      return;
+    }
+
+    if (!trimmedEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+      toast.error('Email invalide', {
+        description: 'Veuillez entrer une adresse email valide',
       });
       return;
     }
@@ -158,16 +166,13 @@ export const InsuranceQuiz = () => {
         label: 'Quiz completed',
       });
 
-      toast({
-        title: '✨ Résultats envoyés !',
+      toast.success('Résultats envoyés !', {
         description: 'Consultez vos recommandations personnalisées ci-dessous',
       });
     } catch (error) {
       console.error('Error submitting quiz:', error);
-      toast({
-        title: 'Erreur',
+      toast.error('Erreur', {
         description: 'Une erreur est survenue. Veuillez réessayer.',
-        variant: 'destructive',
       });
     } finally {
       setIsSubmitting(false);

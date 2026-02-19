@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail, Check, Loader2 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
@@ -10,17 +10,15 @@ export const NewsletterSection = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
-  const { toast } = useToast();
+
   const { trackEvent, trackConversion } = useAnalytics();
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      toast({
-        title: "Email invalide",
+      toast.error("Email invalide", {
         description: "Veuillez entrer une adresse email valide.",
-        variant: "destructive",
       });
       return;
     }
@@ -37,8 +35,7 @@ export const NewsletterSection = () => {
       if (data?.success) {
         setIsSubscribed(true);
         setEmail("");
-        toast({
-          title: "Presque terminé !",
+        toast.success("Presque terminé !", {
           description: data.message,
         });
         
@@ -48,18 +45,14 @@ export const NewsletterSection = () => {
           category: 'engagement',
         });
       } else {
-        toast({
-          title: "Erreur",
+        toast.error("Erreur", {
           description: data?.message || "Une erreur est survenue.",
-          variant: "destructive",
         });
       }
     } catch (error: any) {
       console.error("Newsletter subscription error:", error);
-      toast({
-        title: "Erreur",
+      toast.error("Erreur", {
         description: "Impossible de s'inscrire pour le moment. Veuillez réessayer plus tard.",
-        variant: "destructive",
       });
     } finally {
       setIsLoading(false);
