@@ -1,30 +1,20 @@
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 import arthurStanding from "@/assets/mascotte/arthur-standing.png";
 
-const FAQS = [
-  {
-    question: "Comment économiser sur mon assurance auto ?",
-    answer:
-      "Pour économiser sur votre assurance auto, comparez les offres de plusieurs assureurs grâce à notre comparateur gratuit. Analysez les garanties proposées, ajustez votre franchise, et profitez des réductions pour bon conducteur. En moyenne, nos utilisateurs économisent 320€ par an sur leur assurance auto.",
-  },
-  {
-    question: "Est-ce vraiment gratuit ?",
-    answer:
-      "Oui, notre service de comparaison est 100% gratuit et sans engagement. Nous sommes rémunérés par les assureurs partenaires uniquement si vous souscrivez à une offre. Vous ne payez jamais de frais supplémentaires pour utiliser notre comparateur.",
-  },
-  {
-    question: "Puis-je changer d'assurance n'importe quand ?",
-    answer:
-      "Depuis la loi Hamon de 2015, vous pouvez résilier votre contrat d'assurance auto, moto ou habitation à tout moment après la première année de souscription. Pour l'assurance santé, la résiliation est possible à la date d'anniversaire du contrat avec un préavis de 2 mois, ou à tout moment après la première année grâce à la résiliation infra-annuelle.",
-  },
-];
-
 const SEOFaq = () => {
+  const { t } = useLanguage();
+
+  const FAQS = [
+    { question: t('seoFaq.q1'), answer: t('seoFaq.a1') },
+    { question: t('seoFaq.q2'), answer: t('seoFaq.a2') },
+    { question: t('seoFaq.q3'), answer: t('seoFaq.a3') },
+  ];
+
   return (
     <section className="py-16 md:py-20 bg-background">
       <div className="container mx-auto px-4">
-        {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -32,14 +22,13 @@ const SEOFaq = () => {
           className="text-center mb-10 md:mb-14"
         >
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3">
-            Questions fréquentes
+            {t('seoFaq.title')}
           </h2>
           <p className="text-muted-foreground max-w-md mx-auto">
-            Tout ce que vous devez savoir sur la comparaison d'assurances
+            {t('seoFaq.subtitle')}
           </p>
         </motion.div>
 
-        {/* FAQ Accordion - Using semantic details/summary for SEO */}
         <div className="max-w-3xl mx-auto space-y-4">
           {FAQS.map((faq, index) => (
             <motion.div
@@ -57,16 +46,13 @@ const SEOFaq = () => {
                   <ChevronDown className="w-5 h-5 text-muted-foreground flex-shrink-0 transition-transform duration-300 group-open:rotate-180" />
                 </summary>
                 <div className="px-5 pb-5 md:px-6 md:pb-6">
-                  <p className="text-muted-foreground leading-relaxed">
-                    {faq.answer}
-                  </p>
+                  <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
                 </div>
               </details>
             </motion.div>
           ))}
         </div>
 
-        {/* Arthur CTA */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -75,7 +61,7 @@ const SEOFaq = () => {
         >
           <motion.img
             src={arthurStanding}
-            alt="Arthur mascotte jemassuremoinscher - disponible pour vous aider"
+            alt="Arthur"
             className="w-16 h-auto md:w-20"
             loading="lazy"
             animate={{ y: [0, -6, 0] }}
@@ -83,12 +69,11 @@ const SEOFaq = () => {
           />
           <div className="bg-primary/10 border border-primary/20 rounded-xl px-5 py-3 text-center md:text-left">
             <p className="text-sm md:text-base font-medium text-foreground">
-              D'autres questions ? <span className="text-primary font-bold">Arthur</span> est là pour vous !
+              {t('seoFaq.moreQuestions')} <span className="text-primary font-bold">Arthur</span> {t('seoFaq.arthurHere')}
             </p>
           </div>
         </motion.div>
 
-        {/* Schema.org FAQ structured data for SEO */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -98,10 +83,7 @@ const SEOFaq = () => {
               mainEntity: FAQS.map((faq) => ({
                 "@type": "Question",
                 name: faq.question,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: faq.answer,
-                },
+                acceptedAnswer: { "@type": "Answer", text: faq.answer },
               })),
             }),
           }}
