@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 
 // Import partner logos — same files as Partners.tsx for consistency
-import generaliLogo from "@/assets/logos/generali.png";
+import generaliLogo from "@/assets/logos/generali.jpg";
 import agfLogo from "@/assets/logos/agf.png";
-import maifLogo from "@/assets/logos/maif.png";
-import axaLogo from "@/assets/logos/axa.png";
-import swissLifeLogo from "@/assets/logos/swiss-life.png";
+import maifLogo from "@/assets/logos/maif.webp";
+import axaLogo from "@/assets/logos/axa.webp";
+import swissLifeLogo from "@/assets/logos/swisslife.webp";
 import maafLogo from "@/assets/logos/maaf.webp";
-import matmutLogo from "@/assets/logos/matmut.png";
-import allianzLogo from "@/assets/logos/allianz.png";
+import matmutLogo from "@/assets/logos/matmut.webp";
+import allianzLogo from "@/assets/logos/allianz.webp";
 
 const PartnersSlider = () => {
   const partners = [
