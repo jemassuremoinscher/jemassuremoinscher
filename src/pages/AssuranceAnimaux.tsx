@@ -18,10 +18,11 @@ import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
 import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addHowToSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const formSchema = z.object({
   typeAnimal: z.string().min(1, "Champ requis"),
@@ -33,6 +34,7 @@ const formSchema = z.object({
 });
 
 const AssuranceAnimaux = () => {
+  const { t } = useLanguage();
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
@@ -52,38 +54,28 @@ const AssuranceAnimaux = () => {
       const basePrice = 25;
       const age = parseInt(values.ageAnimal);
       let price = basePrice;
-
-      if (values.typeAnimal === "chien") price += 15;
-      else if (values.typeAnimal === "chat") price += 5;
+      if (values.typeAnimal === "chien") price += 15; else if (values.typeAnimal === "chat") price += 5;
       if (age > 10) price += 25; else if (age > 8) price += 15; else if (age > 5) price += 8; else if (age < 1) price += 5;
       if (values.sterilise === "oui") price -= 3;
-
       const randomVariation = Math.floor(Math.random() * 12) - 6;
       price += randomVariation;
-
       const offers = generateInsurerOffers(price, petInsurers);
       setInsurerOffers(offers);
-      toast.success("Offres générées !", { description: "Consultez les meilleures offres pour votre animal." });
+      toast.success(t('insPage.toast.success'), { description: t('insPage.toast.successDescPet') });
     } catch (error: any) {
       console.error("Error:", error);
-      toast.error("Erreur", { description: "Une erreur est survenue. Veuillez réessayer." });
+      toast.error(t('insPage.toast.error'), { description: t('insPage.toast.errorDesc') });
     } finally { setIsLoading(false); }
   };
 
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Assurance Animaux", url: "https://www.jemassuremoinscher.fr/assurance-animaux" }
-  ]);
+  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Animaux", url: "https://www.jemassuremoinscher.fr/assurance-animaux" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Animaux", description: "Comparez les assurances pour chiens et chats. Remboursement des frais vétérinaires jusqu'à 100%.", provider: "jemassuremoinscher", areaServed: "France" });
-  const faqSchema = addFAQSchema([
-    { question: "Pourquoi assurer son animal ?", answer: "Pour couvrir les frais vétérinaires souvent élevés (accidents, maladies, chirurgie)." },
-    { question: "Combien coûte une assurance animaux ?", answer: "De 10€ à 60€/mois selon l'espèce, l'âge, la race et le niveau de garanties." }
-  ]);
+  const faqSchema = addFAQSchema([{ question: "Pourquoi assurer son animal ?", answer: "Pour couvrir les frais vétérinaires souvent élevés (accidents, maladies, chirurgie)." }, { question: "Combien coûte une assurance animaux ?", answer: "De 10€ à 60€/mois selon l'espèce, l'âge, la race et le niveau de garanties." }]);
 
   const advantages = [
-    { icon: Euro, title: "Jusqu'à 100% remboursé", description: "Les meilleurs taux de remboursement vétérinaire." },
-    { icon: Clock, title: "Devis en 2 minutes", description: "Simple, rapide et 100% gratuit." },
-    { icon: Shield, title: "10+ assureurs comparés", description: "Les meilleures mutuelles animaux." }
+    { icon: Euro, title: t('animauxPage.adv1.title'), description: t('animauxPage.adv1.desc') },
+    { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
+    { icon: Shield, title: t('animauxPage.adv2.title'), description: t('animauxPage.adv2.desc') }
   ];
 
   return (
@@ -96,9 +88,9 @@ const AssuranceAnimaux = () => {
           <div className="max-w-4xl mx-auto text-center relative">
             <img src={arthurThumbsUp} alt="Arthur" className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto" />
             <div className="flex justify-center mb-6"><div className="p-4 rounded-full bg-primary/10"><PawPrint className="h-12 w-12 text-primary" /></div></div>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Assurance Animaux</h1>
-            <p className="text-xl text-muted-foreground mb-8">Protégez la santé de votre compagnon et maîtrisez vos dépenses vétérinaires.</p>
-            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">Comparer maintenant</Button>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">{t('animauxPage.title')}</h1>
+            <p className="text-xl text-muted-foreground mb-8">{t('animauxPage.subtitle')}</p>
+            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
           </div>
         </div>
       </section>
@@ -112,19 +104,19 @@ const AssuranceAnimaux = () => {
 
         <div ref={formRef} className="max-w-3xl mx-auto mb-16">
           <Card className="p-8">
-            <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis personnalisé</h2>
+            <h2 className="text-2xl font-bold mb-6 text-card-foreground">{t('insPage.getQuote')}</h2>
             {insurerOffers.length > 0 ? (
               <InsuranceComparison insurers={insurerOffers} onNewQuote={() => setInsurerOffers([])} formData={submittedFormData} insuranceType="Assurance Animaux" />
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField control={form.control} name="typeAnimal" render={({ field }) => (<FormItem><FormLabel>Type d'animal</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Sélectionner" /></SelectTrigger></FormControl><SelectContent><SelectItem value="chien">Chien</SelectItem><SelectItem value="chat">Chat</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="race" render={({ field }) => (<FormItem><FormLabel>Race</FormLabel><FormControl><Input placeholder="Ex: Labrador, Siamois..." {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="ageAnimal" render={({ field }) => (<FormItem><FormLabel>Âge de l'animal</FormLabel><FormControl><Input type="number" placeholder="3" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="sexe" render={({ field }) => (<FormItem><FormLabel>Sexe</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Sélectionner" /></SelectTrigger></FormControl><SelectContent><SelectItem value="male">Mâle</SelectItem><SelectItem value="femelle">Femelle</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="sterilise" render={({ field }) => (<FormItem><FormLabel>Stérilisé/Castré</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Sélectionner" /></SelectTrigger></FormControl><SelectContent><SelectItem value="oui">Oui</SelectItem><SelectItem value="non">Non</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>Code postal</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? "Envoi en cours..." : "Comparer les offres"}</Button>
+                  <FormField control={form.control} name="typeAnimal" render={({ field }) => (<FormItem><FormLabel>{t('animauxPage.form.animalType')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="chien">{t('animauxPage.form.dog')}</SelectItem><SelectItem value="chat">{t('animauxPage.form.cat')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="race" render={({ field }) => (<FormItem><FormLabel>{t('animauxPage.form.breed')}</FormLabel><FormControl><Input placeholder={t('animauxPage.form.breedPlaceholder')} {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="ageAnimal" render={({ field }) => (<FormItem><FormLabel>{t('animauxPage.form.animalAge')}</FormLabel><FormControl><Input type="number" placeholder="3" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="sexe" render={({ field }) => (<FormItem><FormLabel>{t('animauxPage.form.sex')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="male">{t('animauxPage.form.male')}</SelectItem><SelectItem value="femelle">{t('animauxPage.form.female')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="sterilise" render={({ field }) => (<FormItem><FormLabel>{t('animauxPage.form.sterilized')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="oui">{t('animauxPage.form.yes')}</SelectItem><SelectItem value="non">{t('animauxPage.form.no')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? t('insPage.loading') : t('insPage.compareOffers')}</Button>
                 </form>
               </Form>
             )}
@@ -134,14 +126,14 @@ const AssuranceAnimaux = () => {
         <section className="max-w-4xl mx-auto mb-16">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="learn-more" className="border rounded-lg">
-              <AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold flex items-center gap-2">En savoir plus sur l'assurance animaux</span></AccordionTrigger>
+              <AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold flex items-center gap-2">{t('insPage.learnMore')} {t('animauxPage.learnMore')}</span></AccordionTrigger>
               <AccordionContent className="px-6 pb-6">
                 <div className="space-y-12">
-                  <InsuranceFAQ title="Questions fréquentes" faqs={[
-                    { question: "À partir de quel âge peut-on assurer son animal ?", answer: "Dès 2-3 mois jusqu'à 8-10 ans pour une première souscription." },
-                    { question: "Qu'est-ce que le délai de carence ?", answer: "Période après souscription pendant laquelle vous n'êtes pas couvert. Quelques jours pour les accidents, quelques mois pour les maladies." },
-                    { question: "Les vaccins sont-ils remboursés ?", answer: "Oui, avec les formules incluant un forfait prévention (vaccins, vermifuges, antiparasitaires)." },
-                    { question: "Que faire si mon animal a un problème de santé préexistant ?", answer: "Les affections préexistantes sont généralement exclues. Souscrivez le plus tôt possible." },
+                  <InsuranceFAQ title={t('insPage.faqTitle')} faqs={[
+                    { question: t('animauxPage.faq1.q'), answer: t('animauxPage.faq1.a') },
+                    { question: t('animauxPage.faq2.q'), answer: t('animauxPage.faq2.a') },
+                    { question: t('animauxPage.faq3.q'), answer: t('animauxPage.faq3.a') },
+                    { question: t('animauxPage.faq4.q'), answer: t('animauxPage.faq4.a') },
                   ]} />
                   <SavingsCalculator />
                   <QuoteRequestForm />
@@ -155,9 +147,9 @@ const AssuranceAnimaux = () => {
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
             <img src={arthurFlying} alt="Arthur" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" />
-            <h2 className="text-2xl font-bold mb-4">Prêt à protéger votre compagnon ?</h2>
-            <p className="text-muted-foreground mb-6">Comparez gratuitement les meilleures mutuelles animaux en 2 minutes.</p>
-            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">Comparer les offres maintenant</Button>
+            <h2 className="text-2xl font-bold mb-4">{t('animauxPage.readyTitle')}</h2>
+            <p className="text-muted-foreground mb-6">{t('animauxPage.readyDesc')}</p>
+            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
       </main>
