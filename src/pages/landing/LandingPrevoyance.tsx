@@ -23,7 +23,7 @@ const LandingPrevoyance = () => {
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">
         <div className="bg-primary text-primary-foreground py-3 px-4 text-center font-semibold animate-pulse">
           <Clock className="inline h-4 w-4 mr-2" />
-          🛡️ Offre Familiale : 1 mois offert + protection immédiate dès souscription
+          🛡️ Offre Familiale : 1 mois offert + protection immédiate dès validation
         </div>
 
         <section className="container mx-auto px-4 py-12 md:py-20">
@@ -95,7 +95,7 @@ const LandingPrevoyance = () => {
         <section className="bg-accent/10 py-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-              Pourquoi souscrire une prévoyance ?
+              Pourquoi choisir une prévoyance ?
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-card p-6 rounded-lg shadow-lg">

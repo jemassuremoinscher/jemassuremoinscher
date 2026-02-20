@@ -40,7 +40,7 @@ const articles: Article[] = [
         },
         {
           title: "Comment procéder ?",
-          text: "C'est simple : votre nouvel assureur s'occupe de tout ! Il suffit de souscrire une nouvelle assurance et de lui fournir les références de votre ancien contrat. La résiliation prend effet 1 mois après la demande."
+          text: "C'est simple : votre nouvel assureur s'occupe de tout ! Il suffit de choisir une nouvelle assurance et de lui fournir les références de votre ancien contrat. La résiliation prend effet 1 mois après la demande."
         },
         {
           title: "Les avantages",

@@ -42,7 +42,7 @@ const questions: Question[] = [
     options: [
       { value: 'economiser', label: '💰 Économiser sur mes cotisations', insuranceType: [] },
       { value: 'couverture', label: '🛡️ Obtenir une meilleure couverture', insuranceType: [] },
-      { value: 'rapide', label: '⚡ Souscrire rapidement', insuranceType: [] },
+      { value: 'rapide', label: '⚡ Être rappelé rapidement', insuranceType: [] },
       { value: 'conseil', label: '💬 Être accompagné par un expert', insuranceType: [] },
     ],
   },

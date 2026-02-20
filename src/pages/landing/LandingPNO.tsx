@@ -23,7 +23,7 @@ const LandingPNO = () => {
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">
         <div className="bg-primary text-primary-foreground py-3 px-4 text-center font-semibold animate-pulse">
           <Clock className="inline h-4 w-4 mr-2" />
-          🏢 Offre Propriétaires : 20% de réduction immédiate pour toute souscription en ligne
+          🏢 Offre Propriétaires : 20% de réduction immédiate pour toute demande en ligne
         </div>
 
         <section className="container mx-auto px-4 py-12 md:py-20">

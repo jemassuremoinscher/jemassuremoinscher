@@ -173,8 +173,8 @@ const AssuranceAuto = () => {
         text: "Recevez instantanément plusieurs devis d'assureurs partenaires."
       },
       {
-        name: "Souscrivez en ligne",
-        text: "Sélectionnez l'offre qui vous convient et finalisez votre souscription."
+        name: "Faites-vous rappeler",
+        text: "Sélectionnez l'offre qui vous convient et demandez à être rappelé par un conseiller."
       }
     ]
   });
