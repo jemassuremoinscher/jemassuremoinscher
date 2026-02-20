@@ -143,7 +143,7 @@ const LandingMRP = () => {
                 <div>
                   <Clock className="h-12 w-12 mx-auto mb-4" />
                   <div className="text-xl font-bold mb-2">Effet immédiat</div>
-                  <div className="text-sm opacity-90">Protection dès souscription</div>
+                  <div className="text-sm opacity-90">Protection dès validation</div>
                 </div>
                 <div>
                   <CheckCircle2 className="h-12 w-12 mx-auto mb-4" />

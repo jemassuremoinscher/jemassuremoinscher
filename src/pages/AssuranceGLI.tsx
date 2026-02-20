@@ -75,7 +75,7 @@ const AssuranceGLI = () => {
   const serviceSchema = addServiceSchema({ name: "Comparateur GLI", description: "Protégez vos revenus locatifs avec une assurance GLI." });
   const faqSchema = addFAQSchema([
     { question: "Qu'est-ce que la GLI ?", answer: "La GLI protège les propriétaires bailleurs contre les loyers impayés et les dégradations." },
-    { question: "Qui peut souscrire ?", answer: "Tous les propriétaires bailleurs louant un bien immobilier." }
+    { question: "Qui peut en bénéficier ?", answer: "Tous les propriétaires bailleurs louant un bien immobilier." }
   ]);
 
   const advantages = [

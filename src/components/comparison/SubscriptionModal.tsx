@@ -154,7 +154,7 @@ export const SubscriptionModal = ({ open, onOpenChange, offerDetails }: Subscrip
         <DialogHeader className="flex-shrink-0">
           <DialogTitle className="flex items-center gap-2 text-xl">
             <Sparkles className="h-5 w-5 text-primary" />
-            Finaliser votre souscription
+            Demande de rappel
           </DialogTitle>
           <DialogDescription>
             <div className="mt-3 space-y-2">
@@ -174,7 +174,7 @@ export const SubscriptionModal = ({ open, onOpenChange, offerDetails }: Subscrip
               <CheckCircle2 className="h-12 w-12 text-green-600 mx-auto mb-3" />
               <h3 className="text-lg font-bold mb-2">Demande envoyée !</h3>
               <p className="text-sm text-muted-foreground">
-                Nous vous contactons dans les 24h pour finaliser votre souscription.
+                Nous vous contactons dans les 24h pour vous accompagner.
               </p>
             </div>
           ) : (

@@ -17,8 +17,8 @@ const faqData = [
     answer: "Oui, notre service de comparaison est 100% gratuit et sans engagement. Vous pouvez comparer autant d'offres que vous le souhaitez sans frais cachés. Nous sommes rémunérés directement par nos partenaires assureurs."
   },
   {
-    question: "Puis-je souscrire directement en ligne ?",
-    answer: "Oui, une fois que vous avez trouvé l'offre qui vous convient, vous pouvez cliquer sur 'Souscrire' et vous serez redirigé vers l'assureur pour finaliser votre souscription en ligne. Un conseiller peut également vous contacter pour vous accompagner dans vos démarches."
+    question: "Comment me faire rappeler ?",
+    answer: "Oui, une fois que vous avez trouvé l'offre qui vous convient, vous pouvez cliquer sur 'Me faire rappeler' et un conseiller vous contactera rapidement pour finaliser votre démarche et vous accompagner."
   },
   {
     question: "Les tarifs affichés sont-ils définitifs ?",
