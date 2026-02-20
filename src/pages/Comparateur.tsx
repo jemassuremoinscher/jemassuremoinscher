@@ -11,12 +11,10 @@ const Comparateur = () => {
         description="Comparez instantanément les meilleures offres d'assurance et calculez vos économies potentielles en temps réel. Trouvez l'assurance la moins chère adaptée à vos besoins."
         keywords="comparateur assurance, calcul économies assurance, assurance moins chère, comparaison prix assurance"
       />
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-background">
         <Header />
         <main className="flex-1">
-          <div className="container mx-auto px-4">
-            <InteractiveComparator />
-          </div>
+          <InteractiveComparator />
         </main>
         <Footer />
       </div>
