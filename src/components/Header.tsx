@@ -85,7 +85,7 @@ const Header = () => {
     <>
       {/* Unified Compact Sticky Header - 2026 Design */}
       <header 
-        className="glass-header sticky top-0 z-50 transition-all duration-300"
+        className="sticky top-0 z-50 transition-all duration-300 bg-primary shadow-lg"
         role="banner"
       >
         <div className="container mx-auto px-4">
@@ -102,7 +102,7 @@ const Header = () => {
                   className="h-10 w-10 rounded-full hover:bg-muted/80 shrink-0"
                   aria-label="Retour"
                 >
-                  <ArrowLeft className="h-5 w-5 text-foreground" />
+                  <ArrowLeft className="h-5 w-5 text-white" />
                 </Button>
               )}
               
@@ -117,8 +117,9 @@ const Header = () => {
                   className="h-9 w-9 sm:h-10 sm:w-10 object-contain shrink-0"
                 />
                 <span className="text-base sm:text-lg font-bold tracking-tight whitespace-nowrap">
-                  <span className="text-primary">jemassure</span>
+                  <span className="text-white">jemassure</span>
                   <span className="text-secondary">moinscher</span>
+                  <span className="text-white">.fr</span>
                 </span>
               </Link>
             </div>
@@ -134,7 +135,7 @@ const Header = () => {
                     className="h-10 w-10 rounded-full hover:bg-muted/80 hidden sm:flex"
                     aria-label="Plus d'actions"
                   >
-                    <MoreHorizontal className="h-5 w-5 text-foreground" />
+                    <MoreHorizontal className="h-5 w-5 text-white" />
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-48 p-2 rounded-3xl bg-card/95 backdrop-blur-xl shadow-lg" align="end" sideOffset={8}>
@@ -179,7 +180,7 @@ const Header = () => {
                 aria-expanded={isMobileMenuOpen} 
                 aria-controls="mobile-menu"
               >
-                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                {isMobileMenuOpen ? <X className="h-5 w-5 text-white" /> : <Menu className="h-5 w-5 text-white" />}
               </Button>
             </div>
           </div>
@@ -190,9 +191,9 @@ const Header = () => {
 
               <Popover open={openPopover === "particuliers"} onOpenChange={open => setOpenPopover(open ? "particuliers" : null)}>
                 <PopoverTrigger asChild>
-                  <button className="nav-pill flex items-center gap-1">
+                  <button className="nav-pill flex items-center gap-1 text-white">
                     {t('nav.individuals')}
-                    <ChevronDown className="h-3 w-3 opacity-60" />
+                    <ChevronDown className="h-3 w-3 opacity-60 text-white" />
                   </button>
                 </PopoverTrigger>
                 <PopoverContent className="w-56 p-2 rounded-3xl bg-card/95 backdrop-blur-xl shadow-lg" align="center" sideOffset={8}>
@@ -217,9 +218,9 @@ const Header = () => {
 
               <Popover open={openPopover === "pro"} onOpenChange={open => setOpenPopover(open ? "pro" : null)}>
                 <PopoverTrigger asChild>
-                  <button className="nav-pill flex items-center gap-1">
+                  <button className="nav-pill flex items-center gap-1 text-white">
                     {t('nav.professionals')}
-                    <ChevronDown className="h-3 w-3 opacity-60" />
+                    <ChevronDown className="h-3 w-3 opacity-60 text-white" />
                   </button>
                 </PopoverTrigger>
                 <PopoverContent className="w-56 p-2 rounded-3xl bg-card/95 backdrop-blur-xl shadow-lg" align="center" sideOffset={8}>
@@ -244,9 +245,9 @@ const Header = () => {
 
               <Popover open={openPopover === "epargne"} onOpenChange={open => setOpenPopover(open ? "epargne" : null)}>
                 <PopoverTrigger asChild>
-                  <button className="nav-pill flex items-center gap-1">
+                  <button className="nav-pill flex items-center gap-1 text-white">
                     {t('nav.lifeAndSavings')}
-                    <ChevronDown className="h-3 w-3 opacity-60" />
+                    <ChevronDown className="h-3 w-3 opacity-60 text-white" />
                   </button>
                 </PopoverTrigger>
                 <PopoverContent className="w-56 p-2 rounded-3xl bg-card/95 backdrop-blur-xl shadow-lg" align="center" sideOffset={8}>
@@ -271,9 +272,9 @@ const Header = () => {
 
               <Popover open={openPopover === "immobilier"} onOpenChange={open => setOpenPopover(open ? "immobilier" : null)}>
                 <PopoverTrigger asChild>
-                  <button className="nav-pill flex items-center gap-1">
+                  <button className="nav-pill flex items-center gap-1 text-white">
                     {t('nav.realEstate')}
-                    <ChevronDown className="h-3 w-3 opacity-60" />
+                    <ChevronDown className="h-3 w-3 opacity-60 text-white" />
                   </button>
                 </PopoverTrigger>
                 <PopoverContent className="w-56 p-2 rounded-3xl bg-card/95 backdrop-blur-xl shadow-lg" align="center" sideOffset={8}>
@@ -299,9 +300,9 @@ const Header = () => {
               {/* Subtle visual separator using spacing only */}
               <div className="w-3" aria-hidden="true" />
 
-              <Link to="/qui-sommes-nous" className="nav-pill">{t('nav.aboutUs')}</Link>
-              <Link to="/nos-partenaires" className="nav-pill">{t('nav.partners')}</Link>
-              <Link to="/blog" className="nav-pill">{t('nav.blog')}</Link>
+              <Link to="/qui-sommes-nous" className="nav-pill text-white">{t('nav.aboutUs')}</Link>
+              <Link to="/nos-partenaires" className="nav-pill text-white">{t('nav.partners')}</Link>
+              <Link to="/blog" className="nav-pill text-white">{t('nav.blog')}</Link>
             </div>
           </nav>
         </div>
