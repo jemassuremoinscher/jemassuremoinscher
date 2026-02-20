@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 
-// Import partner logos
-import generaliLogo from "@/assets/logos/generali.jpg";
+// Import partner logos — same files as Partners.tsx for consistency
+import generaliLogo from "@/assets/logos/generali.png";
 import agfLogo from "@/assets/logos/agf.png";
-import maifLogo from "@/assets/logos/maif.webp";
-import axaLogo from "@/assets/logos/axa.webp";
-import swisslifeLogo from "@/assets/logos/swisslife.webp";
+import maifLogo from "@/assets/logos/maif.png";
+import axaLogo from "@/assets/logos/axa.png";
+import swissLifeLogo from "@/assets/logos/swiss-life.png";
 import maafLogo from "@/assets/logos/maaf.webp";
-import matmutLogo from "@/assets/logos/matmut.webp";
-import allianzLogo from "@/assets/logos/allianz.webp";
+import matmutLogo from "@/assets/logos/matmut.png";
+import allianzLogo from "@/assets/logos/allianz.png";
 
 const PartnersSlider = () => {
   const partners = [
@@ -16,7 +16,7 @@ const PartnersSlider = () => {
     { name: "AGF", id: 2, logo: agfLogo },
     { name: "MAIF", id: 3, logo: maifLogo },
     { name: "AXA", id: 4, logo: axaLogo },
-    { name: "SwissLife", id: 5, logo: swisslifeLogo },
+    { name: "SwissLife", id: 5, logo: swissLifeLogo },
     { name: "MAAF", id: 6, logo: maafLogo },
     { name: "Matmut", id: 7, logo: matmutLogo },
     { name: "Allianz", id: 8, logo: allianzLogo },
