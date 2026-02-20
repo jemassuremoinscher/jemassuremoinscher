@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
@@ -10,348 +9,126 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
 import InsuranceComparison from '@/components/InsuranceComparison';
 import { toast } from 'sonner';
-import { supabase } from '@/integrations/supabase/client';
-import { Shield, Home, Euro, Users, TrendingUp, CheckCircle, Star } from 'lucide-react';
+import { Shield, Euro, Clock } from 'lucide-react';
 import InsuranceFAQ from '@/components/insurance/InsuranceFAQ';
+import Testimonials from '@/components/Testimonials';
+import { SavingsCalculator } from '@/components/calculator/SavingsCalculator';
+import { QuoteRequestForm } from '@/components/forms/QuoteRequestForm';
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from '@/utils/seoUtils';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.png';
+import arthurFlying from '@/assets/mascotte/arthur-flying.png';
 
 const formSchema = z.object({
-  propertyType: z.enum(['apartment', 'house', 'commercial'], {
-    required_error: 'Veuillez sélectionner un type de bien',
-  }),
+  propertyType: z.enum(['apartment', 'house', 'commercial'], { required_error: 'Veuillez sélectionner un type de bien' }),
   monthlyRent: z.string().min(1, 'Montant requis'),
-  tenantType: z.enum(['individual', 'company', 'student'], {
-    required_error: 'Veuillez sélectionner un type de locataire',
-  }),
+  tenantType: z.enum(['individual', 'company', 'student'], { required_error: 'Veuillez sélectionner un type de locataire' }),
   postalCode: z.string().min(5, 'Code postal invalide').max(5, 'Code postal invalide'),
 });
 
 const AssuranceGLI = () => {
-  const [showComparison, setShowComparison] = useState(false);
-  const [submittedFormData, setSubmittedFormData] = useState<any>(null);
+  const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
+  const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
+  const formRef = useRef<HTMLDivElement>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      propertyType: undefined,
-      monthlyRent: '',
-      tenantType: undefined,
-      postalCode: '',
-    },
+    defaultValues: { propertyType: undefined, monthlyRent: '', tenantType: undefined, postalCode: '' },
   });
 
-  const calculatePrice = (values: z.infer<typeof formSchema>) => {
-    let basePercentage = 2.5; // 2.5% base
-    const rent = parseInt(values.monthlyRent);
-    
-    // Based on property type
-    if (values.propertyType === 'house') basePercentage += 0.3;
-    if (values.propertyType === 'commercial') basePercentage += 0.5;
-    
-    // Based on rent amount
-    if (rent > 1500) basePercentage += 0.2;
-    if (rent > 2000) basePercentage += 0.3;
-    
-    // Based on tenant type
-    if (values.tenantType === 'student') basePercentage += 0.4;
-    if (values.tenantType === 'company') basePercentage -= 0.3;
-
-    const baseMonthlyPrice = Math.round((rent * basePercentage) / 100);
-    
-    // Generate insurers list
-    const insurers = [
-      {
-        name: 'Garantme',
-        price: baseMonthlyPrice,
-        coverage: ['Paiement en ligne', 'Activation en 24h', 'Sans franchise', 'Loyers impayés couverts'],
-        discount: '-15% en ligne'
-      },
-      {
-        name: 'SmartGarant',
-        price: Math.round(baseMonthlyPrice * 1.12),
-        coverage: ['Couverture dégradations', 'Assistance juridique', 'Protection juridique', 'Indemnisation rapide']
-      },
-      {
-        name: 'Locatme',
-        price: Math.round(baseMonthlyPrice * 1.20),
-        coverage: ['Garantie étendue', 'Frais de procédure inclus', 'Accompagnement personnalisé', 'Service client dédié']
-      },
-      {
-        name: 'Cautioneo',
-        price: Math.round(baseMonthlyPrice * 1.28),
-        coverage: ['Service premium', 'Gestion complète', 'Indemnisation rapide', 'Suivi en ligne']
-      },
-      {
-        name: 'Unkle',
-        price: Math.round(baseMonthlyPrice * 1.36),
-        coverage: ['Garantie maximale', 'Protection intégrale', 'Assistance 24/7', 'Couverture dégradations étendue']
-      },
-      {
-        name: 'Wemind',
-        price: Math.round(baseMonthlyPrice * 1.48),
-        coverage: ['Offre complète', 'Tous risques', 'Service VIP', 'Gestionnaire dédié'],
-        discount: '-10% 1er mois'
-      },
-      {
-        name: 'GarantMe Pro',
-        price: Math.round(baseMonthlyPrice * 1.55),
-        coverage: ['Protection premium', 'Garantie locataire', 'Assistance juridique renforcée', 'Indemnisation express']
-      },
-      {
-        name: 'Paytop',
-        price: Math.round(baseMonthlyPrice * 1.10),
-        coverage: ['Couverture standard', 'Loyers impayés', 'Protection juridique', 'Activation rapide']
-      },
-      {
-        name: 'Solly Azza',
-        price: Math.round(baseMonthlyPrice * 1.25),
-        coverage: ['Garantie étendue', 'Protection complète', 'Assistance 7j/7', 'Frais de relocation']
-      },
-      {
-        name: 'Rentila',
-        price: Math.round(baseMonthlyPrice * 1.18),
-        coverage: ['Protection standard', 'Loyers impayés couverts', 'Dégradations incluses', 'Plateforme digitale']
-      }
-    ];
-
-    return insurers;
-  };
+  const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const insurers = calculatePrice(values);
-      setSubmittedFormData({ ...values, insurers });
-      setShowComparison(true);
+      let basePercentage = 2.5;
+      const rent = parseInt(values.monthlyRent);
+      if (values.propertyType === 'house') basePercentage += 0.3;
+      if (values.propertyType === 'commercial') basePercentage += 0.5;
+      if (rent > 1500) basePercentage += 0.2;
+      if (rent > 2000) basePercentage += 0.3;
+      if (values.tenantType === 'student') basePercentage += 0.4;
+      if (values.tenantType === 'company') basePercentage -= 0.3;
+      const baseMonthlyPrice = Math.round((rent * basePercentage) / 100);
+
+      const insurers = [
+        { name: 'Garantme', price: baseMonthlyPrice, coverage: ['Paiement en ligne', 'Activation en 24h', 'Sans franchise', 'Loyers impayés couverts'], discount: '-15% en ligne' },
+        { name: 'SmartGarant', price: Math.round(baseMonthlyPrice * 1.12), coverage: ['Couverture dégradations', 'Assistance juridique', 'Protection juridique', 'Indemnisation rapide'] },
+        { name: 'Locatme', price: Math.round(baseMonthlyPrice * 1.20), coverage: ['Garantie étendue', 'Frais de procédure inclus', 'Accompagnement personnalisé', 'Service client dédié'] },
+        { name: 'Cautioneo', price: Math.round(baseMonthlyPrice * 1.28), coverage: ['Service premium', 'Gestion complète', 'Indemnisation rapide', 'Suivi en ligne'] },
+        { name: 'Unkle', price: Math.round(baseMonthlyPrice * 1.36), coverage: ['Garantie maximale', 'Protection intégrale', 'Assistance 24/7', 'Couverture dégradations étendue'] },
+        { name: 'Paytop', price: Math.round(baseMonthlyPrice * 1.10), coverage: ['Couverture standard', 'Loyers impayés', 'Protection juridique', 'Activation rapide'] },
+      ];
+
+      setSubmittedFormData(values);
+      setInsurerOffers(insurers);
+      toast.success("Offres générées !", { description: "Consultez les meilleures offres GLI." });
     } catch (error) {
       console.error('Error:', error);
       toast.error('Erreur lors de la génération du devis');
     }
   };
 
-  const benefits = [
-    'Protection contre les loyers impayés',
-    'Couverture des dégradations locatives',
-    'Prise en charge des frais de procédure',
-    'Assistance juridique incluse',
-    'Garantie de relogement si nécessaire',
-    'Sérénité pour votre investissement locatif'
-  ];
-
-  const faqs = [
-    {
-      question: 'Qu\'est-ce que la Garantie Loyer Impayé (GLI) ?',
-      answer: 'La GLI est une assurance qui protège les propriétaires bailleurs contre les loyers impayés, les dégradations et les frais de procédure en cas de litige avec le locataire.'
-    },
-    {
-      question: 'Qui peut souscrire une GLI ?',
-      answer: 'Tous les propriétaires bailleurs qui louent un bien immobilier à usage d\'habitation ou commercial peuvent souscrire une GLI.'
-    },
-    {
-      question: 'Quelles sont les garanties couvertes ?',
-      answer: 'La GLI couvre généralement les loyers et charges impayés, les dégradations locatives, la protection juridique et les frais de relogement en cas de dégradations importantes.'
-    },
-    {
-      question: 'Quel est le coût moyen d\'une GLI ?',
-      answer: 'Le coût varie entre 2% et 4% du montant annuel des loyers charges comprises, selon les garanties choisies et le profil du locataire.'
-    }
-  ];
-
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Garantie Loyer Impayé", url: "https://www.jemassuremoinscher.fr/assurance-gli" }
-  ]);
-
-  const serviceSchema = addServiceSchema({
-    name: "Comparateur Garantie Loyers Impayés",
-    description: "Protégez vos revenus locatifs avec une assurance GLI. Comparateur gratuit pour trouver la meilleure garantie loyer impayé.",
-  });
-
+  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Garantie Loyer Impayé", url: "https://www.jemassuremoinscher.fr/assurance-gli" }]);
+  const serviceSchema = addServiceSchema({ name: "Comparateur GLI", description: "Protégez vos revenus locatifs avec une assurance GLI." });
   const faqSchema = addFAQSchema([
-    { question: "Qu'est-ce que la GLI ?", answer: "La GLI protège les propriétaires bailleurs contre les loyers impayés, dégradations et frais de procédure." },
-    { question: "Qui peut souscrire une GLI ?", answer: "Tous les propriétaires bailleurs louant un bien immobilier." }
+    { question: "Qu'est-ce que la GLI ?", answer: "La GLI protège les propriétaires bailleurs contre les loyers impayés et les dégradations." },
+    { question: "Qui peut souscrire ?", answer: "Tous les propriétaires bailleurs louant un bien immobilier." }
   ]);
+
+  const advantages = [
+    { icon: Euro, title: "Revenus sécurisés", description: "Protégez vos loyers contre les impayés." },
+    { icon: Clock, title: "Devis en 2 minutes", description: "Simple, rapide et 100% gratuit." },
+    { icon: Shield, title: "Protection complète", description: "Loyers, dégradations, frais juridiques." }
+  ];
 
   return (
-    <>
-      <SEO 
-        title="Garantie Loyer Impayé (GLI) - Comparez les meilleures offres"
-        description="Protégez vos revenus locatifs avec une assurance GLI. Comparateur en ligne gratuit pour trouver la meilleure garantie loyer impayé au meilleur prix."
-        canonical="https://www.jemassuremoinscher.fr/assurance-gli"
-        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
-        keywords="assurance GLI, garantie loyer impayé, protection propriétaire, loyers impayés, assurance bailleur"
-      />
-      
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        
-        <main id="main-content" className="flex-grow">
-          {/* Hero Section */}
-          <section className="relative bg-gradient-to-br from-primary/5 via-white to-secondary/5 py-16">
-            <div className="container mx-auto px-4">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl mx-auto text-center mb-12"
-              >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-6">
-                  <Shield className="h-8 w-8 text-primary" />
-                </div>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                  Assurance Garantie Loyer Impayé
-                </h1>
-                <p className="text-xl text-gray-600 mb-8">
-                  Protégez vos revenus locatifs et louez en toute sérénité
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <Card className="max-w-2xl mx-auto shadow-xl">
-                  <CardHeader>
-                    <CardTitle>Obtenez votre devis GLI</CardTitle>
-                    <CardDescription>
-                      Remplissez le formulaire pour recevoir les meilleures offres
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Form {...form}>
-                      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                        <FormField
-                          control={form.control}
-                          name="propertyType"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Type de bien</FormLabel>
-                              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <FormControl>
-                                  <SelectTrigger>
-                                    <SelectValue placeholder="Sélectionnez le type de bien" />
-                                  </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                  <SelectItem value="apartment">Appartement</SelectItem>
-                                  <SelectItem value="house">Maison</SelectItem>
-                                  <SelectItem value="commercial">Local commercial</SelectItem>
-                                </SelectContent>
-                              </Select>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name="monthlyRent"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Loyer mensuel (€)</FormLabel>
-                              <FormControl>
-                                <Input type="number" placeholder="1200" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name="tenantType"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Type de locataire</FormLabel>
-                              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <FormControl>
-                                  <SelectTrigger>
-                                    <SelectValue placeholder="Sélectionnez le type" />
-                                  </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                  <SelectItem value="individual">Particulier</SelectItem>
-                                  <SelectItem value="company">Entreprise</SelectItem>
-                                  <SelectItem value="student">Étudiant</SelectItem>
-                                </SelectContent>
-                              </Select>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name="postalCode"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Code postal</FormLabel>
-                              <FormControl>
-                                <Input placeholder="75001" maxLength={5} {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <Button type="submit" className="w-full" size="lg">
-                          <Euro className="mr-2 h-5 w-5" />
-                          Comparer les offres GLI
-                        </Button>
-                      </form>
-                    </Form>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </div>
-          </section>
-
-          {/* Benefits Section */}
-          <section className="py-16 bg-gray-50">
-            <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center mb-12">Pourquoi souscrire une GLI ?</h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start gap-3 bg-white p-4 rounded-lg shadow-sm">
-                    <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">{benefit}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <InsuranceFAQ faqs={faqs} />
-        </main>
-
-        <Footer />
-
-        {showComparison && submittedFormData?.insurers && (
-          <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-y-auto">
-            <div className="bg-background rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto p-6 relative">
-              <Button
-                variant="ghost"
-                className="absolute top-4 right-4"
-                onClick={() => setShowComparison(false)}
-              >
-                ✕
-              </Button>
-              
-              <InsuranceComparison
-                insurers={submittedFormData.insurers}
-                onNewQuote={() => setShowComparison(false)}
-                formData={submittedFormData}
-                insuranceType="gli"
-              />
-            </div>
-          </div>
-        )}
-      </div>
-    </>
+    <div className="min-h-screen">
+      <SEO title="Garantie Loyer Impayé (GLI) - Comparateur | jemassuremoinscher" description="Protégez vos revenus locatifs avec une assurance GLI. Comparateur en ligne gratuit." canonical="https://www.jemassuremoinscher.fr/assurance-gli" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} keywords="assurance GLI, garantie loyer impayé, protection propriétaire" />
+      <Header />
+      <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
+        <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
+          <img src={arthurThumbsUp} alt="Arthur" className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto" />
+          <div className="flex justify-center mb-6"><div className="p-4 rounded-full bg-primary/10"><Shield className="h-12 w-12 text-primary" /></div></div>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Garantie Loyer Impayé</h1>
+          <p className="text-xl text-muted-foreground mb-8">Protégez vos revenus locatifs et louez en toute sérénité.</p>
+          <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">Comparer maintenant</Button>
+        </div></div>
+      </section>
+      <main className="container mx-auto px-4 py-12">
+        <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h3 className="font-bold text-lg mb-2">{item.title}</h3><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
+        <div ref={formRef} className="max-w-3xl mx-auto mb-16">
+          <Card className="p-8">
+            <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis personnalisé</h2>
+            {insurerOffers.length > 0 ? (
+              <InsuranceComparison insurers={insurerOffers} onNewQuote={() => setInsurerOffers([])} formData={submittedFormData} insuranceType="Garantie Loyer Impayé" />
+            ) : (
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <FormField control={form.control} name="propertyType" render={({ field }) => (<FormItem><FormLabel>Type de bien</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Sélectionnez" /></SelectTrigger></FormControl><SelectContent><SelectItem value="apartment">Appartement</SelectItem><SelectItem value="house">Maison</SelectItem><SelectItem value="commercial">Local commercial</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="monthlyRent" render={({ field }) => (<FormItem><FormLabel>Loyer mensuel (€)</FormLabel><FormControl><Input type="number" placeholder="1200" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="tenantType" render={({ field }) => (<FormItem><FormLabel>Type de locataire</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Sélectionnez" /></SelectTrigger></FormControl><SelectContent><SelectItem value="individual">Particulier</SelectItem><SelectItem value="company">Entreprise</SelectItem><SelectItem value="student">Étudiant</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="postalCode" render={({ field }) => (<FormItem><FormLabel>Code postal</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <Button type="submit" className="w-full" size="lg">Comparer les offres</Button>
+                </form>
+              </Form>
+            )}
+          </Card>
+        </div>
+        <section className="max-w-4xl mx-auto mb-16"><Accordion type="single" collapsible className="w-full"><AccordionItem value="learn-more" className="border rounded-lg"><AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold">En savoir plus sur la GLI</span></AccordionTrigger><AccordionContent className="px-6 pb-6"><div className="space-y-12"><InsuranceFAQ title="Questions fréquentes" faqs={[{ question: "Quel est le coût moyen d'une GLI ?", answer: "Entre 2% et 4% du montant annuel des loyers charges comprises." }, { question: "Quelles sont les garanties couvertes ?", answer: "Loyers impayés, dégradations locatives, protection juridique et frais de relogement." }, { question: "La GLI est-elle cumulable avec un dépôt de garantie ?", answer: "Non, la loi interdit de cumuler GLI et caution solidaire (sauf étudiant ou apprenti)." }]} /><SavingsCalculator /><QuoteRequestForm /><Testimonials /></div></AccordionContent></AccordionItem></Accordion></section>
+        <section className="max-w-2xl mx-auto text-center mb-16">
+          <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
+            <img src={arthurFlying} alt="Arthur" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" />
+            <h2 className="text-2xl font-bold mb-4">Prêt à sécuriser vos revenus locatifs ?</h2>
+            <p className="text-muted-foreground mb-6">Comparez gratuitement les meilleures offres GLI en 2 minutes.</p>
+            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">Comparer les offres maintenant</Button>
+          </Card>
+        </section>
+      </main>
+      <Footer />
+    </div>
   );
 };
 
