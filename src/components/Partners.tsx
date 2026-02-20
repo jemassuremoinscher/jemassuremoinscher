@@ -29,6 +29,8 @@ import cardifLogo from "@/assets/logos/cardif.png";
 import metlifeLogo from "@/assets/logos/metlife.png";
 import alanLogo from "@/assets/logos/alan.png";
 import malakoffHumanisLogo from "@/assets/logos/malakoff-humanis.png";
+import agfLogo from "@/assets/logos/agf.png";
+import maafLogo from "@/assets/logos/maaf.webp";
 
 const partners = [
   { name: "AXA", logo: axaLogo },
@@ -55,6 +57,8 @@ const partners = [
   { name: "MetLife", logo: metlifeLogo },
   { name: "Alan", logo: alanLogo },
   { name: "Malakoff Humanis", logo: malakoffHumanisLogo },
+  { name: "AGF", logo: agfLogo },
+  { name: "MAAF", logo: maafLogo },
 ];
 
 const Partners = () => {
