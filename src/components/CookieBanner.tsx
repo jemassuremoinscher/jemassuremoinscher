@@ -6,8 +6,10 @@ import { Label } from "@/components/ui/label";
 import { useCookieConsent } from "@/hooks/useCookieConsent";
 import { Cookie, Settings, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const CookieBanner = () => {
+  const { t } = useLanguage();
   const { showBanner, acceptAll, rejectAll, updatePreferences } = useCookieConsent();
   const [showSettings, setShowSettings] = useState(false);
   const [preferences, setPreferences] = useState({
@@ -43,9 +45,9 @@ const CookieBanner = () => {
                 <Cookie className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <CardTitle className="text-lg">Gestion des cookies</CardTitle>
+                <CardTitle className="text-lg">{t('cookies.title')}</CardTitle>
                 <CardDescription className="text-sm mt-1">
-                  Nous utilisons des cookies pour améliorer votre expérience
+                  {t('cookies.description')}
                 </CardDescription>
               </div>
             </div>
@@ -63,9 +65,9 @@ const CookieBanner = () => {
         <CardContent className="pb-3">
           {!showSettings ? (
             <p className="text-sm text-muted-foreground">
-              Nous utilisons des cookies pour personnaliser le contenu et les annonces, pour fournir des fonctionnalités de médias sociaux et pour analyser notre trafic. Vous pouvez accepter tous les cookies ou gérer vos préférences.{" "}
+              {t('cookies.text')}{" "}
               <Link to="/politique-cookies" className="text-primary hover:underline">
-                En savoir plus
+                {t('cookies.learnMore')}
               </Link>
             </p>
           ) : (
@@ -73,27 +75,22 @@ const CookieBanner = () => {
               <div className="flex items-center justify-between space-x-4 p-3 bg-gray-50 rounded-lg">
                 <div className="flex-1">
                   <Label htmlFor="necessary" className="font-medium text-sm">
-                    Cookies nécessaires
+                    {t('cookies.necessary')}
                   </Label>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Essentiels au fonctionnement du site. Toujours activés.
+                    {t('cookies.necessaryDesc')}
                   </p>
                 </div>
-                <Switch
-                  id="necessary"
-                  checked={true}
-                  disabled
-                  className="shrink-0"
-                />
+                <Switch id="necessary" checked={true} disabled className="shrink-0" />
               </div>
 
               <div className="flex items-center justify-between space-x-4 p-3 bg-gray-50 rounded-lg">
                 <div className="flex-1">
                   <Label htmlFor="analytics" className="font-medium text-sm">
-                    Cookies analytiques
+                    {t('cookies.analytics')}
                   </Label>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Nous aident à comprendre comment vous utilisez notre site.
+                    {t('cookies.analyticsDesc')}
                   </p>
                 </div>
                 <Switch
@@ -109,10 +106,10 @@ const CookieBanner = () => {
               <div className="flex items-center justify-between space-x-4 p-3 bg-gray-50 rounded-lg">
                 <div className="flex-1">
                   <Label htmlFor="marketing" className="font-medium text-sm">
-                    Cookies marketing
+                    {t('cookies.marketing')}
                   </Label>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Utilisés pour afficher des publicités pertinentes.
+                    {t('cookies.marketingDesc')}
                   </p>
                 </div>
                 <Switch
@@ -131,42 +128,24 @@ const CookieBanner = () => {
         <CardFooter className="flex flex-wrap gap-2 pt-3 border-t">
           {!showSettings ? (
             <>
-              <Button
-                onClick={handleAcceptAll}
-                className="flex-1 sm:flex-none bg-primary hover:bg-primary/90"
-              >
-                Tout accepter
+              <Button onClick={handleAcceptAll} className="flex-1 sm:flex-none bg-primary hover:bg-primary/90">
+                {t('cookies.acceptAll')}
               </Button>
-              <Button
-                onClick={handleRejectAll}
-                variant="outline"
-                className="flex-1 sm:flex-none"
-              >
-                Tout refuser
+              <Button onClick={handleRejectAll} variant="outline" className="flex-1 sm:flex-none">
+                {t('cookies.rejectAll')}
               </Button>
-              <Button
-                onClick={() => setShowSettings(true)}
-                variant="ghost"
-                className="flex-1 sm:flex-none"
-              >
+              <Button onClick={() => setShowSettings(true)} variant="ghost" className="flex-1 sm:flex-none">
                 <Settings className="h-4 w-4 mr-2" />
-                Personnaliser
+                {t('cookies.customize')}
               </Button>
             </>
           ) : (
             <>
-              <Button
-                onClick={handleSavePreferences}
-                className="flex-1 sm:flex-none bg-primary hover:bg-primary/90"
-              >
-                Enregistrer mes préférences
+              <Button onClick={handleSavePreferences} className="flex-1 sm:flex-none bg-primary hover:bg-primary/90">
+                {t('cookies.savePreferences')}
               </Button>
-              <Button
-                onClick={() => setShowSettings(false)}
-                variant="outline"
-                className="flex-1 sm:flex-none"
-              >
-                Retour
+              <Button onClick={() => setShowSettings(false)} variant="outline" className="flex-1 sm:flex-none">
+                {t('common.back')}
               </Button>
             </>
           )}

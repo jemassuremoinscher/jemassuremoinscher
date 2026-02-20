@@ -5,7 +5,6 @@ import { z } from "zod";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -15,6 +14,7 @@ import { toast } from "sonner";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useHoneypot } from "@/hooks/useHoneypot";
 import { trackGoogleAdsConversionWithParams } from "@/utils/googleAdsTracking";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const quoteFormSchema = z.object({
   insuranceType: z.string().min(1, "Veuillez sélectionner un type d'assurance"),
@@ -41,6 +41,7 @@ const quoteFormSchema = z.object({
 type QuoteFormData = z.infer<typeof quoteFormSchema>;
 
 export const QuoteRequestForm = () => {
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { trackEvent, trackConversion } = useAnalytics();
@@ -78,7 +79,6 @@ export const QuoteRequestForm = () => {
 
       if (error) throw error;
 
-      // Envoyer l'email de confirmation
       const { error: emailError } = await supabase.functions.invoke('send-quote-email', {
         body: {
           name: data.fullName,
@@ -95,15 +95,13 @@ export const QuoteRequestForm = () => {
 
       if (emailError) {
         console.error("Error sending email:", emailError);
-        // Ne pas bloquer le processus si l'email échoue
       }
 
       setIsSuccess(true);
-      toast.success("Demande envoyée !", {
-        description: "Nous vous contacterons dans les 24h avec votre devis personnalisé.",
+      toast.success(t('quoteForm.toastSuccess'), {
+        description: t('quoteForm.toastSuccessDesc'),
       });
       
-      // Track quote request conversion
       trackConversion('quote_request', 100);
       trackEvent('quote_request', {
         category: 'lead_generation',
@@ -111,7 +109,6 @@ export const QuoteRequestForm = () => {
         value: 100,
       });
       
-      // Track Google Ads conversion with detailed params
       const quoteData = insertedQuote?.quote_data as any;
       trackGoogleAdsConversionWithParams('quote_request', {
         value: 100,
@@ -128,8 +125,8 @@ export const QuoteRequestForm = () => {
       form.reset();
     } catch (error) {
       console.error("Error submitting quote:", error);
-      toast.error("Erreur", {
-        description: "Une erreur est survenue. Veuillez réessayer.",
+      toast.error(t('quoteForm.toastError'), {
+        description: t('quoteForm.toastErrorDesc'),
       });
     } finally {
       setIsSubmitting(false);
@@ -140,13 +137,12 @@ export const QuoteRequestForm = () => {
     return (
       <Card className="p-12 text-center max-w-2xl mx-auto">
         <CheckCircle2 className="h-16 w-16 text-primary mx-auto mb-6" />
-        <h3 className="text-2xl font-bold mb-4">Demande envoyée avec succès !</h3>
+        <h3 className="text-2xl font-bold mb-4">{t('quoteForm.successTitle')}</h3>
         <p className="text-muted-foreground mb-6">
-          Votre demande de devis a bien été enregistrée. Un de nos conseillers vous contactera
-          dans les 24 heures pour vous proposer les meilleures offres adaptées à votre profil.
+          {t('quoteForm.successText')}
         </p>
         <Button onClick={() => setIsSuccess(false)} variant="outline">
-          Faire une nouvelle demande
+          {t('quoteForm.newRequest')}
         </Button>
       </Card>
     );
@@ -160,10 +156,10 @@ export const QuoteRequestForm = () => {
             <FileText className="h-8 w-8 text-primary" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Demandez votre <span className="text-primary">devis gratuit</span>
+            {t('quoteForm.title')} <span className="text-primary">{t('quoteForm.titleHighlight')}</span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            Remplissez ce formulaire et recevez votre devis personnalisé en 24h
+            {t('quoteForm.subtitle')}
           </p>
         </div>
 
@@ -176,20 +172,20 @@ export const QuoteRequestForm = () => {
                 name="insuranceType"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Type d'assurance *</FormLabel>
+                    <FormLabel>{t('quoteForm.insuranceType')}</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Sélectionnez un type" />
+                          <SelectValue placeholder={t('quoteForm.selectType')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="auto">Assurance Auto</SelectItem>
-                        <SelectItem value="moto">Assurance Moto</SelectItem>
-                        <SelectItem value="habitation">Assurance Habitation</SelectItem>
-                        <SelectItem value="sante">Mutuelle Santé</SelectItem>
-                        <SelectItem value="pret">Assurance Prêt</SelectItem>
-                        <SelectItem value="animaux">Assurance Animaux</SelectItem>
+                        <SelectItem value="auto">{t('quoteForm.autoIns')}</SelectItem>
+                        <SelectItem value="moto">{t('quoteForm.motoIns')}</SelectItem>
+                        <SelectItem value="habitation">{t('quoteForm.homeIns')}</SelectItem>
+                        <SelectItem value="sante">{t('quoteForm.healthIns')}</SelectItem>
+                        <SelectItem value="pret">{t('quoteForm.loanIns')}</SelectItem>
+                        <SelectItem value="animaux">{t('quoteForm.petIns')}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -203,7 +199,7 @@ export const QuoteRequestForm = () => {
                   name="fullName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Nom complet *</FormLabel>
+                      <FormLabel>{t('quoteForm.fullName')}</FormLabel>
                       <FormControl>
                         <Input placeholder="Jean Dupont" {...field} />
                       </FormControl>
@@ -217,7 +213,7 @@ export const QuoteRequestForm = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email *</FormLabel>
+                      <FormLabel>{t('quoteForm.email')}</FormLabel>
                       <FormControl>
                         <Input type="email" placeholder="jean.dupont@email.com" {...field} />
                       </FormControl>
@@ -233,7 +229,7 @@ export const QuoteRequestForm = () => {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Téléphone *</FormLabel>
+                      <FormLabel>{t('quoteForm.phone')}</FormLabel>
                       <FormControl>
                         <Input type="tel" placeholder="06 12 34 56 78" {...field} />
                       </FormControl>
@@ -247,7 +243,7 @@ export const QuoteRequestForm = () => {
                   name="postalCode"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Code postal *</FormLabel>
+                      <FormLabel>{t('quoteForm.postalCode')}</FormLabel>
                       <FormControl>
                         <Input placeholder="75001" {...field} maxLength={5} />
                       </FormControl>
@@ -262,7 +258,7 @@ export const QuoteRequestForm = () => {
                 name="currentInsurer"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Assureur actuel (optionnel)</FormLabel>
+                    <FormLabel>{t('quoteForm.currentInsurer')}</FormLabel>
                     <FormControl>
                       <Input placeholder="Ex: AXA, Allianz..." {...field} />
                     </FormControl>
@@ -284,7 +280,7 @@ export const QuoteRequestForm = () => {
                     </FormControl>
                     <div className="space-y-1 leading-none">
                       <FormLabel>
-                        J'accepte les conditions générales et la politique de confidentialité *
+                        {t('quoteForm.acceptTerms')}
                       </FormLabel>
                       <FormMessage />
                     </div>
@@ -296,18 +292,18 @@ export const QuoteRequestForm = () => {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Envoi en cours...
+                    {t('quoteForm.submitting')}
                   </>
                 ) : (
                   <>
                     <FileText className="mr-2 h-5 w-5" />
-                    Obtenir mon devis gratuit
+                    {t('quoteForm.submit')}
                   </>
                 )}
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">
-                * Champs obligatoires. Vos données sont sécurisées et ne seront jamais partagées.
+                {t('quoteForm.required')}
               </p>
             </form>
           </Form>
