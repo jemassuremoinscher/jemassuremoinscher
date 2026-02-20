@@ -395,7 +395,7 @@ export const InteractiveComparator = () => {
                     onClick={() => handleSubscribe(offer)}
                     className="w-full sm:w-auto lg:w-full"
                   >
-                    {index === 0 ? 'Souscrire maintenant' : 'Souscrire'}
+                    Me faire rappeler
                   </Button>
                 </div>
               </div>
