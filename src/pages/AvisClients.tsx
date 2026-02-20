@@ -107,7 +107,7 @@ const AvisClients = () => {
                 ))}
               </div>
               <div className="text-4xl font-black text-foreground mb-1">4.8/5</div>
-              <p className="text-muted-foreground">sur <span className="font-semibold text-foreground">2 547</span> avis vérifiés</p>
+              <p className="text-muted-foreground">sur <span className="font-semibold text-foreground">250</span> avis vérifiés</p>
               {/* Google logo */}
               <div className="flex items-center justify-center gap-2 mt-3">
                 <svg viewBox="0 0 24 24" className="w-5 h-5" aria-hidden="true">
