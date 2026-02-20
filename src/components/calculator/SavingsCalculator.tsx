@@ -6,8 +6,10 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Calculator, TrendingDown, DollarSign, Percent } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const SavingsCalculator = () => {
+  const { t } = useLanguage();
   const [currentPrice, setCurrentPrice] = useState<string>("");
   const [insuranceType, setInsuranceType] = useState<string>("auto");
   const [age, setAge] = useState<string>("");
@@ -34,35 +36,35 @@ export const SavingsCalculator = () => {
             <Calculator className="h-8 w-8 text-primary" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Calculez vos <span className="text-primary">économies potentielles</span>
+            {t('calc.title')} <span className="text-primary">{t('calc.titleHighlight')}</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Découvrez combien vous pourriez économiser en changeant d'assurance
+            {t('calc.subtitle')}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
           <Card className="p-8">
-            <h3 className="text-2xl font-bold mb-6">Vos informations</h3>
+            <h3 className="text-2xl font-bold mb-6">{t('calc.yourInfo')}</h3>
             
             <div className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="insurance-type">Type d'assurance</Label>
+                <Label htmlFor="insurance-type">{t('calc.insuranceType')}</Label>
                 <Select value={insuranceType} onValueChange={setInsuranceType}>
                   <SelectTrigger id="insurance-type">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="auto">Assurance Auto</SelectItem>
-                    <SelectItem value="moto">Assurance Moto</SelectItem>
-                    <SelectItem value="habitation">Assurance Habitation</SelectItem>
-                    <SelectItem value="sante">Mutuelle Santé</SelectItem>
+                    <SelectItem value="auto">{t('calc.autoIns')}</SelectItem>
+                    <SelectItem value="moto">{t('calc.motoIns')}</SelectItem>
+                    <SelectItem value="habitation">{t('calc.homeIns')}</SelectItem>
+                    <SelectItem value="sante">{t('calc.healthIns')}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="current-price">Prix actuel mensuel (€)</Label>
+                <Label htmlFor="current-price">{t('calc.currentPrice')}</Label>
                 <Input
                   id="current-price"
                   type="number"
@@ -74,7 +76,7 @@ export const SavingsCalculator = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="age">Votre âge</Label>
+                <Label htmlFor="age">{t('calc.yourAge')}</Label>
                 <Input
                   id="age"
                   type="number"
@@ -88,7 +90,7 @@ export const SavingsCalculator = () => {
 
               {insuranceType === "auto" && (
                 <div className="space-y-2">
-                  <Label htmlFor="vehicle-age">Âge du véhicule (années)</Label>
+                  <Label htmlFor="vehicle-age">{t('calc.vehicleAge')}</Label>
                   <Input
                     id="vehicle-age"
                     type="number"
@@ -108,34 +110,34 @@ export const SavingsCalculator = () => {
                 disabled={!currentPrice || !age}
               >
                 <Calculator className="mr-2 h-5 w-5" />
-                Calculer mes économies
+                {t('calc.calculate')}
               </Button>
             </div>
           </Card>
 
           <Card className="p-8 bg-gradient-to-br from-primary/5 to-accent/5">
-            <h3 className="text-2xl font-bold mb-6">Vos économies potentielles</h3>
+            <h3 className="text-2xl font-bold mb-6">{t('calc.potentialSavings')}</h3>
             
             {!calculated || !currentPrice ? (
               <div className="flex items-center justify-center h-[300px]">
                 <p className="text-muted-foreground text-center">
-                  Remplissez le formulaire pour voir vos économies potentielles
+                  {t('calc.fillForm')}
                 </p>
               </div>
             ) : (
               <div className="space-y-8">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Prix actuel</span>
+                    <span className="text-muted-foreground">{t('calc.currentPriceLabel')}</span>
                     <span className="text-2xl font-bold line-through text-muted-foreground">
-                      {currentPrice}€/mois
+                      {currentPrice}€/{t('common.perMonth').split(' ').pop()}
                     </span>
                   </div>
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Prix estimé</span>
+                    <span className="text-muted-foreground">{t('calc.estimatedPrice')}</span>
                     <span className="text-3xl font-bold text-primary">
-                      {estimatedNewPrice}€/mois
+                      {estimatedNewPrice}€/{t('common.perMonth').split(' ').pop()}
                     </span>
                   </div>
 
@@ -143,7 +145,7 @@ export const SavingsCalculator = () => {
                   
                   <div className="flex items-center justify-center gap-2 text-accent">
                     <Percent className="h-5 w-5" />
-                    <span className="text-2xl font-bold">{averageSavingsPercent}% d'économies</span>
+                    <span className="text-2xl font-bold">{averageSavingsPercent}% {t('calc.savings')}</span>
                   </div>
                 </div>
 
@@ -152,7 +154,7 @@ export const SavingsCalculator = () => {
                     <Card className="p-4 bg-background/50">
                       <div className="flex items-center gap-2 mb-2">
                         <DollarSign className="h-4 w-4 text-primary" />
-                        <p className="text-sm text-muted-foreground">Économie mensuelle</p>
+                        <p className="text-sm text-muted-foreground">{t('calc.monthlySaving')}</p>
                       </div>
                       <p className="text-2xl font-bold text-primary">
                         {Number(currentPrice) - estimatedNewPrice}€
@@ -162,7 +164,7 @@ export const SavingsCalculator = () => {
                     <Card className="p-4 bg-background/50">
                       <div className="flex items-center gap-2 mb-2">
                         <TrendingDown className="h-4 w-4 text-accent" />
-                        <p className="text-sm text-muted-foreground">Économie annuelle</p>
+                        <p className="text-sm text-muted-foreground">{t('calc.annualSaving')}</p>
                       </div>
                       <p className="text-2xl font-bold text-accent">
                         {annualSavings}€
@@ -173,12 +175,12 @@ export const SavingsCalculator = () => {
 
                 <div className="bg-accent/10 rounded-lg p-4 border border-accent/20">
                   <p className="text-sm text-center font-semibold">
-                    En {Math.ceil(annualSavings / 200)} ans, vous aurez économisé de quoi partir en vacances ! 🏖️
+                    {Math.ceil(annualSavings / 200)} {t('calc.vacationMsg')}
                   </p>
                 </div>
 
                 <Button className="w-full" size="lg" variant="default">
-                  Comparer les offres maintenant
+                  {t('calc.compareNow')}
                 </Button>
               </div>
             )}
@@ -187,7 +189,7 @@ export const SavingsCalculator = () => {
 
         <div className="mt-12 text-center">
           <p className="text-sm text-muted-foreground">
-            * Estimation basée sur les économies moyennes constatées. Les économies réelles peuvent varier selon votre profil.
+            {t('calc.disclaimer')}
           </p>
         </div>
       </div>

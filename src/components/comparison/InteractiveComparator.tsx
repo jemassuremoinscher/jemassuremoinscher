@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 import { SubscriptionModal } from './SubscriptionModal';
 import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { useLanguage } from '@/contexts/LanguageContext';
 import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.png';
 import arthurFlying from '@/assets/mascotte/arthur-flying.png';
 
@@ -26,54 +27,30 @@ interface InsuranceOffer {
 
 const mockOffers: InsuranceOffer[] = [
   {
-    id: '1',
-    insurer: 'AXA',
-    price: 45,
-    originalPrice: 65,
-    rating: 4.8,
-    coverage: 'Premium',
+    id: '1', insurer: 'AXA', price: 45, originalPrice: 65, rating: 4.8, coverage: 'Premium',
     benefits: ['Assistance 24/7', 'Franchise 0€', 'Véhicule de remplacement', 'Protection juridique'],
     popular: true,
   },
   {
-    id: '2',
-    insurer: 'MAIF',
-    price: 52,
-    originalPrice: 70,
-    rating: 4.7,
-    coverage: 'Tous risques',
+    id: '2', insurer: 'MAIF', price: 52, originalPrice: 70, rating: 4.7, coverage: 'Tous risques',
     benefits: ['Bris de glace inclus', 'Protection conducteur', 'Assistance 0 km'],
   },
   {
-    id: '3',
-    insurer: 'Allianz',
-    price: 48,
-    originalPrice: 68,
-    rating: 4.6,
-    coverage: 'Confort',
+    id: '3', insurer: 'Allianz', price: 48, originalPrice: 68, rating: 4.6, coverage: 'Confort',
     benefits: ['Garantie valeur à neuf', 'Prêt de véhicule', 'Assistance Europe'],
   },
   {
-    id: '4',
-    insurer: 'Groupama',
-    price: 55,
-    originalPrice: 75,
-    rating: 4.5,
-    coverage: 'Optimal',
+    id: '4', insurer: 'Groupama', price: 55, originalPrice: 75, rating: 4.5, coverage: 'Optimal',
     benefits: ['Couverture catastrophes naturelles', 'Protection famille', 'Garage agréé'],
   },
   {
-    id: '5',
-    insurer: 'MACIF',
-    price: 50,
-    originalPrice: 72,
-    rating: 4.7,
-    coverage: 'Essentiel+',
+    id: '5', insurer: 'MACIF', price: 50, originalPrice: 72, rating: 4.7, coverage: 'Essentiel+',
     benefits: ['Vol et incendie', 'Dommages collision', 'Assistance panne'],
   },
 ];
 
 export const InteractiveComparator = () => {
+  const { t } = useLanguage();
   const [insuranceType, setInsuranceType] = useState('auto');
   const [currentPrice, setCurrentPrice] = useState([65]);
   const [sortBy, setSortBy] = useState<'price' | 'savings' | 'rating'>('savings');
@@ -89,7 +66,7 @@ export const InteractiveComparator = () => {
       } catch { /* cancelled */ }
     } else {
       await navigator.clipboard.writeText(window.location.href);
-      toast.success("Lien copié !");
+      toast.success(t('comparator.linkCopied'));
     }
   };
 
@@ -106,10 +83,7 @@ export const InteractiveComparator = () => {
 
   const filteredOffers = useMemo(() => {
     return mockOffers
-      .map(offer => ({
-        ...offer,
-        savings: offer.originalPrice - offer.price,
-      }))
+      .map(offer => ({ ...offer, savings: offer.originalPrice - offer.price }))
       .sort((a, b) => {
         if (sortBy === 'price') return a.price - b.price;
         if (sortBy === 'savings') return b.savings - a.savings;
@@ -130,21 +104,16 @@ export const InteractiveComparator = () => {
           <div className="max-w-[70%] sm:max-w-[75%] md:max-w-2xl relative z-10">
             <Badge className="mb-4 bg-white/20 text-white border-white/30 backdrop-blur-sm">
               <Sparkles className="h-3 w-3 mr-1" />
-              Comparateur en Temps Réel
+              {t('comparator.badge')}
             </Badge>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-              Découvrez vos économies potentielles
+              {t('comparator.heroTitle')}
             </h1>
             <p className="text-base md:text-lg text-white/80">
-              Comparez instantanément les meilleures offres du marché
+              {t('comparator.heroSubtitle')}
             </p>
           </div>
-          <img
-            src={arthurThumbsUp}
-            alt=""
-            aria-hidden="true"
-            className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none"
-          />
+          <img src={arthurThumbsUp} alt="" aria-hidden="true" className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none" />
         </div>
       </section>
 
@@ -153,30 +122,26 @@ export const InteractiveComparator = () => {
         <Card className="glass-card p-6 md:p-8 max-w-4xl mx-auto rounded-[2rem]">
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="space-y-3">
-              <Label className="text-base font-semibold text-foreground">Type d'assurance</Label>
+              <Label className="text-base font-semibold text-foreground">{t('comparator.insuranceType')}</Label>
               <Select value={insuranceType} onValueChange={setInsuranceType}>
-                <SelectTrigger className="h-12 rounded-2xl">
-                  <SelectValue />
-                </SelectTrigger>
+                <SelectTrigger className="h-12 rounded-2xl"><SelectValue /></SelectTrigger>
                 <SelectContent className="rounded-2xl">
-                  <SelectItem value="auto">🚗 Assurance Auto</SelectItem>
-                  <SelectItem value="moto">🏍️ Assurance Moto</SelectItem>
-                  <SelectItem value="habitation">🏠 Assurance Habitation</SelectItem>
-                  <SelectItem value="sante">💊 Mutuelle Santé</SelectItem>
+                  <SelectItem value="auto">{t('comparator.autoIns')}</SelectItem>
+                  <SelectItem value="moto">{t('comparator.motoIns')}</SelectItem>
+                  <SelectItem value="habitation">{t('comparator.homeIns')}</SelectItem>
+                  <SelectItem value="sante">{t('comparator.healthIns')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="space-y-3">
-              <Label className="text-base font-semibold text-foreground">Trier par</Label>
+              <Label className="text-base font-semibold text-foreground">{t('comparator.sortBy')}</Label>
               <Select value={sortBy} onValueChange={(v) => setSortBy(v as any)}>
-                <SelectTrigger className="h-12 rounded-2xl">
-                  <SelectValue />
-                </SelectTrigger>
+                <SelectTrigger className="h-12 rounded-2xl"><SelectValue /></SelectTrigger>
                 <SelectContent className="rounded-2xl">
-                  <SelectItem value="savings">💰 Meilleures économies</SelectItem>
-                  <SelectItem value="price">💵 Prix le plus bas</SelectItem>
-                  <SelectItem value="rating">⭐ Meilleure note</SelectItem>
+                  <SelectItem value="savings">{t('comparator.bestSavings')}</SelectItem>
+                  <SelectItem value="price">{t('comparator.lowestPrice')}</SelectItem>
+                  <SelectItem value="rating">{t('comparator.bestRating')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -185,17 +150,10 @@ export const InteractiveComparator = () => {
           {/* Slider */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <Label className="text-base font-semibold text-foreground">Votre prix actuel</Label>
-              <div className="text-2xl font-bold text-primary">{currentPrice[0]}€/mois</div>
+              <Label className="text-base font-semibold text-foreground">{t('comparator.currentPrice')}</Label>
+              <div className="text-2xl font-bold text-primary">{currentPrice[0]}€/{t('common.perMonth').split(' ').pop()}</div>
             </div>
-            <Slider
-              value={currentPrice}
-              onValueChange={setCurrentPrice}
-              min={30}
-              max={150}
-              step={5}
-              className="w-full"
-            />
+            <Slider value={currentPrice} onValueChange={setCurrentPrice} min={30} max={150} step={5} className="w-full" />
             <div className="flex justify-between text-xs text-muted-foreground">
               <span>30€</span>
               <span>150€</span>
@@ -209,15 +167,11 @@ export const InteractiveComparator = () => {
                 <TrendingDown className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <p className="text-sm text-muted-foreground font-medium">
-                  Économie potentielle sur 1 an
-                </p>
-                <p className="text-3xl font-black text-primary">
-                  {totalYearlySavings > 0 ? totalYearlySavings : 0}€
-                </p>
+                <p className="text-sm text-muted-foreground font-medium">{t('comparator.yearlySavings')}</p>
+                <p className="text-3xl font-black text-primary">{totalYearlySavings > 0 ? totalYearlySavings : 0}€</p>
                 {totalYearlySavings > 0 && (
                   <p className="text-sm text-muted-foreground mt-0.5">
-                    En passant à notre meilleure offre à {filteredOffers[0]?.price}€/mois
+                    {t('comparator.switchingTo')} {filteredOffers[0]?.price}€/{t('common.perMonth').split(' ').pop()}
                   </p>
                 )}
               </div>
@@ -229,11 +183,11 @@ export const InteractiveComparator = () => {
         <div className="max-w-4xl mx-auto space-y-4">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl md:text-2xl font-bold text-foreground">
-              {filteredOffers.length} offres disponibles
+              {filteredOffers.length} {t('comparator.offersAvailable')}
             </h2>
             <Button variant="ghost" size="sm" onClick={handleShare} className="gap-2 text-muted-foreground hover:text-foreground">
               <Share2 className="h-4 w-4" />
-              Partager
+              {t('comparator.share')}
             </Button>
           </div>
 
@@ -251,25 +205,21 @@ export const InteractiveComparator = () => {
                 )}
               >
                 <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-                  {/* Left */}
                   <div className="flex-1 space-y-3">
                     <div className="flex items-center gap-2 flex-wrap">
                       {index === 0 && (
                         <Badge className="bg-primary text-primary-foreground">
                           <Sparkles className="h-3 w-3 mr-1" />
-                          Meilleure offre
+                          {t('comparator.bestOfferBadge')}
                         </Badge>
                       )}
-                      {offer.popular && (
-                        <Badge variant="secondary">⭐ Populaire</Badge>
-                      )}
+                      {offer.popular && <Badge variant="secondary">{t('comparator.popular')}</Badge>}
                       <h3 className="text-xl font-bold text-foreground">{offer.insurer}</h3>
                       <div className="flex items-center gap-1">
                         <Star className="h-4 w-4 fill-secondary text-secondary" />
                         <span className="text-sm font-semibold text-foreground">{offer.rating}</span>
                       </div>
                     </div>
-
                     <div>
                       <Badge variant="outline" className="mb-2 rounded-full">{offer.coverage}</Badge>
                       <div className="grid sm:grid-cols-2 gap-1.5">
@@ -283,24 +233,21 @@ export const InteractiveComparator = () => {
                     </div>
                   </div>
 
-                  {/* Right - Pricing */}
                   <div className="flex flex-col sm:flex-row lg:flex-col items-center gap-3 lg:items-end">
                     <div className="text-center lg:text-right">
                       <div className="flex items-baseline gap-2 justify-center lg:justify-end">
                         <span className="text-sm text-muted-foreground line-through">{offer.originalPrice}€</span>
                         <span className="text-3xl font-black text-primary">{offer.price}€</span>
                       </div>
-                      <p className="text-sm text-muted-foreground">par mois</p>
-
+                      <p className="text-sm text-muted-foreground">{t('common.perMonth')}</p>
                       {monthlySavings > 0 && (
                         <div className="mt-2 inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold">
                           <TrendingDown className="h-4 w-4" />
-                          -{monthlySavings}€/mois
-                          <span className="text-xs opacity-75">(-{yearlySavings}€/an)</span>
+                          -{monthlySavings}€/{t('common.perMonth').split(' ').pop()}
+                          <span className="text-xs opacity-75">(-{yearlySavings}€/{t('common.perYear').split(' ').pop()})</span>
                         </div>
                       )}
                     </div>
-
                     <Button
                       size="lg"
                       onClick={() => handleSubscribe(offer)}
@@ -311,7 +258,7 @@ export const InteractiveComparator = () => {
                           : "bg-primary hover:bg-primary/90 text-primary-foreground"
                       )}
                     >
-                      Me faire rappeler
+                      {t('comparator.callbackBtn')}
                     </Button>
                   </div>
                 </div>
@@ -324,25 +271,19 @@ export const InteractiveComparator = () => {
         <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center max-w-4xl mx-auto overflow-visible">
           <div className="relative z-10">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Besoin d'aide pour choisir ?
+              {t('comparator.needHelp')}
             </h2>
             <p className="text-white/80 mb-6 max-w-xl mx-auto">
-              Nos experts comparent gratuitement toutes les offres et vous conseillent la meilleure solution
+              {t('comparator.expertHelp')}
             </p>
             <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 rounded-full text-lg">
-              Parler à un expert gratuitement
+              {t('comparator.talkExpert')}
             </Button>
           </div>
-          <img
-            src={arthurFlying}
-            alt=""
-            aria-hidden="true"
-            className="absolute -top-10 right-4 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none"
-          />
+          <img src={arthurFlying} alt="" aria-hidden="true" className="absolute -top-10 right-4 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none" />
         </div>
       </div>
 
-      {/* Subscription Modal */}
       {selectedOffer && (
         <SubscriptionModal
           open={isModalOpen}
