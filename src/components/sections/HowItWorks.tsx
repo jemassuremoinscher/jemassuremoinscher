@@ -19,7 +19,7 @@ const HowItWorks = () => {
     {
       number: "3",
       icon: CheckCircle,
-      title: "On me rappelle",
+      title: "On me rappelle tout de suite",
       description: "Choisissez la meilleure offre et faites-vous rappeler.",
     },
   ];
