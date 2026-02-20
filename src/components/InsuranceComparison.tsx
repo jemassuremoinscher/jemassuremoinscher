@@ -80,7 +80,7 @@ const InsuranceComparison = ({ insurers, onNewQuote, formData, insuranceType }: 
                   size="lg"
                   onClick={() => handleSubscribe(insurer)}
                 >
-                  {index === 0 ? "Souscrire maintenant" : "Souscrire"}
+                  Me faire rappeler
                 </Button>
               </div>
             </div>
