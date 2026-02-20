@@ -18,10 +18,11 @@ import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
 import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema, addHowToSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const formSchema = z.object({
   typeLogement: z.string().min(1, "Champ requis"),
@@ -33,6 +34,7 @@ const formSchema = z.object({
 });
 
 const AssuranceHabitation = () => {
+  const { t } = useLanguage();
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
@@ -54,40 +56,31 @@ const AssuranceHabitation = () => {
       const valeur = parseInt(values.valeur);
       const pieces = parseInt(values.pieces);
       let price = basePrice;
-
       if (values.typeLogement === "maison") price += 12;
       if (values.statut === "proprietaire") price += 8;
       if (surface > 150) price += 10; else if (surface > 100) price += 6; else if (surface > 70) price += 3;
       if (pieces >= 5) price += 5; else if (pieces >= 4) price += 3;
       if (valeur > 50000) price += 15; else if (valeur > 30000) price += 8; else if (valeur > 15000) price += 4;
-
       const randomVariation = Math.floor(Math.random() * 8) - 4;
       price += randomVariation;
-
       const offers = generateInsurerOffers(price, homeInsurers);
       setInsurerOffers(offers);
-      toast.success("Offres générées !", { description: "Consultez les meilleures offres pour votre logement." });
+      toast.success(t('insPage.toast.success'), { description: t('insPage.toast.successDescHome') });
     } catch (error: any) {
       console.error("Error:", error);
-      toast.error("Erreur", { description: "Une erreur est survenue. Veuillez réessayer." });
+      toast.error(t('insPage.toast.error'), { description: t('insPage.toast.errorDesc') });
     } finally { setIsLoading(false); }
   };
 
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Assurance Habitation", url: "https://www.jemassuremoinscher.fr/assurance-habitation" }
-  ]);
+  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Habitation", url: "https://www.jemassuremoinscher.fr/assurance-habitation" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Habitation", description: "Comparez les assurances habitation. Devis gratuit et rapide.", provider: "jemassuremoinscher", areaServed: "France" });
   const ratingSchema = addAggregateRatingSchema("Comparateur Assurance Habitation", 4.7, 1435);
-  const faqSchema = addFAQSchema([
-    { question: "L'assurance habitation est-elle obligatoire ?", answer: "Oui pour les locataires. Fortement recommandée pour les propriétaires." },
-    { question: "Combien coûte une assurance habitation ?", answer: "Entre 120€ et 350€ par an selon la surface et les garanties." }
-  ]);
+  const faqSchema = addFAQSchema([{ question: "L'assurance habitation est-elle obligatoire ?", answer: "Oui pour les locataires. Fortement recommandée pour les propriétaires." }, { question: "Combien coûte une assurance habitation ?", answer: "Entre 120€ et 350€ par an selon la surface et les garanties." }]);
 
   const advantages = [
-    { icon: Euro, title: "Jusqu'à 300€ d'économies", description: "Comparez et économisez sur votre assurance habitation." },
-    { icon: Clock, title: "Devis en 2 minutes", description: "Simple, rapide et 100% gratuit." },
-    { icon: Shield, title: "20+ assureurs comparés", description: "Les meilleures offres du marché." }
+    { icon: Euro, title: t('habitationPage.adv1.title'), description: t('habitationPage.adv1.desc') },
+    { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
+    { icon: Shield, title: t('habitationPage.adv2.title'), description: t('habitationPage.adv2.desc') }
   ];
 
   return (
@@ -100,9 +93,9 @@ const AssuranceHabitation = () => {
           <div className="max-w-4xl mx-auto text-center relative">
             <img src={arthurThumbsUp} alt="Arthur" className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto" />
             <div className="flex justify-center mb-6"><div className="p-4 rounded-full bg-primary/10"><Home className="h-12 w-12 text-primary" /></div></div>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Assurance Habitation</h1>
-            <p className="text-xl text-muted-foreground mb-8">Comparez les meilleures offres et économisez jusqu'à 300€ par an.</p>
-            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">Comparer maintenant</Button>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">{t('habitationPage.title')}</h1>
+            <p className="text-xl text-muted-foreground mb-8">{t('habitationPage.subtitle')}</p>
+            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
           </div>
         </div>
       </section>
@@ -116,19 +109,19 @@ const AssuranceHabitation = () => {
 
         <div ref={formRef} className="max-w-3xl mx-auto mb-16">
           <Card className="p-8">
-            <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis personnalisé</h2>
+            <h2 className="text-2xl font-bold mb-6 text-card-foreground">{t('insPage.getQuote')}</h2>
             {insurerOffers.length > 0 ? (
               <InsuranceComparison insurers={insurerOffers} onNewQuote={() => setInsurerOffers([])} formData={submittedFormData} insuranceType="Assurance Habitation" />
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField control={form.control} name="typeLogement" render={({ field }) => (<FormItem><FormLabel>Type de logement</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Sélectionner" /></SelectTrigger></FormControl><SelectContent><SelectItem value="maison">Maison</SelectItem><SelectItem value="appartement">Appartement</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="statut" render={({ field }) => (<FormItem><FormLabel>Vous êtes</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Sélectionner" /></SelectTrigger></FormControl><SelectContent><SelectItem value="proprietaire">Propriétaire</SelectItem><SelectItem value="locataire">Locataire</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="surface" render={({ field }) => (<FormItem><FormLabel>Surface (m²)</FormLabel><FormControl><Input type="number" placeholder="75" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="pieces" render={({ field }) => (<FormItem><FormLabel>Nombre de pièces</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Sélectionner" /></SelectTrigger></FormControl><SelectContent><SelectItem value="1">1 pièce</SelectItem><SelectItem value="2">2 pièces</SelectItem><SelectItem value="3">3 pièces</SelectItem><SelectItem value="4">4 pièces</SelectItem><SelectItem value="5">5 pièces et +</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>Code postal</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="valeur" render={({ field }) => (<FormItem><FormLabel>Valeur des biens à assurer (€)</FormLabel><FormControl><Input type="number" placeholder="15000" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? "Envoi en cours..." : "Comparer les offres"}</Button>
+                  <FormField control={form.control} name="typeLogement" render={({ field }) => (<FormItem><FormLabel>{t('habitationPage.form.type')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="maison">{t('habitationPage.form.house')}</SelectItem><SelectItem value="appartement">{t('habitationPage.form.apartment')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="statut" render={({ field }) => (<FormItem><FormLabel>{t('habitationPage.form.status')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="proprietaire">{t('habitationPage.form.owner')}</SelectItem><SelectItem value="locataire">{t('habitationPage.form.tenant')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="surface" render={({ field }) => (<FormItem><FormLabel>{t('habitationPage.form.surface')}</FormLabel><FormControl><Input type="number" placeholder="75" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="pieces" render={({ field }) => (<FormItem><FormLabel>{t('habitationPage.form.rooms')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="1">{t('habitationPage.form.room1')}</SelectItem><SelectItem value="2">{t('habitationPage.form.room2')}</SelectItem><SelectItem value="3">{t('habitationPage.form.room3')}</SelectItem><SelectItem value="4">{t('habitationPage.form.room4')}</SelectItem><SelectItem value="5">{t('habitationPage.form.room5')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="valeur" render={({ field }) => (<FormItem><FormLabel>{t('habitationPage.form.value')}</FormLabel><FormControl><Input type="number" placeholder="15000" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? t('insPage.loading') : t('insPage.compareOffers')}</Button>
                 </form>
               </Form>
             )}
@@ -138,14 +131,14 @@ const AssuranceHabitation = () => {
         <section className="max-w-4xl mx-auto mb-16">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="learn-more" className="border rounded-lg">
-              <AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold flex items-center gap-2">En savoir plus sur l'assurance habitation</span></AccordionTrigger>
+              <AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold flex items-center gap-2">{t('insPage.learnMore')} {t('habitationPage.learnMore')}</span></AccordionTrigger>
               <AccordionContent className="px-6 pb-6">
                 <div className="space-y-12">
-                  <InsuranceFAQ title="Questions fréquentes" faqs={[
-                    { question: "Quelles sont les garanties essentielles ?", answer: "Incendie, dégâts des eaux, vol, responsabilité civile et catastrophes naturelles sont les garanties de base." },
-                    { question: "Dois-je assurer ma résidence secondaire ?", answer: "Ce n'est pas obligatoire sauf en copropriété, mais c'est fortement recommandé pour protéger votre patrimoine." },
-                    { question: "Que faire en cas de sinistre ?", answer: "Déclarez le sinistre dans les 5 jours (2 jours pour un vol) auprès de votre assureur par courrier recommandé." },
-                    { question: "La franchise, c'est quoi ?", answer: "C'est le montant restant à votre charge après indemnisation. Plus la franchise est élevée, plus la prime est basse." },
+                  <InsuranceFAQ title={t('insPage.faqTitle')} faqs={[
+                    { question: t('habitationPage.faq1.q'), answer: t('habitationPage.faq1.a') },
+                    { question: t('habitationPage.faq2.q'), answer: t('habitationPage.faq2.a') },
+                    { question: t('habitationPage.faq3.q'), answer: t('habitationPage.faq3.a') },
+                    { question: t('habitationPage.faq4.q'), answer: t('habitationPage.faq4.a') },
                   ]} />
                   <SavingsCalculator />
                   <QuoteRequestForm />
@@ -159,9 +152,9 @@ const AssuranceHabitation = () => {
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
             <img src={arthurFlying} alt="Arthur" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" />
-            <h2 className="text-2xl font-bold mb-4">Prêt à économiser sur votre assurance habitation ?</h2>
-            <p className="text-muted-foreground mb-6">Comparez gratuitement les meilleures offres en 2 minutes.</p>
-            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">Comparer les offres maintenant</Button>
+            <h2 className="text-2xl font-bold mb-4">{t('insPage.readyToSave')} {t('habitationPage.readyToSave')} ?</h2>
+            <p className="text-muted-foreground mb-6">{t('insPage.compareFree')}</p>
+            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
       </main>
