@@ -4,22 +4,24 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Shield, Heart, Users, Headphones, Euro, Clock, UserCheck } from "lucide-react";
+import { Shield, Heart, Euro, Clock } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { generateInsurerOffers, InsurerConfig } from "@/utils/insurerData";
 import SEO from "@/components/SEO";
-import InfoSection from "@/components/insurance/InfoSection";
-import HowItWorks from "@/components/insurance/HowItWorks";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
+import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
+import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
+import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 
 const formSchema = z.object({
   typePrevoyance: z.string().min(1, "Champ requis"),
@@ -30,437 +32,107 @@ const formSchema = z.object({
 });
 
 const prevoyanceInsurers: InsurerConfig[] = [
-  {
-    name: "AXA",
-    priceMultiplier: 1.05,
-    coverage: ["Capital décès garanti", "Rente conjoint", "Rente éducation"],
-  },
-  {
-    name: "Generali",
-    priceMultiplier: 1.02,
-    coverage: ["Protection famille", "Capital décès doublé accident", "Rente invalidité"],
-    discount: "-10% en ligne"
-  },
-  {
-    name: "Swiss Life",
-    priceMultiplier: 1.10,
-    coverage: ["Capital décès majoré", "Garantie dépendance incluse", "Assistance psychologique"],
-  },
-  {
-    name: "AG2R La Mondiale",
-    priceMultiplier: 0.98,
-    coverage: ["Capital décès", "Rente éducation", "Garantie obsèques"],
-    discount: "-12% nouveau client"
-  },
-  {
-    name: "Malakoff Humanis",
-    priceMultiplier: 1.00,
-    coverage: ["Protection complète", "Capital invalidité", "Services d'assistance"],
-  },
-  {
-    name: "MetLife",
-    priceMultiplier: 0.95,
-    coverage: ["Capital décès modulable", "Garantie ITT", "Frais d'obsèques"],
-  },
+  { name: "AXA", priceMultiplier: 1.05, coverage: ["Capital décès garanti", "Rente conjoint", "Rente éducation"] },
+  { name: "Generali", priceMultiplier: 1.02, coverage: ["Protection famille", "Capital décès doublé accident", "Rente invalidité"], discount: "-10% en ligne" },
+  { name: "Swiss Life", priceMultiplier: 1.10, coverage: ["Capital décès majoré", "Garantie dépendance incluse", "Assistance psychologique"] },
+  { name: "AG2R La Mondiale", priceMultiplier: 0.98, coverage: ["Capital décès", "Rente éducation", "Garantie obsèques"], discount: "-12% nouveau client" },
+  { name: "Malakoff Humanis", priceMultiplier: 1.00, coverage: ["Protection complète", "Capital invalidité", "Services d'assistance"] },
+  { name: "MetLife", priceMultiplier: 0.95, coverage: ["Capital décès modulable", "Garantie ITT", "Frais d'obsèques"] },
 ];
 
 const AssurancePrevoyance = () => {
-
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
+  const formRef = useRef<HTMLDivElement>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      typePrevoyance: "",
-      situation: "",
-      age: "",
-      profession: "",
-      codePostal: "",
-    },
+    defaultValues: { typePrevoyance: "", situation: "", age: "", profession: "", codePostal: "" },
   });
+
+  const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
-      // Sauvegarder les données du formulaire
       setSubmittedFormData(values);
-      
-      // Calcul prix réaliste
-      const basePrice = 30; // Base formule standard
+      const basePrice = 30;
       let price = basePrice;
-
       const age = parseInt(values.age);
-      // Âge (impact très important en prévoyance)
-      if (age > 60) price += 45;
-      else if (age > 50) price += 30;
-      else if (age > 40) price += 18;
-      else if (age > 30) price += 10;
-
-      // Type de prévoyance (impact majeur)
-      if (values.typePrevoyance === "deces") price += 25; // Capital décès
-      else if (values.typePrevoyance === "obseques") price += 12; // Obsèques seules
-      else if (values.typePrevoyance === "dependance") price += 40; // Dépendance très chère
-      else if (values.typePrevoyance === "complete") price += 50; // Formule complète
-
-      // Situation familiale
-      if (values.situation === "marie-enfants") price += 15;
-      else if (values.situation === "marie") price += 8;
-
-      // Profession à risque
+      if (age > 60) price += 45; else if (age > 50) price += 30; else if (age > 40) price += 18; else if (age > 30) price += 10;
+      if (values.typePrevoyance === "deces") price += 25; else if (values.typePrevoyance === "obseques") price += 12; else if (values.typePrevoyance === "dependance") price += 40; else if (values.typePrevoyance === "complete") price += 50;
+      if (values.situation === "marie-enfants") price += 15; else if (values.situation === "marie") price += 8;
       if (values.profession === "risque") price += 25;
-
       const randomVariation = Math.floor(Math.random() * 15) - 7;
       price += randomVariation;
-
       const offers = generateInsurerOffers(price, prevoyanceInsurers);
       setInsurerOffers(offers);
-      toast.success("Offres générées !", {
-        description: "Consultez les meilleures offres de prévoyance.",
-      });
+      toast.success("Offres générées !", { description: "Consultez les meilleures offres de prévoyance." });
     } catch (error: any) {
       console.error("Error:", error);
-      toast.error("Erreur", {
-        description: "Une erreur est survenue. Veuillez réessayer.",
-      });
-    } finally {
-      setIsLoading(false);
-    }
+      toast.error("Erreur", { description: "Une erreur est survenue. Veuillez réessayer." });
+    } finally { setIsLoading(false); }
   };
 
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Assurance Prévoyance", url: "https://www.jemassuremoinscher.fr/assurance-prevoyance" }
-  ]);
-
-  const serviceSchema = addServiceSchema({
-    name: "Comparateur Assurance Prévoyance",
-    description: "Comparez les meilleures assurances prévoyance : décès, obsèques, dépendance. Protégez votre famille et préparez l'avenir sereinement.",
-    provider: "jemassuremoinscher",
-    areaServed: "France"
-  });
-
+  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Prévoyance", url: "https://www.jemassuremoinscher.fr/assurance-prevoyance" }]);
+  const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Prévoyance", description: "Comparez les meilleures assurances prévoyance.", provider: "jemassuremoinscher", areaServed: "France" });
   const faqSchema = addFAQSchema([
-    {
-      question: "Quelle est la différence entre prévoyance et mutuelle santé ?",
-      answer: "La mutuelle santé rembourse vos frais médicaux (consultations, médicaments, hospitalisation). La prévoyance couvre les conséquences financières d'un accident de la vie : décès, invalidité, incapacité de travail. Elle verse un capital ou une rente pour compenser la perte de revenus et protéger votre famille."
-    },
-    {
-      question: "Ai-je besoin d'une assurance prévoyance si j'ai déjà celle de mon entreprise ?",
-      answer: "La prévoyance collective couvre uniquement pendant votre activité professionnelle et s'arrête en cas de départ de l'entreprise. De plus, elle peut être insuffisante selon votre situation familiale. Un contrat individuel complète ces garanties et vous suit tout au long de votre vie, même en cas de changement professionnel."
-    },
-    {
-      question: "Comment est calculé le montant des cotisations ?",
-      answer: "Les cotisations dépendent de plusieurs facteurs : votre âge, votre profession, votre état de santé, le montant du capital ou de la rente garantie, et les garanties choisies. Plus vous souscrivez jeune, plus les cotisations sont faibles. Un questionnaire médical peut être demandé selon le montant assuré."
-    }
+    { question: "Quelle est la différence entre prévoyance et mutuelle ?", answer: "La mutuelle rembourse les frais médicaux. La prévoyance couvre décès, invalidité et incapacité." },
+    { question: "Comment sont calculées les cotisations ?", answer: "Selon votre âge, profession, état de santé et montant du capital garanti." }
   ]);
+
+  const advantages = [
+    { icon: Heart, title: "Protection familiale", description: "Protégez vos proches en cas d'accident de la vie." },
+    { icon: Clock, title: "Devis en 2 minutes", description: "Simple, rapide et 100% gratuit." },
+    { icon: Shield, title: "Garanties sur mesure", description: "Décès, invalidité, dépendance, obsèques." }
+  ];
 
   return (
     <div className="min-h-screen">
-      <SEO 
-        title="Prévoyance - Protégez votre avenir et celui de vos proches"
-        description="Comparez les meilleures assurances prévoyance : décès, obsèques, dépendance. Protégez votre famille et préparez l'avenir sereinement. Devis gratuit en 2 minutes."
-        keywords="assurance prévoyance, assurance décès, assurance obsèques, assurance dépendance, protection famille"
-        canonical="https://www.jemassuremoinscher.fr/assurance-prevoyance"
-        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
-      />
+      <SEO title="Prévoyance - Protégez votre avenir | jemassuremoinscher" description="Comparez les meilleures assurances prévoyance : décès, obsèques, dépendance. Devis gratuit." keywords="assurance prévoyance, assurance décès, assurance obsèques, assurance dépendance" canonical="https://www.jemassuremoinscher.fr/assurance-prevoyance" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
-      
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="flex justify-center mb-6">
-              <div className="p-4 rounded-full bg-primary/10">
-                <Shield className="h-12 w-12 text-primary" />
-              </div>
-            </div>
-            <h1 className="text-5xl font-bold text-foreground mb-6">Assurance Prévoyance</h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Protégez votre famille et préparez l'avenir sereinement. 
-              Comparez les meilleures solutions de prévoyance adaptées à vos besoins.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <div className="flex items-center gap-2">
-                <Heart className="h-5 w-5 text-primary" />
-                <span>Protection familiale</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-primary" />
-                <span>Devis immédiat</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-primary" />
-                <span>Garanties sur mesure</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
+        <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
+          <img src={arthurThumbsUp} alt="Arthur" className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto" />
+          <div className="flex justify-center mb-6"><div className="p-4 rounded-full bg-primary/10"><Shield className="h-12 w-12 text-primary" /></div></div>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Assurance Prévoyance</h1>
+          <p className="text-xl text-muted-foreground mb-8">Protégez votre famille et préparez l'avenir sereinement.</p>
+          <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">Comparer maintenant</Button>
+        </div></div>
       </section>
-
       <main className="container mx-auto px-4 py-12">
-        {/* Formulaire de devis */}
-        <div className="max-w-3xl mx-auto mb-16">
+        <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h3 className="font-bold text-lg mb-2">{item.title}</h3><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
+        <div ref={formRef} className="max-w-3xl mx-auto mb-16">
           <Card className="p-8">
             <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis personnalisé</h2>
             {insurerOffers.length > 0 ? (
-              <InsuranceComparison 
-                insurers={insurerOffers} 
-                onNewQuote={() => setInsurerOffers([])}
-                formData={submittedFormData}
-                insuranceType="Prévoyance"
-              />
+              <InsuranceComparison insurers={insurerOffers} onNewQuote={() => setInsurerOffers([])} formData={submittedFormData} insuranceType="Prévoyance" />
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
-                    <FormField
-                      control={form.control}
-                      name="typePrevoyance"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Type de prévoyance</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Choisissez" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="deces">Assurance décès</SelectItem>
-                              <SelectItem value="obseques">Assurance obsèques</SelectItem>
-                              <SelectItem value="dependance">Assurance dépendance</SelectItem>
-                              <SelectItem value="incapacite">Garantie incapacité</SelectItem>
-                              <SelectItem value="invalidite">Garantie invalidité</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="situation"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Situation familiale</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Choisissez" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="celibataire">Célibataire</SelectItem>
-                              <SelectItem value="marie">Marié(e)</SelectItem>
-                              <SelectItem value="pacse">Pacsé(e)</SelectItem>
-                              <SelectItem value="divorce">Divorcé(e)</SelectItem>
-                              <SelectItem value="veuf">Veuf/Veuve</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="age"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Âge</FormLabel>
-                          <FormControl>
-                            <Input type="number" placeholder="Votre âge" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="profession"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Profession</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue placeholder="Choisissez" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="salarie">Salarié(e)</SelectItem>
-                              <SelectItem value="independant">Indépendant(e)</SelectItem>
-                              <SelectItem value="fonctionnaire">Fonctionnaire</SelectItem>
-                              <SelectItem value="retraite">Retraité(e)</SelectItem>
-                              <SelectItem value="risque">Profession à risque</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="codePostal"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Code postal</FormLabel>
-                          <FormControl>
-                            <Input placeholder="75001" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    <FormField control={form.control} name="typePrevoyance" render={({ field }) => (<FormItem><FormLabel>Type de prévoyance</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choisissez" /></SelectTrigger></FormControl><SelectContent><SelectItem value="deces">Assurance décès</SelectItem><SelectItem value="obseques">Assurance obsèques</SelectItem><SelectItem value="dependance">Assurance dépendance</SelectItem><SelectItem value="incapacite">Garantie incapacité</SelectItem><SelectItem value="invalidite">Garantie invalidité</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="situation" render={({ field }) => (<FormItem><FormLabel>Situation familiale</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choisissez" /></SelectTrigger></FormControl><SelectContent><SelectItem value="celibataire">Célibataire</SelectItem><SelectItem value="marie">Marié(e)</SelectItem><SelectItem value="pacse">Pacsé(e)</SelectItem><SelectItem value="divorce">Divorcé(e)</SelectItem><SelectItem value="veuf">Veuf/Veuve</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="age" render={({ field }) => (<FormItem><FormLabel>Âge</FormLabel><FormControl><Input type="number" placeholder="Votre âge" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="profession" render={({ field }) => (<FormItem><FormLabel>Profession</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choisissez" /></SelectTrigger></FormControl><SelectContent><SelectItem value="salarie">Salarié(e)</SelectItem><SelectItem value="independant">Indépendant(e)</SelectItem><SelectItem value="fonctionnaire">Fonctionnaire</SelectItem><SelectItem value="retraite">Retraité(e)</SelectItem><SelectItem value="risque">Profession à risque</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>Code postal</FormLabel><FormControl><Input placeholder="75001" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   </div>
-
-                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
-                    {isLoading ? "Envoi en cours..." : "Obtenir mon devis gratuit"}
-                  </Button>
+                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? "Envoi en cours..." : "Comparer les offres"}</Button>
                 </form>
               </Form>
             )}
           </Card>
         </div>
-
-        {/* Garanties Section */}
-        <InfoSection
-          title="Les différentes solutions de prévoyance"
-          description="Choisissez la protection adaptée à votre situation et vos besoins"
-          items={[
-            {
-              icon: Heart,
-              title: "Assurance Décès",
-              description: "Versement d'un capital ou d'une rente à vos proches en cas de décès. Protégez votre famille et assurez leur avenir financier.",
-            },
-            {
-              icon: Shield,
-              title: "Garantie Invalidité",
-              description: "Maintien de revenus en cas d'invalidité permanente suite à maladie ou accident. Rente mensuelle selon le taux d'invalidité.",
-            },
-            {
-              icon: UserCheck,
-              title: "Incapacité de Travail",
-              description: "Indemnités journalières en cas d'arrêt de travail prolongé pour maintenir votre niveau de vie pendant votre convalescence.",
-            },
-            {
-              icon: Users,
-              title: "Assurance Dépendance",
-              description: "Rente viagère si vous perdez votre autonomie. Financement de l'aide à domicile ou d'un établissement spécialisé.",
-            },
-            {
-              icon: Headphones,
-              title: "Assurance Obsèques",
-              description: "Capital garanti pour financer vos obsèques et soulager vos proches du poids financier et organisationnel.",
-            },
-            {
-              icon: Euro,
-              title: "Rente Éducation",
-              description: "Versement d'une rente pour financer les études de vos enfants en cas de décès ou invalidité du parent assuré.",
-            },
-          ]}
-        />
-
-        {/* Comment ça marche */}
-        <HowItWorks
-          steps={[
-            {
-              number: "1",
-              title: "Évaluez vos besoins",
-              description: "Définissez le type de protection souhaité selon votre situation familiale et professionnelle.",
-            },
-            {
-              number: "2",
-              title: "Comparez les garanties",
-              description: "Recevez plusieurs offres détaillées avec les garanties, exclusions et tarifs de chaque assureur.",
-            },
-            {
-              number: "3",
-              title: "Protégez vos proches",
-              description: "Souscrivez en ligne et assurez la sécurité financière de votre famille dès maintenant.",
-            },
-          ]}
-        />
-
-        {/* Conseils */}
-        <section className="py-12 max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
-            Nos conseils pour bien choisir votre prévoyance
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-3">Évaluez le capital nécessaire</h3>
-              <p className="text-muted-foreground">
-                Pour une assurance décès, calculez le capital nécessaire pour maintenir le niveau de vie 
-                de votre famille : remboursement du crédit immobilier, frais de scolarité, revenus de remplacement. 
-                Comptez généralement 3 à 5 fois votre revenu annuel.
-              </p>
-            </Card>
-            <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-3">Adaptez selon votre âge</h3>
-              <p className="text-muted-foreground">
-                Plus vous êtes jeune, moins la cotisation est élevée. Si vous avez des enfants en bas âge 
-                et un crédit immobilier, privilégiez une assurance décès temporaire. Après 50 ans, 
-                pensez à la dépendance et aux obsèques.
-              </p>
-            </Card>
-            <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-3">Coordonnez avec vos autres garanties</h3>
-              <p className="text-muted-foreground">
-                Vérifiez ce qui est déjà couvert par votre mutuelle d'entreprise, votre assurance emprunteur 
-                ou votre épargne existante. Évitez les doublons et optimisez votre budget en complétant 
-                uniquement les protections manquantes.
-              </p>
-            </Card>
-            <Card className="p-6">
-              <h3 className="text-xl font-semibold mb-3">Lisez les exclusions</h3>
-              <p className="text-muted-foreground">
-                Prenez le temps de lire les exclusions de garantie : sports à risque, maladies préexistantes, 
-                professions dangereuses. Certains contrats proposent des rachats d'exclusions moyennant 
-                une surprime pour une couverture plus complète.
-              </p>
-            </Card>
-          </div>
+        <section className="max-w-4xl mx-auto mb-16"><Accordion type="single" collapsible className="w-full"><AccordionItem value="learn-more" className="border rounded-lg"><AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold">En savoir plus sur la prévoyance</span></AccordionTrigger><AccordionContent className="px-6 pb-6"><div className="space-y-12"><InsuranceFAQ title="Questions fréquentes" faqs={[{ question: "Ai-je besoin de prévoyance si j'ai celle de mon entreprise ?", answer: "La prévoyance collective s'arrête en cas de départ. Un contrat individuel vous suit toute votre vie." }, { question: "À quel âge souscrire ?", answer: "Le plus tôt possible : les cotisations sont plus faibles et l'acceptation médicale plus facile." }, { question: "Quelle différence entre décès et obsèques ?", answer: "L'assurance décès verse un capital à vos proches. L'assurance obsèques finance spécifiquement vos funérailles." }]} /><SavingsCalculator /><QuoteRequestForm /><Testimonials /></div></AccordionContent></AccordionItem></Accordion></section>
+        <section className="max-w-2xl mx-auto text-center mb-16">
+          <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
+            <img src={arthurFlying} alt="Arthur" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" />
+            <h2 className="text-2xl font-bold mb-4">Prêt à protéger votre famille ?</h2>
+            <p className="text-muted-foreground mb-6">Comparez gratuitement les meilleures offres de prévoyance.</p>
+            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">Comparer les offres maintenant</Button>
+          </Card>
         </section>
-
-        {/* FAQ */}
-        <InsuranceFAQ
-          title="Questions fréquentes sur la prévoyance"
-          faqs={[
-            {
-              question: "Quelle est la différence entre prévoyance et mutuelle santé ?",
-              answer: "La mutuelle santé rembourse vos frais médicaux (consultations, médicaments, hospitalisation). La prévoyance couvre les conséquences financières d'un accident de la vie : décès, invalidité, incapacité de travail. Elle verse un capital ou une rente pour compenser la perte de revenus et protéger votre famille.",
-            },
-            {
-              question: "Ai-je besoin d'une assurance prévoyance si j'ai déjà celle de mon entreprise ?",
-              answer: "La prévoyance collective couvre uniquement pendant votre activité professionnelle et s'arrête en cas de départ de l'entreprise. De plus, elle peut être insuffisante selon votre situation familiale. Un contrat individuel complète ces garanties et vous suit tout au long de votre vie, même en cas de changement professionnel.",
-            },
-            {
-              question: "Comment est calculé le montant des cotisations ?",
-              answer: "Les cotisations dépendent de plusieurs facteurs : votre âge, votre profession, votre état de santé, le montant du capital ou de la rente garantie, et les garanties choisies. Plus vous souscrivez jeune, plus les cotisations sont faibles. Un questionnaire médical peut être demandé selon le montant assuré.",
-            },
-            {
-              question: "Qu'est-ce que la garantie dépendance et à quel âge y souscrire ?",
-              answer: "La garantie dépendance verse une rente si vous ne pouvez plus accomplir seul les actes essentiels de la vie quotidienne (se laver, s'habiller, se nourrir). L'âge idéal de souscription se situe entre 50 et 60 ans : les cotisations restent abordables et vous êtes généralement en bonne santé pour être accepté facilement.",
-            },
-            {
-              question: "L'assurance obsèques est-elle vraiment utile ?",
-              answer: "Oui, elle permet de financer vos obsèques (en moyenne 4 000 à 6 000€) et d'éviter à vos proches de supporter ce coût dans un moment difficile. Vous pouvez également prévoir l'organisation de vos obsèques selon vos souhaits. Le capital est garanti et les cotisations peuvent être viagères ou sur une durée limitée.",
-            },
-            {
-              question: "Puis-je résilier mon contrat de prévoyance ?",
-              answer: "Oui, les contrats de prévoyance sont résiliables à tout moment après la première année, avec un préavis généralement de 2 mois. Attention : si vous résiliez, vous perdez les garanties et les cotisations déjà versées ne sont pas remboursées (sauf pour certains contrats d'obsèques avec épargne). Comparez bien avant de changer.",
-            },
-          ]}
-        />
-
-        {/* Testimonials */}
-        <Testimonials />
       </main>
       <Footer />
     </div>
