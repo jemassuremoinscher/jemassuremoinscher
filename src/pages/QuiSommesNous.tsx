@@ -14,7 +14,7 @@ const QuiSommesNous = () => {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
           <div className="container mx-auto px-4 py-16 md:py-24">
-            <div className="max-w-3xl relative z-10">
+            <div className="max-w-[65%] sm:max-w-[70%] md:max-w-3xl relative z-10">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
                 Qui sommes-nous ?
               </h1>
@@ -27,7 +27,7 @@ const QuiSommesNous = () => {
               src={arthurThumbsUp} 
               alt="" 
               aria-hidden="true"
-              className="absolute right-4 md:right-12 bottom-0 h-40 md:h-56 lg:h-64 object-contain opacity-90 pointer-events-none select-none"
+              className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-56 lg:h-64 object-contain opacity-90 pointer-events-none select-none"
             />
           </div>
         </section>
@@ -136,7 +136,7 @@ const QuiSommesNous = () => {
                 src={arthurFlying} 
                 alt="" 
                 aria-hidden="true"
-                className="absolute -top-12 right-4 md:right-12 h-28 md:h-36 object-contain pointer-events-none select-none"
+                className="absolute -top-8 sm:-top-12 right-2 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none"
               />
             </div>
 
