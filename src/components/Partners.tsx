@@ -7,56 +7,20 @@ import Autoplay from "embla-carousel-autoplay";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import axaLogo from "@/assets/logos/axa.webp";
 import allianzLogo from "@/assets/logos/allianz.webp";
-import groupamaLogo from "@/assets/logos/groupama.png";
 import maifLogo from "@/assets/logos/maif.webp";
-import macifLogo from "@/assets/logos/macif.png";
 import generaliLogo from "@/assets/logos/generali.jpg";
-import mmaLogo from "@/assets/logos/mma.png";
 import matmutLogo from "@/assets/logos/matmut.webp";
-import gmfLogo from "@/assets/logos/gmf.png";
-import directAssuranceLogo from "@/assets/logos/direct-assurance.png";
-import amaguizLogo from "@/assets/logos/amaguiz.png";
-import aprilLogo from "@/assets/logos/april.png";
-import lukoLogo from "@/assets/logos/luko.png";
-import harmonieMutuelleLogo from "@/assets/logos/harmonie-mutuelle.png";
-import mgenLogo from "@/assets/logos/mgen.png";
-import ag2rLogo from "@/assets/logos/ag2r.png";
-import assurpeopleLogo from "@/assets/logos/assurpeople.png";
-import lclLogo from "@/assets/logos/lcl.png";
 import swissLifeLogo from "@/assets/logos/swisslife.webp";
-import mutuelleGeneraleLogo from "@/assets/logos/mutuelle-generale.png";
-import cardifLogo from "@/assets/logos/cardif.png";
-import metlifeLogo from "@/assets/logos/metlife.png";
-import alanLogo from "@/assets/logos/alan.png";
-import malakoffHumanisLogo from "@/assets/logos/malakoff-humanis.png";
 import agfLogo from "@/assets/logos/agf.png";
 import maafLogo from "@/assets/logos/maaf.webp";
 
 const partners = [
   { name: "AXA", logo: axaLogo },
   { name: "Allianz", logo: allianzLogo },
-  { name: "Groupama", logo: groupamaLogo },
   { name: "MAIF", logo: maifLogo },
-  { name: "MACIF", logo: macifLogo },
   { name: "Generali", logo: generaliLogo },
-  { name: "MMA", logo: mmaLogo },
   { name: "Matmut", logo: matmutLogo },
-  { name: "GMF", logo: gmfLogo },
-  { name: "Direct Assurance", logo: directAssuranceLogo },
-  { name: "Amaguiz", logo: amaguizLogo },
-  { name: "April", logo: aprilLogo },
-  { name: "Luko", logo: lukoLogo },
-  { name: "Harmonie Mutuelle", logo: harmonieMutuelleLogo },
-  { name: "MGEN", logo: mgenLogo },
-  { name: "AG2R La Mondiale", logo: ag2rLogo },
-  { name: "Assurpeople", logo: assurpeopleLogo },
-  { name: "LCL", logo: lclLogo },
-  { name: "Swiss Life", logo: swissLifeLogo },
-  { name: "Mutuelle Générale", logo: mutuelleGeneraleLogo },
-  { name: "Cardif", logo: cardifLogo },
-  { name: "MetLife", logo: metlifeLogo },
-  { name: "Alan", logo: alanLogo },
-  { name: "Malakoff Humanis", logo: malakoffHumanisLogo },
+  { name: "SwissLife", logo: swissLifeLogo },
   { name: "AGF", logo: agfLogo },
   { name: "MAAF", logo: maafLogo },
 ];
