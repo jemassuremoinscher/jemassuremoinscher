@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-// Import partner logos — same files as Partners.tsx for consistency
 import generaliLogo from "@/assets/logos/generali.jpg";
 import agfLogo from "@/assets/logos/agf.png";
 import maifLogo from "@/assets/logos/maif.webp";
@@ -11,6 +11,7 @@ import matmutLogo from "@/assets/logos/matmut.webp";
 import allianzLogo from "@/assets/logos/allianz.webp";
 
 const PartnersSlider = () => {
+  const { t } = useLanguage();
   const partners = [
     { name: "Generali", id: 1, logo: generaliLogo },
     { name: "AGF", id: 2, logo: agfLogo },
@@ -22,36 +23,24 @@ const PartnersSlider = () => {
     { name: "Allianz", id: 8, logo: allianzLogo },
   ];
 
-  // Duplicate for seamless infinite scroll
   const duplicatedPartners = [...partners, ...partners];
 
   return (
     <section className="py-8 md:py-12 bg-muted/50 overflow-hidden">
       <div className="container mx-auto px-4 mb-6">
         <p className="text-center text-[#340e5d] font-bold md:text-4xl text-2xl">
-          Nos partenaires
+          {t('partners.title')}
         </p>
       </div>
 
-      {/* Infinite Slider */}
       <div className="relative">
-        {/* Gradient overlays for fade effect */}
         <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-muted/50 to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-muted/50 to-transparent z-10" />
 
         <motion.div
           className="flex gap-8 md:gap-12"
-          animate={{
-            x: [0, -180 * partners.length],
-          }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: "loop",
-              duration: 25,
-              ease: "linear",
-            },
-          }}
+          animate={{ x: [0, -180 * partners.length] }}
+          transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 25, ease: "linear" } }}
         >
           {duplicatedPartners.map((partner, index) => (
             <div
@@ -60,7 +49,7 @@ const PartnersSlider = () => {
             >
               <img
                 src={partner.logo}
-                alt={`${partner.name} - partenaire assurance moins chère`}
+                alt={`${partner.name}`}
                 className="max-w-full max-h-full object-contain"
               />
             </div>
