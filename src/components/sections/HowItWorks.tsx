@@ -19,8 +19,8 @@ const HowItWorks = () => {
     {
       number: "3",
       icon: CheckCircle,
-      title: "Je souscris en ligne",
-      description: "Choisissez la meilleure offre et souscrivez.",
+      title: "On me rappelle tout de suite",
+      description: "Choisissez la meilleure offre et faites-vous rappeler.",
     },
   ];
 
