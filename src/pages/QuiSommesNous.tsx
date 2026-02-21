@@ -4,8 +4,11 @@ import { Shield, Award, Users, TrendingUp, Heart, Zap } from "lucide-react";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const QuiSommesNous = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -16,10 +19,10 @@ const QuiSommesNous = () => {
           <div className="container mx-auto px-4 py-16 md:py-24">
             <div className="max-w-[65%] sm:max-w-[70%] md:max-w-3xl relative z-10">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                Qui sommes-nous ?
+                {t('aboutPage.title')}
               </h1>
               <p className="text-lg md:text-xl text-white/85 leading-relaxed">
-                jemassuremoinscher.fr est votre partenaire de confiance pour trouver les meilleures offres d'assurance adaptées à vos besoins.
+                {t('aboutPage.subtitle')}
               </p>
             </div>
             {/* Arthur thumbs up - hero accent */}
@@ -38,10 +41,10 @@ const QuiSommesNous = () => {
             {/* Stats bar */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { value: "50 000+", label: "Utilisateurs" },
-                { value: "35%", label: "D'économies en moyenne" },
-                { value: "10+", label: "Années d'expérience" },
-                { value: "4.8/5", label: "Satisfaction client" },
+                { value: "50 000+", label: t('aboutPage.users') },
+                { value: "35%", label: t('aboutPage.savings') },
+                { value: "10+", label: t('aboutPage.experience') },
+                { value: "4.8/5", label: t('aboutPage.satisfaction') },
               ].map((stat) => (
                 <div key={stat.label} className="glass-card p-5 rounded-[2rem] text-center">
                   <div className="text-2xl md:text-3xl font-bold text-primary">{stat.value}</div>
@@ -54,33 +57,33 @@ const QuiSommesNous = () => {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="glass-card p-8 rounded-[2rem] hover:shadow-[var(--shadow-hover)] transition-all duration-300">
                 <Shield className="w-10 h-10 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-3 text-foreground">Notre mission</h3>
+                <h3 className="text-xl font-bold mb-3 text-foreground">{t('aboutPage.missionTitle')}</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Simplifier la comparaison des assurances et vous faire économiser sur vos contrats en toute transparence. Nous croyons que chacun mérite d'être bien assuré sans payer trop cher.
+                  {t('aboutPage.missionDesc')}
                 </p>
               </div>
 
               <div className="glass-card p-8 rounded-[2rem] hover:shadow-[var(--shadow-hover)] transition-all duration-300">
                 <Award className="w-10 h-10 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-3 text-foreground">Notre expertise</h3>
+                <h3 className="text-xl font-bold mb-3 text-foreground">{t('aboutPage.expertiseTitle')}</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Plus de 10 ans d'expérience dans le domaine de l'assurance avec des experts dédiés à votre service, disponibles pour vous accompagner dans chaque étape.
+                  {t('aboutPage.expertiseDesc')}
                 </p>
               </div>
 
               <div className="glass-card p-8 rounded-[2rem] hover:shadow-[var(--shadow-hover)] transition-all duration-300">
                 <Users className="w-10 h-10 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-3 text-foreground">Notre communauté</h3>
+                <h3 className="text-xl font-bold mb-3 text-foreground">{t('aboutPage.communityTitle')}</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  Plus de 50 000 utilisateurs nous font confiance pour leurs comparaisons d'assurance. Rejoignez une communauté qui économise intelligemment.
+                  {t('aboutPage.communityDesc')}
                 </p>
               </div>
 
               <div className="glass-card p-8 rounded-[2rem] hover:shadow-[var(--shadow-hover)] transition-all duration-300">
                 <TrendingUp className="w-10 h-10 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-3 text-foreground">Nos résultats</h3>
+                <h3 className="text-xl font-bold mb-3 text-foreground">{t('aboutPage.resultsTitle')}</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  En moyenne, nos utilisateurs économisent 35% sur leurs contrats d'assurance grâce à notre comparateur intelligent.
+                  {t('aboutPage.resultsDesc')}
                 </p>
               </div>
             </div>
@@ -88,13 +91,13 @@ const QuiSommesNous = () => {
             {/* Values section with Arthur thinking */}
             <div className="relative glass-card p-8 md:p-12 rounded-[2rem] bg-gradient-to-br from-primary/5 to-accent/5 overflow-visible">
               <div className="md:pr-40">
-                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">Nos valeurs</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">{t('aboutPage.valuesTitle')}</h2>
                 <ul className="space-y-4">
                   {[
-                    { icon: Heart, title: "Transparence", desc: "Nous vous présentons toutes les offres sans parti pris" },
-                    { icon: Shield, title: "Indépendance", desc: "Notre service est gratuit et impartial" },
-                    { icon: Zap, title: "Simplicité", desc: "Un processus de comparaison clair et rapide" },
-                    { icon: Users, title: "Accompagnement", desc: "Notre équipe est là pour vous guider à chaque étape" },
+                    { icon: Heart, title: t('aboutPage.transparency'), desc: t('aboutPage.transparencyDesc') },
+                    { icon: Shield, title: t('aboutPage.independence'), desc: t('aboutPage.independenceDesc') },
+                    { icon: Zap, title: t('aboutPage.simplicity'), desc: t('aboutPage.simplicityDesc') },
+                    { icon: Users, title: t('aboutPage.support'), desc: t('aboutPage.supportDesc') },
                   ].map(({ icon: Icon, title, desc }) => (
                     <li key={title} className="flex items-start gap-3">
                       <div className="mt-0.5 h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
@@ -120,16 +123,16 @@ const QuiSommesNous = () => {
             <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center overflow-visible">
               <div className="relative z-10">
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Prêt à économiser sur vos assurances ?
+                  {t('aboutPage.ctaTitle')}
                 </h2>
                 <p className="text-white/80 mb-6 max-w-xl mx-auto">
-                  Comparez les meilleures offres en quelques clics et trouvez l'assurance qui vous correspond.
+                  {t('aboutPage.ctaDesc')}
                 </p>
                 <a 
                   href="/comparateur" 
                   className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 py-4 rounded-full text-lg transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
-                  Comparer maintenant
+                  {t('insPage.compareNowBtn')}
                 </a>
               </div>
               <img 

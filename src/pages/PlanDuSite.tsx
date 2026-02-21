@@ -4,8 +4,11 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { Shield } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const PlanDuSite = () => {
+  const { t } = useLanguage();
+
   const breadcrumbSchema = addBreadcrumbSchema([
     { name: "Accueil", url: "https://www.jemassuremoinscher.fr" },
     { name: "Plan du site", url: "https://www.jemassuremoinscher.fr/plan-du-site" }
@@ -21,48 +24,48 @@ const PlanDuSite = () => {
 
   const sections = [
     {
-      title: "Assurances",
+      title: t('sitemapPage.insurances'),
       icon: Shield,
       links: [
-        { name: "Assurance Auto", path: "/assurance-auto" },
-        { name: "Assurance Moto", path: "/assurance-moto" },
-        { name: "Assurance Habitation", path: "/assurance-habitation" },
-        { name: "Assurance Santé", path: "/assurance-sante" },
-        { name: "Assurance Vie", path: "/assurance-vie" },
-        { name: "Assurance Animaux", path: "/assurance-animaux" },
-        { name: "Assurance Prêt", path: "/assurance-pret" },
-        { name: "Assurance Prévoyance", path: "/assurance-prevoyance" },
-        { name: "Assurance RC Pro", path: "/assurance-rc-pro" },
-        { name: "Assurance GLI", path: "/assurance-gli" },
-        { name: "Assurance MRP", path: "/assurance-mrp" },
-        { name: "Assurance PNO", path: "/assurance-pno" },
+        { name: t('insurance.auto'), path: "/assurance-auto" },
+        { name: t('insurance.moto'), path: "/assurance-moto" },
+        { name: t('insurance.home'), path: "/assurance-habitation" },
+        { name: t('insurance.health'), path: "/assurance-sante" },
+        { name: t('insurance.life'), path: "/assurance-vie" },
+        { name: t('insurance.pets'), path: "/assurance-animaux" },
+        { name: t('insurance.loan'), path: "/assurance-pret" },
+        { name: t('insurance.provident'), path: "/assurance-prevoyance" },
+        { name: t('insurance.rcPro'), path: "/assurance-rc-pro" },
+        { name: t('insurance.gli'), path: "/assurance-gli" },
+        { name: t('insurance.mrp'), path: "/assurance-mrp" },
+        { name: t('insurance.pno'), path: "/assurance-pno" },
       ]
     },
     {
-      title: "Outils & Services",
+      title: t('sitemapPage.toolsServices'),
       links: [
-        { name: "Comparateur d'assurances", path: "/comparateur" },
-        { name: "Gestion locative", path: "/gestion-locative" },
-        { name: "Nos partenaires assureurs", path: "/nos-partenaires" },
-        { name: "Avis clients", path: "/avis-clients" },
-        { name: "Qui sommes-nous", path: "/qui-sommes-nous" },
-        { name: "Contact", path: "/contact" },
+        { name: t('comparator.badge'), path: "/comparateur" },
+        { name: t('insurance.rentalManagement'), path: "/gestion-locative" },
+        { name: t('nav.partners'), path: "/nos-partenaires" },
+        { name: t('nav.reviews'), path: "/avis-clients" },
+        { name: t('nav.aboutUs'), path: "/qui-sommes-nous" },
+        { name: t('footer.contact'), path: "/contact" },
       ]
     },
     {
-      title: "Blog & Ressources",
+      title: t('sitemapPage.blogResources'),
       links: [
-        { name: "Tous les articles", path: "/blog" },
-        { name: "Glossaire de l'assurance", path: "/glossaire" },
+        { name: t('blogHighlights.viewAll'), path: "/blog" },
+        { name: t('glossairePage.title'), path: "/glossaire" },
       ]
     },
     {
-      title: "Informations Légales",
+      title: t('sitemapPage.legalInfo'),
       links: [
-        { name: "Mentions légales", path: "/mentions-legales" },
-        { name: "Conditions générales d'utilisation", path: "/cgu" },
-        { name: "Politique de confidentialité", path: "/politique-confidentialite" },
-        { name: "Politique des cookies", path: "/politique-cookies" },
+        { name: t('footer.legal'), path: "/mentions-legales" },
+        { name: t('footer.terms'), path: "/cgu" },
+        { name: t('footer.privacy'), path: "/politique-confidentialite" },
+        { name: t('footer.cookies'), path: "/politique-cookies" },
       ]
     }
   ];
@@ -82,10 +85,10 @@ const PlanDuSite = () => {
           {/* Hero Section */}
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
-              Plan du site
+              {t('sitemapPage.title')}
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Retrouvez facilement toutes les pages de notre site pour comparer et trouver la meilleure assurance
+              {t('sitemapPage.subtitle')}
             </p>
           </div>
 
@@ -123,15 +126,15 @@ const PlanDuSite = () => {
 
           {/* CTA Section */}
           <div className="text-center mt-16 p-8 bg-primary/5 rounded-xl border border-primary/20">
-            <h2 className="text-2xl font-bold mb-4">Besoin d'aide pour trouver votre assurance ?</h2>
+            <h2 className="text-2xl font-bold mb-4">{t('sitemapPage.needHelp')}</h2>
             <p className="text-muted-foreground mb-6">
-              Notre équipe d'experts est là pour vous accompagner dans votre recherche
+              {t('sitemapPage.helpDesc')}
             </p>
             <Link 
               to="/contact"
               className="inline-flex items-center justify-center px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold"
             >
-              Contactez-nous
+              {t('contactPage.title')}
             </Link>
           </div>
         </div>

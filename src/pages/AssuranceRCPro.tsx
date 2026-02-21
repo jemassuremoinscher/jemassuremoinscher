@@ -20,6 +20,7 @@ import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
 import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 
@@ -42,6 +43,7 @@ const rcProInsurers: InsurerConfig[] = [
 ];
 
 const AssuranceRCPro = () => {
+  const { t } = useLanguage();
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
@@ -71,24 +73,24 @@ const AssuranceRCPro = () => {
       price += randomVariation;
       const offers = generateInsurerOffers(price, rcProInsurers);
       setInsurerOffers(offers);
-      toast.success("Offres générées !", { description: "Consultez les meilleures offres RC Pro." });
+      toast.success(t('insPage.toast.success'), { description: t('insPage.toast.successDesc') });
     } catch (error: any) {
       console.error("Error:", error);
-      toast.error("Erreur", { description: "Une erreur est survenue. Veuillez réessayer." });
+      toast.error(t('insPage.toast.error'), { description: t('insPage.toast.errorDesc') });
     } finally { setIsLoading(false); }
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "RC Pro", url: "https://www.jemassuremoinscher.fr/assurance-rc-pro" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance RC Pro", description: "Comparez les assurances RC Professionnelle.", provider: "jemassuremoinscher", areaServed: "France" });
   const faqSchema = addFAQSchema([
-    { question: "Qu'est-ce que la RC Pro ?", answer: "Elle couvre les dommages causés à des tiers dans le cadre de votre activité professionnelle." },
-    { question: "Est-elle obligatoire ?", answer: "Obligatoire pour certaines professions réglementées, recommandée pour toutes." }
+    { question: t('rcProPage.faq1.q'), answer: t('rcProPage.faq1.a') },
+    { question: t('rcProPage.faq2.q'), answer: t('rcProPage.faq2.a') }
   ]);
 
   const advantages = [
-    { icon: Euro, title: "Tarifs compétitifs", description: "Comparez et économisez sur votre RC Pro." },
-    { icon: Clock, title: "Devis en 2 minutes", description: "Simple, rapide et 100% gratuit." },
-    { icon: Shield, title: "15+ assureurs comparés", description: "Les meilleures offres pro du marché." }
+    { icon: Euro, title: t('rcProPage.adv1.title'), description: t('rcProPage.adv1.desc') },
+    { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
+    { icon: Shield, title: t('rcProPage.adv2.title'), description: t('rcProPage.adv2.desc') }
   ];
 
   return (
@@ -100,9 +102,9 @@ const AssuranceRCPro = () => {
           <div className="max-w-4xl mx-auto text-center relative">
             <img src={arthurThumbsUp} alt="Arthur" className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto" />
             <div className="flex justify-center mb-6"><div className="p-4 rounded-full bg-primary/10"><ShieldCheck className="h-12 w-12 text-primary" /></div></div>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">RC Professionnelle</h1>
-            <p className="text-xl text-muted-foreground mb-8">Protégez votre activité contre les dommages causés à vos clients et tiers.</p>
-            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">Comparer maintenant</Button>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">{t('rcProPage.title')}</h1>
+            <p className="text-xl text-muted-foreground mb-8">{t('rcProPage.subtitle')}</p>
+            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
           </div>
         </div>
       </section>
@@ -110,32 +112,32 @@ const AssuranceRCPro = () => {
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h3 className="font-bold text-lg mb-2">{item.title}</h3><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
         <div ref={formRef} className="max-w-3xl mx-auto mb-16">
           <Card className="p-8">
-            <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis personnalisé</h2>
+            <h2 className="text-2xl font-bold mb-6 text-card-foreground">{t('insPage.getQuote')}</h2>
             {insurerOffers.length > 0 ? (
               <InsuranceComparison insurers={insurerOffers} onNewQuote={() => setInsurerOffers([])} formData={submittedFormData} insuranceType="RC Professionnelle" />
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
-                    <FormField control={form.control} name="entreprise" render={({ field }) => (<FormItem><FormLabel>Nom de l'entreprise</FormLabel><FormControl><Input placeholder="Votre entreprise" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="secteur" render={({ field }) => (<FormItem><FormLabel>Secteur d'activité</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choisissez" /></SelectTrigger></FormControl><SelectContent><SelectItem value="commerce">Commerce</SelectItem><SelectItem value="services">Services</SelectItem><SelectItem value="batiment">Bâtiment</SelectItem><SelectItem value="conseil">Conseil</SelectItem><SelectItem value="sante">Santé</SelectItem><SelectItem value="artisanat">Artisanat</SelectItem><SelectItem value="informatique">Informatique</SelectItem><SelectItem value="autre">Autre</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="effectif" render={({ field }) => (<FormItem><FormLabel>Nombre de salariés</FormLabel><FormControl><Input type="number" placeholder="0" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="chiffreAffaires" render={({ field }) => (<FormItem><FormLabel>Chiffre d'affaires annuel (€)</FormLabel><FormControl><Input type="number" placeholder="100000" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="sinistresAnnee" render={({ field }) => (<FormItem><FormLabel>Sinistres sur 3 ans</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choisissez" /></SelectTrigger></FormControl><SelectContent><SelectItem value="0">Aucun</SelectItem><SelectItem value="1">1 sinistre</SelectItem><SelectItem value="2">2 sinistres</SelectItem><SelectItem value="3">3 sinistres ou plus</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>Code postal</FormLabel><FormControl><Input placeholder="75001" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="entreprise" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.company')}</FormLabel><FormControl><Input placeholder={t('rcProPage.form.companyPlaceholder')} {...field} /></FormControl><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="secteur" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.sector')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="commerce">{t('rcProPage.form.commerce')}</SelectItem><SelectItem value="services">{t('rcProPage.form.services')}</SelectItem><SelectItem value="batiment">{t('rcProPage.form.batiment')}</SelectItem><SelectItem value="conseil">{t('rcProPage.form.conseil')}</SelectItem><SelectItem value="sante">{t('rcProPage.form.sante')}</SelectItem><SelectItem value="artisanat">{t('rcProPage.form.artisanat')}</SelectItem><SelectItem value="informatique">{t('rcProPage.form.informatique')}</SelectItem><SelectItem value="autre">{t('rcProPage.form.autre')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="effectif" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.employees')}</FormLabel><FormControl><Input type="number" placeholder="0" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="chiffreAffaires" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.revenue')}</FormLabel><FormControl><Input type="number" placeholder="100000" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="sinistresAnnee" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.claims')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="0">{t('rcProPage.form.none')}</SelectItem><SelectItem value="1">{t('rcProPage.form.oneClaim')}</SelectItem><SelectItem value="2">{t('rcProPage.form.twoClaims')}</SelectItem><SelectItem value="3">{t('rcProPage.form.threePlus')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   </div>
-                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? "Envoi en cours..." : "Comparer les offres"}</Button>
+                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? t('insPage.loading') : t('insPage.compareOffers')}</Button>
                 </form>
               </Form>
             )}
           </Card>
         </div>
         <section className="max-w-4xl mx-auto mb-16">
-          <Accordion type="single" collapsible className="w-full"><AccordionItem value="learn-more" className="border rounded-lg"><AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold">En savoir plus sur la RC Pro</span></AccordionTrigger><AccordionContent className="px-6 pb-6"><div className="space-y-12">
-            <InsuranceFAQ title="Questions fréquentes" faqs={[
-              { question: "Quels dommages sont couverts ?", answer: "Dommages corporels, matériels et immatériels causés à des tiers dans le cadre de votre activité." },
-              { question: "La RC Pro couvre-t-elle mes salariés ?", answer: "Non, les salariés sont couverts par les accidents du travail. La RC Pro protège contre les dommages aux clients et tiers." },
-              { question: "Quel est le délai de mise en place ?", answer: "Généralement immédiat ou sous 24-48h après la souscription." },
+          <Accordion type="single" collapsible className="w-full"><AccordionItem value="learn-more" className="border rounded-lg"><AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold">{t('insPage.learnMore')} {t('rcProPage.learnMore')}</span></AccordionTrigger><AccordionContent className="px-6 pb-6"><div className="space-y-12">
+            <InsuranceFAQ title={t('insPage.faqTitle')} faqs={[
+              { question: t('rcProPage.faq1.q'), answer: t('rcProPage.faq1.a') },
+              { question: t('rcProPage.faq2.q'), answer: t('rcProPage.faq2.a') },
+              { question: t('rcProPage.faq3.q'), answer: t('rcProPage.faq3.a') },
             ]} />
             <SavingsCalculator /><QuoteRequestForm /><Testimonials />
           </div></AccordionContent></AccordionItem></Accordion>
@@ -143,9 +145,9 @@ const AssuranceRCPro = () => {
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
             <img src={arthurFlying} alt="Arthur" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" />
-            <h2 className="text-2xl font-bold mb-4">Prêt à protéger votre activité ?</h2>
-            <p className="text-muted-foreground mb-6">Comparez gratuitement les meilleures offres RC Pro en 2 minutes.</p>
-            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">Comparer les offres maintenant</Button>
+            <h2 className="text-2xl font-bold mb-4">{t('rcProPage.ctaTitle')}</h2>
+            <p className="text-muted-foreground mb-6">{t('rcProPage.ctaDesc')}</p>
+            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
       </main>

@@ -9,8 +9,10 @@ import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { glossaryTerms } from "@/data/glossaryTerms";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const GlossaireTerme = () => {
+  const { t } = useLanguage();
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
 
@@ -21,13 +23,13 @@ const GlossaireTerme = () => {
       <div className="min-h-screen">
         <Header />
         <main className="container mx-auto px-4 py-16 text-center">
-          <h1 className="text-3xl font-bold mb-4">Terme non trouvé</h1>
+          <h1 className="text-3xl font-bold mb-4">{t('glossaireTermPage.notFound')}</h1>
           <p className="text-muted-foreground mb-6">
-            Ce terme n'existe pas dans notre glossaire.
+            {t('glossaireTermPage.notFoundDesc')}
           </p>
           <Button onClick={() => navigate("/glossaire")} className="rounded-full">
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Retour au glossaire
+            {t('glossaireTermPage.backToGlossary')}
           </Button>
         </main>
         <Footer />
@@ -80,7 +82,7 @@ const GlossaireTerme = () => {
             className="mb-6"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Retour au glossaire
+            {t('glossaireTermPage.backToGlossary')}
           </Button>
 
           <article>
@@ -115,7 +117,7 @@ const GlossaireTerme = () => {
             <section className="mb-12">
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
                 <BookOpen className="h-6 w-6 text-primary" />
-                Termes associés
+                {t('glossaireTermPage.relatedTerms')}
               </h2>
               <div className="grid md:grid-cols-3 gap-4">
                 {relatedTerms.map(
@@ -143,18 +145,17 @@ const GlossaireTerme = () => {
 
           <div className="hero-glass p-8 text-center rounded-2xl">
             <h2 className="text-2xl font-bold mb-4">
-              Comparez et économisez sur votre assurance
+              {t('glossaireTermPage.ctaTitle')}
             </h2>
             <p className="text-muted-foreground mb-6">
-              Trouvez la meilleure offre en quelques clics. Gratuit et sans
-              engagement.
+              {t('glossaireTermPage.ctaDesc')}
             </p>
             <Button
               onClick={() => navigate("/comparateur")}
               size="lg"
               className="rounded-full"
             >
-              Comparer les assurances
+              {t('glossairePage.compareBtn')}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>

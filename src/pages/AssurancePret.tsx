@@ -20,6 +20,7 @@ import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
 import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 
@@ -33,6 +34,7 @@ const formSchema = z.object({
 });
 
 const AssurancePret = () => {
+  const { t } = useLanguage();
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
@@ -65,10 +67,10 @@ const AssurancePret = () => {
 
       const offers = generateInsurerOffers(price, loanInsurers);
       setInsurerOffers(offers);
-      toast.success("Offres générées !", { description: "Consultez les meilleures offres d'assurance emprunteur." });
+      toast.success(t('insPage.toast.success'), { description: t('insPage.toast.successDesc') });
     } catch (error: any) {
       console.error("Error:", error);
-      toast.error("Erreur", { description: "Une erreur est survenue. Veuillez réessayer." });
+      toast.error(t('insPage.toast.error'), { description: t('insPage.toast.errorDesc') });
     } finally { setIsLoading(false); }
   };
 
@@ -78,14 +80,14 @@ const AssurancePret = () => {
   ]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Prêt Immobilier", description: "Économisez des milliers d'euros sur votre crédit immobilier. Loi Lemoine.", provider: "jemassuremoinscher", areaServed: "France" });
   const faqSchema = addFAQSchema([
-    { question: "Puis-je changer d'assurance emprunteur ?", answer: "Oui, la loi Lemoine permet de résilier à tout moment, sans frais." },
-    { question: "Combien puis-je économiser ?", answer: "En moyenne 30% à 50%, soit plusieurs milliers d'euros sur la durée du prêt." }
+    { question: t('pretPage.faq1.q'), answer: t('pretPage.faq1.a') },
+    { question: t('pretPage.faq2.q'), answer: t('pretPage.faq2.a') }
   ]);
 
   const advantages = [
-    { icon: Euro, title: "Jusqu'à 15 000€ d'économies", description: "Comparez et économisez sur votre assurance emprunteur." },
-    { icon: Clock, title: "Changement gratuit", description: "Loi Lemoine : résiliation à tout moment." },
-    { icon: Shield, title: "Garanties équivalentes", description: "Même protection, prix réduit." }
+    { icon: Euro, title: t('pretPage.adv1.title'), description: t('pretPage.adv1.desc') },
+    { icon: Clock, title: t('pretPage.adv2.title'), description: t('pretPage.adv2.desc') },
+    { icon: Shield, title: t('pretPage.adv3.title'), description: t('pretPage.adv3.desc') }
   ];
 
   return (
@@ -98,9 +100,9 @@ const AssurancePret = () => {
           <div className="max-w-4xl mx-auto text-center relative">
             <img src={arthurThumbsUp} alt="Arthur" className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto" />
             <div className="flex justify-center mb-6"><div className="p-4 rounded-full bg-primary/10"><Shield className="h-12 w-12 text-primary" /></div></div>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Assurance Prêt Immobilier</h1>
-            <p className="text-xl text-muted-foreground mb-8">Économisez jusqu'à 50% sur votre assurance emprunteur grâce à la loi Lemoine.</p>
-            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">Comparer maintenant</Button>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">{t('pretPage.title')}</h1>
+            <p className="text-xl text-muted-foreground mb-8">{t('pretPage.subtitle')}</p>
+            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
           </div>
         </div>
       </section>
@@ -114,19 +116,19 @@ const AssurancePret = () => {
 
         <div ref={formRef} className="max-w-3xl mx-auto mb-16">
           <Card className="p-8">
-            <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis personnalisé</h2>
+            <h2 className="text-2xl font-bold mb-6 text-card-foreground">{t('insPage.getQuote')}</h2>
             {insurerOffers.length > 0 ? (
               <InsuranceComparison insurers={insurerOffers} onNewQuote={() => setInsurerOffers([])} formData={submittedFormData} insuranceType="Assurance Prêt Immobilier" />
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField control={form.control} name="montantPret" render={({ field }) => (<FormItem><FormLabel>Montant du prêt (€)</FormLabel><FormControl><Input type="number" placeholder="200000" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="dureePret" render={({ field }) => (<FormItem><FormLabel>Durée du prêt</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Sélectionner" /></SelectTrigger></FormControl><SelectContent><SelectItem value="10">10 ans</SelectItem><SelectItem value="15">15 ans</SelectItem><SelectItem value="20">20 ans</SelectItem><SelectItem value="25">25 ans</SelectItem><SelectItem value="30">30 ans</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="age" render={({ field }) => (<FormItem><FormLabel>Votre âge</FormLabel><FormControl><Input type="number" placeholder="35" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="statut" render={({ field }) => (<FormItem><FormLabel>Statut professionnel</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Sélectionner" /></SelectTrigger></FormControl><SelectContent><SelectItem value="salarie">Salarié</SelectItem><SelectItem value="fonctionnaire">Fonctionnaire</SelectItem><SelectItem value="independant">Indépendant</SelectItem><SelectItem value="profession-risque">Profession à risque</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="fumeur" render={({ field }) => (<FormItem><FormLabel>Êtes-vous fumeur ?</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Sélectionner" /></SelectTrigger></FormControl><SelectContent><SelectItem value="non">Non</SelectItem><SelectItem value="oui">Oui</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>Code postal</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? "Envoi en cours..." : "Comparer les offres"}</Button>
+                  <FormField control={form.control} name="montantPret" render={({ field }) => (<FormItem><FormLabel>{t('pretPage.form.amount')}</FormLabel><FormControl><Input type="number" placeholder="200000" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="dureePret" render={({ field }) => (<FormItem><FormLabel>{t('pretPage.form.duration')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="10">10 {t('common.perYear').split(' ')[1]}s</SelectItem><SelectItem value="15">15 {t('common.perYear').split(' ')[1]}s</SelectItem><SelectItem value="20">20 {t('common.perYear').split(' ')[1]}s</SelectItem><SelectItem value="25">25 {t('common.perYear').split(' ')[1]}s</SelectItem><SelectItem value="30">30 {t('common.perYear').split(' ')[1]}s</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="age" render={({ field }) => (<FormItem><FormLabel>{t('insPage.yourAge')}</FormLabel><FormControl><Input type="number" placeholder="35" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="statut" render={({ field }) => (<FormItem><FormLabel>{t('pretPage.form.status')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="salarie">{t('pretPage.form.salarie')}</SelectItem><SelectItem value="fonctionnaire">{t('pretPage.form.fonctionnaire')}</SelectItem><SelectItem value="independant">{t('pretPage.form.independant')}</SelectItem><SelectItem value="profession-risque">{t('pretPage.form.profRisk')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="fumeur" render={({ field }) => (<FormItem><FormLabel>{t('viePage.form.smoker')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="non">{t('viePage.form.no')}</SelectItem><SelectItem value="oui">{t('viePage.form.yes')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? t('insPage.loading') : t('insPage.compareOffers')}</Button>
                 </form>
               </Form>
             )}
@@ -136,14 +138,14 @@ const AssurancePret = () => {
         <section className="max-w-4xl mx-auto mb-16">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="learn-more" className="border rounded-lg">
-              <AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold flex items-center gap-2">En savoir plus sur l'assurance emprunteur</span></AccordionTrigger>
+              <AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold flex items-center gap-2">{t('insPage.learnMore')} {t('pretPage.learnMore')}</span></AccordionTrigger>
               <AccordionContent className="px-6 pb-6">
                 <div className="space-y-12">
-                  <InsuranceFAQ title="Questions fréquentes" faqs={[
-                    { question: "Ma banque peut-elle refuser ma nouvelle assurance ?", answer: "Non, si les garanties sont équivalentes. Elle doit accepter sous 10 jours ouvrés." },
-                    { question: "Quelles garanties sont obligatoires ?", answer: "Décès et PTIA sont toujours requis. ITT et IPT sont exigés pour les résidences principales." },
-                    { question: "Combien de temps prend le changement ?", answer: "En moyenne 2 à 4 semaines entre la demande et l'entrée en vigueur du nouveau contrat." },
-                    { question: "Y a-t-il un questionnaire médical ?", answer: "Pas pour les prêts de moins de 200 000€ par personne sur 25 ans max (loi Lemoine)." },
+                  <InsuranceFAQ title={t('insPage.faqTitle')} faqs={[
+                    { question: t('pretPage.faq1.q'), answer: t('pretPage.faq1.a') },
+                    { question: t('pretPage.faq2.q'), answer: t('pretPage.faq2.a') },
+                    { question: t('pretPage.faq3.q'), answer: t('pretPage.faq3.a') },
+                    { question: t('pretPage.faq4.q'), answer: t('pretPage.faq4.a') },
                   ]} />
                   <SavingsCalculator />
                   <QuoteRequestForm />
@@ -157,9 +159,9 @@ const AssurancePret = () => {
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
             <img src={arthurFlying} alt="Arthur" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" />
-            <h2 className="text-2xl font-bold mb-4">Prêt à économiser sur votre assurance emprunteur ?</h2>
-            <p className="text-muted-foreground mb-6">Comparez gratuitement et changez d'assurance sans frais.</p>
-            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">Comparer les offres maintenant</Button>
+            <h2 className="text-2xl font-bold mb-4">{t('pretPage.ctaTitle')}</h2>
+            <p className="text-muted-foreground mb-6">{t('pretPage.ctaDesc')}</p>
+            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
       </main>
