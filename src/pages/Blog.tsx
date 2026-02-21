@@ -10,9 +10,11 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, Search } from "lucide-react";
 import { blogArticles, blogCategories } from "@/data/blogArticles";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
+import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
 
 const Blog = () => {
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("Tous les articles");
   const [searchQuery, setSearchQuery] = useState("");
@@ -61,10 +63,10 @@ const Blog = () => {
           <div className="container mx-auto px-4 py-14 md:py-20">
             <div className="max-w-[65%] sm:max-w-[70%] md:max-w-2xl relative z-10">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                Blog & Actualités Assurance
+                {t('blogPage.title')}
               </h1>
               <p className="text-base md:text-lg text-white/80 leading-relaxed">
-                Conseils d'experts, guides pratiques et actualités légales pour tout savoir sur les assurances.
+                {t('blogPage.subtitle')}
               </p>
             </div>
             <img
@@ -85,7 +87,7 @@ const Blog = () => {
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
                 <Input
                   type="text"
-                  placeholder="Rechercher un article (ex: loi lemoine, assurance auto...)"
+                  placeholder={t('blogPage.searchPlaceholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-12 py-6 text-lg rounded-full"
@@ -97,7 +99,7 @@ const Blog = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 {
-                  title: "Guides Pratiques",
+                  title: t('blogPage.guidesTitle'),
                   links: [
                     { label: "Meilleure assurance auto 2025", slug: "meilleure-assurance-auto-2025" },
                     { label: "Top mutuelles santé", slug: "top-mutuelles-sante-2025" },
@@ -106,7 +108,7 @@ const Blog = () => {
                   ]
                 },
                 {
-                  title: "Actualités Légales",
+                  title: t('blogPage.legalTitle'),
                   links: [
                     { label: "Loi Lemoine 2025", slug: "loi-lemoine-2025" },
                     { label: "Loi Hamon résiliation", slug: "resiliation-assurance-droits-2024" },
@@ -115,7 +117,7 @@ const Blog = () => {
                   ]
                 },
                 {
-                  title: "Conseils Experts",
+                  title: t('blogPage.expertTitle'),
                   links: [
                     { label: "Économiser sur ses contrats", slug: "mutuelle-sante-reduire-frais-medicaux-2024" },
                     { label: "Choisir ses garanties", slug: "assurance-auto-jeune-conducteur-astuces" },
@@ -124,7 +126,7 @@ const Blog = () => {
                   ]
                 },
                 {
-                  title: "Par Type",
+                  title: t('blogPage.byTypeTitle'),
                   links: [
                     { label: "Auto & Moto", slug: "meilleure-assurance-auto-2025" },
                     { label: "Santé & Prévoyance", slug: "top-mutuelles-sante-2025" },
@@ -169,7 +171,7 @@ const Blog = () => {
 
             {/* Results count */}
             <div className="text-center text-muted-foreground text-sm">
-              {filteredArticles.length} article{filteredArticles.length > 1 ? 's' : ''} trouvé{filteredArticles.length > 1 ? 's' : ''}
+              {filteredArticles.length} article{filteredArticles.length > 1 ? 's' : ''} {filteredArticles.length > 1 ? t('blogPage.articlesFoundPlural') : t('blogPage.articlesFound')}
             </div>
 
             {/* Articles grid */}
@@ -215,19 +217,19 @@ const Blog = () => {
             ) : (
               <Card className="glass-card p-12 text-center rounded-[2rem]">
                 <p className="text-lg text-muted-foreground mb-4">
-                  Aucun article ne correspond à votre recherche
+                  {t('blogPage.noResults')}
                 </p>
                 <Button onClick={() => { setSearchQuery(""); setSelectedCategory("Tous les articles"); }} className="rounded-full">
-                  Réinitialiser les filtres
+                  {t('blogPage.resetFilters')}
                 </Button>
               </Card>
             )}
 
             {/* Newsletter CTA */}
             <div className="bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Restez informé</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">{t('blogPage.stayInformed')}</h2>
               <p className="text-white/80 mb-6 max-w-xl mx-auto">
-                Abonnez-vous à notre newsletter pour recevoir nos derniers articles et conseils directement dans votre boîte mail.
+                {t('blogPage.newsletterDesc')}
               </p>
             </div>
 

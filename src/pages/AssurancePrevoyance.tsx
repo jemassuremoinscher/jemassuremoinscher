@@ -20,6 +20,7 @@ import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
 import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 
@@ -41,6 +42,7 @@ const prevoyanceInsurers: InsurerConfig[] = [
 ];
 
 const AssurancePrevoyance = () => {
+  const { t } = useLanguage();
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
@@ -68,24 +70,24 @@ const AssurancePrevoyance = () => {
       price += randomVariation;
       const offers = generateInsurerOffers(price, prevoyanceInsurers);
       setInsurerOffers(offers);
-      toast.success("Offres générées !", { description: "Consultez les meilleures offres de prévoyance." });
+      toast.success(t('insPage.toast.success'), { description: t('insPage.toast.successDesc') });
     } catch (error: any) {
       console.error("Error:", error);
-      toast.error("Erreur", { description: "Une erreur est survenue. Veuillez réessayer." });
+      toast.error(t('insPage.toast.error'), { description: t('insPage.toast.errorDesc') });
     } finally { setIsLoading(false); }
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Prévoyance", url: "https://www.jemassuremoinscher.fr/assurance-prevoyance" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Prévoyance", description: "Comparez les meilleures assurances prévoyance.", provider: "jemassuremoinscher", areaServed: "France" });
   const faqSchema = addFAQSchema([
-    { question: "Quelle est la différence entre prévoyance et mutuelle ?", answer: "La mutuelle rembourse les frais médicaux. La prévoyance couvre décès, invalidité et incapacité." },
-    { question: "Comment sont calculées les cotisations ?", answer: "Selon votre âge, profession, état de santé et montant du capital garanti." }
+    { question: t('prevoyancePage.faq1.q'), answer: t('prevoyancePage.faq1.a') },
+    { question: t('prevoyancePage.faq2.q'), answer: t('prevoyancePage.faq2.a') }
   ]);
 
   const advantages = [
-    { icon: Heart, title: "Protection familiale", description: "Protégez vos proches en cas d'accident de la vie." },
-    { icon: Clock, title: "Devis en 2 minutes", description: "Simple, rapide et 100% gratuit." },
-    { icon: Shield, title: "Garanties sur mesure", description: "Décès, invalidité, dépendance, obsèques." }
+    { icon: Heart, title: t('prevoyancePage.adv1.title'), description: t('prevoyancePage.adv1.desc') },
+    { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
+    { icon: Shield, title: t('prevoyancePage.adv2.title'), description: t('prevoyancePage.adv2.desc') }
   ];
 
   return (
@@ -96,41 +98,41 @@ const AssurancePrevoyance = () => {
         <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
           <img src={arthurThumbsUp} alt="Arthur" className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto" />
           <div className="flex justify-center mb-6"><div className="p-4 rounded-full bg-primary/10"><Shield className="h-12 w-12 text-primary" /></div></div>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">Assurance Prévoyance</h1>
-          <p className="text-xl text-muted-foreground mb-8">Protégez votre famille et préparez l'avenir sereinement.</p>
-          <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">Comparer maintenant</Button>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">{t('prevoyancePage.title')}</h1>
+          <p className="text-xl text-muted-foreground mb-8">{t('prevoyancePage.subtitle')}</p>
+          <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
         </div></div>
       </section>
       <main className="container mx-auto px-4 py-12">
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h3 className="font-bold text-lg mb-2">{item.title}</h3><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
         <div ref={formRef} className="max-w-3xl mx-auto mb-16">
           <Card className="p-8">
-            <h2 className="text-2xl font-bold mb-6 text-card-foreground">Obtenez votre devis personnalisé</h2>
+            <h2 className="text-2xl font-bold mb-6 text-card-foreground">{t('insPage.getQuote')}</h2>
             {insurerOffers.length > 0 ? (
               <InsuranceComparison insurers={insurerOffers} onNewQuote={() => setInsurerOffers([])} formData={submittedFormData} insuranceType="Prévoyance" />
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
-                    <FormField control={form.control} name="typePrevoyance" render={({ field }) => (<FormItem><FormLabel>Type de prévoyance</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choisissez" /></SelectTrigger></FormControl><SelectContent><SelectItem value="deces">Assurance décès</SelectItem><SelectItem value="obseques">Assurance obsèques</SelectItem><SelectItem value="dependance">Assurance dépendance</SelectItem><SelectItem value="incapacite">Garantie incapacité</SelectItem><SelectItem value="invalidite">Garantie invalidité</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="situation" render={({ field }) => (<FormItem><FormLabel>Situation familiale</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choisissez" /></SelectTrigger></FormControl><SelectContent><SelectItem value="celibataire">Célibataire</SelectItem><SelectItem value="marie">Marié(e)</SelectItem><SelectItem value="pacse">Pacsé(e)</SelectItem><SelectItem value="divorce">Divorcé(e)</SelectItem><SelectItem value="veuf">Veuf/Veuve</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="age" render={({ field }) => (<FormItem><FormLabel>Âge</FormLabel><FormControl><Input type="number" placeholder="Votre âge" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="profession" render={({ field }) => (<FormItem><FormLabel>Profession</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Choisissez" /></SelectTrigger></FormControl><SelectContent><SelectItem value="salarie">Salarié(e)</SelectItem><SelectItem value="independant">Indépendant(e)</SelectItem><SelectItem value="fonctionnaire">Fonctionnaire</SelectItem><SelectItem value="retraite">Retraité(e)</SelectItem><SelectItem value="risque">Profession à risque</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>Code postal</FormLabel><FormControl><Input placeholder="75001" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="typePrevoyance" render={({ field }) => (<FormItem><FormLabel>{t('prevoyancePage.form.type')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="deces">{t('prevoyancePage.form.deces')}</SelectItem><SelectItem value="obseques">{t('prevoyancePage.form.obseques')}</SelectItem><SelectItem value="dependance">{t('prevoyancePage.form.dependance')}</SelectItem><SelectItem value="incapacite">{t('prevoyancePage.form.incapacite')}</SelectItem><SelectItem value="invalidite">{t('prevoyancePage.form.invalidite')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="situation" render={({ field }) => (<FormItem><FormLabel>{t('prevoyancePage.form.situation')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="celibataire">{t('prevoyancePage.form.celibataire')}</SelectItem><SelectItem value="marie">{t('prevoyancePage.form.marie')}</SelectItem><SelectItem value="pacse">{t('prevoyancePage.form.pacse')}</SelectItem><SelectItem value="divorce">{t('prevoyancePage.form.divorce')}</SelectItem><SelectItem value="veuf">{t('prevoyancePage.form.veuf')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="age" render={({ field }) => (<FormItem><FormLabel>{t('insPage.yourAge')}</FormLabel><FormControl><Input type="number" placeholder="35" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="profession" render={({ field }) => (<FormItem><FormLabel>{t('prevoyancePage.form.profession')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="salarie">{t('pretPage.form.salarie')}</SelectItem><SelectItem value="independant">{t('pretPage.form.independant')}</SelectItem><SelectItem value="fonctionnaire">{t('pretPage.form.fonctionnaire')}</SelectItem><SelectItem value="retraite">{t('prevoyancePage.form.retraite')}</SelectItem><SelectItem value="risque">{t('prevoyancePage.form.risque')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   </div>
-                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? "Envoi en cours..." : "Comparer les offres"}</Button>
+                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? t('insPage.loading') : t('insPage.compareOffers')}</Button>
                 </form>
               </Form>
             )}
           </Card>
         </div>
-        <section className="max-w-4xl mx-auto mb-16"><Accordion type="single" collapsible className="w-full"><AccordionItem value="learn-more" className="border rounded-lg"><AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold">En savoir plus sur la prévoyance</span></AccordionTrigger><AccordionContent className="px-6 pb-6"><div className="space-y-12"><InsuranceFAQ title="Questions fréquentes" faqs={[{ question: "Ai-je besoin de prévoyance si j'ai celle de mon entreprise ?", answer: "La prévoyance collective s'arrête en cas de départ. Un contrat individuel vous suit toute votre vie." }, { question: "À quel âge souscrire ?", answer: "Le plus tôt possible : les cotisations sont plus faibles et l'acceptation médicale plus facile." }, { question: "Quelle différence entre décès et obsèques ?", answer: "L'assurance décès verse un capital à vos proches. L'assurance obsèques finance spécifiquement vos funérailles." }]} /><SavingsCalculator /><QuoteRequestForm /><Testimonials /></div></AccordionContent></AccordionItem></Accordion></section>
+        <section className="max-w-4xl mx-auto mb-16"><Accordion type="single" collapsible className="w-full"><AccordionItem value="learn-more" className="border rounded-lg"><AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold">{t('insPage.learnMore')} {t('prevoyancePage.learnMore')}</span></AccordionTrigger><AccordionContent className="px-6 pb-6"><div className="space-y-12"><InsuranceFAQ title={t('insPage.faqTitle')} faqs={[{ question: t('prevoyancePage.faq1.q'), answer: t('prevoyancePage.faq1.a') }, { question: t('prevoyancePage.faq2.q'), answer: t('prevoyancePage.faq2.a') }, { question: t('prevoyancePage.faq3.q'), answer: t('prevoyancePage.faq3.a') }]} /><SavingsCalculator /><QuoteRequestForm /><Testimonials /></div></AccordionContent></AccordionItem></Accordion></section>
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
             <img src={arthurFlying} alt="Arthur" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" />
-            <h2 className="text-2xl font-bold mb-4">Prêt à protéger votre famille ?</h2>
-            <p className="text-muted-foreground mb-6">Comparez gratuitement les meilleures offres de prévoyance.</p>
-            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">Comparer les offres maintenant</Button>
+            <h2 className="text-2xl font-bold mb-4">{t('prevoyancePage.ctaTitle')}</h2>
+            <p className="text-muted-foreground mb-6">{t('prevoyancePage.ctaDesc')}</p>
+            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
       </main>

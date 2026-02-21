@@ -11,13 +11,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import InsuranceComparison from '@/components/InsuranceComparison';
 import { toast } from 'sonner';
-import { supabase } from '@/integrations/supabase/client';
-import { Building2, Home, Euro, Users, TrendingUp, Star, CheckCircle } from 'lucide-react';
+import { Building2, Euro, CheckCircle } from 'lucide-react';
 import InsuranceFAQ from '@/components/insurance/InsuranceFAQ';
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from '@/utils/seoUtils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const formSchema = z.object({
   propertyCount: z.enum(['1', '2-5', '5+'], {
@@ -34,6 +33,7 @@ const formSchema = z.object({
 });
 
 const GestionLocative = () => {
+  const { t } = useLanguage();
   const [showResults, setShowResults] = useState(false);
   const [submittedFormData, setSubmittedFormData] = useState<any>(null);
 
@@ -128,17 +128,17 @@ const GestionLocative = () => {
       setShowResults(true);
     } catch (error) {
       console.error('Error:', error);
-      toast.error('Erreur lors de la génération du devis');
+      toast.error(t('insPage.toast.error'));
     }
   };
 
   const benefits = [
-    'Gain de temps considérable',
-    'Expertise juridique et fiscale',
-    'Recherche et sélection des locataires',
-    'Gestion des impayés et contentieux',
-    'Suivi des travaux et entretien',
-    'Déclarations fiscales simplifiées'
+    t('gestionPage.benefit1'),
+    t('gestionPage.benefit2'),
+    t('gestionPage.benefit3'),
+    t('gestionPage.benefit4'),
+    t('gestionPage.benefit5'),
+    t('gestionPage.benefit6')
   ];
 
   const breadcrumbSchema = addBreadcrumbSchema([
@@ -170,16 +170,16 @@ const GestionLocative = () => {
 
   const faqs = [
     {
-      question: 'Qu\'est-ce que la gestion locative ?',
-      answer: 'La gestion locative consiste à confier la gestion quotidienne de votre bien immobilier à un professionnel : recherche de locataires, état des lieux, encaissement des loyers, gestion des travaux, etc.'
+      question: "Qu'est-ce que la gestion locative ?",
+      answer: "La gestion locative consiste à confier la gestion quotidienne de votre bien immobilier à un professionnel : recherche de locataires, état des lieux, encaissement des loyers, gestion des travaux, etc."
     },
     {
-      question: 'Quels sont les types de gestion proposés ?',
-      answer: 'Il existe trois types principaux : la gestion complète (tout inclus), la gestion partielle (seulement certaines tâches) et la gestion déclarative (simple suivi administratif).'
+      question: "Quels sont les types de gestion proposés ?",
+      answer: "Il existe trois types principaux : la gestion complète (tout inclus), la gestion partielle (seulement certaines tâches) et la gestion déclarative (simple suivi administratif)."
     },
     {
-      question: 'Combien coûte la gestion locative ?',
-      answer: 'Les honoraires varient généralement entre 5% et 10% des loyers perçus, selon le niveau de service choisi et le nombre de biens gérés.'
+      question: "Combien coûte la gestion locative ?",
+      answer: "Les honoraires varient généralement entre 5% et 10% des loyers perçus, selon le niveau de service choisi et le nombre de biens gérés."
     },
     {
       question: 'Pourquoi choisir Loc Online ?',
@@ -214,10 +214,10 @@ const GestionLocative = () => {
                   <Building2 className="h-8 w-8 text-primary" />
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                  Gestion Locative en Ligne
+                  {t('gestionPage.title')}
                 </h1>
                 <p className="text-xl text-gray-600 mb-8">
-                  Confiez vos biens à des professionnels et profitez de revenus sereins
+                  {t('gestionPage.subtitle')}
                 </p>
               </motion.div>
 
@@ -228,9 +228,9 @@ const GestionLocative = () => {
               >
                 <Card className="max-w-2xl mx-auto shadow-xl">
                   <CardHeader>
-                    <CardTitle>Obtenez vos devis de gestion</CardTitle>
+                    <CardTitle>{t('gestionPage.formTitle')}</CardTitle>
                     <CardDescription>
-                      Comparez les meilleures offres pour votre patrimoine
+                      {t('gestionPage.formDesc')}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -241,17 +241,17 @@ const GestionLocative = () => {
                           name="propertyCount"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Nombre de biens à gérer</FormLabel>
+                              <FormLabel>{t('gestionPage.form.propertyCount')}</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                   <SelectTrigger>
-                                    <SelectValue placeholder="Sélectionnez" />
+                                    <SelectValue placeholder={t('insPage.select')} />
                                   </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                  <SelectItem value="1">1 bien</SelectItem>
-                                  <SelectItem value="2-5">2 à 5 biens</SelectItem>
-                                  <SelectItem value="5+">Plus de 5 biens</SelectItem>
+                                  <SelectItem value="1">{t('gestionPage.form.one')}</SelectItem>
+                                  <SelectItem value="2-5">{t('gestionPage.form.twoFive')}</SelectItem>
+                                  <SelectItem value="5+">{t('gestionPage.form.fivePlus')}</SelectItem>
                                 </SelectContent>
                               </Select>
                               <FormMessage />
@@ -264,17 +264,17 @@ const GestionLocative = () => {
                           name="propertyType"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Type de bien(s)</FormLabel>
+                              <FormLabel>{t('gestionPage.form.propertyType')}</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                   <SelectTrigger>
-                                    <SelectValue placeholder="Sélectionnez le type" />
+                                    <SelectValue placeholder={t('insPage.select')} />
                                   </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                  <SelectItem value="apartment">Appartement(s)</SelectItem>
-                                  <SelectItem value="house">Maison(s)</SelectItem>
-                                  <SelectItem value="mixed">Mixte</SelectItem>
+                                  <SelectItem value="apartment">{t('gestionPage.form.apartments')}</SelectItem>
+                                  <SelectItem value="house">{t('gestionPage.form.houses')}</SelectItem>
+                                  <SelectItem value="mixed">{t('gestionPage.form.mixed')}</SelectItem>
                                 </SelectContent>
                               </Select>
                               <FormMessage />
@@ -287,7 +287,7 @@ const GestionLocative = () => {
                           name="totalRent"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Loyers mensuels totaux (€)</FormLabel>
+                              <FormLabel>{t('gestionPage.form.totalRent')}</FormLabel>
                               <FormControl>
                                 <Input type="number" placeholder="2500" {...field} />
                               </FormControl>
@@ -301,17 +301,17 @@ const GestionLocative = () => {
                           name="managementType"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Type de gestion</FormLabel>
+                              <FormLabel>{t('gestionPage.form.managementType')}</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                   <SelectTrigger>
-                                    <SelectValue placeholder="Sélectionnez" />
+                                    <SelectValue placeholder={t('insPage.select')} />
                                   </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                  <SelectItem value="full">Gestion complète</SelectItem>
-                                  <SelectItem value="partial">Gestion partielle</SelectItem>
-                                  <SelectItem value="declaration">Gestion déclarative</SelectItem>
+                                  <SelectItem value="full">{t('gestionPage.form.full')}</SelectItem>
+                                  <SelectItem value="partial">{t('gestionPage.form.partial')}</SelectItem>
+                                  <SelectItem value="declaration">{t('gestionPage.form.declaration')}</SelectItem>
                                 </SelectContent>
                               </Select>
                               <FormMessage />
@@ -324,7 +324,7 @@ const GestionLocative = () => {
                           name="postalCode"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Code postal du bien</FormLabel>
+                              <FormLabel>{t('insPage.postalCode')}</FormLabel>
                               <FormControl>
                                 <Input placeholder="75001" maxLength={5} {...field} />
                               </FormControl>
@@ -335,7 +335,7 @@ const GestionLocative = () => {
 
                         <Button type="submit" className="w-full" size="lg">
                           <Euro className="mr-2 h-5 w-5" />
-                          Comparer les gestionnaires
+                          {t('gestionPage.form.submit')}
                         </Button>
                       </form>
                     </Form>
@@ -348,7 +348,7 @@ const GestionLocative = () => {
           {/* Benefits Section */}
           <section className="py-16 bg-gray-50">
             <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center mb-12">Avantages de la gestion locative</h2>
+              <h2 className="text-3xl font-bold text-center mb-12">{t('gestionPage.benefitsTitle')}</h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
                 {benefits.map((benefit, index) => (
                   <div key={index} className="flex items-start gap-3 bg-white p-4 rounded-lg shadow-sm">

@@ -11,9 +11,11 @@ import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 import { CommentsSection } from "@/components/blog/CommentsSection";
 import { addArticleSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { useLanguage } from "@/contexts/LanguageContext";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 
 const BlogArticle = () => {
+  const { t } = useLanguage();
   const { slug } = useParams();
   const navigate = useNavigate();
 
@@ -40,8 +42,8 @@ const BlogArticle = () => {
       }
     } else {
       navigator.clipboard.writeText(window.location.href);
-      toast.success("Lien copié !", {
-        description: "Le lien de l'article a été copié dans le presse-papier.",
+      toast.success(t('blogArticlePage.linkCopied'), {
+        description: t('blogArticlePage.linkCopiedDesc'),
       });
     }
   };
@@ -101,7 +103,7 @@ const BlogArticle = () => {
                 onClick={() => navigate("/blog")}
                 className="mb-4 text-white/80 hover:text-white hover:bg-white/10 rounded-full"
               >
-                ← Retour au blog
+                ← {t('blogArticlePage.backToBlog')}
               </Button>
               <Badge className="mb-4 bg-white/20 text-white border-white/30 rounded-full">{article.category}</Badge>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
@@ -126,7 +128,7 @@ const BlogArticle = () => {
                 </div>
                 <Button variant="ghost" size="sm" onClick={handleShare} className="text-white/80 hover:text-white hover:bg-white/10 rounded-full gap-2">
                   <Share2 className="h-4 w-4" />
-                  Partager
+                  {t('blogArticlePage.share')}
                 </Button>
               </div>
             </div>
@@ -184,17 +186,17 @@ const BlogArticle = () => {
             <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center overflow-visible">
               <div className="relative z-10">
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Prêt à économiser sur vos assurances ?
+                  {t('blogArticlePage.ctaTitle')}
                 </h3>
                 <p className="text-white/80 mb-6 max-w-xl mx-auto">
-                  Comparez gratuitement les meilleures offres et trouvez l'assurance idéale en quelques clics
+                  {t('blogArticlePage.ctaDesc')}
                 </p>
                 <Button 
                   size="lg" 
                   onClick={() => navigate("/comparateur")}
                   className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 rounded-full text-lg"
                 >
-                  Comparer les assurances
+                  {t('blogArticlePage.compareBtn')}
                 </Button>
               </div>
               <img
@@ -211,7 +213,7 @@ const BlogArticle = () => {
             {/* Related articles */}
             {relatedArticles.length > 0 && (
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">Articles similaires</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">{t('blogArticlePage.relatedArticles')}</h2>
                 <div className="grid md:grid-cols-3 gap-4">
                   {relatedArticles.map((relArticle) => (
                     <Card 

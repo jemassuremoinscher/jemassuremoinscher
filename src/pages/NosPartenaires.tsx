@@ -4,13 +4,16 @@ import Partners from "@/components/Partners";
 import { Shield, Award, HeadphonesIcon, MapPin, Check } from "lucide-react";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const NosPartenaires = () => {
+  const { t } = useLanguage();
+
   const criteria = [
-    { icon: Shield, title: "Solidité financière", desc: "Des assureurs reconnus et financièrement solides" },
-    { icon: Award, title: "Tarifs compétitifs", desc: "Les meilleurs prix négociés pour nos utilisateurs" },
-    { icon: HeadphonesIcon, title: "Service client", desc: "Un accompagnement de qualité au quotidien" },
-    { icon: MapPin, title: "Présence nationale", desc: "Des agences locales partout en France" },
+    { icon: Shield, title: t('partnersPage.financial'), desc: t('partnersPage.financialDesc') },
+    { icon: Award, title: t('partnersPage.competitive'), desc: t('partnersPage.competitiveDesc') },
+    { icon: HeadphonesIcon, title: t('partnersPage.customerService'), desc: t('partnersPage.customerServiceDesc') },
+    { icon: MapPin, title: t('partnersPage.national'), desc: t('partnersPage.nationalDesc') },
   ];
 
   return (
@@ -23,10 +26,10 @@ const NosPartenaires = () => {
           <div className="container mx-auto px-4 py-14 md:py-20">
             <div className="max-w-[65%] sm:max-w-[70%] md:max-w-2xl relative z-10 text-center md:text-left">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                Nos partenaires assureurs
+                {t('partnersPage.title')}
               </h1>
               <p className="text-base md:text-lg text-white/80 leading-relaxed">
-                Nous travaillons avec les plus grandes compagnies d'assurance françaises pour vous proposer les meilleures offres du marché.
+                {t('partnersPage.subtitle')}
               </p>
             </div>
             <img
@@ -45,7 +48,7 @@ const NosPartenaires = () => {
           {/* Criteria grid */}
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-8">
-              Pourquoi ces partenaires ?
+              {t('partnersPage.whyTitle')}
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {criteria.map(({ icon: Icon, title, desc }) => (
@@ -62,16 +65,16 @@ const NosPartenaires = () => {
 
           {/* Engagement block */}
           <div className="max-w-4xl mx-auto glass-card p-8 md:p-10 rounded-[2rem] bg-gradient-to-br from-primary/5 to-accent/5">
-            <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">Notre engagement qualité</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-foreground mb-4">{t('partnersPage.commitmentTitle')}</h2>
             <p className="text-muted-foreground mb-5 leading-relaxed">
-              Nous sélectionnons nos partenaires selon des critères stricts. Chaque assureur présent dans notre comparateur a été soigneusement évalué pour vous garantir :
+              {t('partnersPage.commitmentDesc')}
             </p>
             <ul className="space-y-3">
               {[
-                "Une transparence totale sur les garanties et les tarifs",
-                "Un traitement rapide et efficace des sinistres",
-                "Un excellent rapport qualité-prix sur tous les contrats",
-                "Une relation de confiance durable avec nos utilisateurs",
+                t('partnersPage.commitment1'),
+                t('partnersPage.commitment2'),
+                t('partnersPage.commitment3'),
+                t('partnersPage.commitment4'),
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <div className="mt-0.5 h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
@@ -87,16 +90,16 @@ const NosPartenaires = () => {
           <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center max-w-4xl mx-auto overflow-visible">
             <div className="relative z-10">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                Comparez les offres de nos partenaires
+                {t('partnersPage.ctaTitle')}
               </h2>
               <p className="text-white/80 mb-6 max-w-xl mx-auto">
-                Trouvez l'assurance la moins chère en quelques clics grâce à notre comparateur.
+                {t('partnersPage.ctaDesc')}
               </p>
               <a
                 href="/comparateur"
                 className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 py-4 rounded-full text-lg transition-all duration-200 shadow-lg hover:shadow-xl"
               >
-                Comparer maintenant
+                {t('insPage.compareNowBtn')}
               </a>
             </div>
             <img

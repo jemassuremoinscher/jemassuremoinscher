@@ -4,55 +4,58 @@ import SEO from "@/components/SEO";
 import { Star, Quote } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
+import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 
-const testimonials = [
-  {
-    name: "Marie D.",
-    rating: 5,
-    text: "Service excellent ! J'ai économisé 400€ sur mon assurance auto en quelques minutes. Le processus est très simple et les conseillers sont très réactifs.",
-    date: "Il y a 2 jours",
-    type: "Auto"
-  },
-  {
-    name: "Pierre M.",
-    rating: 5,
-    text: "Très satisfait de la comparaison. J'ai trouvé une mutuelle santé bien plus avantageuse que mon ancienne assurance. Je recommande vivement !",
-    date: "Il y a 1 semaine",
-    type: "Santé"
-  },
-  {
-    name: "Sophie L.",
-    rating: 5,
-    text: "Comparateur très complet avec de nombreux assureurs. La comparaison est claire et transparente. J'ai pu changer d'assurance habitation facilement.",
-    date: "Il y a 2 semaines",
-    type: "Habitation"
-  },
-  {
-    name: "Thomas B.",
-    rating: 4,
-    text: "Bon service dans l'ensemble. La comparaison est rapide et les devis sont précis. J'aurais aimé avoir encore plus d'options pour personnaliser mon contrat.",
-    date: "Il y a 3 semaines",
-    type: "Auto"
-  },
-  {
-    name: "Julie R.",
-    rating: 5,
-    text: "Parfait pour comparer les assurances animaux ! J'ai trouvé une offre idéale pour mon chien avec un excellent rapport qualité-prix.",
-    date: "Il y a 1 mois",
-    type: "Animaux"
-  },
-  {
-    name: "Laurent K.",
-    rating: 5,
-    text: "Interface intuitive et résultats immédiats. J'ai pu souscrire à mon assurance prêt en ligne sans difficulté. Gain de temps considérable !",
-    date: "Il y a 1 mois",
-    type: "Prêt"
-  }
-];
-
 const AvisClients = () => {
+  const { t } = useLanguage();
+
+  const testimonials = [
+    {
+      name: "Marie D.",
+      rating: 5,
+      text: t('testimonials.t1.text'),
+      date: "Il y a 2 jours",
+      type: t('insurance.auto')
+    },
+    {
+      name: "Pierre M.",
+      rating: 5,
+      text: t('testimonials.t3.text'),
+      date: "Il y a 1 semaine",
+      type: t('insurance.health')
+    },
+    {
+      name: "Sophie L.",
+      rating: 5,
+      text: t('testimonials.t2.text'),
+      date: "Il y a 2 semaines",
+      type: t('insurance.home')
+    },
+    {
+      name: "Thomas B.",
+      rating: 4,
+      text: "Bon service dans l'ensemble. La comparaison est rapide et les devis sont précis. J'aurais aimé avoir encore plus d'options pour personnaliser mon contrat.",
+      date: "Il y a 3 semaines",
+      type: t('insurance.auto')
+    },
+    {
+      name: "Julie R.",
+      rating: 5,
+      text: t('testimonials.t6.text'),
+      date: "Il y a 1 mois",
+      type: t('insurance.pets')
+    },
+    {
+      name: "Laurent K.",
+      rating: 5,
+      text: t('testimonials.t5.text'),
+      date: "Il y a 1 mois",
+      type: t('insurance.loan')
+    }
+  ];
+
   const breadcrumbSchema = addBreadcrumbSchema([
     { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
     { name: "Avis Clients", url: "https://www.jemassuremoinscher.fr/avis-clients" }
@@ -81,10 +84,10 @@ const AvisClients = () => {
           <div className="container mx-auto px-4 py-14 md:py-20">
             <div className="max-w-[65%] sm:max-w-[70%] md:max-w-2xl relative z-10">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                Avis clients
+                {t('reviewsPage.title')}
               </h1>
               <p className="text-base md:text-lg text-white/80 leading-relaxed">
-                Découvrez ce que nos utilisateurs pensent de notre service
+                {t('reviewsPage.subtitle')}
               </p>
             </div>
             <img
@@ -107,7 +110,7 @@ const AvisClients = () => {
                 ))}
               </div>
               <div className="text-4xl font-black text-foreground mb-1">4.8/5</div>
-              <p className="text-muted-foreground">sur <span className="font-semibold text-foreground">250</span> avis vérifiés</p>
+              <p className="text-muted-foreground">sur <span className="font-semibold text-foreground">250</span> {t('reviewsPage.verifiedReviews')}</p>
               {/* Google logo */}
               <div className="flex items-center justify-center gap-2 mt-3">
                 <svg viewBox="0 0 24 24" className="w-5 h-5" aria-hidden="true">
@@ -153,10 +156,10 @@ const AvisClients = () => {
             <div className="glass-card p-8 md:p-10 rounded-[2rem] bg-gradient-to-br from-primary/5 to-accent/5 text-center">
               <Quote className="w-10 h-10 text-primary/20 mx-auto mb-4" />
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                Vous aussi, partagez votre expérience !
+                {t('reviewsPage.shareTitle')}
               </h2>
               <p className="text-muted-foreground max-w-lg mx-auto">
-                Votre avis compte et nous aide à améliorer notre service pour mieux vous servir.
+                {t('reviewsPage.shareDesc')}
               </p>
             </div>
 
@@ -164,16 +167,16 @@ const AvisClients = () => {
             <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center overflow-visible">
               <div className="relative z-10">
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Rejoignez nos clients satisfaits
+                  {t('reviewsPage.ctaTitle')}
                 </h2>
                 <p className="text-white/80 mb-6 max-w-xl mx-auto">
-                  Comparez les meilleures offres et économisez sur votre assurance dès aujourd'hui.
+                  {t('reviewsPage.ctaDesc')}
                 </p>
                 <a
                   href="/comparateur"
                   className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 py-4 rounded-full text-lg transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
-                  Comparer maintenant
+                  {t('insPage.compareNowBtn')}
                 </a>
               </div>
               <img

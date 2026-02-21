@@ -10,8 +10,10 @@ import { Badge } from "@/components/ui/badge";
 import { Search, BookOpen, ArrowRight } from "lucide-react";
 import { glossaryTerms, glossaryCategories } from "@/data/glossaryTerms";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Glossaire = () => {
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("Tous");
   const [searchQuery, setSearchQuery] = useState("");
@@ -71,11 +73,10 @@ const Glossaire = () => {
               <BookOpen className="w-8 h-8 text-primary" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Glossaire de l'assurance
+              {t('glossairePage.title')}
             </h1>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Franchise, bonus-malus, tiers payant… Tous les termes d'assurance
-              expliqués simplement avec des exemples concrets.
+              {t('glossairePage.subtitle')}
             </p>
           </div>
 
@@ -84,7 +85,7 @@ const Glossaire = () => {
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
               <Input
                 type="text"
-                placeholder="Rechercher un terme (ex: franchise, bonus-malus...)"
+                placeholder={t('glossairePage.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-12 py-6 text-lg rounded-full"
@@ -109,8 +110,8 @@ const Glossaire = () => {
           </div>
 
           <div className="mb-6 text-center text-muted-foreground">
-            {sortedTerms.length} terme{sortedTerms.length > 1 ? "s" : ""}{" "}
-            trouvé{sortedTerms.length > 1 ? "s" : ""}
+            {sortedTerms.length} {sortedTerms.length > 1 ? t('glossairePage.termsFoundPlural') : t('glossairePage.termsFound')}{" "}
+            {t('blogPage.articlesFound')}
           </div>
 
           {sortedTerms.length > 0 ? (
@@ -143,7 +144,7 @@ const Glossaire = () => {
           ) : (
             <Card className="p-12 text-center">
               <p className="text-lg text-muted-foreground mb-4">
-                Aucun terme ne correspond à votre recherche
+                {t('glossairePage.noResults')}
               </p>
               <Button
                 onClick={() => {
@@ -152,25 +153,24 @@ const Glossaire = () => {
                 }}
                 className="rounded-full"
               >
-                Réinitialiser les filtres
+                {t('blogPage.resetFilters')}
               </Button>
             </Card>
           )}
 
           <div className="mt-16 hero-glass p-8 text-center rounded-2xl">
             <h2 className="text-2xl font-bold mb-4">
-              Besoin d'aide pour choisir votre assurance ?
+              {t('glossairePage.ctaTitle')}
             </h2>
             <p className="text-muted-foreground mb-6">
-              Comparez gratuitement les meilleures offres et économisez sur vos
-              contrats d'assurance.
+              {t('glossairePage.ctaDesc')}
             </p>
             <Button
               onClick={() => navigate("/comparateur")}
               size="lg"
               className="rounded-full"
             >
-              Comparer les assurances
+              {t('glossairePage.compareBtn')}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
