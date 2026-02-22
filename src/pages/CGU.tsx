@@ -2,8 +2,11 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const CGU = () => {
+  const { t, language } = useLanguage();
+
   return (
     <>
       <SEO 
@@ -16,179 +19,109 @@ const CGU = () => {
         
         <main id="main-content" className="flex-grow bg-gray-50 py-12">
           <div className="container mx-auto px-4 max-w-4xl">
-            <h1 className="text-4xl font-bold text-gray-900 mb-8">Conditions Générales d'Utilisation</h1>
+            <h1 className="text-4xl font-bold text-gray-900 mb-8">{t('cgu.title')}</h1>
             
-            <p className="text-muted-foreground mb-6">Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}</p>
+            <p className="text-muted-foreground mb-6">{t('cgu.lastUpdate')} {new Date().toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-GB')}</p>
             
             <div className="space-y-6">
               <Card>
-                <CardHeader>
-                  <CardTitle>1. Objet</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('cgu.s1.title')}</CardTitle></CardHeader>
                 <CardContent>
-                  <p>
-                    Les présentes Conditions Générales d'Utilisation (CGU) ont pour objet de définir les modalités et conditions 
-                    d'utilisation du site jemassuremoinscher ainsi que les droits et obligations des utilisateurs.
-                  </p>
-                  <p className="mt-2">
-                    L'utilisation du site implique l'acceptation pleine et entière des présentes CGU.
-                  </p>
+                  <p>{t('cgu.s1.p1')}</p>
+                  <p className="mt-2">{t('cgu.s1.p2')}</p>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>2. Accès au service</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('cgu.s2.title')}</CardTitle></CardHeader>
                 <CardContent>
-                  <p>
-                    Le service est accessible gratuitement à tout utilisateur disposant d'un accès à Internet. 
-                    Tous les frais supportés par l'utilisateur pour accéder au service (matériel informatique, logiciels, 
-                    connexion Internet, etc.) sont à sa charge.
-                  </p>
-                  <p className="mt-2">
-                    jemassuremoinscher se réserve le droit de suspendre, d'interrompre ou de limiter l'accès à tout ou partie 
-                    du site, notamment pour des raisons de maintenance, sans préavis ni indemnité.
-                  </p>
+                  <p>{t('cgu.s2.p1')}</p>
+                  <p className="mt-2">{t('cgu.s2.p2')}</p>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>3. Nature du service</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('cgu.s3.title')}</CardTitle></CardHeader>
                 <CardContent>
-                  <p>
-                    jemassuremoinscher est un service de comparaison en ligne permettant aux utilisateurs de comparer 
-                    différentes offres d'assurance proposées par nos partenaires.
-                  </p>
-                  <p className="mt-2">
-                    <strong>Important :</strong> jemassuremoinscher n'est pas un assureur et n'émet pas de contrats d'assurance.
-                    Notre rôle se limite à la mise en relation entre les utilisateurs et les assureurs ou courtiers partenaires.
-                  </p>
+                  <p>{t('cgu.s3.p1')}</p>
+                  <p className="mt-2"><strong>{t('cgu.s3.p2')}</strong></p>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>4. Demande de devis</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('cgu.s4.title')}</CardTitle></CardHeader>
                 <CardContent>
-                  <p>
-                    Lorsque vous effectuez une demande de devis via notre site :
-                  </p>
+                  <p>{t('cgu.s4.p1')}</p>
                   <ul className="list-disc pl-6 mt-2 space-y-1">
-                    <li>Vous vous engagez à fournir des informations exactes et à jour</li>
-                    <li>Vos données peuvent être transmises à nos partenaires assureurs</li>
-                    <li>Vous pouvez être contacté par nos partenaires pour finaliser votre demande</li>
-                    <li>Les tarifs affichés sont indicatifs et peuvent varier</li>
-                    <li>Aucun engagement de souscription n'est pris en remplissant le formulaire</li>
+                    <li>{t('cgu.s4.li1')}</li>
+                    <li>{t('cgu.s4.li2')}</li>
+                    <li>{t('cgu.s4.li3')}</li>
+                    <li>{t('cgu.s4.li4')}</li>
+                    <li>{t('cgu.s4.li5')}</li>
                   </ul>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>5. Données personnelles</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('cgu.s5.title')}</CardTitle></CardHeader>
                 <CardContent>
-                  <p>
-                    jemassuremoinscher collecte et traite vos données personnelles dans le respect du RGPD 
-                    (Règlement Général sur la Protection des Données).
-                  </p>
+                  <p>{t('cgu.s5.p1')}</p>
                   <p className="mt-2">
-                    Pour plus d'informations sur le traitement de vos données, consultez notre{' '}
-                    <a href="/politique-confidentialite" className="text-primary hover:underline">
-                      Politique de confidentialité
-                    </a>.
+                    {t('cgu.s5.p2')}{' '}
+                    <a href="/politique-confidentialite" className="text-primary hover:underline">{t('cgu.s5.link')}</a>.
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>6. Propriété intellectuelle</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('cgu.s6.title')}</CardTitle></CardHeader>
                 <CardContent>
-                  <p>
-                    L'ensemble du contenu du site (textes, images, logos, vidéos, etc.) est protégé par le droit de la propriété 
-                    intellectuelle. Toute reproduction, représentation, modification ou exploitation non autorisée est interdite.
-                  </p>
-                  <p className="mt-2">
-                    Les marques et logos des assureurs partenaires sont la propriété de leurs détenteurs respectifs.
-                  </p>
+                  <p>{t('cgu.s6.p1')}</p>
+                  <p className="mt-2">{t('cgu.s6.p2')}</p>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>7. Responsabilité</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('cgu.s7.title')}</CardTitle></CardHeader>
                 <CardContent>
-                  <p>
-                    jemassuremoinscher s'efforce de fournir des informations fiables et actualisées. Cependant :
-                  </p>
+                  <p>{t('cgu.s7.p1')}</p>
                   <ul className="list-disc pl-6 mt-2 space-y-1">
-                    <li>Les informations sont fournies à titre indicatif</li>
-                    <li>Nous ne garantissons pas l'exactitude ou l'exhaustivité des données</li>
-                    <li>Les tarifs peuvent varier selon les assureurs</li>
-                    <li>Nous ne sommes pas responsables des décisions prises sur la base de ces informations</li>
-                    <li>La responsabilité du comparateur ne peut être engagée en cas de litige avec un assureur</li>
+                    <li>{t('cgu.s7.li1')}</li>
+                    <li>{t('cgu.s7.li2')}</li>
+                    <li>{t('cgu.s7.li3')}</li>
+                    <li>{t('cgu.s7.li4')}</li>
+                    <li>{t('cgu.s7.li5')}</li>
                   </ul>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>8. Liens externes</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('cgu.s8.title')}</CardTitle></CardHeader>
+                <CardContent><p>{t('cgu.s8.p1')}</p></CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader><CardTitle>{t('cgu.s9.title')}</CardTitle></CardHeader>
                 <CardContent>
-                  <p>
-                    Le site peut contenir des liens vers des sites externes. jemassuremoinscher n'exerce aucun contrôle 
-                    sur ces sites et décline toute responsabilité quant à leur contenu.
-                  </p>
+                  <p>{t('cgu.s9.p1')}</p>
+                  <p className="mt-2">{t('cgu.s9.p2')}</p>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>9. Modification des CGU</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('cgu.s10.title')}</CardTitle></CardHeader>
                 <CardContent>
-                  <p>
-                    jemassuremoinscher se réserve le droit de modifier les présentes CGU à tout moment. 
-                    Les modifications entrent en vigueur dès leur publication sur le site.
-                  </p>
-                  <p className="mt-2">
-                    Il est conseillé aux utilisateurs de consulter régulièrement les CGU.
-                  </p>
+                  <p>{t('cgu.s10.p1')}</p>
+                  <p className="mt-2">{t('cgu.s10.p2')}</p>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>10. Droit applicable et juridiction</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('cgu.s11.title')}</CardTitle></CardHeader>
                 <CardContent>
                   <p>
-                    Les présentes CGU sont soumises au droit français. En cas de litige, les tribunaux français seront 
-                    seuls compétents.
-                  </p>
-                  <p className="mt-2">
-                    Conformément à la réglementation en vigueur, l'utilisateur a la possibilité de recourir à une médiation 
-                    conventionnelle ou à tout autre mode alternatif de règlement des différends.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>11. Contact</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>
-                    Pour toute question concernant les présentes CGU, vous pouvez nous contacter via notre{' '}
-                    <a href="/contact" className="text-primary hover:underline">page de contact</a>.
+                    {t('cgu.s11.p1')}{' '}
+                    <a href="/contact" className="text-primary hover:underline">{t('cgu.s11.link')}</a>.
                   </p>
                 </CardContent>
               </Card>

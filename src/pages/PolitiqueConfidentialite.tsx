@@ -3,8 +3,11 @@ import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield, Lock, Eye, Database, UserCheck } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const PolitiqueConfidentialite = () => {
+  const { t, language } = useLanguage();
+
   return (
     <>
       <SEO 
@@ -21,9 +24,9 @@ const PolitiqueConfidentialite = () => {
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
                 <Shield className="h-8 w-8 text-primary" />
               </div>
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">Politique de Confidentialité</h1>
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('privacy.title')}</h1>
               <p className="text-muted-foreground">
-                Dernière mise à jour : {new Date().toLocaleDateString('fr-FR')}
+                {t('privacy.lastUpdate')} {new Date().toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-GB')}
               </p>
             </div>
             
@@ -32,68 +35,57 @@ const PolitiqueConfidentialite = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Eye className="h-5 w-5 text-primary" />
-                    Introduction
+                    {t('privacy.intro.title')}
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p>
-                    jemassuremoinscher accorde une grande importance à la protection de vos données personnelles. 
-                    Cette politique de confidentialité vous informe sur la manière dont nous collectons, utilisons et protégeons 
-                    vos données conformément au RGPD (Règlement Général sur la Protection des Données).
-                  </p>
-                </CardContent>
+                <CardContent><p>{t('privacy.intro.p1')}</p></CardContent>
               </Card>
 
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Database className="h-5 w-5 text-primary" />
-                    1. Responsable du traitement
+                    {t('privacy.s1.title')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <p><strong>Responsable :</strong> jemassuremoinscher</p>
-                  <p><strong>Adresse :</strong> [Adresse à compléter]</p>
-                  <p><strong>Email :</strong> contact@jemassuremoinscher.fr</p>
-                  <p><strong>DPO (Délégué à la Protection des Données) :</strong> [Email DPO]</p>
+                  <p><strong>{t('privacy.s1.responsable')}</strong> jemassuremoinscher</p>
+                  <p><strong>{t('privacy.s1.adresse')}</strong> {t('privacy.s1.adresseVal')}</p>
+                  <p><strong>{t('privacy.s1.email')}</strong> contact@jemassuremoinscher.fr</p>
+                  <p><strong>{t('privacy.s1.dpo')}</strong> {t('privacy.s1.dpoVal')}</p>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>2. Données collectées</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('privacy.s2.title')}</CardTitle></CardHeader>
                 <CardContent>
-                  <p className="font-semibold mb-2">Nous collectons les données suivantes :</p>
-                  
+                  <p className="font-semibold mb-2">{t('privacy.s2.intro')}</p>
                   <div className="space-y-3">
                     <div>
-                      <p className="font-semibold text-sm">Données d'identification :</p>
+                      <p className="font-semibold text-sm">{t('privacy.s2.identification')}</p>
                       <ul className="list-disc pl-6 text-sm space-y-1">
-                        <li>Nom et prénom</li>
-                        <li>Adresse email</li>
-                        <li>Numéro de téléphone</li>
-                        <li>Adresse postale</li>
+                        <li>{t('privacy.s2.id1')}</li>
+                        <li>{t('privacy.s2.id2')}</li>
+                        <li>{t('privacy.s2.id3')}</li>
+                        <li>{t('privacy.s2.id4')}</li>
                       </ul>
                     </div>
-
                     <div>
-                      <p className="font-semibold text-sm">Données relatives à votre demande de devis :</p>
+                      <p className="font-semibold text-sm">{t('privacy.s2.devis')}</p>
                       <ul className="list-disc pl-6 text-sm space-y-1">
-                        <li>Type d'assurance recherchée</li>
-                        <li>Caractéristiques du bien ou véhicule à assurer</li>
-                        <li>Situation personnelle (âge, profession, etc.)</li>
-                        <li>Historique de sinistres si applicable</li>
+                        <li>{t('privacy.s2.devis1')}</li>
+                        <li>{t('privacy.s2.devis2')}</li>
+                        <li>{t('privacy.s2.devis3')}</li>
+                        <li>{t('privacy.s2.devis4')}</li>
                       </ul>
                     </div>
-
                     <div>
-                      <p className="font-semibold text-sm">Données de navigation :</p>
+                      <p className="font-semibold text-sm">{t('privacy.s2.navigation')}</p>
                       <ul className="list-disc pl-6 text-sm space-y-1">
-                        <li>Adresse IP</li>
-                        <li>Type de navigateur</li>
-                        <li>Pages consultées</li>
-                        <li>Cookies (voir notre politique cookies)</li>
+                        <li>{t('privacy.s2.nav1')}</li>
+                        <li>{t('privacy.s2.nav2')}</li>
+                        <li>{t('privacy.s2.nav3')}</li>
+                        <li>{t('privacy.s2.nav4')}</li>
                       </ul>
                     </div>
                   </div>
@@ -101,66 +93,56 @@ const PolitiqueConfidentialite = () => {
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>3. Finalités du traitement</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('privacy.s3.title')}</CardTitle></CardHeader>
                 <CardContent>
-                  <p className="mb-2">Vos données sont utilisées pour :</p>
+                  <p className="mb-2">{t('privacy.s3.intro')}</p>
                   <ul className="list-disc pl-6 space-y-1">
-                    <li>Traiter vos demandes de devis</li>
-                    <li>Vous mettre en relation avec nos partenaires assureurs</li>
-                    <li>Vous contacter pour compléter votre demande</li>
-                    <li>Améliorer nos services</li>
-                    <li>Respecter nos obligations légales</li>
-                    <li>Réaliser des statistiques anonymisées</li>
-                    <li>Vous envoyer des informations si vous y consentez</li>
+                    <li>{t('privacy.s3.li1')}</li>
+                    <li>{t('privacy.s3.li2')}</li>
+                    <li>{t('privacy.s3.li3')}</li>
+                    <li>{t('privacy.s3.li4')}</li>
+                    <li>{t('privacy.s3.li5')}</li>
+                    <li>{t('privacy.s3.li6')}</li>
+                    <li>{t('privacy.s3.li7')}</li>
                   </ul>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>4. Base légale du traitement</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('privacy.s4.title')}</CardTitle></CardHeader>
                 <CardContent>
-                  <p className="mb-2">Le traitement de vos données repose sur :</p>
+                  <p className="mb-2">{t('privacy.s4.intro')}</p>
                   <ul className="list-disc pl-6 space-y-1">
-                    <li><strong>Votre consentement :</strong> pour l'envoi de communications marketing</li>
-                    <li><strong>L'exécution du contrat :</strong> pour traiter votre demande de devis</li>
-                    <li><strong>L'intérêt légitime :</strong> pour améliorer nos services</li>
-                    <li><strong>Les obligations légales :</strong> pour respecter la réglementation</li>
+                    <li><strong>{t('privacy.s4.li1label')}</strong> {t('privacy.s4.li1')}</li>
+                    <li><strong>{t('privacy.s4.li2label')}</strong> {t('privacy.s4.li2')}</li>
+                    <li><strong>{t('privacy.s4.li3label')}</strong> {t('privacy.s4.li3')}</li>
+                    <li><strong>{t('privacy.s4.li4label')}</strong> {t('privacy.s4.li4')}</li>
                   </ul>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>5. Destinataires des données</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('privacy.s5.title')}</CardTitle></CardHeader>
                 <CardContent>
-                  <p className="mb-2">Vos données peuvent être transmises à :</p>
+                  <p className="mb-2">{t('privacy.s5.intro')}</p>
                   <ul className="list-disc pl-6 space-y-1">
-                    <li>Nos partenaires assureurs et courtiers (uniquement les données nécessaires)</li>
-                    <li>Nos prestataires techniques (hébergement, emailing, etc.)</li>
-                    <li>Les autorités compétentes si requis par la loi</li>
+                    <li>{t('privacy.s5.li1')}</li>
+                    <li>{t('privacy.s5.li2')}</li>
+                    <li>{t('privacy.s5.li3')}</li>
                   </ul>
-                  <p className="mt-3 text-sm text-muted-foreground">
-                    Nous nous assurons que tous les destinataires respectent la réglementation sur la protection des données.
-                  </p>
+                  <p className="mt-3 text-sm text-muted-foreground">{t('privacy.s5.note')}</p>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>6. Durée de conservation</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('privacy.s6.title')}</CardTitle></CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    <li><strong>Demandes de devis :</strong> 3 ans à compter de votre dernier contact</li>
-                    <li><strong>Prospects non convertis :</strong> 3 ans maximum</li>
-                    <li><strong>Clients :</strong> Durée du contrat + 5 ans (prescriptions légales)</li>
-                    <li><strong>Cookies :</strong> Maximum 13 mois</li>
-                    <li><strong>Données de connexion :</strong> 1 an maximum</li>
+                    <li><strong>{t('privacy.s6.li1label')}</strong> {t('privacy.s6.li1')}</li>
+                    <li><strong>{t('privacy.s6.li2label')}</strong> {t('privacy.s6.li2')}</li>
+                    <li><strong>{t('privacy.s6.li3label')}</strong> {t('privacy.s6.li3')}</li>
+                    <li><strong>{t('privacy.s6.li4label')}</strong> {t('privacy.s6.li4')}</li>
+                    <li><strong>{t('privacy.s6.li5label')}</strong> {t('privacy.s6.li5')}</li>
                   </ul>
                 </CardContent>
               </Card>
@@ -169,30 +151,28 @@ const PolitiqueConfidentialite = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <UserCheck className="h-5 w-5 text-primary" />
-                    7. Vos droits
+                    {t('privacy.s7.title')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="mb-2">Conformément au RGPD, vous disposez des droits suivants :</p>
+                  <p className="mb-2">{t('privacy.s7.intro')}</p>
                   <ul className="list-disc pl-6 space-y-1">
-                    <li><strong>Droit d'accès :</strong> obtenir une copie de vos données</li>
-                    <li><strong>Droit de rectification :</strong> corriger vos données inexactes</li>
-                    <li><strong>Droit à l'effacement :</strong> demander la suppression de vos données</li>
-                    <li><strong>Droit à la limitation :</strong> limiter le traitement de vos données</li>
-                    <li><strong>Droit à la portabilité :</strong> récupérer vos données dans un format structuré</li>
-                    <li><strong>Droit d'opposition :</strong> vous opposer au traitement de vos données</li>
-                    <li><strong>Droit de retrait du consentement :</strong> à tout moment</li>
+                    <li><strong>{t('privacy.s7.li1label')}</strong> {t('privacy.s7.li1')}</li>
+                    <li><strong>{t('privacy.s7.li2label')}</strong> {t('privacy.s7.li2')}</li>
+                    <li><strong>{t('privacy.s7.li3label')}</strong> {t('privacy.s7.li3')}</li>
+                    <li><strong>{t('privacy.s7.li4label')}</strong> {t('privacy.s7.li4')}</li>
+                    <li><strong>{t('privacy.s7.li5label')}</strong> {t('privacy.s7.li5')}</li>
+                    <li><strong>{t('privacy.s7.li6label')}</strong> {t('privacy.s7.li6')}</li>
+                    <li><strong>{t('privacy.s7.li7label')}</strong> {t('privacy.s7.li7')}</li>
                   </ul>
                   
                   <div className="mt-4 p-3 bg-primary/10 rounded-lg">
-                    <p className="font-semibold text-sm">Pour exercer vos droits :</p>
-                    <p className="text-sm mt-1">Contactez-nous par email : contact@jemassuremoinscher.fr</p>
-                    <p className="text-sm">Ou par courrier à notre adresse avec justificatif d'identité</p>
+                    <p className="font-semibold text-sm">{t('privacy.s7.exercice')}</p>
+                    <p className="text-sm mt-1">{t('privacy.s7.exerciceEmail')}</p>
+                    <p className="text-sm">{t('privacy.s7.exerciceCourrier')}</p>
                   </div>
 
-                  <p className="mt-3 text-sm text-muted-foreground">
-                    Vous disposez également du droit de déposer une réclamation auprès de la CNIL (www.cnil.fr).
-                  </p>
+                  <p className="mt-3 text-sm text-muted-foreground">{t('privacy.s7.cnil')}</p>
                 </CardContent>
               </Card>
 
@@ -200,71 +180,49 @@ const PolitiqueConfidentialite = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Lock className="h-5 w-5 text-primary" />
-                    8. Sécurité des données
+                    {t('privacy.s8.title')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="mb-2">Nous mettons en œuvre des mesures techniques et organisationnelles pour protéger vos données :</p>
+                  <p className="mb-2">{t('privacy.s8.intro')}</p>
                   <ul className="list-disc pl-6 space-y-1">
-                    <li>Chiffrement des données (SSL/TLS)</li>
-                    <li>Serveurs sécurisés</li>
-                    <li>Accès restreint aux données personnelles</li>
-                    <li>Sauvegardes régulières</li>
-                    <li>Sensibilisation de nos équipes</li>
+                    <li>{t('privacy.s8.li1')}</li>
+                    <li>{t('privacy.s8.li2')}</li>
+                    <li>{t('privacy.s8.li3')}</li>
+                    <li>{t('privacy.s8.li4')}</li>
+                    <li>{t('privacy.s8.li5')}</li>
                   </ul>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>9. Cookies</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('privacy.s9.title')}</CardTitle></CardHeader>
                 <CardContent>
                   <p>
-                    Notre site utilise des cookies pour améliorer votre expérience. Pour plus d'informations, 
-                    consultez notre{' '}
-                    <a href="/politique-cookies" className="text-primary hover:underline">Politique de cookies</a>.
+                    {t('privacy.s9.p1')}{' '}
+                    <a href="/politique-cookies" className="text-primary hover:underline">{t('privacy.s9.link')}</a>.
                   </p>
                 </CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>10. Transferts internationaux</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>
-                    Vos données sont hébergées au sein de l'Union Européenne. En cas de transfert hors UE, 
-                    nous nous assurons que des garanties appropriées sont en place (clauses contractuelles types, etc.).
-                  </p>
-                </CardContent>
+                <CardHeader><CardTitle>{t('privacy.s10.title')}</CardTitle></CardHeader>
+                <CardContent><p>{t('privacy.s10.p1')}</p></CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>11. Modifications</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>
-                    Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. 
-                    Les modifications prendront effet dès leur publication sur le site. Nous vous encourageons à consulter 
-                    régulièrement cette page.
-                  </p>
-                </CardContent>
+                <CardHeader><CardTitle>{t('privacy.s11.title')}</CardTitle></CardHeader>
+                <CardContent><p>{t('privacy.s11.p1')}</p></CardContent>
               </Card>
 
               <Card>
-                <CardHeader>
-                  <CardTitle>12. Contact</CardTitle>
-                </CardHeader>
+                <CardHeader><CardTitle>{t('privacy.s12.title')}</CardTitle></CardHeader>
                 <CardContent>
-                  <p>
-                    Pour toute question concernant cette politique de confidentialité ou le traitement de vos données personnelles :
-                  </p>
+                  <p>{t('privacy.s12.p1')}</p>
                   <div className="mt-3 space-y-1">
-                    <p><strong>Email :</strong> contact@jemassuremoinscher.fr</p>
-                    <p><strong>DPO :</strong> [Email DPO]</p>
-                    <p><strong>Page de contact :</strong> <a href="/contact" className="text-primary hover:underline">Formulaire de contact</a></p>
+                    <p><strong>{t('privacy.s12.email')}</strong> contact@jemassuremoinscher.fr</p>
+                    <p><strong>{t('privacy.s12.dpo')}</strong> {t('privacy.s12.dpoVal')}</p>
+                    <p><strong>{t('privacy.s12.contactPage')}</strong> <a href="/contact" className="text-primary hover:underline">{t('privacy.s12.contactLink')}</a></p>
                   </div>
                 </CardContent>
               </Card>
