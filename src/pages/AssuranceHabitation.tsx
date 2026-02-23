@@ -15,7 +15,7 @@ import InsuranceComparison from "@/components/InsuranceComparison";
 import { homeInsurers, generateInsurerOffers } from "@/utils/insurerData";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
-import Testimonials from "@/components/Testimonials";
+
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
@@ -138,7 +138,6 @@ const AssuranceHabitation = () => {
                     { question: t('habitationPage.faq3.q'), answer: t('habitationPage.faq3.a') },
                     { question: t('habitationPage.faq4.q'), answer: t('habitationPage.faq4.a') },
                   ]} />
-                  <Testimonials />
                 </div>
               </AccordionContent>
             </AccordionItem>

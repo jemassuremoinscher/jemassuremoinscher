@@ -15,7 +15,7 @@ import InsuranceComparison from "@/components/InsuranceComparison";
 import { loanInsurers, generateInsurerOffers } from "@/utils/insurerData";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
-import Testimonials from "@/components/Testimonials";
+
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -145,7 +145,6 @@ const AssurancePret = () => {
                     { question: t('pretPage.faq3.q'), answer: t('pretPage.faq3.a') },
                     { question: t('pretPage.faq4.q'), answer: t('pretPage.faq4.a') },
                   ]} />
-                  <Testimonials />
                 </div>
               </AccordionContent>
             </AccordionItem>

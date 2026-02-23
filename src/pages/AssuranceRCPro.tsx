@@ -15,7 +15,7 @@ import InsuranceComparison from "@/components/InsuranceComparison";
 import { generateInsurerOffers, InsurerConfig } from "@/utils/insurerData";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
-import Testimonials from "@/components/Testimonials";
+
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -137,7 +137,7 @@ const AssuranceRCPro = () => {
               { question: t('rcProPage.faq2.q'), answer: t('rcProPage.faq2.a') },
               { question: t('rcProPage.faq3.q'), answer: t('rcProPage.faq3.a') },
             ]} />
-            <Testimonials />
+            
           </div></AccordionContent></AccordionItem></Accordion>
         </section>
         <section className="max-w-2xl mx-auto text-center mb-16">
