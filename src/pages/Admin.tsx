@@ -40,11 +40,8 @@ const Admin = () => {
   useEffect(() => {
     if (!loading && !user) {
       navigate('/auth');
-    } else if (!loading && user && !isAdmin) {
-      toast.error('Accès refusé. Vous devez être administrateur.');
-      navigate('/');
     }
-  }, [user, isAdmin, loading, navigate]);
+  }, [user, loading, navigate]);
 
   useEffect(() => {
     if (isAdmin) {
@@ -168,10 +165,42 @@ const Admin = () => {
     toast.success(`${result.type === 'quote' ? 'Devis' : 'Rappel'} trouvé: ${result.name}`);
   };
 
-  if (loading || !isAdmin) {
+  if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null; // Will redirect via useEffect
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-destructive/5 via-background to-accent/5 p-4">
+        <div className="w-full max-w-md text-center space-y-6">
+          <div className="w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center mx-auto">
+            <Shield className="h-8 w-8 text-destructive" />
+          </div>
+          <h1 className="text-2xl font-bold">Accès refusé</h1>
+          <p className="text-muted-foreground">
+            Vous êtes connecté en tant que <strong>{user.email}</strong>, mais votre compte ne dispose pas des permissions administrateur nécessaires pour accéder à cette page.
+          </p>
+          <p className="text-sm text-muted-foreground">
+            Contactez un administrateur si vous pensez que c'est une erreur.
+          </p>
+          <div className="flex gap-3 justify-center">
+            <Button variant="outline" onClick={() => navigate('/')}>
+              Retour à l'accueil
+            </Button>
+            <Button variant="destructive" onClick={handleSignOut}>
+              <LogOut className="h-4 w-4 mr-2" />
+              Se déconnecter
+            </Button>
+          </div>
+        </div>
       </div>
     );
   }
