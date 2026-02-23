@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Instagram, Linkedin, Facebook } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 
 const SimpleFooter = () => {
   const { t } = useLanguage();
@@ -32,6 +33,7 @@ const SimpleFooter = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-10">
           <div className="col-span-2 md:col-span-1">
             <Link to="/" className="inline-block mb-4">
+              <img alt="Arthur - mascotte jemassuremoinscher" className="h-12 w-auto" src={arthurThumbsUp} loading="lazy" />
               <img alt="jemassuremoinscher" className="h-10 w-auto brightness-0 invert object-scale-down" src="/lovable-uploads/d9230a8f-d98f-418c-b010-885629846552.png" />
             </Link>
             <p className="text-background/70 text-sm leading-relaxed mb-4">
