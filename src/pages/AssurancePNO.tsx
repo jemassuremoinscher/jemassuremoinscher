@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -94,7 +94,7 @@ const AssurancePNO = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO title="Assurance PNO - Propriétaire Non Occupant | jemassuremoinscher" description="Comparez les meilleures assurances PNO. Devis gratuit pour propriétaires non occupants." keywords="assurance PNO, propriétaire non occupant, assurance logement vide" canonical="https://www.jemassuremoinscher.fr/assurance-pno" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
+      <SEOOptimized title="Assurance PNO - Propriétaire Non Occupant" description="Comparez les assurances PNO. Devis gratuit pour propriétaires non occupants." keyword="assurance PNO" keywords="propriétaire non occupant, assurance logement vide" canonical="https://www.jemassuremoinscher.fr/assurance-pno" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">

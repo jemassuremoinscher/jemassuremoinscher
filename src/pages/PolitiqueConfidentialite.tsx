@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield, Lock, Eye, Database, UserCheck } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -10,9 +10,10 @@ const PolitiqueConfidentialite = () => {
 
   return (
     <>
-      <SEO 
+      <SEOOptimized 
         title="Politique de Confidentialité - jemassuremoinscher"
-        description="Politique de confidentialité et protection des données personnelles de jemassuremoinscher"
+        description="Politique de confidentialité et protection des données personnelles."
+        noindex
       />
       
       <div className="min-h-screen flex flex-col">

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { Shield } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -72,11 +72,12 @@ const PlanDuSite = () => {
 
   return (
     <>
-      <SEO 
+      <SEOOptimized 
         title="Plan du site - jemassuremoinscher"
-        description="Plan du site complet avec tous les liens vers nos pages d'assurances, outils, blog et pages légales. Navigation simplifiée pour trouver rapidement l'information."
+        description="Plan du site avec tous les liens vers nos pages d'assurances et outils."
         canonical="https://www.jemassuremoinscher.fr/plan-du-site"
         jsonLd={[breadcrumbSchema, webPageSchema]}
+        noindex
       />
       <Header />
       

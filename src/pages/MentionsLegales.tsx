@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -9,9 +9,10 @@ const MentionsLegales = () => {
 
   return (
     <>
-      <SEO 
+      <SEOOptimized 
         title="Mentions Légales - jemassuremoinscher"
-        description="Mentions légales et informations juridiques de jemassuremoinscher"
+        description="Mentions légales et informations juridiques de jemassuremoinscher."
+        noindex
       />
       
       <div className="min-h-screen flex flex-col">

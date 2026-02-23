@@ -1,4 +1,4 @@
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
 import { Shield, TrendingUp, Users, CheckCircle2, Star, Clock, Award, PiggyBank } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -13,11 +13,12 @@ const LandingVie = () => {
 
   return (
     <>
-      <SEO
-        title="Assurance Vie 2025 | Placements dès 50€/mois"
-        description="Comparez les meilleures assurances vie. Jusqu'à 3% de rendement garanti. Fiscalité avantageuse. Devis personnalisé gratuit en 2 minutes."
-        keywords="assurance vie, placement, épargne, succession, fiscalité"
-        canonical="/landing/vie"
+      <SEOOptimized
+        title="Assurance Vie | Placements dès 50€/mois"
+        description="Comparez les assurances vie. Jusqu'à 3% rendement garanti. Fiscalité avantageuse."
+        keyword="assurance vie"
+        keywords="placement, épargne, succession, fiscalité"
+        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">

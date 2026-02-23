@@ -13,7 +13,7 @@ import { useState, useRef } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { generateInsurerOffers, InsurerConfig } from "@/utils/insurerData";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
@@ -94,7 +94,7 @@ const AssuranceMRP = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO title="Assurance Multirisque Professionnelle | jemassuremoinscher" description="Comparez les meilleures assurances MRP. Protégez vos locaux et activité. Devis gratuit." keywords="assurance multirisque professionnelle, MRP, assurance entreprise" canonical="https://www.jemassuremoinscher.fr/assurance-mrp" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Multirisque Pro | Comparateur" description="Comparez les assurances MRP. Protégez vos locaux et activité. Devis gratuit." keyword="assurance multirisque professionnelle" keywords="MRP, assurance entreprise, assurance local" canonical="https://www.jemassuremoinscher.fr/assurance-mrp" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">

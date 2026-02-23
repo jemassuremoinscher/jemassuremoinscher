@@ -1,4 +1,4 @@
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
 import { Shield, Home, FileCheck, CheckCircle2, Star, Clock, Award, TrendingDown } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -13,11 +13,12 @@ const LandingGLI = () => {
 
   return (
     <>
-      <SEO
-        title="Assurance GLI (Loyers Impayés) dès 2,5% | Protection Bailleurs 2025"
-        description="Protégez vos revenus locatifs. Remboursement jusqu'à 100 000€. Prise en charge des loyers impayés + frais de contentieux. Devis gratuit."
-        keywords="assurance gli, garantie loyers impayés, protection bailleur, loyers impayés"
-        canonical="/landing/gli"
+      <SEOOptimized
+        title="Assurance GLI dès 2,5% | Protection Bailleurs"
+        description="Protégez vos revenus locatifs. Remboursement 100 000€. Loyers impayés + contentieux."
+        keyword="assurance GLI"
+        keywords="garantie loyers impayés, protection bailleur"
+        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">

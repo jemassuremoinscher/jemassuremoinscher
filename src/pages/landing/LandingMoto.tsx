@@ -1,7 +1,7 @@
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { CheckCircle2, Star, Shield, Users, TrendingDown, Clock, Bike } from 'lucide-react';
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
 import { addOrganizationSchema, addServiceSchema, addAggregateRatingSchema } from '@/utils/seoUtils';
 
@@ -19,11 +19,13 @@ const LandingMoto = () => {
 
   return (
     <>
-      <SEO
-        title="Assurance Moto Pas Chère - Économisez jusqu'à 450€/an | Devis Gratuit"
-        description="Comparez gratuitement les meilleures assurances moto en 2 minutes. Expert dédié, rappel sous 2h. +15 000 clients ont économisé en moyenne 450€/an."
-        keywords="assurance moto pas cher, devis assurance moto gratuit, comparateur assurance moto scooter, économiser assurance deux-roues"
+      <SEOOptimized
+        title="Assurance Moto Pas Chère | Devis Gratuit"
+        description="Comparez les assurances moto en 2 min. Expert dédié, rappel sous 2h. Économisez 450€/an."
+        keyword="assurance moto pas chère"
+        keywords="devis assurance moto, comparateur assurance scooter"
         jsonLd={jsonLd}
+        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">

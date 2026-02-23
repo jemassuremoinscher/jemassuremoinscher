@@ -1,4 +1,4 @@
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
 import { Shield, Briefcase, Scale, CheckCircle2, Star, Clock, Award, Building2 } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -13,11 +13,12 @@ const LandingRCPro = () => {
 
   return (
     <>
-      <SEO
-        title="Assurance RC Pro dès 12€/mois | Protection Professionnelle 2025"
-        description="Protégez votre activité professionnelle. Couverture jusqu'à 5M€. Obligatoire pour la plupart des professions. Devis en 2 minutes."
-        keywords="assurance rc pro, responsabilité civile professionnelle, protection activité"
-        canonical="/landing/rc-pro"
+      <SEOOptimized
+        title="Assurance RC Pro dès 12€/mois"
+        description="Protégez votre activité. Couverture jusqu'à 5M€. Obligatoire. Devis en 2 min."
+        keyword="assurance RC pro"
+        keywords="responsabilité civile professionnelle, protection activité"
+        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">

@@ -1,7 +1,7 @@
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { CheckCircle2, Star, Shield, Users, TrendingDown, Clock, Heart } from 'lucide-react';
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
 import { addOrganizationSchema, addServiceSchema, addAggregateRatingSchema } from '@/utils/seoUtils';
 
@@ -19,11 +19,13 @@ const LandingSante = () => {
 
   return (
     <>
-      <SEO
-        title="Mutuelle Santé Pas Chère - Économisez jusqu'à 800€/an | Devis Gratuit"
-        description="Comparez gratuitement les meilleures mutuelles santé en 2 minutes. Expert dédié, rappel sous 2h. +15 000 clients ont économisé en moyenne 800€/an."
-        keywords="mutuelle santé pas cher, devis mutuelle gratuit, comparateur mutuelle santé, économiser mutuelle"
+      <SEOOptimized
+        title="Mutuelle Santé Pas Chère | Devis Gratuit"
+        description="Comparez les mutuelles santé en 2 min. Expert dédié, rappel sous 2h. Économisez 800€/an."
+        keyword="mutuelle santé pas chère"
+        keywords="devis mutuelle gratuit, comparateur mutuelle santé"
         jsonLd={jsonLd}
+        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">

@@ -5,7 +5,7 @@ import * as z from 'zod';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -189,10 +189,11 @@ const GestionLocative = () => {
 
   return (
     <>
-      <SEO 
-        title="Gestion Locative - Comparez les Meilleurs Gestionnaires Immobiliers"
-        description="Comparez les offres de gestion locative pour vos biens immobiliers. Gestion complète, partielle ou déclarative. Honoraires de 5% à 10%. Trouvez le meilleur gestionnaire."
-        keywords="gestion locative, gestion immobilière, loc online, administrateur de biens, gestionnaire immobilier, honoraires gestion"
+      <SEOOptimized 
+        title="Gestion Locative - Comparez les Gestionnaires"
+        description="Comparez les offres de gestion locative. Gestion complète ou partielle. Honoraires 5-10%."
+        keyword="gestion locative"
+        keywords="gestion immobilière, administrateur de biens, gestionnaire"
         canonical="https://www.jemassuremoinscher.fr/gestion-locative"
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />

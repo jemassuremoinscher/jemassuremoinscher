@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import { Star, Quote } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
@@ -69,10 +69,11 @@ const AvisClients = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEO 
-        title="Avis Clients - Témoignages et Retours d'Expérience | jemassuremoinscher"
-        description="Découvrez les avis de nos clients sur notre comparateur d'assurance. Note moyenne de 4.9/5 sur 2 547 avis vérifiés."
-        keywords="avis clients, témoignages assurance, retour expérience, satisfaction client"
+      <SEOOptimized 
+        title="Avis Clients | jemassuremoinscher"
+        description="Avis clients sur notre comparateur d'assurance. Note 4.9/5 sur 2 547 avis vérifiés."
+        keyword="avis clients assurance"
+        keywords="témoignages assurance, retour expérience, satisfaction"
         canonical="https://www.jemassuremoinscher.fr/avis-clients"
         jsonLd={[breadcrumbSchema, ratingSchema]}
       />

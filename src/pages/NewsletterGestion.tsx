@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -71,9 +71,10 @@ const NewsletterGestion = () => {
 
   return (
     <>
-      <SEO 
+      <SEOOptimized 
         title="Gestion Newsletter - jemassuremoinscher"
-        description="Gérez votre abonnement à la newsletter de jemassuremoinscher"
+        description="Gérez votre abonnement à la newsletter de jemassuremoinscher."
+        noindex
       />
       
       <div className="min-h-screen flex flex-col">
