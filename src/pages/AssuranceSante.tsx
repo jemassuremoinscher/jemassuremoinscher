@@ -16,8 +16,6 @@ import { healthInsurers, generateInsurerOffers } from "@/utils/insurerData";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
-import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
-import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
@@ -156,8 +154,6 @@ const AssuranceSante = () => {
                     { question: t('santePage.faq3.q'), answer: t('santePage.faq3.a') },
                     { question: t('santePage.faq4.q'), answer: t('santePage.faq4.a') },
                   ]} />
-                  <SavingsCalculator />
-                  <QuoteRequestForm />
                   <Testimonials />
                 </div>
               </AccordionContent>

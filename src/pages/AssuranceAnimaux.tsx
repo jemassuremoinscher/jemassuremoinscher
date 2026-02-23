@@ -16,8 +16,6 @@ import { petInsurers, generateInsurerOffers } from "@/utils/insurerData";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
-import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
-import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
@@ -135,8 +133,6 @@ const AssuranceAnimaux = () => {
                     { question: t('animauxPage.faq3.q'), answer: t('animauxPage.faq3.a') },
                     { question: t('animauxPage.faq4.q'), answer: t('animauxPage.faq4.a') },
                   ]} />
-                  <SavingsCalculator />
-                  <QuoteRequestForm />
                   <Testimonials />
                 </div>
               </AccordionContent>

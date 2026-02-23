@@ -16,8 +16,6 @@ import { autoInsurers, generateInsurerOffers } from "@/utils/insurerData";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
-import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
-import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema, addHowToSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
@@ -282,8 +280,6 @@ const AssuranceAuto = () => {
                     { question: t('autoPage.faq3.q'), answer: t('autoPage.faq3.a') },
                     { question: t('autoPage.faq4.q'), answer: t('autoPage.faq4.a') },
                   ]} />
-                  <SavingsCalculator />
-                  <QuoteRequestForm />
                   <Testimonials />
                 </div>
               </AccordionContent>
