@@ -28,6 +28,7 @@ const formSchema = z.object({
   effectif: z.string().min(1, "Champ requis"),
   chiffreAffaires: z.string().min(1, "Champ requis"),
   local: z.string().min(1, "Champ requis"),
+  formule: z.string().min(1, "Champ requis"),
   codePostal: z.string().length(5, "Code postal invalide"),
 });
 
@@ -49,7 +50,7 @@ const AssuranceMRP = () => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { entreprise: "", secteur: "", effectif: "", chiffreAffaires: "", local: "", codePostal: "" },
+    defaultValues: { entreprise: "", secteur: "", effectif: "", chiffreAffaires: "", local: "", formule: "", codePostal: "" },
   });
 
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
@@ -66,6 +67,7 @@ const AssuranceMRP = () => {
       if (values.local === "propriete") price += 35;
       const ca = parseInt(values.chiffreAffaires);
       if (ca > 1000000) price += 100; else if (ca > 500000) price += 60;
+      if (values.formule === "premium") price += 80; else if (values.formule === "standard") price += 35;
       const randomVariation = Math.floor(Math.random() * 25) - 12;
       price += randomVariation;
       const offers = generateInsurerOffers(price, mrpInsurers);
@@ -119,6 +121,7 @@ const AssuranceMRP = () => {
                     <FormField control={form.control} name="effectif" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.employees')}</FormLabel><FormControl><Input type="number" placeholder="0" {...field} /></FormControl><FormMessage /></FormItem>)} />
                     <FormField control={form.control} name="chiffreAffaires" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.revenue')}</FormLabel><FormControl><Input type="number" placeholder="100000" {...field} /></FormControl><FormMessage /></FormItem>)} />
                     <FormField control={form.control} name="local" render={({ field }) => (<FormItem><FormLabel>{t('mrpPage.form.local')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="propriete">{t('mrpPage.form.propriete')}</SelectItem><SelectItem value="location">{t('mrpPage.form.location')}</SelectItem><SelectItem value="bail">{t('mrpPage.form.bail')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="formule" render={({ field }) => (<FormItem><FormLabel>Formule souhaitée</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="essentielle">Essentielle</SelectItem><SelectItem value="standard">Standard</SelectItem><SelectItem value="premium">Premium</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                     <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   </div>
                   <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? t('insPage.loading') : t('insPage.compareOffers')}</Button>

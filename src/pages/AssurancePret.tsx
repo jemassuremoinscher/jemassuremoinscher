@@ -27,6 +27,7 @@ const formSchema = z.object({
   dureePret: z.string().min(1, "Champ requis"),
   age: z.string().min(1, "Champ requis"),
   statut: z.string().min(1, "Champ requis"),
+  formule: z.string().min(1, "Champ requis"),
   fumeur: z.string().min(1, "Champ requis"),
   codePostal: z.string().length(5, "Code postal invalide"),
 });
@@ -40,7 +41,7 @@ const AssurancePret = () => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { montantPret: "", dureePret: "", age: "", statut: "", fumeur: "", codePostal: "" },
+    defaultValues: { montantPret: "", dureePret: "", age: "", statut: "", formule: "", fumeur: "", codePostal: "" },
   });
 
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
@@ -58,6 +59,7 @@ const AssurancePret = () => {
       if (ageValue > 55) price += 35; else if (ageValue > 45) price += 20; else if (ageValue > 35) price += 10;
       if (values.fumeur === "oui") price += 15;
       if (values.statut === "profession-risque") price += 25;
+      if (values.formule === "complete") price += 30; else if (values.formule === "deces-ptia-itt") price += 20; else if (values.formule === "deces-ptia") price += 10;
 
       const randomVariation = Math.floor(Math.random() * 15) - 7;
       price += randomVariation;
@@ -125,6 +127,7 @@ const AssurancePret = () => {
                   <FormField control={form.control} name="age" render={({ field }) => (<FormItem><FormLabel>{t('insPage.yourAge')}</FormLabel><FormControl><Input type="number" placeholder="35" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="statut" render={({ field }) => (<FormItem><FormLabel>{t('pretPage.form.status')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="salarie">{t('pretPage.form.salarie')}</SelectItem><SelectItem value="fonctionnaire">{t('pretPage.form.fonctionnaire')}</SelectItem><SelectItem value="independant">{t('pretPage.form.independant')}</SelectItem><SelectItem value="profession-risque">{t('pretPage.form.profRisk')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="fumeur" render={({ field }) => (<FormItem><FormLabel>{t('viePage.form.smoker')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="non">{t('viePage.form.no')}</SelectItem><SelectItem value="oui">{t('viePage.form.yes')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="formule" render={({ field }) => (<FormItem><FormLabel>Formule souhaitée</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="deces">Décès seul</SelectItem><SelectItem value="deces-ptia">Décès + PTIA</SelectItem><SelectItem value="deces-ptia-itt">Décès + PTIA + ITT</SelectItem><SelectItem value="complete">Couverture complète</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? t('insPage.loading') : t('insPage.compareOffers')}</Button>
                 </form>

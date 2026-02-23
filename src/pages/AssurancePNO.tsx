@@ -26,6 +26,7 @@ const formSchema = z.object({
   surface: z.string().min(1, 'Surface requise'),
   rooms: z.string().min(1, 'Nombre de pièces requis'),
   occupancyStatus: z.enum(['vacant', 'rental', 'secondary'], { required_error: 'Veuillez sélectionner un statut' }),
+  formule: z.string().min(1, 'Champ requis'),
   postalCode: z.string().min(5, 'Code postal invalide').max(5, 'Code postal invalide'),
 });
 
@@ -37,7 +38,7 @@ const AssurancePNO = () => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { propertyType: undefined, surface: '', rooms: '', occupancyStatus: undefined, postalCode: '' },
+    defaultValues: { propertyType: undefined, surface: '', rooms: '', occupancyStatus: undefined, formule: '', postalCode: '' },
   });
 
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
@@ -56,6 +57,7 @@ const AssurancePNO = () => {
       if (rooms > 4) basePrice += 8;
       if (values.occupancyStatus === 'vacant') basePrice += 10;
       if (values.occupancyStatus === 'secondary') basePrice += 6;
+      if (values.formule === 'premium') basePrice += 12; else if (values.formule === 'standard') basePrice += 5;
       const basePriceRounded = Math.round(basePrice);
 
       const insurers = [
@@ -117,6 +119,7 @@ const AssurancePNO = () => {
                   <FormField control={form.control} name="surface" render={({ field }) => (<FormItem><FormLabel>{t('pnoPage.form.surface')}</FormLabel><FormControl><Input type="number" placeholder="75" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="rooms" render={({ field }) => (<FormItem><FormLabel>{t('pnoPage.form.rooms')}</FormLabel><FormControl><Input type="number" placeholder="3" min="1" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="occupancyStatus" render={({ field }) => (<FormItem><FormLabel>{t('pnoPage.form.occupancy')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="vacant">{t('pnoPage.form.vacant')}</SelectItem><SelectItem value="rental">{t('pnoPage.form.rental')}</SelectItem><SelectItem value="secondary">{t('pnoPage.form.secondary')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="formule" render={({ field }) => (<FormItem><FormLabel>Formule souhaitée</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="essentielle">Essentielle</SelectItem><SelectItem value="standard">Standard</SelectItem><SelectItem value="premium">Premium</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="postalCode" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <Button type="submit" className="w-full" size="lg">{t('insPage.compareOffers')}</Button>
                 </form>

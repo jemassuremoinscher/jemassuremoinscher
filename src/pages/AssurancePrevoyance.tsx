@@ -27,6 +27,7 @@ const formSchema = z.object({
   situation: z.string().min(1, "Champ requis"),
   age: z.string().min(1, "Champ requis"),
   profession: z.string().min(1, "Champ requis"),
+  formule: z.string().min(1, "Champ requis"),
   codePostal: z.string().length(5, "Code postal invalide"),
 });
 
@@ -48,7 +49,7 @@ const AssurancePrevoyance = () => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { typePrevoyance: "", situation: "", age: "", profession: "", codePostal: "" },
+    defaultValues: { typePrevoyance: "", situation: "", age: "", profession: "", formule: "", codePostal: "" },
   });
 
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
@@ -64,6 +65,7 @@ const AssurancePrevoyance = () => {
       if (values.typePrevoyance === "deces") price += 25; else if (values.typePrevoyance === "obseques") price += 12; else if (values.typePrevoyance === "dependance") price += 40; else if (values.typePrevoyance === "complete") price += 50;
       if (values.situation === "marie-enfants") price += 15; else if (values.situation === "marie") price += 8;
       if (values.profession === "risque") price += 25;
+      if (values.formule === "premium") price += 35; else if (values.formule === "confort") price += 18;
       const randomVariation = Math.floor(Math.random() * 15) - 7;
       price += randomVariation;
       const offers = generateInsurerOffers(price, prevoyanceInsurers);
@@ -116,6 +118,7 @@ const AssurancePrevoyance = () => {
                     <FormField control={form.control} name="situation" render={({ field }) => (<FormItem><FormLabel>{t('prevoyancePage.form.situation')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="celibataire">{t('prevoyancePage.form.celibataire')}</SelectItem><SelectItem value="marie">{t('prevoyancePage.form.marie')}</SelectItem><SelectItem value="pacse">{t('prevoyancePage.form.pacse')}</SelectItem><SelectItem value="divorce">{t('prevoyancePage.form.divorce')}</SelectItem><SelectItem value="veuf">{t('prevoyancePage.form.veuf')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                     <FormField control={form.control} name="age" render={({ field }) => (<FormItem><FormLabel>{t('insPage.yourAge')}</FormLabel><FormControl><Input type="number" placeholder="35" {...field} /></FormControl><FormMessage /></FormItem>)} />
                     <FormField control={form.control} name="profession" render={({ field }) => (<FormItem><FormLabel>{t('prevoyancePage.form.profession')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="salarie">{t('pretPage.form.salarie')}</SelectItem><SelectItem value="independant">{t('pretPage.form.independant')}</SelectItem><SelectItem value="fonctionnaire">{t('pretPage.form.fonctionnaire')}</SelectItem><SelectItem value="retraite">{t('prevoyancePage.form.retraite')}</SelectItem><SelectItem value="risque">{t('prevoyancePage.form.risque')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="formule" render={({ field }) => (<FormItem><FormLabel>Formule souhaitée</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="essentielle">Essentielle</SelectItem><SelectItem value="confort">Confort</SelectItem><SelectItem value="premium">Premium</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                     <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   </div>
                   <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? t('insPage.loading') : t('insPage.compareOffers')}</Button>

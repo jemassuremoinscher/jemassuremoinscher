@@ -27,6 +27,7 @@ const formSchema = z.object({
   statut: z.string().min(1, "Champ requis"),
   surface: z.string().min(1, "Champ requis"),
   pieces: z.string().min(1, "Champ requis"),
+  formule: z.string().min(1, "Champ requis"),
   codePostal: z.string().length(5, "Code postal invalide"),
   valeur: z.string().min(1, "Champ requis"),
 });
@@ -40,7 +41,7 @@ const AssuranceHabitation = () => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { typeLogement: "", statut: "", surface: "", pieces: "", codePostal: "", valeur: "" },
+    defaultValues: { typeLogement: "", statut: "", surface: "", pieces: "", formule: "", codePostal: "", valeur: "" },
   });
 
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
@@ -59,6 +60,7 @@ const AssuranceHabitation = () => {
       if (surface > 150) price += 10; else if (surface > 100) price += 6; else if (surface > 70) price += 3;
       if (pieces >= 5) price += 5; else if (pieces >= 4) price += 3;
       if (valeur > 50000) price += 15; else if (valeur > 30000) price += 8; else if (valeur > 15000) price += 4;
+      if (values.formule === "premium") price += 15; else if (values.formule === "confort") price += 8;
       const randomVariation = Math.floor(Math.random() * 8) - 4;
       price += randomVariation;
       const offers = generateInsurerOffers(price, homeInsurers);
@@ -118,6 +120,7 @@ const AssuranceHabitation = () => {
                   <FormField control={form.control} name="surface" render={({ field }) => (<FormItem><FormLabel>{t('habitationPage.form.surface')}</FormLabel><FormControl><Input type="number" placeholder="75" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="pieces" render={({ field }) => (<FormItem><FormLabel>{t('habitationPage.form.rooms')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="1">{t('habitationPage.form.room1')}</SelectItem><SelectItem value="2">{t('habitationPage.form.room2')}</SelectItem><SelectItem value="3">{t('habitationPage.form.room3')}</SelectItem><SelectItem value="4">{t('habitationPage.form.room4')}</SelectItem><SelectItem value="5">{t('habitationPage.form.room5')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="formule" render={({ field }) => (<FormItem><FormLabel>Formule souhaitée</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="essentielle">Essentielle</SelectItem><SelectItem value="confort">Confort</SelectItem><SelectItem value="premium">Premium</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="valeur" render={({ field }) => (<FormItem><FormLabel>{t('habitationPage.form.value')}</FormLabel><FormControl><Input type="number" placeholder="15000" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? t('insPage.loading') : t('insPage.compareOffers')}</Button>
                 </form>
