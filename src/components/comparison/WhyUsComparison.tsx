@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
+import oriasLogo from "@/assets/logos/orias.jpg";
 
 const WhyUsComparison = () => {
   const { t } = useLanguage();
@@ -138,9 +139,7 @@ const WhyUsComparison = () => {
           {/* ORIAS */}
           <motion.div variants={itemVariants} className="bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow">
             <div className="flex flex-col items-center text-center gap-3">
-              <div className="p-3 rounded-full bg-primary/10">
-                <FileCheck className="w-6 h-6 text-primary" />
-              </div>
+              <img src={oriasLogo} alt="ORIAS - Organisme pour le registre unique des intermédiaires en assurance" className="h-10 w-auto object-contain" loading="lazy" decoding="async" />
               <p className="text-sm font-bold text-foreground">{t('whyUs.oriasRegistered')}</p>
               <p className="text-xs font-mono text-primary font-semibold">{t('whyUs.oriasNumber')}</p>
               <a href="https://www.orias.fr" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2">
