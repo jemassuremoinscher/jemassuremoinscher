@@ -86,6 +86,8 @@ const Footer = () => {
               src={logoNew}
               alt="Jemassuremoinscher.fr - Comparateur assurance moins chère"
               className="h-10 w-auto brightness-0 invert"
+              loading="lazy"
+              decoding="async"
             />
             <p className="text-xs text-primary-foreground/50 max-w-2xl leading-relaxed">
               {t('footer.disclaimer')}
