@@ -25,6 +25,7 @@ const formSchema = z.object({
   propertyType: z.enum(['apartment', 'house', 'commercial'], { required_error: 'Veuillez sélectionner un type de bien' }),
   monthlyRent: z.string().min(1, 'Montant requis'),
   tenantType: z.enum(['individual', 'company', 'student'], { required_error: 'Veuillez sélectionner un type de locataire' }),
+  formule: z.string().min(1, 'Champ requis'),
   postalCode: z.string().min(5, 'Code postal invalide').max(5, 'Code postal invalide'),
 });
 
@@ -36,7 +37,7 @@ const AssuranceGLI = () => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { propertyType: undefined, monthlyRent: '', tenantType: undefined, postalCode: '' },
+    defaultValues: { propertyType: undefined, monthlyRent: '', tenantType: undefined, formule: '', postalCode: '' },
   });
 
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
@@ -51,6 +52,7 @@ const AssuranceGLI = () => {
       if (rent > 2000) basePercentage += 0.3;
       if (values.tenantType === 'student') basePercentage += 0.4;
       if (values.tenantType === 'company') basePercentage -= 0.3;
+      if (values.formule === 'complete') basePercentage += 0.8; else if (values.formule === 'loyers-degradations') basePercentage += 0.4;
       const baseMonthlyPrice = Math.round((rent * basePercentage) / 100);
 
       const insurers = [
@@ -111,6 +113,7 @@ const AssuranceGLI = () => {
                   <FormField control={form.control} name="propertyType" render={({ field }) => (<FormItem><FormLabel>{t('gliPage.form.propertyType')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="apartment">{t('gliPage.form.apartment')}</SelectItem><SelectItem value="house">{t('gliPage.form.house')}</SelectItem><SelectItem value="commercial">{t('gliPage.form.commercial')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="monthlyRent" render={({ field }) => (<FormItem><FormLabel>{t('gliPage.form.rent')}</FormLabel><FormControl><Input type="number" placeholder="1200" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="tenantType" render={({ field }) => (<FormItem><FormLabel>{t('gliPage.form.tenantType')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="individual">{t('gliPage.form.individual')}</SelectItem><SelectItem value="company">{t('gliPage.form.company')}</SelectItem><SelectItem value="student">{t('gliPage.form.student')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="formule" render={({ field }) => (<FormItem><FormLabel>Formule souhaitée</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="loyers">Loyers impayés seuls</SelectItem><SelectItem value="loyers-degradations">Loyers + Dégradations</SelectItem><SelectItem value="complete">Complète</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="postalCode" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <Button type="submit" className="w-full" size="lg">{t('insPage.compareOffers')}</Button>
                 </form>

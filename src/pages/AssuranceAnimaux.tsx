@@ -28,6 +28,7 @@ const formSchema = z.object({
   ageAnimal: z.string().min(1, "Champ requis"),
   sexe: z.string().min(1, "Champ requis"),
   sterilise: z.string().min(1, "Champ requis"),
+  formule: z.string().min(1, "Champ requis"),
   codePostal: z.string().length(5, "Code postal invalide"),
 });
 
@@ -40,7 +41,7 @@ const AssuranceAnimaux = () => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { typeAnimal: "", race: "", ageAnimal: "", sexe: "", sterilise: "", codePostal: "" },
+    defaultValues: { typeAnimal: "", race: "", ageAnimal: "", sexe: "", sterilise: "", formule: "", codePostal: "" },
   });
 
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
@@ -55,6 +56,7 @@ const AssuranceAnimaux = () => {
       if (values.typeAnimal === "chien") price += 15; else if (values.typeAnimal === "chat") price += 5;
       if (age > 10) price += 25; else if (age > 8) price += 15; else if (age > 5) price += 8; else if (age < 1) price += 5;
       if (values.sterilise === "oui") price -= 3;
+      if (values.formule === "integrale") price += 20; else if (values.formule === "accident-maladie") price += 10;
       const randomVariation = Math.floor(Math.random() * 12) - 6;
       price += randomVariation;
       const offers = generateInsurerOffers(price, petInsurers);
@@ -113,6 +115,7 @@ const AssuranceAnimaux = () => {
                   <FormField control={form.control} name="ageAnimal" render={({ field }) => (<FormItem><FormLabel>{t('animauxPage.form.animalAge')}</FormLabel><FormControl><Input type="number" placeholder="3" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="sexe" render={({ field }) => (<FormItem><FormLabel>{t('animauxPage.form.sex')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="male">{t('animauxPage.form.male')}</SelectItem><SelectItem value="femelle">{t('animauxPage.form.female')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="sterilise" render={({ field }) => (<FormItem><FormLabel>{t('animauxPage.form.sterilized')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="oui">{t('animauxPage.form.yes')}</SelectItem><SelectItem value="non">{t('animauxPage.form.no')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="formule" render={({ field }) => (<FormItem><FormLabel>Formule souhaitée</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="accident">Accident seul</SelectItem><SelectItem value="accident-maladie">Accident + Maladie</SelectItem><SelectItem value="integrale">Intégrale</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? t('insPage.loading') : t('insPage.compareOffers')}</Button>
                 </form>

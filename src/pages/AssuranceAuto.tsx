@@ -27,6 +27,7 @@ const formSchema = z.object({
   modele: z.string().min(1, "Champ requis"),
   annee: z.string().min(1, "Champ requis"),
   carburant: z.string().min(1, "Champ requis"),
+  formule: z.string().min(1, "Champ requis"),
   codePostal: z.string().length(5, "Code postal invalide"),
   age: z.string().min(1, "Champ requis"),
   permis: z.string().min(1, "Champ requis"),
@@ -79,7 +80,7 @@ const AssuranceAuto = () => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { marque: "", modele: "", annee: "", carburant: "", codePostal: "", age: "", permis: "", bonusMalus: "" },
+    defaultValues: { marque: "", modele: "", annee: "", carburant: "", formule: "", codePostal: "", age: "", permis: "", bonusMalus: "" },
   });
 
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
@@ -100,6 +101,7 @@ const AssuranceAuto = () => {
       else if (yearVehicle > 2020) price += 20;
       if (values.carburant === "electrique") price -= 15;
       else if (values.carburant === "hybride") price -= 8;
+      if (values.formule === "tous-risques") price += 50; else if (values.formule === "tiers-plus") price += 25;
       price = price * bonusMalusCoef;
       const randomVariation = Math.floor(Math.random() * 30) - 15;
       price += randomVariation;
@@ -224,6 +226,10 @@ const AssuranceAuto = () => {
                       </FormItem>
                     )} />
                   </div>
+
+                  <FormField control={form.control} name="formule" render={({ field }) => (
+                    <FormItem><FormLabel>Formule souhaitée</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="tiers">Tiers</SelectItem><SelectItem value="tiers-plus">Tiers +</SelectItem><SelectItem value="tous-risques">Tous Risques</SelectItem></SelectContent></Select><FormMessage /></FormItem>
+                  )} />
 
                   <FormField control={form.control} name="codePostal" render={({ field }) => (
                     <FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>

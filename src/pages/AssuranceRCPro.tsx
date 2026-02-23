@@ -28,6 +28,7 @@ const formSchema = z.object({
   effectif: z.string().min(1, "Champ requis"),
   chiffreAffaires: z.string().min(1, "Champ requis"),
   sinistresAnnee: z.string().min(1, "Champ requis"),
+  formule: z.string().min(1, "Champ requis"),
   codePostal: z.string().length(5, "Code postal invalide"),
 });
 
@@ -49,7 +50,7 @@ const AssuranceRCPro = () => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { entreprise: "", secteur: "", effectif: "", chiffreAffaires: "", sinistresAnnee: "", codePostal: "" },
+    defaultValues: { entreprise: "", secteur: "", effectif: "", chiffreAffaires: "", sinistresAnnee: "", formule: "", codePostal: "" },
   });
 
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
@@ -67,6 +68,7 @@ const AssuranceRCPro = () => {
       if (ca > 1000000) price += 80; else if (ca > 500000) price += 50; else if (ca > 250000) price += 25;
       const sinistres = parseInt(values.sinistresAnnee);
       if (sinistres > 2) price += 60; else if (sinistres > 0) price += 30;
+      if (values.formule === "premium") price += 60; else if (values.formule === "standard") price += 25;
       const randomVariation = Math.floor(Math.random() * 20) - 10;
       price += randomVariation;
       const offers = generateInsurerOffers(price, rcProInsurers);
@@ -122,6 +124,7 @@ const AssuranceRCPro = () => {
                     <FormField control={form.control} name="effectif" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.employees')}</FormLabel><FormControl><Input type="number" placeholder="0" {...field} /></FormControl><FormMessage /></FormItem>)} />
                     <FormField control={form.control} name="chiffreAffaires" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.revenue')}</FormLabel><FormControl><Input type="number" placeholder="100000" {...field} /></FormControl><FormMessage /></FormItem>)} />
                     <FormField control={form.control} name="sinistresAnnee" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.claims')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="0">{t('rcProPage.form.none')}</SelectItem><SelectItem value="1">{t('rcProPage.form.oneClaim')}</SelectItem><SelectItem value="2">{t('rcProPage.form.twoClaims')}</SelectItem><SelectItem value="3">{t('rcProPage.form.threePlus')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                    <FormField control={form.control} name="formule" render={({ field }) => (<FormItem><FormLabel>Formule souhaitée</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="essentielle">Essentielle</SelectItem><SelectItem value="standard">Standard</SelectItem><SelectItem value="premium">Premium</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                     <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   </div>
                   <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? t('insPage.loading') : t('insPage.compareOffers')}</Button>
