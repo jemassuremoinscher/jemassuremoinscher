@@ -69,38 +69,31 @@ const HowItWorks = () => {
             ))}
           </div>
 
-          {/* Mobile Layout */}
-          <div className="md:hidden space-y-6">
-            {steps.map((step, index) => (
-              <motion.div
-                key={step.number}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="relative"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex flex-col items-center">
-                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg flex items-center justify-center shadow-md">
+          {/* Mobile Slide Layout */}
+          <div className="md:hidden relative -mx-4 px-4">
+            <div className="flex gap-4 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide">
+              {steps.map((step, index) => (
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex-shrink-0 w-[80%] snap-center"
+                >
+                  <div className="bg-card rounded-2xl p-6 shadow-sm border border-border/50 h-full flex flex-col items-center text-center">
+                    <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground font-bold text-xl flex items-center justify-center shadow-md mb-4">
                       {step.number}
                     </div>
-                    {index < steps.length - 1 && (
-                      <div className="w-0.5 h-16 bg-gradient-to-b from-primary to-accent mt-2" />
-                    )}
-                  </div>
-                  <div className="flex-1 bg-card rounded-xl p-4 shadow-sm border border-border/50">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 rounded-lg bg-primary/10">
-                        <step.icon className="w-5 h-5 text-primary" />
-                      </div>
-                      <h3 className="font-bold text-foreground">{step.title}</h3>
+                    <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
+                      <step.icon className="w-8 h-8 text-primary" />
                     </div>
+                    <h3 className="font-bold text-foreground mb-2">{step.title}</h3>
                     <p className="text-sm text-muted-foreground">{step.description}</p>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
 
           {/* Arthur Mascot */}
