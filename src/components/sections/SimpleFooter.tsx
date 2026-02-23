@@ -34,7 +34,6 @@ const SimpleFooter = () => {
           <div className="col-span-2 md:col-span-1">
             <Link to="/" className="inline-block mb-4">
               <img alt="Arthur - mascotte jemassuremoinscher" className="h-12 w-auto" src={arthurThumbsUp} loading="lazy" />
-              <img alt="jemassuremoinscher" className="h-10 w-auto brightness-0 invert object-scale-down" src="/lovable-uploads/d9230a8f-d98f-418c-b010-885629846552.png" />
             </Link>
             <p className="text-background/70 text-sm leading-relaxed mb-4">
               {t('footer.description')}
