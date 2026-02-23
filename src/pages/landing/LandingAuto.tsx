@@ -1,7 +1,7 @@
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { CheckCircle2, Star, Shield, Users, TrendingDown, Clock, Car } from 'lucide-react';
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
 import { addOrganizationSchema, addServiceSchema, addAggregateRatingSchema } from '@/utils/seoUtils';
 
@@ -19,11 +19,13 @@ const LandingAuto = () => {
 
   return (
     <>
-      <SEO
-        title="Assurance Auto Pas Chère - Économisez jusqu'à 600€/an | Devis Gratuit"
-        description="Comparez gratuitement les meilleures assurances auto en 2 minutes. Expert dédié, rappel sous 2h. +15 000 clients ont économisé en moyenne 600€/an."
-        keywords="assurance auto pas cher, devis assurance auto gratuit, comparateur assurance voiture, économiser assurance auto"
+      <SEOOptimized
+        title="Assurance Auto Pas Chère | Devis Gratuit"
+        description="Comparez les assurances auto en 2 min. Expert dédié, rappel sous 2h. Économisez 600€/an."
+        keyword="assurance auto pas chère"
+        keywords="devis assurance auto, comparateur assurance voiture"
         jsonLd={jsonLd}
+        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">

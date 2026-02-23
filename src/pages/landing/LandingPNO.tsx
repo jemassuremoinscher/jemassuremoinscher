@@ -1,4 +1,4 @@
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
 import { Shield, Home, Wrench, CheckCircle2, Star, Clock, Award, Building } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -13,11 +13,12 @@ const LandingPNO = () => {
 
   return (
     <>
-      <SEO
-        title="Assurance PNO dès 80€/an | Protection Propriétaire Non Occupant 2025"
-        description="Protégez votre bien locatif. Dégâts des eaux, incendie, RC. Obligatoire en copropriété. Devis en 2 minutes."
-        keywords="assurance pno, propriétaire non occupant, bien locatif, copropriété"
-        canonical="/landing/pno"
+      <SEOOptimized
+        title="Assurance PNO dès 80€/an | Propriétaire"
+        description="Protégez votre bien locatif. Dégâts des eaux, incendie, RC. Obligatoire copropriété."
+        keyword="assurance PNO"
+        keywords="propriétaire non occupant, bien locatif, copropriété"
+        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">

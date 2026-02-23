@@ -1,4 +1,4 @@
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
 import { Shield, Heart, Umbrella, CheckCircle2, Star, Clock, Award, Users } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -13,11 +13,12 @@ const LandingPrevoyance = () => {
 
   return (
     <>
-      <SEO
-        title="Assurance Prévoyance dès 15€/mois | Protection Famille 2025"
-        description="Protégez votre famille en cas d'accident ou maladie. Jusqu'à 3 000€/mois d'indemnités. Devis gratuit en 2 minutes."
-        keywords="assurance prévoyance, protection famille, invalidité, décès, incapacité"
-        canonical="/landing/prevoyance"
+      <SEOOptimized
+        title="Assurance Prévoyance dès 15€/mois"
+        description="Protégez votre famille. Jusqu'à 3 000€/mois d'indemnités. Devis gratuit en 2 min."
+        keyword="assurance prévoyance"
+        keywords="protection famille, invalidité, décès, incapacité"
+        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">

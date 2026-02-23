@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { Mail, Phone, MessageCircle, Clock, MapPin, Send, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -49,9 +49,9 @@ const Contact = () => {
 
   return (
     <>
-      <SEO 
+      <SEOOptimized 
         title="Contact - jemassuremoinscher"
-        description="Contactez-nous pour toute question sur nos services de comparaison d'assurance"
+        description="Contactez-nous pour toute question sur nos services de comparaison d'assurance."
       />
       
       <div className="min-h-screen flex flex-col bg-background">

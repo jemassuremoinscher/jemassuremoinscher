@@ -1,4 +1,4 @@
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
 import { Shield, TrendingDown, FileCheck, CheckCircle2, Star, Clock, Award, Home } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -13,11 +13,12 @@ const LandingPret = () => {
 
   return (
     <>
-      <SEO
-        title="Assurance Prêt Immobilier -60% | Comparateur 2025"
-        description="Économisez jusqu'à 60% sur votre assurance emprunteur. Délégation d'assurance simplifiée. Devis gratuit en 2 minutes."
-        keywords="assurance prêt immobilier, assurance emprunteur, délégation assurance, ADI"
-        canonical="/landing/pret"
+      <SEOOptimized
+        title="Assurance Prêt Immobilier -60% | Comparateur"
+        description="Économisez 60% sur votre assurance emprunteur. Délégation simplifiée. Devis 2 min."
+        keyword="assurance prêt immobilier"
+        keywords="assurance emprunteur, délégation assurance, ADI"
+        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">

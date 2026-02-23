@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -57,10 +57,11 @@ const Glossaire = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO
-        title="Glossaire Assurance - Définitions et Termes Clés | jemassuremoinscher"
-        description="Comprendre les termes d'assurance : franchise, bonus-malus, mutuelle, sinistre, loi Hamon, loi Lemoine. Définitions claires et exemples concrets."
-        keywords="glossaire assurance, définition franchise, bonus malus, mutuelle santé, loi hamon, loi lemoine, sinistre assurance, responsabilité civile"
+      <SEOOptimized
+        title="Glossaire Assurance - Définitions et Termes"
+        description="Termes d'assurance : franchise, bonus-malus, mutuelle, sinistre, loi Hamon."
+        keyword="glossaire assurance"
+        keywords="définition franchise, bonus malus, loi hamon"
         canonical="https://www.jemassuremoinscher.fr/glossaire"
         jsonLd={[breadcrumbSchema, glossarySchema]}
       />

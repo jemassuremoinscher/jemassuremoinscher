@@ -13,7 +13,7 @@ import { useState, useRef } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { motoInsurers, generateInsurerOffers } from "@/utils/insurerData";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
@@ -86,7 +86,7 @@ const AssuranceMoto = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO title="Assurance Moto - Comparez les Meilleurs Tarifs | jemassuremoinscher" description="Comparez les assurances moto et scooter. Devis gratuit. Économisez jusqu'à 35%." keywords="assurance moto, assurance scooter, comparateur assurance moto" canonical="https://www.jemassuremoinscher.fr/assurance-moto" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Moto Moins Chère | Comparateur" description="Comparez les assurances moto et scooter. Devis gratuit. Économisez jusqu'à 35%." keyword="assurance moto moins chère" keywords="assurance scooter, comparateur assurance moto" canonical="https://www.jemassuremoinscher.fr/assurance-moto" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
       <Header />
 
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">

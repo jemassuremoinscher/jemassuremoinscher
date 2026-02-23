@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -89,7 +89,7 @@ const AssuranceGLI = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO title="Garantie Loyer Impayé (GLI) - Comparateur | jemassuremoinscher" description="Protégez vos revenus locatifs avec une assurance GLI. Comparateur en ligne gratuit." canonical="https://www.jemassuremoinscher.fr/assurance-gli" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} keywords="assurance GLI, garantie loyer impayé, protection propriétaire" />
+      <SEOOptimized title="Garantie Loyer Impayé (GLI) | Comparateur" description="Protégez vos revenus locatifs avec une assurance GLI. Comparateur gratuit." keyword="garantie loyer impayé" keywords="assurance GLI, protection propriétaire bailleur" canonical="https://www.jemassuremoinscher.fr/assurance-gli" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">

@@ -13,7 +13,7 @@ import { useState, useRef } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { generateInsurerOffers, InsurerConfig } from "@/utils/insurerData";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
@@ -95,7 +95,7 @@ const AssuranceRCPro = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO title="RC Pro - Responsabilité Civile Professionnelle | Comparateur" description="Comparez les assurances RC Pro. Devis gratuit pour tous secteurs." keywords="RC Pro, responsabilité civile professionnelle, assurance RC" canonical="https://www.jemassuremoinscher.fr/assurance-rc-pro" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
+      <SEOOptimized title="RC Pro Pas Chère | Comparateur en Ligne" description="Comparez les assurances RC Pro. Devis gratuit pour tous secteurs d'activité." keyword="RC Pro pas chère" keywords="responsabilité civile professionnelle, assurance RC" canonical="https://www.jemassuremoinscher.fr/assurance-rc-pro" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4">

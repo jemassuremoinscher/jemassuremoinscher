@@ -12,7 +12,7 @@ import { CheckCircle2, Star, Shield, Clock, Users, TrendingDown, Phone, Loader2,
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 
 const leadFormSchema = z.object({
   insuranceType: z.string().min(1, 'Sélectionnez un type'),
@@ -143,11 +143,12 @@ const LandingAds = () => {
 
   return (
     <>
-      <SEO
-        title="Économisez jusqu'à 40%/an sur votre Assurance - Devis Gratuit en 2 min"
-        description="Comparez gratuitement les meilleures assurances. Nos experts vous rappellent sous 2h avec votre devis personnalisé. +15 000 clients satisfaits. Sans engagement."
-        keywords="assurance pas cher, devis assurance gratuit, économiser assurance, comparateur assurance"
-        canonical={`https://www.jemassuremoinscher.fr${window.location.pathname}`}
+      <SEOOptimized
+        title="Économisez 40%/an sur votre Assurance | Devis"
+        description="Comparez les meilleures assurances. Experts rappel sous 2h. Devis gratuit sans engagement."
+        keyword="assurance pas chère"
+        keywords="devis assurance gratuit, économiser assurance, comparateur"
+        noindex
       />
       
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">

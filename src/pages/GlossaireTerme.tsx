@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -65,9 +65,9 @@ const GlossaireTerme = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO
-        title={`${term.term} - Définition Assurance | jemassuremoinscher`}
-        description={term.definition}
+      <SEOOptimized
+        title={`${term.term} - Définition Assurance`}
+        description={term.definition.substring(0, 150)}
         keywords={term.tags.join(", ")}
         canonical={`https://www.jemassuremoinscher.fr/glossaire/${term.slug}`}
         jsonLd={[breadcrumbSchema, definitionSchema]}

@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import { Button } from "@/components/ui/button";
 import { useCookieConsent } from "@/hooks/useCookieConsent";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
@@ -17,12 +17,12 @@ const PolitiqueCookies = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SEO
-        title="Politique de Cookies - Gestion et Préférences | jemassuremoinscher"
-        description="Consultez notre politique de cookies RGPD : types de cookies utilisés, gestion de vos préférences, durée de conservation. Contrôlez vos données personnelles."
-        keywords="politique cookies, gestion cookies, RGPD, confidentialité, données personnelles"
+      <SEOOptimized
+        title="Politique de Cookies | jemassuremoinscher"
+        description="Politique de cookies RGPD : types, gestion, préférences. Contrôlez vos données."
         canonical="https://www.jemassuremoinscher.fr/politique-cookies"
         jsonLd={breadcrumbSchema}
+        noindex
       />
       <Header />
       

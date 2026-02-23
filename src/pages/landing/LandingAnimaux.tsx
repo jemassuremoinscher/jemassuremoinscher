@@ -1,4 +1,4 @@
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
 import { Shield, Heart, Stethoscope, CheckCircle2, Star, TrendingDown, Clock, Award } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -13,11 +13,12 @@ const LandingAnimaux = () => {
 
   return (
     <>
-      <SEO
-        title="Assurance Animaux dès 8€/mois | Comparateur 2025"
-        description="Comparez gratuitement les meilleures assurances pour chiens et chats. Remboursement jusqu'à 100% des frais vétérinaires. Devis en 30 secondes."
-        keywords="assurance animaux, assurance chien, assurance chat, mutuelle animaux"
-        canonical="/landing/animaux"
+      <SEOOptimized
+        title="Assurance Animaux dès 8€/mois | Comparateur"
+        description="Comparez les assurances chien et chat. Remboursement 100% frais vétérinaires. Devis 30s."
+        keyword="assurance animaux"
+        keywords="assurance chien, assurance chat, mutuelle animaux"
+        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">

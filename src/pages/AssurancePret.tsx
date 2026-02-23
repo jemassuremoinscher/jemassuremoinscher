@@ -13,7 +13,7 @@ import { useState, useRef } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { loanInsurers, generateInsurerOffers } from "@/utils/insurerData";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
@@ -92,7 +92,7 @@ const AssurancePret = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO title="Assurance Prêt Immobilier - Économisez jusqu'à 50% | jemassuremoinscher" description="Comparez les assurances emprunteur. Économisez des milliers d'euros. Loi Lemoine." keywords="assurance prêt immobilier, assurance emprunteur, loi Lemoine" canonical="https://www.jemassuremoinscher.fr/assurance-pret" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Prêt Immobilier Moins Chère" description="Comparez les assurances emprunteur. Économisez des milliers d'euros. Loi Lemoine." keyword="assurance prêt immobilier moins chère" keywords="assurance emprunteur, loi Lemoine, délégation" canonical="https://www.jemassuremoinscher.fr/assurance-pret" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
 
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">

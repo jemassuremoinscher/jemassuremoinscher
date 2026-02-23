@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -48,10 +48,11 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEO 
-        title="Blog Assurance - Conseils, Guides et Actualités | jemassuremoinscher"
-        description="Découvrez nos articles sur les assurances : guides pratiques, actualités légales (loi Lemoine, Hamon), conseils d'experts pour bien choisir et économiser."
-        keywords="blog assurance, conseils assurance, loi lemoine, loi hamon, guide assurance, actualités assurance"
+      <SEOOptimized 
+        title="Blog Assurance - Conseils et Actualités"
+        description="Articles sur les assurances : guides, loi Lemoine, loi Hamon, conseils pour économiser."
+        keyword="blog assurance"
+        keywords="conseils assurance, loi lemoine, loi hamon, guide assurance"
         canonical="https://www.jemassuremoinscher.fr/blog"
         jsonLd={[breadcrumbSchema, blogSchema]}
       />

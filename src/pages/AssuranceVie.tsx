@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -92,7 +92,7 @@ const AssuranceVie = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO title="Assurance Vie - Épargne et Protection | jemassuremoinscher" description="Comparez les meilleures assurances vie : épargne, protection décès, transmission." keywords="assurance vie, épargne, placement, transmission patrimoine" canonical="https://www.jemassuremoinscher.fr/assurance-vie" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Vie - Épargne et Protection" description="Comparez les assurances vie : épargne, protection décès, transmission patrimoine." keyword="assurance vie" keywords="épargne, placement, transmission patrimoine" canonical="https://www.jemassuremoinscher.fr/assurance-vie" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
       <Header />
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">

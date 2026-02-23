@@ -1,4 +1,4 @@
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
 import { Shield, Briefcase, Building, CheckCircle2, Star, Clock, Award, Zap } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -13,11 +13,12 @@ const LandingMRP = () => {
 
   return (
     <>
-      <SEO
-        title="Assurance MRP (Multirisque Pro) dès 25€/mois | Protection Entreprise 2025"
-        description="Protégez votre local, matériel et activité professionnelle. Couverture complète tous risques. Devis gratuit en 2 minutes."
-        keywords="assurance mrp, multirisque professionnelle, protection entreprise, local professionnel"
-        canonical="/landing/mrp"
+      <SEOOptimized
+        title="Assurance MRP dès 25€/mois | Entreprise"
+        description="Protégez local, matériel et activité professionnelle. Couverture tous risques. Devis 2 min."
+        keyword="assurance MRP"
+        keywords="multirisque professionnelle, protection entreprise, local"
+        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">

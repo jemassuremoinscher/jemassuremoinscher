@@ -1,7 +1,7 @@
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { CheckCircle2, Star, Shield, Users, TrendingDown, Clock, Home } from 'lucide-react';
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
 import { addOrganizationSchema, addServiceSchema, addAggregateRatingSchema } from '@/utils/seoUtils';
 
@@ -19,11 +19,13 @@ const LandingHabitation = () => {
 
   return (
     <>
-      <SEO
-        title="Assurance Habitation Pas Chère - Économisez jusqu'à 350€/an | Devis Gratuit"
-        description="Comparez gratuitement les meilleures assurances habitation en 2 minutes. Expert dédié, rappel sous 2h. +15 000 clients ont économisé en moyenne 350€/an."
-        keywords="assurance habitation pas cher, devis assurance logement gratuit, comparateur assurance habitation, économiser assurance maison"
+      <SEOOptimized
+        title="Assurance Habitation Pas Chère | Devis"
+        description="Comparez les assurances habitation en 2 min. Expert dédié. Économisez 350€/an."
+        keyword="assurance habitation pas chère"
+        keywords="devis assurance logement, comparateur assurance habitation"
         jsonLd={jsonLd}
+        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">

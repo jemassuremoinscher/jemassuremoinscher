@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -9,9 +9,10 @@ const CGU = () => {
 
   return (
     <>
-      <SEO 
-        title="Conditions Générales d'Utilisation - jemassuremoinscher"
-        description="Conditions générales d'utilisation du service jemassuremoinscher"
+      <SEOOptimized 
+        title="CGU - jemassuremoinscher"
+        description="Conditions générales d'utilisation du service jemassuremoinscher."
+        noindex
       />
       
       <div className="min-h-screen flex flex-col">

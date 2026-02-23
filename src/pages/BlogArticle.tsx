@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, Share2 } from "lucide-react";
 import { blogArticles } from "@/data/blogArticles";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 import { CommentsSection } from "@/components/blog/CommentsSection";
@@ -84,9 +84,9 @@ const BlogArticle = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEO 
-        title={`${article.title} | Blog jemassuremoinscher`}
-        description={article.description}
+      <SEOOptimized 
+        title={`${article.title.substring(0, 50)} | Blog`}
+        description={article.description.substring(0, 150)}
         keywords={article.tags.join(", ")}
         canonical={`https://www.jemassuremoinscher.fr/blog/${article.slug}`}
         jsonLd={[breadcrumbSchema, articleSchema]}
