@@ -16,6 +16,14 @@ Disallow: /commercial/
 Disallow: /api/
 Disallow: /*.map$
 
+# Pages de confirmation / merci
+Disallow: /merci
+Disallow: /merci/
+Disallow: /confirmation
+Disallow: /confirmation/
+Disallow: /thank-you
+Disallow: /thank-you/
+
 Sitemap: https://www.jemassuremoinscher.fr/sitemap.xml
 
 # Bots des réseaux sociaux - Autoriser pour Open Graph
