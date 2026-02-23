@@ -35,7 +35,7 @@ const Index = () => {
     <div className="min-h-screen">
       <SEO
         title="Jemassuremoinscher - Comparez et Économisez jusqu'à 40%/an"
-        description="Comparez gratuitement les meilleures assurances auto, santé, habitation, animaux et vie en France. 50+ assureurs comparés en 2 minutes. Service 100% gratuit."
+        description="Comparez gratuitement les meilleures assurances auto, santé, habitation, animaux et prêt en France. Économisez jusqu'à 40% par an. Devis gratuit en 2 minutes avec nos partenaires Allianz, AXA, Groupama, MAIF et autre."
         keywords="comparateur assurance france, devis assurance gratuit, économiser assurance, meilleure assurance, assurance pas cher"
         canonical="https://www.jemassuremoinscher.fr/"
         jsonLd={[organizationSchema, serviceSchema, ratingSchema, faqSchema]}
