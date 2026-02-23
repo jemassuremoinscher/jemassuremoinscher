@@ -16,8 +16,72 @@ import { useHoneypot } from "@/hooks/useHoneypot";
 import { trackGoogleAdsConversionWithParams } from "@/utils/googleAdsTracking";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+const COVERAGE_OPTIONS: Record<string, { value: string; labelKey: string }[]> = {
+  auto: [
+    { value: "tiers", labelKey: "coverage.auto.tiers" },
+    { value: "tiers_plus", labelKey: "coverage.auto.tiersPlus" },
+    { value: "tous_risques", labelKey: "coverage.auto.tousRisques" },
+  ],
+  moto: [
+    { value: "tiers", labelKey: "coverage.moto.tiers" },
+    { value: "tiers_plus", labelKey: "coverage.moto.tiersPlus" },
+    { value: "tous_risques", labelKey: "coverage.moto.tousRisques" },
+  ],
+  habitation: [
+    { value: "essentielle", labelKey: "coverage.habitation.essentielle" },
+    { value: "confort", labelKey: "coverage.habitation.confort" },
+    { value: "premium", labelKey: "coverage.habitation.premium" },
+  ],
+  sante: [
+    { value: "economique", labelKey: "coverage.sante.economique" },
+    { value: "equilibre", labelKey: "coverage.sante.equilibre" },
+    { value: "integrale", labelKey: "coverage.sante.integrale" },
+  ],
+  pret: [
+    { value: "deces", labelKey: "coverage.pret.deces" },
+    { value: "deces_ipt", labelKey: "coverage.pret.decesIpt" },
+    { value: "deces_ipt_itt", labelKey: "coverage.pret.decesIptItt" },
+  ],
+  animaux: [
+    { value: "accident", labelKey: "coverage.animaux.accident" },
+    { value: "maladie_accident", labelKey: "coverage.animaux.maladieAccident" },
+    { value: "integrale", labelKey: "coverage.animaux.integrale" },
+  ],
+  vie: [
+    { value: "epargne", labelKey: "coverage.vie.epargne" },
+    { value: "protection", labelKey: "coverage.vie.protection" },
+    { value: "mixte", labelKey: "coverage.vie.mixte" },
+  ],
+  prevoyance: [
+    { value: "essentielle", labelKey: "coverage.prevoyance.essentielle" },
+    { value: "confort", labelKey: "coverage.prevoyance.confort" },
+    { value: "integrale", labelKey: "coverage.prevoyance.integrale" },
+  ],
+  rc_pro: [
+    { value: "basique", labelKey: "coverage.rcPro.basique" },
+    { value: "standard", labelKey: "coverage.rcPro.standard" },
+    { value: "premium", labelKey: "coverage.rcPro.premium" },
+  ],
+  mrp: [
+    { value: "essentielle", labelKey: "coverage.mrp.essentielle" },
+    { value: "confort", labelKey: "coverage.mrp.confort" },
+    { value: "premium", labelKey: "coverage.mrp.premium" },
+  ],
+  gli: [
+    { value: "basique", labelKey: "coverage.gli.basique" },
+    { value: "standard", labelKey: "coverage.gli.standard" },
+    { value: "premium", labelKey: "coverage.gli.premium" },
+  ],
+  pno: [
+    { value: "essentielle", labelKey: "coverage.pno.essentielle" },
+    { value: "confort", labelKey: "coverage.pno.confort" },
+    { value: "premium", labelKey: "coverage.pno.premium" },
+  ],
+};
+
 const quoteFormSchema = z.object({
   insuranceType: z.string().min(1, "Veuillez sélectionner un type d'assurance"),
+  coverageLevel: z.string().optional(),
   fullName: z.string()
     .trim()
     .min(2, "Le nom doit contenir au moins 2 caractères")
@@ -51,6 +115,7 @@ export const QuoteRequestForm = () => {
     resolver: zodResolver(quoteFormSchema),
     defaultValues: {
       insuranceType: "",
+      coverageLevel: "",
       fullName: "",
       email: "",
       phone: "",
@@ -59,6 +124,9 @@ export const QuoteRequestForm = () => {
       acceptTerms: false,
     },
   });
+
+  const watchedInsuranceType = form.watch("insuranceType");
+  const coverageOptions = COVERAGE_OPTIONS[watchedInsuranceType] || [];
 
   const onSubmit = async (data: QuoteFormData) => {
     if (isBot()) { setIsSuccess(true); return; }
@@ -73,6 +141,7 @@ export const QuoteRequestForm = () => {
         quote_data: {
           postalCode: data.postalCode,
           currentInsurer: data.currentInsurer || null,
+          coverageLevel: data.coverageLevel || null,
         },
         status: "pending",
       }).select().single();
@@ -88,6 +157,7 @@ export const QuoteRequestForm = () => {
           details: {
             postalCode: data.postalCode,
             currentInsurer: data.currentInsurer || 'Non renseigné',
+            coverageLevel: data.coverageLevel || 'Non renseigné',
           },
           estimatedPrice: 35,
         },
@@ -106,6 +176,7 @@ export const QuoteRequestForm = () => {
       trackEvent('quote_request', {
         category: 'lead_generation',
         insurance_type: data.insuranceType,
+        coverage_level: data.coverageLevel,
         value: 100,
       });
       
@@ -167,31 +238,67 @@ export const QuoteRequestForm = () => {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <input ref={honeypotRef} type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0 }} />
-              <FormField
-                control={form.control}
-                name="insuranceType"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t('quoteForm.insuranceType')}</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder={t('quoteForm.selectType')} />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="auto">{t('quoteForm.autoIns')}</SelectItem>
-                        <SelectItem value="moto">{t('quoteForm.motoIns')}</SelectItem>
-                        <SelectItem value="habitation">{t('quoteForm.homeIns')}</SelectItem>
-                        <SelectItem value="sante">{t('quoteForm.healthIns')}</SelectItem>
-                        <SelectItem value="pret">{t('quoteForm.loanIns')}</SelectItem>
-                        <SelectItem value="animaux">{t('quoteForm.petIns')}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <FormField
+                  control={form.control}
+                  name="insuranceType"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('quoteForm.insuranceType')}</FormLabel>
+                      <Select onValueChange={(value) => { field.onChange(value); form.setValue("coverageLevel", ""); }} value={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder={t('quoteForm.selectType')} />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="auto">{t('quoteForm.autoIns')}</SelectItem>
+                          <SelectItem value="moto">{t('quoteForm.motoIns')}</SelectItem>
+                          <SelectItem value="habitation">{t('quoteForm.homeIns')}</SelectItem>
+                          <SelectItem value="sante">{t('quoteForm.healthIns')}</SelectItem>
+                          <SelectItem value="pret">{t('quoteForm.loanIns')}</SelectItem>
+                          <SelectItem value="animaux">{t('quoteForm.petIns')}</SelectItem>
+                          <SelectItem value="vie">{t('quoteForm.vieIns')}</SelectItem>
+                          <SelectItem value="prevoyance">{t('quoteForm.prevoyanceIns')}</SelectItem>
+                          <SelectItem value="rc_pro">{t('quoteForm.rcProIns')}</SelectItem>
+                          <SelectItem value="mrp">{t('quoteForm.mrpIns')}</SelectItem>
+                          <SelectItem value="gli">{t('quoteForm.gliIns')}</SelectItem>
+                          <SelectItem value="pno">{t('quoteForm.pnoIns')}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {coverageOptions.length > 0 && (
+                  <FormField
+                    control={form.control}
+                    name="coverageLevel"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t('quoteForm.coverageLevel')}</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder={t('quoteForm.selectCoverage')} />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {coverageOptions.map(opt => (
+                              <SelectItem key={opt.value} value={opt.value}>
+                                {t(opt.labelKey)}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 )}
-              />
+              </div>
 
               <div className="grid md:grid-cols-2 gap-6">
                 <FormField
