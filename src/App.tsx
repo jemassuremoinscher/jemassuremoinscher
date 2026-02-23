@@ -8,6 +8,7 @@ import { AIChatbot } from "@/components/chatbot/AIChatbot";
 import SkipToMain from "@/components/SkipToMain";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { AuthProvider } from "@/contexts/AuthContext";
 import RouteTracker from "@/components/RouteTracker";
 
 // Lazy load pages for better performance
@@ -64,73 +65,75 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
-      <TooltipProvider>
-        <Toaster />
-        <BrowserRouter>
-          <RouteTracker />
-          <SkipToMain />
-          <ErrorBoundary>
-            <Suspense fallback={
-              <div className="min-h-screen flex items-center justify-center" role="status" aria-live="polite">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-                <span className="sr-only">Chargement en cours...</span>
-              </div>
-            }>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/auth" element={<Auth />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/commercial" element={<Commercial />} />
-                <Route path="/landing/assurance" element={<LandingAds />} />
-                <Route path="/landing/auto" element={<LandingAuto />} />
-                <Route path="/landing/sante" element={<LandingSante />} />
-                <Route path="/landing/habitation" element={<LandingHabitation />} />
-                <Route path="/landing/moto" element={<LandingMoto />} />
-                <Route path="/landing/animaux" element={<LandingAnimaux />} />
-                <Route path="/landing/pret" element={<LandingPret />} />
-                <Route path="/landing/vie" element={<LandingVie />} />
-                <Route path="/landing/prevoyance" element={<LandingPrevoyance />} />
-                <Route path="/landing/rc-pro" element={<LandingRCPro />} />
-                <Route path="/landing/gli" element={<LandingGLI />} />
-                <Route path="/landing/pno" element={<LandingPNO />} />
-                <Route path="/landing/mrp" element={<LandingMRP />} />
-                <Route path="/comparateur" element={<Comparateur />} />
-                
-                <Route path="/assurance-auto" element={<AssuranceAuto />} />
-                <Route path="/assurance-sante" element={<AssuranceSante />} />
-                <Route path="/assurance-moto" element={<AssuranceMoto />} />
-                <Route path="/assurance-habitation" element={<AssuranceHabitation />} />
-                <Route path="/assurance-pret" element={<AssurancePret />} />
-                <Route path="/assurance-prevoyance" element={<AssurancePrevoyance />} />
-                <Route path="/assurance-animaux" element={<AssuranceAnimaux />} />
-                <Route path="/assurance-vie" element={<AssuranceVie />} />
-                <Route path="/assurance-mrp" element={<AssuranceMRP />} />
-                <Route path="/assurance-rc-pro" element={<AssuranceRCPro />} />
-                <Route path="/assurance-gli" element={<AssuranceGLI />} />
-                <Route path="/assurance-pno" element={<AssurancePNO />} />
-                <Route path="/gestion-locative" element={<GestionLocative />} />
-                <Route path="/qui-sommes-nous" element={<QuiSommesNous />} />
-                <Route path="/nos-partenaires" element={<NosPartenaires />} />
-                <Route path="/avis-clients" element={<AvisClients />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogArticle />} />
-                <Route path="/glossaire" element={<Glossaire />} />
-                <Route path="/glossaire/:slug" element={<GlossaireTerme />} />
-                <Route path="/politique-cookies" element={<PolitiqueCookies />} />
-                <Route path="/mentions-legales" element={<MentionsLegales />} />
-                <Route path="/cgu" element={<CGU />} />
-                <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/newsletter-gestion" element={<NewsletterGestion />} />
-                <Route path="/plan-du-site" element={<PlanDuSite />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </ErrorBoundary>
-          <CookieBanner />
-          <AIChatbot />
-        </BrowserRouter>
-      </TooltipProvider>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <BrowserRouter>
+            <RouteTracker />
+            <SkipToMain />
+            <ErrorBoundary>
+              <Suspense fallback={
+                <div className="min-h-screen flex items-center justify-center" role="status" aria-live="polite">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                  <span className="sr-only">Chargement en cours...</span>
+                </div>
+              }>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/auth" element={<Auth />} />
+                  <Route path="/admin" element={<Admin />} />
+                  <Route path="/commercial" element={<Commercial />} />
+                  <Route path="/landing/assurance" element={<LandingAds />} />
+                  <Route path="/landing/auto" element={<LandingAuto />} />
+                  <Route path="/landing/sante" element={<LandingSante />} />
+                  <Route path="/landing/habitation" element={<LandingHabitation />} />
+                  <Route path="/landing/moto" element={<LandingMoto />} />
+                  <Route path="/landing/animaux" element={<LandingAnimaux />} />
+                  <Route path="/landing/pret" element={<LandingPret />} />
+                  <Route path="/landing/vie" element={<LandingVie />} />
+                  <Route path="/landing/prevoyance" element={<LandingPrevoyance />} />
+                  <Route path="/landing/rc-pro" element={<LandingRCPro />} />
+                  <Route path="/landing/gli" element={<LandingGLI />} />
+                  <Route path="/landing/pno" element={<LandingPNO />} />
+                  <Route path="/landing/mrp" element={<LandingMRP />} />
+                  <Route path="/comparateur" element={<Comparateur />} />
+                  
+                  <Route path="/assurance-auto" element={<AssuranceAuto />} />
+                  <Route path="/assurance-sante" element={<AssuranceSante />} />
+                  <Route path="/assurance-moto" element={<AssuranceMoto />} />
+                  <Route path="/assurance-habitation" element={<AssuranceHabitation />} />
+                  <Route path="/assurance-pret" element={<AssurancePret />} />
+                  <Route path="/assurance-prevoyance" element={<AssurancePrevoyance />} />
+                  <Route path="/assurance-animaux" element={<AssuranceAnimaux />} />
+                  <Route path="/assurance-vie" element={<AssuranceVie />} />
+                  <Route path="/assurance-mrp" element={<AssuranceMRP />} />
+                  <Route path="/assurance-rc-pro" element={<AssuranceRCPro />} />
+                  <Route path="/assurance-gli" element={<AssuranceGLI />} />
+                  <Route path="/assurance-pno" element={<AssurancePNO />} />
+                  <Route path="/gestion-locative" element={<GestionLocative />} />
+                  <Route path="/qui-sommes-nous" element={<QuiSommesNous />} />
+                  <Route path="/nos-partenaires" element={<NosPartenaires />} />
+                  <Route path="/avis-clients" element={<AvisClients />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/:slug" element={<BlogArticle />} />
+                  <Route path="/glossaire" element={<Glossaire />} />
+                  <Route path="/glossaire/:slug" element={<GlossaireTerme />} />
+                  <Route path="/politique-cookies" element={<PolitiqueCookies />} />
+                  <Route path="/mentions-legales" element={<MentionsLegales />} />
+                  <Route path="/cgu" element={<CGU />} />
+                  <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/newsletter-gestion" element={<NewsletterGestion />} />
+                  <Route path="/plan-du-site" element={<PlanDuSite />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </ErrorBoundary>
+            <CookieBanner />
+            <AIChatbot />
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
     </LanguageProvider>
   </QueryClientProvider>
 );
