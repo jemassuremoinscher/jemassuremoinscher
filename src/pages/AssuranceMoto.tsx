@@ -28,6 +28,7 @@ const formSchema = z.object({
   annee: z.string().min(1, "Champ requis"),
   typeMoto: z.string().min(1, "Champ requis"),
   cylindree: z.string().min(1, "Champ requis"),
+  formule: z.string().min(1, "Champ requis"),
   codePostal: z.string().length(5, "Code postal invalide"),
   age: z.string().min(1, "Champ requis"),
   permis: z.string().min(1, "Champ requis"),
@@ -42,7 +43,7 @@ const AssuranceMoto = () => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { marque: "", modele: "", annee: "", typeMoto: "", cylindree: "", codePostal: "", age: "", permis: "" },
+    defaultValues: { marque: "", modele: "", annee: "", typeMoto: "", cylindree: "", formule: "", codePostal: "", age: "", permis: "" },
   });
 
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
@@ -60,6 +61,7 @@ const AssuranceMoto = () => {
       if (yearVehicle < 2015) price += 20; else if (yearVehicle > 2020) price += 25;
       if (cylindreeValue > 800) price += 60; else if (cylindreeValue > 600) price += 35; else if (cylindreeValue > 500) price += 20; else if (cylindreeValue <= 125) price -= 15;
       if (values.typeMoto === "sportive") price += 80; else if (values.typeMoto === "trail") price += 10; else if (values.typeMoto === "scooter") price -= 10;
+      if (values.formule === "tous-risques") price += 50; else if (values.formule === "tiers-plus") price += 20;
       const randomVariation = Math.floor(Math.random() * 25) - 12;
       price += randomVariation;
       const offers = generateInsurerOffers(price, motoInsurers);
@@ -127,6 +129,7 @@ const AssuranceMoto = () => {
                     <FormField control={form.control} name="typeMoto" render={({ field }) => (<FormItem><FormLabel>{t('motoPage.form.type')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="roadster">{t('motoPage.form.roadster')}</SelectItem><SelectItem value="sportive">{t('motoPage.form.sportive')}</SelectItem><SelectItem value="custom">{t('motoPage.form.custom')}</SelectItem><SelectItem value="trail">{t('motoPage.form.trail')}</SelectItem><SelectItem value="scooter">{t('motoPage.form.scooter')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                   </div>
                   <FormField control={form.control} name="cylindree" render={({ field }) => (<FormItem><FormLabel>{t('motoPage.form.displacement')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="125">125 cm³</SelectItem><SelectItem value="300">300 cm³</SelectItem><SelectItem value="500">500 cm³</SelectItem><SelectItem value="600">600 cm³</SelectItem><SelectItem value="800">800 cm³</SelectItem><SelectItem value="1000">1000 cm³ +</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="formule" render={({ field }) => (<FormItem><FormLabel>Formule souhaitée</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="tiers">Tiers</SelectItem><SelectItem value="tiers-plus">Tiers +</SelectItem><SelectItem value="tous-risques">Tous Risques</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="age" render={({ field }) => (<FormItem><FormLabel>{t('insPage.yourAge')}</FormLabel><FormControl><Input type="number" placeholder="25" {...field} /></FormControl><FormMessage /></FormItem>)} />
                   <FormField control={form.control} name="permis" render={({ field }) => (<FormItem><FormLabel>{t('motoPage.form.license')}</FormLabel><FormControl><Input type="date" {...field} /></FormControl><FormMessage /></FormItem>)} />
