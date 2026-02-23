@@ -86,6 +86,8 @@ const Hero = () => {
             {t('hero.title')} <br />
             <span className="text-accent">{t('hero.titleHighlight')}</span>
           </motion.h1>
+          {/* SEO-optimized hidden H1 for search engines */}
+          <span className="sr-only">Comparateur d'assurance en ligne - Comparez et économisez jusqu'à 40% sur votre assurance auto, santé, habitation, animaux et vie</span>
 
           {/* Subtitle */}
           <motion.p 

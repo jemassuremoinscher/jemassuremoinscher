@@ -28,9 +28,9 @@ const PartnersSlider = () => {
   return (
     <section className="py-8 md:py-12 bg-muted/50 overflow-hidden">
       <div className="container mx-auto px-4 mb-6">
-        <p className="text-center text-[#340e5d] font-bold md:text-4xl text-2xl">
+        <h2 className="text-center text-primary font-bold md:text-4xl text-2xl">
           {t('partners.title')}
-        </p>
+        </h2>
       </div>
 
       <div className="relative">
