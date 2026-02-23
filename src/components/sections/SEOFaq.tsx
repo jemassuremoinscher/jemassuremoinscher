@@ -10,6 +10,8 @@ const SEOFaq = () => {
     { question: t('seoFaq.q1'), answer: t('seoFaq.a1') },
     { question: t('seoFaq.q2'), answer: t('seoFaq.a2') },
     { question: t('seoFaq.q3'), answer: t('seoFaq.a3') },
+    { question: t('seoFaq.q4'), answer: t('seoFaq.a4') },
+    { question: t('seoFaq.q5'), answer: t('seoFaq.a5') },
   ];
 
   return (

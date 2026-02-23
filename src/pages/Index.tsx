@@ -7,6 +7,7 @@ import PartnersSlider from "@/components/trust/PartnersSlider";
 import WhyUsComparison from "@/components/comparison/WhyUsComparison";
 import HowItWorks from "@/components/sections/HowItWorks";
 import SEOFaq from "@/components/sections/SEOFaq";
+import SEOContent from "@/components/sections/SEOContent";
 import GuidesSection from "@/components/sections/GuidesSection";
 import SimpleFooter from "@/components/sections/SimpleFooter";
 import StickyCTA from "@/components/StickyCTA";
@@ -23,13 +24,19 @@ const Index = () => {
   const ratingSchema = addAggregateRatingSchema("jemassuremoinscher", 4.8, 2547);
   const faqSchema = addFAQSchema([{
     question: "Comment économiser sur mon assurance auto ?",
-    answer: "Pour économiser sur votre assurance auto, comparez les offres de plusieurs assureurs grâce à notre comparateur gratuit. En moyenne, nos utilisateurs économisent 320€ par an."
+    answer: "Pour économiser sur votre assurance auto, comparez les offres de plusieurs assureurs grâce à notre comparateur gratuit. Analysez les garanties proposées, ajustez votre franchise et profitez des réductions pour bon conducteur. En moyenne, nos utilisateurs économisent 320€ par an sur leur assurance auto en passant par jemassuremoinscher."
   }, {
     question: "Est-ce vraiment gratuit ?",
-    answer: "Oui, notre service de comparaison est 100% gratuit et sans engagement. Vous ne payez jamais de frais supplémentaires."
+    answer: "Oui, notre service de comparaison est 100% gratuit et sans engagement. Nous sommes rémunérés par les assureurs partenaires uniquement si vous souscrivez à une offre. Vous ne payez jamais de frais supplémentaires pour utiliser notre comparateur d'assurances."
   }, {
     question: "Puis-je changer d'assurance n'importe quand ?",
-    answer: "Depuis la loi Hamon de 2015, vous pouvez résilier votre contrat d'assurance auto, moto ou habitation à tout moment après la première année."
+    answer: "Depuis la loi Hamon de 2015, vous pouvez résilier votre contrat d'assurance auto, moto ou habitation à tout moment après la première année de souscription. Pour l'assurance santé, la résiliation est possible à la date d'anniversaire du contrat avec un préavis de 2 mois, ou à tout moment après la première année grâce à la résiliation infra-annuelle."
+  }, {
+    question: "Combien de temps faut-il pour obtenir un devis ?",
+    answer: "Obtenir un devis sur jemassuremoinscher ne prend que 2 minutes. Remplissez notre formulaire rapide, et nos conseillers vous rappellent sous 2 heures avec une offre personnalisée parmi plus de 50 assureurs partenaires comme Allianz, AXA, Groupama et MAIF."
+  }, {
+    question: "Quels types d'assurance puis-je comparer ?",
+    answer: "Notre comparateur couvre tous les types d'assurance : auto, moto, habitation, santé, animaux, vie, emprunteur, prévoyance, RC professionnelle, multirisque professionnelle, garantie loyers impayés (GLI) et propriétaire non occupant (PNO). Nous travaillons avec plus de 50 assureurs pour vous proposer les meilleurs tarifs."
   }]);
 
   return (
@@ -50,6 +57,7 @@ const Index = () => {
         <HowItWorks />
         <SEOFaq />
         <GuidesSection />
+        <SEOContent />
       </main>
       {/* Hidden internal links for SEO - crawlable but not visible */}
       <nav aria-label="Liens internes" className="sr-only">
