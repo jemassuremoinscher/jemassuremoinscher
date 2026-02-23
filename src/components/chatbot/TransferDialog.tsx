@@ -27,6 +27,9 @@ export const TransferDialog = ({ isOpen, onClose, messages }: TransferDialogProp
     try {
       const { error } = await supabase.from("chatbot_transfers").insert([{ visitor_email: formData.email, visitor_name: formData.name || null, visitor_phone: formData.phone || null, transfer_reason: formData.reason || null, conversation_history: JSON.parse(JSON.stringify(messages)), status: "pending" }]);
       if (error) throw error;
+      await supabase.functions.invoke('send-quote-email', {
+        body: { name: formData.name, email: formData.email, phone: formData.phone || '', type: 'Transfert chatbot', details: { source: 'chatbot_transfer', reason: formData.reason || '', messageCount: messages.length }, estimatedPrice: 0 },
+      }).catch(err => console.error('Email notification error:', err));
       toast.success(t('transfer.successTitle'), { description: t('transfer.successDesc') });
       setFormData({ name: "", email: "", phone: "", reason: "" });
       onClose();
