@@ -25,6 +25,9 @@ const QuickHelpSection = () => {
         full_name: formData.prenom, email: formData.email, phone: "", preferred_time: "morning", message: formData.sujet, status: "pending",
       });
       if (error) throw error;
+      await supabase.functions.invoke('send-quote-email', {
+        body: { name: formData.prenom, email: formData.email, phone: '', type: 'Contact rapide', details: { source: 'quick_help', message: formData.sujet }, estimatedPrice: 0 },
+      }).catch(err => console.error('Email notification error:', err));
       toast.success("Message envoyé ! Nous vous répondons rapidement.");
       setFormData({ prenom: "", email: "", sujet: "" });
     } catch (error) {
