@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Instagram, Linkedin, Facebook } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const SimpleFooter = () => {
@@ -33,9 +34,20 @@ const SimpleFooter = () => {
             <Link to="/" className="inline-block mb-4">
               <img alt="jemassuremoinscher" className="h-10 w-auto brightness-0 invert object-scale-down" src="/lovable-uploads/d9230a8f-d98f-418c-b010-885629846552.png" />
             </Link>
-            <p className="text-background/70 text-sm leading-relaxed">
+            <p className="text-background/70 text-sm leading-relaxed mb-4">
               {t('footer.description')}
             </p>
+            <div className="flex items-center gap-3">
+              <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-background/60 hover:text-accent transition-colors">
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-background/60 hover:text-accent transition-colors">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-background/60 hover:text-accent transition-colors">
+                <Facebook className="w-5 h-5" />
+              </a>
+            </div>
           </div>
 
           <div>
