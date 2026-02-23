@@ -23,11 +23,12 @@ const Auth = () => {
   const { signIn, signUp, user } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user) {
-      navigate('/admin');
-    }
-  }, [user, navigate]);
+  // TODO: Réactiver la redirection automatique
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate('/admin');
+  //   }
+  // }, [user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
