@@ -71,33 +71,44 @@ const WhyUsComparison = () => {
           </div>
         </motion.div>
 
-        {/* Mobile Cards */}
-        <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="md:hidden space-y-4 mb-10">
-          {comparisonData.map(row => (
-            <motion.div key={row.feature} variants={itemVariants} className="bg-card rounded-xl shadow-sm border border-border/50 overflow-hidden">
-              <div className="flex items-center gap-3 p-4 bg-muted/50 border-b border-border/30">
-                <div className="p-2 rounded-lg bg-primary/10"><row.icon className="w-4 h-4 text-primary" /></div>
-                <span className="font-bold text-foreground">{row.feature}</span>
-              </div>
-              <div className="grid grid-cols-2 divide-x divide-border/30">
-                <div className="p-4 bg-primary/5">
-                  <p className="text-xs text-primary font-semibold mb-2 uppercase tracking-wide">jemassuremoinscher</p>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm font-medium text-foreground">{row.us}</span>
+        {/* Mobile Slide Cards */}
+        <div className="md:hidden relative -mx-4 px-4 mb-10">
+          <div className="flex gap-4 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide">
+            {comparisonData.map((row, index) => (
+              <motion.div
+                key={row.feature}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="flex-shrink-0 w-[85%] snap-center"
+              >
+                <div className="bg-card rounded-2xl shadow-sm border border-border/50 overflow-hidden h-full">
+                  <div className="flex items-center gap-3 p-4 bg-muted/50 border-b border-border/30">
+                    <div className="p-2 rounded-lg bg-primary/10"><row.icon className="w-4 h-4 text-primary" /></div>
+                    <span className="font-bold text-foreground">{row.feature}</span>
+                  </div>
+                  <div className="p-4 space-y-3">
+                    <div className="bg-primary/5 rounded-lg p-3">
+                      <p className="text-xs text-primary font-semibold mb-1.5 uppercase tracking-wide">jemassuremoinscher</p>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm font-medium text-foreground">{row.us}</span>
+                      </div>
+                    </div>
+                    <div className="rounded-lg p-3">
+                      <p className="text-xs text-muted-foreground font-medium mb-1.5 uppercase tracking-wide">{t('whyUs.othersMobile')}</p>
+                      <div className="flex items-start gap-2">
+                        <XCircle className="w-5 h-5 text-destructive/70 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">{row.them}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="p-4">
-                  <p className="text-xs text-muted-foreground font-medium mb-2 uppercase tracking-wide">{t('whyUs.othersMobile')}</p>
-                  <div className="flex items-start gap-2">
-                    <XCircle className="w-5 h-5 text-destructive/70 flex-shrink-0 mt-0.5" />
-                    <span className="text-sm text-muted-foreground">{row.them}</span>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
 
         {/* Arthur Speech Bubble */}
         <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
