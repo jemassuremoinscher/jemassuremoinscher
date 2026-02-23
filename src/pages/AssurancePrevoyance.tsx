@@ -96,7 +96,7 @@ const AssurancePrevoyance = () => {
       <Header />
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
-          <img src={arthurThumbsUp} alt="Arthur" className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto" />
+          <img src={arthurThumbsUp} alt="Arthur" className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto" loading="eager" decoding="async" />
           <div className="flex justify-center mb-6"><div className="p-4 rounded-full bg-primary/10"><Shield className="h-12 w-12 text-primary" /></div></div>
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">{t('prevoyancePage.title')}</h1>
           <p className="text-xl text-muted-foreground mb-8">{t('prevoyancePage.subtitle')}</p>
@@ -130,7 +130,7 @@ const AssurancePrevoyance = () => {
         <section className="max-w-4xl mx-auto mb-16"><Accordion type="single" collapsible className="w-full"><AccordionItem value="learn-more" className="border rounded-lg"><AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold">{t('insPage.learnMore')} {t('prevoyancePage.learnMore')}</span></AccordionTrigger><AccordionContent className="px-6 pb-6"><div className="space-y-12"><InsuranceFAQ title={t('insPage.faqTitle')} faqs={[{ question: t('prevoyancePage.faq1.q'), answer: t('prevoyancePage.faq1.a') }, { question: t('prevoyancePage.faq2.q'), answer: t('prevoyancePage.faq2.a') }, { question: t('prevoyancePage.faq3.q'), answer: t('prevoyancePage.faq3.a') }]} /></div></AccordionContent></AccordionItem></Accordion></section>
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
-            <img src={arthurFlying} alt="Arthur" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" />
+            <img src={arthurFlying} alt="Arthur" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" loading="lazy" decoding="async" />
             <h2 className="text-2xl font-bold mb-4">{t('prevoyancePage.ctaTitle')}</h2>
             <p className="text-muted-foreground mb-6">{t('prevoyancePage.ctaDesc')}</p>
             <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>

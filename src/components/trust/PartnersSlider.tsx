@@ -51,6 +51,8 @@ const PartnersSlider = () => {
                 src={partner.logo}
                 alt={`${partner.name}`}
                 className="max-w-full max-h-full object-contain"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           ))}
