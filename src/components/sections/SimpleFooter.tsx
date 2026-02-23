@@ -52,7 +52,7 @@ const SimpleFooter = () => {
           </div>
 
           <div>
-            <h4 className="font-bold text-primary-foreground mb-4 text-sm uppercase tracking-wider">
+            <h4 className="font-bold text-accent mb-4 text-sm uppercase tracking-wider">
               {t('footer.insurances')}
             </h4>
             <ul className="space-y-2">
@@ -67,7 +67,7 @@ const SimpleFooter = () => {
           </div>
 
           <div>
-            <h4 className="font-bold text-primary-foreground mb-4 text-sm uppercase tracking-wider">
+            <h4 className="font-bold text-accent mb-4 text-sm uppercase tracking-wider">
               {t('footer.about')}
             </h4>
             <ul className="space-y-2">
@@ -82,7 +82,7 @@ const SimpleFooter = () => {
           </div>
 
           <div>
-            <h4 className="font-bold text-primary-foreground mb-4 text-sm uppercase tracking-wider">
+            <h4 className="font-bold text-accent mb-4 text-sm uppercase tracking-wider">
               {t('footer.legalSection')}
             </h4>
             <ul className="space-y-2">
