@@ -87,7 +87,7 @@ const Hero = () => {
             <span className="text-accent">{t('hero.titleHighlight')}</span>
           </motion.h1>
           {/* SEO-optimized hidden H1 for search engines */}
-          <span className="sr-only">Comparateur d'assurance en ligne - Comparez et économisez jusqu'à 40% sur votre assurance auto, santé, habitation, animaux et vie</span>
+          <span className="sr-only">Assurance pas chère : le comparateur d'assurances N°1 en France. Changez d'assurance facilement et économisez jusqu'à 40%. Alternative à LesFurets avec 50+ assureurs partenaires. Comparateur d'assurances auto, santé, habitation gratuit.</span>
 
           {/* Subtitle */}
           <motion.p 
