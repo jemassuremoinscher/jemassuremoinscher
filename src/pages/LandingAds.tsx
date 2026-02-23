@@ -144,7 +144,7 @@ const LandingAds = () => {
   return (
     <>
       <SEO
-        title="Économisez jusqu'à 947€/an sur votre Assurance - Devis Gratuit en 2 min"
+        title="Économisez jusqu'à 40%/an sur votre Assurance - Devis Gratuit en 2 min"
         description="Comparez gratuitement les meilleures assurances. Nos experts vous rappellent sous 2h avec votre devis personnalisé. +15 000 clients satisfaits. Sans engagement."
         keywords="assurance pas cher, devis assurance gratuit, économiser assurance, comparateur assurance"
         canonical={`https://www.jemassuremoinscher.fr${window.location.pathname}`}

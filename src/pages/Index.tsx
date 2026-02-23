@@ -34,7 +34,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="jemassuremoinscher - Économisez jusqu'à 40% sur votre assurance"
+        title="Jemassuremoinscher - Comparez et Économisez jusqu'à 40%/an"
         description="Comparez gratuitement les meilleures assurances auto, santé, habitation, animaux et vie en France. 50+ assureurs comparés en 2 minutes. Service 100% gratuit."
         keywords="comparateur assurance france, devis assurance gratuit, économiser assurance, meilleure assurance, assurance pas cher"
         canonical="https://www.jemassuremoinscher.fr/"

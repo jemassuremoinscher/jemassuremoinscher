@@ -23,7 +23,7 @@ const SEO = ({
   const location = useLocation();
   const baseUrl = 'https://www.jemassuremoinscher.fr';
   
-  const defaultTitle = 'jemassuremoinscher - Économisez jusqu\'à 947€/an';
+  const defaultTitle = 'Jemassuremoinscher - Comparez et Économisez jusqu\'à 40%/an';
   const defaultDescription = 'Comparez gratuitement les meilleures assurances auto, santé, habitation, animaux et prêt en France. Devis en 2 minutes.';
   const defaultImage = 'https://www.jemassuremoinscher.fr/opengraph-image.png';
 
