@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SEO from "@/components/SEO";
@@ -50,6 +51,34 @@ const Index = () => {
         <SEOFaq />
         <GuidesSection />
       </main>
+      {/* Hidden internal links for SEO - crawlable but not visible */}
+      <nav aria-label="Liens internes" className="sr-only">
+        <h2>Nos assurances</h2>
+        <ul>
+          <li><Link to="/assurance-auto">Assurance auto pas chère</Link></li>
+          <li><Link to="/assurance-moto">Assurance moto</Link></li>
+          <li><Link to="/assurance-habitation">Assurance habitation</Link></li>
+          <li><Link to="/assurance-sante">Mutuelle santé</Link></li>
+          <li><Link to="/assurance-animaux">Assurance animaux</Link></li>
+          <li><Link to="/assurance-vie">Assurance vie</Link></li>
+          <li><Link to="/assurance-pret">Assurance emprunteur</Link></li>
+          <li><Link to="/assurance-prevoyance">Assurance prévoyance</Link></li>
+          <li><Link to="/assurance-rc-pro">Assurance RC Pro</Link></li>
+          <li><Link to="/assurance-mrp">Assurance multirisque professionnelle</Link></li>
+          <li><Link to="/assurance-gli">Garantie loyers impayés</Link></li>
+          <li><Link to="/assurance-pno">Assurance propriétaire non occupant</Link></li>
+        </ul>
+        <h2>Informations utiles</h2>
+        <ul>
+          <li><Link to="/comparateur">Comparateur d'assurances en ligne</Link></li>
+          <li><Link to="/blog">Blog assurance - conseils et actualités</Link></li>
+          <li><Link to="/glossaire">Glossaire de l'assurance</Link></li>
+          <li><Link to="/qui-sommes-nous">À propos de jemassuremoinscher</Link></li>
+          <li><Link to="/nos-partenaires">Nos partenaires assureurs</Link></li>
+          <li><Link to="/avis-clients">Avis clients</Link></li>
+          <li><Link to="/contact">Contactez-nous</Link></li>
+        </ul>
+      </nav>
       <SimpleFooter />
       <StickyCTA />
     </div>
