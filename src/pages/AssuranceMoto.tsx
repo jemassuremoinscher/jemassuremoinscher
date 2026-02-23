@@ -15,7 +15,7 @@ import InsuranceComparison from "@/components/InsuranceComparison";
 import { motoInsurers, generateInsurerOffers } from "@/utils/insurerData";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
-import Testimonials from "@/components/Testimonials";
+
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
@@ -149,7 +149,6 @@ const AssuranceMoto = () => {
                     { question: t('motoPage.faq3.q'), answer: t('motoPage.faq3.a') },
                     { question: t('motoPage.faq4.q'), answer: t('motoPage.faq4.a') },
                   ]} />
-                  <Testimonials />
                 </div>
               </AccordionContent>
             </AccordionItem>
