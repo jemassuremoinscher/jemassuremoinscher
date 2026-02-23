@@ -445,8 +445,8 @@ const fr: Record<string, string> = {
   'insPage.yourAge': 'Votre âge',
 
   // Auto Page
-  'autoPage.title': 'Assurance Auto',
-  'autoPage.subtitle': "Comparez les meilleures offres et économisez jusqu'à 400€ par an.",
+  'autoPage.title': 'Assurance Auto Moins Chère',
+  'autoPage.subtitle': "Comparez 50+ assureurs et économisez jusqu'à 400€ par an sur votre assurance auto.",
   'autoPage.adv1.title': "Jusqu'à 400€ d'économies",
   'autoPage.adv1.desc': 'Comparez et économisez sur votre assurance auto.',
   'autoPage.adv2.desc': "Les meilleures offres du marché.",
@@ -487,8 +487,8 @@ const fr: Record<string, string> = {
   'autoPage.faq4.a': "C'est un coefficient qui fait varier votre prime selon votre historique de conduite. Sans accident, vous gagnez 5% de bonus par an.",
 
   // Santé Page
-  'santePage.title': 'Mutuelle Santé',
-  'santePage.subtitle': "Comparez les meilleures mutuelles et économisez jusqu'à 300€ par an.",
+  'santePage.title': 'Mutuelle Santé Pas Chère',
+  'santePage.subtitle': "Comparez 50+ mutuelles et économisez jusqu'à 300€ par an sur votre complémentaire santé.",
   'santePage.adv1.title': "Jusqu'à 300€ d'économies",
   'santePage.adv1.desc': 'Comparez et économisez sur votre mutuelle santé.',
   'santePage.adv2.title': '20+ mutuelles comparées',
@@ -519,8 +519,8 @@ const fr: Record<string, string> = {
   'santePage.faq4.a': "Le 100% Santé permet d'accéder à des lunettes, prothèses dentaires et aides auditives sans reste à charge, si votre mutuelle est responsable.",
 
   // Habitation Page
-  'habitationPage.title': 'Assurance Habitation',
-  'habitationPage.subtitle': "Comparez les meilleures offres et économisez jusqu'à 300€ par an.",
+  'habitationPage.title': 'Assurance Habitation Moins Chère',
+  'habitationPage.subtitle': "Comparez 50+ assureurs et économisez jusqu'à 300€ par an sur votre assurance habitation.",
   'habitationPage.adv1.title': "Jusqu'à 300€ d'économies",
   'habitationPage.adv1.desc': 'Comparez et économisez sur votre assurance habitation.',
   'habitationPage.adv2.title': '20+ assureurs comparés',

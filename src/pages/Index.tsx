@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import QuickQuoteSection from "@/components/quote/QuickQuoteSection";
 import PartnersSlider from "@/components/trust/PartnersSlider";
 import WhyUsComparison from "@/components/comparison/WhyUsComparison";
@@ -41,10 +41,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO
-        title="Assurance Pas Chère : Comparateur d'Assurances N°1 | jemassuremoinscher"
-        description="Trouvez l'assurance pas chère qui vous convient ! Comparateur d'assurances gratuit : auto, santé, habitation. Mieux que LesFurets, comparez 50+ assureurs. Changez d'assurance facilement. Économisez jusqu'à 40%."
-        keywords="assurance pas chere, assurance pas chère, comparateur d'assurances, comparateur assurance, changer d'assurance, lesfurets alternative, assurance moins chère, comparaison assurance en ligne"
+      <SEOOptimized
+        title="Assurance Pas Chère : Comparateur N°1"
+        description="Comparateur d'assurances gratuit. Comparez 50+ assureurs, trouvez l'assurance pas chère. Économisez 40%."
+        keyword="assurance pas chère"
+        keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
         canonical="https://www.jemassuremoinscher.fr/"
         jsonLd={[organizationSchema, serviceSchema, ratingSchema, faqSchema]}
       />

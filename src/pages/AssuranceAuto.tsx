@@ -13,7 +13,7 @@ import { useState, useRef } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { autoInsurers, generateInsurerOffers } from "@/utils/insurerData";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
@@ -131,7 +131,7 @@ const AssuranceAuto = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO title="Assurance Auto - Comparez et Économisez | jemassuremoinscher" description="Comparez les meilleures assurances auto en France. Devis gratuit en 2 minutes. Économisez jusqu'à 400€/an." keywords="assurance auto, devis assurance voiture, assurance auto pas cher, comparateur assurance auto" canonical="https://www.jemassuremoinscher.fr/assurance-auto" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, howToSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Auto Moins Chère | Comparateur" description="Comparez les assurances auto. Devis gratuit en 2 min. Économisez jusqu'à 400€/an." keyword="assurance auto moins chère" keywords="assurance auto pas cher, comparateur assurance auto, devis assurance voiture" canonical="https://www.jemassuremoinscher.fr/assurance-auto" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, howToSchema, faqSchema]} />
       <Header />
 
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">

@@ -13,7 +13,7 @@ import { useState, useRef } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { healthInsurers, generateInsurerOffers } from "@/utils/insurerData";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
@@ -86,7 +86,7 @@ const AssuranceSante = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO title="Mutuelle Santé - Comparez et Économisez | jemassuremoinscher" description="Comparez les mutuelles santé en France. Devis gratuit en 2 minutes. Économisez jusqu'à 300€/an." keywords="mutuelle santé, complémentaire santé, comparateur mutuelle, mutuelle pas cher" canonical="https://www.jemassuremoinscher.fr/assurance-sante" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Mutuelle Santé Pas Chère | Comparateur" description="Comparez les mutuelles santé. Devis gratuit en 2 min. Économisez jusqu'à 300€/an." keyword="mutuelle santé pas chère" keywords="complémentaire santé, comparateur mutuelle, mutuelle pas cher" canonical="https://www.jemassuremoinscher.fr/assurance-sante" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
       <Header />
 
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
