@@ -5,7 +5,8 @@ export const addOrganizationSchema = () => {
     "name": "jemassuremoinscher",
     "url": "https://www.jemassuremoinscher.fr",
     "logo": "https://www.jemassuremoinscher.fr/logo.png",
-    "description": "Comparateur d'assurances en ligne - Auto, Santé, Habitation, Vie, Animaux",
+    "description": "Comparateur d'assurances pas chères en ligne. Trouvez une assurance pas chère, comparez 50+ assureurs, changez d'assurance facilement. Alternative à LesFurets.",
+    "alternateName": ["jemassuremoinscher", "je m'assure moins cher", "comparateur assurance pas chère"],
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+33-6-86-12-28-20",
@@ -55,7 +56,8 @@ export const addServiceSchema = (service: {
       "@type": "Country",
       "name": service.areaServed || "France"
     },
-    "serviceType": "Comparateur d'assurance"
+    "serviceType": "Comparateur d'assurances pas chères",
+    "slogan": "Trouvez votre assurance pas chère et changez d'assurance facilement"
   };
 };
 

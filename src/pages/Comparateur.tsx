@@ -6,11 +6,11 @@ import SEO from '@/components/SEO';
 const Comparateur = () => {
   return (
     <>
-      <SEO
-        title="Comparateur d'Assurances en Temps Réel - Calculez vos Économies"
-        description="Comparez instantanément les meilleures offres d'assurance et calculez vos économies potentielles en temps réel. Trouvez l'assurance la moins chère adaptée à vos besoins."
-        keywords="comparateur assurance, calcul économies assurance, assurance moins chère, comparaison prix assurance"
-      />
+       <SEO
+        title="Comparateur d'Assurances Gratuit - Trouvez l'Assurance Pas Chère | jemassuremoinscher"
+        description="Utilisez notre comparateur d'assurances pour trouver l'assurance pas chère idéale. Comparez 50+ assureurs en temps réel. Meilleure alternative à LesFurets. Changez d'assurance facilement et économisez jusqu'à 40%."
+        keywords="comparateur d'assurances, comparateur assurance, assurance pas chere, assurance pas chère, changer d'assurance, lesfurets alternative, comparaison assurance gratuit"
+       />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
         <main className="flex-1">

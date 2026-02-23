@@ -16,35 +16,35 @@ import { addOrganizationSchema, addServiceSchema, addFAQSchema, addAggregateRati
 const Index = () => {
   const organizationSchema = addOrganizationSchema();
   const serviceSchema = addServiceSchema({
-    name: "Comparateur d'Assurances en Ligne",
-    description: "Comparez gratuitement les meilleures offres d'assurance auto, santé, habitation, vie et animaux en France. Devis en 2 minutes.",
+    name: "Comparateur d'Assurances Pas Chères en Ligne",
+    description: "Comparateur d'assurances gratuit pour trouver une assurance pas chère. Comparez 50+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
     provider: "jemassuremoinscher",
     areaServed: "France"
   });
   const ratingSchema = addAggregateRatingSchema("jemassuremoinscher", 4.8, 2547);
   const faqSchema = addFAQSchema([{
-    question: "Comment économiser sur mon assurance auto ?",
-    answer: "Pour économiser sur votre assurance auto, comparez les offres de plusieurs assureurs grâce à notre comparateur gratuit. Analysez les garanties proposées, ajustez votre franchise et profitez des réductions pour bon conducteur. En moyenne, nos utilisateurs économisent 320€ par an sur leur assurance auto en passant par jemassuremoinscher."
+    question: "Comment trouver une assurance pas chère ?",
+    answer: "Pour trouver une assurance pas chère, utilisez le comparateur d'assurances jemassuremoinscher. Comparez les offres de 50+ assureurs gratuitement en 2 minutes. Nos utilisateurs économisent en moyenne 320€ par an. C'est plus complet et personnalisé qu'un comparateur traditionnel comme LesFurets."
   }, {
-    question: "Est-ce vraiment gratuit ?",
-    answer: "Oui, notre service de comparaison est 100% gratuit et sans engagement. Nous sommes rémunérés par les assureurs partenaires uniquement si vous souscrivez à une offre. Vous ne payez jamais de frais supplémentaires pour utiliser notre comparateur d'assurances."
+    question: "Comment changer d'assurance facilement ?",
+    answer: "Grâce à la loi Hamon, changer d'assurance est simple : après la première année de contrat, vous pouvez résilier à tout moment votre assurance auto, moto ou habitation. Utilisez notre comparateur d'assurances pour trouver une assurance pas chère, puis votre nouvel assureur s'occupe de la résiliation."
   }, {
-    question: "Puis-je changer d'assurance n'importe quand ?",
-    answer: "Depuis la loi Hamon de 2015, vous pouvez résilier votre contrat d'assurance auto, moto ou habitation à tout moment après la première année de souscription. Pour l'assurance santé, la résiliation est possible à la date d'anniversaire du contrat avec un préavis de 2 mois, ou à tout moment après la première année grâce à la résiliation infra-annuelle."
+    question: "Quelle est la meilleure alternative à LesFurets ?",
+    answer: "jemassuremoinscher est la meilleure alternative à LesFurets car nous comparons 50+ assureurs (Allianz, AXA, Groupama, MAIF) avec un accompagnement personnalisé. Un conseiller dédié vous rappelle sous 2 heures pour vous aider à trouver l'assurance pas chère adaptée à vos besoins, contrairement aux comparateurs qui vous laissent seul."
   }, {
-    question: "Combien de temps faut-il pour obtenir un devis ?",
-    answer: "Obtenir un devis sur jemassuremoinscher ne prend que 2 minutes. Remplissez notre formulaire rapide, et nos conseillers vous rappellent sous 2 heures avec une offre personnalisée parmi plus de 50 assureurs partenaires comme Allianz, AXA, Groupama et MAIF."
+    question: "Combien peut-on économiser avec un comparateur d'assurances ?",
+    answer: "Avec notre comparateur d'assurances, nos clients économisent en moyenne 320€ par an sur leur assurance auto et jusqu'à 40% sur tous types de contrats. En comparant régulièrement et en changeant d'assurance quand c'est avantageux, vous pouvez réduire significativement votre budget assurance."
   }, {
-    question: "Quels types d'assurance puis-je comparer ?",
-    answer: "Notre comparateur couvre tous les types d'assurance : auto, moto, habitation, santé, animaux, vie, emprunteur, prévoyance, RC professionnelle, multirisque professionnelle, garantie loyers impayés (GLI) et propriétaire non occupant (PNO). Nous travaillons avec plus de 50 assureurs pour vous proposer les meilleurs tarifs."
+    question: "Quels types d'assurance pas chère peut-on comparer ?",
+    answer: "Notre comparateur d'assurances couvre toutes les catégories : assurance auto pas chère, mutuelle santé, assurance habitation, moto, animaux, vie, emprunteur, prévoyance, RC Pro, MRP, GLI et PNO. Nous travaillons avec 50+ assureurs pour vous proposer l'assurance la moins chère du marché."
   }]);
 
   return (
     <div className="min-h-screen">
       <SEO
-        title="Jemassuremoinscher - Comparez et Économisez jusqu'à 40%/an"
-        description="Comparez gratuitement les meilleures assurances auto, santé, habitation, animaux et prêt en France. Économisez jusqu'à 40% par an. Devis gratuit en 2 minutes avec nos partenaires Allianz, AXA, Groupama, MAIF et autre."
-        keywords="comparateur assurance france, devis assurance gratuit, économiser assurance, meilleure assurance, assurance pas cher"
+        title="Assurance Pas Chère : Comparateur d'Assurances N°1 | jemassuremoinscher"
+        description="Trouvez l'assurance pas chère qui vous convient ! Comparateur d'assurances gratuit : auto, santé, habitation. Mieux que LesFurets, comparez 50+ assureurs. Changez d'assurance facilement. Économisez jusqu'à 40%."
+        keywords="assurance pas chere, assurance pas chère, comparateur d'assurances, comparateur assurance, changer d'assurance, lesfurets alternative, assurance moins chère, comparaison assurance en ligne"
         canonical="https://www.jemassuremoinscher.fr/"
         jsonLd={[organizationSchema, serviceSchema, ratingSchema, faqSchema]}
       />
@@ -61,30 +61,30 @@ const Index = () => {
       </main>
       {/* Hidden internal links for SEO - crawlable but not visible */}
       <nav aria-label="Liens internes" className="sr-only">
-        <h2>Nos assurances</h2>
+        <h2>Assurance pas chère - Nos comparateurs</h2>
         <ul>
-          <li><Link to="/assurance-auto">Assurance auto pas chère</Link></li>
-          <li><Link to="/assurance-moto">Assurance moto</Link></li>
-          <li><Link to="/assurance-habitation">Assurance habitation</Link></li>
-          <li><Link to="/assurance-sante">Mutuelle santé</Link></li>
-          <li><Link to="/assurance-animaux">Assurance animaux</Link></li>
-          <li><Link to="/assurance-vie">Assurance vie</Link></li>
-          <li><Link to="/assurance-pret">Assurance emprunteur</Link></li>
-          <li><Link to="/assurance-prevoyance">Assurance prévoyance</Link></li>
-          <li><Link to="/assurance-rc-pro">Assurance RC Pro</Link></li>
+          <li><Link to="/assurance-auto">Assurance auto pas chère - Comparateur</Link></li>
+          <li><Link to="/assurance-moto">Assurance moto pas chère</Link></li>
+          <li><Link to="/assurance-habitation">Assurance habitation pas chère</Link></li>
+          <li><Link to="/assurance-sante">Mutuelle santé pas chère - Comparateur</Link></li>
+          <li><Link to="/assurance-animaux">Assurance animaux pas chère</Link></li>
+          <li><Link to="/assurance-vie">Assurance vie - Meilleur comparateur</Link></li>
+          <li><Link to="/assurance-pret">Assurance emprunteur pas chère</Link></li>
+          <li><Link to="/assurance-prevoyance">Assurance prévoyance - Comparer les prix</Link></li>
+          <li><Link to="/assurance-rc-pro">Assurance RC Pro pas chère</Link></li>
           <li><Link to="/assurance-mrp">Assurance multirisque professionnelle</Link></li>
-          <li><Link to="/assurance-gli">Garantie loyers impayés</Link></li>
+          <li><Link to="/assurance-gli">Garantie loyers impayés pas chère</Link></li>
           <li><Link to="/assurance-pno">Assurance propriétaire non occupant</Link></li>
         </ul>
-        <h2>Informations utiles</h2>
+        <h2>Changer d'assurance - Informations utiles</h2>
         <ul>
-          <li><Link to="/comparateur">Comparateur d'assurances en ligne</Link></li>
-          <li><Link to="/blog">Blog assurance - conseils et actualités</Link></li>
+          <li><Link to="/comparateur">Comparateur d'assurances en ligne gratuit - Alternative à LesFurets</Link></li>
+          <li><Link to="/blog">Blog assurance pas chère - Conseils pour changer d'assurance</Link></li>
           <li><Link to="/glossaire">Glossaire de l'assurance</Link></li>
-          <li><Link to="/qui-sommes-nous">À propos de jemassuremoinscher</Link></li>
-          <li><Link to="/nos-partenaires">Nos partenaires assureurs</Link></li>
-          <li><Link to="/avis-clients">Avis clients</Link></li>
-          <li><Link to="/contact">Contactez-nous</Link></li>
+          <li><Link to="/qui-sommes-nous">À propos de jemassuremoinscher - Comparateur d'assurances</Link></li>
+          <li><Link to="/nos-partenaires">Nos 50+ partenaires assureurs</Link></li>
+          <li><Link to="/avis-clients">Avis clients - Comparateur d'assurances pas chères</Link></li>
+          <li><Link to="/contact">Contactez notre équipe</Link></li>
         </ul>
       </nav>
       <SimpleFooter />

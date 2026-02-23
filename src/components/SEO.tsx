@@ -23,8 +23,8 @@ const SEO = ({
   const location = useLocation();
   const baseUrl = 'https://www.jemassuremoinscher.fr';
   
-  const defaultTitle = 'Jemassuremoinscher - Comparez et Économisez jusqu\'à 40%/an';
-  const defaultDescription = 'Comparez gratuitement les meilleures assurances auto, santé, habitation, animaux et prêt en France. Économisez jusqu\'à 40% par an. Devis gratuit en 2 minutes avec nos partenaires Allianz, AXA, Groupama, MAIF et autre.';
+  const defaultTitle = 'Assurance Pas Chère : Comparateur d\'Assurances N°1 | jemassuremoinscher';
+  const defaultDescription = 'Trouvez l\'assurance pas chère qui vous convient ! Comparateur d\'assurances gratuit : auto, santé, habitation. Comparez 50+ assureurs, changez d\'assurance facilement. Économisez jusqu\'à 40%.';
   const defaultImage = 'https://www.jemassuremoinscher.fr/opengraph-image.png';
 
   const pageTitle = title || defaultTitle;
