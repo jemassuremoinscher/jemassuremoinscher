@@ -13,7 +13,7 @@ import { useState, useRef } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import InsuranceComparison from "@/components/InsuranceComparison";
 import { homeInsurers, generateInsurerOffers } from "@/utils/insurerData";
-import SEO from "@/components/SEO";
+import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import Testimonials from "@/components/Testimonials";
 import { SavingsCalculator } from "@/components/calculator/SavingsCalculator";
@@ -85,7 +85,7 @@ const AssuranceHabitation = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO title="Assurance Habitation - Comparez et Économisez | jemassuremoinscher" description="Comparez les assurances habitation en France. Devis gratuit. Économisez jusqu'à 300€/an." keywords="assurance habitation, assurance maison, assurance appartement" canonical="https://www.jemassuremoinscher.fr/assurance-habitation" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Habitation Moins Chère | Comparateur" description="Comparez les assurances habitation. Devis gratuit. Économisez jusqu'à 300€/an sur votre contrat." keyword="assurance habitation moins chère" keywords="assurance maison, assurance appartement pas cher" canonical="https://www.jemassuremoinscher.fr/assurance-habitation" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
       <Header />
 
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">

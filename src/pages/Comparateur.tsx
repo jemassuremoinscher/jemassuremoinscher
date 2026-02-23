@@ -1,15 +1,16 @@
 import { InteractiveComparator } from '@/components/comparison/InteractiveComparator';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import SEOOptimized from '@/components/SEOOptimized';
 
 const Comparateur = () => {
   return (
     <>
-       <SEO
-        title="Comparateur d'Assurances Gratuit - Trouvez l'Assurance Pas Chère | jemassuremoinscher"
-        description="Utilisez notre comparateur d'assurances pour trouver l'assurance pas chère idéale. Comparez 50+ assureurs en temps réel. Meilleure alternative à LesFurets. Changez d'assurance facilement et économisez jusqu'à 40%."
-        keywords="comparateur d'assurances, comparateur assurance, assurance pas chere, assurance pas chère, changer d'assurance, lesfurets alternative, comparaison assurance gratuit"
+       <SEOOptimized
+        title="Comparateur d'Assurances Gratuit en Ligne"
+        description="Comparateur d'assurances : comparez 50+ assureurs en temps réel. Alternative à LesFurets. Économisez 40%."
+        keyword="comparateur d'assurances"
+        keywords="assurance pas chère, changer d'assurance, comparaison assurance gratuit"
        />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
