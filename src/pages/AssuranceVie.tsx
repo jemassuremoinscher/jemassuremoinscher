@@ -20,6 +20,7 @@ import { toast } from "sonner";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurIdea from "@/assets/mascotte/arthur-idea.png";
+import ArthurHero from "@/components/insurance/ArthurHero";
 import arthurFlying from "@/assets/mascotte/arthur-pointing.png";
 
 const formSchema = z.object({
@@ -94,9 +95,8 @@ const AssuranceVie = () => {
       <Header />
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
-          <div className="flex justify-center mb-6"><img src={arthurIdea} alt="Arthur réfléchit - assurance vie moins chère" className="w-24 md:w-32 lg:w-36 h-auto" loading="eager" decoding="async" /></div>
+          <ArthurHero imageSrc={arthurIdea} imageAlt="Arthur réfléchit - assurance vie moins chère" speechText={t('viePage.subtitle')} />
           <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('viePage.title')}</h1>
-          <p className="text-xl text-muted-foreground mb-8">{t('viePage.subtitle')}</p>
           <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
         </div></div>
       </section>
