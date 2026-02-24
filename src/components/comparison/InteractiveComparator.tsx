@@ -25,29 +25,44 @@ interface InsuranceOffer {
   popular?: boolean;
 }
 
-const mockOffers: InsuranceOffer[] = [
+const baseOffers: Omit<InsuranceOffer, 'price' | 'originalPrice'>[] = [
   {
-    id: '1', insurer: 'AXA', price: 45, originalPrice: 65, rating: 4.8, coverage: 'Premium',
+    id: '1', insurer: 'AXA', rating: 4.8, coverage: 'Premium',
     benefits: ['Assistance 24/7', 'Franchise 0€', 'Véhicule de remplacement', 'Protection juridique'],
     popular: true,
   },
   {
-    id: '2', insurer: 'MAIF', price: 52, originalPrice: 70, rating: 4.7, coverage: 'Tous risques',
+    id: '2', insurer: 'MAIF', rating: 4.7, coverage: 'Tous risques',
     benefits: ['Bris de glace inclus', 'Protection conducteur', 'Assistance 0 km'],
   },
   {
-    id: '3', insurer: 'Allianz', price: 48, originalPrice: 68, rating: 4.6, coverage: 'Confort',
+    id: '3', insurer: 'Allianz', rating: 4.6, coverage: 'Confort',
     benefits: ['Garantie valeur à neuf', 'Prêt de véhicule', 'Assistance Europe'],
   },
   {
-    id: '4', insurer: 'Groupama', price: 55, originalPrice: 75, rating: 4.5, coverage: 'Optimal',
+    id: '4', insurer: 'Groupama', rating: 4.5, coverage: 'Optimal',
     benefits: ['Couverture catastrophes naturelles', 'Protection famille', 'Garage agréé'],
   },
   {
-    id: '5', insurer: 'MACIF', price: 50, originalPrice: 72, rating: 4.7, coverage: 'Essentiel+',
+    id: '5', insurer: 'MACIF', rating: 4.7, coverage: 'Essentiel+',
     benefits: ['Vol et incendie', 'Dommages collision', 'Assistance panne'],
   },
+  {
+    id: '6', insurer: 'Direct Assurance', rating: 4.2, coverage: 'Éco',
+    benefits: ['Responsabilité civile', 'Assistance de base'],
+  },
 ];
+
+/** Generate dynamic prices so there's always at least one offer below currentPrice */
+const generateOffers = (currentPrice: number): InsuranceOffer[] => {
+  // Spread ratios relative to currentPrice (all < 1 means cheaper)
+  const ratios = [0.70, 0.75, 0.80, 0.85, 0.78, 0.55];
+  return baseOffers.map((offer, i) => {
+    const price = Math.max(9, Math.round(currentPrice * ratios[i]));
+    const originalPrice = Math.round(price * (1.25 + Math.random() * 0.15));
+    return { ...offer, price, originalPrice };
+  });
+};
 
 export const InteractiveComparator = () => {
   const { t } = useLanguage();
@@ -83,14 +98,14 @@ export const InteractiveComparator = () => {
   };
 
   const filteredOffers = useMemo(() => {
-    return mockOffers
+    return generateOffers(currentPrice[0])
       .map(offer => ({ ...offer, savings: offer.originalPrice - offer.price }))
       .sort((a, b) => {
         if (sortBy === 'price') return a.price - b.price;
         if (sortBy === 'coverage') return b.benefits.length - a.benefits.length;
         return b.rating - a.rating;
       });
-  }, [sortBy]);
+  }, [sortBy, currentPrice]);
 
   const totalYearlySavings = useMemo(() => {
     const bestOffer = filteredOffers[0];
