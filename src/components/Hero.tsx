@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
+import arthurThumbsUp from "@/assets/mascotte/arthur-wink-thumbsup.png";
 
 const Hero = () => {
   const { trackEvent } = useAnalytics();

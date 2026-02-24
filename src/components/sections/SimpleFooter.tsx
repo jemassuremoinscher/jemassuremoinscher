@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Instagram, Linkedin, Facebook, MapIcon } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
+import arthurThumbsUp from "@/assets/mascotte/arthur-sprint-coin.png";
 
 const SimpleFooter = () => {
   const { t } = useLanguage();

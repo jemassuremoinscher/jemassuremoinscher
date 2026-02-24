@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useHoneypot } from "@/hooks/useHoneypot";
 import { useLanguage } from "@/contexts/LanguageContext";
-import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
+import arthurThinking from "@/assets/mascotte/arthur-idea.png";
 import { trackMetaLead } from "@/utils/metaPixelTracking";
 
 type InsuranceType = "auto" | "moto" | "habitation" | "sante" | "pret" | "animaux" | "vie" | "prevoyance" | "rc_pro" | "mrp" | "gli" | "pno" | "";
