@@ -29,6 +29,7 @@ const LandingRCPro = lazy(() => import("./pages/landing/LandingRCPro"));
 const LandingGLI = lazy(() => import("./pages/landing/LandingGLI"));
 const LandingPNO = lazy(() => import("./pages/landing/LandingPNO"));
 const LandingMRP = lazy(() => import("./pages/landing/LandingMRP"));
+const AssuranceAutoMalusse = lazy(() => import("./pages/seo/AssuranceAutoMalusse"));
 const Comparateur = lazy(() => import("./pages/Comparateur"));
 
 const AssuranceAuto = lazy(() => import("./pages/AssuranceAuto"));
@@ -98,6 +99,7 @@ const App = () => (
                   <Route path="/landing/pno" element={<LandingPNO />} />
                   <Route path="/landing/mrp" element={<LandingMRP />} />
                   <Route path="/comparateur" element={<Comparateur />} />
+                  <Route path="/assurance-auto-malusse" element={<AssuranceAutoMalusse />} />
                   
                   <Route path="/assurance-auto" element={<AssuranceAuto />} />
                   <Route path="/assurance-sante" element={<AssuranceSante />} />
