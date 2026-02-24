@@ -16,27 +16,27 @@ import { addOrganizationSchema, addServiceSchema, addFAQSchema, addAggregateRati
 const Index = () => {
   const organizationSchema = addOrganizationSchema();
   const serviceSchema = addServiceSchema({
-    name: "Comparateur d'Assurances Pas Chères en Ligne",
-    description: "Comparateur d'assurances gratuit pour trouver une assurance pas chère. Comparez 50+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
+    name: "Comparateur d'Assurances Moins Chères en Ligne",
+    description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 50+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
     provider: "jemassuremoinscher",
     areaServed: "France"
   });
   const ratingSchema = addAggregateRatingSchema("jemassuremoinscher", 4.8, 2547);
   const faqSchema = addFAQSchema([{
-    question: "Comment trouver une assurance pas chère ?",
-    answer: "Pour trouver une assurance pas chère, utilisez le comparateur d'assurances jemassuremoinscher. Comparez les offres de 50+ assureurs gratuitement en 2 minutes. Nos utilisateurs économisent en moyenne 320€ par an. C'est plus complet et personnalisé qu'un comparateur traditionnel comme LesFurets."
+    question: "Comment trouver une assurance moins chère ?",
+    answer: "Pour trouver une assurance moins chère, utilisez le comparateur d'assurances jemassuremoinscher. Comparez les offres de 50+ assureurs gratuitement en 2 minutes. Nos utilisateurs économisent en moyenne 320€ par an. C'est plus complet et personnalisé qu'un comparateur traditionnel comme LesFurets."
   }, {
     question: "Comment changer d'assurance facilement ?",
-    answer: "Grâce à la loi Hamon, changer d'assurance est simple : après la première année de contrat, vous pouvez résilier à tout moment votre assurance auto, moto ou habitation. Utilisez notre comparateur d'assurances pour trouver une assurance pas chère, puis votre nouvel assureur s'occupe de la résiliation."
+    answer: "Grâce à la loi Hamon, changer d'assurance est simple : après la première année de contrat, vous pouvez résilier à tout moment votre assurance auto, moto ou habitation. Utilisez notre comparateur d'assurances pour trouver une assurance moins chère, puis votre nouvel assureur s'occupe de la résiliation."
   }, {
     question: "Quelle est la meilleure alternative à LesFurets ?",
-    answer: "jemassuremoinscher est la meilleure alternative à LesFurets car nous comparons 50+ assureurs (Allianz, AXA, Groupama, MAIF) avec un accompagnement personnalisé. Un conseiller dédié vous rappelle sous 2 heures pour vous aider à trouver l'assurance pas chère adaptée à vos besoins, contrairement aux comparateurs qui vous laissent seul."
+    answer: "jemassuremoinscher est la meilleure alternative à LesFurets car nous comparons 50+ assureurs (Allianz, AXA, Groupama, MAIF) avec un accompagnement personnalisé. Un conseiller dédié vous rappelle sous 2 heures pour vous aider à trouver l'assurance moins chère adaptée à vos besoins, contrairement aux comparateurs qui vous laissent seul."
   }, {
     question: "Combien peut-on économiser avec un comparateur d'assurances ?",
     answer: "Avec notre comparateur d'assurances, nos clients économisent en moyenne 320€ par an sur leur assurance auto et jusqu'à 40% sur tous types de contrats. En comparant régulièrement et en changeant d'assurance quand c'est avantageux, vous pouvez réduire significativement votre budget assurance."
   }, {
-    question: "Quels types d'assurance pas chère peut-on comparer ?",
-    answer: "Notre comparateur d'assurances couvre toutes les catégories : assurance auto pas chère, mutuelle santé, assurance habitation, moto, animaux, vie, emprunteur, prévoyance, RC Pro, MRP, GLI et PNO. Nous travaillons avec 50+ assureurs pour vous proposer l'assurance la moins chère du marché."
+    question: "Quels types d'assurance moins chère peut-on comparer ?",
+    answer: "Notre comparateur d'assurances couvre toutes les catégories : assurance auto moins chère, mutuelle santé, assurance habitation, moto, animaux, vie, emprunteur, prévoyance, RC Pro, MRP, GLI et PNO. Nous travaillons avec 50+ assureurs pour vous proposer l'assurance la moins chère du marché."
   }]);
 
   return (
