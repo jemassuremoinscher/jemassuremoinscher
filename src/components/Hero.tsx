@@ -83,11 +83,18 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.2 }} 
             className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary-foreground mb-4 leading-tight font-[Inter]"
           >
+            <span className="relative inline-block">
+              <span className="relative z-10">{t('hero.titleAccent')}</span>
+              <span 
+                className="absolute left-0 right-0 bottom-[0.05em] h-[0.18em] md:h-[0.16em] bg-accent/80 rounded-full -rotate-[0.5deg] z-0" 
+                aria-hidden="true" 
+              />
+            </span>
             {t('hero.title')} <br />
             <span className="text-accent">{t('hero.titleHighlight')}</span>
           </motion.h1>
           {/* SEO-optimized hidden H1 for search engines */}
-          <span className="sr-only">Assurance pas chère : le comparateur d'assurances N°1 en France. Changez d'assurance facilement et économisez jusqu'à 40%. Alternative à LesFurets avec 50+ assureurs partenaires. Comparateur d'assurances auto, santé, habitation gratuit.</span>
+          <span className="sr-only">Assurance moins chère : le comparateur d'assurances N°1 en France. Changez d'assurance facilement et économisez jusqu'à 40%. Alternative à LesFurets avec 50+ assureurs partenaires. Comparateur d'assurances auto, santé, habitation gratuit.</span>
 
           {/* Subtitle */}
           <motion.p 
