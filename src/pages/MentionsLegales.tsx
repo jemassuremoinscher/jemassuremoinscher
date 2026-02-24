@@ -31,11 +31,11 @@ const MentionsLegales = () => {
                   <p><strong>{t('mentionsLegales.raisonSociale')}</strong> jemassuremoinscher</p>
                   <p><strong>{t('mentionsLegales.formeJuridique')}</strong> {t('mentionsLegales.formeJuridiqueVal')}</p>
                   <p><strong>{t('mentionsLegales.capital')}</strong> 10 000 €</p>
-                  <p><strong>{t('mentionsLegales.siege')}</strong> {t('mentionsLegales.siegeVal')}</p>
+                  <p><strong>{t('mentionsLegales.siege')}</strong> 2, rue d'Angleterre 06000 Nice</p>
                   <p><strong>{t('mentionsLegales.rcs')}</strong> {t('mentionsLegales.rcsVal')}</p>
                   <p><strong>{t('mentionsLegales.siret')}</strong> {t('mentionsLegales.siretVal')}</p>
                   <p><strong>{t('mentionsLegales.email')}</strong> contact@jemassuremoinscher.fr</p>
-                  <p><strong>{t('mentionsLegales.telephone')}</strong> {t('mentionsLegales.telephoneVal')}</p>
+                  <p><strong>{t('mentionsLegales.telephone')}</strong> +33 6 86 12 28 20</p>
                 </CardContent>
               </Card>
 
