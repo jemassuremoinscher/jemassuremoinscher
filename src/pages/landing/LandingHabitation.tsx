@@ -10,7 +10,7 @@ const LandingHabitation = () => {
     addOrganizationSchema(),
     addServiceSchema({
       name: 'Assurance Habitation moins chère',
-      description: 'Comparez les meilleures assurances habitation et économisez jusqu\'à 350€/an. Devis gratuit en 2 minutes.',
+      description: 'Comparez les meilleures assurances habitation et économisez jusqu\'à 40%. Devis gratuit en 2 minutes.',
       provider: 'jemassuremoinscher',
       areaServed: 'France',
     }),
@@ -21,7 +21,7 @@ const LandingHabitation = () => {
     <>
       <SEOOptimized
         title="Assurance Habitation Moins Chère | Devis"
-        description="Comparez les assurances habitation en 2 min. Expert dédié. Économisez 350€/an."
+        description="Comparez les assurances habitation en 2 min. Expert dédié. Économisez jusqu'à 40%."
         keyword="assurance habitation moins chère"
         keywords="devis assurance logement, comparateur assurance habitation"
         jsonLd={jsonLd}

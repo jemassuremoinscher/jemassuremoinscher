@@ -10,7 +10,7 @@ const LandingAuto = () => {
     addOrganizationSchema(),
     addServiceSchema({
       name: 'Assurance Auto moins chère',
-      description: 'Comparez les meilleures assurances auto et économisez jusqu\'à 600€/an. Devis gratuit en 2 minutes.',
+      description: 'Comparez les meilleures assurances auto et économisez jusqu\'à 40%. Devis gratuit en 2 minutes.',
       provider: 'jemassuremoinscher',
       areaServed: 'France',
     }),
@@ -21,7 +21,7 @@ const LandingAuto = () => {
     <>
       <SEOOptimized
         title="Assurance Auto Moins Chère | Devis Gratuit"
-        description="Comparez les assurances auto en 2 min. Expert dédié, rappel sous 2h. Économisez 600€/an."
+        description="Comparez les assurances auto en 2 min. Expert dédié, rappel sous 2h. Économisez jusqu'à 40%."
         keyword="assurance auto moins chère"
         keywords="devis assurance auto, comparateur assurance voiture"
         jsonLd={jsonLd}
