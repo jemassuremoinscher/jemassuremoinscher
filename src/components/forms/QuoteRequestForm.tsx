@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -106,6 +107,7 @@ type QuoteFormData = z.infer<typeof quoteFormSchema>;
 
 export const QuoteRequestForm = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { trackEvent, trackConversion } = useAnalytics();
@@ -192,8 +194,19 @@ export const QuoteRequestForm = () => {
         utmContent: quoteData?.utm_data?.content,
         utmTerm: quoteData?.utm_data?.term,
       });
+
+      // Google Ads conversion event via gtag
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-972332620/QUOTE_SUBMIT',
+          value: 100,
+          currency: 'EUR',
+          transaction_id: insertedQuote?.id || `${Date.now()}`,
+        });
+      }
       
       form.reset();
+      navigate('/merci');
     } catch (error) {
       console.error("Error submitting quote:", error);
       toast.error(t('quoteForm.toastError'), {
