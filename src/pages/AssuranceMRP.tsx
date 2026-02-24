@@ -98,8 +98,7 @@ const AssuranceMRP = () => {
       <Header />
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
-          <img src={arthurBusiness} alt="Arthur en costume - assurance MRP moins chère" className="hidden lg:block absolute -left-36 bottom-0 w-36 h-auto" loading="eager" decoding="async" />
-          <div className="flex justify-center mb-6"><div className="p-4 rounded-full bg-primary/10"><Building2 className="h-12 w-12 text-primary" /></div></div>
+          <div className="flex justify-center mb-6"><img src={arthurBusiness} alt="Arthur en costume - assurance MRP moins chère" className="w-24 md:w-32 lg:w-36 h-auto" loading="eager" decoding="async" /></div>
           <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('mrpPage.title')}</h1>
           <p className="text-xl text-muted-foreground mb-8">{t('mrpPage.subtitle')}</p>
           <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
