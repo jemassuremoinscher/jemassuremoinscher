@@ -10,7 +10,7 @@ const Comparateur = () => {
         title="Comparateur d'Assurances Gratuit en Ligne"
         description="Comparateur d'assurances : comparez 50+ assureurs en temps réel. Alternative à LesFurets. Économisez 40%."
         keyword="comparateur d'assurances"
-        keywords="assurance pas chère, changer d'assurance, comparaison assurance gratuit"
+        keywords="assurance moins chère, changer d'assurance, comparaison assurance gratuit"
        />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />

@@ -146,7 +146,7 @@ const LandingAds = () => {
       <SEOOptimized
         title="Économisez 40%/an sur votre Assurance | Devis"
         description="Comparez les meilleures assurances. Experts rappel sous 2h. Devis gratuit sans engagement."
-        keyword="assurance pas chère"
+        keyword="assurance moins chère"
         keywords="devis assurance gratuit, économiser assurance, comparateur"
         noindex
       />
