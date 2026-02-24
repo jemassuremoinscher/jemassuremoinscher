@@ -53,9 +53,10 @@ export const InteractiveComparator = () => {
   const { t } = useLanguage();
   const [insuranceType, setInsuranceType] = useState('auto');
   const [currentPrice, setCurrentPrice] = useState([65]);
-  const [sortBy, setSortBy] = useState<'price' | 'savings' | 'rating'>('savings');
+  const [sortBy, setSortBy] = useState<'price' | 'rating' | 'coverage'>('price');
   const [selectedOffer, setSelectedOffer] = useState<InsuranceOffer | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [hasCompared, setHasCompared] = useState(false);
 
   const { trackEvent } = useAnalytics();
 
@@ -86,7 +87,7 @@ export const InteractiveComparator = () => {
       .map(offer => ({ ...offer, savings: offer.originalPrice - offer.price }))
       .sort((a, b) => {
         if (sortBy === 'price') return a.price - b.price;
-        if (sortBy === 'savings') return b.savings - a.savings;
+        if (sortBy === 'coverage') return b.benefits.length - a.benefits.length;
         return b.rating - a.rating;
       });
   }, [sortBy]);
@@ -139,9 +140,9 @@ export const InteractiveComparator = () => {
               <Select value={sortBy} onValueChange={(v) => setSortBy(v as any)}>
                 <SelectTrigger className="h-12 rounded-2xl"><SelectValue /></SelectTrigger>
                 <SelectContent className="rounded-2xl">
-                  <SelectItem value="savings">{t('comparator.bestSavings')}</SelectItem>
                   <SelectItem value="price">{t('comparator.lowestPrice')}</SelectItem>
                   <SelectItem value="rating">{t('comparator.bestRating')}</SelectItem>
+                  <SelectItem value="coverage">Meilleures garanties</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -177,9 +178,22 @@ export const InteractiveComparator = () => {
               </div>
             </div>
           </div>
+          {/* Compare button */}
+          {!hasCompared && (
+            <div className="mt-6 text-center">
+              <Button
+                size="lg"
+                onClick={() => setHasCompared(true)}
+                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-10 rounded-full text-lg"
+              >
+                Comparer maintenant
+              </Button>
+            </div>
+          )}
         </Card>
 
-        {/* Offers */}
+        {/* Offers - only shown after comparison */}
+        {hasCompared && (
         <div className="max-w-4xl mx-auto space-y-4">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl md:text-2xl font-bold text-foreground">
@@ -266,6 +280,7 @@ export const InteractiveComparator = () => {
             );
           })}
         </div>
+        )}
 
         {/* CTA */}
         <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center max-w-4xl mx-auto overflow-visible">
