@@ -18,8 +18,8 @@ import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema, addHowToSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
-import arthurFlying from "@/assets/mascotte/arthur-flying.png";
+import arthurCar from "@/assets/mascotte/arthur-car.png";
+import arthurFlying from "@/assets/mascotte/arthur-sprint-coin.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const formSchema = z.object({
@@ -137,9 +137,9 @@ const AssuranceAuto = () => {
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center relative">
-            <img src={arthurThumbsUp} alt="Arthur" className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto" loading="eager" decoding="async" />
+            <img src={arthurCar} alt="Arthur en voiture - assurance auto moins chère" className="hidden lg:block absolute -left-36 bottom-0 w-36 h-auto" loading="eager" decoding="async" />
             <div className="flex justify-center mb-6"><div className="p-4 rounded-full bg-primary/10"><Car className="h-12 w-12 text-primary" /></div></div>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">{t('autoPage.title')}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('autoPage.title')}</h1>
             <p className="text-xl text-muted-foreground mb-8">{t('autoPage.subtitle')}</p>
             <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
           </div>

@@ -1,8 +1,8 @@
 import { CheckCircle, XCircle, Zap, Building2, Eye, Heart, Star, Shield, Gift, MessageCircle, Scale, FileCheck, BadgeCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
-import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
-import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
+import arthurThumbsUp from "@/assets/mascotte/arthur-thumbsup-coin.png";
+import arthurThinking from "@/assets/mascotte/arthur-detective.png";
 import oriasLogo from "@/assets/logos/orias.jpg";
 
 const WhyUsComparison = () => {
