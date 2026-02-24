@@ -11,6 +11,7 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { useHoneypot } from "@/hooks/useHoneypot";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
+import { trackMetaLead } from "@/utils/metaPixelTracking";
 
 type InsuranceType = "auto" | "moto" | "habitation" | "sante" | "pret" | "animaux" | "vie" | "prevoyance" | "rc_pro" | "mrp" | "gli" | "pno" | "";
 
@@ -209,6 +210,12 @@ const QuickQuoteSection = () => {
       }).catch(err => console.error('Email error:', err));
       trackConversion('quick_quote', 150);
       trackEvent('quote_request', { category: 'quick_quote', label: `${quoteData.insuranceType}_${quoteData.profileOption}_${quoteData.coverageLevel}`, insurance_type: quoteData.insuranceType, value: 150 });
+      trackMetaLead({
+        content_name: `Devis rapide ${quoteData.insuranceType}`,
+        content_category: quoteData.insuranceType,
+        value: 150,
+        currency: 'EUR',
+      });
       setIsSuccess(true);
       toast.success(t('quickQuote.toastSuccess'));
     } catch (error) {
