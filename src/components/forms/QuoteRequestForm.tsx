@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useHoneypot } from "@/hooks/useHoneypot";
 import { trackGoogleAdsConversionWithParams } from "@/utils/googleAdsTracking";
+import { trackMetaLead } from "@/utils/metaPixelTracking";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const COVERAGE_OPTIONS: Record<string, { value: string; labelKey: string }[]> = {
@@ -193,6 +194,14 @@ export const QuoteRequestForm = () => {
         utmCampaign: quoteData?.utm_data?.campaign,
         utmContent: quoteData?.utm_data?.content,
         utmTerm: quoteData?.utm_data?.term,
+      });
+
+      // Meta Pixel Lead event
+      trackMetaLead({
+        content_name: `Devis ${data.insuranceType}`,
+        content_category: data.insuranceType,
+        value: 100,
+        currency: 'EUR',
       });
 
       // Google Ads conversion event via gtag
