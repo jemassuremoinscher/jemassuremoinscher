@@ -39,25 +39,6 @@ const MentionsLegales = () => {
                 </CardContent>
               </Card>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle>{t('mentionsLegales.directeur')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p>{t('mentionsLegales.directeurNom')}</p>
-                  <p>{t('mentionsLegales.directeurFonction')}</p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>{t('mentionsLegales.hebergement')}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <p><strong>{t('mentionsLegales.hebergeur')}</strong> {t('mentionsLegales.hebergeurVal')}</p>
-                  <p><strong>{t('mentionsLegales.hebergeurAdresse')}</strong> {t('mentionsLegales.hebergeurAdresseVal')}</p>
-                </CardContent>
-              </Card>
 
               <Card>
                 <CardHeader>
@@ -130,8 +111,8 @@ const MentionsLegales = () => {
                     <p className="mb-2">Pour toute réclamation, vous pouvez contacter notre service dédié :</p>
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li><strong>Par email :</strong> contact@jemassuremoinscher.fr</li>
-                      <li><strong>Par courrier :</strong> [Adresse postale à compléter]</li>
-                      <li><strong>Par téléphone :</strong> [Numéro à compléter]</li>
+                      <li><strong>Par courrier :</strong> 2, rue d'Angleterre 06000 Nice</li>
+                      <li><strong>Par téléphone :</strong> +33 6 86 12 28 20</li>
                     </ul>
                     <p className="mt-2">
                       Nous nous engageons à accuser réception de votre réclamation sous 10 jours ouvrables et à vous apporter une réponse définitive sous un délai maximum de 2 mois.
