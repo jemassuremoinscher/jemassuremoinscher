@@ -80,7 +80,7 @@ const AssuranceAnimaux = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Animaux Pas Chère | Comparateur" description="Comparez les assurances chien et chat. Remboursement frais vétérinaires jusqu'à 100%." keyword="assurance animaux pas chère" keywords="assurance chien, assurance chat, mutuelle animaux" canonical="https://www.jemassuremoinscher.fr/assurance-animaux" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Animaux Moins Chère | Comparateur" description="Comparez les assurances chien et chat. Remboursement frais vétérinaires jusqu'à 100%." keyword="assurance animaux moins chère" keywords="assurance chien, assurance chat, mutuelle animaux" canonical="https://www.jemassuremoinscher.fr/assurance-animaux" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
 
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">

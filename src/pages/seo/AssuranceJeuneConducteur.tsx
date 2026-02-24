@@ -60,7 +60,7 @@ const AssuranceJeuneConducteur = () => {
   return (
     <SEOLandingPage
       title="Assurance Auto Jeune Conducteur | Devis"
-      metaDescription="Assurance auto jeune conducteur pas chère. Courtier spécialisé, tarifs négociés auprès de 30+ assureurs. Devis gratuit en 2 min."
+      metaDescription="Assurance auto jeune conducteur moins chère. Courtier spécialisé, tarifs négociés auprès de 30+ assureurs. Devis gratuit en 2 min."
       keyword="assurance auto jeune conducteur"
       keywords="assurance jeune conducteur, assurance auto débutant, surprime jeune conducteur, assurance permis probatoire"
       canonical="https://www.jemassuremoinscher.fr/assurance-auto-jeune-conducteur"

@@ -42,9 +42,9 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance Pas Chère : Comparateur N°1"
-        description="Comparateur d'assurances gratuit. Comparez 50+ assureurs, trouvez l'assurance pas chère. Économisez 40%."
-        keyword="assurance pas chère"
+        title="Assurance Moins Chère : Comparer gratuitement en 2 minutes"
+        description="Comparateur d'assurances gratuit. Comparez 50+ assureurs, trouvez l'assurance moins chère. Économisez 40%."
+        keyword="assurance moins chère"
         keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
         canonical="https://www.jemassuremoinscher.fr/"
         jsonLd={[organizationSchema, serviceSchema, ratingSchema, faqSchema]}

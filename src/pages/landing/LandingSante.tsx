@@ -9,7 +9,7 @@ const LandingSante = () => {
   const jsonLd = [
     addOrganizationSchema(),
     addServiceSchema({
-      name: 'Mutuelle Santé pas chère',
+      name: 'Mutuelle Santé moins chère',
       description: 'Comparez les meilleures mutuelles santé et économisez jusqu\'à 800€/an. Devis gratuit en 2 minutes.',
       provider: 'jemassuremoinscher',
       areaServed: 'France',
@@ -20,9 +20,9 @@ const LandingSante = () => {
   return (
     <>
       <SEOOptimized
-        title="Mutuelle Santé Pas Chère | Devis Gratuit"
+        title="Mutuelle Santé Moins Chère | Devis Gratuit"
         description="Comparez les mutuelles santé en 2 min. Expert dédié, rappel sous 2h. Économisez 800€/an."
-        keyword="mutuelle santé pas chère"
+        keyword="mutuelle santé moins chère"
         keywords="devis mutuelle gratuit, comparateur mutuelle santé"
         jsonLd={jsonLd}
         noindex

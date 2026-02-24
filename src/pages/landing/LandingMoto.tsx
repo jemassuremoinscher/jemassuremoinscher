@@ -9,7 +9,7 @@ const LandingMoto = () => {
   const jsonLd = [
     addOrganizationSchema(),
     addServiceSchema({
-      name: 'Assurance Moto pas chère',
+      name: 'Assurance Moto moins chère',
       description: 'Comparez les meilleures assurances moto et économisez jusqu\'à 450€/an. Devis gratuit en 2 minutes.',
       provider: 'jemassuremoinscher',
       areaServed: 'France',
@@ -20,9 +20,9 @@ const LandingMoto = () => {
   return (
     <>
       <SEOOptimized
-        title="Assurance Moto Pas Chère | Devis Gratuit"
+        title="Assurance Moto Moins Chère | Devis Gratuit"
         description="Comparez les assurances moto en 2 min. Expert dédié, rappel sous 2h. Économisez 450€/an."
-        keyword="assurance moto pas chère"
+        keyword="assurance moto moins chère"
         keywords="devis assurance moto, comparateur assurance scooter"
         jsonLd={jsonLd}
         noindex
