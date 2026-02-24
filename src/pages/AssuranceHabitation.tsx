@@ -85,7 +85,7 @@ const AssuranceHabitation = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Habitation Moins Chère | Comparateur" description="Comparez les assurances habitation. Devis gratuit. Économisez jusqu'à 300€/an sur votre contrat." keyword="assurance habitation moins chère" keywords="assurance maison, assurance appartement pas cher" canonical="https://www.jemassuremoinscher.fr/assurance-habitation" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Habitation Moins Chère | Comparateur" description="Comparez les assurances habitation. Devis gratuit. Économisez jusqu'à 40% sur votre contrat." keyword="assurance habitation moins chère" keywords="assurance maison, assurance appartement pas cher" canonical="https://www.jemassuremoinscher.fr/assurance-habitation" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
       <Header />
 
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
