@@ -19,6 +19,7 @@ import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from '@/utils/seo
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import arthurHouse from '@/assets/mascotte/arthur-house.png';
+import ArthurHero from "@/components/insurance/ArthurHero";
 import arthurFlying from '@/assets/mascotte/arthur-welcome.png';
 
 const formSchema = z.object({
@@ -98,9 +99,8 @@ const AssurancePNO = () => {
       <Header />
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
-          <div className="flex justify-center mb-6"><img src={arthurHouse} alt="Arthur devant une maison - assurance PNO moins chère" className="w-24 md:w-32 lg:w-36 h-auto" loading="eager" decoding="async" /></div>
+          <ArthurHero imageSrc={arthurHouse} imageAlt="Arthur devant une maison - assurance PNO moins chère" speechText={t('pnoPage.subtitle')} />
           <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('pnoPage.title')}</h1>
-          <p className="text-xl text-muted-foreground mb-8">{t('pnoPage.subtitle')}</p>
           <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
         </div></div>
       </section>
