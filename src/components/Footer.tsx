@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import logoNew from "@/assets/logo-new.png";
+import arthurRunning from "@/assets/mascotte/arthur-running.png";
 
 type ModalType = "mentions" | "cgu" | "confidentialite" | null;
 
@@ -83,9 +83,9 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col items-center text-center gap-4">
             <img
-              src={logoNew}
-              alt="Jemassuremoinscher.fr - Comparateur assurance moins chère"
-              className="h-10 w-auto brightness-0 invert"
+              src={arthurRunning}
+              alt="Arthur, mascotte de jemassuremoinscher.fr"
+              className="h-16 w-auto"
               loading="lazy"
               decoding="async"
             />
