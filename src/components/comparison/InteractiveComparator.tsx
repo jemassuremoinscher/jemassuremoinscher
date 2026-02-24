@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Check, TrendingDown, Star, Sparkles, Share2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
 import { SubscriptionModal } from './SubscriptionModal';
 import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -25,39 +26,46 @@ interface InsuranceOffer {
   popular?: boolean;
 }
 
-const baseOffers: Omit<InsuranceOffer, 'price' | 'originalPrice'>[] = [
-  {
-    id: '1', insurer: 'AXA', rating: 4.8, coverage: 'Premium',
-    benefits: ['Assistance 24/7', 'Franchise 0€', 'Véhicule de remplacement', 'Protection juridique'],
-    popular: true,
-  },
-  {
-    id: '2', insurer: 'MAIF', rating: 4.7, coverage: 'Tous risques',
-    benefits: ['Bris de glace inclus', 'Protection conducteur', 'Assistance 0 km'],
-  },
-  {
-    id: '3', insurer: 'Allianz', rating: 4.6, coverage: 'Confort',
-    benefits: ['Garantie valeur à neuf', 'Prêt de véhicule', 'Assistance Europe'],
-  },
-  {
-    id: '4', insurer: 'Groupama', rating: 4.5, coverage: 'Optimal',
-    benefits: ['Couverture catastrophes naturelles', 'Protection famille', 'Garage agréé'],
-  },
-  {
-    id: '5', insurer: 'MACIF', rating: 4.7, coverage: 'Essentiel+',
-    benefits: ['Vol et incendie', 'Dommages collision', 'Assistance panne'],
-  },
-  {
-    id: '6', insurer: 'Direct Assurance', rating: 4.2, coverage: 'Éco',
-    benefits: ['Responsabilité civile', 'Assistance de base'],
-  },
-];
+const offersByType: Record<string, Omit<InsuranceOffer, 'price' | 'originalPrice'>[]> = {
+  auto: [
+    { id: '1', insurer: 'AXA', rating: 4.8, coverage: 'Premium', benefits: ['Assistance 24/7', 'Franchise 0€', 'Véhicule de remplacement', 'Protection juridique'], popular: true },
+    { id: '2', insurer: 'MAIF', rating: 4.7, coverage: 'Tous risques', benefits: ['Bris de glace inclus', 'Protection conducteur', 'Assistance 0 km'] },
+    { id: '3', insurer: 'Allianz', rating: 4.6, coverage: 'Confort', benefits: ['Garantie valeur à neuf', 'Prêt de véhicule', 'Assistance Europe'] },
+    { id: '4', insurer: 'Groupama', rating: 4.5, coverage: 'Optimal', benefits: ['Catastrophes naturelles', 'Protection famille', 'Garage agréé'] },
+    { id: '5', insurer: 'MACIF', rating: 4.7, coverage: 'Essentiel+', benefits: ['Vol et incendie', 'Dommages collision', 'Assistance panne'] },
+    { id: '6', insurer: 'Direct Assurance', rating: 4.2, coverage: 'Éco', benefits: ['Responsabilité civile', 'Assistance de base'] },
+  ],
+  moto: [
+    { id: '1', insurer: 'AXA', rating: 4.8, coverage: 'Premium', benefits: ['Assistance 24/7', 'Équipement pilote couvert', 'Vol et incendie', 'Protection juridique'], popular: true },
+    { id: '2', insurer: 'MAIF', rating: 4.7, coverage: 'Tous risques', benefits: ['Casque et gants couverts', 'Protection conducteur', 'Assistance 0 km'] },
+    { id: '3', insurer: 'Allianz', rating: 4.6, coverage: 'Confort', benefits: ['Valeur à neuf 2 ans', 'Accessoires couverts', 'Assistance Europe'] },
+    { id: '4', insurer: 'Groupama', rating: 4.5, coverage: 'Optimal', benefits: ['Catastrophes naturelles', 'Prêt de 2 roues', 'Garage agréé'] },
+    { id: '5', insurer: 'MACIF', rating: 4.7, coverage: 'Essentiel+', benefits: ['Vol et incendie', 'Dommages collision', 'Assistance panne'] },
+    { id: '6', insurer: 'Direct Assurance', rating: 4.2, coverage: 'Éco', benefits: ['Responsabilité civile', 'Assistance de base'] },
+  ],
+  habitation: [
+    { id: '1', insurer: 'AXA', rating: 4.8, coverage: 'Premium', benefits: ['Dégâts des eaux', 'Vol et vandalisme', 'Rééquipement à neuf', 'Protection juridique'], popular: true },
+    { id: '2', insurer: 'MAIF', rating: 4.7, coverage: 'Tous risques', benefits: ['Incendie et explosion', 'Bris de glace', 'Catastrophes naturelles'] },
+    { id: '3', insurer: 'Allianz', rating: 4.6, coverage: 'Confort', benefits: ['Responsabilité civile vie privée', 'Objets de valeur', 'Jardin et piscine'] },
+    { id: '4', insurer: 'Groupama', rating: 4.5, coverage: 'Optimal', benefits: ['Dommages électriques', 'Assistance serrurerie', 'Relogement temporaire'] },
+    { id: '5', insurer: 'MACIF', rating: 4.7, coverage: 'Essentiel+', benefits: ['Dégâts des eaux', 'Incendie', 'Responsabilité civile'] },
+    { id: '6', insurer: 'Direct Assurance', rating: 4.2, coverage: 'Éco', benefits: ['Responsabilité civile', 'Incendie de base'] },
+  ],
+  sante: [
+    { id: '1', insurer: 'AXA', rating: 4.8, coverage: 'Premium', benefits: ['Hospitalisation 100%', 'Dentaire 300%', 'Optique 400€/an', 'Médecines douces'], popular: true },
+    { id: '2', insurer: 'Harmonie Mutuelle', rating: 4.7, coverage: 'Intégrale', benefits: ['Hospitalisation chambre seule', 'Orthodontie adulte', 'Cure thermale'] },
+    { id: '3', insurer: 'Allianz', rating: 4.6, coverage: 'Confort', benefits: ['Consultation spécialistes 100%', 'Optique 300€/an', 'Prothèses dentaires'] },
+    { id: '4', insurer: 'Groupama', rating: 4.5, coverage: 'Optimal', benefits: ['Hospitalisation 150%', 'Pharmacie remboursée', 'Téléconsultation incluse'] },
+    { id: '5', insurer: 'MACIF', rating: 4.7, coverage: 'Essentiel+', benefits: ['Consultation généraliste 100%', 'Dentaire 200%', 'Optique 200€/an'] },
+    { id: '6', insurer: 'MGEN', rating: 4.3, coverage: 'Éco', benefits: ['Soins courants 100%', 'Hospitalisation de base'] },
+  ],
+};
 
 /** Generate dynamic prices so there's always at least one offer below currentPrice */
-const generateOffers = (currentPrice: number): InsuranceOffer[] => {
-  // Spread ratios relative to currentPrice (all < 1 means cheaper)
+const generateOffers = (currentPrice: number, type: string): InsuranceOffer[] => {
   const ratios = [0.70, 0.75, 0.80, 0.85, 0.78, 0.55];
-  return baseOffers.map((offer, i) => {
+  const offers = offersByType[type] || offersByType.auto;
+  return offers.map((offer, i) => {
     const price = Math.max(9, Math.round(currentPrice * ratios[i]));
     const originalPrice = Math.round(price * (1.25 + Math.random() * 0.15));
     return { ...offer, price, originalPrice };
@@ -98,14 +106,14 @@ export const InteractiveComparator = () => {
   };
 
   const filteredOffers = useMemo(() => {
-    return generateOffers(currentPrice[0])
+    return generateOffers(currentPrice[0], insuranceType)
       .map(offer => ({ ...offer, savings: offer.originalPrice - offer.price }))
       .sort((a, b) => {
         if (sortBy === 'price') return a.price - b.price;
         if (sortBy === 'coverage') return b.benefits.length - a.benefits.length;
         return b.rating - a.rating;
       });
-  }, [sortBy, currentPrice]);
+  }, [sortBy, currentPrice, insuranceType]);
 
   const totalYearlySavings = useMemo(() => {
     const bestOffer = filteredOffers[0];
@@ -306,8 +314,14 @@ export const InteractiveComparator = () => {
             <p className="text-white/80 mb-6 max-w-xl mx-auto">
               {t('comparator.expertHelp')}
             </p>
-            <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 rounded-full text-lg">
-              {t('comparator.talkExpert')}
+            <Button 
+              size="lg" 
+              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 rounded-full text-lg"
+              asChild
+            >
+              <Link to="/contact">
+                {t('comparator.talkExpert')}
+              </Link>
             </Button>
           </div>
           <img src={arthurFlying} alt="" aria-hidden="true" className="absolute -top-10 right-4 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none" />
