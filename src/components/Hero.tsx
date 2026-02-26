@@ -90,7 +90,7 @@ const Hero = () => {
                 aria-hidden="true" 
               />
             </span>
-            {t('hero.title')} <br />
+            {t('hero.titleAccentSuffix')}{t('hero.title')} <br />
             <span className="text-accent">{t('hero.titleHighlight')}</span>
           </motion.h1>
           {/* SEO-optimized hidden H1 for search engines */}
