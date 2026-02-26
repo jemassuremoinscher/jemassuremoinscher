@@ -45,7 +45,8 @@ const fr: Record<string, string> = {
   'insurance.rentalManagement': 'Gestion Locative',
   
   // Hero
-  'hero.titleAccent': 'Le site',
+  'hero.titleAccent': 'LE',
+  'hero.titleAccentSuffix': ' site',
   'hero.title': ' pour trouver son assurance moins chère,',
   'hero.titleHighlight': 'sans compromis.',
   'hero.subtitle': 'Comparez',
@@ -1526,7 +1527,8 @@ const en: Record<string, string> = {
   'insurance.rentalManagement': 'Property Management',
   
   // Hero
-  'hero.titleAccent': 'The site',
+  'hero.titleAccent': 'THE',
+  'hero.titleAccentSuffix': ' site',
   'hero.title': ' to find cheaper insurance,',
   'hero.titleHighlight': 'without compromise.',
   'hero.subtitle': 'Compare',
