@@ -42,130 +42,130 @@ const INSURANCE_TYPES: { value: InsuranceType; labelKey: string; icon: React.Ele
 ];
 
 // Profile options per insurance type (step 2)
-const PROFILE_OPTIONS: Record<string, { value: string; label: string; emoji: string; desc?: string }[]> = {
+const PROFILE_OPTIONS: Record<string, { value: string; labelKey: string; emoji: string; descKey?: string }[]> = {
   auto: [
-    { value: "citadine", label: "Citadine", emoji: "🚗", desc: "Clio, 208, C3..." },
-    { value: "berline", label: "Berline", emoji: "🚙", desc: "308, Mégane..." },
-    { value: "suv", label: "SUV / 4x4", emoji: "🚐", desc: "3008, Tucson..." },
+    { value: "citadine", labelKey: "profile.auto.citadine", emoji: "🚗", descKey: "profile.auto.citadineDesc" },
+    { value: "berline", labelKey: "profile.auto.berline", emoji: "🚙", descKey: "profile.auto.berlineDesc" },
+    { value: "suv", labelKey: "profile.auto.suv", emoji: "🚐", descKey: "profile.auto.suvDesc" },
   ],
   moto: [
-    { value: "scooter", label: "Scooter / 125cc", emoji: "🛵" },
-    { value: "routiere", label: "Routière", emoji: "🏍️" },
-    { value: "sportive", label: "Sportive", emoji: "🏎️" },
+    { value: "scooter", labelKey: "profile.moto.scooter", emoji: "🛵" },
+    { value: "routiere", labelKey: "profile.moto.routiere", emoji: "🏍️" },
+    { value: "sportive", labelKey: "profile.moto.sportive", emoji: "🏎️" },
   ],
   habitation: [
-    { value: "appartement", label: "Appartement", emoji: "🏢" },
-    { value: "maison", label: "Maison", emoji: "🏠" },
-    { value: "studio", label: "Studio / T1", emoji: "🛏️" },
+    { value: "appartement", labelKey: "profile.habitation.appartement", emoji: "🏢" },
+    { value: "maison", labelKey: "profile.habitation.maison", emoji: "🏠" },
+    { value: "studio", labelKey: "profile.habitation.studio", emoji: "🛏️" },
   ],
   sante: [
-    { value: "seul", label: "Seul(e)", emoji: "👤" },
-    { value: "couple", label: "Couple", emoji: "👫" },
-    { value: "famille", label: "Famille", emoji: "👨‍👩‍👧‍👦" },
+    { value: "seul", labelKey: "profile.sante.seul", emoji: "👤" },
+    { value: "couple", labelKey: "profile.sante.couple", emoji: "👫" },
+    { value: "famille", labelKey: "profile.sante.famille", emoji: "👨‍👩‍👧‍👦" },
   ],
   pret: [
-    { value: "immobilier", label: "Prêt immobilier", emoji: "🏠" },
-    { value: "conso", label: "Prêt conso", emoji: "💳" },
-    { value: "professionnel", label: "Prêt pro", emoji: "💼" },
+    { value: "immobilier", labelKey: "profile.pret.immobilier", emoji: "🏠" },
+    { value: "conso", labelKey: "profile.pret.conso", emoji: "💳" },
+    { value: "professionnel", labelKey: "profile.pret.professionnel", emoji: "💼" },
   ],
   animaux: [
-    { value: "chien", label: "Chien", emoji: "🐕" },
-    { value: "chat", label: "Chat", emoji: "🐈" },
-    { value: "nac", label: "NAC / Autre", emoji: "🐰" },
+    { value: "chien", labelKey: "profile.animaux.chien", emoji: "🐕" },
+    { value: "chat", labelKey: "profile.animaux.chat", emoji: "🐈" },
+    { value: "nac", labelKey: "profile.animaux.nac", emoji: "🐰" },
   ],
   vie: [
-    { value: "epargne", label: "Épargne", emoji: "💰" },
-    { value: "succession", label: "Succession", emoji: "📋" },
-    { value: "retraite", label: "Retraite", emoji: "🏖️" },
+    { value: "epargne", labelKey: "profile.vie.epargne", emoji: "💰" },
+    { value: "succession", labelKey: "profile.vie.succession", emoji: "📋" },
+    { value: "retraite", labelKey: "profile.vie.retraite", emoji: "🏖️" },
   ],
   prevoyance: [
-    { value: "salarie", label: "Salarié", emoji: "👨‍💼" },
-    { value: "independant", label: "Indépendant", emoji: "💼" },
-    { value: "famille", label: "Protection famille", emoji: "👨‍👩‍👧" },
+    { value: "salarie", labelKey: "profile.prevoyance.salarie", emoji: "👨‍💼" },
+    { value: "independant", labelKey: "profile.prevoyance.independant", emoji: "💼" },
+    { value: "famille", labelKey: "profile.prevoyance.famille", emoji: "👨‍👩‍👧" },
   ],
   rc_pro: [
-    { value: "liberal", label: "Profession libérale", emoji: "⚖️" },
-    { value: "artisan", label: "Artisan / Commerce", emoji: "🔧" },
-    { value: "tech", label: "IT / Conseil", emoji: "💻" },
+    { value: "liberal", labelKey: "profile.rcPro.liberal", emoji: "⚖️" },
+    { value: "artisan", labelKey: "profile.rcPro.artisan", emoji: "🔧" },
+    { value: "tech", labelKey: "profile.rcPro.tech", emoji: "💻" },
   ],
   mrp: [
-    { value: "bureau", label: "Bureau", emoji: "🏢" },
-    { value: "commerce", label: "Commerce", emoji: "🏪" },
-    { value: "atelier", label: "Atelier / Entrepôt", emoji: "🏭" },
+    { value: "bureau", labelKey: "profile.mrp.bureau", emoji: "🏢" },
+    { value: "commerce", labelKey: "profile.mrp.commerce", emoji: "🏪" },
+    { value: "atelier", labelKey: "profile.mrp.atelier", emoji: "🏭" },
   ],
   gli: [
-    { value: "1_lot", label: "1 lot", emoji: "🏠" },
-    { value: "2_5_lots", label: "2-5 lots", emoji: "🏘️" },
-    { value: "6_plus", label: "6+ lots", emoji: "🏗️" },
+    { value: "1_lot", labelKey: "profile.gli.1lot", emoji: "🏠" },
+    { value: "2_5_lots", labelKey: "profile.gli.2_5lots", emoji: "🏘️" },
+    { value: "6_plus", labelKey: "profile.gli.6plus", emoji: "🏗️" },
   ],
   pno: [
-    { value: "appartement", label: "Appartement", emoji: "🏢" },
-    { value: "maison", label: "Maison", emoji: "🏠" },
-    { value: "immeuble", label: "Immeuble", emoji: "🏗️" },
+    { value: "appartement", labelKey: "profile.pno.appartement", emoji: "🏢" },
+    { value: "maison", labelKey: "profile.pno.maison", emoji: "🏠" },
+    { value: "immeuble", labelKey: "profile.pno.immeuble", emoji: "🏗️" },
   ],
 };
 
 // Coverage levels per insurance type (step 3)
-const COVERAGE_OPTIONS: Record<string, { value: string; label: string; emoji: string; desc: string }[]> = {
+const COVERAGE_OPTIONS: Record<string, { value: string; labelKey: string; emoji: string; descKey: string }[]> = {
   auto: [
-    { value: "tiers", label: "Tiers", emoji: "🛡️", desc: "Responsabilité civile" },
-    { value: "tiers_plus", label: "Tiers+", emoji: "🛡️✨", desc: "RC + vol, incendie, bris de glace" },
-    { value: "tous_risques", label: "Tous Risques", emoji: "🏆", desc: "Couverture maximale" },
+    { value: "tiers", labelKey: "qq.cov.auto.tiers", emoji: "🛡️", descKey: "qq.cov.auto.tiersDesc" },
+    { value: "tiers_plus", labelKey: "qq.cov.auto.tiersPlus", emoji: "🛡️✨", descKey: "qq.cov.auto.tiersPlusDesc" },
+    { value: "tous_risques", labelKey: "qq.cov.auto.tousRisques", emoji: "🏆", descKey: "qq.cov.auto.tousRisquesDesc" },
   ],
   moto: [
-    { value: "tiers", label: "Tiers", emoji: "🛡️", desc: "Responsabilité civile" },
-    { value: "tiers_plus", label: "Tiers+", emoji: "🛡️✨", desc: "RC + vol, incendie" },
-    { value: "tous_risques", label: "Tous Risques", emoji: "🏆", desc: "Protection complète" },
+    { value: "tiers", labelKey: "qq.cov.moto.tiers", emoji: "🛡️", descKey: "qq.cov.moto.tiersDesc" },
+    { value: "tiers_plus", labelKey: "qq.cov.moto.tiersPlus", emoji: "🛡️✨", descKey: "qq.cov.moto.tiersPlusDesc" },
+    { value: "tous_risques", labelKey: "qq.cov.moto.tousRisques", emoji: "🏆", descKey: "qq.cov.moto.tousRisquesDesc" },
   ],
   habitation: [
-    { value: "essentielle", label: "Essentielle", emoji: "🛡️", desc: "Garanties de base" },
-    { value: "confort", label: "Confort", emoji: "🛡️✨", desc: "Vol + dégâts des eaux" },
-    { value: "premium", label: "Premium", emoji: "🏆", desc: "Toutes garanties" },
+    { value: "essentielle", labelKey: "qq.cov.habitation.essentielle", emoji: "🛡️", descKey: "qq.cov.habitation.essentielleDesc" },
+    { value: "confort", labelKey: "qq.cov.habitation.confort", emoji: "🛡️✨", descKey: "qq.cov.habitation.confortDesc" },
+    { value: "premium", labelKey: "qq.cov.habitation.premium", emoji: "🏆", descKey: "qq.cov.habitation.premiumDesc" },
   ],
   sante: [
-    { value: "economique", label: "Économique", emoji: "🛡️", desc: "Soins courants" },
-    { value: "equilibre", label: "Équilibre", emoji: "🛡️✨", desc: "Optique + dentaire" },
-    { value: "integrale", label: "Intégrale", emoji: "🏆", desc: "Remboursements max" },
+    { value: "economique", labelKey: "qq.cov.sante.economique", emoji: "🛡️", descKey: "qq.cov.sante.economiqueDesc" },
+    { value: "equilibre", labelKey: "qq.cov.sante.equilibre", emoji: "🛡️✨", descKey: "qq.cov.sante.equilibreDesc" },
+    { value: "integrale", labelKey: "qq.cov.sante.integrale", emoji: "🏆", descKey: "qq.cov.sante.integraleDesc" },
   ],
   pret: [
-    { value: "deces", label: "Décès", emoji: "🛡️", desc: "Garantie de base" },
-    { value: "deces_ipt", label: "Décès + IPT", emoji: "🛡️✨", desc: "+ Invalidité permanente" },
-    { value: "deces_ipt_itt", label: "Décès + IPT + ITT", emoji: "🏆", desc: "+ Incapacité temporaire" },
+    { value: "deces", labelKey: "qq.cov.pret.deces", emoji: "🛡️", descKey: "qq.cov.pret.decesDesc" },
+    { value: "deces_ipt", labelKey: "qq.cov.pret.decesIpt", emoji: "🛡️✨", descKey: "qq.cov.pret.decesIptDesc" },
+    { value: "deces_ipt_itt", labelKey: "qq.cov.pret.decesIptItt", emoji: "🏆", descKey: "qq.cov.pret.decesIptIttDesc" },
   ],
   animaux: [
-    { value: "accident", label: "Accident", emoji: "🛡️", desc: "Accidents uniquement" },
-    { value: "maladie_accident", label: "Maladie + Accident", emoji: "🛡️✨", desc: "Couverture élargie" },
-    { value: "integrale", label: "Intégrale", emoji: "🏆", desc: "Prévention incluse" },
+    { value: "accident", labelKey: "qq.cov.animaux.accident", emoji: "🛡️", descKey: "qq.cov.animaux.accidentDesc" },
+    { value: "maladie_accident", labelKey: "qq.cov.animaux.maladieAccident", emoji: "🛡️✨", descKey: "qq.cov.animaux.maladieAccidentDesc" },
+    { value: "integrale", labelKey: "qq.cov.animaux.integrale", emoji: "🏆", descKey: "qq.cov.animaux.integraleDesc" },
   ],
   vie: [
-    { value: "epargne", label: "Épargne", emoji: "🛡️", desc: "Fonds euros" },
-    { value: "protection", label: "Protection", emoji: "🛡️✨", desc: "Capital décès" },
-    { value: "mixte", label: "Mixte", emoji: "🏆", desc: "Épargne + protection" },
+    { value: "epargne", labelKey: "qq.cov.vie.epargne", emoji: "🛡️", descKey: "qq.cov.vie.epargneDesc" },
+    { value: "protection", labelKey: "qq.cov.vie.protection", emoji: "🛡️✨", descKey: "qq.cov.vie.protectionDesc" },
+    { value: "mixte", labelKey: "qq.cov.vie.mixte", emoji: "🏆", descKey: "qq.cov.vie.mixteDesc" },
   ],
   prevoyance: [
-    { value: "essentielle", label: "Essentielle", emoji: "🛡️", desc: "Arrêt de travail" },
-    { value: "confort", label: "Confort", emoji: "🛡️✨", desc: "+ Invalidité" },
-    { value: "integrale", label: "Intégrale", emoji: "🏆", desc: "Protection complète" },
+    { value: "essentielle", labelKey: "qq.cov.prevoyance.essentielle", emoji: "🛡️", descKey: "qq.cov.prevoyance.essentielleDesc" },
+    { value: "confort", labelKey: "qq.cov.prevoyance.confort", emoji: "🛡️✨", descKey: "qq.cov.prevoyance.confortDesc" },
+    { value: "integrale", labelKey: "qq.cov.prevoyance.integrale", emoji: "🏆", descKey: "qq.cov.prevoyance.integraleDesc" },
   ],
   rc_pro: [
-    { value: "basique", label: "Basique", emoji: "🛡️", desc: "RC obligatoire" },
-    { value: "standard", label: "Standard", emoji: "🛡️✨", desc: "+ Protection juridique" },
-    { value: "premium", label: "Premium", emoji: "🏆", desc: "Couverture étendue" },
+    { value: "basique", labelKey: "qq.cov.rcPro.basique", emoji: "🛡️", descKey: "qq.cov.rcPro.basiqueDesc" },
+    { value: "standard", labelKey: "qq.cov.rcPro.standard", emoji: "🛡️✨", descKey: "qq.cov.rcPro.standardDesc" },
+    { value: "premium", labelKey: "qq.cov.rcPro.premium", emoji: "🏆", descKey: "qq.cov.rcPro.premiumDesc" },
   ],
   mrp: [
-    { value: "essentielle", label: "Essentielle", emoji: "🛡️", desc: "Garanties de base" },
-    { value: "confort", label: "Confort", emoji: "🛡️✨", desc: "+ Perte d'exploitation" },
-    { value: "premium", label: "Premium", emoji: "🏆", desc: "Toutes garanties" },
+    { value: "essentielle", labelKey: "qq.cov.mrp.essentielle", emoji: "🛡️", descKey: "qq.cov.mrp.essentielleDesc" },
+    { value: "confort", labelKey: "qq.cov.mrp.confort", emoji: "🛡️✨", descKey: "qq.cov.mrp.confortDesc" },
+    { value: "premium", labelKey: "qq.cov.mrp.premium", emoji: "🏆", descKey: "qq.cov.mrp.premiumDesc" },
   ],
   gli: [
-    { value: "basique", label: "Basique", emoji: "🛡️", desc: "Loyers impayés" },
-    { value: "standard", label: "Standard", emoji: "🛡️✨", desc: "+ Dégradations" },
-    { value: "premium", label: "Premium", emoji: "🏆", desc: "+ Protection juridique" },
+    { value: "basique", labelKey: "qq.cov.gli.basique", emoji: "🛡️", descKey: "qq.cov.gli.basiqueDesc" },
+    { value: "standard", labelKey: "qq.cov.gli.standard", emoji: "🛡️✨", descKey: "qq.cov.gli.standardDesc" },
+    { value: "premium", labelKey: "qq.cov.gli.premium", emoji: "🏆", descKey: "qq.cov.gli.premiumDesc" },
   ],
   pno: [
-    { value: "essentielle", label: "Essentielle", emoji: "🛡️", desc: "RC propriétaire" },
-    { value: "confort", label: "Confort", emoji: "🛡️✨", desc: "+ Dommages au bien" },
-    { value: "premium", label: "Premium", emoji: "🏆", desc: "Protection totale" },
+    { value: "essentielle", labelKey: "qq.cov.pno.essentielle", emoji: "🛡️", descKey: "qq.cov.pno.essentielleDesc" },
+    { value: "confort", labelKey: "qq.cov.pno.confort", emoji: "🛡️✨", descKey: "qq.cov.pno.confortDesc" },
+    { value: "premium", labelKey: "qq.cov.pno.premium", emoji: "🏆", descKey: "qq.cov.pno.premiumDesc" },
   ],
 };
 
@@ -330,8 +330,8 @@ const QuickQuoteSection = () => {
                         {quoteData.profileOption === option.value && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute top-2 right-2 w-6 h-6 rounded-full bg-primary flex items-center justify-center"><Check className="w-4 h-4 text-primary-foreground" /></motion.div>}
                         <div className="flex flex-col items-center text-center gap-2">
                           <span className="text-3xl mb-1">{option.emoji}</span>
-                          <span className="font-bold text-foreground">{option.label}</span>
-                          {option.desc && <span className="text-xs text-muted-foreground">{option.desc}</span>}
+                          <span className="font-bold text-foreground">{t(option.labelKey)}</span>
+                          {option.descKey && <span className="text-xs text-muted-foreground">{t(option.descKey)}</span>}
                         </div>
                         <RadioGroupItem value={option.value} id={`profile-${option.value}`} className="sr-only" />
                       </div>
@@ -355,8 +355,8 @@ const QuickQuoteSection = () => {
                         {quoteData.coverageLevel === option.value && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute top-2 right-2 w-6 h-6 rounded-full bg-primary flex items-center justify-center"><Check className="w-4 h-4 text-primary-foreground" /></motion.div>}
                         <div className="flex flex-col items-center text-center gap-2">
                           <span className="text-3xl mb-1">{option.emoji}</span>
-                          <span className="font-bold text-foreground">{option.label}</span>
-                          <span className="text-xs text-muted-foreground">{option.desc}</span>
+                          <span className="font-bold text-foreground">{t(option.labelKey)}</span>
+                          <span className="text-xs text-muted-foreground">{t(option.descKey)}</span>
                         </div>
                         <RadioGroupItem value={option.value} id={`coverage-${option.value}`} className="sr-only" />
                       </div>
