@@ -2,19 +2,45 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 import Autoplay from "embla-carousel-autoplay";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
-import axaLogo from "@/assets/logos/axa.webp";
-import allianzLogo from "@/assets/logos/allianz.webp";
-import maifLogo from "@/assets/logos/maif.webp";
-import generaliLogo from "@/assets/logos/generali.jpg";
-import matmutLogo from "@/assets/logos/matmut.webp";
-import swissLifeLogo from "@/assets/logos/swisslife.webp";
+
 import agfLogo from "@/assets/logos/agf.png";
+import allianzLogo from "@/assets/logos/allianz.webp";
+import amaguizLogo from "@/assets/logos/amaguiz.jpg";
+import aonLogo from "@/assets/logos/aon.jpg";
+import aprilLogo from "@/assets/logos/april-new.png";
+import axaLogo from "@/assets/logos/axa.webp";
+import directAssuranceLogo from "@/assets/logos/direct-assurance-new.png";
+import ganLogo from "@/assets/logos/gan.svg";
+import generaliLogo from "@/assets/logos/generali.jpg";
+import gmfLogo from "@/assets/logos/gmf-new.png";
+import lolivierLogo from "@/assets/logos/lolivier.png";
 import maafLogo from "@/assets/logos/maaf.webp";
+import macifLogo from "@/assets/logos/macif-new.png";
+import maifLogo from "@/assets/logos/maif.webp";
+import matmutLogo from "@/assets/logos/matmut.webp";
+import maxanceLogo from "@/assets/logos/maxance.png";
+import mmaLogo from "@/assets/logos/mma-new.webp";
+import swissLifeLogo from "@/assets/logos/swisslife.webp";
 
 const partners = [
-  { name: "AXA", logo: axaLogo }, { name: "Allianz", logo: allianzLogo }, { name: "MAIF", logo: maifLogo },
-  { name: "Generali", logo: generaliLogo }, { name: "Matmut", logo: matmutLogo }, { name: "SwissLife", logo: swissLifeLogo },
-  { name: "AGF", logo: agfLogo }, { name: "MAAF", logo: maafLogo },
+  { name: "AGF", logo: agfLogo },
+  { name: "Allianz", logo: allianzLogo },
+  { name: "Amaguiz", logo: amaguizLogo },
+  { name: "AON", logo: aonLogo },
+  { name: "April", logo: aprilLogo },
+  { name: "AXA", logo: axaLogo },
+  { name: "Direct Assurance", logo: directAssuranceLogo },
+  { name: "GAN", logo: ganLogo },
+  { name: "Generali", logo: generaliLogo },
+  { name: "GMF", logo: gmfLogo },
+  { name: "L'Olivier Assurance", logo: lolivierLogo },
+  { name: "MAAF", logo: maafLogo },
+  { name: "MACIF", logo: macifLogo },
+  { name: "MAIF", logo: maifLogo },
+  { name: "Matmut", logo: matmutLogo },
+  { name: "Maxance", logo: maxanceLogo },
+  { name: "MMA", logo: mmaLogo },
+  { name: "SwissLife", logo: swissLifeLogo },
 ];
 
 const Partners = () => {
@@ -38,8 +64,8 @@ const Partners = () => {
           <CarouselContent className="-ml-4">
             {partners.map((partner, index) => (
               <CarouselItem key={index} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6">
-                <div className="flex items-center justify-center p-6 bg-card rounded-xl border-2 border-border hover:border-primary/30 hover-lift transition-all duration-300 group h-24 cursor-pointer" onClick={() => trackEvent('partner_click', { category: 'engagement', partner_name: partner.name, label: 'partner_logo' })}>
-                  {partner.logo ? (<img src={partner.logo} alt={`Logo ${partner.name}`} className="max-h-16 max-w-full object-contain" loading="lazy" decoding="async" />) : (<span className="font-bold text-primary text-base text-center group-hover:text-accent transition-colors">{partner.name}</span>)}
+                <div className="flex items-center justify-center p-4 bg-card rounded-xl border-2 border-border hover:border-primary/30 hover-lift transition-all duration-300 group h-24 w-full cursor-pointer" onClick={() => trackEvent('partner_click', { category: 'engagement', partner_name: partner.name, label: 'partner_logo' })}>
+                  <img src={partner.logo} alt={`Logo ${partner.name}`} className="max-h-14 max-w-[90%] object-contain" loading="lazy" decoding="async" />
                 </div>
               </CarouselItem>
             ))}
