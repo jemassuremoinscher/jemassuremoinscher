@@ -1346,10 +1346,10 @@ const fr: Record<string, string> = {
   // Partners Component
   'partnersComponent.badge': 'Nos partenaires',
   'partnersComponent.title': 'Plus de',
-  'partnersComponent.titleHighlight': '120 assureurs',
+  'partnersComponent.titleHighlight': '60 assureurs',
   'partnersComponent.titleEnd': 'comparés',
   'partnersComponent.subtitle': 'Et près de',
-  'partnersComponent.agencies': '8000 agences locales',
+  'partnersComponent.agencies': '2000 agences locales',
   'partnersComponent.autoScroll': 'Le carrousel défile automatiquement. Passez la souris dessus pour mettre en pause.',
 
   // Landing Pages Common
@@ -2943,10 +2943,10 @@ const en: Record<string, string> = {
   // Partners Component
   'partnersComponent.badge': 'Our partners',
   'partnersComponent.title': 'More than',
-  'partnersComponent.titleHighlight': '120 insurers',
+  'partnersComponent.titleHighlight': '60 insurers',
   'partnersComponent.titleEnd': 'compared',
   'partnersComponent.subtitle': 'And nearly',
-  'partnersComponent.agencies': '8,000 local agencies',
+  'partnersComponent.agencies': '2,000 local agencies',
   'partnersComponent.autoScroll': 'The carousel scrolls automatically. Hover to pause.',
 
   // Landing Pages Common
