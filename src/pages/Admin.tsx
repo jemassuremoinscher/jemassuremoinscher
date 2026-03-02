@@ -37,12 +37,11 @@ const Admin = () => {
   const quotesTableRef = useRef<HTMLDivElement>(null);
   const callbacksTableRef = useRef<HTMLDivElement>(null);
 
-  // TODO: Réactiver la redirection de sécurité
-  // useEffect(() => {
-  //   if (!loading && !user) {
-  //     navigate('/auth');
-  //   }
-  // }, [user, loading, navigate]);
+  useEffect(() => {
+    if (!loading && !user) {
+      navigate('/auth');
+    }
+  }, [user, loading, navigate]);
 
   useEffect(() => {
     if (isAdmin) {
