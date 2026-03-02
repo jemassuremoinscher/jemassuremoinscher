@@ -3,7 +3,10 @@ import Autoplay from "embla-carousel-autoplay";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+import abeilleLogo from "@/assets/logos/abeille.jpg";
+import acheelLogo from "@/assets/logos/acheel.png";
 import agfLogo from "@/assets/logos/agf.png";
+import alanLogo from "@/assets/logos/alan-new.png";
 import allianzLogo from "@/assets/logos/allianz.webp";
 import amaguizLogo from "@/assets/logos/amaguiz.jpg";
 import aonLogo from "@/assets/logos/aon.jpg";
@@ -13,17 +16,26 @@ import directAssuranceLogo from "@/assets/logos/direct-assurance-new.png";
 import ganLogo from "@/assets/logos/gan.svg";
 import generaliLogo from "@/assets/logos/generali.jpg";
 import gmfLogo from "@/assets/logos/gmf-new.png";
+import leocareLogo from "@/assets/logos/leocare.png";
 import lolivierLogo from "@/assets/logos/lolivier.png";
 import maafLogo from "@/assets/logos/maaf.webp";
 import macifLogo from "@/assets/logos/macif-new.png";
 import maifLogo from "@/assets/logos/maif.webp";
-import matmutLogo from "@/assets/logos/matmut.webp";
+import matmutLogo from "@/assets/logos/matmut-new.jpg";
 import maxanceLogo from "@/assets/logos/maxance.png";
+import milaLogo from "@/assets/logos/mila.jpg";
 import mmaLogo from "@/assets/logos/mma-new.webp";
+import mpaLogo from "@/assets/logos/mpa.png";
+import neoLogo from "@/assets/logos/neo.png";
+import ornikarLogo from "@/assets/logos/ornikar.png";
 import swissLifeLogo from "@/assets/logos/swisslife.webp";
+import wilovLogo from "@/assets/logos/wilov.jpg";
 
 const partners = [
+  { name: "Abeille Assurances", logo: abeilleLogo },
+  { name: "Acheel", logo: acheelLogo },
   { name: "AGF", logo: agfLogo },
+  { name: "Alan", logo: alanLogo },
   { name: "Allianz", logo: allianzLogo },
   { name: "Amaguiz", logo: amaguizLogo },
   { name: "AON", logo: aonLogo },
@@ -33,14 +45,20 @@ const partners = [
   { name: "GAN", logo: ganLogo },
   { name: "Generali", logo: generaliLogo },
   { name: "GMF", logo: gmfLogo },
+  { name: "Leocare", logo: leocareLogo },
   { name: "L'Olivier Assurance", logo: lolivierLogo },
   { name: "MAAF", logo: maafLogo },
   { name: "MACIF", logo: macifLogo },
   { name: "MAIF", logo: maifLogo },
   { name: "Matmut", logo: matmutLogo },
   { name: "Maxance", logo: maxanceLogo },
+  { name: "Mila", logo: milaLogo },
   { name: "MMA", logo: mmaLogo },
+  { name: "Mutuelle de Poitiers", logo: mpaLogo },
+  { name: "Neo Assurances", logo: neoLogo },
+  { name: "Ornikar", logo: ornikarLogo },
   { name: "SwissLife", logo: swissLifeLogo },
+  { name: "Wilov", logo: wilovLogo },
 ];
 
 const Partners = () => {
