@@ -8,8 +8,8 @@ import { supabase } from "@/integrations/supabase/client";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const PHONE_NUMBER = "+33686122820";
-const PHONE_DISPLAY = "06 86 12 28 20";
+const PHONE_NUMBER = "+33493881684";
+const PHONE_DISPLAY = "04 93 88 16 84";
 
 const QuickHelpSection = () => {
   const { t } = useLanguage();
