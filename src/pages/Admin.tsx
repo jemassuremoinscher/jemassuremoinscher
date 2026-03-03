@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, RefreshCw, Shield, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog, TrendingUp } from 'lucide-react';
+import { LogOut, RefreshCw, Shield, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog, TrendingUp, Menu } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { StatsCards } from '@/components/admin/StatsCards';
@@ -24,6 +24,7 @@ import { RedistributionButton } from '@/components/admin/RedistributionButton';
 import { RedistributionHistory } from '@/components/admin/RedistributionHistory';
 import { GoogleAdsDashboard } from '@/components/admin/GoogleAdsDashboard';
 import { GoogleAdsSyncButton } from '@/components/admin/GoogleAdsSyncButton';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -34,6 +35,7 @@ const Admin = () => {
   const [filteredCallbacks, setFilteredCallbacks] = useState<any[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState('dashboard');
   const quotesTableRef = useRef<HTMLDivElement>(null);
   const callbacksTableRef = useRef<HTMLDivElement>(null);
 
@@ -47,7 +49,6 @@ const Admin = () => {
     if (isAdmin) {
       fetchData();
       
-      // Set up realtime subscriptions
       const quotesChannel = supabase
         .channel('insurance_quotes_changes')
         .on('postgres_changes', { event: '*', schema: 'public', table: 'insurance_quotes' }, () => {
@@ -98,36 +99,28 @@ const Admin = () => {
   };
 
   const applyFilters = (filters: FilterOptions) => {
-    // Filter quotes
     let newFilteredQuotes = quotes.filter(quote => {
       const matchesSearch = !filters.searchQuery || 
         quote.full_name.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
         quote.email.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
         quote.phone.includes(filters.searchQuery);
-      
       const matchesType = filters.insuranceType === 'all' || quote.insurance_type === filters.insuranceType;
       const matchesStatus = filters.status === 'all' || quote.status === filters.status;
-      
       const quoteDate = new Date(quote.created_at);
       const matchesDateFrom = !filters.dateFrom || quoteDate >= filters.dateFrom;
       const matchesDateTo = !filters.dateTo || quoteDate <= filters.dateTo;
-
       return matchesSearch && matchesType && matchesStatus && matchesDateFrom && matchesDateTo;
     });
 
-    // Filter callbacks
     let newFilteredCallbacks = callbacks.filter(callback => {
       const matchesSearch = !filters.searchQuery || 
         callback.full_name.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
         callback.email.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
         callback.phone.includes(filters.searchQuery);
-      
       const matchesStatus = filters.status === 'all' || callback.status === filters.status;
-      
       const callbackDate = new Date(callback.created_at);
       const matchesDateFrom = !filters.dateFrom || callbackDate >= filters.dateFrom;
       const matchesDateTo = !filters.dateTo || callbackDate <= filters.dateTo;
-
       return matchesSearch && matchesStatus && matchesDateFrom && matchesDateTo;
     });
 
@@ -142,14 +135,9 @@ const Admin = () => {
 
   const handleSearchResultClick = (result: any) => {
     setHighlightedId(result.id);
-    
-    // Scroll to the appropriate table
     const targetRef = result.type === 'quote' ? quotesTableRef : callbacksTableRef;
-    
     if (targetRef.current) {
       targetRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      
-      // Highlight effect
       setTimeout(() => {
         const element = document.getElementById(`row-${result.id}`);
         if (element) {
@@ -161,54 +149,64 @@ const Admin = () => {
         }
       }, 300);
     }
-
     toast.success(`${result.type === 'quote' ? 'Devis' : 'Rappel'} trouvé: ${result.name}`);
   };
 
-  // TODO: Réactiver les guards de sécurité
-  // if (loading) {
-  //   return (
-  //     <div className="min-h-screen flex items-center justify-center">
-  //       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-  //     </div>
-  //   );
-  // }
-  // if (!user) return null;
-  // if (!isAdmin) { ... }
-
   const pendingQuotes = filteredQuotes.filter(q => q.status === 'pending').length;
   const pendingCallbacks = filteredCallbacks.filter(c => c.status === 'pending').length;
+
+  const tabItems = [
+    { value: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { value: 'google-ads', label: 'Google Ads', icon: TrendingUp },
+    { value: 'supervision', label: 'Supervision', icon: UserCog },
+    { value: 'crm', label: 'CRM', icon: Target },
+    { value: 'agents', label: 'Commerciaux', icon: Users },
+    { value: 'goals', label: 'Objectifs', icon: Trophy },
+    { value: 'trash', label: 'Corbeille', icon: Trash2 },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b bg-card sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-col gap-4">
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
+          <div className="flex flex-col gap-3 sm:gap-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Shield className="h-5 w-5 text-primary" />
+              <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                  <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                 </div>
-                <div>
-                  <h1 className="text-2xl font-bold">Dashboard Admin</h1>
-                  <p className="text-sm text-muted-foreground">{user?.email}</p>
+                <div className="min-w-0">
+                  <h1 className="text-lg sm:text-2xl font-bold truncate">Dashboard Admin</h1>
+                  <p className="text-xs sm:text-sm text-muted-foreground truncate">{user?.email}</p>
                 </div>
               </div>
               
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={fetchData}
                   disabled={isRefreshing}
+                  className="hidden sm:flex"
                 >
                   <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
                   Actualiser
                 </Button>
                 <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={fetchData}
+                  disabled={isRefreshing}
+                  className="sm:hidden"
+                >
+                  <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+                </Button>
+                <Button
                   variant="ghost"
+                  size="sm"
                   onClick={() => navigate('/')}
+                  className="hidden md:flex"
                 >
                   Voir le site
                 </Button>
@@ -216,14 +214,22 @@ const Admin = () => {
                   variant="destructive"
                   size="sm"
                   onClick={handleSignOut}
+                  className="hidden sm:flex"
                 >
                   <LogOut className="h-4 w-4 mr-2" />
                   Déconnexion
                 </Button>
+                <Button
+                  variant="destructive"
+                  size="icon"
+                  onClick={handleSignOut}
+                  className="sm:hidden"
+                >
+                  <LogOut className="h-4 w-4" />
+                </Button>
               </div>
             </div>
             
-            {/* Global Search */}
             <div className="w-full">
               <GlobalSearch
                 quotes={quotes}
@@ -236,40 +242,36 @@ const Admin = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        <Tabs defaultValue="dashboard" className="w-full">
-          <TabsList className="grid w-full grid-cols-7 mb-6">
-            <TabsTrigger value="dashboard" className="flex items-center gap-2">
-              <LayoutDashboard className="h-4 w-4" />
-              Dashboard
-            </TabsTrigger>
-            <TabsTrigger value="google-ads" className="flex items-center gap-2">
-              <TrendingUp className="h-4 w-4" />
-              Google Ads
-            </TabsTrigger>
-            <TabsTrigger value="supervision" className="flex items-center gap-2">
-              <UserCog className="h-4 w-4" />
-              Supervision
-            </TabsTrigger>
-            <TabsTrigger value="crm" className="flex items-center gap-2">
-              <Target className="h-4 w-4" />
-              CRM
-            </TabsTrigger>
-            <TabsTrigger value="agents" className="flex items-center gap-2">
-              <Users className="h-4 w-4" />
-              Commerciaux
-            </TabsTrigger>
-            <TabsTrigger value="goals" className="flex items-center gap-2">
-              <Trophy className="h-4 w-4" />
-              Objectifs
-            </TabsTrigger>
-            <TabsTrigger value="trash" className="flex items-center gap-2">
-              <Trash2 className="h-4 w-4" />
-              Corbeille
-            </TabsTrigger>
+      <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          {/* Desktop tabs */}
+          <TabsList className="hidden lg:grid w-full grid-cols-7 mb-6">
+            {tabItems.map(tab => (
+              <TabsTrigger key={tab.value} value={tab.value} className="flex items-center gap-2">
+                <tab.icon className="h-4 w-4" />
+                {tab.label}
+              </TabsTrigger>
+            ))}
           </TabsList>
 
-          <TabsContent value="dashboard" className="space-y-8">
+          {/* Mobile tabs - scrollable */}
+          <div className="lg:hidden mb-4">
+            <TabsList className="flex w-full overflow-x-auto no-scrollbar gap-1 p-1">
+              {tabItems.map(tab => (
+                <TabsTrigger
+                  key={tab.value}
+                  value={tab.value}
+                  className="flex items-center gap-1.5 shrink-0 text-xs px-3 py-2"
+                >
+                  <tab.icon className="h-3.5 w-3.5" />
+                  <span className="hidden sm:inline">{tab.label}</span>
+                  <span className="sm:hidden">{tab.label.length > 6 ? tab.label.slice(0, 6) + '.' : tab.label}</span>
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </div>
+
+          <TabsContent value="dashboard" className="space-y-4 sm:space-y-8">
             <StatsCards
               quotesCount={filteredQuotes.length}
               callbacksCount={filteredCallbacks.length}
@@ -281,35 +283,35 @@ const Admin = () => {
 
             <LeadsFilters onFilterChange={applyFilters} />
 
-            <div className="mb-8">
+            <div className="mb-4 sm:mb-8 overflow-x-auto">
               <EmailTrackingTable />
             </div>
 
-            <div className="space-y-8">
-              <div ref={quotesTableRef}>
+            <div className="space-y-4 sm:space-y-8">
+              <div ref={quotesTableRef} className="overflow-x-auto">
                 <QuotesTable quotes={filteredQuotes} onUpdate={fetchData} highlightedId={highlightedId} />
               </div>
-              <div ref={callbacksTableRef}>
+              <div ref={callbacksTableRef} className="overflow-x-auto">
                 <CallbacksTable callbacks={filteredCallbacks} onUpdate={fetchData} highlightedId={highlightedId} />
               </div>
             </div>
           </TabsContent>
 
           <TabsContent value="google-ads">
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               <GoogleAdsSyncButton />
               <GoogleAdsDashboard />
             </div>
           </TabsContent>
 
           <TabsContent value="supervision">
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold">Supervision Commerciale</h2>
+            <div className="space-y-4 sm:space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <h2 className="text-xl sm:text-2xl font-bold">Supervision Commerciale</h2>
                 <RedistributionButton />
               </div>
               <CommercialAlerts />
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
                 <div className="lg:col-span-2">
                   <CommercialSupervision />
                 </div>
