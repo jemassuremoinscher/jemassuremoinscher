@@ -35,7 +35,7 @@ const MentionsLegales = () => {
                   <p><strong>{t('mentionsLegales.rcs')}</strong> {t('mentionsLegales.rcsVal')}</p>
                   <p><strong>{t('mentionsLegales.siret')}</strong> {t('mentionsLegales.siretVal')}</p>
                   <p><strong>{t('mentionsLegales.email')}</strong> contact@jemassuremoinscher.fr</p>
-                  <p><strong>{t('mentionsLegales.telephone')}</strong>Téléphone : +33 04 93 88 16 84</p>
+                  <p><strong>{t('mentionsLegales.telephone')}</strong>Téléphone :Téléphone : +33 04 93 88 16</p>
                 </CardContent>
               </Card>
 
