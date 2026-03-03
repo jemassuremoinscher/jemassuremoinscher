@@ -35,7 +35,7 @@ const MentionsLegales = () => {
                   <p><strong>{t('mentionsLegales.rcs')}</strong> {t('mentionsLegales.rcsVal')}</p>
                   <p><strong>{t('mentionsLegales.siret')}</strong> {t('mentionsLegales.siretVal')}</p>
                   <p><strong>{t('mentionsLegales.email')}</strong> contact@jemassuremoinscher.fr</p>
-                  <p><strong>{t('mentionsLegales.telephone')}</strong>Téléphone :Téléphone : +33 04 93 88 16</p>
+                  <p><strong>{t('mentionsLegales.telephone')}</strong> 04 93 88 16 84</p>
                 </CardContent>
               </Card>
 
@@ -112,7 +112,7 @@ const MentionsLegales = () => {
                     <ul className="list-disc list-inside space-y-1 ml-2">
                       <li><strong>Par email :</strong> contact@jemassuremoinscher.fr</li>
                       <li><strong>Par courrier :</strong> 2, rue d'Angleterre 06000 Nice</li>
-                      <li><strong>Par téléphone :</strong>Par téléphone : +33 4 93 88 16 84</li>
+                      <li><strong>Par téléphone :</strong> 04 93 88 16 84</li>
                     </ul>
                     <p className="mt-2">
                       Nous nous engageons à accuser réception de votre réclamation sous 10 jours ouvrables et à vous apporter une réponse définitive sous un délai maximum de 2 mois.
