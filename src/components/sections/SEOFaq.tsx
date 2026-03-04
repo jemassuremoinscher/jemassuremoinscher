@@ -76,20 +76,7 @@ const SEOFaq = () => {
           </div>
         </motion.div>
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: FAQS.map((faq) => ({
-                "@type": "Question",
-                name: faq.question,
-                acceptedAnswer: { "@type": "Answer", text: faq.answer },
-              })),
-            }),
-          }}
-        />
+        {/* JSON-LD FAQPage schema is injected via SEOOptimized in the parent page to avoid duplicates */}
       </div>
     </section>
   );
