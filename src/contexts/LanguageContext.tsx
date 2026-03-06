@@ -366,7 +366,7 @@ const fr: Record<string, string> = {
   'quoteForm.prevoyanceIns': 'Prévoyance',
   'quoteForm.rcProIns': 'RC Professionnelle',
   'quoteForm.mrpIns': 'Multirisque Pro',
-  'quoteForm.gliIns': 'Garantie Loyers Impayés',
+  'quoteForm.gliIns': 'Assurance GLI',
   'quoteForm.pnoIns': 'Assurance PNO',
   'quoteForm.coverageLevel': 'Niveau de couverture',
   'quoteForm.selectCoverage': 'Choisir un niveau',
