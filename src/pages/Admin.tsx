@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, RefreshCw, Shield, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog, TrendingUp, Menu } from 'lucide-react';
+import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog, TrendingUp, Menu } from 'lucide-react';
+import arthurWaving from '@/assets/mascotte/arthur-waving.png';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { StatsCards } from '@/components/admin/StatsCards';
@@ -173,8 +174,8 @@ const Admin = () => {
           <div className="flex flex-col gap-3 sm:gap-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                  <Shield className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0">
+                  <img src={arthurWaving} alt="Arthur mascotte" className="w-full h-full object-contain" />
                 </div>
                 <div className="min-w-0">
                   <h1 className="text-lg sm:text-2xl font-bold truncate">Dashboard Admin</h1>
