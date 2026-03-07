@@ -289,6 +289,7 @@ export const InteractiveComparator = () => {
                     <Button
                       size="lg"
                       onClick={() => handleSubscribe(offer)}
+                      aria-label={`Demander un devis ${offer.insurer} à ${offer.price}€ par mois`}
                       className={cn(
                         "w-full sm:w-auto lg:w-full rounded-full font-bold",
                         index === 0
