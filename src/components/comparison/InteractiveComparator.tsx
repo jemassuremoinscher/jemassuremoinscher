@@ -174,7 +174,7 @@ export const InteractiveComparator = () => {
           {/* Slider */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <Label className="text-base font-semibold text-foreground">{t('comparator.currentPrice')}</Label>
+              <Label htmlFor="comparator-price-slider" className="text-base font-semibold text-foreground">{t('comparator.currentPrice')}</Label>
               <div className="text-2xl font-bold text-primary">{currentPrice[0]}€/{t('common.perMonth').split(' ').pop()}</div>
             </div>
             <Slider value={currentPrice} onValueChange={setCurrentPrice} min={30} max={150} step={5} className="w-full" />
