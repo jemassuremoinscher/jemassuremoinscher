@@ -197,7 +197,7 @@ const Blog = () => {
                       <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
-                          <span>{article.date}</span>
+                          <time dateTime={convertToISO(article.date)}>Mis à jour le {article.date}</time>
                         </div>
                         <div className="flex items-center gap-1">
                           <Clock className="w-4 h-4" />
