@@ -121,7 +121,7 @@ const BlogArticle = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
-                  <span>{article.date}</span>
+                  <time dateTime={convertToISO(article.date)}>Dernière mise à jour le {article.date}</time>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
