@@ -208,6 +208,7 @@ export const InteractiveComparator = () => {
                 size="lg"
                 onClick={() => setHasCompared(true)}
                 className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-10 rounded-full text-lg"
+                aria-label="Lancer la comparaison des devis d'assurance"
               >
                 Comparer maintenant
               </Button>
