@@ -146,9 +146,9 @@ export const InteractiveComparator = () => {
         <Card className="glass-card p-6 md:p-8 max-w-4xl mx-auto rounded-[2rem]">
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="space-y-3">
-              <Label className="text-base font-semibold text-foreground">{t('comparator.insuranceType')}</Label>
+              <Label htmlFor="comparator-insurance-type" className="text-base font-semibold text-foreground">{t('comparator.insuranceType')}</Label>
               <Select value={insuranceType} onValueChange={setInsuranceType}>
-                <SelectTrigger className="h-12 rounded-2xl"><SelectValue /></SelectTrigger>
+                <SelectTrigger id="comparator-insurance-type" className="h-12 rounded-2xl" aria-label={t('comparator.insuranceType')}><SelectValue /></SelectTrigger>
                 <SelectContent className="rounded-2xl">
                   <SelectItem value="auto">{t('comparator.autoIns')}</SelectItem>
                   <SelectItem value="moto">{t('comparator.motoIns')}</SelectItem>
