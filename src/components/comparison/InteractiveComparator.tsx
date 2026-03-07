@@ -223,8 +223,8 @@ export const InteractiveComparator = () => {
             <h2 className="text-xl md:text-2xl font-bold text-foreground">
               {filteredOffers.length} {t('comparator.offersAvailable')}
             </h2>
-            <Button variant="ghost" size="sm" onClick={handleShare} className="gap-2 text-muted-foreground hover:text-foreground">
-              <Share2 className="h-4 w-4" />
+            <Button variant="ghost" size="sm" onClick={handleShare} className="gap-2 text-muted-foreground hover:text-foreground" aria-label="Partager les résultats de comparaison">
+              <Share2 className="h-4 w-4" aria-hidden="true" />
               {t('comparator.share')}
             </Button>
           </div>
