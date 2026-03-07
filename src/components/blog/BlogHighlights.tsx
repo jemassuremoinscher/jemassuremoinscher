@@ -45,7 +45,7 @@ export const BlogHighlights = () => {
               </CardHeader>
               <CardContent className="pt-0">
                 <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                  <div className="flex items-center gap-1"><Calendar className="w-4 h-4" /><span>{article.date}</span></div>
+                  <div className="flex items-center gap-1"><Calendar className="w-4 h-4" /><time dateTime={convertToISO(article.date)}>Mis à jour le {article.date}</time></div>
                   <div className="flex items-center gap-1"><Clock className="w-4 h-4" /><span>{article.readTime}</span></div>
                 </div>
                 <Button variant="ghost" className="w-full group-hover:bg-primary/10" onClick={(e) => { e.stopPropagation(); navigate(`/blog/${article.slug}`); }}>

@@ -13,6 +13,22 @@ import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
 
+const convertToISO = (frenchDate: string): string => {
+  const months: Record<string, string> = {
+    'janvier': '01', 'février': '02', 'mars': '03', 'avril': '04',
+    'mai': '05', 'juin': '06', 'juillet': '07', 'août': '08',
+    'septembre': '09', 'octobre': '10', 'novembre': '11', 'décembre': '12'
+  };
+  const parts = frenchDate.split(' ');
+  if (parts.length === 3) {
+    const day = parts[0].padStart(2, '0');
+    const month = months[parts[1].toLowerCase()] || '01';
+    const year = parts[2];
+    return `${year}-${month}-${day}`;
+  }
+  return new Date().toISOString().split('T')[0];
+};
+
 const Blog = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();

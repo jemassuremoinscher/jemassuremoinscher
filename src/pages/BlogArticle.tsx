@@ -139,6 +139,9 @@ const BlogArticle = () => {
         <div className="container mx-auto px-4 py-10 md:py-14">
           <article className="max-w-4xl mx-auto space-y-12">
 
+            {/* Author E-E-A-T */}
+            <AuthorExpertise />
+
             {/* Tags */}
             <div className="flex flex-wrap gap-2">
               {article.tags.map((tag, index) => (

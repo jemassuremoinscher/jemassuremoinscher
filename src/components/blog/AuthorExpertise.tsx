@@ -18,7 +18,7 @@ const AuthorExpertise = () => {
           <Shield className="h-4 w-4 text-primary shrink-0" />
         </div>
         <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-          <CheckCircle className="h-3.5 w-3.5 text-green-600 shrink-0" />
+          <CheckCircle className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
           <span>Vérifié par nos courtiers certifiés ORIAS</span>
         </div>
       </div>
