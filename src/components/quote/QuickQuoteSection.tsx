@@ -390,18 +390,18 @@ const QuickQuoteSection = () => {
           </AnimatePresence>
 
           <div className="flex items-center justify-between mt-8 pt-6 border-t border-border/50">
-            <Button variant="ghost" onClick={handlePrev} disabled={currentStep === 1} className="gap-2">
-              <ChevronLeft className="w-4 h-4" />
+            <Button variant="ghost" onClick={handlePrev} disabled={currentStep === 1} className="gap-2" aria-label="Retour à l'étape précédente">
+              <ChevronLeft className="w-4 h-4" aria-hidden="true" />
               <span>{t('common.back')}</span>
             </Button>
             {currentStep < totalSteps ? (
-              <Button onClick={handleNext} disabled={!canProceed()} className="gap-2 bg-primary hover:bg-primary/90">
+              <Button onClick={handleNext} disabled={!canProceed()} className="gap-2 bg-primary hover:bg-primary/90" aria-label="Passer à l'étape suivante">
                 <span>{t('common.continue')}</span>
-                <ChevronRight className="w-4 h-4" />
+                <ChevronRight className="w-4 h-4" aria-hidden="true" />
               </Button>
             ) : (
-              <Button onClick={handleSubmit} disabled={!canProceed() || isSubmitting} className="gap-2 bg-gradient-to-r from-primary to-accent text-primary-foreground font-bold">
-                {isSubmitting ? <><Loader2 className="w-4 h-4 animate-spin" /><span>{t('quickQuote.sending')}</span></> : <><span>{t('quickQuote.submit')}</span><ChevronRight className="w-4 h-4" /></>}
+              <Button onClick={handleSubmit} disabled={!canProceed() || isSubmitting} className="gap-2 bg-gradient-to-r from-primary to-accent text-primary-foreground font-bold" aria-label="Envoyer ma demande de devis rapide">
+                {isSubmitting ? <><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /><span>{t('quickQuote.sending')}</span></> : <><span>{t('quickQuote.submit')}</span><ChevronRight className="w-4 h-4" aria-hidden="true" /></>}
               </Button>
             )}
           </div>
