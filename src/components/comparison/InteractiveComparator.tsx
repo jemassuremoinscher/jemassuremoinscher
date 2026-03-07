@@ -177,7 +177,7 @@ export const InteractiveComparator = () => {
               <Label htmlFor="comparator-price-slider" className="text-base font-semibold text-foreground">{t('comparator.currentPrice')}</Label>
               <div className="text-2xl font-bold text-primary">{currentPrice[0]}€/{t('common.perMonth').split(' ').pop()}</div>
             </div>
-            <Slider value={currentPrice} onValueChange={setCurrentPrice} min={30} max={150} step={5} className="w-full" />
+            <Slider value={currentPrice} onValueChange={setCurrentPrice} min={30} max={150} step={5} className="w-full" aria-label={t('comparator.currentPrice')} />
             <div className="flex justify-between text-xs text-muted-foreground">
               <span>30€</span>
               <span>150€</span>
