@@ -146,9 +146,9 @@ export const InteractiveComparator = () => {
         <Card className="glass-card p-6 md:p-8 max-w-4xl mx-auto rounded-[2rem]">
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="space-y-3">
-              <Label className="text-base font-semibold text-foreground">{t('comparator.insuranceType')}</Label>
+              <Label htmlFor="comparator-insurance-type" className="text-base font-semibold text-foreground">{t('comparator.insuranceType')}</Label>
               <Select value={insuranceType} onValueChange={setInsuranceType}>
-                <SelectTrigger className="h-12 rounded-2xl"><SelectValue /></SelectTrigger>
+                <SelectTrigger id="comparator-insurance-type" className="h-12 rounded-2xl" aria-label={t('comparator.insuranceType')}><SelectValue /></SelectTrigger>
                 <SelectContent className="rounded-2xl">
                   <SelectItem value="auto">{t('comparator.autoIns')}</SelectItem>
                   <SelectItem value="moto">{t('comparator.motoIns')}</SelectItem>
@@ -159,9 +159,9 @@ export const InteractiveComparator = () => {
             </div>
 
             <div className="space-y-3">
-              <Label className="text-base font-semibold text-foreground">{t('comparator.sortBy')}</Label>
+              <Label htmlFor="comparator-sort-by" className="text-base font-semibold text-foreground">{t('comparator.sortBy')}</Label>
               <Select value={sortBy} onValueChange={(v) => setSortBy(v as any)}>
-                <SelectTrigger className="h-12 rounded-2xl"><SelectValue /></SelectTrigger>
+                <SelectTrigger id="comparator-sort-by" className="h-12 rounded-2xl" aria-label={t('comparator.sortBy')}><SelectValue /></SelectTrigger>
                 <SelectContent className="rounded-2xl">
                   <SelectItem value="price">{t('comparator.lowestPrice')}</SelectItem>
                   <SelectItem value="rating">{t('comparator.bestRating')}</SelectItem>
@@ -174,10 +174,10 @@ export const InteractiveComparator = () => {
           {/* Slider */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <Label className="text-base font-semibold text-foreground">{t('comparator.currentPrice')}</Label>
+              <Label htmlFor="comparator-price-slider" className="text-base font-semibold text-foreground">{t('comparator.currentPrice')}</Label>
               <div className="text-2xl font-bold text-primary">{currentPrice[0]}€/{t('common.perMonth').split(' ').pop()}</div>
             </div>
-            <Slider value={currentPrice} onValueChange={setCurrentPrice} min={30} max={150} step={5} className="w-full" />
+            <Slider value={currentPrice} onValueChange={setCurrentPrice} min={30} max={150} step={5} className="w-full" aria-label={t('comparator.currentPrice')} />
             <div className="flex justify-between text-xs text-muted-foreground">
               <span>30€</span>
               <span>150€</span>
@@ -208,6 +208,7 @@ export const InteractiveComparator = () => {
                 size="lg"
                 onClick={() => setHasCompared(true)}
                 className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-10 rounded-full text-lg"
+                aria-label="Lancer la comparaison des devis d'assurance"
               >
                 Comparer maintenant
               </Button>
@@ -222,8 +223,8 @@ export const InteractiveComparator = () => {
             <h2 className="text-xl md:text-2xl font-bold text-foreground">
               {filteredOffers.length} {t('comparator.offersAvailable')}
             </h2>
-            <Button variant="ghost" size="sm" onClick={handleShare} className="gap-2 text-muted-foreground hover:text-foreground">
-              <Share2 className="h-4 w-4" />
+            <Button variant="ghost" size="sm" onClick={handleShare} className="gap-2 text-muted-foreground hover:text-foreground" aria-label="Partager les résultats de comparaison">
+              <Share2 className="h-4 w-4" aria-hidden="true" />
               {t('comparator.share')}
             </Button>
           </div>
@@ -288,6 +289,7 @@ export const InteractiveComparator = () => {
                     <Button
                       size="lg"
                       onClick={() => handleSubscribe(offer)}
+                      aria-label={`Demander un devis ${offer.insurer} à ${offer.price}€ par mois`}
                       className={cn(
                         "w-full sm:w-auto lg:w-full rounded-full font-bold",
                         index === 0
@@ -319,7 +321,7 @@ export const InteractiveComparator = () => {
               className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 rounded-full text-lg"
               asChild
             >
-              <Link to="/contact">
+              <Link to="/contact" aria-label="Parler à un expert en assurance">
                 {t('comparator.talkExpert')}
               </Link>
             </Button>

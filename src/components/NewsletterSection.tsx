@@ -52,9 +52,12 @@ export const NewsletterSection = () => {
             </div>
           ) : (
             <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
-              <Input type="email" placeholder="votre@email.com" value={email} onChange={(e) => setEmail(e.target.value)} className="flex-1 h-16 px-6 text-lg bg-card/95 backdrop-blur-sm border-2 border-transparent focus:border-accent transition-all shadow-lg rounded-xl" disabled={isLoading} />
-              <Button type="submit" size="lg" className="h-16 px-10 text-lg bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1 rounded-xl" disabled={isLoading}>
-                {isLoading ? (<><Loader2 className="mr-2 h-5 w-5 animate-spin" />{t('newsletter.subscribing')}</>) : (<><Mail className="mr-2 h-5 w-5" />{t('newsletter.subscribe')}</>)}
+              <div className="flex-1">
+                <label htmlFor="newsletter-email" className="sr-only">{t('newsletter.title')}</label>
+                <Input id="newsletter-email" type="email" placeholder="votre@email.com" value={email} onChange={(e) => setEmail(e.target.value)} className="h-16 px-6 text-lg bg-card/95 backdrop-blur-sm border-2 border-transparent focus:border-accent transition-all shadow-lg rounded-xl w-full" disabled={isLoading} aria-required="true" />
+              </div>
+              <Button type="submit" size="lg" className="h-16 px-10 text-lg bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1 rounded-xl" disabled={isLoading} aria-label="S'inscrire à la newsletter">
+                {isLoading ? (<><Loader2 className="mr-2 h-5 w-5 animate-spin" aria-hidden="true" />{t('newsletter.subscribing')}</>) : (<><Mail className="mr-2 h-5 w-5" aria-hidden="true" />{t('newsletter.subscribe')}</>)}
               </Button>
             </form>
           )}

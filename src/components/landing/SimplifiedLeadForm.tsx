@@ -107,7 +107,7 @@ export const SimplifiedLeadForm = ({ insuranceType, insuranceLabel }: Simplified
           <Input {...form.register('phone')} id="phone" type="tel" placeholder="06 12 34 56 78" className="h-12 text-base" disabled={isSubmitting} />
           {form.formState.errors.phone && <p className="text-sm text-red-600 mt-1">{form.formState.errors.phone.message}</p>}
         </div>
-        <Button type="submit" size="lg" className="w-full h-14 text-lg font-bold" disabled={isSubmitting}>
+        <Button type="submit" size="lg" className="w-full h-14 text-lg font-bold" disabled={isSubmitting} aria-label={`Recevoir mon devis ${insuranceLabel} gratuit`}>
           {isSubmitting ? (<><Loader2 className="mr-2 h-5 w-5 animate-spin" />{t('leadForm.sending')}</>) : t('leadForm.submit')}
         </Button>
         <p className="text-xs text-center text-muted-foreground">{t('leadForm.disclaimer')}</p>
