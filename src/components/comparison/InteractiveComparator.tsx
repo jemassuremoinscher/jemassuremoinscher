@@ -159,9 +159,9 @@ export const InteractiveComparator = () => {
             </div>
 
             <div className="space-y-3">
-              <Label className="text-base font-semibold text-foreground">{t('comparator.sortBy')}</Label>
+              <Label htmlFor="comparator-sort-by" className="text-base font-semibold text-foreground">{t('comparator.sortBy')}</Label>
               <Select value={sortBy} onValueChange={(v) => setSortBy(v as any)}>
-                <SelectTrigger className="h-12 rounded-2xl"><SelectValue /></SelectTrigger>
+                <SelectTrigger id="comparator-sort-by" className="h-12 rounded-2xl" aria-label={t('comparator.sortBy')}><SelectValue /></SelectTrigger>
                 <SelectContent className="rounded-2xl">
                   <SelectItem value="price">{t('comparator.lowestPrice')}</SelectItem>
                   <SelectItem value="rating">{t('comparator.bestRating')}</SelectItem>
