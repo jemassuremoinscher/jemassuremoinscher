@@ -10,6 +10,7 @@ import SEOOptimized from "@/components/SEOOptimized";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 import { CommentsSection } from "@/components/blog/CommentsSection";
+import AuthorExpertise from "@/components/blog/AuthorExpertise";
 import { addArticleSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
