@@ -10,6 +10,7 @@ import SEOOptimized from "@/components/SEOOptimized";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 import { CommentsSection } from "@/components/blog/CommentsSection";
+import AuthorExpertise from "@/components/blog/AuthorExpertise";
 import { addArticleSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
@@ -120,7 +121,7 @@ const BlogArticle = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
-                  <span>{article.date}</span>
+                  <time dateTime={convertToISO(article.date)}>Dernière mise à jour le {article.date}</time>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
@@ -137,6 +138,9 @@ const BlogArticle = () => {
 
         <div className="container mx-auto px-4 py-10 md:py-14">
           <article className="max-w-4xl mx-auto space-y-12">
+
+            {/* Author E-E-A-T */}
+            <AuthorExpertise />
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2">
