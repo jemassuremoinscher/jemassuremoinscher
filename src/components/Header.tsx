@@ -143,22 +143,25 @@ const Header = () => {
                     <button 
                       onClick={handleShare}
                       className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                      aria-label="Partager cette page"
                     >
-                      <Share2 className="h-4 w-4 text-primary" />
+                      <Share2 className="h-4 w-4 text-primary" aria-hidden="true" />
                       {t('nav.share')}
                     </button>
                     <button 
                       className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                       onClick={() => setActionsOpen(false)}
+                      aria-label="Ajouter aux favoris"
                     >
-                      <BookmarkPlus className="h-4 w-4 text-primary" />
+                      <BookmarkPlus className="h-4 w-4 text-primary" aria-hidden="true" />
                       {t('nav.favorites')}
                     </button>
                     <button 
                       onClick={handlePrint}
                       className="flex items-center gap-3 w-full px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                      aria-label="Imprimer cette page"
                     >
-                      <Printer className="h-4 w-4 text-primary" />
+                      <Printer className="h-4 w-4 text-primary" aria-hidden="true" />
                       {t('nav.print')}
                     </button>
                   </div>

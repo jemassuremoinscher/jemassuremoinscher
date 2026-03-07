@@ -321,7 +321,7 @@ export const InteractiveComparator = () => {
               className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 rounded-full text-lg"
               asChild
             >
-              <Link to="/contact">
+              <Link to="/contact" aria-label="Parler à un expert en assurance">
                 {t('comparator.talkExpert')}
               </Link>
             </Button>
