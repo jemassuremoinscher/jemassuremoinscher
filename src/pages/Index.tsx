@@ -53,8 +53,6 @@ const Index = () => {
       <main id="main-content" role="main">
         <Hero />
         <QuickQuoteSection />
-        <PartnersSlider />
-        <WhyUsComparison />
         <HowItWorks />
         <SEOFaq />
         <GuidesSection />
