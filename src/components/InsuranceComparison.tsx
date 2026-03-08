@@ -42,8 +42,8 @@ const InsuranceComparison = ({ insurers, onNewQuote, formData, insuranceType }: 
         {insurers.map((insurer, index) => (
           <Card 
             key={index} 
-            className={`p-6 transition-all hover:shadow-lg ${
-              index === 0 ? 'border-primary border-2 shadow-md' : ''
+            className={`p-8 transition-all hover:shadow-[var(--shadow-hover)] ${
+              index === 0 ? 'border-primary border-2 shadow-[var(--shadow-elegant)]' : 'border border-border/60'
             }`}
           >
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
