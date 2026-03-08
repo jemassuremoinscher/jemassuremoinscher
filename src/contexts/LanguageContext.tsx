@@ -2943,7 +2943,7 @@ const en: Record<string, string> = {
   // Partners Component
   'partnersComponent.badge': 'Our partners',
   'partnersComponent.title': 'More than',
-  'partnersComponent.titleHighlight': '60 insurers',
+  'partnersComponent.titleHighlight': '50 insurers',
   'partnersComponent.titleEnd': 'compared',
   'partnersComponent.subtitle': 'And nearly',
   'partnersComponent.agencies': '2,000 local agencies',
