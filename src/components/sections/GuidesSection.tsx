@@ -24,84 +24,66 @@ interface Article {
   };
 }
 
-const StackingCard = ({ article, index, total, onOpen, t }: {
+const GuideCard = ({ article, index, total, onOpen, t }: {
   article: Article;
   index: number;
   total: number;
   onOpen: (a: Article) => void;
   t: (key: string) => string;
 }) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "end start"],
-  });
-
-  // Scale down slightly as user scrolls past (card gets "pushed back" by next card)
-  const scale = useTransform(scrollYProgress, [0.4, 1], [1, 0.92]);
-  const brightness = useTransform(scrollYProgress, [0.4, 1], [1, 0.85]);
-
   return (
-    // Tall wrapper gives scroll room for the sticky effect
-    <div ref={cardRef} className="h-[70vh] md:h-[50vh]" style={{ zIndex: index + 1, position: "relative" }}>
-      <div
-        className="sticky"
-        style={{ top: `${100 + index * 30}px` }}
-      >
-        <motion.article
-          style={{ scale }}
-          whileHover={{ y: -4 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          className="group cursor-pointer"
-          onClick={() => onOpen(article)}
-        >
-          <div
-            className={`relative overflow-hidden rounded-3xl border border-border/40 bg-card shadow-[0_8px_32px_-8px_hsl(var(--primary)/0.12)] backdrop-blur-sm transition-all duration-500 hover:shadow-[0_20px_60px_-12px_hsl(var(--primary)/0.25)] hover:border-primary/30`}
-          >
-            {/* Decorative gradient orb */}
-            <div className={`absolute -top-20 -right-20 w-60 h-60 rounded-full ${article.gradient} opacity-20 blur-3xl group-hover:opacity-40 transition-opacity duration-500`} />
-            <div className={`absolute -bottom-16 -left-16 w-40 h-40 rounded-full ${article.gradient} opacity-10 blur-2xl`} />
+    <motion.article
+      initial={{ opacity: 0, x: 40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.12 }}
+      whileHover={{ y: -6, rotate: -1 }}
+      className="group cursor-pointer flex-shrink-0 w-[82vw] md:w-[380px] snap-center"
+      onClick={() => onOpen(article)}
+      style={{ 
+        zIndex: total - index,
+        // Negative margin creates the overlapping/stacking effect
+        marginLeft: index === 0 ? '0' : '-24px',
+      }}
+    >
+      <div className="relative overflow-hidden rounded-3xl border border-border/40 bg-card shadow-[0_8px_32px_-8px_hsl(var(--primary)/0.12)] backdrop-blur-sm transition-all duration-500 hover:shadow-[0_24px_64px_-12px_hsl(var(--primary)/0.3)] hover:border-primary/30 h-full">
+        {/* Decorative gradient orbs */}
+        <div className={`absolute -top-20 -right-20 w-60 h-60 rounded-full ${article.gradient} opacity-20 blur-3xl group-hover:opacity-40 transition-opacity duration-500`} />
+        <div className={`absolute -bottom-16 -left-16 w-40 h-40 rounded-full ${article.gradient} opacity-10 blur-2xl`} />
 
-            <div className="relative z-10 p-8 md:p-10 flex flex-col md:flex-row gap-6 md:gap-10 items-start">
-              {/* Icon area */}
-              <div className={`flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl ${article.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
-                {article.icon}
-              </div>
-
-              {/* Content */}
-              <div className="flex-grow min-w-0">
-                <div className="flex items-center gap-3 mb-3">
-                  <Badge className={`${article.color} border-0 text-white font-semibold text-xs tracking-wide uppercase`}>
-                    {t('common.advice')}
-                  </Badge>
-                  <span className="text-xs text-muted-foreground font-medium">
-                    {index + 1}/{total}
-                  </span>
-                </div>
-
-                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300 leading-tight">
-                  {t(article.titleKey)}
-                </h3>
-
-                <p className="text-muted-foreground leading-relaxed mb-5 line-clamp-2 md:line-clamp-none">
-                  {t(article.excerptKey)}
-                </p>
-
-                <div className="flex items-center gap-2 text-primary font-semibold group-hover:gap-4 transition-all duration-300">
-                  <span>{t('common.readMore')}</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-
-              {/* Card number decoration */}
-              <div className="hidden md:flex absolute top-6 right-8 text-8xl font-black text-foreground/[0.03] select-none">
-                0{index + 1}
-              </div>
-            </div>
+        <div className="relative z-10 p-7 md:p-8 flex flex-col h-full min-h-[340px]">
+          {/* Top row: badge + number */}
+          <div className="flex items-center justify-between mb-5">
+            <Badge className={`${article.color} border-0 text-white font-semibold text-xs tracking-wide uppercase`}>
+              {t('common.advice')}
+            </Badge>
+            <span className="text-6xl font-black text-foreground/[0.04] select-none leading-none">
+              0{index + 1}
+            </span>
           </div>
-        </motion.article>
+
+          {/* Icon */}
+          <div className={`w-16 h-16 rounded-2xl ${article.gradient} flex items-center justify-center shadow-lg mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
+            {article.icon}
+          </div>
+
+          {/* Content */}
+          <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300 leading-tight">
+            {t(article.titleKey)}
+          </h3>
+
+          <p className="text-muted-foreground text-sm leading-relaxed mb-5 flex-grow line-clamp-3">
+            {t(article.excerptKey)}
+          </p>
+
+          {/* CTA */}
+          <div className="flex items-center gap-2 text-primary font-semibold group-hover:gap-4 transition-all duration-300 mt-auto">
+            <span className="text-sm">{t('common.readMore')}</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </div>
       </div>
-    </div>
+    </motion.article>
   );
 };
 
@@ -240,18 +222,20 @@ const GuidesSection = () => {
           </p>
         </motion.div>
 
-        {/* Stacking cards */}
-        <div className="max-w-4xl mx-auto space-y-6 md:space-y-8">
-          {articles.map((article, index) => (
-            <StackingCard
-              key={article.id}
-              article={article}
-              index={index}
-              total={articles.length}
-              onOpen={handleOpenArticle}
-              t={t}
-            />
-          ))}
+        {/* Horizontal stacking cards */}
+        <div className="relative -mx-4 px-4">
+          <div className="flex items-stretch overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide pl-4 md:pl-0 md:justify-center">
+            {articles.map((article, index) => (
+              <GuideCard
+                key={article.id}
+                article={article}
+                index={index}
+                total={articles.length}
+                onOpen={handleOpenArticle}
+                t={t}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
