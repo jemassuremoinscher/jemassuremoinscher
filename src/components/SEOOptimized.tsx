@@ -49,7 +49,9 @@ const SEOOptimized = ({
   noindex = false,
 }: SEOOptimizedProps) => {
   const location = useLocation();
-  const pageCanonical = canonical || `${BASE_URL}${location.pathname}`;
+  // Normalize: strip trailing slash (except root "/"), ensure lowercase
+  const normalizedPath = location.pathname === '/' ? '' : location.pathname.replace(/\/+$/, '');
+  const pageCanonical = canonical || `${BASE_URL}${normalizedPath}`;
   const pageImage = ogImage || DEFAULT_IMAGE;
 
   // Combine keyword + keywords

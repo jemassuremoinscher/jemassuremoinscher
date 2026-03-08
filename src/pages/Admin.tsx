@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -167,6 +168,11 @@ const Admin = () => {
   ];
 
   return (
+    <>
+      <Helmet>
+        <title>Dashboard Admin | jemassuremoinscher</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b bg-card sticky top-0 z-50 shadow-sm">
@@ -341,6 +347,7 @@ const Admin = () => {
         </Tabs>
       </main>
     </div>
+    </>
   );
 };
 
