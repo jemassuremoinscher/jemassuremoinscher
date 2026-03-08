@@ -77,6 +77,7 @@ const App = () => (
           <Toaster />
           <BrowserRouter>
             <RouteTracker />
+            <ReadingProgressBar />
             <SkipToMain />
             <ErrorBoundary>
               <Suspense fallback={
