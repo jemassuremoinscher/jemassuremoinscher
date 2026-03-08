@@ -346,7 +346,7 @@ const QuickQuoteSection = () => {
               <motion.div key="step3" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 rounded-lg bg-primary/10"><Shield className="w-5 h-5 text-primary" /></div>
-                  <h4 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.coverageQuestion')}</h4>
+                  <h3 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.coverageQuestion')}</h3>
                 </div>
                 <RadioGroup value={quoteData.coverageLevel} onValueChange={value => setQuoteData(prev => ({ ...prev, coverageLevel: value }))} className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {coverageOptions.map(option => (
