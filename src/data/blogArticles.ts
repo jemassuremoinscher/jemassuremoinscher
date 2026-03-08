@@ -12,7 +12,7 @@ export interface BlogArticle {
   tags: string[];
 }
 
-export const blogArticles: BlogArticle[] = [
+const _blogArticlesRaw: BlogArticle[] = [
   {
     id: "5",
     title: "Mutuelle santé : Comment réduire vos frais médicaux de 40% en 2024",
