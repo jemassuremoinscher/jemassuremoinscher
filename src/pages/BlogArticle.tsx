@@ -308,6 +308,9 @@ const BlogArticle = () => {
               />
             </div>
 
+            {/* Suggested Keywords → Glossary */}
+            <SuggestedKeywords tags={article.tags} />
+
             {/* Comments */}
             <div className="mt-12">
               <CommentsSection articleSlug={article.slug} />
