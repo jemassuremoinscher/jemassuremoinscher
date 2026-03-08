@@ -250,6 +250,17 @@ const QuickQuoteSection = () => {
   };
 
   const canProceed = () => {
+    if (isVehicleType) {
+      switch (currentStep) {
+        case 0: return false;
+        case 1: return quoteData.insuranceType !== "";
+        case 2: return quoteData.vehicleBrand !== "";
+        case 3: return quoteData.profileOption !== "";
+        case 4: return quoteData.coverageLevel !== "";
+        case 5: return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(quoteData.email) && PHONE_REGEX.test(quoteData.phone);
+        default: return false;
+      }
+    }
     switch (currentStep) {
       case 0: return false;
       case 1: return quoteData.insuranceType !== "";
