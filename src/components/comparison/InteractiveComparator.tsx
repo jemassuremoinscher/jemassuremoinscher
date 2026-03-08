@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Check, TrendingDown, Star, Sparkles, Share2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Link } from 'react-router-dom';
+
 import { SubscriptionModal } from './SubscriptionModal';
 import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
