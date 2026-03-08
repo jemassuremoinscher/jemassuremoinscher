@@ -27,7 +27,7 @@ const Features = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <div key={index} className="animate-fade-in hover-lift" style={{ animationDelay: `${0.1 * (index + 1)}s` }}>
-              <Card className="p-8 h-full card-gradient transition-all duration-300">
+              <Card className="p-8 h-full card-gradient border-2 border-transparent hover:border-primary/20 transition-all duration-300">
                 <div className="flex flex-col items-center text-center gap-4">
                   <div className="p-5 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 shadow-lg"><feature.icon className="h-10 w-10 text-primary" /></div>
                   <div><h3 className="font-bold text-xl mb-3 text-card-foreground">{feature.title}</h3><p className="text-muted-foreground leading-relaxed">{feature.description}</p></div>

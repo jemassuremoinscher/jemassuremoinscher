@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import CookieBanner from "@/components/CookieBanner";
-import FloatingCTA from "@/components/FloatingCTA";
 import { AIChatbot } from "@/components/chatbot/AIChatbot";
 import SkipToMain from "@/components/SkipToMain";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
@@ -145,7 +144,6 @@ const App = () => (
               </Suspense>
             </ErrorBoundary>
             <CookieBanner />
-            <FloatingCTA />
             <AIChatbot />
           </BrowserRouter>
         </TooltipProvider>
