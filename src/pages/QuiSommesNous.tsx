@@ -203,9 +203,11 @@ const QuiSommesNous = () => {
               </div>
               <img
                 src={arthurThinking}
-                alt=""
-                aria-hidden="true"
+                alt="Arthur réfléchit aux valeurs de jemassuremoinscher"
                 className="hidden md:block absolute -right-4 -bottom-4 h-48 object-contain opacity-80 pointer-events-none select-none"
+                width={192}
+                height={192}
+                loading="lazy"
               />
             </div>
           </div>
