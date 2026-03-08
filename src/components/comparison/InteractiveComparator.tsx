@@ -204,7 +204,7 @@ export const InteractiveComparator = () => {
           </div>
           {/* Compare button */}
           {!hasCompared && (
-            <div className="mt-6 text-center">
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Button
                 size="lg"
                 onClick={() => setHasCompared(true)}
@@ -213,6 +213,7 @@ export const InteractiveComparator = () => {
               >
                 Comparer maintenant
               </Button>
+              <ArthurCTABubble />
             </div>
           )}
         </Card>

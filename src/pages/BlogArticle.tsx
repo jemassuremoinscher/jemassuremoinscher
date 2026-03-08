@@ -346,6 +346,11 @@ const BlogArticle = () => {
               </div>
             )}
           </article>
+          {/* Sidebar */}
+          <aside className="hidden lg:block w-72 flex-shrink-0 space-y-6 mt-8">
+            <PopularArticles currentSlug={article.slug} />
+          </aside>
+          </div>
         </div>
       </main>
 

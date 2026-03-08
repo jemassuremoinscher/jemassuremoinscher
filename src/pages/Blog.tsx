@@ -99,6 +99,7 @@ const Blog = () => {
         </section>
 
         <div className="container mx-auto px-4 py-10 md:py-14">
+          <DynamicUpdateDate />
           <div className="max-w-7xl mx-auto space-y-10">
 
             {/* Search */}
