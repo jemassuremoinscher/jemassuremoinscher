@@ -217,7 +217,7 @@ const QuickQuoteSection = () => {
     try {
       const { error } = await supabase.from('insurance_quotes').insert({
         insurance_type: quoteData.insuranceType, full_name: '', email: quoteData.email, phone: quoteData.phone,
-        quote_data: { source: 'quick_quote', profileOption: quoteData.profileOption, coverageLevel: quoteData.coverageLevel },
+        quote_data: { source: 'quick_quote', profileOption: quoteData.profileOption, coverageLevel: quoteData.coverageLevel, vehicleBrand: quoteData.vehicleBrand || undefined },
         status: 'pending',
       });
       if (error) throw error;
