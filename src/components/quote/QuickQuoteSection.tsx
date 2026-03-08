@@ -169,8 +169,10 @@ const COVERAGE_OPTIONS: Record<string, { value: string; labelKey: string; emoji:
   ],
 };
 
+const FEATURED_TYPES: InsuranceType[] = ["auto", "moto", "habitation", "sante", "animaux", "vie"];
+
 const QuickQuoteSection = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0); // 0 = initial picker, 1-4 = form steps
   const [direction, setDirection] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
