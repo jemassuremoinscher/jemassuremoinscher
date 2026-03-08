@@ -86,19 +86,17 @@ const SimpleFooter = () => {
             <h4 className="font-bold text-accent mb-4 text-xs uppercase tracking-wider">
               Informations Légales
             </h4>
-            <div className="space-y-3">
-              <p className="text-[11px] text-primary-foreground/50 leading-relaxed">
-                Jemassuremoinscher.fr est un comparateur d'assurances indépendant, immatriculé à l'ORIAS sous le N° 24 XXX XXX en qualité de courtier en assurances.
-              </p>
-              <p className="text-[11px] text-primary-foreground/50 leading-relaxed">
-                Conformément à la réglementation, nous vous rappelons que l'utilisation de notre comparateur est gratuite et sans engagement. Les tarifs affichés sont indicatifs.
-              </p>
-              <p className="text-[11px] text-primary-foreground/50 leading-relaxed">
-                Siège social : 2, rue d'Angleterre 06000 Nice<br />
-                Tél. : 04 93 88 16 84<br />
-                Email : contact@jemassuremoinscher.fr
-              </p>
-            </div>
+              <div className="space-y-3">
+                <p className="text-[11px] text-primary-foreground/50 leading-relaxed">
+                  Jemassuremoinscher.fr est un comparateur 100&nbsp;% indépendant. Notre service est gratuit pour les utilisateurs&nbsp;; nous sommes rémunérés par nos partenaires assureurs lors de la mise en relation.
+                </p>
+                <p className="text-[11px] text-primary-foreground/50 leading-relaxed">
+                  Immatriculé à l'ORIAS sous le N° 24 XXX XXX en qualité de courtier en assurances. Les tarifs affichés sont indicatifs et peuvent varier selon votre profil.
+                </p>
+                <p className="text-[11px] text-primary-foreground/50 leading-relaxed">
+                  Email&nbsp;: contact@jemassuremoinscher.fr
+                </p>
+              </div>
           </div>
         </div>
 
