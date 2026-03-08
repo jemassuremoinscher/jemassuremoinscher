@@ -221,7 +221,7 @@ export const InteractiveComparator = () => {
               >
                 Comparer maintenant
               </Button>
-              <ArthurCTABubble />
+              
             </div>
           )}
         </Card>
