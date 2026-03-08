@@ -107,9 +107,9 @@ const Hero = () => {
             
             {t('hero.subtitle')} <span className="font-bold">{t('hero.subtitleBold')}</span> {t('hero.subtitleEnd')}
             <br />
-            <span className="text-primary-foreground/80">Gratuit, sans engagement.</span>
+            <span className="text-primary-foreground/80">{t('hero.line2')}</span>
             <br />
-            <span className="text-primary-foreground/80">On s'occupe de tout.</span>
+            <span className="text-primary-foreground/80">{t('hero.line3')}</span>
           </motion.p>
         </div>
 
