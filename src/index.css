@@ -205,8 +205,8 @@ All colors MUST be HSL.
   }
   
   .card-hover:hover {
-    @apply -translate-y-2;
-    box-shadow: 0 12px 32px -8px hsl(271 80% 35% / 0.25);
+    @apply -translate-y-1;
+    box-shadow: var(--shadow-hover);
   }
 
   /* Button active press effect */
