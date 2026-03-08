@@ -6,7 +6,6 @@ import { lazy, Suspense } from "react";
 import CookieBanner from "@/components/CookieBanner";
 import { AIChatbot } from "@/components/chatbot/AIChatbot";
 import SkipToMain from "@/components/SkipToMain";
-import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -65,7 +64,6 @@ const NewsletterGestion = lazy(() => import("./pages/NewsletterGestion"));
 const PlanDuSite = lazy(() => import("./pages/PlanDuSite"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Merci = lazy(() => import("./pages/Merci"));
-const CalculateurBonusMalus = lazy(() => import("./pages/outils/CalculateurBonusMalus"));
 
 const queryClient = new QueryClient();
 
@@ -77,7 +75,6 @@ const App = () => (
           <Toaster />
           <BrowserRouter>
             <RouteTracker />
-            <ReadingProgressBar />
             <SkipToMain />
             <ErrorBoundary>
               <Suspense fallback={
@@ -138,7 +135,6 @@ const App = () => (
                   <Route path="/newsletter-gestion" element={<NewsletterGestion />} />
                   <Route path="/plan-du-site" element={<PlanDuSite />} />
                   <Route path="/merci" element={<Merci />} />
-                  <Route path="/outils/calculateur-bonus-malus" element={<CalculateurBonusMalus />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>

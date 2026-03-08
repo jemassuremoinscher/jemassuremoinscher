@@ -4,8 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Link } from "react-router-dom";
-import { Car, Shield, Euro, Clock, Calculator, ArrowRight } from "lucide-react";
+import { Car, Shield, Euro, Clock } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -139,7 +138,6 @@ const AssuranceAuto = () => {
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Auto" }]} />
 
-      <main id="main-content">
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center relative">
@@ -150,14 +148,14 @@ const AssuranceAuto = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-4 py-12">
         <DynamicUpdateDate />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
             {advantages.map((item, index) => (
               <Card key={index} className="p-6 text-center">
                 <div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div>
-                <h2 className="font-bold text-lg mb-2">{item.title}</h2>
+                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
                 <p className="text-muted-foreground text-sm">{item.description}</p>
               </Card>
             ))}
@@ -297,36 +295,14 @@ const AssuranceAuto = () => {
           </Accordion>
         </section>
 
-        {/* Bonus-Malus Calculator CTA */}
-        <section className="max-w-4xl mx-auto mb-16">
-          <Card className="p-6 md:p-8 border-primary/20 bg-gradient-to-r from-primary/5 to-accent/5">
-            <div className="flex flex-col sm:flex-row items-center gap-5">
-              <div className="flex-shrink-0 p-3 rounded-full bg-primary/10">
-                <Calculator className="h-8 w-8 text-primary" />
-              </div>
-              <div className="flex-1 text-center sm:text-left">
-                <h3 className="text-lg font-bold text-foreground mb-1">Calculez votre bonus-malus auto</h3>
-                <p className="text-sm text-muted-foreground">Estimez gratuitement votre coefficient et découvrez combien vous pouvez économiser sur votre prime.</p>
-              </div>
-              <Button asChild variant="outline" className="flex-shrink-0 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                <Link to="/outils/calculateur-bonus-malus">
-                  Calculer mon bonus
-                  <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
-              </Button>
-            </div>
-          </Card>
-        </section>
-
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
-            <img src={arthurFlying} alt="Arthur en vol - économisez sur votre assurance auto" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" decoding="async" />
+            <img src={arthurFlying} alt="Arthur" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" loading="lazy" decoding="async" />
             <h2 className="text-2xl font-bold mb-4">{t('insPage.readyToSave')} {t('autoPage.readyToSave')} ?</h2>
             <p className="text-muted-foreground mb-6">{t('insPage.compareFree')}</p>
             <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
-      </div>
       </main>
       <Footer />
     </div>

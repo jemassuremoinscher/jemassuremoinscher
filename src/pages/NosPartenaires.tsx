@@ -48,11 +48,9 @@ const NosPartenaires = () => {
             </div>
             <img
               src={arthurThumbsUp}
-              alt="Arthur mascotte jemassuremoinscher - nos partenaires assureurs"
+              alt=""
+              aria-hidden="true"
               className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none"
-              width={224}
-              height={280}
-              loading="lazy"
             />
           </div>
         </section>
@@ -120,11 +118,9 @@ const NosPartenaires = () => {
             </div>
             <img
               src={arthurFlying}
-              alt="Arthur en vol - comparer vos assurances gratuitement"
+              alt=""
+              aria-hidden="true"
               className="absolute -top-10 right-4 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none"
-              width={144}
-              height={144}
-              loading="lazy"
             />
           </div>
         </div>

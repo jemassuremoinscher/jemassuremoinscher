@@ -8,27 +8,17 @@ const SimpleFooter = () => {
 
   const insuranceLinks = [
     { label: "Assurance Auto", href: "/assurance-auto" },
-    { label: "Assurance Moto", href: "/assurance-moto" },
     { label: "Assurance Habitation", href: "/assurance-habitation" },
     { label: "Mutuelle Santé", href: "/assurance-sante" },
-    { label: "Assurance Animaux", href: "/assurance-animaux" },
-    { label: "Assurance Vie", href: "/assurance-vie" },
-    { label: "Assurance Prêt", href: "/assurance-pret" },
-    { label: "Prévoyance", href: "/assurance-prevoyance" },
-    { label: "RC Professionnelle", href: "/assurance-rc-pro" },
-    { label: "Assurance MRP", href: "/assurance-mrp" },
-    { label: "Assurance GLI", href: "/assurance-gli" },
-    { label: "Assurance PNO", href: "/assurance-pno" },
+    { label: "Assurance Moto", href: "/assurance-moto" },
   ];
 
-  const resourcesLinks = [
-    { label: "Comparateur", href: "/comparateur" },
-    { label: "Blog & Guides", href: "/blog" },
-    { label: "Glossaire Assurance", href: "/glossaire" },
-    { label: "Calculateur Bonus-Malus", href: "/outils/calculateur-bonus-malus" },
-    { label: "Avis clients", href: "/avis-clients" },
-    { label: "Nos partenaires", href: "/nos-partenaires" },
-    { label: "Plan du site", href: "/plan-du-site" },
+  const guidesLinks = [
+    { label: "Tous nos guides", href: "/blog" },
+    { label: "Bien choisir son assurance auto", href: "/blog/comment-choisir-assurance-auto" },
+    { label: "Guide mutuelle santé", href: "/blog/mutuelle-sante-guide" },
+    { label: "Conseils assurance habitation", href: "/blog/assurance-habitation-conseils" },
+    { label: "Glossaire de l'assurance", href: "/glossaire" },
   ];
 
   const aboutLinks = [
@@ -36,8 +26,6 @@ const SimpleFooter = () => {
     { label: "Contact", href: "/contact" },
     { label: "Mentions légales", href: "/mentions-legales" },
     { label: "Politique de confidentialité", href: "/politique-confidentialite" },
-    { label: "Politique cookies", href: "/politique-cookies" },
-    { label: "CGU", href: "/cgu" },
   ];
 
   return (
@@ -61,13 +49,13 @@ const SimpleFooter = () => {
             </ul>
           </nav>
 
-          {/* Col 2: Ressources */}
-          <nav aria-label="Ressources et outils">
+          {/* Col 2: Guides & Conseils */}
+          <nav aria-label="Guides et conseils">
             <h4 className="font-bold text-accent mb-4 text-xs uppercase tracking-wider">
-              Ressources
+              Guides & Conseils
             </h4>
             <ul className="space-y-2">
-              {resourcesLinks.map(link => (
+              {guidesLinks.map(link => (
                 <li key={link.href}>
                   <Link to={link.href} className="text-primary-foreground/60 hover:text-accent transition-colors text-xs">
                     {link.label}
@@ -114,7 +102,7 @@ const SimpleFooter = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <Link to="/" aria-label="Accueil jemassuremoinscher">
-                <img alt="Arthur - mascotte jemassuremoinscher assurance moins chère" className="h-10 w-auto" src={arthurThumbsUp} loading="lazy" width={40} height={40} />
+                <img alt="Arthur - mascotte jemassuremoinscher" className="h-10 w-auto" src={arthurThumbsUp} loading="lazy" width={40} height={40} />
               </Link>
               <p className="text-primary-foreground/50 text-[11px] max-w-xs leading-relaxed">
                 {t('footer.description')}

@@ -92,11 +92,9 @@ const Blog = () => {
             </div>
             <img
               src={arthurThinking}
-              alt="Arthur mascotte blog assurance - conseils et guides"
-              width={224}
-              height={224}
+              alt=""
+              aria-hidden="true"
               className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none"
-              loading="lazy"
             />
           </div>
         </section>
@@ -108,11 +106,9 @@ const Blog = () => {
             {/* Search */}
             <div className="max-w-2xl mx-auto">
               <div className="relative">
-                <label htmlFor="blog-search" className="sr-only">Rechercher un article</label>
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" aria-hidden="true" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
                 <Input
-                  id="blog-search"
-                  type="search"
+                  type="text"
                   placeholder={t('blogPage.searchPlaceholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}

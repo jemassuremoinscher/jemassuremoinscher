@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOOptimized from '@/components/SEOOptimized';
-import { Mail, Clock, MapPin, Send, Loader2 } from 'lucide-react';
+import { Mail, Phone, MessageCircle, Clock, MapPin, Send, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -13,6 +13,8 @@ import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.png';
 import arthurFlying from '@/assets/mascotte/arthur-flying.png';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
+const PHONE_NUMBER = "+33493881684";
+const PHONE_DISPLAY = "04 93 88 16 84";
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -50,7 +52,7 @@ const Contact = () => {
     <>
       <SEOOptimized 
         title="Contactez-nous | Jemassuremoinscher"
-        description="Besoin d'aide ? Contactez-nous par email ou formulaire. Réponse sous 2h."
+        description="Besoin d'aide ? Contactez nos conseillers par téléphone, email ou WhatsApp. Réponse sous 2h."
         canonical="https://www.jemassuremoinscher.fr/contact"
       />
       
@@ -72,11 +74,9 @@ const Contact = () => {
               </div>
               <img
                 src={arthurThumbsUp}
-                alt="Arthur mascotte jemassuremoinscher - contactez-nous"
+                alt=""
+                aria-hidden="true"
                 className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none"
-                width={224}
-                height={280}
-                loading="lazy"
               />
             </div>
           </section>
@@ -84,15 +84,38 @@ const Contact = () => {
           <div className="container mx-auto px-4 py-10 md:py-14">
             <div className="max-w-5xl mx-auto space-y-10">
 
-              {/* Contact card */}
-              <div className="max-w-md mx-auto">
-                <a href="mailto:contact@jemassuremoinscher.fr" className="glass-card p-6 rounded-[2rem] text-center hover:shadow-[var(--shadow-hover)] transition-all duration-300 group block">
+              {/* Contact cards */}
+              <div className="grid sm:grid-cols-3 gap-4">
+                <a href={`tel:${PHONE_NUMBER}`} className="glass-card p-6 rounded-[2rem] text-center hover:shadow-[var(--shadow-hover)] transition-all duration-300 group">
+                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                    <Phone className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="font-bold text-foreground mb-1">{t('contactPage.phone')}</h3>
+                  <p className="text-primary font-semibold">{PHONE_DISPLAY}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{t('contactPage.phoneHours')}</p>
+                </a>
+
+                <a href="mailto:contact@jemassuremoinscher.fr" className="glass-card p-6 rounded-[2rem] text-center hover:shadow-[var(--shadow-hover)] transition-all duration-300 group">
                   <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                     <Mail className="h-5 w-5 text-primary" />
                   </div>
                   <h3 className="font-bold text-foreground mb-1">{t('contactPage.email')}</h3>
                   <p className="text-primary font-semibold text-sm">contact@jemassuremoinscher.fr</p>
                   <p className="text-xs text-muted-foreground mt-1">{t('contactPage.emailDelay')}</p>
+                </a>
+
+                <a
+                  href={`https://wa.me/${PHONE_NUMBER.replace('+', '')}?text=Bonjour, j'ai une question concernant mon assurance.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass-card p-6 rounded-[2rem] text-center hover:shadow-[var(--shadow-hover)] transition-all duration-300 group"
+                >
+                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
+                    <MessageCircle className="h-5 w-5 text-primary" />
+                  </div>
+                  <h3 className="font-bold text-foreground mb-1">WhatsApp</h3>
+                  <p className="text-primary font-semibold">{t('contactPage.whatsapp')}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{t('contactPage.whatsappDelay')}</p>
                 </a>
               </div>
 
@@ -210,11 +233,9 @@ const Contact = () => {
                 </div>
                 <img
                   src={arthurFlying}
-                  alt="Arthur en vol - comparer vos assurances gratuitement"
+                  alt=""
+                  aria-hidden="true"
                   className="absolute -top-10 right-4 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none"
-                  width={144}
-                  height={144}
-                  loading="lazy"
                 />
               </div>
 

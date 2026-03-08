@@ -106,10 +106,8 @@ const HowItWorks = () => {
             <div className="flex items-center gap-4 bg-accent/10 rounded-full px-6 py-3 border border-accent/30">
               <motion.img
                 src={arthurRunning}
-                alt="Arthur mascotte"
+                alt="Arthur"
                 className="w-12 h-auto"
-                width={48}
-                height={60}
                 loading="lazy"
                 decoding="async"
                 animate={{ x: [0, 5, 0] }}

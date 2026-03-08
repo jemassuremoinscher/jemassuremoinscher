@@ -22,7 +22,6 @@ import arthurSick from "@/assets/mascotte/arthur-sick.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import arthurFlying from "@/assets/mascotte/arthur-thumbsup-coin.png";
 import { useLanguage } from "@/contexts/LanguageContext";
-import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 
 const formSchema = z.object({
@@ -89,9 +88,6 @@ const AssuranceSante = () => {
     <div className="min-h-screen">
       <SEOOptimized title="Mutuelle Santé Moins Chère | Comparateur" description="Comparez les mutuelles santé. Devis gratuit en 2 min. Économisez jusqu'à 40%." keyword="mutuelle santé moins chère" keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher" canonical="https://www.jemassuremoinscher.fr/assurance-sante" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
       <Header />
-      <Breadcrumbs items={[{ label: "Mutuelle Santé" }]} />
-
-      <main id="main-content">
 
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4">
@@ -103,14 +99,14 @@ const AssuranceSante = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-4 py-12">
         <DynamicUpdateDate />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
             {advantages.map((item, index) => (
               <Card key={index} className="p-6 text-center">
                 <div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div>
-                <h2 className="font-bold text-lg mb-2">{item.title}</h2>
+                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
                 <p className="text-muted-foreground text-sm">{item.description}</p>
               </Card>
             ))}
@@ -167,13 +163,12 @@ const AssuranceSante = () => {
 
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
-            <img src={arthurFlying} alt="Arthur en vol - économisez sur votre mutuelle santé" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" decoding="async" />
+            <img src={arthurFlying} alt="" aria-hidden="true" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" loading="lazy" decoding="async" />
             <h2 className="text-2xl font-bold mb-4">{t('insPage.readyToSave')} {t('santePage.readyToSave')} ?</h2>
             <p className="text-muted-foreground mb-6">{t('insPage.compareFree')}</p>
             <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
-      </div>
       </main>
       <Footer />
     </div>

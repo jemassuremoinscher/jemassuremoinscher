@@ -77,11 +77,9 @@ const QuiSommesNous = () => {
             </div>
             <img
               src={arthurThumbsUp}
-              alt="Arthur mascotte jemassuremoinscher - comparateur assurance moins chère"
+              alt=""
+              aria-hidden="true"
               className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-56 lg:h-64 object-contain opacity-90 pointer-events-none select-none"
-              width={256}
-              height={320}
-              loading="lazy"
             />
           </div>
         </section>
@@ -203,11 +201,9 @@ const QuiSommesNous = () => {
               </div>
               <img
                 src={arthurThinking}
-                alt="Arthur réfléchit aux valeurs de jemassuremoinscher"
+                alt=""
+                aria-hidden="true"
                 className="hidden md:block absolute -right-4 -bottom-4 h-48 object-contain opacity-80 pointer-events-none select-none"
-                width={192}
-                height={192}
-                loading="lazy"
               />
             </div>
           </div>
@@ -233,11 +229,9 @@ const QuiSommesNous = () => {
               </div>
               <img
                 src={arthurFlying}
-                alt="Arthur en vol - comparer gratuitement vos assurances"
+                alt=""
+                aria-hidden="true"
                 className="absolute -top-8 sm:-top-12 right-2 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none"
-                width={144}
-                height={144}
-                loading="lazy"
               />
             </div>
           </div>
