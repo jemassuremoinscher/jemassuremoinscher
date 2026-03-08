@@ -459,6 +459,7 @@ const QuickQuoteSection = () => {
         </motion.p>
           </motion.div>
         )}
+      </div>
     </section>
   );
 };
