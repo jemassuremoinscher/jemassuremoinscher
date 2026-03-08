@@ -93,8 +93,10 @@ const Index = () => {
           <li><Link to="/contact">Contactez notre équipe</Link></li>
         </ul>
       </nav>
-      <SimpleFooter />
-      <StickyCTA />
+      <Suspense fallback={null}>
+        <SimpleFooter />
+        <StickyCTA />
+      </Suspense>
     </div>
   );
 };
