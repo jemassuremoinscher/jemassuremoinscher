@@ -193,6 +193,9 @@ const QuickQuoteSection = () => {
 
   const handleInsuranceTypeSelect = (value: InsuranceType) => {
     setQuoteData(prev => ({ ...prev, insuranceType: value, profileOption: "", coverageLevel: "" }));
+    // Auto-advance to step 2 after selection
+    setDirection(1);
+    setCurrentStep(2);
   };
 
   const handleSubmit = async () => {
