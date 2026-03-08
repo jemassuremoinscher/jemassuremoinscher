@@ -181,6 +181,21 @@ const Hero = () => {
           ))}
         </motion.div>
 
+        {/* Link to all insurance types */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.7 }}
+          className="text-center mt-4"
+        >
+          <Link
+            to="/comparateur"
+            className="text-sm text-primary-foreground/70 hover:text-accent transition-colors underline underline-offset-4 decoration-primary-foreground/30 hover:decoration-accent"
+          >
+            Voir tous les types d'assurance →
+          </Link>
+        </motion.div>
+
         {/* Trust Indicators */}
         <motion.div 
           initial={{ opacity: 0 }} 
