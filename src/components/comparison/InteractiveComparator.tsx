@@ -149,7 +149,7 @@ export const InteractiveComparator = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-10 md:py-14 space-y-10">
+      <div className="container mx-auto px-4 py-6 md:py-14 space-y-10">
         {/* Filters Card */}
         <Card className="glass-card p-6 md:p-8 max-w-4xl mx-auto rounded-[2rem]">
           <div className="grid md:grid-cols-2 gap-6 mb-8">
