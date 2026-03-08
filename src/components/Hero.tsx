@@ -106,11 +106,10 @@ const Hero = () => {
             className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-lg mx-auto font-[Inter]"
           >
             {t('hero.subtitle')} <span className="font-bold">{t('hero.subtitleBold')}</span> {t('hero.subtitleEnd')}
-            <br className="hidden md:block" />
-            <span className="text-primary-foreground/80">
-              Gratuit, sans engagement.<br />
-              On s'occupe de tout.
-            </span>
+            <br />
+            <span className="text-primary-foreground/80">Gratuit, sans engagement.</span>
+            <br />
+            <span className="text-primary-foreground/80">On s'occupe de tout.</span>
           </motion.p>
         </div>
 
