@@ -108,9 +108,11 @@ const Blog = () => {
             {/* Search */}
             <div className="max-w-2xl mx-auto">
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
+                <label htmlFor="blog-search" className="sr-only">Rechercher un article</label>
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" aria-hidden="true" />
                 <Input
-                  type="text"
+                  id="blog-search"
+                  type="search"
                   placeholder={t('blogPage.searchPlaceholder')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
