@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { Car, Heart, Home, PawPrint, Bike, HeartPulse, Sparkles } from "lucide-react";
+import { Car, Heart, Home, PawPrint, Bike, HeartPulse, Sparkles, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -124,6 +124,27 @@ const Hero = () => {
               {t('hero.savingsBadge')} <span className="text-accent">{t('hero.savingsPercent')}</span> {t('hero.savingsEnd')}
             </span>
           </div>
+        </motion.div>
+
+        {/* CTA Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.45 }}
+          className="flex flex-col items-center mb-8"
+        >
+          <p className="text-xs md:text-sm text-primary-foreground/70 mb-2.5 font-medium">
+            Gratuit, sans engagement et conforme Loi Hamon
+          </p>
+          <Link
+            to="/comparateur"
+            onClick={() => trackEvent('cta_click', { category: 'hero_cta', label: 'voir_mon_prix' })}
+            className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
+            aria-label="Voir mon prix en 2 minutes - comparaison gratuite"
+          >
+            <Zap className="w-5 h-5" aria-hidden="true" />
+            Voir mon prix en 2 min
+          </Link>
         </motion.div>
 
         {/* Category Cards Grid */}

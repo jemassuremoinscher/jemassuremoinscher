@@ -26,7 +26,8 @@ export type AnalyticsEvent =
   | 'email_click'
   | 'ads_form_submit'
   | 'quiz_answer'
-  | 'quiz_complete';
+  | 'quiz_complete'
+  | 'cta_click';
 
 interface EventParams {
   category?: string;
