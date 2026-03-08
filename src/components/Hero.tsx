@@ -107,7 +107,10 @@ const Hero = () => {
           >
             {t('hero.subtitle')} <span className="font-bold">{t('hero.subtitleBold')}</span> {t('hero.subtitleEnd')}
             <br className="hidden md:block" />
-            <span className="text-primary-foreground/80">{t('hero.subtitleSecondary')}</span>
+            <span className="text-primary-foreground/80">
+              Gratuit, sans engagement.<br />
+              On s'occupe de tout.
+            </span>
           </motion.p>
         </div>
 
