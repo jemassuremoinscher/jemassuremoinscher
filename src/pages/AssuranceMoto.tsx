@@ -111,7 +111,7 @@ const AssuranceMoto = () => {
             {advantages.map((item, index) => (
               <Card key={index} className="p-6 text-center">
                 <div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div>
-                <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+                <h2 className="font-bold text-lg mb-2">{item.title}</h2>
                 <p className="text-muted-foreground text-sm">{item.description}</p>
               </Card>
             ))}
