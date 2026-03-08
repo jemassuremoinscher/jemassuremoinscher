@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -83,6 +83,13 @@ export const InteractiveComparator = () => {
   const [hasCompared, setHasCompared] = useState(false);
 
   const { trackEvent } = useAnalytics();
+
+  // Update document.title based on current step
+  useEffect(() => {
+    const step = hasCompared ? 'Résultats' : 'Étape 1 : Vos critères';
+    document.title = `${step} - Comparateur d'Assurance | Jemassuremoinscher`;
+    return () => { document.title = 'Comparateur d\'Assurances Gratuit en Ligne'; };
+  }, [hasCompared]);
 
   const handleShare = async () => {
     if (navigator.share) {
@@ -207,9 +214,10 @@ export const InteractiveComparator = () => {
             <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Button
                 size="lg"
+                role="button"
                 onClick={() => setHasCompared(true)}
                 className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-10 rounded-full text-lg"
-                aria-label="Lancer la comparaison des devis d'assurance"
+                aria-label="Lancer la comparaison des tarifs d'assurance"
               >
                 Comparer maintenant
               </Button>
@@ -220,7 +228,7 @@ export const InteractiveComparator = () => {
 
         {/* Offers - only shown after comparison */}
         {hasCompared && (
-        <div className="max-w-4xl mx-auto space-y-4">
+        <div className="max-w-4xl mx-auto space-y-4" aria-live="polite" aria-atomic="false">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl md:text-2xl font-bold text-foreground">
               {filteredOffers.length} {t('comparator.offersAvailable')}
