@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import Breadcrumbs, { type BreadcrumbItem } from "@/components/Breadcrumbs";
 import SEOOptimized from "@/components/SEOOptimized";
 import SemanticFAQ, { type FAQItem } from "@/components/SemanticFAQ";
 import { addBreadcrumbSchema, addFAQSchema, addServiceSchema } from "@/utils/seoUtils";
@@ -11,42 +11,26 @@ import { motion } from "framer-motion";
 
 export interface SEOContentBlock {
   title: string;
-  /** HTML or plain text – rendered via dangerouslySetInnerHTML for rich formatting */
+  /** HTML string – rendered via dangerouslySetInnerHTML for rich formatting */
   content: string;
 }
 
 export interface SEOCategoryPageProps {
-  /* ---- SEO metadata ---- */
   metaTitle: string;
   metaDescription: string;
   canonicalPath: string;
-
-  /* ---- Hero ---- */
   h1: string;
   subtitle: string;
-
-  /* ---- Content blocks (min 3 recommended) ---- */
   contentBlocks: SEOContentBlock[];
-
-  /* ---- FAQ ---- */
   faqItems: FAQItem[];
-
-  /* ---- CTA ---- */
   ctaLabel?: string;
   ctaLink?: string;
-
-  /* ---- Optional JSON-LD extras ---- */
   serviceName?: string;
   serviceDescription?: string;
+  breadcrumbLabel?: string;
 }
 
-const CTAButton = ({
-  label,
-  link,
-}: {
-  label: string;
-  link: string;
-}) => (
+const CTAButton = ({ label, link }: { label: string; link: string }) => (
   <div className="flex justify-center">
     <Button asChild size="lg" className="gap-2 text-base font-bold px-8">
       <Link to={link}>
@@ -69,46 +53,51 @@ const SEOCategoryPage = ({
   ctaLink = "/comparateur",
   serviceName,
   serviceDescription,
+  breadcrumbLabel,
 }: SEOCategoryPageProps) => {
-  const baseUrl = "https://jemassuremoinscher.fr";
+  const baseUrl = "https://www.jemassuremoinscher.fr";
 
-  // Build JSON-LD schemas
-  let jsonLd = addBreadcrumbSchema(
-    {},
-    [
-      { name: "Accueil", url: baseUrl },
-      { name: h1, url: `${baseUrl}${canonicalPath}` },
-    ]
-  );
+  const breadcrumbSchemaItems = [
+    { name: "Accueil", url: baseUrl },
+    { name: breadcrumbLabel || h1, url: `${baseUrl}${canonicalPath}` },
+  ];
 
-  jsonLd = addFAQSchema(jsonLd, faqItems);
+  // Collect all JSON-LD schemas as an array
+  const jsonLdSchemas: object[] = [
+    addBreadcrumbSchema(breadcrumbSchemaItems),
+    addFAQSchema(faqItems),
+  ];
 
   if (serviceName && serviceDescription) {
-    jsonLd = addServiceSchema(jsonLd, {
-      name: serviceName,
-      description: serviceDescription,
-      url: `${baseUrl}${canonicalPath}`,
-    });
+    jsonLdSchemas.push(
+      addServiceSchema({
+        name: serviceName,
+        description: serviceDescription,
+      })
+    );
   }
+
+  const breadcrumbs: BreadcrumbItem[] = [
+    { label: breadcrumbLabel || h1 },
+  ];
 
   return (
     <>
       <SEOOptimized
         title={metaTitle}
         description={metaDescription}
-        canonicalUrl={`${baseUrl}${canonicalPath}`}
-        jsonLd={jsonLd}
+        canonical={`${baseUrl}${canonicalPath}`}
+        jsonLd={jsonLdSchemas}
       />
 
       <Header />
 
       <main id="main-content" className="min-h-screen">
-        {/* ─── Breadcrumbs ─── */}
         <div className="container mx-auto px-4 pt-4">
-          <Breadcrumbs />
+          <Breadcrumbs items={breadcrumbs} />
         </div>
 
-        {/* ─── Hero Section ─── */}
+        {/* Hero */}
         <section className="py-12 md:py-20 bg-gradient-to-b from-muted/40 to-background">
           <div className="container mx-auto px-4 text-center max-w-3xl">
             <motion.h1
@@ -127,12 +116,11 @@ const SEOCategoryPage = ({
             >
               {subtitle}
             </motion.p>
-
             <CTAButton label={ctaLabel} link={ctaLink} />
           </div>
         </section>
 
-        {/* ─── Content Blocks (300+ mots SEO) ─── */}
+        {/* Content Blocks (300+ mots SEO) */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4 max-w-3xl space-y-10">
             {contentBlocks.map((block, i) => (
@@ -155,19 +143,15 @@ const SEOCategoryPage = ({
           </div>
         </section>
 
-        {/* ─── Mid-page CTA ─── */}
+        {/* Mid-page CTA */}
         <section className="py-8 bg-muted/20">
           <CTAButton label={ctaLabel} link={ctaLink} />
         </section>
 
-        {/* ─── FAQ Section ─── */}
-        <SemanticFAQ
-          items={faqItems}
-          title="Questions fréquentes"
-          subtitle="Retrouvez les réponses aux questions les plus posées."
-        />
+        {/* FAQ */}
+        <SemanticFAQ items={faqItems} />
 
-        {/* ─── Bottom CTA ─── */}
+        {/* Bottom CTA */}
         <section className="py-10 md:py-14 bg-gradient-to-b from-background to-muted/30">
           <div className="container mx-auto px-4 text-center max-w-2xl">
             <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">
