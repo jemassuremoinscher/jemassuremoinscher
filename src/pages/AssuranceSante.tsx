@@ -22,6 +22,7 @@ import arthurSick from "@/assets/mascotte/arthur-sick.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import arthurFlying from "@/assets/mascotte/arthur-thumbsup-coin.png";
 import { useLanguage } from "@/contexts/LanguageContext";
+import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 
 const formSchema = z.object({
   situation: z.string().min(1, "Champ requis"),
