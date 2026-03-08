@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 
 const LandingPret = () => {
   const { trackPageView } = useAnalytics();
+  const { t } = useLanguage();
 
   useEffect(() => {
     trackPageView('/landing/pret', 'Landing Page Assurance Prêt');
