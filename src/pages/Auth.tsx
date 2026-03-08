@@ -76,6 +76,11 @@ const Auth = () => {
   };
 
   return (
+    <>
+      <Helmet>
+        <title>Connexion Admin | jemassuremoinscher</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-background to-accent/5 p-4">
       <Card className="w-full max-w-md p-8">
         <div className="flex flex-col items-center mb-8">
