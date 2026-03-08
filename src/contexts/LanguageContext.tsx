@@ -1346,7 +1346,7 @@ const fr: Record<string, string> = {
   // Partners Component
   'partnersComponent.badge': 'Nos partenaires',
   'partnersComponent.title': 'Plus de',
-  'partnersComponent.titleHighlight': '60 assureurs',
+  'partnersComponent.titleHighlight': '50 assureurs',
   'partnersComponent.titleEnd': 'comparés',
   'partnersComponent.subtitle': 'Et près de',
   'partnersComponent.agencies': '2000 agences locales',
@@ -2943,7 +2943,7 @@ const en: Record<string, string> = {
   // Partners Component
   'partnersComponent.badge': 'Our partners',
   'partnersComponent.title': 'More than',
-  'partnersComponent.titleHighlight': '60 insurers',
+  'partnersComponent.titleHighlight': '50 insurers',
   'partnersComponent.titleEnd': 'compared',
   'partnersComponent.subtitle': 'And nearly',
   'partnersComponent.agencies': '2,000 local agencies',
