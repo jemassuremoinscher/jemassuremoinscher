@@ -99,6 +99,8 @@ const AssuranceMRP = () => {
     <div className="min-h-screen">
       <SEOOptimized title="Assurance Multirisque Pro | Comparateur" description="Comparez les assurances MRP. Protégez vos locaux et activité. Devis gratuit." keyword="assurance multirisque professionnelle" keywords="MRP, assurance entreprise, assurance local" canonical="https://www.jemassuremoinscher.fr/assurance-mrp" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
+      <Breadcrumbs items={[{ label: "Assurance MRP" }]} />
+      <main id="main-content">
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
           <ArthurHero imageSrc={arthurBusiness} imageAlt="Arthur en costume - assurance MRP moins chère" speechText={t('mrpPage.subtitle')} />
@@ -106,9 +108,9 @@ const AssuranceMRP = () => {
           <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
         </div></div>
       </section>
-      <main className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12">
         <DynamicUpdateDate />
-        <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h3 className="font-bold text-lg mb-2">{item.title}</h3><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
+        <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
         <div ref={formRef} className="max-w-3xl mx-auto mb-16">
           <Card className="p-8">
             <h2 className="text-2xl font-bold mb-6 text-card-foreground">{t('insPage.getQuote')}</h2>
