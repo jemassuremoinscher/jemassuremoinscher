@@ -233,9 +233,11 @@ const QuiSommesNous = () => {
               </div>
               <img
                 src={arthurFlying}
-                alt=""
-                aria-hidden="true"
+                alt="Arthur en vol - comparer gratuitement vos assurances"
                 className="absolute -top-8 sm:-top-12 right-2 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none"
+                width={144}
+                height={144}
+                loading="lazy"
               />
             </div>
           </div>
