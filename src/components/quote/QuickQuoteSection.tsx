@@ -270,9 +270,9 @@ const QuickQuoteSection = () => {
       <div className="container mx-auto px-4">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
           <div className="flex items-center justify-center gap-4 mb-4">
-            <motion.img src={arthurThinking} alt="Arthur" className="w-16 h-auto md:w-20" loading="lazy" animate={{ rotate: [0, -5, 5, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
+            <motion.img src={arthurThinking} alt="Arthur mascotte" className="w-16 h-auto md:w-20" width={80} height={100} loading="lazy" animate={{ rotate: [0, -5, 5, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
             <div className="text-left">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-1">{t('quickQuote.title')}</h2>
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-1">{t('quickQuote.title')}</h3>
               <p className="text-muted-foreground">{t('quickQuote.subtitle')}</p>
             </div>
           </div>
@@ -297,7 +297,7 @@ const QuickQuoteSection = () => {
               <motion.div key="step1" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 rounded-lg bg-primary/10"><Shield className="w-5 h-5 text-primary" /></div>
-                  <h4 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.insuranceTypeQuestion')}</h4>
+                  <h3 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.insuranceTypeQuestion')}</h3>
                 </div>
                 <RadioGroup value={quoteData.insuranceType} onValueChange={value => handleInsuranceTypeSelect(value as InsuranceType)} className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {INSURANCE_TYPES.map(option => (
@@ -321,7 +321,7 @@ const QuickQuoteSection = () => {
               <motion.div key="step2" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 rounded-lg bg-primary/10"><Calendar className="w-5 h-5 text-primary" /></div>
-                  <h4 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.profileQuestion')}</h4>
+                  <h3 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.profileQuestion')}</h3>
                 </div>
                 <RadioGroup value={quoteData.profileOption} onValueChange={value => setQuoteData(prev => ({ ...prev, profileOption: value }))} className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {profileOptions.map(option => (
@@ -346,7 +346,7 @@ const QuickQuoteSection = () => {
               <motion.div key="step3" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 rounded-lg bg-primary/10"><Shield className="w-5 h-5 text-primary" /></div>
-                  <h4 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.coverageQuestion')}</h4>
+                  <h3 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.coverageQuestion')}</h3>
                 </div>
                 <RadioGroup value={quoteData.coverageLevel} onValueChange={value => setQuoteData(prev => ({ ...prev, coverageLevel: value }))} className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {coverageOptions.map(option => (
@@ -371,7 +371,7 @@ const QuickQuoteSection = () => {
               <motion.div key="step4" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 rounded-lg bg-primary/10"><Mail className="w-5 h-5 text-primary" /></div>
-                  <h4 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.contactQuestion')}</h4>
+                  <h3 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.contactQuestion')}</h3>
                 </div>
 
                 <div className="space-y-4">

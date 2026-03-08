@@ -140,6 +140,8 @@ const Footer = () => {
                 src={arthurRunning}
                 alt="Arthur, mascotte de jemassuremoinscher.fr"
                 className="h-14 w-auto"
+                width={56}
+                height={56}
                 loading="lazy"
                 decoding="async"
               />
