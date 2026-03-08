@@ -275,8 +275,8 @@ const QuickQuoteSection = () => {
       <h2 id="quick-quote-title" className="sr-only">{t('quickQuote.srTitle')}</h2>
       <div className="container mx-auto px-4">
 
-        {/* Step 0: Initial prominent picker — hidden to avoid duplicate with cards above */}
-        {currentStep === 0 && false && (
+        {/* Step 0: Initial prominent picker */}
+        {currentStep === 0 && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
             <div className="text-center mb-8">
               <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
