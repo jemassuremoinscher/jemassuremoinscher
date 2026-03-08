@@ -184,8 +184,8 @@ const AvisClients = () => {
               </div>
               <img
                 src={arthurFlying}
-                alt=""
-                aria-hidden="true"
+                alt="Arthur mascotte jemassuremoinscher - avis clients assurance moins chère"
+                loading="lazy"
                 className="absolute -top-10 right-4 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none"
               />
             </div>
