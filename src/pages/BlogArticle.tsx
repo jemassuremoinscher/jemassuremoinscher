@@ -23,6 +23,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import SuggestedKeywords from "@/components/blog/SuggestedKeywords";
 import PopularArticles from "@/components/blog/PopularArticles";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
+import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 
 const BlogArticle = () => {
   const { t } = useLanguage();
