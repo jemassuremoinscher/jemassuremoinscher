@@ -132,7 +132,7 @@ export const InteractiveComparator = () => {
     <div className="space-y-0">
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
-        <div className="container mx-auto px-4 py-14 md:py-20">
+        <div className="container mx-auto px-4 py-8 md:py-20">
           <div className="max-w-[70%] sm:max-w-[75%] md:max-w-2xl relative z-10">
             <Badge className="mb-4 bg-white/20 text-white border-white/30 backdrop-blur-sm">
               <Sparkles className="h-3 w-3 mr-1" />
@@ -149,14 +149,14 @@ export const InteractiveComparator = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-10 md:py-14 space-y-10">
+      <div className="container mx-auto px-4 py-6 md:py-14 space-y-10">
         {/* Filters Card */}
         <Card className="glass-card p-6 md:p-8 max-w-4xl mx-auto rounded-[2rem]">
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="space-y-3">
               <Label htmlFor="comparator-insurance-type" className="text-base font-semibold text-foreground">{t('comparator.insuranceType')}</Label>
               <Select value={insuranceType} onValueChange={setInsuranceType}>
-                <SelectTrigger id="comparator-insurance-type" className="h-12 rounded-2xl" aria-label={t('comparator.insuranceType')}><SelectValue /></SelectTrigger>
+                <SelectTrigger id="comparator-insurance-type" className="h-14 md:h-12 rounded-2xl text-base" aria-label={t('comparator.insuranceType')}><SelectValue /></SelectTrigger>
                 <SelectContent className="rounded-2xl">
                   <SelectItem value="auto">{t('comparator.autoIns')}</SelectItem>
                   <SelectItem value="moto">{t('comparator.motoIns')}</SelectItem>
@@ -169,7 +169,7 @@ export const InteractiveComparator = () => {
             <div className="space-y-3">
               <Label htmlFor="comparator-sort-by" className="text-base font-semibold text-foreground">{t('comparator.sortBy')}</Label>
               <Select value={sortBy} onValueChange={(v) => setSortBy(v as any)}>
-                <SelectTrigger id="comparator-sort-by" className="h-12 rounded-2xl" aria-label={t('comparator.sortBy')}><SelectValue /></SelectTrigger>
+                <SelectTrigger id="comparator-sort-by" className="h-14 md:h-12 rounded-2xl text-base" aria-label={t('comparator.sortBy')}><SelectValue /></SelectTrigger>
                 <SelectContent className="rounded-2xl">
                   <SelectItem value="price">{t('comparator.lowestPrice')}</SelectItem>
                   <SelectItem value="rating">{t('comparator.bestRating')}</SelectItem>
