@@ -202,7 +202,7 @@ const BlogArticle = () => {
               <div className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground">
                 <ReactMarkdown
                   components={{
-                    h1: ({node, ...props}) => <h1 className="text-3xl font-bold mt-12 mb-6 text-foreground" {...props} />,
+                    h1: ({node, ...props}) => <h2 className="text-3xl font-bold mt-12 mb-6 text-foreground" {...props} />,
                     h2: ({node, children, ...props}) => {
                       const id = `section-${headingIndex++}`;
                       return (

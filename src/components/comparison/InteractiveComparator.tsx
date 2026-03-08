@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -7,14 +7,14 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Check, TrendingDown, Star, Sparkles, Share2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Link } from 'react-router-dom';
+
 import { SubscriptionModal } from './SubscriptionModal';
 import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { useLanguage } from '@/contexts/LanguageContext';
 import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.png';
-import arthurFlying from '@/assets/mascotte/arthur-flying.png';
-import ArthurCTABubble from '@/components/ArthurCTABubble';
+
+
 
 interface InsuranceOffer {
   id: string;
@@ -84,6 +84,13 @@ export const InteractiveComparator = () => {
 
   const { trackEvent } = useAnalytics();
 
+  // Update document.title based on current step
+  useEffect(() => {
+    const step = hasCompared ? 'Résultats' : 'Étape 1 : Vos critères';
+    document.title = `${step} - Comparateur d'Assurance | Jemassuremoinscher`;
+    return () => { document.title = 'Comparateur d\'Assurances Gratuit en Ligne'; };
+  }, [hasCompared]);
+
   const handleShare = async () => {
     if (navigator.share) {
       try {
@@ -125,7 +132,7 @@ export const InteractiveComparator = () => {
     <div className="space-y-0">
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
-        <div className="container mx-auto px-4 py-14 md:py-20">
+        <div className="container mx-auto px-4 py-8 md:py-20">
           <div className="max-w-[70%] sm:max-w-[75%] md:max-w-2xl relative z-10">
             <Badge className="mb-4 bg-white/20 text-white border-white/30 backdrop-blur-sm">
               <Sparkles className="h-3 w-3 mr-1" />
@@ -138,18 +145,18 @@ export const InteractiveComparator = () => {
               {t('comparator.heroSubtitle')}
             </p>
           </div>
-          <img src={arthurThumbsUp} alt="" aria-hidden="true" className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none" />
+          <img src={arthurThumbsUp} alt="Arthur mascotte comparateur assurance moins chère" className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none" width={224} height={280} loading="lazy" />
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-10 md:py-14 space-y-10">
+      <div className="container mx-auto px-4 py-6 md:py-14 space-y-10">
         {/* Filters Card */}
         <Card className="glass-card p-6 md:p-8 max-w-4xl mx-auto rounded-[2rem]">
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="space-y-3">
               <Label htmlFor="comparator-insurance-type" className="text-base font-semibold text-foreground">{t('comparator.insuranceType')}</Label>
               <Select value={insuranceType} onValueChange={setInsuranceType}>
-                <SelectTrigger id="comparator-insurance-type" className="h-12 rounded-2xl" aria-label={t('comparator.insuranceType')}><SelectValue /></SelectTrigger>
+                <SelectTrigger id="comparator-insurance-type" className="h-14 md:h-12 rounded-2xl text-base" aria-label={t('comparator.insuranceType')}><SelectValue /></SelectTrigger>
                 <SelectContent className="rounded-2xl">
                   <SelectItem value="auto">{t('comparator.autoIns')}</SelectItem>
                   <SelectItem value="moto">{t('comparator.motoIns')}</SelectItem>
@@ -162,7 +169,7 @@ export const InteractiveComparator = () => {
             <div className="space-y-3">
               <Label htmlFor="comparator-sort-by" className="text-base font-semibold text-foreground">{t('comparator.sortBy')}</Label>
               <Select value={sortBy} onValueChange={(v) => setSortBy(v as any)}>
-                <SelectTrigger id="comparator-sort-by" className="h-12 rounded-2xl" aria-label={t('comparator.sortBy')}><SelectValue /></SelectTrigger>
+                <SelectTrigger id="comparator-sort-by" className="h-14 md:h-12 rounded-2xl text-base" aria-label={t('comparator.sortBy')}><SelectValue /></SelectTrigger>
                 <SelectContent className="rounded-2xl">
                   <SelectItem value="price">{t('comparator.lowestPrice')}</SelectItem>
                   <SelectItem value="rating">{t('comparator.bestRating')}</SelectItem>
@@ -207,20 +214,21 @@ export const InteractiveComparator = () => {
             <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Button
                 size="lg"
+                role="button"
                 onClick={() => setHasCompared(true)}
                 className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-10 rounded-full text-lg"
-                aria-label="Lancer la comparaison des devis d'assurance"
+                aria-label="Lancer la comparaison des tarifs d'assurance"
               >
                 Comparer maintenant
               </Button>
-              <ArthurCTABubble />
+              
             </div>
           )}
         </Card>
 
         {/* Offers - only shown after comparison */}
         {hasCompared && (
-        <div className="max-w-4xl mx-auto space-y-4">
+        <div className="max-w-4xl mx-auto space-y-4" aria-live="polite" aria-atomic="false">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl md:text-2xl font-bold text-foreground">
               {filteredOffers.length} {t('comparator.offersAvailable')}
@@ -309,27 +317,6 @@ export const InteractiveComparator = () => {
         </div>
         )}
 
-        {/* CTA */}
-        <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center max-w-4xl mx-auto overflow-visible">
-          <div className="relative z-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              {t('comparator.needHelp')}
-            </h2>
-            <p className="text-white/80 mb-6 max-w-xl mx-auto">
-              {t('comparator.expertHelp')}
-            </p>
-            <Button 
-              size="lg" 
-              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 rounded-full text-lg"
-              asChild
-            >
-              <Link to="/contact" aria-label="Parler à un expert en assurance">
-                {t('comparator.talkExpert')}
-              </Link>
-            </Button>
-          </div>
-          <img src={arthurFlying} alt="" aria-hidden="true" className="absolute -top-10 right-4 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none" />
-        </div>
       </div>
 
       {selectedOffer && (

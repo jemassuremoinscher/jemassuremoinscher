@@ -22,6 +22,7 @@ import arthurAnimals from "@/assets/mascotte/arthur-animals.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import arthurFlying from "@/assets/mascotte/arthur-walking.png";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 
 const formSchema = z.object({
@@ -84,7 +85,9 @@ const AssuranceAnimaux = () => {
     <div className="min-h-screen">
       <SEOOptimized title="Assurance Animaux Moins Chère | Comparateur" description="Comparez les assurances chien et chat. Remboursement frais vétérinaires jusqu'à 100%." keyword="assurance animaux moins chère" keywords="assurance chien, assurance chat, mutuelle animaux" canonical="https://www.jemassuremoinscher.fr/assurance-animaux" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
+      <Breadcrumbs items={[{ label: "Assurance Animaux" }]} />
 
+      <main id="main-content">
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center relative">
@@ -95,11 +98,11 @@ const AssuranceAnimaux = () => {
         </div>
       </section>
 
-      <main className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12">
         <DynamicUpdateDate />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
-            {advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h3 className="font-bold text-lg mb-2">{item.title}</h3><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}
+            {advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}
           </div>
         </section>
 
@@ -145,12 +148,13 @@ const AssuranceAnimaux = () => {
 
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
-            <img src={arthurFlying} alt="" aria-hidden="true" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" loading="lazy" decoding="async" />
+            <img src={arthurFlying} alt="Arthur en vol - économisez sur votre assurance animaux" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" decoding="async" />
             <h2 className="text-2xl font-bold mb-4">{t('animauxPage.readyTitle')}</h2>
             <p className="text-muted-foreground mb-6">{t('animauxPage.readyDesc')}</p>
             <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
+      </div>
       </main>
       <Footer />
     </div>
