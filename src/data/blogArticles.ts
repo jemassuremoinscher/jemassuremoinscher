@@ -4952,11 +4952,8 @@ function parseFrenchDate(d: string): Date {
   return new Date();
 }
 
-export const allBlogArticles: BlogArticle[] = [...existingWithDates, ...articles2026WithDates]
+export const blogArticles: BlogArticle[] = [...existingWithDates, ...articles2026WithDates]
   .sort((a, b) => parseFrenchDate(b.date).getTime() - parseFrenchDate(a.date).getTime());
-
-// Re-export as blogArticles for backward compatibility
-export { allBlogArticles as blogArticles };
 
 export const blogCategories = [
   "Tous les articles",
