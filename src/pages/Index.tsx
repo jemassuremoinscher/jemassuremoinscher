@@ -55,13 +55,15 @@ const Index = () => {
       <Header />
       <main id="main-content" role="main">
         <Hero />
-        <QuickQuoteSection />
-        <PartnersSlider />
-        <WhyUsComparison />
-        <HowItWorks />
-        <SEOFaq />
-        <GuidesSection />
-        <SEOContent />
+        <Suspense fallback={null}>
+          <QuickQuoteSection />
+          <PartnersSlider />
+          <WhyUsComparison />
+          <HowItWorks />
+          <SEOFaq />
+          <GuidesSection />
+          <SEOContent />
+        </Suspense>
       </main>
       {/* Hidden internal links for SEO - crawlable but not visible */}
       <nav aria-label="Liens internes" className="sr-only">
