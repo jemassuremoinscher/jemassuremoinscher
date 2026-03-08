@@ -168,6 +168,11 @@ const Admin = () => {
   ];
 
   return (
+    <>
+      <Helmet>
+        <title>Dashboard Admin | jemassuremoinscher</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b bg-card sticky top-0 z-50 shadow-sm">

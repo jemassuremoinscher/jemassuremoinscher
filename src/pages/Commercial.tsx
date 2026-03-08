@@ -111,6 +111,11 @@ const Commercial = () => {
   };
 
   return (
+    <>
+      <Helmet>
+        <title>Dashboard Commercial | jemassuremoinscher</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
     <div className="min-h-screen bg-background">
       <header className="border-b bg-card sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
