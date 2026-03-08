@@ -4,7 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Car, Shield, Euro, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Car, Shield, Euro, Clock, Calculator, ArrowRight } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -293,6 +294,27 @@ const AssuranceAuto = () => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+        </section>
+
+        {/* Bonus-Malus Calculator CTA */}
+        <section className="max-w-4xl mx-auto mb-16">
+          <Card className="p-6 md:p-8 border-primary/20 bg-gradient-to-r from-primary/5 to-accent/5">
+            <div className="flex flex-col sm:flex-row items-center gap-5">
+              <div className="flex-shrink-0 p-3 rounded-full bg-primary/10">
+                <Calculator className="h-8 w-8 text-primary" />
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <h3 className="text-lg font-bold text-foreground mb-1">Calculez votre bonus-malus auto</h3>
+                <p className="text-sm text-muted-foreground">Estimez gratuitement votre coefficient et découvrez combien vous pouvez économiser sur votre prime.</p>
+              </div>
+              <Button asChild variant="outline" className="flex-shrink-0 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Link to="/outils/calculateur-bonus-malus">
+                  Calculer mon bonus
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </Link>
+              </Button>
+            </div>
+          </Card>
         </section>
 
         <section className="max-w-2xl mx-auto text-center mb-16">
