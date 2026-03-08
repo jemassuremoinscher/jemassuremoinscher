@@ -20,6 +20,9 @@ import { addArticleSchema, addBreadcrumbSchema, addFAQSchema } from "@/utils/seo
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import SuggestedKeywords from "@/components/blog/SuggestedKeywords";
+import PopularArticles from "@/components/blog/PopularArticles";
+import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 
 const BlogArticle = () => {
   const { t } = useLanguage();
