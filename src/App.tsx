@@ -145,6 +145,7 @@ const App = () => (
               </Suspense>
             </ErrorBoundary>
             <CookieBanner />
+            <FloatingCTA />
             <AIChatbot />
           </BrowserRouter>
         </TooltipProvider>
