@@ -163,13 +163,13 @@ const fr: Record<string, string> = {
   
   // How it works
   'howItWorks.title': 'Comment ça marche ?',
-  'howItWorks.subtitle': "Comparer ses assurances n'a jamais été aussi simple",
-  'howItWorks.step1.title': 'Je remplis mon profil',
-  'howItWorks.step1.description': 'En 2 minutes, décrivez vos besoins en assurance.',
-  'howItWorks.step2.title': 'Je compare les offres',
-  'howItWorks.step2.description': 'Arthur analyse 50+ assureurs pour vous.',
-  'howItWorks.step3.title': 'On me rappelle tout de suite',
-  'howItWorks.step3.description': 'Choisissez la meilleure offre et faites-vous rappeler.',
+  'howItWorks.subtitle': "C'est simple, rapide, et on s'occupe de tout",
+  'howItWorks.step1.title': 'Vous décrivez vos besoins',
+  'howItWorks.step1.description': 'En 2 minutes, dites-nous ce que vous cherchez. Pas de jargon, juste l\'essentiel.',
+  'howItWorks.step2.title': 'Arthur compare pour vous',
+  'howItWorks.step2.description': 'Notre outil analyse 50+ assureurs et trouve les meilleures offres pour votre profil.',
+  'howItWorks.step3.title': 'Un expert vous rappelle',
+  'howItWorks.step3.description': 'Vous choisissez l\'offre qui vous plaît, et un conseiller vous accompagne gratuitement.',
   'howItWorks.arthurCta': "s'occupe de tout !",
   
   // Why us
