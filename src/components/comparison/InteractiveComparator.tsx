@@ -14,7 +14,7 @@ import { useAnalytics } from '@/hooks/useAnalytics';
 import { useLanguage } from '@/contexts/LanguageContext';
 import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.png';
 
-import ArthurCTABubble from '@/components/ArthurCTABubble';
+
 
 interface InsuranceOffer {
   id: string;
@@ -221,7 +221,7 @@ export const InteractiveComparator = () => {
               >
                 Comparer maintenant
               </Button>
-              <ArthurCTABubble />
+              
             </div>
           )}
         </Card>
