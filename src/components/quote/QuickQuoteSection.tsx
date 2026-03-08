@@ -386,9 +386,37 @@ const QuickQuoteSection = () => {
               </motion.div>
             )}
 
-            {/* Step 2: Profile */}
-            {currentStep === 2 && (
-              <motion.div key="step2" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
+            {/* Step 2 (vehicle only): Brand Selection */}
+            {isVehicleType && currentStep === 2 && (
+              <motion.div key="step-brand" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 rounded-lg bg-primary/10"><Car className="w-5 h-5 text-primary" /></div>
+                  <h3 className="text-lg md:text-xl font-bold text-foreground">
+                    {quoteData.insuranceType === "auto" ? "Quelle est la marque de votre véhicule ?" : "Quelle est la marque de votre moto ?"}
+                  </h3>
+                </div>
+                {(() => {
+                  const brands = quoteData.insuranceType === "auto" ? AUTO_BRAND_NAMES : MOTO_BRAND_NAMES;
+                  return (
+                    <RadioGroup value={quoteData.vehicleBrand} onValueChange={value => setQuoteData(prev => ({ ...prev, vehicleBrand: value }))} className="grid grid-cols-2 md:grid-cols-4 gap-3 max-h-[340px] overflow-y-auto pr-2">
+                      {brands.map(brand => (
+                        <Label key={brand} htmlFor={`brand-${brand}`} className="cursor-pointer">
+                          <div className={`relative p-3 md:p-4 rounded-[1.5rem] border-2 transition-all duration-300 card-hover min-h-[52px] flex items-center justify-center ${quoteData.vehicleBrand === brand ? "border-primary bg-primary/5 shadow-md" : "border-border hover:border-primary/50 bg-card"}`}>
+                            {quoteData.vehicleBrand === brand && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-primary flex items-center justify-center"><Check className="w-3 h-3 text-primary-foreground" /></motion.div>}
+                            <span className="font-bold text-foreground text-xs md:text-sm text-center">{brand}</span>
+                            <RadioGroupItem value={brand} id={`brand-${brand}`} className="sr-only" />
+                          </div>
+                        </Label>
+                      ))}
+                    </RadioGroup>
+                  );
+                })()}
+              </motion.div>
+            )}
+
+            {/* Profile step: 2 for non-vehicle, 3 for vehicle */}
+            {currentStep === (isVehicleType ? 3 : 2) && (
+              <motion.div key="step-profile" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 rounded-lg bg-primary/10"><Calendar className="w-5 h-5 text-primary" /></div>
                   <h3 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.profileQuestion')}</h3>
@@ -412,9 +440,9 @@ const QuickQuoteSection = () => {
               </motion.div>
             )}
 
-            {/* Step 3: Coverage Level */}
-            {currentStep === 3 && (
-              <motion.div key="step3" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
+            {/* Coverage step: 3 for non-vehicle, 4 for vehicle */}
+            {currentStep === (isVehicleType ? 4 : 3) && (
+              <motion.div key="step-coverage" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 rounded-lg bg-primary/10"><Shield className="w-5 h-5 text-primary" /></div>
                   <h3 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.coverageQuestion')}</h3>
@@ -438,9 +466,9 @@ const QuickQuoteSection = () => {
               </motion.div>
             )}
 
-            {/* Step 4: Contact */}
-            {currentStep === 4 && (
-              <motion.div key="step4" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
+            {/* Contact step: 4 for non-vehicle, 5 for vehicle */}
+            {currentStep === (isVehicleType ? 5 : 4) && (
+              <motion.div key="step-contact" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 rounded-lg bg-primary/10"><Mail className="w-5 h-5 text-primary" /></div>
                   <h3 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.contactQuestion')}</h3>
