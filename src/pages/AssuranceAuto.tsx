@@ -296,6 +296,27 @@ const AssuranceAuto = () => {
           </Accordion>
         </section>
 
+        {/* Bonus-Malus Calculator CTA */}
+        <section className="max-w-4xl mx-auto mb-16">
+          <Card className="p-6 md:p-8 border-primary/20 bg-gradient-to-r from-primary/5 to-accent/5">
+            <div className="flex flex-col sm:flex-row items-center gap-5">
+              <div className="flex-shrink-0 p-3 rounded-full bg-primary/10">
+                <Calculator className="h-8 w-8 text-primary" />
+              </div>
+              <div className="flex-1 text-center sm:text-left">
+                <h3 className="text-lg font-bold text-foreground mb-1">Calculez votre bonus-malus auto</h3>
+                <p className="text-sm text-muted-foreground">Estimez gratuitement votre coefficient et découvrez combien vous pouvez économiser sur votre prime.</p>
+              </div>
+              <Button asChild variant="outline" className="flex-shrink-0 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Link to="/outils/calculateur-bonus-malus">
+                  Calculer mon bonus
+                  <ArrowRight className="w-4 h-4 ml-1" />
+                </Link>
+              </Button>
+            </div>
+          </Card>
+        </section>
+
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
             <img src={arthurFlying} alt="Arthur" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" loading="lazy" decoding="async" />
