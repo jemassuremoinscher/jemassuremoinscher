@@ -42,7 +42,7 @@ All colors MUST be HSL.
 
     /* Fintech soft shadows */
     --hero-gradient: linear-gradient(135deg, hsl(271 81% 56%), hsl(271 75% 45%));
-    --accent-gradient: linear-gradient(135deg, hsl(45 100% 55%), hsl(35 100% 50%));
+    --accent-gradient: linear-gradient(135deg, hsl(43 80% 65%), hsl(38 75% 58%));
     --card-gradient: linear-gradient(135deg, hsl(0 0% 100%), hsl(220 14% 98%));
     --shadow-card: 0 1px 3px 0 hsl(220 20% 18% / 0.04), 0 4px 16px -2px hsl(220 20% 18% / 0.06);
     --shadow-hover: 0 4px 24px -4px hsl(271 81% 56% / 0.12), 0 8px 32px -8px hsl(220 20% 18% / 0.08);
