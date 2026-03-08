@@ -62,29 +62,29 @@ const Index = () => {
       </main>
       {/* Hidden internal links for SEO - crawlable but not visible */}
       <nav aria-label="Liens internes" className="sr-only">
-        <h2>Assurance pas chère - Nos comparateurs</h2>
+        <h2>Assurance moins chère - Nos comparateurs</h2>
         <ul>
-          <li><Link to="/assurance-auto">Assurance auto pas chère - Comparateur</Link></li>
-          <li><Link to="/assurance-moto">Assurance moto pas chère</Link></li>
-          <li><Link to="/assurance-habitation">Assurance habitation pas chère</Link></li>
-          <li><Link to="/assurance-sante">Mutuelle santé pas chère - Comparateur</Link></li>
-          <li><Link to="/assurance-animaux">Assurance animaux pas chère</Link></li>
+          <li><Link to="/assurance-auto">Assurance auto moins chère - Comparateur</Link></li>
+          <li><Link to="/assurance-moto">Assurance moto moins chère</Link></li>
+          <li><Link to="/assurance-habitation">Assurance habitation moins chère</Link></li>
+          <li><Link to="/assurance-sante">Mutuelle santé moins chère - Comparateur</Link></li>
+          <li><Link to="/assurance-animaux">Assurance animaux moins chère</Link></li>
           <li><Link to="/assurance-vie">Assurance vie - Meilleur comparateur</Link></li>
-          <li><Link to="/assurance-pret">Assurance emprunteur pas chère</Link></li>
+          <li><Link to="/assurance-pret">Assurance emprunteur moins chère</Link></li>
           <li><Link to="/assurance-prevoyance">Assurance prévoyance - Comparer les prix</Link></li>
-          <li><Link to="/assurance-rc-pro">Assurance RC Pro pas chère</Link></li>
+          <li><Link to="/assurance-rc-pro">Assurance RC Pro moins chère</Link></li>
           <li><Link to="/assurance-mrp">Assurance multirisque professionnelle</Link></li>
-          <li><Link to="/assurance-gli">Garantie loyers impayés pas chère</Link></li>
+          <li><Link to="/assurance-gli">Garantie loyers impayés moins chère</Link></li>
           <li><Link to="/assurance-pno">Assurance propriétaire non occupant</Link></li>
         </ul>
         <h2>Changer d'assurance - Informations utiles</h2>
         <ul>
           <li><Link to="/comparateur">Comparateur d'assurances en ligne gratuit - Alternative à LesFurets</Link></li>
-          <li><Link to="/blog">Blog assurance pas chère - Conseils pour changer d'assurance</Link></li>
+          <li><Link to="/blog">Blog assurance - Conseils pour changer d'assurance</Link></li>
           <li><Link to="/glossaire">Glossaire de l'assurance</Link></li>
           <li><Link to="/qui-sommes-nous">À propos de jemassuremoinscher - Comparateur d'assurances</Link></li>
           <li><Link to="/nos-partenaires">Nos 50+ partenaires assureurs</Link></li>
-          <li><Link to="/avis-clients">Avis clients - Comparateur d'assurances pas chères</Link></li>
+          <li><Link to="/avis-clients">Avis clients - Comparateur d'assurances moins chères</Link></li>
           <li><Link to="/contact">Contactez notre équipe</Link></li>
         </ul>
       </nav>

@@ -1,10 +1,12 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Partners from "@/components/Partners";
+import SEOOptimized from "@/components/SEOOptimized";
 import { Shield, Award, HeadphonesIcon, MapPin, Check } from "lucide-react";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { addBreadcrumbSchema } from "@/utils/seoUtils";
 
 const NosPartenaires = () => {
   const { t } = useLanguage();
@@ -16,8 +18,20 @@ const NosPartenaires = () => {
     { icon: MapPin, title: t('partnersPage.national'), desc: t('partnersPage.nationalDesc') },
   ];
 
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Nos Partenaires", url: "https://www.jemassuremoinscher.fr/nos-partenaires" }
+  ]);
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOOptimized
+        title="Nos Partenaires Assureurs | Jemassuremoinscher"
+        description="Découvrez nos 50+ partenaires assureurs : AXA, Allianz, MAIF, Groupama. Comparaison indépendante et gratuite."
+        keyword="partenaires assureurs"
+        canonical="https://www.jemassuremoinscher.fr/nos-partenaires"
+        jsonLd={[breadcrumbSchema]}
+      />
       <Header />
       
       <main>
