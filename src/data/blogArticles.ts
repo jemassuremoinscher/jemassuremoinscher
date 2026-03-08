@@ -12,7 +12,7 @@ export interface BlogArticle {
   tags: string[];
 }
 
-export const blogArticles: BlogArticle[] = [
+const _blogArticlesRaw: BlogArticle[] = [
   {
     id: "5",
     title: "Mutuelle santé : Comment réduire vos frais médicaux de 40% en 2024",
@@ -4848,6 +4848,113 @@ Connaître vos droits, c'est pouvoir les faire valoir !
   }
 ];
 
+import { blogArticles2026 } from "./blogArticles2026";
+
+// Spread all articles with realistic dates from Sept 2025 to March 2026
+const spreadDates: Record<string, string> = {
+  // Existing articles → Sept-Dec 2025
+  "5": "12 septembre 2025",
+  "6": "19 septembre 2025",
+  "7": "26 septembre 2025",
+  "1": "3 octobre 2025",
+  "2": "10 octobre 2025",
+  "3": "17 octobre 2025",
+  "4": "24 octobre 2025",
+  "5b": "31 octobre 2025",
+  "6b": "7 novembre 2025",
+  "11": "14 novembre 2025",
+  "12": "21 novembre 2025",
+  "13": "28 novembre 2025",
+  "8": "5 décembre 2025",
+  "9": "12 décembre 2025",
+  "10": "19 décembre 2025",
+  "11b": "26 décembre 2025",
+  "12b": "2 janvier 2026",
+  "13b": "6 janvier 2026",
+  // 2026 articles → Jan-March 2026
+  "20": "9 janvier 2026",
+  "21": "12 janvier 2026",
+  "22": "15 janvier 2026",
+  "23": "19 janvier 2026",
+  "24": "22 janvier 2026",
+  "25": "26 janvier 2026",
+  "26": "29 janvier 2026",
+  "27": "2 février 2026",
+  "28": "5 février 2026",
+  "29": "9 février 2026",
+  "30": "12 février 2026",
+  "31": "15 février 2026",
+  "32": "18 février 2026",
+  "33": "21 février 2026",
+  "34": "24 février 2026",
+  "35": "27 février 2026",
+  "36": "1 mars 2026",
+  "37": "2 mars 2026",
+  "38": "3 mars 2026",
+  "39": "4 mars 2026",
+  "40": "4 mars 2026",
+  "41": "5 mars 2026",
+  "42": "5 mars 2026",
+  "43": "6 mars 2026",
+  "44": "6 mars 2026",
+  "45": "6 mars 2026",
+  "46": "7 mars 2026",
+  "47": "7 mars 2026",
+  "48": "7 mars 2026",
+  "49": "7 mars 2026",
+  "50": "8 mars 2026",
+  "51": "8 mars 2026",
+  "52": "8 mars 2026",
+  "53": "8 mars 2026",
+  "54": "8 mars 2026",
+  "55": "8 mars 2026",
+  "56": "8 mars 2026",
+  "57": "8 mars 2026",
+};
+
+// Assign unique sequential IDs and spread dates to existing articles
+const existingWithDates = _blogArticlesRaw.map((article, index) => {
+  const uniqueId = `legacy-${index}`;
+  const dateKeys = Object.keys(spreadDates).filter(k => !k.startsWith("2") || k.length < 2);
+  // Use index-based date assignment for existing
+  const dateList = [
+    "12 septembre 2025", "19 septembre 2025", "26 septembre 2025",
+    "3 octobre 2025", "10 octobre 2025", "17 octobre 2025", "24 octobre 2025",
+    "31 octobre 2025", "7 novembre 2025", "14 novembre 2025", "21 novembre 2025",
+    "28 novembre 2025", "5 décembre 2025", "12 décembre 2025", "19 décembre 2025",
+    "26 décembre 2025", "2 janvier 2026", "6 janvier 2026", "8 janvier 2026",
+  ];
+  return {
+    ...article,
+    id: uniqueId,
+    date: dateList[index % dateList.length],
+  };
+});
+
+// Assign spread dates to 2026 articles
+const articles2026WithDates = blogArticles2026.map((article) => ({
+  ...article,
+  date: spreadDates[article.id] || article.date,
+}));
+
+// Merge all articles, sorted by date (newest first)
+const frenchMonths: Record<string, number> = {
+  'janvier': 0, 'février': 1, 'mars': 2, 'avril': 3,
+  'mai': 4, 'juin': 5, 'juillet': 6, 'août': 7,
+  'septembre': 8, 'octobre': 9, 'novembre': 10, 'décembre': 11
+};
+
+function parseFrenchDate(d: string): Date {
+  const parts = d.split(' ');
+  if (parts.length === 3) {
+    return new Date(parseInt(parts[2]), frenchMonths[parts[1].toLowerCase()] ?? 0, parseInt(parts[0]));
+  }
+  return new Date();
+}
+
+export const blogArticles: BlogArticle[] = [...existingWithDates, ...articles2026WithDates]
+  .sort((a, b) => parseFrenchDate(b.date).getTime() - parseFrenchDate(a.date).getTime());
+
 export const blogCategories = [
   "Tous les articles",
   "Actualités Légales",
@@ -4858,5 +4965,8 @@ export const blogCategories = [
   "Assurance Habitation",
   "Assurance Animaux",
   "Assurance Prêt",
-  "Conseils"
+  "Conseils",
+  "Mobilité Verte",
+  "Assurance Emprunteur",
+  "Droits & Litiges",
 ];

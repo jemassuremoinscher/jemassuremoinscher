@@ -23,6 +23,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import SuggestedKeywords from "@/components/blog/SuggestedKeywords";
 import PopularArticles from "@/components/blog/PopularArticles";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
+import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 
 const BlogArticle = () => {
   const { t } = useLanguage();
@@ -152,8 +153,9 @@ const BlogArticle = () => {
               <Badge className="mb-4 bg-white/20 text-white border-white/30 rounded-full">{article.category}</Badge>
               
               {/* Semantic H1 */}
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                {article.title}
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight flex items-center gap-3 md:gap-4">
+                <BlogArticleArthur category={article.category} className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14" />
+                <span className="flex-1">{article.title}</span>
               </h1>
               
               {/* Author & Date Meta */}

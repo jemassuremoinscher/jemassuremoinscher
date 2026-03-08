@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, Search } from "lucide-react";
+import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 import { blogArticles, blogCategories } from "@/data/blogArticles";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -206,8 +207,9 @@ const Blog = () => {
                   >
                     <CardHeader>
                       <Badge className="mb-3 w-fit rounded-full">{article.category}</Badge>
-                      <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                        {article.title}
+                      <CardTitle className="text-lg group-hover:text-primary transition-colors flex items-start gap-2">
+                        <BlogArticleArthur category={article.category} />
+                        <span className="flex-1">{article.title}</span>
                       </CardTitle>
                       <CardDescription className="text-muted-foreground line-clamp-3">
                         {article.description}
