@@ -13,7 +13,7 @@ import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { useLanguage } from '@/contexts/LanguageContext';
 import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.png';
-import arthurFlying from '@/assets/mascotte/arthur-flying.png';
+
 import ArthurCTABubble from '@/components/ArthurCTABubble';
 
 interface InsuranceOffer {
