@@ -30,7 +30,7 @@ const StickyCTA = () => {
         >
           <Link
             to="/comparateur"
-            className="flex items-center gap-2 py-3 px-5 rounded-full font-bold text-sm md:text-base text-primary-foreground bg-primary shadow-[var(--shadow-elegant)] hover:shadow-[var(--shadow-lg)] active:scale-95 transition-all"
+            className="flex items-center gap-2 py-3 px-5 rounded-full font-bold text-sm md:text-base text-secondary-foreground bg-gradient-to-r from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] shadow-[var(--shadow-elegant)] hover:shadow-[var(--shadow-lg)] active:scale-95 transition-all"
             aria-label={t('stickyCta.text')}
           >
             <span>{t('stickyCta.text')}</span>
