@@ -12,6 +12,18 @@ const Comparateur = () => {
         description="Comparateur d'assurances : comparez 50+ assureurs en temps réel. Alternative à LesFurets. Économisez 40%."
         keyword="comparateur d'assurances"
         keywords="assurance moins chère, changer d'assurance, comparaison assurance gratuit"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Comparateur d'Assurance Moins Chère",
+          "operatingSystem": "All",
+          "applicationCategory": "FinanceApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+          }
+        }}
        />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />

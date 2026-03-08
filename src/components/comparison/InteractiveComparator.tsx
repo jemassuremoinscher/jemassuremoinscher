@@ -84,6 +84,13 @@ export const InteractiveComparator = () => {
 
   const { trackEvent } = useAnalytics();
 
+  // Update document.title based on current step
+  useEffect(() => {
+    const step = hasCompared ? 'Résultats' : 'Étape 1 : Vos critères';
+    document.title = `${step} - Comparateur d'Assurance | Jemassuremoinscher`;
+    return () => { document.title = 'Comparateur d\'Assurances Gratuit en Ligne'; };
+  }, [hasCompared]);
+
   const handleShare = async () => {
     if (navigator.share) {
       try {
