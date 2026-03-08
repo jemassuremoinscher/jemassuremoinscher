@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerClose,
 } from "@/components/ui/drawer";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { BookOpen, FileText, Scale, X } from "lucide-react";
+import { BookOpen, FileText, Scale, X, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurFlying from "@/assets/mascotte/arthur-pointing.png";
 
@@ -15,12 +15,99 @@ interface Article {
   titleKey: string;
   excerptKey: string;
   icon: React.ReactNode;
+  color: string;
+  gradient: string;
   content: {
     intro: string;
     sections: { title: string; text: string }[];
     conclusion: string;
   };
 }
+
+const StackingCard = ({ article, index, total, onOpen, t }: {
+  article: Article;
+  index: number;
+  total: number;
+  onOpen: (a: Article) => void;
+  t: (key: string) => string;
+}) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "start 20%"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [100, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+
+  return (
+    <motion.div
+      ref={cardRef}
+      style={{ y, scale, opacity, zIndex: index + 1 }}
+      className="sticky"
+      // Each card sticks a bit lower so they stack visually
+      // Using inline style for dynamic top value
+    >
+      <div
+        className="sticky"
+        style={{ top: `${120 + index * 40}px` }}
+      >
+        <motion.article
+          whileHover={{ y: -4 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className="group cursor-pointer"
+          onClick={() => onOpen(article)}
+        >
+          <div
+            className={`relative overflow-hidden rounded-3xl border border-border/40 bg-card shadow-[0_8px_32px_-8px_hsl(var(--primary)/0.12)] backdrop-blur-sm transition-all duration-500 hover:shadow-[0_20px_60px_-12px_hsl(var(--primary)/0.25)] hover:border-primary/30`}
+          >
+            {/* Decorative gradient orb */}
+            <div className={`absolute -top-20 -right-20 w-60 h-60 rounded-full ${article.gradient} opacity-20 blur-3xl group-hover:opacity-40 transition-opacity duration-500`} />
+            <div className={`absolute -bottom-16 -left-16 w-40 h-40 rounded-full ${article.gradient} opacity-10 blur-2xl`} />
+
+            <div className="relative z-10 p-8 md:p-10 flex flex-col md:flex-row gap-6 md:gap-10 items-start">
+              {/* Icon area */}
+              <div className={`flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl ${article.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
+                {article.icon}
+              </div>
+
+              {/* Content */}
+              <div className="flex-grow min-w-0">
+                <div className="flex items-center gap-3 mb-3">
+                  <Badge className={`${article.color} border-0 text-white font-semibold text-xs tracking-wide uppercase`}>
+                    {t('common.advice')}
+                  </Badge>
+                  <span className="text-xs text-muted-foreground font-medium">
+                    {index + 1}/{total}
+                  </span>
+                </div>
+
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300 leading-tight">
+                  {t(article.titleKey)}
+                </h3>
+
+                <p className="text-muted-foreground leading-relaxed mb-5 line-clamp-2 md:line-clamp-none">
+                  {t(article.excerptKey)}
+                </p>
+
+                <div className="flex items-center gap-2 text-primary font-semibold group-hover:gap-4 transition-all duration-300">
+                  <span>{t('common.readMore')}</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              {/* Card number decoration */}
+              <div className="hidden md:flex absolute top-6 right-8 text-8xl font-black text-foreground/[0.03] select-none">
+                0{index + 1}
+              </div>
+            </div>
+          </div>
+        </motion.article>
+      </div>
+    </motion.div>
+  );
+};
 
 const GuidesSection = () => {
   const { t, language } = useLanguage();
@@ -32,7 +119,9 @@ const GuidesSection = () => {
       id: 1,
       titleKey: 'guides.article1.title',
       excerptKey: 'guides.article1.excerpt',
-      icon: <Scale className="w-12 h-12 text-primary" />,
+      icon: <Scale className="w-10 h-10 md:w-12 md:h-12 text-white" />,
+      color: "bg-primary",
+      gradient: "bg-gradient-to-br from-primary to-primary/70",
       content: language === 'en' ? {
         intro: "The Hamon law, effective since January 1, 2015, revolutionised the insurance world in France. It allows policyholders to cancel their contract at any time after the first year.",
         sections: [
@@ -55,7 +144,9 @@ const GuidesSection = () => {
       id: 2,
       titleKey: 'guides.article2.title',
       excerptKey: 'guides.article2.excerpt',
-      icon: <BookOpen className="w-12 h-12 text-primary" />,
+      icon: <BookOpen className="w-10 h-10 md:w-12 md:h-12 text-white" />,
+      color: "bg-accent",
+      gradient: "bg-gradient-to-br from-accent to-accent/70",
       content: language === 'en' ? {
         intro: "Insurance is a significant budget for French households. Here are 5 practical tips to significantly reduce your premiums without sacrificing coverage.",
         sections: [
@@ -82,7 +173,9 @@ const GuidesSection = () => {
       id: 3,
       titleKey: 'guides.article3.title',
       excerptKey: 'guides.article3.excerpt',
-      icon: <FileText className="w-12 h-12 text-primary" />,
+      icon: <FileText className="w-10 h-10 md:w-12 md:h-12 text-white" />,
+      color: "bg-primary",
+      gradient: "bg-gradient-to-br from-primary/80 to-accent/80",
       content: language === 'en' ? {
         intro: "Car insurance for new drivers is often a significant expense. Discover how to get the best value for your first insurance.",
         sections: [
@@ -111,16 +204,17 @@ const GuidesSection = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-muted/30" aria-labelledby="guides-title">
+    <section className="py-16 md:py-28 bg-gradient-to-b from-background via-muted/20 to-background" aria-labelledby="guides-title">
       <div className="container mx-auto px-4">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          className="text-center mb-16 md:mb-20"
         >
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-center mb-6">
             <motion.div className="relative">
               <motion.img
                 src={arthurFlying}
@@ -142,7 +236,7 @@ const GuidesSection = () => {
               </motion.div>
             </motion.div>
           </div>
-          <h2 id="guides-title" className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 id="guides-title" className="text-3xl md:text-5xl font-bold text-foreground mb-4">
             {t('guides.mainTitle')}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -150,51 +244,22 @@ const GuidesSection = () => {
           </p>
         </motion.div>
 
-        <div className="relative -mx-4 px-4">
-          <div className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 md:overflow-visible">
-            {articles.map((article, index) => (
-              <motion.article
-                key={article.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex-shrink-0 w-[85%] md:w-full snap-center"
-              >
-                <div className="bg-card rounded-2xl border border-border shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden h-full flex flex-col group">
-                  <div className="relative h-44 bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10 flex items-center justify-center overflow-hidden">
-                    <div className="absolute inset-0 opacity-10">
-                      <div className="absolute top-4 left-4 w-20 h-20 rounded-full bg-primary/30"></div>
-                      <div className="absolute bottom-4 right-8 w-16 h-16 rounded-full bg-accent/40"></div>
-                      <div className="absolute top-1/2 right-4 w-12 h-12 rounded-full bg-primary/20"></div>
-                    </div>
-                    <div className="relative z-10 transform group-hover:scale-110 transition-transform duration-300">
-                      {article.icon}
-                    </div>
-                    <Badge variant="secondary" className="absolute top-4 left-4 bg-primary/90 text-primary-foreground hover:bg-primary">
-                      {t('common.advice')}
-                    </Badge>
-                  </div>
-                  <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                      {t(article.titleKey)}
-                    </h3>
-                    <p className="text-muted-foreground text-sm mb-4 flex-grow">{t(article.excerptKey)}</p>
-                    <Button
-                      variant="outline"
-                      className="w-full mt-auto border-primary/30 hover:bg-primary hover:text-primary-foreground transition-all"
-                      onClick={() => handleOpenArticle(article)}
-                    >
-                      {t('common.readMore')}
-                    </Button>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
+        {/* Stacking cards */}
+        <div className="max-w-4xl mx-auto space-y-6 md:space-y-8">
+          {articles.map((article, index) => (
+            <StackingCard
+              key={article.id}
+              article={article}
+              index={index}
+              total={articles.length}
+              onOpen={handleOpenArticle}
+              t={t}
+            />
+          ))}
         </div>
       </div>
 
+      {/* Drawer */}
       <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
         <DrawerContent className="max-h-[90vh]">
           <DrawerHeader className="border-b border-border pb-4">
@@ -217,8 +282,8 @@ const GuidesSection = () => {
             {selectedArticle && (
               <div className="space-y-6">
                 <p className="text-foreground leading-relaxed text-base">{selectedArticle.content.intro}</p>
-                {selectedArticle.content.sections.map((section, index) => (
-                  <div key={index} className="space-y-2">
+                {selectedArticle.content.sections.map((section, idx) => (
+                  <div key={idx} className="space-y-2">
                     <h4 className="text-lg font-semibold text-foreground">{section.title}</h4>
                     <p className="text-muted-foreground leading-relaxed">{section.text}</p>
                   </div>
