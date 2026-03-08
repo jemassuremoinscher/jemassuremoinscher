@@ -102,6 +102,7 @@ const AssuranceMoto = () => {
       </section>
 
       <main className="container mx-auto px-4 py-12">
+        <DynamicUpdateDate />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
             {advantages.map((item, index) => (
