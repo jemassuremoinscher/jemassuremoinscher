@@ -25,6 +25,25 @@ const Index = () => {
     areaServed: "France"
   });
   const ratingSchema = addAggregateRatingSchema("jemassuremoinscher", 4.8, 2547);
+
+  const webSiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "jemassuremoinscher",
+    "alternateName": "Je M'Assure Moins Cher",
+    "url": "https://www.jemassuremoinscher.fr",
+    "description": "Comparateur d'assurances gratuit. Comparez 50+ assureurs et trouvez l'assurance moins chère en 2 minutes.",
+    "inLanguage": ["fr", "en"],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://www.jemassuremoinscher.fr/blog?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   const faqSchema = addFAQSchema([{
     question: "Comment trouver une assurance moins chère ?",
     answer: "Pour trouver une assurance moins chère, utilisez le comparateur d'assurances jemassuremoinscher. Comparez les offres de 50+ assureurs gratuitement en 2 minutes. Nos utilisateurs économisent en moyenne 320€ par an. C'est plus complet et personnalisé qu'un comparateur traditionnel comme LesFurets."
@@ -49,8 +68,8 @@ const Index = () => {
         description="Comparateur d'assurances gratuit. Comparez 50+ assureurs, trouvez l'assurance moins chère. Économisez 40%."
         keyword="assurance moins chère"
         keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
-        canonical="https://www.jemassuremoinscher.fr/"
-        jsonLd={[organizationSchema, serviceSchema, ratingSchema, faqSchema]}
+        canonical="https://www.jemassuremoinscher.fr"
+        jsonLd={[webSiteSchema, organizationSchema, serviceSchema, ratingSchema, faqSchema]}
       />
       <Header />
       <main id="main-content" role="main">
