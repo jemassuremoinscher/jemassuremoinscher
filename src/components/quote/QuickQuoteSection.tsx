@@ -270,7 +270,7 @@ const QuickQuoteSection = () => {
       <div className="container mx-auto px-4">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
           <div className="flex items-center justify-center gap-4 mb-4">
-            <motion.img src={arthurThinking} alt="Arthur" className="w-16 h-auto md:w-20" loading="lazy" animate={{ rotate: [0, -5, 5, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
+            <motion.img src={arthurThinking} alt="Arthur mascotte" className="w-16 h-auto md:w-20" width={80} height={100} loading="lazy" animate={{ rotate: [0, -5, 5, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
             <div className="text-left">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-1">{t('quickQuote.title')}</h2>
               <p className="text-muted-foreground">{t('quickQuote.subtitle')}</p>
