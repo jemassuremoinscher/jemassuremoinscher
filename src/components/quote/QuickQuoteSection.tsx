@@ -373,7 +373,7 @@ const QuickQuoteSection = () => {
                 <RadioGroup value={quoteData.profileOption} onValueChange={value => setQuoteData(prev => ({ ...prev, profileOption: value }))} className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {profileOptions.map(option => (
                     <Label key={option.value} htmlFor={`profile-${option.value}`} className="cursor-pointer">
-                      <div className={`relative p-4 md:p-6 rounded-xl border-2 transition-all duration-300 card-hover ${quoteData.profileOption === option.value ? "border-primary bg-primary/5 shadow-md" : "border-border hover:border-primary/50 bg-card"}`}>
+                      <div className={`relative p-5 md:p-6 rounded-[1.5rem] border-2 transition-all duration-300 card-hover min-h-[72px] flex items-center justify-center ${quoteData.profileOption === option.value ? "border-primary bg-primary/5 shadow-md" : "border-border hover:border-primary/50 bg-card"}`}>
                         {quoteData.profileOption === option.value && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute top-2 right-2 w-6 h-6 rounded-full bg-primary flex items-center justify-center"><Check className="w-4 h-4 text-primary-foreground" /></motion.div>}
                         <div className="flex flex-col items-center text-center gap-2">
                           <span className="text-3xl mb-1">{option.emoji}</span>
@@ -385,6 +385,7 @@ const QuickQuoteSection = () => {
                     </Label>
                   ))}
                 </RadioGroup>
+                <p className="text-xs text-muted-foreground mt-3 text-center">Ne vous inquiétez pas, cette info nous sert juste à trouver le meilleur tarif pour votre profil.</p>
               </motion.div>
             )}
 
