@@ -22,6 +22,7 @@ import arthurAnimals from "@/assets/mascotte/arthur-animals.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import arthurFlying from "@/assets/mascotte/arthur-walking.png";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 
 const formSchema = z.object({
