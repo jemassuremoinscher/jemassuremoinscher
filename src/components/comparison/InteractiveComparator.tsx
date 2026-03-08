@@ -132,7 +132,7 @@ export const InteractiveComparator = () => {
     <div className="space-y-0">
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
-        <div className="container mx-auto px-4 py-14 md:py-20">
+        <div className="container mx-auto px-4 py-8 md:py-20">
           <div className="max-w-[70%] sm:max-w-[75%] md:max-w-2xl relative z-10">
             <Badge className="mb-4 bg-white/20 text-white border-white/30 backdrop-blur-sm">
               <Sparkles className="h-3 w-3 mr-1" />
