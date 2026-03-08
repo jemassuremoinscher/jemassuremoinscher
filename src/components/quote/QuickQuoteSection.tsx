@@ -457,7 +457,8 @@ const QuickQuoteSection = () => {
         <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center text-sm text-muted-foreground mt-6">
           {t('quickQuote.secureData')}
         </motion.p>
-      </div>
+          </motion.div>
+        )}
     </section>
   );
 };
