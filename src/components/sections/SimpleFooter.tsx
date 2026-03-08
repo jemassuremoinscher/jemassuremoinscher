@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Instagram, Linkedin, Facebook, MapIcon } from "lucide-react";
+import { Instagram, Linkedin, Facebook, Lock, ShieldCheck, Shield, BadgeCheck, CreditCard } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-sprint-coin.png";
 
@@ -7,139 +7,161 @@ const SimpleFooter = () => {
   const { t } = useLanguage();
 
   const insuranceLinks = [
-    { labelKey: "footer.autoInsurance", href: "/assurance-auto" },
-    { labelKey: "footer.motoInsurance", href: "/assurance-moto" },
-    { labelKey: "footer.homeInsurance", href: "/assurance-habitation" },
-    { labelKey: "footer.healthInsurance", href: "/assurance-sante" },
-    { labelKey: "footer.petInsurance", href: "/assurance-animaux" },
-    { labelKey: "footer.lifeInsurance", href: "/assurance-vie" },
-    { labelKey: "footer.loanInsurance", href: "/assurance-pret" },
-    { labelKey: "footer.prevoyanceInsurance", href: "/assurance-prevoyance" },
-    { labelKey: "footer.rcProInsurance", href: "/assurance-rc-pro" },
-    { labelKey: "footer.mrpInsurance", href: "/assurance-mrp" },
-    { labelKey: "footer.gliInsurance", href: "/assurance-gli" },
-    { labelKey: "footer.pnoInsurance", href: "/assurance-pno" },
+    { label: "Assurance Auto", href: "/assurance-auto" },
+    { label: "Assurance Habitation", href: "/assurance-habitation" },
+    { label: "Mutuelle Santé", href: "/assurance-sante" },
+    { label: "Assurance Moto", href: "/assurance-moto" },
   ];
 
-  const resourceLinks = [
-    { labelKey: "footer.comparator", href: "/comparateur" },
-    { labelKey: "nav.blog", href: "/blog" },
-    { labelKey: "footer.glossary", href: "/glossaire" },
-    { labelKey: "footer.reviews", href: "/avis-clients" },
-    { labelKey: "footer.gestionLocative", href: "/gestion-locative" },
+  const guidesLinks = [
+    { label: "Tous nos guides", href: "/blog" },
+    { label: "Bien choisir son assurance auto", href: "/blog/comment-choisir-assurance-auto" },
+    { label: "Guide mutuelle santé", href: "/blog/mutuelle-sante-guide" },
+    { label: "Conseils assurance habitation", href: "/blog/assurance-habitation-conseils" },
+    { label: "Glossaire de l'assurance", href: "/glossaire" },
   ];
 
   const aboutLinks = [
-    { labelKey: "footer.whoAreWe", href: "/qui-sommes-nous" },
-    { labelKey: "footer.ourPartners", href: "/nos-partenaires" },
-    { labelKey: "footer.contact", href: "/contact" },
-  ];
-
-  const legalLinks = [
-    { labelKey: "footer.legal", href: "/mentions-legales" },
-    { labelKey: "footer.terms", href: "/cgu" },
-    { labelKey: "footer.privacyPolicy", href: "/politique-confidentialite" },
-    { labelKey: "footer.cookiePolicy", href: "/politique-cookies" },
-    { labelKey: "footer.sitemap", href: "/plan-du-site" },
+    { label: "Qui sommes-nous ?", href: "/qui-sommes-nous" },
+    { label: "Contact", href: "/contact" },
+    { label: "Mentions légales", href: "/mentions-legales" },
+    { label: "Politique de confidentialité", href: "/politique-confidentialite" },
   ];
 
   return (
     <footer className="bg-primary text-primary-foreground py-12 md:py-16" role="contentinfo">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-10 mb-10">
-          {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
-            <Link to="/" className="inline-block mb-4" aria-label="Accueil jemassuremoinscher">
-              <img alt="Arthur - mascotte jemassuremoinscher" className="h-12 w-auto" src={arthurThumbsUp} loading="lazy" width={48} height={48} />
-            </Link>
-            <p className="text-primary-foreground/70 text-sm leading-relaxed mb-4">
-              {t('footer.description')}
-            </p>
-            <nav aria-label="Réseaux sociaux" className="flex items-center gap-3">
-              <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Instagram" className="text-primary-foreground/60 hover:text-accent transition-colors">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur LinkedIn" className="text-primary-foreground/60 hover:text-accent transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Facebook" className="text-primary-foreground/60 hover:text-accent transition-colors">
-                <Facebook className="w-5 h-5" />
-              </a>
-            </nav>
-          </div>
-
-          {/* Nos Assurances */}
+        {/* 4 Columns Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-10">
+          {/* Col 1: Nos Assurances */}
           <nav aria-label="Nos assurances">
-            <h4 className="font-bold text-accent mb-4 text-sm uppercase tracking-wider">
-              {t('footer.insurances')}
+            <h4 className="font-bold text-accent mb-4 text-xs uppercase tracking-wider">
+              Nos Assurances
             </h4>
             <ul className="space-y-2">
               {insuranceLinks.map(link => (
                 <li key={link.href}>
-                  <Link to={link.href} className="text-primary-foreground/70 hover:text-accent transition-colors text-sm">
-                    {t(link.labelKey)}
+                  <Link to={link.href} className="text-primary-foreground/60 hover:text-accent transition-colors text-xs">
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
 
-          {/* Ressources */}
-          <nav aria-label="Ressources">
-            <h4 className="font-bold text-accent mb-4 text-sm uppercase tracking-wider">
-              {t('footer.resources')}
+          {/* Col 2: Guides & Conseils */}
+          <nav aria-label="Guides et conseils">
+            <h4 className="font-bold text-accent mb-4 text-xs uppercase tracking-wider">
+              Guides & Conseils
             </h4>
             <ul className="space-y-2">
-              {resourceLinks.map(link => (
+              {guidesLinks.map(link => (
                 <li key={link.href}>
-                  <Link to={link.href} className="text-primary-foreground/70 hover:text-accent transition-colors text-sm">
-                    {t(link.labelKey)}
+                  <Link to={link.href} className="text-primary-foreground/60 hover:text-accent transition-colors text-xs">
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
 
-          {/* À propos */}
+          {/* Col 3: À propos */}
           <nav aria-label="À propos">
-            <h4 className="font-bold text-accent mb-4 text-sm uppercase tracking-wider">
-              {t('footer.about')}
+            <h4 className="font-bold text-accent mb-4 text-xs uppercase tracking-wider">
+              À propos
             </h4>
             <ul className="space-y-2">
               {aboutLinks.map(link => (
                 <li key={link.href}>
-                  <Link to={link.href} className="text-primary-foreground/70 hover:text-accent transition-colors text-sm">
-                    {t(link.labelKey)}
+                  <Link to={link.href} className="text-primary-foreground/60 hover:text-accent transition-colors text-xs">
+                    {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
 
-          {/* Légal */}
-          <nav aria-label="Informations légales">
-            <h4 className="font-bold text-accent mb-4 text-sm uppercase tracking-wider">
-              {t('footer.legalSection')}
+          {/* Col 4: Informations Légales */}
+          <div>
+            <h4 className="font-bold text-accent mb-4 text-xs uppercase tracking-wider">
+              Informations Légales
             </h4>
-            <ul className="space-y-2">
-              {legalLinks.map(link => (
-                <li key={link.href}>
-                  <Link to={link.href} className="text-primary-foreground/70 hover:text-accent transition-colors text-sm">
-                    {t(link.labelKey)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+            <div className="space-y-3">
+              <p className="text-[11px] text-primary-foreground/50 leading-relaxed">
+                Jemassuremoinscher.fr est un comparateur d'assurances indépendant, immatriculé à l'ORIAS sous le N° 24 XXX XXX en qualité de courtier en assurances.
+              </p>
+              <p className="text-[11px] text-primary-foreground/50 leading-relaxed">
+                Conformément à la réglementation, nous vous rappelons que l'utilisation de notre comparateur est gratuite et sans engagement. Les tarifs affichés sont indicatifs.
+              </p>
+              <p className="text-[11px] text-primary-foreground/50 leading-relaxed">
+                Siège social : 2, rue d'Angleterre 06000 Nice<br />
+                Tél. : 04 93 88 16 84<br />
+                Email : contact@jemassuremoinscher.fr
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-8 border-t border-primary-foreground/20 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-primary-foreground/60 text-sm">
-            © {new Date().getFullYear()} Jemassuremoinscher.fr - {t('footer.rights')}
-          </p>
-          <p className="text-primary-foreground/50 text-xs max-w-xl text-center md:text-right">
-            {t('footer.disclaimer')}
+        {/* Brand + Social */}
+        <div className="border-t border-primary-foreground/10 pt-8 mb-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <Link to="/" aria-label="Accueil jemassuremoinscher">
+                <img alt="Arthur - mascotte jemassuremoinscher" className="h-10 w-auto" src={arthurThumbsUp} loading="lazy" width={40} height={40} />
+              </Link>
+              <p className="text-primary-foreground/50 text-[11px] max-w-xs leading-relaxed">
+                {t('footer.description')}
+              </p>
+            </div>
+            <nav aria-label="Réseaux sociaux" className="flex items-center gap-3">
+              <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Instagram" className="text-primary-foreground/50 hover:text-accent transition-colors">
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur LinkedIn" className="text-primary-foreground/50 hover:text-accent transition-colors">
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Facebook" className="text-primary-foreground/50 hover:text-accent transition-colors">
+                <Facebook className="w-4 h-4" />
+              </a>
+            </nav>
+          </div>
+        </div>
+
+        {/* Trust bar — SSL + paiement sécurisé */}
+        <div className="border-t border-primary-foreground/10 pt-5">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            {/* Trust badges */}
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <div className="flex items-center gap-1.5 text-primary-foreground/50">
+                <Lock className="h-3 w-3 text-accent" aria-hidden="true" />
+                <span className="text-[10px] font-medium">Paiement sécurisé</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-primary-foreground/50">
+                <ShieldCheck className="h-3 w-3 text-accent" aria-hidden="true" />
+                <span className="text-[10px] font-medium">Site sécurisé SSL</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-primary-foreground/50">
+                <Shield className="h-3 w-3 text-accent" aria-hidden="true" />
+                <span className="text-[10px] font-medium">RGPD conforme</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-primary-foreground/50">
+                <BadgeCheck className="h-3 w-3 text-accent" aria-hidden="true" />
+                <span className="text-[10px] font-medium">ORIAS vérifié</span>
+              </div>
+            </div>
+
+            {/* Payment icons */}
+            <div className="flex items-center gap-3 text-primary-foreground/30">
+              <CreditCard className="h-4 w-4" aria-hidden="true" />
+              <span className="text-[9px] uppercase tracking-wider">Visa</span>
+              <span className="text-[9px] uppercase tracking-wider">Mastercard</span>
+              <span className="text-[9px] uppercase tracking-wider">CB</span>
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <p className="text-[10px] text-primary-foreground/30 text-center mt-4">
+            © {new Date().getFullYear()} Jemassuremoinscher.fr — Tous droits réservés
           </p>
         </div>
       </div>
