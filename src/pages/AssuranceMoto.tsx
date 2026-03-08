@@ -91,7 +91,9 @@ const AssuranceMoto = () => {
     <div className="min-h-screen">
       <SEOOptimized title="Assurance Moto Moins Chère | Comparateur" description="Comparez les assurances moto et scooter. Devis gratuit. Économisez jusqu'à 40%." keyword="assurance moto moins chère" keywords="assurance scooter, comparateur assurance moto" canonical="https://www.jemassuremoinscher.fr/assurance-moto" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
       <Header />
+      <Breadcrumbs items={[{ label: "Assurance Moto" }]} />
 
+      <main id="main-content">
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center relative">
@@ -102,7 +104,7 @@ const AssuranceMoto = () => {
         </div>
       </section>
 
-      <main className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12">
         <DynamicUpdateDate />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
