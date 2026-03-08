@@ -48,9 +48,11 @@ const NosPartenaires = () => {
             </div>
             <img
               src={arthurThumbsUp}
-              alt=""
-              aria-hidden="true"
+              alt="Arthur mascotte jemassuremoinscher - nos partenaires assureurs"
               className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none"
+              width={224}
+              height={280}
+              loading="lazy"
             />
           </div>
         </section>
