@@ -349,7 +349,7 @@ const QuickQuoteSection = () => {
                 <RadioGroup value={quoteData.insuranceType} onValueChange={value => handleInsuranceTypeSelect(value as InsuranceType)} className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {INSURANCE_TYPES.map(option => (
                     <Label key={option.value} htmlFor={`ins-${option.value}`} className="cursor-pointer">
-                      <div className={`relative p-3 md:p-4 rounded-xl border-2 transition-all duration-300 card-hover ${quoteData.insuranceType === option.value ? "border-primary bg-primary/5 shadow-md" : "border-border hover:border-primary/50 bg-card"}`}>
+                      <div className={`relative p-4 md:p-4 rounded-[1.5rem] border-2 transition-all duration-300 card-hover min-h-[70px] flex items-center justify-center ${quoteData.insuranceType === option.value ? "border-primary bg-primary/5 shadow-md" : "border-border hover:border-primary/50 bg-card"}`}>
                         {quoteData.insuranceType === option.value && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-primary flex items-center justify-center"><Check className="w-3 h-3 text-primary-foreground" /></motion.div>}
                         <div className="flex flex-col items-center text-center gap-1">
                           <span className="text-2xl">{option.emoji}</span>
