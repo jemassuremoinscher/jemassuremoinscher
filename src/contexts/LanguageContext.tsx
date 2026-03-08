@@ -351,9 +351,9 @@ const fr: Record<string, string> = {
   'calc.disclaimer': '* Estimation basée sur les économies moyennes constatées. Les économies réelles peuvent varier selon votre profil.',
 
   // Quote Request Form
-  'quoteForm.title': 'Demandez votre',
-  'quoteForm.titleHighlight': 'devis gratuit',
-  'quoteForm.subtitle': 'Remplissez ce formulaire et recevez votre devis personnalisé en 24h',
+  'quoteForm.title': 'Votre devis',
+  'quoteForm.titleHighlight': 'en 2 minutes',
+  'quoteForm.subtitle': 'On s\'occupe de tout. Remplissez ce formulaire, un expert vous rappelle avec les meilleures offres.',
   'quoteForm.insuranceType': "Type d'assurance *",
   'quoteForm.selectType': 'Sélectionnez un type',
   'quoteForm.autoIns': 'Assurance Auto',
