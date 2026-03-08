@@ -411,32 +411,68 @@ const Header = () => {
             <div className="pt-4 bg-muted/30 -mx-4 px-4 rounded-t-[2rem]">
               <div className="space-y-0.5">
                 <Link 
-                  to="/qui-sommes-nous" 
-                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  to="/comparateur" 
+                  className="flex items-center gap-3 px-4 py-3 text-base font-bold text-primary hover:bg-muted rounded-2xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
+                  <Search className="h-5 w-5 text-primary" />
+                  {t('nav.comparator')}
+                </Link>
+                <Link 
+                  to="/blog" 
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <BookOpen className="h-5 w-5 text-primary" />
+                  {t('nav.blog')}
+                </Link>
+                <Link 
+                  to="/glossaire" 
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <FileText className="h-5 w-5 text-primary" />
+                  Glossaire
+                </Link>
+                <Link 
+                  to="/outils/calculateur-bonus-malus" 
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Calculator className="h-5 w-5 text-primary" />
+                  Calculateurs
+                </Link>
+                <Link 
+                  to="/avis-clients" 
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Star className="h-5 w-5 text-primary" />
+                  {t('nav.reviews')}
+                </Link>
+                <Link 
+                  to="/qui-sommes-nous" 
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Users className="h-5 w-5 text-primary" />
                   {t('nav.aboutUs')}
                 </Link>
                 <Link 
                   to="/nos-partenaires" 
-                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
+                  <Building2 className="h-5 w-5 text-primary" />
                   {t('nav.partners')}
                 </Link>
                 <Link 
-                  to="/avis-clients" 
-                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  to="/contact" 
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {t('nav.reviews')}
-                </Link>
-                <Link 
-                  to="/blog" 
-                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {t('nav.blog')}
+                  <MessageSquare className="h-5 w-5 text-primary" />
+                  Contact
                 </Link>
               </div>
             </div>
