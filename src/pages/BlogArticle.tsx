@@ -59,6 +59,17 @@ const BlogArticle = () => {
     }
   };
 
+  // "Continuer la lecture" — 3 articles by similar tags, fallback to random
+  const continueReading = (() => {
+    const tagMatches = blogArticles
+      .filter(a => a.id !== article.id && a.tags.some(tag => article.tags.includes(tag)));
+    const others = blogArticles.filter(a => a.id !== article.id);
+    const pool = tagMatches.length >= 3 ? tagMatches : others;
+    // Shuffle deterministically based on article id
+    const shuffled = [...pool].sort(() => 0.5 - Math.abs(Math.sin(parseInt(article.id.replace(/\D/g, '0'), 10) + pool.indexOf(pool[0]))));
+    return shuffled.slice(0, 3);
+  })();
+
   const relatedArticles = blogArticles
     .filter(a => a.id !== article.id && (a.category === article.category || a.tags.some(tag => article.tags.includes(tag))))
     .slice(0, 3);
@@ -353,6 +364,46 @@ const BlogArticle = () => {
             <PopularArticles currentSlug={article.slug} />
           </aside>
           </div>
+        </div>
+
+        {/* Continuer la lecture — full width before footer */}
+        <section className="container mx-auto px-4 pb-14">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">📚 Continuer la lecture</h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {continueReading.map((cr) => (
+                <Card
+                  key={cr.id}
+                  className="glass-card rounded-[2rem] hover:shadow-[var(--shadow-hover)] transition-all duration-300 cursor-pointer group"
+                  onClick={() => navigate(`/blog/${cr.slug}`)}
+                >
+                  <div className="p-6">
+                    <Badge className="mb-3 rounded-full">{cr.category}</Badge>
+                    <h3 className="font-semibold mb-2 line-clamp-2 text-foreground group-hover:text-primary transition-colors flex items-start gap-2">
+                      <BlogArticleArthur category={cr.category} className="h-8 w-8" />
+                      <span className="flex-1">{cr.title}</span>
+                    </h3>
+                    <p className="text-sm text-muted-foreground line-clamp-3 mb-4">{cr.description}</p>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <Clock className="h-3 w-3" aria-hidden="true" />
+                      <span>{cr.readTime}</span>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Lien comparateur garanti */}
+        <div className="container mx-auto px-4 pb-10 text-center">
+          <Button
+            size="lg"
+            onClick={() => navigate("/comparateur")}
+            className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 rounded-full text-lg"
+          >
+            🔍 Comparer les assurances gratuitement
+          </Button>
         </div>
       </main>
 
