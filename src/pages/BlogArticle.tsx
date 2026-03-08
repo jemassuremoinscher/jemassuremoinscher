@@ -199,6 +199,13 @@ const BlogArticle = () => {
               </ReactMarkdown>
             </div>
 
+            {/* FAQ */}
+            <SemanticFAQ
+              items={blogFaqItems}
+              title="Questions fréquentes sur l'assurance"
+              subtitle="Les réponses aux questions que vous vous posez le plus souvent."
+            />
+
             {/* CTA */}
             <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center overflow-visible">
               <div className="relative z-10">
