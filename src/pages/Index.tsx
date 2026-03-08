@@ -1,17 +1,20 @@
+import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SEOOptimized from "@/components/SEOOptimized";
-import QuickQuoteSection from "@/components/quote/QuickQuoteSection";
-import PartnersSlider from "@/components/trust/PartnersSlider";
-import WhyUsComparison from "@/components/comparison/WhyUsComparison";
-import HowItWorks from "@/components/sections/HowItWorks";
-import SEOFaq from "@/components/sections/SEOFaq";
-import SEOContent from "@/components/sections/SEOContent";
-import GuidesSection from "@/components/sections/GuidesSection";
-import SimpleFooter from "@/components/sections/SimpleFooter";
-import StickyCTA from "@/components/StickyCTA";
 import { addOrganizationSchema, addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
+
+// Lazy load below-the-fold sections
+const QuickQuoteSection = lazy(() => import("@/components/quote/QuickQuoteSection"));
+const PartnersSlider = lazy(() => import("@/components/trust/PartnersSlider"));
+const WhyUsComparison = lazy(() => import("@/components/comparison/WhyUsComparison"));
+const HowItWorks = lazy(() => import("@/components/sections/HowItWorks"));
+const SEOFaq = lazy(() => import("@/components/sections/SEOFaq"));
+const GuidesSection = lazy(() => import("@/components/sections/GuidesSection"));
+const SEOContent = lazy(() => import("@/components/sections/SEOContent"));
+const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
+const StickyCTA = lazy(() => import("@/components/StickyCTA"));
 
 const Index = () => {
   const organizationSchema = addOrganizationSchema();
@@ -52,13 +55,15 @@ const Index = () => {
       <Header />
       <main id="main-content" role="main">
         <Hero />
-        <QuickQuoteSection />
-        <PartnersSlider />
-        <WhyUsComparison />
-        <HowItWorks />
-        <SEOFaq />
-        <GuidesSection />
-        <SEOContent />
+        <Suspense fallback={null}>
+          <QuickQuoteSection />
+          <PartnersSlider />
+          <WhyUsComparison />
+          <HowItWorks />
+          <SEOFaq />
+          <GuidesSection />
+          <SEOContent />
+        </Suspense>
       </main>
       {/* Hidden internal links for SEO - crawlable but not visible */}
       <nav aria-label="Liens internes" className="sr-only">
@@ -88,8 +93,10 @@ const Index = () => {
           <li><Link to="/contact">Contactez notre équipe</Link></li>
         </ul>
       </nav>
-      <SimpleFooter />
-      <StickyCTA />
+      <Suspense fallback={null}>
+        <SimpleFooter />
+        <StickyCTA />
+      </Suspense>
     </div>
   );
 };
