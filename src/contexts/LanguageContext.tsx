@@ -1995,7 +1995,7 @@ const en: Record<string, string> = {
   // Hero
   'hero.titleAccent': 'THE',
   'hero.titleAccentSuffix': ' site',
-  'hero.title': ' to find cheaper insurance,',
+   'hero.title': ' to find cheaper insurance,',
   'hero.titleHighlight': 'without compromise.',
   'hero.subtitle': 'Compare',
   'hero.subtitleBold': '50+ insurers',
