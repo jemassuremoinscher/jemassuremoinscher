@@ -51,8 +51,8 @@ const HowItWorks = () => {
         </motion.div>
 
         {/* Horizontal cards - no stacking */}
-        <div className="relative -mx-4 px-4">
-          <div className="flex items-stretch gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide pl-4 md:pl-0 md:justify-center">
+        <div className="relative -mx-4 px-4 md:mx-0 md:px-0">
+          <div className="flex items-stretch gap-4 md:gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide pl-4 md:pl-0 md:overflow-visible">
             {steps.map((step, index) => (
               <motion.div
                 key={step.number}
@@ -61,7 +61,7 @@ const HowItWorks = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.12 }}
                 whileHover={{ y: -6, rotate: -1 }}
-                className="group flex-shrink-0 w-[78vw] md:w-[340px] snap-center"
+                className="group flex-shrink-0 w-[78vw] snap-center md:flex-1 md:w-auto md:min-w-0"
               >
                 <div className="relative overflow-hidden rounded-3xl border border-border/40 bg-card shadow-[0_8px_32px_-8px_hsl(var(--primary)/0.12)] backdrop-blur-sm transition-all duration-500 hover:shadow-[0_24px_64px_-12px_hsl(var(--primary)/0.3)] hover:border-primary/30 h-full">
                   {/* Decorative gradient orbs */}
