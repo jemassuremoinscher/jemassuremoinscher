@@ -15,6 +15,7 @@ const Comparateur = () => {
        />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
+        <Breadcrumbs items={[{ label: "Comparateur" }]} />
         <main className="flex-1">
           <InteractiveComparator />
         </main>

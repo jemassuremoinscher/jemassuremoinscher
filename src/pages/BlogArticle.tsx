@@ -94,6 +94,7 @@ const BlogArticle = () => {
         jsonLd={[breadcrumbSchema, articleSchema]}
       />
       <Header />
+      <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: article.title }]} />
       
       <main>
         {/* Hero */}
