@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { Car, Heart, Home, PawPrint, Bike, HeartPulse, Sparkles } from "lucide-react";
+import { Car, Heart, Home, PawPrint, Bike, HeartPulse, Sparkles, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
