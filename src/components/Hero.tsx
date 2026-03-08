@@ -212,7 +212,7 @@ const Hero = () => {
           <div className="w-px h-8 bg-primary-foreground/20 hidden md:block" />
           <div className="flex items-center gap-2">
             <span className="text-2xl md:text-3xl font-black text-accent">2min</span>
-            <span className="text-xs md:text-sm">{t('hero.compareTime').split(' ').slice(0, 1).join(' ')}<br />{t('hero.compareTime').split(' ').slice(1).join(' ')}</span>
+            
           </div>
           <div className="w-px h-8 bg-primary-foreground/20 hidden md:block" />
           <div className="flex items-center gap-2">
