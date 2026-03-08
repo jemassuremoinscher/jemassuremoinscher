@@ -14,6 +14,7 @@ import AuthorExpertise from "@/components/blog/AuthorExpertise";
 import { addArticleSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const BlogArticle = () => {
   const { t } = useLanguage();
