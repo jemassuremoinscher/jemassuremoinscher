@@ -183,12 +183,22 @@ const QuickQuoteSection = () => {
   const { t } = useLanguage();
   const [quoteData, setQuoteData] = useState<QuoteData>({
     insuranceType: "",
+    vehicleBrand: "",
     profileOption: "",
     coverageLevel: "",
     email: "",
     phone: ""
   });
-  const totalSteps = 4;
+  const isVehicleType = quoteData.insuranceType === "auto" || quoteData.insuranceType === "moto";
+  const totalSteps = isVehicleType ? 5 : 4;
+
+  // Step mapping: for vehicle types, step 2 = brand, step 3 = profile, step 4 = coverage, step 5 = contact
+  // For others: step 2 = profile, step 3 = coverage, step 4 = contact
+  const getLogicalStep = (step: number) => {
+    if (!isVehicleType) return step;
+    // vehicle: 1=type, 2=brand, 3=profile, 4=coverage, 5=contact
+    return step;
+  };
 
   const handleNext = () => { if (currentStep < totalSteps) { setDirection(1); setCurrentStep(prev => prev + 1); } };
   const handlePrev = () => { if (currentStep > 1) { setDirection(-1); setCurrentStep(prev => prev - 1); } };
