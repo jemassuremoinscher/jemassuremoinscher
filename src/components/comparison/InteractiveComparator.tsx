@@ -220,7 +220,7 @@ export const InteractiveComparator = () => {
 
         {/* Offers - only shown after comparison */}
         {hasCompared && (
-        <div className="max-w-4xl mx-auto space-y-4">
+        <div className="max-w-4xl mx-auto space-y-4" aria-live="polite" aria-atomic="false">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl md:text-2xl font-bold text-foreground">
               {filteredOffers.length} {t('comparator.offersAvailable')}
