@@ -139,6 +139,7 @@ const AssuranceAuto = () => {
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Auto" }]} />
 
+      <main id="main-content">
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center relative">
@@ -149,7 +150,7 @@ const AssuranceAuto = () => {
         </div>
       </section>
 
-      <main className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12">
         <DynamicUpdateDate />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
