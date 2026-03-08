@@ -101,7 +101,7 @@ const StackingCard = ({ article, index, total, onOpen, t }: {
           </div>
         </motion.article>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
