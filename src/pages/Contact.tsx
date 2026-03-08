@@ -1,7 +1,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOOptimized from '@/components/SEOOptimized';
-import { Mail, Phone, MessageCircle, Clock, MapPin, Send, Loader2 } from 'lucide-react';
+import { Mail, Clock, MapPin, Send, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
