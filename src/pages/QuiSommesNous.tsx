@@ -5,6 +5,7 @@ import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const QuiSommesNous = () => {
   const { t } = useLanguage();
@@ -12,6 +13,7 @@ const QuiSommesNous = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <Breadcrumbs items={[{ label: "Qui sommes-nous" }]} />
       
       <main>
         {/* Hero Section */}

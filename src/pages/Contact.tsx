@@ -11,6 +11,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useLanguage } from '@/contexts/LanguageContext';
 import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.png';
 import arthurFlying from '@/assets/mascotte/arthur-flying.png';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 const PHONE_NUMBER = "+33493881684";
 const PHONE_DISPLAY = "04 93 88 16 84";
@@ -56,6 +57,7 @@ const Contact = () => {
       
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
+        <Breadcrumbs items={[{ label: "Contact" }]} />
         
         <main id="main-content" className="flex-grow">
           {/* Hero */}

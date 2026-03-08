@@ -22,6 +22,7 @@ import arthurCar from "@/assets/mascotte/arthur-car.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import arthurFlying from "@/assets/mascotte/arthur-sprint-coin.png";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const formSchema = z.object({
   marque: z.string().min(1, "Champ requis"),
@@ -134,6 +135,7 @@ const AssuranceAuto = () => {
     <div className="min-h-screen">
       <SEOOptimized title="Assurance Auto Moins Chère | Comparateur" description="Comparez les assurances auto. Devis gratuit en 2 min. Économisez jusqu'à 40%." keyword="assurance auto moins chère" keywords="assurance auto moins cher, comparateur assurance auto, devis assurance voiture" canonical="https://www.jemassuremoinscher.fr/assurance-auto" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, howToSchema, faqSchema]} />
       <Header />
+      <Breadcrumbs items={[{ label: "Assurance Auto" }]} />
 
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4">
