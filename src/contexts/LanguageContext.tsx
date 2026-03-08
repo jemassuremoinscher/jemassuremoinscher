@@ -82,8 +82,8 @@ const fr: Record<string, string> = {
   'features.secure.description': 'Vos informations restent confidentielles. Rien n\'est partagé sans votre accord.',
   
   // FAQ
-  'faq.title': 'Questions Fréquentes',
-  'faq.subtitle': 'Tout ce que vous devez savoir sur notre comparateur',
+  'faq.title': 'Vos questions, nos réponses',
+  'faq.subtitle': 'Pas de jargon, que des réponses claires',
   
   // Footer
   'footer.tagline': "Arthur, votre super-héros des économies d'assurance.",
