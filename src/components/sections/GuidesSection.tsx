@@ -38,7 +38,7 @@ const GuideCard = ({ article, index, total, onOpen, t }: {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.12 }}
       whileHover={{ y: -6, rotate: -1 }}
-      className="group cursor-pointer flex-shrink-0 w-[82vw] md:w-[380px] snap-center"
+      className="group cursor-pointer flex-shrink-0 w-[82vw] snap-center md:flex-1 md:w-auto md:min-w-0"
       onClick={() => onOpen(article)}
       style={{ 
         zIndex: total - index,
@@ -223,8 +223,8 @@ const GuidesSection = () => {
         </motion.div>
 
         {/* Horizontal stacking cards */}
-        <div className="relative -mx-4 px-4">
-          <div className="flex items-stretch overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide pl-4 md:pl-0 md:justify-center">
+        <div className="relative -mx-4 px-4 md:mx-0 md:px-0">
+          <div className="flex items-stretch gap-4 md:gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide pl-4 md:pl-0 md:overflow-visible">
             {articles.map((article, index) => (
               <GuideCard
                 key={article.id}
