@@ -2,10 +2,12 @@ import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
 import { Shield, TrendingDown, FileCheck, CheckCircle2, Star, Clock, Award, Home } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { useEffect } from 'react';
 
 const LandingPret = () => {
   const { trackPageView } = useAnalytics();
+  const { t } = useLanguage();
 
   useEffect(() => {
     trackPageView('/landing/pret', 'Landing Page Assurance Prêt');
@@ -205,10 +207,10 @@ const LandingPret = () => {
         <section className="bg-primary text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Calculez vos économies en 2 minutes
+              {t('landingPret.ctaTitle')}
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Gratuit, sans engagement et 100% en ligne
+              {t('landingPret.ctaSubtext')}
             </p>
             <a
               href="#hero"
