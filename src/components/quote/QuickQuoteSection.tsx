@@ -239,6 +239,7 @@ const QuickQuoteSection = () => {
 
   const canProceed = () => {
     switch (currentStep) {
+      case 0: return false;
       case 1: return quoteData.insuranceType !== "";
       case 2: return quoteData.profileOption !== "";
       case 3: return quoteData.coverageLevel !== "";
