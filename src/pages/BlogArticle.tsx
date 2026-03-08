@@ -59,6 +59,17 @@ const BlogArticle = () => {
     }
   };
 
+  // "Continuer la lecture" — 3 articles by similar tags, fallback to random
+  const continueReading = (() => {
+    const tagMatches = blogArticles
+      .filter(a => a.id !== article.id && a.tags.some(tag => article.tags.includes(tag)));
+    const others = blogArticles.filter(a => a.id !== article.id);
+    const pool = tagMatches.length >= 3 ? tagMatches : others;
+    // Shuffle deterministically based on article id
+    const shuffled = [...pool].sort(() => 0.5 - Math.abs(Math.sin(parseInt(article.id.replace(/\D/g, '0'), 10) + pool.indexOf(pool[0]))));
+    return shuffled.slice(0, 3);
+  })();
+
   const relatedArticles = blogArticles
     .filter(a => a.id !== article.id && (a.category === article.category || a.tags.some(tag => article.tags.includes(tag))))
     .slice(0, 3);
