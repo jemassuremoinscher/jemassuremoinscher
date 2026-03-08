@@ -214,9 +214,10 @@ export const InteractiveComparator = () => {
             <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Button
                 size="lg"
+                role="button"
                 onClick={() => setHasCompared(true)}
                 className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-10 rounded-full text-lg"
-                aria-label="Lancer la comparaison des devis d'assurance"
+                aria-label="Lancer la comparaison des tarifs d'assurance"
               >
                 Comparer maintenant
               </Button>
