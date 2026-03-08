@@ -82,38 +82,15 @@ const Contact = () => {
           <div className="container mx-auto px-4 py-10 md:py-14">
             <div className="max-w-5xl mx-auto space-y-10">
 
-              {/* Contact cards */}
-              <div className="grid sm:grid-cols-3 gap-4">
-                <a href={`tel:${PHONE_NUMBER}`} className="glass-card p-6 rounded-[2rem] text-center hover:shadow-[var(--shadow-hover)] transition-all duration-300 group">
-                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                    <Phone className="h-5 w-5 text-primary" />
-                  </div>
-                  <h3 className="font-bold text-foreground mb-1">{t('contactPage.phone')}</h3>
-                  <p className="text-primary font-semibold">{PHONE_DISPLAY}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{t('contactPage.phoneHours')}</p>
-                </a>
-
-                <a href="mailto:contact@jemassuremoinscher.fr" className="glass-card p-6 rounded-[2rem] text-center hover:shadow-[var(--shadow-hover)] transition-all duration-300 group">
+              {/* Contact card */}
+              <div className="max-w-md mx-auto">
+                <a href="mailto:contact@jemassuremoinscher.fr" className="glass-card p-6 rounded-[2rem] text-center hover:shadow-[var(--shadow-hover)] transition-all duration-300 group block">
                   <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                     <Mail className="h-5 w-5 text-primary" />
                   </div>
                   <h3 className="font-bold text-foreground mb-1">{t('contactPage.email')}</h3>
                   <p className="text-primary font-semibold text-sm">contact@jemassuremoinscher.fr</p>
                   <p className="text-xs text-muted-foreground mt-1">{t('contactPage.emailDelay')}</p>
-                </a>
-
-                <a
-                  href={`https://wa.me/${PHONE_NUMBER.replace('+', '')}?text=Bonjour, j'ai une question concernant mon assurance.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="glass-card p-6 rounded-[2rem] text-center hover:shadow-[var(--shadow-hover)] transition-all duration-300 group"
-                >
-                  <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
-                    <MessageCircle className="h-5 w-5 text-primary" />
-                  </div>
-                  <h3 className="font-bold text-foreground mb-1">WhatsApp</h3>
-                  <p className="text-primary font-semibold">{t('contactPage.whatsapp')}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{t('contactPage.whatsappDelay')}</p>
                 </a>
               </div>
 
