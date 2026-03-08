@@ -88,6 +88,9 @@ const AssuranceSante = () => {
     <div className="min-h-screen">
       <SEOOptimized title="Mutuelle Santé Moins Chère | Comparateur" description="Comparez les mutuelles santé. Devis gratuit en 2 min. Économisez jusqu'à 40%." keyword="mutuelle santé moins chère" keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher" canonical="https://www.jemassuremoinscher.fr/assurance-sante" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
       <Header />
+      <Breadcrumbs items={[{ label: "Mutuelle Santé" }]} />
+
+      <main id="main-content">
 
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4">
