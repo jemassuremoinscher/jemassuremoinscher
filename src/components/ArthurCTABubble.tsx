@@ -17,6 +17,8 @@ const ArthurCTABubble = () => {
         src={arthurWink}
         alt="Arthur, mascotte jemassuremoinscher"
         className="h-12 w-auto object-contain"
+        width={48}
+        height={48}
         loading="lazy"
       />
     </motion.div>

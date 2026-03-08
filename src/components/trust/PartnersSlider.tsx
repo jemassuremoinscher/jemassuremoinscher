@@ -87,8 +87,10 @@ const PartnersSlider = () => {
             >
               <img
                 src={partner.logo}
-                alt={partner.name}
+                alt={`${partner.name} - assureur partenaire assurance moins chère`}
                 className="max-w-full max-h-full object-contain"
+                width={120}
+                height={60}
                 loading="lazy"
                 decoding="async"
               />

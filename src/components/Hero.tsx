@@ -55,6 +55,8 @@ const Hero = () => {
                 src={arthurThumbsUp} 
                 alt="Arthur mascotte jemassuremoinscher - super-héros de l'assurance moins chère" 
                 className="w-28 h-auto md:w-36 lg:w-44 drop-shadow-2xl" 
+                width={176}
+                height={220}
                 loading="eager" 
                 decoding="async" 
                 fetchPriority="high" 

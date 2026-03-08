@@ -18,6 +18,8 @@ const ArthurHero = ({ imageSrc, imageAlt, speechText }: ArthurHeroProps) => {
         src={imageSrc}
         alt={imageAlt}
         className="w-20 sm:w-24 md:w-32 lg:w-36 h-auto drop-shadow-2xl"
+        width={144}
+        height={180}
         loading="eager"
         decoding="async"
         animate={{ y: [0, -8, 0] }}
