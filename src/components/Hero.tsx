@@ -199,27 +199,27 @@ const Hero = () => {
         </motion.div>
 
         {/* Trust Indicators */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="flex flex-wrap justify-center items-center gap-4 md:gap-8 mt-8 md:mt-12 text-primary-foreground/70">
-          
-          <div className="flex items-center gap-2">
-            <span className="text-2xl md:text-3xl font-black text-accent">50+</span>
-            <span className="text-xs md:text-sm">{t('hero.partnersCount').split(' ').slice(0, 1).join(' ')}<br />{t('hero.partnersCount').split(' ').slice(1).join(' ')}</span>
-          </div>
-          <div className="w-px h-8 bg-primary-foreground/20 hidden md:block" />
-          <div className="flex items-center gap-2">
-            <span className="text-2xl md:text-3xl font-black text-accent">2min</span>
-            
-          </div>
-          <div className="w-px h-8 bg-primary-foreground/20 hidden md:block" />
-          <div className="flex items-center gap-2">
-            <span className="text-2xl md:text-3xl font-black text-accent">100%</span>
-            <span className="text-xs md:text-sm">{t('hero.freeLabel').split(' & ').slice(0, 1).join(' ')}<br />{t('hero.freeLabel').includes('&') ? t('hero.freeLabel').split(' & ').slice(1).join(' ') : ''}</span>
-          </div>
-        </motion.div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
       </div>
     </section>);
 
