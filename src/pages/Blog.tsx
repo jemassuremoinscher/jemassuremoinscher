@@ -13,6 +13,7 @@ import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 
 const convertToISO = (frenchDate: string): string => {
   const months: Record<string, string> = {
