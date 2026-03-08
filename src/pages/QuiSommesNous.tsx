@@ -13,6 +13,7 @@ const QuiSommesNous = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <Breadcrumbs items={[{ label: "Qui sommes-nous" }]} />
       
       <main>
         {/* Hero Section */}

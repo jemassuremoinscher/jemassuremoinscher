@@ -11,6 +11,7 @@ import { Search, BookOpen, ArrowRight } from "lucide-react";
 import { glossaryTerms, glossaryCategories } from "@/data/glossaryTerms";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const Glossaire = () => {
   const { t } = useLanguage();
