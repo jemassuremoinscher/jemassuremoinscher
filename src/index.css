@@ -222,9 +222,11 @@ All colors MUST be HSL.
   }
 
   .glass-card {
-    background: hsl(0 0% 100% / 0.7);
+    background: hsl(0 0% 100% / 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-card);
+    border: none;
   }
 
   .glass-pill {
