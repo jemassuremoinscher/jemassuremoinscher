@@ -56,7 +56,7 @@ const fr: Record<string, string> = {
   'hero.savingsBadge': "Nos clients économisent en moyenne",
   'hero.savingsPercent': '40%',
   'hero.savingsEnd': 'sur leur contrat',
-  'hero.arthurSpeech': "Moi c'est Arthur !",
+  'hero.arthurSpeech': "Hello, moi c'est Arthur !",
   'hero.partnersCount': 'Assureurs partenaires',
   'hero.compareTime': 'Comparaison express',
   'hero.freeLabel': 'Gratuit & sans engagement',
