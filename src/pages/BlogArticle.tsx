@@ -186,8 +186,10 @@ const BlogArticle = () => {
         </section>
 
         <div className="container mx-auto px-4 py-10 md:py-14">
+          <DynamicUpdateDate />
+          <div className="flex gap-8 max-w-6xl mx-auto">
           {/* Semantic Article Wrapper */}
-          <article className="max-w-4xl mx-auto">
+          <article className="max-w-4xl mx-auto flex-1 min-w-0">
             
             {/* Author E-E-A-T Badge */}
             <div className="mb-8">
