@@ -64,6 +64,7 @@ const NewsletterGestion = lazy(() => import("./pages/NewsletterGestion"));
 const PlanDuSite = lazy(() => import("./pages/PlanDuSite"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Merci = lazy(() => import("./pages/Merci"));
+const CalculateurBonusMalus = lazy(() => import("./pages/outils/CalculateurBonusMalus"));
 
 const queryClient = new QueryClient();
 
