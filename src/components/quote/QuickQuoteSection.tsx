@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Car, Check, ChevronRight, ChevronLeft, Calendar, Mail, Loader2, CheckCircle2, Shield, Home, Heart, Dog, Bike, Briefcase, Building2, FileText, Umbrella, Key, ShieldCheck } from "lucide-react";
+import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from "@/data/vehicleBrands";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,6 +18,7 @@ type InsuranceType = "auto" | "moto" | "habitation" | "sante" | "pret" | "animau
 
 interface QuoteData {
   insuranceType: InsuranceType;
+  vehicleBrand: string;
   profileOption: string;
   coverageLevel: string;
   email: string;
@@ -181,18 +183,28 @@ const QuickQuoteSection = () => {
   const { t } = useLanguage();
   const [quoteData, setQuoteData] = useState<QuoteData>({
     insuranceType: "",
+    vehicleBrand: "",
     profileOption: "",
     coverageLevel: "",
     email: "",
     phone: ""
   });
-  const totalSteps = 4;
+  const isVehicleType = quoteData.insuranceType === "auto" || quoteData.insuranceType === "moto";
+  const totalSteps = isVehicleType ? 5 : 4;
+
+  // Step mapping: for vehicle types, step 2 = brand, step 3 = profile, step 4 = coverage, step 5 = contact
+  // For others: step 2 = profile, step 3 = coverage, step 4 = contact
+  const getLogicalStep = (step: number) => {
+    if (!isVehicleType) return step;
+    // vehicle: 1=type, 2=brand, 3=profile, 4=coverage, 5=contact
+    return step;
+  };
 
   const handleNext = () => { if (currentStep < totalSteps) { setDirection(1); setCurrentStep(prev => prev + 1); } };
   const handlePrev = () => { if (currentStep > 1) { setDirection(-1); setCurrentStep(prev => prev - 1); } };
 
   const handleInsuranceTypeSelect = (value: InsuranceType) => {
-    setQuoteData(prev => ({ ...prev, insuranceType: value, profileOption: "", coverageLevel: "" }));
+    setQuoteData(prev => ({ ...prev, insuranceType: value, vehicleBrand: "", profileOption: "", coverageLevel: "" }));
     // Auto-advance to step 2 after selection
     setDirection(1);
     setCurrentStep(2);
@@ -205,7 +217,7 @@ const QuickQuoteSection = () => {
     try {
       const { error } = await supabase.from('insurance_quotes').insert({
         insurance_type: quoteData.insuranceType, full_name: '', email: quoteData.email, phone: quoteData.phone,
-        quote_data: { source: 'quick_quote', profileOption: quoteData.profileOption, coverageLevel: quoteData.coverageLevel },
+        quote_data: { source: 'quick_quote', profileOption: quoteData.profileOption, coverageLevel: quoteData.coverageLevel, vehicleBrand: quoteData.vehicleBrand || undefined },
         status: 'pending',
       });
       if (error) throw error;
@@ -238,6 +250,17 @@ const QuickQuoteSection = () => {
   };
 
   const canProceed = () => {
+    if (isVehicleType) {
+      switch (currentStep) {
+        case 0: return false;
+        case 1: return quoteData.insuranceType !== "";
+        case 2: return quoteData.vehicleBrand !== "";
+        case 3: return quoteData.profileOption !== "";
+        case 4: return quoteData.coverageLevel !== "";
+        case 5: return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(quoteData.email) && PHONE_REGEX.test(quoteData.phone);
+        default: return false;
+      }
+    }
     switch (currentStep) {
       case 0: return false;
       case 1: return quoteData.insuranceType !== "";
@@ -363,9 +386,37 @@ const QuickQuoteSection = () => {
               </motion.div>
             )}
 
-            {/* Step 2: Profile */}
-            {currentStep === 2 && (
-              <motion.div key="step2" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
+            {/* Step 2 (vehicle only): Brand Selection */}
+            {isVehicleType && currentStep === 2 && (
+              <motion.div key="step-brand" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 rounded-lg bg-primary/10"><Car className="w-5 h-5 text-primary" /></div>
+                  <h3 className="text-lg md:text-xl font-bold text-foreground">
+                    {quoteData.insuranceType === "auto" ? "Quelle est la marque de votre véhicule ?" : "Quelle est la marque de votre moto ?"}
+                  </h3>
+                </div>
+                {(() => {
+                  const brands = quoteData.insuranceType === "auto" ? AUTO_BRAND_NAMES : MOTO_BRAND_NAMES;
+                  return (
+                    <RadioGroup value={quoteData.vehicleBrand} onValueChange={value => setQuoteData(prev => ({ ...prev, vehicleBrand: value }))} className="grid grid-cols-2 md:grid-cols-4 gap-3 max-h-[340px] overflow-y-auto pr-2">
+                      {brands.map(brand => (
+                        <Label key={brand} htmlFor={`brand-${brand}`} className="cursor-pointer">
+                          <div className={`relative p-3 md:p-4 rounded-[1.5rem] border-2 transition-all duration-300 card-hover min-h-[52px] flex items-center justify-center ${quoteData.vehicleBrand === brand ? "border-primary bg-primary/5 shadow-md" : "border-border hover:border-primary/50 bg-card"}`}>
+                            {quoteData.vehicleBrand === brand && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-primary flex items-center justify-center"><Check className="w-3 h-3 text-primary-foreground" /></motion.div>}
+                            <span className="font-bold text-foreground text-xs md:text-sm text-center">{brand}</span>
+                            <RadioGroupItem value={brand} id={`brand-${brand}`} className="sr-only" />
+                          </div>
+                        </Label>
+                      ))}
+                    </RadioGroup>
+                  );
+                })()}
+              </motion.div>
+            )}
+
+            {/* Profile step: 2 for non-vehicle, 3 for vehicle */}
+            {currentStep === (isVehicleType ? 3 : 2) && (
+              <motion.div key="step-profile" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 rounded-lg bg-primary/10"><Calendar className="w-5 h-5 text-primary" /></div>
                   <h3 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.profileQuestion')}</h3>
@@ -389,9 +440,9 @@ const QuickQuoteSection = () => {
               </motion.div>
             )}
 
-            {/* Step 3: Coverage Level */}
-            {currentStep === 3 && (
-              <motion.div key="step3" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
+            {/* Coverage step: 3 for non-vehicle, 4 for vehicle */}
+            {currentStep === (isVehicleType ? 4 : 3) && (
+              <motion.div key="step-coverage" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 rounded-lg bg-primary/10"><Shield className="w-5 h-5 text-primary" /></div>
                   <h3 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.coverageQuestion')}</h3>
@@ -415,9 +466,9 @@ const QuickQuoteSection = () => {
               </motion.div>
             )}
 
-            {/* Step 4: Contact */}
-            {currentStep === 4 && (
-              <motion.div key="step4" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
+            {/* Contact step: 4 for non-vehicle, 5 for vehicle */}
+            {currentStep === (isVehicleType ? 5 : 4) && (
+              <motion.div key="step-contact" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 rounded-lg bg-primary/10"><Mail className="w-5 h-5 text-primary" /></div>
                   <h3 className="text-lg md:text-xl font-bold text-foreground">{t('quickQuote.contactQuestion')}</h3>

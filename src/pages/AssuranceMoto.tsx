@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Bike, Shield, Euro, Clock } from "lucide-react";
+import { MOTO_BRANDS } from "@/data/vehicleBrands";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -41,6 +42,7 @@ const AssuranceMoto = () => {
   const { t } = useLanguage();
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedBrand, setSelectedBrand] = useState<string>("");
   const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
   const formRef = useRef<HTMLDivElement>(null);
 
@@ -126,8 +128,37 @@ const AssuranceMoto = () => {
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField control={form.control} name="marque" render={({ field }) => (<FormItem><FormLabel>{t('motoPage.form.brand')}</FormLabel><FormControl><Input placeholder={t('motoPage.form.brandPlaceholder')} {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="modele" render={({ field }) => (<FormItem><FormLabel>{t('motoPage.form.model')}</FormLabel><FormControl><Input placeholder={t('motoPage.form.modelPlaceholder')} {...field} /></FormControl><FormMessage /></FormItem>)} />
+                  <FormField control={form.control} name="marque" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('motoPage.form.brand')}</FormLabel>
+                      <Select onValueChange={(value) => { field.onChange(value); setSelectedBrand(value); form.setValue("modele", ""); }} defaultValue={field.value}>
+                        <FormControl><SelectTrigger><SelectValue placeholder={t('motoPage.form.brandPlaceholder')} /></SelectTrigger></FormControl>
+                        <SelectContent className="max-h-[300px]">
+                          {Object.keys(MOTO_BRANDS).sort().map((brand) => (<SelectItem key={brand} value={brand}>{brand}</SelectItem>))}
+                          <SelectItem value="Autre">Autre</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+
+                  <FormField control={form.control} name="modele" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('motoPage.form.model')}</FormLabel>
+                      {selectedBrand && MOTO_BRANDS[selectedBrand] ? (
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl><SelectTrigger><SelectValue placeholder="Sélectionner un modèle" /></SelectTrigger></FormControl>
+                          <SelectContent className="max-h-[300px]">
+                            {MOTO_BRANDS[selectedBrand].map((model) => (<SelectItem key={model} value={model}>{model}</SelectItem>))}
+                            <SelectItem value="Autre">Autre</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      ) : (
+                        <FormControl><Input placeholder={t('motoPage.form.modelPlaceholder')} {...field} /></FormControl>
+                      )}
+                      <FormMessage />
+                    </FormItem>
+                  )} />
                   <div className="grid grid-cols-2 gap-4">
                     <FormField control={form.control} name="annee" render={({ field }) => (<FormItem><FormLabel>{t('autoPage.form.year')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent>{Array.from({ length: 2025 - 2000 + 1 }, (_, i) => 2025 - i).map((year) => (<SelectItem key={year} value={year.toString()}>{year}</SelectItem>))}</SelectContent></Select><FormMessage /></FormItem>)} />
                     <FormField control={form.control} name="typeMoto" render={({ field }) => (<FormItem><FormLabel>{t('motoPage.form.type')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="roadster">{t('motoPage.form.roadster')}</SelectItem><SelectItem value="sportive">{t('motoPage.form.sportive')}</SelectItem><SelectItem value="custom">{t('motoPage.form.custom')}</SelectItem><SelectItem value="trail">{t('motoPage.form.trail')}</SelectItem><SelectItem value="scooter">{t('motoPage.form.scooter')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />

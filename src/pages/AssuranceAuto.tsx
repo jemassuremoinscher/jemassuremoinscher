@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link } from "react-router-dom";
 import { Car, Shield, Euro, Clock, Calculator, ArrowRight } from "lucide-react";
+import { AUTO_BRANDS } from "@/data/vehicleBrands";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -46,41 +47,7 @@ const AssuranceAuto = () => {
   const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
   const formRef = useRef<HTMLDivElement>(null);
 
-  const modelsByBrand: Record<string, string[]> = {
-    "Peugeot": ["208", "308", "3008", "2008", "508", "5008", "Partner", "Expert", "Rifter"],
-    "Renault": ["Clio", "Captur", "Megane", "Kadjar", "Scenic", "Espace", "Twingo", "Zoe", "Arkana"],
-    "Citroën": ["C3", "C4", "C5 Aircross", "C3 Aircross", "Berlingo", "SpaceTourer", "Ami"],
-    "Volkswagen": ["Golf", "Polo", "Tiguan", "T-Roc", "Passat", "Touran", "ID.3", "ID.4", "Arteon"],
-    "BMW": ["Série 1", "Série 2", "Série 3", "Série 4", "Série 5", "X1", "X3", "X5", "iX3", "i4"],
-    "Mercedes-Benz": ["Classe A", "Classe B", "Classe C", "Classe E", "GLA", "GLB", "GLC", "EQC"],
-    "Audi": ["A1", "A3", "A4", "A6", "Q2", "Q3", "Q5", "Q7", "e-tron", "Q4 e-tron"],
-    "Toyota": ["Yaris", "Corolla", "C-HR", "RAV4", "Aygo", "Prius", "Camry", "Highlander"],
-    "Ford": ["Fiesta", "Focus", "Puma", "Kuga", "Mustang", "Ranger", "Transit"],
-    "Opel": ["Corsa", "Astra", "Crossland", "Grandland", "Mokka", "Combo", "Vivaro"],
-    "Fiat": ["500", "Panda", "Tipo", "500X", "500L", "Ducato"],
-    "Nissan": ["Micra", "Juke", "Qashqai", "X-Trail", "Leaf", "Ariya"],
-    "Kia": ["Picanto", "Rio", "Ceed", "XCeed", "Sportage", "Niro", "EV6"],
-    "Hyundai": ["i10", "i20", "i30", "Tucson", "Kona", "Santa Fe", "Ioniq 5"],
-    "Mazda": ["Mazda2", "Mazda3", "CX-3", "CX-30", "CX-5", "MX-5"],
-    "Honda": ["Jazz", "Civic", "CR-V", "HR-V", "e"],
-    "Seat": ["Ibiza", "Leon", "Arona", "Ateca", "Tarraco"],
-    "Skoda": ["Fabia", "Octavia", "Scala", "Kamiq", "Karoq", "Kodiaq", "Enyaq"],
-    "Dacia": ["Sandero", "Duster", "Logan", "Spring", "Jogger"],
-    "Mini": ["Cooper", "Countryman", "Clubman"],
-    "Volvo": ["XC40", "XC60", "XC90", "V60", "V90", "S60", "S90"],
-    "Tesla": ["Model 3", "Model Y", "Model S", "Model X"],
-    "DS": ["DS 3", "DS 4", "DS 7", "DS 9"],
-    "Alfa Romeo": ["Giulia", "Stelvio", "Tonale"],
-    "Jeep": ["Renegade", "Compass", "Cherokee", "Wrangler"],
-    "Land Rover": ["Defender", "Discovery", "Range Rover", "Range Rover Evoque", "Range Rover Sport"],
-    "Porsche": ["911", "Cayenne", "Macan", "Panamera", "Taycan"],
-    "Lexus": ["CT", "IS", "NX", "RX", "UX"],
-    "Jaguar": ["E-Pace", "F-Pace", "XE", "XF", "I-Pace"],
-    "Smart": ["ForTwo", "ForFour"],
-    "Suzuki": ["Ignis", "Swift", "Vitara", "S-Cross"],
-    "Mitsubishi": ["Space Star", "ASX", "Eclipse Cross", "Outlander"],
-    "Subaru": ["Impreza", "XV", "Forester", "Outback"],
-  };
+  const modelsByBrand = AUTO_BRANDS;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
