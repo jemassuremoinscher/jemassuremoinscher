@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, Search } from "lucide-react";
+import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 import { blogArticles, blogCategories } from "@/data/blogArticles";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
