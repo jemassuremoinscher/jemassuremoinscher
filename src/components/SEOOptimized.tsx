@@ -72,6 +72,11 @@ const SEOOptimized = ({
       <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
       <link rel="canonical" href={pageCanonical} />
 
+      {/* Hreflang — French primary, English alternate */}
+      <link rel="alternate" hrefLang="fr" href={pageCanonical} />
+      <link rel="alternate" hrefLang="en" href={pageCanonical} />
+      <link rel="alternate" hrefLang="x-default" href={pageCanonical} />
+
       {/* Open Graph */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
@@ -79,6 +84,7 @@ const SEOOptimized = ({
       <meta property="og:image" content={pageImage} />
       <meta property="og:type" content={ogType} />
       <meta property="og:locale" content="fr_FR" />
+      <meta property="og:locale:alternate" content="en_US" />
       <meta property="og:site_name" content="jemassuremoinscher" />
 
       {/* Twitter */}
