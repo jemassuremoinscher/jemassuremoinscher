@@ -42,6 +42,7 @@ const AssuranceMoto = () => {
   const { t } = useLanguage();
   const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedBrand, setSelectedBrand] = useState<string>("");
   const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
   const formRef = useRef<HTMLDivElement>(null);
 
