@@ -280,9 +280,9 @@ const BlogArticle = () => {
             {/* Final CTA */}
             <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center overflow-visible mt-12">
               <div className="relative z-10">
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  {t('blogArticlePage.ctaTitle')}
-                </h3>
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                   {t('blogArticlePage.ctaTitle')}
+                </h2>
                 <p className="text-white/80 mb-6 max-w-xl mx-auto">
                   {t('blogArticlePage.ctaDesc')}
                 </p>

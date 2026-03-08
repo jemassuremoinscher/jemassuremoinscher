@@ -126,7 +126,9 @@ const Contact = () => {
 
                 <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-5">
                   <div>
+                    <label htmlFor="contact-prenom" className="sr-only">{t('contactPage.firstName')}</label>
                     <Input
+                      id="contact-prenom"
                       type="text"
                       placeholder={t('contactPage.firstName')}
                       value={formData.prenom}
@@ -135,7 +137,9 @@ const Contact = () => {
                     />
                   </div>
                   <div>
+                    <label htmlFor="contact-email" className="sr-only">{t('contactPage.emailField')}</label>
                     <Input
+                      id="contact-email"
                       type="email"
                       placeholder={t('contactPage.emailField')}
                       value={formData.email}
@@ -144,7 +148,9 @@ const Contact = () => {
                     />
                   </div>
                   <div className="md:col-span-2">
+                    <label htmlFor="contact-sujet" className="sr-only">{t('contactPage.subject')}</label>
                     <Input
+                      id="contact-sujet"
                       type="text"
                       placeholder={t('contactPage.subject')}
                       value={formData.sujet}
@@ -153,7 +159,9 @@ const Contact = () => {
                     />
                   </div>
                   <div className="md:col-span-2">
+                    <label htmlFor="contact-message" className="sr-only">{t('contactPage.message')}</label>
                     <Textarea
+                      id="contact-message"
                       placeholder={t('contactPage.message')}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
