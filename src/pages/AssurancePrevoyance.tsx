@@ -19,6 +19,7 @@ import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useLanguage } from "@/contexts/LanguageContext";
+import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import arthurInjured from "@/assets/mascotte/arthur-injured.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import arthurFlying from "@/assets/mascotte/arthur-confident.png";
