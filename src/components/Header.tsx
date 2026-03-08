@@ -304,7 +304,7 @@ const Header = () => {
               <div className="w-3" aria-hidden="true" />
 
               <Link to="/blog" className="nav-pill text-white">{t('nav.blog')}</Link>
-              <Link to="/blog" className="nav-pill text-white">{t('nav.blog')}</Link>
+              <Link to="/glossaire" className="nav-pill text-white">Glossaire</Link>
               <Link to="/glossaire" className="nav-pill text-white">Glossaire</Link>
               <Link to="/outils/calculateur-bonus-malus" className="nav-pill text-white">Calculateurs</Link>
               <Link to="/avis-clients" className="nav-pill text-white">{t('nav.reviews')}</Link>
