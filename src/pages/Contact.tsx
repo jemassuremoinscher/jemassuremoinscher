@@ -57,6 +57,7 @@ const Contact = () => {
       
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
+        <Breadcrumbs items={[{ label: "Contact" }]} />
         
         <main id="main-content" className="flex-grow">
           {/* Hero */}

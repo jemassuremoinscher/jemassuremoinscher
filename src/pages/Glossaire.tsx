@@ -67,6 +67,7 @@ const Glossaire = () => {
         jsonLd={[breadcrumbSchema, glossarySchema]}
       />
       <Header />
+      <Breadcrumbs items={[{ label: "Glossaire" }]} />
 
       <main className="container mx-auto px-4 py-16">
         <div className="max-w-5xl mx-auto">
