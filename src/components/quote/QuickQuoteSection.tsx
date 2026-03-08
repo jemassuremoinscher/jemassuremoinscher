@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Car, Check, ChevronRight, ChevronLeft, Calendar, Mail, Loader2, CheckCircle2, Shield, Home, Heart, Dog, Bike, Briefcase, Building2, FileText, Umbrella, Key, ShieldCheck } from "lucide-react";
+import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from "@/data/vehicleBrands";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
