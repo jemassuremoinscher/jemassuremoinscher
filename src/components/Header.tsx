@@ -410,14 +410,6 @@ const Header = () => {
             <div className="pt-4 bg-muted/30 -mx-4 px-4 rounded-t-[2rem]">
               <div className="space-y-0.5">
                 <Link 
-                  to="/comparateur" 
-                  className="flex items-center gap-3 px-4 py-3 text-base font-bold text-primary hover:bg-muted rounded-2xl transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <Search className="h-5 w-5 text-primary" />
-                  {t('nav.comparator')}
-                </Link>
-                <Link 
                   to="/blog" 
                   className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
