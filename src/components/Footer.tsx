@@ -38,6 +38,7 @@ const Footer = () => {
     { to: "/blog/mutuelle-sante-guide", label: "Guide mutuelle santé" },
     { to: "/blog/assurance-habitation-conseils", label: "Conseils assurance habitation" },
     { to: "/glossaire", label: "Glossaire de l'assurance" },
+    { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
   ];
 
   const aboutLinks = [
