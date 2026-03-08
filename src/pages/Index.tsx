@@ -15,7 +15,6 @@ const GuidesSection = lazy(() => import("@/components/sections/GuidesSection"));
 const SEOContent = lazy(() => import("@/components/sections/SEOContent"));
 const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
 const StickyCTA = lazy(() => import("@/components/StickyCTA"));
-import { addOrganizationSchema, addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 
 const Index = () => {
   const organizationSchema = addOrganizationSchema();
