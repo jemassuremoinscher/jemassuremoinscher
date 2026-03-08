@@ -2,12 +2,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const StickyCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const isMobile = useIsMobile();
   const { t } = useLanguage();
 
   useEffect(() => {
@@ -18,25 +16,23 @@ const StickyCTA = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!isMobile) return null;
-
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: -100, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-gradient-to-t from-background via-background to-transparent pb-safe"
+          className="fixed left-4 bottom-6 z-50"
         >
           <Link
             to="/comparateur"
-            className="flex items-center justify-center gap-2 w-full py-4 px-6 rounded-xl font-bold text-lg text-primary-foreground bg-gradient-to-r from-primary via-primary/90 to-accent shadow-lg active:scale-95 transition-transform"
+            className="flex items-center gap-2 py-3.5 px-5 rounded-full font-semibold text-sm text-primary-foreground bg-primary hover:bg-primary/90 shadow-lg active:scale-95 transition-all"
             aria-label={t('stickyCta.text')}
           >
             <span>{t('stickyCta.text')}</span>
-            <ArrowRight className="w-5 h-5" aria-hidden="true" />
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
         </motion.div>
       )}
