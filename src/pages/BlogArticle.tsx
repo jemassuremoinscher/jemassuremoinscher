@@ -78,6 +78,15 @@ const BlogArticle = () => {
     { name: article.title, url: `https://www.jemassuremoinscher.fr/blog/${article.slug}` }
   ]);
 
+  const blogFaqItems: FAQItem[] = [
+    { question: "Comment fonctionne un comparateur d'assurances ?", answer: "Un comparateur d'assurances analyse votre profil et vos besoins pour vous proposer les offres les plus adaptées parmi des dizaines d'assureurs partenaires, en quelques minutes seulement." },
+    { question: "Est-ce gratuit de comparer les assurances ?", answer: "Oui, la comparaison est 100% gratuite et sans engagement. Le service est financé par les assureurs partenaires, pas par les utilisateurs." },
+    { question: "Peut-on changer d'assurance à tout moment ?", answer: "Grâce à la loi Hamon, après la première année de contrat, vous pouvez résilier votre assurance auto, moto ou habitation à tout moment, sans frais ni justification." },
+    { question: "Combien de temps faut-il pour obtenir un devis ?", answer: "Avec notre comparateur, vous obtenez des devis personnalisés en moins de 2 minutes. Un conseiller peut ensuite vous rappeler pour finaliser votre choix." },
+  ];
+
+  const blogFaqSchema = addFAQSchema(blogFaqItems.map(f => ({ question: f.question, answer: f.answer })));
+
   const articleSchema = addArticleSchema({
     headline: article.title,
     description: article.description,
@@ -93,7 +102,7 @@ const BlogArticle = () => {
         description={article.description.substring(0, 150)}
         keywords={article.tags.join(", ")}
         canonical={`https://www.jemassuremoinscher.fr/blog/${article.slug}`}
-        jsonLd={[breadcrumbSchema, articleSchema]}
+        jsonLd={[breadcrumbSchema, articleSchema, blogFaqSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: article.title }]} />
