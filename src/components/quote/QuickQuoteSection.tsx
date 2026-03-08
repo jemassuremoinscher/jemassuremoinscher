@@ -18,6 +18,7 @@ type InsuranceType = "auto" | "moto" | "habitation" | "sante" | "pret" | "animau
 
 interface QuoteData {
   insuranceType: InsuranceType;
+  vehicleBrand: string;
   profileOption: string;
   coverageLevel: string;
   email: string;
