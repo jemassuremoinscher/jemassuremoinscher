@@ -7,13 +7,13 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Check, TrendingDown, Star, Sparkles, Share2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Link } from 'react-router-dom';
+
 import { SubscriptionModal } from './SubscriptionModal';
 import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { useLanguage } from '@/contexts/LanguageContext';
 import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.png';
-import arthurFlying from '@/assets/mascotte/arthur-flying.png';
+
 import ArthurCTABubble from '@/components/ArthurCTABubble';
 
 interface InsuranceOffer {
@@ -317,27 +317,6 @@ export const InteractiveComparator = () => {
         </div>
         )}
 
-        {/* CTA */}
-        <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center max-w-4xl mx-auto overflow-visible">
-          <div className="relative z-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              {t('comparator.needHelp')}
-            </h2>
-            <p className="text-white/80 mb-6 max-w-xl mx-auto">
-              {t('comparator.expertHelp')}
-            </p>
-            <Button 
-              size="lg" 
-              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 rounded-full text-lg"
-              asChild
-            >
-              <Link to="/contact" aria-label="Parler à un expert en assurance">
-                {t('comparator.talkExpert')}
-              </Link>
-            </Button>
-          </div>
-          <img src={arthurFlying} alt="" aria-hidden="true" className="absolute -top-10 right-4 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none" />
-        </div>
       </div>
 
       {selectedOffer && (
