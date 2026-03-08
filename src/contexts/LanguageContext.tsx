@@ -71,15 +71,15 @@ const fr: Record<string, string> = {
   
   // Features
   'features.title': 'Pourquoi nous choisir ?',
-  'features.subtitle': 'Des avantages exclusifs pour vous accompagner',
+  'features.subtitle': 'Des avantages concrets pour vous simplifier la vie',
   'features.free.title': '100% Gratuit',
-  'features.free.description': 'Notre service de comparaison est entièrement gratuit et sans engagement.',
+  'features.free.description': 'Vous ne payez rien. Notre comparaison est entièrement gratuite, sans surprise.',
   'features.fast.title': 'Rapide & Simple',
-  'features.fast.description': 'Obtenez vos devis en moins de 2 minutes.',
-  'features.expert.title': 'Experts Dédiés',
-  'features.expert.description': 'Une équipe de conseillers disponible pour vous accompagner.',
-  'features.secure.title': 'Données Sécurisées',
-  'features.secure.description': 'Vos informations sont protégées et confidentielles.',
+  'features.fast.description': 'En 2 minutes, vous recevez vos devis. On s\'occupe du reste.',
+  'features.expert.title': 'Un expert vous rappelle',
+  'features.expert.description': 'Un conseiller dédié vous accompagne pour choisir la meilleure offre.',
+  'features.secure.title': 'Vos données protégées',
+  'features.secure.description': 'Vos informations restent confidentielles. Rien n\'est partagé sans votre accord.',
   
   // FAQ
   'faq.title': 'Questions Fréquentes',
