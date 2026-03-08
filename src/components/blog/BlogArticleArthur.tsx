@@ -35,8 +35,7 @@ const BlogArticleArthur = ({ category, className = "" }: BlogArticleArthurProps)
   return (
     <img
       src={src}
-      alt=""
-      aria-hidden="true"
+      alt={`Arthur mascotte ${category} - assurance moins chère`}
       className={`h-10 w-10 sm:h-12 sm:w-12 object-contain flex-shrink-0 ${className}`}
       width={48}
       height={48}
