@@ -90,7 +90,9 @@ const AssuranceHabitation = () => {
     <div className="min-h-screen">
       <SEOOptimized title="Assurance Habitation Moins Chère | Comparateur" description="Comparez les assurances habitation. Devis gratuit. Économisez jusqu'à 40% sur votre contrat." keyword="assurance habitation moins chère" keywords="assurance maison, assurance appartement pas cher" canonical="https://www.jemassuremoinscher.fr/assurance-habitation" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
       <Header />
+      <Breadcrumbs items={[{ label: "Assurance Habitation" }]} />
 
+      <main id="main-content">
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center relative">
@@ -101,7 +103,7 @@ const AssuranceHabitation = () => {
         </div>
       </section>
 
-      <main className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12">
         <DynamicUpdateDate />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
