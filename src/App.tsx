@@ -32,6 +32,7 @@ const LandingMRP = lazy(() => import("./pages/landing/LandingMRP"));
 const AssuranceAutoMalusse = lazy(() => import("./pages/seo/AssuranceAutoMalusse"));
 const AssuranceJeuneConducteur = lazy(() => import("./pages/seo/AssuranceJeuneConducteur"));
 const MutuelleTNS = lazy(() => import("./pages/seo/MutuelleTNS"));
+const CategorieAutoSEO = lazy(() => import("./pages/seo/CategorieAutoSEO"));
 const Comparateur = lazy(() => import("./pages/Comparateur"));
 
 const AssuranceAuto = lazy(() => import("./pages/AssuranceAuto"));
