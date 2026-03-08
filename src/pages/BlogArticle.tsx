@@ -11,6 +11,9 @@ import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 import { CommentsSection } from "@/components/blog/CommentsSection";
 import AuthorExpertise from "@/components/blog/AuthorExpertise";
+import TableOfContents, { type TocItem } from "@/components/blog/TableOfContents";
+import EssentielBox from "@/components/blog/EssentielBox";
+import ArticleCTA from "@/components/blog/ArticleCTA";
 import SemanticFAQ from "@/components/SemanticFAQ";
 import type { FAQItem } from "@/components/SemanticFAQ";
 import { addArticleSchema, addBreadcrumbSchema, addFAQSchema } from "@/utils/seoUtils";
@@ -72,6 +75,26 @@ const BlogArticle = () => {
     return new Date().toISOString().split('T')[0];
   };
 
+  // Generate ToC from article content (extract h2 headings)
+  const generateTocItems = (content: string): TocItem[] => {
+    const headingRegex = /^##\s+(.+)$/gm;
+    const items: TocItem[] = [];
+    let match;
+    let index = 0;
+    while ((match = headingRegex.exec(content)) !== null) {
+      const title = match[1].trim();
+      const id = `section-${index}`;
+      items.push({ id, title, level: 2 });
+      index++;
+    }
+    return items;
+  };
+
+  const tocItems = generateTocItems(article.content);
+
+  // Essentiel summary - first ~40 words of description or custom
+  const essentielSummary = article.description.split(' ').slice(0, 40).join(' ') + (article.description.split(' ').length > 40 ? '...' : '');
+
   const breadcrumbSchema = addBreadcrumbSchema([
     { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
     { name: "Blog", url: "https://www.jemassuremoinscher.fr/blog" },
@@ -95,6 +118,9 @@ const BlogArticle = () => {
     image: "https://www.jemassuremoinscher.fr/opengraph-image.png"
   });
 
+  // Custom renderer to add IDs to h2 for anchor links
+  let headingIndex = 0;
+
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized 
@@ -108,7 +134,7 @@ const BlogArticle = () => {
       <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: article.title }]} />
       
       <main>
-        {/* Hero */}
+        {/* Hero Header */}
         <section className="bg-gradient-to-br from-primary via-primary/90 to-primary/80">
           <div className="container mx-auto px-4 py-10 md:py-16">
             <div className="max-w-4xl mx-auto">
@@ -116,32 +142,39 @@ const BlogArticle = () => {
                 variant="ghost" 
                 onClick={() => navigate("/blog")}
                 className="mb-4 text-white/80 hover:text-white hover:bg-white/10 rounded-full"
+                aria-label="Retourner à la liste des articles du blog"
               >
                 ← {t('blogArticlePage.backToBlog')}
               </Button>
               <Badge className="mb-4 bg-white/20 text-white border-white/30 rounded-full">{article.category}</Badge>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+              
+              {/* Semantic H1 */}
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
                 {article.title}
               </h1>
-              <p className="text-base md:text-lg text-white/80 mb-6 leading-relaxed">
-                {article.description}
-              </p>
               
-              <div className="flex flex-wrap items-center gap-4 text-sm text-white/70">
+              {/* Author & Date Meta */}
+              <div className="flex flex-wrap items-center gap-4 text-sm text-white/80">
                 <div className="flex items-center gap-2">
-                  <User className="h-4 w-4" />
+                  <User className="h-4 w-4" aria-hidden="true" />
                   <span>{article.author}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
+                  <Calendar className="h-4 w-4" aria-hidden="true" />
                   <time dateTime={convertToISO(article.date)}>Dernière mise à jour le {article.date}</time>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
+                  <Clock className="h-4 w-4" aria-hidden="true" />
                   <span>{article.readTime}</span>
                 </div>
-                <Button variant="ghost" size="sm" onClick={handleShare} className="text-white/80 hover:text-white hover:bg-white/10 rounded-full gap-2">
-                  <Share2 className="h-4 w-4" />
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={handleShare} 
+                  className="text-white/80 hover:text-white hover:bg-white/10 rounded-full gap-2"
+                  aria-label="Partager cet article"
+                >
+                  <Share2 className="h-4 w-4" aria-hidden="true" />
                   {t('blogArticlePage.share')}
                 </Button>
               </div>
@@ -150,13 +183,28 @@ const BlogArticle = () => {
         </section>
 
         <div className="container mx-auto px-4 py-10 md:py-14">
-          <article className="max-w-4xl mx-auto space-y-12">
+          {/* Semantic Article Wrapper */}
+          <article className="max-w-4xl mx-auto">
+            
+            {/* Author E-E-A-T Badge */}
+            <div className="mb-8">
+              <AuthorExpertise />
+            </div>
 
-            {/* Author E-E-A-T */}
-            <AuthorExpertise />
+            {/* Table of Contents */}
+            {tocItems.length > 0 && (
+              <div className="mb-8">
+                <TableOfContents items={tocItems} />
+              </div>
+            )}
+
+            {/* L'Essentiel Box - SGE/AI Optimization */}
+            <div className="mb-10">
+              <EssentielBox summary={essentielSummary} />
+            </div>
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-10">
               {article.tags.map((tag, index) => (
                 <Badge key={index} variant="outline" className="rounded-full">
                   {tag}
@@ -164,34 +212,47 @@ const BlogArticle = () => {
               ))}
             </div>
 
-            {/* Article content */}
+            {/* Article Content with proper semantic structure */}
             <div className="prose prose-lg max-w-none">
               <ReactMarkdown
                 components={{
-                  h1: ({node, ...props}) => <h1 className="text-3xl font-bold mt-8 mb-4 text-foreground" {...props} />,
-                  h2: ({node, ...props}) => <h2 className="text-2xl font-bold mt-6 mb-3 text-foreground" {...props} />,
-                  h3: ({node, ...props}) => <h3 className="text-xl font-semibold mt-4 mb-2 text-foreground" {...props} />,
-                  p: ({node, ...props}) => <p className="mb-4 leading-relaxed text-muted-foreground" {...props} />,
-                  ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-4 space-y-2" {...props} />,
-                  ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-4 space-y-2" {...props} />,
-                  li: ({node, ...props}) => <li className="text-muted-foreground" {...props} />,
+                  h1: ({node, ...props}) => <h1 className="text-3xl font-bold mt-12 mb-6 text-foreground" {...props} />,
+                  h2: ({node, children, ...props}) => {
+                    const id = `section-${headingIndex++}`;
+                    return (
+                      <h2 
+                        id={id} 
+                        className="text-2xl font-bold mt-12 mb-4 pt-4 text-foreground scroll-mt-24 border-t border-border/30" 
+                        {...props}
+                      >
+                        {children}
+                      </h2>
+                    );
+                  },
+                  h3: ({node, ...props}) => <h3 className="text-xl font-semibold mt-8 mb-3 text-foreground" {...props} />,
+                  p: ({node, ...props}) => <p className="mb-5 leading-relaxed text-muted-foreground text-base md:text-lg" {...props} />,
+                  ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-5 space-y-2" {...props} />,
+                  ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-5 space-y-2" {...props} />,
+                  li: ({node, ...props}) => <li className="text-muted-foreground leading-relaxed" {...props} />,
                   strong: ({node, ...props}) => <strong className="font-semibold text-foreground" {...props} />,
                   blockquote: ({node, ...props}) => (
-                    <blockquote className="border-l-4 border-primary pl-4 py-2 my-4 italic bg-primary/5 rounded-r-2xl" {...props} />
+                    <aside className="border-l-4 border-secondary bg-secondary/10 pl-5 pr-4 py-4 my-6 rounded-r-xl">
+                      <blockquote className="text-foreground italic leading-relaxed" {...props} />
+                    </aside>
                   ),
                   code: ({node, ...props}) => (
                     <code className="bg-muted px-2 py-1 rounded text-sm" {...props} />
                   ),
                   table: ({node, ...props}) => (
-                    <div className="overflow-x-auto my-6">
+                    <div className="overflow-x-auto my-8">
                       <table className="w-full border-collapse" {...props} />
                     </div>
                   ),
                   th: ({node, ...props}) => (
-                    <th className="border border-border bg-muted px-4 py-2 text-left font-semibold text-foreground" {...props} />
+                    <th className="border border-border bg-muted px-4 py-3 text-left font-semibold text-foreground" {...props} />
                   ),
                   td: ({node, ...props}) => (
-                    <td className="border border-border px-4 py-2 text-muted-foreground" {...props} />
+                    <td className="border border-border px-4 py-3 text-muted-foreground" {...props} />
                   ),
                 }}
               >
@@ -199,15 +260,25 @@ const BlogArticle = () => {
               </ReactMarkdown>
             </div>
 
-            {/* FAQ */}
-            <SemanticFAQ
-              items={blogFaqItems}
-              title="Questions fréquentes sur l'assurance"
-              subtitle="Les réponses aux questions que vous vous posez le plus souvent."
+            {/* Mid-article CTA (subtle) */}
+            <ArticleCTA 
+              variant="subtle"
+              title="Payez-vous le juste prix ?"
+              description="Vérifiez en 2 minutes si vous pouvez économiser sur votre assurance."
+              buttonText="Comparer mes offres"
             />
 
-            {/* CTA */}
-            <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center overflow-visible">
+            {/* FAQ Section */}
+            <div className="mt-12">
+              <SemanticFAQ
+                items={blogFaqItems}
+                title="Questions fréquentes sur l'assurance"
+                subtitle="Les réponses aux questions que vous vous posez le plus souvent."
+              />
+            </div>
+
+            {/* Final CTA */}
+            <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center overflow-visible mt-12">
               <div className="relative z-10">
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
                   {t('blogArticlePage.ctaTitle')}
@@ -219,6 +290,7 @@ const BlogArticle = () => {
                   size="lg" 
                   onClick={() => navigate("/comparateur")}
                   className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 rounded-full text-lg"
+                  aria-label="Comparer les assurances gratuitement"
                 >
                   {t('blogArticlePage.compareBtn')}
                 </Button>
@@ -232,11 +304,13 @@ const BlogArticle = () => {
             </div>
 
             {/* Comments */}
-            <CommentsSection articleSlug={article.slug} />
+            <div className="mt-12">
+              <CommentsSection articleSlug={article.slug} />
+            </div>
 
             {/* Related articles */}
             {relatedArticles.length > 0 && (
-              <div>
+              <div className="mt-12">
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">{t('blogArticlePage.relatedArticles')}</h2>
                 <div className="grid md:grid-cols-3 gap-4">
                   {relatedArticles.map((relArticle) => (
@@ -254,7 +328,7 @@ const BlogArticle = () => {
                           {relArticle.description}
                         </p>
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <Clock className="h-3 w-3" />
+                          <Clock className="h-3 w-3" aria-hidden="true" />
                           <span>{relArticle.readTime}</span>
                         </div>
                       </div>
