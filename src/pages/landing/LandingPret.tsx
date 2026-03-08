@@ -2,6 +2,7 @@ import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
 import { Shield, TrendingDown, FileCheck, CheckCircle2, Star, Clock, Award, Home } from 'lucide-react';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { useEffect } from 'react';
 
 const LandingPret = () => {
