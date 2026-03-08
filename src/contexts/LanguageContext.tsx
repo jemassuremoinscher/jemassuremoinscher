@@ -60,6 +60,23 @@ const fr: Record<string, string> = {
   'hero.partnersCount': 'Assureurs partenaires',
   'hero.compareTime': 'Comparaison express',
   'hero.freeLabel': 'Gratuit & sans engagement',
+  'hero.line2': 'Gratuit, sans engagement.',
+  'hero.line3': 'On s\'occupe de tout.',
+  'hero.ctaSubtext': 'Gratuit, sans engagement et conforme Loi Hamon',
+
+  // Comparator Page
+  'comparatorPage.breadcrumb': 'Comparateur',
+  'comparatorPage.compareByType': "Comparez par type d'assurance",
+  'comparatorPage.usefulResources': 'Ressources utiles',
+  'comparatorPage.blogGuides': 'Blog & Guides',
+  'comparatorPage.contactUs': 'Nous Contacter',
+  'comparatorPage.customerReviews': 'Avis Clients',
+  'comparatorPage.howItWorksTitle': "Comment fonctionne notre comparateur d'assurances ?",
+  'comparatorPage.howItWorksDesc': "Notre comparateur d'assurances en ligne vous permet de comparer gratuitement les offres de plus de 50 assureurs partenaires. Sélectionnez votre type d'assurance (auto, moto, habitation ou santé), indiquez votre budget actuel, et découvrez instantanément les meilleures offres du marché. Nos utilisateurs économisent en moyenne 312€ par an en changeant d'assureur grâce à notre outil. Le comparateur est 100% gratuit, sans engagement, et vous pouvez demander un rappel personnalisé pour finaliser votre souscription avec l'un de nos conseillers experts.",
+
+  // Landing Prêt
+  'landingPret.ctaTitle': 'Calculez vos économies en 2 minutes',
+  'landingPret.ctaSubtext': 'Gratuit, sans engagement et 100% en ligne',
   
   // Categories
   'category.auto': 'Auto',
