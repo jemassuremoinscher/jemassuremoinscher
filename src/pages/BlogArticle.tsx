@@ -364,6 +364,8 @@ const BlogArticle = () => {
             <PopularArticles currentSlug={article.slug} />
           </aside>
           </div>
+        </div>
+
         {/* Continuer la lecture — full width before footer */}
         <section className="container mx-auto px-4 pb-14">
           <div className="max-w-6xl mx-auto">
