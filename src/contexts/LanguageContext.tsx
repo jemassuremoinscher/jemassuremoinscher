@@ -1674,6 +1674,23 @@ const en: Record<string, string> = {
   'hero.partnersCount': 'Partner insurers',
   'hero.compareTime': 'Express comparison',
   'hero.freeLabel': 'Free & no commitment',
+  'hero.line2': 'Free, no commitment.',
+  'hero.line3': 'We take care of everything.',
+  'hero.ctaSubtext': 'Free, no commitment and Hamon Law compliant',
+
+  // Comparator Page
+  'comparatorPage.breadcrumb': 'Comparator',
+  'comparatorPage.compareByType': 'Compare by insurance type',
+  'comparatorPage.usefulResources': 'Useful resources',
+  'comparatorPage.blogGuides': 'Blog & Guides',
+  'comparatorPage.contactUs': 'Contact Us',
+  'comparatorPage.customerReviews': 'Customer Reviews',
+  'comparatorPage.howItWorksTitle': 'How does our insurance comparison tool work?',
+  'comparatorPage.howItWorksDesc': 'Our online insurance comparison tool lets you compare offers from over 50 partner insurers for free. Select your insurance type (car, motorcycle, home or health), enter your current budget, and instantly discover the best offers on the market. Our users save an average of €312 per year by switching insurers with our tool. The comparator is 100% free, no commitment, and you can request a personalised callback to finalise your subscription with one of our expert advisors.',
+
+  // Landing Prêt
+  'landingPret.ctaTitle': 'Calculate your savings in 2 minutes',
+  'landingPret.ctaSubtext': 'Free, no commitment and 100% online',
   
   // Categories
   'category.auto': 'Auto',
