@@ -12,13 +12,23 @@ const SEOContent = () => {
         </h2>
         
         <div className="prose prose-sm md:prose-base max-w-none text-muted-foreground space-y-4">
-          <p>{t('seoContent.p1')}</p>
+          <p>
+            {t('seoContent.p1')}{' '}
+            Consultez notre <Link to="/blog" className="text-primary hover:underline font-medium">blog assurance</Link> pour
+            des guides détaillés sur chaque type de contrat, ou explorez
+            le <Link to="/glossaire" className="text-primary hover:underline font-medium">glossaire de l'assurance</Link> pour
+            comprendre les termes techniques.
+          </p>
           <p>{t('seoContent.p2')}</p>
           
           <h3 className="text-lg md:text-xl font-semibold text-foreground mt-8 mb-3">
             {t('seoContent.h3_1')}
           </h3>
-          <p>{t('seoContent.p3')}</p>
+          <p>
+            {t('seoContent.p3')}{' '}
+            Utilisez notre <Link to="/outils/calculateur-bonus-malus" className="text-primary hover:underline font-medium">calculateur de bonus-malus</Link> pour
+            estimer votre coefficient avant de comparer.
+          </p>
           
           <h3 className="text-lg md:text-xl font-semibold text-foreground mt-8 mb-3">
             {t('seoContent.h3_2')}
@@ -28,7 +38,11 @@ const SEOContent = () => {
           <h3 className="text-lg md:text-xl font-semibold text-foreground mt-8 mb-3">
             {t('seoContent.h3_3')}
           </h3>
-          <p>{t('seoContent.p5')}</p>
+          <p>
+            {t('seoContent.p5')}{' '}
+            Découvrez les <Link to="/avis-clients" className="text-primary hover:underline font-medium">avis de nos clients</Link> et
+            ce que disent nos <Link to="/nos-partenaires" className="text-primary hover:underline font-medium">50+ assureurs partenaires</Link>.
+          </p>
 
           {/* Internal links for SEO */}
           <div className="mt-8 pt-6 border-t border-border/30">
@@ -48,6 +62,9 @@ const SEOContent = () => {
               <Link to="/comparateur" className="text-primary hover:underline text-sm">{t('seoContent.linkComparateur')}</Link>
               <Link to="/blog" className="text-primary hover:underline text-sm">{t('seoContent.linkBlog')}</Link>
               <Link to="/glossaire" className="text-primary hover:underline text-sm">{t('seoContent.linkGlossaire')}</Link>
+              <Link to="/outils/calculateur-bonus-malus" className="text-primary hover:underline text-sm">Calculateur Bonus-Malus</Link>
+              <Link to="/avis-clients" className="text-primary hover:underline text-sm">Avis clients</Link>
+              <Link to="/contact" className="text-primary hover:underline text-sm">Contact</Link>
             </div>
           </div>
         </div>

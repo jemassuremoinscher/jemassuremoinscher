@@ -1,4 +1,4 @@
-import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, ArrowLeft, MoreHorizontal, Share2, BookmarkPlus, Printer } from "lucide-react";
+import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, ArrowLeft, MoreHorizontal, Share2, BookmarkPlus, Printer, BookOpen, Calculator, MessageSquare, Star, Search } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
@@ -303,9 +303,13 @@ const Header = () => {
               {/* Subtle visual separator using spacing only */}
               <div className="w-3" aria-hidden="true" />
 
-              <Link to="/qui-sommes-nous" className="nav-pill text-white">{t('nav.aboutUs')}</Link>
-              <Link to="/nos-partenaires" className="nav-pill text-white">{t('nav.partners')}</Link>
+              <Link to="/comparateur" className="nav-pill text-white font-semibold">{t('nav.comparator')}</Link>
               <Link to="/blog" className="nav-pill text-white">{t('nav.blog')}</Link>
+              <Link to="/glossaire" className="nav-pill text-white">Glossaire</Link>
+              <Link to="/outils/calculateur-bonus-malus" className="nav-pill text-white">Calculateurs</Link>
+              <Link to="/avis-clients" className="nav-pill text-white">{t('nav.reviews')}</Link>
+              <Link to="/qui-sommes-nous" className="nav-pill text-white">{t('nav.aboutUs')}</Link>
+              <Link to="/contact" className="nav-pill text-white">Contact</Link>
             </div>
           </nav>
         </div>
@@ -407,32 +411,68 @@ const Header = () => {
             <div className="pt-4 bg-muted/30 -mx-4 px-4 rounded-t-[2rem]">
               <div className="space-y-0.5">
                 <Link 
-                  to="/qui-sommes-nous" 
-                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  to="/comparateur" 
+                  className="flex items-center gap-3 px-4 py-3 text-base font-bold text-primary hover:bg-muted rounded-2xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
+                  <Search className="h-5 w-5 text-primary" />
+                  {t('nav.comparator')}
+                </Link>
+                <Link 
+                  to="/blog" 
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <BookOpen className="h-5 w-5 text-primary" />
+                  {t('nav.blog')}
+                </Link>
+                <Link 
+                  to="/glossaire" 
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <FileText className="h-5 w-5 text-primary" />
+                  Glossaire
+                </Link>
+                <Link 
+                  to="/outils/calculateur-bonus-malus" 
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Calculator className="h-5 w-5 text-primary" />
+                  Calculateurs
+                </Link>
+                <Link 
+                  to="/avis-clients" 
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Star className="h-5 w-5 text-primary" />
+                  {t('nav.reviews')}
+                </Link>
+                <Link 
+                  to="/qui-sommes-nous" 
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <Users className="h-5 w-5 text-primary" />
                   {t('nav.aboutUs')}
                 </Link>
                 <Link 
                   to="/nos-partenaires" 
-                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
+                  <Building2 className="h-5 w-5 text-primary" />
                   {t('nav.partners')}
                 </Link>
                 <Link 
-                  to="/avis-clients" 
-                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
+                  to="/contact" 
+                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  {t('nav.reviews')}
-                </Link>
-                <Link 
-                  to="/blog" 
-                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {t('nav.blog')}
+                  <MessageSquare className="h-5 w-5 text-primary" />
+                  Contact
                 </Link>
               </div>
             </div>
