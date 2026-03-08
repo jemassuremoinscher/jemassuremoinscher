@@ -207,8 +207,9 @@ const Blog = () => {
                   >
                     <CardHeader>
                       <Badge className="mb-3 w-fit rounded-full">{article.category}</Badge>
-                      <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                        {article.title}
+                      <CardTitle className="text-lg group-hover:text-primary transition-colors flex items-start gap-2">
+                        <BlogArticleArthur category={article.category} />
+                        <span className="flex-1">{article.title}</span>
                       </CardTitle>
                       <CardDescription className="text-muted-foreground line-clamp-3">
                         {article.description}
