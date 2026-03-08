@@ -34,26 +34,22 @@ const StackingCard = ({ article, index, total, onOpen, t }: {
   const cardRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: cardRef,
-    offset: ["start end", "start 20%"],
+    offset: ["start end", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [100, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  // Scale down slightly as user scrolls past (card gets "pushed back" by next card)
+  const scale = useTransform(scrollYProgress, [0.4, 1], [1, 0.92]);
+  const brightness = useTransform(scrollYProgress, [0.4, 1], [1, 0.85]);
 
   return (
-    <motion.div
-      ref={cardRef}
-      style={{ y, scale, opacity, zIndex: index + 1 }}
-      className="sticky"
-      // Each card sticks a bit lower so they stack visually
-      // Using inline style for dynamic top value
-    >
+    // Tall wrapper gives scroll room for the sticky effect
+    <div ref={cardRef} className="h-[70vh] md:h-[50vh]" style={{ zIndex: index + 1, position: "relative" }}>
       <div
         className="sticky"
-        style={{ top: `${120 + index * 40}px` }}
+        style={{ top: `${100 + index * 30}px` }}
       >
         <motion.article
+          style={{ scale }}
           whileHover={{ y: -4 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
           className="group cursor-pointer"
@@ -105,7 +101,7 @@ const StackingCard = ({ article, index, total, onOpen, t }: {
           </div>
         </motion.article>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
