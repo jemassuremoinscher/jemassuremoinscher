@@ -6,6 +6,7 @@ import { lazy, Suspense } from "react";
 import CookieBanner from "@/components/CookieBanner";
 import { AIChatbot } from "@/components/chatbot/AIChatbot";
 import SkipToMain from "@/components/SkipToMain";
+import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -76,6 +77,7 @@ const App = () => (
           <Toaster />
           <BrowserRouter>
             <RouteTracker />
+            <ReadingProgressBar />
             <SkipToMain />
             <ErrorBoundary>
               <Suspense fallback={
