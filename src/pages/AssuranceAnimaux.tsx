@@ -85,7 +85,9 @@ const AssuranceAnimaux = () => {
     <div className="min-h-screen">
       <SEOOptimized title="Assurance Animaux Moins Chère | Comparateur" description="Comparez les assurances chien et chat. Remboursement frais vétérinaires jusqu'à 100%." keyword="assurance animaux moins chère" keywords="assurance chien, assurance chat, mutuelle animaux" canonical="https://www.jemassuremoinscher.fr/assurance-animaux" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
+      <Breadcrumbs items={[{ label: "Assurance Animaux" }]} />
 
+      <main id="main-content">
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center relative">
@@ -96,7 +98,7 @@ const AssuranceAnimaux = () => {
         </div>
       </section>
 
-      <main className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12">
         <DynamicUpdateDate />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
