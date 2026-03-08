@@ -138,7 +138,7 @@ const Hero = () => {
           </p>
           <Link
             to="/comparateur"
-            onClick={() => trackEvent('cta_click', { category: 'hero_cta', label: 'voir_mon_prix' })}
+            onClick={() => trackEvent('insurance_type_click', { category: 'hero_cta', label: 'voir_mon_prix' })}
             className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
             aria-label="Voir mon prix en 2 minutes - comparaison gratuite"
           >
