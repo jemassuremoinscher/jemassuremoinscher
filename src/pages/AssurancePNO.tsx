@@ -18,6 +18,7 @@ import InsuranceFAQ from '@/components/insurance/InsuranceFAQ';
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from '@/utils/seoUtils';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import arthurHouse from '@/assets/mascotte/arthur-house.png';
 import ArthurHero from "@/components/insurance/ArthurHero";
 import arthurFlying from '@/assets/mascotte/arthur-welcome.png';
@@ -105,6 +106,7 @@ const AssurancePNO = () => {
         </div></div>
       </section>
       <main className="container mx-auto px-4 py-12">
+        <DynamicUpdateDate />
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h3 className="font-bold text-lg mb-2">{item.title}</h3><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
         <div ref={formRef} className="max-w-3xl mx-auto mb-16">
           <Card className="p-8">

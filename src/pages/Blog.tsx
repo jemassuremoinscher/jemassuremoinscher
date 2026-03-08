@@ -13,6 +13,7 @@ import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 
 const convertToISO = (frenchDate: string): string => {
   const months: Record<string, string> = {
@@ -98,6 +99,7 @@ const Blog = () => {
         </section>
 
         <div className="container mx-auto px-4 py-10 md:py-14">
+          <DynamicUpdateDate />
           <div className="max-w-7xl mx-auto space-y-10">
 
             {/* Search */}

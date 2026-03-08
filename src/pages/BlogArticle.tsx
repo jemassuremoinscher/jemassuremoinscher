@@ -20,6 +20,9 @@ import { addArticleSchema, addBreadcrumbSchema, addFAQSchema } from "@/utils/seo
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import SuggestedKeywords from "@/components/blog/SuggestedKeywords";
+import PopularArticles from "@/components/blog/PopularArticles";
+import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 
 const BlogArticle = () => {
   const { t } = useLanguage();
@@ -183,8 +186,10 @@ const BlogArticle = () => {
         </section>
 
         <div className="container mx-auto px-4 py-10 md:py-14">
+          <DynamicUpdateDate />
+          <div className="flex gap-8 max-w-6xl mx-auto">
           {/* Semantic Article Wrapper */}
-          <article className="max-w-4xl mx-auto">
+          <article className="max-w-4xl mx-auto flex-1 min-w-0">
             
             {/* Author E-E-A-T Badge */}
             <div className="mb-8">
@@ -303,6 +308,9 @@ const BlogArticle = () => {
               />
             </div>
 
+            {/* Suggested Keywords → Glossary */}
+            <SuggestedKeywords tags={article.tags} />
+
             {/* Comments */}
             <div className="mt-12">
               <CommentsSection articleSlug={article.slug} />
@@ -338,6 +346,11 @@ const BlogArticle = () => {
               </div>
             )}
           </article>
+          {/* Sidebar */}
+          <aside className="hidden lg:block w-72 flex-shrink-0 space-y-6 mt-8">
+            <PopularArticles currentSlug={article.slug} />
+          </aside>
+          </div>
         </div>
       </main>
 

@@ -22,6 +22,7 @@ import arthurSick from "@/assets/mascotte/arthur-sick.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import arthurFlying from "@/assets/mascotte/arthur-thumbsup-coin.png";
 import { useLanguage } from "@/contexts/LanguageContext";
+import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 
 const formSchema = z.object({
   situation: z.string().min(1, "Champ requis"),
@@ -99,6 +100,7 @@ const AssuranceSante = () => {
       </section>
 
       <main className="container mx-auto px-4 py-12">
+        <DynamicUpdateDate />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
             {advantages.map((item, index) => (
