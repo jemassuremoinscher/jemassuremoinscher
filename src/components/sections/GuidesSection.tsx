@@ -38,7 +38,7 @@ const GuideCard = ({ article, index, total, onOpen, t }: {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.12 }}
       whileHover={{ y: -6, rotate: -1 }}
-      className="group cursor-pointer flex-shrink-0 w-[82vw] md:w-[380px] snap-center"
+      className="group cursor-pointer flex-shrink-0 w-[82vw] snap-center md:flex-1 md:w-auto md:min-w-0"
       onClick={() => onOpen(article)}
       style={{ 
         zIndex: total - index,
