@@ -136,7 +136,7 @@ const Hero = () => {
           className="flex flex-col items-center mb-8">
           
           <p className="text-xs md:text-sm text-primary-foreground/70 mb-2.5 font-medium">
-            Gratuit, sans engagement et conforme Loi Hamon
+            {t('hero.ctaSubtext')}
           </p>
           <Link
             to="/comparateur"
