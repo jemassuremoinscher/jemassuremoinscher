@@ -347,6 +347,7 @@ const Admin = () => {
         </Tabs>
       </main>
     </div>
+    </>
   );
 };
 
