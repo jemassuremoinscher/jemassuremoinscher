@@ -274,31 +274,72 @@ const QuickQuoteSection = () => {
     <section className="py-12 md:py-16 bg-gradient-to-b from-background to-muted/30" aria-labelledby="quick-quote-title">
       <h2 id="quick-quote-title" className="sr-only">{t('quickQuote.srTitle')}</h2>
       <div className="container mx-auto px-4">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <motion.img src={arthurThinking} alt="Arthur mascotte" className="w-16 h-auto md:w-20" width={80} height={100} loading="lazy" animate={{ rotate: [0, -5, 5, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
-            <div className="text-left">
-              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-1">{t('quickQuote.title')}</h3>
+
+        {/* Step 0: Initial prominent picker */}
+        {currentStep === 0 && (
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+            <div className="text-center mb-8">
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+                Que souhaitez-vous assurer ?
+              </h3>
               <p className="text-muted-foreground">{t('quickQuote.subtitle')}</p>
             </div>
-          </div>
-        </motion.div>
-
-        <div className="flex items-center justify-center gap-2 mb-8">
-          {Array.from({ length: totalSteps }).map((_, index) => (
-            <div key={index} className="flex items-center">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${index + 1 <= currentStep ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}>
-                {index + 1 < currentStep ? <Check className="w-4 h-4" /> : index + 1}
-              </div>
-              {index < totalSteps - 1 && <div className={`w-6 md:w-12 h-1 mx-1 rounded-full transition-all duration-300 ${index + 1 < currentStep ? "bg-primary" : "bg-muted"}`} />}
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4 max-w-3xl mx-auto">
+              {FEATURED_TYPES.map((typeValue, index) => {
+                const typeInfo = INSURANCE_TYPES.find(t => t.value === typeValue)!;
+                return (
+                  <motion.button
+                    key={typeValue}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    onClick={() => handleInsuranceTypeSelect(typeValue)}
+                    className="flex flex-col items-center gap-2 p-4 md:p-6 rounded-2xl border-2 border-border bg-card hover:border-primary hover:bg-primary/5 hover:shadow-lg transition-all duration-300 active:scale-95 cursor-pointer group"
+                    aria-label={`Assurer : ${t(typeInfo.labelKey)}`}
+                  >
+                    <span className="text-3xl md:text-4xl group-hover:scale-110 transition-transform duration-300">{typeInfo.emoji}</span>
+                    <span className="font-bold text-xs md:text-sm text-foreground">{t(typeInfo.labelKey)}</span>
+                  </motion.button>
+                );
+              })}
             </div>
-          ))}
-        </div>
+            <button
+              onClick={() => { setDirection(1); setCurrentStep(1); }}
+              className="block mx-auto mt-4 text-sm text-primary hover:underline font-medium"
+            >
+              Voir toutes les assurances →
+            </button>
+          </motion.div>
+        )}
+
+        {/* Steps 1-4: Full form */}
+        {currentStep >= 1 && (
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <motion.img src={arthurThinking} alt="Arthur mascotte" className="w-16 h-auto md:w-20" width={80} height={100} loading="lazy" animate={{ rotate: [0, -5, 5, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
+                <div className="text-left">
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-1">{t('quickQuote.title')}</h3>
+                  <p className="text-muted-foreground">{t('quickQuote.subtitle')}</p>
+                </div>
+              </div>
+            </motion.div>
+
+            <div className="flex items-center justify-center gap-2 mb-8">
+              {Array.from({ length: totalSteps }).map((_, index) => (
+                <div key={index} className="flex items-center">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${index + 1 <= currentStep ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}>
+                    {index + 1 < currentStep ? <Check className="w-4 h-4" /> : index + 1}
+                  </div>
+                  {index < totalSteps - 1 && <div className={`w-6 md:w-12 h-1 mx-1 rounded-full transition-all duration-300 ${index + 1 < currentStep ? "bg-primary" : "bg-muted"}`} />}
+                </div>
+              ))}
+            </div>
 
         <div className="max-w-2xl mx-auto bg-card rounded-2xl shadow-lg border border-border/50 p-6 md:p-8 overflow-hidden">
           <input ref={honeypotRef} type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0 }} />
           <AnimatePresence mode="wait" custom={direction}>
-            {/* Step 1: Insurance Type */}
+            {/* Step 1: Insurance Type (all 12) */}
             {currentStep === 1 && (
               <motion.div key="step1" custom={direction} variants={slideVariants} initial="enter" animate="center" exit="exit" transition={{ duration: 0.3, ease: "easeInOut" }}>
                 <div className="flex items-center gap-3 mb-6">
