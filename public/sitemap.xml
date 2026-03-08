@@ -556,6 +556,14 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Outils -->
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/outils/calculateur-bonus-malus</loc>
+    <lastmod>2026-03-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Glossary -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/glossaire</loc>

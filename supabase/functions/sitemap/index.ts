@@ -1,5 +1,4 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { routes, blogArticles, SITE_URL, type RouteConfig } from "./routes-config.ts";
+import { routes, blogArticles, glossaryTerms, SITE_URL, type RouteConfig } from "./routes-config.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -7,9 +6,12 @@ const corsHeaders = {
 };
 
 function generateSitemap(allRoutes: RouteConfig[]): string {
+  // Auto-generate today's date for lastmod — keeps sitemap always fresh
+  const today = new Date().toISOString().split('T')[0];
+
   const urlEntries = allRoutes.map(route => `  <url>
     <loc>${SITE_URL}${route.path}</loc>
-    <lastmod>${route.lastmod}</lastmod>
+    <lastmod>${today}</lastmod>
     <changefreq>${route.changefreq}</changefreq>
     <priority>${route.priority}</priority>
   </url>`).join('\n');
@@ -20,24 +22,20 @@ ${urlEntries}
 </urlset>`;
 }
 
-serve(async (req) => {
-  // Handle CORS preflight
+Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    // Combine all routes
-    const allRoutes = [...routes, ...blogArticles];
-    
-    // Generate sitemap XML
+    const allRoutes = [...routes, ...blogArticles, ...glossaryTerms];
     const sitemap = generateSitemap(allRoutes);
 
     return new Response(sitemap, {
       headers: {
         ...corsHeaders,
         "Content-Type": "application/xml; charset=utf-8",
-        "Cache-Control": "public, max-age=3600", // Cache for 1 hour
+        "Cache-Control": "public, max-age=3600",
       },
     });
   } catch (error) {
@@ -51,3 +49,4 @@ serve(async (req) => {
     );
   }
 });
+
