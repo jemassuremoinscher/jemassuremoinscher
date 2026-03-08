@@ -37,7 +37,7 @@ const BlogArticleArthur = ({ category, className = "" }: BlogArticleArthurProps)
       src={src}
       alt=""
       aria-hidden="true"
-      className={`h-8 w-8 sm:h-9 sm:w-9 object-contain flex-shrink-0 ${className}`}
+      className={`h-10 w-10 sm:h-12 sm:w-12 object-contain flex-shrink-0 ${className}`}
       loading="lazy"
     />
   );

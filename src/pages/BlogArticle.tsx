@@ -154,7 +154,7 @@ const BlogArticle = () => {
               
               {/* Semantic H1 */}
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight flex items-center gap-3 md:gap-4">
-                <BlogArticleArthur category={article.category} className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14" />
+                <BlogArticleArthur category={article.category} className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20" />
                 <span className="flex-1">{article.title}</span>
               </h1>
               
