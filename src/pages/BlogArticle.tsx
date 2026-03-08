@@ -2,14 +2,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, Share2 } from "lucide-react";
 import { blogArticles } from "@/data/blogArticles";
 import SEOOptimized from "@/components/SEOOptimized";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
-import { CommentsSection } from "@/components/blog/CommentsSection";
 import AuthorExpertise from "@/components/blog/AuthorExpertise";
 import TableOfContents, { type TocItem } from "@/components/blog/TableOfContents";
 import EssentielBox from "@/components/blog/EssentielBox";
@@ -18,7 +16,6 @@ import SemanticFAQ from "@/components/SemanticFAQ";
 import type { FAQItem } from "@/components/SemanticFAQ";
 import { addArticleSchema, addBreadcrumbSchema, addFAQSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
-import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SuggestedKeywords from "@/components/blog/SuggestedKeywords";
 import PopularArticles from "@/components/blog/PopularArticles";
@@ -59,21 +56,6 @@ const BlogArticle = () => {
     }
   };
 
-  // "Continuer la lecture" — 3 articles by similar tags, fallback to random
-  const continueReading = (() => {
-    const tagMatches = blogArticles
-      .filter(a => a.id !== article.id && a.tags.some(tag => article.tags.includes(tag)));
-    const others = blogArticles.filter(a => a.id !== article.id);
-    const pool = tagMatches.length >= 3 ? tagMatches : others;
-    // Shuffle deterministically based on article id
-    const shuffled = [...pool].sort(() => 0.5 - Math.abs(Math.sin(parseInt(article.id.replace(/\D/g, '0'), 10) + pool.indexOf(pool[0]))));
-    return shuffled.slice(0, 3);
-  })();
-
-  const relatedArticles = blogArticles
-    .filter(a => a.id !== article.id && (a.category === article.category || a.tags.some(tag => article.tags.includes(tag))))
-    .slice(0, 3);
-
   const convertToISO = (frenchDate: string): string => {
     const months: Record<string, string> = {
       'janvier': '01', 'février': '02', 'mars': '03', 'avril': '04',
@@ -90,7 +72,6 @@ const BlogArticle = () => {
     return new Date().toISOString().split('T')[0];
   };
 
-  // Generate ToC from article content (extract h2 headings)
   const generateTocItems = (content: string): TocItem[] => {
     const headingRegex = /^##\s+(.+)$/gm;
     const items: TocItem[] = [];
@@ -107,7 +88,6 @@ const BlogArticle = () => {
 
   const tocItems = generateTocItems(article.content);
 
-  // Essentiel summary - first ~40 words of description or custom
   const essentielSummary = article.description.split(' ').slice(0, 40).join(' ') + (article.description.split(' ').length > 40 ? '...' : '');
 
   const breadcrumbSchema = addBreadcrumbSchema([
@@ -133,7 +113,6 @@ const BlogArticle = () => {
     image: "https://www.jemassuremoinscher.fr/opengraph-image.png"
   });
 
-  // Custom renderer to add IDs to h2 for anchor links
   let headingIndex = 0;
 
   return (
@@ -163,13 +142,11 @@ const BlogArticle = () => {
               </Button>
               <Badge className="mb-4 bg-white/20 text-white border-white/30 rounded-full">{article.category}</Badge>
               
-              {/* Semantic H1 */}
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight flex items-center gap-3 md:gap-4">
                 <BlogArticleArthur category={article.category} className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20" />
                 <span className="flex-1">{article.title}</span>
               </h1>
               
-              {/* Author & Date Meta */}
               <div className="flex flex-wrap items-center gap-4 text-sm text-white/80">
                 <div className="flex items-center gap-2">
                   <User className="h-4 w-4" aria-hidden="true" />
@@ -201,209 +178,112 @@ const BlogArticle = () => {
         <div className="container mx-auto px-4 py-10 md:py-14">
           <DynamicUpdateDate />
           <div className="flex gap-8 max-w-6xl mx-auto">
-          {/* Semantic Article Wrapper */}
-          <article className="max-w-4xl mx-auto flex-1 min-w-0">
-            
-            {/* Author E-E-A-T Badge */}
-            <div className="mb-8">
-              <AuthorExpertise />
-            </div>
-
-            {/* Table of Contents */}
-            {tocItems.length > 0 && (
+            {/* Article */}
+            <article className="flex-1 min-w-0">
+              
+              {/* Author E-E-A-T */}
               <div className="mb-8">
-                <TableOfContents items={tocItems} />
+                <AuthorExpertise />
               </div>
-            )}
 
-            {/* L'Essentiel Box - SGE/AI Optimization */}
-            <div className="mb-10">
-              <EssentielBox summary={essentielSummary} />
-            </div>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-10">
-              {article.tags.map((tag, index) => (
-                <Badge key={index} variant="outline" className="rounded-full">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-
-            {/* Article Content with proper semantic structure */}
-            <div className="prose prose-lg max-w-none">
-              <ReactMarkdown
-                components={{
-                  h1: ({node, ...props}) => <h1 className="text-3xl font-bold mt-12 mb-6 text-foreground" {...props} />,
-                  h2: ({node, children, ...props}) => {
-                    const id = `section-${headingIndex++}`;
-                    return (
-                      <h2 
-                        id={id} 
-                        className="text-2xl font-bold mt-12 mb-4 pt-4 text-foreground scroll-mt-24 border-t border-border/30" 
-                        {...props}
-                      >
-                        {children}
-                      </h2>
-                    );
-                  },
-                  h3: ({node, ...props}) => <h3 className="text-xl font-semibold mt-8 mb-3 text-foreground" {...props} />,
-                  p: ({node, ...props}) => <p className="mb-5 leading-relaxed text-muted-foreground text-base md:text-lg" {...props} />,
-                  ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-5 space-y-2" {...props} />,
-                  ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-5 space-y-2" {...props} />,
-                  li: ({node, ...props}) => <li className="text-muted-foreground leading-relaxed" {...props} />,
-                  strong: ({node, ...props}) => <strong className="font-semibold text-foreground" {...props} />,
-                  blockquote: ({node, ...props}) => (
-                    <aside className="border-l-4 border-secondary bg-secondary/10 pl-5 pr-4 py-4 my-6 rounded-r-xl">
-                      <blockquote className="text-foreground italic leading-relaxed" {...props} />
-                    </aside>
-                  ),
-                  code: ({node, ...props}) => (
-                    <code className="bg-muted px-2 py-1 rounded text-sm" {...props} />
-                  ),
-                  table: ({node, ...props}) => (
-                    <div className="overflow-x-auto my-8">
-                      <table className="w-full border-collapse" {...props} />
-                    </div>
-                  ),
-                  th: ({node, ...props}) => (
-                    <th className="border border-border bg-muted px-4 py-3 text-left font-semibold text-foreground" {...props} />
-                  ),
-                  td: ({node, ...props}) => (
-                    <td className="border border-border px-4 py-3 text-muted-foreground" {...props} />
-                  ),
-                }}
-              >
-                {article.content}
-              </ReactMarkdown>
-            </div>
-
-            {/* Mid-article CTA (subtle) */}
-            <ArticleCTA 
-              variant="subtle"
-              title="Payez-vous le juste prix ?"
-              description="Vérifiez en 2 minutes si vous pouvez économiser sur votre assurance."
-              buttonText="Comparer mes offres"
-            />
-
-            {/* FAQ Section */}
-            <div className="mt-12">
-              <SemanticFAQ
-                items={blogFaqItems}
-                title="Questions fréquentes sur l'assurance"
-                subtitle="Les réponses aux questions que vous vous posez le plus souvent."
-              />
-            </div>
-
-            {/* Final CTA */}
-            <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center overflow-visible mt-12">
-              <div className="relative z-10">
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                   {t('blogArticlePage.ctaTitle')}
-                </h2>
-                <p className="text-white/80 mb-6 max-w-xl mx-auto">
-                  {t('blogArticlePage.ctaDesc')}
-                </p>
-                <Button 
-                  size="lg" 
-                  onClick={() => navigate("/comparateur")}
-                  className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 rounded-full text-lg"
-                  aria-label="Comparer les assurances gratuitement"
-                >
-                  {t('blogArticlePage.compareBtn')}
-                </Button>
-              </div>
-              <img
-                src={arthurFlying}
-                alt=""
-                aria-hidden="true"
-                className="absolute -top-10 right-4 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none"
-              />
-            </div>
-
-            {/* Suggested Keywords → Glossary */}
-            <SuggestedKeywords tags={article.tags} />
-
-            {/* Comments */}
-            <div className="mt-12">
-              <CommentsSection articleSlug={article.slug} />
-            </div>
-
-            {/* Related articles */}
-            {relatedArticles.length > 0 && (
-              <div className="mt-12">
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">{t('blogArticlePage.relatedArticles')}</h2>
-                <div className="grid md:grid-cols-3 gap-4">
-                  {relatedArticles.map((relArticle) => (
-                    <Card 
-                      key={relArticle.id}
-                      className="glass-card rounded-[2rem] hover:shadow-[var(--shadow-hover)] transition-all duration-300 cursor-pointer group"
-                      onClick={() => navigate(`/blog/${relArticle.slug}`)}
-                    >
-                      <div className="p-6">
-                        <Badge className="mb-3 rounded-full">{relArticle.category}</Badge>
-                        <h3 className="font-semibold mb-2 line-clamp-2 text-foreground group-hover:text-primary transition-colors">
-                          {relArticle.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground line-clamp-3 mb-4">
-                          {relArticle.description}
-                        </p>
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <Clock className="h-3 w-3" aria-hidden="true" />
-                          <span>{relArticle.readTime}</span>
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
+              {/* ToC — mobile only (desktop in sidebar) */}
+              {tocItems.length > 0 && (
+                <div className="mb-8 lg:hidden">
+                  <TableOfContents items={tocItems} />
                 </div>
+              )}
+
+              {/* L'Essentiel */}
+              <div className="mb-10">
+                <EssentielBox summary={essentielSummary} />
               </div>
-            )}
-          </article>
-          {/* Sidebar */}
-          <aside className="hidden lg:block w-72 flex-shrink-0 space-y-6 mt-8">
-            <PopularArticles currentSlug={article.slug} />
-          </aside>
-          </div>
-        </div>
 
-        {/* Continuer la lecture — full width before footer */}
-        <section className="container mx-auto px-4 pb-14">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">📚 Continuer la lecture</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {continueReading.map((cr) => (
-                <Card
-                  key={cr.id}
-                  className="glass-card rounded-[2rem] hover:shadow-[var(--shadow-hover)] transition-all duration-300 cursor-pointer group"
-                  onClick={() => navigate(`/blog/${cr.slug}`)}
+              {/* Article Content */}
+              <div className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground">
+                <ReactMarkdown
+                  components={{
+                    h1: ({node, ...props}) => <h1 className="text-3xl font-bold mt-12 mb-6 text-foreground" {...props} />,
+                    h2: ({node, children, ...props}) => {
+                      const id = `section-${headingIndex++}`;
+                      return (
+                        <h2 
+                          id={id} 
+                          className="text-2xl font-bold mt-14 mb-5 pt-6 text-foreground scroll-mt-24 border-t border-border/40" 
+                          {...props}
+                        >
+                          {children}
+                        </h2>
+                      );
+                    },
+                    h3: ({node, ...props}) => <h3 className="text-xl font-semibold mt-8 mb-3 text-foreground" {...props} />,
+                    p: ({node, ...props}) => <p className="mb-6 leading-relaxed text-muted-foreground text-base md:text-[1.0625rem]" {...props} />,
+                    ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-6 space-y-2.5" {...props} />,
+                    ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-6 space-y-2.5" {...props} />,
+                    li: ({node, ...props}) => <li className="text-muted-foreground leading-relaxed" {...props} />,
+                    strong: ({node, ...props}) => <strong className="font-semibold text-foreground" {...props} />,
+                    blockquote: ({node, ...props}) => (
+                      <aside className="border-l-4 border-primary/40 bg-primary/5 pl-5 pr-4 py-4 my-8 rounded-r-xl">
+                        <blockquote className="text-foreground italic leading-relaxed not-italic" {...props} />
+                      </aside>
+                    ),
+                    code: ({node, ...props}) => (
+                      <code className="bg-muted px-2 py-1 rounded text-sm" {...props} />
+                    ),
+                    table: ({node, ...props}) => (
+                      <div className="overflow-x-auto my-8 rounded-xl border border-border shadow-sm">
+                        <table className="w-full border-collapse text-sm" {...props} />
+                      </div>
+                    ),
+                    thead: ({node, ...props}) => (
+                      <thead className="bg-primary/10" {...props} />
+                    ),
+                    th: ({node, ...props}) => (
+                      <th className="px-4 py-3 text-left font-semibold text-foreground text-sm border-b border-border" {...props} />
+                    ),
+                    tr: ({node, ...props}) => (
+                      <tr className="even:bg-muted/30 hover:bg-muted/50 transition-colors" {...props} />
+                    ),
+                    td: ({node, ...props}) => (
+                      <td className="px-4 py-3 text-muted-foreground border-b border-border/50" {...props} />
+                    ),
+                  }}
                 >
-                  <div className="p-6">
-                    <Badge className="mb-3 rounded-full">{cr.category}</Badge>
-                    <h3 className="font-semibold mb-2 line-clamp-2 text-foreground group-hover:text-primary transition-colors flex items-start gap-2">
-                      <BlogArticleArthur category={cr.category} className="h-8 w-8" />
-                      <span className="flex-1">{cr.title}</span>
-                    </h3>
-                    <p className="text-sm text-muted-foreground line-clamp-3 mb-4">{cr.description}</p>
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <Clock className="h-3 w-3" aria-hidden="true" />
-                      <span>{cr.readTime}</span>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+                  {article.content}
+                </ReactMarkdown>
+              </div>
 
-        {/* Lien comparateur garanti */}
-        <div className="container mx-auto px-4 pb-10 text-center">
-          <Button
-            size="lg"
-            onClick={() => navigate("/comparateur")}
-            className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 rounded-full text-lg"
-          >
-            🔍 Comparer les assurances gratuitement
-          </Button>
+              {/* CTA */}
+              <div className="mt-12">
+                <ArticleCTA 
+                  variant="subtle"
+                  title="Payez-vous le juste prix ?"
+                  description="Vérifiez en 2 minutes si vous pouvez économiser sur votre assurance."
+                  buttonText="Comparer mes offres"
+                />
+              </div>
+
+              {/* FAQ */}
+              <div className="mt-14">
+                <SemanticFAQ
+                  items={blogFaqItems}
+                  title="Questions fréquentes sur l'assurance"
+                  subtitle="Les réponses aux questions que vous vous posez le plus souvent."
+                />
+              </div>
+
+              {/* Keywords */}
+              <SuggestedKeywords tags={article.tags} />
+
+            </article>
+
+            {/* Sidebar — desktop */}
+            <aside className="hidden lg:flex flex-col w-72 flex-shrink-0 gap-6 mt-8 sticky top-24 self-start">
+              {tocItems.length > 0 && (
+                <TableOfContents items={tocItems} />
+              )}
+              <PopularArticles currentSlug={article.slug} />
+            </aside>
+          </div>
         </div>
       </main>
 
