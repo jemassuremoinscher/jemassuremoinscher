@@ -303,9 +303,13 @@ const Header = () => {
               {/* Subtle visual separator using spacing only */}
               <div className="w-3" aria-hidden="true" />
 
-              <Link to="/qui-sommes-nous" className="nav-pill text-white">{t('nav.aboutUs')}</Link>
-              <Link to="/nos-partenaires" className="nav-pill text-white">{t('nav.partners')}</Link>
+              <Link to="/comparateur" className="nav-pill text-white font-semibold">{t('nav.comparator')}</Link>
               <Link to="/blog" className="nav-pill text-white">{t('nav.blog')}</Link>
+              <Link to="/glossaire" className="nav-pill text-white">Glossaire</Link>
+              <Link to="/outils/calculateur-bonus-malus" className="nav-pill text-white">Calculateurs</Link>
+              <Link to="/avis-clients" className="nav-pill text-white">{t('nav.reviews')}</Link>
+              <Link to="/qui-sommes-nous" className="nav-pill text-white">{t('nav.aboutUs')}</Link>
+              <Link to="/contact" className="nav-pill text-white">Contact</Link>
             </div>
           </nav>
         </div>
