@@ -139,7 +139,7 @@ const Hero = () => {
           <Link
             to="/comparateur"
             onClick={() => trackEvent('insurance_type_click', { category: 'hero_cta', label: 'voir_mon_prix' })}
-            className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-accent-foreground font-bold text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
+            className="inline-flex items-center gap-2 bg-white hover:bg-white/90 text-primary font-bold text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 rounded-full shadow-[var(--shadow-hover)] hover:shadow-[var(--shadow-lg)] transition-all duration-300 hover:scale-105 active:scale-95"
             aria-label="Voir mon prix en 2 minutes - comparaison gratuite"
           >
             <Zap className="w-5 h-5" aria-hidden="true" />
