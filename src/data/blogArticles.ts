@@ -3529,7 +3529,7 @@ Obligatoire dans tous les contrats.
 | Direct Ass. | 4 000€ | Oui (20%) |
 | Allianz | 10 000€ | Non |
 
-## Nouveautés 2025
+## Nouveautés 2026
 
 ### Objets connectés
 Réduction avec équipements :
