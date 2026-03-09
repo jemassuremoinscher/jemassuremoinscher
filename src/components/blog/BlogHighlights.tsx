@@ -72,10 +72,10 @@ export const BlogHighlights = () => {
             <div>
               <h3 className="font-semibold mb-3 text-primary">{t('blogPage.legalTitle')}</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li><button type="button" onClick={() => navigate('/blog/loi-lemoine-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Loi Lemoine 2025</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/resiliation-assurance-droits-2024')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Loi Hamon résiliation</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/nouvelle-reglementation-assurance-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Nouvelle réglementation</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/droits-des-assures-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Droits des assurés</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/loi-lemoine-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Loi Lemoine 2026</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/resiliation-assurance-droits-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Loi Hamon résiliation</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/nouvelle-reglementation-assurance-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Nouvelle réglementation</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/droits-des-assures-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Droits des assurés</button></li>
               </ul>
             </div>
             <div>
