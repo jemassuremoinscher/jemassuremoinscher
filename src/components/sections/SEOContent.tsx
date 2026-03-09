@@ -44,27 +44,39 @@ const SEOContent = () => {
             ce que disent nos <Link to="/nos-partenaires" className="text-primary hover:underline font-medium">50+ assureurs partenaires</Link>.
           </p>
 
-          {/* Internal links for SEO */}
+          {/* Internal links for SEO - All insurance products */}
           <div className="mt-8 pt-6 border-t border-border/30">
             <h3 className="text-lg font-semibold text-foreground mb-4">
               {t('seoContent.linksTitle')}
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            <h4 className="text-sm font-medium text-foreground mb-2">Assurances Particuliers</h4>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
               <Link to="/assurance-auto" className="text-primary hover:underline text-sm">{t('seoContent.linkAuto')}</Link>
-              <Link to="/assurance-sante" className="text-primary hover:underline text-sm">{t('seoContent.linkSante')}</Link>
-              <Link to="/assurance-habitation" className="text-primary hover:underline text-sm">{t('seoContent.linkHabitation')}</Link>
               <Link to="/assurance-moto" className="text-primary hover:underline text-sm">{t('seoContent.linkMoto')}</Link>
+              <Link to="/assurance-habitation" className="text-primary hover:underline text-sm">{t('seoContent.linkHabitation')}</Link>
+              <Link to="/assurance-sante" className="text-primary hover:underline text-sm">{t('seoContent.linkSante')}</Link>
               <Link to="/assurance-animaux" className="text-primary hover:underline text-sm">{t('seoContent.linkAnimaux')}</Link>
               <Link to="/assurance-vie" className="text-primary hover:underline text-sm">{t('seoContent.linkVie')}</Link>
               <Link to="/assurance-pret" className="text-primary hover:underline text-sm">{t('seoContent.linkPret')}</Link>
               <Link to="/assurance-prevoyance" className="text-primary hover:underline text-sm">{t('seoContent.linkPrevoyance')}</Link>
+            </div>
+            <h4 className="text-sm font-medium text-foreground mb-2">Assurances Professionnels & Propriétaires</h4>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
               <Link to="/assurance-rc-pro" className="text-primary hover:underline text-sm">{t('seoContent.linkRCPro')}</Link>
+              <Link to="/assurance-mrp" className="text-primary hover:underline text-sm">Assurance MRP</Link>
+              <Link to="/assurance-pno" className="text-primary hover:underline text-sm">Assurance PNO</Link>
+              <Link to="/assurance-gli" className="text-primary hover:underline text-sm">Garantie Loyers Impayés</Link>
+            </div>
+            <h4 className="text-sm font-medium text-foreground mb-2">Outils & Ressources</h4>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <Link to="/comparateur" className="text-primary hover:underline text-sm">{t('seoContent.linkComparateur')}</Link>
+              <Link to="/outils/calculateur-bonus-malus" className="text-primary hover:underline text-sm">Calculateur Bonus-Malus</Link>
               <Link to="/blog" className="text-primary hover:underline text-sm">{t('seoContent.linkBlog')}</Link>
               <Link to="/glossaire" className="text-primary hover:underline text-sm">{t('seoContent.linkGlossaire')}</Link>
-              <Link to="/outils/calculateur-bonus-malus" className="text-primary hover:underline text-sm">Calculateur Bonus-Malus</Link>
               <Link to="/avis-clients" className="text-primary hover:underline text-sm">Avis clients</Link>
+              <Link to="/nos-partenaires" className="text-primary hover:underline text-sm">Nos partenaires</Link>
               <Link to="/contact" className="text-primary hover:underline text-sm">Contact</Link>
+              <Link to="/qui-sommes-nous" className="text-primary hover:underline text-sm">Qui sommes-nous</Link>
             </div>
           </div>
         </div>
