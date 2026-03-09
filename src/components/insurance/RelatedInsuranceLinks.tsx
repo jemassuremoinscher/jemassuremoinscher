@@ -95,8 +95,8 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   pret: {
     products: ["vie", "habitation", "prevoyance"],
     articles: [
-      { to: "/blog/loi-lemoine-2025", label: "Loi Lemoine : changer d'assurance prêt" },
-      { to: "/blog/resiliation-assurance-droits-2024", label: "Vos droits de résiliation" },
+      { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine : changer d'assurance prêt" },
+      { to: "/blog/resiliation-assurance-droits-2026", label: "Vos droits de résiliation" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
