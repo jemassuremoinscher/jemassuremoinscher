@@ -3017,20 +3017,20 @@ Comparez au moins 3 offres adaptées à votre profil. Le meilleur assureur pour 
   },
   {
     id: "9",
-    title: "Top mutuelles santé 2025 : Le classement complet",
-    slug: "top-mutuelles-sante-2025",
-    description: "Notre sélection des meilleures mutuelles santé 2025. Comparatif détaillé des remboursements, tarifs et services pour choisir la meilleure complémentaire.",
+    title: "Top mutuelles santé 2026 : Le classement complet",
+    slug: "top-mutuelles-sante-2026",
+    description: "Notre sélection des meilleures mutuelles santé 2026. Comparatif détaillé des remboursements, tarifs et services pour choisir la meilleure complémentaire.",
     category: "Guides Pratiques",
     date: "28 décembre 2024",
     readTime: "11 min",
     author: "Dr. Marie Dubois",
     tags: ["mutuelle santé", "comparatif", "remboursements", "complémentaire santé"],
     content: `
-# Top Mutuelles Santé 2025 : Notre Sélection Experte
+# Top Mutuelles Santé 2026 : Notre Sélection Experte
 
-Les mutuelles santé évoluent chaque année avec de nouvelles garanties, des services digitaux et une meilleure prise en charge. Découvrez notre classement 2025 pour trouver la complémentaire santé idéale.
+Les mutuelles santé évoluent chaque année avec de nouvelles garanties, des services digitaux et une meilleure prise en charge. Découvrez notre classement 2026 pour trouver la complémentaire santé idéale.
 
-## Les 5 meilleures mutuelles 2025
+## Les 5 meilleures mutuelles 2026
 
 ### 1. Alan - La révolution digitale
 
