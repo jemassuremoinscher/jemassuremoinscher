@@ -2455,7 +2455,7 @@ Choisir la **meilleure mutuelle santé en 2026** peut vous faire économiser jus
 - Ne pas anticiper ses futurs besoins
 - Rester chez le même assureur sans comparer
 
-## 🔥 Innovations 2025
+## 🔥 Innovations 2026
 
 **Nouveautés mutuelles santé :**
 
