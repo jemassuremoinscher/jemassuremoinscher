@@ -2804,20 +2804,20 @@ Oui, mais la surprime jeune conducteur s\'applique aussi en 2-roues.
   },
   {
     id: "8",
-    title: "Meilleure assurance auto 2025 : Notre comparatif complet",
-    slug: "meilleure-assurance-auto-2025",
-    description: "Découvrez notre classement 2025 des meilleures assurances auto. Tarifs, garanties, avis clients : tout pour faire le bon choix.",
+    title: "Meilleure assurance auto 2026 : Notre comparatif complet",
+    slug: "meilleure-assurance-auto-2026",
+    description: "Découvrez notre classement 2026 des meilleures assurances auto. Tarifs, garanties, avis clients : tout pour faire le bon choix.",
     category: "Guides Pratiques",
     date: "3 janvier 2025",
     readTime: "12 min",
     author: "Thomas Laurent",
-    tags: ["assurance auto", "comparatif 2025", "meilleurs assureurs", "tarifs"],
+    tags: ["assurance auto", "comparatif 2026", "meilleurs assureurs", "tarifs"],
     content: `
-# Meilleure Assurance Auto 2025 : Le Guide Ultime
+# Meilleure Assurance Auto 2026 : Le Guide Ultime
 
-Le marché de l'assurance auto évolue constamment. En 2025, les assureurs proposent de nouvelles offres digitales, des bonus pour les véhicules électriques et des services innovants. Voici notre classement des meilleures assurances auto.
+Le marché de l'assurance auto évolue constamment. En 2026, les assureurs proposent de nouvelles offres digitales, des bonus pour les véhicules électriques et des services innovants. Voici notre classement des meilleures assurances auto.
 
-## Top 5 des assurances auto en 2025
+## Top 5 des assurances auto en 2026
 
 ### 1. Direct Assurance - Le meilleur rapport qualité/prix
 
