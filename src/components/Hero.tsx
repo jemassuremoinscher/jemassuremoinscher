@@ -134,9 +134,6 @@ const Hero = () => {
           transition={{ duration: 0.4, delay: 0.45 }}
           className="flex flex-col items-center mb-8">
           
-          <p className="text-xs md:text-sm text-primary-foreground/70 mb-2.5 font-medium">
-            {t('hero.ctaSubtext')}
-          </p>
           <Link
             to="/comparateur"
             onClick={() => trackEvent('insurance_type_click', { category: 'hero_cta', label: 'voir_mon_prix' })}
