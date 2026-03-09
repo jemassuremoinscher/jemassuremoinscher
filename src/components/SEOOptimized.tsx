@@ -20,6 +20,10 @@ interface SEOOptimizedProps {
   jsonLd?: object | object[];
   /** Whether to noindex this page */
   noindex?: boolean;
+  /** Article published date (ISO format) for article:published_time OG tag */
+  articlePublishedTime?: string;
+  /** Article modified date (ISO format) for article:modified_time OG tag */
+  articleModifiedTime?: string;
 }
 
 const BASE_URL = 'https://www.jemassuremoinscher.fr';
@@ -47,6 +51,8 @@ const SEOOptimized = ({
   ogType = 'website',
   jsonLd,
   noindex = false,
+  articlePublishedTime,
+  articleModifiedTime,
 }: SEOOptimizedProps) => {
   const location = useLocation();
   // Normalize: strip trailing slash (except root "/"), ensure lowercase
@@ -86,6 +92,10 @@ const SEOOptimized = ({
       <meta property="og:locale" content="fr_FR" />
       <meta property="og:locale:alternate" content="en_US" />
       <meta property="og:site_name" content="jemassuremoinscher" />
+
+      {/* Article dates (for blog/article pages) */}
+      {articlePublishedTime && <meta property="article:published_time" content={articlePublishedTime} />}
+      {articleModifiedTime && <meta property="article:modified_time" content={articleModifiedTime} />}
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
