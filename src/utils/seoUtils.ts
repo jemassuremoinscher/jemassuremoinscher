@@ -1,5 +1,5 @@
-export const addOrganizationSchema = () => {
-  return {
+export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number) => {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "jemassuremoinscher",
@@ -20,13 +20,29 @@ export const addOrganizationSchema = () => {
       "https://www.linkedin.com/company/jemassuremoinscher"
     ]
   };
+  if (ratingValue && reviewCount) {
+    schema.aggregateRating = {
+      "@type": "AggregateRating",
+      "ratingValue": ratingValue.toString(),
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": reviewCount.toString()
+    };
+  }
+  return schema;
 };
 
+/**
+ * @deprecated Use addOrganizationSchema(ratingValue, reviewCount) instead.
+ * Kept for backward compatibility on non-homepage pages.
+ */
 export const addAggregateRatingSchema = (name: string, ratingValue: number, reviewCount: number) => {
   return {
     "@context": "https://schema.org",
-    "@type": "Service",
+    "@type": "LocalBusiness",
     "name": name,
+    "@id": "https://www.jemassuremoinscher.fr/#business",
+    "url": "https://www.jemassuremoinscher.fr",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": ratingValue.toString(),

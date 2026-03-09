@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addOrganizationSchema, addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
+import { addOrganizationSchema, addServiceSchema, addFAQSchema } from "@/utils/seoUtils";
 
 // Lazy load below-the-fold sections
 const QuickQuoteSection = lazy(() => import("@/components/quote/QuickQuoteSection"));
@@ -17,14 +17,13 @@ const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
 const StickyCTA = lazy(() => import("@/components/StickyCTA"));
 
 const Index = () => {
-  const organizationSchema = addOrganizationSchema();
+  const organizationSchema = addOrganizationSchema(4.8, 2547);
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances Moins Chères en Ligne",
     description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 50+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
     provider: "jemassuremoinscher",
     areaServed: "France"
   });
-  const ratingSchema = addAggregateRatingSchema("jemassuremoinscher", 4.8, 2547);
 
   const webSiteSchema = {
     "@context": "https://schema.org",
@@ -69,7 +68,7 @@ const Index = () => {
         keyword="assurance moins chère"
         keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
         canonical="https://www.jemassuremoinscher.fr"
-        jsonLd={[webSiteSchema, organizationSchema, serviceSchema, ratingSchema, faqSchema]}
+        jsonLd={[webSiteSchema, organizationSchema, serviceSchema, faqSchema]}
       />
       <Header />
       <main id="main-content" role="main">
