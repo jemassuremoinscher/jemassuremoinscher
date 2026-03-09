@@ -95,7 +95,7 @@ const AssurancePret = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Prêt Immobilier Moins Chère" description="Comparez les assurances emprunteur. Économisez des milliers d'euros. Loi Lemoine." keyword="assurance prêt immobilier moins chère" keywords="assurance emprunteur, loi Lemoine, délégation" canonical="https://www.jemassuremoinscher.fr/assurance-pret" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Emprunteur : Économisez 15 000€ (Lemoine)" description="Loi Lemoine : changez d'assurance de prêt à tout moment. Comparez 50+ assureurs, économisez jusqu'à 50%. Devis gratuit en 2 min." keyword="assurance prêt immobilier moins chère" keywords="assurance emprunteur, loi Lemoine, délégation assurance, changer assurance prêt" canonical="https://www.jemassuremoinscher.fr/assurance-pret" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Prêt" }]} />
 

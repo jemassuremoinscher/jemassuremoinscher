@@ -102,7 +102,7 @@ const AssuranceAuto = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Auto Moins Chère | Comparateur" description="Comparez les assurances auto. Devis gratuit en 2 min. Économisez jusqu'à 40%." keyword="assurance auto moins chère" keywords="assurance auto moins cher, comparateur assurance auto, devis assurance voiture" canonical="https://www.jemassuremoinscher.fr/assurance-auto" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, howToSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Auto Moins Chère : -40% en 2 min ⭐" description="50+ assureurs comparés gratuitement. Nos clients économisent 320€/an en moyenne. Devis auto instantané, sans engagement." keyword="assurance auto moins chère" keywords="assurance auto moins cher, comparateur assurance auto, devis assurance voiture, changer assurance auto" canonical="https://www.jemassuremoinscher.fr/assurance-auto" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, howToSchema, faqSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Auto" }]} />
 

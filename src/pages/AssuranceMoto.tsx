@@ -91,7 +91,7 @@ const AssuranceMoto = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Moto Moins Chère | Comparateur" description="Comparez les assurances moto et scooter. Devis gratuit. Économisez jusqu'à 40%." keyword="assurance moto moins chère" keywords="assurance scooter, comparateur assurance moto" canonical="https://www.jemassuremoinscher.fr/assurance-moto" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Moto Moins Chère : -35% en 2 min ⭐" description="Moto, scooter, 125cc : comparez 50+ assureurs. Tous risques dès 15€/mois. Devis gratuit et sans engagement." keyword="assurance moto moins chère" keywords="assurance scooter, comparateur assurance moto, assurance 125, assurance moto jeune conducteur" canonical="https://www.jemassuremoinscher.fr/assurance-moto" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Moto" }]} />
 

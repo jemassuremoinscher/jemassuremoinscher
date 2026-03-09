@@ -97,7 +97,7 @@ const AssuranceMRP = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Multirisque Pro | Comparateur" description="Comparez les assurances MRP. Protégez vos locaux et activité. Devis gratuit." keyword="assurance multirisque professionnelle" keywords="MRP, assurance entreprise, assurance local" canonical="https://www.jemassuremoinscher.fr/assurance-mrp" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
+      <SEOOptimized title="Multirisque Pro (MRP) dès 20€/mois | Comparateur" description="Locaux, stock, matériel : protégez votre entreprise avec une MRP adaptée. 50+ assureurs comparés. Devis gratuit en 2 min." keyword="assurance multirisque professionnelle" keywords="MRP, assurance entreprise, assurance local professionnel, multirisque commerce" canonical="https://www.jemassuremoinscher.fr/assurance-mrp" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance MRP" }]} />
       <main id="main-content">
