@@ -105,7 +105,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   prevoyance: {
     products: ["sante", "vie", "rcpro"],
     articles: [
-      { to: "/blog/droits-des-assures-2025", label: "Droits des assurés 2025" },
+      { to: "/blog/droits-des-assures-2026", label: "Droits des assurés 2026" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
