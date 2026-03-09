@@ -166,6 +166,8 @@ const AssuranceSante = () => {
           </Accordion>
         </section>
 
+        <ExpertiseSection insuranceType="mutuelle santé" />
+
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
             <img src={arthurFlying} alt="Arthur en vol - économisez sur votre mutuelle santé" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" decoding="async" />
