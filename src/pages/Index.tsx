@@ -17,6 +17,7 @@ const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
 const StickyCTA = lazy(() => import("@/components/StickyCTA"));
 
 const Index = () => {
+  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }]);
   const organizationSchema = addOrganizationSchema(4.8, 2547);
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances Moins Chères en Ligne",
