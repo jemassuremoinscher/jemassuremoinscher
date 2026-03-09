@@ -2374,7 +2374,7 @@ Choisir la **meilleure mutuelle santé en 2026** peut vous faire économiser jus
 
 **Pour qui ?** Familles
 
-## 💰 Comparatif des Prix 2025
+## 💰 Comparatif des Prix 2026
 
 | Mutuelle | Solo | Couple | Famille |
 |----------|------|--------|---------|
