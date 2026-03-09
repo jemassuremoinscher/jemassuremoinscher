@@ -3,7 +3,7 @@ import { Card } from '@/components/ui/card';
 import { CheckCircle2, Star, Shield, Users, TrendingDown, Clock, Car } from 'lucide-react';
 import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
-import { addOrganizationSchema, addServiceSchema, addAggregateRatingSchema } from '@/utils/seoUtils';
+import { addOrganizationSchema, addServiceSchema, addAggregateRatingSchema, addFAQSchema } from '@/utils/seoUtils';
 
 const LandingAuto = () => {
   const jsonLd = [
