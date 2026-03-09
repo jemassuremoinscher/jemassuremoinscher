@@ -833,7 +833,7 @@ const fr: Record<string, string> = {
   'insPage.toast.errorDesc': 'Une erreur est survenue. Veuillez réessayer.',
 
   // Vie Page
-  'viePage.title': 'Assurance Vie',
+  'viePage.title': 'Assurance Vie : Meilleurs Rendements 2026',
   'viePage.subtitle': 'Constituez une épargne, préparez votre retraite ou protégez vos proches.',
   'viePage.adv1.title': 'Avantages fiscaux',
   'viePage.adv1.desc': 'Fiscalité attractive après 8 ans de détention.',
