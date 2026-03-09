@@ -864,7 +864,7 @@ const fr: Record<string, string> = {
   'viePage.faq3.a': 'Via la clause bénéficiaire du contrat. Elle peut être modifiée à tout moment.',
 
   // Prêt Page
-  'pretPage.title': 'Assurance Prêt Immobilier',
+  'pretPage.title': 'Assurance Emprunteur Moins Chère',
   'pretPage.subtitle': "Économisez jusqu'à 50% sur votre assurance emprunteur grâce à la loi Lemoine.",
   'pretPage.adv1.title': "Jusqu'à 15 000€ d'économies",
   'pretPage.adv1.desc': 'Comparez et économisez sur votre assurance emprunteur.',
