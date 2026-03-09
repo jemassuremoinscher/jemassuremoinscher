@@ -3865,7 +3865,7 @@ Une fois accepté :
 
 **Économie moyenne tous profils : 30-50%**
 
-## Assurances recommandées 2025
+## Assurances recommandées 2026
 
 ### Top 3 assurances externes
 
