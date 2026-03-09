@@ -924,7 +924,7 @@ const fr: Record<string, string> = {
   'prevoyancePage.faq3.a': "L'assurance décès verse un capital à vos proches. L'assurance obsèques finance spécifiquement vos funérailles.",
 
   // RC Pro Page
-  'rcProPage.title': 'RC Professionnelle',
+  'rcProPage.title': 'RC Professionnelle Moins Chère',
   'rcProPage.subtitle': 'Protégez votre activité contre les dommages causés à vos clients et tiers.',
   'rcProPage.adv1.title': 'Tarifs compétitifs',
   'rcProPage.adv1.desc': 'Comparez et économisez sur votre RC Pro.',
