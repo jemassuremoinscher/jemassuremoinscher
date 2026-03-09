@@ -4284,7 +4284,7 @@ Souscription en 5 minutes.
 ### Contrôles accrus
 
 **ACPR (autorité de contrôle) :**
-- 3x plus de contrôles en 2025
+- 3x plus de contrôles en 2026
 - Focus sur délais d'indemnisation
 - Vérification équivalence garanties
 
