@@ -20,6 +20,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SuggestedKeywords from "@/components/blog/SuggestedKeywords";
 import PopularArticles from "@/components/blog/PopularArticles";
+import RelatedProductLinks from "@/components/blog/RelatedProductLinks";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 
