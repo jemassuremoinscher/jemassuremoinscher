@@ -3314,8 +3314,8 @@ Choisissez selon vos besoins réels, pas selon la pub. Une mutuelle à 40€/moi
   },
   {
     id: "10",
-    title: "Comparatif habitation 2025 : Quelle assurance choisir ?",
-    slug: "comparatif-habitation-2025",
+    title: "Comparatif habitation 2026 : Quelle assurance choisir ?",
+    slug: "comparatif-habitation-2026",
     description: "Guide complet pour choisir son assurance habitation. Comparatif des meilleures offres, garanties indispensables et conseils d'experts.",
     category: "Guides Pratiques",
     date: "20 décembre 2024",
@@ -3323,11 +3323,11 @@ Choisissez selon vos besoins réels, pas selon la pub. Une mutuelle à 40€/moi
     author: "Pierre Durand",
     tags: ["assurance habitation", "comparatif", "logement", "garanties"],
     content: `
-# Assurance Habitation 2025 : Le Comparatif Complet
+# Assurance Habitation 2026 : Le Comparatif Complet
 
 Choisir une assurance habitation peut sembler complexe face aux nombreuses offres. Ce guide vous aide à y voir clair et à trouver la meilleure protection pour votre logement au meilleur prix.
 
-## Top 5 assurances habitation 2025
+## Top 5 assurances habitation 2026
 
 ### 1. Luko - La 100% digitale
 
