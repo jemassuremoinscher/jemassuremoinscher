@@ -3670,18 +3670,18 @@ Pour les maisons → Groupama
   },
   {
     id: "11",
-    title: "Loi Lemoine 2025 : Ce qui change pour votre assurance emprunteur",
-    slug: "loi-lemoine-2025",
-    description: "Tout savoir sur la loi Lemoine et ses évolutions en 2025. Changement d'assurance emprunteur simplifié, suppression du questionnaire médical, nouvelles opportunités d'économies.",
+    title: "Loi Lemoine 2026 : Ce qui change pour votre assurance emprunteur",
+    slug: "loi-lemoine-2026",
+    description: "Tout savoir sur la loi Lemoine et ses évolutions en 2026. Changement d'assurance emprunteur simplifié, suppression du questionnaire médical, nouvelles opportunités d'économies.",
     category: "Actualités Légales",
     date: "15 janvier 2025",
     readTime: "8 min",
     author: "Sophie Mercier",
     tags: ["loi lemoine", "assurance emprunteur", "crédit immobilier", "réglementation"],
     content: `
-# Loi Lemoine 2025 : La Révolution de l'Assurance Emprunteur Continue
+# Loi Lemoine 2026 : La Révolution de l'Assurance Emprunteur Continue
 
-La loi Lemoine, entrée en vigueur en 2022, continue de transformer le marché de l'assurance emprunteur. En 2025, de nouvelles mesures renforcent encore vos droits. Voici tout ce qu'il faut savoir.
+La loi Lemoine, entrée en vigueur en 2022, continue de transformer le marché de l'assurance emprunteur. En 2026, de nouvelles mesures renforcent encore vos droits. Voici tout ce qu'il faut savoir.
 
 ## Les 3 piliers de la loi Lemoine
 
