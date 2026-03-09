@@ -21,6 +21,7 @@ import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRating
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurMoto from "@/assets/mascotte/arthur-moto.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
+import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import arthurFlying from "@/assets/mascotte/arthur-excited.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
