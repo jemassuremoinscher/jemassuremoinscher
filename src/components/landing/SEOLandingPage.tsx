@@ -99,7 +99,7 @@ const SEOLandingPage = ({
           <div className="max-w-4xl mx-auto text-center relative">
             <img
               src={arthurThumbsUp}
-              alt="Arthur mascotte"
+              alt="Arthur pouce levé - comparateur assurance moins chère"
               className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto"
               loading="eager"
               decoding="async"
