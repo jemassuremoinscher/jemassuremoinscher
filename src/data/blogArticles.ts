@@ -3958,18 +3958,18 @@ La loi Lemoine est une vraie révolution pour les emprunteurs. En 2026, c'est en
   },
   {
     id: "12",
-    title: "Nouvelle réglementation assurance 2025 : Ce qui change",
-    slug: "nouvelle-reglementation-assurance-2025",
-    description: "Tour d'horizon des nouvelles lois et règlements qui impactent vos assurances en 2025. Obligations, droits nouveaux et opportunités.",
+    title: "Nouvelle réglementation assurance 2026 : Ce qui change",
+    slug: "nouvelle-reglementation-assurance-2026",
+    description: "Tour d'horizon des nouvelles lois et règlements qui impactent vos assurances en 2026. Obligations, droits nouveaux et opportunités.",
     category: "Actualités Légales",
     date: "8 janvier 2025",
     readTime: "9 min",
     author: "Marc Duval",
-    tags: ["réglementation", "nouvelles lois", "2025", "droits assurés"],
+    tags: ["réglementation", "nouvelles lois", "2026", "droits assurés"],
     content: `
-# Réglementation Assurance 2025 : Tous Les Changements
+# Réglementation Assurance 2026 : Tous Les Changements
 
-L'année 2025 apporte son lot de nouveautés réglementaires dans le monde de l'assurance. Nouvelles obligations, droits renforcés, sanctions... Voici tout ce qui change.
+L'année 2026 apporte son lot de nouveautés réglementaires dans le monde de l'assurance. Nouvelles obligations, droits renforcés, sanctions... Voici tout ce qui change.
 
 ## Auto et Moto
 
