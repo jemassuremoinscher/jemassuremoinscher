@@ -90,10 +90,10 @@ export const BlogHighlights = () => {
             <div>
               <h3 className="font-semibold mb-3 text-primary">{t('blogPage.byTypeTitle')}</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li><button type="button" onClick={() => navigate('/blog/meilleure-assurance-auto-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Auto & Moto</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/top-mutuelles-sante-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Santé & Prévoyance</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/comparatif-habitation-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Habitation & PNO</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/loi-lemoine-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Vie & Emprunteur</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/meilleure-assurance-auto-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Auto & Moto</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/top-mutuelles-sante-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Santé & Prévoyance</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/comparatif-habitation-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Habitation & PNO</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/loi-lemoine-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Vie & Emprunteur</button></li>
               </ul>
             </div>
           </div>

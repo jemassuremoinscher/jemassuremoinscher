@@ -143,7 +143,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   gli: {
     products: ["pno", "habitation", "mrp"],
     articles: [
-      { to: "/blog/comparatif-habitation-2025", label: "Comparatif habitation 2025" },
+      { to: "/blog/comparatif-habitation-2026", label: "Comparatif habitation 2026" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
