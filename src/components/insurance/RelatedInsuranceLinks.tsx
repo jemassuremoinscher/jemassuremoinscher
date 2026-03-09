@@ -76,7 +76,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   animaux: {
     products: ["sante", "habitation", "prevoyance"],
     articles: [
-      { to: "/blog/top-mutuelles-sante-2025", label: "Guide mutuelles 2025" },
+      { to: "/blog/top-mutuelles-sante-2026", label: "Guide mutuelles 2026" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
