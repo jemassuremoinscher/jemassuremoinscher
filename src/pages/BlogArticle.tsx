@@ -106,6 +106,9 @@ const BlogArticle = () => {
 
   const blogFaqSchema = addFAQSchema(blogFaqItems.map(f => ({ question: f.question, answer: f.answer })));
 
+  const authorProfile = getAuthor(article.author);
+  const authorJsonLd = getAuthorJsonLd(authorProfile);
+
   const articleSchema = addArticleSchema({
     headline: article.title,
     description: article.description,
