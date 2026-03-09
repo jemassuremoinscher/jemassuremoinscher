@@ -20,6 +20,10 @@ interface SEOOptimizedProps {
   jsonLd?: object | object[];
   /** Whether to noindex this page */
   noindex?: boolean;
+  /** Article published date (ISO format) for article:published_time OG tag */
+  articlePublishedTime?: string;
+  /** Article modified date (ISO format) for article:modified_time OG tag */
+  articleModifiedTime?: string;
 }
 
 const BASE_URL = 'https://www.jemassuremoinscher.fr';
