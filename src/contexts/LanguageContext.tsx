@@ -1006,7 +1006,7 @@ const fr: Record<string, string> = {
   'gliPage.faq3.a': "Non, la loi interdit de cumuler GLI et caution solidaire (sauf étudiant ou apprenti).",
 
   // PNO Page
-  'pnoPage.title': 'Assurance PNO',
+  'pnoPage.title': 'Assurance PNO Moins Chère',
   'pnoPage.subtitle': "Protégez votre patrimoine immobilier même lorsque vous n'y habitez pas.",
   'pnoPage.adv1.title': 'Patrimoine protégé',
   'pnoPage.adv1.desc': 'Protégez votre bien même non occupé.',
