@@ -3906,27 +3906,52 @@ const en: Record<string, string> = {
   'landing.forQuoteLabel': 'For the quote',
 };
 
-const translations: Record<Language, Record<string, string>> = { fr, en };
+// EN translations loaded lazily - only when user switches to English
+let enTranslations: Record<string, string> | null = null;
+const loadEnTranslations = async () => {
+  if (!enTranslations) {
+    const mod = await import('@/i18n/en');
+    enTranslations = mod.default;
+  }
+  return enTranslations;
+};
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<Language>(() => {
     const saved = localStorage.getItem('language') as Language;
     return saved && (saved === 'fr' || saved === 'en') ? saved : 'fr';
   });
+  const [enLoaded, setEnLoaded] = useState(false);
 
   const setLanguage = useCallback((lang: Language) => {
-    setLanguageState(lang);
-    localStorage.setItem('language', lang);
-    document.documentElement.lang = lang;
+    if (lang === 'en' && !enTranslations) {
+      loadEnTranslations().then(() => {
+        setEnLoaded(true);
+        setLanguageState(lang);
+        localStorage.setItem('language', lang);
+        document.documentElement.lang = lang;
+      });
+    } else {
+      setLanguageState(lang);
+      localStorage.setItem('language', lang);
+      document.documentElement.lang = lang;
+    }
   }, []);
 
   useEffect(() => {
     document.documentElement.lang = language;
+    // If saved language is EN, load translations on mount
+    if (language === 'en' && !enTranslations) {
+      loadEnTranslations().then(() => setEnLoaded(true));
+    }
   }, [language]);
 
   const t = useCallback((key: string): string => {
-    return translations[language][key] || translations['fr'][key] || key;
-  }, [language]);
+    if (language === 'en' && enTranslations) {
+      return enTranslations[key] || fr[key] || key;
+    }
+    return fr[key] || key;
+  }, [language, enLoaded]);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
