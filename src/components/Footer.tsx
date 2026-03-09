@@ -21,15 +21,17 @@ const Footer = () => {
 
   const insuranceLinks = [
     { to: "/assurance-auto", label: "Assurance Auto" },
+    { to: "/assurance-moto", label: "Assurance Moto" },
     { to: "/assurance-habitation", label: "Assurance Habitation" },
     { to: "/assurance-sante", label: "Mutuelle Santé" },
-    { to: "/assurance-moto", label: "Assurance Moto" },
     { to: "/assurance-animaux", label: "Assurance Animaux" },
-    { to: "/assurance-pret", label: "Assurance Prêt" },
     { to: "/assurance-vie", label: "Assurance Vie" },
+    { to: "/assurance-pret", label: "Assurance Prêt" },
     { to: "/assurance-prevoyance", label: "Prévoyance" },
     { to: "/assurance-rc-pro", label: "RC Professionnelle" },
+    { to: "/assurance-mrp", label: "Assurance MRP" },
     { to: "/assurance-pno", label: "Assurance PNO" },
+    { to: "/assurance-gli", label: "Garantie Loyers Impayés" },
   ];
 
   const guidesLinks = [
