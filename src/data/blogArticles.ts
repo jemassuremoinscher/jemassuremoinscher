@@ -2137,7 +2137,7 @@ Nous avons noté chaque assureur sur 5 critères :
 - Négliger l\'assistance 0 km
 - Ne pas relire son contrat annuellement
 
-## 🔥 Tendances 2025
+## 🔥 Tendances 2026
 
 ### Nouveautés à surveiller
 
@@ -2147,9 +2147,9 @@ Nous avons noté chaque assureur sur 5 critères :
 4. **IA pour devis instantanés** : Souscription en 1 minute
 5. **Assistance premium** : Services concierge inclus
 
-## ❓ FAQ : Meilleure Assurance Auto 2025
+## ❓ FAQ : Meilleure Assurance Auto 2026
 
-**Quelle est l\'assurance auto la moins chère en 2025 ?**
+**Quelle est l\'assurance auto la moins chère en 2026 ?**
 Direct Assurance et Luko proposent les tarifs les plus bas, dès 35€/mois en formule tiers.
 
 **Quelle assurance auto pour jeune conducteur ?**
@@ -2161,7 +2161,7 @@ Oui, grâce à la loi Hamon, après 1 an d\'engagement vous pouvez résilier qua
 **Combien coûte une assurance auto tous risques ?**
 Entre 62€ et 90€/mois selon l\'assureur et votre profil.
 
-## 🎁 Offres Spéciales 2025
+## 🎁 Offres Spéciales 2026
 
 **Direct Assurance :** -15% pour nouvelle souscription en ligne
 **Luko :** 2 mois offerts jusqu\'à fin janvier
@@ -2169,11 +2169,11 @@ Entre 62€ et 90€/mois selon l\'assureur et votre profil.
 
 ## Conclusion
 
-La **meilleure assurance auto en 2025** dépend de votre profil et de vos priorités. Direct Assurance domine pour le prix, Allianz pour le service, et Luko pour l\'innovation.
+La **meilleure assurance auto en 2026** dépend de votre profil et de vos priorités. Direct Assurance domine pour le prix, Allianz pour le service, et Luko pour l\'innovation.
 
 **Notre recommandation générale :** Comparez au moins 3 devis personnalisés avant de vous engager. Économie moyenne : 350€/an.
 
-**Prêt à trouver votre assurance auto idéale ?** Comparez gratuitement les meilleures offres 2025 en 2 minutes.
+**Prêt à trouver votre assurance auto idéale ?** Comparez gratuitement les meilleures offres 2026 en 2 minutes.
     `
   },
   {
