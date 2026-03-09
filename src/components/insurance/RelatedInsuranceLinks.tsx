@@ -85,7 +85,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   vie: {
     products: ["pret", "prevoyance", "sante"],
     articles: [
-      { to: "/blog/loi-lemoine-2025", label: "Loi Lemoine 2025" },
+      { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine 2026" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
