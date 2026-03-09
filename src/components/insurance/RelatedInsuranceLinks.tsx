@@ -65,8 +65,8 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   sante: {
     products: ["prevoyance", "vie", "animaux"],
     articles: [
-      { to: "/blog/top-mutuelles-sante-2025", label: "Top mutuelles santé 2025" },
-      { to: "/blog/mutuelle-sante-reduire-frais-medicaux-2024", label: "Réduire ses frais médicaux" },
+      { to: "/blog/top-mutuelles-sante-2026", label: "Top mutuelles santé 2026" },
+      { to: "/blog/mutuelle-sante-reduire-frais-medicaux-2026", label: "Réduire ses frais médicaux" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
