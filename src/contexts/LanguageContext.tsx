@@ -698,7 +698,7 @@ const fr: Record<string, string> = {
   'autoPage.faq4.a': "C'est un coefficient qui fait varier votre prime selon votre historique de conduite. Sans accident, vous gagnez 5% de bonus par an.",
 
   // Santé Page
-  'santePage.title': 'Mutuelle Santé Pas Chère',
+  'santePage.title': 'Mutuelle Santé Moins Chère',
   'santePage.subtitle': "Comparez 50+ mutuelles et économisez jusqu'à 300€ par an sur votre complémentaire santé.",
   'santePage.adv1.title': "Jusqu'à 300€ d'économies",
   'santePage.adv1.desc': 'Comparez et économisez sur votre mutuelle santé.',
@@ -762,7 +762,7 @@ const fr: Record<string, string> = {
   'habitationPage.faq4.a': "C'est le montant restant à votre charge après indemnisation. Plus la franchise est élevée, plus la prime est basse.",
 
   // Moto Page
-  'motoPage.title': 'Assurance Moto',
+  'motoPage.title': 'Assurance Moto Moins Chère',
   'motoPage.subtitle': "Comparez les meilleures offres et économisez jusqu'à 35% sur votre assurance moto.",
   'motoPage.adv1.title': "Jusqu'à 35% d'économies",
   'motoPage.adv1.desc': 'Comparez et économisez sur votre assurance moto.',
@@ -792,7 +792,7 @@ const fr: Record<string, string> = {
   'motoPage.faq4.a': "Oui, l'assurance est obligatoire pour tout véhicule à moteur, y compris les scooters 50cc.",
 
   // Animaux Page
-  'animauxPage.title': 'Assurance Animaux',
+  'animauxPage.title': 'Assurance Animaux Moins Chère',
   'animauxPage.subtitle': 'Protégez la santé de votre compagnon et maîtrisez vos dépenses vétérinaires.',
   'animauxPage.adv1.title': "Jusqu'à 100% remboursé",
   'animauxPage.adv1.desc': 'Les meilleurs taux de remboursement vétérinaire.',
@@ -833,7 +833,7 @@ const fr: Record<string, string> = {
   'insPage.toast.errorDesc': 'Une erreur est survenue. Veuillez réessayer.',
 
   // Vie Page
-  'viePage.title': 'Assurance Vie',
+  'viePage.title': 'Assurance Vie : Meilleurs Rendements 2026',
   'viePage.subtitle': 'Constituez une épargne, préparez votre retraite ou protégez vos proches.',
   'viePage.adv1.title': 'Avantages fiscaux',
   'viePage.adv1.desc': 'Fiscalité attractive après 8 ans de détention.',
@@ -864,7 +864,7 @@ const fr: Record<string, string> = {
   'viePage.faq3.a': 'Via la clause bénéficiaire du contrat. Elle peut être modifiée à tout moment.',
 
   // Prêt Page
-  'pretPage.title': 'Assurance Prêt Immobilier',
+  'pretPage.title': 'Assurance Emprunteur Moins Chère',
   'pretPage.subtitle': "Économisez jusqu'à 50% sur votre assurance emprunteur grâce à la loi Lemoine.",
   'pretPage.adv1.title': "Jusqu'à 15 000€ d'économies",
   'pretPage.adv1.desc': 'Comparez et économisez sur votre assurance emprunteur.',
@@ -892,7 +892,7 @@ const fr: Record<string, string> = {
   'pretPage.faq4.a': 'Pas pour les prêts de moins de 200 000€ par personne sur 25 ans max (loi Lemoine).',
 
   // Prévoyance Page
-  'prevoyancePage.title': 'Assurance Prévoyance',
+  'prevoyancePage.title': 'Assurance Prévoyance Moins Chère',
   'prevoyancePage.subtitle': 'Protégez votre famille et préparez l\'avenir sereinement.',
   'prevoyancePage.adv1.title': 'Protection familiale',
   'prevoyancePage.adv1.desc': "Protégez vos proches en cas d'accident de la vie.",
@@ -924,7 +924,7 @@ const fr: Record<string, string> = {
   'prevoyancePage.faq3.a': "L'assurance décès verse un capital à vos proches. L'assurance obsèques finance spécifiquement vos funérailles.",
 
   // RC Pro Page
-  'rcProPage.title': 'RC Professionnelle',
+  'rcProPage.title': 'RC Professionnelle Moins Chère',
   'rcProPage.subtitle': 'Protégez votre activité contre les dommages causés à vos clients et tiers.',
   'rcProPage.adv1.title': 'Tarifs compétitifs',
   'rcProPage.adv1.desc': 'Comparez et économisez sur votre RC Pro.',
@@ -959,7 +959,7 @@ const fr: Record<string, string> = {
   'rcProPage.faq3.a': 'Généralement immédiat ou sous 24-48h après la souscription.',
 
   // MRP Page
-  'mrpPage.title': 'Multirisque Professionnelle',
+  'mrpPage.title': 'Assurance Multirisque Professionnelle',
   'mrpPage.subtitle': 'Protégez vos locaux, matériel et activité au meilleur prix.',
   'mrpPage.adv1.title': 'Tarifs compétitifs',
   'mrpPage.adv1.desc': 'Comparez et économisez sur votre MRP.',
@@ -980,7 +980,7 @@ const fr: Record<string, string> = {
   'mrpPage.faq2.a': "Faites l'inventaire de vos locaux, matériel, stock et estimez la perte d'exploitation potentielle.",
 
   // GLI Page
-  'gliPage.title': 'Garantie Loyer Impayé',
+  'gliPage.title': 'Garantie Loyer Impayé (GLI)',
   'gliPage.subtitle': 'Protégez vos revenus locatifs et louez en toute sérénité.',
   'gliPage.adv1.title': 'Revenus sécurisés',
   'gliPage.adv1.desc': 'Protégez vos loyers contre les impayés.',
@@ -1006,7 +1006,7 @@ const fr: Record<string, string> = {
   'gliPage.faq3.a': "Non, la loi interdit de cumuler GLI et caution solidaire (sauf étudiant ou apprenti).",
 
   // PNO Page
-  'pnoPage.title': 'Assurance PNO',
+  'pnoPage.title': 'Assurance PNO Moins Chère',
   'pnoPage.subtitle': "Protégez votre patrimoine immobilier même lorsque vous n'y habitez pas.",
   'pnoPage.adv1.title': 'Patrimoine protégé',
   'pnoPage.adv1.desc': 'Protégez votre bien même non occupé.',

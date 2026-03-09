@@ -21,6 +21,7 @@ import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRating
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurMoto from "@/assets/mascotte/arthur-moto.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
+import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import arthurFlying from "@/assets/mascotte/arthur-excited.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -91,7 +92,7 @@ const AssuranceMoto = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Moto Moins Chère | Comparateur" description="Comparez les assurances moto et scooter. Devis gratuit. Économisez jusqu'à 40%." keyword="assurance moto moins chère" keywords="assurance scooter, comparateur assurance moto" canonical="https://www.jemassuremoinscher.fr/assurance-moto" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Moto Moins Chère : -35% en 2 min ⭐" description="Moto, scooter, 125cc : comparez 50+ assureurs. Tous risques dès 15€/mois. Devis gratuit et sans engagement." keyword="assurance moto moins chère" keywords="assurance scooter, comparateur assurance moto, assurance 125, assurance moto jeune conducteur" canonical="https://www.jemassuremoinscher.fr/assurance-moto" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Moto" }]} />
 
@@ -192,6 +193,8 @@ const AssuranceMoto = () => {
             </AccordionItem>
           </Accordion>
         </section>
+
+        <ExpertiseSection insuranceType="assurance moto" />
 
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">

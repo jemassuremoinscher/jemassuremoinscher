@@ -98,7 +98,7 @@ const AssuranceRCPro = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="RC Pro Moins Chère | Comparateur en Ligne" description="Comparez les assurances RC Pro. Devis gratuit pour tous secteurs d'activité." keyword="RC Pro moins chère" keywords="responsabilité civile professionnelle, assurance RC" canonical="https://www.jemassuremoinscher.fr/assurance-rc-pro" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
+      <SEOOptimized title="RC Pro dès 15€/mois : Devis Gratuit en 2 min" description="Responsabilité civile professionnelle : comparez 50+ assureurs. Tous secteurs : BTP, conseil, IT, commerce. Attestation immédiate." keyword="RC Pro moins chère" keywords="responsabilité civile professionnelle, assurance RC Pro, RC pro auto-entrepreneur" canonical="https://www.jemassuremoinscher.fr/assurance-rc-pro" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "RC Professionnelle" }]} />
       <main id="main-content">

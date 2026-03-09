@@ -93,7 +93,7 @@ const AssuranceVie = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Vie - Épargne et Protection" description="Comparez les assurances vie : épargne, protection décès, transmission patrimoine." keyword="assurance vie" keywords="épargne, placement, transmission patrimoine" canonical="https://www.jemassuremoinscher.fr/assurance-vie" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Vie 2026 : Meilleurs Rendements Comparés" description="Fonds euros, unités de compte, PER : comparez les meilleures assurances vie. Fiscalité avantageuse après 8 ans. Devis gratuit." keyword="assurance vie meilleur rendement" keywords="assurance vie 2026, épargne, placement, transmission patrimoine, PER" canonical="https://www.jemassuremoinscher.fr/assurance-vie" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Vie" }]} />
       <main id="main-content">

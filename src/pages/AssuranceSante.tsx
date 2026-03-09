@@ -20,6 +20,7 @@ import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRating
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurSick from "@/assets/mascotte/arthur-sick.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
+import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import arthurFlying from "@/assets/mascotte/arthur-thumbsup-coin.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -87,7 +88,7 @@ const AssuranceSante = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Mutuelle Santé Moins Chère | Comparateur" description="Comparez les mutuelles santé. Devis gratuit en 2 min. Économisez jusqu'à 40%." keyword="mutuelle santé moins chère" keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher" canonical="https://www.jemassuremoinscher.fr/assurance-sante" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Mutuelle Santé Moins Chère : Économisez 300€/an" description="Comparez 50+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale. 4.8/5 satisfaction client." keyword="mutuelle santé moins chère" keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher, mutuelle famille" canonical="https://www.jemassuremoinscher.fr/assurance-sante" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Mutuelle Santé" }]} />
 
@@ -164,6 +165,8 @@ const AssuranceSante = () => {
             </AccordionItem>
           </Accordion>
         </section>
+
+        <ExpertiseSection insuranceType="mutuelle santé" />
 
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">

@@ -20,6 +20,7 @@ import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRating
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurHouse from "@/assets/mascotte/arthur-house.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
+import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import arthurFlying from "@/assets/mascotte/arthur-waving.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -88,7 +89,7 @@ const AssuranceHabitation = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Habitation Moins Chère | Comparateur" description="Comparez les assurances habitation. Devis gratuit. Économisez jusqu'à 40% sur votre contrat." keyword="assurance habitation moins chère" keywords="assurance maison, assurance appartement pas cher" canonical="https://www.jemassuremoinscher.fr/assurance-habitation" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Habitation Moins Chère dès 3€/mois" description="Comparez 50+ assureurs habitation en 2 min. Maison ou appartement, locataire ou propriétaire. Économisez jusqu'à 40%." keyword="assurance habitation moins chère" keywords="assurance maison, assurance appartement, assurance logement, assurance locataire" canonical="https://www.jemassuremoinscher.fr/assurance-habitation" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Habitation" }]} />
 
@@ -150,6 +151,8 @@ const AssuranceHabitation = () => {
             </AccordionItem>
           </Accordion>
         </section>
+
+        <ExpertiseSection insuranceType="assurance habitation" />
 
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
