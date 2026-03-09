@@ -980,7 +980,7 @@ const fr: Record<string, string> = {
   'mrpPage.faq2.a': "Faites l'inventaire de vos locaux, matériel, stock et estimez la perte d'exploitation potentielle.",
 
   // GLI Page
-  'gliPage.title': 'Garantie Loyer Impayé',
+  'gliPage.title': 'Garantie Loyer Impayé (GLI)',
   'gliPage.subtitle': 'Protégez vos revenus locatifs et louez en toute sérénité.',
   'gliPage.adv1.title': 'Revenus sécurisés',
   'gliPage.adv1.desc': 'Protégez vos loyers contre les impayés.',
