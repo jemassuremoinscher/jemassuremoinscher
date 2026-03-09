@@ -2505,7 +2505,7 @@ Vous venez d\'obtenir votre permis ? La **surprime jeune conducteur** peut doubl
 
 ## 💰 Combien Coûte une Assurance Jeune Conducteur ?
 
-### Tarifs moyens 2025
+### Tarifs moyens 2026
 
 **Jeune conducteur (18-25 ans) :**
 - Formule tiers : 80-120€/mois
