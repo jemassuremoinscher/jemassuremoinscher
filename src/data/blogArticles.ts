@@ -2467,7 +2467,7 @@ Choisir la **meilleure mutuelle santé en 2026** peut vous faire économiser jus
 
 ## ❓ Questions Fréquentes
 
-**Quelle est la mutuelle la moins chère en 2025 ?**
+**Quelle est la mutuelle la moins chère en 2026 ?**
 Assurpeople propose les tarifs les plus bas à partir de 38€/mois avec des garanties correctes.
 
 **Quelle mutuelle rembourse le mieux l\'optique ?**
