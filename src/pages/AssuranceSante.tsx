@@ -20,6 +20,7 @@ import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRating
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurSick from "@/assets/mascotte/arthur-sick.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
+import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import arthurFlying from "@/assets/mascotte/arthur-thumbsup-coin.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
