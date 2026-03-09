@@ -1590,7 +1590,7 @@ En cas de sinistre, l'assureur peut refuser l'indemnisation.
     author: "Dr. Antoine Mercier",
     tags: ["mutuelle", "santé", "remboursements", "conseils"],
     content: `
-# Comment Bien Choisir sa Mutuelle Santé en 2024
+# Comment Bien Choisir sa Mutuelle Santé en 2026
 
 La Sécurité sociale ne rembourse qu'une partie de vos frais médicaux. Une bonne mutuelle est essentielle pour compléter ces remboursements. Voici comment faire le bon choix.
 
