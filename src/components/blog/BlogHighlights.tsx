@@ -63,37 +63,37 @@ export const BlogHighlights = () => {
             <div>
               <h3 className="font-semibold mb-3 text-primary">{t('blogPage.guidesTitle')}</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li><button type="button" onClick={() => navigate('/blog/meilleure-assurance-auto-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Meilleure assurance auto 2025</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/top-mutuelles-sante-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Top mutuelles santé</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/meilleure-assurance-auto-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Meilleure assurance auto 2026</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/top-mutuelles-sante-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Top mutuelles santé</button></li>
                 <li><button type="button" onClick={() => navigate('/blog/assurance-auto-jeune-conducteur-astuces')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Assurance jeune conducteur</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/comparatif-habitation-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Comparatif habitation</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/comparatif-habitation-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Comparatif habitation</button></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-3 text-primary">{t('blogPage.legalTitle')}</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li><button type="button" onClick={() => navigate('/blog/loi-lemoine-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Loi Lemoine 2025</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/resiliation-assurance-droits-2024')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Loi Hamon résiliation</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/nouvelle-reglementation-assurance-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Nouvelle réglementation</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/droits-des-assures-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Droits des assurés</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/loi-lemoine-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Loi Lemoine 2026</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/resiliation-assurance-droits-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Loi Hamon résiliation</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/nouvelle-reglementation-assurance-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Nouvelle réglementation</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/droits-des-assures-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Droits des assurés</button></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-3 text-primary">{t('blogPage.expertTitle')}</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li><button type="button" onClick={() => navigate('/blog/mutuelle-sante-reduire-frais-medicaux-2024')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Économiser sur ses contrats</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/mutuelle-sante-reduire-frais-medicaux-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Économiser sur ses contrats</button></li>
                 <li><button type="button" onClick={() => navigate('/blog/assurance-auto-jeune-conducteur-astuces')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Choisir ses garanties</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/resiliation-assurance-droits-2024')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Éviter les pièges</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/mutuelle-sante-reduire-frais-medicaux-2024')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Optimiser sa couverture</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/resiliation-assurance-droits-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Éviter les pièges</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/mutuelle-sante-reduire-frais-medicaux-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Optimiser sa couverture</button></li>
               </ul>
             </div>
             <div>
               <h3 className="font-semibold mb-3 text-primary">{t('blogPage.byTypeTitle')}</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li><button type="button" onClick={() => navigate('/blog/meilleure-assurance-auto-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Auto & Moto</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/top-mutuelles-sante-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Santé & Prévoyance</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/comparatif-habitation-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Habitation & PNO</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/loi-lemoine-2025')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Vie & Emprunteur</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/meilleure-assurance-auto-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Auto & Moto</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/top-mutuelles-sante-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Santé & Prévoyance</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/comparatif-habitation-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Habitation & PNO</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/loi-lemoine-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Vie & Emprunteur</button></li>
               </ul>
             </div>
           </div>

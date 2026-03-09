@@ -31,9 +31,9 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   auto: {
     products: ["moto", "habitation", "pret"],
     articles: [
-      { to: "/blog/meilleure-assurance-auto-2025", label: "Meilleure assurance auto 2025" },
+      { to: "/blog/meilleure-assurance-auto-2026", label: "Meilleure assurance auto 2026" },
       { to: "/blog/assurance-auto-jeune-conducteur-astuces", label: "Astuces jeune conducteur" },
-      { to: "/blog/resiliation-assurance-droits-2024", label: "Résilier son assurance : vos droits" },
+      { to: "/blog/resiliation-assurance-droits-2026", label: "Résilier son assurance : vos droits" },
     ],
     tools: [
       { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
@@ -43,8 +43,8 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   moto: {
     products: ["auto", "habitation", "prevoyance"],
     articles: [
-      { to: "/blog/meilleure-assurance-auto-2025", label: "Guide assurance véhicule 2025" },
-      { to: "/blog/resiliation-assurance-droits-2024", label: "Résilier son assurance facilement" },
+      { to: "/blog/meilleure-assurance-auto-2026", label: "Guide assurance véhicule 2026" },
+      { to: "/blog/resiliation-assurance-droits-2026", label: "Résilier son assurance facilement" },
     ],
     tools: [
       { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
@@ -54,8 +54,8 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   habitation: {
     products: ["pno", "gli", "auto"],
     articles: [
-      { to: "/blog/comparatif-habitation-2025", label: "Comparatif habitation 2025" },
-      { to: "/blog/loi-lemoine-2025", label: "Loi Lemoine : ce qui change" },
+      { to: "/blog/comparatif-habitation-2026", label: "Comparatif habitation 2026" },
+      { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine : ce qui change" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
@@ -65,8 +65,8 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   sante: {
     products: ["prevoyance", "vie", "animaux"],
     articles: [
-      { to: "/blog/top-mutuelles-sante-2025", label: "Top mutuelles santé 2025" },
-      { to: "/blog/mutuelle-sante-reduire-frais-medicaux-2024", label: "Réduire ses frais médicaux" },
+      { to: "/blog/top-mutuelles-sante-2026", label: "Top mutuelles santé 2026" },
+      { to: "/blog/mutuelle-sante-reduire-frais-medicaux-2026", label: "Réduire ses frais médicaux" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
@@ -76,7 +76,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   animaux: {
     products: ["sante", "habitation", "prevoyance"],
     articles: [
-      { to: "/blog/top-mutuelles-sante-2025", label: "Guide mutuelles 2025" },
+      { to: "/blog/top-mutuelles-sante-2026", label: "Guide mutuelles 2026" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
@@ -85,7 +85,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   vie: {
     products: ["pret", "prevoyance", "sante"],
     articles: [
-      { to: "/blog/loi-lemoine-2025", label: "Loi Lemoine 2025" },
+      { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine 2026" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
@@ -95,8 +95,8 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   pret: {
     products: ["vie", "habitation", "prevoyance"],
     articles: [
-      { to: "/blog/loi-lemoine-2025", label: "Loi Lemoine : changer d'assurance prêt" },
-      { to: "/blog/resiliation-assurance-droits-2024", label: "Vos droits de résiliation" },
+      { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine : changer d'assurance prêt" },
+      { to: "/blog/resiliation-assurance-droits-2026", label: "Vos droits de résiliation" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
@@ -105,7 +105,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   prevoyance: {
     products: ["sante", "vie", "rcpro"],
     articles: [
-      { to: "/blog/droits-des-assures-2025", label: "Droits des assurés 2025" },
+      { to: "/blog/droits-des-assures-2026", label: "Droits des assurés 2026" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
@@ -115,7 +115,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   rcpro: {
     products: ["mrp", "prevoyance", "gli"],
     articles: [
-      { to: "/blog/nouvelle-reglementation-assurance-2025", label: "Nouvelles réglementations 2025" },
+      { to: "/blog/nouvelle-reglementation-assurance-2026", label: "Nouvelles réglementations 2026" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
@@ -124,7 +124,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   mrp: {
     products: ["rcpro", "pno", "gli"],
     articles: [
-      { to: "/blog/nouvelle-reglementation-assurance-2025", label: "Nouvelles réglementations 2025" },
+      { to: "/blog/nouvelle-reglementation-assurance-2026", label: "Nouvelles réglementations 2026" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
@@ -133,7 +133,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   pno: {
     products: ["habitation", "gli", "mrp"],
     articles: [
-      { to: "/blog/comparatif-habitation-2025", label: "Comparatif habitation 2025" },
+      { to: "/blog/comparatif-habitation-2026", label: "Comparatif habitation 2026" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
@@ -143,7 +143,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   gli: {
     products: ["pno", "habitation", "mrp"],
     articles: [
-      { to: "/blog/comparatif-habitation-2025", label: "Comparatif habitation 2025" },
+      { to: "/blog/comparatif-habitation-2026", label: "Comparatif habitation 2026" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
