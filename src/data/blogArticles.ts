@@ -4327,7 +4327,7 @@ Les manquements graves sont publiés sur :
 - Demander la médiation
 - Exiger les nouveaux services
 
-## Calendrier 2025
+## Calendrier 2026
 
 **Janvier**
 - Bonus électrique obligatoire
