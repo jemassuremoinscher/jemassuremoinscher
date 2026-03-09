@@ -892,7 +892,7 @@ La loi Hamon est un outil puissant pour faire des économies sur vos assurances.
     author: "Claire Rousseau",
     tags: ["assurance auto", "guide pratique", "conseils", "économies"],
     content: `
-# Comment choisir la meilleure assurance auto en 2024
+# Comment choisir la meilleure assurance auto en 2026
 
 Choisir son assurance auto est une décision importante qui impacte votre budget et votre tranquillité d'esprit. Ce guide complet vous aide à faire le bon choix.
 
