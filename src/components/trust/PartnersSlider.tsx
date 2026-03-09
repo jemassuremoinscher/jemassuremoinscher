@@ -1,23 +1,22 @@
 import { memo, useMemo } from "react";
-import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-// Only import webp/svg formats where available for perf
-import abeilleLogo from "@/assets/logos/abeille.jpg";
-import acheelLogo from "@/assets/logos/acheel.png";
-import agfLogo from "@/assets/logos/agf.png";
-import alanLogo from "@/assets/logos/alan-new.png";
+// WebP where available, fallback to original format
+import abeilleLogo from "@/assets/logos/abeille.webp";
+import acheelLogo from "@/assets/logos/acheel.webp";
+import agfLogo from "@/assets/logos/agf.webp";
+import alanLogo from "@/assets/logos/alan-new.webp";
 import allianzLogo from "@/assets/logos/allianz.webp";
 import amaguizLogo from "@/assets/logos/amaguiz.png";
-import aonLogo from "@/assets/logos/aon.jpg";
+import aonLogo from "@/assets/logos/aon.webp";
 import aprilLogo from "@/assets/logos/april-new.png";
 import axaLogo from "@/assets/logos/axa.webp";
-import directAssuranceLogo from "@/assets/logos/direct-assurance-new.png";
+import directAssuranceLogo from "@/assets/logos/direct-assurance-new.webp";
 import ganLogo from "@/assets/logos/gan.svg";
 import generaliLogo from "@/assets/logos/generali.png";
 import gmfLogo from "@/assets/logos/gmf-new.png";
 import leocareLogo from "@/assets/logos/leocare.png";
-import lolivierLogo from "@/assets/logos/lolivier.png";
+import lolivierLogo from "@/assets/logos/lolivier.webp";
 import maafLogo from "@/assets/logos/maaf.webp";
 import macifLogo from "@/assets/logos/macif-new.png";
 import maifLogo from "@/assets/logos/maif.webp";
@@ -25,11 +24,11 @@ import matmutLogo from "@/assets/logos/matmut-new.jpg";
 import maxanceLogo from "@/assets/logos/maxance.png";
 import milaLogo from "@/assets/logos/mila.jpg";
 import mmaLogo from "@/assets/logos/mma-new.webp";
-import mpaLogo from "@/assets/logos/mpa.png";
+import mpaLogo from "@/assets/logos/mpa.webp";
 import neoLogo from "@/assets/logos/neo.png";
 import ornikarLogo from "@/assets/logos/ornikar.png";
 import swissLifeLogo from "@/assets/logos/swisslife.webp";
-import wilovLogo from "@/assets/logos/wilov.jpg";
+import wilovLogo from "@/assets/logos/wilov.webp";
 
 const partners = [
   { name: "Abeille Assurances", id: 1, logo: abeilleLogo },
@@ -61,8 +60,6 @@ const partners = [
   { name: "Wilov", id: 27, logo: wilovLogo },
 ] as const;
 
-// Use CSS animation instead of framer-motion for the infinite scroll
-// This avoids JS-driven animation on every frame → much better perf
 const PartnersSlider = memo(() => {
   const { t } = useLanguage();
   const duplicatedPartners = useMemo(() => [...partners, ...partners], []);
