@@ -3736,7 +3736,7 @@ La grille de référence AERAS s'améliore :
 
 Surprimes en baisse et délais raccourcis.
 
-## Nouveautés 2025
+## Nouveautés 2026
 
 ### Élargissement du champ d'application
 
