@@ -31,9 +31,9 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   auto: {
     products: ["moto", "habitation", "pret"],
     articles: [
-      { to: "/blog/meilleure-assurance-auto-2025", label: "Meilleure assurance auto 2025" },
+      { to: "/blog/meilleure-assurance-auto-2026", label: "Meilleure assurance auto 2026" },
       { to: "/blog/assurance-auto-jeune-conducteur-astuces", label: "Astuces jeune conducteur" },
-      { to: "/blog/resiliation-assurance-droits-2024", label: "Résilier son assurance : vos droits" },
+      { to: "/blog/resiliation-assurance-droits-2026", label: "Résilier son assurance : vos droits" },
     ],
     tools: [
       { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
