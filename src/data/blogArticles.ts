@@ -2481,11 +2481,11 @@ Entre 110€ et 145€/mois pour une famille (2 adultes + 2 enfants) avec garant
 
 ## Conclusion
 
-La **meilleure mutuelle santé 2025** dépend de vos besoins spécifiques. Alan domine pour l\'innovation, Harmonie Mutuelle pour les garanties complètes, et Assurpeople pour les budgets serrés.
+La **meilleure mutuelle santé 2026** dépend de vos besoins spécifiques. Alan domine pour l\'innovation, Harmonie Mutuelle pour les garanties complètes, et Assurpeople pour les budgets serrés.
 
 **Notre conseil :** Simulez vos remboursements annuels avant de choisir. L\'économie moyenne en comparant : 450€/an.
 
-**Trouvez votre mutuelle idéale en 2 minutes.** Comparez gratuitement les meilleures offres 2025.
+**Trouvez votre mutuelle idéale en 2 minutes.** Comparez gratuitement les meilleures offres 2026.
     `
   },
   {
