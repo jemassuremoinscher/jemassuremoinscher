@@ -23,6 +23,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import arthurCar from "@/assets/mascotte/arthur-car.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
+import RelatedInsuranceLinks from "@/components/insurance/RelatedInsuranceLinks";
 import arthurFlying from "@/assets/mascotte/arthur-sprint-coin.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
