@@ -136,6 +136,15 @@
     </div>
     <script type="module" src="/src/main.tsx"></script>
 
+    <!-- Register Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').catch(function() {});
+        });
+      }
+    </script>
+
     <!-- Third-party analytics — deferred until after page is interactive -->
     <script>
       // Delay all analytics until after first user interaction or 3.5s
