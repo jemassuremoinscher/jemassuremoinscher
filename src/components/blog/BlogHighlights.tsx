@@ -81,10 +81,10 @@ export const BlogHighlights = () => {
             <div>
               <h3 className="font-semibold mb-3 text-primary">{t('blogPage.expertTitle')}</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li><button type="button" onClick={() => navigate('/blog/mutuelle-sante-reduire-frais-medicaux-2024')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Économiser sur ses contrats</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/mutuelle-sante-reduire-frais-medicaux-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Économiser sur ses contrats</button></li>
                 <li><button type="button" onClick={() => navigate('/blog/assurance-auto-jeune-conducteur-astuces')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Choisir ses garanties</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/resiliation-assurance-droits-2024')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Éviter les pièges</button></li>
-                <li><button type="button" onClick={() => navigate('/blog/mutuelle-sante-reduire-frais-medicaux-2024')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Optimiser sa couverture</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/resiliation-assurance-droits-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Éviter les pièges</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/mutuelle-sante-reduire-frais-medicaux-2026')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Optimiser sa couverture</button></li>
               </ul>
             </div>
             <div>
