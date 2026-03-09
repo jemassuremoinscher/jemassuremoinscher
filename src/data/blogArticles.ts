@@ -883,8 +883,8 @@ La loi Hamon est un outil puissant pour faire des économies sur vos assurances.
   },
   {
     id: "3",
-    title: "Guide complet : Comment choisir son assurance auto en 2024",
-    slug: "guide-choisir-assurance-auto-2024",
+    title: "Guide complet : Comment choisir son assurance auto en 2026",
+    slug: "guide-choisir-assurance-auto-2026",
     description: "Tiers, tiers plus ou tous risques ? Découvrez notre guide complet pour choisir l'assurance auto adaptée à votre profil et économiser jusqu'à 400€ par an.",
     category: "Guides Pratiques",
     date: "10 janvier 2024",
