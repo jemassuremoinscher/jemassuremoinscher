@@ -892,7 +892,7 @@ const fr: Record<string, string> = {
   'pretPage.faq4.a': 'Pas pour les prêts de moins de 200 000€ par personne sur 25 ans max (loi Lemoine).',
 
   // Prévoyance Page
-  'prevoyancePage.title': 'Assurance Prévoyance',
+  'prevoyancePage.title': 'Assurance Prévoyance Moins Chère',
   'prevoyancePage.subtitle': 'Protégez votre famille et préparez l\'avenir sereinement.',
   'prevoyancePage.adv1.title': 'Protection familiale',
   'prevoyancePage.adv1.desc': "Protégez vos proches en cas d'accident de la vie.",
