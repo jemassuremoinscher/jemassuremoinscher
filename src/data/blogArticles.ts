@@ -4366,8 +4366,8 @@ Profitez de ces nouvelles dispositions pour revoir tous vos contrats et optimise
   },
   {
     id: "13",
-    title: "Droits des assurés : Ce que vous devez savoir en 2025",
-    slug: "droits-des-assures-2025",
+    title: "Droits des assurés : Ce que vous devez savoir en 2026",
+    slug: "droits-des-assures-2026",
     description: "Guide complet de vos droits en tant qu'assuré. Résiliation, indemnisation, recours : tout ce que les assureurs ne vous disent pas.",
     category: "Actualités Légales",
     date: "2 janvier 2025",
@@ -4375,7 +4375,7 @@ Profitez de ces nouvelles dispositions pour revoir tous vos contrats et optimise
     author: "Maître Julie Renard",
     tags: ["droits assurés", "protection consommateur", "recours", "indemnisation"],
     content: `
-# Vos Droits en Tant qu'Assuré : Le Guide Complet 2025
+# Vos Droits en Tant qu'Assuré : Le Guide Complet 2026
 
 Trop d'assurés ignorent leurs droits face aux compagnies d'assurance. Ce guide vous donne toutes les clés pour faire valoir vos droits et obtenir ce qui vous est dû.
 
