@@ -2919,7 +2919,7 @@ Parfait pour ceux qui privilégient les valeurs et la qualité de service.
 | Axa | ✅ Franchise 60€ | ✅ Oui | ✅ 21 jours | ✅ 12 mois |
 | MAIF | ✅ Franchise 80€ | ✅ Oui | ✅ 30 jours | ✅ 12 mois |
 
-## Nouveautés 2025
+## Nouveautés 2026
 
 ### Bonus véhicules électriques
 Tous les assureurs proposent désormais des réductions :
