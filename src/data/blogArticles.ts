@@ -2969,7 +2969,7 @@ Applications mobiles enrichies :
 - **Moyen** : Groupama
 - **Confort** : Allianz
 
-## Économiser en 2025
+## Économiser en 2026
 
 ### 5 astuces qui marchent
 
