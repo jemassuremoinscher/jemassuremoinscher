@@ -792,7 +792,7 @@ const fr: Record<string, string> = {
   'motoPage.faq4.a': "Oui, l'assurance est obligatoire pour tout véhicule à moteur, y compris les scooters 50cc.",
 
   // Animaux Page
-  'animauxPage.title': 'Assurance Animaux',
+  'animauxPage.title': 'Assurance Animaux Moins Chère',
   'animauxPage.subtitle': 'Protégez la santé de votre compagnon et maîtrisez vos dépenses vétérinaires.',
   'animauxPage.adv1.title': "Jusqu'à 100% remboursé",
   'animauxPage.adv1.desc': 'Les meilleurs taux de remboursement vétérinaire.',
