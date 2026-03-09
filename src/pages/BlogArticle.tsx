@@ -190,7 +190,7 @@ const BlogArticle = () => {
               
               {/* Author E-E-A-T */}
               <div className="mb-8">
-                <AuthorExpertise />
+                <AuthorExpertise authorName={article.author} />
               </div>
 
               {/* ToC — mobile only (desktop in sidebar) */}
