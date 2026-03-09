@@ -3944,7 +3944,7 @@ Grilles de garanties harmonisées.
 
 ## Conclusion
 
-La loi Lemoine est une vraie révolution pour les emprunteurs. En 2025, c'est encore plus simple et avantageux de changer.
+La loi Lemoine est une vraie révolution pour les emprunteurs. En 2026, c'est encore plus simple et avantageux de changer.
 
 **3 raisons d'agir maintenant :**
 1. Économie immédiate (30-50%)
