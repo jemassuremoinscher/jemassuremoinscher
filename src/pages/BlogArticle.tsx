@@ -279,6 +279,9 @@ const BlogArticle = () => {
                 />
               </div>
 
+              {/* Related product links */}
+              <RelatedProductLinks category={article.category} tags={article.tags} />
+
               {/* Keywords */}
               <SuggestedKeywords tags={article.tags} />
 
