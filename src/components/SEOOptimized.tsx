@@ -93,6 +93,10 @@ const SEOOptimized = ({
       <meta property="og:locale:alternate" content="en_US" />
       <meta property="og:site_name" content="jemassuremoinscher" />
 
+      {/* Article dates (for blog/article pages) */}
+      {articlePublishedTime && <meta property="article:published_time" content={articlePublishedTime} />}
+      {articleModifiedTime && <meta property="article:modified_time" content={articleModifiedTime} />}
+
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
