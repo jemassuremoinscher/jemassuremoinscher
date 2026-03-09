@@ -3652,7 +3652,7 @@ Double cotisation possible !
 ✅ Avis clients consultés ?
 ✅ Prix comparé (minimum 3 offres) ?
 
-## Verdict 2025
+## Verdict 2026
 
 **Meilleure innovation :** Luko
 **Meilleur service :** Maif
