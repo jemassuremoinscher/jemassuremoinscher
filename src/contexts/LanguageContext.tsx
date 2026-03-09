@@ -959,7 +959,7 @@ const fr: Record<string, string> = {
   'rcProPage.faq3.a': 'Généralement immédiat ou sous 24-48h après la souscription.',
 
   // MRP Page
-  'mrpPage.title': 'Multirisque Professionnelle',
+  'mrpPage.title': 'Assurance Multirisque Professionnelle',
   'mrpPage.subtitle': 'Protégez vos locaux, matériel et activité au meilleur prix.',
   'mrpPage.adv1.title': 'Tarifs compétitifs',
   'mrpPage.adv1.desc': 'Comparez et économisez sur votre MRP.',
