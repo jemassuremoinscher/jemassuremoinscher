@@ -2056,7 +2056,7 @@ Trouver la **meilleure assurance auto en 2026** nécessite de comparer les tarif
 
 **Pour qui ?** Jeunes conducteurs connectés
 
-## 💰 Comparatif des Prix Moyens 2025
+## 💰 Comparatif des Prix Moyens 2026
 
 | Assureur | Tiers | Tiers + | Tous Risques |
 |----------|-------|---------|--------------|
