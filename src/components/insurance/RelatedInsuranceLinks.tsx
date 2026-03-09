@@ -54,8 +54,8 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   habitation: {
     products: ["pno", "gli", "auto"],
     articles: [
-      { to: "/blog/comparatif-habitation-2025", label: "Comparatif habitation 2025" },
-      { to: "/blog/loi-lemoine-2025", label: "Loi Lemoine : ce qui change" },
+      { to: "/blog/comparatif-habitation-2026", label: "Comparatif habitation 2026" },
+      { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine : ce qui change" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
