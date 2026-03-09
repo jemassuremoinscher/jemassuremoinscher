@@ -124,7 +124,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   mrp: {
     products: ["rcpro", "pno", "gli"],
     articles: [
-      { to: "/blog/nouvelle-reglementation-assurance-2025", label: "Nouvelles réglementations 2025" },
+      { to: "/blog/nouvelle-reglementation-assurance-2026", label: "Nouvelles réglementations 2026" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
