@@ -2119,7 +2119,7 @@ Nous avons noté chaque assureur sur 5 critères :
 4. **Simplicité** (15%) : Souscription et gestion
 5. **Avis clients** (10%) : Satisfaction globale
 
-## 💡 Nos Conseils d\'Expert 2025
+## 💡 Nos Conseils d\'Expert 2026
 
 ### ✅ À faire absolument
 
