@@ -59,7 +59,6 @@ const Hero = () => {
                 height={220}
                 loading="eager"
                 decoding="async"
-                fetchPriority="high"
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }} />
               
