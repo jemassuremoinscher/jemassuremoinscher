@@ -158,7 +158,7 @@ const SEOLandingPage = ({
             <Card className="p-8 bg-gradient-to-br from-primary/5 to-accent/5 border-2 border-primary/20 text-center relative overflow-hidden">
               <img
                 src={arthurFlying}
-                alt="Arthur mascotte"
+                alt="Arthur en vol - trouvez votre assurance moins chère"
                 className="hidden md:block absolute -right-8 -bottom-4 w-28 h-auto opacity-80"
                 loading="lazy"
               />

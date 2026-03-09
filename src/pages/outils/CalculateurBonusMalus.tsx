@@ -229,7 +229,7 @@ const CalculateurBonusMalus = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-8 bg-gradient-to-r from-primary/5 to-accent/10 border border-primary/20 rounded-xl p-5 flex flex-col sm:flex-row items-center gap-4"
               >
-                <img src={arthurCoin} alt="Arthur mascotte" width={64} height={80} className="flex-shrink-0" loading="lazy" />
+                <img src={arthurCoin} alt="Arthur avec pièce d'or - calculateur bonus malus assurance auto" width={64} height={80} className="flex-shrink-0" loading="lazy" />
                 <div className="flex-1 text-center sm:text-left">
                   <p className="font-semibold text-foreground">
                     Félicitations ! Avec un bonus de <span className="text-primary">{newCoef.toFixed(2)}</span>, vous pouvez économiser

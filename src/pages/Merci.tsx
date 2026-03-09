@@ -21,7 +21,7 @@ const Merci = () => {
         <Card className="p-12 text-center max-w-2xl mx-auto">
           <img
             src={arthurStanding}
-            alt="Arthur, notre mascotte"
+            alt="Arthur debout - confirmation demande devis assurance moins chère"
             className="w-28 h-auto mx-auto mb-6"
             loading="eager"
           />
