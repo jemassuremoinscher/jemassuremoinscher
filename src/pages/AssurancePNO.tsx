@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import Header from '@/components/Header';
+import RelatedInsuranceLinks from "@/components/insurance/RelatedInsuranceLinks";
 import Footer from '@/components/Footer';
 import SEOOptimized from '@/components/SEOOptimized';
 import { Button } from '@/components/ui/button';
