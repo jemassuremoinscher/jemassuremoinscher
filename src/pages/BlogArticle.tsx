@@ -20,6 +20,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SuggestedKeywords from "@/components/blog/SuggestedKeywords";
 import PopularArticles from "@/components/blog/PopularArticles";
+import RelatedProductLinks from "@/components/blog/RelatedProductLinks";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 
@@ -277,6 +278,9 @@ const BlogArticle = () => {
                   subtitle="Les réponses aux questions que vous vous posez le plus souvent."
                 />
               </div>
+
+              {/* Related product links */}
+              <RelatedProductLinks category={article.category} tags={article.tags} />
 
               {/* Keywords */}
               <SuggestedKeywords tags={article.tags} />

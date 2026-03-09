@@ -21,6 +21,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import arthurHouse from "@/assets/mascotte/arthur-house.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
+import RelatedInsuranceLinks from "@/components/insurance/RelatedInsuranceLinks";
 import arthurFlying from "@/assets/mascotte/arthur-waving.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -153,6 +154,7 @@ const AssuranceHabitation = () => {
         </section>
 
         <ExpertiseSection insuranceType="assurance habitation" />
+        <RelatedInsuranceLinks currentPage="habitation" />
 
         <section className="max-w-2xl mx-auto text-center mb-16">
           <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">

@@ -1,3 +1,4 @@
+import RelatedInsuranceLinks from "@/components/insurance/RelatedInsuranceLinks";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -155,6 +156,7 @@ const AssuranceRCPro = () => {
             <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
+        <RelatedInsuranceLinks currentPage="rcpro" />
       </div>
       </main>
       <Footer />
