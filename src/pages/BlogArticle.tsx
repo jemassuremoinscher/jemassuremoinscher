@@ -9,6 +9,7 @@ import SEOOptimized from "@/components/SEOOptimized";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 import AuthorExpertise from "@/components/blog/AuthorExpertise";
+import { getAuthor, getAuthorJsonLd } from "@/data/authors";
 import TableOfContents, { type TocItem } from "@/components/blog/TableOfContents";
 import EssentielBox from "@/components/blog/EssentielBox";
 import ArticleCTA from "@/components/blog/ArticleCTA";
