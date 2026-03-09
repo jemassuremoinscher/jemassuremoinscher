@@ -2437,7 +2437,7 @@ Choisir la **meilleure mutuelle santé en 2026** peut vous faire économiser jus
 4. **Facilité de gestion** (15%)
 5. **Avis clients** (10%)
 
-## 💡 Conseils d\'Expert 2025
+## 💡 Conseils d\'Expert 2026
 
 ### ✅ Les bons réflexes
 
