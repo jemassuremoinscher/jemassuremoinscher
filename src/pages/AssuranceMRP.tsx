@@ -144,6 +144,7 @@ const AssuranceMRP = () => {
             <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
+        <RelatedInsuranceLinks currentPage="mrp" />
       </div>
       </main>
       <Footer />
