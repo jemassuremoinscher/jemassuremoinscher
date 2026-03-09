@@ -9,6 +9,7 @@ import SEOOptimized from "@/components/SEOOptimized";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
 import AuthorExpertise from "@/components/blog/AuthorExpertise";
+import { getAuthor, getAuthorJsonLd } from "@/data/authors";
 import TableOfContents, { type TocItem } from "@/components/blog/TableOfContents";
 import EssentielBox from "@/components/blog/EssentielBox";
 import ArticleCTA from "@/components/blog/ArticleCTA";
@@ -105,6 +106,9 @@ const BlogArticle = () => {
 
   const blogFaqSchema = addFAQSchema(blogFaqItems.map(f => ({ question: f.question, answer: f.answer })));
 
+  const authorProfile = getAuthor(article.author);
+  const authorJsonLd = getAuthorJsonLd(authorProfile);
+
   const articleSchema = addArticleSchema({
     headline: article.title,
     description: article.description,
@@ -125,7 +129,7 @@ const BlogArticle = () => {
         ogType="article"
         articlePublishedTime={convertToISO(article.date)}
         articleModifiedTime={convertToISO(article.date)}
-        jsonLd={[breadcrumbSchema, articleSchema, blogFaqSchema]}
+        jsonLd={[breadcrumbSchema, articleSchema, blogFaqSchema, authorJsonLd]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: article.title }]} />
@@ -186,7 +190,7 @@ const BlogArticle = () => {
               
               {/* Author E-E-A-T */}
               <div className="mb-8">
-                <AuthorExpertise />
+                <AuthorExpertise authorName={article.author} />
               </div>
 
               {/* ToC — mobile only (desktop in sidebar) */}
