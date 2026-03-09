@@ -3702,7 +3702,7 @@ Maintenant : Résiliation possible **à tout moment**, **gratuitement**
 
 ### 2. Suppression du questionnaire médical
 
-**Conditions 2025 :**
+**Conditions 2026 :**
 - Prêt < 200 000€ par emprunteur (400 000€ pour un couple)
 - Fin du prêt avant vos 60 ans
 - Pas de questionnaire santé à remplir
