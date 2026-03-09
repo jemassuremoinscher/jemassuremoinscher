@@ -129,7 +129,7 @@ const BlogArticle = () => {
         ogType="article"
         articlePublishedTime={convertToISO(article.date)}
         articleModifiedTime={convertToISO(article.date)}
-        jsonLd={[breadcrumbSchema, articleSchema, blogFaqSchema]}
+        jsonLd={[breadcrumbSchema, articleSchema, blogFaqSchema, authorJsonLd]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: article.title }]} />
