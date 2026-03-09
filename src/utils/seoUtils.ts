@@ -134,15 +134,25 @@ export const addArticleSchema = (article: {
   datePublished: string;
   image?: string;
 }) => {
+  const authorName = article.author || "jemassuremoinscher";
+  const isTeam = authorName.includes("équipe") || authorName === "jemassuremoinscher";
+  
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": article.headline,
     "description": article.description,
-    "author": {
-      "@type": "Organization",
-      "name": article.author || "jemassuremoinscher"
-    },
+    "author": isTeam
+      ? { "@type": "Organization", "name": authorName }
+      : {
+          "@type": "Person",
+          "name": authorName,
+          "worksFor": {
+            "@type": "Organization",
+            "name": "jemassuremoinscher",
+            "url": "https://www.jemassuremoinscher.fr"
+          }
+        },
     "publisher": {
       "@type": "Organization",
       "name": "jemassuremoinscher",
