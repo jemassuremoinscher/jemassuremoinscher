@@ -4,13 +4,15 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import CookieBanner from "@/components/CookieBanner";
-import { AIChatbot } from "@/components/chatbot/AIChatbot";
 import SkipToMain from "@/components/SkipToMain";
-import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import RouteTracker from "@/components/RouteTracker";
+
+// Lazy load non-critical global components
+const AIChatbot = lazy(() => import("@/components/chatbot/AIChatbot").then(m => ({ default: m.AIChatbot })));
+const ReadingProgressBar = lazy(() => import("@/components/ReadingProgressBar"));
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -67,7 +69,14 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Merci = lazy(() => import("./pages/Merci"));
 const CalculateurBonusMalus = lazy(() => import("./pages/outils/CalculateurBonusMalus"));
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, // 5 min — reduces unnecessary refetches
+      gcTime: 10 * 60 * 1000,
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -77,7 +86,9 @@ const App = () => (
           <Toaster />
           <BrowserRouter>
             <RouteTracker />
-            <ReadingProgressBar />
+            <Suspense fallback={null}>
+              <ReadingProgressBar />
+            </Suspense>
             <SkipToMain />
             <ErrorBoundary>
               <Suspense fallback={
@@ -144,7 +155,9 @@ const App = () => (
               </Suspense>
             </ErrorBoundary>
             <CookieBanner />
-            <AIChatbot />
+            <Suspense fallback={null}>
+              <AIChatbot />
+            </Suspense>
           </BrowserRouter>
         </TooltipProvider>
       </AuthProvider>

@@ -31,14 +31,18 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
     
-    <!-- Preload critical font (non-blocking) -->
+    <!-- DNS prefetch for third-party domains -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://connect.facebook.net" />
+    <link rel="dns-prefetch" href="https://www.clarity.ms" />
+    
+    <!-- Preconnect + preload font (non-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap&subset=latin" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap&subset=latin" /></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap&subset=latin" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap&subset=latin" /></noscript>
     
-    <!-- JSON-LD schemas are injected dynamically by React via SEOOptimized component -->
-    <!-- Critical CSS to hide SEO fallback content until React loads -->
+    <!-- Critical CSS -->
     <style>
       #root .seo-fallback {
         position: absolute;
@@ -51,7 +55,6 @@
         white-space: nowrap;
         border: 0;
       }
-      /* Show a loading state instead of blank page */
       #root:empty::before,
       #root:has(.seo-fallback):not(:has([data-react-root]))::before {
         content: '';
@@ -72,7 +75,6 @@
     <div id="root">
       <!-- SEO fallback content - visually hidden but crawlable -->
       <div class="seo-fallback" aria-hidden="true">
-      <!-- Static SEO fallback — replaced by React at runtime -->
       <header>
         <nav aria-label="Navigation principale">
           <a href="/">jemassuremoinscher</a>
@@ -129,41 +131,53 @@
     </div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- Analytics scripts deferred to avoid blocking render -->
-    <!-- Google Analytics 4 + Google Ads -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2S9BMSWT79"></script>
+    <!-- Third-party analytics — deferred until after page is interactive -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-2S9BMSWT79', {
-        'anonymize_ip': true,
-        'cookie_flags': 'SameSite=None;Secure'
-      });
-      gtag('config', 'AW-972332620');
-    </script>
+      // Delay all analytics until after first user interaction or 3.5s
+      function loadAnalytics() {
+        if (window.__analyticsLoaded) return;
+        window.__analyticsLoaded = true;
 
-    <!-- Meta Pixel (Facebook Pixel) -->
-    <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '2130973847755698');
-      fbq('track', 'PageView');
-    </script>
+        // Google Analytics 4 + Google Ads
+        var gs = document.createElement('script');
+        gs.src = 'https://www.googletagmanager.com/gtag/js?id=G-2S9BMSWT79';
+        gs.async = true;
+        document.head.appendChild(gs);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-2S9BMSWT79', { 'anonymize_ip': true, 'cookie_flags': 'SameSite=None;Secure' });
+        gtag('config', 'AW-972332620');
 
-    <!-- Microsoft Clarity -->
-    <script>
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "vjn36y0aqr");
+        // Meta Pixel
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '2130973847755698');
+        fbq('track', 'PageView');
+
+        // Microsoft Clarity
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "vjn36y0aqr");
+      }
+
+      // Fire on first interaction or after 3.5s timeout
+      var events = ['mousedown', 'touchstart', 'scroll', 'keydown'];
+      function onInteraction() {
+        loadAnalytics();
+        events.forEach(function(e) { removeEventListener(e, onInteraction, {capture:true}); });
+      }
+      events.forEach(function(e) { addEventListener(e, onInteraction, {capture:true, passive:true}); });
+      setTimeout(loadAnalytics, 3500);
     </script>
   </body>
 </html>
