@@ -3298,7 +3298,7 @@ Service gratuit compris dans votre mutuelle.
 ❌ Ne pas tester l'application
 ❌ Sous-estimer ses besoins futurs
 
-## Verdict 2025
+## Verdict 2026
 
 **Meilleure innovation :** Alan
 **Plus complète :** Harmonie Mutuelle
