@@ -43,8 +43,8 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   moto: {
     products: ["auto", "habitation", "prevoyance"],
     articles: [
-      { to: "/blog/meilleure-assurance-auto-2025", label: "Guide assurance véhicule 2025" },
-      { to: "/blog/resiliation-assurance-droits-2024", label: "Résilier son assurance facilement" },
+      { to: "/blog/meilleure-assurance-auto-2026", label: "Guide assurance véhicule 2026" },
+      { to: "/blog/resiliation-assurance-droits-2026", label: "Résilier son assurance facilement" },
     ],
     tools: [
       { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
