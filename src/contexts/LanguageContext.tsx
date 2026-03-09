@@ -762,7 +762,7 @@ const fr: Record<string, string> = {
   'habitationPage.faq4.a': "C'est le montant restant à votre charge après indemnisation. Plus la franchise est élevée, plus la prime est basse.",
 
   // Moto Page
-  'motoPage.title': 'Assurance Moto',
+  'motoPage.title': 'Assurance Moto Moins Chère',
   'motoPage.subtitle': "Comparez les meilleures offres et économisez jusqu'à 35% sur votre assurance moto.",
   'motoPage.adv1.title': "Jusqu'à 35% d'économies",
   'motoPage.adv1.desc': 'Comparez et économisez sur votre assurance moto.',
