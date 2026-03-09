@@ -199,27 +199,6 @@ const Hero = () => {
         </motion.div>
 
         {/* Trust Indicators */}
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
       </div>
     </section>);
 

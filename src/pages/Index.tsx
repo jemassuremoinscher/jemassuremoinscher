@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addOrganizationSchema, addServiceSchema, addFAQSchema } from "@/utils/seoUtils";
+import { addOrganizationSchema, addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 
 // Lazy load below-the-fold sections
 const QuickQuoteSection = lazy(() => import("@/components/quote/QuickQuoteSection"));
@@ -17,6 +17,7 @@ const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
 const StickyCTA = lazy(() => import("@/components/StickyCTA"));
 
 const Index = () => {
+  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }]);
   const organizationSchema = addOrganizationSchema(4.8, 2547);
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances Moins Chères en Ligne",
@@ -68,7 +69,7 @@ const Index = () => {
         keyword="assurance moins chère"
         keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
         canonical="https://www.jemassuremoinscher.fr"
-        jsonLd={[webSiteSchema, organizationSchema, serviceSchema, faqSchema]}
+        jsonLd={[webSiteSchema, organizationSchema, serviceSchema, breadcrumbSchema, faqSchema]}
       />
       <Header />
       <main id="main-content" role="main">

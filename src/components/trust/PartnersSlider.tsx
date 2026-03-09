@@ -1,18 +1,20 @@
+import { memo, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+// Only import webp/svg formats where available for perf
 import abeilleLogo from "@/assets/logos/abeille.jpg";
 import acheelLogo from "@/assets/logos/acheel.png";
 import agfLogo from "@/assets/logos/agf.png";
 import alanLogo from "@/assets/logos/alan-new.png";
 import allianzLogo from "@/assets/logos/allianz.webp";
-import amaguizLogo from "@/assets/logos/amaguiz.jpg";
+import amaguizLogo from "@/assets/logos/amaguiz.png";
 import aonLogo from "@/assets/logos/aon.jpg";
 import aprilLogo from "@/assets/logos/april-new.png";
 import axaLogo from "@/assets/logos/axa.webp";
 import directAssuranceLogo from "@/assets/logos/direct-assurance-new.png";
 import ganLogo from "@/assets/logos/gan.svg";
-import generaliLogo from "@/assets/logos/generali.jpg";
+import generaliLogo from "@/assets/logos/generali.png";
 import gmfLogo from "@/assets/logos/gmf-new.png";
 import leocareLogo from "@/assets/logos/leocare.png";
 import lolivierLogo from "@/assets/logos/lolivier.png";
@@ -29,39 +31,41 @@ import ornikarLogo from "@/assets/logos/ornikar.png";
 import swissLifeLogo from "@/assets/logos/swisslife.webp";
 import wilovLogo from "@/assets/logos/wilov.jpg";
 
-const PartnersSlider = () => {
-  const { t } = useLanguage();
-  const partners = [
-    { name: "Abeille Assurances", id: 1, logo: abeilleLogo },
-    { name: "Acheel", id: 2, logo: acheelLogo },
-    { name: "AGF", id: 3, logo: agfLogo },
-    { name: "Alan", id: 4, logo: alanLogo },
-    { name: "Allianz", id: 5, logo: allianzLogo },
-    { name: "Amaguiz", id: 6, logo: amaguizLogo },
-    { name: "AON", id: 7, logo: aonLogo },
-    { name: "April", id: 8, logo: aprilLogo },
-    { name: "AXA", id: 9, logo: axaLogo },
-    { name: "Direct Assurance", id: 10, logo: directAssuranceLogo },
-    { name: "GAN", id: 11, logo: ganLogo },
-    { name: "Generali", id: 12, logo: generaliLogo },
-    { name: "GMF", id: 13, logo: gmfLogo },
-    { name: "Leocare", id: 14, logo: leocareLogo },
-    { name: "L'Olivier", id: 15, logo: lolivierLogo },
-    { name: "MAAF", id: 16, logo: maafLogo },
-    { name: "MACIF", id: 17, logo: macifLogo },
-    { name: "MAIF", id: 18, logo: maifLogo },
-    { name: "Matmut", id: 19, logo: matmutLogo },
-    { name: "Maxance", id: 20, logo: maxanceLogo },
-    { name: "Mila", id: 21, logo: milaLogo },
-    { name: "MMA", id: 22, logo: mmaLogo },
-    { name: "Mutuelle de Poitiers", id: 23, logo: mpaLogo },
-    { name: "Neo Assurances", id: 24, logo: neoLogo },
-    { name: "Ornikar", id: 25, logo: ornikarLogo },
-    { name: "SwissLife", id: 26, logo: swissLifeLogo },
-    { name: "Wilov", id: 27, logo: wilovLogo },
-  ];
+const partners = [
+  { name: "Abeille Assurances", id: 1, logo: abeilleLogo },
+  { name: "Acheel", id: 2, logo: acheelLogo },
+  { name: "AGF", id: 3, logo: agfLogo },
+  { name: "Alan", id: 4, logo: alanLogo },
+  { name: "Allianz", id: 5, logo: allianzLogo },
+  { name: "Amaguiz", id: 6, logo: amaguizLogo },
+  { name: "AON", id: 7, logo: aonLogo },
+  { name: "April", id: 8, logo: aprilLogo },
+  { name: "AXA", id: 9, logo: axaLogo },
+  { name: "Direct Assurance", id: 10, logo: directAssuranceLogo },
+  { name: "GAN", id: 11, logo: ganLogo },
+  { name: "Generali", id: 12, logo: generaliLogo },
+  { name: "GMF", id: 13, logo: gmfLogo },
+  { name: "Leocare", id: 14, logo: leocareLogo },
+  { name: "L'Olivier", id: 15, logo: lolivierLogo },
+  { name: "MAAF", id: 16, logo: maafLogo },
+  { name: "MACIF", id: 17, logo: macifLogo },
+  { name: "MAIF", id: 18, logo: maifLogo },
+  { name: "Matmut", id: 19, logo: matmutLogo },
+  { name: "Maxance", id: 20, logo: maxanceLogo },
+  { name: "Mila", id: 21, logo: milaLogo },
+  { name: "MMA", id: 22, logo: mmaLogo },
+  { name: "Mutuelle de Poitiers", id: 23, logo: mpaLogo },
+  { name: "Neo Assurances", id: 24, logo: neoLogo },
+  { name: "Ornikar", id: 25, logo: ornikarLogo },
+  { name: "SwissLife", id: 26, logo: swissLifeLogo },
+  { name: "Wilov", id: 27, logo: wilovLogo },
+] as const;
 
-  const duplicatedPartners = [...partners, ...partners];
+// Use CSS animation instead of framer-motion for the infinite scroll
+// This avoids JS-driven animation on every frame → much better perf
+const PartnersSlider = memo(() => {
+  const { t } = useLanguage();
+  const duplicatedPartners = useMemo(() => [...partners, ...partners], []);
 
   return (
     <section className="py-8 md:py-12 bg-muted/50 overflow-hidden">
@@ -75,10 +79,9 @@ const PartnersSlider = () => {
         <div className="absolute left-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-r from-muted/50 to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-20 md:w-32 bg-gradient-to-l from-muted/50 to-transparent z-10" />
 
-        <motion.div
-          className="flex gap-8 md:gap-12"
-          animate={{ x: [0, -160 * partners.length] }}
-          transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 50, ease: "linear" } }}
+        <div
+          className="flex gap-8 md:gap-12 partners-scroll"
+          style={{ width: 'max-content' }}
         >
           {duplicatedPartners.map((partner, index) => (
             <div
@@ -96,10 +99,12 @@ const PartnersSlider = () => {
               />
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
-};
+});
+
+PartnersSlider.displayName = "PartnersSlider";
 
 export default PartnersSlider;
