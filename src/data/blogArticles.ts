@@ -2799,7 +2799,7 @@ Oui, mais la surprime jeune conducteur s\'applique aussi en 2-roues.
 
 **Économie moyenne avec notre méthode : 800€/an**
 
-**Comparez maintenant les meilleures assurances jeune conducteur 2025** et économisez jusqu\'à 40%.
+**Comparez maintenant les meilleures assurances jeune conducteur 2026** et économisez jusqu\'à 40%.
     `
   },
   {
