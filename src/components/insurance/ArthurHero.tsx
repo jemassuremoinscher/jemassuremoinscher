@@ -12,15 +12,7 @@ const ArthurHero = ({ imageSrc, imageAlt, speechText }: ArthurHeroProps) => {
         src={imageSrc}
         alt=""
         aria-hidden="true"
-        className="absolute -right-16 sm:-right-10 md:-right-6 -top-10 w-[280px] sm:w-[340px] md:w-[420px] lg:w-[500px] h-auto opacity-[0.12] pointer-events-none select-none rotate-[-8deg] blur-[0.5px]"
-        loading="eager"
-        decoding="async"
-      />
-      <img
-        src={imageSrc}
-        alt=""
-        aria-hidden="true"
-        className="absolute -left-16 sm:-left-10 md:-left-6 bottom-0 w-[220px] sm:w-[280px] md:w-[360px] lg:w-[420px] h-auto opacity-[0.08] pointer-events-none select-none rotate-[12deg] blur-[0.5px] scale-x-[-1]"
+        className="absolute -right-10 md:-right-4 -top-8 w-[280px] sm:w-[340px] md:w-[420px] lg:w-[500px] h-auto opacity-[0.12] pointer-events-none select-none rotate-[-8deg] blur-[0.5px]"
         loading="eager"
         decoding="async"
       />
