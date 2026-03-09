@@ -15,6 +15,11 @@ const LandingAuto = () => {
       areaServed: 'France',
     }),
     addAggregateRatingSchema('Assurance Auto', 4.8, 2847),
+    addFAQSchema([
+      { question: "Comment comparer les assurances auto ?", answer: "Remplissez notre formulaire en 2 minutes avec les informations de votre véhicule et votre profil. Vous recevrez plusieurs devis personnalisés de nos assureurs partenaires." },
+      { question: "Combien peut-on économiser sur l'assurance auto ?", answer: "En moyenne, nos clients économisent jusqu'à 40% sur leur assurance auto en comparant les offres de plus de 30 assureurs partenaires." },
+      { question: "Est-ce gratuit de comparer les assurances auto ?", answer: "Oui, la comparaison est 100% gratuite et sans engagement. Un expert dédié vous rappelle sous 2h pour finaliser votre choix." },
+    ]),
   ];
 
   return (
