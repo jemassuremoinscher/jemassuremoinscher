@@ -3189,7 +3189,7 @@ Pour ceux qui veulent le meilleur sans regarder le prix.
 | April | ✅ 60 jours | 80€/jour | 100% |
 | Swiss Life | ✅ Illimité | 150€/jour | 250% |
 
-## Nouveautés 2025
+## Nouveautés 2026
 
 ### Téléconsultation généralisée
 Toutes les mutuelles proposent désormais :
