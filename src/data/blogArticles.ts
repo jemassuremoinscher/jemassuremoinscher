@@ -3001,7 +3001,7 @@ Applications mobiles enrichies :
 ❌ Ne pas lire les conditions assistance
 ❌ Sous-estimer ses besoins réels
 
-## Verdict 2025
+## Verdict 2026
 
 **Meilleur rapport qualité-prix :** Direct Assurance
 **Couverture la plus complète :** Allianz
