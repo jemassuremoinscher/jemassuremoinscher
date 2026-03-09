@@ -3766,7 +3766,7 @@ Les banques qui bloquent abusivement :
 
 **Résultat :** Les banques acceptent mieux les délégations.
 
-## Comment changer en 2025 ?
+## Comment changer en 2026 ?
 
 ### Étape 1 : Trouver une meilleure offre
 
