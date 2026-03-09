@@ -48,31 +48,32 @@ const Hero = () => {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col items-center mb-6">
+            className="flex justify-center mb-6">
             
-            {/* Arthur bouncing above the bubble */}
-            <motion.img
-              src={arthurThumbsUp}
-              alt="Arthur mascotte jemassuremoinscher - super-héros de l'assurance moins chère"
-              className="w-28 h-auto md:w-36 lg:w-44 drop-shadow-2xl"
-              width={176}
-              height={220}
-              loading="eager"
-              decoding="async"
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }} />
-            
-            {/* Speech bubble - static below Arthur */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.6 }}
-              className="relative bg-white rounded-xl px-4 py-2 shadow-lg -mt-2">
+            <motion.div className="relative">
+              <motion.img
+                src={arthurThumbsUp}
+                alt="Arthur mascotte jemassuremoinscher - super-héros de l'assurance moins chère"
+                className="w-28 h-auto md:w-36 lg:w-44 drop-shadow-2xl"
+                width={176}
+                height={220}
+                loading="eager"
+                decoding="async"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }} />
               
-              <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white transform rotate-45" />
-              <p className="text-primary font-bold text-xs md:text-sm whitespace-nowrap">
-                {t('hero.arthurSpeech')} 👋
-              </p>
+              {/* Speech bubble */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0, x: 20 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.6 }}
+                className="absolute -top-2 -right-16 md:-right-20 bg-white rounded-xl px-3 py-1.5 shadow-lg">
+                
+                <p className="text-primary font-bold text-xs md:text-sm whitespace-nowrap">
+                  {t('hero.arthurSpeech')} 👋
+                </p>
+                <div className="absolute -bottom-1.5 left-3 w-3 h-3 bg-white transform rotate-45" />
+              </motion.div>
             </motion.div>
           </motion.div>
 
