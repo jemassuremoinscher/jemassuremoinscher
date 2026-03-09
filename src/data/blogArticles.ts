@@ -2943,7 +2943,7 @@ Applications mobiles enrichies :
 - Déclaration sinistre photo
 - Suivi dossier en temps réel
 
-## Comment choisir en 2025 ?
+## Comment choisir en 2026 ?
 
 ### Critère 1 : Votre profil conducteur
 - **Jeune conducteur** : Direct Assurance
