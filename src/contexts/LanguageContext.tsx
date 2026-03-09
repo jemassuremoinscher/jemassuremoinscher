@@ -698,7 +698,7 @@ const fr: Record<string, string> = {
   'autoPage.faq4.a': "C'est un coefficient qui fait varier votre prime selon votre historique de conduite. Sans accident, vous gagnez 5% de bonus par an.",
 
   // Santé Page
-  'santePage.title': 'Mutuelle Santé Pas Chère',
+  'santePage.title': 'Mutuelle Santé Moins Chère',
   'santePage.subtitle': "Comparez 50+ mutuelles et économisez jusqu'à 300€ par an sur votre complémentaire santé.",
   'santePage.adv1.title': "Jusqu'à 300€ d'économies",
   'santePage.adv1.desc': 'Comparez et économisez sur votre mutuelle santé.',
