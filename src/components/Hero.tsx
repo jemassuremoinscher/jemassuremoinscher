@@ -3,7 +3,6 @@ import { Car, Heart, Home, PawPrint, Bike, HeartPulse, Sparkles, Zap } from "luc
 import { Link } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { motion } from "framer-motion";
 import arthurThumbsUp from "@/assets/mascotte/arthur-wink-thumbsup.png";
 
 const Hero = () => {
