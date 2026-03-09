@@ -122,6 +122,9 @@ const BlogArticle = () => {
         description={article.description.substring(0, 150)}
         keywords={article.tags.join(", ")}
         canonical={`https://www.jemassuremoinscher.fr/blog/${article.slug}`}
+        ogType="article"
+        articlePublishedTime={convertToISO(article.date)}
+        articleModifiedTime={convertToISO(article.date)}
         jsonLd={[breadcrumbSchema, articleSchema, blogFaqSchema]}
       />
       <Header />
