@@ -420,8 +420,8 @@ L'essentiel :
   },
   {
     id: "7",
-    title: "Résiliation d'assurance : Tous vos droits en 2024",
-    slug: "resiliation-assurance-droits-2024",
+    title: "Résiliation d'assurance : Tous vos droits en 2026",
+    slug: "resiliation-assurance-droits-2026",
     description: "Loi Hamon, loi Chatel, résiliation à tout moment... Découvrez tous vos droits pour résilier facilement vos contrats d'assurance et changer quand vous voulez.",
     category: "Actualités Légales",
     date: "14 janvier 2024",
