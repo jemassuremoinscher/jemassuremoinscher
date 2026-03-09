@@ -68,7 +68,7 @@ const Index = () => {
         keyword="assurance moins chère"
         keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
         canonical="https://www.jemassuremoinscher.fr"
-        jsonLd={[webSiteSchema, organizationSchema, serviceSchema, ratingSchema, faqSchema]}
+        jsonLd={[webSiteSchema, organizationSchema, serviceSchema, faqSchema]}
       />
       <Header />
       <main id="main-content" role="main">
