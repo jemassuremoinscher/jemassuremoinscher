@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addOrganizationSchema, addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
+import { addOrganizationSchema, addServiceSchema, addFAQSchema } from "@/utils/seoUtils";
 
 // Lazy load below-the-fold sections
 const QuickQuoteSection = lazy(() => import("@/components/quote/QuickQuoteSection"));
