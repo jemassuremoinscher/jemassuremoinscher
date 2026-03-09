@@ -2526,7 +2526,7 @@ Vous venez d\'obtenir votre permis ? La **surprime jeune conducteur** peut doubl
 | 3ème année | 25% | 50€/mois |
 | 4ème année | 0% | 40€/mois |
 
-## 🏆 Top 5 Assureurs Jeune Conducteur 2025
+## 🏆 Top 5 Assureurs Jeune Conducteur 2026
 
 ### 1. Luko - Le Champion des Jeunes
 **Prix moyen :** 85€/mois (tous risques)
