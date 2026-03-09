@@ -700,8 +700,8 @@ Résilier son assurance est devenu un jeu d'enfant grâce aux nouvelles lois. N'
   },
   {
     id: "1",
-    title: "Loi Lemoine : Tout ce qui change pour l'assurance emprunteur en 2024",
-    slug: "loi-lemoine-assurance-emprunteur-2024",
+    title: "Loi Lemoine : Tout ce qui change pour l'assurance emprunteur en 2026",
+    slug: "loi-lemoine-assurance-emprunteur-2026",
     description: "La loi Lemoine révolutionne l'assurance de prêt immobilier. Découvrez vos nouveaux droits : résiliation à tout moment, suppression du questionnaire médical et économies garanties.",
     category: "Actualités Légales",
     date: "15 janvier 2024",
