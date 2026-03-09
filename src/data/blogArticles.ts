@@ -3751,7 +3751,7 @@ Surprimes en baisse et délais raccourcis.
 
 ### Comparateur officiel
 
-Lancement en 2025 d'un comparateur public :
+Lancement en 2026 d'un comparateur public :
 - Offres standardisées
 - Comparaison simplifiée
 - Labels qualité
