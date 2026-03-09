@@ -4350,7 +4350,7 @@ Les manquements graves sont publiés sur :
 
 ## Conclusion
 
-2025 marque un tournant dans la réglementation des assurances. Les changements favorisent largement les assurés :
+2026 marque un tournant dans la réglementation des assurances. Les changements favorisent largement les assurés :
 
 ✅ Plus de droits
 ✅ Meilleure protection
