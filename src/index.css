@@ -278,4 +278,24 @@ All colors MUST be HSL.
   .font-variable {
     font-variation-settings: 'wght' var(--font-weight, 400);
   }
+
+  /* Partners infinite scroll — CSS-driven for 60fps perf */
+  @keyframes partners-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .partners-scroll {
+    animation: partners-scroll 50s linear infinite;
+    will-change: transform;
+  }
+  .partners-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .partners-scroll {
+      animation: none;
+    }
+  }
 }
