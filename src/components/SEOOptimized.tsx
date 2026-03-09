@@ -51,6 +51,8 @@ const SEOOptimized = ({
   ogType = 'website',
   jsonLd,
   noindex = false,
+  articlePublishedTime,
+  articleModifiedTime,
 }: SEOOptimizedProps) => {
   const location = useLocation();
   // Normalize: strip trailing slash (except root "/"), ensure lowercase
