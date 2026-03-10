@@ -73,13 +73,17 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'pending':
-        return <Badge variant="outline" className="bg-orange-50">En attente</Badge>;
+        return <Badge variant="outline" className="bg-orange-50">⏳ En attente</Badge>;
       case 'contacted':
-        return <Badge variant="outline" className="bg-blue-50">Contacté</Badge>;
+        return <Badge variant="outline" className="bg-blue-50">📞 Contacté</Badge>;
+      case 'no_answer':
+        return <Badge variant="outline" className="bg-yellow-50">🚫 Ne répond pas</Badge>;
+      case 'qualified':
+        return <Badge variant="outline" className="bg-emerald-50">✅ Qualifié</Badge>;
       case 'converted':
-        return <Badge variant="outline" className="bg-green-50">Converti</Badge>;
+        return <Badge variant="outline" className="bg-green-50">🎉 Converti</Badge>;
       case 'rejected':
-        return <Badge variant="outline" className="bg-red-50">Rejeté</Badge>;
+        return <Badge variant="outline" className="bg-red-50">❌ Rejeté</Badge>;
       default:
         return <Badge>{status}</Badge>;
     }
@@ -201,10 +205,12 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">Tous les statuts</SelectItem>
-                  <SelectItem value="pending">En attente</SelectItem>
-                  <SelectItem value="contacted">Contacté</SelectItem>
-                  <SelectItem value="converted">Converti</SelectItem>
-                  <SelectItem value="rejected">Rejeté</SelectItem>
+                  <SelectItem value="pending">⏳ En attente</SelectItem>
+                  <SelectItem value="contacted">📞 Contacté</SelectItem>
+                  <SelectItem value="no_answer">🚫 Ne répond pas</SelectItem>
+                  <SelectItem value="qualified">✅ Qualifié</SelectItem>
+                  <SelectItem value="converted">🎉 Converti</SelectItem>
+                  <SelectItem value="rejected">❌ Rejeté</SelectItem>
                 </SelectContent>
               </Select>
             </>
@@ -292,34 +298,31 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                   </TableCell>
                   <TableCell>{getStatusBadge(quote.status)}</TableCell>
                   <TableCell>
-                    <div className="flex gap-2">
-                      {quote.status === 'pending' && (
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => updateQuoteStatus(quote.id, 'contacted')}
-                          title="Marquer comme contacté"
-                        >
-                          <CheckCircle className="h-4 w-4" />
-                        </Button>
-                      )}
-                      {quote.status !== 'rejected' && (
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={() => updateQuoteStatus(quote.id, 'rejected')}
-                          title="Rejeter"
-                        >
-                          <XCircle className="h-4 w-4 text-red-500" />
-                        </Button>
-                      )}
+                    <div className="flex items-center gap-1">
+                      <Select
+                        value={quote.status}
+                        onValueChange={(value) => updateQuoteStatus(quote.id, value)}
+                      >
+                        <SelectTrigger className="w-[140px] h-8 text-xs">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="pending">⏳ En attente</SelectItem>
+                          <SelectItem value="contacted">📞 Contacté</SelectItem>
+                          <SelectItem value="no_answer">🚫 Ne répond pas</SelectItem>
+                          <SelectItem value="qualified">✅ Qualifié</SelectItem>
+                          <SelectItem value="converted">🎉 Converti</SelectItem>
+                          <SelectItem value="rejected">❌ Rejeté</SelectItem>
+                        </SelectContent>
+                      </Select>
                       <Button
                         size="sm"
                         variant="ghost"
                         onClick={() => deleteQuote(quote.id, quote.full_name)}
-                        title="Supprimer définitivement"
+                        title="Supprimer"
+                        className="h-8 w-8 p-0"
                       >
-                        <Trash2 className="h-4 w-4 text-destructive" />
+                        <Trash2 className="h-3.5 w-3.5 text-destructive" />
                       </Button>
                     </div>
                   </TableCell>

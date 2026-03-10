@@ -13,7 +13,6 @@ import { QuotesTable } from '@/components/admin/QuotesTable';
 import { CallbacksTable } from '@/components/admin/CallbacksTable';
 import { ChartsSection } from '@/components/admin/ChartsSection';
 import { GlobalSearch } from '@/components/admin/GlobalSearch';
-import { EmailTrackingTable } from '@/components/admin/EmailTrackingTable';
 import { LeadsFilters, FilterOptions } from '@/components/admin/LeadsFilters';
 import { TrashBin } from '@/components/admin/TrashBin';
 import { CRMDashboard } from '@/components/admin/CRMDashboard';
@@ -289,10 +288,6 @@ const Admin = () => {
             <ChartsSection quotes={filteredQuotes} callbacks={filteredCallbacks} />
 
             <LeadsFilters onFilterChange={applyFilters} />
-
-            <div className="mb-4 sm:mb-8 overflow-x-auto">
-              <EmailTrackingTable />
-            </div>
 
             <div className="space-y-4 sm:space-y-8">
               <div ref={quotesTableRef} className="overflow-x-auto">
