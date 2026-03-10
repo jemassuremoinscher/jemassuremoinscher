@@ -73,13 +73,17 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'pending':
-        return <Badge variant="outline" className="bg-orange-50">En attente</Badge>;
+        return <Badge variant="outline" className="bg-orange-50">⏳ En attente</Badge>;
       case 'contacted':
-        return <Badge variant="outline" className="bg-blue-50">Contacté</Badge>;
+        return <Badge variant="outline" className="bg-blue-50">📞 Contacté</Badge>;
+      case 'no_answer':
+        return <Badge variant="outline" className="bg-yellow-50">🚫 Ne répond pas</Badge>;
+      case 'qualified':
+        return <Badge variant="outline" className="bg-emerald-50">✅ Qualifié</Badge>;
       case 'converted':
-        return <Badge variant="outline" className="bg-green-50">Converti</Badge>;
+        return <Badge variant="outline" className="bg-green-50">🎉 Converti</Badge>;
       case 'rejected':
-        return <Badge variant="outline" className="bg-red-50">Rejeté</Badge>;
+        return <Badge variant="outline" className="bg-red-50">❌ Rejeté</Badge>;
       default:
         return <Badge>{status}</Badge>;
     }
