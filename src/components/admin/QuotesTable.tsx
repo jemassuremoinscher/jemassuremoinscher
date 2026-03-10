@@ -205,10 +205,12 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">Tous les statuts</SelectItem>
-                  <SelectItem value="pending">En attente</SelectItem>
-                  <SelectItem value="contacted">Contacté</SelectItem>
-                  <SelectItem value="converted">Converti</SelectItem>
-                  <SelectItem value="rejected">Rejeté</SelectItem>
+                  <SelectItem value="pending">⏳ En attente</SelectItem>
+                  <SelectItem value="contacted">📞 Contacté</SelectItem>
+                  <SelectItem value="no_answer">🚫 Ne répond pas</SelectItem>
+                  <SelectItem value="qualified">✅ Qualifié</SelectItem>
+                  <SelectItem value="converted">🎉 Converti</SelectItem>
+                  <SelectItem value="rejected">❌ Rejeté</SelectItem>
                 </SelectContent>
               </Select>
             </>

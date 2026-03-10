@@ -290,10 +290,6 @@ const Admin = () => {
 
             <LeadsFilters onFilterChange={applyFilters} />
 
-            <div className="mb-4 sm:mb-8 overflow-x-auto">
-              <EmailTrackingTable />
-            </div>
-
             <div className="space-y-4 sm:space-y-8">
               <div ref={quotesTableRef} className="overflow-x-auto">
                 <QuotesTable quotes={filteredQuotes} onUpdate={fetchData} highlightedId={highlightedId} />
