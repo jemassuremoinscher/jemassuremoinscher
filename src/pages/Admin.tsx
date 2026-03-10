@@ -23,8 +23,7 @@ import { CommercialAlerts } from '@/components/admin/CommercialAlerts';
 import { RedistributionLog } from '@/components/admin/RedistributionLog';
 import { RedistributionButton } from '@/components/admin/RedistributionButton';
 import { RedistributionHistory } from '@/components/admin/RedistributionHistory';
-import { GoogleAdsDashboard } from '@/components/admin/GoogleAdsDashboard';
-import { GoogleAdsSyncButton } from '@/components/admin/GoogleAdsSyncButton';
+import { GoogleAnalyticsDashboard } from '@/components/admin/GoogleAnalyticsDashboard';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const Admin = () => {
@@ -158,7 +157,7 @@ const Admin = () => {
 
   const tabItems = [
     { value: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { value: 'google-ads', label: 'Google Ads', icon: TrendingUp },
+    { value: 'analytics', label: 'Analytics', icon: TrendingUp },
     { value: 'supervision', label: 'Supervision', icon: UserCog },
     { value: 'crm', label: 'CRM', icon: Target },
     { value: 'agents', label: 'Commerciaux', icon: Users },
@@ -299,11 +298,8 @@ const Admin = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="google-ads">
-            <div className="space-y-4 sm:space-y-6">
-              <GoogleAdsSyncButton />
-              <GoogleAdsDashboard />
-            </div>
+          <TabsContent value="analytics">
+            <GoogleAnalyticsDashboard />
           </TabsContent>
 
           <TabsContent value="supervision">
