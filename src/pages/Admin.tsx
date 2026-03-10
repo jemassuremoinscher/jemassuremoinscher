@@ -157,7 +157,7 @@ const Admin = () => {
 
   const tabItems = [
     { value: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { value: 'google-ads', label: 'Google Ads', icon: TrendingUp },
+    { value: 'analytics', label: 'Analytics', icon: TrendingUp },
     { value: 'supervision', label: 'Supervision', icon: UserCog },
     { value: 'crm', label: 'CRM', icon: Target },
     { value: 'agents', label: 'Commerciaux', icon: Users },
