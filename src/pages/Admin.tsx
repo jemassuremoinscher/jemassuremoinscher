@@ -23,8 +23,7 @@ import { CommercialAlerts } from '@/components/admin/CommercialAlerts';
 import { RedistributionLog } from '@/components/admin/RedistributionLog';
 import { RedistributionButton } from '@/components/admin/RedistributionButton';
 import { RedistributionHistory } from '@/components/admin/RedistributionHistory';
-import { GoogleAdsDashboard } from '@/components/admin/GoogleAdsDashboard';
-import { GoogleAdsSyncButton } from '@/components/admin/GoogleAdsSyncButton';
+import { GoogleAnalyticsDashboard } from '@/components/admin/GoogleAnalyticsDashboard';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const Admin = () => {
