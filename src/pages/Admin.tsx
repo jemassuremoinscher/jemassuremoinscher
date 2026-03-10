@@ -14,7 +14,6 @@ import { CallbacksTable } from '@/components/admin/CallbacksTable';
 import { ChartsSection } from '@/components/admin/ChartsSection';
 import { GlobalSearch } from '@/components/admin/GlobalSearch';
 import { LeadsFilters, FilterOptions } from '@/components/admin/LeadsFilters';
-import { LeadsFilters, FilterOptions } from '@/components/admin/LeadsFilters';
 import { TrashBin } from '@/components/admin/TrashBin';
 import { CRMDashboard } from '@/components/admin/CRMDashboard';
 import { SalesAgentsManager } from '@/components/admin/SalesAgentsManager';
