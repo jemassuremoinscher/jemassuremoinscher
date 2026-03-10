@@ -298,11 +298,8 @@ const Admin = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="google-ads">
-            <div className="space-y-4 sm:space-y-6">
-              <GoogleAdsSyncButton />
-              <GoogleAdsDashboard />
-            </div>
+          <TabsContent value="analytics">
+            <GoogleAnalyticsDashboard />
           </TabsContent>
 
           <TabsContent value="supervision">
