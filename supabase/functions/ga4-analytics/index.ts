@@ -91,9 +91,12 @@ serve(async (req) => {
     });
 
     const tokenData = await tokenResponse.json();
+    console.log('Token response status:', tokenResponse.status);
     if (!tokenData.access_token) {
+      console.error('Token error:', JSON.stringify(tokenData));
       throw new Error('Failed to get access token: ' + JSON.stringify(tokenData));
     }
+    console.log('Access token obtained successfully');
 
     const accessToken = tokenData.access_token;
 
@@ -175,12 +178,20 @@ serve(async (req) => {
       }),
     ]);
 
+    console.log('GA4 API response statuses:', overviewRes.status, pagesRes.status, sourcesRes.status, dailyRes.status);
+    
     const [overview, pages, sources, daily] = await Promise.all([
       overviewRes.json(),
       pagesRes.json(),
       sourcesRes.json(),
       dailyRes.json(),
     ]);
+
+    console.log('Overview response:', JSON.stringify(overview).slice(0, 500));
+    if (overview.error) {
+      console.error('GA4 overview error:', JSON.stringify(overview.error));
+      throw new Error('GA4 API error: ' + JSON.stringify(overview.error));
+    }
 
     // Parse overview
     const overviewMetrics = overview.rows?.[0]?.metricValues || [];
