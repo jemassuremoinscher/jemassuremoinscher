@@ -91,9 +91,12 @@ serve(async (req) => {
     });
 
     const tokenData = await tokenResponse.json();
+    console.log('Token response status:', tokenResponse.status);
     if (!tokenData.access_token) {
+      console.error('Token error:', JSON.stringify(tokenData));
       throw new Error('Failed to get access token: ' + JSON.stringify(tokenData));
     }
+    console.log('Access token obtained successfully');
 
     const accessToken = tokenData.access_token;
 
