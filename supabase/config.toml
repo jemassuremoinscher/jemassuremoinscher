@@ -14,3 +14,9 @@ verify_jwt = false
 
 [functions.sync-google-ads]
 verify_jwt = false
+
+[functions.ga4-analytics]
+verify_jwt = false
+
+[functions.ai-chatbot]
+verify_jwt = false
