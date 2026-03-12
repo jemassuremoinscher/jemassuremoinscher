@@ -1,11 +1,10 @@
-const CACHE_NAME = 'jmamc-v1';
+const CACHE_NAME = 'jmamc-v2';
 const STATIC_ASSETS = [
-  '/',
   '/favicon.png',
   '/opengraph-image.png',
 ];
 
-// Install: precache critical assets
+// Install: precache critical assets (NOT the HTML shell)
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
@@ -23,7 +22,7 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch: stale-while-revalidate for navigation, cache-first for assets
+// Fetch: network-first for navigation, cache-first for static assets
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
@@ -54,21 +53,18 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // HTML navigation: stale-while-revalidate
+  // HTML navigation: network-first (critical for SEO — bots must get fresh HTML)
   if (request.mode === 'navigate' || request.headers.get('accept')?.includes('text/html')) {
     event.respondWith(
-      caches.match('/').then((cached) => {
-        const fetchPromise = fetch(request)
-          .then((response) => {
-            if (response.ok) {
-              const clone = response.clone();
-              caches.open(CACHE_NAME).then((cache) => cache.put('/', clone));
-            }
-            return response;
-          })
-          .catch(() => cached);
-        return cached || fetchPromise;
-      })
+      fetch(request)
+        .then((response) => {
+          if (response.ok) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request.url, clone));
+          }
+          return response;
+        })
+        .catch(() => caches.match(request.url) || caches.match('/'))
     );
     return;
   }
