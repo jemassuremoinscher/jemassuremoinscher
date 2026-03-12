@@ -87,10 +87,6 @@ const AssuranceAuto = () => {
     } finally { setIsLoading(false); }
   };
 
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Assurance Auto", url: "https://www.jemassuremoinscher.fr/assurance-auto" }
-  ]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Auto", description: "Comparez les meilleures offres d'assurance auto en France. Devis gratuit et personnalisé en 2 minutes. Économisez jusqu'à 400€ par an.", provider: "jemassuremoinscher", areaServed: "France" });
   const ratingSchema = addAggregateRatingSchema("Comparateur Assurance Auto", 4.7, 1853);
   const howToSchema = addHowToSchema({ name: "Comment obtenir un devis d'assurance auto en ligne", description: "Guide étape par étape pour comparer et obtenir votre devis d'assurance auto en 2 minutes", totalTime: "PT2M", steps: [{ name: "Renseignez les informations de votre véhicule", text: "Indiquez la marque, le modèle, la date de mise en circulation et l'usage de votre véhicule." }, { name: "Précisez votre profil de conducteur", text: "Renseignez votre âge, votre ancienneté de permis et votre coefficient bonus-malus." }, { name: "Comparez les offres disponibles", text: "Recevez instantanément plusieurs devis d'assureurs partenaires." }, { name: "Faites-vous rappeler", text: "Sélectionnez l'offre qui vous convient et demandez à être rappelé par un conseiller." }] });
@@ -104,7 +100,7 @@ const AssuranceAuto = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Auto Moins Chère : -40% en 2 min ⭐" description="50+ assureurs comparés gratuitement. Nos clients économisent 320€/an en moyenne. Devis auto instantané, sans engagement." keyword="assurance auto moins chère" keywords="assurance auto moins cher, comparateur assurance auto, devis assurance voiture, changer assurance auto" canonical="https://www.jemassuremoinscher.fr/assurance-auto" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, howToSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Auto Moins Chère : -40% en 2 min ⭐" description="50+ assureurs comparés gratuitement. Nos clients économisent 320€/an en moyenne. Devis auto instantané, sans engagement." keyword="assurance auto moins chère" keywords="assurance auto moins cher, comparateur assurance auto, devis assurance voiture, changer assurance auto" canonical="https://www.jemassuremoinscher.fr/assurance-auto" jsonLd={[serviceSchema, ratingSchema, howToSchema, faqSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Auto" }]} />
 

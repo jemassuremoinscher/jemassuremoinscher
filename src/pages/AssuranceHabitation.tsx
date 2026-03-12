@@ -16,7 +16,7 @@ import { homeInsurers, generateInsurerOffers } from "@/utils/insurerData";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurHouse from "@/assets/mascotte/arthur-house.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
@@ -77,7 +77,6 @@ const AssuranceHabitation = () => {
     } finally { setIsLoading(false); }
   };
 
-  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Habitation", url: "https://www.jemassuremoinscher.fr/assurance-habitation" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Habitation", description: "Comparez les assurances habitation. Devis gratuit et rapide.", provider: "jemassuremoinscher", areaServed: "France" });
   const ratingSchema = addAggregateRatingSchema("Comparateur Assurance Habitation", 4.7, 1435);
   const faqSchema = addFAQSchema([{ question: "L'assurance habitation est-elle obligatoire ?", answer: "Oui pour les locataires. Fortement recommandée pour les propriétaires." }, { question: "Combien coûte une assurance habitation ?", answer: "Entre 120€ et 350€ par an selon la surface et les garanties." }]);
@@ -90,7 +89,7 @@ const AssuranceHabitation = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Habitation Moins Chère dès 3€/mois" description="Comparez 50+ assureurs habitation en 2 min. Maison ou appartement, locataire ou propriétaire. Économisez jusqu'à 40%." keyword="assurance habitation moins chère" keywords="assurance maison, assurance appartement, assurance logement, assurance locataire" canonical="https://www.jemassuremoinscher.fr/assurance-habitation" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Habitation Moins Chère dès 3€/mois" description="Comparez 50+ assureurs habitation en 2 min. Maison ou appartement, locataire ou propriétaire. Économisez jusqu'à 40%." keyword="assurance habitation moins chère" keywords="assurance maison, assurance appartement, assurance logement, assurance locataire" canonical="https://www.jemassuremoinscher.fr/assurance-habitation" jsonLd={[serviceSchema, ratingSchema, faqSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Habitation" }]} />
 

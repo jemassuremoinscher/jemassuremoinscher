@@ -16,7 +16,7 @@ import { healthInsurers, generateInsurerOffers } from "@/utils/insurerData";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurSick from "@/assets/mascotte/arthur-sick.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
@@ -76,7 +76,6 @@ const AssuranceSante = () => {
     } finally { setIsLoading(false); }
   };
 
-  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Mutuelle Santé", url: "https://www.jemassuremoinscher.fr/assurance-sante" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Mutuelle Santé", description: "Comparez les meilleures mutuelles santé en France. Devis gratuit et personnalisé en 2 minutes.", provider: "jemassuremoinscher", areaServed: "France" });
   const ratingSchema = addAggregateRatingSchema("Comparateur Mutuelle Santé", 4.6, 1642);
   const faqSchema = addFAQSchema([{ question: "Qu'est-ce qu'une mutuelle santé ?", answer: "Une mutuelle santé rembourse tout ou partie des dépenses de santé non couvertes par la Sécurité sociale." }, { question: "Comment choisir sa mutuelle santé ?", answer: "Choisissez selon vos besoins : niveau de remboursement optique/dentaire, délais de carence et votre budget." }, { question: "Combien coûte une mutuelle santé ?", answer: "Le prix varie selon votre âge, situation familiale et niveau de garanties. Comptez entre 45€ et 200€/mois." }]);
@@ -89,7 +88,7 @@ const AssuranceSante = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Mutuelle Santé Moins Chère : Économisez 300€/an" description="Comparez 50+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale. 4.8/5 satisfaction client." keyword="mutuelle santé moins chère" keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher, mutuelle famille" canonical="https://www.jemassuremoinscher.fr/assurance-sante" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Mutuelle Santé Moins Chère : Économisez 300€/an" description="Comparez 50+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale. 4.8/5 satisfaction client." keyword="mutuelle santé moins chère" keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher, mutuelle famille" canonical="https://www.jemassuremoinscher.fr/assurance-sante" jsonLd={[serviceSchema, ratingSchema, faqSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Mutuelle Santé" }]} />
 
