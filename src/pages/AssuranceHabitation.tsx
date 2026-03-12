@@ -77,7 +77,6 @@ const AssuranceHabitation = () => {
     } finally { setIsLoading(false); }
   };
 
-  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Habitation", url: "https://www.jemassuremoinscher.fr/assurance-habitation" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Habitation", description: "Comparez les assurances habitation. Devis gratuit et rapide.", provider: "jemassuremoinscher", areaServed: "France" });
   const ratingSchema = addAggregateRatingSchema("Comparateur Assurance Habitation", 4.7, 1435);
   const faqSchema = addFAQSchema([{ question: "L'assurance habitation est-elle obligatoire ?", answer: "Oui pour les locataires. Fortement recommandée pour les propriétaires." }, { question: "Combien coûte une assurance habitation ?", answer: "Entre 120€ et 350€ par an selon la surface et les garanties." }]);

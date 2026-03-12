@@ -80,7 +80,6 @@ const AssuranceMoto = () => {
     } finally { setIsLoading(false); }
   };
 
-  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Moto", url: "https://www.jemassuremoinscher.fr/assurance-moto" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Moto", description: "Comparez les assurances moto et scooter. Devis gratuit et rapide.", provider: "jemassuremoinscher", areaServed: "France" });
   const ratingSchema = addAggregateRatingSchema("Comparateur Assurance Moto", 4.5, 987);
   const faqSchema = addFAQSchema([{ question: "Quelle assurance moto choisir ?", answer: "Le choix dépend de votre moto, votre profil et usage. Comparez les formules au tiers, intermédiaire et tous risques." }, { question: "L'assurance moto est-elle obligatoire ?", answer: "Oui, au minimum une assurance au tiers est obligatoire pour circuler." }]);
