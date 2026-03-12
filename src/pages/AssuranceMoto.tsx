@@ -17,7 +17,7 @@ import { motoInsurers, generateInsurerOffers } from "@/utils/insurerData";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurMoto from "@/assets/mascotte/arthur-moto.png";
 import ArthurHero from "@/components/insurance/ArthurHero";

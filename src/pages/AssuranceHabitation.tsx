@@ -16,7 +16,7 @@ import { homeInsurers, generateInsurerOffers } from "@/utils/insurerData";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurHouse from "@/assets/mascotte/arthur-house.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
