@@ -39,9 +39,9 @@ export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number
 export const addAggregateRatingSchema = (name: string, ratingValue: number, reviewCount: number) => {
   return {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "Organization",
     "name": name,
-    "@id": "https://www.jemassuremoinscher.fr/#business",
+    "@id": "https://www.jemassuremoinscher.fr/#organization",
     "url": "https://www.jemassuremoinscher.fr",
     "aggregateRating": {
       "@type": "AggregateRating",
