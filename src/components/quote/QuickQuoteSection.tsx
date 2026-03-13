@@ -13,6 +13,7 @@ import { useHoneypot } from "@/hooks/useHoneypot";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-idea.png";
 import { trackMetaLead } from "@/utils/metaPixelTracking";
+import { normalizeInsuranceType } from "@/utils/insuranceTypeNormalizer";
 
 type InsuranceType = "auto" | "moto" | "habitation" | "sante" | "pret" | "animaux" | "vie" | "prevoyance" | "rc_pro" | "mrp" | "gli" | "pno" | "";
 
