@@ -138,7 +138,7 @@ export const QuoteRequestForm = () => {
 
     try {
       const { data: insertedQuote, error } = await supabase.from("insurance_quotes").insert({
-        insurance_type: data.insuranceType,
+        insurance_type: normalizeInsuranceType(data.insuranceType),
         full_name: data.fullName,
         email: data.email,
         phone: data.phone,

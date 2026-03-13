@@ -60,7 +60,7 @@ export const SubscriptionModal = ({ open, onOpenChange, offerDetails }: Subscrip
     setIsSubmitting(true);
     try {
       const { error } = await supabase.from("insurance_quotes").insert({
-        insurance_type: offerDetails.insuranceType,
+        insurance_type: normalizeInsuranceType(offerDetails.insuranceType),
         full_name: data.fullName,
         email: data.email,
         phone: data.phone,
