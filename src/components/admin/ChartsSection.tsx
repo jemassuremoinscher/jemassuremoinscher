@@ -23,8 +23,8 @@ const renderCustomLabel = ({ name, percent }: { name: string; percent: number })
 export const ChartsSection = ({ quotes, callbacks }: ChartsSectionProps) => {
   // Group quotes by insurance type
   const quotesByType = quotes.reduce((acc, quote) => {
-    const type = quote.insurance_type;
-    const label = INSURANCE_LABELS[type] || type;
+    const type = normalizeInsuranceType(quote.insurance_type);
+    const label = (INSURANCE_TYPE_LABELS as Record<string, string>)[type] || type;
     acc[label] = (acc[label] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
