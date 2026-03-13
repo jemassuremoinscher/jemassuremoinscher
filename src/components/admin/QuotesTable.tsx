@@ -91,15 +91,8 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
   };
 
   const getInsuranceTypeLabel = (type: string) => {
-    const types: Record<string, string> = {
-      auto: 'Auto',
-      moto: 'Moto',
-      habitation: 'Habitation',
-      sante: 'Santé',
-      pret: 'Prêt',
-      animaux: 'Animaux',
-    };
-    return types[type] || type;
+    const normalized = normalizeInsuranceType(type);
+    return (INSURANCE_TYPE_LABELS as Record<string, string>)[normalized] || type;
   };
 
   const handleExport = () => {
