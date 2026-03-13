@@ -11,6 +11,7 @@ import { toast } from 'sonner';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { exportToCSV, formatQuotesForExport } from '@/utils/exportCSV';
+import { INSURANCE_TYPE_LABELS, normalizeInsuranceType } from '@/utils/insuranceTypeNormalizer';
 
 interface Quote {
   id: string;
@@ -90,15 +91,8 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
   };
 
   const getInsuranceTypeLabel = (type: string) => {
-    const types: Record<string, string> = {
-      auto: 'Auto',
-      moto: 'Moto',
-      habitation: 'Habitation',
-      sante: 'Santé',
-      pret: 'Prêt',
-      animaux: 'Animaux',
-    };
-    return types[type] || type;
+    const normalized = normalizeInsuranceType(type);
+    return (INSURANCE_TYPE_LABELS as Record<string, string>)[normalized] || type;
   };
 
   const handleExport = () => {

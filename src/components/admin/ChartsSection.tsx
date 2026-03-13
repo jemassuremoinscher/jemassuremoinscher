@@ -1,5 +1,6 @@
 import { Card } from '@/components/ui/card';
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from 'recharts';
+import { INSURANCE_TYPE_LABELS, normalizeInsuranceType } from '@/utils/insuranceTypeNormalizer';
 
 interface ChartsSectionProps {
   quotes: any[];
@@ -14,21 +15,6 @@ const INSURANCE_COLORS = [
 
 const STATUS_COLORS = ['#f59e0b', '#3b82f6', '#10b981', '#f97316', '#8b5cf6'];
 
-const INSURANCE_LABELS: Record<string, string> = {
-  auto: 'Auto',
-  habitation: 'Habitation',
-  sante: 'Santé',
-  vie: 'Vie',
-  moto: 'Moto',
-  animaux: 'Animaux',
-  pret: 'Prêt',
-  prevoyance: 'Prévoyance',
-  rcpro: 'RC Pro',
-  mrp: 'MRP',
-  pno: 'PNO',
-  gli: 'GLI',
-};
-
 const renderCustomLabel = ({ name, percent }: { name: string; percent: number }) => {
   if (percent < 0.05) return null;
   return `${(percent * 100).toFixed(0)}%`;
@@ -37,8 +23,8 @@ const renderCustomLabel = ({ name, percent }: { name: string; percent: number })
 export const ChartsSection = ({ quotes, callbacks }: ChartsSectionProps) => {
   // Group quotes by insurance type
   const quotesByType = quotes.reduce((acc, quote) => {
-    const type = quote.insurance_type;
-    const label = INSURANCE_LABELS[type] || type;
+    const type = normalizeInsuranceType(quote.insurance_type);
+    const label = (INSURANCE_TYPE_LABELS as Record<string, string>)[type] || type;
     acc[label] = (acc[label] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);

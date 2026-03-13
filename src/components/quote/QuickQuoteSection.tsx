@@ -13,6 +13,7 @@ import { useHoneypot } from "@/hooks/useHoneypot";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-idea.png";
 import { trackMetaLead } from "@/utils/metaPixelTracking";
+import { normalizeInsuranceType } from "@/utils/insuranceTypeNormalizer";
 
 type InsuranceType = "auto" | "moto" | "habitation" | "sante" | "pret" | "animaux" | "vie" | "prevoyance" | "rc_pro" | "mrp" | "gli" | "pno" | "";
 
@@ -216,7 +217,7 @@ const QuickQuoteSection = () => {
     setIsSubmitting(true);
     try {
       const { error } = await supabase.from('insurance_quotes').insert({
-        insurance_type: quoteData.insuranceType, full_name: '', email: quoteData.email, phone: quoteData.phone,
+        insurance_type: normalizeInsuranceType(quoteData.insuranceType), full_name: '', email: quoteData.email, phone: quoteData.phone,
         quote_data: { source: 'quick_quote', profileOption: quoteData.profileOption, coverageLevel: quoteData.coverageLevel, vehicleBrand: quoteData.vehicleBrand || undefined },
         status: 'pending',
       });

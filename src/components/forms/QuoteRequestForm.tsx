@@ -17,6 +17,7 @@ import { useHoneypot } from "@/hooks/useHoneypot";
 import { trackGoogleAdsConversionWithParams } from "@/utils/googleAdsTracking";
 import { trackMetaLead } from "@/utils/metaPixelTracking";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { normalizeInsuranceType } from "@/utils/insuranceTypeNormalizer";
 
 const COVERAGE_OPTIONS: Record<string, { value: string; labelKey: string }[]> = {
   auto: [
@@ -137,7 +138,7 @@ export const QuoteRequestForm = () => {
 
     try {
       const { data: insertedQuote, error } = await supabase.from("insurance_quotes").insert({
-        insurance_type: data.insuranceType,
+        insurance_type: normalizeInsuranceType(data.insuranceType),
         full_name: data.fullName,
         email: data.email,
         phone: data.phone,

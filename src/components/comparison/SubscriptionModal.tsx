@@ -18,6 +18,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { normalizeInsuranceType } from "@/utils/insuranceTypeNormalizer";
 
 const subscriptionSchema = z.object({
   fullName: z.string().trim().min(2, "Le nom doit contenir au moins 2 caractères").max(100, "Le nom ne peut pas dépasser 100 caractères"),
@@ -59,7 +60,7 @@ export const SubscriptionModal = ({ open, onOpenChange, offerDetails }: Subscrip
     setIsSubmitting(true);
     try {
       const { error } = await supabase.from("insurance_quotes").insert({
-        insurance_type: offerDetails.insuranceType,
+        insurance_type: normalizeInsuranceType(offerDetails.insuranceType),
         full_name: data.fullName,
         email: data.email,
         phone: data.phone,
