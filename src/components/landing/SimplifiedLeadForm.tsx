@@ -12,6 +12,7 @@ import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { useHoneypot } from '@/hooks/useHoneypot';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { normalizeInsuranceType } from '@/utils/insuranceTypeNormalizer';
 
 const simplifiedLeadSchema = z.object({
   fullName: z.string().trim().min(2, 'Nom requis').max(100),
