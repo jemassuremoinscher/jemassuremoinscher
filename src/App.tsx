@@ -67,6 +67,7 @@ const NewsletterGestion = lazy(() => import("./pages/NewsletterGestion"));
 const PlanDuSite = lazy(() => import("./pages/PlanDuSite"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Merci = lazy(() => import("./pages/Merci"));
+const LlmsTxt = lazy(() => import("./pages/LlmsTxt"));
 const CalculateurBonusMalus = lazy(() => import("./pages/outils/CalculateurBonusMalus"));
 
 const queryClient = new QueryClient({
@@ -150,6 +151,7 @@ const App = () => (
                   <Route path="/plan-du-site" element={<PlanDuSite />} />
                   <Route path="/merci" element={<Merci />} />
                   <Route path="/outils/calculateur-bonus-malus" element={<CalculateurBonusMalus />} />
+                  <Route path="/llms.txt" element={<LlmsTxt />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>
