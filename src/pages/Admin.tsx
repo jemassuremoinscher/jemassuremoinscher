@@ -204,6 +204,7 @@ const Admin = () => {
                   onClick={fetchData}
                   disabled={isRefreshing}
                   className="sm:hidden"
+                  aria-label="Actualiser les données"
                 >
                   <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
                 </Button>
