@@ -302,7 +302,7 @@ const Footer = () => {
           <DialogHeader className="p-6 pb-0 flex flex-row items-center justify-between">
             <DialogTitle className="text-2xl font-bold">{t('footer.privacy')}</DialogTitle>
             <DialogClose asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8">
+              <Button variant="ghost" size="icon" className="h-8 w-8" aria-label="Fermer la politique de confidentialité">
                 <X className="h-5 w-5" />
               </Button>
             </DialogClose>
