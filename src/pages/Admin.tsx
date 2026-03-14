@@ -179,7 +179,7 @@ const Admin = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0">
-                  <img src={arthurWaving} alt="Arthur mascotte" className="w-full h-full object-contain" />
+                  <img src={arthurWaving} alt="Arthur mascotte" className="w-full h-full object-contain" width={40} height={40} loading="eager" decoding="async" />
                 </div>
                 <div className="min-w-0">
                   <h1 className="text-lg sm:text-2xl font-bold truncate">Dashboard Admin</h1>
