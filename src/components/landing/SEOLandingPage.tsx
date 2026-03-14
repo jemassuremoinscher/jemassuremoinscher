@@ -101,6 +101,8 @@ const SEOLandingPage = ({
               src={arthurThumbsUp}
               alt="Arthur pouce levé - comparateur assurance moins chère"
               className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto"
+              width={128}
+              height={160}
               loading="eager"
               decoding="async"
             />
