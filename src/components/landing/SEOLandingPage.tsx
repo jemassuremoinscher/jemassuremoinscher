@@ -101,6 +101,8 @@ const SEOLandingPage = ({
               src={arthurThumbsUp}
               alt="Arthur pouce levé - comparateur assurance moins chère"
               className="hidden lg:block absolute -left-32 bottom-0 w-32 h-auto"
+              width={128}
+              height={160}
               loading="eager"
               decoding="async"
             />
@@ -160,7 +162,10 @@ const SEOLandingPage = ({
                 src={arthurFlying}
                 alt="Arthur en vol - trouvez votre assurance moins chère"
                 className="hidden md:block absolute -right-8 -bottom-4 w-28 h-auto opacity-80"
+                width={112}
+                height={140}
                 loading="lazy"
+                decoding="async"
               />
               <h2 className="text-2xl font-bold text-foreground mb-4">
                 {bottomCtaTitle}

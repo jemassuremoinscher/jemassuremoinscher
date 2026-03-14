@@ -23,7 +23,10 @@ const Merci = () => {
             src={arthurStanding}
             alt="Arthur debout - confirmation demande devis assurance moins chère"
             className="w-28 h-auto mx-auto mb-6"
+            width={112}
+            height={140}
             loading="eager"
+            decoding="async"
           />
           <h1 className="text-2xl font-bold mb-4">Merci pour votre demande !</h1>
           <p className="text-muted-foreground mb-6">
