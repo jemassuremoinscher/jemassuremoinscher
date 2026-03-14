@@ -100,7 +100,7 @@ export const GoogleAnalyticsDashboard = () => {
               <SelectItem value="90daysAgo">90 derniers jours</SelectItem>
             </SelectContent>
           </Select>
-          <Button variant="outline" size="icon" onClick={() => refetch()} disabled={isRefetching}>
+          <Button variant="outline" size="icon" onClick={() => refetch()} disabled={isRefetching} aria-label="Rafraîchir les données Analytics">
             <RefreshCw className={`h-4 w-4 ${isRefetching ? 'animate-spin' : ''}`} />
           </Button>
         </div>

@@ -56,6 +56,7 @@ const CookieBanner = () => {
               size="icon"
               onClick={handleRejectAll}
               className="shrink-0"
+              aria-label="Fermer la bannière de cookies"
             >
               <X className="h-4 w-4" />
             </Button>
