@@ -115,6 +115,10 @@ const Header = () => {
                   src={arthurThumbsUp} 
                   alt="Arthur, la mascotte" 
                   className="h-9 w-9 sm:h-10 sm:w-10 object-contain shrink-0"
+                  width={40}
+                  height={40}
+                  loading="eager"
+                  decoding="async"
                 />
                 <span className="text-base sm:text-lg font-bold tracking-tight whitespace-nowrap">
                   <span className="text-white">jemassure</span>
