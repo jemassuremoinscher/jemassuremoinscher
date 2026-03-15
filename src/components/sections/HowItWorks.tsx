@@ -105,16 +105,14 @@ const HowItWorks = () => {
           className="flex justify-center mt-12"
         >
           <div className="flex items-center gap-4 bg-accent/10 rounded-full px-6 py-3 border border-accent/30">
-            <motion.img
+            <img
               src={arthurRunning}
               alt="Arthur court avec une pièce - économisez sur votre assurance moins chère"
-              className="w-12 h-auto"
+              className="w-12 h-auto animate-hero-float"
               width={48}
               height={60}
               loading="lazy"
               decoding="async"
-              animate={{ x: [0, 5, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
             />
             <p className="text-sm md:text-base font-medium text-foreground">
               <span className="text-accent font-bold">Arthur</span> {t('howItWorks.arthurCta')}
