@@ -19,7 +19,7 @@ const WhyUsComparison = () => {
   const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
   return (
-    <section className="py-12 md:py-20 bg-muted/30" aria-labelledby="why-us-title">
+    <section className="py-12 md:py-20 bg-muted/30 section-lazy" aria-labelledby="why-us-title">
       <div className="container mx-auto px-4">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
           <h2 id="why-us-title" className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3">
@@ -113,7 +113,7 @@ const WhyUsComparison = () => {
         {/* Arthur Speech Bubble */}
         <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
           <div className="relative">
-            <motion.img src={arthurThumbsUp} alt="Arthur" className="w-20 h-auto md:w-24" loading="lazy" decoding="async" animate={{ y: [0, -5, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} />
+            <img src={arthurThumbsUp} alt="Arthur" className="w-20 h-auto md:w-24 animate-hero-float" width={96} height={120} loading="lazy" decoding="async" />
           </div>
           <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="relative bg-accent/10 border border-accent/30 rounded-xl px-5 py-3 max-w-sm">
             <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-3 h-3 bg-accent/10 border-l border-b border-accent/30 transform rotate-45 hidden md:block" />

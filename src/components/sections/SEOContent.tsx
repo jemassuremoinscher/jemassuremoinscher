@@ -5,7 +5,7 @@ const SEOContent = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="py-12 md:py-16 bg-background border-t border-border/30">
+    <section className="py-12 md:py-16 bg-background border-t border-border/30 section-lazy">
       <div className="container mx-auto px-4 max-w-4xl">
         <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
           {t('seoContent.title')}

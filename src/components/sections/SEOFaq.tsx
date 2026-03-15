@@ -15,7 +15,7 @@ const SEOFaq = () => {
   ];
 
   return (
-    <section className="py-16 md:py-20 bg-background">
+    <section className="py-16 md:py-20 bg-background section-lazy">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -61,13 +61,14 @@ const SEOFaq = () => {
           viewport={{ once: true }}
           className="flex flex-col md:flex-row items-center justify-center gap-4 mt-10"
         >
-          <motion.img
+          <img
             src={arthurStanding}
             alt="Arthur"
-            className="w-16 h-auto md:w-20"
+            className="w-16 h-auto md:w-20 animate-hero-float"
+            width={80}
+            height={100}
             loading="lazy"
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            decoding="async"
           />
           <div className="bg-primary/10 border border-primary/20 rounded-xl px-5 py-3 text-center md:text-left">
             <p className="text-sm md:text-base font-medium text-foreground">
