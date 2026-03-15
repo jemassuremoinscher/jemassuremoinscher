@@ -18,13 +18,35 @@ const StickyCTA = lazy(() => import("@/components/StickyCTA"));
 
 const Index = () => {
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }]);
-  const organizationSchema = addOrganizationSchema(4.8, 2547);
+  const organizationSchema = addOrganizationSchema(4.8, 2500);
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances Moins Chères en Ligne",
     description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 50+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
     provider: "jemassuremoinscher",
     areaServed: "France"
   });
+
+  const financialServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "jemassuremoinscher",
+    "url": "https://www.jemassuremoinscher.fr",
+    "logo": "https://www.jemassuremoinscher.fr/logo.png",
+    "description": "Courtier en assurances en ligne. Comparez gratuitement les offres de 25+ assureurs partenaires et économisez jusqu'à 280€ sur votre contrat.",
+    "areaServed": {
+      "@type": "Country",
+      "name": "France"
+    },
+    "serviceType": "Courtage en assurances",
+    "priceRange": "Gratuit",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "2500"
+    }
+  };
 
   const webSiteSchema = {
     "@context": "https://schema.org",
