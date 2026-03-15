@@ -48,7 +48,7 @@ const QuickHelpSection = () => {
               <p className="text-sm md:text-base font-medium text-foreground text-center">{t('quickHelp.bubble')}</p>
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-r border-b border-border/50 transform rotate-45" />
             </motion.div>
-            <img src={arthurThinking} alt="Arthur réfléchit - aide personnalisée assurance moins chère" className="w-36 h-36 md:w-44 md:h-44 object-contain drop-shadow-lg" />
+            <img src={arthurThinking} alt="Arthur réfléchit - aide personnalisée assurance moins chère" className="w-36 h-36 md:w-44 md:h-44 object-contain drop-shadow-lg" width={176} height={176} loading="lazy" decoding="async" />
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
             <form onSubmit={handleSubmit} className="space-y-4">
