@@ -34,7 +34,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-background via-muted/20 to-background">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-background via-muted/20 to-background section-lazy">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

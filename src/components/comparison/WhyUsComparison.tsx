@@ -19,7 +19,7 @@ const WhyUsComparison = () => {
   const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
   return (
-    <section className="py-12 md:py-20 bg-muted/30" aria-labelledby="why-us-title">
+    <section className="py-12 md:py-20 bg-muted/30 section-lazy" aria-labelledby="why-us-title">
       <div className="container mx-auto px-4">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
           <h2 id="why-us-title" className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3">
