@@ -60,10 +60,9 @@ const HowItWorks = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.12 }}
-                whileHover={{ y: -6, rotate: -1 }}
                 className="group flex-shrink-0 w-[78vw] snap-center md:flex-1 md:w-auto md:min-w-0"
               >
-                <div className="relative overflow-hidden rounded-3xl border border-border/40 bg-card shadow-[0_8px_32px_-8px_hsl(var(--primary)/0.12)] backdrop-blur-sm transition-all duration-500 hover:shadow-[0_24px_64px_-12px_hsl(var(--primary)/0.3)] hover:border-primary/30 h-full">
+                <div className="relative overflow-hidden rounded-3xl border border-border/40 bg-card shadow-[0_8px_32px_-8px_hsl(var(--primary)/0.12)] backdrop-blur-sm transition-shadow duration-500 hover:shadow-[0_24px_64px_-12px_hsl(var(--primary)/0.3)] hover:border-primary/30 h-full">
                   {/* Decorative gradient orbs */}
                   <div className={`absolute -top-20 -right-20 w-60 h-60 rounded-full ${step.gradient} opacity-20 blur-3xl group-hover:opacity-40 transition-opacity duration-500`} />
                   <div className={`absolute -bottom-16 -left-16 w-40 h-40 rounded-full ${step.gradient} opacity-10 blur-2xl`} />
@@ -80,7 +79,7 @@ const HowItWorks = () => {
                     </div>
 
                     {/* Icon */}
-                    <div className={`w-16 h-16 rounded-2xl ${step.gradient} flex items-center justify-center shadow-lg mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
+                    <div className={`w-16 h-16 rounded-2xl ${step.gradient} flex items-center justify-center shadow-lg mb-5 group-hover:scale-110 transition-transform duration-500`}>
                       <step.icon className="w-8 h-8 text-white" />
                     </div>
 
