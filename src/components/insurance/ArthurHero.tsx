@@ -13,7 +13,7 @@ const ArthurHero = ({ imageSrc, imageAlt, speechText }: ArthurHeroProps) => {
         alt=""
         aria-hidden="true"
         className="absolute -right-10 md:-right-4 -top-8 w-[280px] sm:w-[340px] md:w-[420px] lg:w-[500px] h-auto opacity-[0.12] pointer-events-none select-none rotate-[-8deg] blur-[0.5px]"
-        loading="eager"
+        loading="lazy"
         decoding="async"
       />
       {/* Main Arthur */}
@@ -25,7 +25,6 @@ const ArthurHero = ({ imageSrc, imageAlt, speechText }: ArthurHeroProps) => {
         height={180}
         loading="eager"
         decoding="async"
-        fetchPriority="high"
       />
       {/* Speech bubble */}
       <div className="relative mt-3 w-full max-w-[260px] sm:max-w-[320px] md:max-w-[400px] animate-fade-in-delay z-10">
