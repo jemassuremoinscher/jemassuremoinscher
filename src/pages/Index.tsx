@@ -87,11 +87,12 @@ const Index = () => {
     <div className="min-h-screen">
       <SEOOptimized
         title="Assurance Moins Chère : Comparer gratuitement en 2 minutes"
-        description="Comparateur d'assurances gratuit. Comparez 50+ assureurs, trouvez l'assurance moins chère. Économisez 40%."
+        description="Comparateur d'assurances gratuit. Comparez 50+ assureurs et économisez jusqu'à 280€. Devis en 2 min, sans engagement."
         keyword="assurance moins chère"
         keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
         canonical="https://www.jemassuremoinscher.fr"
-        jsonLd={[webSiteSchema, organizationSchema, serviceSchema, breadcrumbSchema, faqSchema]}
+        ogImage="https://www.jemassuremoinscher.fr/opengraph-image.png"
+        jsonLd={[webSiteSchema, organizationSchema, financialServiceSchema, serviceSchema, breadcrumbSchema, faqSchema]}
       />
       <Header />
       <main id="main-content" role="main">
