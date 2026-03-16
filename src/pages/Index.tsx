@@ -86,8 +86,11 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance Moins Chère : Comparer gratuitement en 2 minutes"
+        title="Assurance Moins Chère : Comparateur Gratuit | jemassuremoinscher"
         description="Comparateur d'assurances gratuit. Comparez 50+ assureurs et économisez jusqu'à 280€. Devis en 2 min, sans engagement."
+        ogTitle="Comparateur Assurance Moins Chère"
+        ogDescription="Comparez 50+ assureurs gratuitement. Économisez jusqu'à 280€."
+        twitterDescription="Trouvez l'assurance la moins chère en 2 minutes avec notre comparateur gratuit. Comparez plus de 50 assureurs partenaires (AXA, Allianz, MAIF, Groupama…) et économisez jusqu'à 280€ par an sur votre contrat. Sans engagement."
         keyword="assurance moins chère"
         keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
         canonical="https://www.jemassuremoinscher.fr"
