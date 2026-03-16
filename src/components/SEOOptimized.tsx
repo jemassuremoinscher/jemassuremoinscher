@@ -24,6 +24,12 @@ interface SEOOptimizedProps {
   articlePublishedTime?: string;
   /** Article modified date (ISO format) for article:modified_time OG tag */
   articleModifiedTime?: string;
+  /** Short OG title (25-35 chars) — falls back to title if not set */
+  ogTitle?: string;
+  /** Short OG description (55-65 chars) */
+  ogDescription?: string;
+  /** Longer Twitter description (150-200 chars) */
+  twitterDescription?: string;
 }
 
 const BASE_URL = 'https://www.jemassuremoinscher.fr';
