@@ -101,15 +101,48 @@ const Index = () => {
       <Header />
       <main id="main-content" role="main">
         <Hero />
-        <Suspense fallback={null}>
-          <QuickQuoteSection />
-          <PartnersSlider />
-          <WhyUsComparison />
-          <HowItWorks />
-          <SEOFaq />
-          <GuidesSection />
-          <SEOContent />
-        </Suspense>
+
+        <DeferredRender minHeight={760}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[760px]" />}>
+            <QuickQuoteSection />
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={300}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[300px]" />}>
+            <PartnersSlider />
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={1200}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[1200px]" />}>
+            <WhyUsComparison />
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={760}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[760px]" />}>
+            <HowItWorks />
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={560}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[560px]" />}>
+            <SEOFaq />
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={880}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[880px]" />}>
+            <GuidesSection />
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={720}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[720px]" />}>
+            <SEOContent />
+          </Suspense>
+        </DeferredRender>
       </main>
       {/* Hidden internal links for SEO - crawlable but not visible */}
       <nav aria-label="Liens internes" className="sr-only">
