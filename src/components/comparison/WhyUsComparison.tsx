@@ -150,7 +150,15 @@ const WhyUsComparison = () => {
           {/* ORIAS */}
           <motion.div variants={itemVariants} className="bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow">
             <div className="flex flex-col items-center text-center gap-3">
-              <img src={oriasLogo} alt="ORIAS - Organisme pour le registre unique des intermédiaires en assurance" className="h-10 w-auto object-contain" loading="lazy" decoding="async" />
+              <img
+                src={oriasLogo}
+                alt="ORIAS - Organisme pour le registre unique des intermédiaires en assurance"
+                className="h-10 w-auto object-contain"
+                width={120}
+                height={40}
+                loading="lazy"
+                decoding="async"
+              />
               <p className="text-sm font-bold text-foreground">{t('whyUs.oriasRegistered')}</p>
               <p className="text-xs font-mono text-primary font-semibold">{t('whyUs.oriasNumber')}</p>
               <a href="https://www.orias.fr" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2">
@@ -159,61 +167,20 @@ const WhyUsComparison = () => {
             </div>
           </motion.div>
 
-          {/* Service Gratuit */}
-          <motion.div variants={itemVariants} className="bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl p-6 shadow-sm border border-accent/20 hover:shadow-md transition-shadow">
-            <div className="flex flex-col items-center text-center gap-3">
-              <div className="p-3 rounded-full bg-accent/20"><Gift className="w-6 h-6 text-accent" /></div>
-              <p className="text-lg font-bold text-foreground">{t('whyUs.service100')}</p>
-              <p className="text-2xl font-black text-accent">{t('whyUs.freeService')}</p>
-            </div>
-          </motion.div>
-
-          {/* Données sécurisées */}
-          <motion.div variants={itemVariants} className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-6 shadow-sm border border-primary/20 hover:shadow-md transition-shadow">
-            <div className="flex flex-col items-center text-center gap-3">
-              <div className="p-3 rounded-full bg-primary/20"><Shield className="w-6 h-6 text-primary" /></div>
-              <p className="text-lg font-bold text-foreground">{t('whyUs.data')}</p>
-              <p className="text-2xl font-black text-primary">{t('whyUs.secured')}</p>
-            </div>
-          </motion.div>
-
-          {/* Independence Banner */}
-          <motion.div variants={itemVariants} className="md:col-span-2 lg:col-span-4 bg-card rounded-xl p-6 md:p-8 shadow-sm border border-border/50 hover:shadow-md transition-shadow">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-xl bg-primary/10 flex-shrink-0">
-                  <Scale className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <p className="font-bold text-foreground mb-1">{t('whyUs.independentTitle')}</p>
-                  <p className="text-sm text-muted-foreground">{t('whyUs.independentDesc')}</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-xl bg-accent/10 flex-shrink-0">
-                  <BadgeCheck className="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <p className="font-bold text-foreground mb-1">{t('whyUs.impartialTitle')}</p>
-                  <p className="text-sm text-muted-foreground">{t('whyUs.impartialDesc')}</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-xl bg-primary/10 flex-shrink-0">
-                  <Eye className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <p className="font-bold text-foreground mb-1">{t('whyUs.transparentTitle')}</p>
-                  <p className="text-sm text-muted-foreground">{t('whyUs.transparentDesc')}</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
           {/* Arthur Banner */}
           <motion.div variants={itemVariants} className="md:col-span-2 lg:col-span-4 bg-gradient-to-r from-primary to-primary/90 rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-              <motion.img src={arthurThinking} alt="Arthur" className="w-20 h-auto md:w-28" loading="lazy" decoding="async" animate={{ y: [0, -5, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} />
+              <motion.img
+                src={arthurThinking}
+                alt="Arthur"
+                className="w-20 h-auto md:w-28"
+                width={112}
+                height={140}
+                loading="lazy"
+                decoding="async"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
               <div className="flex-1 text-center md:text-left">
                 <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
                   <MessageCircle className="w-5 h-5 text-accent" />

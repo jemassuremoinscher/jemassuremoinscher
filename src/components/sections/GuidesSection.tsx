@@ -198,7 +198,10 @@ const GuidesSection = () => {
                 src={arthurFlying}
                 alt="Arthur"
                 className="w-20 h-auto md:w-28"
+                width={112}
+                height={140}
                 loading="lazy"
+                decoding="async"
                 animate={{ y: [0, -10, 0], rotate: [0, 3, -3, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SEOOptimized from "@/components/SEOOptimized";
+import DeferredRender from "@/components/performance/DeferredRender";
 import { addOrganizationSchema, addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 
 // Lazy load below-the-fold sections
@@ -100,15 +101,48 @@ const Index = () => {
       <Header />
       <main id="main-content" role="main">
         <Hero />
-        <Suspense fallback={null}>
-          <QuickQuoteSection />
-          <PartnersSlider />
-          <WhyUsComparison />
-          <HowItWorks />
-          <SEOFaq />
-          <GuidesSection />
-          <SEOContent />
-        </Suspense>
+
+        <DeferredRender minHeight={760}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[760px]" />}>
+            <QuickQuoteSection />
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={300}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[300px]" />}>
+            <PartnersSlider />
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={1200}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[1200px]" />}>
+            <WhyUsComparison />
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={760}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[760px]" />}>
+            <HowItWorks />
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={560}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[560px]" />}>
+            <SEOFaq />
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={880}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[880px]" />}>
+            <GuidesSection />
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={720}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[720px]" />}>
+            <SEOContent />
+          </Suspense>
+        </DeferredRender>
       </main>
       {/* Hidden internal links for SEO - crawlable but not visible */}
       <nav aria-label="Liens internes" className="sr-only">
@@ -138,10 +172,12 @@ const Index = () => {
           <li><Link to="/contact">Contactez notre équipe</Link></li>
         </ul>
       </nav>
-      <Suspense fallback={null}>
-        <SimpleFooter />
-        <StickyCTA />
-      </Suspense>
+      <DeferredRender minHeight={460}>
+        <Suspense fallback={<div aria-hidden="true" className="min-h-[460px]" />}>
+          <SimpleFooter />
+          <StickyCTA />
+        </Suspense>
+      </DeferredRender>
     </div>
   );
 };
