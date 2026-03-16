@@ -92,11 +92,18 @@ const SEOOptimized = ({
       <link rel="alternate" hrefLang="en" href={pageCanonical} />
       <link rel="alternate" hrefLang="x-default" href={pageCanonical} />
 
+      {/* Author & format-detection */}
+      <meta name="author" content="jemassuremoinscher.fr" />
+      <meta name="format-detection" content="telephone=no" />
+
       {/* Open Graph */}
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content={ogTitle || title} />
+      <meta property="og:description" content={ogDescription || description} />
       <meta property="og:url" content={pageCanonical} />
       <meta property="og:image" content={pageImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={ogTitle || title} />
       <meta property="og:type" content={ogType} />
       <meta property="og:locale" content="fr_FR" />
       <meta property="og:locale:alternate" content="en_US" />
@@ -108,9 +115,12 @@ const SEOOptimized = ({
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:site" content="@jmassuremoinscher" />
+      <meta name="twitter:creator" content="@jmassuremoinscher" />
+      <meta name="twitter:title" content={ogTitle || title} />
+      <meta name="twitter:description" content={twitterDescription || description} />
       <meta name="twitter:image" content={pageImage} />
+      <meta name="twitter:image:alt" content={ogTitle || title} />
 
       {/* JSON-LD */}
       {schemas.map((schema, i) => (
