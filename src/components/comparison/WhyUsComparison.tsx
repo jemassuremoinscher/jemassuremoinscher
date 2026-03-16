@@ -166,7 +166,7 @@ const WhyUsComparison = () => {
               </a>
             </div>
           </motion.div>
-...
+
           {/* Arthur Banner */}
           <motion.div variants={itemVariants} className="md:col-span-2 lg:col-span-4 bg-gradient-to-r from-primary to-primary/90 rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
