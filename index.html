@@ -162,14 +162,19 @@
         })(window, document, "clarity", "script", "vjn36y0aqr");
       }
 
-      // Fire on first interaction or after 3.5s timeout
+      // Fire on first interaction; delayed fallback only when browser is idle
       var events = ['mousedown', 'touchstart', 'scroll', 'keydown'];
       function onInteraction() {
         loadAnalytics();
         events.forEach(function(e) { removeEventListener(e, onInteraction, {capture:true}); });
       }
       events.forEach(function(e) { addEventListener(e, onInteraction, {capture:true, passive:true}); });
-      setTimeout(loadAnalytics, 3500);
+
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(function () { setTimeout(loadAnalytics, 12000); }, { timeout: 8000 });
+      } else {
+        setTimeout(loadAnalytics, 12000);
+      }
     </script>
   </body>
 </html>

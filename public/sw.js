@@ -1,13 +1,12 @@
-const CACHE_NAME = 'jmamc-v2';
-const STATIC_ASSETS = [
-  '/favicon.png',
-  '/opengraph-image.png',
-];
+const CACHE_NAME = 'jmamc-v3';
+const STATIC_ASSETS = [];
 
-// Install: precache critical assets (NOT the HTML shell)
+// Install: keep install lightweight (no large image precache)
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
+    STATIC_ASSETS.length
+      ? caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
+      : Promise.resolve()
   );
   self.skipWaiting();
 });
