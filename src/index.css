@@ -1,11 +1,3 @@
-/* Font loaded via preload in index.html instead of render-blocking @import */
-/* Prevent FOUT: ensure font-display swap is applied */
-@font-face {
-  font-family: 'Inter';
-  font-display: swap;
-  src: local('Inter');
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
