@@ -42,6 +42,9 @@ export const routes: RouteConfig[] = [
   { path: "/assurance-auto-jeune-conducteur", changefreq: "weekly", priority: 0.8 },
   { path: "/mutuelle-tns", changefreq: "weekly", priority: 0.8 },
   { path: "/assurance-auto-comparatif", changefreq: "weekly", priority: 0.8 },
+  { path: "/assurance-trottinette-electrique", changefreq: "weekly", priority: 0.8 },
+  { path: "/assurance-auto-permis-etranger", changefreq: "weekly", priority: 0.8 },
+  { path: "/assurance-emprunteur", changefreq: "weekly", priority: 0.8 },
 
   // Outils
   { path: "/outils/calculateur-bonus-malus", changefreq: "monthly", priority: 0.7 },
