@@ -44,7 +44,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   moto: {
-    products: ["auto", "habitation", "prevoyance"],
+    products: ["auto", "trottinette", "habitation"],
     articles: [
       { to: "/blog/meilleure-assurance-auto-2026", label: "Guide assurance véhicule 2026" },
       { to: "/blog/resiliation-assurance-droits-2026", label: "Résilier son assurance facilement" },
