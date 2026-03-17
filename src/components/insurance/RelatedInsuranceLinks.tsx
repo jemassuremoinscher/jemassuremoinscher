@@ -32,11 +32,11 @@ const allProducts: Record<string, RelatedLink> = {
 // Mapping: for each product page, which related products + resources to show
 const relatedMap: Record<string, { products: string[]; articles: { to: string; label: string }[]; tools: { to: string; label: string }[] }> = {
   auto: {
-    products: ["moto", "habitation", "pret"],
+    products: ["moto", "habitation", "permisEtranger"],
     articles: [
       { to: "/blog/meilleure-assurance-auto-2026", label: "Meilleure assurance auto 2026" },
       { to: "/blog/assurance-auto-jeune-conducteur-astuces", label: "Astuces jeune conducteur" },
-      { to: "/blog/resiliation-assurance-droits-2026", label: "Résilier son assurance : vos droits" },
+      { to: "/blog/permis-conduire-etranger-assurance-auto-france", label: "Assurance auto avec permis étranger" },
     ],
     tools: [
       { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
