@@ -24,6 +24,9 @@ const allProducts: Record<string, RelatedLink> = {
   mrp: { to: "/assurance-mrp", label: "Assurance MRP", description: "Multirisque pour vos locaux professionnels" },
   pno: { to: "/assurance-pno", label: "Assurance PNO", description: "Propriétaire non occupant : protégez votre bien" },
   gli: { to: "/assurance-gli", label: "Garantie Loyers Impayés", description: "Sécurisez vos revenus locatifs" },
+  trottinette: { to: "/assurance-trottinette-electrique", label: "Assurance Trottinette", description: "EDPM : assurance obligatoire dès 3,50€/mois" },
+  permisEtranger: { to: "/assurance-auto-permis-etranger", label: "Permis Étranger", description: "Assurance auto avec permis étranger accepté" },
+  emprunteur: { to: "/assurance-emprunteur", label: "Assurance Emprunteur", description: "Changez à tout moment, économisez jusqu'à 15 000€" },
 };
 
 // Mapping: for each product page, which related products + resources to show
