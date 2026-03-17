@@ -98,7 +98,7 @@ const AssurancePNO = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance PNO dès 5€/mois (Obligatoire Copro)" description="Propriétaire non occupant : comparez les assurances PNO. Obligatoire en copropriété (loi Alur). 50+ assureurs. Devis gratuit." keyword="assurance PNO" keywords="propriétaire non occupant, assurance logement vide, PNO obligatoire, assurance bailleur" canonical="https://www.jemassuremoinscher.fr/assurance-pno" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
+      <SEOOptimized title="PNO Assurance dès 5€/mois | Obligatoire Copro 2026" description="PNO assurance : comparez les assurances propriétaire non occupant. Obligatoire en copropriété (loi Alur). 50+ assureurs comparés. Devis gratuit." keyword="PNO assurance" keywords="pno assurance, assurance PNO, propriétaire non occupant, assurance logement vide, PNO obligatoire, assurance bailleur" canonical="https://www.jemassuremoinscher.fr/assurance-pno" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance PNO" }]} />
       <main id="main-content">
