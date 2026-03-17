@@ -1,53 +1,90 @@
 
 
-## Plan: Improve Average Position from 46.5
+# Plan de traduction complete du site en anglais
 
-### Diagnosis
+## Contexte
+La homepage et les composants partages (Header, Footer, Hero, HowItWorks, WhyUs, SEOFaq, QuickQuote, Guides, StickyCTA, PartnersSlider) sont deja traduits via le systeme `useLanguage()` / `t()`. Tout le reste du site contient du texte francais en dur.
 
-Your GSC data shows 235 impressions across 81 queries with **0 clicks** and position **46.5** (page 5 of Google). The core issues:
+## Scope -- fichiers a traduire
 
-1. **Content gaps**: Top impression queries like "assurance obligatoire trottinette électrique france 2026", "assurance voiture avec permis etranger", and "hypnose remboursement" only exist as blog articles or not at all — no dedicated SEO landing pages.
-2. **Thin keyword targeting**: Existing SEO pages (e.g., jeune conducteur) have correct content but meta titles/descriptions aren't optimized for the exact queries GSC shows.
-3. **Missing dedicated pages for proven demand**: GSC is telling you which queries already generate impressions — you should create standalone pages for the top ones.
+### Phase 1 : Composants partages restants (utilises sur toutes les pages produit)
+1. **Testimonials.tsx** -- titres, stats, et textes des temoignages
+2. **SavingsCalculator.tsx** -- labels, boutons, resultats
+3. **QuoteRequestForm.tsx** -- labels de formulaire, messages de succes
+4. **InsuranceComparison.tsx** -- titres, badges, boutons
+5. **InsuranceFAQ.tsx** -- titre par defaut
+6. **CookieBanner.tsx** -- tous les textes du bandeau cookies
+7. **InteractiveComparator.tsx** -- filtres, labels, cartes d'offres
+8. **SubscriptionModal.tsx** -- formulaire de rappel
+9. **TrustBadges.tsx** -- badges de confiance
 
-### Changes
+### Phase 2 : Pages d'assurance Particuliers
+10. **AssuranceAuto.tsx** -- hero, formulaire, avantages, FAQ, CTA
+11. **AssuranceSante.tsx** -- idem
+12. **AssuranceHabitation.tsx** -- idem
+13. **AssuranceMoto.tsx** -- idem
+14. **AssuranceAnimaux.tsx** -- idem
 
-**1. Create 3 new SEO landing pages targeting top GSC queries**
+### Phase 3 : Pages d'assurance Pro / Vie / Immobilier
+15. **AssuranceVie.tsx**
+16. **AssurancePret.tsx**
+17. **AssurancePrevoyance.tsx**
+18. **AssuranceRCPro.tsx**
+19. **AssuranceMRP.tsx**
+20. **AssuranceGLI.tsx**
+21. **AssurancePNO.tsx**
+22. **GestionLocative.tsx**
 
-Each uses the existing `SEOLandingPage` component pattern with 800+ word content, 3 FAQs, structured data, and breadcrumbs:
+### Phase 4 : Pages secondaires
+23. **Contact.tsx** -- formulaire, cartes, CTA
+24. **QuiSommesNous.tsx** -- mission, valeurs, stats
+25. **AvisClients.tsx** -- temoignages, resume, CTA
+26. **NosPartenaires.tsx** -- criteres, engagement, CTA
+27. **Blog.tsx** -- filtres, recherche, categories
+28. **BlogArticle.tsx** -- navigation, commentaires
+29. **Comparateur.tsx** -- titre SEO
 
-- **`/assurance-trottinette-electrique`** — targets "assurance obligatoire trottinette électrique france 2026" (10 impressions, top query)
-- **`/assurance-auto-permis-etranger`** — targets "assurance voiture avec permis etranger" + "assurance permis etranger" (9 combined impressions)
-- **`/assurance-emprunteur`** — targets "assurance emprunteur définition" (4 impressions); currently only a glossary entry, deserves a full product-style page
+### Phase 5 : Pages legales et utilitaires
+30. **CGU.tsx**
+31. **MentionsLegales.tsx**
+32. **PolitiqueConfidentialite.tsx**
+33. **PolitiqueCookies.tsx**
+34. **PlanDuSite.tsx**
+35. **NotFound.tsx**
+36. **Glossaire.tsx / GlossaireTerme.tsx**
 
-**2. Optimize existing page meta tags for exact GSC query match**
+### Phase 6 : Landing pages (12 pages)
+37-48. **LandingAuto, LandingSante, LandingHabitation, LandingMoto, LandingAnimaux, LandingVie, LandingPret, LandingPrevoyance, LandingRCPro, LandingMRP, LandingGLI, LandingPNO**
 
-- **AssuranceJeuneConducteur**: Change title to `"Devis Assurance Auto Jeune Conducteur Pas Cher 2026"` and meta description to match "devis assurance auto jeune conducteur pas cher" + "en ligne" variants (13 combined impressions)
-- **AssurancePNO**: Adjust H1 and meta to include "pno assurance" exact match (9 impressions across "pno assurance" + "pno")
+### Phase 7 : Composants restants
+49. **CallbackForm.tsx**
+50. **QuickHelpSection.tsx**
+51. **SimplifiedLeadForm.tsx**
+52. **InsuranceQuiz.tsx**
+53. **AIChatbot.tsx / TransferDialog.tsx**
+54. **NewsletterSection.tsx**
+55. **BlogHighlights.tsx / CommentsSection.tsx**
+56. **FAQ.tsx, Features.tsx, Partners.tsx**
 
-**3. Add routes + sitemap entries**
+---
 
-- Register 3 new routes in `App.tsx`
-- Add 3 entries to `supabase/functions/sitemap/routes-config.ts` with `priority: 0.8`
+## Approche technique
 
-**4. Strengthen internal linking**
+Pour chaque fichier :
+1. Ajouter les cles FR + EN dans le dictionnaire `LanguageContext.tsx`
+2. Importer `useLanguage` dans le composant
+3. Remplacer chaque texte en dur par `t('cle.correspondante')`
 
-- Add the 3 new pages to `RelatedInsuranceLinks.tsx` mapping so they receive link juice from existing product pages
-- Add cross-links from the existing blog articles (trottinette, permis etranger) to their new dedicated pages via a "page dédiée" CTA
+Le dictionnaire `LanguageContext.tsx` va considérablement grossir (~2000+ cles). Pour garder le fichier lisible, les cles seront organisees par prefixe de page (ex: `autoPage.hero.title`, `contactPage.title`, etc.).
 
-### Files to create
-- `src/pages/seo/AssuranceTrottinetteElectrique.tsx`
-- `src/pages/seo/AssuranceAutoPermisEtranger.tsx`
-- `src/pages/seo/AssuranceEmprunteurSEO.tsx`
+## Estimation
 
-### Files to edit
-- `src/App.tsx` — add 3 lazy imports + routes
-- `supabase/functions/sitemap/routes-config.ts` — add 3 entries
-- `src/pages/seo/AssuranceJeuneConducteur.tsx` — optimize title/meta
-- `src/pages/AssurancePNO.tsx` — optimize H1/meta for "pno assurance"
-- `src/components/insurance/RelatedInsuranceLinks.tsx` — add new pages to link map
-- `src/data/blogArticles2026.ts` — add internal links from trottinette + permis etranger articles to new dedicated pages
+- ~55+ fichiers a modifier
+- ~2000+ cles de traduction a ajouter
+- Le travail sera fait en plusieurs passes successives pour eviter les erreurs
 
-### Why this works
-Google is already indexing your site for these queries (impressions prove it). Creating dedicated, content-rich pages with exact keyword match in title/H1/meta will move you from position 46 toward page 1. Blog articles alone don't rank as well as dedicated landing pages with structured data, FAQs, and clear CTAs.
+## Important
+- Les textes SEO (meta title/description) resteront en francais car le site cible le marche francais -- les balises SEO ne changent pas avec le toggle
+- Les schemas JSON-LD restent en francais pour le meme raison
+- Les messages de validation Zod restent en francais (technique, peu visible)
 

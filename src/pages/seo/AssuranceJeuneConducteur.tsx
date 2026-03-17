@@ -59,10 +59,10 @@ const AssuranceJeuneConducteur = () => {
 
   return (
     <SEOLandingPage
-      title="Assurance Auto Jeune Conducteur | Devis"
-      metaDescription="Assurance auto jeune conducteur moins chère. Courtier spécialisé, tarifs négociés auprès de 30+ assureurs. Devis gratuit en 2 min."
-      keyword="assurance auto jeune conducteur"
-      keywords="assurance jeune conducteur, assurance auto débutant, surprime jeune conducteur, assurance permis probatoire"
+      title="Devis Assurance Auto Jeune Conducteur Pas Cher 2026"
+      metaDescription="Devis assurance auto jeune conducteur pas cher en ligne. Courtier spécialisé, tarifs négociés auprès de 30+ assureurs. Comparaison gratuite en 2 min."
+      keyword="assurance auto jeune conducteur pas cher"
+      keywords="devis assurance auto jeune conducteur pas cher, assurance jeune conducteur en ligne, assurance auto débutant, surprime jeune conducteur, assurance permis probatoire"
       canonical="https://www.jemassuremoinscher.fr/assurance-auto-jeune-conducteur"
       heroIcon={GraduationCap}
       heroTitle="Assurance Auto Jeune Conducteur : Économisez dès le 1er Jour"

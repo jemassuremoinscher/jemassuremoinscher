@@ -98,14 +98,14 @@ const AssurancePNO = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance PNO dès 5€/mois (Obligatoire Copro)" description="Propriétaire non occupant : comparez les assurances PNO. Obligatoire en copropriété (loi Alur). 50+ assureurs. Devis gratuit." keyword="assurance PNO" keywords="propriétaire non occupant, assurance logement vide, PNO obligatoire, assurance bailleur" canonical="https://www.jemassuremoinscher.fr/assurance-pno" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
+      <SEOOptimized title="PNO Assurance dès 5€/mois | Obligatoire Copro 2026" description="PNO assurance : comparez les assurances propriétaire non occupant. Obligatoire en copropriété (loi Alur). 50+ assureurs comparés. Devis gratuit." keyword="PNO assurance" keywords="pno assurance, assurance PNO, propriétaire non occupant, assurance logement vide, PNO obligatoire, assurance bailleur" canonical="https://www.jemassuremoinscher.fr/assurance-pno" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance PNO" }]} />
       <main id="main-content">
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
           <ArthurHero imageSrc={arthurHouse} imageAlt="Arthur devant une maison - assurance PNO moins chère" speechText={t('pnoPage.subtitle')} />
-          <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('pnoPage.title')}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">PNO Assurance : Comparez et Économisez dès 5€/mois</h1>
           <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
         </div></div>
       </section>

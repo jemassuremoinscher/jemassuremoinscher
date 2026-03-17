@@ -24,16 +24,19 @@ const allProducts: Record<string, RelatedLink> = {
   mrp: { to: "/assurance-mrp", label: "Assurance MRP", description: "Multirisque pour vos locaux professionnels" },
   pno: { to: "/assurance-pno", label: "Assurance PNO", description: "Propriétaire non occupant : protégez votre bien" },
   gli: { to: "/assurance-gli", label: "Garantie Loyers Impayés", description: "Sécurisez vos revenus locatifs" },
+  trottinette: { to: "/assurance-trottinette-electrique", label: "Assurance Trottinette", description: "EDPM : assurance obligatoire dès 3,50€/mois" },
+  permisEtranger: { to: "/assurance-auto-permis-etranger", label: "Permis Étranger", description: "Assurance auto avec permis étranger accepté" },
+  emprunteur: { to: "/assurance-emprunteur", label: "Assurance Emprunteur", description: "Changez à tout moment, économisez jusqu'à 15 000€" },
 };
 
 // Mapping: for each product page, which related products + resources to show
 const relatedMap: Record<string, { products: string[]; articles: { to: string; label: string }[]; tools: { to: string; label: string }[] }> = {
   auto: {
-    products: ["moto", "habitation", "pret"],
+    products: ["moto", "habitation", "permisEtranger"],
     articles: [
       { to: "/blog/meilleure-assurance-auto-2026", label: "Meilleure assurance auto 2026" },
       { to: "/blog/assurance-auto-jeune-conducteur-astuces", label: "Astuces jeune conducteur" },
-      { to: "/blog/resiliation-assurance-droits-2026", label: "Résilier son assurance : vos droits" },
+      { to: "/blog/permis-conduire-etranger-assurance-auto-france", label: "Assurance auto avec permis étranger" },
     ],
     tools: [
       { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
@@ -41,7 +44,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   moto: {
-    products: ["auto", "habitation", "prevoyance"],
+    products: ["auto", "trottinette", "habitation"],
     articles: [
       { to: "/blog/meilleure-assurance-auto-2026", label: "Guide assurance véhicule 2026" },
       { to: "/blog/resiliation-assurance-droits-2026", label: "Résilier son assurance facilement" },
@@ -93,7 +96,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   pret: {
-    products: ["vie", "habitation", "prevoyance"],
+    products: ["emprunteur", "vie", "habitation"],
     articles: [
       { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine : changer d'assurance prêt" },
       { to: "/blog/resiliation-assurance-droits-2026", label: "Vos droits de résiliation" },
