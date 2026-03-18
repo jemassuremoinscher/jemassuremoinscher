@@ -93,7 +93,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   "direct-assurance": {
     slug: "direct-assurance",
     name: "Direct Assurance",
-    logo: "/src/assets/logos/direct-assurance-new.png",
+    logo: logoDirectAssurance,
     prixMoyen: 450,
     franchise: 400,
     assistance0km: false,
