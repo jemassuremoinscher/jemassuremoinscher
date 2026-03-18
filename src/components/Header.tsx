@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageToggle from "@/components/LanguageToggle";
-import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
+import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

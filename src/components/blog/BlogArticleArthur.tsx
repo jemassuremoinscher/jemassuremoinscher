@@ -1,13 +1,13 @@
-import arthurIdea from "@/assets/mascotte/arthur-idea.png";
-import arthurCar from "@/assets/mascotte/arthur-car.png";
-import arthurHouse from "@/assets/mascotte/arthur-house.png";
-import arthurSick from "@/assets/mascotte/arthur-sick.png";
-import arthurAnimals from "@/assets/mascotte/arthur-animals.png";
-import arthurBusiness from "@/assets/mascotte/arthur-business.png";
-import arthurDetective from "@/assets/mascotte/arthur-detective.png";
-import arthurMoto from "@/assets/mascotte/arthur-moto.png";
-import arthurPointing from "@/assets/mascotte/arthur-pointing.png";
-import arthurRunningCoin from "@/assets/mascotte/arthur-running-coin.png";
+import arthurIdea from "@/assets/mascotte/arthur-idea.webp";
+import arthurCar from "@/assets/mascotte/arthur-car.webp";
+import arthurHouse from "@/assets/mascotte/arthur-house.webp";
+import arthurSick from "@/assets/mascotte/arthur-sick.webp";
+import arthurAnimals from "@/assets/mascotte/arthur-animals.webp";
+import arthurBusiness from "@/assets/mascotte/arthur-business.webp";
+import arthurDetective from "@/assets/mascotte/arthur-detective.webp";
+import arthurMoto from "@/assets/mascotte/arthur-moto.webp";
+import arthurPointing from "@/assets/mascotte/arthur-pointing.webp";
+import arthurRunningCoin from "@/assets/mascotte/arthur-running-coin.webp";
 
 const categoryArthurMap: Record<string, string> = {
   "Assurance Auto": arthurCar,

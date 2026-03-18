@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useDynamicGreeting, getDefaultGreeting } from "@/components/hero/DynamicGreeting";
-import arthurThumbsUp from "@/assets/mascotte/arthur-wink-thumbsup.png";
-import arthurCar from "@/assets/mascotte/arthur-car.png";
-import arthurMoto from "@/assets/mascotte/arthur-moto.png";
-import arthurHouse from "@/assets/mascotte/arthur-house.png";
-import arthurSick from "@/assets/mascotte/arthur-sick.png";
-import arthurAnimals from "@/assets/mascotte/arthur-animals.png";
-import arthurIdea from "@/assets/mascotte/arthur-idea.png";
+import arthurThumbsUp from "@/assets/mascotte/arthur-wink-thumbsup.webp";
+import arthurCar from "@/assets/mascotte/arthur-car.webp";
+import arthurMoto from "@/assets/mascotte/arthur-moto.webp";
+import arthurHouse from "@/assets/mascotte/arthur-house.webp";
+import arthurSick from "@/assets/mascotte/arthur-sick.webp";
+import arthurAnimals from "@/assets/mascotte/arthur-animals.webp";
+import arthurIdea from "@/assets/mascotte/arthur-idea.webp";
 
 // Inline SVG icons — zero bundle cost
 const SparklesIcon = () => <svg className="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>;

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
+import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const PHONE_NUMBER = "+33493881684";

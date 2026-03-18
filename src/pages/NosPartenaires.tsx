@@ -3,8 +3,8 @@ import Footer from "@/components/Footer";
 import Partners from "@/components/Partners";
 import SEOOptimized from "@/components/SEOOptimized";
 import { Shield, Award, HeadphonesIcon, MapPin, Check } from "lucide-react";
-import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
-import arthurFlying from "@/assets/mascotte/arthur-flying.png";
+import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
+import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
 

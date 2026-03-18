@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import arthurWink from "@/assets/mascotte/arthur-wink-thumbsup.png";
+import arthurWink from "@/assets/mascotte/arthur-wink-thumbsup.webp";
 
 const ArthurCTABubble = () => {
   return (

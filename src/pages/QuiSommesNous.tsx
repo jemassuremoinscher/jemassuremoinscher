@@ -5,9 +5,9 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Shield, Award, Users, Heart, Zap, TrendingUp } from "lucide-react";
 import { addOrganizationSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { motion } from "framer-motion";
-import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
-import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
-import arthurFlying from "@/assets/mascotte/arthur-flying.png";
+import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
+import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
+import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const stats = [

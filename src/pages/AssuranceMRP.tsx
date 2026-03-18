@@ -11,9 +11,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
-import arthurBusiness from "@/assets/mascotte/arthur-business.png";
+import arthurBusiness from "@/assets/mascotte/arthur-business.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
-import arthurFlying from "@/assets/mascotte/arthur-pointing-right.png";
+import arthurFlying from "@/assets/mascotte/arthur-pointing-right.webp";
 import RelatedInsuranceLinks from "@/components/insurance/RelatedInsuranceLinks";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 

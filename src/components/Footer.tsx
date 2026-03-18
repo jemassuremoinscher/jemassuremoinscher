@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import arthurRunning from "@/assets/mascotte/arthur-running.png";
+import arthurRunning from "@/assets/mascotte/arthur-running.webp";
 
 type ModalType = "mentions" | "cgu" | "confidentialite" | null;
 

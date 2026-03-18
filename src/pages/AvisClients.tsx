@@ -5,8 +5,8 @@ import { Star, Quote } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
-import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
-import arthurFlying from "@/assets/mascotte/arthur-flying.png";
+import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
+import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 
 const AvisClients = () => {
   const { t } = useLanguage();
