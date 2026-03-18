@@ -107,7 +107,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   maaf: {
     slug: "maaf",
     name: "MAAF",
-    logo: "/src/assets/logos/maaf.webp",
+    logo: logoMaaf,
     prixMoyen: 560,
     franchise: 200,
     assistance0km: true,
