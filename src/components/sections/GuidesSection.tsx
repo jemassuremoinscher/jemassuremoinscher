@@ -171,7 +171,7 @@ const GuidesSection = () => {
           { title: "Comment réduire la facture ?", text: "Optez pour un véhicule de faible puissance (moins de 6 CV), installez un boîtier télématique (économie jusqu'à 30%), ou soyez conducteur secondaire sur le contrat de vos parents." },
           { title: "La conduite accompagnée : un atout majeur", text: "Si vous avez suivi l'AAC, votre surprime initiale est de 50% au lieu de 100%. Après 2 ans sans sinistre, vous retrouvez un coefficient normal." },
         ],
-        conclusion: "Sur jemassuremoinscher.fr, nous avons négocié des tarifs spéciaux pour les jeunes conducteurs avec plus de 15 assureurs partenaires. Comparez en 2 minutes !"
+        conclusion: "Sur jemassuremoinscher.fr, nous avons négocié des tarifs spéciaux pour les jeunes conducteurs. Consultez aussi notre guide dédié jeune conducteur + voiture puissante et notre calculateur de bonus-malus !"
       }
     }
   ];
