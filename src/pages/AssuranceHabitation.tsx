@@ -105,8 +105,9 @@ const AssuranceHabitation = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12" data-ai-description="Comparateur d'assurance habitation — jemassuremoinscher.fr compare 25+ assureurs, devis gratuit en moins de 2 minutes">
         <DynamicUpdateDate />
+        <EnBref facts={["jemassuremoinscher.fr compare les offres de 25+ assureurs habitation.", "Assurance habitation dès 3€/mois selon le logement et les garanties.", "Devis gratuit en moins de 2 minutes, sans engagement.", "Locataire ou propriétaire : trouvez la meilleure couverture au meilleur prix."]} />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
             {advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}
