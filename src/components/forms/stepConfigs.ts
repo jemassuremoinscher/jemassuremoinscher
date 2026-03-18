@@ -346,6 +346,9 @@ export const stepConfigsByType: Record<InsuranceType, FormStep[]> = {
         { value: 'moto', label: 'Moto', description: '2 roues et scooter', icon: Bike },
         { value: 'habitation', label: 'Habitation', description: 'Maison ou appartement', icon: Home },
         { value: 'sante', label: 'Santé', description: 'Mutuelle et complémentaire', icon: Heart },
+        { value: 'pno', label: 'PNO', description: 'Propriétaire non occupant', icon: Building },
+        { value: 'gli', label: 'GLI', description: 'Garantie loyers impayés', icon: Lock },
+        { value: 'vie', label: 'Assurance Vie', description: 'Épargne et succession', icon: Landmark },
       ],
     },
     {

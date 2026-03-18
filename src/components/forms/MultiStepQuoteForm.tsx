@@ -544,9 +544,73 @@ function SearchingStep({ progress, currentPartner }: { progress: number; current
   );
 }
 
+// ─── Teaser Prices by insurance type ─────────────────────────────────────────
+const teaserPrices: Record<string, { label: string; prices: { name: string; price: string; badge?: string }[] }> = {
+  auto: { label: 'Assurance Auto', prices: [
+    { name: 'Tiers', price: '11€', badge: 'Dès' },
+    { name: 'Tiers+', price: '18€', badge: 'Dès' },
+    { name: 'Tous risques', price: '29€', badge: 'Dès' },
+  ]},
+  moto: { label: 'Assurance Moto', prices: [
+    { name: 'Tiers', price: '9€', badge: 'Dès' },
+    { name: 'Intermédiaire', price: '15€', badge: 'Dès' },
+    { name: 'Tous risques', price: '24€', badge: 'Dès' },
+  ]},
+  habitation: { label: 'Assurance Habitation', prices: [
+    { name: 'Essentielle', price: '5€', badge: 'Dès' },
+    { name: 'Confort', price: '12€', badge: 'Dès' },
+    { name: 'Premium', price: '19€', badge: 'Dès' },
+  ]},
+  sante: { label: 'Mutuelle Santé', prices: [
+    { name: 'Essentielle', price: '14€', badge: 'Dès' },
+    { name: 'Confort', price: '29€', badge: 'Dès' },
+    { name: 'Premium', price: '49€', badge: 'Dès' },
+  ]},
+  pret: { label: 'Assurance Prêt', prices: [
+    { name: 'Décès', price: '8€', badge: 'Dès' },
+    { name: 'Décès + PTIA', price: '14€', badge: 'Dès' },
+    { name: 'Complète', price: '22€', badge: 'Dès' },
+  ]},
+  animaux: { label: 'Assurance Animaux', prices: [
+    { name: 'Accident', price: '7€', badge: 'Dès' },
+    { name: 'Confort', price: '19€', badge: 'Dès' },
+    { name: 'Intégrale', price: '34€', badge: 'Dès' },
+  ]},
+  vie: { label: 'Assurance Vie', prices: [
+    { name: 'Essentielle', price: '20€', badge: 'Dès' },
+    { name: 'Confort', price: '45€', badge: 'Dès' },
+    { name: 'Premium', price: '80€', badge: 'Dès' },
+  ]},
+  prevoyance: { label: 'Prévoyance', prices: [
+    { name: 'Essentielle', price: '12€', badge: 'Dès' },
+    { name: 'Confort', price: '25€', badge: 'Dès' },
+    { name: 'Intégrale', price: '42€', badge: 'Dès' },
+  ]},
+  rc_pro: { label: 'RC Pro', prices: [
+    { name: 'Basique', price: '15€', badge: 'Dès' },
+    { name: 'Standard', price: '29€', badge: 'Dès' },
+    { name: 'Premium', price: '49€', badge: 'Dès' },
+  ]},
+  mrp: { label: 'Multirisque Pro', prices: [
+    { name: 'Essentielle', price: '25€', badge: 'Dès' },
+    { name: 'Confort', price: '45€', badge: 'Dès' },
+    { name: 'Premium', price: '75€', badge: 'Dès' },
+  ]},
+  gli: { label: 'GLI', prices: [
+    { name: 'Basique', price: '2,5%', badge: 'Dès' },
+    { name: 'Standard', price: '3%', badge: 'Dès' },
+    { name: 'Premium', price: '3,5%', badge: 'Dès' },
+  ]},
+  pno: { label: 'PNO', prices: [
+    { name: 'Essentielle', price: '6€', badge: 'Dès' },
+    { name: 'Confort', price: '11€', badge: 'Dès' },
+    { name: 'Premium', price: '18€', badge: 'Dès' },
+  ]},
+};
+
 // ─── Contact Step ────────────────────────────────────────────────────────────
 function ContactStep({
-  data, errors, isSubmitting, isSuccess, onChange, onSubmit,
+  data, errors, isSubmitting, isSuccess, onChange, onSubmit, insuranceType,
 }: {
   data: { fullName: string; email: string; phone: string; acceptTerms: boolean };
   errors: Record<string, string>;
@@ -554,6 +618,7 @@ function ContactStep({
   isSuccess: boolean;
   onChange: (d: typeof data) => void;
   onSubmit: () => void;
+  insuranceType?: string;
 }) {
   if (isSuccess) {
     return (
