@@ -3,12 +3,11 @@ import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Car, Shield, Euro, Clock, Calculator, ArrowRight } from "lucide-react";
+import { Shield, Euro, Clock, Calculator, ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
-
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema, addHowToSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addAggregateRatingSchema, addHowToSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurCar from "@/assets/mascotte/arthur-car.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
@@ -22,63 +21,10 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 
-const formSchema = z.object({
-  marque: z.string().min(1, "Champ requis"),
-  modele: z.string().min(1, "Champ requis"),
-  annee: z.string().min(1, "Champ requis"),
-  carburant: z.string().min(1, "Champ requis"),
-  formule: z.string().min(1, "Champ requis"),
-  codePostal: z.string().length(5, "Code postal invalide"),
-  age: z.string().min(1, "Champ requis"),
-  permis: z.string().min(1, "Champ requis"),
-  bonusMalus: z.string().min(1, "Champ requis"),
-});
-
 const AssuranceAuto = () => {
   const { t } = useLanguage();
-  const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [selectedBrand, setSelectedBrand] = useState<string>("");
-  const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
   const formRef = useRef<HTMLDivElement>(null);
-
-  const modelsByBrand = AUTO_BRANDS;
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: { marque: "", modele: "", annee: "", carburant: "", formule: "", codePostal: "", age: "", permis: "", bonusMalus: "" },
-  });
-
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
-
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    setIsLoading(true);
-    try {
-      setSubmittedFormData(values);
-      const basePrice = 65;
-      const ageDriver = parseInt(values.age);
-      const yearVehicle = parseInt(values.annee);
-      const bonusMalusCoef = parseFloat(values.bonusMalus);
-      let price = basePrice;
-      if (ageDriver < 25) price += 80;
-      else if (ageDriver < 30) price += 40;
-      if (yearVehicle < 2010) price += 25;
-      else if (yearVehicle < 2015) price += 15;
-      else if (yearVehicle > 2020) price += 20;
-      if (values.carburant === "electrique") price -= 15;
-      else if (values.carburant === "hybride") price -= 8;
-      if (values.formule === "tous-risques") price += 50; else if (values.formule === "tiers-plus") price += 25;
-      price = price * bonusMalusCoef;
-      const randomVariation = Math.floor(Math.random() * 30) - 15;
-      price += randomVariation;
-      const offers = generateInsurerOffers(price, autoInsurers);
-      setInsurerOffers(offers);
-      toast.success(t('insPage.toast.success'), { description: t('insPage.toast.successDesc') });
-    } catch (error: any) {
-      console.error("Error:", error);
-      toast.error(t('insPage.toast.error'), { description: t('insPage.toast.errorDesc') });
-    } finally { setIsLoading(false); }
-  };
 
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Auto", description: "Comparez les meilleures offres d'assurance auto en France. Devis gratuit et personnalisé en 2 minutes. Économisez jusqu'à 400€ par an.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const ratingSchema = addAggregateRatingSchema("Comparateur Assurance Auto", 4.7, 1853);
@@ -123,117 +69,8 @@ const AssuranceAuto = () => {
           </div>
         </section>
 
-        <div ref={formRef} className="max-w-3xl mx-auto mb-16">
-          <Card className="p-8">
-            <h2 className="text-2xl font-bold mb-6 text-card-foreground">{t('insPage.getQuote')}</h2>
-            {insurerOffers.length > 0 ? (
-              <InsuranceComparison insurers={insurerOffers} onNewQuote={() => setInsurerOffers([])} formData={submittedFormData} insuranceType="Assurance Auto" />
-            ) : (
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField control={form.control} name="marque" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t('autoPage.form.brand')}</FormLabel>
-                      <Select onValueChange={(value) => { field.onChange(value); setSelectedBrand(value); form.setValue("modele", ""); }} defaultValue={field.value}>
-                        <FormControl><SelectTrigger><SelectValue placeholder={t('autoPage.form.brandPlaceholder')} /></SelectTrigger></FormControl>
-                        <SelectContent className="max-h-[300px]">
-                          {Object.keys(modelsByBrand).sort().map((brand) => (<SelectItem key={brand} value={brand}>{brand}</SelectItem>))}
-                          <SelectItem value="Autre">{t('autoPage.form.other')}</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-
-                  <FormField control={form.control} name="modele" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t('autoPage.form.model')}</FormLabel>
-                      {selectedBrand && modelsByBrand[selectedBrand] ? (
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl><SelectTrigger><SelectValue placeholder={t('autoPage.form.modelSelect')} /></SelectTrigger></FormControl>
-                          <SelectContent className="max-h-[300px]">
-                            {modelsByBrand[selectedBrand].map((model) => (<SelectItem key={model} value={model}>{model}</SelectItem>))}
-                            <SelectItem value="Autre">{t('autoPage.form.other')}</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      ) : (
-                        <FormControl><Input placeholder={selectedBrand ? t('autoPage.form.modelPlaceholder') : t('autoPage.form.modelFirst')} {...field} disabled={!selectedBrand} /></FormControl>
-                      )}
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <FormField control={form.control} name="annee" render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t('autoPage.form.year')}</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl>
-                          <SelectContent className="max-h-[300px]">{Array.from({ length: 2025 - 1980 + 1 }, (_, i) => 2025 - i).map((year) => (<SelectItem key={year} value={year.toString()}>{year}</SelectItem>))}</SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )} />
-                    <FormField control={form.control} name="carburant" render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t('autoPage.form.fuel')}</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl>
-                          <SelectContent>
-                            <SelectItem value="essence">{t('autoPage.form.fuel.essence')}</SelectItem>
-                            <SelectItem value="diesel">{t('autoPage.form.fuel.diesel')}</SelectItem>
-                            <SelectItem value="electrique">{t('autoPage.form.fuel.electric')}</SelectItem>
-                            <SelectItem value="hybride">{t('autoPage.form.fuel.hybrid')}</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )} />
-                  </div>
-
-                  <FormField control={form.control} name="formule" render={({ field }) => (
-                    <FormItem><FormLabel>Formule souhaitée</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="tiers">Tiers</SelectItem><SelectItem value="tiers-plus">Tiers +</SelectItem><SelectItem value="tous-risques">Tous Risques</SelectItem></SelectContent></Select><FormMessage /></FormItem>
-                  )} />
-
-                  <FormField control={form.control} name="codePostal" render={({ field }) => (
-                    <FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>
-                  )} />
-
-                  <FormField control={form.control} name="age" render={({ field }) => (
-                    <FormItem><FormLabel>{t('insPage.yourAge')}</FormLabel><FormControl><Input type="number" placeholder="25" {...field} /></FormControl><FormMessage /></FormItem>
-                  )} />
-
-                  <FormField control={form.control} name="permis" render={({ field }) => (
-                    <FormItem><FormLabel>{t('autoPage.form.license')}</FormLabel><FormControl><Input type="date" {...field} /></FormControl><FormMessage /></FormItem>
-                  )} />
-
-                  <FormField control={form.control} name="bonusMalus" render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t('autoPage.form.bonusMalus')}</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl><SelectTrigger><SelectValue placeholder={t('autoPage.form.bonusMalusPlaceholder')} /></SelectTrigger></FormControl>
-                        <SelectContent className="max-h-[300px]">
-                          <SelectItem value="0.50">{t('autoPage.form.bonus050')}</SelectItem>
-                          <SelectItem value="0.60">{t('autoPage.form.bonus060')}</SelectItem>
-                          <SelectItem value="0.70">{t('autoPage.form.bonus070')}</SelectItem>
-                          <SelectItem value="0.80">{t('autoPage.form.bonus080')}</SelectItem>
-                          <SelectItem value="0.90">{t('autoPage.form.bonus090')}</SelectItem>
-                          <SelectItem value="1.00">{t('autoPage.form.bonus100')}</SelectItem>
-                          <SelectItem value="1.25">{t('autoPage.form.bonus125')}</SelectItem>
-                          <SelectItem value="1.50">{t('autoPage.form.bonus150')}</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-
-                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
-                    {isLoading ? t('insPage.loading') : t('insPage.compareOffers')}
-                  </Button>
-                </form>
-              </Form>
-            )}
-          </Card>
+        <div ref={formRef} className="mb-16">
+          <MultiStepQuoteForm insuranceType="auto" />
         </div>
 
         <section className="max-w-4xl mx-auto mb-16">
