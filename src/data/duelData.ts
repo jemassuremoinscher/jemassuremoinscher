@@ -79,7 +79,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   allianz: {
     slug: "allianz",
     name: "Allianz",
-    logo: "/src/assets/logos/allianz.png",
+    logo: logoAllianz,
     prixMoyen: 640,
     franchise: 300,
     assistance0km: false,
