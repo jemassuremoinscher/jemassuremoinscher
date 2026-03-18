@@ -292,7 +292,7 @@ export default function ContractOptimizerWidget() {
       </AnimatePresence>
 
       {/* Floating trigger button */}
-      {step === "closed" && (
+      {step === "closed" && !dismissed && (
         <motion.button
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
