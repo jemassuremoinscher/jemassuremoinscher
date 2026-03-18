@@ -169,6 +169,9 @@ const App = () => (
             <Suspense fallback={null}>
               <AIChatbot />
             </Suspense>
+            <Suspense fallback={null}>
+              <ContractOptimizerWidget />
+            </Suspense>
           </BrowserRouter>
         </TooltipProvider>
       </AuthProvider>
