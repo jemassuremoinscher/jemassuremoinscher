@@ -377,6 +377,10 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
                   value={formData[step.field] || ''}
                   onChange={(val) => setFormData(prev => ({ ...prev, [step.field!]: val }))}
                   onSubmit={(val) => handleInputSubmit(step.field!, val, step)}
+                  activeHint={activeHint?.field === step.field ? activeHint.message : null}
+                  onFocus={() => startTracking(step.field!)}
+                  onBlur={() => stopTracking(step.field!)}
+                  onDismissHint={dismissHint}
                 />
               )}
 
