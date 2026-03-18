@@ -23,7 +23,7 @@ const NotFound = () => {
   return (
     <>
       <Helmet>
-        <title>Page introuvable | jemassuremoinscher</title>
+        <title>Page introuvable | jemassuremoinscher.fr</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <div className="flex min-h-screen items-center justify-center bg-background px-4">

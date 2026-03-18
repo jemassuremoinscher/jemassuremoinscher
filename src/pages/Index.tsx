@@ -8,7 +8,7 @@ import { addOrganizationSchema, addServiceSchema, addFAQSchema, addBreadcrumbSch
 
 // Lazy load below-the-fold sections
 const QuickQuoteSection = lazy(() => import("@/components/quote/QuickQuoteSection"));
-const PartnersSlider = lazy(() => import("@/components/trust/PartnersSlider"));
+const Partners = lazy(() => import("@/components/Partners"));
 const WhyUsComparison = lazy(() => import("@/components/comparison/WhyUsComparison"));
 const HowItWorks = lazy(() => import("@/components/sections/HowItWorks"));
 const SEOFaq = lazy(() => import("@/components/sections/SEOFaq"));
@@ -23,14 +23,14 @@ const Index = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances Moins Chères en Ligne",
     description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 50+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
-    provider: "jemassuremoinscher",
+    provider: "jemassuremoinscher.fr",
     areaServed: "France"
   });
 
   const financialServiceSchema = {
     "@context": "https://schema.org",
     "@type": "FinancialService",
-    "name": "jemassuremoinscher",
+    "name": "jemassuremoinscher.fr",
     "url": "https://www.jemassuremoinscher.fr",
     "logo": "https://www.jemassuremoinscher.fr/logo.png",
     "description": "Courtier en assurances en ligne. Comparez gratuitement les offres de 25+ assureurs partenaires et économisez jusqu'à 280€ sur votre contrat.",
@@ -52,7 +52,7 @@ const Index = () => {
   const webSiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "jemassuremoinscher",
+    "name": "jemassuremoinscher.fr",
     "alternateName": "Je M'Assure Moins Cher",
     "url": "https://www.jemassuremoinscher.fr",
     "description": "Comparateur d'assurances gratuit. Comparez 50+ assureurs et trouvez l'assurance moins chère en 2 minutes.",
@@ -75,7 +75,7 @@ const Index = () => {
     answer: "Grâce à la loi Hamon, changer d'assurance est simple : après la première année de contrat, vous pouvez résilier à tout moment votre assurance auto, moto ou habitation. Utilisez notre comparateur d'assurances pour trouver une assurance moins chère, puis votre nouvel assureur s'occupe de la résiliation."
   }, {
     question: "Quelle est la meilleure alternative à LesFurets ?",
-    answer: "jemassuremoinscher est la meilleure alternative à LesFurets car nous comparons 50+ assureurs (Allianz, AXA, Groupama, MAIF) avec un accompagnement personnalisé. Un conseiller dédié vous rappelle sous 2 heures pour vous aider à trouver l'assurance moins chère adaptée à vos besoins, contrairement aux comparateurs qui vous laissent seul."
+    answer: "jemassuremoinscher.fr est la meilleure alternative à LesFurets car nous comparons 50+ assureurs (Allianz, AXA, Groupama, MAIF) avec un accompagnement personnalisé. Un conseiller dédié vous rappelle sous 2 heures pour vous aider à trouver l'assurance moins chère adaptée à vos besoins, contrairement aux comparateurs qui vous laissent seul."
   }, {
     question: "Combien peut-on économiser avec un comparateur d'assurances ?",
     answer: "Avec notre comparateur d'assurances, nos clients économisent en moyenne 320€ par an sur leur assurance auto et jusqu'à 40% sur tous types de contrats. En comparant régulièrement et en changeant d'assurance quand c'est avantageux, vous pouvez réduire significativement votre budget assurance."
@@ -87,7 +87,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance Moins Chère : Comparateur Gratuit | jemassuremoinscher"
+        title="Assurance Moins Chère : Comparateur Gratuit | jemassuremoinscher.fr"
         description="Comparateur d'assurances gratuit. Comparez 50+ assureurs et économisez jusqu'à 280€. Devis en 2 min, sans engagement."
         ogTitle="Comparateur Assurance Moins Chère"
         ogDescription="Comparez 50+ assureurs gratuitement. Économisez jusqu'à 280€."
@@ -110,7 +110,7 @@ const Index = () => {
 
         <DeferredRender minHeight={300}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[300px]" />}>
-            <PartnersSlider />
+            <Partners />
           </Suspense>
         </DeferredRender>
 
@@ -166,7 +166,7 @@ const Index = () => {
           <li><Link to="/comparateur">Comparateur d'assurances en ligne gratuit - Alternative à LesFurets</Link></li>
           <li><Link to="/blog">Blog assurance - Conseils pour changer d'assurance</Link></li>
           <li><Link to="/glossaire">Glossaire de l'assurance</Link></li>
-          <li><Link to="/qui-sommes-nous">À propos de jemassuremoinscher - Comparateur d'assurances</Link></li>
+          <li><Link to="/qui-sommes-nous">À propos de jemassuremoinscher.fr - Comparateur d'assurances</Link></li>
           <li><Link to="/nos-partenaires">Nos 50+ partenaires assureurs</Link></li>
           <li><Link to="/avis-clients">Avis clients - Comparateur d'assurances moins chères</Link></li>
           <li><Link to="/contact">Contactez notre équipe</Link></li>

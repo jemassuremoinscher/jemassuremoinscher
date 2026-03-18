@@ -107,7 +107,7 @@ const SEOOptimized = ({
       <meta property="og:type" content={ogType} />
       <meta property="og:locale" content="fr_FR" />
       <meta property="og:locale:alternate" content="en_US" />
-      <meta property="og:site_name" content="jemassuremoinscher" />
+      <meta property="og:site_name" content="jemassuremoinscher.fr" />
 
       {/* Article dates (for blog/article pages) */}
       {articlePublishedTime && <meta property="article:published_time" content={articlePublishedTime} />}

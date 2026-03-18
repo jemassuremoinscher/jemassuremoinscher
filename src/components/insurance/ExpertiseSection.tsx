@@ -108,7 +108,7 @@ const ExpertiseSection = ({
               <div className="flex items-center gap-3 mb-6">
                 <img 
                   src={teamExperts} 
-                  alt="Équipe d'experts courtiers jemassuremoinscher" 
+                  alt="Équipe d'experts courtiers jemassuremoinscher.fr" 
                   className="w-16 h-16 rounded-full object-cover border-2 border-primary/20"
                   loading="lazy"
                   width={64}

@@ -278,12 +278,12 @@ const handler = async (req: Request): Promise<Response> => {
     const confirmationUrl = `${Deno.env.get("SUPABASE_URL")}/functions/v1/newsletter-subscribe?action=confirm&token=${confirmationToken}`;
     
     const { error: emailError } = await resend.emails.send({
-      from: "jemassuremoinscher <onboarding@resend.dev>",
+      from: "jemassuremoinscher.fr <onboarding@resend.dev>",
       to: [normalizedEmail],
       subject: "Confirmez votre abonnement à notre newsletter",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h1 style="color: #6b46c1; margin-bottom: 20px;">Bienvenue chez jemassuremoinscher !</h1>
+          <h1 style="color: #6b46c1; margin-bottom: 20px;">Bienvenue chez jemassuremoinscher.fr !</h1>
           
           <p style="font-size: 16px; line-height: 1.6; color: #333;">
             Merci de vous être inscrit à notre newsletter ! Vous êtes à un clic de recevoir nos meilleurs conseils en assurance.

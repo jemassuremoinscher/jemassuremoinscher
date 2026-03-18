@@ -11,7 +11,7 @@ const LandingSante = () => {
     addServiceSchema({
       name: 'Mutuelle Santé moins chère',
       description: 'Comparez les meilleures mutuelles santé et économisez jusqu\'à 40%. Devis gratuit en 2 minutes.',
-      provider: 'jemassuremoinscher',
+      provider: 'jemassuremoinscher.fr',
       areaServed: 'France',
     }),
     addAggregateRatingSchema('Mutuelle Santé', 4.8, 2847),

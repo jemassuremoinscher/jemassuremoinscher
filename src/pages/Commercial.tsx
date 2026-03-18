@@ -113,7 +113,7 @@ const Commercial = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard Commercial | jemassuremoinscher</title>
+        <title>Dashboard Commercial | jemassuremoinscher.fr</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
     <div className="min-h-screen bg-background">

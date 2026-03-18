@@ -40,8 +40,8 @@ const QuiSommesNous = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized
-        title="Qui sommes-nous | Jemassuremoinscher"
-        description="Découvrez l'équipe derrière Jemassuremoinscher : un comparateur d'assurances indépendant, gratuit et transparent. Notre mission : vous aider à payer moins cher."
+        title="Qui sommes-nous | jemassuremoinscher.fr"
+        description="Découvrez l'équipe derrière jemassuremoinscher.fr : un comparateur d'assurances indépendant, gratuit et transparent. Notre mission : vous aider à payer moins cher."
         canonical={`${baseUrl}/qui-sommes-nous`}
         jsonLd={jsonLd}
       />
@@ -77,7 +77,7 @@ const QuiSommesNous = () => {
             </div>
             <img
               src={arthurThumbsUp}
-              alt="Arthur mascotte jemassuremoinscher - comparateur assurance moins chère"
+              alt="Arthur mascotte jemassuremoinscher.fr - comparateur assurance moins chère"
               className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-56 lg:h-64 object-contain opacity-90 pointer-events-none select-none"
               width={256}
               height={320}
@@ -203,7 +203,7 @@ const QuiSommesNous = () => {
               </div>
               <img
                 src={arthurThinking}
-                alt="Arthur réfléchit aux valeurs de jemassuremoinscher"
+                alt="Arthur réfléchit aux valeurs de jemassuremoinscher.fr"
                 className="hidden md:block absolute -right-4 -bottom-4 h-48 object-contain opacity-80 pointer-events-none select-none"
                 width={192}
                 height={192}

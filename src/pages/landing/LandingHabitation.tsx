@@ -11,7 +11,7 @@ const LandingHabitation = () => {
     addServiceSchema({
       name: 'Assurance Habitation moins chère',
       description: 'Comparez les meilleures assurances habitation et économisez jusqu\'à 40%. Devis gratuit en 2 minutes.',
-      provider: 'jemassuremoinscher',
+      provider: 'jemassuremoinscher.fr',
       areaServed: 'France',
     }),
     addAggregateRatingSchema('Assurance Habitation', 4.8, 2847),

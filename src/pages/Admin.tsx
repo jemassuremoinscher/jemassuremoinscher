@@ -168,7 +168,7 @@ const Admin = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard Admin | jemassuremoinscher</title>
+        <title>Dashboard Admin | jemassuremoinscher.fr</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
     <div className="min-h-screen bg-background">

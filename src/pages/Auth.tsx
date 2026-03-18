@@ -65,7 +65,7 @@ const Auth = () => {
   return (
     <>
       <Helmet>
-        <title>Connexion Admin | jemassuremoinscher</title>
+        <title>Connexion Admin | jemassuremoinscher.fr</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-background to-accent/5 p-4">

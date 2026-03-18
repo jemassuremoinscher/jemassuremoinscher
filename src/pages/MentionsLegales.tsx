@@ -10,8 +10,8 @@ const MentionsLegales = () => {
   return (
     <>
       <SEOOptimized
-        title="Mentions Légales - jemassuremoinscher"
-        description="Mentions légales et informations juridiques de jemassuremoinscher."
+        title="Mentions Légales - jemassuremoinscher.fr"
+        description="Mentions légales et informations juridiques de jemassuremoinscher.fr."
         noindex />
       
       
@@ -28,7 +28,7 @@ const MentionsLegales = () => {
                   <CardTitle>{t('mentionsLegales.editeur')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <p><strong>{t('mentionsLegales.raisonSociale')}</strong> jemassuremoinscher</p>
+                  <p><strong>{t('mentionsLegales.raisonSociale')}</strong> jemassuremoinscher.fr</p>
                   <p><strong>{t('mentionsLegales.formeJuridique')}</strong> {t('mentionsLegales.formeJuridiqueVal')}</p>
                   <p><strong>{t('mentionsLegales.capital')}</strong> 10 000 €</p>
                   <p><strong>{t('mentionsLegales.siege')}</strong> 2, rue d'Angleterre 06000 Nice</p>

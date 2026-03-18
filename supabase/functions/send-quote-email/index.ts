@@ -135,7 +135,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Email au propriétaire du site
     const ownerEmail = await resend.emails.send({
-      from: `jemassuremoinscher <${businessEmail}>`,
+      from: `jemassuremoinscher.fr <${businessEmail}>`,
       to: businessEmail,
       subject: `Nouvelle demande de devis - ${type}`,
       html: `
@@ -178,7 +178,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Only attempt to send if the client email is the verified business email (for testing)
     if (email === businessEmail) {
       clientEmail = await resend.emails.send({
-        from: `jemassuremoinscher <${businessEmail}>`,
+        from: `jemassuremoinscher.fr <${businessEmail}>`,
         to: email,
         subject: "Votre devis d'assurance",
         html: `
@@ -190,7 +190,7 @@ const handler = async (req: Request): Promise<Response> => {
           
           <p>Un de nos conseillers vous contactera dans les plus brefs délais au <strong>${phone}</strong> pour finaliser votre devis.</p>
           
-          <p>Cordialement,<br>L'équipe jemassuremoinscher</p>
+          <p>Cordialement,<br>L'équipe jemassuremoinscher.fr</p>
         `,
       });
     } else {

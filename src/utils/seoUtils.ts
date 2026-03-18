@@ -2,11 +2,11 @@ export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "jemassuremoinscher",
+    "name": "jemassuremoinscher.fr",
     "url": "https://www.jemassuremoinscher.fr",
     "logo": "https://www.jemassuremoinscher.fr/logo.png",
     "description": "Comparateur d'assurances pas chères en ligne. Trouvez une assurance pas chère, comparez 50+ assureurs, changez d'assurance facilement. Alternative à LesFurets.",
-    "alternateName": ["jemassuremoinscher", "je m'assure moins cher", "comparateur assurance pas chère"],
+    "alternateName": ["jemassuremoinscher.fr", "je m'assure moins cher", "comparateur assurance pas chère"],
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+33-6-86-12-28-20",
@@ -66,7 +66,7 @@ export const addServiceSchema = (service: {
     "description": service.description,
     "provider": {
       "@type": "Organization",
-      "name": service.provider || "jemassuremoinscher"
+      "name": service.provider || "jemassuremoinscher.fr"
     },
     "areaServed": {
       "@type": "Country",
@@ -134,8 +134,8 @@ export const addArticleSchema = (article: {
   datePublished: string;
   image?: string;
 }) => {
-  const authorName = article.author || "jemassuremoinscher";
-  const isTeam = authorName.includes("équipe") || authorName === "jemassuremoinscher";
+  const authorName = article.author || "jemassuremoinscher.fr";
+  const isTeam = authorName.includes("équipe") || authorName === "jemassuremoinscher.fr";
   
   return {
     "@context": "https://schema.org",
@@ -149,13 +149,13 @@ export const addArticleSchema = (article: {
           "name": authorName,
           "worksFor": {
             "@type": "Organization",
-            "name": "jemassuremoinscher",
+            "name": "jemassuremoinscher.fr",
             "url": "https://www.jemassuremoinscher.fr"
           }
         },
     "publisher": {
       "@type": "Organization",
-      "name": "jemassuremoinscher",
+      "name": "jemassuremoinscher.fr",
       "logo": {
         "@type": "ImageObject",
         "url": "https://www.jemassuremoinscher.fr/logo.png"

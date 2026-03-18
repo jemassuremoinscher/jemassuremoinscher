@@ -17,7 +17,7 @@ const PlanDuSite = () => {
   const webPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Plan du site - jemassuremoinscher",
+    "name": "Plan du site - jemassuremoinscher.fr",
     "description": "Plan du site complet avec tous les liens vers nos pages d'assurances, outils, blog et pages légales.",
     "url": "https://www.jemassuremoinscher.fr/plan-du-site"
   };
@@ -73,7 +73,7 @@ const PlanDuSite = () => {
   return (
     <>
       <SEOOptimized 
-        title="Plan du site - jemassuremoinscher"
+        title="Plan du site - jemassuremoinscher.fr"
         description="Plan du site avec tous les liens vers nos pages d'assurances et outils."
         canonical="https://www.jemassuremoinscher.fr/plan-du-site"
         jsonLd={[breadcrumbSchema, webPageSchema]}

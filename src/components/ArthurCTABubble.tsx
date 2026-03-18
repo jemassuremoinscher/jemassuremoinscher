@@ -15,7 +15,7 @@ const ArthurCTABubble = () => {
       </div>
       <img
         src={arthurWink}
-        alt="Arthur, mascotte jemassuremoinscher"
+        alt="Arthur, mascotte jemassuremoinscher.fr"
         className="h-12 w-auto object-contain"
         width={48}
         height={48}

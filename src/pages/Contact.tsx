@@ -49,7 +49,7 @@ const Contact = () => {
   return (
     <>
       <SEOOptimized 
-        title="Contactez-nous | Jemassuremoinscher"
+        title="Contactez-nous | jemassuremoinscher.fr"
         description="Besoin d'aide ? Contactez-nous par email ou formulaire. Réponse sous 2h."
         canonical="https://www.jemassuremoinscher.fr/contact"
       />
@@ -72,7 +72,7 @@ const Contact = () => {
               </div>
               <img
                 src={arthurThumbsUp}
-                alt="Arthur mascotte jemassuremoinscher - contactez-nous"
+                alt="Arthur mascotte jemassuremoinscher.fr - contactez-nous"
                 className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none"
                 width={224}
                 height={280}

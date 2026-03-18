@@ -10,7 +10,7 @@ const CGU = () => {
   return (
     <>
       <SEOOptimized 
-        title="CGU - jemassuremoinscher"
+        title="CGU - jemassuremoinscher.fr"
         description="Conditions générales d'utilisation du service jemassuremoinscher."
         noindex
       />
