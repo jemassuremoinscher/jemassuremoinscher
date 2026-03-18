@@ -13,6 +13,7 @@ import RouteTracker from "@/components/RouteTracker";
 // Lazy load non-critical global components
 const AIChatbot = lazy(() => import("@/components/chatbot/AIChatbot").then(m => ({ default: m.AIChatbot })));
 const ReadingProgressBar = lazy(() => import("@/components/ReadingProgressBar"));
+const ContractOptimizerWidget = lazy(() => import("@/components/optimizer/ContractOptimizerWidget"));
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -167,6 +168,9 @@ const App = () => (
             <CookieBanner />
             <Suspense fallback={null}>
               <AIChatbot />
+            </Suspense>
+            <Suspense fallback={null}>
+              <ContractOptimizerWidget />
             </Suspense>
           </BrowserRouter>
         </TooltipProvider>
