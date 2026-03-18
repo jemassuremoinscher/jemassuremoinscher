@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Instagram, Linkedin, Facebook, Lock, ShieldCheck, Shield, BadgeCheck, CreditCard } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import arthurThumbsUp from "@/assets/mascotte/arthur-sprint-coin.png";
+import arthurThumbsUp from "@/assets/mascotte/arthur-sprint-coin.webp";
 
 const SimpleFooter = () => {
   const { t } = useLanguage();

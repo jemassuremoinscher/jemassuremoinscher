@@ -12,7 +12,7 @@ import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 import { blogArticles, blogCategories } from "@/data/blogArticles";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
-import arthurThinking from "@/assets/mascotte/arthur-thinking.png";
+import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 

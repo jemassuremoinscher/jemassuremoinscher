@@ -1,7 +1,7 @@
 import { ClipboardList, Search, CheckCircle, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
-import arthurRunning from "@/assets/mascotte/arthur-running-coin.png";
+import arthurRunning from "@/assets/mascotte/arthur-running-coin.webp";
 
 const HowItWorks = () => {
   const { t } = useLanguage();

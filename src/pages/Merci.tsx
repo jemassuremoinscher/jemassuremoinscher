@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet-async";
-import arthurStanding from "@/assets/mascotte/arthur-standing.png";
+import arthurStanding from "@/assets/mascotte/arthur-standing.webp";
 
 const Merci = () => {
   useEffect(() => {

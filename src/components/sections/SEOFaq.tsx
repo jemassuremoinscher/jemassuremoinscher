@@ -1,7 +1,7 @@
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
-import arthurStanding from "@/assets/mascotte/arthur-question.png";
+import arthurStanding from "@/assets/mascotte/arthur-question.webp";
 
 const SEOFaq = () => {
   const { t } = useLanguage();

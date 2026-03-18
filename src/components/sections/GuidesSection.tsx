@@ -8,7 +8,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { BookOpen, FileText, Scale, X, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import arthurFlying from "@/assets/mascotte/arthur-pointing.png";
+import arthurFlying from "@/assets/mascotte/arthur-pointing.webp";
 
 interface Article {
   id: number;

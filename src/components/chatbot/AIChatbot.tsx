@@ -8,8 +8,8 @@ import { toast } from "sonner";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { TransferDialog } from "./TransferDialog";
 import { useLanguage } from "@/contexts/LanguageContext";
-import arthurWaving from "@/assets/mascotte/arthur-waving.png";
-import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
+import arthurWaving from "@/assets/mascotte/arthur-waving.webp";
+import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
 
 interface Message { role: "user" | "assistant"; content: string; }
 

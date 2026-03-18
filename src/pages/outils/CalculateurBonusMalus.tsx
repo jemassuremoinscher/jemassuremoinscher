@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
-import arthurCoin from "@/assets/mascotte/arthur-sprint-coin.png";
+import arthurCoin from "@/assets/mascotte/arthur-sprint-coin.webp";
 
 const MIN_COEF = 0.50;
 const MAX_COEF = 3.50;

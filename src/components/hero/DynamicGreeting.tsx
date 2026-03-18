@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-import arthurThumbsUp from "@/assets/mascotte/arthur-wink-thumbsup.png";
-import arthurCar from "@/assets/mascotte/arthur-car.png";
-import arthurHouse from "@/assets/mascotte/arthur-house.png";
-import arthurSick from "@/assets/mascotte/arthur-sick.png";
-import arthurAnimals from "@/assets/mascotte/arthur-animals.png";
-import arthurMoto from "@/assets/mascotte/arthur-moto.png";
-import arthurBusiness from "@/assets/mascotte/arthur-business.png";
+import arthurThumbsUp from "@/assets/mascotte/arthur-wink-thumbsup.webp";
+import arthurCar from "@/assets/mascotte/arthur-car.webp";
+import arthurHouse from "@/assets/mascotte/arthur-house.webp";
+import arthurSick from "@/assets/mascotte/arthur-sick.webp";
+import arthurAnimals from "@/assets/mascotte/arthur-animals.webp";
+import arthurMoto from "@/assets/mascotte/arthur-moto.webp";
+import arthurBusiness from "@/assets/mascotte/arthur-business.webp";
 
 interface DynamicGreetingConfig {
   title: React.ReactNode;

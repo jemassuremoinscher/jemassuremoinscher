@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useHoneypot } from "@/hooks/useHoneypot";
 import { useLanguage } from "@/contexts/LanguageContext";
-import arthurThinking from "@/assets/mascotte/arthur-idea.png";
+import arthurThinking from "@/assets/mascotte/arthur-idea.webp";
 import { trackMetaLead } from "@/utils/metaPixelTracking";
 import { normalizeInsuranceType } from "@/utils/insuranceTypeNormalizer";
 

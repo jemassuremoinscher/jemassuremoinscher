@@ -9,7 +9,7 @@ import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seo
 import QuickCheck from "@/components/niche/QuickCheck";
 import SurchargeSimulator from "@/components/niche/SurchargeSimulator";
 import { ShieldCheck, ArrowRight } from "lucide-react";
-import arthurDetective from "@/assets/mascotte/arthur-detective.png";
+import arthurDetective from "@/assets/mascotte/arthur-detective.webp";
 import type { NicheData } from "@/data/nicheInsuranceData";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";

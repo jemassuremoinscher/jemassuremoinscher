@@ -6,8 +6,8 @@ import { LucideIcon } from "lucide-react";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
-import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
-import arthurFlying from "@/assets/mascotte/arthur-flying.png";
+import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
+import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 
 interface Advantage {
   icon: LucideIcon;

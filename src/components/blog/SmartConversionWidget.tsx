@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import arthurPointing from "@/assets/mascotte/arthur-pointing.png";
+import arthurPointing from "@/assets/mascotte/arthur-pointing.webp";
 
 // ─── Config per category ────────────────────────────────────────────────────
 interface WidgetConfig {
