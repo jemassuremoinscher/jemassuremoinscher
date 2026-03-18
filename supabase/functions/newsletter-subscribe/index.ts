@@ -278,7 +278,7 @@ const handler = async (req: Request): Promise<Response> => {
     const confirmationUrl = `${Deno.env.get("SUPABASE_URL")}/functions/v1/newsletter-subscribe?action=confirm&token=${confirmationToken}`;
     
     const { error: emailError } = await resend.emails.send({
-      from: "jemassuremoinscher <onboarding@resend.dev>",
+      from: "jemassuremoinscher.fr <onboarding@resend.dev>",
       to: [normalizedEmail],
       subject: "Confirmez votre abonnement à notre newsletter",
       html: `

@@ -8,7 +8,7 @@ import { addOrganizationSchema, addServiceSchema, addFAQSchema, addBreadcrumbSch
 
 // Lazy load below-the-fold sections
 const QuickQuoteSection = lazy(() => import("@/components/quote/QuickQuoteSection"));
-const PartnersSlider = lazy(() => import("@/components/trust/PartnersSlider"));
+const Partners = lazy(() => import("@/components/Partners"));
 const WhyUsComparison = lazy(() => import("@/components/comparison/WhyUsComparison"));
 const HowItWorks = lazy(() => import("@/components/sections/HowItWorks"));
 const SEOFaq = lazy(() => import("@/components/sections/SEOFaq"));
@@ -166,7 +166,7 @@ const Index = () => {
           <li><Link to="/comparateur">Comparateur d'assurances en ligne gratuit - Alternative à LesFurets</Link></li>
           <li><Link to="/blog">Blog assurance - Conseils pour changer d'assurance</Link></li>
           <li><Link to="/glossaire">Glossaire de l'assurance</Link></li>
-          <li><Link to="/qui-sommes-nous">À propos de jemassuremoinscher - Comparateur d'assurances</Link></li>
+          <li><Link to="/qui-sommes-nous">À propos de jemassuremoinscher.fr - Comparateur d'assurances</Link></li>
           <li><Link to="/nos-partenaires">Nos 50+ partenaires assureurs</Link></li>
           <li><Link to="/avis-clients">Avis clients - Comparateur d'assurances moins chères</Link></li>
           <li><Link to="/contact">Contactez notre équipe</Link></li>

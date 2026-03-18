@@ -14,7 +14,7 @@ interface AuthorExpertiseProps {
 const AuthorExpertise = ({ authorName }: AuthorExpertiseProps) => {
   const author: Author = authorName
     ? getAuthor(authorName)
-    : getAuthor("L'équipe d'experts Jemassuremoinscher");
+    : getAuthor("L'équipe d'experts jemassuremoinscher.fr");
 
   return (
     <div
@@ -111,7 +111,7 @@ const AuthorExpertise = ({ authorName }: AuthorExpertiseProps) => {
       </div>
 
       {/* Hidden structured data */}
-      <meta itemProp="worksFor" content="jemassuremoinscher" />
+      <meta itemProp="worksFor" content="jemassuremoinscher.fr" />
       {author.registrationId && (
         <meta itemProp="identifier" content={author.registrationId} />
       )}
