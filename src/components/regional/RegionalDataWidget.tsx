@@ -156,7 +156,7 @@ export default function RegionalDataWidget({
               <div className="relative h-3 bg-muted rounded-full overflow-hidden">
                 <div
                   className={`absolute inset-y-0 left-0 rounded-full transition-all duration-700 ease-out ${
-                    isCheaper ? "bg-emerald-500" : "bg-amber-500"
+                    isCheaper ? "bg-primary" : "bg-destructive"
                   }`}
                   style={{ width: `${progressPercent}%` }}
                 />
