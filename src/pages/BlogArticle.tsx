@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useState, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,7 @@ import PopularArticles from "@/components/blog/PopularArticles";
 import RelatedProductLinks from "@/components/blog/RelatedProductLinks";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
+import SmartConversionWidget, { detectCategory } from "@/components/blog/SmartConversionWidget";
 
 const BlogArticle = () => {
   const { t } = useLanguage();
