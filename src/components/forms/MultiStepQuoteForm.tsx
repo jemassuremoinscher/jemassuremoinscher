@@ -380,6 +380,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
                   isSuccess={isSuccess}
                   onChange={setContactData}
                   onSubmit={handleContactSubmit}
+                  insuranceType={insuranceType}
                 />
               )}
             </motion.div>
@@ -402,7 +403,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
 // ─── Card Select Step ────────────────────────────────────────────────────────
 function CardSelectStep({ options, selected, onSelect }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void }) {
   return (
-    <div className={`grid gap-3 ${options.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-2'}`}>
+    <div className={`grid gap-3 ${options.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : options.length <= 4 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}`}>
       {options.map((option, idx) => {
         const Icon = option.icon;
         const isSelected = selected === option.value;
@@ -544,9 +545,73 @@ function SearchingStep({ progress, currentPartner }: { progress: number; current
   );
 }
 
+// ─── Teaser Prices by insurance type ─────────────────────────────────────────
+const teaserPrices: Record<string, { label: string; prices: { name: string; price: string; badge?: string }[] }> = {
+  auto: { label: 'Assurance Auto', prices: [
+    { name: 'Tiers', price: '11€', badge: 'Dès' },
+    { name: 'Tiers+', price: '18€', badge: 'Dès' },
+    { name: 'Tous risques', price: '29€', badge: 'Dès' },
+  ]},
+  moto: { label: 'Assurance Moto', prices: [
+    { name: 'Tiers', price: '9€', badge: 'Dès' },
+    { name: 'Intermédiaire', price: '15€', badge: 'Dès' },
+    { name: 'Tous risques', price: '24€', badge: 'Dès' },
+  ]},
+  habitation: { label: 'Assurance Habitation', prices: [
+    { name: 'Essentielle', price: '5€', badge: 'Dès' },
+    { name: 'Confort', price: '12€', badge: 'Dès' },
+    { name: 'Premium', price: '19€', badge: 'Dès' },
+  ]},
+  sante: { label: 'Mutuelle Santé', prices: [
+    { name: 'Essentielle', price: '14€', badge: 'Dès' },
+    { name: 'Confort', price: '29€', badge: 'Dès' },
+    { name: 'Premium', price: '49€', badge: 'Dès' },
+  ]},
+  pret: { label: 'Assurance Prêt', prices: [
+    { name: 'Décès', price: '8€', badge: 'Dès' },
+    { name: 'Décès + PTIA', price: '14€', badge: 'Dès' },
+    { name: 'Complète', price: '22€', badge: 'Dès' },
+  ]},
+  animaux: { label: 'Assurance Animaux', prices: [
+    { name: 'Accident', price: '7€', badge: 'Dès' },
+    { name: 'Confort', price: '19€', badge: 'Dès' },
+    { name: 'Intégrale', price: '34€', badge: 'Dès' },
+  ]},
+  vie: { label: 'Assurance Vie', prices: [
+    { name: 'Essentielle', price: '20€', badge: 'Dès' },
+    { name: 'Confort', price: '45€', badge: 'Dès' },
+    { name: 'Premium', price: '80€', badge: 'Dès' },
+  ]},
+  prevoyance: { label: 'Prévoyance', prices: [
+    { name: 'Essentielle', price: '12€', badge: 'Dès' },
+    { name: 'Confort', price: '25€', badge: 'Dès' },
+    { name: 'Intégrale', price: '42€', badge: 'Dès' },
+  ]},
+  rc_pro: { label: 'RC Pro', prices: [
+    { name: 'Basique', price: '15€', badge: 'Dès' },
+    { name: 'Standard', price: '29€', badge: 'Dès' },
+    { name: 'Premium', price: '49€', badge: 'Dès' },
+  ]},
+  mrp: { label: 'Multirisque Pro', prices: [
+    { name: 'Essentielle', price: '25€', badge: 'Dès' },
+    { name: 'Confort', price: '45€', badge: 'Dès' },
+    { name: 'Premium', price: '75€', badge: 'Dès' },
+  ]},
+  gli: { label: 'GLI', prices: [
+    { name: 'Basique', price: '2,5%', badge: 'Dès' },
+    { name: 'Standard', price: '3%', badge: 'Dès' },
+    { name: 'Premium', price: '3,5%', badge: 'Dès' },
+  ]},
+  pno: { label: 'PNO', prices: [
+    { name: 'Essentielle', price: '6€', badge: 'Dès' },
+    { name: 'Confort', price: '11€', badge: 'Dès' },
+    { name: 'Premium', price: '18€', badge: 'Dès' },
+  ]},
+};
+
 // ─── Contact Step ────────────────────────────────────────────────────────────
 function ContactStep({
-  data, errors, isSubmitting, isSuccess, onChange, onSubmit,
+  data, errors, isSubmitting, isSuccess, onChange, onSubmit, insuranceType,
 }: {
   data: { fullName: string; email: string; phone: string; acceptTerms: boolean };
   errors: Record<string, string>;
@@ -554,6 +619,7 @@ function ContactStep({
   isSuccess: boolean;
   onChange: (d: typeof data) => void;
   onSubmit: () => void;
+  insuranceType?: string;
 }) {
   if (isSuccess) {
     return (
@@ -573,8 +639,51 @@ function ContactStep({
     );
   }
 
+  const prices = teaserPrices[insuranceType || 'auto']?.prices || teaserPrices.auto.prices;
+
   return (
-    <div className="space-y-4 max-w-sm mx-auto w-full">
+    <div className="space-y-5 max-w-md mx-auto w-full">
+      {/* Teaser prices */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="space-y-3"
+      >
+        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">
+          Tarifs trouvés pour votre profil
+        </p>
+        <div className="grid grid-cols-3 gap-2">
+          {prices.map((p, i) => (
+            <motion.div
+              key={p.name}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.1, duration: 0.3 }}
+              className={`relative rounded-xl border-2 p-3 text-center transition-all ${
+                i === 0
+                  ? 'border-primary bg-primary/5 shadow-[var(--shadow-card)]'
+                  : 'border-border/40 bg-background/50'
+              }`}
+            >
+              {i === 0 && (
+                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
+                  Meilleur prix
+                </span>
+              )}
+              <span className="text-[10px] text-muted-foreground font-medium uppercase">{p.badge}</span>
+              <div className="text-xl md:text-2xl font-extrabold text-accent mt-0.5">{p.price}</div>
+              <span className="text-[11px] text-muted-foreground">/mois</span>
+              <p className="text-xs font-medium text-foreground mt-1">{p.name}</p>
+            </motion.div>
+          ))}
+        </div>
+        <p className="text-[11px] text-muted-foreground text-center italic">
+          * Tarifs indicatifs. Recevez votre devis exact en 30 min.
+        </p>
+      </motion.div>
+
+      <div className="h-px bg-border/40" />
       {/* Full name */}
       <div className="space-y-1.5">
         <Label htmlFor="msf-name" className="text-sm font-medium flex items-center gap-1.5">
