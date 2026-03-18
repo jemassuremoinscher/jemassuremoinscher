@@ -10,6 +10,7 @@ const profiles = [
   { value: "famille", label: "Famille" },
   { value: "senior", label: "Senior (+55 ans)" },
   { value: "malusse", label: "Malussé" },
+  { value: "bonus50", label: "Bonus 50" },
   { value: "standard", label: "Conducteur standard" },
 ];
 
