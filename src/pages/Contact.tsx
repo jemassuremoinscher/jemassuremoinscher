@@ -186,7 +186,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-foreground mb-1">{t('contactPage.office')}</h3>
-                    <p className="text-sm text-muted-foreground">2, rue d'Angleterre, 06000 Nice</p>
+                    <p className="text-sm text-muted-foreground">2, rue d'Angleterre</p>
                     <p className="text-sm text-muted-foreground">{t('contactPage.onlineService')}</p>
                   </div>
                 </div>
