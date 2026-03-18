@@ -31,16 +31,13 @@ import ornikarLogo from "@/assets/logos/ornikar.png";
 import swissLifeLogo from "@/assets/logos/swisslife.webp";
 import wilovLogo from "@/assets/logos/wilov.webp";
 
-const partnerSizeMap: Record<string, string> = {
-  "Direct Assurance": "h-12 max-w-[130px]",
-  "L'Olivier Assurance": "h-12 max-w-[130px]",
-  "Mutuelle de Poitiers": "h-12 max-w-[130px]",
-  "Alan": "h-12 max-w-[120px]",
-  "Matmut": "h-12 max-w-[130px]",
-  "Maxance": "h-12 max-w-[120px]",
-  "Abeille Assurances": "h-12 max-w-[130px]",
-  "AGF": "h-12 max-w-[120px]",
-  "Amaguiz": "h-12 max-w-[130px]",
+// Per-logo scale adjustments for readability (within the fixed block)
+const logoScaleMap: Record<string, string> = {
+  "Direct Assurance": "scale-110",
+  "L'Olivier Assurance": "scale-110",
+  "Mutuelle de Poitiers": "scale-110",
+  "Matmut": "scale-110",
+  "Amaguiz": "scale-105",
 };
 
 const partners = [
