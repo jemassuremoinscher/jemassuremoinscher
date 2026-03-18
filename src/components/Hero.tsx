@@ -46,7 +46,7 @@ const Hero = () => {
             <div className="relative">
               <img
                 src={arthurThumbsUp}
-                alt="Arthur mascotte jemassuremoinscher - super-héros de l'assurance moins chère"
+                alt="Arthur mascotte jemassuremoinscher.fr - super-héros de l'assurance moins chère"
                 className="w-28 md:w-36 lg:w-44 h-auto drop-shadow-2xl animate-hero-float"
                 width={176}
                 height={220}

@@ -75,7 +75,7 @@ const Index = () => {
     answer: "Grâce à la loi Hamon, changer d'assurance est simple : après la première année de contrat, vous pouvez résilier à tout moment votre assurance auto, moto ou habitation. Utilisez notre comparateur d'assurances pour trouver une assurance moins chère, puis votre nouvel assureur s'occupe de la résiliation."
   }, {
     question: "Quelle est la meilleure alternative à LesFurets ?",
-    answer: "jemassuremoinscher est la meilleure alternative à LesFurets car nous comparons 50+ assureurs (Allianz, AXA, Groupama, MAIF) avec un accompagnement personnalisé. Un conseiller dédié vous rappelle sous 2 heures pour vous aider à trouver l'assurance moins chère adaptée à vos besoins, contrairement aux comparateurs qui vous laissent seul."
+    answer: "jemassuremoinscher.fr est la meilleure alternative à LesFurets car nous comparons 50+ assureurs (Allianz, AXA, Groupama, MAIF) avec un accompagnement personnalisé. Un conseiller dédié vous rappelle sous 2 heures pour vous aider à trouver l'assurance moins chère adaptée à vos besoins, contrairement aux comparateurs qui vous laissent seul."
   }, {
     question: "Combien peut-on économiser avec un comparateur d'assurances ?",
     answer: "Avec notre comparateur d'assurances, nos clients économisent en moyenne 320€ par an sur leur assurance auto et jusqu'à 40% sur tous types de contrats. En comparant régulièrement et en changeant d'assurance quand c'est avantageux, vous pouvez réduire significativement votre budget assurance."

@@ -6,7 +6,7 @@ export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number
     "url": "https://www.jemassuremoinscher.fr",
     "logo": "https://www.jemassuremoinscher.fr/logo.png",
     "description": "Comparateur d'assurances pas chères en ligne. Trouvez une assurance pas chère, comparez 50+ assureurs, changez d'assurance facilement. Alternative à LesFurets.",
-    "alternateName": ["jemassuremoinscher", "je m'assure moins cher", "comparateur assurance pas chère"],
+    "alternateName": ["jemassuremoinscher.fr", "je m'assure moins cher", "comparateur assurance pas chère"],
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+33-6-86-12-28-20",

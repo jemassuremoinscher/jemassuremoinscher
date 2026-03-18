@@ -72,7 +72,7 @@ const NewsletterGestion = () => {
   return (
     <>
       <SEOOptimized 
-        title="Gestion Newsletter - jemassuremoinscher"
+        title="Gestion Newsletter - jemassuremoinscher.fr"
         description="Gérez votre abonnement à la newsletter de jemassuremoinscher."
         noindex
       />

@@ -146,7 +146,7 @@ export const getAuthorJsonLd = (author: Author) => ({
   ...(author.linkedinUrl && { "sameAs": [author.linkedinUrl] }),
   "worksFor": {
     "@type": "Organization",
-    "name": "jemassuremoinscher",
+    "name": "jemassuremoinscher.fr",
     "url": "https://www.jemassuremoinscher.fr",
   },
 });

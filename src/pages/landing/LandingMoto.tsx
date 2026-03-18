@@ -11,7 +11,7 @@ const LandingMoto = () => {
     addServiceSchema({
       name: 'Assurance Moto moins chère',
       description: 'Comparez les meilleures assurances moto et économisez jusqu\'à 40%. Devis gratuit en 2 minutes.',
-      provider: 'jemassuremoinscher',
+      provider: 'jemassuremoinscher.fr',
       areaServed: 'France',
     }),
     addAggregateRatingSchema('Assurance Moto', 4.8, 2847),

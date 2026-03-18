@@ -61,7 +61,7 @@ const Blog = () => {
     "url": "https://www.jemassuremoinscher.fr/blog",
     "publisher": {
       "@type": "Organization",
-      "name": "jemassuremoinscher"
+      "name": "jemassuremoinscher.fr"
     }
   };
 
