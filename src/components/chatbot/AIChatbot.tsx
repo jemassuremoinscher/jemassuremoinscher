@@ -61,7 +61,7 @@ export const AIChatbot = () => {
         <Card className="fixed bottom-6 right-6 w-[380px] h-[600px] shadow-elegant z-50 flex flex-col animate-in slide-in-from-bottom-5 duration-300">
           <div className="bg-gradient-primary text-white p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="bg-white/20 p-2 rounded-full"><Bot className="h-5 w-5" /></div>
+              <img src={arthurWaving} alt="Arthur" className="h-10 w-10 object-contain drop-shadow-md" width={40} height={40} />
               <div><h3 className="font-semibold">{t('chatbot.title')}</h3><p className="text-xs opacity-90">{t('chatbot.online')}</p></div>
             </div>
             <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="text-white hover:bg-white/10" aria-label={t('chatbot.closeLabel')}><X className="h-5 w-5" /></Button>
@@ -69,15 +69,19 @@ export const AIChatbot = () => {
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-muted/30">
             {messages.map((message, index) => (
               <div key={index} className={`flex gap-3 ${message.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${message.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-accent text-accent-foreground'}`}>
-                  {message.role === 'user' ? <User className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
-                </div>
+                {message.role === 'user' ? (
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center bg-primary text-primary-foreground">
+                    <User className="h-4 w-4" />
+                  </div>
+                ) : (
+                  <img src={arthurThumbsUp} alt="Arthur" className="flex-shrink-0 w-8 h-8 object-contain" width={32} height={32} />
+                )}
                 <div className={`flex-1 rounded-lg p-3 ${message.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-card border'}`}>
                   <p className="text-sm whitespace-pre-wrap">{message.content}</p>
                 </div>
               </div>
             ))}
-            {isLoading && (<div className="flex gap-3"><div className="flex-shrink-0 w-8 h-8 rounded-full bg-accent text-accent-foreground flex items-center justify-center"><Bot className="h-4 w-4" /></div><div className="bg-card border rounded-lg p-3"><Loader2 className="h-4 w-4 animate-spin" /></div></div>)}
+            {isLoading && (<div className="flex gap-3"><img src={arthurThumbsUp} alt="Arthur réfléchit" className="flex-shrink-0 w-8 h-8 object-contain animate-pulse" width={32} height={32} /><div className="bg-card border rounded-lg p-3"><Loader2 className="h-4 w-4 animate-spin" /></div></div>)}
             <div ref={messagesEndRef} />
           </div>
           <div className="border-t p-4 bg-background space-y-3">
