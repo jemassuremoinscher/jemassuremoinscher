@@ -85,14 +85,16 @@ export default function ContractOptimizerWidget() {
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
             className="relative w-[340px] rounded-2xl border border-border bg-card shadow-[var(--shadow-lg)] overflow-hidden"
           >
-            {/* Arthur en transparence */}
-            <img
-              src={arthurCar}
-              alt=""
-              aria-hidden="true"
-              className="absolute bottom-0 right-0 w-28 h-auto opacity-[0.08] pointer-events-none select-none"
-              loading="lazy"
-            />
+            {/* Arthur en voiture — filigrane visible */}
+            <div className="absolute -bottom-2 -right-2 w-36 h-36 pointer-events-none select-none z-0">
+              <img
+                src={arthurCar}
+                alt=""
+                aria-hidden="true"
+                className="w-full h-full object-contain opacity-[0.12]"
+                loading="lazy"
+              />
+            </div>
 
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 bg-primary/5 border-b border-border">
