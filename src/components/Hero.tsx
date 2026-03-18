@@ -19,12 +19,12 @@ const Hero = () => {
   const { t } = useLanguage();
 
   const categories = [
-  { icon: Car, labelKey: "category.auto", link: "/assurance-auto" },
-  { icon: Bike, labelKey: "category.moto", link: "/assurance-moto" },
-  { icon: Home, labelKey: "category.home", link: "/assurance-habitation" },
-  { icon: HeartPulse, labelKey: "category.health", link: "/assurance-sante" },
-  { icon: PawPrint, labelKey: "category.pets", link: "/assurance-animaux" },
-  { icon: Heart, labelKey: "category.life", link: "/assurance-vie" }];
+  { icon: CarIcon, labelKey: "category.auto", link: "/assurance-auto" },
+  { icon: BikeIcon, labelKey: "category.moto", link: "/assurance-moto" },
+  { icon: HomeIcon, labelKey: "category.home", link: "/assurance-habitation" },
+  { icon: HeartIcon, labelKey: "category.health", link: "/assurance-sante" },
+  { icon: PawIcon, labelKey: "category.pets", link: "/assurance-animaux" },
+  { icon: LifeIcon, labelKey: "category.life", link: "/assurance-vie" }];
 
   const handleCategoryClick = (category: string) => {
     trackEvent('insurance_type_click', {
