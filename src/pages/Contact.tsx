@@ -33,7 +33,7 @@ const Contact = () => {
         phone: "",
         preferred_time: "morning",
         message: `${formData.sujet}${formData.message ? ` - ${formData.message}` : ""}`,
-        status: "pending",
+        status: "pending"
       });
       if (error) throw error;
       toast.success(t('quoteForm.toastSuccess'));
@@ -48,11 +48,11 @@ const Contact = () => {
 
   return (
     <>
-      <SEOOptimized 
+      <SEOOptimized
         title="Contactez-nous | jemassuremoinscher.fr"
         description="Besoin d'aide ? Contactez-nous par email ou formulaire. Réponse sous 2h."
-        canonical="https://www.jemassuremoinscher.fr/contact"
-      />
+        canonical="https://www.jemassuremoinscher.fr/contact" />
+      
       
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
@@ -76,8 +76,8 @@ const Contact = () => {
                 className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none"
                 width={224}
                 height={280}
-                loading="lazy"
-              />
+                loading="lazy" />
+              
             </div>
           </section>
 
@@ -110,8 +110,8 @@ const Contact = () => {
                       placeholder={t('contactPage.firstName')}
                       value={formData.prenom}
                       onChange={(e) => setFormData({ ...formData, prenom: e.target.value })}
-                      className="h-12 text-base rounded-2xl"
-                    />
+                      className="h-12 text-base rounded-2xl" />
+                    
                   </div>
                   <div>
                     <label htmlFor="contact-email" className="sr-only">{t('contactPage.emailField')}</label>
@@ -121,8 +121,8 @@ const Contact = () => {
                       placeholder={t('contactPage.emailField')}
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="h-12 text-base rounded-2xl"
-                    />
+                      className="h-12 text-base rounded-2xl" />
+                    
                   </div>
                   <div className="md:col-span-2">
                     <label htmlFor="contact-sujet" className="sr-only">{t('contactPage.subject')}</label>
@@ -132,8 +132,8 @@ const Contact = () => {
                       placeholder={t('contactPage.subject')}
                       value={formData.sujet}
                       onChange={(e) => setFormData({ ...formData, sujet: e.target.value })}
-                      className="h-12 text-base rounded-2xl"
-                    />
+                      className="h-12 text-base rounded-2xl" />
+                    
                   </div>
                   <div className="md:col-span-2">
                     <label htmlFor="contact-message" className="sr-only">{t('contactPage.message')}</label>
@@ -142,27 +142,27 @@ const Contact = () => {
                       placeholder={t('contactPage.message')}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="min-h-[120px] text-base rounded-2xl resize-none"
-                    />
+                      className="min-h-[120px] text-base rounded-2xl resize-none" />
+                    
                   </div>
                   <div className="md:col-span-2">
                     <Button
                       type="submit"
                       disabled={isLoading}
                       size="lg"
-                      className="w-full md:w-auto rounded-full font-bold px-10 text-base"
-                    >
-                      {isLoading ? (
-                        <>
+                      className="w-full md:w-auto rounded-full font-bold px-10 text-base">
+                      
+                      {isLoading ?
+                      <>
                           <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                           {t('contactPage.sending')}
-                        </>
-                      ) : (
-                        <>
+                        </> :
+
+                      <>
                           <Send className="mr-2 h-5 w-5" />
                           {t('contactPage.send')}
                         </>
-                      )}
+                      }
                     </Button>
                   </div>
                 </form>
@@ -186,7 +186,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-foreground mb-1">{t('contactPage.office')}</h3>
-                    <p className="text-sm text-muted-foreground">Paris, France</p>
+                    <p className="text-sm text-muted-foreground">2, rue d'Angleterre, 06000 Nice</p>
                     <p className="text-sm text-muted-foreground">{t('contactPage.onlineService')}</p>
                   </div>
                 </div>
@@ -203,8 +203,8 @@ const Contact = () => {
                   </p>
                   <a
                     href="/comparateur"
-                    className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 py-4 rounded-full text-lg transition-all duration-200 shadow-lg hover:shadow-xl"
-                  >
+                    className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 py-4 rounded-full text-lg transition-all duration-200 shadow-lg hover:shadow-xl">
+                    
                     {t('insPage.compareNowBtn')}
                   </a>
                 </div>
@@ -214,8 +214,8 @@ const Contact = () => {
                   className="absolute -top-10 right-4 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none"
                   width={144}
                   height={144}
-                  loading="lazy"
-                />
+                  loading="lazy" />
+                
               </div>
 
             </div>
@@ -224,8 +224,8 @@ const Contact = () => {
 
         <Footer />
       </div>
-    </>
-  );
+    </>);
+
 };
 
 export default Contact;
