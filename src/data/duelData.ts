@@ -19,11 +19,25 @@ export interface DuelConfig {
   insurerB: InsurerDuelProfile;
 }
 
+// Use static imports for real logos
+import logoMaif from "@/assets/logos/maif.png";
+import logoMacif from "@/assets/logos/macif-new.png";
+import logoAxa from "@/assets/logos/axa.png";
+import logoAllianz from "@/assets/logos/allianz.png";
+import logoDirectAssurance from "@/assets/logos/direct-assurance-new.png";
+import logoMaaf from "@/assets/logos/maaf.webp";
+import logoGmf from "@/assets/logos/gmf-new.png";
+import logoMatmut from "@/assets/logos/matmut-new.jpg";
+import logoMma from "@/assets/logos/mma-new.webp";
+import logoGroupama from "@/assets/logos/groupama.png";
+import logoOlivier from "@/assets/logos/lolivier.png";
+import logoLuko from "@/assets/logos/luko.png";
+
 const insurerProfiles: Record<string, InsurerDuelProfile> = {
   maif: {
     slug: "maif",
     name: "MAIF",
-    logo: "/src/assets/logos/maif.png",
+    logo: logoMaif,
     prixMoyen: 580,
     franchise: 250,
     assistance0km: true,
@@ -37,7 +51,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   macif: {
     slug: "macif",
     name: "Macif",
-    logo: "/src/assets/logos/macif-new.png",
+    logo: logoMacif,
     prixMoyen: 620,
     franchise: 300,
     assistance0km: true,
@@ -51,7 +65,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   axa: {
     slug: "axa",
     name: "AXA",
-    logo: "/src/assets/logos/axa.png",
+    logo: logoAxa,
     prixMoyen: 650,
     franchise: 350,
     assistance0km: false,
@@ -65,7 +79,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   allianz: {
     slug: "allianz",
     name: "Allianz",
-    logo: "/src/assets/logos/allianz.png",
+    logo: logoAllianz,
     prixMoyen: 640,
     franchise: 300,
     assistance0km: false,
@@ -79,7 +93,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   "direct-assurance": {
     slug: "direct-assurance",
     name: "Direct Assurance",
-    logo: "/src/assets/logos/direct-assurance-new.png",
+    logo: logoDirectAssurance,
     prixMoyen: 450,
     franchise: 400,
     assistance0km: false,
@@ -93,7 +107,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   maaf: {
     slug: "maaf",
     name: "MAAF",
-    logo: "/src/assets/logos/maaf.webp",
+    logo: logoMaaf,
     prixMoyen: 560,
     franchise: 200,
     assistance0km: true,
@@ -107,7 +121,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   gmf: {
     slug: "gmf",
     name: "GMF",
-    logo: "/src/assets/logos/gmf-new.png",
+    logo: logoGmf,
     prixMoyen: 590,
     franchise: 280,
     assistance0km: true,
@@ -121,7 +135,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   matmut: {
     slug: "matmut",
     name: "Matmut",
-    logo: "/src/assets/logos/matmut-new.jpg",
+    logo: logoMatmut,
     prixMoyen: 610,
     franchise: 320,
     assistance0km: true,
@@ -135,7 +149,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   mma: {
     slug: "mma",
     name: "MMA",
-    logo: "/src/assets/logos/mma-new.webp",
+    logo: logoMma,
     prixMoyen: 670,
     franchise: 350,
     assistance0km: false,
@@ -149,7 +163,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   groupama: {
     slug: "groupama",
     name: "Groupama",
-    logo: "/src/assets/logos/groupama.png",
+    logo: logoGroupama,
     prixMoyen: 630,
     franchise: 300,
     assistance0km: true,
@@ -163,7 +177,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   "l-olivier": {
     slug: "l-olivier",
     name: "L'Olivier Assurance",
-    logo: "/src/assets/logos/lolivier.png",
+    logo: logoOlivier,
     prixMoyen: 480,
     franchise: 350,
     assistance0km: false,
@@ -177,7 +191,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   luko: {
     slug: "luko",
     name: "Luko",
-    logo: "/src/assets/logos/luko.png",
+    logo: logoLuko,
     prixMoyen: 420,
     franchise: 200,
     assistance0km: true,

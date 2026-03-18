@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
@@ -15,6 +15,7 @@ import { trackGoogleAdsConversionWithParams } from '@/utils/googleAdsTracking';
 import { trackMetaLead } from '@/utils/metaPixelTracking';
 import { normalizeInsuranceType } from '@/utils/insuranceTypeNormalizer';
 import { stepConfigsByType, type InsuranceType, type FormStep, type StepOption } from './stepConfigs';
+import { useFieldTracking } from '@/hooks/useFieldTracking';
 
 // Mascot imports
 import arthurCar from '@/assets/mascotte/arthur-car.png';
@@ -103,6 +104,8 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
   const [isSuccess, setIsSuccess] = useState(false);
   const [searchProgress, setSearchProgress] = useState(0);
   const [currentPartner, setCurrentPartner] = useState(0);
+  const [microLoading, setMicroLoading] = useState(false);
+  const { activeHint, startTracking, stopTracking, dismissHint } = useFieldTracking();
 
   const step = steps[currentStep];
   const totalSteps = steps.length;
@@ -162,11 +165,13 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
 
   const handleCardSelect = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    // Auto-advance after a short delay for satisfying UX
+    // Micro-loading bar for "precision calculation" feel
+    setMicroLoading(true);
     setTimeout(() => {
+      setMicroLoading(false);
       setDirection(1);
       setCurrentStep(prev => prev + 1);
-    }, 300);
+    }, 500);
   };
 
   const handleInputSubmit = (field: string, value: string, step: FormStep) => {
@@ -276,13 +281,22 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
       <div className="relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50 shadow-[var(--shadow-lg)] overflow-hidden">
 
         {/* Progress bar */}
-        <div className="h-1.5 bg-muted/50 w-full">
+        <div className="h-1.5 bg-muted/50 w-full relative overflow-hidden">
           <motion.div
             className="h-full bg-gradient-to-r from-primary to-primary/70 rounded-full"
             initial={{ width: 0 }}
             animate={{ width: `${progressPercent}%` }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
           />
+          {/* Micro-loading overlay */}
+          {microLoading && (
+            <motion.div
+              className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary via-accent to-primary rounded-full"
+              initial={{ width: '0%' }}
+              animate={{ width: '100%' }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+            />
+          )}
         </div>
 
         {/* Step indicator */}
@@ -353,6 +367,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
                   options={step.options}
                   selected={formData[step.field]}
                   onSelect={(value) => handleCardSelect(step.field!, value)}
+                  microLoading={microLoading}
                 />
               )}
 
@@ -362,6 +377,10 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
                   value={formData[step.field] || ''}
                   onChange={(val) => setFormData(prev => ({ ...prev, [step.field!]: val }))}
                   onSubmit={(val) => handleInputSubmit(step.field!, val, step)}
+                  activeHint={activeHint?.field === step.field ? activeHint.message : null}
+                  onFocus={() => startTracking(step.field!)}
+                  onBlur={() => stopTracking(step.field!)}
+                  onDismissHint={dismissHint}
                 />
               )}
 
@@ -401,58 +420,88 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
 };
 
 // ─── Card Select Step ────────────────────────────────────────────────────────
-function CardSelectStep({ options, selected, onSelect }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void }) {
+function CardSelectStep({ options, selected, onSelect, microLoading }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void; microLoading?: boolean }) {
   return (
-    <div className={`grid gap-3 ${options.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : options.length <= 4 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}`}>
-      {options.map((option, idx) => {
-        const Icon = option.icon;
-        const isSelected = selected === option.value;
-        return (
-          <motion.button
-            key={option.value}
-            onClick={() => onSelect(option.value)}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.08, duration: 0.3 }}
-            className={`
-              group relative flex flex-col items-center text-center p-5 md:p-6 rounded-2xl border-2 transition-all duration-200 cursor-pointer
-              ${isSelected
-                ? 'border-primary bg-primary/5 shadow-[var(--shadow-hover)]'
-                : 'border-border/50 hover:border-primary/40 hover:bg-primary/[0.02] hover:shadow-[var(--shadow-card)]'
-              }
-            `}
-            aria-label={option.label}
-          >
-            <div className={`
-              h-14 w-14 md:h-16 md:w-16 rounded-2xl flex items-center justify-center mb-3 transition-all duration-200
-              ${isSelected
-                ? 'bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]'
-                : 'bg-muted/60 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
-              }
-            `}>
-              <Icon className="h-7 w-7 md:h-8 md:w-8" />
-            </div>
-            <span className="font-semibold text-foreground text-sm md:text-base">{option.label}</span>
-            {option.description && (
-              <span className="text-xs text-muted-foreground mt-1 leading-tight">{option.description}</span>
-            )}
-            {isSelected && (
-              <motion.div
-                layoutId="selected-check"
-                className="absolute top-2 right-2 h-6 w-6 rounded-full bg-primary flex items-center justify-center"
-              >
-                <CheckCircle2 className="h-4 w-4 text-primary-foreground" />
-              </motion.div>
-            )}
-          </motion.button>
-        );
-      })}
+    <div className="relative">
+      <div className={`grid gap-3 ${options.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : options.length <= 4 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}`}>
+        {options.map((option, idx) => {
+          const Icon = option.icon;
+          const isSelected = selected === option.value;
+          return (
+            <motion.button
+              key={option.value}
+              onClick={() => onSelect(option.value)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.08, duration: 0.3 }}
+              style={{
+                transform: isSelected ? 'scale(1.04)' : undefined,
+                transition: 'transform 0.25s cubic-bezier(.4,0,.2,1), box-shadow 0.25s ease, border-color 0.25s ease',
+              }}
+              className={`
+                group relative flex flex-col items-center text-center p-5 md:p-6 rounded-2xl border-2 cursor-pointer
+                ${isSelected
+                  ? 'border-primary bg-primary/5 shadow-[0_0_20px_hsl(var(--primary)/0.25)]'
+                  : 'border-border/50 hover:border-primary/60 hover:bg-primary/[0.03] hover:shadow-[0_0_16px_hsl(var(--primary)/0.15)]'
+                }
+              `}
+              onMouseEnter={(e) => {
+                if (!isSelected) {
+                  (e.currentTarget as HTMLElement).style.transform = 'scale(1.05)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isSelected) {
+                  (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
+                }
+              }}
+              aria-label={option.label}
+            >
+              <div className={`
+                h-14 w-14 md:h-16 md:w-16 rounded-2xl flex items-center justify-center mb-3 transition-all duration-200
+                ${isSelected
+                  ? 'bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]'
+                  : 'bg-muted/60 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
+                }
+              `}>
+                <Icon className="h-7 w-7 md:h-8 md:w-8" />
+              </div>
+              <span className="font-semibold text-foreground text-sm md:text-base">{option.label}</span>
+              {option.description && (
+                <span className="text-xs text-muted-foreground mt-1 leading-tight">{option.description}</span>
+              )}
+              {isSelected && (
+                <motion.div
+                  layoutId="selected-check"
+                  className="absolute top-2 right-2 h-6 w-6 rounded-full bg-primary flex items-center justify-center"
+                >
+                  <CheckCircle2 className="h-4 w-4 text-primary-foreground" />
+                </motion.div>
+              )}
+            </motion.button>
+          );
+        })}
+      </div>
+      {/* Micro-loading feedback */}
+      {microLoading && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground"
+        >
+          <Loader2 className="h-3.5 w-3.5 animate-spin text-primary" />
+          <span>Calcul de précision…</span>
+        </motion.div>
+      )}
     </div>
   );
 }
 
 // ─── Input Step ──────────────────────────────────────────────────────────────
-function InputStep({ step, value, onChange, onSubmit }: { step: FormStep; value: string; onChange: (v: string) => void; onSubmit: (v: string) => void }) {
+function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlur, onDismissHint }: {
+  step: FormStep; value: string; onChange: (v: string) => void; onSubmit: (v: string) => void;
+  activeHint?: string | null; onFocus?: () => void; onBlur?: () => void; onDismissHint?: () => void;
+}) {
   const [error, setError] = useState('');
 
   const handleSubmit = () => {
@@ -461,6 +510,7 @@ function InputStep({ step, value, onChange, onSubmit }: { step: FormStep; value:
       return;
     }
     setError('');
+    onBlur?.();
     onSubmit(value);
   };
 
@@ -469,19 +519,40 @@ function InputStep({ step, value, onChange, onSubmit }: { step: FormStep; value:
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="w-full"
+        className="w-full relative"
       >
         <Input
           type={step.inputType || 'text'}
           value={value}
-          onChange={(e) => { onChange(e.target.value); setError(''); }}
+          onChange={(e) => { onChange(e.target.value); setError(''); onDismissHint?.(); }}
           onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
+          onFocus={onFocus}
+          onBlur={onBlur}
           placeholder={step.placeholder}
           maxLength={step.maxLength}
           className="h-14 text-center text-xl font-semibold rounded-2xl border-2 border-border/50 focus:border-primary bg-background/50"
           autoFocus
         />
         {error && <p className="text-xs text-destructive mt-2 text-center">{error}</p>}
+
+        {/* Contextual help bubble */}
+        {activeHint && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8 }}
+            className="absolute left-0 right-0 top-full mt-3 z-20"
+          >
+            <div className="relative bg-card border border-primary/20 rounded-xl p-3 shadow-[var(--shadow-card)] text-xs text-muted-foreground leading-relaxed">
+              <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-card border-l border-t border-primary/20" />
+              <div className="flex items-start gap-2">
+                <span className="text-primary text-sm flex-shrink-0">💡</span>
+                <span>{activeHint}</span>
+                <button onClick={onDismissHint} className="text-muted-foreground/60 hover:text-foreground ml-auto flex-shrink-0" aria-label="Fermer">✕</button>
+              </div>
+            </div>
+          </motion.div>
+        )}
       </motion.div>
       <Button
         onClick={handleSubmit}
