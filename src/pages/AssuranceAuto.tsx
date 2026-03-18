@@ -2,19 +2,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link } from "react-router-dom";
 import { Car, Shield, Euro, Clock, Calculator, ArrowRight } from "lucide-react";
-import { AUTO_BRANDS } from "@/data/vehicleBrands";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { toast } from "sonner";
-import { useState, useRef } from "react";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import InsuranceComparison from "@/components/InsuranceComparison";
-import { autoInsurers, generateInsurerOffers } from "@/utils/insurerData";
+import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 
@@ -30,6 +20,7 @@ import arthurFlying from "@/assets/mascotte/arthur-sprint-coin.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
+import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 
 const formSchema = z.object({
   marque: z.string().min(1, "Champ requis"),
