@@ -16,25 +16,28 @@ const ArthurHero = ({ imageSrc, imageAlt, speechText }: ArthurHeroProps) => {
         loading="lazy"
         decoding="async"
       />
-      {/* Main Arthur */}
-      <img
-        src={imageSrc}
-        alt={imageAlt}
-        className="w-20 sm:w-24 md:w-32 lg:w-36 h-auto drop-shadow-2xl animate-hero-float relative z-10"
-        width={144}
-        height={180}
-        loading="eager"
-        decoding="async"
-      />
-      {/* Speech bubble */}
-      <div className="relative mt-3 w-full max-w-[260px] sm:max-w-[320px] md:max-w-[400px] animate-fade-in-delay z-10">
-        {/* Triangle pointing up */}
-        <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-border/30 transform rotate-45 z-0" />
-        <div className="relative bg-white rounded-2xl px-4 py-3 shadow-lg border border-border/30 z-10">
-          <p className="text-foreground font-medium text-xs sm:text-sm md:text-base text-center">
-            {speechText} 💡
-          </p>
+      {/* Speech bubble + Arthur wrapper */}
+      <div className="relative z-10 flex flex-col items-center">
+        {/* Speech bubble — above and to the right */}
+        <div className="relative self-end mr-[-1rem] sm:mr-[-2rem] md:mr-[-3rem] mb-1 animate-fade-in-delay">
+          <div className="relative bg-white rounded-2xl px-4 py-3 shadow-lg border border-border/30">
+            <p className="text-foreground font-medium text-xs sm:text-sm md:text-base text-center whitespace-nowrap">
+              {speechText} 💡
+            </p>
+          </div>
+          {/* Triangle pointing down-left toward Arthur */}
+          <div className="absolute -bottom-2 left-6 w-4 h-4 bg-white border-r border-b border-border/30 transform rotate-45 z-0" />
         </div>
+        {/* Main Arthur */}
+        <img
+          src={imageSrc}
+          alt={imageAlt}
+          className="w-20 sm:w-24 md:w-32 lg:w-36 h-auto drop-shadow-2xl animate-hero-float"
+          width={144}
+          height={180}
+          loading="eager"
+          decoding="async"
+        />
       </div>
     </div>
   );
