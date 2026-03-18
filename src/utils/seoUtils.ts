@@ -66,7 +66,7 @@ export const addServiceSchema = (service: {
     "description": service.description,
     "provider": {
       "@type": "Organization",
-      "name": service.provider || "jemassuremoinscher"
+      "name": service.provider || "jemassuremoinscher.fr"
     },
     "areaServed": {
       "@type": "Country",
@@ -134,8 +134,8 @@ export const addArticleSchema = (article: {
   datePublished: string;
   image?: string;
 }) => {
-  const authorName = article.author || "jemassuremoinscher";
-  const isTeam = authorName.includes("équipe") || authorName === "jemassuremoinscher";
+  const authorName = article.author || "jemassuremoinscher.fr";
+  const isTeam = authorName.includes("équipe") || authorName === "jemassuremoinscher.fr";
   
   return {
     "@context": "https://schema.org",
