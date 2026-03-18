@@ -115,7 +115,7 @@ const GuidesSection = () => {
           { title: "Comment procéder ?", text: "C'est simple : votre nouvel assureur s'occupe de tout ! Il suffit de choisir une nouvelle assurance et de lui fournir les références de votre ancien contrat. La résiliation prend effet 1 mois après la demande." },
           { title: "Les avantages", text: "Plus de tacite reconduction forcée, plus de pénalités, et une liberté totale pour faire jouer la concurrence et économiser sur vos primes d'assurance." },
         ],
-        conclusion: "Grâce à jemassuremoinscher.fr, comparez les offres et changez d'assurance en quelques clics. Nos conseillers vous accompagnent gratuitement dans vos démarches."
+        conclusion: "Grâce à jemassuremoinscher.fr, comparez les offres et changez d'assurance en quelques clics. Consultez aussi nos duels assureurs (MAIF vs Macif, AXA vs Allianz) et nos solutions pour profils spéciaux (résilié, malussé, retrait de permis)."
       }
     },
     {
@@ -144,7 +144,7 @@ const GuidesSection = () => {
           { title: "4. Adaptez vos garanties", text: "Pour un véhicule de plus de 10 ans, passez au tiers étendu plutôt qu'à une assurance tous risques. L'économie peut atteindre 200€ par an." },
           { title: "5. Optez pour le paiement annuel", text: "Le paiement mensuel entraîne souvent des frais supplémentaires de 5 à 8%. Préférez le paiement annuel si votre trésorerie le permet." },
         ],
-        conclusion: "En appliquant ces conseils, nos utilisateurs économisent en moyenne 320€ par an. Lancez votre comparatif gratuit pour découvrir votre potentiel d'économies !"
+        conclusion: "En appliquant ces conseils, nos utilisateurs économisent en moyenne 320€ par an. Utilisez notre calculateur de bonus-malus et comparez les assureurs face à face dans nos duels détaillés !"
       }
     },
     {
@@ -171,7 +171,7 @@ const GuidesSection = () => {
           { title: "Comment réduire la facture ?", text: "Optez pour un véhicule de faible puissance (moins de 6 CV), installez un boîtier télématique (économie jusqu'à 30%), ou soyez conducteur secondaire sur le contrat de vos parents." },
           { title: "La conduite accompagnée : un atout majeur", text: "Si vous avez suivi l'AAC, votre surprime initiale est de 50% au lieu de 100%. Après 2 ans sans sinistre, vous retrouvez un coefficient normal." },
         ],
-        conclusion: "Sur jemassuremoinscher.fr, nous avons négocié des tarifs spéciaux pour les jeunes conducteurs avec plus de 15 assureurs partenaires. Comparez en 2 minutes !"
+        conclusion: "Sur jemassuremoinscher.fr, nous avons négocié des tarifs spéciaux pour les jeunes conducteurs. Consultez aussi notre guide dédié jeune conducteur + voiture puissante et notre calculateur de bonus-malus !"
       }
     }
   ];
