@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
+import arthurCar from "@/assets/mascotte/arthur-car.png";
 
 type Step = "closed" | "form" | "result" | "email" | "done";
 
@@ -12,7 +13,6 @@ const profiles = [
   { value: "standard", label: "Conducteur standard" },
 ];
 
-// Moyenne par profil (référence interne)
 const avgByProfile: Record<string, number> = {
   jeune: 1100,
   famille: 650,
@@ -30,18 +30,6 @@ export default function ContractOptimizerWidget() {
   const [sending, setSending] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // Click outside to minimize
-  useEffect(() => {
-    if (step === "closed") return;
-    const handler = (e: MouseEvent) => {
-      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
-        // Don't auto-close, just let the user use the X
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [step]);
-
   const priceNum = parseInt(price) || 0;
   const avg = avgByProfile[profile] || 620;
   const diff = priceNum - avg;
@@ -51,9 +39,7 @@ export default function ContractOptimizerWidget() {
 
   const handleSubmitForm = (e: React.FormEvent) => {
     e.preventDefault();
-    if (priceNum > 0 && profile) {
-      setStep("result");
-    }
+    if (priceNum > 0 && profile) setStep("result");
   };
 
   const handleSubmitEmail = async (e: React.FormEvent) => {
@@ -78,33 +64,43 @@ export default function ContractOptimizerWidget() {
       });
       setStep("done");
     } catch {
-      // silent fail
       setStep("done");
     } finally {
       setSending(false);
     }
   };
 
+  const isOpen = step !== "closed";
+
   return (
     <div className="fixed bottom-20 right-4 z-50 flex flex-col items-end gap-3" ref={panelRef}>
       <AnimatePresence>
-        {step !== "closed" && (
+        {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="w-[340px] rounded-2xl border border-border bg-card shadow-[var(--shadow-lg)] overflow-hidden"
+            className="relative w-[340px] rounded-2xl border border-border bg-card shadow-[var(--shadow-lg)] overflow-hidden"
           >
+            {/* Arthur en transparence */}
+            <img
+              src={arthurCar}
+              alt=""
+              aria-hidden="true"
+              className="absolute bottom-0 right-0 w-28 h-auto opacity-[0.08] pointer-events-none select-none"
+              loading="lazy"
+            />
+
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3 bg-primary/5 border-b border-border">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                    <path d="M12 20V10" /><path d="M18 20V4" /><path d="M6 20v-4" />
+                    <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C1.4 11.3 1 12.1 1 13v3c0 .6.4 1 1 1h2" /><circle cx="7" cy="17" r="2" /><circle cx="17" cy="17" r="2" />
                   </svg>
                 </div>
-                <span className="text-sm font-semibold text-foreground">Optimiseur de contrat</span>
+                <span className="text-sm font-semibold text-foreground">Optimiseur Auto</span>
               </div>
               <button
                 onClick={() => { setStep("closed"); setPrice(""); setProfile(""); setEmail(""); setName(""); }}
@@ -115,17 +111,17 @@ export default function ContractOptimizerWidget() {
               </button>
             </div>
 
-            <div className="p-4">
+            <div className="p-4 relative z-10">
               {/* Step: Form */}
               {step === "form" && (
                 <form onSubmit={handleSubmitForm} className="space-y-4">
                   <p className="text-sm text-muted-foreground">
-                    Vérifiez en 10 secondes si vous payez trop cher.
+                    Payez-vous votre <strong className="text-foreground">assurance auto</strong> trop cher ? Vérifiez en 10 secondes.
                   </p>
 
                   <div>
                     <label htmlFor="opt-price" className="block text-xs font-medium text-muted-foreground mb-1">
-                      Votre prime annuelle actuelle
+                      Votre prime auto annuelle
                     </label>
                     <div className="relative">
                       <input
@@ -145,7 +141,7 @@ export default function ContractOptimizerWidget() {
 
                   <div>
                     <label htmlFor="opt-profile" className="block text-xs font-medium text-muted-foreground mb-1">
-                      Votre profil
+                      Votre profil conducteur
                     </label>
                     <select
                       id="opt-profile"
@@ -165,7 +161,7 @@ export default function ContractOptimizerWidget() {
                     type="submit"
                     className="w-full rounded-xl bg-primary text-primary-foreground py-2.5 font-semibold text-sm shadow-md hover:shadow-lg transition-all hover:opacity-90"
                   >
-                    Analyser mon contrat →
+                    Analyser mon assurance auto →
                   </button>
                 </form>
               )}
@@ -182,15 +178,15 @@ export default function ContractOptimizerWidget() {
                           </svg>
                         </div>
                         <p className="text-base font-bold text-foreground">
-                          Vous payez <span className="text-destructive">{percentOver}% trop cher</span>
+                          Vous payez votre auto <span className="text-destructive">{percentOver}% trop cher</span>
                         </p>
                         <p className="text-sm text-muted-foreground mt-1">
-                          par rapport à la moyenne de nos utilisateurs avec un profil similaire.
+                          par rapport à la moyenne de nos assurés auto avec un profil similaire.
                         </p>
                       </div>
 
                       <div className="rounded-xl bg-primary/5 border border-primary/20 p-3 text-center">
-                        <p className="text-xs text-muted-foreground">Économie potentielle estimée</p>
+                        <p className="text-xs text-muted-foreground">Économie auto estimée</p>
                         <p className="text-2xl font-extrabold text-primary">{savings}€<span className="text-sm font-normal text-muted-foreground">/an</span></p>
                       </div>
                     </>
@@ -199,9 +195,9 @@ export default function ContractOptimizerWidget() {
                       <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-3">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary"><polyline points="20 6 9 17 4 12"/></svg>
                       </div>
-                      <p className="text-base font-bold text-foreground">Bon prix !</p>
+                      <p className="text-base font-bold text-foreground">Bon prix auto !</p>
                       <p className="text-sm text-muted-foreground mt-1">
-                        Votre tarif est dans la moyenne. On peut quand même chercher mieux !
+                        Votre tarif auto est dans la moyenne. On peut quand même chercher mieux !
                       </p>
                     </div>
                   )}
@@ -210,7 +206,7 @@ export default function ContractOptimizerWidget() {
                     onClick={() => setStep("email")}
                     className="w-full rounded-xl bg-primary text-primary-foreground py-2.5 font-semibold text-sm shadow-md hover:shadow-lg transition-all hover:opacity-90 animate-pulse"
                   >
-                    Recevoir mon rapport détaillé →
+                    Recevoir mon rapport auto détaillé →
                   </button>
 
                   <button
@@ -226,7 +222,7 @@ export default function ContractOptimizerWidget() {
               {step === "email" && (
                 <form onSubmit={handleSubmitEmail} className="space-y-3">
                   <p className="text-sm text-muted-foreground">
-                    Recevez votre analyse personnalisée avec les 3 meilleures offres pour votre profil.
+                    Recevez votre analyse auto personnalisée avec les 3 meilleures offres pour votre profil.
                   </p>
 
                   <input
@@ -251,7 +247,7 @@ export default function ContractOptimizerWidget() {
                     disabled={sending}
                     className="w-full rounded-xl bg-primary text-primary-foreground py-2.5 font-semibold text-sm shadow-md hover:shadow-lg transition-all hover:opacity-90 disabled:opacity-50"
                   >
-                    {sending ? "Envoi…" : "Envoyer mon rapport gratuit"}
+                    {sending ? "Envoi…" : "Envoyer mon rapport auto gratuit"}
                   </button>
 
                   <p className="text-[10px] text-muted-foreground/60 text-center">
@@ -268,13 +264,13 @@ export default function ContractOptimizerWidget() {
                   </div>
                   <p className="text-base font-bold text-foreground">C'est envoyé !</p>
                   <p className="text-sm text-muted-foreground">
-                    Un conseiller vous contactera sous 24h avec votre analyse personnalisée.
+                    Un conseiller auto vous contactera sous 24h avec votre analyse personnalisée.
                   </p>
                   <a
-                    href="/comparateur"
+                    href="/comparateur?step=1&profile=auto"
                     className="inline-block text-sm text-primary font-medium hover:underline"
                   >
-                    Comparer maintenant →
+                    Comparer mon assurance auto →
                   </a>
                 </div>
               )}
@@ -292,14 +288,14 @@ export default function ContractOptimizerWidget() {
           whileTap={{ scale: 0.95 }}
           onClick={() => setStep("form")}
           className="flex items-center gap-2 rounded-full bg-card border border-border shadow-[var(--shadow-hover)] px-4 py-2.5 text-sm font-medium text-foreground hover:shadow-[var(--shadow-lg)] transition-shadow"
-          aria-label="Vérifiez votre contrat"
+          aria-label="Vérifiez votre assurance auto"
         >
           <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-              <path d="M12 20V10" /><path d="M18 20V4" /><path d="M6 20v-4" />
+              <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C1.4 11.3 1 12.1 1 13v3c0 .6.4 1 1 1h2" /><circle cx="7" cy="17" r="2" /><circle cx="17" cy="17" r="2" />
             </svg>
           </span>
-          <span>Payez-vous trop cher ?</span>
+          <span>Assurance auto trop chère ?</span>
         </motion.button>
       )}
     </div>
