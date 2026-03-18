@@ -188,7 +188,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <p className="text-[11px] text-primary-foreground/30 text-center mt-4">
-            © {new Date().getFullYear()} Jemassuremoinscher.fr — Tous droits réservés
+            © {new Date().getFullYear()} <span className="text-primary-foreground/50">jemassure</span><span className="text-accent">moinscher</span><span className="text-primary-foreground/50">.fr</span> — Tous droits réservés
           </p>
         </div>
       </footer>

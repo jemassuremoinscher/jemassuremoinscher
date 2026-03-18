@@ -21,7 +21,7 @@ const Features = () => {
         <div className="mb-16 text-center">
           <p className="text-accent font-semibold text-sm uppercase tracking-wide mb-3 animate-fade-in">{t('featuresComponent.badge')}</p>
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            {t('featuresComponent.title')}<br /><span className="text-primary">jemassuremoinscher.fr</span> ?
+            {t('featuresComponent.title')}<br /><BrandName variant="purple" /> ?
           </h2>
           <div className="w-24 h-1 bg-accent mx-auto rounded-full animate-fade-in" style={{ animationDelay: '0.2s' }} />
         </div>
