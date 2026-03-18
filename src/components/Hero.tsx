@@ -160,6 +160,7 @@ const Hero = () => {
                       width={64}
                       height={64}
                       loading="eager"
+                      decoding="async"
                     />
                   </div>
                   <span className="font-bold text-sm md:text-base text-foreground group-hover:text-primary transition-colors font-[Inter]">
