@@ -132,7 +132,7 @@ const QuiSommesNous = () => {
               <div>
                 <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">Notre Mission</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Rendre l'assurance <strong className="text-foreground">transparente et accessible à tous les budgets</strong>. Trop longtemps, les consommateurs ont subi des tarifs opaques et des contrats incompréhensibles. Notre comparateur indépendant analyse en temps réel les offres de plus de 50 partenaires pour vous présenter, en toute objectivité, les contrats les plus compétitifs du marché. Pas de favoritisme, pas de commission cachée : chaque recommandation est basée uniquement sur votre profil et vos besoins réels.
+                  Rendre l'assurance <strong className="text-foreground">transparente et accessible à tous les budgets</strong>. Trop longtemps, les consommateurs ont subi des tarifs opaques et des contrats incompréhensibles. Notre comparateur indépendant, enregistré à l'ORIAS (N° 24 XXX XXX), analyse en temps réel les offres de plus de 25 partenaires pour vous présenter, en toute objectivité, les contrats les plus compétitifs du marché. Pas de favoritisme, pas de commission cachée : chaque recommandation est basée uniquement sur votre profil et vos besoins réels.
                 </p>
               </div>
             </motion.div>
