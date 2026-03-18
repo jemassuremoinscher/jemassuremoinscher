@@ -36,11 +36,12 @@ const Footer = () => {
 
   const guidesLinks = [
     { to: "/blog", label: "Tous nos guides" },
-    { to: "/blog/comment-choisir-assurance-auto", label: "Bien choisir son assurance auto" },
-    { to: "/blog/mutuelle-sante-guide", label: "Guide mutuelle santé" },
-    { to: "/blog/assurance-habitation-conseils", label: "Conseils assurance habitation" },
+    { to: "/comparatif", label: "Comparatifs assureurs" },
+    { to: "/profil", label: "Profils spéciaux" },
     { to: "/glossaire", label: "Glossaire de l'assurance" },
     { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
+    { to: "/profil/resilie-non-paiement", label: "Résilié pour non-paiement" },
+    { to: "/profil/retrait-permis", label: "Retrait de permis" },
   ];
 
   const aboutLinks = [

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, Calculator, MessageSquare } from "lucide-react";
+import { ArrowRight, BookOpen, Calculator, MessageSquare, ShieldAlert } from "lucide-react";
 
 interface RelatedLink {
   to: string;
@@ -29,8 +29,22 @@ const allProducts: Record<string, RelatedLink> = {
   emprunteur: { to: "/assurance-emprunteur", label: "Assurance Emprunteur", description: "Changez à tout moment, économisez jusqu'à 15 000€" },
 };
 
-// Mapping: for each product page, which related products + resources to show
-const relatedMap: Record<string, { products: string[]; articles: { to: string; label: string }[]; tools: { to: string; label: string }[] }> = {
+const nicheLinks = [
+  { to: "/profil/resilie-non-paiement", label: "Résilié pour non-paiement" },
+  { to: "/profil/retrait-permis", label: "Retrait de permis" },
+  { to: "/profil/frequence-sinistres", label: "Multi-sinistré (3+ sinistres)" },
+  { to: "/profil/sans-antecedents", label: "Sans antécédents / Primo-assuré" },
+  { to: "/profil/jeune-conducteur-voiture-puissante", label: "Jeune conducteur + voiture puissante" },
+];
+
+const duelLinks = [
+  { to: "/comparatif/maif-vs-macif", label: "MAIF vs Macif" },
+  { to: "/comparatif/axa-vs-allianz", label: "AXA vs Allianz" },
+  { to: "/comparatif/direct-assurance-vs-l-olivier", label: "Direct Assurance vs L'Olivier" },
+  { to: "/comparatif/luko-vs-alan", label: "Luko vs Alan" },
+];
+
+const relatedMap: Record<string, { products: string[]; articles: { to: string; label: string }[]; tools: { to: string; label: string }[]; niches?: { to: string; label: string }[] }> = {
   auto: {
     products: ["moto", "habitation", "permisEtranger"],
     articles: [
@@ -41,6 +55,14 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     tools: [
       { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
       { to: "/comparateur", label: "Comparateur multi-assurances" },
+      { to: "/comparatif", label: "Duels assureurs face à face" },
+    ],
+    niches: [
+      { to: "/profil/resilie-non-paiement", label: "Résilié pour non-paiement ?" },
+      { to: "/profil/retrait-permis", label: "Retrait de permis ?" },
+      { to: "/profil/jeune-conducteur-voiture-puissante", label: "Jeune conducteur + voiture puissante ?" },
+      { to: "/profil/frequence-sinistres", label: "Multi-sinistré ?" },
+      { to: "/profil/sans-antecedents", label: "Primo-assuré sans antécédents ?" },
     ],
   },
   moto: {
@@ -52,6 +74,11 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     tools: [
       { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
       { to: "/comparateur", label: "Comparateur multi-assurances" },
+      { to: "/comparatif/maif-vs-macif", label: "Duel : MAIF vs Macif" },
+    ],
+    niches: [
+      { to: "/profil/jeune-conducteur-voiture-puissante", label: "Jeune conducteur + 2-roues puissant ?" },
+      { to: "/profil/resilie-non-paiement", label: "Résilié pour non-paiement ?" },
     ],
   },
   habitation: {
@@ -63,6 +90,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
       { to: "/glossaire", label: "Glossaire de l'assurance" },
+      { to: "/comparatif/axa-vs-allianz", label: "Duel : AXA vs Allianz" },
     ],
   },
   sante: {
@@ -74,6 +102,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
       { to: "/glossaire", label: "Glossaire de l'assurance" },
+      { to: "/comparatif/alan-vs-harmonie-mutuelle", label: "Duel : Alan vs Harmonie Mutuelle" },
     ],
   },
   animaux: {
@@ -83,6 +112,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
+      { to: "/comparatif", label: "Duels assureurs face à face" },
     ],
   },
   vie: {
@@ -103,6 +133,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
+      { to: "/comparatif", label: "Duels assureurs face à face" },
     ],
   },
   prevoyance: {
@@ -122,6 +153,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
+      { to: "/comparatif", label: "Duels assureurs face à face" },
     ],
   },
   mrp: {
@@ -162,6 +194,8 @@ const RelatedInsuranceLinks = ({ currentPage }: RelatedInsuranceLinksProps) => {
     .map((key) => allProducts[key])
     .filter(Boolean);
 
+  const showNiches = related.niches && related.niches.length > 0;
+
   return (
     <section className="max-w-4xl mx-auto mb-16">
       <h2 className="text-2xl font-bold text-foreground mb-8 text-center">
@@ -184,6 +218,29 @@ const RelatedInsuranceLinks = ({ currentPage }: RelatedInsuranceLinksProps) => {
           </Link>
         ))}
       </div>
+
+      {/* Niche profiles (auto pages) */}
+      {showNiches && (
+        <div className="mb-8 p-5 rounded-xl border border-amber-200/50 dark:border-amber-800/30 bg-amber-50/30 dark:bg-amber-950/10">
+          <div className="flex items-center gap-2 mb-3">
+            <ShieldAlert className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+            <h3 className="font-semibold text-foreground text-sm uppercase tracking-wide">
+              Profils spéciaux — Solutions dédiées
+            </h3>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-2">
+            {related.niches!.map((niche) => (
+              <Link
+                key={niche.to}
+                to={niche.to}
+                className="text-sm text-muted-foreground hover:text-primary transition-colors hover:underline underline-offset-2"
+              >
+                → {niche.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Articles & tools */}
       <div className="grid sm:grid-cols-2 gap-6">
