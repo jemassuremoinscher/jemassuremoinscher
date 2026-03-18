@@ -638,8 +638,51 @@ function ContactStep({
     );
   }
 
+  const prices = teaserPrices[insuranceType || 'auto']?.prices || teaserPrices.auto.prices;
+
   return (
-    <div className="space-y-4 max-w-sm mx-auto w-full">
+    <div className="space-y-5 max-w-md mx-auto w-full">
+      {/* Teaser prices */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="space-y-3"
+      >
+        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">
+          Tarifs trouvés pour votre profil
+        </p>
+        <div className="grid grid-cols-3 gap-2">
+          {prices.map((p, i) => (
+            <motion.div
+              key={p.name}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.1, duration: 0.3 }}
+              className={`relative rounded-xl border-2 p-3 text-center transition-all ${
+                i === 0
+                  ? 'border-primary bg-primary/5 shadow-[var(--shadow-card)]'
+                  : 'border-border/40 bg-background/50'
+              }`}
+            >
+              {i === 0 && (
+                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
+                  Meilleur prix
+                </span>
+              )}
+              <span className="text-[10px] text-muted-foreground font-medium uppercase">{p.badge}</span>
+              <div className="text-xl md:text-2xl font-extrabold text-accent mt-0.5">{p.price}</div>
+              <span className="text-[11px] text-muted-foreground">/mois</span>
+              <p className="text-xs font-medium text-foreground mt-1">{p.name}</p>
+            </motion.div>
+          ))}
+        </div>
+        <p className="text-[11px] text-muted-foreground text-center italic">
+          * Tarifs indicatifs. Recevez votre devis exact en 30 min.
+        </p>
+      </motion.div>
+
+      <div className="h-px bg-border/40" />
       {/* Full name */}
       <div className="space-y-1.5">
         <Label htmlFor="msf-name" className="text-sm font-medium flex items-center gap-1.5">
