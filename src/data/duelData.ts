@@ -191,7 +191,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   luko: {
     slug: "luko",
     name: "Luko",
-    logo: "/src/assets/logos/luko.png",
+    logo: logoLuko,
     prixMoyen: 420,
     franchise: 200,
     assistance0km: true,
