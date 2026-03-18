@@ -367,6 +367,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
                   options={step.options}
                   selected={formData[step.field]}
                   onSelect={(value) => handleCardSelect(step.field!, value)}
+                  microLoading={microLoading}
                 />
               )}
 
