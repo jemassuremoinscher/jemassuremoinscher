@@ -51,7 +51,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   macif: {
     slug: "macif",
     name: "Macif",
-    logo: "/src/assets/logos/macif-new.png",
+    logo: logoMacif,
     prixMoyen: 620,
     franchise: 300,
     assistance0km: true,
