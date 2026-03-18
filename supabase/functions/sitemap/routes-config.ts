@@ -46,6 +46,29 @@ export const routes: RouteConfig[] = [
   { path: "/assurance-auto-permis-etranger", changefreq: "weekly", priority: 0.8 },
   { path: "/assurance-emprunteur", changefreq: "weekly", priority: 0.8 },
 
+  // Profils Spéciaux
+  { path: "/profil", changefreq: "weekly", priority: 0.8 },
+  { path: "/profil/resilie-non-paiement", changefreq: "weekly", priority: 0.8 },
+  { path: "/profil/retrait-permis", changefreq: "weekly", priority: 0.8 },
+  { path: "/profil/frequence-sinistres", changefreq: "weekly", priority: 0.8 },
+  { path: "/profil/sans-antecedents", changefreq: "weekly", priority: 0.8 },
+  { path: "/profil/jeune-conducteur-voiture-puissante", changefreq: "weekly", priority: 0.8 },
+
+  // Comparatifs / Duels
+  { path: "/comparatif", changefreq: "weekly", priority: 0.8 },
+  { path: "/comparatif/maif-vs-macif", changefreq: "monthly", priority: 0.7 },
+  { path: "/comparatif/axa-vs-allianz", changefreq: "monthly", priority: 0.7 },
+  { path: "/comparatif/direct-assurance-vs-l-olivier", changefreq: "monthly", priority: 0.7 },
+  { path: "/comparatif/luko-vs-alan", changefreq: "monthly", priority: 0.7 },
+  { path: "/comparatif/groupama-vs-gmf", changefreq: "monthly", priority: 0.7 },
+  { path: "/comparatif/matmut-vs-mma", changefreq: "monthly", priority: 0.7 },
+  { path: "/comparatif/maaf-vs-matmut", changefreq: "monthly", priority: 0.7 },
+  { path: "/comparatif/generali-vs-axa", changefreq: "monthly", priority: 0.7 },
+  { path: "/comparatif/april-vs-alan", changefreq: "monthly", priority: 0.7 },
+  { path: "/comparatif/swiss-life-vs-generali", changefreq: "monthly", priority: 0.7 },
+  { path: "/comparatif/abeille-vs-groupama", changefreq: "monthly", priority: 0.7 },
+  { path: "/comparatif/alan-vs-harmonie-mutuelle", changefreq: "monthly", priority: 0.7 },
+
   // Outils
   { path: "/outils/calculateur-bonus-malus", changefreq: "monthly", priority: 0.7 },
 
