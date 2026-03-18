@@ -11,7 +11,7 @@ const CGU = () => {
     <>
       <SEOOptimized 
         title="CGU - jemassuremoinscher.fr"
-        description="Conditions générales d'utilisation du service jemassuremoinscher."
+        description="Conditions générales d'utilisation du service jemassuremoinscher.fr."
         noindex
       />
       

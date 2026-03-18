@@ -73,7 +73,7 @@ const NewsletterGestion = () => {
     <>
       <SEOOptimized 
         title="Gestion Newsletter - jemassuremoinscher.fr"
-        description="Gérez votre abonnement à la newsletter de jemassuremoinscher."
+        description="Gérez votre abonnement à la newsletter de jemassuremoinscher.fr."
         noindex
       />
       

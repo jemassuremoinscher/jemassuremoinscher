@@ -167,6 +167,28 @@ const WhyUsComparison = () => {
             </div>
           </motion.div>
 
+          {/* Courtier Indépendant */}
+          <motion.div variants={itemVariants} className="bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow">
+            <div className="flex flex-col items-center text-center gap-3">
+              <div className="p-3 rounded-full bg-primary/10">
+                <Scale className="w-7 h-7 text-primary" />
+              </div>
+              <p className="text-sm font-bold text-foreground">Courtier indépendant</p>
+              <p className="text-xs text-muted-foreground">Aucun lien capitalistique avec les assureurs. Conseil 100% impartial.</p>
+            </div>
+          </motion.div>
+
+          {/* Transparence Totale */}
+          <motion.div variants={itemVariants} className="bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow">
+            <div className="flex flex-col items-center text-center gap-3">
+              <div className="p-3 rounded-full bg-primary/10">
+                <BadgeCheck className="w-7 h-7 text-primary" />
+              </div>
+              <p className="text-sm font-bold text-foreground">Transparence totale</p>
+              <p className="text-xs text-muted-foreground">Aucun frais caché. Service gratuit et sans engagement pour vous.</p>
+            </div>
+          </motion.div>
+
           {/* Arthur Banner */}
           <motion.div variants={itemVariants} className="md:col-span-2 lg:col-span-4 bg-gradient-to-r from-primary to-primary/90 rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow">
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">

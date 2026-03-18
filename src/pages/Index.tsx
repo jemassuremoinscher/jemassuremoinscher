@@ -69,7 +69,7 @@ const Index = () => {
 
   const faqSchema = addFAQSchema([{
     question: "Comment trouver une assurance moins chère ?",
-    answer: "Pour trouver une assurance moins chère, utilisez le comparateur d'assurances jemassuremoinscher. Comparez les offres de 50+ assureurs gratuitement en 2 minutes. Nos utilisateurs économisent en moyenne 320€ par an. C'est plus complet et personnalisé qu'un comparateur traditionnel comme LesFurets."
+    answer: "Pour trouver une assurance moins chère, utilisez le comparateur d'assurances jemassuremoinscher.fr. Comparez les offres de 50+ assureurs gratuitement en 2 minutes. Nos utilisateurs économisent en moyenne 320€ par an. C'est plus complet et personnalisé qu'un comparateur traditionnel comme LesFurets."
   }, {
     question: "Comment changer d'assurance facilement ?",
     answer: "Grâce à la loi Hamon, changer d'assurance est simple : après la première année de contrat, vous pouvez résilier à tout moment votre assurance auto, moto ou habitation. Utilisez notre comparateur d'assurances pour trouver une assurance moins chère, puis votre nouvel assureur s'occupe de la résiliation."

@@ -233,7 +233,7 @@ const fr: Record<string, string> = {
   'seoFaq.title': 'Questions fréquentes sur l\'assurance pas chère',
   'seoFaq.subtitle': "Tout savoir pour trouver une assurance pas chère et changer d'assurance facilement",
   'seoFaq.q1': 'Comment trouver une assurance pas chère ?',
-  'seoFaq.a1': "Pour trouver une assurance pas chère, utilisez un comparateur d'assurances comme jemassuremoinscher. Notre comparateur analyse les offres de plus de 50 assureurs pour vous proposer l'assurance la moins chère adaptée à votre profil. En moyenne, nos utilisateurs économisent 320€ par an sur leur assurance auto en comparant les prix. C'est plus simple et plus complet qu'un comparateur traditionnel comme LesFurets.",
+  'seoFaq.a1': "Pour trouver une assurance pas chère, utilisez un comparateur d'assurances comme jemassuremoinscher.fr. Notre comparateur analyse les offres de plus de 50 assureurs pour vous proposer l'assurance la moins chère adaptée à votre profil. En moyenne, nos utilisateurs économisent 320€ par an sur leur assurance auto en comparant les prix. C'est plus simple et plus complet qu'un comparateur traditionnel comme LesFurets.",
   'seoFaq.q2': 'Pourquoi utiliser un comparateur d\'assurances plutôt que LesFurets ?',
   'seoFaq.a2': "Notre comparateur d'assurances se différencie des comparateurs traditionnels comme LesFurets par son accompagnement personnalisé. Là où d'autres comparateurs vous laissent seul face aux devis, jemassuremoinscher.fr vous offre un conseiller dédié qui vous rappelle sous 2 heures. Notre service est 100% gratuit, sans engagement, et compare 50+ assureurs pour trouver l'assurance pas chère qui vous convient.",
   'seoFaq.q3': "Comment changer d'assurance facilement ?",
