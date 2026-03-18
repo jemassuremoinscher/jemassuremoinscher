@@ -121,7 +121,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   gmf: {
     slug: "gmf",
     name: "GMF",
-    logo: "/src/assets/logos/gmf-new.png",
+    logo: logoGmf,
     prixMoyen: 590,
     franchise: 280,
     assistance0km: true,
