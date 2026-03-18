@@ -11,8 +11,9 @@ import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const stats = [
-  { value: "+50", label: "Partenaires assureurs", suffix: "" },
+  { value: "+25", label: "Assureurs partenaires", suffix: "" },
   { value: "280€", label: "Économie moyenne / an", suffix: "" },
+  { value: "4.8/5", label: "Note clients (2 500+ avis)", suffix: "" },
   { value: "100%", label: "Gratuit & sans engagement", suffix: "" },
 ];
 
