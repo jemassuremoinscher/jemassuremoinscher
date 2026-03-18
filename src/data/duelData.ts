@@ -7,31 +7,39 @@ export interface InsurerDuelProfile {
   assistance0km: boolean;
   avisNote: number;
   avisCount: number;
-  rapiditeRemboursement: string; // "24h", "48h", "5 jours"
+  rapiditeRemboursement: string;
   rapiditeJours: number;
   pointsForts: string[];
   pointsFaibles: string[];
 }
 
 export interface DuelConfig {
-  slug: string; // e.g. "maif-vs-macif"
+  slug: string;
   insurerA: InsurerDuelProfile;
   insurerB: InsurerDuelProfile;
 }
 
-// Use static imports for real logos
-import logoMaif from "@/assets/logos/maif.png";
+// Static imports for logos
+import logoMaif from "@/assets/logos/maif.webp";
 import logoMacif from "@/assets/logos/macif-new.png";
-import logoAxa from "@/assets/logos/axa.png";
-import logoAllianz from "@/assets/logos/allianz.png";
-import logoDirectAssurance from "@/assets/logos/direct-assurance-new.png";
+import logoAxa from "@/assets/logos/axa.webp";
+import logoAllianz from "@/assets/logos/allianz.webp";
+import logoDirectAssurance from "@/assets/logos/direct-assurance-new.webp";
 import logoMaaf from "@/assets/logos/maaf.webp";
 import logoGmf from "@/assets/logos/gmf-new.png";
-import logoMatmut from "@/assets/logos/matmut-new.jpg";
+import logoMatmut from "@/assets/logos/matmut.webp";
 import logoMma from "@/assets/logos/mma-new.webp";
 import logoGroupama from "@/assets/logos/groupama.png";
-import logoOlivier from "@/assets/logos/lolivier.png";
+import logoOlivier from "@/assets/logos/lolivier.webp";
 import logoLuko from "@/assets/logos/luko.png";
+import logoGenerali from "@/assets/logos/generali-new.png";
+import logoApril from "@/assets/logos/april-new.png";
+import logoSwissLife from "@/assets/logos/swisslife.webp";
+import logoAbeille from "@/assets/logos/abeille.webp";
+import logoAlan from "@/assets/logos/alan-new.webp";
+import logoHarmonie from "@/assets/logos/harmonie-mutuelle.png";
+import logoAcheel from "@/assets/logos/acheel.webp";
+import logoAg2r from "@/assets/logos/ag2r.png";
 
 const insurerProfiles: Record<string, InsurerDuelProfile> = {
   maif: {
@@ -45,7 +53,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
     avisCount: 3200,
     rapiditeRemboursement: "48h",
     rapiditeJours: 2,
-    pointsForts: ["Service client réputé", "Garantie corporelle étendue", "Protection du bonus"],
+    pointsForts: ["Service client réputé n°1", "Garantie corporelle étendue", "Protection du bonus"],
     pointsFaibles: ["Pas le moins cher", "Réseau d'agences limité"],
   },
   macif: {
@@ -73,7 +81,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
     avisCount: 4500,
     rapiditeRemboursement: "5 jours",
     rapiditeJours: 5,
-    pointsForts: ["Marque internationale", "Large gamme de produits", "Application mobile complète"],
+    pointsForts: ["Leader européen", "Large gamme de produits", "Application mobile complète"],
     pointsFaibles: ["Prix élevé", "Pas d'assistance 0km de base"],
   },
   allianz: {
@@ -199,12 +207,125 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
     avisCount: 1500,
     rapiditeRemboursement: "24h",
     rapiditeJours: 1,
-    pointsForts: ["Remboursement ultra-rapide", "100% digital", "Prix très bas"],
+    pointsForts: ["Remboursement ultra-rapide 24h", "100% digital", "Prix très bas"],
     pointsFaibles: ["Jeune assureur", "Moins de garanties premium"],
+  },
+  // ─── 8 nouveaux assureurs ─────────────────────────────────────────────
+  generali: {
+    slug: "generali",
+    name: "Generali",
+    logo: logoGenerali,
+    prixMoyen: 660,
+    franchise: 350,
+    assistance0km: false,
+    avisNote: 4.0,
+    avisCount: 3100,
+    rapiditeRemboursement: "5 jours",
+    rapiditeJours: 5,
+    pointsForts: ["Solidité financière top 3 Europe", "Gamme complète pro & particulier", "Assurance vie reconnue"],
+    pointsFaibles: ["Tarifs élevés segment auto", "Assistance 0km absente"],
+  },
+  april: {
+    slug: "april",
+    name: "April",
+    logo: logoApril,
+    prixMoyen: 520,
+    franchise: 280,
+    assistance0km: true,
+    avisNote: 4.3,
+    avisCount: 1900,
+    rapiditeRemboursement: "48h",
+    rapiditeJours: 2,
+    pointsForts: ["Courtier indépendant multi-compagnies", "Spécialiste santé & prévoyance", "Souscription digitale rapide"],
+    pointsFaibles: ["Moins connu du grand public", "Réseau physique limité"],
+  },
+  "swiss-life": {
+    slug: "swiss-life",
+    name: "Swiss Life",
+    logo: logoSwissLife,
+    prixMoyen: 700,
+    franchise: 400,
+    assistance0km: false,
+    avisNote: 4.1,
+    avisCount: 2200,
+    rapiditeRemboursement: "5 jours",
+    rapiditeJours: 5,
+    pointsForts: ["N°1 assurance patrimoniale", "Prévoyance haut de gamme", "Conseil en gestion de patrimoine"],
+    pointsFaibles: ["Tarifs premium élevés", "Pas d'offre auto low-cost"],
+  },
+  abeille: {
+    slug: "abeille",
+    name: "Abeille Assurances",
+    logo: logoAbeille,
+    prixMoyen: 600,
+    franchise: 300,
+    assistance0km: true,
+    avisNote: 4.1,
+    avisCount: 2500,
+    rapiditeRemboursement: "72h",
+    rapiditeJours: 3,
+    pointsForts: ["Réseau d'agents généraux dense", "Historique Aviva solide", "Offre multi-produits"],
+    pointsFaibles: ["Transition de marque récente", "Digital en retard"],
+  },
+  alan: {
+    slug: "alan",
+    name: "Alan",
+    logo: logoAlan,
+    prixMoyen: 490,
+    franchise: 250,
+    assistance0km: true,
+    avisNote: 4.7,
+    avisCount: 1400,
+    rapiditeRemboursement: "24h",
+    rapiditeJours: 1,
+    pointsForts: ["UX/UI best-in-class", "Remboursement en 24h", "Transparence totale des prix"],
+    pointsFaibles: ["Spécialisé santé, auto limité", "Jeune entreprise"],
+  },
+  harmonie: {
+    slug: "harmonie",
+    name: "Harmonie Mutuelle",
+    logo: logoHarmonie,
+    prixMoyen: 570,
+    franchise: 260,
+    assistance0km: true,
+    avisNote: 4.3,
+    avisCount: 3400,
+    rapiditeRemboursement: "48h",
+    rapiditeJours: 2,
+    pointsForts: ["1ère mutuelle de France", "Réseau de soins étendu", "Prévention santé intégrée"],
+    pointsFaibles: ["Principalement santé/prévoyance", "Auto en second plan"],
+  },
+  acheel: {
+    slug: "acheel",
+    name: "Acheel",
+    logo: logoAcheel,
+    prixMoyen: 410,
+    franchise: 300,
+    assistance0km: false,
+    avisNote: 4.2,
+    avisCount: 900,
+    rapiditeRemboursement: "48h",
+    rapiditeJours: 2,
+    pointsForts: ["100% digital nouvelle génération", "Prix ultra-compétitifs", "Souscription en 3 min"],
+    pointsFaibles: ["Très jeune assureur", "Peu de recul sur les sinistres"],
+  },
+  ag2r: {
+    slug: "ag2r",
+    name: "AG2R La Mondiale",
+    logo: logoAg2r,
+    prixMoyen: 620,
+    franchise: 300,
+    assistance0km: true,
+    avisNote: 4.0,
+    avisCount: 2600,
+    rapiditeRemboursement: "72h",
+    rapiditeJours: 3,
+    pointsForts: ["Spécialiste retraite & prévoyance", "Accompagnement personnalisé", "Solidité financière"],
+    pointsFaibles: ["Interface digitale ancienne", "Offre auto limitée"],
   },
 };
 
-// Popular duel combinations
+// Popular duel combinations (20 duels couvrant les 20 assureurs)
 const popularDuels: [string, string][] = [
   ["maif", "macif"],
   ["axa", "allianz"],
@@ -218,13 +339,25 @@ const popularDuels: [string, string][] = [
   ["allianz", "maaf"],
   ["axa", "maaf"],
   ["maif", "gmf"],
+  // Nouveaux duels avec les 8 ajoutés
+  ["generali", "axa"],
+  ["april", "alan"],
+  ["acheel", "direct-assurance"],
+  ["abeille", "groupama"],
+  ["harmonie", "ag2r"],
+  ["swiss-life", "generali"],
+  ["luko", "acheel"],
+  ["alan", "april"],
 ];
 
 export function getDuelBySlug(slug: string): DuelConfig | null {
-  const parts = slug.split("-vs-");
-  if (parts.length !== 2) return null;
-  const a = insurerProfiles[parts[0]];
-  const b = insurerProfiles[parts[1]];
+  // Handle multi-hyphen slugs like "direct-assurance-vs-l-olivier"
+  const vsIndex = slug.indexOf("-vs-");
+  if (vsIndex === -1) return null;
+  const slugA = slug.substring(0, vsIndex);
+  const slugB = slug.substring(vsIndex + 4);
+  const a = insurerProfiles[slugA];
+  const b = insurerProfiles[slugB];
   if (!a || !b) return null;
   return { slug, insurerA: a, insurerB: b };
 }
