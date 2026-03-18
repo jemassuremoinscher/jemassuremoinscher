@@ -92,7 +92,7 @@ export default function RegionalInsurancePage() {
 
           <Suspense fallback={null}>
             <div className="mt-12">
-              <RelatedInsuranceLinks currentType="auto" />
+              <RelatedInsuranceLinks currentPage="auto" />
             </div>
           </Suspense>
         </div>
