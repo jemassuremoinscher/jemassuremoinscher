@@ -349,6 +349,7 @@ export const stepConfigsByType: Record<InsuranceType, FormStep[]> = {
         { value: 'pno', label: 'PNO', description: 'Propriétaire non occupant', icon: Building },
         { value: 'gli', label: 'GLI', description: 'Garantie loyers impayés', icon: Lock },
         { value: 'vie', label: 'Assurance Vie', description: 'Épargne et succession', icon: Landmark },
+        { value: 'pret', label: 'Prêt immobilier', description: 'Assurance emprunteur', icon: FileText },
       ],
     },
     {

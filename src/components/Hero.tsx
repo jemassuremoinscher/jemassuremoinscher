@@ -1,21 +1,30 @@
 import { Card } from "@/components/ui/card";
-import { Car, Heart, Home, PawPrint, Bike, HeartPulse, Sparkles, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-wink-thumbsup.png";
+
+// Inline SVG icons — zero bundle cost
+const CarIcon = () => <svg className="h-6 w-6 md:h-8 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.5 2.8C1.4 11.3 1 12.1 1 13v3c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>;
+const BikeIcon = () => <svg className="h-6 w-6 md:h-8 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></svg>;
+const HomeIcon = () => <svg className="h-6 w-6 md:h-8 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>;
+const HeartIcon = () => <svg className="h-6 w-6 md:h-8 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>;
+const PawIcon = () => <svg className="h-6 w-6 md:h-8 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></svg>;
+const LifeIcon = () => <svg className="h-6 w-6 md:h-8 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2"/><path d="M2 9v1c0 1.1.9 2 2 2h1"/><path d="M16 11h.01"/></svg>;
+const SparklesIcon = () => <svg className="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>;
+const ZapIcon = () => <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>;
 
 const Hero = () => {
   const { trackEvent } = useAnalytics();
   const { t } = useLanguage();
 
   const categories = [
-  { icon: Car, labelKey: "category.auto", link: "/assurance-auto" },
-  { icon: Bike, labelKey: "category.moto", link: "/assurance-moto" },
-  { icon: Home, labelKey: "category.home", link: "/assurance-habitation" },
-  { icon: HeartPulse, labelKey: "category.health", link: "/assurance-sante" },
-  { icon: PawPrint, labelKey: "category.pets", link: "/assurance-animaux" },
-  { icon: Heart, labelKey: "category.life", link: "/assurance-vie" }];
+  { icon: CarIcon, labelKey: "category.auto", link: "/assurance-auto" },
+  { icon: BikeIcon, labelKey: "category.moto", link: "/assurance-moto" },
+  { icon: HomeIcon, labelKey: "category.home", link: "/assurance-habitation" },
+  { icon: HeartIcon, labelKey: "category.health", link: "/assurance-sante" },
+  { icon: PawIcon, labelKey: "category.pets", link: "/assurance-animaux" },
+  { icon: LifeIcon, labelKey: "category.life", link: "/assurance-vie" }];
 
   const handleCategoryClick = (category: string) => {
     trackEvent('insurance_type_click', {
@@ -52,6 +61,7 @@ const Hero = () => {
                 height={220}
                 loading="eager"
                 decoding="async"
+                fetchPriority="high"
               />
               
               {/* Speech bubble */}
@@ -91,7 +101,7 @@ const Hero = () => {
         {/* Savings Badge */}
         <div className="flex justify-center mb-6 animate-fade-in-up-delay">
           <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/40 rounded-full px-4 py-2 md:px-6 md:py-3">
-            <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-accent" />
+            <span className="text-accent"><SparklesIcon /></span>
             <span className="text-sm md:text-base font-bold text-primary-foreground text-center">
               {t('hero.savingsBadge')} <span className="text-accent">{t('hero.savingsPercent')}</span> {t('hero.savingsEnd')}
             </span>
@@ -105,7 +115,7 @@ const Hero = () => {
             onClick={() => trackEvent('insurance_type_click', { category: 'hero_cta', label: 'voir_mon_prix' })}
             className="inline-flex items-center gap-2 bg-gradient-to-r from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] hover:from-[hsl(43_80%_60%)] hover:to-[hsl(38_75%_53%)] text-foreground font-bold text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
             aria-label="Voir mon prix en moins de deux minutes - comparaison gratuite">
-            <Zap className="w-5 h-5" aria-hidden="true" />
+            <ZapIcon />
             Voir mon prix en moins de 2 min
           </Link>
         </div>
@@ -120,8 +130,8 @@ const Hero = () => {
               className="block">
               <Card className="p-4 md:p-6 bg-white/95 backdrop-blur-sm border-2 border-transparent hover:border-accent transition-all duration-300 cursor-pointer group card-hover active:scale-95">
                 <div className="flex flex-col items-center gap-2 md:gap-3">
-                  <div className="p-3 md:p-4 rounded-full bg-primary/10 group-hover:bg-accent/20 transition-all duration-300 group-hover:scale-110">
-                    <category.icon className="h-6 w-6 md:h-8 md:w-8 text-primary group-hover:text-accent transition-colors" />
+                  <div className="p-3 md:p-4 rounded-full bg-primary/10 group-hover:bg-accent/20 transition-all duration-300 group-hover:scale-110 text-primary group-hover:text-accent [&_svg]:transition-colors">
+                    <category.icon />
                   </div>
                   <span className="font-bold text-sm md:text-base text-foreground group-hover:text-primary transition-colors font-[Inter]">
                     {t(category.labelKey)}

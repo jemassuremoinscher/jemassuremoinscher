@@ -545,67 +545,67 @@ function SearchingStep({ progress, currentPartner }: { progress: number; current
   );
 }
 
-// ─── Teaser Prices by insurance type ─────────────────────────────────────────
-const teaserPrices: Record<string, { label: string; prices: { name: string; price: string; badge?: string }[] }> = {
+// ─── Teaser Prices by insurance type with insurer logos ──────────────────────
+const teaserPrices: Record<string, { label: string; prices: { name: string; price: string; badge?: string; logo: string }[] }> = {
   auto: { label: 'Assurance Auto', prices: [
-    { name: 'Tiers', price: '11€', badge: 'Dès' },
-    { name: 'Tiers+', price: '18€', badge: 'Dès' },
-    { name: 'Tous risques', price: '29€', badge: 'Dès' },
+    { name: 'Tiers', price: '11€', badge: 'Dès', logo: '/src/assets/logos/direct-assurance-new.webp' },
+    { name: 'Tiers+', price: '18€', badge: 'Dès', logo: '/src/assets/logos/allianz.webp' },
+    { name: 'Tous risques', price: '29€', badge: 'Dès', logo: '/src/assets/logos/axa.webp' },
   ]},
   moto: { label: 'Assurance Moto', prices: [
-    { name: 'Tiers', price: '9€', badge: 'Dès' },
-    { name: 'Intermédiaire', price: '15€', badge: 'Dès' },
-    { name: 'Tous risques', price: '24€', badge: 'Dès' },
+    { name: 'Tiers', price: '9€', badge: 'Dès', logo: '/src/assets/logos/amaguiz.png' },
+    { name: 'Intermédiaire', price: '15€', badge: 'Dès', logo: '/src/assets/logos/allianz.webp' },
+    { name: 'Tous risques', price: '24€', badge: 'Dès', logo: '/src/assets/logos/axa.webp' },
   ]},
   habitation: { label: 'Assurance Habitation', prices: [
-    { name: 'Essentielle', price: '5€', badge: 'Dès' },
-    { name: 'Confort', price: '12€', badge: 'Dès' },
-    { name: 'Premium', price: '19€', badge: 'Dès' },
+    { name: 'Essentielle', price: '5€', badge: 'Dès', logo: '/src/assets/logos/direct-assurance-new.webp' },
+    { name: 'Confort', price: '12€', badge: 'Dès', logo: '/src/assets/logos/maif.webp' },
+    { name: 'Premium', price: '19€', badge: 'Dès', logo: '/src/assets/logos/groupama.png' },
   ]},
   sante: { label: 'Mutuelle Santé', prices: [
-    { name: 'Essentielle', price: '14€', badge: 'Dès' },
-    { name: 'Confort', price: '29€', badge: 'Dès' },
-    { name: 'Premium', price: '49€', badge: 'Dès' },
+    { name: 'Essentielle', price: '14€', badge: 'Dès', logo: '/src/assets/logos/alan-new.webp' },
+    { name: 'Confort', price: '29€', badge: 'Dès', logo: '/src/assets/logos/harmonie-mutuelle.png' },
+    { name: 'Premium', price: '49€', badge: 'Dès', logo: '/src/assets/logos/axa.webp' },
   ]},
   pret: { label: 'Assurance Prêt', prices: [
-    { name: 'Décès', price: '8€', badge: 'Dès' },
-    { name: 'Décès + PTIA', price: '14€', badge: 'Dès' },
-    { name: 'Complète', price: '22€', badge: 'Dès' },
+    { name: 'Décès', price: '8€', badge: 'Dès', logo: '/src/assets/logos/april.png' },
+    { name: 'Décès + PTIA', price: '14€', badge: 'Dès', logo: '/src/assets/logos/cardif.png' },
+    { name: 'Complète', price: '22€', badge: 'Dès', logo: '/src/assets/logos/generali-new.png' },
   ]},
   animaux: { label: 'Assurance Animaux', prices: [
-    { name: 'Accident', price: '7€', badge: 'Dès' },
-    { name: 'Confort', price: '19€', badge: 'Dès' },
-    { name: 'Intégrale', price: '34€', badge: 'Dès' },
+    { name: 'Accident', price: '7€', badge: 'Dès', logo: '/src/assets/logos/acheel.webp' },
+    { name: 'Confort', price: '19€', badge: 'Dès', logo: '/src/assets/logos/allianz.webp' },
+    { name: 'Intégrale', price: '34€', badge: 'Dès', logo: '/src/assets/logos/axa.webp' },
   ]},
   vie: { label: 'Assurance Vie', prices: [
-    { name: 'Essentielle', price: '20€', badge: 'Dès' },
-    { name: 'Confort', price: '45€', badge: 'Dès' },
-    { name: 'Premium', price: '80€', badge: 'Dès' },
+    { name: 'Essentielle', price: '20€', badge: 'Dès', logo: '/src/assets/logos/swisslife.webp' },
+    { name: 'Confort', price: '45€', badge: 'Dès', logo: '/src/assets/logos/generali-new.png' },
+    { name: 'Premium', price: '80€', badge: 'Dès', logo: '/src/assets/logos/axa.webp' },
   ]},
   prevoyance: { label: 'Prévoyance', prices: [
-    { name: 'Essentielle', price: '12€', badge: 'Dès' },
-    { name: 'Confort', price: '25€', badge: 'Dès' },
-    { name: 'Intégrale', price: '42€', badge: 'Dès' },
+    { name: 'Essentielle', price: '12€', badge: 'Dès', logo: '/src/assets/logos/april.png' },
+    { name: 'Confort', price: '25€', badge: 'Dès', logo: '/src/assets/logos/allianz.webp' },
+    { name: 'Intégrale', price: '42€', badge: 'Dès', logo: '/src/assets/logos/axa.webp' },
   ]},
   rc_pro: { label: 'RC Pro', prices: [
-    { name: 'Basique', price: '15€', badge: 'Dès' },
-    { name: 'Standard', price: '29€', badge: 'Dès' },
-    { name: 'Premium', price: '49€', badge: 'Dès' },
+    { name: 'Basique', price: '15€', badge: 'Dès', logo: '/src/assets/logos/aon.webp' },
+    { name: 'Standard', price: '29€', badge: 'Dès', logo: '/src/assets/logos/allianz.webp' },
+    { name: 'Premium', price: '49€', badge: 'Dès', logo: '/src/assets/logos/axa.webp' },
   ]},
   mrp: { label: 'Multirisque Pro', prices: [
-    { name: 'Essentielle', price: '25€', badge: 'Dès' },
-    { name: 'Confort', price: '45€', badge: 'Dès' },
-    { name: 'Premium', price: '75€', badge: 'Dès' },
+    { name: 'Essentielle', price: '25€', badge: 'Dès', logo: '/src/assets/logos/generali-new.png' },
+    { name: 'Confort', price: '45€', badge: 'Dès', logo: '/src/assets/logos/allianz.webp' },
+    { name: 'Premium', price: '75€', badge: 'Dès', logo: '/src/assets/logos/axa.webp' },
   ]},
   gli: { label: 'GLI', prices: [
-    { name: 'Basique', price: '2,5%', badge: 'Dès' },
-    { name: 'Standard', price: '3%', badge: 'Dès' },
-    { name: 'Premium', price: '3,5%', badge: 'Dès' },
+    { name: 'Basique', price: '2,5%', badge: 'Dès', logo: '/src/assets/logos/allianz.webp' },
+    { name: 'Standard', price: '3%', badge: 'Dès', logo: '/src/assets/logos/generali-new.png' },
+    { name: 'Premium', price: '3,5%', badge: 'Dès', logo: '/src/assets/logos/axa.webp' },
   ]},
   pno: { label: 'PNO', prices: [
-    { name: 'Essentielle', price: '6€', badge: 'Dès' },
-    { name: 'Confort', price: '11€', badge: 'Dès' },
-    { name: 'Premium', price: '18€', badge: 'Dès' },
+    { name: 'Essentielle', price: '6€', badge: 'Dès', logo: '/src/assets/logos/direct-assurance-new.webp' },
+    { name: 'Confort', price: '11€', badge: 'Dès', logo: '/src/assets/logos/maif.webp' },
+    { name: 'Premium', price: '18€', badge: 'Dès', logo: '/src/assets/logos/groupama.png' },
   ]},
 };
 
@@ -671,6 +671,15 @@ function ContactStep({
                   Meilleur prix
                 </span>
               )}
+              {/* Insurer logo */}
+              <div className="flex justify-center mb-1.5 mt-1">
+                <img
+                  src={p.logo}
+                  alt={p.name}
+                  className="h-6 max-w-[60px] object-contain"
+                  loading="lazy"
+                />
+              </div>
               <span className="text-[10px] text-muted-foreground font-medium uppercase">{p.badge}</span>
               <div className="text-xl md:text-2xl font-extrabold text-accent mt-0.5">{p.price}</div>
               <span className="text-[11px] text-muted-foreground">/mois</span>
