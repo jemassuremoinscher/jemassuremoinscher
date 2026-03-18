@@ -36,7 +36,7 @@ const WhyUsComparison = () => {
                 <tr className="border-b border-border/50">
                   <th className="p-4 text-left text-muted-foreground font-medium">{t('whyUs.criteria')}</th>
                   <th className="p-4 text-center bg-primary/5">
-                    <span className="text-lg font-bold text-primary">jemassuremoinscher.fr</span>
+                    <span className="text-lg font-bold"><span className="text-primary">jemassure</span><span className="text-accent">moinscher</span><span className="text-primary">.fr</span></span>
                   </th>
                   <th className="p-4 text-center">
                     <span className="text-lg font-semibold text-muted-foreground">{t('whyUs.others')}</span>
