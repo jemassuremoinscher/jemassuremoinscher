@@ -2,12 +2,14 @@ import { useState, useRef, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MessageCircle, X, Send, Loader2, Bot, User, UserCircle } from "lucide-react";
+import { MessageCircle, X, Send, Loader2, User, UserCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { TransferDialog } from "./TransferDialog";
 import { useLanguage } from "@/contexts/LanguageContext";
+import arthurWaving from "@/assets/mascotte/arthur-waving.png";
+import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.png";
 
 interface Message { role: "user" | "assistant"; content: string; }
 
