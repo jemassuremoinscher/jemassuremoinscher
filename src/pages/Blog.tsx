@@ -127,48 +127,51 @@ const Blog = () => {
                 {
                   title: t('blogPage.guidesTitle'),
                   links: [
-                    { label: "Meilleure assurance auto 2025", slug: "meilleure-assurance-auto-2025" },
-                    { label: "Top mutuelles santé", slug: "top-mutuelles-sante-2025" },
-                    { label: "Assurance jeune conducteur", slug: "assurance-auto-jeune-conducteur-astuces" },
-                    { label: "Comparatif habitation", slug: "comparatif-habitation-2025" },
+                    { label: "Meilleure assurance auto 2026", slug: "meilleure-assurance-auto-2026" },
+                    { label: "Top mutuelles santé 2026", slug: "top-mutuelles-sante-2026" },
+                    { label: "Astuces jeune conducteur", slug: "assurance-auto-jeune-conducteur-astuces" },
+                    { label: "Comparatif habitation 2026", slug: "comparatif-habitation-2026" },
                   ]
                 },
                 {
-                  title: t('blogPage.legalTitle'),
+                  title: "Profils Spéciaux",
                   links: [
-                    { label: "Loi Lemoine 2025", slug: "loi-lemoine-2025" },
-                    { label: "Loi Hamon résiliation", slug: "resiliation-assurance-droits-2024" },
-                    { label: "Nouvelle réglementation", slug: "nouvelle-reglementation-assurance-2025" },
-                    { label: "Droits des assurés", slug: "droits-des-assures-2025" },
+                    { label: "Résilié non-paiement", to: "/profil/resilie-non-paiement" },
+                    { label: "Retrait de permis", to: "/profil/retrait-permis" },
+                    { label: "Multi-sinistré (3+)", to: "/profil/frequence-sinistres" },
+                    { label: "Jeune + voiture puissante", to: "/profil/jeune-conducteur-voiture-puissante" },
+                    { label: "Primo-assuré", to: "/profil/sans-antecedents" },
                   ]
                 },
                 {
-                  title: t('blogPage.expertTitle'),
+                  title: "Duels Assureurs",
                   links: [
-                    { label: "Économiser sur ses contrats", slug: "mutuelle-sante-reduire-frais-medicaux-2024" },
-                    { label: "Choisir ses garanties", slug: "assurance-auto-jeune-conducteur-astuces" },
-                    { label: "Éviter les pièges", slug: "resiliation-assurance-droits-2024" },
-                    { label: "Optimiser sa couverture", slug: "mutuelle-sante-reduire-frais-medicaux-2024" },
+                    { label: "MAIF vs Macif", to: "/comparatif/maif-vs-macif" },
+                    { label: "AXA vs Allianz", to: "/comparatif/axa-vs-allianz" },
+                    { label: "Direct Assurance vs L'Olivier", to: "/comparatif/direct-assurance-vs-l-olivier" },
+                    { label: "Luko vs Alan", to: "/comparatif/luko-vs-alan" },
+                    { label: "Tous les duels →", to: "/comparatif" },
                   ]
                 },
                 {
                   title: t('blogPage.byTypeTitle'),
                   links: [
-                    { label: "Auto & Moto", slug: "meilleure-assurance-auto-2025" },
-                    { label: "Santé & Prévoyance", slug: "top-mutuelles-sante-2025" },
-                    { label: "Habitation & PNO", slug: "comparatif-habitation-2025" },
-                    { label: "Vie & Emprunteur", slug: "loi-lemoine-2025" },
+                    { label: "Auto & Moto", to: "/assurance-auto" },
+                    { label: "Santé & Prévoyance", to: "/assurance-sante" },
+                    { label: "Habitation & PNO", to: "/assurance-habitation" },
+                    { label: "Vie & Emprunteur", to: "/assurance-pret" },
+                    { label: "Calculateur Bonus-Malus", to: "/outils/calculateur-bonus-malus" },
                   ]
                 },
               ].map((section) => (
                 <div key={section.title} className="glass-card p-6 rounded-[2rem]">
                   <h2 className="text-lg font-bold text-primary mb-4">{section.title}</h2>
                   <ul className="space-y-2">
-                    {section.links.map((link) => (
-                      <li key={link.slug + link.label}>
+                    {section.links.map((link: any) => (
+                      <li key={(link.slug || link.to) + link.label}>
                         <button
                           type="button"
-                          onClick={() => navigate(`/blog/${link.slug}`)}
+                          onClick={() => navigate(link.to || `/blog/${link.slug}`)}
                           className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
                         >
                           • {link.label}
