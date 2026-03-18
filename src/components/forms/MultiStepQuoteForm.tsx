@@ -104,6 +104,8 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
   const [isSuccess, setIsSuccess] = useState(false);
   const [searchProgress, setSearchProgress] = useState(0);
   const [currentPartner, setCurrentPartner] = useState(0);
+  const [microLoading, setMicroLoading] = useState(false);
+  const { activeHint, startTracking, stopTracking, dismissHint } = useFieldTracking();
 
   const step = steps[currentStep];
   const totalSteps = steps.length;
