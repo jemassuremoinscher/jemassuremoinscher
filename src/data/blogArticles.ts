@@ -10,6 +10,7 @@ export interface BlogArticle {
   image?: string;
   content: string;
   tags: string[];
+  noindex?: boolean;
 }
 
 const _blogArticlesRaw: BlogArticle[] = [
