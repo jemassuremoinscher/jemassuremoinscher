@@ -190,7 +190,7 @@ const handler = async (req: Request): Promise<Response> => {
           
           <p>Un de nos conseillers vous contactera dans les plus brefs délais au <strong>${phone}</strong> pour finaliser votre devis.</p>
           
-          <p>Cordialement,<br>L'équipe jemassuremoinscher</p>
+          <p>Cordialement,<br>L'équipe jemassuremoinscher.fr</p>
         `,
       });
     } else {

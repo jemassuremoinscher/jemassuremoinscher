@@ -76,7 +76,7 @@ const SEOLandingPage = ({
   const serviceSchema = addServiceSchema({
     name: title,
     description: metaDescription,
-    provider: "jemassuremoinscher",
+    provider: "jemassuremoinscher.fr",
     areaServed: "France",
   });
   const faqSchema = addFAQSchema(faqs);

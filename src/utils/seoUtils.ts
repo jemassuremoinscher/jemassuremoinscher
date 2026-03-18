@@ -2,7 +2,7 @@ export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "jemassuremoinscher",
+    "name": "jemassuremoinscher.fr",
     "url": "https://www.jemassuremoinscher.fr",
     "logo": "https://www.jemassuremoinscher.fr/logo.png",
     "description": "Comparateur d'assurances pas chères en ligne. Trouvez une assurance pas chère, comparez 50+ assureurs, changez d'assurance facilement. Alternative à LesFurets.",
@@ -149,13 +149,13 @@ export const addArticleSchema = (article: {
           "name": authorName,
           "worksFor": {
             "@type": "Organization",
-            "name": "jemassuremoinscher",
+            "name": "jemassuremoinscher.fr",
             "url": "https://www.jemassuremoinscher.fr"
           }
         },
     "publisher": {
       "@type": "Organization",
-      "name": "jemassuremoinscher",
+      "name": "jemassuremoinscher.fr",
       "logo": {
         "@type": "ImageObject",
         "url": "https://www.jemassuremoinscher.fr/logo.png"

@@ -79,7 +79,7 @@ const AssuranceVie = () => {
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Vie", url: "https://www.jemassuremoinscher.fr/assurance-vie" }]);
-  const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Vie", description: "Comparez les contrats d'assurance vie pour l'épargne et la protection.", provider: "jemassuremoinscher", areaServed: "France" });
+  const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Vie", description: "Comparez les contrats d'assurance vie pour l'épargne et la protection.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const ratingSchema = addAggregateRatingSchema("Comparateur Assurance Vie", 4.6, 1124);
   const faqSchema = addFAQSchema([
     { question: t('viePage.faq1.q'), answer: t('viePage.faq1.a') },

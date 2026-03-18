@@ -70,7 +70,7 @@ const AvisClients = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized 
-        title="Avis Clients | jemassuremoinscher"
+        title="Avis Clients | jemassuremoinscher.fr"
         description="Avis clients sur notre comparateur d'assurance. Note 4.9/5 sur 2 547 avis vérifiés."
         keyword="avis clients assurance"
         keywords="témoignages assurance, retour expérience, satisfaction"

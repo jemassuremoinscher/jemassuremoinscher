@@ -23,14 +23,14 @@ const Index = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances Moins Chères en Ligne",
     description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 50+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
-    provider: "jemassuremoinscher",
+    provider: "jemassuremoinscher.fr",
     areaServed: "France"
   });
 
   const financialServiceSchema = {
     "@context": "https://schema.org",
     "@type": "FinancialService",
-    "name": "jemassuremoinscher",
+    "name": "jemassuremoinscher.fr",
     "url": "https://www.jemassuremoinscher.fr",
     "logo": "https://www.jemassuremoinscher.fr/logo.png",
     "description": "Courtier en assurances en ligne. Comparez gratuitement les offres de 25+ assureurs partenaires et économisez jusqu'à 280€ sur votre contrat.",
@@ -52,7 +52,7 @@ const Index = () => {
   const webSiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "jemassuremoinscher",
+    "name": "jemassuremoinscher.fr",
     "alternateName": "Je M'Assure Moins Cher",
     "url": "https://www.jemassuremoinscher.fr",
     "description": "Comparateur d'assurances gratuit. Comparez 50+ assureurs et trouvez l'assurance moins chère en 2 minutes.",
@@ -87,7 +87,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance Moins Chère : Comparateur Gratuit | jemassuremoinscher"
+        title="Assurance Moins Chère : Comparateur Gratuit | jemassuremoinscher.fr"
         description="Comparateur d'assurances gratuit. Comparez 50+ assureurs et économisez jusqu'à 280€. Devis en 2 min, sans engagement."
         ogTitle="Comparateur Assurance Moins Chère"
         ogDescription="Comparez 50+ assureurs gratuitement. Économisez jusqu'à 280€."

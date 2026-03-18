@@ -84,7 +84,7 @@ const AssuranceMRP = () => {
   };
 
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance MRP", url: "https://www.jemassuremoinscher.fr/assurance-mrp" }]);
-  const serviceSchema = addServiceSchema({ name: "Comparateur Assurance MRP", description: "Comparez les assurances multirisque professionnelle.", provider: "jemassuremoinscher", areaServed: "France" });
+  const serviceSchema = addServiceSchema({ name: "Comparateur Assurance MRP", description: "Comparez les assurances multirisque professionnelle.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const faqSchema = addFAQSchema([
     { question: t('mrpPage.faq1.q'), answer: t('mrpPage.faq1.a') },
     { question: t('mrpPage.faq2.q'), answer: t('mrpPage.faq2.a') }

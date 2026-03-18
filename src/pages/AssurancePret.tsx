@@ -82,7 +82,7 @@ const AssurancePret = () => {
     { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
     { name: "Assurance Prêt", url: "https://www.jemassuremoinscher.fr/assurance-pret" }
   ]);
-  const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Prêt Immobilier", description: "Économisez des milliers d'euros sur votre crédit immobilier. Loi Lemoine.", provider: "jemassuremoinscher", areaServed: "France" });
+  const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Prêt Immobilier", description: "Économisez des milliers d'euros sur votre crédit immobilier. Loi Lemoine.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const faqSchema = addFAQSchema([
     { question: t('pretPage.faq1.q'), answer: t('pretPage.faq1.a') },
     { question: t('pretPage.faq2.q'), answer: t('pretPage.faq2.a') }

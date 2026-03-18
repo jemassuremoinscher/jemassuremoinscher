@@ -49,7 +49,7 @@ const Contact = () => {
   return (
     <>
       <SEOOptimized 
-        title="Contactez-nous | Jemassuremoinscher"
+        title="Contactez-nous | jemassuremoinscher.fr"
         description="Besoin d'aide ? Contactez-nous par email ou formulaire. Réponse sous 2h."
         canonical="https://www.jemassuremoinscher.fr/contact"
       />
