@@ -228,7 +228,16 @@ const BlogArticle = () => {
                       );
                     },
                     h3: ({node, ...props}) => <h3 className="text-xl font-semibold mt-8 mb-3 text-foreground" {...props} />,
-                    p: ({node, ...props}) => <p className="mb-6 leading-relaxed text-muted-foreground text-base md:text-[1.0625rem]" {...props} />,
+                    p: ({node, ...props}) => {
+                      paragraphIndex++;
+                      const showWidget = paragraphIndex === 2 || paragraphIndex === 5;
+                      return (
+                        <>
+                          <p className="mb-6 leading-relaxed text-muted-foreground text-base md:text-[1.0625rem]" {...props} />
+                          {showWidget && <SmartConversionWidget category={widgetCategory} />}
+                        </>
+                      );
+                    },
                     ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-6 space-y-2.5" {...props} />,
                     ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-6 space-y-2.5" {...props} />,
                     li: ({node, ...props}) => <li className="text-muted-foreground leading-relaxed" {...props} />,
