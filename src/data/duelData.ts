@@ -135,7 +135,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   matmut: {
     slug: "matmut",
     name: "Matmut",
-    logo: "/src/assets/logos/matmut-new.jpg",
+    logo: logoMatmut,
     prixMoyen: 610,
     franchise: 320,
     assistance0km: true,
