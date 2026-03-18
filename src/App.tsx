@@ -75,6 +75,7 @@ const LlmsTxt = lazy(() => import("./pages/LlmsTxt"));
 const CalculateurBonusMalus = lazy(() => import("./pages/outils/CalculateurBonusMalus"));
 const RegionalInsurancePage = lazy(() => import("./pages/regional/RegionalInsurancePage"));
 const DuelPage = lazy(() => import("./pages/comparatif/DuelPage"));
+const NicheProfilePage = lazy(() => import("./pages/profil/NicheProfilePage"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
