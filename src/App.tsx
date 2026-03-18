@@ -72,6 +72,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Merci = lazy(() => import("./pages/Merci"));
 const LlmsTxt = lazy(() => import("./pages/LlmsTxt"));
 const CalculateurBonusMalus = lazy(() => import("./pages/outils/CalculateurBonusMalus"));
+const RegionalInsurancePage = lazy(() => import("./pages/regional/RegionalInsurancePage"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
