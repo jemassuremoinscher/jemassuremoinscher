@@ -19,6 +19,7 @@ import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import EnBref from "@/components/seo/EnBref";
+import BrandName from "@/components/BrandName";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -114,7 +115,7 @@ const AssurancePret = () => {
 
       <div className="container mx-auto px-4 py-12" data-ai-description="Comparateur d'assurance emprunteur — jemassuremoinscher.fr, loi Lemoine, changement à tout moment">
         <DynamicUpdateDate />
-        <EnBref facts={["jemassuremoinscher.fr compare les assurances de prêt immobilier de 25+ assureurs.", "Loi Lemoine : changez d'assurance emprunteur à tout moment, sans frais.", "Économie moyenne constatée : jusqu'à 15 000€ sur la durée du prêt.", "Devis gratuit en moins de 2 minutes, sans engagement."]} />
+        <EnBref facts={[<><BrandName /> compare les assurances de prêt immobilier de 25+ assureurs.</>, "Loi Lemoine : changez d'assurance emprunteur à tout moment, sans frais.", "Économie moyenne constatée : jusqu'à 15 000€ sur la durée du prêt.", "Devis gratuit en moins de 2 minutes, sans engagement."]} />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
             {advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}

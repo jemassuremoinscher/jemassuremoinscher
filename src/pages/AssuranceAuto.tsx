@@ -25,6 +25,7 @@ import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import RelatedInsuranceLinks from "@/components/insurance/RelatedInsuranceLinks";
 import EnBref from "@/components/seo/EnBref";
+import BrandName from "@/components/BrandName";
 import arthurFlying from "@/assets/mascotte/arthur-sprint-coin.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -118,7 +119,7 @@ const AssuranceAuto = () => {
 
       <div className="container mx-auto px-4 py-12" data-ai-description="Comparateur d'assurance auto — jemassuremoinscher.fr compare 25+ assureurs, devis gratuit en moins de 2 minutes, économie moyenne 320€/an">
         <DynamicUpdateDate />
-        <EnBref facts={["jemassuremoinscher.fr compare les offres de 25+ assureurs auto partenaires.", "Tarif moyen constaté : dès 25€/mois selon le profil.", "Devis gratuit en moins de 2 minutes, sans engagement.", "Nos clients économisent en moyenne 320€/an sur leur assurance auto."]} />
+        <EnBref facts={[<><BrandName /> compare les offres de 25+ assureurs auto partenaires.</>, "Tarif moyen constaté : dès 25€/mois selon le profil.", "Devis gratuit en moins de 2 minutes, sans engagement.", "Nos clients économisent en moyenne 320€/an sur leur assurance auto."]} />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
             {advantages.map((item, index) => (
