@@ -1276,19 +1276,19 @@ const fr: Record<string, string> = {
   'quiz.q3.advice': '💬 Être accompagné par un expert',
 
   // AI Chatbot
-  'chatbot.greeting': "Bonjour ! Je suis votre assistant assurance. Comment puis-je vous aider aujourd'hui ?",
-  'chatbot.title': 'Assistant Assurance IA',
+  'chatbot.greeting': "Salut ! Moi c'est Arthur, ton super-héros des économies 🦸‍♂️ Comment je peux t'aider aujourd'hui ?",
+  'chatbot.title': 'Arthur • Assistant Assurance',
   'chatbot.online': 'En ligne • Réponse instantanée',
-  'chatbot.openLabel': "Ouvrir l'assistant virtuel",
-  'chatbot.closeLabel': "Fermer l'assistant",
-  'chatbot.placeholder': 'Posez votre question...',
+  'chatbot.openLabel': "Discuter avec Arthur",
+  'chatbot.closeLabel': "Fermer la discussion avec Arthur",
+  'chatbot.placeholder': 'Pose ta question à Arthur...',
   'chatbot.sendLabel': 'Envoyer le message',
   'chatbot.talkToHuman': 'Parler à un conseiller humain',
-  'chatbot.footer': 'Assistant IA • Réponses instantanées 24/7',
+  'chatbot.footer': 'Arthur 🦸‍♂️ • Disponible 24/7',
   'chatbot.advisorsAvailable': '• Conseillers disponibles',
-  'chatbot.errorTitle': 'Erreur',
-  'chatbot.errorDesc': "Impossible de contacter l'assistant. Veuillez réessayer.",
-  'chatbot.errorMessage': 'Désolé, je rencontre un problème technique. Pouvez-vous reformuler votre question ?',
+  'chatbot.errorTitle': 'Oups !',
+  'chatbot.errorDesc': "Arthur a un petit souci technique. Réessaie dans un instant !",
+  'chatbot.errorMessage': "Aïe, petit bug de mon côté ! 🤕 Tu peux reformuler ta question ? — Arthur",
 
   // Transfer Dialog
   'transfer.title': 'Parler à un conseiller',

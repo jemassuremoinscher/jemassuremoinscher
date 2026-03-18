@@ -1054,19 +1054,19 @@ const en: Record<string, string> = {
   'quiz.q3.advice': '💬 Be guided by an expert',
 
   // Chatbot
-  'chatbot.greeting': "Hello! I'm your insurance assistant. How can I help?",
-  'chatbot.title': 'AI Insurance Assistant',
+  'chatbot.greeting': "Hey there! I'm Arthur, your savings superhero 🦸‍♂️ How can I help you today?",
+  'chatbot.title': 'Arthur • Insurance Assistant',
   'chatbot.online': 'Online • Instant response',
-  'chatbot.openLabel': 'Open virtual assistant',
-  'chatbot.closeLabel': 'Close assistant',
-  'chatbot.placeholder': 'Ask your question...',
+  'chatbot.openLabel': 'Chat with Arthur',
+  'chatbot.closeLabel': 'Close chat with Arthur',
+  'chatbot.placeholder': 'Ask Arthur a question...',
   'chatbot.sendLabel': 'Send message',
   'chatbot.talkToHuman': 'Talk to a human advisor',
-  'chatbot.footer': 'AI Assistant • 24/7',
+  'chatbot.footer': 'Arthur 🦸‍♂️ • Available 24/7',
   'chatbot.advisorsAvailable': '• Advisors available',
-  'chatbot.errorTitle': 'Error',
-  'chatbot.errorDesc': 'Unable to contact the assistant.',
-  'chatbot.errorMessage': 'Sorry, technical issue. Please rephrase.',
+  'chatbot.errorTitle': 'Oops!',
+  'chatbot.errorDesc': 'Arthur is having a small technical issue. Try again!',
+  'chatbot.errorMessage': "Ouch, small bug on my end! 🤕 Can you rephrase? — Arthur",
 
   // Transfer
   'transfer.title': 'Talk to an advisor',
