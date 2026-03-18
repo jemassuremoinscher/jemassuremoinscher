@@ -11,7 +11,7 @@ const MentionsLegales = () => {
     <>
       <SEOOptimized
         title="Mentions Légales - jemassuremoinscher.fr"
-        description="Mentions légales et informations juridiques de jemassuremoinscher."
+        description="Mentions légales et informations juridiques de jemassuremoinscher.fr."
         noindex />
       
       
