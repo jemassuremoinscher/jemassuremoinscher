@@ -15,6 +15,7 @@ import { trackGoogleAdsConversionWithParams } from '@/utils/googleAdsTracking';
 import { trackMetaLead } from '@/utils/metaPixelTracking';
 import { normalizeInsuranceType } from '@/utils/insuranceTypeNormalizer';
 import { stepConfigsByType, type InsuranceType, type FormStep, type StepOption } from './stepConfigs';
+import { useFieldTracking } from '@/hooks/useFieldTracking';
 
 // Mascot imports
 import arthurCar from '@/assets/mascotte/arthur-car.png';
