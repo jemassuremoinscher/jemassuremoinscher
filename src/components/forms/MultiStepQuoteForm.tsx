@@ -380,6 +380,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
                   isSuccess={isSuccess}
                   onChange={setContactData}
                   onSubmit={handleContactSubmit}
+                  insuranceType={insuranceType}
                 />
               )}
             </motion.div>
