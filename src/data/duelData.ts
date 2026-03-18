@@ -65,7 +65,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   axa: {
     slug: "axa",
     name: "AXA",
-    logo: "/src/assets/logos/axa.png",
+    logo: logoAxa,
     prixMoyen: 650,
     franchise: 350,
     assistance0km: false,
