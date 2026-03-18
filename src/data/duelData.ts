@@ -149,7 +149,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   mma: {
     slug: "mma",
     name: "MMA",
-    logo: "/src/assets/logos/mma-new.webp",
+    logo: logoMma,
     prixMoyen: 670,
     franchise: 350,
     assistance0km: false,
