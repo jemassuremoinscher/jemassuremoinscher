@@ -2,20 +2,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Home, Shield, Euro, Clock } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { toast } from "sonner";
-import { useState, useRef } from "react";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import InsuranceComparison from "@/components/InsuranceComparison";
-import { homeInsurers, generateInsurerOffers } from "@/utils/insurerData";
+import { Shield, Euro, Clock } from "lucide-react";
+import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
-
 import { addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurHouse from "@/assets/mascotte/arthur-house.png";
@@ -28,56 +18,12 @@ import arthurFlying from "@/assets/mascotte/arthur-waving.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
-
-const formSchema = z.object({
-  typeLogement: z.string().min(1, "Champ requis"),
-  statut: z.string().min(1, "Champ requis"),
-  surface: z.string().min(1, "Champ requis"),
-  pieces: z.string().min(1, "Champ requis"),
-  formule: z.string().min(1, "Champ requis"),
-  codePostal: z.string().length(5, "Code postal invalide"),
-  valeur: z.string().min(1, "Champ requis"),
-});
+import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 
 const AssuranceHabitation = () => {
   const { t } = useLanguage();
-  const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
   const formRef = useRef<HTMLDivElement>(null);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: { typeLogement: "", statut: "", surface: "", pieces: "", formule: "", codePostal: "", valeur: "" },
-  });
-
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
-
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    setIsLoading(true);
-    try {
-      setSubmittedFormData(values);
-      const basePrice = 12;
-      const surface = parseInt(values.surface);
-      const valeur = parseInt(values.valeur);
-      const pieces = parseInt(values.pieces);
-      let price = basePrice;
-      if (values.typeLogement === "maison") price += 12;
-      if (values.statut === "proprietaire") price += 8;
-      if (surface > 150) price += 10; else if (surface > 100) price += 6; else if (surface > 70) price += 3;
-      if (pieces >= 5) price += 5; else if (pieces >= 4) price += 3;
-      if (valeur > 50000) price += 15; else if (valeur > 30000) price += 8; else if (valeur > 15000) price += 4;
-      if (values.formule === "premium") price += 15; else if (values.formule === "confort") price += 8;
-      const randomVariation = Math.floor(Math.random() * 8) - 4;
-      price += randomVariation;
-      const offers = generateInsurerOffers(price, homeInsurers);
-      setInsurerOffers(offers);
-      toast.success(t('insPage.toast.success'), { description: t('insPage.toast.successDescHome') });
-    } catch (error: any) {
-      console.error("Error:", error);
-      toast.error(t('insPage.toast.error'), { description: t('insPage.toast.errorDesc') });
-    } finally { setIsLoading(false); }
-  };
 
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Habitation", description: "Comparez les assurances habitation. Devis gratuit et rapide.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const ratingSchema = addAggregateRatingSchema("Comparateur Assurance Habitation", 4.7, 1435);
@@ -111,30 +57,18 @@ const AssuranceHabitation = () => {
         <EnBref facts={[<><BrandName /> compare les offres de 25+ assureurs habitation.</>, "Assurance habitation dès 3€/mois selon le logement et les garanties.", "Devis gratuit en moins de 2 minutes, sans engagement.", "Locataire ou propriétaire : trouvez la meilleure couverture au meilleur prix."]} />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
-            {advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}
+            {advantages.map((item, index) => (
+              <Card key={index} className="p-6 text-center">
+                <div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div>
+                <h2 className="font-bold text-lg mb-2">{item.title}</h2>
+                <p className="text-muted-foreground text-sm">{item.description}</p>
+              </Card>
+            ))}
           </div>
         </section>
 
-        <div ref={formRef} className="max-w-3xl mx-auto mb-16">
-          <Card className="p-8">
-            <h2 className="text-2xl font-bold mb-6 text-card-foreground">{t('insPage.getQuote')}</h2>
-            {insurerOffers.length > 0 ? (
-              <InsuranceComparison insurers={insurerOffers} onNewQuote={() => setInsurerOffers([])} formData={submittedFormData} insuranceType="Assurance Habitation" />
-            ) : (
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField control={form.control} name="typeLogement" render={({ field }) => (<FormItem><FormLabel>{t('habitationPage.form.type')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="maison">{t('habitationPage.form.house')}</SelectItem><SelectItem value="appartement">{t('habitationPage.form.apartment')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="statut" render={({ field }) => (<FormItem><FormLabel>{t('habitationPage.form.status')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="proprietaire">{t('habitationPage.form.owner')}</SelectItem><SelectItem value="locataire">{t('habitationPage.form.tenant')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="surface" render={({ field }) => (<FormItem><FormLabel>{t('habitationPage.form.surface')}</FormLabel><FormControl><Input type="number" placeholder="75" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="pieces" render={({ field }) => (<FormItem><FormLabel>{t('habitationPage.form.rooms')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="1">{t('habitationPage.form.room1')}</SelectItem><SelectItem value="2">{t('habitationPage.form.room2')}</SelectItem><SelectItem value="3">{t('habitationPage.form.room3')}</SelectItem><SelectItem value="4">{t('habitationPage.form.room4')}</SelectItem><SelectItem value="5">{t('habitationPage.form.room5')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" maxLength={5} {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="formule" render={({ field }) => (<FormItem><FormLabel>Formule souhaitée</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="essentielle">Essentielle</SelectItem><SelectItem value="confort">Confort</SelectItem><SelectItem value="premium">Premium</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                  <FormField control={form.control} name="valeur" render={({ field }) => (<FormItem><FormLabel>{t('habitationPage.form.value')}</FormLabel><FormControl><Input type="number" placeholder="15000" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? t('insPage.loading') : t('insPage.compareOffers')}</Button>
-                </form>
-              </Form>
-            )}
-          </Card>
+        <div ref={formRef} className="mb-16">
+          <MultiStepQuoteForm insuranceType="habitation" />
         </div>
 
         <section className="max-w-4xl mx-auto mb-16">

@@ -1,10 +1,10 @@
-import { InteractiveComparator } from '@/components/comparison/InteractiveComparator';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOOptimized from '@/components/SEOOptimized';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { MultiStepQuoteForm } from '@/components/forms/MultiStepQuoteForm';
 
 const Comparateur = () => {
   const { t } = useLanguage();
@@ -32,7 +32,9 @@ const Comparateur = () => {
         <Header />
         <Breadcrumbs items={[{ label: t('comparatorPage.breadcrumb') }]} />
         <main className="flex-1">
-          <InteractiveComparator />
+          <div className="container mx-auto px-4 py-10">
+            <MultiStepQuoteForm insuranceType="comparateur" />
+          </div>
 
           {/* SEO Internal Links Section */}
           <section className="container mx-auto px-4 py-10">

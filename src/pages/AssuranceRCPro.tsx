@@ -1,22 +1,11 @@
-import RelatedInsuranceLinks from "@/components/insurance/RelatedInsuranceLinks";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ShieldCheck, Shield, Euro, Clock } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { toast } from "sonner";
-import { useState, useRef } from "react";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import InsuranceComparison from "@/components/InsuranceComparison";
-import { generateInsurerOffers, InsurerConfig } from "@/utils/insurerData";
+import { Shield, Euro, Clock } from "lucide-react";
+import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
-
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -25,72 +14,17 @@ import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import arthurBusiness from "@/assets/mascotte/arthur-business.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import arthurFlying from "@/assets/mascotte/arthur-wink-thumbsup.png";
-
-const formSchema = z.object({
-  entreprise: z.string().min(1, "Champ requis"),
-  secteur: z.string().min(1, "Champ requis"),
-  effectif: z.string().min(1, "Champ requis"),
-  chiffreAffaires: z.string().min(1, "Champ requis"),
-  sinistresAnnee: z.string().min(1, "Champ requis"),
-  formule: z.string().min(1, "Champ requis"),
-  codePostal: z.string().length(5, "Code postal invalide"),
-});
-
-const rcProInsurers: InsurerConfig[] = [
-  { name: "AXA", priceMultiplier: 1.00, coverage: ["Dommages corporels", "Dommages matériels", "Dommages immatériels", "Protection juridique"] },
-  { name: "Allianz", priceMultiplier: 1.05, coverage: ["RC après livraison", "Atteinte à l'environnement", "Défense pénale", "Assistance juridique"], discount: "-12% en ligne" },
-  { name: "MMA", priceMultiplier: 0.95, coverage: ["Garantie décennale incluse", "Faute inexcusable", "Sous-traitants", "Extension géographique"], discount: "-15% nouveau client" },
-  { name: "Generali", priceMultiplier: 1.08, coverage: ["Responsabilité civile générale", "Produits livrés", "Mise en cause personnelle", "Recours clients"] },
-  { name: "Groupama", priceMultiplier: 1.02, coverage: ["RC exploitation", "RC après travaux", "Protection locaux", "Défense et recours"] },
-  { name: "MAIF", priceMultiplier: 0.98, coverage: ["Dommages tous accidents", "Garantie financière", "Assistance sinistre", "Experts dédiés"] },
-];
+import RelatedInsuranceLinks from "@/components/insurance/RelatedInsuranceLinks";
+import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 
 const AssuranceRCPro = () => {
   const { t } = useLanguage();
-  const [insurerOffers, setInsurerOffers] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [submittedFormData, setSubmittedFormData] = useState<Record<string, any>>({});
   const formRef = useRef<HTMLDivElement>(null);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: { entreprise: "", secteur: "", effectif: "", chiffreAffaires: "", sinistresAnnee: "", formule: "", codePostal: "" },
-  });
-
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
-
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    setIsLoading(true);
-    try {
-      setSubmittedFormData(values);
-      const basePrice = 60;
-      let price = basePrice;
-      const effectif = parseInt(values.effectif);
-      if (effectif > 50) price += 90; else if (effectif > 20) price += 55; else if (effectif > 10) price += 30; else if (effectif > 5) price += 15;
-      if (values.secteur === "batiment") price += 70; else if (values.secteur === "sante") price += 80; else if (values.secteur === "conseil") price += 50; else if (values.secteur === "transport") price += 60;
-      const ca = parseInt(values.chiffreAffaires);
-      if (ca > 1000000) price += 80; else if (ca > 500000) price += 50; else if (ca > 250000) price += 25;
-      const sinistres = parseInt(values.sinistresAnnee);
-      if (sinistres > 2) price += 60; else if (sinistres > 0) price += 30;
-      if (values.formule === "premium") price += 60; else if (values.formule === "standard") price += 25;
-      const randomVariation = Math.floor(Math.random() * 20) - 10;
-      price += randomVariation;
-      const offers = generateInsurerOffers(price, rcProInsurers);
-      setInsurerOffers(offers);
-      toast.success(t('insPage.toast.success'), { description: t('insPage.toast.successDesc') });
-    } catch (error: any) {
-      console.error("Error:", error);
-      toast.error(t('insPage.toast.error'), { description: t('insPage.toast.errorDesc') });
-    } finally { setIsLoading(false); }
-  };
 
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "RC Pro", url: "https://www.jemassuremoinscher.fr/assurance-rc-pro" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance RC Pro", description: "Comparez les assurances RC Professionnelle.", provider: "jemassuremoinscher.fr", areaServed: "France" });
-  const faqSchema = addFAQSchema([
-    { question: t('rcProPage.faq1.q'), answer: t('rcProPage.faq1.a') },
-    { question: t('rcProPage.faq2.q'), answer: t('rcProPage.faq2.a') }
-  ]);
-
+  const faqSchema = addFAQSchema([{ question: t('rcProPage.faq1.q'), answer: t('rcProPage.faq1.a') }, { question: t('rcProPage.faq2.q'), answer: t('rcProPage.faq2.a') }]);
   const advantages = [
     { icon: Euro, title: t('rcProPage.adv1.title'), description: t('rcProPage.adv1.desc') },
     { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
@@ -104,58 +38,18 @@ const AssuranceRCPro = () => {
       <Breadcrumbs items={[{ label: "RC Professionnelle" }]} />
       <main id="main-content">
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center relative">
-            <ArthurHero imageSrc={arthurBusiness} imageAlt="Arthur en costume - assurance RC Pro moins chère" speechText={t('rcProPage.subtitle')} />
-            <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('rcProPage.title')}</h1>
-            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
-          </div>
-        </div>
+        <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
+          <ArthurHero imageSrc={arthurBusiness} imageAlt="Arthur en costume - RC Pro" speechText={t('rcProPage.subtitle')} />
+          <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('rcProPage.title')}</h1>
+          <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
+        </div></div>
       </section>
       <div className="container mx-auto px-4 py-12">
         <DynamicUpdateDate />
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
-        <div ref={formRef} className="max-w-3xl mx-auto mb-16">
-          <Card className="p-8">
-            <h2 className="text-2xl font-bold mb-6 text-card-foreground">{t('insPage.getQuote')}</h2>
-            {insurerOffers.length > 0 ? (
-              <InsuranceComparison insurers={insurerOffers} onNewQuote={() => setInsurerOffers([])} formData={submittedFormData} insuranceType="RC Professionnelle" />
-            ) : (
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <FormField control={form.control} name="entreprise" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.company')}</FormLabel><FormControl><Input placeholder={t('rcProPage.form.companyPlaceholder')} {...field} /></FormControl><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="secteur" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.sector')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="commerce">{t('rcProPage.form.commerce')}</SelectItem><SelectItem value="services">{t('rcProPage.form.services')}</SelectItem><SelectItem value="batiment">{t('rcProPage.form.batiment')}</SelectItem><SelectItem value="conseil">{t('rcProPage.form.conseil')}</SelectItem><SelectItem value="sante">{t('rcProPage.form.sante')}</SelectItem><SelectItem value="artisanat">{t('rcProPage.form.artisanat')}</SelectItem><SelectItem value="informatique">{t('rcProPage.form.informatique')}</SelectItem><SelectItem value="autre">{t('rcProPage.form.autre')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="effectif" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.employees')}</FormLabel><FormControl><Input type="number" placeholder="0" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="chiffreAffaires" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.revenue')}</FormLabel><FormControl><Input type="number" placeholder="100000" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="sinistresAnnee" render={({ field }) => (<FormItem><FormLabel>{t('rcProPage.form.claims')}</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="0">{t('rcProPage.form.none')}</SelectItem><SelectItem value="1">{t('rcProPage.form.oneClaim')}</SelectItem><SelectItem value="2">{t('rcProPage.form.twoClaims')}</SelectItem><SelectItem value="3">{t('rcProPage.form.threePlus')}</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="formule" render={({ field }) => (<FormItem><FormLabel>Formule souhaitée</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder={t('insPage.select')} /></SelectTrigger></FormControl><SelectContent><SelectItem value="essentielle">Essentielle</SelectItem><SelectItem value="standard">Standard</SelectItem><SelectItem value="premium">Premium</SelectItem></SelectContent></Select><FormMessage /></FormItem>)} />
-                    <FormField control={form.control} name="codePostal" render={({ field }) => (<FormItem><FormLabel>{t('insPage.postalCode')}</FormLabel><FormControl><Input placeholder="75001" {...field} /></FormControl><FormMessage /></FormItem>)} />
-                  </div>
-                  <Button type="submit" className="w-full" size="lg" disabled={isLoading}>{isLoading ? t('insPage.loading') : t('insPage.compareOffers')}</Button>
-                </form>
-              </Form>
-            )}
-          </Card>
-        </div>
-        <section className="max-w-4xl mx-auto mb-16">
-          <Accordion type="single" collapsible className="w-full"><AccordionItem value="learn-more" className="border rounded-lg"><AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold">{t('insPage.learnMore')} {t('rcProPage.learnMore')}</span></AccordionTrigger><AccordionContent className="px-6 pb-6"><div className="space-y-12">
-            <InsuranceFAQ title={t('insPage.faqTitle')} faqs={[
-              { question: t('rcProPage.faq1.q'), answer: t('rcProPage.faq1.a') },
-              { question: t('rcProPage.faq2.q'), answer: t('rcProPage.faq2.a') },
-              { question: t('rcProPage.faq3.q'), answer: t('rcProPage.faq3.a') },
-            ]} />
-            
-          </div></AccordionContent></AccordionItem></Accordion>
-        </section>
-        <section className="max-w-2xl mx-auto text-center mb-16">
-          <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
-            <img src={arthurFlying} alt="Arthur en vol - économisez sur votre assurance RC Pro" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" decoding="async" />
-            <h2 className="text-2xl font-bold mb-4">{t('rcProPage.ctaTitle')}</h2>
-            <p className="text-muted-foreground mb-6">{t('rcProPage.ctaDesc')}</p>
-            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
-          </Card>
-        </section>
+        <div ref={formRef} className="mb-16"><MultiStepQuoteForm insuranceType="rc_pro" /></div>
+        <section className="max-w-4xl mx-auto mb-16"><Accordion type="single" collapsible className="w-full"><AccordionItem value="learn-more" className="border rounded-lg"><AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold">{t('insPage.learnMore')} {t('rcProPage.learnMore')}</span></AccordionTrigger><AccordionContent className="px-6 pb-6"><InsuranceFAQ title={t('insPage.faqTitle')} faqs={[{ question: t('rcProPage.faq1.q'), answer: t('rcProPage.faq1.a') }, { question: t('rcProPage.faq2.q'), answer: t('rcProPage.faq2.a') }, { question: t('rcProPage.faq3.q'), answer: t('rcProPage.faq3.a') }]} /></AccordionContent></AccordionItem></Accordion></section>
+        <section className="max-w-2xl mx-auto text-center mb-16"><Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible"><img src={arthurFlying} alt="Arthur - RC Pro" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" /><h2 className="text-2xl font-bold mb-4">{t('rcProPage.ctaTitle')}</h2><p className="text-muted-foreground mb-6">{t('rcProPage.ctaDesc')}</p><Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button></Card></section>
         <RelatedInsuranceLinks currentPage="rcpro" />
       </div>
       </main>
