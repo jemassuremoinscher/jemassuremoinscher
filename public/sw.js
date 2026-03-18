@@ -1,13 +1,10 @@
-const CACHE_NAME = 'jmamc-v3';
-const STATIC_ASSETS = [];
+const CACHE_NAME = 'jmamc-v4';
+const IMG_CACHE_NAME = 'jmamc-img-v1';
+const MAX_IMG_CACHE_ITEMS = 80;
+const MAX_STATIC_CACHE_ITEMS = 120;
 
-// Install: keep install lightweight (no large image precache)
+// Install: lightweight
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    STATIC_ASSETS.length
-      ? caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
-      : Promise.resolve()
-  );
   self.skipWaiting();
 });
 
@@ -15,26 +12,58 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+      Promise.all(
+        keys
+          .filter((k) => k !== CACHE_NAME && k !== IMG_CACHE_NAME)
+          .map((k) => caches.delete(k))
+      )
     )
   );
   self.clients.claim();
 });
 
-// Fetch: network-first for navigation, cache-first for static assets
+// Trim cache to max size (LRU-style: oldest entries removed first)
+async function trimCache(cacheName, maxItems) {
+  const cache = await caches.open(cacheName);
+  const keys = await cache.keys();
+  if (keys.length > maxItems) {
+    await Promise.all(keys.slice(0, keys.length - maxItems).map((k) => cache.delete(k)));
+  }
+}
+
+// Fetch strategies
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Skip non-GET and cross-origin requests
+  // Skip non-GET and cross-origin
   if (request.method !== 'GET' || url.origin !== self.location.origin) return;
 
-  // Skip API/supabase calls
+  // Skip API/auth calls
   if (url.pathname.startsWith('/rest/') || url.pathname.startsWith('/auth/')) return;
 
-  // Static assets: cache-first
+  // Images: stale-while-revalidate (fast display, background refresh)
+  if (url.pathname.match(/\.(png|jpg|jpeg|webp|svg|ico)$/)) {
+    event.respondWith(
+      caches.open(IMG_CACHE_NAME).then(async (cache) => {
+        const cached = await cache.match(request);
+        const fetchPromise = fetch(request).then((response) => {
+          if (response.ok) {
+            cache.put(request, response.clone());
+            trimCache(IMG_CACHE_NAME, MAX_IMG_CACHE_ITEMS);
+          }
+          return response;
+        }).catch(() => cached);
+
+        return cached || fetchPromise;
+      })
+    );
+    return;
+  }
+
+  // JS/CSS/fonts: cache-first (hashed filenames = immutable)
   if (
-    url.pathname.match(/\.(js|css|png|jpg|jpeg|webp|svg|woff2|ico)$/) ||
+    url.pathname.match(/\.(js|css|woff2)$/) ||
     url.pathname.startsWith('/assets/')
   ) {
     event.respondWith(
@@ -43,7 +72,10 @@ self.addEventListener('fetch', (event) => {
         return fetch(request).then((response) => {
           if (response.ok) {
             const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(request, clone);
+              trimCache(CACHE_NAME, MAX_STATIC_CACHE_ITEMS);
+            });
           }
           return response;
         });
@@ -52,7 +84,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // HTML navigation: network-first (critical for SEO — bots must get fresh HTML)
+  // HTML navigation: network-first (SEO bots get fresh HTML)
   if (request.mode === 'navigate' || request.headers.get('accept')?.includes('text/html')) {
     event.respondWith(
       fetch(request)
