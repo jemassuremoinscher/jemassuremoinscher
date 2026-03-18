@@ -41,7 +41,7 @@ const Hero = () => {
   const mascotAlt = greeting?.mascotAlt || "Arthur mascotte jemassuremoinscher.fr - super-héros de l'assurance moins chère";
   const speechText = greeting?.arthurSpeech || t('hero.arthurSpeech') + " 👋";
   const ctaLink = greeting?.ctaLink || "/comparateur";
-  const ctaText = greeting?.ctaText || "Voir mon prix en moins de 2 min";
+  const ctaText = greeting?.ctaText || "Voir mon prix en 2 min";
 
   return (
     <section
