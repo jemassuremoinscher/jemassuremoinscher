@@ -81,9 +81,9 @@ const Partners = () => {
         <Carousel opts={{ align: "start", loop: true }} plugins={[Autoplay({ delay: 2000, stopOnInteraction: false })]} className="w-full">
           <CarouselContent className="-ml-4">
             {partners.map((partner, index) => (
-              <CarouselItem key={index} className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6">
-                <button type="button" className="flex items-center justify-center p-4 bg-card rounded-xl border-2 border-border hover:border-primary/30 hover-lift transition-all duration-300 group h-24 w-full cursor-pointer" onClick={() => trackEvent('partner_click', { category: 'engagement', partner_name: partner.name, label: 'partner_logo' })} aria-label={`Voir le partenaire ${partner.name}`}>
-                  <img src={partner.logo} alt={`Logo ${partner.name}`} className="max-h-14 max-w-[90%] object-contain" width={120} height={56} loading="lazy" decoding="async" />
+              <CarouselItem key={index} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 xl:basis-[12.5%]">
+                <button type="button" className="flex items-center justify-center p-3 bg-card rounded-xl border-2 border-border hover:border-primary/30 hover-lift transition-all duration-300 group h-20 w-full cursor-pointer" onClick={() => trackEvent('partner_click', { category: 'engagement', partner_name: partner.name, label: 'partner_logo' })} aria-label={`Voir le partenaire ${partner.name}`}>
+                  <img src={partner.logo} alt={`Logo ${partner.name}`} className="h-10 w-auto max-w-[100px] object-contain" width={100} height={40} loading="lazy" decoding="async" />
                 </button>
               </CarouselItem>
             ))}
