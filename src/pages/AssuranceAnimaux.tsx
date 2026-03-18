@@ -1,4 +1,5 @@
 import EnBref from "@/components/seo/EnBref";
+import BrandName from "@/components/BrandName";
 import RelatedInsuranceLinks from "@/components/insurance/RelatedInsuranceLinks";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";

@@ -19,6 +19,7 @@ import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import EnBref from "@/components/seo/EnBref";
+import BrandName from "@/components/BrandName";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
