@@ -403,7 +403,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
 // ─── Card Select Step ────────────────────────────────────────────────────────
 function CardSelectStep({ options, selected, onSelect }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void }) {
   return (
-    <div className={`grid gap-3 ${options.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-2'}`}>
+    <div className={`grid gap-3 ${options.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : options.length <= 4 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}`}>
       {options.map((option, idx) => {
         const Icon = option.icon;
         const isSelected = selected === option.value;
