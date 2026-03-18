@@ -144,7 +144,7 @@ const GuidesSection = () => {
           { title: "4. Adaptez vos garanties", text: "Pour un véhicule de plus de 10 ans, passez au tiers étendu plutôt qu'à une assurance tous risques. L'économie peut atteindre 200€ par an." },
           { title: "5. Optez pour le paiement annuel", text: "Le paiement mensuel entraîne souvent des frais supplémentaires de 5 à 8%. Préférez le paiement annuel si votre trésorerie le permet." },
         ],
-        conclusion: "En appliquant ces conseils, nos utilisateurs économisent en moyenne 320€ par an. Lancez votre comparatif gratuit pour découvrir votre potentiel d'économies !"
+        conclusion: "En appliquant ces conseils, nos utilisateurs économisent en moyenne 320€ par an. Utilisez notre calculateur de bonus-malus et comparez les assureurs face à face dans nos duels détaillés !"
       }
     },
     {
