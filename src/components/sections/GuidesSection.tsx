@@ -115,7 +115,7 @@ const GuidesSection = () => {
           { title: "Comment procéder ?", text: "C'est simple : votre nouvel assureur s'occupe de tout ! Il suffit de choisir une nouvelle assurance et de lui fournir les références de votre ancien contrat. La résiliation prend effet 1 mois après la demande." },
           { title: "Les avantages", text: "Plus de tacite reconduction forcée, plus de pénalités, et une liberté totale pour faire jouer la concurrence et économiser sur vos primes d'assurance." },
         ],
-        conclusion: "Grâce à jemassuremoinscher.fr, comparez les offres et changez d'assurance en quelques clics. Nos conseillers vous accompagnent gratuitement dans vos démarches."
+        conclusion: "Grâce à jemassuremoinscher.fr, comparez les offres et changez d'assurance en quelques clics. Consultez aussi nos duels assureurs (MAIF vs Macif, AXA vs Allianz) et nos solutions pour profils spéciaux (résilié, malussé, retrait de permis)."
       }
     },
     {
