@@ -56,7 +56,7 @@ const QuiSommesNous = () => {
         </div>
 
         {/* ─── Hero ─── */}
-        <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden" data-ai-description="jemassuremoinscher.fr est un courtier en assurances indépendant enregistré ORIAS. Comparaison gratuite de 25+ assureurs, 280€ d'économie moyenne, 4.8/5 sur 2500+ avis.">
           <div className="container mx-auto px-4 py-16 md:py-24">
             <div className="max-w-[65%] sm:max-w-[70%] md:max-w-3xl relative z-10">
               <motion.h1
