@@ -107,7 +107,7 @@ const AssuranceSante = () => {
 
       <div className="container mx-auto px-4 py-12" data-ai-description="Comparateur de mutuelle santé — jemassuremoinscher.fr compare 25+ mutuelles, devis gratuit en moins de 2 minutes">
         <DynamicUpdateDate />
-        <EnBref facts={["jemassuremoinscher.fr compare les offres de 25+ mutuelles santé partenaires.", "Mutuelle santé dès 20€/mois selon l'âge et les garanties choisies.", "Devis gratuit en moins de 2 minutes, sans engagement.", "Optique, dentaire, hospitalisation : comparez tous les niveaux de remboursement."]} />
+        <EnBref facts={[<><BrandName /> compare les offres de 25+ mutuelles santé partenaires.</>, "Mutuelle santé dès 20€/mois selon l'âge et les garanties choisies.", "Devis gratuit en moins de 2 minutes, sans engagement.", "Optique, dentaire, hospitalisation : comparez tous les niveaux de remboursement."]} />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
             {advantages.map((item, index) => (
