@@ -136,12 +136,12 @@ export default function RegionalDataWidget({
               </span>
               <span className="text-sm text-muted-foreground">/an</span>
               {isCheaper ? (
-                <span className="ml-2 inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600">
+                <span className="ml-2 inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
                   Sous la moyenne
                 </span>
               ) : (
-                <span className="ml-2 inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600">
+                <span className="ml-2 inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full bg-accent text-accent-foreground">
                   Au-dessus de la moyenne
                 </span>
               )}
