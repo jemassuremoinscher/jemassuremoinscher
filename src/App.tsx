@@ -74,6 +74,7 @@ const Merci = lazy(() => import("./pages/Merci"));
 const LlmsTxt = lazy(() => import("./pages/LlmsTxt"));
 const CalculateurBonusMalus = lazy(() => import("./pages/outils/CalculateurBonusMalus"));
 const RegionalInsurancePage = lazy(() => import("./pages/regional/RegionalInsurancePage"));
+const DuelPage = lazy(() => import("./pages/comparatif/DuelPage"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -160,6 +161,8 @@ const App = () => (
                   <Route path="/plan-du-site" element={<PlanDuSite />} />
                   <Route path="/merci" element={<Merci />} />
                   <Route path="/outils/calculateur-bonus-malus" element={<CalculateurBonusMalus />} />
+                  <Route path="/comparatif/:slug" element={<DuelPage />} />
+                  <Route path="/comparatif" element={<DuelPage />} />
                   <Route path="/llms.txt" element={<LlmsTxt />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
