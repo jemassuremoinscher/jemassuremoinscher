@@ -145,15 +145,11 @@
     <!-- Critical CSS -->
     <style>
       #root .seo-fallback {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+        line-height: 1.65;
+        font-family: Inter, system-ui, sans-serif;
       }
       noscript .noscript-content {
         font-family: Inter, system-ui, sans-serif;
@@ -226,8 +222,8 @@
       </div>
     </noscript>
     <div id="root">
-      <!-- SEO fallback content - visually hidden but crawlable -->
-      <div class="seo-fallback" aria-hidden="true">
+      <!-- SEO fallback content - visible in raw HTML to reduce CSR crawl penalties -->
+      <div class="seo-fallback">
       <header>
         <nav aria-label="Navigation principale">
           <a href="/">jemassuremoinscher.fr</a>
