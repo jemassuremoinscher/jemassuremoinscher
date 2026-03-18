@@ -31,16 +31,13 @@ import ornikarLogo from "@/assets/logos/ornikar.png";
 import swissLifeLogo from "@/assets/logos/swisslife.webp";
 import wilovLogo from "@/assets/logos/wilov.webp";
 
-const partnerSizeMap: Record<string, string> = {
-  "Direct Assurance": "h-12 max-w-[130px]",
-  "L'Olivier Assurance": "h-12 max-w-[130px]",
-  "Mutuelle de Poitiers": "h-12 max-w-[130px]",
-  "Alan": "h-12 max-w-[120px]",
-  "Matmut": "h-12 max-w-[130px]",
-  "Maxance": "h-12 max-w-[120px]",
-  "Abeille Assurances": "h-12 max-w-[130px]",
-  "AGF": "h-12 max-w-[120px]",
-  "Amaguiz": "h-12 max-w-[130px]",
+// Per-logo scale adjustments for readability (within the fixed block)
+const logoScaleMap: Record<string, string> = {
+  "Direct Assurance": "scale-110",
+  "L'Olivier Assurance": "scale-110",
+  "Mutuelle de Poitiers": "scale-110",
+  "Matmut": "scale-110",
+  "Amaguiz": "scale-105",
 };
 
 const partners = [
@@ -95,7 +92,7 @@ const Partners = () => {
             {partners.map((partner, index) => (
               <CarouselItem key={index} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 xl:basis-[12.5%]">
                 <button type="button" className="flex items-center justify-center p-3 bg-card rounded-xl border-2 border-border hover:border-primary/30 hover-lift transition-all duration-300 group h-20 w-full cursor-pointer" onClick={() => trackEvent('partner_click', { category: 'engagement', partner_name: partner.name, label: 'partner_logo' })} aria-label={`Voir le partenaire ${partner.name}`}>
-                  <img src={partner.logo} alt={`Logo ${partner.name}`} className={`w-auto object-contain ${partnerSizeMap[partner.name] || 'h-10 max-w-[100px]'}`} width={100} height={40} loading="lazy" decoding="async" />
+                  <img src={partner.logo} alt={`Logo ${partner.name}`} className={`h-10 max-w-[80px] w-auto object-contain transition-transform ${logoScaleMap[partner.name] || ''}`} width={100} height={40} loading="lazy" decoding="async" />
                 </button>
               </CarouselItem>
             ))}
