@@ -281,13 +281,22 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
       <div className="relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50 shadow-[var(--shadow-lg)] overflow-hidden">
 
         {/* Progress bar */}
-        <div className="h-1.5 bg-muted/50 w-full">
+        <div className="h-1.5 bg-muted/50 w-full relative overflow-hidden">
           <motion.div
             className="h-full bg-gradient-to-r from-primary to-primary/70 rounded-full"
             initial={{ width: 0 }}
             animate={{ width: `${progressPercent}%` }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
           />
+          {/* Micro-loading overlay */}
+          {microLoading && (
+            <motion.div
+              className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary via-accent to-primary rounded-full"
+              initial={{ width: '0%' }}
+              animate={{ width: '100%' }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+            />
+          )}
         </div>
 
         {/* Step indicator */}
