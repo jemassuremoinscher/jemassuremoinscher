@@ -223,7 +223,7 @@ const Footer = () => {
                 <h3 className="font-bold text-foreground text-lg mb-2">Responsabilité</h3>
                 <ul className="list-disc pl-5 space-y-1">
                   <li>Les informations fournies sont à titre indicatif</li>
-                  <li>Jemassuremoinscher.fr ne saurait être tenu responsable des erreurs ou omissions</li>
+                  <li>jemassuremoinscher.fr ne saurait être tenu responsable des erreurs ou omissions</li>
                   <li>Les tarifs affichés peuvent varier selon le profil de l'utilisateur</li>
                 </ul>
               </div>

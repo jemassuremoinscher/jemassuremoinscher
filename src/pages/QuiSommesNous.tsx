@@ -41,7 +41,7 @@ const QuiSommesNous = () => {
     <div className="min-h-screen bg-background">
       <SEOOptimized
         title="Qui sommes-nous | jemassuremoinscher.fr"
-        description="Découvrez l'équipe derrière Jemassuremoinscher : un comparateur d'assurances indépendant, gratuit et transparent. Notre mission : vous aider à payer moins cher."
+        description="Découvrez l'équipe derrière jemassuremoinscher.fr : un comparateur d'assurances indépendant, gratuit et transparent. Notre mission : vous aider à payer moins cher."
         canonical={`${baseUrl}/qui-sommes-nous`}
         jsonLd={jsonLd}
       />
