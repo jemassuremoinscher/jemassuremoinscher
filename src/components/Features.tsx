@@ -1,6 +1,7 @@
 import { Shield, Users, TrendingUp, Award } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
+import BrandName from "@/components/BrandName";
 
 const Features = () => {
   const { t } = useLanguage();
