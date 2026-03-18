@@ -165,11 +165,13 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
 
   const handleCardSelect = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    // Auto-advance after a short delay for satisfying UX
+    // Micro-loading bar for "precision calculation" feel
+    setMicroLoading(true);
     setTimeout(() => {
+      setMicroLoading(false);
       setDirection(1);
       setCurrentStep(prev => prev + 1);
-    }, 300);
+    }, 500);
   };
 
   const handleInputSubmit = (field: string, value: string, step: FormStep) => {
