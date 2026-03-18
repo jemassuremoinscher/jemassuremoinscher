@@ -121,6 +121,8 @@ const BlogArticle = () => {
   });
 
   let headingIndex = 0;
+  let paragraphIndex = 0;
+  const widgetCategory = detectCategory(article.category, article.tags);
 
   return (
     <div className="min-h-screen bg-background">
