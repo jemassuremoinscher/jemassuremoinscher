@@ -19,11 +19,25 @@ export interface DuelConfig {
   insurerB: InsurerDuelProfile;
 }
 
+// Use static imports for real logos
+import logoMaif from "@/assets/logos/maif.png";
+import logoMacif from "@/assets/logos/macif-new.png";
+import logoAxa from "@/assets/logos/axa.png";
+import logoAllianz from "@/assets/logos/allianz.png";
+import logoDirectAssurance from "@/assets/logos/direct-assurance-new.png";
+import logoMaaf from "@/assets/logos/maaf.webp";
+import logoGmf from "@/assets/logos/gmf-new.png";
+import logoMatmut from "@/assets/logos/matmut-new.jpg";
+import logoMma from "@/assets/logos/mma-new.webp";
+import logoGroupama from "@/assets/logos/groupama.png";
+import logoOlivier from "@/assets/logos/lolivier.png";
+import logoLuko from "@/assets/logos/luko.png";
+
 const insurerProfiles: Record<string, InsurerDuelProfile> = {
   maif: {
     slug: "maif",
     name: "MAIF",
-    logo: "/src/assets/logos/maif.png",
+    logo: logoMaif,
     prixMoyen: 580,
     franchise: 250,
     assistance0km: true,
