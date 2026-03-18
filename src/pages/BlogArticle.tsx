@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { useState, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,7 @@ import PopularArticles from "@/components/blog/PopularArticles";
 import RelatedProductLinks from "@/components/blog/RelatedProductLinks";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
+import SmartConversionWidget, { detectCategory } from "@/components/blog/SmartConversionWidget";
 
 const BlogArticle = () => {
   const { t } = useLanguage();
@@ -119,6 +121,8 @@ const BlogArticle = () => {
   });
 
   let headingIndex = 0;
+  let paragraphIndex = 0;
+  const widgetCategory = detectCategory(article.category, article.tags);
 
   return (
     <div className="min-h-screen bg-background">
@@ -224,7 +228,16 @@ const BlogArticle = () => {
                       );
                     },
                     h3: ({node, ...props}) => <h3 className="text-xl font-semibold mt-8 mb-3 text-foreground" {...props} />,
-                    p: ({node, ...props}) => <p className="mb-6 leading-relaxed text-muted-foreground text-base md:text-[1.0625rem]" {...props} />,
+                    p: ({node, ...props}) => {
+                      paragraphIndex++;
+                      const showWidget = paragraphIndex === 2 || paragraphIndex === 5;
+                      return (
+                        <>
+                          <p className="mb-6 leading-relaxed text-muted-foreground text-base md:text-[1.0625rem]" {...props} />
+                          {showWidget && <SmartConversionWidget category={widgetCategory} />}
+                        </>
+                      );
+                    },
                     ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-6 space-y-2.5" {...props} />,
                     ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-6 space-y-2.5" {...props} />,
                     li: ({node, ...props}) => <li className="text-muted-foreground leading-relaxed" {...props} />,
