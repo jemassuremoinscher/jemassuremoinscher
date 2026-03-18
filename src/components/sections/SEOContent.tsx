@@ -17,7 +17,7 @@ const SEOContent = () => {
             Consultez notre <Link to="/blog" className="text-primary hover:underline font-medium">blog assurance</Link> pour
             des guides détaillés sur chaque type de contrat, ou explorez
             le <Link to="/glossaire" className="text-primary hover:underline font-medium">glossaire de l'assurance</Link> pour
-            comprendre les termes techniques.
+            comprendre les termes techniques. Vous pouvez aussi <Link to="/comparatif" className="text-primary hover:underline font-medium">comparer les assureurs face à face</Link> dans nos duels détaillés.
           </p>
           <p>{t('seoContent.p2')}</p>
           
@@ -27,7 +27,7 @@ const SEOContent = () => {
           <p>
             {t('seoContent.p3')}{' '}
             Utilisez notre <Link to="/outils/calculateur-bonus-malus" className="text-primary hover:underline font-medium">calculateur de bonus-malus</Link> pour
-            estimer votre coefficient avant de comparer.
+            estimer votre coefficient avant de comparer. Pour les profils atypiques (résilié, malussé, retrait de permis), consultez nos <Link to="/profil" className="text-primary hover:underline font-medium">solutions profils spéciaux</Link>.
           </p>
           
           <h3 className="text-lg md:text-xl font-semibold text-foreground mt-8 mb-3">
@@ -49,6 +49,7 @@ const SEOContent = () => {
             <h3 className="text-lg font-semibold text-foreground mb-4">
               {t('seoContent.linksTitle')}
             </h3>
+
             <h4 className="text-sm font-medium text-foreground mb-2">Assurances Particuliers</h4>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
               <Link to="/assurance-auto" className="text-primary hover:underline text-sm">{t('seoContent.linkAuto')}</Link>
@@ -60,6 +61,7 @@ const SEOContent = () => {
               <Link to="/assurance-pret" className="text-primary hover:underline text-sm">{t('seoContent.linkPret')}</Link>
               <Link to="/assurance-prevoyance" className="text-primary hover:underline text-sm">{t('seoContent.linkPrevoyance')}</Link>
             </div>
+
             <h4 className="text-sm font-medium text-foreground mb-2">Assurances Professionnels & Propriétaires</h4>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
               <Link to="/assurance-rc-pro" className="text-primary hover:underline text-sm">{t('seoContent.linkRCPro')}</Link>
@@ -67,6 +69,36 @@ const SEOContent = () => {
               <Link to="/assurance-pno" className="text-primary hover:underline text-sm">Assurance PNO</Link>
               <Link to="/assurance-gli" className="text-primary hover:underline text-sm">Garantie Loyers Impayés</Link>
             </div>
+
+            <h4 className="text-sm font-medium text-foreground mb-2">Profils Spéciaux — Solutions Dédiées</h4>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-4">
+              <Link to="/profil/resilie-non-paiement" className="text-primary hover:underline text-sm">Résilié pour non-paiement</Link>
+              <Link to="/profil/retrait-permis" className="text-primary hover:underline text-sm">Retrait de permis</Link>
+              <Link to="/profil/frequence-sinistres" className="text-primary hover:underline text-sm">Multi-sinistré (3+)</Link>
+              <Link to="/profil/sans-antecedents" className="text-primary hover:underline text-sm">Sans antécédents</Link>
+              <Link to="/profil/jeune-conducteur-voiture-puissante" className="text-primary hover:underline text-sm">Jeune + voiture puissante</Link>
+              <Link to="/profil" className="text-primary hover:underline text-sm">Tous les profils spéciaux →</Link>
+            </div>
+
+            <h4 className="text-sm font-medium text-foreground mb-2">Comparatifs Assureurs</h4>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
+              <Link to="/comparatif/maif-vs-macif" className="text-primary hover:underline text-sm">MAIF vs Macif</Link>
+              <Link to="/comparatif/axa-vs-allianz" className="text-primary hover:underline text-sm">AXA vs Allianz</Link>
+              <Link to="/comparatif/direct-assurance-vs-l-olivier" className="text-primary hover:underline text-sm">Direct Assurance vs L'Olivier</Link>
+              <Link to="/comparatif/luko-vs-alan" className="text-primary hover:underline text-sm">Luko vs Alan</Link>
+              <Link to="/comparatif" className="text-primary hover:underline text-sm">Tous les comparatifs →</Link>
+            </div>
+
+            <h4 className="text-sm font-medium text-foreground mb-2">Pages SEO Spécialisées</h4>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
+              <Link to="/assurance-auto-malusse" className="text-primary hover:underline text-sm">Assurance auto malussé</Link>
+              <Link to="/assurance-auto-jeune-conducteur" className="text-primary hover:underline text-sm">Jeune conducteur</Link>
+              <Link to="/assurance-trottinette-electrique" className="text-primary hover:underline text-sm">Trottinette électrique</Link>
+              <Link to="/assurance-auto-permis-etranger" className="text-primary hover:underline text-sm">Permis étranger</Link>
+              <Link to="/assurance-emprunteur" className="text-primary hover:underline text-sm">Assurance emprunteur</Link>
+              <Link to="/mutuelle-tns" className="text-primary hover:underline text-sm">Mutuelle TNS</Link>
+            </div>
+
             <h4 className="text-sm font-medium text-foreground mb-2">Outils & Ressources</h4>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <Link to="/comparateur" className="text-primary hover:underline text-sm">{t('seoContent.linkComparateur')}</Link>
