@@ -25,12 +25,20 @@ const avgByProfile: Record<string, number> = {
 
 export default function ContractOptimizerWidget() {
   const [step, setStep] = useState<Step>("closed");
+  const [dismissed, setDismissed] = useState(false);
   const [price, setPrice] = useState("");
   const [profile, setProfile] = useState("");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [sending, setSending] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+
+  // Auto-dismiss the closed CTA after 8 seconds if not clicked
+  useEffect(() => {
+    if (step !== "closed" || dismissed) return;
+    const timer = setTimeout(() => setDismissed(true), 8000);
+    return () => clearTimeout(timer);
+  }, [step, dismissed]);
 
   const priceNum = parseInt(price) || 0;
   const avg = avgByProfile[profile] || 620;
@@ -284,7 +292,7 @@ export default function ContractOptimizerWidget() {
       </AnimatePresence>
 
       {/* Floating trigger button */}
-      {step === "closed" && (
+      {step === "closed" && !dismissed && (
         <motion.button
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
