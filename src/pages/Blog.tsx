@@ -56,7 +56,7 @@ const Blog = () => {
   const blogSchema = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "Blog Assurance - jemassuremoinscher",
+    "name": "Blog Assurance - jemassuremoinscher.fr",
     "description": "Conseils, guides pratiques et actualités sur les assurances en France",
     "url": "https://www.jemassuremoinscher.fr/blog",
     "publisher": {

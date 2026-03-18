@@ -109,7 +109,7 @@ const Header = () => {
               <Link 
                 to="/" 
                 className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-full p-1" 
-                aria-label="Retour à la page d'accueil - jemassuremoinscher"
+                aria-label="Retour à la page d'accueil - jemassuremoinscher.fr"
               >
                 <img 
                   src={arthurThumbsUp} 

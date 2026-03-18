@@ -113,8 +113,8 @@ const SimpleFooter = () => {
         <div className="border-t border-primary-foreground/10 pt-8 mb-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <Link to="/" aria-label="Accueil jemassuremoinscher">
-                <img alt="Arthur - mascotte jemassuremoinscher assurance moins chère" className="h-10 w-auto" src={arthurThumbsUp} loading="lazy" width={40} height={40} />
+              <Link to="/" aria-label="Accueil jemassuremoinscher.fr">
+                <img alt="Arthur - mascotte jemassuremoinscher.fr assurance moins chère" className="h-10 w-auto" src={arthurThumbsUp} loading="lazy" width={40} height={40} />
               </Link>
               <p className="text-primary-foreground/50 text-[11px] max-w-xs leading-relaxed">
                 {t('footer.description')}

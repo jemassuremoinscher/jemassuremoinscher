@@ -36,7 +36,7 @@ const WhyUsComparison = () => {
                 <tr className="border-b border-border/50">
                   <th className="p-4 text-left text-muted-foreground font-medium">{t('whyUs.criteria')}</th>
                   <th className="p-4 text-center bg-primary/5">
-                    <span className="text-lg font-bold text-primary">jemassuremoinscher</span>
+                    <span className="text-lg font-bold text-primary">jemassuremoinscher.fr</span>
                   </th>
                   <th className="p-4 text-center">
                     <span className="text-lg font-semibold text-muted-foreground">{t('whyUs.others')}</span>
@@ -90,7 +90,7 @@ const WhyUsComparison = () => {
                   </div>
                   <div className="p-4 space-y-3">
                     <div className="bg-primary/5 rounded-lg p-3">
-                      <p className="text-xs text-primary font-semibold mb-1.5 uppercase tracking-wide">jemassuremoinscher</p>
+                      <p className="text-xs text-primary font-semibold mb-1.5 uppercase tracking-wide">jemassuremoinscher.fr</p>
                       <div className="flex items-start gap-2">
                         <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
                         <span className="text-sm font-medium text-foreground">{row.us}</span>

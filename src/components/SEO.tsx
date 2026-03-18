@@ -23,7 +23,7 @@ const SEO = ({
   const location = useLocation();
   const baseUrl = 'https://www.jemassuremoinscher.fr';
   
-  const defaultTitle = 'Assurance Pas Chère : Comparateur d\'Assurances N°1 | jemassuremoinscher';
+  const defaultTitle = 'Assurance Pas Chère : Comparateur d\'Assurances N°1 | jemassuremoinscher.fr';
   const defaultDescription = 'Trouvez l\'assurance pas chère qui vous convient ! Comparateur d\'assurances gratuit : auto, santé, habitation. Comparez 50+ assureurs, changez d\'assurance facilement. Économisez jusqu\'à 40%.';
   const defaultImage = 'https://www.jemassuremoinscher.fr/opengraph-image.png';
 
