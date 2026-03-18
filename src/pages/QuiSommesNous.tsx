@@ -11,8 +11,9 @@ import arthurFlying from "@/assets/mascotte/arthur-flying.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const stats = [
-  { value: "+50", label: "Partenaires assureurs", suffix: "" },
+  { value: "+25", label: "Assureurs partenaires", suffix: "" },
   { value: "280€", label: "Économie moyenne / an", suffix: "" },
+  { value: "4.8/5", label: "Note clients (2 500+ avis)", suffix: "" },
   { value: "100%", label: "Gratuit & sans engagement", suffix: "" },
 ];
 
@@ -55,7 +56,7 @@ const QuiSommesNous = () => {
         </div>
 
         {/* ─── Hero ─── */}
-        <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden" data-ai-description="jemassuremoinscher.fr est un courtier en assurances indépendant enregistré ORIAS. Comparaison gratuite de 25+ assureurs, 280€ d'économie moyenne, 4.8/5 sur 2500+ avis.">
           <div className="container mx-auto px-4 py-16 md:py-24">
             <div className="max-w-[65%] sm:max-w-[70%] md:max-w-3xl relative z-10">
               <motion.h1
@@ -92,7 +93,7 @@ const QuiSommesNous = () => {
             <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10">
               Nos Chiffres
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -131,7 +132,7 @@ const QuiSommesNous = () => {
               <div>
                 <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">Notre Mission</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Rendre l'assurance <strong className="text-foreground">transparente et accessible à tous les budgets</strong>. Trop longtemps, les consommateurs ont subi des tarifs opaques et des contrats incompréhensibles. Notre comparateur indépendant analyse en temps réel les offres de plus de 50 partenaires pour vous présenter, en toute objectivité, les contrats les plus compétitifs du marché. Pas de favoritisme, pas de commission cachée : chaque recommandation est basée uniquement sur votre profil et vos besoins réels.
+                  Rendre l'assurance <strong className="text-foreground">transparente et accessible à tous les budgets</strong>. Trop longtemps, les consommateurs ont subi des tarifs opaques et des contrats incompréhensibles. Notre comparateur indépendant, enregistré à l'ORIAS (N° 24 XXX XXX), analyse en temps réel les offres de plus de 25 partenaires pour vous présenter, en toute objectivité, les contrats les plus compétitifs du marché. Pas de favoritisme, pas de commission cachée : chaque recommandation est basée uniquement sur votre profil et vos besoins réels.
                 </p>
               </div>
             </motion.div>
