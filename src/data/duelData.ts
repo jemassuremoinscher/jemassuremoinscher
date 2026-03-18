@@ -177,7 +177,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   "l-olivier": {
     slug: "l-olivier",
     name: "L'Olivier Assurance",
-    logo: "/src/assets/logos/lolivier.png",
+    logo: logoOlivier,
     prixMoyen: 480,
     franchise: 350,
     assistance0km: false,
