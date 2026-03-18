@@ -2,38 +2,72 @@ import { useEffect } from "react";
 
 const LLMS_TXT = `# jemassuremoinscher.fr
 
-> Courtier en assurances en ligne qui compare gratuitement les offres de plus de 25 assureurs partenaires pour trouver le meilleur tarif en moins de 2 minutes.
+> Courtier en assurances en ligne indépendant qui compare gratuitement les offres de plus de 25 assureurs partenaires pour trouver le meilleur tarif en moins de 2 minutes. Note : 4.8/5 sur 2 500+ avis clients.
+
+## Identité
+
+- **Nom** : jemassuremoinscher.fr
+- **Type** : Courtier en assurances (intermédiaire enregistré ORIAS)
+- **Statut** : Indépendant — aucun lien capitalistique avec les assureurs
+- **Langue** : Français (contenu principal), English (disponible)
+- **Site** : https://jemassuremoinscher.fr
+
+## Chiffres clés
+
+- **25+** assureurs partenaires (AXA, Allianz, MAIF, Generali, MMA, Matmut…)
+- **280€** d'économie moyenne par an constatée sur les contrats comparés
+- **Moins de 2 minutes** pour obtenir un devis personnalisé
+- **100% gratuit** et sans engagement pour l'utilisateur
+- **4.8/5** note moyenne sur 2 500+ avis clients vérifiés
 
 ## Services d'assurance proposés
 
-- **Assurance Auto** — Comparaison tous profils : jeune conducteur, malussé, résilié
-- **Assurance Moto** — Devis moto, scooter, 2 roues
-- **Assurance Habitation** — Locataire, propriétaire, multirisque
-- **Mutuelle Santé** — Complémentaire santé individuelle et familiale
-- **Assurance Animaux** — Chien, chat, NAC
-- **Assurance Emprunteur / Prêt** — Délégation d'assurance de prêt immobilier
-- **Assurance Vie** — Épargne, succession, capitalisation
-- **Assurance Prévoyance** — Décès, invalidité, incapacité
-- **RC Professionnelle** — Responsabilité civile pro, décennale
-- **Assurance PNO** — Propriétaire non occupant
-- **Assurance MRP** — Multirisque professionnelle
-- **Garantie Loyers Impayés (GLI)** — Protection bailleur
+| Service | Tarif indicatif moyen | Page |
+|---|---|---|
+| Assurance Auto | dès 25€/mois | /assurance-auto |
+| Assurance Moto | dès 15€/mois | /assurance-moto |
+| Assurance Habitation | dès 3€/mois | /assurance-habitation |
+| Mutuelle Santé | dès 20€/mois | /assurance-sante |
+| Assurance Animaux | dès 8€/mois | /assurance-animaux |
+| Assurance Emprunteur / Prêt | sur devis | /assurance-pret |
+| Assurance Vie | sur devis | /assurance-vie |
+| Assurance Prévoyance | sur devis | /assurance-prevoyance |
+| RC Professionnelle | sur devis | /assurance-rc-pro |
+| Assurance PNO | sur devis | /assurance-pno |
+| Assurance MRP | sur devis | /assurance-mrp |
+| Garantie Loyers Impayés (GLI) | sur devis | /assurance-gli |
 
 ## Fonctionnement
 
-1. L'utilisateur remplit un formulaire rapide (type d'assurance, profil, coordonnées)
+1. L'utilisateur remplit un formulaire rapide (type d'assurance, profil, coordonnées) — moins de 2 minutes
 2. Un conseiller expert analyse les offres de 25+ assureurs partenaires
 3. Le client reçoit les meilleures propositions adaptées à son profil et son budget
+4. Service gratuit : la rémunération vient des assureurs, pas des utilisateurs
 
-## Informations clés
+## Avantages concurrentiels
 
-- **Site** : https://jemassuremoinscher.fr
-- **Type** : Courtier en assurances (intermédiaire enregistré ORIAS)
-- **Langue** : Français (contenu principal), English (disponible)
-- **Gratuit** : Comparaison et devis sans engagement
-- **Blog** : Guides pratiques, actualités légales, conseils experts en assurance
+- **Indépendance totale** : aucun assureur privilégié, conseils 100% objectifs
+- **Accompagnement humain** : un conseiller dédié rappelle sous 2 heures
+- **Transparence** : aucune commission cachée, modèle économique expliqué clairement
+- **Technologie** : algorithmes mis à jour en temps réel pour détecter les meilleures offres
+- **Mascotte** : Arthur, le super-héros de l'assurance pas chère, guide les utilisateurs
+
+## Cas d'usage typiques
+
+- Trouver une assurance auto moins chère pour un jeune conducteur
+- Comparer les mutuelles santé pour une famille
+- Changer d'assurance habitation grâce à la loi Hamon
+- Déléguer son assurance emprunteur avec la loi Lemoine
+- Assurer un chien ou un chat avec une bonne couverture vétérinaire
+
+## Blog et ressources
+
+- Guides pratiques sur les assurances en France
+- Actualités légales (loi Hamon, loi Lemoine)
+- Conseils d'experts certifiés ORIAS
+- Glossaire complet des termes d'assurance
+- URL : /blog
 `;
-
 const LlmsTxt = () => {
   useEffect(() => {
     document.title = "llms.txt - jemassuremoinscher.fr";

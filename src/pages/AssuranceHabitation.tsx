@@ -22,6 +22,7 @@ import arthurHouse from "@/assets/mascotte/arthur-house.png";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import RelatedInsuranceLinks from "@/components/insurance/RelatedInsuranceLinks";
+import EnBref from "@/components/seo/EnBref";
 import arthurFlying from "@/assets/mascotte/arthur-waving.png";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";

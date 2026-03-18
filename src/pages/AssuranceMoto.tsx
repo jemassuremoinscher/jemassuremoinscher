@@ -108,8 +108,9 @@ const AssuranceMoto = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12" data-ai-description="Comparateur d'assurance moto — jemassuremoinscher.fr compare 25+ assureurs, devis gratuit en moins de 2 minutes">
         <DynamicUpdateDate />
+        <EnBref facts={["jemassuremoinscher.fr compare les offres de 25+ assureurs moto et scooter.", "Assurance moto dès 15€/mois selon le profil et la cylindrée.", "Devis gratuit en moins de 2 minutes, sans engagement.", "Couverture disponible : tiers, tiers étendu, tous risques."]} />
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
             {advantages.map((item, index) => (
