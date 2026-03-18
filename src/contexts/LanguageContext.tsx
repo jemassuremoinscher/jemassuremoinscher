@@ -51,7 +51,7 @@ const fr: Record<string, string> = {
   'hero.titleHighlight': 'sans compromis.',
   'hero.subtitle': 'Comparez',
   'hero.subtitleBold': '50+ assureurs',
-  'hero.subtitleEnd': 'en 2 minutes.',
+  'hero.subtitleEnd': 'en moins de 2 minutes.',
   'hero.subtitleSecondary': 'Gratuit, sans engagement. On s\'occupe de tout.',
   'hero.savingsBadge': "Nos clients économisent en moyenne",
   'hero.savingsPercent': '40%',
