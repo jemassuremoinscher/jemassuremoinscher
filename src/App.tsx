@@ -161,6 +161,8 @@ const App = () => (
                   <Route path="/plan-du-site" element={<PlanDuSite />} />
                   <Route path="/merci" element={<Merci />} />
                   <Route path="/outils/calculateur-bonus-malus" element={<CalculateurBonusMalus />} />
+                  <Route path="/comparatif/:slug" element={<DuelPage />} />
+                  <Route path="/comparatif" element={<DuelPage />} />
                   <Route path="/llms.txt" element={<LlmsTxt />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
