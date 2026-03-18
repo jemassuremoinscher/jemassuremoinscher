@@ -671,6 +671,15 @@ function ContactStep({
                   Meilleur prix
                 </span>
               )}
+              {/* Insurer logo */}
+              <div className="flex justify-center mb-1.5 mt-1">
+                <img
+                  src={p.logo}
+                  alt={p.name}
+                  className="h-6 max-w-[60px] object-contain"
+                  loading="lazy"
+                />
+              </div>
               <span className="text-[10px] text-muted-foreground font-medium uppercase">{p.badge}</span>
               <div className="text-xl md:text-2xl font-extrabold text-accent mt-0.5">{p.price}</div>
               <span className="text-[11px] text-muted-foreground">/mois</span>
