@@ -498,7 +498,10 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
 }
 
 // ─── Input Step ──────────────────────────────────────────────────────────────
-function InputStep({ step, value, onChange, onSubmit }: { step: FormStep; value: string; onChange: (v: string) => void; onSubmit: (v: string) => void }) {
+function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlur, onDismissHint }: {
+  step: FormStep; value: string; onChange: (v: string) => void; onSubmit: (v: string) => void;
+  activeHint?: string | null; onFocus?: () => void; onBlur?: () => void; onDismissHint?: () => void;
+}) {
   const [error, setError] = useState('');
 
   const handleSubmit = () => {
@@ -507,6 +510,7 @@ function InputStep({ step, value, onChange, onSubmit }: { step: FormStep; value:
       return;
     }
     setError('');
+    onBlur?.();
     onSubmit(value);
   };
 
@@ -515,19 +519,40 @@ function InputStep({ step, value, onChange, onSubmit }: { step: FormStep; value:
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="w-full"
+        className="w-full relative"
       >
         <Input
           type={step.inputType || 'text'}
           value={value}
-          onChange={(e) => { onChange(e.target.value); setError(''); }}
+          onChange={(e) => { onChange(e.target.value); setError(''); onDismissHint?.(); }}
           onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
+          onFocus={onFocus}
+          onBlur={onBlur}
           placeholder={step.placeholder}
           maxLength={step.maxLength}
           className="h-14 text-center text-xl font-semibold rounded-2xl border-2 border-border/50 focus:border-primary bg-background/50"
           autoFocus
         />
         {error && <p className="text-xs text-destructive mt-2 text-center">{error}</p>}
+
+        {/* Contextual help bubble */}
+        {activeHint && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8 }}
+            className="absolute left-0 right-0 top-full mt-3 z-20"
+          >
+            <div className="relative bg-card border border-primary/20 rounded-xl p-3 shadow-[var(--shadow-card)] text-xs text-muted-foreground leading-relaxed">
+              <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-card border-l border-t border-primary/20" />
+              <div className="flex items-start gap-2">
+                <span className="text-primary text-sm flex-shrink-0">💡</span>
+                <span>{activeHint}</span>
+                <button onClick={onDismissHint} className="text-muted-foreground/60 hover:text-foreground ml-auto flex-shrink-0" aria-label="Fermer">✕</button>
+              </div>
+            </div>
+          </motion.div>
+        )}
       </motion.div>
       <Button
         onClick={handleSubmit}
