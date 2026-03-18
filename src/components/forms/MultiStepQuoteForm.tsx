@@ -420,52 +420,79 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
 };
 
 // ─── Card Select Step ────────────────────────────────────────────────────────
-function CardSelectStep({ options, selected, onSelect }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void }) {
+function CardSelectStep({ options, selected, onSelect, microLoading }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void; microLoading?: boolean }) {
   return (
-    <div className={`grid gap-3 ${options.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : options.length <= 4 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}`}>
-      {options.map((option, idx) => {
-        const Icon = option.icon;
-        const isSelected = selected === option.value;
-        return (
-          <motion.button
-            key={option.value}
-            onClick={() => onSelect(option.value)}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.08, duration: 0.3 }}
-            className={`
-              group relative flex flex-col items-center text-center p-5 md:p-6 rounded-2xl border-2 transition-all duration-200 cursor-pointer
-              ${isSelected
-                ? 'border-primary bg-primary/5 shadow-[var(--shadow-hover)]'
-                : 'border-border/50 hover:border-primary/40 hover:bg-primary/[0.02] hover:shadow-[var(--shadow-card)]'
-              }
-            `}
-            aria-label={option.label}
-          >
-            <div className={`
-              h-14 w-14 md:h-16 md:w-16 rounded-2xl flex items-center justify-center mb-3 transition-all duration-200
-              ${isSelected
-                ? 'bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]'
-                : 'bg-muted/60 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
-              }
-            `}>
-              <Icon className="h-7 w-7 md:h-8 md:w-8" />
-            </div>
-            <span className="font-semibold text-foreground text-sm md:text-base">{option.label}</span>
-            {option.description && (
-              <span className="text-xs text-muted-foreground mt-1 leading-tight">{option.description}</span>
-            )}
-            {isSelected && (
-              <motion.div
-                layoutId="selected-check"
-                className="absolute top-2 right-2 h-6 w-6 rounded-full bg-primary flex items-center justify-center"
-              >
-                <CheckCircle2 className="h-4 w-4 text-primary-foreground" />
-              </motion.div>
-            )}
-          </motion.button>
-        );
-      })}
+    <div className="relative">
+      <div className={`grid gap-3 ${options.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : options.length <= 4 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}`}>
+        {options.map((option, idx) => {
+          const Icon = option.icon;
+          const isSelected = selected === option.value;
+          return (
+            <motion.button
+              key={option.value}
+              onClick={() => onSelect(option.value)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.08, duration: 0.3 }}
+              style={{
+                transform: isSelected ? 'scale(1.04)' : undefined,
+                transition: 'transform 0.25s cubic-bezier(.4,0,.2,1), box-shadow 0.25s ease, border-color 0.25s ease',
+              }}
+              className={`
+                group relative flex flex-col items-center text-center p-5 md:p-6 rounded-2xl border-2 cursor-pointer
+                ${isSelected
+                  ? 'border-primary bg-primary/5 shadow-[0_0_20px_hsl(var(--primary)/0.25)]'
+                  : 'border-border/50 hover:border-primary/60 hover:bg-primary/[0.03] hover:shadow-[0_0_16px_hsl(var(--primary)/0.15)]'
+                }
+              `}
+              onMouseEnter={(e) => {
+                if (!isSelected) {
+                  (e.currentTarget as HTMLElement).style.transform = 'scale(1.05)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isSelected) {
+                  (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
+                }
+              }}
+              aria-label={option.label}
+            >
+              <div className={`
+                h-14 w-14 md:h-16 md:w-16 rounded-2xl flex items-center justify-center mb-3 transition-all duration-200
+                ${isSelected
+                  ? 'bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]'
+                  : 'bg-muted/60 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
+                }
+              `}>
+                <Icon className="h-7 w-7 md:h-8 md:w-8" />
+              </div>
+              <span className="font-semibold text-foreground text-sm md:text-base">{option.label}</span>
+              {option.description && (
+                <span className="text-xs text-muted-foreground mt-1 leading-tight">{option.description}</span>
+              )}
+              {isSelected && (
+                <motion.div
+                  layoutId="selected-check"
+                  className="absolute top-2 right-2 h-6 w-6 rounded-full bg-primary flex items-center justify-center"
+                >
+                  <CheckCircle2 className="h-4 w-4 text-primary-foreground" />
+                </motion.div>
+              )}
+            </motion.button>
+          );
+        })}
+      </div>
+      {/* Micro-loading feedback */}
+      {microLoading && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground"
+        >
+          <Loader2 className="h-3.5 w-3.5 animate-spin text-primary" />
+          <span>Calcul de précision…</span>
+        </motion.div>
+      )}
     </div>
   );
 }
