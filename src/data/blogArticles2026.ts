@@ -118,7 +118,7 @@ Les compagnies d'assurance évaluent le risque selon deux critères principaux :
 
 - **L'expérience du conducteur** : un permis de moins de 3 ans = surprime de 100 % la 1ère année
 - **La puissance du véhicule** : plus de 110 ch = catégorie « sportive » chez la plupart des assureurs
-- **Les statistiques sinistralité** : les 18-25 ans représentent 21 % des accidents mortels en France (données ONISR 2025)
+- **Les statistiques sinistralité** : les 18-25 ans représentent 21 % des accidents mortels en France (données ONISR 2026)
 - **Le coût des réparations** : pièces plus chères sur les véhicules puissants
 
 ### Le barème des surprimes jeune conducteur en 2026
@@ -320,7 +320,7 @@ En 2026, les conducteurs de plus de 75 ans subissent en moyenne une hausse de 15
 
 ### Les raisons des assureurs
 
-- **Statistiques de sinistralité** : les plus de 75 ans ont 2 fois plus d'accidents corporels au kilomètre parcouru (données sécurité routière 2025)
+- **Statistiques de sinistralité** : les plus de 75 ans ont 2 fois plus d'accidents corporels au kilomètre parcouru (données sécurité routière 2026)
 - **Gravité des blessures** : les séquelles sont statistiquement plus importantes
 - **Fréquence des accrochages** : manœuvres de stationnement, intersections
 - **Coût médical** : les frais d'hospitalisation sont plus élevés
@@ -1213,9 +1213,9 @@ En 2026, les primes d'assurance augmentent en moyenne de 4,5 % pour l'auto, 5,2 
 
 - **Inflation des pièces auto** : +12 % en 2 ans (pénuries de semi-conducteurs)
 - **Main-d'œuvre qualifiée** : +8 % (manque de carrossiers et garagistes)
-- **Catastrophes climatiques** : les indemnisations ont atteint 6,5 milliards € en 2025
+- **Catastrophes climatiques** : les indemnisations ont atteint 6,5 milliards € en 2026
 - **Hausse des coûts médicaux** : +3,5 % par an en moyenne
-- **Fraude en hausse** : +7 % de déclarations frauduleuses détectées en 2025
+- **Fraude en hausse** : +7 % de déclarations frauduleuses détectées en 2026
 
 ### Les hausses par type d'assurance
 
