@@ -61,6 +61,7 @@ const Hero = () => {
                 height={220}
                 loading="eager"
                 decoding="async"
+                fetchPriority="high"
               />
               
               {/* Speech bubble */}
