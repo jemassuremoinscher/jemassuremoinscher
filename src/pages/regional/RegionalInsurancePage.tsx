@@ -81,11 +81,7 @@ export default function RegionalInsurancePage() {
           />
 
           <div className="mt-12">
-            <ArthurCTABubble
-              text={`Les tarifs varient beaucoup en ${dept.name}. Comparez pour trouver votre meilleur prix !`}
-              ctaText="Comparer maintenant"
-              ctaLink={`/comparateur?step=1&dept=${dept.code}`}
-            />
+            <ArthurCTABubble />
           </div>
 
           <Suspense fallback={null}>
