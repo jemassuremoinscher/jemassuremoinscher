@@ -19,6 +19,7 @@ const avgByProfile: Record<string, number> = {
   famille: 650,
   senior: 520,
   malusse: 1400,
+  bonus50: 420,
   standard: 620,
 };
 
