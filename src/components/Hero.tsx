@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useDynamicGreeting, getDefaultGreeting } from "@/components/hero/DynamicGreeting";
 import arthurThumbsUp from "@/assets/mascotte/arthur-wink-thumbsup.png";
 
 // Inline SVG icons — zero bundle cost
@@ -17,6 +18,7 @@ const ZapIcon = () => <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" s
 const Hero = () => {
   const { trackEvent } = useAnalytics();
   const { t } = useLanguage();
+  const greeting = useDynamicGreeting();
 
   const categories = [
   { icon: CarIcon, labelKey: "category.auto", link: "/assurance-auto" },
@@ -33,6 +35,13 @@ const Hero = () => {
       insurance_type: category.toLowerCase()
     });
   };
+
+  // Dynamic vs default content
+  const mascotSrc = greeting?.mascotSrc || arthurThumbsUp;
+  const mascotAlt = greeting?.mascotAlt || "Arthur mascotte jemassuremoinscher.fr - super-héros de l'assurance moins chère";
+  const speechText = greeting?.arthurSpeech || t('hero.arthurSpeech') + " 👋";
+  const ctaLink = greeting?.ctaLink || "/comparateur";
+  const ctaText = greeting?.ctaText || "Voir mon prix en moins de 2 min";
 
   return (
     <section
@@ -54,8 +63,8 @@ const Hero = () => {
           <div className="flex justify-center mb-6 animate-fade-in">
             <div className="relative">
               <img
-                src={arthurThumbsUp}
-                alt="Arthur mascotte jemassuremoinscher.fr - super-héros de l'assurance moins chère"
+                src={mascotSrc}
+                alt={mascotAlt}
                 className="w-28 md:w-36 lg:w-44 h-auto drop-shadow-2xl animate-hero-float"
                 width={176}
                 height={220}
@@ -67,7 +76,7 @@ const Hero = () => {
               {/* Speech bubble */}
               <div className="absolute -top-2 -right-16 md:-right-20 bg-white rounded-xl px-3 py-1.5 shadow-lg animate-fade-in-delay">
                 <p className="text-primary font-bold text-xs md:text-sm whitespace-nowrap">
-                  {t('hero.arthurSpeech')} 👋
+                  {speechText}
                 </p>
                 <div className="absolute -bottom-1.5 left-3 w-3 h-3 bg-white transform rotate-45" />
               </div>
@@ -75,27 +84,38 @@ const Hero = () => {
           </div>
 
           {/* Main Title */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary-foreground mb-4 leading-tight font-[Inter] animate-fade-in-up">
-            <span className="relative inline-block">
-              <span className="relative z-10">{t('hero.titleAccent')}</span>
-              <span
-                className="absolute left-0 right-0 bottom-[-0.05em] h-[0.18em] md:h-[0.16em] bg-accent/80 rounded-full -rotate-[0.5deg] z-0"
-                aria-hidden="true" />
-            </span>
-            {t('hero.titleAccentSuffix')}{t('hero.title')} <br />
-            <span className="text-accent">{t('hero.titleHighlight')}</span>
-          </h1>
-          {/* SEO-optimized hidden H1 for search engines */}
+          {greeting ? (
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary-foreground mb-4 leading-tight font-[Inter] animate-fade-in-up">
+              {greeting.title}
+            </h1>
+          ) : (
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary-foreground mb-4 leading-tight font-[Inter] animate-fade-in-up">
+              <span className="relative inline-block">
+                <span className="relative z-10">{t('hero.titleAccent')}</span>
+                <span
+                  className="absolute left-0 right-0 bottom-[-0.05em] h-[0.18em] md:h-[0.16em] bg-accent/80 rounded-full -rotate-[0.5deg] z-0"
+                  aria-hidden="true" />
+              </span>
+              {t('hero.titleAccentSuffix')}{t('hero.title')} <br />
+              <span className="text-accent">{t('hero.titleHighlight')}</span>
+            </h1>
+          )}
           <span className="sr-only">Assurance moins chère : le comparateur d'assurances N°1 en France. Changez d'assurance facilement et économisez jusqu'à 40%. Alternative à LesFurets avec 50+ assureurs partenaires. Comparateur d'assurances auto, santé, habitation gratuit.</span>
 
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-lg mx-auto font-[Inter] animate-fade-in-up-delay">
-            {t('hero.subtitle')} <span className="font-bold">{t('hero.subtitleBold')}</span> {t('hero.subtitleEnd')}
-            <br />
-            <span className="text-primary-foreground/80">{t('hero.line2')}</span>
-            <br />
-            <span className="text-primary-foreground/80">{t('hero.line3')}</span>
-          </p>
+          {greeting ? (
+            <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-lg mx-auto font-[Inter] animate-fade-in-up-delay">
+              {greeting.subtitle}
+            </p>
+          ) : (
+            <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-lg mx-auto font-[Inter] animate-fade-in-up-delay">
+              {t('hero.subtitle')} <span className="font-bold">{t('hero.subtitleBold')}</span> {t('hero.subtitleEnd')}
+              <br />
+              <span className="text-primary-foreground/80">{t('hero.line2')}</span>
+              <br />
+              <span className="text-primary-foreground/80">{t('hero.line3')}</span>
+            </p>
+          )}
         </div>
 
         {/* Savings Badge */}
@@ -103,7 +123,9 @@ const Hero = () => {
           <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/40 rounded-full px-4 py-2 md:px-6 md:py-3">
             <span className="text-accent"><SparklesIcon /></span>
             <span className="text-sm md:text-base font-bold text-primary-foreground text-center">
-              {t('hero.savingsBadge')} <span className="text-accent">{t('hero.savingsPercent')}</span> {t('hero.savingsEnd')}
+              {greeting ? greeting.badgeText : (
+                <>{t('hero.savingsBadge')} <span className="text-accent">{t('hero.savingsPercent')}</span> {t('hero.savingsEnd')}</>
+              )}
             </span>
           </div>
         </div>
@@ -111,12 +133,12 @@ const Hero = () => {
         {/* CTA Button */}
         <div className="flex flex-col items-center mb-8 animate-fade-in-up-delay">
           <Link
-            to="/comparateur"
-            onClick={() => trackEvent('insurance_type_click', { category: 'hero_cta', label: 'voir_mon_prix' })}
+            to={ctaLink}
+            onClick={() => trackEvent('insurance_type_click', { category: 'hero_cta', label: greeting ? 'dynamic_cta' : 'voir_mon_prix', ref: greeting ? 'personalized' : 'default' })}
             className="inline-flex items-center gap-2 bg-gradient-to-r from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] hover:from-[hsl(43_80%_60%)] hover:to-[hsl(38_75%_53%)] text-foreground font-bold text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
-            aria-label="Voir mon prix en moins de deux minutes - comparaison gratuite">
+            aria-label={ctaText}>
             <ZapIcon />
-            Voir mon prix en moins de 2 min
+            {ctaText}
           </Link>
         </div>
 
