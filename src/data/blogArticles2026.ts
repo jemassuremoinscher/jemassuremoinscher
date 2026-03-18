@@ -2486,11 +2486,11 @@ Oui, votre coefficient bonus-malus est valable 2 ans. Au-delà, vous repartez à
     content: `
 # Certificat d'Assurance Dématérialisé : Tout Comprendre à la Fin de la Vignette Verte
 
-Depuis avril 2024, la vignette verte d'assurance auto n'existe plus. Les forces de l'ordre vérifient désormais votre assurance via le Fichier des Véhicules Assurés (FVA). Vous n'avez plus rien à coller sur votre pare-brise.
+Depuis avril 2025, la vignette verte d'assurance auto n'existe plus. Les forces de l'ordre vérifient désormais votre assurance via le Fichier des Véhicules Assurés (FVA). Vous n'avez plus rien à coller sur votre pare-brise.
 
 ## Ce qui a changé
 
-### L'ancien système (avant avril 2024)
+### L'ancien système (avant avril 2025)
 
 - Vignette verte collée sur le pare-brise
 - Carte verte (attestation papier) à conserver dans le véhicule
