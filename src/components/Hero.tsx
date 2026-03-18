@@ -100,7 +100,7 @@ const Hero = () => {
         {/* Savings Badge */}
         <div className="flex justify-center mb-6 animate-fade-in-up-delay">
           <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/40 rounded-full px-4 py-2 md:px-6 md:py-3">
-            <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-accent" />
+            <SparklesIcon />
             <span className="text-sm md:text-base font-bold text-primary-foreground text-center">
               {t('hero.savingsBadge')} <span className="text-accent">{t('hero.savingsPercent')}</span> {t('hero.savingsEnd')}
             </span>
