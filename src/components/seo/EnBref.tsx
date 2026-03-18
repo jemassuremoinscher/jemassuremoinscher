@@ -1,8 +1,8 @@
-import { memo } from "react";
+import { memo, type ReactNode } from "react";
 import { Info } from "lucide-react";
 
 interface EnBrefProps {
-  facts: string[];
+  facts: ReactNode[];
 }
 
 const EnBref = memo(({ facts }: EnBrefProps) => (
