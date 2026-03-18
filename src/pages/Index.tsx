@@ -110,7 +110,7 @@ const Index = () => {
 
         <DeferredRender minHeight={300}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[300px]" />}>
-            <PartnersSlider />
+            <Partners />
           </Suspense>
         </DeferredRender>
 
