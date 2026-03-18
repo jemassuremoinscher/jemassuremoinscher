@@ -163,7 +163,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
   groupama: {
     slug: "groupama",
     name: "Groupama",
-    logo: "/src/assets/logos/groupama.png",
+    logo: logoGroupama,
     prixMoyen: 630,
     franchise: 300,
     assistance0km: true,
