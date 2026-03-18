@@ -135,6 +135,7 @@ const BlogArticle = () => {
         articlePublishedTime={convertToISO(article.date)}
         articleModifiedTime={convertToISO(article.date)}
         jsonLd={[breadcrumbSchema, articleSchema, blogFaqSchema, authorJsonLd]}
+        noindex={article.noindex}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: article.title }]} />

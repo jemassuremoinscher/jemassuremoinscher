@@ -10,6 +10,7 @@ export interface BlogArticle {
   image?: string;
   content: string;
   tags: string[];
+  noindex?: boolean;
 }
 
 const _blogArticlesRaw: BlogArticle[] = [
@@ -19,7 +20,7 @@ const _blogArticlesRaw: BlogArticle[] = [
     slug: "mutuelle-sante-reduire-frais-medicaux-2026",
     description: "Découvrez comment choisir la bonne mutuelle santé et optimiser vos remboursements pour économiser jusqu'à 40% sur vos dépenses médicales annuelles.",
     category: "Guides Pratiques",
-    date: "18 janvier 2024",
+    date: "18 janvier 2026",
     readTime: "9 min",
     author: "Dr. Marie Dupont",
     tags: ["mutuelle santé", "économies", "remboursements", "conseils santé"],
@@ -204,7 +205,7 @@ Une bonne mutuelle santé peut vous faire économiser **plusieurs milliers d'eur
     slug: "assurance-auto-jeune-conducteur-astuces",
     description: "Jeune conducteur et assurance auto = budget explosé ? Découvrez 7 techniques éprouvées pour réduire drastiquement votre prime d'assurance.",
     category: "Conseils Experts",
-    date: "16 janvier 2024",
+    date: "16 janvier 2026",
     readTime: "8 min",
     author: "Alexandre Petit",
     tags: ["jeune conducteur", "assurance auto", "économies", "permis"],
@@ -326,7 +327,7 @@ Chaque année sans sinistre = **-5 %** sur votre coefficient.
     slug: "resiliation-assurance-droits-2026",
     description: "Loi Hamon, loi Chatel, résiliation à tout moment... Découvrez tous vos droits pour résilier facilement vos contrats d'assurance et changer quand vous voulez.",
     category: "Actualités Légales",
-    date: "14 janvier 2024",
+    date: "14 janvier 2026",
     readTime: "7 min",
     author: "Sophie Martin",
     tags: ["résiliation", "droits", "loi hamon", "loi chatel"],
@@ -347,7 +348,7 @@ Après **12 mois d'engagement**, vous pouvez résilier à tout moment, sans frai
 **Frais de résiliation :** 0€
 
 **Exemple :**
-Vous avez souscrit le 15 mars 2023 → Vous pouvez résilier à partir du 16 mars 2024, n'importe quel jour de l'année.
+Vous avez souscrit le 15 mars 2024 → Vous pouvez résilier à partir du 16 mars 2026, n'importe quel jour de l'année.
 
 ### Loi Chatel (2005) - L'information annuelle
 **Concerne :** Tous les contrats avec reconduction tacite
@@ -606,7 +607,7 @@ Résilier son assurance est devenu un jeu d'enfant grâce aux nouvelles lois. N'
     slug: "loi-lemoine-assurance-emprunteur-2026",
     description: "La loi Lemoine révolutionne l'assurance de prêt immobilier. Découvrez vos nouveaux droits : résiliation à tout moment, suppression du questionnaire médical et économies garanties.",
     category: "Actualités Légales",
-    date: "15 janvier 2024",
+    date: "15 janvier 2026",
     readTime: "8 min",
     author: "Sophie Martin",
     tags: ["loi lemoine", "assurance prêt", "législation", "économies"],
@@ -677,7 +678,7 @@ La loi Lemoine est une opportunité exceptionnelle de réduire le coût de votre
     slug: "loi-hamon-resiliation-assurance",
     description: "La loi Hamon vous permet de résilier votre assurance auto, moto ou habitation après un an d'engagement. Découvrez comment faire des économies en toute simplicité.",
     category: "Actualités Légales",
-    date: "12 janvier 2024",
+    date: "12 janvier 2026",
     readTime: "6 min",
     author: "Marc Dubois",
     tags: ["loi hamon", "résiliation", "assurance auto", "assurance habitation"],
@@ -789,7 +790,7 @@ La loi Hamon est un outil puissant pour faire des économies sur vos assurances.
     slug: "guide-choisir-assurance-auto-2026",
     description: "Tiers, tiers plus ou tous risques ? Découvrez notre guide complet pour choisir l'assurance auto adaptée à votre profil et économiser jusqu'à 400€ par an.",
     category: "Guides Pratiques",
-    date: "10 janvier 2024",
+    date: "10 janvier 2026",
     readTime: "10 min",
     author: "Claire Rousseau",
     tags: ["assurance auto", "guide pratique", "conseils", "économies"],
@@ -994,7 +995,7 @@ Le choix de votre assurance auto dépend de votre situation personnelle. Prenez 
     slug: "assurance-habitation-garanties-indispensables",
     description: "Incendie, dégât des eaux, vol... Quelles garanties sont vraiment nécessaires pour votre logement ? Notre expert vous guide dans votre choix.",
     category: "Guides Pratiques",
-    date: "8 janvier 2024",
+    date: "8 janvier 2026",
     readTime: "7 min",
     author: "Thomas Leroy",
     tags: ["assurance habitation", "garanties", "conseils", "protection"],
@@ -1247,7 +1248,7 @@ Une bonne assurance habitation ne se choisit pas qu'au prix. Les garanties doive
     slug: "10-conseils-economiser-assurances",
     description: "Nos experts révèlent leurs meilleures astuces pour réduire le coût de vos assurances sans sacrifier vos garanties. Économisez jusqu'à 1000€ par an !",
     category: "Conseils Experts",
-    date: "5 janvier 2024",
+    date: "5 janvier 2026",
     readTime: "9 min",
     author: "Julie Bernard",
     tags: ["économies", "conseils", "budget", "assurances"],
@@ -1487,7 +1488,7 @@ En cas de sinistre, l'assureur peut refuser l'indemnisation.
     slug: "bien-choisir-mutuelle-sante",
     description: "Remboursements optique, dentaire, hospitalisation... Découvrez comment choisir la mutuelle santé adaptée à vos besoins et à votre budget.",
     category: "Guides Pratiques",
-    date: "3 janvier 2024",
+    date: "3 janvier 2026",
     readTime: "8 min",
     author: "Dr. Antoine Mercier",
     tags: ["mutuelle", "santé", "remboursements", "conseils"],
@@ -1777,7 +1778,7 @@ Choisir sa mutuelle ne se fait pas au hasard. Analysez vos besoins réels, compa
     slug: "meilleure-assurance-auto-2026-comparatif",
     description: "Découvrez notre classement exclusif des meilleures assurances auto en 2026 : tarifs, garanties, avis clients. Trouvez l'assurance la moins chère adaptée à votre profil.",
     category: "Assurance Auto",
-    date: "2 janvier 2025",
+    date: "2 janvier 2026",
     readTime: "12 min",
     author: "Alexandre Dupont",
     tags: ["meilleure assurance auto 2026", "comparatif assurance auto", "assurance auto pas cher", "classement assurance"],
@@ -2084,7 +2085,7 @@ La **meilleure assurance auto en 2026** dépend de votre profil et de vos priori
     slug: "top-10-meilleures-mutuelles-sante-2026",
     description: "Classement des meilleures mutuelles santé 2026 : tarifs, remboursements, avis. Trouvez la mutuelle la moins chère avec les meilleurs remboursements optique et dentaire.",
     category: "Mutuelle Santé",
-    date: "5 janvier 2025",
+    date: "5 janvier 2026",
     readTime: "11 min",
     author: "Dr. Marie Legrand",
     tags: ["meilleure mutuelle 2026", "comparatif mutuelle santé", "mutuelle pas cher", "remboursement optique"],
@@ -2396,7 +2397,7 @@ La **meilleure mutuelle santé 2026** dépend de vos besoins spécifiques. Alan 
     slug: "assurance-jeune-conducteur-2026-moins-cher",
     description: "Jeune conducteur : découvrez les 10 astuces pour réduire votre prime d\'assurance auto jusqu\'à 40%. Comparatif des assureurs les moins chers pour les -25 ans.",
     category: "Assurance Auto",
-    date: "8 janvier 2025",
+    date: "8 janvier 2026",
     readTime: "9 min",
     author: "Lucas Bernard",
     tags: ["assurance jeune conducteur", "assurance -25 ans", "permis probatoire", "surprime jeune conducteur"],
@@ -2710,7 +2711,7 @@ Oui, mais la surprime jeune conducteur s\'applique aussi en 2-roues.
     slug: "meilleure-assurance-auto-2026",
     description: "Découvrez notre classement 2026 des meilleures assurances auto. Tarifs, garanties, avis clients : tout pour faire le bon choix.",
     category: "Guides Pratiques",
-    date: "3 janvier 2025",
+    date: "3 janvier 2026",
     readTime: "12 min",
     author: "Thomas Laurent",
     tags: ["assurance auto", "comparatif 2026", "meilleurs assureurs", "tarifs"],
@@ -2923,7 +2924,7 @@ Comparez au moins 3 offres adaptées à votre profil. Le meilleur assureur pour 
     slug: "top-mutuelles-sante-2026",
     description: "Notre sélection des meilleures mutuelles santé 2026. Comparatif détaillé des remboursements, tarifs et services pour choisir la meilleure complémentaire.",
     category: "Guides Pratiques",
-    date: "28 décembre 2024",
+    date: "28 décembre 2026",
     readTime: "11 min",
     author: "Dr. Marie Dubois",
     tags: ["mutuelle santé", "comparatif", "remboursements", "complémentaire santé"],
@@ -2950,7 +2951,7 @@ Les mutuelles santé évoluent chaque année avec de nouvelles garanties, des se
 - Solo 40 ans : 75€/mois
 - Famille 4 personnes : 220€/mois
 
-**Remboursements 2025 :**
+**Remboursements 2026 :**
 - Optique : 450€/an
 - Dentaire : 500€/an
 - Hospitalisation : 100% + chambre particulière
@@ -2975,7 +2976,7 @@ Parfait pour les jeunes actifs et freelances qui veulent une gestion 100% mobile
 - Solo 40 ans : 85€/mois
 - Famille 4 personnes : 245€/mois
 
-**Remboursements 2025 :**
+**Remboursements 2026 :**
 - Optique : 500€/an
 - Dentaire : 600€/an
 - Hospitalisation : 150% BR
@@ -3000,7 +3001,7 @@ Idéal pour ceux qui veulent une mutuelle historique avec services étendus.
 - Solo 40 ans : 80€/mois
 - Famille 4 personnes : 230€/mois
 
-**Remboursements 2025 :**
+**Remboursements 2026 :**
 - Optique : 400€/an
 - Dentaire : 550€/an
 - Hospitalisation : 120% BR
@@ -3025,7 +3026,7 @@ Parfait pour les indépendants et chefs d'entreprise.
 - Solo 40 ans : 65€/mois
 - Famille 4 personnes : 190€/mois
 
-**Remboursements 2025 :**
+**Remboursements 2026 :**
 - Optique : 350€/an
 - Dentaire : 450€/an
 - Hospitalisation : 100% BR
@@ -3050,7 +3051,7 @@ Idéal pour les budgets serrés sans compromis sur l'essentiel.
 - Solo 40 ans : 110€/mois
 - Famille 4 personnes : 310€/mois
 
-**Remboursements 2025 :**
+**Remboursements 2026 :**
 - Optique : 600€/an
 - Dentaire : 800€/an
 - Hospitalisation : 200% BR
@@ -3220,7 +3221,7 @@ Choisissez selon vos besoins réels, pas selon la pub. Une mutuelle à 40€/moi
     slug: "comparatif-habitation-2026",
     description: "Guide complet pour choisir son assurance habitation. Comparatif des meilleures offres, garanties indispensables et conseils d'experts.",
     category: "Guides Pratiques",
-    date: "20 décembre 2024",
+    date: "20 décembre 2026",
     readTime: "10 min",
     author: "Pierre Durand",
     tags: ["assurance habitation", "comparatif", "logement", "garanties"],
@@ -3576,7 +3577,7 @@ Pour les maisons → Groupama
     slug: "loi-lemoine-2026",
     description: "Tout savoir sur la loi Lemoine et ses évolutions en 2026. Changement d'assurance emprunteur simplifié, suppression du questionnaire médical, nouvelles opportunités d'économies.",
     category: "Actualités Légales",
-    date: "15 janvier 2025",
+    date: "15 janvier 2026",
     readTime: "8 min",
     author: "Sophie Mercier",
     tags: ["loi lemoine", "assurance emprunteur", "crédit immobilier", "réglementation"],
@@ -3864,7 +3865,7 @@ La loi Lemoine est une vraie révolution pour les emprunteurs. En 2026, c'est en
     slug: "nouvelle-reglementation-assurance-2026",
     description: "Tour d'horizon des nouvelles lois et règlements qui impactent vos assurances en 2026. Obligations, droits nouveaux et opportunités.",
     category: "Actualités Légales",
-    date: "8 janvier 2025",
+    date: "8 janvier 2026",
     readTime: "9 min",
     author: "Marc Duval",
     tags: ["réglementation", "nouvelles lois", "2026", "droits assurés"],
@@ -4272,7 +4273,7 @@ Profitez de ces nouvelles dispositions pour revoir tous vos contrats et optimise
     slug: "droits-des-assures-2026",
     description: "Guide complet de vos droits en tant qu'assuré. Résiliation, indemnisation, recours : tout ce que les assureurs ne vous disent pas.",
     category: "Actualités Légales",
-    date: "2 janvier 2025",
+    date: "2 janvier 2026",
     readTime: "10 min",
     author: "Maître Julie Renard",
     tags: ["droits assurés", "protection consommateur", "recours", "indemnisation"],
@@ -4752,25 +4753,25 @@ Connaître vos droits, c'est pouvoir les faire valoir !
 
 import { blogArticles2026 } from "./blogArticles2026";
 
-// Spread all articles with realistic dates from Sept 2025 to March 2026
+// Spread all articles with realistic dates from Jan 2026 to March 2026
 const spreadDates: Record<string, string> = {
-  // Existing articles → Sept-Dec 2025
-  "5": "12 septembre 2025",
-  "6": "19 septembre 2025",
-  "7": "26 septembre 2025",
-  "1": "3 octobre 2025",
-  "2": "10 octobre 2025",
-  "3": "17 octobre 2025",
-  "4": "24 octobre 2025",
-  "5b": "31 octobre 2025",
-  "6b": "7 novembre 2025",
-  "11": "14 novembre 2025",
-  "12": "21 novembre 2025",
-  "13": "28 novembre 2025",
-  "8": "5 décembre 2025",
-  "9": "12 décembre 2025",
-  "10": "19 décembre 2025",
-  "11b": "26 décembre 2025",
+  // Existing articles → Jan-Mar 2026
+  "5": "12 janvier 2026",
+  "6": "19 janvier 2026",
+  "7": "26 janvier 2026",
+  "1": "3 février 2026",
+  "2": "10 février 2026",
+  "3": "17 février 2026",
+  "4": "24 février 2026",
+  "5b": "31 février 2026",
+  "6b": "7 mars 2026",
+  "11": "14 mars 2026",
+  "12": "21 mars 2026",
+  "13": "28 mars 2026",
+  "8": "5 mars 2026",
+  "9": "12 mars 2026",
+  "10": "19 mars 2026",
+  "11b": "26 mars 2026",
   "12b": "2 janvier 2026",
   "13b": "6 janvier 2026",
   // 2026 articles → Jan-March 2026
@@ -4820,16 +4821,17 @@ const existingWithDates = _blogArticlesRaw.map((article, index) => {
   const dateKeys = Object.keys(spreadDates).filter(k => !k.startsWith("2") || k.length < 2);
   // Use index-based date assignment for existing
   const dateList = [
-    "12 septembre 2025", "19 septembre 2025", "26 septembre 2025",
-    "3 octobre 2025", "10 octobre 2025", "17 octobre 2025", "24 octobre 2025",
-    "31 octobre 2025", "7 novembre 2025", "14 novembre 2025", "21 novembre 2025",
-    "28 novembre 2025", "5 décembre 2025", "12 décembre 2025", "19 décembre 2025",
-    "26 décembre 2025", "2 janvier 2026", "6 janvier 2026", "8 janvier 2026",
+    "12 janvier 2026", "19 janvier 2026", "26 janvier 2026",
+    "3 février 2026", "10 février 2026", "17 février 2026", "24 février 2026",
+    "31 février 2026", "7 mars 2026", "14 mars 2026", "21 mars 2026",
+    "28 mars 2026", "5 mars 2026", "12 mars 2026", "19 mars 2026",
+    "26 mars 2026", "2 janvier 2026", "6 janvier 2026", "8 janvier 2026",
   ];
   return {
     ...article,
     id: uniqueId,
     date: dateList[index % dateList.length],
+    noindex: true,
   };
 });
 
