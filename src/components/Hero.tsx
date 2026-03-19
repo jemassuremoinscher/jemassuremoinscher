@@ -120,14 +120,18 @@ const Hero = () => {
 
         {/* Savings Badge */}
         <div className="flex justify-center mb-6 animate-fade-in-up-delay">
-          <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/40 rounded-full px-4 py-2 md:px-6 md:py-3">
+          <Link
+            to="/avis-clients"
+            className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/40 rounded-full px-4 py-2 md:px-6 md:py-3 hover:bg-accent/30 transition-colors duration-200"
+            aria-label="Voir les avis clients"
+          >
             <span className="text-accent"><SparklesIcon /></span>
             <span className="text-sm md:text-base font-bold text-primary-foreground text-center">
               {greeting ? greeting.badgeText : (
                 <>{t('hero.savingsBadge')} <span className="text-accent">{t('hero.savingsPercent')}</span> {t('hero.savingsEnd')}</>
               )}
             </span>
-          </div>
+          </Link>
         </div>
 
         {/* CTA Button */}
