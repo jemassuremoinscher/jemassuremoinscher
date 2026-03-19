@@ -122,9 +122,9 @@ const App = () => (
             }>
               <Routes>
                 <Route path="/" element={<Index />} />
-                <Route path="/auth/*" element={<AuthRoutes />} />
-                <Route path="/admin/*" element={<AuthRoutes />} />
-                <Route path="/commercial/*" element={<AuthRoutes />} />
+                <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
+                <Route path="/admin" element={<AuthRoute><Admin /></AuthRoute>} />
+                <Route path="/commercial" element={<AuthRoute><Commercial /></AuthRoute>} />
                 <Route path="/landing/assurance" element={<LandingAds />} />
                 <Route path="/landing/auto" element={<LandingAuto />} />
                 <Route path="/landing/sante" element={<LandingSante />} />
