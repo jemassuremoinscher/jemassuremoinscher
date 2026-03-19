@@ -32,11 +32,11 @@
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#1a365d" />
 
-    <!-- Inter font — lightweight: 4 weights only, swap to avoid render-blocking -->
+    <!-- Inter font — use optional display to prevent FOIT and avoid render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" /></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=optional" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=optional" /></noscript>
 
     <!-- DNS prefetch for third-party domains -->
     <!-- DNS prefetch removed — analytics scripts are deferred to idle/interaction -->
