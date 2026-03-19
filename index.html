@@ -32,11 +32,11 @@
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#1a365d" />
 
-    <!-- Inter font — lightweight: 4 weights only, swap to avoid render-blocking -->
+    <!-- Inter font — use optional display to prevent FOIT and avoid render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" /></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=optional" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=optional" /></noscript>
 
     <!-- DNS prefetch for third-party domains -->
     <!-- DNS prefetch removed — analytics scripts are deferred to idle/interaction -->
@@ -141,8 +141,24 @@
     }
     </script>
 
-    <!-- Critical CSS -->
+    <!-- Critical CSS — instant FCP shell + SEO fallback -->
     <style>
+      /* Instant visible shell before JS loads */
+      body { margin: 0; font-family: Inter, system-ui, -apple-system, sans-serif; background: hsl(210 20% 98%); color: hsl(220 20% 18%); }
+      .app-shell { display: flex; flex-direction: column; min-height: 100vh; }
+      .app-shell-header { height: 64px; background: #fff; border-bottom: 1px solid hsl(220 13% 91%); display: flex; align-items: center; padding: 0 1rem; }
+      .app-shell-header .shell-logo { width: 140px; height: 28px; background: hsl(271 81% 56% / 0.12); border-radius: 6px; }
+      .app-shell-hero { padding: 3rem 1rem; text-align: center; }
+      .app-shell-hero .shell-title { height: 2rem; max-width: 500px; margin: 0 auto 1rem; background: hsl(220 14% 96%); border-radius: 8px; }
+      .app-shell-hero .shell-subtitle { height: 1rem; max-width: 350px; margin: 0 auto 2rem; background: hsl(220 14% 96%); border-radius: 6px; }
+      .app-shell-hero .shell-cta { display: inline-block; width: 200px; height: 48px; background: hsl(271 81% 56% / 0.15); border-radius: 24px; }
+      @media (prefers-reduced-motion: no-preference) {
+        .shell-logo, .shell-title, .shell-subtitle, .shell-cta {
+          animation: shell-pulse 1.5s ease-in-out infinite alternate;
+        }
+      }
+      @keyframes shell-pulse { from { opacity: 0.6; } to { opacity: 1; } }
+
       #root .seo-fallback {
         max-width: 1100px;
         margin: 0 auto;
@@ -221,6 +237,15 @@
       </div>
     </noscript>
     <div id="root">
+      <!-- Instant FCP shell — replaced by React on hydration -->
+      <div class="app-shell" aria-hidden="true">
+        <div class="app-shell-header"><div class="shell-logo"></div></div>
+        <div class="app-shell-hero">
+          <div class="shell-title"></div>
+          <div class="shell-subtitle"></div>
+          <div class="shell-cta"></div>
+        </div>
+      </div>
       <!-- SEO fallback content - visible in raw HTML to reduce CSR crawl penalties -->
       <div class="seo-fallback">
       <header>
