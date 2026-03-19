@@ -89,7 +89,7 @@ const queryClient = new QueryClient({
 });
 
 // Wrapper that lazily loads AuthProvider only for protected routes
-const AuthRoutes = () => (
+const AuthRoute = ({ children }: { children: React.ReactNode }) => (
   <Suspense fallback={
     <div className="min-h-screen flex items-center justify-center" role="status" aria-live="polite">
       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
@@ -97,11 +97,7 @@ const AuthRoutes = () => (
     </div>
   }>
     <AuthProvider>
-      <Routes>
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/commercial" element={<Commercial />} />
-      </Routes>
+      {children}
     </AuthProvider>
   </Suspense>
 );
