@@ -1,7 +1,7 @@
-const CACHE_NAME = 'jmamc-v4';
-const IMG_CACHE_NAME = 'jmamc-img-v1';
-const MAX_IMG_CACHE_ITEMS = 80;
-const MAX_STATIC_CACHE_ITEMS = 120;
+const CACHE_NAME = 'jmamc-v5';
+const IMG_CACHE_NAME = 'jmamc-img-v2';
+const MAX_IMG_CACHE_ITEMS = 120;
+const MAX_STATIC_CACHE_ITEMS = 200;
 
 // Install: lightweight
 self.addEventListener('install', (event) => {
