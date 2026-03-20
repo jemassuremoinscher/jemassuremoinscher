@@ -91,12 +91,12 @@ const Hero = () => {
           ) : (
             <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary-foreground mb-4 leading-tight font-[Inter] animate-fade-in-up">
               <span className="relative inline-block">
-                <span className="relative z-10">{t('hero.titleAccent')}</span>
+                <span className="relative z-10">{t('hero.titleAccent')}{t('hero.titleAccentSuffix')}</span>
                 <span
-                  className="absolute left-0 right-0 bottom-[-0.05em] h-[0.18em] md:h-[0.16em] bg-accent/80 rounded-full -rotate-[0.5deg] z-0"
+                  className="absolute left-[-0.1em] right-[-0.1em] bottom-[-0.2em] h-[0.18em] md:h-[0.16em] bg-accent/80 rounded-full -rotate-[0.5deg] z-0"
                   aria-hidden="true" />
               </span>
-              {t('hero.titleAccentSuffix')}{t('hero.title')} <br />
+              {t('hero.title')} <br />
               <span className="text-accent">{t('hero.titleHighlight')}</span>
             </h1>
           )}
