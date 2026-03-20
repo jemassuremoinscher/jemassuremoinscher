@@ -1,4 +1,5 @@
 import { ClipboardList, Search, CheckCircle, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurRunning from "@/assets/mascotte/arthur-running-coin.webp";
@@ -104,7 +105,7 @@ const HowItWorks = () => {
           viewport={{ once: true }}
           className="flex justify-center mt-12"
         >
-          <div className="flex items-center gap-4 bg-accent/10 rounded-full px-6 py-3 border border-accent/30">
+          <Link to="/comparateur" className="flex items-center gap-4 bg-accent/10 rounded-full px-6 py-3 border border-accent/30 hover:bg-accent/20 transition-colors">
             <img
               src={arthurRunning}
               alt="Arthur court avec une pièce - économisez sur votre assurance moins chère"
@@ -118,7 +119,7 @@ const HowItWorks = () => {
               <span className="text-accent font-bold">Arthur</span> {t('howItWorks.arthurCta')}
             </p>
             <ArrowRight className="w-5 h-5 text-accent" />
-          </div>
+          </Link>
         </motion.div>
       </div>
     </section>
