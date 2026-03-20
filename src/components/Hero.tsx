@@ -2,32 +2,58 @@ import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useDynamicGreeting, getDefaultGreeting } from "@/components/hero/DynamicGreeting";
-// Above-the-fold mascots: use public/ paths for HTML-discoverable preloading (LCP optimization)
+import { lazy, Suspense, useMemo } from "react";
+
+// Default mascot: use public/ path for HTML-discoverable preloading (LCP optimization)
+const defaultMascotSrc = "/arthur-wink-thumbsup.webp";
+
+// Above-the-fold category mascots: public/ paths
 const arthurCar = "/arthur-car.webp";
 const arthurMoto = "/arthur-moto.webp";
 const arthurHouse = "/arthur-house.webp";
 const arthurSick = "/arthur-sick.webp";
 const arthurAnimals = "/arthur-animals.webp";
 const arthurIdea = "/arthur-idea.webp";
-import arthurThumbsUp from "@/assets/mascotte/arthur-wink-thumbsup.webp";
+
+// Lazy-load DynamicGreeting to avoid importing 7 mascot images when ?ref= is absent
+const DynamicGreetingModule = lazy(() => import("@/components/hero/DynamicGreeting").then(m => ({
+  default: () => null // We just need the module loaded
+})));
 
 // Inline SVG icons — zero bundle cost
 const SparklesIcon = () => <svg className="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>;
 const ZapIcon = () => <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>;
 
+// Only import DynamicGreeting when ref param is present
+function useDynamicGreetingLazy() {
+  const params = new URLSearchParams(window.location.search);
+  const ref = params.get("ref");
+  
+  if (!ref) return null;
+  
+  // Dynamic import only when needed — this triggers the lazy load
+  const { useDynamicGreeting } = require("@/components/hero/DynamicGreeting");
+  return useDynamicGreeting();
+}
+
 const Hero = () => {
   const { trackEvent } = useAnalytics();
   const { t } = useLanguage();
-  const greeting = useDynamicGreeting();
+  
+  // Check ref param without importing DynamicGreeting module
+  const hasRef = useMemo(() => {
+    const params = new URLSearchParams(window.location.search);
+    return !!params.get("ref");
+  }, []);
 
   const categories = [
-  { mascot: arthurCar, labelKey: "category.auto", link: "/assurance-auto", alt: "Arthur auto" },
-  { mascot: arthurMoto, labelKey: "category.moto", link: "/assurance-moto", alt: "Arthur moto" },
-  { mascot: arthurHouse, labelKey: "category.home", link: "/assurance-habitation", alt: "Arthur habitation" },
-  { mascot: arthurSick, labelKey: "category.health", link: "/assurance-sante", alt: "Arthur santé" },
-  { mascot: arthurAnimals, labelKey: "category.pets", link: "/assurance-animaux", alt: "Arthur animaux" },
-  { mascot: arthurIdea, labelKey: "category.life", link: "/assurance-vie", alt: "Arthur vie" }];
+    { mascot: arthurCar, labelKey: "category.auto", link: "/assurance-auto", alt: "Arthur auto" },
+    { mascot: arthurMoto, labelKey: "category.moto", link: "/assurance-moto", alt: "Arthur moto" },
+    { mascot: arthurHouse, labelKey: "category.home", link: "/assurance-habitation", alt: "Arthur habitation" },
+    { mascot: arthurSick, labelKey: "category.health", link: "/assurance-sante", alt: "Arthur santé" },
+    { mascot: arthurAnimals, labelKey: "category.pets", link: "/assurance-animaux", alt: "Arthur animaux" },
+    { mascot: arthurIdea, labelKey: "category.life", link: "/assurance-vie", alt: "Arthur vie" },
+  ];
 
   const handleCategoryClick = (category: string) => {
     trackEvent('insurance_type_click', {
@@ -36,13 +62,6 @@ const Hero = () => {
       insurance_type: category.toLowerCase()
     });
   };
-
-  // Dynamic vs default content
-  const mascotSrc = greeting?.mascotSrc || arthurThumbsUp;
-  const mascotAlt = greeting?.mascotAlt || "Arthur mascotte jemassuremoinscher.fr - super-héros de l'assurance moins chère";
-  const speechText = greeting?.arthurSpeech || t('hero.arthurSpeech') + " 👋";
-  const ctaLink = greeting?.ctaLink || "/comparateur";
-  const ctaText = greeting?.ctaText || "Voir mon prix en 2 min";
 
   return (
     <section
@@ -58,94 +77,13 @@ const Hero = () => {
 
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10 py-8 md:py-12">
-        {/* Arthur + Title Section */}
-        <div className="text-center mb-8">
-          {/* Arthur Mascot */}
-          <div className="flex justify-center mb-6 animate-fade-in">
-            <div className="relative">
-              <img
-                src={mascotSrc}
-                alt={mascotAlt}
-                className="w-28 md:w-36 lg:w-44 h-auto drop-shadow-2xl animate-hero-float"
-                width={176}
-                height={220}
-                loading="eager"
-                decoding="async"
-                fetchPriority="high"
-              />
-              
-              {/* Speech bubble */}
-              <div className="absolute -top-2 -right-16 md:-right-20 bg-white rounded-xl px-3 py-1.5 shadow-lg animate-fade-in-delay">
-                <p className="text-primary font-bold text-xs md:text-sm whitespace-nowrap">
-                  {speechText}
-                </p>
-                <div className="absolute -bottom-1.5 left-3 w-3 h-3 bg-white transform rotate-45" />
-              </div>
-            </div>
-          </div>
-
-          {/* Main Title */}
-          {greeting ? (
-            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary-foreground mb-4 leading-tight font-[Inter] animate-fade-in-up">
-              {greeting.title}
-            </h1>
-          ) : (
-            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary-foreground mb-4 leading-tight font-[Inter] animate-fade-in-up">
-              <span className="relative inline-block">
-                <span className="relative z-10">{t('hero.titleAccent')}{t('hero.titleAccentSuffix')}</span>
-                <span
-                  className="absolute left-[-0.1em] right-[-0.1em] bottom-[-0.12em] h-[0.18em] md:h-[0.16em] bg-accent/80 rounded-full -rotate-[0.5deg] z-0"
-                  aria-hidden="true" />
-              </span>
-              {t('hero.title')} <br />
-              <span className="text-accent">{t('hero.titleHighlight')}</span>
-            </h1>
-          )}
-          <span className="sr-only">Assurance moins chère : le comparateur d'assurances N°1 en France. Changez d'assurance facilement et économisez jusqu'à 40%. Alternative à LesFurets avec 50+ assureurs partenaires. Comparateur d'assurances auto, santé, habitation gratuit.</span>
-
-          {/* Subtitle */}
-          {greeting ? (
-            <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-lg mx-auto font-[Inter] animate-fade-in-up-delay">
-              {greeting.subtitle}
-            </p>
-          ) : (
-            <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-lg mx-auto font-[Inter] animate-fade-in-up-delay">
-              {t('hero.subtitle')} <span className="font-bold">{t('hero.subtitleBold')}</span> {t('hero.subtitleEnd')}
-              <br />
-              <span className="text-primary-foreground/80">{t('hero.line2')}</span>
-              <br />
-              <span className="text-primary-foreground/80">{t('hero.line3')}</span>
-            </p>
-          )}
-        </div>
-
-        {/* Savings Badge */}
-        <div className="flex justify-center mb-6 animate-fade-in-up-delay">
-          <Link
-            to="/avis-clients"
-            className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/40 rounded-full px-4 py-2 md:px-6 md:py-3 hover:bg-accent/30 transition-colors duration-200"
-            aria-label="Voir les avis clients"
-          >
-            <span className="text-accent"><SparklesIcon /></span>
-            <span className="text-sm md:text-base font-bold text-primary-foreground text-center">
-              {greeting ? greeting.badgeText : (
-                <>{t('hero.savingsBadge')} <span className="text-accent">{t('hero.savingsPercent')}</span> {t('hero.savingsEnd')}</>
-              )}
-            </span>
-          </Link>
-        </div>
-
-        {/* CTA Button */}
-        <div className="flex flex-col items-center mb-8 animate-fade-in-up-delay">
-          <Link
-            to={ctaLink}
-            onClick={() => trackEvent('insurance_type_click', { category: 'hero_cta', label: greeting ? 'dynamic_cta' : 'voir_mon_prix', ref: greeting ? 'personalized' : 'default' })}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] hover:from-[hsl(43_80%_60%)] hover:to-[hsl(38_75%_53%)] text-foreground font-bold text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
-            aria-label={ctaText}>
-            <ZapIcon />
-            {ctaText}
-          </Link>
-        </div>
+        {hasRef ? (
+          <Suspense fallback={<DefaultHeroContent t={t} trackEvent={trackEvent} />}>
+            <DynamicHeroContent t={t} trackEvent={trackEvent} />
+          </Suspense>
+        ) : (
+          <DefaultHeroContent t={t} trackEvent={trackEvent} />
+        )}
 
         {/* Category Cards Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 max-w-4xl mx-auto animate-fade-in-up-delay-2">
@@ -164,7 +102,7 @@ const Hero = () => {
                       className="h-12 w-12 md:h-16 md:w-16 object-contain"
                       width={64}
                       height={64}
-                      loading="eager"
+                      loading="lazy"
                       decoding="async"
                     />
                   </div>
@@ -186,7 +124,88 @@ const Hero = () => {
           </Link>
         </div>
       </div>
-    </section>);
+    </section>
+  );
 };
+
+/** Default hero content — no dynamic greeting, no extra imports */
+function DefaultHeroContent({ t, trackEvent }: { t: (key: string) => string; trackEvent: (name: string, data: Record<string, string>) => void }) {
+  return (
+    <>
+      {/* Arthur + Title Section */}
+      <div className="text-center mb-8">
+        <div className="flex justify-center mb-6 animate-fade-in">
+          <div className="relative">
+            <img
+              src={defaultMascotSrc}
+              alt="Arthur mascotte jemassuremoinscher.fr - super-héros de l'assurance moins chère"
+              className="w-28 md:w-36 lg:w-44 h-auto drop-shadow-2xl animate-hero-float"
+              width={176}
+              height={220}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+            />
+            <div className="absolute -top-2 -right-16 md:-right-20 bg-white rounded-xl px-3 py-1.5 shadow-lg animate-fade-in-delay">
+              <p className="text-primary font-bold text-xs md:text-sm whitespace-nowrap">
+                {t('hero.arthurSpeech')} 👋
+              </p>
+              <div className="absolute -bottom-1.5 left-3 w-3 h-3 bg-white transform rotate-45" />
+            </div>
+          </div>
+        </div>
+
+        <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-primary-foreground mb-4 leading-tight font-[Inter] animate-fade-in-up">
+          <span className="relative inline-block">
+            <span className="relative z-10">{t('hero.titleAccent')}{t('hero.titleAccentSuffix')}</span>
+            <span
+              className="absolute left-[-0.1em] right-[-0.1em] bottom-[-0.12em] h-[0.18em] md:h-[0.16em] bg-accent/80 rounded-full -rotate-[0.5deg] z-0"
+              aria-hidden="true" />
+          </span>
+          {t('hero.title')} <br />
+          <span className="text-accent">{t('hero.titleHighlight')}</span>
+        </h1>
+        <span className="sr-only">Assurance moins chère : le comparateur d'assurances N°1 en France. Changez d'assurance facilement et économisez jusqu'à 40%. Alternative à LesFurets avec 50+ assureurs partenaires. Comparateur d'assurances auto, santé, habitation gratuit.</span>
+
+        <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-lg mx-auto font-[Inter] animate-fade-in-up-delay">
+          {t('hero.subtitle')} <span className="font-bold">{t('hero.subtitleBold')}</span> {t('hero.subtitleEnd')}
+          <br />
+          <span className="text-primary-foreground/80">{t('hero.line2')}</span>
+          <br />
+          <span className="text-primary-foreground/80">{t('hero.line3')}</span>
+        </p>
+      </div>
+
+      {/* Savings Badge */}
+      <div className="flex justify-center mb-6 animate-fade-in-up-delay">
+        <Link
+          to="/avis-clients"
+          className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/40 rounded-full px-4 py-2 md:px-6 md:py-3 hover:bg-accent/30 transition-colors duration-200"
+          aria-label="Voir les avis clients"
+        >
+          <span className="text-accent"><SparklesIcon /></span>
+          <span className="text-sm md:text-base font-bold text-primary-foreground text-center">
+            {t('hero.savingsBadge')} <span className="text-accent">{t('hero.savingsPercent')}</span> {t('hero.savingsEnd')}
+          </span>
+        </Link>
+      </div>
+
+      {/* CTA Button */}
+      <div className="flex flex-col items-center mb-8 animate-fade-in-up-delay">
+        <Link
+          to="/comparateur"
+          onClick={() => trackEvent('insurance_type_click', { category: 'hero_cta', label: 'voir_mon_prix', ref: 'default' })}
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] hover:from-[hsl(43_80%_60%)] hover:to-[hsl(38_75%_53%)] text-foreground font-bold text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
+          aria-label="Voir mon prix en 2 min">
+          <ZapIcon />
+          Voir mon prix en 2 min
+        </Link>
+      </div>
+    </>
+  );
+}
+
+/** Dynamic hero content — only loaded when ?ref= is present */
+const DynamicHeroContent = lazy(() => import("@/components/hero/DynamicHeroContent"));
 
 export default Hero;

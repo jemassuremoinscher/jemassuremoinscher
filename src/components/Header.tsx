@@ -1,4 +1,4 @@
-import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, ArrowLeft, MoreHorizontal, Share2, BookmarkPlus, Printer, BookOpen, Calculator, MessageSquare, Star, Search } from "lucide-react";
+import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, ArrowLeft, MoreHorizontal, Share2, BookmarkPlus, Printer, BookOpen, Calculator, MessageSquare, Star, Search } from "@lucide-react/icons";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
@@ -6,7 +6,9 @@ import { useState } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageToggle from "@/components/LanguageToggle";
-import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
+
+// Use public/ path to avoid bundling this image in JS
+const arthurThumbsUp = "/arthur-thumbs-up.webp";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -408,50 +410,48 @@ const Header = () => {
               </div>
             </div>
 
-            {/* Secondary links - no border separator */}
-            <div className="pt-4 bg-muted/30 -mx-4 px-4 rounded-t-[2rem]">
-              <div className="space-y-0.5">
-                <Link 
-                  to="/blog" 
-                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <BookOpen className="h-5 w-5 text-primary" />
-                  {t('nav.blog')}
-                </Link>
-                <Link 
-                  to="/qui-sommes-nous" 
-                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <Users className="h-5 w-5 text-primary" />
-                  {t('nav.aboutUs')}
-                </Link>
-                <Link 
-                  to="/nos-partenaires" 
-                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <Building2 className="h-5 w-5 text-primary" />
-                  {t('nav.partners')}
-                </Link>
-                <Link 
-                  to="/contact" 
-                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <MessageSquare className="h-5 w-5 text-primary" />
-                  Contact
-                </Link>
-                <Link 
-                  to="/avis-clients" 
-                  className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <Star className="h-5 w-5 text-primary" />
-                  {t('nav.reviews')}
-                </Link>
-              </div>
+            {/* Subtle visual separator */}
+            <div className="h-px bg-border mx-4" aria-hidden="true" />
+
+            <div className="space-y-0.5">
+              <Link to="/comparateur" className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                <Search className="h-5 w-5 text-primary" />
+                {t('nav.compare')}
+              </Link>
+              <Link to="/blog" className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                <BookOpen className="h-5 w-5 text-primary" />
+                {t('nav.blog')}
+              </Link>
+              <Link to="/outils/calculateur-bonus-malus" className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                <Calculator className="h-5 w-5 text-primary" />
+                {t('nav.calculator')}
+              </Link>
+              <Link to="/avis-clients" className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                <Star className="h-5 w-5 text-primary" />
+                {t('nav.reviews')}
+              </Link>
+              <Link to="/qui-sommes-nous" className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                <Users className="h-5 w-5 text-primary" />
+                {t('nav.aboutUs')}
+              </Link>
+              <Link to="/contact" className="flex items-center gap-3 px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-2xl transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
+                <MessageSquare className="h-5 w-5 text-primary" />
+                Contact
+              </Link>
+            </div>
+
+            {/* CTA Footer */}
+            <div className="px-4 pt-2 pb-6">
+              <Link
+                to="/comparateur"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  trackEvent('insurance_type_click', { category: 'mobile_menu_cta', label: 'comparer_maintenant', insurance_type: 'all' });
+                }}
+                className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] text-foreground font-bold py-3.5 rounded-full shadow-md hover:shadow-lg transition-all active:scale-95"
+              >
+                🔍 {t('nav.compareNow')}
+              </Link>
             </div>
           </nav>
         </div>
