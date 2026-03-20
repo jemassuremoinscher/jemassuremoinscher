@@ -23,21 +23,33 @@ export interface FormStep {
 
 export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur';
 
-// Mascot mapping per insurance type
+// Mascot mapping per insurance type - using proper imports
+import mascotCar from '@/assets/mascotte/arthur-car.webp';
+import mascotMoto from '@/assets/mascotte/arthur-moto.webp';
+import mascotHouse from '@/assets/mascotte/arthur-house.webp';
+import mascotSick from '@/assets/mascotte/arthur-sick.webp';
+import mascotThinking from '@/assets/mascotte/arthur-thinking.webp';
+import mascotAnimals from '@/assets/mascotte/arthur-animals.webp';
+import mascotIdea from '@/assets/mascotte/arthur-idea.webp';
+import mascotInjured from '@/assets/mascotte/arthur-injured.webp';
+import mascotBusiness from '@/assets/mascotte/arthur-business.webp';
+import mascotDetective from '@/assets/mascotte/arthur-detective.webp';
+import mascotThumbsUp from '@/assets/mascotte/arthur-thumbs-up.webp';
+
 export const mascotMap: Record<InsuranceType, string> = {
-  auto: '/src/assets/mascotte/arthur-car.png',
-  moto: '/src/assets/mascotte/arthur-moto.png',
-  habitation: '/src/assets/mascotte/arthur-house.png',
-  sante: '/src/assets/mascotte/arthur-sick.png',
-  pret: '/src/assets/mascotte/arthur-thinking.png',
-  animaux: '/src/assets/mascotte/arthur-animals.png',
-  vie: '/src/assets/mascotte/arthur-idea.png',
-  prevoyance: '/src/assets/mascotte/arthur-injured.png',
-  rc_pro: '/src/assets/mascotte/arthur-business.png',
-  mrp: '/src/assets/mascotte/arthur-business.png',
-  gli: '/src/assets/mascotte/arthur-detective.png',
-  pno: '/src/assets/mascotte/arthur-house.png',
-  comparateur: '/src/assets/mascotte/arthur-thumbs-up.png',
+  auto: mascotCar,
+  moto: mascotMoto,
+  habitation: mascotHouse,
+  sante: mascotSick,
+  pret: mascotThinking,
+  animaux: mascotAnimals,
+  vie: mascotIdea,
+  prevoyance: mascotInjured,
+  rc_pro: mascotBusiness,
+  mrp: mascotBusiness,
+  gli: mascotDetective,
+  pno: mascotHouse,
+  comparateur: mascotThumbsUp,
 };
 
 const searchingStep: FormStep = {

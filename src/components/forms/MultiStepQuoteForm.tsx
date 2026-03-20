@@ -18,19 +18,35 @@ import { stepConfigsByType, type InsuranceType, type FormStep, type StepOption }
 import { useFieldTracking } from '@/hooks/useFieldTracking';
 
 // Mascot imports
-import arthurCar from '@/assets/mascotte/arthur-car.png';
-import arthurMoto from '@/assets/mascotte/arthur-moto.png';
-import arthurHouse from '@/assets/mascotte/arthur-house.png';
-import arthurSick from '@/assets/mascotte/arthur-sick.png';
-import arthurThinking from '@/assets/mascotte/arthur-thinking.png';
-import arthurAnimals from '@/assets/mascotte/arthur-animals.png';
-import arthurIdea from '@/assets/mascotte/arthur-idea.png';
-import arthurInjured from '@/assets/mascotte/arthur-injured.png';
-import arthurBusiness from '@/assets/mascotte/arthur-business.png';
-import arthurDetective from '@/assets/mascotte/arthur-detective.png';
-import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.png';
-import arthurExcited from '@/assets/mascotte/arthur-excited.png';
-import arthurRunningCoin from '@/assets/mascotte/arthur-running-coin.png';
+import arthurCar from '@/assets/mascotte/arthur-car.webp';
+import arthurMoto from '@/assets/mascotte/arthur-moto.webp';
+import arthurHouse from '@/assets/mascotte/arthur-house.webp';
+import arthurSick from '@/assets/mascotte/arthur-sick.webp';
+import arthurThinking from '@/assets/mascotte/arthur-thinking.webp';
+import arthurAnimals from '@/assets/mascotte/arthur-animals.webp';
+import arthurIdea from '@/assets/mascotte/arthur-idea.webp';
+import arthurInjured from '@/assets/mascotte/arthur-injured.webp';
+import arthurBusiness from '@/assets/mascotte/arthur-business.webp';
+import arthurDetective from '@/assets/mascotte/arthur-detective.webp';
+import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.webp';
+import arthurExcited from '@/assets/mascotte/arthur-excited.webp';
+import arthurRunningCoin from '@/assets/mascotte/arthur-running-coin.webp';
+
+// Logo imports for teaser prices
+import logoDirectAssurance from '@/assets/logos/direct-assurance-new.webp';
+import logoAllianz from '@/assets/logos/allianz.webp';
+import logoAxa from '@/assets/logos/axa.webp';
+import logoAmaguiz from '@/assets/logos/amaguiz.png';
+import logoMaif from '@/assets/logos/maif.webp';
+import logoGroupama from '@/assets/logos/groupama.png';
+import logoAlanNew from '@/assets/logos/alan-new.webp';
+import logoHarmonie from '@/assets/logos/harmonie-mutuelle.png';
+import logoApril from '@/assets/logos/april-new.png';
+import logoCardif from '@/assets/logos/cardif.png';
+import logoGenerali from '@/assets/logos/generali-new.png';
+import logoAcheel from '@/assets/logos/acheel.webp';
+import logoSwisslife from '@/assets/logos/swisslife.webp';
+import logoAon from '@/assets/logos/aon.webp';
 
 const mascotImages: Record<InsuranceType, string> = {
   auto: arthurCar,
