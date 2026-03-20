@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Home, Car, Heart, Building, Search, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import arthurSick from "@/assets/mascotte/arthur-sick.webp";
+import arthurInjured from "@/assets/mascotte/arthur-injured.webp";
 import arthurPointing from "@/assets/mascotte/arthur-pointing.webp";
 
 const NotFound = () => {
@@ -34,14 +34,14 @@ const NotFound = () => {
           src={arthurPointing}
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/3 w-[500px] md:w-[700px] opacity-[0.15] select-none"
+          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/3 w-[500px] md:w-[700px] opacity-[0.25] select-none"
         />
 
         <div className="relative z-10 text-center max-w-lg">
           {/* Arthur malade au-dessus du 404 */}
           <img
-            src={arthurSick}
-            alt="Arthur est perdu"
+            src={arthurInjured}
+            alt="Arthur en béquilles"
             className="mx-auto mb-4 w-28 md:w-36 drop-shadow-md"
           />
 
