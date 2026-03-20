@@ -191,7 +191,5 @@ function DefaultHeroContent({ t, trackEvent }: { t: (key: string) => string; tra
   );
 }
 
-/** Dynamic hero content — only loaded when ?ref= is present */
-const DynamicHeroContent = lazy(() => import("@/components/hero/DynamicHeroContent"));
 
 export default Hero;
