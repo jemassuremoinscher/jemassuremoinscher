@@ -121,7 +121,7 @@ const WhyUsComparison = () => {
               💡 {t('whyUs.didYouKnow')}{" "}
               <span className="text-primary font-bold">{t('whyUs.9outOf10')}</span>{" "}
               {t('whyUs.save')}{" "}
-              <span className="text-accent font-bold">250€ {t('whyUs.perYear')}</span> ? avec{" "}
+              <span className="text-accent font-bold">250€ {t('whyUs.perYear')}</span> avec{" "}
               <span className="text-primary font-bold">jemassure</span><span className="text-accent font-bold">moinscher</span><span className="text-primary font-bold">.fr</span>
             </p>
           </motion.div>
