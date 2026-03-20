@@ -1,4 +1,5 @@
 import { ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurStanding from "@/assets/mascotte/arthur-question.webp";
@@ -70,11 +71,11 @@ const SEOFaq = () => {
             loading="lazy"
             decoding="async"
           />
-          <div className="bg-primary/10 border border-primary/20 rounded-xl px-5 py-3 text-center md:text-left">
+          <Link to="/contact" className="bg-primary/10 border border-primary/20 rounded-xl px-5 py-3 text-center md:text-left hover:bg-primary/20 transition-colors cursor-pointer block">
             <p className="text-sm md:text-base font-medium text-foreground">
               {t('seoFaq.moreQuestions')} <span className="text-primary font-bold">Arthur</span> {t('seoFaq.arthurHere')}
             </p>
-          </div>
+          </Link>
         </motion.div>
 
         {/* JSON-LD FAQPage schema is injected via SEOOptimized in the parent page to avoid duplicates */}
