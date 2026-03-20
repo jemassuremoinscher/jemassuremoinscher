@@ -33,13 +33,6 @@ export interface FormStep {
 }
 
 export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur';
-import mascotThinking from '@/assets/mascotte/arthur-thinking.webp';
-import mascotAnimals from '@/assets/mascotte/arthur-animals.webp';
-import mascotIdea from '@/assets/mascotte/arthur-idea.webp';
-import mascotInjured from '@/assets/mascotte/arthur-injured.webp';
-import mascotBusiness from '@/assets/mascotte/arthur-business.webp';
-import mascotDetective from '@/assets/mascotte/arthur-detective.webp';
-import mascotThumbsUp from '@/assets/mascotte/arthur-thumbs-up.webp';
 
 export const mascotMap: Record<InsuranceType, string> = {
   auto: mascotCar,
