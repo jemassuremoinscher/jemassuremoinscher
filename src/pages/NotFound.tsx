@@ -4,6 +4,8 @@ import { Helmet } from "react-helmet-async";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Home, Car, Heart, Building, Search, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import arthurSick from "@/assets/mascotte/arthur-sick.webp";
+import arthurPointing from "@/assets/mascotte/arthur-pointing.webp";
 
 const NotFound = () => {
   const location = useLocation();
@@ -26,8 +28,23 @@ const NotFound = () => {
         <title>Page introuvable | jemassuremoinscher.fr</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      <div className="flex min-h-screen items-center justify-center bg-background px-4">
-        <div className="text-center max-w-lg">
+      <div className="relative flex min-h-screen items-center justify-center bg-background px-4 overflow-hidden">
+        {/* Grand Arthur en sous-brillance centré en arrière-plan */}
+        <img
+          src={arthurPointing}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/3 w-[500px] md:w-[700px] opacity-[0.15] select-none"
+        />
+
+        <div className="relative z-10 text-center max-w-lg">
+          {/* Arthur malade au-dessus du 404 */}
+          <img
+            src={arthurSick}
+            alt="Arthur est perdu"
+            className="mx-auto mb-4 w-28 md:w-36 drop-shadow-md"
+          />
+
           <p className="text-7xl font-black text-primary mb-4">404</p>
           <h1 className="mb-3 text-2xl font-bold text-foreground">{t('notFound.title')}</h1>
           <p className="mb-8 text-muted-foreground">{t('notFound.text')}</p>
