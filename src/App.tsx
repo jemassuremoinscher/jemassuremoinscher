@@ -3,16 +3,16 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { lazy, Suspense } from "react";
-import CookieBanner from "@/components/CookieBanner";
-import SkipToMain from "@/components/SkipToMain";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import RouteTracker from "@/components/RouteTracker";
 
 // Lazy load non-critical global components
 const AIChatbot = lazy(() => import("@/components/chatbot/AIChatbot").then(m => ({ default: m.AIChatbot })));
 const ReadingProgressBar = lazy(() => import("@/components/ReadingProgressBar"));
 const ContractOptimizerWidget = lazy(() => import("@/components/optimizer/ContractOptimizerWidget"));
+const CookieBanner = lazy(() => import("@/components/CookieBanner"));
+const SkipToMain = lazy(() => import("@/components/SkipToMain"));
+const RouteTracker = lazy(() => import("@/components/RouteTracker"));
 
 // Auth-protected routes wrapper — lazy loaded to avoid Supabase init on public pages
 const AuthProvider = lazy(() => import("@/contexts/AuthContext").then(m => ({ default: m.AuthProvider })));
@@ -108,11 +108,15 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <BrowserRouter>
-          <RouteTracker />
+          <Suspense fallback={null}>
+            <RouteTracker />
+          </Suspense>
           <Suspense fallback={null}>
             <ReadingProgressBar />
           </Suspense>
-          <SkipToMain />
+          <Suspense fallback={null}>
+            <SkipToMain />
+          </Suspense>
           <ErrorBoundary>
             <Suspense fallback={
               <div className="min-h-screen flex items-center justify-center" role="status" aria-live="polite">
@@ -186,7 +190,9 @@ const App = () => (
               </Routes>
             </Suspense>
           </ErrorBoundary>
-          <CookieBanner />
+          <Suspense fallback={null}>
+            <CookieBanner />
+          </Suspense>
           <Suspense fallback={null}>
             <AIChatbot />
           </Suspense>
