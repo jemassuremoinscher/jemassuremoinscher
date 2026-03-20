@@ -1,4 +1,5 @@
 import { ClipboardList, Search, CheckCircle, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurRunning from "@/assets/mascotte/arthur-running-coin.webp";
