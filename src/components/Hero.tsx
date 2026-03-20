@@ -148,6 +148,7 @@ function DefaultHeroContent({ t, trackEvent }: { t: (key: string) => string; tra
               className="absolute left-[-0.1em] right-[-0.1em] bottom-[-0.12em] h-[0.18em] md:h-[0.16em] bg-accent/80 rounded-full -rotate-[0.5deg] z-0"
               aria-hidden="true" />
           </span>
+          <br />
           {t('hero.title')} <br />
           <span className="text-accent">{t('hero.titleHighlight')}</span>
         </h1>
