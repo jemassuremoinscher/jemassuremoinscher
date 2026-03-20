@@ -98,7 +98,7 @@ const Partners = () => {
             ))}
           </CarouselContent>
         </Carousel>
-        <div className="mt-8 text-center"><p className="text-sm text-muted-foreground">{t('partnersComponent.autoScroll')}</p></div>
+        
       </div>
     </section>
   );
