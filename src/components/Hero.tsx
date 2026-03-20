@@ -15,26 +15,12 @@ const arthurSick = "/arthur-sick.webp";
 const arthurAnimals = "/arthur-animals.webp";
 const arthurIdea = "/arthur-idea.webp";
 
-// Lazy-load DynamicGreeting to avoid importing 7 mascot images when ?ref= is absent
-const DynamicGreetingModule = lazy(() => import("@/components/hero/DynamicGreeting").then(m => ({
-  default: () => null // We just need the module loaded
-})));
-
 // Inline SVG icons — zero bundle cost
 const SparklesIcon = () => <svg className="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>;
 const ZapIcon = () => <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>;
 
-// Only import DynamicGreeting when ref param is present
-function useDynamicGreetingLazy() {
-  const params = new URLSearchParams(window.location.search);
-  const ref = params.get("ref");
-  
-  if (!ref) return null;
-  
-  // Dynamic import only when needed — this triggers the lazy load
-  const { useDynamicGreeting } = require("@/components/hero/DynamicGreeting");
-  return useDynamicGreeting();
-}
+/** Dynamic hero content — only loaded when ?ref= is present */
+const DynamicHeroContent = lazy(() => import("@/components/hero/DynamicHeroContent"));
 
 const Hero = () => {
   const { trackEvent } = useAnalytics();
