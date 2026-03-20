@@ -1,4 +1,15 @@
 import { Shield, ShieldCheck, ShieldPlus, Heart, HeartPulse, Activity, Home, Building, Castle, Car, Bike, PawPrint, Briefcase, FileText, Wallet, Landmark, Baby, Users, User, Stethoscope, Pill, Eye, Search, Lock, Scale, Umbrella, ChevronRight } from 'lucide-react';
+import mascotCar from '@/assets/mascotte/arthur-car.webp';
+import mascotMoto from '@/assets/mascotte/arthur-moto.webp';
+import mascotHouse from '@/assets/mascotte/arthur-house.webp';
+import mascotSick from '@/assets/mascotte/arthur-sick.webp';
+import mascotThinking from '@/assets/mascotte/arthur-thinking.webp';
+import mascotAnimals from '@/assets/mascotte/arthur-animals.webp';
+import mascotIdea from '@/assets/mascotte/arthur-idea.webp';
+import mascotInjured from '@/assets/mascotte/arthur-injured.webp';
+import mascotBusiness from '@/assets/mascotte/arthur-business.webp';
+import mascotDetective from '@/assets/mascotte/arthur-detective.webp';
+import mascotThumbsUp from '@/assets/mascotte/arthur-thumbs-up.webp';
 
 export interface StepOption {
   value: string;
@@ -22,12 +33,6 @@ export interface FormStep {
 }
 
 export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur';
-
-// Mascot mapping per insurance type - using proper imports
-import mascotCar from '@/assets/mascotte/arthur-car.webp';
-import mascotMoto from '@/assets/mascotte/arthur-moto.webp';
-import mascotHouse from '@/assets/mascotte/arthur-house.webp';
-import mascotSick from '@/assets/mascotte/arthur-sick.webp';
 import mascotThinking from '@/assets/mascotte/arthur-thinking.webp';
 import mascotAnimals from '@/assets/mascotte/arthur-animals.webp';
 import mascotIdea from '@/assets/mascotte/arthur-idea.webp';
