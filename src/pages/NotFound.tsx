@@ -40,8 +40,8 @@ const NotFound = () => {
         <div className="relative z-10 text-center max-w-lg">
           {/* Arthur malade au-dessus du 404 */}
           <img
-            src={arthurSick}
-            alt="Arthur est perdu"
+            src={arthurInjured}
+            alt="Arthur en béquilles"
             className="mx-auto mb-4 w-28 md:w-36 drop-shadow-md"
           />
 
