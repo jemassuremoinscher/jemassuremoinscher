@@ -3852,7 +3852,7 @@ Chaque année sans sinistre responsable, votre coefficient baisse de 5% :
 - Après 2 ans : 0,90
 - Bonus maximum (après 13 ans) : 0,50
 
-**Attention** : un seul accident responsable peut augmenter votre coefficient de 25% (×1,25).
+**Attention** : un seul accident responsable peut augmenter votre coefficient de 25% (×1,25). Consultez notre [calculateur bonus-malus](/outils/calculateur-bonus-malus) pour simuler votre coefficient.
 
 ## Les 8 meilleures astuces pour payer moins cher
 
