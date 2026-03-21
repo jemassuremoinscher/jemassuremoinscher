@@ -4125,6 +4125,6 @@ Oui, la prime PNO est déductible de vos revenus fonciers si vous êtes au régi
 
 **Que se passe-t-il si je n'ai pas d'assurance PNO en copropriété ?**
 Le syndic peut vous mettre en demeure de souscrire. En cas de sinistre, vous êtes personnellement responsable de tous les dommages causés, y compris aux parties communes et aux voisins.
-\`
+`
   }
 ];
