@@ -3640,7 +3640,7 @@ Non, tant que vous n'êtes pas tenu légalement de déclarer (pas de tiers, pas 
     `
   },
   {
-    id: "58",
+    id: "59",
     title: "Hypnose et remboursement mutuelle : quelles mutuelles remboursent en 2026 ?",
     slug: "hypnose-remboursement-mutuelle-2026",
     description: "Découvrez quelles mutuelles remboursent l'hypnose en 2026, les tarifs moyens d'une séance d'hypnothérapie et comment se faire rembourser. Guide complet par un expert santé.",
