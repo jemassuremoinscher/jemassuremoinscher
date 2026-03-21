@@ -95,6 +95,7 @@ export const GoogleAnalyticsDashboard = () => {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="1daysAgo">Dernières 24h</SelectItem>
               <SelectItem value="7daysAgo">7 derniers jours</SelectItem>
               <SelectItem value="30daysAgo">30 derniers jours</SelectItem>
               <SelectItem value="90daysAgo">90 derniers jours</SelectItem>
