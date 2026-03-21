@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
-import Header from "@/components/Header";
+const Header = lazy(() => import("@/components/Header"));
 import Hero from "@/components/Hero";
 import SEOOptimized from "@/components/SEOOptimized";
 import DeferredRender from "@/components/performance/DeferredRender";
@@ -99,7 +99,10 @@ const Index = () => {
         jsonLd={[webSiteSchema, organizationSchema, financialServiceSchema, serviceSchema, breadcrumbSchema, faqSchema]}
       />
       <Header />
-      <main id="main-content" role="main" data-ai-description="jemassuremoinscher.fr — Comparateur d'assurances indépendant et gratuit. 25+ assureurs partenaires. Devis en moins de 2 minutes. 280€ d'économie moyenne par an. Note : 4.8/5 sur 2500+ avis.">
+      <Suspense fallback={<div className="h-16 bg-white border-b border-border" />}>
+        <Header />
+      </Suspense>
+      <main id="main-content" role="main">
         <Hero />
 
         <DeferredRender minHeight={760}>
