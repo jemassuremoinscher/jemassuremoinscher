@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import fr from '@/i18n/fr';
 
 export type Language = 'fr' | 'en';
 
@@ -10,10 +11,6 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// French translations (primary)
-const fr: Record<string, string> = {
-  // Header
-  'nav.individuals': 'Particuliers',
   'nav.professionals': 'Professionnels',
   'nav.lifeAndSavings': 'Vie & Épargne',
   'nav.realEstate': 'Immobilier',
