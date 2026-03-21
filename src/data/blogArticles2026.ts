@@ -3955,7 +3955,7 @@ Non, sauf si votre véhicule vaut plus de 10 000€. Pour un véhicule d'occasio
     `
   },
   {
-    id: "60",
+    id: "61",
     title: "Assurance PNO pas chère : comparatif et guide du propriétaire non occupant 2026",
     slug: "assurance-pno-pas-chere-comparatif-2026",
     description: "Trouvez l'assurance PNO la moins chère en 2026. Comparatif des tarifs, obligations légales et astuces pour réduire votre prime de propriétaire non occupant.",
@@ -3964,10 +3964,10 @@ Non, sauf si votre véhicule vaut plus de 10 000€. Pour un véhicule d'occasio
     readTime: "10 min",
     author: "Pierre Durand",
     tags: ["assurance PNO", "propriétaire non occupant", "assurance pas chère", "investissement locatif", "comparatif"],
-    content: `
+    content: \`
 # Assurance PNO pas chère : comment trouver la meilleure offre en 2026
 
-Vous êtes propriétaire d'un bien que vous louez ou qui est vacant ? L'assurance PNO (Propriétaire Non Occupant) est quasiment indispensable — et parfois obligatoire. Voici comment la payer au juste prix.
+Vous êtes propriétaire d'un bien que vous louez ou qui est vacant ? L'assurance PNO (Propriétaire Non Occupant) est quasiment indispensable — et parfois obligatoire. Après avoir accompagné des centaines d'investisseurs locatifs, voici mon analyse terrain des offres 2026.
 
 ## L'essentiel à retenir
 
@@ -3991,6 +3991,8 @@ Pour une maison individuelle, l'assurance PNO n'est pas légalement obligatoire.
 - L'assurance du locataire ne couvre pas vos murs ni les parties privatives
 - En cas de vacance locative, vous n'avez **aucune couverture**
 - Un dégât des eaux ou un incendie peut coûter **des dizaines de milliers d'euros**
+
+> **🦉 Conseil d'Arthur :** J'ai vu un propriétaire à Lyon se retrouver avec 35 000€ de travaux après un dégât des eaux pendant une vacance locative de 2 mois — sans PNO. Pour 100€/an, ne prenez pas ce risque. **[→ Comparer les assurances PNO](/assurance-pno)**
 
 ## Combien coûte une assurance PNO en 2026 ?
 
@@ -4048,10 +4050,22 @@ Pour une maison individuelle, l'assurance PNO n'est pas légalement obligatoire.
 
 ### Ce que l'assurance PNO ne couvre PAS
 
-- Les biens personnels du locataire (c'est son assurance habitation)
+- Les biens personnels du locataire (c'est son [assurance habitation](/assurance-habitation))
 - L'usure normale du bien
 - Les vices cachés connus au moment de la souscription
-- Les loyers impayés (c'est la **GLI**, un contrat distinct)
+- Les loyers impayés (c'est la [GLI](/assurance-gli), un contrat distinct)
+
+## PNO, GLI, habitation : ne confondez pas ces 3 assurances
+
+L'investisseur locatif débutant confond souvent ces 3 contrats. Voici la différence :
+
+| Assurance | Qui la souscrit | Ce qu'elle couvre | Prix moyen |
+|---|---|---|---|
+| **PNO** | Le propriétaire | Dégâts au bien (murs, parties privatives) | 80-200€/an |
+| [**GLI**](/assurance-gli) | Le propriétaire | Loyers impayés + dégradations locatives | 2,5-4% du loyer/an |
+| [**Habitation**](/assurance-habitation) | Le locataire | Biens personnels du locataire + RC | 150-300€/an |
+
+Les 3 sont complémentaires. La PNO et la GLI sont souvent proposées ensemble en pack investisseur avec des remises de 10-20%.
 
 ## Les 5 astuces pour réduire votre prime PNO
 
@@ -4065,7 +4079,7 @@ Si vous êtes multi-propriétaire, certains assureurs offrent des **remises de 1
 
 ### 3. Augmentez votre franchise
 
-Passer de 150€ à 300€ de franchise réduit la prime de **10 à 15%**. Pour un bien en bon état, c'est un arbitrage rentable.
+Passer de 150€ à 300€ de franchise réduit la prime de **10 à 15%**. Pour un bien en bon état, c'est un arbitrage rentable. C'est le même mécanisme que pour l'[assurance auto](/assurance-auto) : une franchise plus haute = une prime plus basse.
 
 ### 4. Ajustez les capitaux assurés
 
@@ -4089,6 +4103,10 @@ En location meublée (LMNP), l'assurance PNO est encore plus importante car votr
 
 Après des travaux de rénovation, prévenez votre assureur. L'augmentation de la valeur du bien peut modifier vos garanties et vos capitaux assurés.
 
+### Piège n°4 : oublier la résiliation annuelle
+
+Grâce à la [loi Hamon](/blog/resiliation-assurance-loi-hamon-guide-2026), vous pouvez changer d'assurance PNO à tout moment après la première année. N'hésitez pas à renégocier ou comparer chaque année.
+
 > **🦉 Conseil d'Arthur :** L'assurance PNO est **déductible de vos revenus fonciers** (régime réel). Conservez bien vos factures ! C'est un avantage fiscal souvent oublié par les investisseurs débutants. **[→ Comparer les assurances PNO](/assurance-pno)**
 
 ## FAQ
@@ -4100,13 +4118,13 @@ Oui en copropriété depuis la loi ALUR 2014. Hors copropriété, elle n'est pas
 Les meilleures offres démarrent à 50-65€/an pour un studio en copropriété. Pour un T2, comptez 70 à 110€/an. En comparant, vous pouvez trouver 40 à 60% moins cher que la première offre.
 
 **Quelle est la différence entre PNO et GLI ?**
-L'assurance PNO protège votre bien immobilier (dégâts, responsabilité civile). La GLI (Garantie Loyers Impayés) couvre les impayés de loyers. Ce sont deux contrats complémentaires mais distincts.
+L'assurance PNO protège votre bien immobilier (dégâts, responsabilité civile). La [GLI](/assurance-gli) (Garantie Loyers Impayés) couvre les impayés de loyers. Ce sont deux contrats complémentaires mais distincts.
 
 **L'assurance PNO est-elle déductible des impôts ?**
 Oui, la prime PNO est déductible de vos revenus fonciers si vous êtes au régime réel d'imposition. Elle est considérée comme une charge de propriété.
 
 **Que se passe-t-il si je n'ai pas d'assurance PNO en copropriété ?**
 Le syndic peut vous mettre en demeure de souscrire. En cas de sinistre, vous êtes personnellement responsable de tous les dommages causés, y compris aux parties communes et aux voisins.
-    `
+\`
   }
 ];
