@@ -3868,7 +3868,7 @@ Les assureurs classent les véhicules par groupes de tarification (SRA). Les moi
 | Peugeot 208 (1.2 PureTech) | 5 CV | 1 100€/an |
 | Renault Clio V (SCe 65) | 4 CV | 1 000€/an |
 
-**À éviter** : les sportives (Golf GTI, 208 GTi), les SUV puissants, et tout véhicule de plus de **110 chevaux** qui attire les surprimes.
+**À éviter** : les sportives (Golf GTI, 208 GTi), les SUV puissants, et tout véhicule de plus de **110 chevaux** qui attire les surprimes. Pour en savoir plus, consultez notre article [assurer une voiture puissante en tant que jeune conducteur](/blog/jeune-conducteur-voiture-puissante-assurance).
 
 ### 2. Déclarez-vous conducteur secondaire (temporairement)
 
