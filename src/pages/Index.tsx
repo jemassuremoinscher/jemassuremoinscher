@@ -98,7 +98,6 @@ const Index = () => {
         ogImage="https://www.jemassuremoinscher.fr/opengraph-image.png"
         jsonLd={[webSiteSchema, organizationSchema, financialServiceSchema, serviceSchema, breadcrumbSchema, faqSchema]}
       />
-      <Header />
       <Suspense fallback={<div className="h-16 bg-white border-b border-border" />}>
         <Header />
       </Suspense>
