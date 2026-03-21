@@ -3756,13 +3756,15 @@ La facture doit mentionner :
 
 ## Changer de mutuelle pour se faire rembourser l'hypnose
 
-Si votre mutuelle actuelle ne propose pas de forfait médecines douces, vous pouvez **changer à tout moment** grâce à la résiliation infra-annuelle (loi du 14 juillet 2019).
+Si votre mutuelle actuelle ne propose pas de forfait médecines douces, vous pouvez **changer à tout moment** grâce à la [résiliation infra-annuelle](/blog/resiliation-assurance-loi-hamon-guide-2026) (loi du 14 juillet 2019).
 
 **Critères pour bien choisir :**
 - Forfait médecines douces ≥ 200€/an
 - Pas de condition de prescription médicale préalable
 - Praticiens certifiés ARCHE/IFH acceptés (pas uniquement les médecins)
 - Pas de délai de carence sur le forfait médecines douces
+
+Pour les indépendants et TNS, le choix de la mutuelle est encore plus stratégique car les cotisations sont déductibles fiscalement. Consultez notre [guide mutuelle TNS](/mutuelle-tns) pour optimiser votre couverture.
 
 > **🦉 Conseil d'Arthur :** En changeant de mutuelle, certains assurés ont récupéré jusqu'à **400€/an** de remboursement pour leurs séances d'hypnose et d'ostéopathie combinées. Comparez gratuitement en 2 minutes. **[→ Comparer les mutuelles maintenant](/assurance-sante)**
 
