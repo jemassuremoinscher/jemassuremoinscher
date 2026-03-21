@@ -5,7 +5,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Home, Car, Heart, Building, Search, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import arthurInjured from "@/assets/mascotte/arthur-injured.webp";
-import arthurPointing from "@/assets/mascotte/arthur-pointing.webp";
 
 const NotFound = () => {
   const location = useLocation();
