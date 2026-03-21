@@ -88,7 +88,7 @@ const Hero = () => {
                       className="h-12 w-12 md:h-16 md:w-16 object-contain"
                       width={64}
                       height={64}
-                      loading="lazy"
+                      loading="eager"
                       decoding="async"
                     />
                   </div>
