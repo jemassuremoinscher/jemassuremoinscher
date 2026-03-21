@@ -48,6 +48,7 @@ export default defineConfig(({ mode }) => {
         output: {
           manualChunks: {
             'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+              'i18n-fr': ['./src/i18n/fr'],
             'ui-components': [
               '@radix-ui/react-accordion',
               '@radix-ui/react-dialog',
