@@ -251,24 +251,37 @@ Format de réponse en JSON:
         const rawContent = aiData.choices?.[0]?.message?.content;
         if (!rawContent) continue;
 
-        // Clean control characters that break JSON.parse
-        const cleanedContent = rawContent
-          .replace(/```json\s*/g, '')
-          .replace(/```\s*/g, '')
-          .trim();
-        
+        // Extract valid JSON from AI response
         let article;
         try {
-          article = JSON.parse(cleanedContent);
-        } catch {
-          // Try fixing common issues: control chars in string values
-          const sanitized = cleanedContent.replace(/[\x00-\x1f\x7f]/g, (ch: string) => {
-            if (ch === '\n') return '\\n';
-            if (ch === '\r') return '\\r';
-            if (ch === '\t') return '\\t';
-            return '';
-          });
-          article = JSON.parse(sanitized);
+          let cleaned = rawContent
+            .replace(/```json\s*/gi, '')
+            .replace(/```\s*/gi, '')
+            .trim();
+          
+          // Extract JSON object between first { and last }
+          const firstBrace = cleaned.indexOf('{');
+          const lastBrace = cleaned.lastIndexOf('}');
+          if (firstBrace === -1 || lastBrace === -1 || lastBrace <= firstBrace) {
+            console.error(`No JSON object found for "${keyword}", raw start: ${rawContent.substring(0, 100)}`);
+            continue;
+          }
+          cleaned = cleaned.substring(firstBrace, lastBrace + 1);
+          
+          try {
+            article = JSON.parse(cleaned);
+          } catch {
+            const sanitized = cleaned.replace(/[\x00-\x1f\x7f]/g, (ch: string) => {
+              if (ch === '\n') return '\\n';
+              if (ch === '\r') return '\\r';
+              if (ch === '\t') return '\\t';
+              return '';
+            });
+            article = JSON.parse(sanitized);
+          }
+        } catch (parseErr) {
+          console.error(`JSON parse failed for "${keyword}": ${parseErr}. Raw start: ${rawContent.substring(0, 200)}`);
+          continue;
         }
 
         const slug = slugify(article.title || keyword);
