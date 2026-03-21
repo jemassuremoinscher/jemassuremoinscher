@@ -100,35 +100,48 @@ serve(async (req) => {
   }
 
   try {
-    const authHeader = req.headers.get('Authorization');
-    if (!authHeader?.startsWith('Bearer ')) {
-      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-        status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
-
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
-    const supabase = createClient(supabaseUrl, supabaseAnonKey, {
-      global: { headers: { Authorization: authHeader } },
-    });
 
-    const token = authHeader.replace('Bearer ', '');
-    const { data: claimsData, error: claimsError } = await supabase.auth.getClaims(token);
-    if (claimsError || !claimsData?.claims) {
+    // Check if this is a cron call (anon key) or admin call (user JWT)
+    const authHeader = req.headers.get('Authorization');
+    let isCronCall = false;
+
+    if (authHeader?.startsWith('Bearer ')) {
+      const token = authHeader.replace('Bearer ', '');
+      const anonKey = Deno.env.get('SUPABASE_ANON_KEY') || Deno.env.get('SUPABASE_PUBLISHABLE_KEY');
+      
+      if (token === anonKey) {
+        // Cron job call with anon key — allow
+        isCronCall = true;
+      } else {
+        // User call — verify admin role
+        const supabaseUser = createClient(supabaseUrl, anonKey!, {
+          global: { headers: { Authorization: authHeader } },
+        });
+        const { data: claimsData, error: claimsError } = await supabaseUser.auth.getClaims(token);
+        if (claimsError || !claimsData?.claims) {
+          return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+            status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+        const userId = claimsData.claims.sub;
+        const { data: roleData } = await supabaseUser.from('user_roles').select('role').eq('user_id', userId).eq('role', 'admin').maybeSingle();
+        if (!roleData) {
+          return new Response(JSON.stringify({ error: 'Forbidden' }), {
+            status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          });
+        }
+      }
+    } else {
       return new Response(JSON.stringify({ error: 'Unauthorized' }), {
         status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
-    const userId = claimsData.claims.sub;
-    const { data: roleData } = await supabase.from('user_roles').select('role').eq('user_id', userId).eq('role', 'admin').maybeSingle();
-    if (!roleData) {
-      return new Response(JSON.stringify({ error: 'Forbidden' }), {
-        status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
+    // Use service role for DB operations (needed for cron calls)
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     // Get credentials
     const ga4ServiceAccountJson = Deno.env.get('GA4_SERVICE_ACCOUNT_JSON');
