@@ -27,9 +27,6 @@ const HowItWorks = ({ steps }: HowItWorksProps) => {
             <div key={index} className="relative">
               <Card className="p-6 h-full bg-white">
                 <div className="flex flex-col items-center text-center gap-4">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-primary">{step.number}</span>
-                  </div>
                   <h3 className="text-xl font-semibold text-card-foreground">{step.title}</h3>
                   <p className="text-muted-foreground">{step.description}</p>
                   <CheckCircle className="h-5 w-5 text-green-500 mt-2" />
