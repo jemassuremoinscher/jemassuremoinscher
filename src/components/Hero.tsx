@@ -120,9 +120,10 @@ const Hero = () => {
                       className="h-12 w-12 md:h-16 md:w-16 object-contain"
                       width={64}
                       height={64}
-                      loading={index === 0 ? "eager" : "lazy"}
+                      sizes="64px"
+                      loading="lazy"
                       decoding="async"
-                      fetchPriority={index === 0 ? "high" : "auto"}
+                      fetchPriority="low"
                     />
                   </div>
                   <span className="font-bold text-sm md:text-base text-foreground group-hover:text-primary transition-colors font-[Inter]">
@@ -161,6 +162,7 @@ function DefaultHeroContent({ t, trackEvent }: { t: (key: string) => string; tra
               className="w-28 md:w-36 lg:w-44 h-auto drop-shadow-2xl animate-hero-float"
               width={176}
               height={220}
+              sizes="(max-width: 767px) 112px, (max-width: 1023px) 144px, 176px"
               loading="eager"
               decoding="async"
               fetchPriority="high"
