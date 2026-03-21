@@ -3638,5 +3638,475 @@ Oui, mais l'assureur peut invoquer le retard pour réduire l'indemnisation.
 **La non-déclaration est-elle une fausse déclaration ?**
 Non, tant que vous n'êtes pas tenu légalement de déclarer (pas de tiers, pas de blessé).
     `
+  },
+  {
+    id: "58",
+    title: "Hypnose et remboursement mutuelle : quelles mutuelles remboursent en 2026 ?",
+    slug: "hypnose-remboursement-mutuelle-2026",
+    description: "Découvrez quelles mutuelles remboursent l'hypnose en 2026, les tarifs moyens d'une séance d'hypnothérapie et comment se faire rembourser. Guide complet par un expert santé.",
+    category: "Mutuelle Santé",
+    date: "10 mars 2026",
+    readTime: "11 min",
+    author: "Dr. Antoine Mercier",
+    tags: ["hypnose", "remboursement", "mutuelle", "médecines douces", "hypnothérapie", "ostéopathie"],
+    content: `
+# Hypnose et remboursement mutuelle : le guide complet 2026
+
+L'hypnose thérapeutique est de plus en plus plébiscitée pour gérer le stress, arrêter de fumer ou soulager des douleurs chroniques. Mais combien coûte une séance, et surtout, votre mutuelle rembourse-t-elle l'hypnothérapie ? Voici tout ce qu'il faut savoir en 2026.
+
+## L'essentiel à retenir
+
+- La Sécurité sociale **ne rembourse pas** l'hypnose (sauf cas très rares en milieu hospitalier)
+- **73% des mutuelles** proposent un forfait médecines douces incluant l'hypnose en 2026
+- Le remboursement moyen varie de **30 à 200€/an** selon les contrats
+- Une séance d'hypnose coûte entre **60 et 120€** en cabinet libéral
+- Les mutuelles haut de gamme remboursent jusqu'à **5 séances/an**
+
+## Combien coûte une séance d'hypnose en 2026 ?
+
+### Tarifs moyens constatés en France
+
+| Type de praticien | Tarif moyen | Durée |
+|---|---|---|
+| Hypnothérapeute libéral | 70-100€ | 60 min |
+| Hypnologue certifié ARCHE/IFH | 80-120€ | 60-90 min |
+| Hypnose en milieu hospitalier | Pris en charge | Variable |
+| Hypnose en cabinet de psychologue | 60-90€ | 45-60 min |
+| Hypnose en ligne (visio) | 50-80€ | 45-60 min |
+
+En moyenne, un parcours thérapeutique nécessite **3 à 6 séances** selon la problématique. Le budget total se situe donc entre **210€ et 720€**.
+
+### Facteurs influençant le prix
+
+- **La ville** : Paris et Lyon sont 20-30% plus chers que la province
+- **L'expérience du praticien** : un hypnothérapeute certifié depuis 10 ans facture plus
+- **La spécialité** : arrêt du tabac (souvent 1-2 séances intensives) vs. gestion du stress (5-6 séances)
+- **Le format** : les séances en visio sont 15-20% moins chères
+
+## La Sécurité sociale rembourse-t-elle l'hypnose ?
+
+**Non**, dans l'immense majorité des cas. L'hypnose n'est pas un acte médical conventionné. La Sécurité sociale ne rembourse que les actes inscrits à la NGAP (Nomenclature Générale des Actes Professionnels).
+
+**Exception rare** : si l'hypnose est pratiquée par un **médecin conventionné** dans le cadre d'une consultation classique, la consultation elle-même (25€) est remboursée à 70%. Mais la partie « hypnose » n'est pas valorisée.
+
+> **🦉 Conseil d'Arthur :** Certains hôpitaux intègrent l'hypnose dans leur parcours de soins (anesthésie, douleur chronique, préparation à l'accouchement). Dans ce cas, c'est pris en charge. Renseignez-vous auprès de votre centre hospitalier.
+
+## Quelles mutuelles remboursent l'hypnose en 2026 ?
+
+### Comparatif des meilleures mutuelles pour l'hypnose
+
+| Mutuelle | Forfait médecines douces | Nb séances hypnose/an | Remboursement/séance | Tarif mutuelle |
+|---|---|---|---|---|
+| **Harmonie Mutuelle** (Formule Essentiel+) | 200€/an | 3-4 séances | 50€/séance | ~55€/mois |
+| **MGEN** (Formule Référence) | 300€/an | 4-5 séances | 60€/séance | ~60€/mois |
+| **Malakoff Humanis** (Santé Évolution) | 250€/an | 4 séances | 60€/séance | ~58€/mois |
+| **Alan** (Formule Blue) | 200€/an | 3 séances | 60€/séance | ~50€/mois |
+| **SwissLife** (Santé Premium) | 400€/an | 5-6 séances | 70€/séance | ~75€/mois |
+| **Groupama** (Santé Active) | 150€/an | 2-3 séances | 50€/séance | ~45€/mois |
+
+### Comment vérifier si votre mutuelle rembourse
+
+1. **Consultez vos garanties** : cherchez « médecines douces », « médecines alternatives » ou « thérapies complémentaires »
+2. **Vérifiez le plafond annuel** : souvent partagé entre ostéopathie, hypnose, acupuncture, etc.
+3. **Attention aux conditions** : certaines mutuelles exigent un praticien certifié (ARCHE, IFH, CFHTB)
+4. **Demandez un devis** si votre mutuelle actuelle ne rembourse pas
+
+> **🦉 Conseil d'Arthur :** Le forfait « médecines douces » est souvent **partagé** entre toutes les disciplines (ostéo, hypnose, acupuncture…). Si vous consultez aussi un ostéopathe, votre plafond sera atteint plus vite. Comparez les mutuelles avec un forfait dédié à l'hypnose. **[→ Comparer les mutuelles](/assurance-sante)**
+
+## Pour quelles pathologies l'hypnose est-elle efficace ?
+
+### Indications validées par la Haute Autorité de Santé (HAS)
+
+- **Arrêt du tabac** : taux de réussite de 60-70% après 1-3 séances
+- **Gestion de la douleur chronique** : recommandée par la HAS depuis 2011
+- **Anxiété et stress** : efficacité prouvée en complément des traitements classiques
+- **Préparation à la chirurgie** : réduit l'anxiété pré-opératoire et les besoins en anesthésie
+- **Troubles du sommeil** : amélioration significative en 3-5 séances
+
+### Indications courantes (non HAS mais résultats observés)
+
+- Perte de poids et troubles alimentaires
+- Phobies et peurs irrationnelles
+- Préparation à l'accouchement (hypnonaissance)
+- Troubles de la concentration
+- Accompagnement du deuil
+
+## Comment se faire rembourser : la procédure étape par étape
+
+### 1. Choisissez un praticien certifié
+
+Privilégiez un hypnothérapeute certifié par un organisme reconnu :
+- **ARCHE** (Académie de Recherche et Connaissance en Hypnose Ericksonienne)
+- **IFH** (Institut Français d'Hypnose)
+- **CFHTB** (Confédération Francophone d'Hypnose et de Thérapies Brèves)
+
+### 2. Demandez une facture conforme
+
+La facture doit mentionner :
+- Nom et prénom du praticien + n° SIRET
+- Nature de l'acte : « séance d'hypnothérapie »
+- Date et montant
+- Certification du praticien
+
+### 3. Envoyez votre demande de remboursement
+
+- **Envoi en ligne** : via l'espace client de votre mutuelle (photo de la facture)
+- **Envoi postal** : formulaire de remboursement + facture originale
+- **Délai moyen** : 5 à 15 jours ouvrés
+
+## Changer de mutuelle pour se faire rembourser l'hypnose
+
+Si votre mutuelle actuelle ne propose pas de forfait médecines douces, vous pouvez **changer à tout moment** grâce à la résiliation infra-annuelle (loi du 14 juillet 2019).
+
+**Critères pour bien choisir :**
+- Forfait médecines douces ≥ 200€/an
+- Pas de condition de prescription médicale préalable
+- Praticiens certifiés ARCHE/IFH acceptés (pas uniquement les médecins)
+- Pas de délai de carence sur le forfait médecines douces
+
+> **🦉 Conseil d'Arthur :** En changeant de mutuelle, certains assurés ont récupéré jusqu'à **400€/an** de remboursement pour leurs séances d'hypnose et d'ostéopathie combinées. Comparez gratuitement en 2 minutes. **[→ Comparer les mutuelles maintenant](/assurance-sante)**
+
+## FAQ
+
+**L'hypnose est-elle remboursée par la Sécurité sociale ?**
+Non, sauf si elle est pratiquée en milieu hospitalier dans le cadre d'un parcours de soins coordonné. En cabinet libéral, seule la mutuelle peut rembourser.
+
+**Combien de séances d'hypnose sont remboursées par an ?**
+Cela dépend de votre mutuelle. En moyenne, 3 à 5 séances par an sont couvertes, dans la limite du forfait médecines douces (150 à 400€/an).
+
+**Faut-il une prescription médicale pour se faire rembourser ?**
+La plupart des mutuelles n'exigent pas de prescription médicale. Certaines demandent cependant que le praticien soit certifié par un organisme reconnu (ARCHE, IFH).
+
+**Quelle est la différence entre hypnose et hypnothérapie ?**
+L'hypnose est la technique (état modifié de conscience), tandis que l'hypnothérapie est l'utilisation de l'hypnose à des fins thérapeutiques. Pour le remboursement, les mutuelles utilisent les deux termes de manière interchangeable.
+
+**Un hypnothérapeute remboursé est-il aussi bon qu'un non remboursé ?**
+Le remboursement n'est pas un critère de qualité. Vérifiez plutôt la certification (ARCHE, IFH, CFHTB), l'expérience et les avis patients du praticien.
+    `
+  },
+  {
+    id: "59",
+    title: "Devis assurance auto jeune conducteur : simulez votre prix en 2 min (2026)",
+    slug: "devis-assurance-auto-jeune-conducteur-2026",
+    description: "Jeune conducteur ? Obtenez un devis assurance auto en 2 minutes. Tarifs moyens 2026, astuces pour payer moins cher et simulation gratuite avec 50+ assureurs.",
+    category: "Assurance Auto",
+    date: "12 mars 2026",
+    readTime: "12 min",
+    author: "Thomas Laurent",
+    tags: ["jeune conducteur", "devis assurance auto", "simulation", "assurance auto pas cher", "permis probatoire"],
+    content: `
+# Devis assurance auto jeune conducteur : combien ça coûte vraiment en 2026 ?
+
+Vous venez d'obtenir votre permis et vous cherchez une assurance auto pas chère ? La surprime jeune conducteur (jusqu'à +100% la première année) rend la comparaison indispensable. Voici combien vous allez payer, et comment réduire la facture.
+
+## L'essentiel à retenir
+
+- La surprime jeune conducteur est de **+100% la 1ère année** (réduite à +50% avec conduite accompagnée)
+- Le tarif moyen pour un jeune conducteur en 2026 : **1 200 à 2 500€/an** au tiers étendu
+- La conduite accompagnée (AAC) permet d'économiser **600 à 1 200€** sur 3 ans
+- Comparer au moins 5 assureurs permet de trouver des écarts de **30 à 50%** sur le même profil
+- Un véhicule de **moins de 6 CV fiscaux** est la meilleure stratégie tarifaire
+
+## Tarifs moyens assurance auto jeune conducteur en 2026
+
+### Grille tarifaire indicative
+
+| Profil | Au tiers | Tiers étendu | Tous risques |
+|---|---|---|---|
+| Jeune conducteur 18 ans, Clio IV, Paris | 1 800€/an | 2 300€/an | 3 200€/an |
+| Jeune conducteur 18 ans, Clio IV, province | 1 200€/an | 1 600€/an | 2 200€/an |
+| Jeune conducteur AAC, Clio IV, province | 900€/an | 1 200€/an | 1 700€/an |
+| Jeune conducteur 20 ans (2 ans de permis), province | 800€/an | 1 100€/an | 1 500€/an |
+| Conducteur secondaire chez les parents | 400-600€/an | 600-900€/an | 900-1 200€/an |
+
+*Sources : relevés tarifaires réalisés en mars 2026 auprès de 15 assureurs en ligne.*
+
+### Pourquoi c'est si cher ?
+
+Les statistiques de la Sécurité Routière sont implacables :
+- Les **18-24 ans** représentent **9% des conducteurs** mais **17% des tués** sur la route
+- Le risque d'accident mortel est **4 fois plus élevé** dans les 2 premières années de permis
+- Les assureurs appliquent donc une **surprime réglementaire** pour compenser ce risque
+
+## Comment fonctionne la surprime jeune conducteur
+
+### Le coefficient de majoration
+
+| Année | Sans AAC | Avec AAC |
+|---|---|---|
+| 1ère année | +100% | +50% |
+| 2ème année | +75% | +25% |
+| 3ème année | +50% | +12,5% |
+| 4ème année | +25% | 0% |
+| 5ème année | 0% | — |
+
+> **🦉 Conseil d'Arthur :** La conduite accompagnée (AAC) est le **meilleur investissement** d'un jeune conducteur. En 3 ans, l'économie cumulée dépasse **1 500€** en assurance auto. Sans compter que le taux de réussite au permis est de 75% en AAC contre 52% en filière classique.
+
+### Le coefficient bonus-malus (CRM)
+
+Chaque année sans sinistre responsable, votre coefficient baisse de 5% :
+- Départ : 1,00
+- Après 1 an sans accident : 0,95
+- Après 2 ans : 0,90
+- Bonus maximum (après 13 ans) : 0,50
+
+**Attention** : un seul accident responsable peut augmenter votre coefficient de 25% (×1,25).
+
+## Les 8 meilleures astuces pour payer moins cher
+
+### 1. Choisissez le bon véhicule
+
+Les assureurs classent les véhicules par groupes de tarification (SRA). Les moins chers :
+
+| Véhicule | CV fiscaux | Prime moyenne jeune conducteur |
+|---|---|---|
+| Citroën C1 / Peugeot 108 | 4 CV | 900€/an |
+| Renault Twingo III | 4 CV | 950€/an |
+| Dacia Sandero | 5 CV | 1 050€/an |
+| Peugeot 208 (1.2 PureTech) | 5 CV | 1 100€/an |
+| Renault Clio V (SCe 65) | 4 CV | 1 000€/an |
+
+**À éviter** : les sportives (Golf GTI, 208 GTi), les SUV puissants, et tout véhicule de plus de **110 chevaux** qui attire les surprimes.
+
+### 2. Déclarez-vous conducteur secondaire (temporairement)
+
+Si un parent vous ajoute comme conducteur secondaire sur son contrat, vous bénéficiez de **son bonus** tout en accumulant de l'expérience. Prix : 400-600€/an de plus sur le contrat parental.
+
+**Attention** : si vous êtes le conducteur principal réel, c'est une **fausse déclaration** passible de nullité du contrat.
+
+### 3. Optez pour le tiers étendu (pas le tous risques)
+
+Pour un véhicule de moins de 8 000€, le tous risques n'est pas rentable. Le **tiers étendu** (vol, incendie, bris de glace, catastrophes naturelles) offre le meilleur rapport couverture/prix.
+
+### 4. Augmentez votre franchise
+
+Passer de 300€ à 600€ de franchise peut réduire votre prime de **15 à 20%**. Intéressant si vous roulez peu.
+
+### 5. Payez annuellement
+
+Le paiement mensuel coûte **5 à 10% plus cher** que le paiement annuel. Si vous en avez les moyens, payez en une fois.
+
+### 6. Utilisez un boîtier télématique
+
+Certains assureurs (Wilov, L'Olivier) proposent des formules **pay-as-you-drive** avec un boîtier qui mesure votre conduite. Les bons conducteurs économisent **20 à 30%**.
+
+### 7. Regroupez vos contrats
+
+Si vos parents sont déjà chez un assureur pour leur habitation ou véhicule, négociez un **tarif groupé**. Certains assureurs offrent 10-15% de remise multi-contrats.
+
+### 8. Comparez, comparez, comparez
+
+Les écarts entre assureurs peuvent atteindre **50%** pour le même profil. Un comparateur indépendant comme jemassuremoinscher.fr interroge 50+ assureurs en 2 minutes.
+
+> **🦉 Conseil d'Arthur :** Ne vous arrêtez pas au premier devis. J'ai vu des écarts de 1 200€ entre le plus cher et le moins cher pour un même profil de jeune conducteur ! **[→ Simuler mon prix en 2 minutes](/assurance-auto)**
+
+## Quels assureurs sont les moins chers pour les jeunes conducteurs en 2026 ?
+
+### Top 5 des assureurs compétitifs
+
+1. **Direct Assurance** : formules dès 70€/mois, app mobile intuitive
+2. **L'Olivier Assurance** : tarifs agressifs, service 100% en ligne
+3. **Wilov** : pay-as-you-drive, idéal si vous roulez peu
+4. **Ornikar Assurance** : tarifs compétitifs pour les jeunes permis
+5. **MAIF** : excellent rapport qualité/prix, sinistres bien gérés
+
+### Ce que les assureurs regardent dans votre profil
+
+- **Âge et ancienneté du permis** : le facteur n°1
+- **Lieu de résidence** : Paris et Marseille = +30-50%
+- **Type de stationnement** : garage fermé = -10-15%
+- **Kilométrage annuel** : moins de 8 000 km = -10%
+- **Usage** : domicile-travail vs loisirs
+- **Puissance du véhicule** : clé du tarif
+
+## Simulation : cas concrets de devis jeune conducteur
+
+### Cas 1 : Lucas, 18 ans, Lyon
+- **Véhicule** : Renault Clio IV (2018), 5 CV
+- **Garage** : parking collectif fermé
+- **Kilométrage** : 10 000 km/an
+- **Meilleur devis trouvé** : 1 080€/an (tiers étendu) chez Direct Assurance
+- **Devis le plus cher** : 2 340€/an chez un assureur traditionnel
+- **Économie** : **1 260€/an** grâce à la comparaison
+
+### Cas 2 : Emma, 19 ans, Bordeaux (AAC)
+- **Véhicule** : Citroën C3 (2020), 4 CV
+- **Garage** : rue
+- **Kilométrage** : 8 000 km/an
+- **Meilleur devis trouvé** : 780€/an (tiers étendu) chez L'Olivier
+- **Économie avec AAC vs sans** : 420€/an
+
+## FAQ
+
+**Combien coûte une assurance auto pour un jeune conducteur en 2026 ?**
+En moyenne, entre 1 200€ et 2 500€/an en tiers étendu. Le tarif dépend du véhicule, du lieu de résidence et de la conduite accompagnée. Comparer les devis permet de trouver des écarts de 30 à 50%.
+
+**La conduite accompagnée réduit-elle vraiment l'assurance ?**
+Oui, significativement. La surprime passe de +100% à +50% la première année, soit une économie de 600 à 1 200€ sur les 3 premières années de permis.
+
+**Peut-on avoir une assurance auto pas chère en tant que jeune conducteur ?**
+Oui, en choisissant un véhicule peu puissant (moins de 6 CV), en optant pour le tiers étendu, et en comparant au moins 5 assureurs. Les formules pay-as-you-drive sont aussi très avantageuses pour les petits rouleurs.
+
+**Faut-il prendre le tous risques en tant que jeune conducteur ?**
+Non, sauf si votre véhicule vaut plus de 10 000€. Pour un véhicule d'occasion, le tiers étendu (vol + incendie + bris de glace) offre le meilleur rapport couverture/prix.
+
+**Combien de temps dure la surprime jeune conducteur ?**
+3 ans sans conduite accompagnée, 2 ans avec. Chaque année sans sinistre responsable réduit la surprime progressivement.
+    `
+  },
+  {
+    id: "60",
+    title: "Assurance PNO pas chère : comparatif et guide du propriétaire non occupant 2026",
+    slug: "assurance-pno-pas-chere-comparatif-2026",
+    description: "Trouvez l'assurance PNO la moins chère en 2026. Comparatif des tarifs, obligations légales et astuces pour réduire votre prime de propriétaire non occupant.",
+    category: "Assurance Habitation",
+    date: "14 mars 2026",
+    readTime: "10 min",
+    author: "Pierre Durand",
+    tags: ["assurance PNO", "propriétaire non occupant", "assurance pas chère", "investissement locatif", "comparatif"],
+    content: `
+# Assurance PNO pas chère : comment trouver la meilleure offre en 2026
+
+Vous êtes propriétaire d'un bien que vous louez ou qui est vacant ? L'assurance PNO (Propriétaire Non Occupant) est quasiment indispensable — et parfois obligatoire. Voici comment la payer au juste prix.
+
+## L'essentiel à retenir
+
+- L'assurance PNO est **obligatoire en copropriété** (loi ALUR) et fortement recommandée partout ailleurs
+- Le tarif moyen en 2026 : **80 à 200€/an** pour un appartement standard
+- Les écarts entre assureurs peuvent atteindre **60%** pour le même bien
+- L'assurance PNO couvre les **sinistres survenant en période de vacance locative**
+- Elle complète l'assurance habitation du locataire sans la remplacer
+
+## L'assurance PNO est-elle obligatoire ?
+
+### En copropriété : OUI (loi ALUR 2014)
+
+Depuis la loi ALUR du 24 mars 2014, **tout propriétaire en copropriété** doit souscrire une assurance de responsabilité civile. En pratique, l'assurance PNO est le contrat qui répond à cette obligation.
+
+**Sanctions** : le syndic peut vous mettre en demeure et, en cas de sinistre, vous êtes personnellement responsable de tous les dommages.
+
+### Hors copropriété : fortement recommandé
+
+Pour une maison individuelle, l'assurance PNO n'est pas légalement obligatoire. Mais elle est **vivement conseillée** car :
+- L'assurance du locataire ne couvre pas vos murs ni les parties privatives
+- En cas de vacance locative, vous n'avez **aucune couverture**
+- Un dégât des eaux ou un incendie peut coûter **des dizaines de milliers d'euros**
+
+## Combien coûte une assurance PNO en 2026 ?
+
+### Grille tarifaire par type de bien
+
+| Type de bien | Surface | Tarif moyen/an | Fourchette |
+|---|---|---|---|
+| Studio/T1 en copro | 20-35 m² | 80€ | 50-120€ |
+| T2 en copro | 35-55 m² | 110€ | 70-160€ |
+| T3 en copro | 55-80 m² | 140€ | 90-200€ |
+| T4+ en copro | 80+ m² | 180€ | 120-280€ |
+| Maison individuelle | 80-120 m² | 200€ | 130-320€ |
+| Local commercial | Variable | 250€ | 150-450€ |
+
+### Facteurs qui influencent le prix
+
+- **Localisation** : zones inondables ou à risque = +30-50%
+- **Vétusté** : immeuble ancien (avant 1970) = +15-25%
+- **Garanties choisies** : RC seule vs multirisque PNO
+- **Capital mobilier** : si le bien est loué meublé
+- **Nombre de lots** : pour les multi-propriétaires, des remises existent
+
+## Comparatif des meilleures assurances PNO pas chères en 2026
+
+### Top 5 des offres les plus compétitives
+
+| Assureur | Tarif T2 en copro | Garanties incluses | Point fort |
+|---|---|---|---|
+| **Luko** | 65€/an | RC + dégât des eaux + incendie | 100% en ligne, souscription en 3 min |
+| **Lovys** | 72€/an | RC + multirisque | Résiliation en 1 clic |
+| **AXA** (formule Eco) | 95€/an | RC + incendie + vol | Réseau d'experts sinistres |
+| **MAIF** | 98€/an | RC + multirisque complète | Meilleure gestion des sinistres |
+| **Groupama** | 105€/an | RC + tous risques | Agences locales |
+
+*Tarifs indicatifs relevés en mars 2026 pour un T2 de 45 m² en copropriété à Lyon.*
+
+> **🦉 Conseil d'Arthur :** Attention aux assurances PNO « RC seule » à 30-40€/an : elles ne couvrent que votre responsabilité civile. En cas de dégât des eaux ou d'incendie, vous n'êtes pas indemnisé pour les réparations de votre bien. Optez pour une **multirisque PNO**. **[→ Comparer les assurances PNO](/assurance-pno)**
+
+## Que couvre exactement l'assurance PNO ?
+
+### Garanties essentielles (incluses dans tout contrat PNO)
+
+- **Responsabilité civile propriétaire** : dommages causés aux tiers (voisins, locataire) par un vice de construction ou un défaut d'entretien
+- **Recours des locataires** : si le locataire vous poursuit après un sinistre
+- **Vacance locative** : protection du bien même sans locataire
+
+### Garanties complémentaires (multirisque PNO)
+
+- **Dégât des eaux** : la cause n°1 de sinistre en copropriété
+- **Incendie et explosion** : y compris si l'incendie vient de chez le voisin
+- **Catastrophes naturelles et technologiques**
+- **Vol et vandalisme** : surtout pour les biens meublés
+- **Bris de glace** : fenêtres, portes vitrées
+- **Protection juridique** : litiges avec le locataire ou le syndic
+
+### Ce que l'assurance PNO ne couvre PAS
+
+- Les biens personnels du locataire (c'est son assurance habitation)
+- L'usure normale du bien
+- Les vices cachés connus au moment de la souscription
+- Les loyers impayés (c'est la **GLI**, un contrat distinct)
+
+## Les 5 astuces pour réduire votre prime PNO
+
+### 1. Comparez au moins 3 assureurs
+
+Les écarts de prix sont énormes sur ce segment. Un comparateur permet de trouver des offres **40 à 60% moins chères** que la première proposition reçue.
+
+### 2. Regroupez vos contrats
+
+Si vous êtes multi-propriétaire, certains assureurs offrent des **remises de 15 à 25%** pour les contrats groupés (PNO + GLI + habitation principale).
+
+### 3. Augmentez votre franchise
+
+Passer de 150€ à 300€ de franchise réduit la prime de **10 à 15%**. Pour un bien en bon état, c'est un arbitrage rentable.
+
+### 4. Ajustez les capitaux assurés
+
+Ne surévaluez pas la valeur du contenu (mobilier). Pour un bien loué vide, un capital mobilier de 5 000€ suffit largement.
+
+### 5. Vérifiez les doublons avec le syndic
+
+L'assurance de la copropriété couvre les parties communes. Votre PNO ne doit couvrir que les **parties privatives**. Vérifiez auprès du syndic pour éviter de payer deux fois.
+
+## PNO et investissement locatif : les pièges à éviter
+
+### Piège n°1 : compter sur l'assurance du locataire
+
+Votre locataire a l'obligation de s'assurer, mais son contrat ne couvre pas vos murs. Et en cas de **vacance locative**, vous n'avez aucune couverture sans PNO.
+
+### Piège n°2 : oublier la PNO en meublé
+
+En location meublée (LMNP), l'assurance PNO est encore plus importante car votre mobilier est exposé. Ajoutez un **capital mobilier** adapté (10 000 à 30 000€).
+
+### Piège n°3 : ne pas déclarer les travaux
+
+Après des travaux de rénovation, prévenez votre assureur. L'augmentation de la valeur du bien peut modifier vos garanties et vos capitaux assurés.
+
+> **🦉 Conseil d'Arthur :** L'assurance PNO est **déductible de vos revenus fonciers** (régime réel). Conservez bien vos factures ! C'est un avantage fiscal souvent oublié par les investisseurs débutants. **[→ Comparer les assurances PNO](/assurance-pno)**
+
+## FAQ
+
+**L'assurance PNO est-elle obligatoire ?**
+Oui en copropriété depuis la loi ALUR 2014. Hors copropriété, elle n'est pas obligatoire mais vivement recommandée pour couvrir les risques de vacance locative et les dommages aux parties privatives.
+
+**Combien coûte une assurance PNO pas chère ?**
+Les meilleures offres démarrent à 50-65€/an pour un studio en copropriété. Pour un T2, comptez 70 à 110€/an. En comparant, vous pouvez trouver 40 à 60% moins cher que la première offre.
+
+**Quelle est la différence entre PNO et GLI ?**
+L'assurance PNO protège votre bien immobilier (dégâts, responsabilité civile). La GLI (Garantie Loyers Impayés) couvre les impayés de loyers. Ce sont deux contrats complémentaires mais distincts.
+
+**L'assurance PNO est-elle déductible des impôts ?**
+Oui, la prime PNO est déductible de vos revenus fonciers si vous êtes au régime réel d'imposition. Elle est considérée comme une charge de propriété.
+
+**Que se passe-t-il si je n'ai pas d'assurance PNO en copropriété ?**
+Le syndic peut vous mettre en demeure de souscrire. En cas de sinistre, vous êtes personnellement responsable de tous les dommages causés, y compris aux parties communes et aux voisins.
+    `
   }
 ];
