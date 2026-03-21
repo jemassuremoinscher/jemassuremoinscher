@@ -65,7 +65,7 @@ async function fetchGSCData(accessToken: string, siteUrl: string): Promise<any[]
         dimensionFilterGroups: [{
           filters: [{
             dimension: 'query',
-            operator: 'excludes',
+            operator: 'notContains',
             expression: 'jemassuremoinscher',
           }],
         }],
