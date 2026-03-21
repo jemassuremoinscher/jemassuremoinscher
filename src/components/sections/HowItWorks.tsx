@@ -68,16 +68,7 @@ const HowItWorks = () => {
                   <div className={`absolute -top-20 -right-20 w-60 h-60 rounded-full ${step.gradient} opacity-20 blur-3xl group-hover:opacity-40 transition-opacity duration-500`} />
                   <div className={`absolute -bottom-16 -left-16 w-40 h-40 rounded-full ${step.gradient} opacity-10 blur-2xl`} />
 
-                  <div className="relative z-10 p-7 md:p-8 flex flex-col h-full min-h-[300px]">
-                    {/* Top row: step number badge + big number */}
-                    <div className="flex items-center justify-between mb-5">
-                      <div className={`w-10 h-10 rounded-full ${step.color} text-white font-black text-lg flex items-center justify-center shadow-lg`}>
-                        {step.number}
-                      </div>
-                      <span className="text-6xl font-black text-foreground/[0.04] select-none leading-none">
-                        0{step.number}
-                      </span>
-                    </div>
+                  <div className="relative z-10 p-7 md:p-8 flex flex-col h-full min-h-[260px]">
 
                     {/* Icon */}
                     <div className={`w-16 h-16 rounded-2xl ${step.gradient} flex items-center justify-center shadow-lg mb-5 group-hover:scale-110 transition-transform duration-500`}>
