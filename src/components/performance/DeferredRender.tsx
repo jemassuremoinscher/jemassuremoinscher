@@ -10,7 +10,7 @@ interface DeferredRenderProps {
 const DeferredRender = ({
   children,
   minHeight = 560,
-  rootMargin = "300px 0px",
+  rootMargin = "120px 0px",
   className,
 }: DeferredRenderProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
