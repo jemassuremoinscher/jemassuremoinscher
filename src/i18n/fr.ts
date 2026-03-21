@@ -1943,4 +1943,6 @@ const fr: Record<string, string> = {
   'landing.reviews': 'avis',
   'landing.avgSavingsLabel': 'Économie moy.',
 
+};
+
 export default fr;
