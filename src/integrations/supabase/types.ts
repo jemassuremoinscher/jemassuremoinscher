@@ -671,6 +671,57 @@ export type Database = {
         }
         Relationships: []
       }
+      seo_article_suggestions: {
+        Row: {
+          created_at: string
+          gsc_clicks: number | null
+          gsc_impressions: number | null
+          gsc_position: number | null
+          id: string
+          reviewed_at: string | null
+          reviewed_by: string | null
+          slug: string
+          status: string
+          suggested_author: string | null
+          suggested_content: string
+          suggested_meta_description: string | null
+          target_keyword: string
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          gsc_clicks?: number | null
+          gsc_impressions?: number | null
+          gsc_position?: number | null
+          id?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          slug: string
+          status?: string
+          suggested_author?: string | null
+          suggested_content: string
+          suggested_meta_description?: string | null
+          target_keyword: string
+          title: string
+        }
+        Update: {
+          created_at?: string
+          gsc_clicks?: number | null
+          gsc_impressions?: number | null
+          gsc_position?: number | null
+          id?: string
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          slug?: string
+          status?: string
+          suggested_author?: string | null
+          suggested_content?: string
+          suggested_meta_description?: string | null
+          target_keyword?: string
+          title?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
