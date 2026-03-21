@@ -322,9 +322,7 @@
     <!-- Register Service Worker -->
     <script>
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js').catch(function() {});
-        });
+        setTimeout(function() { navigator.serviceWorker.register('/sw.js').catch(function() {}); }, 5000);
       }
     </script>
 
