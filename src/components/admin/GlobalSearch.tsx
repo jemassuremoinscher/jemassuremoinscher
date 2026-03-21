@@ -141,7 +141,7 @@ export const GlobalSearch = ({ quotes, callbacks, onResultClick }: GlobalSearchP
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[400px] p-0" align="start">
-        <Command>
+        <Command shouldFilter={false}>
           <CommandInput 
             placeholder="Tapez au moins 2 caractères..." 
             value={searchQuery}
