@@ -163,7 +163,7 @@ serve(async (req) => {
     // 1. Get GSC data
     console.log('Fetching GSC data...');
     const accessToken = await getGoogleAccessToken(serviceAccount, 'https://www.googleapis.com/auth/webmasters.readonly');
-    const gscRows = await fetchGSCData(accessToken, 'https://jemassuremoinscher.fr');
+    const gscRows = await fetchGSCData(accessToken, 'sc-domain:jemassuremoinscher.fr');
     console.log(`Got ${gscRows.length} GSC rows`);
 
     const opportunities = findOpportunities(gscRows);
