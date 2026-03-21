@@ -251,7 +251,26 @@ Format de réponse en JSON:
         const rawContent = aiData.choices?.[0]?.message?.content;
         if (!rawContent) continue;
 
-        const article = JSON.parse(rawContent);
+        // Clean control characters that break JSON.parse
+        const cleanedContent = rawContent
+          .replace(/```json\s*/g, '')
+          .replace(/```\s*/g, '')
+          .trim();
+        
+        let article;
+        try {
+          article = JSON.parse(cleanedContent);
+        } catch {
+          // Try fixing common issues: control chars in string values
+          const sanitized = cleanedContent.replace(/[\x00-\x1f\x7f]/g, (ch: string) => {
+            if (ch === '\n') return '\\n';
+            if (ch === '\r') return '\\r';
+            if (ch === '\t') return '\\t';
+            return '';
+          });
+          article = JSON.parse(sanitized);
+        }
+
         const slug = slugify(article.title || keyword);
 
         const { error: insertError } = await supabase.from('seo_article_suggestions').insert({
