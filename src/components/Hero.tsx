@@ -44,6 +44,10 @@ const Hero = () => {
   useEffect(() => {
     let timeoutId: number | null = null;
     let idleId: number | null = null;
+    const idleWindow = window as Window & {
+      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
+      cancelIdleCallback?: (handle: number) => void;
+    };
 
     const warmUpCategoryImages = () => {
       heroCategories.slice(1).forEach((category) => {
@@ -53,15 +57,15 @@ const Hero = () => {
       });
     };
 
-    if ("requestIdleCallback" in window) {
-      idleId = window.requestIdleCallback(warmUpCategoryImages, { timeout: 3000 });
+    if (typeof idleWindow.requestIdleCallback === "function") {
+      idleId = idleWindow.requestIdleCallback(warmUpCategoryImages, { timeout: 3000 });
     } else {
-      timeoutId = window.setTimeout(warmUpCategoryImages, 1200);
+      timeoutId = setTimeout(warmUpCategoryImages, 1200);
     }
 
     return () => {
-      if (idleId !== null && "cancelIdleCallback" in window) {
-        window.cancelIdleCallback(idleId);
+      if (idleId !== null && typeof idleWindow.cancelIdleCallback === "function") {
+        idleWindow.cancelIdleCallback(idleId);
       }
       if (timeoutId !== null) {
         clearTimeout(timeoutId);
