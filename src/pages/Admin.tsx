@@ -309,8 +309,6 @@ const Admin = () => {
           <TabsContent value="seo">
             <SEOSuggestions />
           </TabsContent>
-            <GoogleAnalyticsDashboard />
-          </TabsContent>
 
           <TabsContent value="supervision">
             <div className="space-y-4 sm:space-y-6">
