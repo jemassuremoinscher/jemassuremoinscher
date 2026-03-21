@@ -28,12 +28,6 @@ const NotFound = () => {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <div className="relative flex min-h-screen items-center justify-center bg-background px-4 overflow-hidden">
-        {/* Grand Arthur en sous-brillance centré en arrière-plan */}
-        <img
-          src={arthurPointing}
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/3 w-[500px] md:w-[700px] opacity-[0.25] select-none" />
         
 
         <div className="relative z-10 text-center max-w-lg">
