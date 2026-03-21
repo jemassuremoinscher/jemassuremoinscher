@@ -3964,7 +3964,7 @@ Non, sauf si votre véhicule vaut plus de 10 000€. Pour un véhicule d'occasio
     readTime: "10 min",
     author: "Pierre Durand",
     tags: ["assurance PNO", "propriétaire non occupant", "assurance pas chère", "investissement locatif", "comparatif"],
-    content: \`
+    content: `
 # Assurance PNO pas chère : comment trouver la meilleure offre en 2026
 
 Vous êtes propriétaire d'un bien que vous louez ou qui est vacant ? L'assurance PNO (Propriétaire Non Occupant) est quasiment indispensable — et parfois obligatoire. Après avoir accompagné des centaines d'investisseurs locatifs, voici mon analyse terrain des offres 2026.
