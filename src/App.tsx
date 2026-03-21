@@ -102,107 +102,142 @@ const AuthRoute = ({ children }: { children: React.ReactNode }) => (
   </Suspense>
 );
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <LanguageProvider>
-      <TooltipProvider>
-        <Toaster />
-        <BrowserRouter>
-          <Suspense fallback={null}>
-            <RouteTracker />
-          </Suspense>
-          <Suspense fallback={null}>
-            <ReadingProgressBar />
-          </Suspense>
-          <Suspense fallback={null}>
-            <SkipToMain />
-          </Suspense>
-          <ErrorBoundary>
-            <Suspense fallback={
-              <div className="min-h-screen flex items-center justify-center" role="status" aria-live="polite">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-                <span className="sr-only">Chargement en cours...</span>
-              </div>
-            }>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
-                <Route path="/admin" element={<AuthRoute><Admin /></AuthRoute>} />
-                <Route path="/commercial" element={<AuthRoute><Commercial /></AuthRoute>} />
-                <Route path="/landing/assurance" element={<LandingAds />} />
-                <Route path="/landing/auto" element={<LandingAuto />} />
-                <Route path="/landing/sante" element={<LandingSante />} />
-                <Route path="/landing/habitation" element={<LandingHabitation />} />
-                <Route path="/landing/moto" element={<LandingMoto />} />
-                <Route path="/landing/animaux" element={<LandingAnimaux />} />
-                <Route path="/landing/pret" element={<LandingPret />} />
-                <Route path="/landing/vie" element={<LandingVie />} />
-                <Route path="/landing/prevoyance" element={<LandingPrevoyance />} />
-                <Route path="/landing/rc-pro" element={<LandingRCPro />} />
-                <Route path="/landing/gli" element={<LandingGLI />} />
-                <Route path="/landing/pno" element={<LandingPNO />} />
-                <Route path="/landing/mrp" element={<LandingMRP />} />
-                <Route path="/comparateur" element={<Comparateur />} />
-                <Route path="/assurance-auto-malusse" element={<AssuranceAutoMalusse />} />
-                <Route path="/assurance-auto-jeune-conducteur" element={<AssuranceJeuneConducteur />} />
-                <Route path="/mutuelle-tns" element={<MutuelleTNS />} />
-                <Route path="/assurance-auto-comparatif" element={<CategorieAutoSEO />} />
-                <Route path="/assurance-trottinette-electrique" element={<AssuranceTrottinetteElectrique />} />
-                <Route path="/assurance-auto-permis-etranger" element={<AssuranceAutoPermisEtranger />} />
-                <Route path="/assurance-emprunteur" element={<AssuranceEmprunteurSEO />} />
-                
-                <Route path="/assurance-auto/:department" element={<RegionalInsurancePage />} />
-                <Route path="/assurance-auto" element={<AssuranceAuto />} />
-                <Route path="/assurance-sante" element={<AssuranceSante />} />
-                <Route path="/assurance-moto" element={<AssuranceMoto />} />
-                <Route path="/assurance-habitation" element={<AssuranceHabitation />} />
-                <Route path="/assurance-pret" element={<AssurancePret />} />
-                <Route path="/assurance-prevoyance" element={<AssurancePrevoyance />} />
-                <Route path="/assurance-animaux" element={<AssuranceAnimaux />} />
-                <Route path="/assurance-vie" element={<AssuranceVie />} />
-                <Route path="/assurance-mrp" element={<AssuranceMRP />} />
-                <Route path="/assurance-rc-pro" element={<AssuranceRCPro />} />
-                <Route path="/assurance-gli" element={<AssuranceGLI />} />
-                <Route path="/assurance-pno" element={<AssurancePNO />} />
-                <Route path="/gestion-locative" element={<GestionLocative />} />
-                <Route path="/qui-sommes-nous" element={<QuiSommesNous />} />
-                <Route path="/nos-partenaires" element={<NosPartenaires />} />
-                <Route path="/avis-clients" element={<AvisClients />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogArticle />} />
-                <Route path="/glossaire" element={<Glossaire />} />
-                <Route path="/glossaire/:slug" element={<GlossaireTerme />} />
-                <Route path="/politique-cookies" element={<PolitiqueCookies />} />
-                <Route path="/mentions-legales" element={<MentionsLegales />} />
-                <Route path="/cgu" element={<CGU />} />
-                <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/newsletter-gestion" element={<NewsletterGestion />} />
-                <Route path="/plan-du-site" element={<PlanDuSite />} />
-                <Route path="/merci" element={<Merci />} />
-                <Route path="/outils/calculateur-bonus-malus" element={<CalculateurBonusMalus />} />
-                <Route path="/comparatif/:slug" element={<DuelPage />} />
-                <Route path="/comparatif" element={<DuelPage />} />
-                <Route path="/profil/:slug" element={<NicheProfilePage />} />
-                <Route path="/profil" element={<NicheProfilePage />} />
-                <Route path="/llms.txt" element={<LlmsTxt />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+const App = () => {
+  const [showDeferredWidgets, setShowDeferredWidgets] = React.useState(false);
+
+  React.useEffect(() => {
+    const idleWindow = window as Window & {
+      requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
+      cancelIdleCallback?: (handle: number) => void;
+    };
+
+    let timeoutId: number | null = null;
+    let idleId: number | null = null;
+
+    const mountWidgets = () => setShowDeferredWidgets(true);
+
+    if (typeof idleWindow.requestIdleCallback === "function") {
+      idleId = idleWindow.requestIdleCallback(mountWidgets, { timeout: 2500 });
+    } else {
+      timeoutId = setTimeout(mountWidgets, 1200);
+    }
+
+    return () => {
+      if (idleId !== null && typeof idleWindow.cancelIdleCallback === "function") {
+        idleWindow.cancelIdleCallback(idleId);
+      }
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <LanguageProvider>
+        <TooltipProvider>
+          <Toaster />
+          <BrowserRouter>
+            <Suspense fallback={null}>
+              <RouteTracker />
             </Suspense>
-          </ErrorBoundary>
-          <Suspense fallback={null}>
-            <CookieBanner />
-          </Suspense>
-          <Suspense fallback={null}>
-            <AIChatbot />
-          </Suspense>
-          <Suspense fallback={null}>
-            <ContractOptimizerWidget />
-          </Suspense>
-        </BrowserRouter>
-      </TooltipProvider>
-    </LanguageProvider>
-  </QueryClientProvider>
-);
+            <Suspense fallback={null}>
+              <ReadingProgressBar />
+            </Suspense>
+            <Suspense fallback={null}>
+              <SkipToMain />
+            </Suspense>
+            <ErrorBoundary>
+              <Suspense fallback={
+                <div className="min-h-screen flex items-center justify-center" role="status" aria-live="polite">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                  <span className="sr-only">Chargement en cours...</span>
+                </div>
+              }>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
+                  <Route path="/admin" element={<AuthRoute><Admin /></AuthRoute>} />
+                  <Route path="/commercial" element={<AuthRoute><Commercial /></AuthRoute>} />
+                  <Route path="/landing/assurance" element={<LandingAds />} />
+                  <Route path="/landing/auto" element={<LandingAuto />} />
+                  <Route path="/landing/sante" element={<LandingSante />} />
+                  <Route path="/landing/habitation" element={<LandingHabitation />} />
+                  <Route path="/landing/moto" element={<LandingMoto />} />
+                  <Route path="/landing/animaux" element={<LandingAnimaux />} />
+                  <Route path="/landing/pret" element={<LandingPret />} />
+                  <Route path="/landing/vie" element={<LandingVie />} />
+                  <Route path="/landing/prevoyance" element={<LandingPrevoyance />} />
+                  <Route path="/landing/rc-pro" element={<LandingRCPro />} />
+                  <Route path="/landing/gli" element={<LandingGLI />} />
+                  <Route path="/landing/pno" element={<LandingPNO />} />
+                  <Route path="/landing/mrp" element={<LandingMRP />} />
+                  <Route path="/comparateur" element={<Comparateur />} />
+                  <Route path="/assurance-auto-malusse" element={<AssuranceAutoMalusse />} />
+                  <Route path="/assurance-auto-jeune-conducteur" element={<AssuranceJeuneConducteur />} />
+                  <Route path="/mutuelle-tns" element={<MutuelleTNS />} />
+                  <Route path="/assurance-auto-comparatif" element={<CategorieAutoSEO />} />
+                  <Route path="/assurance-trottinette-electrique" element={<AssuranceTrottinetteElectrique />} />
+                  <Route path="/assurance-auto-permis-etranger" element={<AssuranceAutoPermisEtranger />} />
+                  <Route path="/assurance-emprunteur" element={<AssuranceEmprunteurSEO />} />
+                  
+                  <Route path="/assurance-auto/:department" element={<RegionalInsurancePage />} />
+                  <Route path="/assurance-auto" element={<AssuranceAuto />} />
+                  <Route path="/assurance-sante" element={<AssuranceSante />} />
+                  <Route path="/assurance-moto" element={<AssuranceMoto />} />
+                  <Route path="/assurance-habitation" element={<AssuranceHabitation />} />
+                  <Route path="/assurance-pret" element={<AssurancePret />} />
+                  <Route path="/assurance-prevoyance" element={<AssurancePrevoyance />} />
+                  <Route path="/assurance-animaux" element={<AssuranceAnimaux />} />
+                  <Route path="/assurance-vie" element={<AssuranceVie />} />
+                  <Route path="/assurance-mrp" element={<AssuranceMRP />} />
+                  <Route path="/assurance-rc-pro" element={<AssuranceRCPro />} />
+                  <Route path="/assurance-gli" element={<AssuranceGLI />} />
+                  <Route path="/assurance-pno" element={<AssurancePNO />} />
+                  <Route path="/gestion-locative" element={<GestionLocative />} />
+                  <Route path="/qui-sommes-nous" element={<QuiSommesNous />} />
+                  <Route path="/nos-partenaires" element={<NosPartenaires />} />
+                  <Route path="/avis-clients" element={<AvisClients />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/:slug" element={<BlogArticle />} />
+                  <Route path="/glossaire" element={<Glossaire />} />
+                  <Route path="/glossaire/:slug" element={<GlossaireTerme />} />
+                  <Route path="/politique-cookies" element={<PolitiqueCookies />} />
+                  <Route path="/mentions-legales" element={<MentionsLegales />} />
+                  <Route path="/cgu" element={<CGU />} />
+                  <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/newsletter-gestion" element={<NewsletterGestion />} />
+                  <Route path="/plan-du-site" element={<PlanDuSite />} />
+                  <Route path="/merci" element={<Merci />} />
+                  <Route path="/outils/calculateur-bonus-malus" element={<CalculateurBonusMalus />} />
+                  <Route path="/comparatif/:slug" element={<DuelPage />} />
+                  <Route path="/comparatif" element={<DuelPage />} />
+                  <Route path="/profil/:slug" element={<NicheProfilePage />} />
+                  <Route path="/profil" element={<NicheProfilePage />} />
+                  <Route path="/llms.txt" element={<LlmsTxt />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </ErrorBoundary>
+            <Suspense fallback={null}>
+              <CookieBanner />
+            </Suspense>
+            {showDeferredWidgets && (
+              <>
+                <Suspense fallback={null}>
+                  <AIChatbot />
+                </Suspense>
+                <Suspense fallback={null}>
+                  <ContractOptimizerWidget />
+                </Suspense>
+              </>
+            )}
+          </BrowserRouter>
+        </TooltipProvider>
+      </LanguageProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
