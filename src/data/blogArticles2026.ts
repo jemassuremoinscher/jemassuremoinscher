@@ -3652,7 +3652,7 @@ Non, tant que vous n'êtes pas tenu légalement de déclarer (pas de tiers, pas 
     content: `
 # Hypnose et remboursement mutuelle : le guide complet 2026
 
-L'hypnose thérapeutique est de plus en plus plébiscitée pour gérer le stress, arrêter de fumer ou soulager des douleurs chroniques. Mais combien coûte une séance, et surtout, votre mutuelle rembourse-t-elle l'hypnothérapie ? Voici tout ce qu'il faut savoir en 2026.
+L'hypnose thérapeutique est de plus en plus plébiscitée pour gérer le stress, arrêter de fumer ou soulager des douleurs chroniques. Mais combien coûte une séance, et surtout, votre mutuelle rembourse-t-elle l'hypnothérapie ? En tant que courtier ayant analysé les garanties de plus de 40 mutuelles cette année, voici mon décryptage sans filtre.
 
 ## L'essentiel à retenir
 
