@@ -3640,7 +3640,7 @@ Non, tant que vous n'êtes pas tenu légalement de déclarer (pas de tiers, pas 
     `
   },
   {
-    id: "58",
+    id: "59",
     title: "Hypnose et remboursement mutuelle : quelles mutuelles remboursent en 2026 ?",
     slug: "hypnose-remboursement-mutuelle-2026",
     description: "Découvrez quelles mutuelles remboursent l'hypnose en 2026, les tarifs moyens d'une séance d'hypnothérapie et comment se faire rembourser. Guide complet par un expert santé.",
@@ -3652,7 +3652,7 @@ Non, tant que vous n'êtes pas tenu légalement de déclarer (pas de tiers, pas 
     content: `
 # Hypnose et remboursement mutuelle : le guide complet 2026
 
-L'hypnose thérapeutique est de plus en plus plébiscitée pour gérer le stress, arrêter de fumer ou soulager des douleurs chroniques. Mais combien coûte une séance, et surtout, votre mutuelle rembourse-t-elle l'hypnothérapie ? Voici tout ce qu'il faut savoir en 2026.
+L'hypnose thérapeutique est de plus en plus plébiscitée pour gérer le stress, arrêter de fumer ou soulager des douleurs chroniques. Mais combien coûte une séance, et surtout, votre mutuelle rembourse-t-elle l'hypnothérapie ? En tant que courtier ayant analysé les garanties de plus de 40 mutuelles cette année, voici mon décryptage sans filtre.
 
 ## L'essentiel à retenir
 
@@ -3756,13 +3756,15 @@ La facture doit mentionner :
 
 ## Changer de mutuelle pour se faire rembourser l'hypnose
 
-Si votre mutuelle actuelle ne propose pas de forfait médecines douces, vous pouvez **changer à tout moment** grâce à la résiliation infra-annuelle (loi du 14 juillet 2019).
+Si votre mutuelle actuelle ne propose pas de forfait médecines douces, vous pouvez **changer à tout moment** grâce à la [résiliation infra-annuelle](/blog/resiliation-assurance-loi-hamon-guide-2026) (loi du 14 juillet 2019).
 
 **Critères pour bien choisir :**
 - Forfait médecines douces ≥ 200€/an
 - Pas de condition de prescription médicale préalable
 - Praticiens certifiés ARCHE/IFH acceptés (pas uniquement les médecins)
 - Pas de délai de carence sur le forfait médecines douces
+
+Pour les indépendants et TNS, le choix de la mutuelle est encore plus stratégique car les cotisations sont déductibles fiscalement. Consultez notre [guide mutuelle TNS](/mutuelle-tns) pour optimiser votre couverture.
 
 > **🦉 Conseil d'Arthur :** En changeant de mutuelle, certains assurés ont récupéré jusqu'à **400€/an** de remboursement pour leurs séances d'hypnose et d'ostéopathie combinées. Comparez gratuitement en 2 minutes. **[→ Comparer les mutuelles maintenant](/assurance-sante)**
 
@@ -3785,7 +3787,7 @@ Le remboursement n'est pas un critère de qualité. Vérifiez plutôt la certifi
     `
   },
   {
-    id: "59",
+    id: "60",
     title: "Devis assurance auto jeune conducteur : simulez votre prix en 2 min (2026)",
     slug: "devis-assurance-auto-jeune-conducteur-2026",
     description: "Jeune conducteur ? Obtenez un devis assurance auto en 2 minutes. Tarifs moyens 2026, astuces pour payer moins cher et simulation gratuite avec 50+ assureurs.",
@@ -3797,7 +3799,7 @@ Le remboursement n'est pas un critère de qualité. Vérifiez plutôt la certifi
     content: `
 # Devis assurance auto jeune conducteur : combien ça coûte vraiment en 2026 ?
 
-Vous venez d'obtenir votre permis et vous cherchez une assurance auto pas chère ? La surprime jeune conducteur (jusqu'à +100% la première année) rend la comparaison indispensable. Voici combien vous allez payer, et comment réduire la facture.
+Vous venez d'obtenir votre permis et vous cherchez une assurance auto pas chère ? La surprime jeune conducteur (jusqu'à +100% la première année) rend la comparaison indispensable. En tant qu'ancien souscripteur auto, je vous montre exactement comment les assureurs calculent votre prime — et comment contourner le système.
 
 ## L'essentiel à retenir
 
@@ -3850,7 +3852,7 @@ Chaque année sans sinistre responsable, votre coefficient baisse de 5% :
 - Après 2 ans : 0,90
 - Bonus maximum (après 13 ans) : 0,50
 
-**Attention** : un seul accident responsable peut augmenter votre coefficient de 25% (×1,25).
+**Attention** : un seul accident responsable peut augmenter votre coefficient de 25% (×1,25). Consultez notre [calculateur bonus-malus](/outils/calculateur-bonus-malus) pour simuler votre coefficient.
 
 ## Les 8 meilleures astuces pour payer moins cher
 
@@ -3866,7 +3868,7 @@ Les assureurs classent les véhicules par groupes de tarification (SRA). Les moi
 | Peugeot 208 (1.2 PureTech) | 5 CV | 1 100€/an |
 | Renault Clio V (SCe 65) | 4 CV | 1 000€/an |
 
-**À éviter** : les sportives (Golf GTI, 208 GTi), les SUV puissants, et tout véhicule de plus de **110 chevaux** qui attire les surprimes.
+**À éviter** : les sportives (Golf GTI, 208 GTi), les SUV puissants, et tout véhicule de plus de **110 chevaux** qui attire les surprimes. Pour en savoir plus, consultez notre article [assurer une voiture puissante en tant que jeune conducteur](/blog/jeune-conducteur-voiture-puissante-assurance).
 
 ### 2. Déclarez-vous conducteur secondaire (temporairement)
 
@@ -3892,7 +3894,7 @@ Certains assureurs (Wilov, L'Olivier) proposent des formules **pay-as-you-drive*
 
 ### 7. Regroupez vos contrats
 
-Si vos parents sont déjà chez un assureur pour leur habitation ou véhicule, négociez un **tarif groupé**. Certains assureurs offrent 10-15% de remise multi-contrats.
+Si vos parents sont déjà chez un assureur pour leur [habitation](/assurance-habitation) ou véhicule, négociez un **tarif groupé**. Certains assureurs offrent 10-15% de remise multi-contrats.
 
 ### 8. Comparez, comparez, comparez
 
@@ -3936,6 +3938,13 @@ Les écarts entre assureurs peuvent atteindre **50%** pour le même profil. Un c
 - **Meilleur devis trouvé** : 780€/an (tiers étendu) chez L'Olivier
 - **Économie avec AAC vs sans** : 420€/an
 
+## Vous avez un malus ? D'autres solutions existent
+
+Si vous accumulez un sinistre responsable en tant que jeune conducteur, votre coefficient explose. Consultez nos guides spécialisés :
+- [Assurance auto malussé](/assurance-auto-malusse) : trouvez un assureur malgré un coefficient défavorable
+- [Résiliation pour non-paiement](/blog/assurance-auto-resiliation-non-paiement-guide) : les solutions après une résiliation
+- [Assurance auto permis étranger](/assurance-auto-permis-etranger) : si vous avez un permis obtenu à l'étranger
+
 ## FAQ
 
 **Combien coûte une assurance auto pour un jeune conducteur en 2026 ?**
@@ -3955,7 +3964,7 @@ Non, sauf si votre véhicule vaut plus de 10 000€. Pour un véhicule d'occasio
     `
   },
   {
-    id: "60",
+    id: "61",
     title: "Assurance PNO pas chère : comparatif et guide du propriétaire non occupant 2026",
     slug: "assurance-pno-pas-chere-comparatif-2026",
     description: "Trouvez l'assurance PNO la moins chère en 2026. Comparatif des tarifs, obligations légales et astuces pour réduire votre prime de propriétaire non occupant.",
@@ -3967,7 +3976,7 @@ Non, sauf si votre véhicule vaut plus de 10 000€. Pour un véhicule d'occasio
     content: `
 # Assurance PNO pas chère : comment trouver la meilleure offre en 2026
 
-Vous êtes propriétaire d'un bien que vous louez ou qui est vacant ? L'assurance PNO (Propriétaire Non Occupant) est quasiment indispensable — et parfois obligatoire. Voici comment la payer au juste prix.
+Vous êtes propriétaire d'un bien que vous louez ou qui est vacant ? L'assurance PNO (Propriétaire Non Occupant) est quasiment indispensable — et parfois obligatoire. Après avoir accompagné des centaines d'investisseurs locatifs, voici mon analyse terrain des offres 2026.
 
 ## L'essentiel à retenir
 
@@ -3991,6 +4000,8 @@ Pour une maison individuelle, l'assurance PNO n'est pas légalement obligatoire.
 - L'assurance du locataire ne couvre pas vos murs ni les parties privatives
 - En cas de vacance locative, vous n'avez **aucune couverture**
 - Un dégât des eaux ou un incendie peut coûter **des dizaines de milliers d'euros**
+
+> **🦉 Conseil d'Arthur :** J'ai vu un propriétaire à Lyon se retrouver avec 35 000€ de travaux après un dégât des eaux pendant une vacance locative de 2 mois — sans PNO. Pour 100€/an, ne prenez pas ce risque. **[→ Comparer les assurances PNO](/assurance-pno)**
 
 ## Combien coûte une assurance PNO en 2026 ?
 
@@ -4048,10 +4059,22 @@ Pour une maison individuelle, l'assurance PNO n'est pas légalement obligatoire.
 
 ### Ce que l'assurance PNO ne couvre PAS
 
-- Les biens personnels du locataire (c'est son assurance habitation)
+- Les biens personnels du locataire (c'est son [assurance habitation](/assurance-habitation))
 - L'usure normale du bien
 - Les vices cachés connus au moment de la souscription
-- Les loyers impayés (c'est la **GLI**, un contrat distinct)
+- Les loyers impayés (c'est la [GLI](/assurance-gli), un contrat distinct)
+
+## PNO, GLI, habitation : ne confondez pas ces 3 assurances
+
+L'investisseur locatif débutant confond souvent ces 3 contrats. Voici la différence :
+
+| Assurance | Qui la souscrit | Ce qu'elle couvre | Prix moyen |
+|---|---|---|---|
+| **PNO** | Le propriétaire | Dégâts au bien (murs, parties privatives) | 80-200€/an |
+| [**GLI**](/assurance-gli) | Le propriétaire | Loyers impayés + dégradations locatives | 2,5-4% du loyer/an |
+| [**Habitation**](/assurance-habitation) | Le locataire | Biens personnels du locataire + RC | 150-300€/an |
+
+Les 3 sont complémentaires. La PNO et la GLI sont souvent proposées ensemble en pack investisseur avec des remises de 10-20%.
 
 ## Les 5 astuces pour réduire votre prime PNO
 
@@ -4065,7 +4088,7 @@ Si vous êtes multi-propriétaire, certains assureurs offrent des **remises de 1
 
 ### 3. Augmentez votre franchise
 
-Passer de 150€ à 300€ de franchise réduit la prime de **10 à 15%**. Pour un bien en bon état, c'est un arbitrage rentable.
+Passer de 150€ à 300€ de franchise réduit la prime de **10 à 15%**. Pour un bien en bon état, c'est un arbitrage rentable. C'est le même mécanisme que pour l'[assurance auto](/assurance-auto) : une franchise plus haute = une prime plus basse.
 
 ### 4. Ajustez les capitaux assurés
 
@@ -4089,6 +4112,10 @@ En location meublée (LMNP), l'assurance PNO est encore plus importante car votr
 
 Après des travaux de rénovation, prévenez votre assureur. L'augmentation de la valeur du bien peut modifier vos garanties et vos capitaux assurés.
 
+### Piège n°4 : oublier la résiliation annuelle
+
+Grâce à la [loi Hamon](/blog/resiliation-assurance-loi-hamon-guide-2026), vous pouvez changer d'assurance PNO à tout moment après la première année. N'hésitez pas à renégocier ou comparer chaque année.
+
 > **🦉 Conseil d'Arthur :** L'assurance PNO est **déductible de vos revenus fonciers** (régime réel). Conservez bien vos factures ! C'est un avantage fiscal souvent oublié par les investisseurs débutants. **[→ Comparer les assurances PNO](/assurance-pno)**
 
 ## FAQ
@@ -4100,13 +4127,13 @@ Oui en copropriété depuis la loi ALUR 2014. Hors copropriété, elle n'est pas
 Les meilleures offres démarrent à 50-65€/an pour un studio en copropriété. Pour un T2, comptez 70 à 110€/an. En comparant, vous pouvez trouver 40 à 60% moins cher que la première offre.
 
 **Quelle est la différence entre PNO et GLI ?**
-L'assurance PNO protège votre bien immobilier (dégâts, responsabilité civile). La GLI (Garantie Loyers Impayés) couvre les impayés de loyers. Ce sont deux contrats complémentaires mais distincts.
+L'assurance PNO protège votre bien immobilier (dégâts, responsabilité civile). La [GLI](/assurance-gli) (Garantie Loyers Impayés) couvre les impayés de loyers. Ce sont deux contrats complémentaires mais distincts.
 
 **L'assurance PNO est-elle déductible des impôts ?**
 Oui, la prime PNO est déductible de vos revenus fonciers si vous êtes au régime réel d'imposition. Elle est considérée comme une charge de propriété.
 
 **Que se passe-t-il si je n'ai pas d'assurance PNO en copropriété ?**
 Le syndic peut vous mettre en demeure de souscrire. En cas de sinistre, vous êtes personnellement responsable de tous les dommages causés, y compris aux parties communes et aux voisins.
-    `
+`
   }
 ];

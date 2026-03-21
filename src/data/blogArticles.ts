@@ -4816,6 +4816,7 @@ const spreadDates: Record<string, string> = {
   "58": "10 mars 2026",
   "59": "12 mars 2026",
   "60": "14 mars 2026",
+  "61": "16 mars 2026",
 };
 
 // Assign unique sequential IDs and spread dates to existing articles
