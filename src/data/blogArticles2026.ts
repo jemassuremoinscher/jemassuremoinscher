@@ -3799,7 +3799,7 @@ Le remboursement n'est pas un critère de qualité. Vérifiez plutôt la certifi
     content: `
 # Devis assurance auto jeune conducteur : combien ça coûte vraiment en 2026 ?
 
-Vous venez d'obtenir votre permis et vous cherchez une assurance auto pas chère ? La surprime jeune conducteur (jusqu'à +100% la première année) rend la comparaison indispensable. Voici combien vous allez payer, et comment réduire la facture.
+Vous venez d'obtenir votre permis et vous cherchez une assurance auto pas chère ? La surprime jeune conducteur (jusqu'à +100% la première année) rend la comparaison indispensable. En tant qu'ancien souscripteur auto, je vous montre exactement comment les assureurs calculent votre prime — et comment contourner le système.
 
 ## L'essentiel à retenir
 
