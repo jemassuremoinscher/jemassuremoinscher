@@ -25,7 +25,7 @@ const formatDuration = (seconds: number) => {
 };
 
 export const GoogleAnalyticsDashboard = () => {
-  const [dateRange, setDateRange] = useState('30daysAgo');
+  const [dateRange, setDateRange] = useState('1daysAgo');
 
   const { data, isLoading, error, refetch, isRefetching } = useQuery({
     queryKey: ['ga4-analytics', dateRange],
