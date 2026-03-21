@@ -3785,7 +3785,7 @@ Le remboursement n'est pas un critère de qualité. Vérifiez plutôt la certifi
     `
   },
   {
-    id: "59",
+    id: "60",
     title: "Devis assurance auto jeune conducteur : simulez votre prix en 2 min (2026)",
     slug: "devis-assurance-auto-jeune-conducteur-2026",
     description: "Jeune conducteur ? Obtenez un devis assurance auto en 2 minutes. Tarifs moyens 2026, astuces pour payer moins cher et simulation gratuite avec 50+ assureurs.",
