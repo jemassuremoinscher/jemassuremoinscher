@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { lazy, Suspense, useMemo } from "react";
+import { lazy, Suspense, useEffect, useMemo } from "react";
 
 // Default mascot: use public/ path for HTML-discoverable preloading (LCP optimization)
 const defaultMascotSrc = "/arthur-wink-thumbsup.webp";
@@ -14,6 +14,15 @@ const arthurHouse = "/arthur-house.webp";
 const arthurSick = "/arthur-sick.webp";
 const arthurAnimals = "/arthur-animals.webp";
 const arthurIdea = "/arthur-idea.webp";
+
+const heroCategories = [
+  { mascot: arthurCar, labelKey: "category.auto", link: "/assurance-auto", alt: "Arthur auto" },
+  { mascot: arthurMoto, labelKey: "category.moto", link: "/assurance-moto", alt: "Arthur moto" },
+  { mascot: arthurHouse, labelKey: "category.home", link: "/assurance-habitation", alt: "Arthur habitation" },
+  { mascot: arthurSick, labelKey: "category.health", link: "/assurance-sante", alt: "Arthur santé" },
+  { mascot: arthurAnimals, labelKey: "category.pets", link: "/assurance-animaux", alt: "Arthur animaux" },
+  { mascot: arthurIdea, labelKey: "category.life", link: "/assurance-vie", alt: "Arthur vie" },
+] as const;
 
 // Inline SVG icons — zero bundle cost
 const SparklesIcon = () => <svg className="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>;
@@ -32,14 +41,33 @@ const Hero = () => {
     return !!params.get("ref");
   }, []);
 
-  const categories = [
-    { mascot: arthurCar, labelKey: "category.auto", link: "/assurance-auto", alt: "Arthur auto" },
-    { mascot: arthurMoto, labelKey: "category.moto", link: "/assurance-moto", alt: "Arthur moto" },
-    { mascot: arthurHouse, labelKey: "category.home", link: "/assurance-habitation", alt: "Arthur habitation" },
-    { mascot: arthurSick, labelKey: "category.health", link: "/assurance-sante", alt: "Arthur santé" },
-    { mascot: arthurAnimals, labelKey: "category.pets", link: "/assurance-animaux", alt: "Arthur animaux" },
-    { mascot: arthurIdea, labelKey: "category.life", link: "/assurance-vie", alt: "Arthur vie" },
-  ];
+  useEffect(() => {
+    let timeoutId: number | null = null;
+    let idleId: number | null = null;
+
+    const warmUpCategoryImages = () => {
+      heroCategories.slice(1).forEach((category) => {
+        const img = new Image();
+        img.decoding = "async";
+        img.src = category.mascot;
+      });
+    };
+
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(warmUpCategoryImages, { timeout: 3000 });
+    } else {
+      timeoutId = window.setTimeout(warmUpCategoryImages, 1200);
+    }
+
+    return () => {
+      if (idleId !== null && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, []);
 
   const handleCategoryClick = (category: string) => {
     trackEvent('insurance_type_click', {
@@ -73,7 +101,7 @@ const Hero = () => {
 
         {/* Category Cards Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 max-w-4xl mx-auto animate-fade-in-up-delay-2">
-          {categories.map((category) =>
+          {heroCategories.map((category, index) =>
             <Link
               key={category.labelKey}
               to={category.link}
@@ -88,8 +116,9 @@ const Hero = () => {
                       className="h-12 w-12 md:h-16 md:w-16 object-contain"
                       width={64}
                       height={64}
-                      loading="eager"
+                      loading={index === 0 ? "eager" : "lazy"}
                       decoding="async"
+                      fetchPriority={index === 0 ? "high" : "auto"}
                     />
                   </div>
                   <span className="font-bold text-sm md:text-base text-foreground group-hover:text-primary transition-colors font-[Inter]">
