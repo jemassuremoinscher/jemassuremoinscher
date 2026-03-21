@@ -3894,7 +3894,7 @@ Certains assureurs (Wilov, L'Olivier) proposent des formules **pay-as-you-drive*
 
 ### 7. Regroupez vos contrats
 
-Si vos parents sont déjà chez un assureur pour leur habitation ou véhicule, négociez un **tarif groupé**. Certains assureurs offrent 10-15% de remise multi-contrats.
+Si vos parents sont déjà chez un assureur pour leur [habitation](/assurance-habitation) ou véhicule, négociez un **tarif groupé**. Certains assureurs offrent 10-15% de remise multi-contrats.
 
 ### 8. Comparez, comparez, comparez
 
