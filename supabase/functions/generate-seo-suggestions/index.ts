@@ -251,7 +251,7 @@ Format de réponse en JSON:
         const rawContent = aiData.choices?.[0]?.message?.content;
         if (!rawContent) continue;
 
-        // Extract valid JSON from AI response
+        // Extract valid JSON from AI response — handle unescaped newlines inside string values
         let article;
         try {
           let cleaned = rawContent
@@ -259,11 +259,10 @@ Format de réponse en JSON:
             .replace(/```\s*/gi, '')
             .trim();
           
-          // Extract JSON object between first { and last }
           const firstBrace = cleaned.indexOf('{');
           const lastBrace = cleaned.lastIndexOf('}');
           if (firstBrace === -1 || lastBrace === -1 || lastBrace <= firstBrace) {
-            console.error(`No JSON object found for "${keyword}", raw start: ${rawContent.substring(0, 100)}`);
+            console.error(`No JSON object found for "${keyword}"`);
             continue;
           }
           cleaned = cleaned.substring(firstBrace, lastBrace + 1);
@@ -271,12 +270,22 @@ Format de réponse en JSON:
           try {
             article = JSON.parse(cleaned);
           } catch {
-            const sanitized = cleaned.replace(/[\x00-\x1f\x7f]/g, (ch: string) => {
-              if (ch === '\n') return '\\n';
-              if (ch === '\r') return '\\r';
-              if (ch === '\t') return '\\t';
-              return '';
-            });
+            // State-machine: escape control chars ONLY inside JSON string values
+            let sanitized = '';
+            let inString = false;
+            let escaped = false;
+            for (let i = 0; i < cleaned.length; i++) {
+              const ch = cleaned[i];
+              if (escaped) { sanitized += ch; escaped = false; continue; }
+              if (ch === '\\' && inString) { sanitized += ch; escaped = true; continue; }
+              if (ch === '"') { inString = !inString; sanitized += ch; continue; }
+              if (inString) {
+                if (ch === '\n') { sanitized += '\\n'; continue; }
+                if (ch === '\r') { sanitized += '\\r'; continue; }
+                if (ch === '\t') { sanitized += '\\t'; continue; }
+              }
+              sanitized += ch;
+            }
             article = JSON.parse(sanitized);
           }
         } catch (parseErr) {
