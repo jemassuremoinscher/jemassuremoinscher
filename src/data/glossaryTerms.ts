@@ -7,6 +7,7 @@ export interface GlossaryTerm {
   content: string;
   tags: string[];
   relatedTerms?: string[];
+  relatedProducts?: { label: string; url: string }[];
 }
 
 export const glossaryCategories = [
