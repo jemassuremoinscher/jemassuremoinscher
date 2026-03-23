@@ -1618,189 +1618,41 @@ Complète le remboursement de la Sécu, souvent exprimé en % de la BR.
 
 **Conseil :** Indispensable si vous prévoyez d'avoir des enfants dans les 2-3 ans.
 
-## Les 4 profils types et leur mutuelle idéale
+## Comparatif réel : quelle mutuelle pour quel profil ? (mars 2026)
 
-### Profil 1 : Jeune actif (20-35 ans)
+| Mutuelle | Solo jeune | Solo 40 ans | Famille (4 pers.) | Optique/an | Dentaire | Forces |
+|----------|-----------|-------------|-------------------|------------|----------|--------|
+| Alan | 45 € | 75 € | 220 € | 400 € | 300 % BR | 100 % digital, remboursement 24h |
+| April | 38 € | 65 € | 190 € | 350 € | 250 % BR | Meilleur rapport qualité-prix |
+| Harmonie Mutuelle | 52 € | 85 € | 245 € | 500 € | 350 % BR | Réseau de 500 agences |
+| MGEN | 43 € | 72 € | 210 € | 400 € | 300 % BR | Tarifs fonctionnaires |
+| Swiss Life | 68 € | 110 € | 310 € | 600 € | 400 % BR | Garanties premium illimitées |
 
-**Besoins :**
-- Peu de frais de santé
-- Budget limité
+*Tarifs indicatifs mars 2026, formule intermédiaire*
 
-**Mutuelle recommandée :**
-- Hospitalisation : 150% BR
-- Optique : 100-150€
-- Dentaire : 200% BR
-- Médecines douces : 50€
+### Nos recommandations par profil
 
-**Prix moyen :** 30-50€/mois
+**Jeune actif (20-35 ans)** → **Alan** ou **April** : budget maîtrisé, digital, sans délai de carence
+**Famille avec enfants** → **Harmonie Mutuelle** : orthodontie (500-1000 €/enfant), réseau de soins étendu
+**Senior (60+ ans)** → **Swiss Life** ou **Harmonie** : hospitalisation renforcée, audioprothèses, cures
+**TNS / Indépendant** → **Malakoff Humanis** : déduction Madelin, garanties modulables
 
-### Profil 2 : Famille avec enfants
-
-**Besoins :**
-- Optique pour toute la famille
-- Dentaire (orthodontie)
-- Hospitalisation correcte
-
-**Mutuelle recommandée :**
-- Hospitalisation : 200% BR
-- Optique : 250-400€/personne
-- Dentaire : 300-400% BR
-- Orthodontie : 500-1000€/enfant
-
-**Prix moyen :** 120-200€/mois (pour 4 personnes)
-
-### Profil 3 : Senior (60+ ans)
-
-**Besoins :**
-- Soins dentaires fréquents
-- Hospitalisation renforcée
-- Optique progressive
-
-**Mutuelle recommandée :**
-- Hospitalisation : 300% BR + chambre
-- Optique : 400-600€
-- Dentaire : 400-600% BR
-- Cures thermales : incluses
-
-**Prix moyen :** 80-150€/mois
-
-### Profil 4 : Travailleur indépendant
-
-**Besoins :**
-- Protection maximale
-- Rapidité de remboursement
-
-**Mutuelle recommandée :**
-- Toutes garanties renforcées
-- Tiers payant généralisé
-- Assistance 24/7
-
-**Prix moyen :** 70-120€/mois
-
-## Comment comparer efficacement
-
-### Étape 1 : Listez vos dépenses de santé
-
-Sur les 2 dernières années, notez :
-- Nombre de paires de lunettes
-- Soins dentaires (couronnes, implants)
-- Hospitalisations
-- Consultations spécialistes
-
-### Étape 2 : Calculez le vrai coût
-
-**Formule :**
-Coût total = Cotisations annuelles - Remboursements reçus + Reste à charge
-
-**Exemple :**
-- Mutuelle A : 60€/mois (720€/an)
-- Dépenses : 1500€
-- Remboursé : 1100€
-- **Coût réel : 720€ + 400€ = 1120€**
-
-- Mutuelle B : 45€/mois (540€/an)
-- Remboursé : 900€
-- **Coût réel : 540€ + 600€ = 1140€**
-
-→ Mutuelle A est plus chère mais plus intéressante !
-
-### Étape 3 : Vérifiez les réseaux de soins
-
-**Réseau de soins :** Dentistes et opticiens partenaires proposant des tarifs négociés.
-
-**Avantages :**
-- Tiers payant intégral
-- Prix encadrés
-- Qualité garantie
-
-**Inconvénient :**
-Moins de liberté de choix
-
-### Étape 4 : Testez le service client
-
-Avant de souscrire :
-- Appelez pour poser des questions
-- Vérifiez les délais de remboursement
-- Lisez les avis clients
+> **💡 Retour terrain — Le cas d'Antoine, freelance 38 ans**
+> Antoine payait 92 €/mois chez Harmonie Mutuelle avec des garanties dentaires dont il n'avait pas besoin (0 soins dentaires en 4 ans). En passant chez Alan à 55 €/mois avec un renforcement optique (+200 € de plafond annuel pour ses lentilles progressives), il économise **444 €/an** tout en étant mieux couvert sur son vrai besoin.
 
 ## Les pièges à éviter
 
 ### 1. Les délais de carence
-
-**C'est quoi ?** Période pendant laquelle vous cotisez mais n'êtes pas encore couvert.
-
-**Durée typique :**
-- Soins courants : 0-1 mois
-- Dentaire/Optique : 3-6 mois
-- Hospitalisation : 1-3 mois
-
-**Astuce :** Souscrivez avant d'en avoir besoin !
+Période où vous cotisez sans être couvert. Durée typique : 3-6 mois en dentaire/optique. **Alan et April n'appliquent aucun délai de carence** — c'est un vrai avantage concurrentiel.
 
 ### 2. Les exclusions cachées
-
-Lisez attentivement les exclusions :
-- Implants dentaires non couverts
-- Ostéopathie exclue
-- Franchise sur certains actes
+Implants dentaires, ostéopathie, psychologue… lisez les conditions particulières, pas seulement la plaquette commerciale.
 
 ### 3. Les limites d'âge
+Certaines garanties diminuent ou s'arrêtent après 65 ans. Vérifiez le contrat avant de vous retrouver sans couverture hospitalisation.
 
-Certaines garanties s'arrêtent ou diminuent après 60-65 ans. Vérifiez !
-
-### 4. Le questionnaire de santé
-
-**Important :** Répondez honnêtement. Une fausse déclaration peut annuler vos droits.
-
-## Tableau comparatif des niveaux
-
-| Garantie | Économique | Confort | Premium |
-|----------|------------|---------|---------|
-| **Prix** | 30-50€ | 60-80€ | 90-150€ |
-| **Optique** | 100€ | 250€ | 500€ |
-| **Dentaire** | 200% BR | 350% BR | 500% BR |
-| **Hospitalisation** | 150% | 250% | 350% |
-| **Médecines douces** | 0€ | 100€ | 250€ |
-| **Pour qui ?** | Jeunes | Familles | Seniors |
-
-## Conseils pour économiser
-
-### 1. Mutuelle d'entreprise obligatoire
-
-Votre employeur paie au moins 50%. C'est souvent la meilleure option !
-
-**Surcomplémentaire :** Si insuffisante, ajoutez une mutuelle individuelle.
-
-### 2. Mutuelle étudiante
-
-Si vous avez moins de 28 ans et êtes étudiant, des offres spécifiques existent (30-40€/mois).
-
-### 3. Complémentaire santé solidaire (CSS)
-
-**Pour qui ?** Revenus modestes
-**Avantages :** Gratuite ou à 1€/jour + tiers payant
-**Comment ?** Demande à votre CPAM
-
-### 4. Contrat responsable
-
-Privilégiez les contrats "responsables" (avec label) :
-- Moins chers
-- Avantages fiscaux (pour TNS)
-
-## Que faire avant de changer ?
-
-✅ Vérifiez les délais de carence
-✅ Comparez avec votre mutuelle actuelle
-✅ Vérifiez la date de résiliation possible
-✅ Assurez la continuité de garanties
-✅ Informez-vous sur la portabilité (si vous quittez votre emploi)
-
-## Conclusion
-
-Choisir sa mutuelle ne se fait pas au hasard. Analysez vos besoins réels, comparez les garanties clés (optique, dentaire, hospitalisation) et n'oubliez pas de calculer le coût réel en incluant vos dépenses prévisionnelles.
-
-**Notre conseil final :** Ne prenez ni trop, ni trop peu. Une mutuelle intermédiaire adaptée à votre profil est souvent le meilleur choix.
-
-**Prêt à trouver votre mutuelle idéale ?** Comparez gratuitement les offres et économisez jusqu'à 300€ par an.
+> **💡 Le conseil du courtier**
+> Calculez le **coût réel** de votre mutuelle, pas juste la cotisation. Formule : Cotisations annuelles + Restes à charge = Coût réel. Une mutuelle à 60 €/mois avec 200 € de reste à charge vous coûte **920 €/an**. Une mutuelle à 45 €/mois avec 600 € de reste à charge vous coûte **1 140 €/an**. La moins chère en apparence peut être la plus coûteuse en réalité.
     `
   },
   {
