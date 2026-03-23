@@ -20,6 +20,17 @@ export default defineConfig(({ mode }) => {
     assuranceMrp: path.resolve(__dirname, "assurance-mrp/index.html"),
     assurancePno: path.resolve(__dirname, "assurance-pno/index.html"),
     assuranceGli: path.resolve(__dirname, "assurance-gli/index.html"),
+    // Glossaire terms
+    glossaireRc: path.resolve(__dirname, "glossaire/responsabilite-civile/index.html"),
+    glossaireSinistre: path.resolve(__dirname, "glossaire/sinistre/index.html"),
+    glossaireTicket: path.resolve(__dirname, "glossaire/ticket-moderateur/index.html"),
+    glossaireTiers: path.resolve(__dirname, "glossaire/tiers/index.html"),
+    glossaireTousRisques: path.resolve(__dirname, "glossaire/tous-risques/index.html"),
+    glossaireVetuste: path.resolve(__dirname, "glossaire/vetuste/index.html"),
+    // Utility pages
+    nosPartenaires: path.resolve(__dirname, "nos-partenaires/index.html"),
+    calculateurBonusMalus: path.resolve(__dirname, "outils/calculateur-bonus-malus/index.html"),
+    mutuelleTns: path.resolve(__dirname, "mutuelle-tns/index.html"),
   };
 
   return {
