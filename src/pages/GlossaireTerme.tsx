@@ -113,6 +113,27 @@ const GlossaireTerme = () => {
             </div>
           </article>
 
+          {term.relatedProducts && term.relatedProducts.length > 0 && (
+            <section className="mb-12">
+              <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                <ExternalLink className="h-6 w-6 text-primary" />
+                Assurances liées
+              </h2>
+              <div className="flex flex-wrap gap-3">
+                {term.relatedProducts.map((product) => (
+                  <Link
+                    key={product.url}
+                    to={product.url}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-medium hover:bg-primary/20 transition-colors"
+                  >
+                    {product.label}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+
           {relatedTerms.length > 0 && (
             <section className="mb-12">
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
