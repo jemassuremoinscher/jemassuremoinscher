@@ -6,9 +6,9 @@
   RewriteCond %{HTTPS} off
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # Redirect www to non-www (or vice versa — adjust as needed)
-  # RewriteCond %{HTTP_HOST} ^jemassuremoinscher\.fr$ [NC]
-  # RewriteRule ^ https://www.jemassuremoinscher.fr%{REQUEST_URI} [L,R=301]
+  # Redirect non-www to www
+  RewriteCond %{HTTP_HOST} ^jemassuremoinscher\.fr$ [NC]
+  RewriteRule ^ https://www.jemassuremoinscher.fr%{REQUEST_URI} [L,R=301]
 
   # SPA fallback: if the file/directory doesn't exist, serve index.html
   RewriteCond %{REQUEST_FILENAME} !-f
