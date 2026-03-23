@@ -653,6 +653,10 @@ Un canapé acheté 1 000€ il y a 5 ans, avec une vétusté de 10%/an :
 **Conseil :** Conservez vos factures d'achat. Elles servent de preuve pour l'indemnisation.`,
     tags: ["vétusté", "indemnisation", "valeur", "usure", "remplacement"],
     relatedTerms: ["5", "1"],
+    relatedProducts: [
+      { label: "Assurance Habitation", url: "/assurance-habitation" },
+      { label: "Assurance Auto", url: "/assurance-auto" },
+    ],
   },
   {
     id: "23",
