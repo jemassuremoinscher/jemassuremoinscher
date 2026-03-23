@@ -1,11 +1,11 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOOptimized from "@/components/SEOOptimized";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, ExternalLink } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { glossaryTerms } from "@/data/glossaryTerms";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
@@ -112,6 +112,27 @@ const GlossaireTerme = () => {
               ))}
             </div>
           </article>
+
+          {term.relatedProducts && term.relatedProducts.length > 0 && (
+            <section className="mb-12">
+              <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                <ExternalLink className="h-6 w-6 text-primary" />
+                Assurances liées
+              </h2>
+              <div className="flex flex-wrap gap-3">
+                {term.relatedProducts.map((product) => (
+                  <Link
+                    key={product.url}
+                    to={product.url}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-medium hover:bg-primary/20 transition-colors"
+                  >
+                    {product.label}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
           {relatedTerms.length > 0 && (
             <section className="mb-12">

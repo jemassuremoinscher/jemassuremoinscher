@@ -7,6 +7,7 @@ export interface GlossaryTerm {
   content: string;
   tags: string[];
   relatedTerms?: string[];
+  relatedProducts?: { label: string; url: string }[];
 }
 
 export const glossaryCategories = [
@@ -81,6 +82,11 @@ La prime peut être payée mensuellement, trimestriellement ou annuellement. Un 
 - Catastrophe naturelle`,
     tags: ["sinistre", "déclaration", "indemnisation", "dommage"],
     relatedTerms: ["1", "5", "6"],
+    relatedProducts: [
+      { label: "Assurance Auto", url: "/assurance-auto" },
+      { label: "Assurance Habitation", url: "/assurance-habitation" },
+      { label: "Assurance Moto", url: "/assurance-moto" },
+    ],
   },
   {
     id: "4",
@@ -155,6 +161,11 @@ C'est le niveau minimum obligatoire en assurance auto. Elle couvre uniquement le
 **Pour qui ?** L'assurance au tiers convient aux véhicules anciens ou de faible valeur.`,
     tags: ["tiers", "responsabilité civile", "RC", "auto"],
     relatedTerms: ["4", "7", "8"],
+    relatedProducts: [
+      { label: "Assurance Auto", url: "/assurance-auto" },
+      { label: "Assurance Moto", url: "/assurance-moto" },
+      { label: "Comparateur", url: "/comparateur" },
+    ],
   },
   {
     id: "7",
@@ -184,6 +195,11 @@ C'est le niveau minimum obligatoire en assurance auto. Elle couvre uniquement le
 **Coût moyen :** 30 à 50% plus cher que l'assurance au tiers, mais une protection complète en cas de sinistre.`,
     tags: ["tous risques", "auto", "garantie", "couverture complète"],
     relatedTerms: ["6", "4", "8"],
+    relatedProducts: [
+      { label: "Assurance Auto", url: "/assurance-auto" },
+      { label: "Comparateur Auto", url: "/comparateur" },
+      { label: "Jeune Conducteur", url: "/assurance-jeune-conducteur" },
+    ],
   },
   {
     id: "8",
@@ -333,6 +349,10 @@ Depuis 2021, le dispositif 100% Santé garantit un reste à charge zéro sur :
 **Rôle de la mutuelle :** La plupart des mutuelles remboursent le ticket modérateur à 100%, ce qui signifie un reste à charge nul sur les actes au tarif de base.`,
     tags: ["ticket modérateur", "sécurité sociale", "remboursement", "santé"],
     relatedTerms: ["11", "13"],
+    relatedProducts: [
+      { label: "Assurance Santé", url: "/assurance-sante" },
+      { label: "Mutuelle TNS", url: "/mutuelle-tns" },
+    ],
   },
   {
     id: "13",
@@ -390,6 +410,11 @@ Depuis 2021, le dispositif 100% Santé garantit un reste à charge zéro sur :
 **Attention :** La RC ne couvre pas vos propres dommages ni les dommages intentionnels.`,
     tags: ["responsabilité civile", "RC", "dommages", "obligation"],
     relatedTerms: ["6", "16"],
+    relatedProducts: [
+      { label: "Assurance Auto", url: "/assurance-auto" },
+      { label: "Assurance Habitation", url: "/assurance-habitation" },
+      { label: "Assurance RC Pro", url: "/assurance-rc-pro" },
+    ],
   },
   {
     id: "15",
@@ -628,6 +653,10 @@ Un canapé acheté 1 000€ il y a 5 ans, avec une vétusté de 10%/an :
 **Conseil :** Conservez vos factures d'achat. Elles servent de preuve pour l'indemnisation.`,
     tags: ["vétusté", "indemnisation", "valeur", "usure", "remplacement"],
     relatedTerms: ["5", "1"],
+    relatedProducts: [
+      { label: "Assurance Habitation", url: "/assurance-habitation" },
+      { label: "Assurance Auto", url: "/assurance-auto" },
+    ],
   },
   {
     id: "23",
