@@ -361,7 +361,6 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
         <div className="px-6 pb-8 min-h-[420px] flex flex-col">
           <AnimatePresence mode="wait" custom={direction}>
             {transitionScreen ? (
-              {/* Transition screen between steps */}
               <motion.div
                 key="transition"
                 initial={{ opacity: 0 }}
