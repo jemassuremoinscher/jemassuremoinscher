@@ -265,7 +265,7 @@ function DefaultHeroContent({ t, trackEvent }: { t: (key: string) => string; tra
           {/* Floating savings badge */}
           <div className="absolute -right-2 -top-3 md:-right-4 md:-top-4 bg-white rounded-lg px-2 py-1 md:px-2.5 md:py-1.5 shadow-md border border-accent/30 rotate-3 pointer-events-none">
             <span className="text-[10px] md:text-xs font-bold text-primary whitespace-nowrap">
-              +240€<span className="text-muted-foreground font-semibold">/an</span>
+              -240€<span className="text-muted-foreground font-semibold">/an</span>
             </span>
           </div>
         </div>
