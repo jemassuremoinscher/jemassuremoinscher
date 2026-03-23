@@ -391,6 +391,11 @@ Depuis 2021, le dispositif 100% Santé garantit un reste à charge zéro sur :
 **Attention :** La RC ne couvre pas vos propres dommages ni les dommages intentionnels.`,
     tags: ["responsabilité civile", "RC", "dommages", "obligation"],
     relatedTerms: ["6", "16"],
+    relatedProducts: [
+      { label: "Assurance Auto", url: "/assurance-auto" },
+      { label: "Assurance Habitation", url: "/assurance-habitation" },
+      { label: "Assurance RC Pro", url: "/assurance-rc-pro" },
+    ],
   },
   {
     id: "15",
