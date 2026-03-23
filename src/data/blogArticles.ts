@@ -1012,9 +1012,9 @@ Le choix de votre assurance auto dépend de votre situation personnelle. Prenez 
     author: "Thomas Leroy",
     tags: ["assurance habitation", "garanties", "conseils", "protection"],
     content: `
-# Assurance Habitation : Les Garanties à Ne Pas Négliger
+# Assurance Habitation : Les Garanties à Ne Pas Négliger (et Celles Qui Sont du Remplissage)
 
-Votre logement est probablement votre bien le plus précieux. Bien le protéger avec les bonnes garanties est essentiel. Voici tout ce qu'il faut savoir.
+Votre logement est votre bien le plus précieux. Mais **40 % des sinistres habitation sont mal indemnisés** à cause de garanties inadaptées ou de plafonds trop bas. Voici ce qu'un courtier vérifie en premier quand il audite un contrat — et un comparatif réel des assureurs en 2026.
 
 ## Les garanties de base obligatoires
 
