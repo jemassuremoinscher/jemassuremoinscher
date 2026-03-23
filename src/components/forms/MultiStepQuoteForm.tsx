@@ -313,6 +313,18 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
       {/* Glass container */}
       <div className="relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50 shadow-[var(--shadow-lg)] overflow-hidden">
 
+        {/* Step banner — urgency + progress */}
+        {step.type !== 'searching' && !transitionScreen && (
+          <div className="bg-[hsl(220_30%_15%)] px-4 py-2 flex items-center justify-between text-[11px] md:text-xs">
+            <span className="font-semibold text-white/90">
+              Étape {currentStep + 1}/{totalSteps}
+            </span>
+            <span className="text-white/60">
+              Plus que <span className="text-[hsl(45_100%_65%)] font-bold font-serif-nums">{secondsEstimate}s</span> pour voir vos prix
+            </span>
+          </div>
+        )}
+
         {/* Progress bar */}
         <div className="h-1.5 bg-muted/50 w-full relative overflow-hidden">
           <motion.div
@@ -321,14 +333,8 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
             animate={{ width: `${progressPercent}%` }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
           />
-          {/* Micro-loading overlay */}
           {microLoading && (
-            <motion.div
-              className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary via-accent to-primary rounded-full"
-              initial={{ width: '0%' }}
-              animate={{ width: '100%' }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
-            />
+            <div className="absolute top-0 left-0 h-full w-full step-shimmer-bar" />
           )}
         </div>
 
@@ -336,7 +342,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
         <div className="flex items-center justify-between px-6 pt-4 pb-2">
           <button
             onClick={goBack}
-            disabled={currentStep === 0 || step.type === 'searching'}
+            disabled={currentStep === 0 || step.type === 'searching' || !!transitionScreen}
             className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors disabled:opacity-0 disabled:pointer-events-none"
             aria-label="Étape précédente"
           >
@@ -344,7 +350,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
             Retour
           </button>
           <span className="text-xs font-medium text-muted-foreground tracking-wide">
-            {step.type !== 'searching' && `${currentStep + 1} / ${totalSteps}`}
+            {step.type !== 'searching' && !transitionScreen && `${currentStep + 1} / ${totalSteps}`}
           </span>
         </div>
 
