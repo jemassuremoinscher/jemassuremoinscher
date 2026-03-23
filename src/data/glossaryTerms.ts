@@ -161,6 +161,11 @@ C'est le niveau minimum obligatoire en assurance auto. Elle couvre uniquement le
 **Pour qui ?** L'assurance au tiers convient aux véhicules anciens ou de faible valeur.`,
     tags: ["tiers", "responsabilité civile", "RC", "auto"],
     relatedTerms: ["4", "7", "8"],
+    relatedProducts: [
+      { label: "Assurance Auto", url: "/assurance-auto" },
+      { label: "Assurance Moto", url: "/assurance-moto" },
+      { label: "Comparateur", url: "/comparateur" },
+    ],
   },
   {
     id: "7",
