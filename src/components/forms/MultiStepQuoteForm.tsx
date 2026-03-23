@@ -328,7 +328,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
         {/* Progress bar */}
         <div className="h-1.5 bg-muted/50 w-full relative overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-primary to-primary/70 rounded-full"
+            className="h-full bg-gradient-to-r from-accent to-accent/70 rounded-full"
             initial={{ width: 0 }}
             animate={{ width: `${progressPercent}%` }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
