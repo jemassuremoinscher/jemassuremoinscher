@@ -104,11 +104,7 @@ const Index = () => {
       <main id="main-content" role="main">
         <Hero />
 
-        <DeferredRender minHeight={760}>
-          <Suspense fallback={<div aria-hidden="true" className="min-h-[760px]" />}>
-            <QuickQuoteSection />
-          </Suspense>
-        </DeferredRender>
+
 
         <DeferredRender minHeight={300}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[300px]" />}>
