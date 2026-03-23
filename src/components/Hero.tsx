@@ -291,23 +291,6 @@ function DefaultHeroContent({ t, trackEvent }: { t: (key: string) => string; tra
         </div>
       </div>
 
-      {/* Trust logos strip — grayscale → color on hover */}
-      <div className="flex justify-center items-center gap-5 md:gap-8 mb-4 animate-fade-in-up-delay-2">
-        {trustLogos.map((logo) => (
-          <div
-            key={logo.name}
-            className="group/logo flex items-center justify-center h-8 md:h-9 transition-all duration-300"
-            title={logo.name}
-          >
-            <span
-              className="text-sm md:text-base font-bold tracking-wide opacity-40 grayscale group-hover/logo:opacity-100 group-hover/logo:grayscale-0 transition-all duration-300 select-none"
-              style={{ color: logo.color }}
-            >
-              {logo.name}
-            </span>
-          </div>
-        ))}
-      </div>
     </>
   );
 }

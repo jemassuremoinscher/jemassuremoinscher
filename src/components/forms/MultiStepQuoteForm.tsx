@@ -507,6 +507,7 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
             <motion.button
               key={option.value}
               onClick={() => onSelect(option.value)}
+              whileTap={{ scale: 0.96 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.08, duration: 0.3 }}
