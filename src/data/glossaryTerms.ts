@@ -339,6 +339,10 @@ Depuis 2021, le dispositif 100% Santé garantit un reste à charge zéro sur :
 **Rôle de la mutuelle :** La plupart des mutuelles remboursent le ticket modérateur à 100%, ce qui signifie un reste à charge nul sur les actes au tarif de base.`,
     tags: ["ticket modérateur", "sécurité sociale", "remboursement", "santé"],
     relatedTerms: ["11", "13"],
+    relatedProducts: [
+      { label: "Assurance Santé", url: "/assurance-sante" },
+      { label: "Mutuelle TNS", url: "/mutuelle-tns" },
+    ],
   },
   {
     id: "13",
