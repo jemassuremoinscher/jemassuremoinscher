@@ -7,7 +7,7 @@ import DeferredRender from "@/components/performance/DeferredRender";
 import { addOrganizationSchema, addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 
 // Lazy load below-the-fold sections
-const QuickQuoteSection = lazy(() => import("@/components/quote/QuickQuoteSection"));
+
 const Partners = lazy(() => import("@/components/Partners"));
 const WhyUsComparison = lazy(() => import("@/components/comparison/WhyUsComparison"));
 const HowItWorks = lazy(() => import("@/components/sections/HowItWorks"));
