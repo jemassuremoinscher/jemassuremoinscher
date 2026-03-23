@@ -315,12 +315,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
 
         {/* Step banner — urgency + progress */}
         {step.type !== 'searching' && !transitionScreen && (
-          <div className="bg-[hsl(220_30%_15%)] px-4 py-2 flex items-center justify-between text-[11px] md:text-xs">
-            <span className="font-semibold text-white/90">
+          <div className="bg-primary px-4 py-2 flex items-center justify-between text-[11px] md:text-xs">
+            <span className="font-semibold text-primary-foreground/90">
               Étape {currentStep + 1}/{totalSteps}
             </span>
-            <span className="text-white/60">
-              Plus que <span className="text-[hsl(45_100%_65%)] font-bold font-serif-nums">{secondsEstimate}s</span> pour voir vos prix
+            <span className="text-primary-foreground/70">
+              Plus que <span className="text-accent font-bold">{secondsEstimate}s</span> pour voir vos prix
             </span>
           </div>
         )}
