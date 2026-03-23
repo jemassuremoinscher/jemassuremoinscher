@@ -1001,11 +1001,21 @@ Changement d'adresse, de garage, etc.
 | Dommages véhicule | ❌ | ❌ | ✅ |
 | Véhicule recommandé | > 10 ans | 5-10 ans | < 5 ans |
 
-## Conclusion
+## Comparatif des assureurs auto (tarifs mars 2026)
 
-Le choix de votre assurance auto dépend de votre situation personnelle. Prenez le temps de comparer, n'hésitez pas à poser des questions et n'oubliez pas : **le prix n'est pas le seul critère !**
+| Assureur | Au tiers | Tiers + | Tous risques | Assistance 0km | Avis |
+|----------|----------|---------|--------------|----------------|------|
+| Direct Assurance | 280 €/an | 420 €/an | 580 €/an | ✅ | 4.2/5 |
+| L'Olivier | 310 €/an | 440 €/an | 620 €/an | ✅ | 4.0/5 |
+| Macif | 340 €/an | 480 €/an | 650 €/an | ✅ | 4.5/5 |
+| MAIF | 360 €/an | 530 €/an | 710 €/an | ✅ | 4.7/5 |
+| AXA | 350 €/an | 500 €/an | 680 €/an | ✅ | 4.3/5 |
+| Allianz | 380 €/an | 520 €/an | 720 €/an | ✅ | 4.4/5 |
 
-**Prêt à trouver la meilleure assurance auto ?** Comparez gratuitement les offres dès maintenant et économisez jusqu'à 400€ par an.
+*Tarifs pour un conducteur de 35 ans, bonus 0.50, Clio V essence, zone urbaine*
+
+> **💡 Retour terrain — Le cas de Marc, 42 ans**
+> Marc roulait en tous risques chez AXA à 780 €/an avec un véhicule de 2016 coté 6 500 € Argus. On lui a fait passer en tiers étendu chez Macif à 480 €/an. Ses garanties vol + incendie + bris de glace sont identiques, la seule différence : pas de garantie dommages tous accidents. Sur un véhicule coté 6 500 €, la franchise tous risques de 500 € rendait cette garantie peu rentable. **Économie : 300 €/an sans perte de protection réelle.**
     `
   },
   {
