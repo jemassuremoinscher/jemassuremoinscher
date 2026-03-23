@@ -5,7 +5,7 @@ import SEOOptimized from "@/components/SEOOptimized";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, ExternalLink } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { glossaryTerms } from "@/data/glossaryTerms";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
