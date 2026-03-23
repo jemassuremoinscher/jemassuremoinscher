@@ -360,88 +360,105 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
         {/* Content area */}
         <div className="px-6 pb-8 min-h-[420px] flex flex-col">
           <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={step.id + currentStep}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="flex-1 flex flex-col"
-            >
-              {/* Arthur mascot */}
-              <div className="flex justify-center mb-4">
-                <motion.img
-                  src={mascotSrc}
-                  alt="Arthur"
-                  className="h-20 md:h-24 object-contain drop-shadow-lg"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1, y: [0, -6, 0] }}
-                  transition={{
-                    scale: { duration: 0.4 },
-                    opacity: { duration: 0.4 },
-                    y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
-                  }}
-                  width={96}
-                  height={120}
-                />
-              </div>
+            {transitionScreen ? (
+              {/* Transition screen between steps */}
+              <motion.div
+                key="transition"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="flex-1 flex flex-col items-center justify-center gap-5 py-12"
+              >
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                <p className="text-sm font-medium text-muted-foreground text-center max-w-xs">
+                  {transitionScreen}
+                </p>
+              </motion.div>
+            ) : (
+              <motion.div
+                key={step.id + currentStep}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="flex-1 flex flex-col"
+              >
+                {/* Arthur mascot */}
+                <div className="flex justify-center mb-4">
+                  <motion.img
+                    src={mascotSrc}
+                    alt="Arthur"
+                    className="h-20 md:h-24 object-contain drop-shadow-lg"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1, y: [0, -6, 0] }}
+                    transition={{
+                      scale: { duration: 0.4 },
+                      opacity: { duration: 0.4 },
+                      y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
+                    }}
+                    width={96}
+                    height={120}
+                  />
+                </div>
 
-              {/* Title */}
-              <div className="text-center mb-6">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-1.5">
-                  {step.title}
-                </h2>
-                {step.subtitle && (
-                  <p className="text-sm md:text-base text-muted-foreground max-w-md mx-auto">
-                    {step.subtitle}
-                  </p>
+                {/* Title */}
+                <div className="text-center mb-6">
+                  <h2 className="text-xl md:text-2xl font-bold text-foreground mb-1.5">
+                    {step.title}
+                  </h2>
+                  {step.subtitle && (
+                    <p className="text-sm md:text-base text-muted-foreground max-w-md mx-auto">
+                      {step.subtitle}
+                    </p>
+                  )}
+                </div>
+
+                {/* Step content */}
+                {step.type === 'card-select' && step.options && step.field && (
+                  <CardSelectStep
+                    options={step.options}
+                    selected={formData[step.field]}
+                    onSelect={(value) => handleCardSelect(step.field!, value)}
+                    microLoading={microLoading}
+                  />
                 )}
-              </div>
 
-              {/* Step content */}
-              {step.type === 'card-select' && step.options && step.field && (
-                <CardSelectStep
-                  options={step.options}
-                  selected={formData[step.field]}
-                  onSelect={(value) => handleCardSelect(step.field!, value)}
-                  microLoading={microLoading}
-                />
-              )}
+                {step.type === 'input' && step.field && (
+                  <InputStep
+                    step={step}
+                    value={formData[step.field] || ''}
+                    onChange={(val) => setFormData(prev => ({ ...prev, [step.field!]: val }))}
+                    onSubmit={(val) => handleInputSubmit(step.field!, val, step)}
+                    activeHint={activeHint?.field === step.field ? activeHint.message : null}
+                    onFocus={() => startTracking(step.field!)}
+                    onBlur={() => stopTracking(step.field!)}
+                    onDismissHint={dismissHint}
+                  />
+                )}
 
-              {step.type === 'input' && step.field && (
-                <InputStep
-                  step={step}
-                  value={formData[step.field] || ''}
-                  onChange={(val) => setFormData(prev => ({ ...prev, [step.field!]: val }))}
-                  onSubmit={(val) => handleInputSubmit(step.field!, val, step)}
-                  activeHint={activeHint?.field === step.field ? activeHint.message : null}
-                  onFocus={() => startTracking(step.field!)}
-                  onBlur={() => stopTracking(step.field!)}
-                  onDismissHint={dismissHint}
-                />
-              )}
+                {step.type === 'searching' && (
+                  <SearchingStep
+                    progress={searchProgress}
+                    currentPartner={partnerNames[currentPartner]}
+                  />
+                )}
 
-              {step.type === 'searching' && (
-                <SearchingStep
-                  progress={searchProgress}
-                  currentPartner={partnerNames[currentPartner]}
-                />
-              )}
-
-              {step.type === 'contact' && (
-                <ContactStep
-                  data={contactData}
-                  errors={contactErrors}
-                  isSubmitting={isSubmitting}
-                  isSuccess={isSuccess}
-                  onChange={setContactData}
-                  onSubmit={handleContactSubmit}
-                  insuranceType={insuranceType}
-                />
-              )}
-            </motion.div>
+                {step.type === 'contact' && (
+                  <ContactStep
+                    data={contactData}
+                    errors={contactErrors}
+                    isSubmitting={isSubmitting}
+                    isSuccess={isSuccess}
+                    onChange={setContactData}
+                    onSubmit={handleContactSubmit}
+                    insuranceType={insuranceType}
+                  />
+                )}
+              </motion.div>
+            )}
           </AnimatePresence>
         </div>
 
