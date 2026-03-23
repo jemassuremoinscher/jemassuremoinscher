@@ -121,11 +121,25 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
   const [searchProgress, setSearchProgress] = useState(0);
   const [currentPartner, setCurrentPartner] = useState(0);
   const [microLoading, setMicroLoading] = useState(false);
+  const [transitionScreen, setTransitionScreen] = useState<string | null>(null);
   const { activeHint, startTracking, stopTracking, dismissHint } = useFieldTracking();
 
   const step = steps[currentStep];
   const totalSteps = steps.length;
   const progressPercent = ((currentStep + 1) / totalSteps) * 100;
+
+  // Contextual transition messages
+  const transitionMessages = [
+    'Recherche des meilleurs tarifs en cours…',
+    'Vérification de votre éligibilité aux bonus…',
+    'Analyse de votre profil…',
+    'Comparaison des garanties disponibles…',
+    'Optimisation de votre tarif…',
+  ];
+
+  // Step time estimate
+  const stepsRemaining = totalSteps - (currentStep + 1);
+  const secondsEstimate = Math.max(15, stepsRemaining * 15);
 
   const mascotSrc = step.type === 'searching'
     ? mascotSearching
@@ -181,13 +195,16 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
 
   const handleCardSelect = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
-    // Micro-loading bar for "precision calculation" feel
+    // Show transition screen with contextual message
+    const msg = transitionMessages[currentStep % transitionMessages.length];
+    setTransitionScreen(msg);
     setMicroLoading(true);
     setTimeout(() => {
       setMicroLoading(false);
+      setTransitionScreen(null);
       setDirection(1);
       setCurrentStep(prev => prev + 1);
-    }, 500);
+    }, 1000);
   };
 
   const handleInputSubmit = (field: string, value: string, step: FormStep) => {
@@ -292,9 +309,21 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
   };
 
   return (
-    <div className={`w-full max-w-2xl mx-auto ${className}`}>
+    <div className={`w-full max-w-2xl mx-auto ${className}`} id="quote-form">
       {/* Glass container */}
       <div className="relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50 shadow-[var(--shadow-lg)] overflow-hidden">
+
+        {/* Step banner — urgency + progress */}
+        {step.type !== 'searching' && !transitionScreen && (
+          <div className="bg-[hsl(220_30%_15%)] px-4 py-2 flex items-center justify-between text-[11px] md:text-xs">
+            <span className="font-semibold text-white/90">
+              Étape {currentStep + 1}/{totalSteps}
+            </span>
+            <span className="text-white/60">
+              Plus que <span className="text-[hsl(45_100%_65%)] font-bold font-serif-nums">{secondsEstimate}s</span> pour voir vos prix
+            </span>
+          </div>
+        )}
 
         {/* Progress bar */}
         <div className="h-1.5 bg-muted/50 w-full relative overflow-hidden">
@@ -304,14 +333,8 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
             animate={{ width: `${progressPercent}%` }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
           />
-          {/* Micro-loading overlay */}
           {microLoading && (
-            <motion.div
-              className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary via-accent to-primary rounded-full"
-              initial={{ width: '0%' }}
-              animate={{ width: '100%' }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
-            />
+            <div className="absolute top-0 left-0 h-full w-full step-shimmer-bar" />
           )}
         </div>
 
@@ -319,7 +342,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
         <div className="flex items-center justify-between px-6 pt-4 pb-2">
           <button
             onClick={goBack}
-            disabled={currentStep === 0 || step.type === 'searching'}
+            disabled={currentStep === 0 || step.type === 'searching' || !!transitionScreen}
             className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors disabled:opacity-0 disabled:pointer-events-none"
             aria-label="Étape précédente"
           >
@@ -327,7 +350,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
             Retour
           </button>
           <span className="text-xs font-medium text-muted-foreground tracking-wide">
-            {step.type !== 'searching' && `${currentStep + 1} / ${totalSteps}`}
+            {step.type !== 'searching' && !transitionScreen && `${currentStep + 1} / ${totalSteps}`}
           </span>
         </div>
 
@@ -337,88 +360,104 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
         {/* Content area */}
         <div className="px-6 pb-8 min-h-[420px] flex flex-col">
           <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={step.id + currentStep}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="flex-1 flex flex-col"
-            >
-              {/* Arthur mascot */}
-              <div className="flex justify-center mb-4">
-                <motion.img
-                  src={mascotSrc}
-                  alt="Arthur"
-                  className="h-20 md:h-24 object-contain drop-shadow-lg"
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1, y: [0, -6, 0] }}
-                  transition={{
-                    scale: { duration: 0.4 },
-                    opacity: { duration: 0.4 },
-                    y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
-                  }}
-                  width={96}
-                  height={120}
-                />
-              </div>
+            {transitionScreen ? (
+              <motion.div
+                key="transition"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="flex-1 flex flex-col items-center justify-center gap-5 py-12"
+              >
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                <p className="text-sm font-medium text-muted-foreground text-center max-w-xs">
+                  {transitionScreen}
+                </p>
+              </motion.div>
+            ) : (
+              <motion.div
+                key={step.id + currentStep}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="flex-1 flex flex-col"
+              >
+                {/* Arthur mascot */}
+                <div className="flex justify-center mb-4">
+                  <motion.img
+                    src={mascotSrc}
+                    alt="Arthur"
+                    className="h-20 md:h-24 object-contain drop-shadow-lg"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1, y: [0, -6, 0] }}
+                    transition={{
+                      scale: { duration: 0.4 },
+                      opacity: { duration: 0.4 },
+                      y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
+                    }}
+                    width={96}
+                    height={120}
+                  />
+                </div>
 
-              {/* Title */}
-              <div className="text-center mb-6">
-                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-1.5">
-                  {step.title}
-                </h2>
-                {step.subtitle && (
-                  <p className="text-sm md:text-base text-muted-foreground max-w-md mx-auto">
-                    {step.subtitle}
-                  </p>
+                {/* Title */}
+                <div className="text-center mb-6">
+                  <h2 className="text-xl md:text-2xl font-bold text-foreground mb-1.5">
+                    {step.title}
+                  </h2>
+                  {step.subtitle && (
+                    <p className="text-sm md:text-base text-muted-foreground max-w-md mx-auto">
+                      {step.subtitle}
+                    </p>
+                  )}
+                </div>
+
+                {/* Step content */}
+                {step.type === 'card-select' && step.options && step.field && (
+                  <CardSelectStep
+                    options={step.options}
+                    selected={formData[step.field]}
+                    onSelect={(value) => handleCardSelect(step.field!, value)}
+                    microLoading={microLoading}
+                  />
                 )}
-              </div>
 
-              {/* Step content */}
-              {step.type === 'card-select' && step.options && step.field && (
-                <CardSelectStep
-                  options={step.options}
-                  selected={formData[step.field]}
-                  onSelect={(value) => handleCardSelect(step.field!, value)}
-                  microLoading={microLoading}
-                />
-              )}
+                {step.type === 'input' && step.field && (
+                  <InputStep
+                    step={step}
+                    value={formData[step.field] || ''}
+                    onChange={(val) => setFormData(prev => ({ ...prev, [step.field!]: val }))}
+                    onSubmit={(val) => handleInputSubmit(step.field!, val, step)}
+                    activeHint={activeHint?.field === step.field ? activeHint.message : null}
+                    onFocus={() => startTracking(step.field!)}
+                    onBlur={() => stopTracking(step.field!)}
+                    onDismissHint={dismissHint}
+                  />
+                )}
 
-              {step.type === 'input' && step.field && (
-                <InputStep
-                  step={step}
-                  value={formData[step.field] || ''}
-                  onChange={(val) => setFormData(prev => ({ ...prev, [step.field!]: val }))}
-                  onSubmit={(val) => handleInputSubmit(step.field!, val, step)}
-                  activeHint={activeHint?.field === step.field ? activeHint.message : null}
-                  onFocus={() => startTracking(step.field!)}
-                  onBlur={() => stopTracking(step.field!)}
-                  onDismissHint={dismissHint}
-                />
-              )}
+                {step.type === 'searching' && (
+                  <SearchingStep
+                    progress={searchProgress}
+                    currentPartner={partnerNames[currentPartner]}
+                  />
+                )}
 
-              {step.type === 'searching' && (
-                <SearchingStep
-                  progress={searchProgress}
-                  currentPartner={partnerNames[currentPartner]}
-                />
-              )}
-
-              {step.type === 'contact' && (
-                <ContactStep
-                  data={contactData}
-                  errors={contactErrors}
-                  isSubmitting={isSubmitting}
-                  isSuccess={isSuccess}
-                  onChange={setContactData}
-                  onSubmit={handleContactSubmit}
-                  insuranceType={insuranceType}
-                />
-              )}
-            </motion.div>
+                {step.type === 'contact' && (
+                  <ContactStep
+                    data={contactData}
+                    errors={contactErrors}
+                    isSubmitting={isSubmitting}
+                    isSuccess={isSuccess}
+                    onChange={setContactData}
+                    onSubmit={handleContactSubmit}
+                    insuranceType={insuranceType}
+                  />
+                )}
+              </motion.div>
+            )}
           </AnimatePresence>
         </div>
 
@@ -430,6 +469,27 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
           <span className="hidden sm:inline">•</span>
           <span className="hidden sm:flex items-center gap-1">Sans engagement</span>
         </div>
+      </div>
+
+      {/* Trust block — Google Review + social proof */}
+      <div className="mt-5 rounded-2xl border border-[hsl(220_30%_88%)] bg-[hsl(220_25%_97%)] px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* Google review */}
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-0.5 text-[hsl(45_100%_45%)]" aria-label="Note 4.8 sur 5">
+            {[1, 2, 3, 4, 5].map(i => (
+              <svg key={i} className="w-4 h-4" viewBox="0 0 20 20" fill={i <= 4 ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5">
+                <path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.62l5.34-.78L10 1z" />
+              </svg>
+            ))}
+          </div>
+          <span className="text-sm text-[hsl(220_30%_25%)]">
+            <span className="font-serif-nums font-bold text-base">4,8</span>/5 — Google Reviews
+          </span>
+        </div>
+        {/* Social proof */}
+        <p className="text-sm text-[hsl(220_20%_40%)]">
+          Déjà plus de <span className="font-serif-nums font-bold text-[hsl(220_30%_20%)]">250</span> Français assurés via notre comparateur
+        </p>
       </div>
     </div>
   );
@@ -573,7 +633,7 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
       <Button
         onClick={handleSubmit}
         size="lg"
-        className="w-full rounded-full font-bold text-base h-12 bg-primary hover:bg-primary/90 active:scale-[0.97] transition-transform"
+        className="btn-glow w-full rounded-full font-bold text-base h-12 bg-primary hover:bg-primary/90 active:scale-[0.97] transition-transform"
       >
         Continuer
         <ArrowRight className="ml-2 h-4 w-4" />
@@ -849,7 +909,7 @@ function ContactStep({
         onClick={onSubmit}
         disabled={isSubmitting}
         size="lg"
-        className="w-full rounded-full font-bold text-base h-13 bg-secondary hover:bg-secondary/90 text-secondary-foreground active:scale-[0.97] transition-transform"
+        className="btn-glow w-full rounded-full font-bold text-base h-13 bg-secondary hover:bg-secondary/90 text-secondary-foreground active:scale-[0.97] transition-transform"
       >
         {isSubmitting ? (
           <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Envoi en cours…</>
