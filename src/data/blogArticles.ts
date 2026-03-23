@@ -1204,34 +1204,42 @@ Ne vous fiez pas qu'au prix ! Vérifiez :
 - **Dépendances** (cave, garage) : À déclarer
 - **Travaux :** Prévenir l'assureur avant
 
+## Comparatif des assureurs habitation (mars 2026)
+
+| Assureur | Studio Paris | T3 province | Maison 100m² | Franchise DDE | Avis clients |
+|----------|-------------|-------------|--------------|---------------|-------------|
+| Luko | 15 €/mois | 22 €/mois | 35 €/mois | 0 € | 4.6/5 |
+| Direct Assurance | 12 €/mois | 18 €/mois | 30 €/mois | 200 € | 4.1/5 |
+| MAIF | 18 €/mois | 28 €/mois | 45 €/mois | 0 € (1er sinistre) | 4.7/5 |
+| Groupama | 20 €/mois | 30 €/mois | 48 €/mois | 150 € | 4.3/5 |
+| Allianz | 25 €/mois | 35 €/mois | 60 €/mois | 0 € | 4.4/5 |
+
+*Tarifs indicatifs mars 2026, formule intermédiaire, zone urbaine standard*
+
+> **💡 Retour terrain — Le cas de Nathalie, propriétaire T4**
+> Nathalie avait un contrat Groupama à 42 €/mois sans garantie dommages électriques. Après une surtension qui a grillé son réfrigérateur, sa plaque de cuisson et son lave-linge (2 800 € de dégâts), elle n'a rien touché. En changeant pour la MAIF à 38 €/mois avec l'option dommages électriques (plafond 8 000 €), elle est désormais mieux couverte et paie **moins cher**.
+
 ## Conseils pour économiser
 
 ### 1. Ajustez votre capital mobilier
 Ne le surestimez pas, mais ne le sous-estimez pas non plus !
 
 ### 2. Acceptez une franchise plus élevée
-Passer de 150€ à 300€ réduit la prime de 10-15%.
+Passer de 150 € à 300 € réduit la prime de 10-15 %.
 
 ### 3. Sécurisez votre logement
-- Porte blindée : -10 à 20%
-- Alarme certifiée : -5 à 15%
+- Porte blindée : -10 à 20 %
+- Alarme certifiée : -5 à 15 %
 - Détecteur de fumée (obligatoire)
 
 ### 4. Groupez vos contrats
-Auto + Habitation = réduction multi-contrats de 5-15%
+Auto + Habitation = réduction multi-contrats de 5-15 %
 
 ### 5. Payez annuellement
-Évitez les frais de fractionnement (5-8%)
+Évitez les frais de fractionnement (5-8 %)
 
-## Checklist avant de souscrire
-
-✅ Capital mobilier bien évalué
-✅ Garanties vol adaptées à la zone
-✅ Plafonds suffisants
-✅ Franchise acceptable
-✅ Assistance à domicile incluse
-✅ Objets de valeur déclarés
-✅ Dépendances mentionnées
+> **💡 Le conseil du courtier**
+> Le piège classique en habitation, c'est le **sous-plafonnement**. Un contrat à 12 €/mois avec un plafond mobilier de 15 000 € semble attractif, mais si vous avez 30 000 € de biens, vous ne serez remboursé qu'à 50 % en cas de sinistre total. Vérifiez toujours le plafond avant le prix.
 
 ## Que faire en cas de sinistre ?
 
@@ -1246,12 +1254,6 @@ Déclarez immédiatement à la police (dépôt de plainte obligatoire)
 
 **En cas de dégât des eaux :**
 Coupez l'eau et l'électricité + prévenez les voisins
-
-## Conclusion
-
-Une bonne assurance habitation ne se choisit pas qu'au prix. Les garanties doivent être adaptées à votre logement, vos biens et votre situation géographique.
-
-**Besoin d'aide pour choisir ?** Comparez gratuitement les assurances habitation et trouvez la protection idéale pour votre logement.
     `
   },
   {
