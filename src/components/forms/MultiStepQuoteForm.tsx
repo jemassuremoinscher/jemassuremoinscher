@@ -889,7 +889,7 @@ function ContactStep({
         onClick={onSubmit}
         disabled={isSubmitting}
         size="lg"
-        className="w-full rounded-full font-bold text-base h-13 bg-secondary hover:bg-secondary/90 text-secondary-foreground active:scale-[0.97] transition-transform"
+        className="btn-glow w-full rounded-full font-bold text-base h-13 bg-secondary hover:bg-secondary/90 text-secondary-foreground active:scale-[0.97] transition-transform"
       >
         {isSubmitting ? (
           <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Envoi en cours…</>
