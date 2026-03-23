@@ -121,11 +121,25 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
   const [searchProgress, setSearchProgress] = useState(0);
   const [currentPartner, setCurrentPartner] = useState(0);
   const [microLoading, setMicroLoading] = useState(false);
+  const [transitionScreen, setTransitionScreen] = useState<string | null>(null);
   const { activeHint, startTracking, stopTracking, dismissHint } = useFieldTracking();
 
   const step = steps[currentStep];
   const totalSteps = steps.length;
   const progressPercent = ((currentStep + 1) / totalSteps) * 100;
+
+  // Contextual transition messages
+  const transitionMessages = [
+    'Recherche des meilleurs tarifs en cours…',
+    'Vérification de votre éligibilité aux bonus…',
+    'Analyse de votre profil…',
+    'Comparaison des garanties disponibles…',
+    'Optimisation de votre tarif…',
+  ];
+
+  // Step time estimate
+  const stepsRemaining = totalSteps - (currentStep + 1);
+  const secondsEstimate = Math.max(15, stepsRemaining * 15);
 
   const mascotSrc = step.type === 'searching'
     ? mascotSearching
