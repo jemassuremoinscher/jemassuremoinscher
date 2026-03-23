@@ -382,12 +382,7 @@ All colors MUST be HSL.
     opacity: 1;
   }
 
-  /* Serif numbers for trust block */
-  .font-serif-nums {
-    font-family: Georgia, 'Times New Roman', serif;
-  }
-
-  /* Transition shimmer — lightweight CSS keyframe */
+  /* Shimmer for step transition */
   @keyframes step-shimmer {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }

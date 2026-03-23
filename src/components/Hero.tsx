@@ -29,13 +29,6 @@ const SparklesIcon = () => <svg className="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 2
 const ZapIcon = () => <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>;
 
 // Insurer logos for trust strip (grayscale → color on hover)
-const trustLogos = [
-  { name: "AXA", color: "hsl(210, 100%, 35%)" },
-  { name: "Allianz", color: "hsl(210, 80%, 45%)" },
-  { name: "Generali", color: "hsl(0, 75%, 45%)" },
-  { name: "MAIF", color: "hsl(145, 60%, 35%)" },
-  { name: "Groupama", color: "hsl(120, 55%, 38%)" },
-] as const;
 
 /** Dynamic hero content — only loaded when ?ref= is present */
 const DynamicHeroContent = lazy(() => import("@/components/hero/DynamicHeroContent"));
