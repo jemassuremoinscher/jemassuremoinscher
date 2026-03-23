@@ -315,12 +315,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
 
         {/* Step banner — urgency + progress */}
         {step.type !== 'searching' && !transitionScreen && (
-          <div className="bg-[hsl(220_30%_15%)] px-4 py-2 flex items-center justify-between text-[11px] md:text-xs">
-            <span className="font-semibold text-white/90">
+          <div className="bg-primary px-4 py-2 flex items-center justify-between text-[11px] md:text-xs">
+            <span className="font-semibold text-primary-foreground/90">
               Étape {currentStep + 1}/{totalSteps}
             </span>
-            <span className="text-white/60">
-              Plus que <span className="text-[hsl(45_100%_65%)] font-bold font-serif-nums">{secondsEstimate}s</span> pour voir vos prix
+            <span className="text-primary-foreground/70">
+              Plus que <span className="text-accent font-bold">{secondsEstimate}s</span> pour voir vos prix
             </span>
           </div>
         )}
@@ -328,7 +328,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
         {/* Progress bar */}
         <div className="h-1.5 bg-muted/50 w-full relative overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-primary to-primary/70 rounded-full"
+            className="h-full bg-gradient-to-r from-accent to-accent/70 rounded-full"
             initial={{ width: 0 }}
             animate={{ width: `${progressPercent}%` }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -472,23 +472,23 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
       </div>
 
       {/* Trust block — Google Review + social proof */}
-      <div className="mt-5 rounded-2xl border border-[hsl(220_30%_88%)] bg-[hsl(220_25%_97%)] px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="mt-5 rounded-2xl border border-border/50 bg-muted/50 px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         {/* Google review */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-0.5 text-[hsl(45_100%_45%)]" aria-label="Note 4.8 sur 5">
+          <div className="flex items-center gap-0.5 text-accent" aria-label="Note 4.8 sur 5">
             {[1, 2, 3, 4, 5].map(i => (
               <svg key={i} className="w-4 h-4" viewBox="0 0 20 20" fill={i <= 4 ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5">
                 <path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.62l5.34-.78L10 1z" />
               </svg>
             ))}
           </div>
-          <span className="text-sm text-[hsl(220_30%_25%)]">
-            <span className="font-serif-nums font-bold text-base">4,8</span>/5 — Google Reviews
+          <span className="text-sm text-foreground">
+            <span className="font-bold text-base">4,8</span>/5 — Google Reviews
           </span>
         </div>
         {/* Social proof */}
-        <p className="text-sm text-[hsl(220_20%_40%)]">
-          Déjà plus de <span className="font-serif-nums font-bold text-[hsl(220_30%_20%)]">250</span> Français assurés via notre comparateur
+        <p className="text-sm text-muted-foreground">
+          Déjà plus de <span className="font-bold text-foreground">250</span> Français assurés via notre comparateur
         </p>
       </div>
     </div>
@@ -507,6 +507,7 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
             <motion.button
               key={option.value}
               onClick={() => onSelect(option.value)}
+              whileTap={{ scale: 0.96 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.08, duration: 0.3 }}
@@ -633,7 +634,7 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
       <Button
         onClick={handleSubmit}
         size="lg"
-        className="btn-glow w-full rounded-full font-bold text-base h-12 bg-primary hover:bg-primary/90 active:scale-[0.97] transition-transform"
+        className="btn-glow w-full rounded-full font-bold text-base h-12 bg-primary hover:bg-primary/90 active:scale-[0.96] active:brightness-90 transition-all duration-75"
       >
         Continuer
         <ArrowRight className="ml-2 h-4 w-4" />
