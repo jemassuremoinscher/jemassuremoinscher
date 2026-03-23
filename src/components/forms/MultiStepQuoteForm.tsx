@@ -634,7 +634,7 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
       <Button
         onClick={handleSubmit}
         size="lg"
-        className="btn-glow w-full rounded-full font-bold text-base h-12 bg-primary hover:bg-primary/90 active:scale-[0.97] transition-transform"
+        className="btn-glow w-full rounded-full font-bold text-base h-12 bg-primary hover:bg-primary/90 active:scale-[0.96] active:brightness-90 transition-all duration-75"
       >
         Continuer
         <ArrowRight className="ml-2 h-4 w-4" />
