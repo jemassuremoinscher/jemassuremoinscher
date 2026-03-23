@@ -195,6 +195,11 @@ C'est le niveau minimum obligatoire en assurance auto. Elle couvre uniquement le
 **Coût moyen :** 30 à 50% plus cher que l'assurance au tiers, mais une protection complète en cas de sinistre.`,
     tags: ["tous risques", "auto", "garantie", "couverture complète"],
     relatedTerms: ["6", "4", "8"],
+    relatedProducts: [
+      { label: "Assurance Auto", url: "/assurance-auto" },
+      { label: "Comparateur Auto", url: "/comparateur" },
+      { label: "Jeune Conducteur", url: "/assurance-jeune-conducteur" },
+    ],
   },
   {
     id: "8",
