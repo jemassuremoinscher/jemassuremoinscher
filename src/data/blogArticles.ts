@@ -332,9 +332,9 @@ Chaque année sans sinistre = **-5 %** sur votre coefficient.
     author: "Sophie Martin",
     tags: ["résiliation", "droits", "loi hamon", "loi chatel"],
     content: `
-# Résiliation d'Assurance : Le Guide Complet de Vos Droits
+# Résiliation d'Assurance : Le Guide Terrain du Courtier
 
-Résilier son assurance n'a jamais été aussi simple ! Grâce aux lois Hamon, Chatel et Lemoine, vous avez désormais le pouvoir de changer d'assureur facilement. Voici tout ce que vous devez savoir.
+En 2026, les lois Hamon, Chatel et Lemoine vous donnent une liberté quasi totale pour changer d'assureur. Pourtant, **35 % des résiliations échouent** à cause d'erreurs de procédure. Voici les cas réels que nous traitons chaque semaine — et comment éviter les pièges.
 
 ## Les 3 grandes lois à connaître
 
