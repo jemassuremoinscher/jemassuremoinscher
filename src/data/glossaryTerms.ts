@@ -82,6 +82,11 @@ La prime peut être payée mensuellement, trimestriellement ou annuellement. Un 
 - Catastrophe naturelle`,
     tags: ["sinistre", "déclaration", "indemnisation", "dommage"],
     relatedTerms: ["1", "5", "6"],
+    relatedProducts: [
+      { label: "Assurance Auto", url: "/assurance-auto" },
+      { label: "Assurance Habitation", url: "/assurance-habitation" },
+      { label: "Assurance Moto", url: "/assurance-moto" },
+    ],
   },
   {
     id: "4",
