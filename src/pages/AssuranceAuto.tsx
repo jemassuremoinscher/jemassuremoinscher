@@ -2,18 +2,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import { Shield, Euro, Clock, Calculator, ArrowRight } from "lucide-react";
+import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
-import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import { addServiceSchema, addFAQSchema, addAggregateRatingSchema, addHowToSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
-import GuaranteeTable from "@/components/sections/GuaranteeTable";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurCar from "@/assets/mascotte/arthur-car.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
-import RelatedInsuranceLinks from "@/components/insurance/RelatedInsuranceLinks";
+import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
+import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import EnBref from "@/components/seo/EnBref";
 import BrandName from "@/components/BrandName";
 import arthurFlying from "@/assets/mascotte/arthur-sprint-coin.webp";
@@ -46,6 +43,7 @@ const AssuranceAuto = () => {
       <Breadcrumbs items={[{ label: "Assurance Auto" }]} />
 
       <main id="main-content">
+      {/* Zone 1 — Hero */}
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center relative">
@@ -58,7 +56,8 @@ const AssuranceAuto = () => {
 
       <div className="container mx-auto px-4 py-12" data-ai-description="Comparateur d'assurance auto — jemassuremoinscher.fr compare 25+ assureurs, devis gratuit en moins de 2 minutes, économie moyenne 320€/an">
         <DynamicUpdateDate />
-        <EnBref facts={[<><BrandName /> compare les offres de 25+ assureurs auto partenaires.</>, "Tarif moyen constaté : dès 25€/mois selon le profil.", "Devis gratuit en moins de 2 minutes, sans engagement.", "Nos clients économisent en moyenne 320€/an sur leur assurance auto."]} />
+
+        {/* Zone 2 — Avantages + Formulaire */}
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
             {advantages.map((item, index) => (
@@ -75,59 +74,36 @@ const AssuranceAuto = () => {
           <MultiStepQuoteForm insuranceType="auto" />
         </div>
 
-        <section className="max-w-4xl mx-auto mb-16">
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="learn-more" className="border rounded-lg">
-              <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                <span className="text-lg font-semibold flex items-center gap-2">{t('insPage.learnMore')} {t('autoPage.learnMore')}</span>
-              </AccordionTrigger>
-              <AccordionContent className="px-6 pb-6">
-                <div className="space-y-12">
-                  <InsuranceFAQ title={t('insPage.faqTitle')} faqs={[
-                    { question: t('autoPage.faq1.q'), answer: t('autoPage.faq1.a') },
-                    { question: t('autoPage.faq2.q'), answer: t('autoPage.faq2.a') },
-                    { question: t('autoPage.faq3.q'), answer: t('autoPage.faq3.a') },
-                    { question: t('autoPage.faq4.q'), answer: t('autoPage.faq4.a') },
-                  ]} />
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </section>
+        {/* Zone 3 — FAQ + Garanties en tabs */}
+        <InsuranceSEOTabs
+          faqTitle={t('insPage.faqTitle')}
+          faqs={[
+            { question: t('autoPage.faq1.q'), answer: t('autoPage.faq1.a') },
+            { question: t('autoPage.faq2.q'), answer: t('autoPage.faq2.a') },
+            { question: t('autoPage.faq3.q'), answer: t('autoPage.faq3.a') },
+            { question: t('autoPage.faq4.q'), answer: t('autoPage.faq4.a') },
+          ]}
+        />
 
-        {/* Bonus-Malus Calculator CTA */}
-        <section className="max-w-4xl mx-auto mb-16">
-          <Card className="p-6 md:p-8 border-primary/20 bg-gradient-to-r from-primary/5 to-accent/5">
-            <div className="flex flex-col sm:flex-row items-center gap-5">
-              <div className="flex-shrink-0 p-3 rounded-full bg-primary/10">
-                <Calculator className="h-8 w-8 text-primary" />
-              </div>
-              <div className="flex-1 text-center sm:text-left">
-                <h3 className="text-lg font-bold text-foreground mb-1">Calculez votre bonus-malus auto</h3>
-                <p className="text-sm text-muted-foreground">Estimez gratuitement votre coefficient et découvrez combien vous pouvez économiser sur votre prime.</p>
-              </div>
-              <Button asChild variant="outline" className="flex-shrink-0 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                <Link to="/outils/calculateur-bonus-malus">
-                  Calculer mon bonus
-                  <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
-              </Button>
-            </div>
-          </Card>
-        </section>
-
-        <ExpertiseSection insuranceType="assurance auto" />
-        <GuaranteeTable />
-        <RelatedInsuranceLinks currentPage="auto" />
-
-        <section className="max-w-2xl mx-auto text-center mb-16">
-          <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
-            <img src={arthurFlying} alt="Arthur en vol - économisez sur votre assurance auto" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" decoding="async" />
-            <h2 className="text-2xl font-bold mb-4">{t('insPage.readyToSave')} {t('autoPage.readyToSave')} ?</h2>
-            <p className="text-muted-foreground mb-6">{t('insPage.compareFree')}</p>
-            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6" aria-label="Obtenir un devis assurance auto gratuit">{t('insPage.compareNowBtn')}</Button>
-          </Card>
-        </section>
+        {/* Zone 4 & 5 — Confiance + Maillage + EnBref + CTA */}
+        <InsuranceBottomHub
+          currentPage="auto"
+          expertiseSection={<ExpertiseSection insuranceType="assurance auto" />}
+          enBref={
+            <EnBref facts={[
+              <><BrandName /> compare les offres de 25+ assureurs auto partenaires.</>,
+              "Tarif moyen constaté : dès 25€/mois selon le profil.",
+              "Devis gratuit en moins de 2 minutes, sans engagement.",
+              "Nos clients économisent en moyenne 320€/an sur leur assurance auto.",
+            ]} />
+          }
+          ctaTitle={`${t('insPage.readyToSave')} ${t('autoPage.readyToSave')} ?`}
+          ctaDescription={t('insPage.compareFree')}
+          ctaButtonLabel={t('insPage.compareNowBtn')}
+          ctaMascotSrc={arthurFlying}
+          ctaMascotAlt="Arthur en vol - économisez sur votre assurance auto"
+          onCtaClick={scrollToForm}
+        />
       </div>
       </main>
       <Footer />
