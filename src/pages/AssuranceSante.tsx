@@ -48,7 +48,7 @@ const AssuranceSante = () => {
           <div className="max-w-4xl mx-auto text-center relative">
             <ArthurHero imageSrc={arthurSick} imageAlt="Arthur malade - mutuelle santé moins chère" speechText={t('santePage.subtitle')} />
             <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('santePage.title')}</h1>
-            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
+            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Comparer les mutuelles santé maintenant">{t('insPage.compareNow')}</Button>
           </div>
         </div>
       </section>
