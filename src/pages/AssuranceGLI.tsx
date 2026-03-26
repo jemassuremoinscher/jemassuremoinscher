@@ -42,7 +42,7 @@ const AssuranceGLI = () => {
         <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
           <ArthurHero imageSrc={arthurDetective} imageAlt="Arthur détective - GLI" speechText={t('gliPage.subtitle')} />
           <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('gliPage.title')}</h1>
-          <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
+          <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Comparer les garanties loyer impayé maintenant">{t('insPage.compareNow')}</Button>
         </div></div>
       </section>
       <div className="container mx-auto px-4 py-12">
