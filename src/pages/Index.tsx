@@ -131,6 +131,12 @@ const Index = () => {
           </Suspense>
         </DeferredRender>
 
+        <DeferredRender minHeight={400}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[400px]" />}>
+            <ClientCases />
+          </Suspense>
+        </DeferredRender>
+
         <DeferredRender minHeight={880}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[880px]" />}>
             <GuidesSection />
