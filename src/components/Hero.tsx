@@ -191,27 +191,24 @@ function DefaultHeroContent({ t, trackEvent }: { t: (key: string) => string; tra
 
   return (
     <>
-      {/* Arthur + Title Section */}
       <div className="text-center mb-8">
-        <div className="flex justify-center mb-6 animate-fade-in">
-          <div className="relative">
-            <img
-              src={defaultMascotSrc}
-              alt="Arthur mascotte jemassuremoinscher.fr - super-héros de l'assurance moins chère"
-              className="w-28 md:w-36 lg:w-44 h-auto drop-shadow-2xl animate-hero-float"
-              width={176}
-              height={220}
-              sizes="(max-width: 767px) 112px, (max-width: 1023px) 144px, 176px"
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-            />
-            <div className="absolute -top-2 -right-16 md:-right-20 bg-white rounded-xl px-3 py-1.5 shadow-lg animate-fade-in-delay">
-              <p className="text-primary font-bold text-xs md:text-sm whitespace-nowrap">
-                {t('hero.arthurSpeech')} 👋
-              </p>
-              <div className="absolute -bottom-1.5 left-3 w-3 h-3 bg-white transform rotate-45" />
-            </div>
+        <div className="relative inline-block mb-6 animate-fade-in">
+          <img
+            src={defaultMascotSrc}
+            alt="Arthur mascotte jemassuremoinscher.fr - super-héros de l'assurance moins chère"
+            className="w-28 md:w-36 lg:w-44 h-auto drop-shadow-2xl animate-hero-float"
+            width={176}
+            height={220}
+            sizes="(max-width: 767px) 112px, (max-width: 1023px) 144px, 176px"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+          />
+          <div className="absolute -top-2 -right-16 md:-right-20 bg-white rounded-xl px-3 py-1.5 shadow-lg animate-fade-in-delay">
+            <p className="text-primary font-bold text-xs md:text-sm whitespace-nowrap">
+              {t('hero.arthurSpeech')} 👋
+            </p>
+            <div className="absolute -bottom-1.5 left-3 w-3 h-3 bg-white transform rotate-45" />
           </div>
         </div>
 
