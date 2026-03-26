@@ -25,6 +25,7 @@ const AssuranceGLI = () => {
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Garantie Loyer Impayé", url: "https://www.jemassuremoinscher.fr/assurance-gli" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur GLI", description: "Protégez vos revenus locatifs avec une assurance GLI." });
   const faqSchema = addFAQSchema([{ question: t('gliPage.faq1.q'), answer: t('gliPage.faq1.a') }, { question: t('gliPage.faq2.q'), answer: t('gliPage.faq2.a') }, { question: t('gliPage.faq3.q'), answer: t('gliPage.faq3.a') }]);
+  const insuranceProductSchema = addInsuranceProductSchema({ name: "Garantie Loyer Impayé", description: "Comparateur GLI. Protégez vos revenus locatifs contre les impayés et dégradations.", category: "Assurance Loyer Impayé", url: "https://www.jemassuremoinscher.fr/assurance-gli" });
   const advantages = [
     { icon: Euro, title: t('gliPage.adv1.title'), description: t('gliPage.adv1.desc') },
     { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
