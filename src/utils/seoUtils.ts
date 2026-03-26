@@ -167,6 +167,55 @@ export const addArticleSchema = (article: {
   };
 };
 
+export const addInsuranceProductSchema = (product: {
+  name: string;
+  description: string;
+  category: string;
+  url: string;
+  providerName?: string;
+  priceRange?: string;
+  ratingValue?: number;
+  reviewCount?: number;
+}) => {
+  const schema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "InsuranceProduct" as const,
+    "name": product.name,
+    "description": product.description,
+    "category": product.category,
+    "url": product.url,
+    "provider": {
+      "@type": "Organization",
+      "name": product.providerName || "jemassuremoinscher.fr",
+      "url": "https://www.jemassuremoinscher.fr"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "France"
+    }
+  };
+  if (product.priceRange) {
+    schema.offers = {
+      "@type": "AggregateOffer",
+      "priceCurrency": "EUR",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": product.priceRange
+      }
+    };
+  }
+  if (product.ratingValue && product.reviewCount) {
+    schema.aggregateRating = {
+      "@type": "AggregateRating",
+      "ratingValue": product.ratingValue.toString(),
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": product.reviewCount.toString()
+    };
+  }
+  return schema;
+};
+
 export const addHowToSchema = (howTo: {
   name: string;
   description: string;
