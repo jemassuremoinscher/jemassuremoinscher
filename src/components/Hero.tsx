@@ -123,11 +123,9 @@ const Hero = () => {
       className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90"
       aria-label="Section principale - Comparateur d'assurances">
       
-      {/* Subtle Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-10" aria-hidden="true">
         <div className="absolute top-20 left-10 w-32 h-32 bg-white rounded-full blur-3xl" />
         <div className="absolute bottom-32 right-10 w-48 h-48 bg-accent rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full" />
       </div>
 
       {/* Content */}

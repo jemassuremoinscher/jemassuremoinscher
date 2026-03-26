@@ -202,7 +202,6 @@ const WhyUsComparison = () => {
                   {t('whyUs.arthurQuote')} <span className="text-accent">{t('whyUs.bestRates')}</span> !"
                 </p>
               </div>
-            </div>
           </motion.div>
         </motion.div>
       </div>

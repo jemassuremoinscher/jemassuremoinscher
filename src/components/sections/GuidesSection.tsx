@@ -213,9 +213,8 @@ const GuidesSection = () => {
               >
                 {t('guides.arthurSpeech')}
                 <div className="absolute -bottom-1.5 left-3 w-3 h-3 bg-accent transform rotate-45" />
-              </motion.div>
             </motion.div>
-          </div>
+          </motion.div>
           <h2 id="guides-title" className="text-3xl md:text-5xl font-bold text-foreground mb-4">
             {t('guides.mainTitle')}
           </h2>
