@@ -230,41 +230,50 @@ function DefaultHeroContent({ t, trackEvent }: { t: (key: string) => string; tra
         </p>
       </div>
 
-      <Link
-        to="/avis-clients"
-        className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/40 rounded-full px-4 py-2 md:px-6 md:py-3 hover:bg-accent/30 transition-colors duration-200 mb-6 animate-fade-in-up-delay"
-        aria-label="Voir les avis clients"
-      >
-        <span className="text-accent"><SparklesIcon /></span>
-        <span className="text-sm md:text-base font-bold text-primary-foreground text-center">
-          {t('hero.savingsBadge')} <span className="text-accent">{t('hero.savingsPercent')}</span> {t('hero.savingsEnd')}
-        </span>
-      </Link>
-
-      <div className="relative inline-flex items-center mb-6 animate-fade-in-up-delay">
+      {/* Savings Badge */}
+      <div className="flex justify-center mb-6 animate-fade-in-up-delay">
         <Link
-          to="/comparateur"
-          onClick={() => trackEvent('insurance_type_click', { category: 'hero_cta', label: 'voir_mon_prix', ref: 'default' })}
-          className="inline-flex items-center gap-2 bg-gradient-to-r from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] hover:from-[hsl(43_80%_60%)] hover:to-[hsl(38_75%_53%)] text-foreground font-bold text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
-          aria-label="Voir mon prix en 2 min">
-          <ZapIcon />
-          Voir mon prix en 2 min
-        </Link>
-        <div className="absolute -right-2 -top-3 md:-right-4 md:-top-4 bg-white rounded-lg px-2 py-1 md:px-2.5 md:py-1.5 shadow-md border border-accent/30 rotate-3 pointer-events-none">
-          <span className="text-[10px] md:text-xs font-bold text-primary whitespace-nowrap">
-            -240€<span className="text-muted-foreground font-semibold">/an</span>*
+          to="/avis-clients"
+          className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/40 rounded-full px-4 py-2 md:px-6 md:py-3 hover:bg-accent/30 transition-colors duration-200"
+          aria-label="Voir les avis clients"
+        >
+          <span className="text-accent"><SparklesIcon /></span>
+          <span className="text-sm md:text-base font-bold text-primary-foreground text-center">
+            {t('hero.savingsBadge')} <span className="text-accent">{t('hero.savingsPercent')}</span> {t('hero.savingsEnd')}
           </span>
+        </Link>
+      </div>
+
+      {/* CTA Button + floating badge */}
+      <div className="flex justify-center mb-6 animate-fade-in-up-delay">
+        <div className="relative inline-flex items-center">
+          <Link
+            to="/comparateur"
+            onClick={() => trackEvent('insurance_type_click', { category: 'hero_cta', label: 'voir_mon_prix', ref: 'default' })}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] hover:from-[hsl(43_80%_60%)] hover:to-[hsl(38_75%_53%)] text-foreground font-bold text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
+            aria-label="Voir mon prix en 2 min">
+            <ZapIcon />
+            Voir mon prix en 2 min
+          </Link>
+          <div className="absolute -right-2 -top-3 md:-right-4 md:-top-4 bg-white rounded-lg px-2 py-1 md:px-2.5 md:py-1.5 shadow-md border border-accent/30 rotate-3 pointer-events-none">
+            <span className="text-[10px] md:text-xs font-bold text-primary whitespace-nowrap">
+              -240€<span className="text-muted-foreground font-semibold">/an</span>*
+            </span>
+          </div>
         </div>
       </div>
 
-      <div className="inline-flex items-center gap-2 text-primary-foreground/70 mb-6 animate-fade-in-up-delay">
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent/60" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
-        </span>
-        <span className="text-sm font-medium tabular-nums">
-          <span className="font-bold text-primary-foreground">{devisCount.toLocaleString('fr-FR')}</span> devis réalisés cette année
-        </span>
+      {/* Devis counter — social proof */}
+      <div className="flex justify-center mb-6 animate-fade-in-up-delay">
+        <div className="inline-flex items-center gap-2 text-primary-foreground/70">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent/60" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+          </span>
+          <span className="text-sm font-medium tabular-nums">
+            <span className="font-bold text-primary-foreground">{devisCount.toLocaleString('fr-FR')}</span> devis réalisés cette année
+          </span>
+        </div>
       </div>
 
     </>
