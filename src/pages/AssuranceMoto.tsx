@@ -48,7 +48,7 @@ const AssuranceMoto = () => {
           <div className="max-w-4xl mx-auto text-center relative">
             <ArthurHero imageSrc={arthurMoto} imageAlt="Arthur en moto - assurance moto moins chère" speechText={t('motoPage.subtitle')} />
             <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('motoPage.title')}</h1>
-            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
+            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Comparer les assurances moto maintenant">{t('insPage.compareNow')}</Button>
           </div>
         </div>
       </section>
