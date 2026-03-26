@@ -1,18 +1,16 @@
 import Header from "@/components/Header";
-import GuaranteeTable from "@/components/sections/GuaranteeTable";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
-import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import { addServiceSchema, addFAQSchema, addAggregateRatingSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurMoto from "@/assets/mascotte/arthur-moto.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
-import RelatedInsuranceLinks from "@/components/insurance/RelatedInsuranceLinks";
+import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
+import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import EnBref from "@/components/seo/EnBref";
 import BrandName from "@/components/BrandName";
 import arthurFlying from "@/assets/mascotte/arthur-excited.webp";
@@ -56,7 +54,7 @@ const AssuranceMoto = () => {
 
       <div className="container mx-auto px-4 py-12" data-ai-description="Comparateur d'assurance moto — jemassuremoinscher.fr compare 25+ assureurs, devis gratuit en moins de 2 minutes">
         <DynamicUpdateDate />
-        <EnBref facts={[<><BrandName /> compare les offres de 25+ assureurs moto et scooter.</>, "Assurance moto dès 15€/mois selon le profil et la cylindrée.", "Devis gratuit en moins de 2 minutes, sans engagement.", "Couverture disponible : tiers, tiers étendu, tous risques."]} />
+
         <section className="max-w-4xl mx-auto mb-12">
           <div className="grid md:grid-cols-3 gap-6">
             {advantages.map((item, index) => (
@@ -73,36 +71,34 @@ const AssuranceMoto = () => {
           <MultiStepQuoteForm insuranceType="moto" />
         </div>
 
-        <section className="max-w-4xl mx-auto mb-16">
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="learn-more" className="border rounded-lg">
-              <AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold flex items-center gap-2">{t('insPage.learnMore')} {t('motoPage.learnMore')}</span></AccordionTrigger>
-              <AccordionContent className="px-6 pb-6">
-                <div className="space-y-12">
-                  <InsuranceFAQ title={t('insPage.faqTitle')} faqs={[
-                    { question: t('motoPage.faq1.q'), answer: t('motoPage.faq1.a') },
-                    { question: t('motoPage.faq2.q'), answer: t('motoPage.faq2.a') },
-                    { question: t('motoPage.faq3.q'), answer: t('motoPage.faq3.a') },
-                    { question: t('motoPage.faq4.q'), answer: t('motoPage.faq4.a') },
-                  ]} />
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </section>
+        <InsuranceSEOTabs
+          faqTitle={t('insPage.faqTitle')}
+          faqs={[
+            { question: t('motoPage.faq1.q'), answer: t('motoPage.faq1.a') },
+            { question: t('motoPage.faq2.q'), answer: t('motoPage.faq2.a') },
+            { question: t('motoPage.faq3.q'), answer: t('motoPage.faq3.a') },
+            { question: t('motoPage.faq4.q'), answer: t('motoPage.faq4.a') },
+          ]}
+        />
 
-        <ExpertiseSection insuranceType="assurance moto" />
-        <GuaranteeTable />
-        <RelatedInsuranceLinks currentPage="moto" />
-
-        <section className="max-w-2xl mx-auto text-center mb-16">
-          <Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible">
-            <img src={arthurFlying} alt="Arthur en vol - économisez sur votre assurance moto" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" decoding="async" />
-            <h2 className="text-2xl font-bold mb-4">{t('insPage.readyToSave')} {t('motoPage.readyToSave')} ?</h2>
-            <p className="text-muted-foreground mb-6">{t('insPage.compareFree')}</p>
-            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6" aria-label="Obtenir un devis assurance moto gratuit">{t('insPage.compareNowBtn')}</Button>
-          </Card>
-        </section>
+        <InsuranceBottomHub
+          currentPage="moto"
+          expertiseSection={<ExpertiseSection insuranceType="assurance moto" />}
+          enBref={
+            <EnBref facts={[
+              <><BrandName /> compare les offres de 25+ assureurs moto et scooter.</>,
+              "Assurance moto dès 15€/mois selon le profil et la cylindrée.",
+              "Devis gratuit en moins de 2 minutes, sans engagement.",
+              "Couverture disponible : tiers, tiers étendu, tous risques.",
+            ]} />
+          }
+          ctaTitle={`${t('insPage.readyToSave')} ${t('motoPage.readyToSave')} ?`}
+          ctaDescription={t('insPage.compareFree')}
+          ctaButtonLabel={t('insPage.compareNowBtn')}
+          ctaMascotSrc={arthurFlying}
+          ctaMascotAlt="Arthur en vol - économisez sur votre assurance moto"
+          onCtaClick={scrollToForm}
+        />
       </div>
       </main>
       <Footer />
