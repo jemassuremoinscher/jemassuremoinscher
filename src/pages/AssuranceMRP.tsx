@@ -25,6 +25,7 @@ const AssuranceMRP = () => {
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance MRP", url: "https://www.jemassuremoinscher.fr/assurance-mrp" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance MRP", description: "Comparez les assurances multirisque professionnelle.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const faqSchema = addFAQSchema([{ question: t('mrpPage.faq1.q'), answer: t('mrpPage.faq1.a') }, { question: t('mrpPage.faq2.q'), answer: t('mrpPage.faq2.a') }]);
+  const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Multirisque Professionnelle", description: "Comparateur MRP. Locaux, stock, matériel : protégez votre entreprise dès 20€/mois.", category: "Assurance Professionnelle", url: "https://www.jemassuremoinscher.fr/assurance-mrp" });
   const advantages = [
     { icon: Euro, title: t('mrpPage.adv1.title'), description: t('mrpPage.adv1.desc') },
     { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
