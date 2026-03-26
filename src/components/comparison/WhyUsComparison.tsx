@@ -142,12 +142,10 @@ const WhyUsComparison = () => {
               </div>
               <p className="text-3xl font-black text-foreground">4.8<span className="text-lg text-muted-foreground">/5</span></p>
               <p className="text-xs text-muted-foreground">{t('whyUs.googleReviews')}</p>
-            </div>
           </motion.div>
 
           {/* ORIAS */}
-          <motion.div variants={itemVariants} className="bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow">
-            <div className="flex flex-col items-center text-center gap-3">
+          <motion.div variants={itemVariants} className="bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow flex flex-col items-center text-center gap-3">
               <img
                 src={oriasLogo}
                 alt="ORIAS - Organisme pour le registre unique des intermédiaires en assurance"
