@@ -7,7 +7,7 @@ import { Shield, Euro, Clock, Calculator, ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
-import { addServiceSchema, addFAQSchema, addAggregateRatingSchema, addHowToSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addAggregateRatingSchema, addHowToSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurCar from "@/assets/mascotte/arthur-car.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
