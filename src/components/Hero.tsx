@@ -150,19 +150,17 @@ const Hero = () => {
               className="block">
               <Card className="p-4 md:p-6 bg-white/95 backdrop-blur-sm border-2 border-transparent hover:border-accent transition-all duration-300 cursor-pointer group card-hover active:scale-95">
                 <div className="flex flex-col items-center gap-2 md:gap-3">
-                  <div className="group-hover:scale-110 transition-transform duration-300">
-                    <img
-                      src={category.mascot}
-                      alt={category.alt}
-                      className="h-12 w-12 md:h-16 md:w-16 object-contain"
-                      width={64}
-                      height={64}
-                      sizes="64px"
-                      loading="lazy"
-                      decoding="async"
-                      fetchPriority="low"
-                    />
-                  </div>
+                  <img
+                    src={category.mascot}
+                    alt={category.alt}
+                    className="h-12 w-12 md:h-16 md:w-16 object-contain group-hover:scale-110 transition-transform duration-300"
+                    width={64}
+                    height={64}
+                    sizes="64px"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                  />
                   <span className="font-bold text-sm md:text-base text-foreground group-hover:text-primary transition-colors font-[Inter]">
                     {t(category.labelKey)}
                   </span>
