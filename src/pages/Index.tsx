@@ -145,9 +145,9 @@ const Index = () => {
           </Suspense>
         </DeferredRender>
 
-        <DeferredRender minHeight={400}>
-          <Suspense fallback={<div aria-hidden="true" className="min-h-[400px]" />}>
-            <GuaranteeTable />
+        <DeferredRender minHeight={720}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[720px]" />}>
+            <SEOContent />
           </Suspense>
         </DeferredRender>
 
