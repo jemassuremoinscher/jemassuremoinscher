@@ -27,6 +27,7 @@ const AssurancePrevoyance = () => {
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Prévoyance", url: "https://www.jemassuremoinscher.fr/assurance-prevoyance" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Prévoyance", description: "Comparez les meilleures assurances prévoyance.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const faqSchema = addFAQSchema([{ question: t('prevoyancePage.faq1.q'), answer: t('prevoyancePage.faq1.a') }, { question: t('prevoyancePage.faq2.q'), answer: t('prevoyancePage.faq2.a') }]);
+  const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Prévoyance", description: "Comparateur d'assurance prévoyance. Décès, invalidité, obsèques : protégez votre famille dès 9€/mois.", category: "Assurance Prévoyance", url: "https://www.jemassuremoinscher.fr/assurance-prevoyance" });
   const advantages = [
     { icon: Heart, title: t('prevoyancePage.adv1.title'), description: t('prevoyancePage.adv1.desc') },
     { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
