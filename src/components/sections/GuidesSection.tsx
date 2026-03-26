@@ -192,9 +192,8 @@ const GuidesSection = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16 md:mb-20"
         >
-          <div className="flex justify-center mb-6">
-            <motion.div className="relative">
-              <motion.img
+          <motion.div className="relative inline-block mb-6">
+            <motion.img
                 src={arthurFlying}
                 alt="Arthur"
                 className="w-20 h-auto md:w-28"
