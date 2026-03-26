@@ -12,6 +12,7 @@ const Partners = lazy(() => import("@/components/Partners"));
 const WhyUsComparison = lazy(() => import("@/components/comparison/WhyUsComparison"));
 const HowItWorks = lazy(() => import("@/components/sections/HowItWorks"));
 const SEOFaq = lazy(() => import("@/components/sections/SEOFaq"));
+const ClientCases = lazy(() => import("@/components/sections/ClientCases"));
 const GuidesSection = lazy(() => import("@/components/sections/GuidesSection"));
 const SEOContent = lazy(() => import("@/components/sections/SEOContent"));
 const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
@@ -127,6 +128,12 @@ const Index = () => {
         <DeferredRender minHeight={560}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[560px]" />}>
             <SEOFaq />
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={400}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[400px]" />}>
+            <ClientCases />
           </Suspense>
         </DeferredRender>
 
