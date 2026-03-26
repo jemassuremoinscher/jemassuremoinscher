@@ -160,29 +160,24 @@ const WhyUsComparison = () => {
               <a href="https://www.orias.fr" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2">
                 {t('whyUs.verifyOrias')}
               </a>
-            </div>
           </motion.div>
 
           {/* Courtier Indépendant */}
-          <motion.div variants={itemVariants} className="bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow">
-            <div className="flex flex-col items-center text-center gap-3">
-              <div className="p-3 rounded-full bg-primary/10">
-                <Scale className="w-7 h-7 text-primary" />
-              </div>
-              <p className="text-sm font-bold text-foreground">Courtier indépendant</p>
-              <p className="text-xs text-muted-foreground">Aucun lien capitalistique avec les assureurs. Conseil 100% impartial.</p>
+          <motion.div variants={itemVariants} className="bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow flex flex-col items-center text-center gap-3">
+            <div className="p-3 rounded-full bg-primary/10">
+              <Scale className="w-7 h-7 text-primary" />
             </div>
+            <p className="text-sm font-bold text-foreground">Courtier indépendant</p>
+            <p className="text-xs text-muted-foreground">Aucun lien capitalistique avec les assureurs. Conseil 100% impartial.</p>
           </motion.div>
 
           {/* Transparence Totale */}
-          <motion.div variants={itemVariants} className="bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow">
-            <div className="flex flex-col items-center text-center gap-3">
-              <div className="p-3 rounded-full bg-primary/10">
-                <BadgeCheck className="w-7 h-7 text-primary" />
-              </div>
-              <p className="text-sm font-bold text-foreground">Transparence totale</p>
-              <p className="text-xs text-muted-foreground">Aucun frais caché. Service gratuit et sans engagement pour vous.</p>
+          <motion.div variants={itemVariants} className="bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow flex flex-col items-center text-center gap-3">
+            <div className="p-3 rounded-full bg-primary/10">
+              <BadgeCheck className="w-7 h-7 text-primary" />
             </div>
+            <p className="text-sm font-bold text-foreground">Transparence totale</p>
+            <p className="text-xs text-muted-foreground">Aucun frais caché. Service gratuit et sans engagement pour vous.</p>
           </motion.div>
 
           {/* Arthur Banner */}
