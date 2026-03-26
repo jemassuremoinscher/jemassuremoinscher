@@ -68,7 +68,7 @@ const AssuranceHabitation = () => {
           </div>
         </section>
 
-        <div ref={formRef} className="mb-16">
+        <div ref={formRef} className="mb-16 min-h-[480px]">
           <MultiStepQuoteForm insuranceType="habitation" />
         </div>
 
