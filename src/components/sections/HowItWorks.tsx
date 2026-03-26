@@ -51,7 +51,6 @@ const HowItWorks = () => {
           </p>
         </motion.div>
 
-        {/* Horizontal cards - no stacking */}
         <div className="relative -mx-4 px-4 md:mx-0 md:px-0">
           <div className="flex items-stretch gap-4 md:gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide pl-4 md:pl-0 md:overflow-visible">
             {steps.map((step, index) => (

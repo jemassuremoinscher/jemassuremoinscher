@@ -123,11 +123,9 @@ const Hero = () => {
       className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90"
       aria-label="Section principale - Comparateur d'assurances">
       
-      {/* Subtle Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-10" aria-hidden="true">
         <div className="absolute top-20 left-10 w-32 h-32 bg-white rounded-full blur-3xl" />
         <div className="absolute bottom-32 right-10 w-48 h-48 bg-accent rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full" />
       </div>
 
       {/* Content */}
@@ -150,19 +148,17 @@ const Hero = () => {
               className="block">
               <Card className="p-4 md:p-6 bg-white/95 backdrop-blur-sm border-2 border-transparent hover:border-accent transition-all duration-300 cursor-pointer group card-hover active:scale-95">
                 <div className="flex flex-col items-center gap-2 md:gap-3">
-                  <div className="group-hover:scale-110 transition-transform duration-300">
-                    <img
-                      src={category.mascot}
-                      alt={category.alt}
-                      className="h-12 w-12 md:h-16 md:w-16 object-contain"
-                      width={64}
-                      height={64}
-                      sizes="64px"
-                      loading="lazy"
-                      decoding="async"
-                      fetchPriority="low"
-                    />
-                  </div>
+                  <img
+                    src={category.mascot}
+                    alt={category.alt}
+                    className="h-12 w-12 md:h-16 md:w-16 object-contain group-hover:scale-110 transition-transform duration-300"
+                    width={64}
+                    height={64}
+                    sizes="64px"
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                  />
                   <span className="font-bold text-sm md:text-base text-foreground group-hover:text-primary transition-colors font-[Inter]">
                     {t(category.labelKey)}
                   </span>
@@ -191,27 +187,24 @@ function DefaultHeroContent({ t, trackEvent }: { t: (key: string) => string; tra
 
   return (
     <>
-      {/* Arthur + Title Section */}
       <div className="text-center mb-8">
-        <div className="flex justify-center mb-6 animate-fade-in">
-          <div className="relative">
-            <img
-              src={defaultMascotSrc}
-              alt="Arthur mascotte jemassuremoinscher.fr - super-héros de l'assurance moins chère"
-              className="w-28 md:w-36 lg:w-44 h-auto drop-shadow-2xl animate-hero-float"
-              width={176}
-              height={220}
-              sizes="(max-width: 767px) 112px, (max-width: 1023px) 144px, 176px"
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-            />
-            <div className="absolute -top-2 -right-16 md:-right-20 bg-white rounded-xl px-3 py-1.5 shadow-lg animate-fade-in-delay">
-              <p className="text-primary font-bold text-xs md:text-sm whitespace-nowrap">
-                {t('hero.arthurSpeech')} 👋
-              </p>
-              <div className="absolute -bottom-1.5 left-3 w-3 h-3 bg-white transform rotate-45" />
-            </div>
+        <div className="relative inline-block mb-6 animate-fade-in">
+          <img
+            src={defaultMascotSrc}
+            alt="Arthur mascotte jemassuremoinscher.fr - super-héros de l'assurance moins chère"
+            className="w-28 md:w-36 lg:w-44 h-auto drop-shadow-2xl animate-hero-float"
+            width={176}
+            height={220}
+            sizes="(max-width: 767px) 112px, (max-width: 1023px) 144px, 176px"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+          />
+          <div className="absolute -top-2 -right-16 md:-right-20 bg-white rounded-xl px-3 py-1.5 shadow-lg animate-fade-in-delay">
+            <p className="text-primary font-bold text-xs md:text-sm whitespace-nowrap">
+              {t('hero.arthurSpeech')} 👋
+            </p>
+            <div className="absolute -bottom-1.5 left-3 w-3 h-3 bg-white transform rotate-45" />
           </div>
         </div>
 
@@ -237,51 +230,41 @@ function DefaultHeroContent({ t, trackEvent }: { t: (key: string) => string; tra
         </p>
       </div>
 
-      {/* Savings Badge */}
-      <div className="flex justify-center mb-6 animate-fade-in-up-delay">
+      <Link
+        to="/avis-clients"
+        className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/40 rounded-full px-4 py-2 md:px-6 md:py-3 hover:bg-accent/30 transition-colors duration-200 mb-6 animate-fade-in-up-delay"
+        aria-label="Voir les avis clients"
+      >
+        <span className="text-accent"><SparklesIcon /></span>
+        <span className="text-sm md:text-base font-bold text-primary-foreground text-center">
+          {t('hero.savingsBadge')} <span className="text-accent">{t('hero.savingsPercent')}</span> {t('hero.savingsEnd')}
+        </span>
+      </Link>
+
+      <div className="relative inline-flex items-center mb-6 animate-fade-in-up-delay">
         <Link
-          to="/avis-clients"
-          className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/40 rounded-full px-4 py-2 md:px-6 md:py-3 hover:bg-accent/30 transition-colors duration-200"
-          aria-label="Voir les avis clients"
-        >
-          <span className="text-accent"><SparklesIcon /></span>
-          <span className="text-sm md:text-base font-bold text-primary-foreground text-center">
-            {t('hero.savingsBadge')} <span className="text-accent">{t('hero.savingsPercent')}</span> {t('hero.savingsEnd')}
-          </span>
+          to="/comparateur"
+          onClick={() => trackEvent('insurance_type_click', { category: 'hero_cta', label: 'voir_mon_prix', ref: 'default' })}
+          className="inline-flex items-center gap-2 bg-gradient-to-r from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] hover:from-[hsl(43_80%_60%)] hover:to-[hsl(38_75%_53%)] text-foreground font-bold text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
+          aria-label="Voir mon prix en 2 min">
+          <ZapIcon />
+          Voir mon prix en 2 min
         </Link>
-      </div>
-
-      {/* CTA Button + floating badge */}
-      <div className="flex flex-col items-center mb-6 animate-fade-in-up-delay">
-        <div className="relative inline-flex items-center">
-          <Link
-            to="/comparateur"
-            onClick={() => trackEvent('insurance_type_click', { category: 'hero_cta', label: 'voir_mon_prix', ref: 'default' })}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] hover:from-[hsl(43_80%_60%)] hover:to-[hsl(38_75%_53%)] text-foreground font-bold text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
-            aria-label="Voir mon prix en 2 min">
-            <ZapIcon />
-            Voir mon prix en 2 min
-          </Link>
-          {/* Floating savings badge */}
-          <div className="absolute -right-2 -top-3 md:-right-4 md:-top-4 bg-white rounded-lg px-2 py-1 md:px-2.5 md:py-1.5 shadow-md border border-accent/30 rotate-3 pointer-events-none">
-            <span className="text-[10px] md:text-xs font-bold text-primary whitespace-nowrap">
-              -240€<span className="text-muted-foreground font-semibold">/an</span>*
-            </span>
-          </div>
+        <div className="absolute -right-2 -top-3 md:-right-4 md:-top-4 bg-white rounded-lg px-2 py-1 md:px-2.5 md:py-1.5 shadow-md border border-accent/30 rotate-3 pointer-events-none">
+          <span className="text-[10px] md:text-xs font-bold text-primary whitespace-nowrap">
+            -240€<span className="text-muted-foreground font-semibold">/an</span>*
+          </span>
         </div>
       </div>
 
-      {/* Devis counter — social proof */}
-      <div className="flex justify-center mb-6 animate-fade-in-up-delay">
-        <div className="inline-flex items-center gap-2 text-primary-foreground/70">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent/60" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
-          </span>
-          <span className="text-sm font-medium tabular-nums">
-            <span className="font-bold text-primary-foreground">{devisCount.toLocaleString('fr-FR')}</span> devis réalisés cette année
-          </span>
-        </div>
+      <div className="inline-flex items-center gap-2 text-primary-foreground/70 mb-6 animate-fade-in-up-delay">
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent/60" />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+        </span>
+        <span className="text-sm font-medium tabular-nums">
+          <span className="font-bold text-primary-foreground">{devisCount.toLocaleString('fr-FR')}</span> devis réalisés cette année
+        </span>
       </div>
 
     </>

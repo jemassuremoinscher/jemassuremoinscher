@@ -192,9 +192,8 @@ const GuidesSection = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16 md:mb-20"
         >
-          <div className="flex justify-center mb-6">
-            <motion.div className="relative">
-              <motion.img
+          <motion.div className="relative inline-block mb-6">
+            <motion.img
                 src={arthurFlying}
                 alt="Arthur"
                 className="w-20 h-auto md:w-28"
@@ -214,9 +213,8 @@ const GuidesSection = () => {
               >
                 {t('guides.arthurSpeech')}
                 <div className="absolute -bottom-1.5 left-3 w-3 h-3 bg-accent transform rotate-45" />
-              </motion.div>
             </motion.div>
-          </div>
+          </motion.div>
           <h2 id="guides-title" className="text-3xl md:text-5xl font-bold text-foreground mb-4">
             {t('guides.mainTitle')}
           </h2>
