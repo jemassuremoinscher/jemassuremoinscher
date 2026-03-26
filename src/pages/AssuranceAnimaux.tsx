@@ -27,6 +27,7 @@ const AssuranceAnimaux = () => {
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Animaux", url: "https://www.jemassuremoinscher.fr/assurance-animaux" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Animaux", description: "Comparez les assurances pour chiens et chats. Remboursement des frais vétérinaires jusqu'à 100%.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const faqSchema = addFAQSchema([{ question: "Pourquoi assurer son animal ?", answer: "Pour couvrir les frais vétérinaires souvent élevés (accidents, maladies, chirurgie)." }, { question: "Combien coûte une assurance animaux ?", answer: "De 10€ à 60€/mois selon l'espèce, l'âge, la race et le niveau de garanties." }]);
+  const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Animaux", description: "Comparateur d'assurance chien, chat et NAC. Remboursement vétérinaire jusqu'à 100%. Dès 8€/mois.", category: "Assurance Animaux", url: "https://www.jemassuremoinscher.fr/assurance-animaux" });
   const advantages = [
     { icon: Euro, title: t('animauxPage.adv1.title'), description: t('animauxPage.adv1.desc') },
     { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
