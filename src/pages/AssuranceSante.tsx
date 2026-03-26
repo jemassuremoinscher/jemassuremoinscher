@@ -92,6 +92,7 @@ const AssuranceSante = () => {
         </section>
 
         <ExpertiseSection insuranceType="mutuelle santé" />
+        <GuaranteeTable />
         <RelatedInsuranceLinks currentPage="sante" />
 
         <section className="max-w-2xl mx-auto text-center mb-16">

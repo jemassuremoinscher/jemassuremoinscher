@@ -92,6 +92,7 @@ const AssuranceMoto = () => {
         </section>
 
         <ExpertiseSection insuranceType="assurance moto" />
+        <GuaranteeTable />
         <RelatedInsuranceLinks currentPage="moto" />
 
         <section className="max-w-2xl mx-auto text-center mb-16">

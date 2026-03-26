@@ -92,6 +92,7 @@ const AssuranceHabitation = () => {
         </section>
 
         <ExpertiseSection insuranceType="assurance habitation" />
+        <GuaranteeTable />
         <RelatedInsuranceLinks currentPage="habitation" />
 
         <section className="max-w-2xl mx-auto text-center mb-16">
