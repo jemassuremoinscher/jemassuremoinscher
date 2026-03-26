@@ -6,7 +6,7 @@ import { Shield, Home, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -25,6 +25,7 @@ const AssurancePNO = () => {
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance PNO", url: "https://www.jemassuremoinscher.fr/assurance-pno" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance PNO", description: "Comparez les assurances PNO pour protéger votre bien immobilier.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const faqSchema = addFAQSchema([{ question: t('pnoPage.faq1.q'), answer: t('pnoPage.faq1.a') }, { question: t('pnoPage.faq2.q'), answer: t('pnoPage.faq2.a') }, { question: t('pnoPage.faq3.q'), answer: t('pnoPage.faq3.a') }]);
+  const insuranceProductSchema = addInsuranceProductSchema({ name: "PNO Assurance", description: "Comparateur d'assurance propriétaire non occupant. Obligatoire en copropriété (loi Alur). Dès 5€/mois.", category: "Assurance PNO", url: "https://www.jemassuremoinscher.fr/assurance-pno" });
   const advantages = [
     { icon: Home, title: t('pnoPage.adv1.title'), description: t('pnoPage.adv1.desc') },
     { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
@@ -33,7 +34,7 @@ const AssurancePNO = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="PNO Assurance dès 5€/mois | Obligatoire Copro 2026" description="PNO assurance : comparez les assurances propriétaire non occupant. Obligatoire en copropriété (loi Alur). 50+ assureurs comparés. Devis gratuit." keyword="PNO assurance" keywords="pno assurance, assurance PNO, propriétaire non occupant, assurance logement vide, PNO obligatoire, assurance bailleur" canonical="https://www.jemassuremoinscher.fr/assurance-pno" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]} />
+      <SEOOptimized title="PNO Assurance dès 5€/mois | Obligatoire Copro 2026" description="PNO assurance : comparez les assurances propriétaire non occupant. Obligatoire en copropriété (loi Alur). 50+ assureurs comparés. Devis gratuit." keyword="PNO assurance" keywords="pno assurance, assurance PNO, propriétaire non occupant, assurance logement vide, PNO obligatoire, assurance bailleur" canonical="https://www.jemassuremoinscher.fr/assurance-pno" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance PNO" }]} />
       <main id="main-content">
@@ -41,13 +42,13 @@ const AssurancePNO = () => {
         <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
           <ArthurHero imageSrc={arthurHouse} imageAlt="Arthur - PNO" speechText={t('pnoPage.subtitle')} />
           <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">PNO Assurance : Comparez et Économisez dès 5€/mois</h1>
-          <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
+          <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Comparer les assurances PNO maintenant">{t('insPage.compareNow')}</Button>
         </div></div>
       </section>
       <div className="container mx-auto px-4 py-12">
         <DynamicUpdateDate />
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
-        <div ref={formRef} className="mb-16"><MultiStepQuoteForm insuranceType="pno" /></div>
+        <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="pno" /></div>
         <section className="max-w-4xl mx-auto mb-16"><Accordion type="single" collapsible className="w-full"><AccordionItem value="learn-more" className="border rounded-lg"><AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold">{t('insPage.learnMore')} {t('pnoPage.learnMore')}</span></AccordionTrigger><AccordionContent className="px-6 pb-6"><InsuranceFAQ title={t('insPage.faqTitle')} faqs={[{ question: t('pnoPage.faq1.q'), answer: t('pnoPage.faq1.a') }, { question: t('pnoPage.faq2.q'), answer: t('pnoPage.faq2.a') }, { question: t('pnoPage.faq3.q'), answer: t('pnoPage.faq3.a') }]} /></AccordionContent></AccordionItem></Accordion></section>
         <section className="max-w-2xl mx-auto text-center mb-16"><Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible"><img src={arthurFlying} alt="Arthur - PNO" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" /><h2 className="text-2xl font-bold mb-4">{t('pnoPage.ctaTitle')}</h2><p className="text-muted-foreground mb-6">{t('pnoPage.ctaDesc')}</p><Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button></Card></section>
         <RelatedInsuranceLinks currentPage="pno" />

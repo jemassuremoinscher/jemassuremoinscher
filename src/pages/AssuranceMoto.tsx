@@ -6,7 +6,7 @@ import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
-import { addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addAggregateRatingSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurMoto from "@/assets/mascotte/arthur-moto.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
@@ -28,6 +28,7 @@ const AssuranceMoto = () => {
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Moto", description: "Comparez les assurances moto et scooter. Devis gratuit et rapide.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const ratingSchema = addAggregateRatingSchema("Comparateur Assurance Moto", 4.5, 987);
   const faqSchema = addFAQSchema([{ question: "Quelle assurance moto choisir ?", answer: "Le choix dépend de votre moto, votre profil et usage. Comparez les formules au tiers, intermédiaire et tous risques." }, { question: "L'assurance moto est-elle obligatoire ?", answer: "Oui, au minimum une assurance au tiers est obligatoire pour circuler." }]);
+  const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Moto", description: "Comparateur d'assurance moto et scooter. Tous risques dès 15€/mois. Comparez 25+ assureurs.", category: "Assurance Moto", url: "https://www.jemassuremoinscher.fr/assurance-moto", ratingValue: 4.5, reviewCount: 987 });
 
   const advantages = [
     { icon: Euro, title: t('motoPage.adv1.title'), description: t('motoPage.adv1.desc') },
@@ -37,7 +38,7 @@ const AssuranceMoto = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Moto Moins Chère : -35% en 2 min ⭐" description="Moto, scooter, 125cc : comparez 50+ assureurs. Tous risques dès 15€/mois. Devis gratuit et sans engagement." keyword="assurance moto moins chère" keywords="assurance scooter, comparateur assurance moto, assurance 125, assurance moto jeune conducteur" canonical="https://www.jemassuremoinscher.fr/assurance-moto" jsonLd={[serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Moto Moins Chère : -35% en 2 min ⭐" description="Moto, scooter, 125cc : comparez 50+ assureurs. Tous risques dès 15€/mois. Devis gratuit et sans engagement." keyword="assurance moto moins chère" keywords="assurance scooter, comparateur assurance moto, assurance 125, assurance moto jeune conducteur" canonical="https://www.jemassuremoinscher.fr/assurance-moto" jsonLd={[serviceSchema, ratingSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Moto" }]} />
 
@@ -47,7 +48,7 @@ const AssuranceMoto = () => {
           <div className="max-w-4xl mx-auto text-center relative">
             <ArthurHero imageSrc={arthurMoto} imageAlt="Arthur en moto - assurance moto moins chère" speechText={t('motoPage.subtitle')} />
             <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('motoPage.title')}</h1>
-            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
+            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Comparer les assurances moto maintenant">{t('insPage.compareNow')}</Button>
           </div>
         </div>
       </section>
@@ -67,7 +68,7 @@ const AssuranceMoto = () => {
           </div>
         </section>
 
-        <div ref={formRef} className="mb-16">
+        <div ref={formRef} className="mb-16 min-h-[480px]">
           <MultiStepQuoteForm insuranceType="moto" />
         </div>
 
@@ -97,7 +98,7 @@ const AssuranceMoto = () => {
             <img src={arthurFlying} alt="Arthur en vol - économisez sur votre assurance moto" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" decoding="async" />
             <h2 className="text-2xl font-bold mb-4">{t('insPage.readyToSave')} {t('motoPage.readyToSave')} ?</h2>
             <p className="text-muted-foreground mb-6">{t('insPage.compareFree')}</p>
-            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
+            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6" aria-label="Obtenir un devis assurance moto gratuit">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
       </div>

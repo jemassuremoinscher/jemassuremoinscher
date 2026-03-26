@@ -6,7 +6,7 @@ import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
-import { addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addAggregateRatingSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurHouse from "@/assets/mascotte/arthur-house.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
@@ -28,6 +28,7 @@ const AssuranceHabitation = () => {
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Habitation", description: "Comparez les assurances habitation. Devis gratuit et rapide.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const ratingSchema = addAggregateRatingSchema("Comparateur Assurance Habitation", 4.7, 1435);
   const faqSchema = addFAQSchema([{ question: "L'assurance habitation est-elle obligatoire ?", answer: "Oui pour les locataires. Fortement recommandée pour les propriétaires." }, { question: "Combien coûte une assurance habitation ?", answer: "Entre 120€ et 350€ par an selon la surface et les garanties." }]);
+  const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Habitation", description: "Comparateur d'assurance habitation. Maison ou appartement, locataire ou propriétaire, trouvez la meilleure couverture.", category: "Assurance Habitation", url: "https://www.jemassuremoinscher.fr/assurance-habitation", ratingValue: 4.7, reviewCount: 1435 });
 
   const advantages = [
     { icon: Euro, title: t('habitationPage.adv1.title'), description: t('habitationPage.adv1.desc') },
@@ -37,7 +38,7 @@ const AssuranceHabitation = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Habitation Moins Chère dès 3€/mois" description="Comparez 50+ assureurs habitation en 2 min. Maison ou appartement, locataire ou propriétaire. Économisez jusqu'à 40%." keyword="assurance habitation moins chère" keywords="assurance maison, assurance appartement, assurance logement, assurance locataire" canonical="https://www.jemassuremoinscher.fr/assurance-habitation" jsonLd={[serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Habitation Moins Chère dès 3€/mois" description="Comparez 50+ assureurs habitation en 2 min. Maison ou appartement, locataire ou propriétaire. Économisez jusqu'à 40%." keyword="assurance habitation moins chère" keywords="assurance maison, assurance appartement, assurance logement, assurance locataire" canonical="https://www.jemassuremoinscher.fr/assurance-habitation" jsonLd={[serviceSchema, ratingSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Habitation" }]} />
 
@@ -47,7 +48,7 @@ const AssuranceHabitation = () => {
           <div className="max-w-4xl mx-auto text-center relative">
             <ArthurHero imageSrc={arthurHouse} imageAlt="Arthur devant une maison - assurance habitation moins chère" speechText={t('habitationPage.subtitle')} />
             <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('habitationPage.title')}</h1>
-            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
+            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Comparer les assurances habitation maintenant">{t('insPage.compareNow')}</Button>
           </div>
         </div>
       </section>
@@ -67,7 +68,7 @@ const AssuranceHabitation = () => {
           </div>
         </section>
 
-        <div ref={formRef} className="mb-16">
+        <div ref={formRef} className="mb-16 min-h-[480px]">
           <MultiStepQuoteForm insuranceType="habitation" />
         </div>
 
@@ -97,7 +98,7 @@ const AssuranceHabitation = () => {
             <img src={arthurFlying} alt="Arthur en vol - économisez sur votre assurance habitation" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" decoding="async" />
             <h2 className="text-2xl font-bold mb-4">{t('insPage.readyToSave')} {t('habitationPage.readyToSave')} ?</h2>
             <p className="text-muted-foreground mb-6">{t('insPage.compareFree')}</p>
-            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
+            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6" aria-label="Obtenir un devis assurance habitation gratuit">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
       </div>

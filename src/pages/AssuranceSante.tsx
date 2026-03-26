@@ -6,7 +6,7 @@ import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
-import { addServiceSchema, addFAQSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addAggregateRatingSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurSick from "@/assets/mascotte/arthur-sick.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
@@ -28,6 +28,7 @@ const AssuranceSante = () => {
   const serviceSchema = addServiceSchema({ name: "Comparateur Mutuelle Santé", description: "Comparez les meilleures mutuelles santé en France. Devis gratuit et personnalisé en 2 minutes.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const ratingSchema = addAggregateRatingSchema("Comparateur Mutuelle Santé", 4.6, 1642);
   const faqSchema = addFAQSchema([{ question: "Qu'est-ce qu'une mutuelle santé ?", answer: "Une mutuelle santé rembourse tout ou partie des dépenses de santé non couvertes par la Sécurité sociale." }, { question: "Comment choisir sa mutuelle santé ?", answer: "Choisissez selon vos besoins : niveau de remboursement optique/dentaire, délais de carence et votre budget." }, { question: "Combien coûte une mutuelle santé ?", answer: "Le prix varie selon votre âge, situation familiale et niveau de garanties. Comptez entre 45€ et 200€/mois." }]);
+  const insuranceProductSchema = addInsuranceProductSchema({ name: "Mutuelle Santé", description: "Comparateur de mutuelles santé. Optique, dentaire, hospitalisation : comparez 25+ mutuelles partenaires.", category: "Complémentaire Santé", url: "https://www.jemassuremoinscher.fr/assurance-sante", ratingValue: 4.6, reviewCount: 1642 });
 
   const advantages = [
     { icon: Euro, title: t('santePage.adv1.title'), description: t('santePage.adv1.desc') },
@@ -37,7 +38,7 @@ const AssuranceSante = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Mutuelle Santé Moins Chère : Économisez 300€/an" description="Comparez 50+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale. 4.8/5 satisfaction client." keyword="mutuelle santé moins chère" keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher, mutuelle famille" canonical="https://www.jemassuremoinscher.fr/assurance-sante" jsonLd={[serviceSchema, ratingSchema, faqSchema]} />
+      <SEOOptimized title="Mutuelle Santé Moins Chère : Économisez 300€/an" description="Comparez 50+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale. 4.8/5 satisfaction client." keyword="mutuelle santé moins chère" keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher, mutuelle famille" canonical="https://www.jemassuremoinscher.fr/assurance-sante" jsonLd={[serviceSchema, ratingSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Mutuelle Santé" }]} />
 
@@ -47,7 +48,7 @@ const AssuranceSante = () => {
           <div className="max-w-4xl mx-auto text-center relative">
             <ArthurHero imageSrc={arthurSick} imageAlt="Arthur malade - mutuelle santé moins chère" speechText={t('santePage.subtitle')} />
             <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('santePage.title')}</h1>
-            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
+            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Comparer les mutuelles santé maintenant">{t('insPage.compareNow')}</Button>
           </div>
         </div>
       </section>
@@ -67,7 +68,7 @@ const AssuranceSante = () => {
           </div>
         </section>
 
-        <div ref={formRef} className="mb-16">
+        <div ref={formRef} className="mb-16 min-h-[480px]">
           <MultiStepQuoteForm insuranceType="sante" />
         </div>
 
@@ -97,7 +98,7 @@ const AssuranceSante = () => {
             <img src={arthurFlying} alt="Arthur en vol - économisez sur votre mutuelle santé" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" decoding="async" />
             <h2 className="text-2xl font-bold mb-4">{t('insPage.readyToSave')} {t('santePage.readyToSave')} ?</h2>
             <p className="text-muted-foreground mb-6">{t('insPage.compareFree')}</p>
-            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
+            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6" aria-label="Obtenir un devis mutuelle santé gratuit">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
       </div>

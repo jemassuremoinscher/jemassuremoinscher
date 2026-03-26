@@ -7,7 +7,7 @@ import { Shield, Euro, Clock, Calculator, ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
-import { addServiceSchema, addFAQSchema, addAggregateRatingSchema, addHowToSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addAggregateRatingSchema, addHowToSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import arthurCar from "@/assets/mascotte/arthur-car.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
@@ -30,6 +30,7 @@ const AssuranceAuto = () => {
   const ratingSchema = addAggregateRatingSchema("Comparateur Assurance Auto", 4.7, 1853);
   const howToSchema = addHowToSchema({ name: "Comment obtenir un devis d'assurance auto en ligne", description: "Guide étape par étape pour comparer et obtenir votre devis d'assurance auto en 2 minutes", totalTime: "PT2M", steps: [{ name: "Renseignez les informations de votre véhicule", text: "Indiquez la marque, le modèle, la date de mise en circulation et l'usage de votre véhicule." }, { name: "Précisez votre profil de conducteur", text: "Renseignez votre âge, votre ancienneté de permis et votre coefficient bonus-malus." }, { name: "Comparez les offres disponibles", text: "Recevez instantanément plusieurs devis d'assureurs partenaires." }, { name: "Faites-vous rappeler", text: "Sélectionnez l'offre qui vous convient et demandez à être rappelé par un conseiller." }] });
   const faqSchema = addFAQSchema([{ question: "Quelle assurance auto choisir ?", answer: "Le choix dépend de votre profil, votre véhicule et votre budget. Notre comparateur vous aide à trouver l'offre la mieux adaptée." }, { question: "Combien coûte une assurance auto ?", answer: "Le prix varie selon votre âge, votre véhicule, votre historique et votre lieu de résidence. En moyenne, entre 400€ et 800€ par an." }, { question: "Puis-je changer d'assurance auto à tout moment ?", answer: "Oui, grâce à la loi Hamon, vous pouvez résilier après un an sans frais ni justification." }]);
+  const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Auto", description: "Comparateur d'assurance auto. Comparez les offres de 25+ assureurs et économisez jusqu'à 320€/an.", category: "Assurance Automobile", url: "https://www.jemassuremoinscher.fr/assurance-auto", ratingValue: 4.7, reviewCount: 1853 });
 
   const advantages = [
     { icon: Euro, title: t('autoPage.adv1.title'), description: t('autoPage.adv1.desc') },
@@ -39,7 +40,7 @@ const AssuranceAuto = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Auto Moins Chère : -40% en 2 min ⭐" description="50+ assureurs comparés gratuitement. Nos clients économisent 320€/an en moyenne. Devis auto instantané, sans engagement." keyword="assurance auto moins chère" keywords="assurance auto moins cher, comparateur assurance auto, devis assurance voiture, changer assurance auto" canonical="https://www.jemassuremoinscher.fr/assurance-auto" jsonLd={[serviceSchema, ratingSchema, howToSchema, faqSchema]} />
+      <SEOOptimized title="Assurance Auto Moins Chère : -40% en 2 min ⭐" description="50+ assureurs comparés gratuitement. Nos clients économisent 320€/an en moyenne. Devis auto instantané, sans engagement." keyword="assurance auto moins chère" keywords="assurance auto moins cher, comparateur assurance auto, devis assurance voiture, changer assurance auto" canonical="https://www.jemassuremoinscher.fr/assurance-auto" jsonLd={[serviceSchema, ratingSchema, howToSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Auto" }]} />
 
@@ -49,7 +50,7 @@ const AssuranceAuto = () => {
           <div className="max-w-4xl mx-auto text-center relative">
             <ArthurHero imageSrc={arthurCar} imageAlt="Arthur en voiture - assurance auto moins chère" speechText={t('autoPage.subtitle')} />
             <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('autoPage.title')}</h1>
-            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6">{t('insPage.compareNow')}</Button>
+            <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Comparer les assurances auto maintenant">{t('insPage.compareNow')}</Button>
           </div>
         </div>
       </section>
@@ -69,7 +70,7 @@ const AssuranceAuto = () => {
           </div>
         </section>
 
-        <div ref={formRef} className="mb-16">
+        <div ref={formRef} className="mb-16 min-h-[480px]">
           <MultiStepQuoteForm insuranceType="auto" />
         </div>
 
@@ -122,7 +123,7 @@ const AssuranceAuto = () => {
             <img src={arthurFlying} alt="Arthur en vol - économisez sur votre assurance auto" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" decoding="async" />
             <h2 className="text-2xl font-bold mb-4">{t('insPage.readyToSave')} {t('autoPage.readyToSave')} ?</h2>
             <p className="text-muted-foreground mb-6">{t('insPage.compareFree')}</p>
-            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
+            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6" aria-label="Obtenir un devis assurance auto gratuit">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
       </div>
