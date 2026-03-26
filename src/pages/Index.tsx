@@ -15,6 +15,8 @@ const SEOFaq = lazy(() => import("@/components/sections/SEOFaq"));
 const ClientCases = lazy(() => import("@/components/sections/ClientCases"));
 const GuidesSection = lazy(() => import("@/components/sections/GuidesSection"));
 const SEOContent = lazy(() => import("@/components/sections/SEOContent"));
+const ContextualHelp = lazy(() => import("@/components/sections/ContextualHelp"));
+const GuaranteeTable = lazy(() => import("@/components/sections/GuaranteeTable"));
 const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
 const StickyCTA = lazy(() => import("@/components/StickyCTA"));
 
