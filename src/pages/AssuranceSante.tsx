@@ -98,7 +98,7 @@ const AssuranceSante = () => {
             <img src={arthurFlying} alt="Arthur en vol - économisez sur votre mutuelle santé" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" decoding="async" />
             <h2 className="text-2xl font-bold mb-4">{t('insPage.readyToSave')} {t('santePage.readyToSave')} ?</h2>
             <p className="text-muted-foreground mb-6">{t('insPage.compareFree')}</p>
-            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button>
+            <Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6" aria-label="Obtenir un devis mutuelle santé gratuit">{t('insPage.compareNowBtn')}</Button>
           </Card>
         </section>
       </div>
