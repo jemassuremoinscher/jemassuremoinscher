@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import GuaranteeTable from "@/components/sections/GuaranteeTable";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -51,6 +52,7 @@ const AssuranceMRP = () => {
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="mrp" /></div>
         <section className="max-w-4xl mx-auto mb-16"><Accordion type="single" collapsible className="w-full"><AccordionItem value="learn-more" className="border rounded-lg"><AccordionTrigger className="px-6 py-4 hover:no-underline"><span className="text-lg font-semibold">{t('insPage.learnMore')} {t('mrpPage.learnMore')}</span></AccordionTrigger><AccordionContent className="px-6 pb-6"><InsuranceFAQ title={t('insPage.faqTitle')} faqs={[{ question: t('mrpPage.faq1.q'), answer: t('mrpPage.faq1.a') }, { question: t('mrpPage.faq2.q'), answer: t('mrpPage.faq2.a') }]} /></AccordionContent></AccordionItem></Accordion></section>
         <section className="max-w-2xl mx-auto text-center mb-16"><Card className="p-8 bg-primary/5 border-primary/20 relative overflow-visible"><img src={arthurFlying} alt="Arthur - MRP" className="absolute -right-6 -top-10 w-20 h-auto hidden sm:block" width={80} height={100} loading="lazy" /><h2 className="text-2xl font-bold mb-4">{t('mrpPage.ctaTitle')}</h2><p className="text-muted-foreground mb-6">{t('mrpPage.ctaDesc')}</p><Button size="lg" onClick={scrollToForm} className="w-full max-w-md text-lg py-6">{t('insPage.compareNowBtn')}</Button></Card></section>
+        <GuaranteeTable />
         <RelatedInsuranceLinks currentPage="mrp" />
       </div>
       </main>

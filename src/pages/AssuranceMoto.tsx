@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import GuaranteeTable from "@/components/sections/GuaranteeTable";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -91,6 +92,7 @@ const AssuranceMoto = () => {
         </section>
 
         <ExpertiseSection insuranceType="assurance moto" />
+        <GuaranteeTable />
         <RelatedInsuranceLinks currentPage="moto" />
 
         <section className="max-w-2xl mx-auto text-center mb-16">

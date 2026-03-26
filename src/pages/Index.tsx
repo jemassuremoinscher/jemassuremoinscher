@@ -16,7 +16,6 @@ const ClientCases = lazy(() => import("@/components/sections/ClientCases"));
 const GuidesSection = lazy(() => import("@/components/sections/GuidesSection"));
 const SEOContent = lazy(() => import("@/components/sections/SEOContent"));
 const ContextualHelp = lazy(() => import("@/components/sections/ContextualHelp"));
-const GuaranteeTable = lazy(() => import("@/components/sections/GuaranteeTable"));
 const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
 const StickyCTA = lazy(() => import("@/components/StickyCTA"));
 
@@ -145,9 +144,9 @@ const Index = () => {
           </Suspense>
         </DeferredRender>
 
-        <DeferredRender minHeight={400}>
-          <Suspense fallback={<div aria-hidden="true" className="min-h-[400px]" />}>
-            <GuaranteeTable />
+        <DeferredRender minHeight={720}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[720px]" />}>
+            <SEOContent />
           </Suspense>
         </DeferredRender>
 
@@ -157,11 +156,6 @@ const Index = () => {
           </Suspense>
         </DeferredRender>
 
-        <DeferredRender minHeight={720}>
-          <Suspense fallback={<div aria-hidden="true" className="min-h-[720px]" />}>
-            <SEOContent />
-          </Suspense>
-        </DeferredRender>
       </main>
       {/* Hidden internal links for SEO - crawlable but not visible */}
       <nav aria-label="Liens internes" className="sr-only">
