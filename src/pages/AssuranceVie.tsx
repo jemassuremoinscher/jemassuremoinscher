@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addAggregateRatingSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurIdea from "@/assets/mascotte/arthur-idea.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
@@ -25,7 +25,7 @@ const AssuranceVie = () => {
 
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Vie", url: "https://www.jemassuremoinscher.fr/assurance-vie" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Vie", description: "Comparez les contrats d'assurance vie pour l'épargne et la protection.", provider: "jemassuremoinscher.fr", areaServed: "France" });
-  const ratingSchema = addAggregateRatingSchema("Comparateur Assurance Vie", 4.6, 1124);
+  
   const faqSchema = addFAQSchema([{ question: t('viePage.faq1.q'), answer: t('viePage.faq1.a') }, { question: t('viePage.faq2.q'), answer: t('viePage.faq2.a') }]);
   const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Vie", description: "Comparateur d'assurance vie. Fonds euros, unités de compte, PER : comparez les meilleurs rendements 2026.", category: "Assurance Vie", url: "https://www.jemassuremoinscher.fr/assurance-vie", ratingValue: 4.6, reviewCount: 1124 });
   const advantages = [
@@ -36,7 +36,7 @@ const AssuranceVie = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Vie 2026 : Meilleurs Rendements Comparés" description="Fonds euros, unités de compte, PER : comparez les meilleures assurances vie. Fiscalité avantageuse après 8 ans. Devis gratuit." keyword="assurance vie meilleur rendement" keywords="assurance vie 2026, épargne, placement, transmission patrimoine, PER" canonical="https://www.jemassuremoinscher.fr/assurance-vie" jsonLd={[breadcrumbSchema, serviceSchema, ratingSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title="Assurance Vie 2026 : Meilleurs Rendements Comparés" description="Fonds euros, unités de compte, PER : comparez les meilleures assurances vie. Fiscalité avantageuse après 8 ans. Devis gratuit." keyword="assurance vie meilleur rendement" keywords="assurance vie 2026, épargne, placement, transmission patrimoine, PER" canonical="https://www.jemassuremoinscher.fr/assurance-vie" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Vie" }]} />
       <main id="main-content">

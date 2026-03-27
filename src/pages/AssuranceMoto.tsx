@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addServiceSchema, addFAQSchema, addAggregateRatingSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurMoto from "@/assets/mascotte/arthur-moto.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
@@ -25,7 +25,7 @@ const AssuranceMoto = () => {
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
 
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Moto", description: "Comparez les assurances moto et scooter. Devis gratuit et rapide.", provider: "jemassuremoinscher.fr", areaServed: "France" });
-  const ratingSchema = addAggregateRatingSchema("Comparateur Assurance Moto", 4.5, 987);
+  
   const faqSchema = addFAQSchema([{ question: "Quelle assurance moto choisir ?", answer: "Le choix dépend de votre moto, votre profil et usage. Comparez les formules au tiers, intermédiaire et tous risques." }, { question: "L'assurance moto est-elle obligatoire ?", answer: "Oui, au minimum une assurance au tiers est obligatoire pour circuler." }]);
   const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Moto", description: "Comparateur d'assurance moto et scooter. Tous risques dès 15€/mois. Comparez 25+ assureurs.", category: "Assurance Moto", url: "https://www.jemassuremoinscher.fr/assurance-moto", ratingValue: 4.5, reviewCount: 987 });
 
@@ -37,7 +37,7 @@ const AssuranceMoto = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Moto Moins Chère : -35% en 2 min ⭐" description="Moto, scooter, 125cc : comparez 50+ assureurs. Tous risques dès 15€/mois. Devis gratuit et sans engagement." keyword="assurance moto moins chère" keywords="assurance scooter, comparateur assurance moto, assurance 125, assurance moto jeune conducteur" canonical="https://www.jemassuremoinscher.fr/assurance-moto" jsonLd={[serviceSchema, ratingSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title="Assurance Moto Moins Chère : -35% en 2 min ⭐" description="Moto, scooter, 125cc : comparez 50+ assureurs. Tous risques dès 15€/mois. Devis gratuit et sans engagement." keyword="assurance moto moins chère" keywords="assurance scooter, comparateur assurance moto, assurance 125, assurance moto jeune conducteur" canonical="https://www.jemassuremoinscher.fr/assurance-moto" jsonLd={[serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Moto" }]} />
 

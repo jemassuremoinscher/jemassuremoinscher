@@ -41,14 +41,7 @@ const Index = () => {
       "name": "France"
     },
     "serviceType": "Courtage en assurances",
-    "priceRange": "Gratuit",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": "2500"
-    }
+    "priceRange": "Gratuit"
   };
 
   const webSiteSchema = {

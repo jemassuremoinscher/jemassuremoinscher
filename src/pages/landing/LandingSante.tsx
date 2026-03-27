@@ -3,18 +3,17 @@ import { Card } from '@/components/ui/card';
 import { CheckCircle2, Star, Shield, Users, TrendingDown, Clock, Heart } from 'lucide-react';
 import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
-import { addOrganizationSchema, addServiceSchema, addAggregateRatingSchema } from '@/utils/seoUtils';
+import { addOrganizationSchema, addServiceSchema } from '@/utils/seoUtils';
 
 const LandingSante = () => {
   const jsonLd = [
-    addOrganizationSchema(),
+    addOrganizationSchema(4.8, 2847),
     addServiceSchema({
       name: 'Mutuelle Santé moins chère',
       description: 'Comparez les meilleures mutuelles santé et économisez jusqu\'à 40%. Devis gratuit en 2 minutes.',
       provider: 'jemassuremoinscher.fr',
       areaServed: 'France',
     }),
-    addAggregateRatingSchema('Mutuelle Santé', 4.8, 2847),
   ];
 
   return (

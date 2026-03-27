@@ -3,18 +3,17 @@ import { Card } from '@/components/ui/card';
 import { CheckCircle2, Star, Shield, Users, TrendingDown, Clock, Bike } from 'lucide-react';
 import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
-import { addOrganizationSchema, addServiceSchema, addAggregateRatingSchema } from '@/utils/seoUtils';
+import { addOrganizationSchema, addServiceSchema } from '@/utils/seoUtils';
 
 const LandingMoto = () => {
   const jsonLd = [
-    addOrganizationSchema(),
+    addOrganizationSchema(4.8, 2847),
     addServiceSchema({
       name: 'Assurance Moto moins chère',
       description: 'Comparez les meilleures assurances moto et économisez jusqu\'à 40%. Devis gratuit en 2 minutes.',
       provider: 'jemassuremoinscher.fr',
       areaServed: 'France',
     }),
-    addAggregateRatingSchema('Assurance Moto', 4.8, 2847),
   ];
 
   return (

@@ -3,18 +3,17 @@ import { Card } from '@/components/ui/card';
 import { CheckCircle2, Star, Shield, Users, TrendingDown, Clock, Car } from 'lucide-react';
 import SEOOptimized from '@/components/SEOOptimized';
 import { SimplifiedLeadForm } from '@/components/landing/SimplifiedLeadForm';
-import { addOrganizationSchema, addServiceSchema, addAggregateRatingSchema, addFAQSchema } from '@/utils/seoUtils';
+import { addOrganizationSchema, addServiceSchema, addFAQSchema } from '@/utils/seoUtils';
 
 const LandingAuto = () => {
   const jsonLd = [
-    addOrganizationSchema(),
+    addOrganizationSchema(4.8, 2847),
     addServiceSchema({
       name: 'Assurance Auto moins chère',
       description: 'Comparez les meilleures assurances auto et économisez jusqu\'à 40%. Devis gratuit en 2 minutes.',
       provider: 'jemassuremoinscher.fr',
       areaServed: 'France',
     }),
-    addAggregateRatingSchema('Assurance Auto', 4.8, 2847),
     addFAQSchema([
       { question: "Comment comparer les assurances auto ?", answer: "Remplissez notre formulaire en 2 minutes avec les informations de votre véhicule et votre profil. Vous recevrez plusieurs devis personnalisés de nos assureurs partenaires." },
       { question: "Combien peut-on économiser sur l'assurance auto ?", answer: "En moyenne, nos clients économisent jusqu'à 40% sur leur assurance auto en comparant les offres de plus de 30 assureurs partenaires." },
