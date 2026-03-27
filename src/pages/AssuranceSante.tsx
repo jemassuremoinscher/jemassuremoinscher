@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addServiceSchema, addFAQSchema, addAggregateRatingSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurSick from "@/assets/mascotte/arthur-sick.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
