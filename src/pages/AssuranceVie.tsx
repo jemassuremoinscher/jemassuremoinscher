@@ -25,7 +25,7 @@ const AssuranceVie = () => {
 
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Vie", url: "https://www.jemassuremoinscher.fr/assurance-vie" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Vie", description: "Comparez les contrats d'assurance vie pour l'épargne et la protection.", provider: "jemassuremoinscher.fr", areaServed: "France" });
-  const ratingSchema = addAggregateRatingSchema("Comparateur Assurance Vie", 4.6, 1124);
+  
   const faqSchema = addFAQSchema([{ question: t('viePage.faq1.q'), answer: t('viePage.faq1.a') }, { question: t('viePage.faq2.q'), answer: t('viePage.faq2.a') }]);
   const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Vie", description: "Comparateur d'assurance vie. Fonds euros, unités de compte, PER : comparez les meilleurs rendements 2026.", category: "Assurance Vie", url: "https://www.jemassuremoinscher.fr/assurance-vie", ratingValue: 4.6, reviewCount: 1124 });
   const advantages = [
