@@ -7,14 +7,13 @@ import { addOrganizationSchema, addServiceSchema } from '@/utils/seoUtils';
 
 const LandingHabitation = () => {
   const jsonLd = [
-    addOrganizationSchema(),
+    addOrganizationSchema(4.8, 2847),
     addServiceSchema({
       name: 'Assurance Habitation moins chère',
       description: 'Comparez les meilleures assurances habitation et économisez jusqu\'à 40%. Devis gratuit en 2 minutes.',
       provider: 'jemassuremoinscher.fr',
       areaServed: 'France',
     }),
-    addAggregateRatingSchema('Assurance Habitation', 4.8, 2847),
   ];
 
   return (
