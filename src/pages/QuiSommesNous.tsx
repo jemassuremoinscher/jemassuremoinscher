@@ -23,8 +23,8 @@ const stats = [
 ];
 
 const team = [
-  { name: "Paul", role: "Co-fondateur", initials: "P", color: "bg-primary" },
-  { name: "Alexandre", role: "Co-fondateur", initials: "A", color: "bg-accent" },
+  { name: "Paul", role: "Co-fondateur", initials: "P", color: "bg-primary", photo: paulPhoto },
+  { name: "Alexandre", role: "Co-fondateur", initials: "A", color: "bg-accent", photo: alexandrePhoto },
 ];
 
 const methodology = [
