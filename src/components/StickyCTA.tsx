@@ -13,7 +13,7 @@ const StickyCTA = () => {
   useEffect(() => {
     if (isExcluded) return;
     const handleScroll = () => {
-      setIsVisible(window.scrollY > window.innerHeight * 0.5);
+      setIsVisible(window.scrollY > window.innerHeight * 0.15);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
