@@ -17,7 +17,7 @@ const GuidesSection = lazy(() => import("@/components/sections/GuidesSection"));
 const SEOContent = lazy(() => import("@/components/sections/SEOContent"));
 const ContextualHelp = lazy(() => import("@/components/sections/ContextualHelp"));
 const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
-const StickyCTA = lazy(() => import("@/components/StickyCTA"));
+
 
 const Index = () => {
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }]);
