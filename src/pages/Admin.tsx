@@ -312,6 +312,10 @@ const Admin = () => {
             <SEOSuggestions />
           </TabsContent>
 
+          <TabsContent value="serp">
+            <SERPPreview />
+          </TabsContent>
+
           <TabsContent value="supervision">
             <div className="space-y-4 sm:space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
