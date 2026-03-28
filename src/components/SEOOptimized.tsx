@@ -73,12 +73,20 @@ const SEOOptimized = ({
   twitterDescription,
 }: SEOOptimizedProps) => {
   const location = useLocation();
-  // Normalize: strip trailing slash (except root "/"), ensure lowercase
   const normalizedPath = location.pathname === '/' ? '' : location.pathname.replace(/\/+$/, '');
   const pageCanonical = canonical || `${BASE_URL}${normalizedPath}`;
   const pageImage = ogImage || DEFAULT_IMAGE;
 
-  // Combine keyword + keywords
+  // Dynamic month replacement
+  const resolvedTitle = resolveDynamicTokens(title);
+  const resolvedDescription = resolveDynamicTokens(description);
+
+  // SEO length warnings (dev only)
+  if (import.meta.env.DEV) {
+    if (resolvedTitle.length > 60) console.warn(`[SEO] Title exceeds 60 chars (${resolvedTitle.length}): "${resolvedTitle}"`);
+    if (resolvedDescription.length > 160) console.warn(`[SEO] Description exceeds 160 chars (${resolvedDescription.length}): "${resolvedDescription.substring(0, 80)}…"`);
+  }
+
   const allKeywords = [keyword, keywords].filter(Boolean).join(', ');
 
   const schemas = jsonLd
