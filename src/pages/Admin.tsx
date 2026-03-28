@@ -25,6 +25,7 @@ import { RedistributionButton } from '@/components/admin/RedistributionButton';
 import { RedistributionHistory } from '@/components/admin/RedistributionHistory';
 import { GoogleAnalyticsDashboard } from '@/components/admin/GoogleAnalyticsDashboard';
 import { SEOSuggestions } from '@/components/admin/SEOSuggestions';
+import SERPPreview from '@/components/admin/SERPPreview';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const Admin = () => {
