@@ -181,7 +181,6 @@ const Index = () => {
       <DeferredRender minHeight={460}>
         <Suspense fallback={<div aria-hidden="true" className="min-h-[460px]" />}>
           <SimpleFooter />
-          <StickyCTA />
         </Suspense>
       </DeferredRender>
     </div>
