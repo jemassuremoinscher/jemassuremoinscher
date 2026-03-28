@@ -10,7 +10,9 @@ import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import arthurPointing from "@/assets/mascotte/arthur-pointing.webp";
 import oriasLogo from "@/assets/logos/orias.jpg";
 import cscaLogo from "@/assets/logos/csca.png";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import paulPhoto from "@/assets/team/paul.jpg";
+import alexandrePhoto from "@/assets/team/alexandre.jpg";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 
 const stats = [
