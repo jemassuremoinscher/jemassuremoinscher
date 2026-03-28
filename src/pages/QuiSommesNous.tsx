@@ -2,19 +2,75 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOOptimized from "@/components/SEOOptimized";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Shield, Award, Users, Heart, Zap, TrendingUp } from "lucide-react";
+import { Shield, Award, Users, Heart, Zap, Search, BarChart3, Handshake, CheckCircle, Lock, BadgeCheck, Scale } from "lucide-react";
 import { addOrganizationSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { motion } from "framer-motion";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
-import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
-import { useLanguage } from "@/contexts/LanguageContext";
+import arthurPointing from "@/assets/mascotte/arthur-pointing.webp";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Card, CardContent } from "@/components/ui/card";
 
 const stats = [
-  { value: "+25", label: "Assureurs partenaires", suffix: "" },
-  { value: "280€", label: "Économie moyenne / an", suffix: "" },
-  { value: "4.8/5", label: "Note clients (2 500+ avis)", suffix: "" },
-  { value: "100%", label: "Gratuit & sans engagement", suffix: "" },
+  { value: "+25", label: "Assureurs partenaires" },
+  { value: "280€", label: "Économie moyenne / an" },
+  { value: "4.8/5", label: "Note clients (2 500+ avis)" },
+  { value: "100%", label: "Gratuit & sans engagement" },
+];
+
+const team = [
+  { name: "Paul", role: "Co-fondateur", initials: "P", color: "bg-primary" },
+  { name: "Alexandre", role: "Co-fondateur", initials: "A", color: "bg-accent" },
+];
+
+const methodology = [
+  {
+    step: 1,
+    icon: Search,
+    title: "Analyse de votre profil",
+    desc: "Nous recueillons vos besoins réels en 2 minutes : type de couverture, budget, situation personnelle.",
+  },
+  {
+    step: 2,
+    icon: BarChart3,
+    title: "Comparaison de 50+ assureurs",
+    desc: "Notre algorithme interroge en temps réel les grilles tarifaires de nos partenaires pour trouver les meilleures offres.",
+  },
+  {
+    step: 3,
+    icon: Scale,
+    title: "Sélection impartiale",
+    desc: "Aucun favoritisme : les résultats sont classés par rapport qualité-prix, adaptés à votre profil uniquement.",
+  },
+  {
+    step: 4,
+    icon: Handshake,
+    title: "Accompagnement personnalisé",
+    desc: "Un conseiller dédié vous rappelle sous 2h pour finaliser votre choix et gérer la résiliation de votre ancien contrat.",
+  },
+];
+
+const certifications = [
+  {
+    icon: BadgeCheck,
+    title: "Enregistré ORIAS",
+    desc: "Courtier immatriculé N° 24 XXX XXX — vérifiable sur orias.fr",
+  },
+  {
+    icon: Shield,
+    title: "Garantie Financière",
+    desc: "Couvert par une assurance RC Pro et une garantie financière conforme",
+  },
+  {
+    icon: Lock,
+    title: "Paiement sécurisé",
+    desc: "Transactions cryptées SSL — aucune donnée bancaire stockée",
+  },
+  {
+    icon: Award,
+    title: "Membre CSCA",
+    desc: "Adhérent à la Chambre Syndicale des Courtiers d'Assurances",
+  },
 ];
 
 const fadeUp = {
@@ -27,8 +83,6 @@ const fadeUp = {
 };
 
 const QuiSommesNous = () => {
-  const { t } = useLanguage();
-
   const baseUrl = "https://www.jemassuremoinscher.fr";
   const jsonLd = [
     addOrganizationSchema(),
@@ -42,7 +96,7 @@ const QuiSommesNous = () => {
     <div className="min-h-screen bg-background">
       <SEOOptimized
         title="Qui sommes-nous | jemassuremoinscher.fr"
-        description="Découvrez l'équipe derrière jemassuremoinscher.fr : un comparateur d'assurances indépendant, gratuit et transparent. Notre mission : vous aider à payer moins cher."
+        description="Découvrez l'équipe derrière jemassuremoinscher.fr : un courtier en assurances indépendant, enregistré ORIAS, gratuit et transparent. Notre mission : rendre l'assurance moins chère."
         canonical={`${baseUrl}/qui-sommes-nous`}
         jsonLd={jsonLd}
       />
@@ -50,13 +104,12 @@ const QuiSommesNous = () => {
       <Header />
 
       <main id="main-content">
-        {/* Breadcrumbs */}
         <div className="container mx-auto px-4 pt-4">
           <Breadcrumbs items={[{ label: "Qui sommes-nous" }]} />
         </div>
 
         {/* ─── Hero ─── */}
-        <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden" data-ai-description="jemassuremoinscher.fr est un courtier en assurances indépendant enregistré ORIAS. Comparaison gratuite de 25+ assureurs, 280€ d'économie moyenne, 4.8/5 sur 2500+ avis.">
+        <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
           <div className="container mx-auto px-4 py-16 md:py-24">
             <div className="max-w-[65%] sm:max-w-[70%] md:max-w-3xl relative z-10">
               <motion.h1
@@ -78,136 +131,251 @@ const QuiSommesNous = () => {
             </div>
             <img
               src={arthurThumbsUp}
-              alt="Arthur mascotte jemassuremoinscher.fr - comparateur assurance moins chère"
+              alt="Arthur mascotte jemassuremoinscher.fr"
               className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-56 lg:h-64 object-contain opacity-90 pointer-events-none select-none"
               width={256}
               height={320}
-              loading="lazy"
+              loading="eager"
             />
           </div>
         </section>
 
-        {/* ─── Nos Chiffres ─── */}
+        {/* ─── Chiffres clés ─── */}
         <section className="py-12 md:py-16 bg-muted/20">
           <div className="container mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-10">
-              Nos Chiffres
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
-                  className="bg-card rounded-2xl border border-border/50 p-6 text-center shadow-sm"
+                  className="bg-card rounded-2xl border border-border/50 p-5 md:p-6 text-center shadow-sm"
                   custom={i}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={fadeUp}
                 >
-                  <div className="text-3xl md:text-4xl font-extrabold text-primary mb-1">
+                  <div className="text-2xl md:text-4xl font-extrabold text-primary mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="text-xs md:text-sm text-muted-foreground">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ─── 3 Piliers ─── */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4 max-w-4xl space-y-12">
-
-            {/* Notre Mission */}
+        {/* ─── Notre Mission ─── */}
+        <section className="py-14 md:py-20">
+          <div className="container mx-auto px-4 max-w-4xl">
             <motion.div
-              className="flex items-start gap-5"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45 }}
+              transition={{ duration: 0.5 }}
             >
-              <div className="mt-1 h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <Shield className="h-6 w-6 text-primary" />
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <Heart className="h-6 w-6 text-primary" />
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">Notre Mission</h2>
               </div>
-              <div>
-                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">Notre Mission</h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  Rendre l'assurance <strong className="text-foreground">transparente et accessible à tous les budgets</strong>. Trop longtemps, les consommateurs ont subi des tarifs opaques et des contrats incompréhensibles. Notre comparateur indépendant, enregistré à l'ORIAS (N° 24 XXX XXX), analyse en temps réel les offres de plus de 25 partenaires pour vous présenter, en toute objectivité, les contrats les plus compétitifs du marché. Pas de favoritisme, pas de commission cachée : chaque recommandation est basée uniquement sur votre profil et vos besoins réels.
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  Rendre l'assurance <strong className="text-foreground">transparente, compréhensible et moins chère</strong> pour tous les Français. Trop longtemps, les consommateurs ont subi des tarifs opaques, des contrats incompréhensibles et des renouvellements automatiques sans négociation.
+                </p>
+                <p>
+                  Notre comparateur indépendant, enregistré à l'<strong className="text-foreground">ORIAS</strong>, analyse en temps réel les offres de plus de 50 partenaires pour vous présenter, en toute objectivité, les contrats les plus compétitifs du marché. <strong className="text-foreground">Pas de favoritisme, pas de commission cachée</strong> : chaque recommandation est basée uniquement sur votre profil et vos besoins réels.
                 </p>
               </div>
             </motion.div>
 
-            {/* Notre Engagement */}
-            <motion.div
-              className="flex items-start gap-5"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: 0.1 }}
-            >
-              <div className="mt-1 h-12 w-12 rounded-xl bg-accent/15 flex items-center justify-center shrink-0">
-                <Heart className="h-6 w-6 text-accent" />
-              </div>
-              <div>
-                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">Notre Engagement</h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  L'<strong className="text-foreground">indépendance totale vis-à-vis des grands groupes financiers</strong>. Contrairement aux comparateurs adossés à des compagnies d'assurance, nous n'appartenons à aucun groupe. Cette liberté nous permet de négocier les meilleurs tarifs sans conflit d'intérêts et de vous orienter vers l'offre qui vous correspond vraiment — même si ce n'est pas celle qui nous rapporte le plus. Notre modèle économique repose sur la transparence : nous vous l'expliquons clairement.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Pourquoi nous faire confiance */}
-            <motion.div
-              className="flex items-start gap-5"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: 0.2 }}
-            >
-              <div className="mt-1 h-12 w-12 rounded-xl bg-secondary/30 flex items-center justify-center shrink-0">
-                <Zap className="h-6 w-6 text-secondary-foreground" />
-              </div>
-              <div>
-                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">Pourquoi nous faire confiance</h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  Des <strong className="text-foreground">algorithmes mis à jour en temps réel</strong> pour traquer les meilleures offres du marché en 2026. Notre technologie propriétaire scanne en continu les grilles tarifaires de nos partenaires, détecte les baisses de prix et les promotions éphémères, puis vous les présente instantanément. Résultat : nos utilisateurs économisent en moyenne <strong className="text-foreground">280 € par an</strong> sur leurs contrats d'assurance, le tout en moins de 2 minutes et sans aucun engagement.
-                </p>
-              </div>
-            </motion.div>
-
+            {/* Valeurs en grille */}
+            <div className="grid sm:grid-cols-2 gap-4 mt-10">
+              {[
+                { icon: Shield, title: "Indépendance", desc: "Zéro lien capitalistique avec les assureurs. Recommandations 100 % objectives." },
+                { icon: Heart, title: "Transparence", desc: "Aucune commission cachée. Vous voyez ce que nous voyons." },
+                { icon: Zap, title: "Simplicité", desc: "Un parcours clair, sans jargon ni étapes inutiles." },
+                { icon: Users, title: "Accompagnement", desc: "Une équipe disponible pour vous guider dans votre choix." },
+              ].map(({ icon: Icon, title, desc }, i) => (
+                <motion.div
+                  key={title}
+                  className="flex items-start gap-3 bg-card rounded-xl border border-border/40 p-5"
+                  custom={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeUp}
+                >
+                  <div className="mt-0.5 h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <Icon className="h-4 w-4 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground text-sm">{title}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* ─── Nos Valeurs (avec Arthur) ─── */}
-        <section className="py-12 md:py-16 bg-muted/10">
-          <div className="container mx-auto px-4">
-            <div className="relative max-w-4xl mx-auto bg-card rounded-2xl border border-border/50 p-8 md:p-12 overflow-visible">
-              <div className="md:pr-40">
-                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-foreground">Nos Valeurs</h2>
-                <ul className="space-y-4">
-                  {[
-                    { icon: Heart, title: "Transparence", desc: "Aucune commission cachée, aucun partenaire privilégié. Vous voyez ce que nous voyons." },
-                    { icon: Shield, title: "Indépendance", desc: "Zéro lien capitalistique avec les assureurs. Nos recommandations sont 100 % objectives." },
-                    { icon: Zap, title: "Simplicité", desc: "Un comparateur conçu pour être compris par tous, sans jargon ni parcours complexe." },
-                    { icon: Users, title: "Accompagnement", desc: "Une équipe disponible pour répondre à vos questions et vous guider dans votre choix." },
-                  ].map(({ icon: Icon, title, desc }) => (
-                    <li key={title} className="flex items-start gap-3">
-                      <div className="mt-0.5 h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                        <Icon className="h-4 w-4 text-primary" />
+        {/* ─── L'Équipe ─── */}
+        <section className="py-14 md:py-20 bg-muted/10">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <motion.div
+              className="text-center mb-10"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">L'équipe derrière le comparateur</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">
+                De vrais humains, passionnés par l'assurance et la technologie, qui travaillent chaque jour pour vous faire économiser.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-lg mx-auto">
+              {team.map((member, i) => (
+                <motion.div
+                  key={member.name}
+                  custom={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeUp}
+                >
+                  <Card className="text-center p-6 md:p-8">
+                    <CardContent className="p-0 flex flex-col items-center gap-4">
+                      <Avatar className="h-20 w-20 md:h-24 md:w-24 text-2xl">
+                        <AvatarFallback className={`${member.color} text-white font-bold text-2xl md:text-3xl`}>
+                          {member.initials}
+                        </AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="text-lg font-bold text-foreground">{member.name}</p>
+                        <p className="text-sm text-muted-foreground">{member.role}</p>
                       </div>
-                      <span className="text-muted-foreground">
-                        <strong className="text-foreground">{title} :</strong> {desc}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── Méthodologie (Timeline) ─── */}
+        <section className="py-14 md:py-20">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <motion.div
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+                Notre méthodologie
+              </h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">
+                Comment nous comparons plus de 50 assureurs pour vous trouver le meilleur tarif.
+              </p>
+            </motion.div>
+
+            {/* Vertical timeline */}
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" aria-hidden="true" />
+
+              <div className="space-y-8 md:space-y-12">
+                {methodology.map(({ step, icon: Icon, title, desc }, i) => {
+                  const isLeft = i % 2 === 0;
+                  return (
+                    <motion.div
+                      key={step}
+                      className="relative flex items-start gap-4 md:gap-0"
+                      custom={i}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      variants={fadeUp}
+                    >
+                      {/* Step circle — mobile: left-aligned, desktop: centered */}
+                      <div className="relative z-10 shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2">
+                        <div className="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow-md">
+                          {step}
+                        </div>
+                      </div>
+
+                      {/* Content card */}
+                      <div className={`flex-1 md:w-[calc(50%-2.5rem)] ${isLeft ? 'md:mr-auto md:pr-10' : 'md:ml-auto md:pl-10'}`}>
+                        <div className="bg-card rounded-xl border border-border/40 p-5 shadow-sm">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Icon className="h-5 w-5 text-primary" />
+                            <h3 className="font-bold text-foreground">{title}</h3>
+                          </div>
+                          <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── Certifications & Conformité ─── */}
+        <section className="py-14 md:py-20 bg-muted/10">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <motion.div
+              className="text-center mb-10"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+                Nos certifications & garanties légales
+              </h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">
+                Votre sécurité est notre priorité. Nous respectons les plus hauts standards réglementaires du courtage en assurances.
+              </p>
+            </motion.div>
+
+            <div className="relative">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+                {certifications.map(({ icon: Icon, title, desc }, i) => (
+                  <motion.div
+                    key={title}
+                    custom={i}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeUp}
+                  >
+                    <Card className="h-full text-center p-5 md:p-6 border-primary/20 hover:border-primary/40 transition-colors">
+                      <CardContent className="p-0 flex flex-col items-center gap-3">
+                        <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                          <Icon className="h-6 w-6 text-primary" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-foreground text-sm">{title}</p>
+                          <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{desc}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Arthur pointing */}
               <img
-                src={arthurThinking}
-                alt="Arthur réfléchit aux valeurs de jemassuremoinscher.fr"
-                className="hidden md:block absolute -right-4 -bottom-4 h-48 object-contain opacity-80 pointer-events-none select-none"
-                width={192}
-                height={192}
+                src={arthurPointing}
+                alt="Arthur présente les certifications de jemassuremoinscher.fr"
+                className="hidden lg:block absolute -right-8 -bottom-12 h-36 object-contain opacity-80 pointer-events-none select-none"
+                width={144}
+                height={180}
                 loading="lazy"
               />
             </div>
@@ -227,6 +395,7 @@ const QuiSommesNous = () => {
                 </p>
                 <a
                   href="/comparateur"
+                  aria-label="Comparer gratuitement vos assurances"
                   className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 py-4 rounded-full text-lg transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
                   Comparer gratuitement
@@ -234,7 +403,7 @@ const QuiSommesNous = () => {
               </div>
               <img
                 src={arthurFlying}
-                alt="Arthur en vol - comparer gratuitement vos assurances"
+                alt="Arthur en vol"
                 className="absolute -top-8 sm:-top-12 right-2 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none"
                 width={144}
                 height={144}
