@@ -66,8 +66,8 @@ const GlossaireTerme = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title={`${term.term} - Définition Assurance`}
-        description={term.definition.substring(0, 150)}
+        title={glossarySeoMeta[term.slug]?.title || `${term.term} : Définition & Guide [Month]`}
+        description={glossarySeoMeta[term.slug]?.description || `${term.definition.substring(0, 120)} Guide mis à jour en [Month].`}
         keywords={term.tags.join(", ")}
         canonical={`https://www.jemassuremoinscher.fr/glossaire/${term.slug}`}
         jsonLd={[breadcrumbSchema, definitionSchema]}
