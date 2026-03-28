@@ -242,6 +242,7 @@ const QuiSommesNous = () => {
                   <Card className="text-center p-6 md:p-8">
                     <CardContent className="p-0 flex flex-col items-center gap-4">
                       <Avatar className="h-20 w-20 md:h-24 md:w-24 text-2xl">
+                        <AvatarImage src={member.photo} alt={`Photo de ${member.name}, ${member.role}`} />
                         <AvatarFallback className={`${member.color} text-white font-bold text-2xl md:text-3xl`}>
                           {member.initials}
                         </AvatarFallback>

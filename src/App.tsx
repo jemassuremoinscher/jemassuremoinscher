@@ -224,6 +224,9 @@ const App = () => {
             <Suspense fallback={null}>
               <CookieBanner />
             </Suspense>
+            <Suspense fallback={null}>
+              <StickyCTA />
+            </Suspense>
             {showDeferredWidgets && (
               <>
                 <Suspense fallback={null}>
