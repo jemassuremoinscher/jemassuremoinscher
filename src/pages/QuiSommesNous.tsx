@@ -9,6 +9,7 @@ import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import arthurPointing from "@/assets/mascotte/arthur-pointing.webp";
 import oriasLogo from "@/assets/logos/orias.jpg";
+import cscaLogo from "@/assets/logos/csca.png";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 
