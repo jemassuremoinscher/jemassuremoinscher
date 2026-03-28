@@ -134,10 +134,10 @@ const SEOOptimized = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@jmassuremoinscher" />
       <meta name="twitter:creator" content="@jmassuremoinscher" />
-      <meta name="twitter:title" content={ogTitle || title} />
-      <meta name="twitter:description" content={twitterDescription || description} />
+      <meta name="twitter:title" content={ogTitle ? resolveDynamicTokens(ogTitle) : resolvedTitle} />
+      <meta name="twitter:description" content={twitterDescription ? resolveDynamicTokens(twitterDescription) : resolvedDescription} />
       <meta name="twitter:image" content={pageImage} />
-      <meta name="twitter:image:alt" content={ogTitle || title} />
+      <meta name="twitter:image:alt" content={ogTitle ? resolveDynamicTokens(ogTitle) : resolvedTitle} />
 
       {/* JSON-LD */}
       {schemas.map((schema, i) => (
