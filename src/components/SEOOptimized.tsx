@@ -114,8 +114,8 @@ const SEOOptimized = ({
       <meta name="format-detection" content="telephone=no" />
 
       {/* Open Graph */}
-      <meta property="og:title" content={ogTitle || title} />
-      <meta property="og:description" content={ogDescription || description} />
+      <meta property="og:title" content={ogTitle ? resolveDynamicTokens(ogTitle) : resolvedTitle} />
+      <meta property="og:description" content={ogDescription ? resolveDynamicTokens(ogDescription) : resolvedDescription} />
       <meta property="og:url" content={pageCanonical} />
       <meta property="og:image" content={pageImage} />
       <meta property="og:image:width" content="1200" />
