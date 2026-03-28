@@ -336,16 +336,19 @@ const QuiSommesNous = () => {
             </motion.div>
 
             <div className="relative">
-              {/* ORIAS + Google badges row */}
-              <div className="flex flex-wrap items-center justify-center gap-6 mb-8">
-                <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-3 shadow-sm">
-                  <img src={oriasLogo} alt="Logo ORIAS - Organisme pour le Registre unique des Intermédiaires en Assurance" className="h-10 w-auto object-contain" width={80} height={40} loading="lazy" />
+              {/* All badges in unified row style */}
+              <div className="flex flex-wrap items-stretch justify-center gap-4">
+                {/* ORIAS */}
+                <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
+                  <img src={oriasLogo} alt="Logo ORIAS" className="h-10 w-auto object-contain" width={80} height={40} loading="lazy" />
                   <div className="text-left">
                     <p className="text-xs font-bold text-foreground">Courtier enregistré ORIAS</p>
                     <p className="text-xs text-muted-foreground">N° 24 XXX XXX</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-3 shadow-sm">
+
+                {/* Google Reviews */}
+                <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
                   <div className="flex items-center gap-0.5">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="h-4 w-4 fill-accent text-accent" />
@@ -356,31 +359,37 @@ const QuiSommesNous = () => {
                     <p className="text-xs text-muted-foreground">2 500+ avis vérifiés</p>
                   </div>
                 </div>
-              </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-                {certifications.map(({ icon: Icon, title, desc }, i) => (
-                  <motion.div
-                    key={title}
-                    custom={i}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={fadeUp}
-                  >
-                    <Card className="h-full text-center p-5 md:p-6 border-primary/20 hover:border-primary/40 transition-colors">
-                      <CardContent className="p-0 flex flex-col items-center gap-3">
-                        <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
-                          <Icon className="h-6 w-6 text-primary" />
-                        </div>
-                        <div>
-                          <p className="font-bold text-foreground text-sm">{title}</p>
-                          <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{desc}</p>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
+                {/* Garantie Financière */}
+                <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
+                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                    <Shield className="h-5 w-5 text-primary" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-xs font-bold text-foreground">Garantie Financière</p>
+                    <p className="text-xs text-muted-foreground">RC Pro & garantie conforme</p>
+                  </div>
+                </div>
+
+                {/* Paiement sécurisé */}
+                <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
+                  <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                    <Lock className="h-5 w-5 text-primary" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-xs font-bold text-foreground">Paiement sécurisé</p>
+                    <p className="text-xs text-muted-foreground">SSL — aucune donnée stockée</p>
+                  </div>
+                </div>
+
+                {/* CSCA */}
+                <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
+                  <img src={cscaLogo} alt="Logo CSCA - Chambre Syndicale des Courtiers d'Assurances" className="h-10 w-auto object-contain" width={40} height={40} loading="lazy" />
+                  <div className="text-left">
+                    <p className="text-xs font-bold text-foreground">Membre CSCA</p>
+                    <p className="text-xs text-muted-foreground">Syndicat professionnel</p>
+                  </div>
+                </div>
               </div>
 
               {/* Arthur pointing */}
