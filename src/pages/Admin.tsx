@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog, TrendingUp, Menu, Sparkles } from 'lucide-react';
+import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog, TrendingUp, Menu, Sparkles, Search } from 'lucide-react';
 import arthurWaving from '@/assets/mascotte/arthur-waving.png';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
@@ -25,6 +25,7 @@ import { RedistributionButton } from '@/components/admin/RedistributionButton';
 import { RedistributionHistory } from '@/components/admin/RedistributionHistory';
 import { GoogleAnalyticsDashboard } from '@/components/admin/GoogleAnalyticsDashboard';
 import { SEOSuggestions } from '@/components/admin/SEOSuggestions';
+import SERPPreview from '@/components/admin/SERPPreview';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 const Admin = () => {
@@ -160,6 +161,7 @@ const Admin = () => {
     { value: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { value: 'analytics', label: 'Analytics', icon: TrendingUp },
     { value: 'seo', label: 'SEO', icon: Sparkles },
+    { value: 'serp', label: 'SERP', icon: Search },
     { value: 'supervision', label: 'Supervision', icon: UserCog },
     { value: 'crm', label: 'CRM', icon: Target },
     { value: 'agents', label: 'Commerciaux', icon: Users },
@@ -254,7 +256,7 @@ const Admin = () => {
       <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           {/* Desktop tabs */}
-          <TabsList className="hidden lg:grid w-full grid-cols-8 mb-6">
+          <TabsList className="hidden lg:grid w-full grid-cols-9 mb-6">
             {tabItems.map(tab => (
               <TabsTrigger key={tab.value} value={tab.value} className="flex items-center gap-2">
                 <tab.icon className="h-4 w-4" />
@@ -308,6 +310,10 @@ const Admin = () => {
 
           <TabsContent value="seo">
             <SEOSuggestions />
+          </TabsContent>
+
+          <TabsContent value="serp">
+            <SERPPreview />
           </TabsContent>
 
           <TabsContent value="supervision">
