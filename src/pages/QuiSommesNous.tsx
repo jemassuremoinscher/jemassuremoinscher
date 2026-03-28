@@ -345,6 +345,28 @@ const QuiSommesNous = () => {
             </motion.div>
 
             <div className="relative">
+              {/* ORIAS + Google badges row */}
+              <div className="flex flex-wrap items-center justify-center gap-6 mb-8">
+                <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-3 shadow-sm">
+                  <img src={oriasLogo} alt="Logo ORIAS - Organisme pour le Registre unique des Intermédiaires en Assurance" className="h-10 w-auto object-contain" width={80} height={40} loading="lazy" />
+                  <div className="text-left">
+                    <p className="text-xs font-bold text-foreground">Courtier enregistré ORIAS</p>
+                    <p className="text-xs text-muted-foreground">N° 24 XXX XXX</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-3 shadow-sm">
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-accent text-accent" />
+                    ))}
+                  </div>
+                  <div className="text-left">
+                    <p className="text-xs font-bold text-foreground">4.8/5 sur Google</p>
+                    <p className="text-xs text-muted-foreground">2 500+ avis vérifiés</p>
+                  </div>
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
                 {certifications.map(({ icon: Icon, title, desc }, i) => (
                   <motion.div
