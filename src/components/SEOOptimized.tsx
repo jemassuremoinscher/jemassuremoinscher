@@ -35,6 +35,15 @@ interface SEOOptimizedProps {
 const BASE_URL = 'https://www.jemassuremoinscher.fr';
 const DEFAULT_IMAGE = `${BASE_URL}/opengraph-image.png`;
 
+const MONTHS_FR = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+
+/** Replace [Month] with current month + year (e.g. "Mars 2026") */
+const resolveDynamicTokens = (text: string): string => {
+  if (!text.includes('[Month]')) return text;
+  const now = new Date();
+  return text.replace(/\[Month\]/g, `${MONTHS_FR[now.getMonth()]} ${now.getFullYear()}`);
+};
+
 /**
  * SEOOptimized — react-helmet-async based SEO component.
  * 
