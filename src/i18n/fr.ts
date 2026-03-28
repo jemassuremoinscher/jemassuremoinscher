@@ -242,7 +242,7 @@ const fr: Record<string, string> = {
   'seoContent.p4': "Notre comparateur d'assurances se distingue des alternatives comme LesFurets par la diversité de ses 50+ partenaires assureurs et l'accompagnement personnalisé de nos conseillers. Contrairement aux comparateurs traditionnels qui vous laissent seul face aux devis, nous vous accompagnons de A à Z pour trouver l'assurance pas chère idéale et changer d'assurance sans tracas. Service 100% gratuit, sans engagement, données protégées RGPD.",
   'seoContent.h3_3': "Toutes les assurances pas chères à comparer",
   'seoContent.p5': "Notre comparateur d'assurances couvre l'ensemble des besoins : assurance auto pas chère, assurance moto, assurance habitation, mutuelle santé pas chère, assurance animaux, assurance vie, assurance emprunteur, prévoyance, RC professionnelle, multirisque professionnelle (MRP), garantie loyers impayés (GLI) et PNO. Changer d'assurance n'a jamais été aussi simple : comparez, économisez, et laissez-nous gérer la résiliation.",
-  'seoContent.linksTitle': "Trouvez votre assurance pas chère",
+  'seoContent.linksTitle': "Trouvez votre assurance moins chère",
   'seoContent.linkAuto': "Assurance auto pas chère",
   'seoContent.linkSante': "Mutuelle santé pas chère",
   'seoContent.linkHabitation': "Assurance habitation pas chère",
