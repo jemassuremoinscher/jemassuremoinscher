@@ -98,8 +98,8 @@ const SEOOptimized = ({
   return (
     <Helmet>
       {/* Primary Meta */}
-      <title>{title}</title>
-      <meta name="description" content={description} />
+      <title>{resolvedTitle}</title>
+      <meta name="description" content={resolvedDescription} />
       {allKeywords && <meta name="keywords" content={allKeywords} />}
       <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
       <link rel="canonical" href={pageCanonical} />
