@@ -13,6 +13,7 @@ const ContractOptimizerWidget = lazy(() => import("@/components/optimizer/Contra
 const CookieBanner = lazy(() => import("@/components/CookieBanner"));
 const SkipToMain = lazy(() => import("@/components/SkipToMain"));
 const RouteTracker = lazy(() => import("@/components/RouteTracker"));
+const StickyCTA = lazy(() => import("@/components/StickyCTA"));
 
 // Auth-protected routes wrapper — lazy loaded to avoid Supabase init on public pages
 const AuthProvider = lazy(() => import("@/contexts/AuthContext").then(m => ({ default: m.AuthProvider })));
@@ -222,6 +223,9 @@ const App = () => {
             </ErrorBoundary>
             <Suspense fallback={null}>
               <CookieBanner />
+            </Suspense>
+            <Suspense fallback={null}>
+              <StickyCTA />
             </Suspense>
             {showDeferredWidgets && (
               <>

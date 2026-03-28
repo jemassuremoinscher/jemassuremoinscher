@@ -10,7 +10,9 @@ import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import arthurPointing from "@/assets/mascotte/arthur-pointing.webp";
 import oriasLogo from "@/assets/logos/orias.jpg";
 import cscaLogo from "@/assets/logos/csca.png";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import paulPhoto from "@/assets/team/paul.jpg";
+import alexandrePhoto from "@/assets/team/alexandre.jpg";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 
 const stats = [
@@ -21,8 +23,8 @@ const stats = [
 ];
 
 const team = [
-  { name: "Paul", role: "Co-fondateur", initials: "P", color: "bg-primary" },
-  { name: "Alexandre", role: "Co-fondateur", initials: "A", color: "bg-accent" },
+  { name: "Paul", role: "Co-fondateur", initials: "P", color: "bg-primary", photo: paulPhoto },
+  { name: "Alexandre", role: "Co-fondateur", initials: "A", color: "bg-accent", photo: alexandrePhoto },
 ];
 
 const methodology = [
@@ -240,6 +242,7 @@ const QuiSommesNous = () => {
                   <Card className="text-center p-6 md:p-8">
                     <CardContent className="p-0 flex flex-col items-center gap-4">
                       <Avatar className="h-20 w-20 md:h-24 md:w-24 text-2xl">
+                        <AvatarImage src={member.photo} alt={`Photo de ${member.name}, ${member.role}`} />
                         <AvatarFallback className={`${member.color} text-white font-bold text-2xl md:text-3xl`}>
                           {member.initials}
                         </AvatarFallback>
