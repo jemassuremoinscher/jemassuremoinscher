@@ -54,11 +54,6 @@ const methodology = [
 
 const certifications = [
   {
-    icon: BadgeCheck,
-    title: "Enregistré ORIAS",
-    desc: "Courtier immatriculé N° 24 XXX XXX — vérifiable sur orias.fr",
-  },
-  {
     icon: Shield,
     title: "Garantie Financière",
     desc: "Couvert par une assurance RC Pro et une garantie financière conforme",
@@ -67,11 +62,6 @@ const certifications = [
     icon: Lock,
     title: "Paiement sécurisé",
     desc: "Transactions cryptées SSL — aucune donnée bancaire stockée",
-  },
-  {
-    icon: Award,
-    title: "Membre CSCA",
-    desc: "Adhérent à la Chambre Syndicale des Courtiers d'Assurances",
   },
 ];
 
