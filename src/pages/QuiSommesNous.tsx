@@ -2,12 +2,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOOptimized from "@/components/SEOOptimized";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Shield, Award, Users, Heart, Zap, Search, BarChart3, Handshake, CheckCircle, Lock, BadgeCheck, Scale } from "lucide-react";
+import { Shield, Award, Users, Heart, Zap, Search, BarChart3, Handshake, CheckCircle, Lock, BadgeCheck, Scale, Star } from "lucide-react";
 import { addOrganizationSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { motion } from "framer-motion";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import arthurPointing from "@/assets/mascotte/arthur-pointing.webp";
+import oriasLogo from "@/assets/logos/orias.jpg";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 
