@@ -120,7 +120,7 @@ const SEOOptimized = ({
       <meta property="og:image" content={pageImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content={ogTitle || title} />
+      <meta property="og:image:alt" content={ogTitle ? resolveDynamicTokens(ogTitle) : resolvedTitle} />
       <meta property="og:type" content={ogType} />
       <meta property="og:locale" content="fr_FR" />
       <meta property="og:locale:alternate" content="en_US" />
