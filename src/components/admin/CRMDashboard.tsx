@@ -105,12 +105,12 @@ export const CRMDashboard = () => {
         ...(quotesResult.data?.map((q: any) => ({ 
           ...q, 
           type: 'quote' as const,
-          sales_agents: q.assigned_agent 
+          sales_agents: q.assigned_to ? agentsMap.get(q.assigned_to) || null : null,
         })) || []),
         ...(callbacksResult.data?.map((c: any) => ({ 
           ...c, 
           type: 'callback' as const,
-          sales_agents: c.assigned_agent 
+          sales_agents: c.assigned_to ? agentsMap.get(c.assigned_to) || null : null,
         })) || []),
       ];
 
