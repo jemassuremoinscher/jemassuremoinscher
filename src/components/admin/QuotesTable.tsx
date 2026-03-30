@@ -23,6 +23,7 @@ interface Quote {
   quote_data: any;
   status: string;
   created_at: string;
+  assigned_to?: string | null;
 }
 
 interface QuotesTableProps {
