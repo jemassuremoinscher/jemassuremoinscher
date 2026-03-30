@@ -44,6 +44,7 @@ interface Lead {
   next_follow_up?: string;
   notes?: string;
   assigned_to?: string;
+  signed_before_hot?: boolean;
   type: 'quote' | 'callback';
   sales_agents?: SalesAgent;
 }
