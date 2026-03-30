@@ -165,7 +165,6 @@ const Admin = () => {
     { value: 'supervision', label: 'Supervision', icon: UserCog },
     { value: 'crm', label: 'CRM', icon: Target },
     { value: 'agents', label: 'Commerciaux', icon: Users },
-    { value: 'goals', label: 'Objectifs', icon: Trophy },
     { value: 'trash', label: 'Corbeille', icon: Trash2 },
   ];
 
@@ -256,7 +255,7 @@ const Admin = () => {
       <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           {/* Desktop tabs */}
-          <TabsList className="hidden lg:grid w-full grid-cols-9 mb-6">
+          <TabsList className="hidden lg:grid w-full grid-cols-8 mb-6">
             {tabItems.map(tab => (
               <TabsTrigger key={tab.value} value={tab.value} className="flex items-center gap-2">
                 <tab.icon className="h-4 w-4" />
@@ -339,11 +338,10 @@ const Admin = () => {
           </TabsContent>
 
           <TabsContent value="agents">
-            <SalesAgentsManager />
-          </TabsContent>
-
-          <TabsContent value="goals">
-            <GoalsManager />
+            <div className="space-y-8">
+              <SalesAgentsManager />
+              <GoalsManager />
+            </div>
           </TabsContent>
 
           <TabsContent value="trash">

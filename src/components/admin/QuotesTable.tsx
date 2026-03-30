@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Checkbox } from '@/components/ui/checkbox';
-import { FileText, Mail, Phone, MapPin, Calendar, CheckCircle, XCircle, Download, Trash2 } from 'lucide-react';
+import { FileText, Mail, Phone, MapPin, Calendar, CheckCircle, XCircle, Download, Trash2, UserCheck } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
@@ -22,6 +23,7 @@ interface Quote {
   quote_data: any;
   status: string;
   created_at: string;
+  assigned_to?: string | null;
 }
 
 interface QuotesTableProps {
@@ -34,7 +36,35 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
-  const filteredQuotes = filterStatus === 'all' 
+  const { data: agents } = useQuery({
+    queryKey: ['sales-agents-list'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('sales_agents')
+        .select('id, full_name, user_id, is_active')
+        .eq('is_active', true)
+        .order('full_name');
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const assignQuote = async (quoteId: string, agentUserId: string | null) => {
+    const { error } = await supabase
+      .from('insurance_quotes')
+      .update({ assigned_to: agentUserId })
+      .eq('id', quoteId);
+
+    if (error) {
+      toast.error("Erreur lors de l'attribution");
+    } else {
+      const agentName = agents?.find(a => a.user_id === agentUserId)?.full_name || 'Non attribué';
+      toast.success(`Lead attribué à ${agentName}`);
+      onUpdate();
+    }
+  };
+
+  const filteredQuotes = filterStatus === 'all'
     ? quotes 
     : quotes.filter(q => q.status === filterStatus);
 
@@ -227,6 +257,7 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
               <TableHead>Contact</TableHead>
               <TableHead>Détails</TableHead>
               <TableHead>Date</TableHead>
+              <TableHead>Attribué à</TableHead>
               <TableHead>Statut</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
@@ -234,7 +265,7 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
           <TableBody>
             {filteredQuotes.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={8} className="text-center py-8 text-muted-foreground">
+                <TableCell colSpan={9} className="text-center py-8 text-muted-foreground">
                   Aucune demande de devis trouvée
                 </TableCell>
               </TableRow>
@@ -289,6 +320,24 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                       <Calendar className="h-3 w-3" />
                       {format(new Date(quote.created_at), 'dd MMM yyyy', { locale: fr })}
                     </div>
+                  </TableCell>
+                  <TableCell>
+                    <Select
+                      value={quote.assigned_to || 'unassigned'}
+                      onValueChange={(value) => assignQuote(quote.id, value === 'unassigned' ? null : value)}
+                    >
+                      <SelectTrigger className="w-[140px] h-8 text-xs">
+                        <SelectValue placeholder="Non attribué" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="unassigned">— Non attribué</SelectItem>
+                        {agents?.map((agent) => (
+                          <SelectItem key={agent.user_id} value={agent.user_id}>
+                            {agent.full_name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </TableCell>
                   <TableCell>{getStatusBadge(quote.status)}</TableCell>
                   <TableCell>
