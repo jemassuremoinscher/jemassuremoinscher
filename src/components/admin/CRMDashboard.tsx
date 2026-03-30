@@ -144,6 +144,21 @@ export const CRMDashboard = () => {
     }
   };
 
+  const toggleSignedBeforeHot = async (leadId: string, type: string, value: boolean) => {
+    const table = type === 'quote' ? 'insurance_quotes' : 'contact_callbacks';
+    const { error } = await supabase
+      .from(table)
+      .update({ signed_before_hot: value } as any)
+      .eq('id', leadId);
+
+    if (error) {
+      toast.error('Erreur lors de la mise à jour');
+    } else {
+      toast.success(value ? 'Marqué comme signé avant chaud' : 'Marquage retiré');
+      fetchLeads();
+    }
+  };
+
   const updateLeadNotes = async (leadId: string, type: string, notes: string) => {
     const table = type === 'quote' ? 'insurance_quotes' : 'contact_callbacks';
     const { error } = await supabase
