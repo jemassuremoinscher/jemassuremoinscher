@@ -95,36 +95,29 @@ export const routes: RouteConfig[] = [
 ];
 
 // Blog articles — all slugs from blogArticles.ts + blogArticles2026.ts
+// IMPORTANT: Keep in sync with actual slug values in blogArticles.ts & blogArticles2026.ts
 export const blogArticles: RouteConfig[] = [
-  // Legacy articles
-  { path: "/blog/mutuelle-sante-reduire-frais-medicaux-2024", changefreq: "monthly", priority: 0.7 },
+  // === blogArticles.ts (legacy + 2025→2026 updated) ===
+  { path: "/blog/mutuelle-sante-reduire-frais-medicaux-2026", changefreq: "monthly", priority: 0.7 },
   { path: "/blog/assurance-auto-jeune-conducteur-astuces", changefreq: "monthly", priority: 0.7 },
-  { path: "/blog/resiliation-assurance-droits-2024", changefreq: "monthly", priority: 0.7 },
-  { path: "/blog/loi-lemoine-assurance-emprunteur-2024", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/resiliation-assurance-droits-2026", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/loi-lemoine-assurance-emprunteur-2026", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/loi-hamon-resiliation-assurance", changefreq: "monthly", priority: 0.8 },
-  { path: "/blog/guide-choisir-assurance-auto-2024", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/guide-choisir-assurance-auto-2026", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/assurance-habitation-garanties-indispensables", changefreq: "monthly", priority: 0.8 },
-  { path: "/blog/top-5-erreurs-assurance-habitation", changefreq: "monthly", priority: 0.7 },
-  { path: "/blog/assurance-animaux-comparatif-2024", changefreq: "monthly", priority: 0.7 },
-  { path: "/blog/mutuelle-dentaire-remboursement-optimal", changefreq: "monthly", priority: 0.7 },
-  { path: "/blog/assurance-pret-immobilier-deleguation", changefreq: "monthly", priority: 0.7 },
-  { path: "/blog/comparatif-mutuelle-sante-seniors", changefreq: "monthly", priority: 0.7 },
-  { path: "/blog/choisir-mutuelle-sante-2024", changefreq: "monthly", priority: 0.7 },
   { path: "/blog/10-conseils-economiser-assurances", changefreq: "monthly", priority: 0.7 },
   { path: "/blog/bien-choisir-mutuelle-sante", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/meilleure-assurance-auto-2026-comparatif", changefreq: "monthly", priority: 0.9 },
+  { path: "/blog/top-10-meilleures-mutuelles-sante-2026", changefreq: "monthly", priority: 0.9 },
+  { path: "/blog/assurance-jeune-conducteur-2026-moins-cher", changefreq: "monthly", priority: 0.9 },
+  { path: "/blog/meilleure-assurance-auto-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/top-mutuelles-sante-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/comparatif-habitation-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/loi-lemoine-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/nouvelle-reglementation-assurance-2026", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/droits-des-assures-2026", changefreq: "monthly", priority: 0.7 },
 
-  // 2025 articles
-  { path: "/blog/meilleure-assurance-auto-2025-comparatif", changefreq: "monthly", priority: 0.9 },
-  { path: "/blog/top-10-meilleures-mutuelles-sante-2025", changefreq: "monthly", priority: 0.9 },
-  { path: "/blog/assurance-jeune-conducteur-2025-moins-cher", changefreq: "monthly", priority: 0.9 },
-  { path: "/blog/meilleure-assurance-auto-2025", changefreq: "monthly", priority: 0.8 },
-  { path: "/blog/top-mutuelles-sante-2025", changefreq: "monthly", priority: 0.8 },
-  { path: "/blog/comparatif-habitation-2025", changefreq: "monthly", priority: 0.8 },
-  { path: "/blog/loi-lemoine-2025", changefreq: "monthly", priority: 0.8 },
-  { path: "/blog/nouvelle-reglementation-assurance-2025", changefreq: "monthly", priority: 0.7 },
-  { path: "/blog/droits-des-assures-2025", changefreq: "monthly", priority: 0.7 },
-
-  // 2026 articles
+  // === blogArticles2026.ts ===
   { path: "/blog/assurance-auto-resiliation-non-paiement-guide", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/jeune-conducteur-voiture-puissante-110-chevaux", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/assurance-malus-eleve-compagnies-2026", changefreq: "monthly", priority: 0.8 },
@@ -151,20 +144,23 @@ export const blogArticles: RouteConfig[] = [
   { path: "/blog/velos-cargos-vae-protection-vol-urbain", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/recharge-domicile-assurance-borne-recharge", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/covoiturage-regulier-extension-garantie-passagers", changefreq: "monthly", priority: 0.8 },
-  { path: "/blog/loi-hamon-2026-resilier-3-clics-apres-un-an", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/loi-hamon-2026-resilier-assurance-3-clics", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/vente-vehicule-suspendre-assurance-jour-j", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/certificat-assurance-dematerialise-fin-vignette-verte", changefreq: "monthly", priority: 0.8 },
-  { path: "/blog/non-lieu-assurance-aucun-assureur-bct", changefreq: "monthly", priority: 0.8 },
-  { path: "/blog/voiture-immobilisee-garage-arreter-assurance", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/non-lieu-assurance-aucun-assureur-role-bct", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/voiture-immobilisee-garage-arreter-assurer", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/heritage-vehicule-assurer-voiture-deces", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/reste-a-charge-zero-100-sante-lunettes-dents-2026", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/mutuelle-etudiante-contrat-parents-ou-individuel", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/auto-entrepreneur-mutuelle-protection-optimale", changefreq: "monthly", priority: 0.8 },
-  { path: "/blog/assurance-emprunteur-changer-assurance-pret-immobilier", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/assurance-emprunteur-changer-gagner-milliers-euros", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/medecines-douces-mutuelles-osteopathie-hypnose", changefreq: "monthly", priority: 0.8 },
-  { path: "/blog/fausse-declaration-assurance-risques-sanctions", changefreq: "monthly", priority: 0.8 },
-  { path: "/blog/arnaques-assurance-courantes-2026", changefreq: "monthly", priority: 0.8 },
-  { path: "/blog/accident-seul-sans-tiers-declarer-ou-reparer", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/fausse-declaration-assurance-risques-reels", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/5-arnaques-assurance-courantes-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/accident-seul-sans-tiers-declarer-reparer", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/hypnose-remboursement-mutuelle-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/devis-assurance-auto-jeune-conducteur-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/assurance-pno-pas-chere-comparatif-2026", changefreq: "monthly", priority: 0.8 },
 ];
 
 // Glossary terms

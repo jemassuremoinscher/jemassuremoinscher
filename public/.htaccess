@@ -2,13 +2,18 @@
   RewriteEngine On
   RewriteBase /
 
-  # Force HTTPS
+  # 1. Force HTTPS first
   RewriteCond %{HTTPS} off
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # Redirect non-www to www
+  # 2. Redirect non-www to www (covers all variants)
   RewriteCond %{HTTP_HOST} ^jemassuremoinscher\.fr$ [NC]
   RewriteRule ^ https://www.jemassuremoinscher.fr%{REQUEST_URI} [L,R=301]
+
+  # 3. Remove trailing slashes (except root /)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} (.+)/$
+  RewriteRule ^ %1 [L,R=301]
 
   # SPA fallback: if the file/directory doesn't exist, serve index.html
   RewriteCond %{REQUEST_FILENAME} !-f
