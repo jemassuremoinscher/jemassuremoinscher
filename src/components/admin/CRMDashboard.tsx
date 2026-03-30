@@ -78,24 +78,28 @@ export const CRMDashboard = () => {
   const fetchLeads = async () => {
     setLoading(true);
     try {
-      const [quotesResult, callbacksResult] = await Promise.all([
+      const [quotesResult, callbacksResult, agentsResult] = await Promise.all([
         supabase
           .from('insurance_quotes')
-          .select(`
-            *,
-            assigned_agent:sales_agents(full_name, email)
-          `)
+          .select('*')
           .is('deleted_at', null)
           .order('lead_score', { ascending: false }),
         supabase
           .from('contact_callbacks')
-          .select(`
-            *,
-            assigned_agent:sales_agents(full_name, email)
-          `)
+          .select('*')
           .is('deleted_at', null)
           .order('lead_score', { ascending: false }),
+        supabase
+          .from('sales_agents')
+          .select('id, full_name, email, user_id')
+          .eq('is_active', true),
       ]);
+
+      const agentsMap = new Map<string, SalesAgent>();
+      agentsResult.data?.forEach((a: any) => {
+        agentsMap.set(a.id, { full_name: a.full_name, email: a.email });
+        if (a.user_id) agentsMap.set(a.user_id, { full_name: a.full_name, email: a.email });
+      });
 
       const allLeads: Lead[] = [
         ...(quotesResult.data?.map((q: any) => ({ 
