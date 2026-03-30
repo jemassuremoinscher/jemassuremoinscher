@@ -60,12 +60,15 @@ export const ManualLeadForm = ({ onLeadCreated }: ManualLeadFormProps) => {
       return;
     }
 
+    const agent = agents?.find(a => a.id === form.assigned_to);
+    const assignValue = agent?.user_id || agent?.id || null;
+
     const { error } = await supabase.from('insurance_quotes').insert({
       full_name: form.full_name,
       email: form.email,
       phone: form.phone,
       insurance_type: form.insurance_type,
-      assigned_to: form.assigned_to || null,
+      assigned_to: assignValue,
       notes: form.notes || null,
       lead_source: 'manual',
       quote_data: { source: 'manual_entry' },
@@ -156,7 +159,7 @@ export const ManualLeadForm = ({ onLeadCreated }: ManualLeadFormProps) => {
               <SelectContent>
                 <SelectItem value="none">— Non attribué</SelectItem>
                 {agents?.map((agent) => (
-                  <SelectItem key={agent.user_id} value={agent.user_id}>
+                  <SelectItem key={agent.id} value={agent.id}>
                     {agent.full_name}
                   </SelectItem>
                 ))}

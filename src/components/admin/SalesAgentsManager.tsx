@@ -85,12 +85,19 @@ export const SalesAgentsManager = () => {
     },
   });
 
-  // Créer un commercial
+  // Créer un commercial (assignable sans compte)
   const createAgentMutation = useMutation({
-    mutationFn: async (agentData: typeof newAgent & { user_id: string }) => {
+    mutationFn: async (agentData: typeof newAgent) => {
       const { data, error } = await supabase
         .from("sales_agents")
-        .insert([agentData])
+        .insert([{
+          full_name: agentData.full_name,
+          email: agentData.email,
+          phone: agentData.phone || null,
+          max_daily_leads: agentData.max_daily_leads,
+          specializations: agentData.specializations,
+          user_id: null,
+        }])
         .select()
         .single();
       
@@ -130,42 +137,12 @@ export const SalesAgentsManager = () => {
     },
   });
 
-  // Generate cryptographically secure password using Web Crypto API
-  const generateSecurePassword = (): string => {
-    const array = new Uint8Array(24);
-    crypto.getRandomValues(array);
-    // Convert to base64-like string with special chars for password requirements
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
-    return Array.from(array, byte => chars[byte % chars.length]).join('');
-  };
-
-  const handleAddAgent = async () => {
-    // Generate a secure password - agent will need to use password reset to access their account
-    const securePassword = generateSecurePassword();
-    
-    const { data: userData, error: authError } = await supabase.auth.signUp({
-      email: newAgent.email,
-      password: securePassword,
-      options: {
-        data: {
-          full_name: newAgent.full_name,
-        },
-      },
-    });
-
-    if (authError) {
-      toast.error("Erreur lors de la création du compte: " + authError.message);
+  const handleAddAgent = () => {
+    if (!newAgent.full_name || !newAgent.email) {
+      toast.error("Nom et email requis");
       return;
     }
-
-    if (userData.user) {
-      createAgentMutation.mutate({
-        ...newAgent,
-        user_id: userData.user.id,
-      });
-      // Note: Agent should use password reset flow to set their own password
-      toast.info("L'agent devra utiliser 'Mot de passe oublié' pour définir son mot de passe");
-    }
+    createAgentMutation.mutate(newAgent);
   };
 
   const toggleSpecialization = (type: string) => {

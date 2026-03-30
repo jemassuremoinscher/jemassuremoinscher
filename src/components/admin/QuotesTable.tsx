@@ -49,16 +49,20 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
     },
   });
 
-  const assignQuote = async (quoteId: string, agentUserId: string | null) => {
+  const assignQuote = async (quoteId: string, agentId: string | null) => {
+    // Use agent's user_id if available, otherwise use agent id directly
+    const agent = agents?.find(a => a.id === agentId);
+    const assignValue = agent?.user_id || agentId;
+    
     const { error } = await supabase
       .from('insurance_quotes')
-      .update({ assigned_to: agentUserId })
+      .update({ assigned_to: assignValue })
       .eq('id', quoteId);
 
     if (error) {
       toast.error("Erreur lors de l'attribution");
     } else {
-      const agentName = agents?.find(a => a.user_id === agentUserId)?.full_name || 'Non attribué';
+      const agentName = agent?.full_name || 'Non attribué';
       toast.success(`Lead attribué à ${agentName}`);
       onUpdate();
     }
@@ -323,7 +327,7 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                   </TableCell>
                   <TableCell>
                     <Select
-                      value={quote.assigned_to || 'unassigned'}
+                      value={agents?.find(a => (a.user_id || a.id) === quote.assigned_to)?.id || 'unassigned'}
                       onValueChange={(value) => assignQuote(quote.id, value === 'unassigned' ? null : value)}
                     >
                       <SelectTrigger className="w-[140px] h-8 text-xs">
@@ -332,7 +336,7 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                       <SelectContent>
                         <SelectItem value="unassigned">— Non attribué</SelectItem>
                         {agents?.map((agent) => (
-                          <SelectItem key={agent.user_id} value={agent.user_id}>
+                          <SelectItem key={agent.id} value={agent.id}>
                             {agent.full_name}
                           </SelectItem>
                         ))}
