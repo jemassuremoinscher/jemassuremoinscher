@@ -338,11 +338,10 @@ const Admin = () => {
           </TabsContent>
 
           <TabsContent value="agents">
-            <SalesAgentsManager />
-          </TabsContent>
-
-          <TabsContent value="goals">
-            <GoalsManager />
+            <div className="space-y-8">
+              <SalesAgentsManager />
+              <GoalsManager />
+            </div>
           </TabsContent>
 
           <TabsContent value="trash">
