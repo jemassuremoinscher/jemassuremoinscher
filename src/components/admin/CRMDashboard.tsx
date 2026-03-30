@@ -451,7 +451,7 @@ export const CRMDashboard = () => {
                                 }}
                               />
                               <label htmlFor="signed-before-hot" className="text-sm font-medium cursor-pointer">
-                                ✍️ Signé avant Chaud
+                                ✍️ Signé
                               </label>
                             </div>
 
