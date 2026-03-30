@@ -60,6 +60,9 @@ export const ManualLeadForm = ({ onLeadCreated }: ManualLeadFormProps) => {
       return;
     }
 
+    const agent = agents?.find(a => a.id === form.assigned_to);
+    const assignValue = agent?.user_id || agent?.id || null;
+
     const { error } = await supabase.from('insurance_quotes').insert({
       full_name: form.full_name,
       email: form.email,
