@@ -62,7 +62,7 @@ const getScoreColor = (score: number) => {
 };
 
 const getScoreBadge = (score: number) => {
-  if (score >= 80) return { label: 'Chaud 🔥', variant: 'default' as const };
+  if (score >= 80) return { label: 'Devis envoyé', variant: 'default' as const };
   if (score >= 60) return { label: 'Qualifié ✓', variant: 'secondary' as const };
   if (score >= 40) return { label: 'Tiède', variant: 'outline' as const };
   return { label: 'Froid', variant: 'destructive' as const };
@@ -124,17 +124,7 @@ export const CRMDashboard = () => {
         })) || []),
       ];
 
-      // Deduplicate by email - keep the most recent entry
-      const seen = new Map<string, Lead>();
-      allLeads.forEach((lead) => {
-        const key = lead.email.toLowerCase();
-        const existing = seen.get(key);
-        if (!existing || new Date(lead.created_at) > new Date(existing.created_at)) {
-          seen.set(key, lead);
-        }
-      });
-
-      setLeads(Array.from(seen.values()));
+      setLeads(allLeads);
     } catch (error) {
       console.error('Error fetching leads:', error);
       toast.error('Erreur lors du chargement des leads');
@@ -168,7 +158,7 @@ export const CRMDashboard = () => {
     if (error) {
       toast.error('Erreur lors de la mise à jour');
     } else {
-      toast.success(value ? 'Marqué comme signé' : 'Marquage retiré');
+      toast.success(value ? 'Marqué comme converti' : 'Marquage retiré');
       fetchLeads();
     }
   };
@@ -196,9 +186,7 @@ export const CRMDashboard = () => {
         if (lead.lead_score < scoreThreshold) return false;
       }
       if (filterStatus !== 'all' && lead.status !== filterStatus) return false;
-      if (filterAgent !== 'all') {
-        if (!lead.assigned_to || (lead.assigned_to !== filterAgent && !agents.find(a => a.id === filterAgent && a.user_id === lead.assigned_to))) return false;
-      }
+      if (filterAgent !== 'all' && lead.assigned_to !== filterAgent) return false;
       return true;
     })
     .sort((a, b) => {
@@ -208,8 +196,8 @@ export const CRMDashboard = () => {
 
   const stats = {
     total: leads.length,
-    signed: leads.filter((l) => l.signed_before_hot).length,
-    hot: leads.filter((l) => l.lead_score >= 80).length,
+    converted: leads.filter((l) => l.signed_before_hot).length,
+    devisEnvoye: leads.filter((l) => l.lead_score >= 80).length,
     qualified: leads.filter((l) => l.lead_score >= 60 && l.lead_score < 80).length,
     pending: leads.filter((l) => l.status === 'pending').length,
     avgScore: Math.round(leads.reduce((acc, l) => acc + l.lead_score, 0) / leads.length || 0),
@@ -218,6 +206,7 @@ export const CRMDashboard = () => {
   const statusGroups = {
     pending: filteredLeads.filter((l) => l.status === 'pending'),
     contacted: filteredLeads.filter((l) => l.status === 'contacted'),
+    no_answer: filteredLeads.filter((l) => l.status === 'no_answer'),
     qualified: filteredLeads.filter((l) => l.status === 'qualified'),
     converted: filteredLeads.filter((l) => l.status === 'converted'),
     rejected: filteredLeads.filter((l) => l.status === 'rejected'),
@@ -276,6 +265,7 @@ export const CRMDashboard = () => {
           <SelectContent>
             <SelectItem value="pending">En attente</SelectItem>
             <SelectItem value="contacted">Contacté</SelectItem>
+            <SelectItem value="no_answer">Ne répond pas</SelectItem>
             <SelectItem value="qualified">Qualifié</SelectItem>
             <SelectItem value="converted">Converti</SelectItem>
             <SelectItem value="rejected">Rejeté</SelectItem>
@@ -293,7 +283,7 @@ export const CRMDashboard = () => {
           }}
         />
         <label htmlFor="signed-check" className="text-sm font-medium cursor-pointer">
-          ✍️ Signé
+          ✍️ Converti
         </label>
       </div>
 
@@ -349,8 +339,8 @@ export const CRMDashboard = () => {
         <Card className="p-4 border-emerald-200 dark:border-emerald-800">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-muted-foreground">Signés ✍️</p>
-              <p className="text-2xl font-bold text-emerald-600">{stats.signed}</p>
+              <p className="text-sm text-muted-foreground">Convertis ✍️</p>
+              <p className="text-2xl font-bold text-emerald-600">{stats.converted}</p>
             </div>
             <CheckCircle2 className="h-8 w-8 text-emerald-600" />
           </div>
@@ -359,8 +349,8 @@ export const CRMDashboard = () => {
         <Card className="p-4 border-red-200 dark:border-red-800">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-muted-foreground">Chauds 🔥</p>
-              <p className="text-2xl font-bold text-red-600">{stats.hot}</p>
+              <p className="text-sm text-muted-foreground">Devis envoyés 🔥</p>
+              <p className="text-2xl font-bold text-red-600">{stats.devisEnvoye}</p>
             </div>
             <TrendingUp className="h-8 w-8 text-red-600" />
           </div>
@@ -411,7 +401,7 @@ export const CRMDashboard = () => {
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Tous les scores</SelectItem>
-              <SelectItem value="80">Chauds (80+)</SelectItem>
+              <SelectItem value="80">Devis envoyés (80+)</SelectItem>
               <SelectItem value="60">Qualifiés (60+)</SelectItem>
               <SelectItem value="40">Tièdes (40+)</SelectItem>
             </SelectContent>
@@ -425,6 +415,7 @@ export const CRMDashboard = () => {
               <SelectItem value="all">Tous les statuts</SelectItem>
               <SelectItem value="pending">En attente</SelectItem>
               <SelectItem value="contacted">Contacté</SelectItem>
+              <SelectItem value="no_answer">Ne répond pas</SelectItem>
               <SelectItem value="qualified">Qualifié</SelectItem>
               <SelectItem value="converted">Converti</SelectItem>
               <SelectItem value="rejected">Rejeté</SelectItem>
@@ -475,6 +466,7 @@ export const CRMDashboard = () => {
                 <h3 className="font-semibold mb-4 capitalize flex items-center justify-between">
                   {status === 'pending' && '🔔 En attente'}
                   {status === 'contacted' && '📞 Contactés'}
+                  {status === 'no_answer' && '🚫 Ne répond pas'}
                   {status === 'qualified' && '✅ Qualifiés'}
                   {status === 'converted' && '🎉 Convertis'}
                   {status === 'rejected' && '❌ Rejetés'}
@@ -507,7 +499,7 @@ export const CRMDashboard = () => {
                             )}
                             {lead.signed_before_hot && (
                               <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400">
-                                ✍️ Signé
+                                ✍️ Converti
                               </Badge>
                             )}
                             <p className="text-xs text-muted-foreground flex items-center gap-1">
@@ -555,14 +547,12 @@ export const CRMDashboard = () => {
                   {lead.insurance_type && (
                     <Badge variant="secondary" className="shrink-0">{lead.insurance_type}</Badge>
                   )}
-                  {lead.agent_name && (
-                    <Badge variant="outline" className="shrink-0 bg-primary/5">
-                      👤 {lead.agent_name}
-                    </Badge>
-                  )}
+                  <Badge variant="outline" className="shrink-0 bg-primary/5">
+                    👤 Nom : {lead.agent_name || 'Non attribué'}
+                  </Badge>
                   {lead.signed_before_hot && (
                     <Badge variant="outline" className="shrink-0 bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400">
-                      ✍️ Signé
+                      ✍️ Converti
                     </Badge>
                   )}
                   <Badge {...getScoreBadge(lead.lead_score)} className="shrink-0">
