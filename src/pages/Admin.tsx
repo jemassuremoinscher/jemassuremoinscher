@@ -165,7 +165,6 @@ const Admin = () => {
     { value: 'supervision', label: 'Supervision', icon: UserCog },
     { value: 'crm', label: 'CRM', icon: Target },
     { value: 'agents', label: 'Commerciaux', icon: Users },
-    { value: 'goals', label: 'Objectifs', icon: Trophy },
     { value: 'trash', label: 'Corbeille', icon: Trash2 },
   ];
 
