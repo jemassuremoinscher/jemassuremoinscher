@@ -432,7 +432,21 @@ export const CRMDashboard = () => {
                               </Select>
                             </div>
 
-                            <div>
+                            <div className="flex items-center space-x-3 p-3 bg-muted/50 rounded-lg">
+                              <Checkbox
+                                id="signed-before-hot"
+                                checked={selectedLead.signed_before_hot || false}
+                                onCheckedChange={(checked) => {
+                                  toggleSignedBeforeHot(selectedLead.id, selectedLead.type, !!checked);
+                                  setSelectedLead({ ...selectedLead, signed_before_hot: !!checked });
+                                }}
+                              />
+                              <label htmlFor="signed-before-hot" className="text-sm font-medium cursor-pointer">
+                                ✍️ Signé avant Chaud
+                              </label>
+                            </div>
+
+
                               <p className="text-sm text-muted-foreground mb-2">Notes internes</p>
                               <Textarea
                                 placeholder="Ajouter des notes sur ce lead..."
