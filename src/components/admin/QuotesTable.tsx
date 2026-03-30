@@ -327,7 +327,7 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                   </TableCell>
                   <TableCell>
                     <Select
-                      value={quote.assigned_to || 'unassigned'}
+                      value={agents?.find(a => (a.user_id || a.id) === quote.assigned_to)?.id || 'unassigned'}
                       onValueChange={(value) => assignQuote(quote.id, value === 'unassigned' ? null : value)}
                     >
                       <SelectTrigger className="w-[140px] h-8 text-xs">
@@ -336,7 +336,7 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                       <SelectContent>
                         <SelectItem value="unassigned">— Non attribué</SelectItem>
                         {agents?.map((agent) => (
-                          <SelectItem key={agent.user_id} value={agent.user_id}>
+                          <SelectItem key={agent.id} value={agent.id}>
                             {agent.full_name}
                           </SelectItem>
                         ))}
