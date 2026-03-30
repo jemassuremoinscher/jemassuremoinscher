@@ -9,6 +9,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
+import { ManualLeadForm } from '@/components/admin/ManualLeadForm';
 import {
   TrendingUp,
   TrendingDown,
@@ -21,13 +22,17 @@ import {
   Award,
   Filter,
   ArrowRight,
+  CheckCircle2,
+  Plus,
 } from 'lucide-react';
-import { format, formatDistanceToNow } from 'date-fns';
+import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
 interface SalesAgent {
+  id: string;
   full_name: string;
   email: string;
+  user_id?: string;
 }
 
 interface Lead {
@@ -46,7 +51,7 @@ interface Lead {
   assigned_to?: string;
   signed_before_hot?: boolean;
   type: 'quote' | 'callback';
-  sales_agents?: SalesAgent;
+  agent_name?: string;
 }
 
 const getScoreColor = (score: number) => {
@@ -65,10 +70,12 @@ const getScoreBadge = (score: number) => {
 
 export const CRMDashboard = () => {
   const [leads, setLeads] = useState<Lead[]>([]);
+  const [agents, setAgents] = useState<SalesAgent[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [filterScore, setFilterScore] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [filterAgent, setFilterAgent] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'score' | 'date'>('score');
 
   useEffect(() => {
@@ -95,22 +102,25 @@ export const CRMDashboard = () => {
           .eq('is_active', true),
       ]);
 
-      const agentsMap = new Map<string, SalesAgent>();
-      agentsResult.data?.forEach((a: any) => {
-        agentsMap.set(a.id, { full_name: a.full_name, email: a.email });
-        if (a.user_id) agentsMap.set(a.user_id, { full_name: a.full_name, email: a.email });
+      const agentsList = (agentsResult.data || []) as SalesAgent[];
+      setAgents(agentsList);
+
+      const agentsMap = new Map<string, string>();
+      agentsList.forEach((a) => {
+        agentsMap.set(a.id, a.full_name);
+        if (a.user_id) agentsMap.set(a.user_id, a.full_name);
       });
 
       const allLeads: Lead[] = [
-        ...(quotesResult.data?.map((q: any) => ({ 
-          ...q, 
+        ...(quotesResult.data?.map((q: any) => ({
+          ...q,
           type: 'quote' as const,
-          sales_agents: q.assigned_to ? agentsMap.get(q.assigned_to) || null : null,
+          agent_name: q.assigned_to ? agentsMap.get(q.assigned_to) || null : null,
         })) || []),
-        ...(callbacksResult.data?.map((c: any) => ({ 
-          ...c, 
+        ...(callbacksResult.data?.map((c: any) => ({
+          ...c,
           type: 'callback' as const,
-          sales_agents: c.assigned_to ? agentsMap.get(c.assigned_to) || null : null,
+          agent_name: c.assigned_to ? agentsMap.get(c.assigned_to) || null : null,
         })) || []),
       ];
 
@@ -148,7 +158,7 @@ export const CRMDashboard = () => {
     }
   };
 
-  const toggleSignedBeforeHot = async (leadId: string, type: string, value: boolean) => {
+  const toggleSigned = async (leadId: string, type: string, value: boolean) => {
     const table = type === 'quote' ? 'insurance_quotes' : 'contact_callbacks';
     const { error } = await supabase
       .from(table)
@@ -158,7 +168,7 @@ export const CRMDashboard = () => {
     if (error) {
       toast.error('Erreur lors de la mise à jour');
     } else {
-      toast.success(value ? 'Marqué comme signé avant chaud' : 'Marquage retiré');
+      toast.success(value ? 'Marqué comme signé' : 'Marquage retiré');
       fetchLeads();
     }
   };
@@ -186,17 +196,19 @@ export const CRMDashboard = () => {
         if (lead.lead_score < scoreThreshold) return false;
       }
       if (filterStatus !== 'all' && lead.status !== filterStatus) return false;
+      if (filterAgent !== 'all') {
+        if (!lead.assigned_to || (lead.assigned_to !== filterAgent && !agents.find(a => a.id === filterAgent && a.user_id === lead.assigned_to))) return false;
+      }
       return true;
     })
     .sort((a, b) => {
-      if (sortBy === 'score') {
-        return b.lead_score - a.lead_score;
-      }
+      if (sortBy === 'score') return b.lead_score - a.lead_score;
       return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
     });
 
   const stats = {
     total: leads.length,
+    signed: leads.filter((l) => l.signed_before_hot).length,
     hot: leads.filter((l) => l.lead_score >= 80).length,
     qualified: leads.filter((l) => l.lead_score >= 60 && l.lead_score < 80).length,
     pending: leads.filter((l) => l.status === 'pending').length,
@@ -211,6 +223,107 @@ export const CRMDashboard = () => {
     rejected: filteredLeads.filter((l) => l.status === 'rejected'),
   };
 
+  const renderLeadDetail = (lead: Lead) => (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <h3 className="text-xl font-bold">{lead.full_name}</h3>
+        <Badge {...getScoreBadge(lead.lead_score)}>
+          {getScoreBadge(lead.lead_score).label} ({lead.lead_score}/100)
+        </Badge>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div className="flex items-center gap-2">
+          <Mail className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm">{lead.email}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Phone className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm">{lead.phone}</span>
+        </div>
+      </div>
+
+      {lead.insurance_type && (
+        <div>
+          <p className="text-sm text-muted-foreground mb-1">Type d'assurance</p>
+          <Badge variant="secondary">{lead.insurance_type}</Badge>
+        </div>
+      )}
+
+      <div>
+        <p className="text-sm text-muted-foreground mb-1">Source</p>
+        <Badge variant="outline">{lead.lead_source}</Badge>
+      </div>
+
+      {lead.agent_name && (
+        <div>
+          <p className="text-sm text-muted-foreground mb-1">Commercial assigné</p>
+          <div className="p-3 bg-muted rounded-lg">
+            <div className="font-medium">{lead.agent_name}</div>
+          </div>
+        </div>
+      )}
+
+      <div>
+        <p className="text-sm text-muted-foreground mb-2">Changer le statut</p>
+        <Select
+          value={lead.status}
+          onValueChange={(v) => updateLeadStatus(lead.id, lead.type, v)}
+        >
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="pending">En attente</SelectItem>
+            <SelectItem value="contacted">Contacté</SelectItem>
+            <SelectItem value="qualified">Qualifié</SelectItem>
+            <SelectItem value="converted">Converti</SelectItem>
+            <SelectItem value="rejected">Rejeté</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="flex items-center space-x-3 p-3 bg-muted/50 rounded-lg">
+        <Checkbox
+          id="signed-check"
+          checked={lead.signed_before_hot || false}
+          onCheckedChange={(checked) => {
+            toggleSigned(lead.id, lead.type, !!checked);
+            setSelectedLead({ ...lead, signed_before_hot: !!checked });
+          }}
+        />
+        <label htmlFor="signed-check" className="text-sm font-medium cursor-pointer">
+          ✍️ Signé
+        </label>
+      </div>
+
+      <div>
+        <p className="text-sm text-muted-foreground mb-2">Notes internes</p>
+        <Textarea
+          placeholder="Ajouter des notes sur ce lead..."
+          defaultValue={lead.notes || ''}
+          rows={4}
+          onChange={(e) => {
+            setSelectedLead({ ...lead, notes: e.target.value });
+          }}
+        />
+        <Button
+          className="mt-2"
+          onClick={() => updateLeadNotes(lead.id, lead.type, lead.notes || '')}
+        >
+          <MessageSquare className="h-4 w-4 mr-2" />
+          Sauvegarder les notes
+        </Button>
+      </div>
+
+      {lead.last_contacted_at && (
+        <div className="text-sm text-muted-foreground">
+          Dernier contact: {format(new Date(lead.last_contacted_at), 'dd/MM/yyyy à HH:mm', { locale: fr })}
+        </div>
+      )}
+    </div>
+  );
+
   if (loading) {
     return (
       <div className="flex items-center justify-center p-12">
@@ -222,7 +335,7 @@ export const CRMDashboard = () => {
   return (
     <div className="space-y-6">
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
         <Card className="p-4">
           <div className="flex items-center justify-between">
             <div>
@@ -230,6 +343,16 @@ export const CRMDashboard = () => {
               <p className="text-2xl font-bold">{stats.total}</p>
             </div>
             <Users className="h-8 w-8 text-primary" />
+          </div>
+        </Card>
+
+        <Card className="p-4 border-emerald-200 dark:border-emerald-800">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-muted-foreground">Signés ✍️</p>
+              <p className="text-2xl font-bold text-emerald-600">{stats.signed}</p>
+            </div>
+            <CheckCircle2 className="h-8 w-8 text-emerald-600" />
           </div>
         </Card>
 
@@ -274,14 +397,14 @@ export const CRMDashboard = () => {
         </Card>
       </div>
 
-      {/* Filters */}
+      {/* Filters + Add Lead */}
       <Card className="p-4">
         <div className="flex flex-wrap gap-4 items-center">
           <div className="flex items-center gap-2">
             <Filter className="h-4 w-4 text-muted-foreground" />
             <span className="text-sm font-medium">Filtres:</span>
           </div>
-          
+
           <Select value={filterScore} onValueChange={setFilterScore}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Score minimum" />
@@ -308,6 +431,20 @@ export const CRMDashboard = () => {
             </SelectContent>
           </Select>
 
+          <Select value={filterAgent} onValueChange={setFilterAgent}>
+            <SelectTrigger className="w-[200px]">
+              <SelectValue placeholder="Commercial" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Tous les commerciaux</SelectItem>
+              {agents.map((agent) => (
+                <SelectItem key={agent.id} value={agent.id}>
+                  {agent.full_name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+
           <Select value={sortBy} onValueChange={(v) => setSortBy(v as 'score' | 'date')}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Trier par" />
@@ -317,6 +454,10 @@ export const CRMDashboard = () => {
               <SelectItem value="date">Date (récent)</SelectItem>
             </SelectContent>
           </Select>
+
+          <div className="ml-auto">
+            <ManualLeadForm onLeadCreated={fetchLeads} />
+          </div>
         </div>
       </Card>
 
@@ -359,9 +500,9 @@ export const CRMDashboard = () => {
                                 {lead.insurance_type}
                               </Badge>
                             )}
-                            {lead.sales_agents && (
+                            {lead.agent_name && (
                               <p className="text-xs text-muted-foreground">
-                                👤 {lead.sales_agents.full_name}
+                                👤 {lead.agent_name}
                               </p>
                             )}
                             {lead.signed_before_hot && (
@@ -380,107 +521,7 @@ export const CRMDashboard = () => {
                         <DialogHeader>
                           <DialogTitle>Détails du Lead</DialogTitle>
                         </DialogHeader>
-                        {selectedLead && (
-                          <div className="space-y-4">
-                            <div className="flex items-center justify-between">
-                              <h3 className="text-xl font-bold">{selectedLead.full_name}</h3>
-                              <Badge {...getScoreBadge(selectedLead.lead_score)}>
-                                {getScoreBadge(selectedLead.lead_score).label} ({selectedLead.lead_score}/100)
-                              </Badge>
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-4">
-                              <div className="flex items-center gap-2">
-                                <Mail className="h-4 w-4 text-muted-foreground" />
-                                <span className="text-sm">{selectedLead.email}</span>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                <Phone className="h-4 w-4 text-muted-foreground" />
-                                <span className="text-sm">{selectedLead.phone}</span>
-                              </div>
-                            </div>
-
-                            {selectedLead.insurance_type && (
-                              <div>
-                                <p className="text-sm text-muted-foreground mb-1">Type d'assurance</p>
-                                <Badge variant="secondary">{selectedLead.insurance_type}</Badge>
-                              </div>
-                            )}
-
-                            <div>
-                              <p className="text-sm text-muted-foreground mb-1">Source</p>
-                              <Badge variant="outline">{selectedLead.lead_source}</Badge>
-                            </div>
-
-                            {selectedLead.sales_agents && (
-                              <div>
-                                <p className="text-sm text-muted-foreground mb-1">Commercial assigné</p>
-                                <div className="p-3 bg-muted rounded-lg">
-                                  <div className="font-medium">{selectedLead.sales_agents.full_name}</div>
-                                  <div className="text-sm text-muted-foreground">{selectedLead.sales_agents.email}</div>
-                                </div>
-                              </div>
-                            )}
-
-                            <div>
-                              <p className="text-sm text-muted-foreground mb-2">Changer le statut</p>
-                              <Select
-                                value={selectedLead.status}
-                                onValueChange={(v) => updateLeadStatus(selectedLead.id, selectedLead.type, v)}
-                              >
-                                <SelectTrigger>
-                                  <SelectValue />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="pending">En attente</SelectItem>
-                                  <SelectItem value="contacted">Contacté</SelectItem>
-                                  <SelectItem value="qualified">Qualifié</SelectItem>
-                                  <SelectItem value="converted">Converti</SelectItem>
-                                  <SelectItem value="rejected">Rejeté</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </div>
-
-                            <div className="flex items-center space-x-3 p-3 bg-muted/50 rounded-lg">
-                              <Checkbox
-                                id="signed-before-hot"
-                                checked={selectedLead.signed_before_hot || false}
-                                onCheckedChange={(checked) => {
-                                  toggleSignedBeforeHot(selectedLead.id, selectedLead.type, !!checked);
-                                  setSelectedLead({ ...selectedLead, signed_before_hot: !!checked });
-                                }}
-                              />
-                              <label htmlFor="signed-before-hot" className="text-sm font-medium cursor-pointer">
-                                ✍️ Signé
-                              </label>
-                            </div>
-
-                            <div>
-                              <p className="text-sm text-muted-foreground mb-2">Notes internes</p>
-                              <Textarea
-                                placeholder="Ajouter des notes sur ce lead..."
-                                defaultValue={selectedLead.notes || ''}
-                                rows={4}
-                                onChange={(e) => {
-                                  setSelectedLead({ ...selectedLead, notes: e.target.value });
-                                }}
-                              />
-                              <Button
-                                className="mt-2"
-                                onClick={() => updateLeadNotes(selectedLead.id, selectedLead.type, selectedLead.notes || '')}
-                              >
-                                <MessageSquare className="h-4 w-4 mr-2" />
-                                Sauvegarder les notes
-                              </Button>
-                            </div>
-
-                            {selectedLead.last_contacted_at && (
-                              <div className="text-sm text-muted-foreground">
-                                Dernier contact: {format(new Date(selectedLead.last_contacted_at), 'dd/MM/yyyy à HH:mm', { locale: fr })}
-                              </div>
-                            )}
-                          </div>
-                        )}
+                        {selectedLead && renderLeadDetail(selectedLead)}
                       </DialogContent>
                     </Dialog>
                   ))}
@@ -493,14 +534,14 @@ export const CRMDashboard = () => {
         <TabsContent value="list" className="space-y-2">
           {filteredLeads.map((lead) => (
             <Card key={lead.id} className="p-4 hover:shadow-md transition-shadow">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4 flex-1">
-                  <Badge className={`${getScoreColor(lead.lead_score)} font-bold`}>
+              <div className="flex items-center justify-between flex-wrap gap-2">
+                <div className="flex items-center gap-4 flex-1 min-w-0">
+                  <Badge className={`${getScoreColor(lead.lead_score)} font-bold shrink-0`}>
                     {lead.lead_score}
                   </Badge>
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-0">
                     <p className="font-semibold">{lead.full_name}</p>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground flex-wrap">
                       <span className="flex items-center gap-1">
                         <Mail className="h-3 w-3" />
                         {lead.email}
@@ -512,10 +553,19 @@ export const CRMDashboard = () => {
                     </div>
                   </div>
                   {lead.insurance_type && (
-                    <Badge variant="secondary">{lead.insurance_type}</Badge>
+                    <Badge variant="secondary" className="shrink-0">{lead.insurance_type}</Badge>
                   )}
-                  <Badge variant="outline">{lead.lead_source}</Badge>
-                  <Badge {...getScoreBadge(lead.lead_score)}>
+                  {lead.agent_name && (
+                    <Badge variant="outline" className="shrink-0 bg-primary/5">
+                      👤 {lead.agent_name}
+                    </Badge>
+                  )}
+                  {lead.signed_before_hot && (
+                    <Badge variant="outline" className="shrink-0 bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400">
+                      ✍️ Signé
+                    </Badge>
+                  )}
+                  <Badge {...getScoreBadge(lead.lead_score)} className="shrink-0">
                     {getScoreBadge(lead.lead_score).label}
                   </Badge>
                 </div>
@@ -527,7 +577,10 @@ export const CRMDashboard = () => {
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-                    {/* Same content as above */}
+                    <DialogHeader>
+                      <DialogTitle>Détails du Lead</DialogTitle>
+                    </DialogHeader>
+                    {selectedLead && renderLeadDetail(selectedLead)}
                   </DialogContent>
                 </Dialog>
               </div>
