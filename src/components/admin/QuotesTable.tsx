@@ -50,13 +50,11 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
   });
 
   const assignQuote = async (quoteId: string, agentId: string | null) => {
-    // Use agent's user_id if available, otherwise use agent id directly
     const agent = agents?.find(a => a.id === agentId);
-    const assignValue = agent?.user_id || agentId;
-    
+
     const { error } = await supabase
       .from('insurance_quotes')
-      .update({ assigned_to: assignValue })
+      .update({ assigned_to: agentId })
       .eq('id', quoteId);
 
     if (error) {
@@ -327,7 +325,7 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                   </TableCell>
                   <TableCell>
                     <Select
-                      value={agents?.find(a => (a.user_id || a.id) === quote.assigned_to)?.id || 'unassigned'}
+                      value={agents?.find(a => a.id === quote.assigned_to)?.id || 'unassigned'}
                       onValueChange={(value) => assignQuote(quote.id, value === 'unassigned' ? null : value)}
                     >
                       <SelectTrigger className="w-[140px] h-8 text-xs">
