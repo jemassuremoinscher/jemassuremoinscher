@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
@@ -43,6 +44,7 @@ interface Lead {
   next_follow_up?: string;
   notes?: string;
   assigned_to?: string;
+  signed_before_hot?: boolean;
   type: 'quote' | 'callback';
   sales_agents?: SalesAgent;
 }
@@ -108,7 +110,17 @@ export const CRMDashboard = () => {
         })) || []),
       ];
 
-      setLeads(allLeads);
+      // Deduplicate by email - keep the most recent entry
+      const seen = new Map<string, Lead>();
+      allLeads.forEach((lead) => {
+        const key = lead.email.toLowerCase();
+        const existing = seen.get(key);
+        if (!existing || new Date(lead.created_at) > new Date(existing.created_at)) {
+          seen.set(key, lead);
+        }
+      });
+
+      setLeads(Array.from(seen.values()));
     } catch (error) {
       console.error('Error fetching leads:', error);
       toast.error('Erreur lors du chargement des leads');
@@ -128,6 +140,21 @@ export const CRMDashboard = () => {
       toast.error('Erreur lors de la mise à jour');
     } else {
       toast.success('Statut mis à jour');
+      fetchLeads();
+    }
+  };
+
+  const toggleSignedBeforeHot = async (leadId: string, type: string, value: boolean) => {
+    const table = type === 'quote' ? 'insurance_quotes' : 'contact_callbacks';
+    const { error } = await supabase
+      .from(table)
+      .update({ signed_before_hot: value } as any)
+      .eq('id', leadId);
+
+    if (error) {
+      toast.error('Erreur lors de la mise à jour');
+    } else {
+      toast.success(value ? 'Marqué comme signé avant chaud' : 'Marquage retiré');
       fetchLeads();
     }
   };
@@ -333,6 +360,11 @@ export const CRMDashboard = () => {
                                 👤 {lead.sales_agents.full_name}
                               </p>
                             )}
+                            {lead.signed_before_hot && (
+                              <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400">
+                                ✍️ Signé avant Chaud
+                              </Badge>
+                            )}
                             <p className="text-xs text-muted-foreground flex items-center gap-1">
                               <Calendar className="h-3 w-3" />
                               {format(new Date(lead.created_at), 'dd MMM', { locale: fr })}
@@ -403,6 +435,20 @@ export const CRMDashboard = () => {
                                   <SelectItem value="rejected">Rejeté</SelectItem>
                                 </SelectContent>
                               </Select>
+                            </div>
+
+                            <div className="flex items-center space-x-3 p-3 bg-muted/50 rounded-lg">
+                              <Checkbox
+                                id="signed-before-hot"
+                                checked={selectedLead.signed_before_hot || false}
+                                onCheckedChange={(checked) => {
+                                  toggleSignedBeforeHot(selectedLead.id, selectedLead.type, !!checked);
+                                  setSelectedLead({ ...selectedLead, signed_before_hot: !!checked });
+                                }}
+                              />
+                              <label htmlFor="signed-before-hot" className="text-sm font-medium cursor-pointer">
+                                ✍️ Signé avant Chaud
+                              </label>
                             </div>
 
                             <div>

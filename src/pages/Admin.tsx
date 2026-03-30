@@ -5,6 +5,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog, TrendingUp, Menu, Sparkles, Search } from 'lucide-react';
+import { ManualLeadForm } from '@/components/admin/ManualLeadForm';
 import arthurWaving from '@/assets/mascotte/arthur-waving.png';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
@@ -282,12 +283,15 @@ const Admin = () => {
           </div>
 
           <TabsContent value="dashboard" className="space-y-4 sm:space-y-8">
-            <StatsCards
-              quotesCount={filteredQuotes.length}
-              callbacksCount={filteredCallbacks.length}
-              pendingQuotes={pendingQuotes}
-              pendingCallbacks={pendingCallbacks}
-            />
+            <div className="flex items-center justify-between">
+              <StatsCards
+                quotesCount={filteredQuotes.length}
+                callbacksCount={filteredCallbacks.length}
+                pendingQuotes={pendingQuotes}
+                pendingCallbacks={pendingCallbacks}
+              />
+              <ManualLeadForm onLeadCreated={fetchData} />
+            </div>
 
             <ChartsSection quotes={filteredQuotes} callbacks={filteredCallbacks} />
 
