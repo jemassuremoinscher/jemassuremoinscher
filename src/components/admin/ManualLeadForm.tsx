@@ -68,7 +68,7 @@ export const ManualLeadForm = ({ onLeadCreated }: ManualLeadFormProps) => {
       email: form.email,
       phone: form.phone,
       insurance_type: form.insurance_type,
-      assigned_to: form.assigned_to || null,
+      assigned_to: assignValue,
       notes: form.notes || null,
       lead_source: 'manual',
       quote_data: { source: 'manual_entry' },
