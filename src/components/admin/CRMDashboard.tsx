@@ -78,35 +78,39 @@ export const CRMDashboard = () => {
   const fetchLeads = async () => {
     setLoading(true);
     try {
-      const [quotesResult, callbacksResult] = await Promise.all([
+      const [quotesResult, callbacksResult, agentsResult] = await Promise.all([
         supabase
           .from('insurance_quotes')
-          .select(`
-            *,
-            assigned_agent:sales_agents(full_name, email)
-          `)
+          .select('*')
           .is('deleted_at', null)
           .order('lead_score', { ascending: false }),
         supabase
           .from('contact_callbacks')
-          .select(`
-            *,
-            assigned_agent:sales_agents(full_name, email)
-          `)
+          .select('*')
           .is('deleted_at', null)
           .order('lead_score', { ascending: false }),
+        supabase
+          .from('sales_agents')
+          .select('id, full_name, email, user_id')
+          .eq('is_active', true),
       ]);
+
+      const agentsMap = new Map<string, SalesAgent>();
+      agentsResult.data?.forEach((a: any) => {
+        agentsMap.set(a.id, { full_name: a.full_name, email: a.email });
+        if (a.user_id) agentsMap.set(a.user_id, { full_name: a.full_name, email: a.email });
+      });
 
       const allLeads: Lead[] = [
         ...(quotesResult.data?.map((q: any) => ({ 
           ...q, 
           type: 'quote' as const,
-          sales_agents: q.assigned_agent 
+          sales_agents: q.assigned_to ? agentsMap.get(q.assigned_to) || null : null,
         })) || []),
         ...(callbacksResult.data?.map((c: any) => ({ 
           ...c, 
           type: 'callback' as const,
-          sales_agents: c.assigned_agent 
+          sales_agents: c.assigned_to ? agentsMap.get(c.assigned_to) || null : null,
         })) || []),
       ];
 
@@ -362,7 +366,7 @@ export const CRMDashboard = () => {
                             )}
                             {lead.signed_before_hot && (
                               <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400">
-                                ✍️ Signé avant Chaud
+                                ✍️ Signé
                               </Badge>
                             )}
                             <p className="text-xs text-muted-foreground flex items-center gap-1">
@@ -447,7 +451,7 @@ export const CRMDashboard = () => {
                                 }}
                               />
                               <label htmlFor="signed-before-hot" className="text-sm font-medium cursor-pointer">
-                                ✍️ Signé avant Chaud
+                                ✍️ Signé
                               </label>
                             </div>
 

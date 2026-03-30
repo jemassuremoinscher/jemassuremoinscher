@@ -81,11 +81,13 @@ const Admin = () => {
         .from('insurance_quotes')
         .select('*')
         .is('deleted_at', null)
+        .in('status', ['pending', 'contacted', 'no_answer'])
         .order('created_at', { ascending: false }),
       supabase
         .from('contact_callbacks')
         .select('*')
         .is('deleted_at', null)
+        .in('status', ['pending', 'contacted', 'no_answer'])
         .order('created_at', { ascending: false }),
     ]);
 
