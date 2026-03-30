@@ -446,7 +446,7 @@ export const CRMDashboard = () => {
                               </label>
                             </div>
 
-
+                            <div>
                               <p className="text-sm text-muted-foreground mb-2">Notes internes</p>
                               <Textarea
                                 placeholder="Ajouter des notes sur ce lead..."
