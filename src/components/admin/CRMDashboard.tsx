@@ -360,6 +360,11 @@ export const CRMDashboard = () => {
                                 👤 {lead.sales_agents.full_name}
                               </p>
                             )}
+                            {lead.signed_before_hot && (
+                              <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400">
+                                ✍️ Signé avant Chaud
+                              </Badge>
+                            )}
                             <p className="text-xs text-muted-foreground flex items-center gap-1">
                               <Calendar className="h-3 w-3" />
                               {format(new Date(lead.created_at), 'dd MMM', { locale: fr })}
