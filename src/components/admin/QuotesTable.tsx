@@ -257,6 +257,7 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
               <TableHead>Contact</TableHead>
               <TableHead>Détails</TableHead>
               <TableHead>Date</TableHead>
+              <TableHead>Attribué à</TableHead>
               <TableHead>Statut</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
