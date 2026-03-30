@@ -366,7 +366,7 @@ export const CRMDashboard = () => {
                             )}
                             {lead.signed_before_hot && (
                               <Badge variant="outline" className="text-xs bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400">
-                                ✍️ Signé avant Chaud
+                                ✍️ Signé
                               </Badge>
                             )}
                             <p className="text-xs text-muted-foreground flex items-center gap-1">
