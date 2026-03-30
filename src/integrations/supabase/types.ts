@@ -215,6 +215,7 @@ export type Database = {
           notes: string | null
           phone: string
           preferred_time: string
+          signed_before_hot: boolean | null
           status: string
           updated_at: string
         }
@@ -233,6 +234,7 @@ export type Database = {
           notes?: string | null
           phone: string
           preferred_time: string
+          signed_before_hot?: boolean | null
           status?: string
           updated_at?: string
         }
@@ -251,6 +253,7 @@ export type Database = {
           notes?: string | null
           phone?: string
           preferred_time?: string
+          signed_before_hot?: boolean | null
           status?: string
           updated_at?: string
         }
@@ -445,6 +448,7 @@ export type Database = {
           notes: string | null
           phone: string
           quote_data: Json
+          signed_before_hot: boolean | null
           status: string
           updated_at: string
         }
@@ -463,6 +467,7 @@ export type Database = {
           notes?: string | null
           phone: string
           quote_data: Json
+          signed_before_hot?: boolean | null
           status?: string
           updated_at?: string
         }
@@ -481,6 +486,7 @@ export type Database = {
           notes?: string | null
           phone?: string
           quote_data?: Json
+          signed_before_hot?: boolean | null
           status?: string
           updated_at?: string
         }
