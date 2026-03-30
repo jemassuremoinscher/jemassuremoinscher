@@ -110,7 +110,17 @@ export const CRMDashboard = () => {
         })) || []),
       ];
 
-      setLeads(allLeads);
+      // Deduplicate by email - keep the most recent entry
+      const seen = new Map<string, Lead>();
+      allLeads.forEach((lead) => {
+        const key = lead.email.toLowerCase();
+        const existing = seen.get(key);
+        if (!existing || new Date(lead.created_at) > new Date(existing.created_at)) {
+          seen.set(key, lead);
+        }
+      });
+
+      setLeads(Array.from(seen.values()));
     } catch (error) {
       console.error('Error fetching leads:', error);
       toast.error('Erreur lors du chargement des leads');
