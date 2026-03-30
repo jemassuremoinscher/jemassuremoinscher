@@ -283,12 +283,15 @@ const Admin = () => {
           </div>
 
           <TabsContent value="dashboard" className="space-y-4 sm:space-y-8">
-            <StatsCards
-              quotesCount={filteredQuotes.length}
-              callbacksCount={filteredCallbacks.length}
-              pendingQuotes={pendingQuotes}
-              pendingCallbacks={pendingCallbacks}
-            />
+            <div className="flex items-center justify-between">
+              <StatsCards
+                quotesCount={filteredQuotes.length}
+                callbacksCount={filteredCallbacks.length}
+                pendingQuotes={pendingQuotes}
+                pendingCallbacks={pendingCallbacks}
+              />
+              <ManualLeadForm onLeadCreated={fetchData} />
+            </div>
 
             <ChartsSection quotes={filteredQuotes} callbacks={filteredCallbacks} />
 
