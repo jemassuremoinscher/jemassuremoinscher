@@ -159,7 +159,7 @@ export const ManualLeadForm = ({ onLeadCreated }: ManualLeadFormProps) => {
               <SelectContent>
                 <SelectItem value="none">— Non attribué</SelectItem>
                 {agents?.map((agent) => (
-                  <SelectItem key={agent.user_id} value={agent.user_id}>
+                  <SelectItem key={agent.id} value={agent.id}>
                     {agent.full_name}
                   </SelectItem>
                 ))}
