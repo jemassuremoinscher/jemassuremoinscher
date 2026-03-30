@@ -49,16 +49,20 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
     },
   });
 
-  const assignQuote = async (quoteId: string, agentUserId: string | null) => {
+  const assignQuote = async (quoteId: string, agentId: string | null) => {
+    // Use agent's user_id if available, otherwise use agent id directly
+    const agent = agents?.find(a => a.id === agentId);
+    const assignValue = agent?.user_id || agentId;
+    
     const { error } = await supabase
       .from('insurance_quotes')
-      .update({ assigned_to: agentUserId })
+      .update({ assigned_to: assignValue })
       .eq('id', quoteId);
 
     if (error) {
       toast.error("Erreur lors de l'attribution");
     } else {
-      const agentName = agents?.find(a => a.user_id === agentUserId)?.full_name || 'Non attribué';
+      const agentName = agent?.full_name || 'Non attribué';
       toast.success(`Lead attribué à ${agentName}`);
       onUpdate();
     }
