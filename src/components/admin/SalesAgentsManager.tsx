@@ -85,12 +85,19 @@ export const SalesAgentsManager = () => {
     },
   });
 
-  // Créer un commercial
+  // Créer un commercial (assignable sans compte)
   const createAgentMutation = useMutation({
-    mutationFn: async (agentData: typeof newAgent & { user_id: string }) => {
+    mutationFn: async (agentData: typeof newAgent) => {
       const { data, error } = await supabase
         .from("sales_agents")
-        .insert([agentData])
+        .insert([{
+          full_name: agentData.full_name,
+          email: agentData.email,
+          phone: agentData.phone || null,
+          max_daily_leads: agentData.max_daily_leads,
+          specializations: agentData.specializations,
+          user_id: null,
+        }])
         .select()
         .single();
       
