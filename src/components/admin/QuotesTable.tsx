@@ -36,7 +36,35 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
-  const filteredQuotes = filterStatus === 'all' 
+  const { data: agents } = useQuery({
+    queryKey: ['sales-agents-list'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('sales_agents')
+        .select('id, full_name, user_id, is_active')
+        .eq('is_active', true)
+        .order('full_name');
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const assignQuote = async (quoteId: string, agentUserId: string | null) => {
+    const { error } = await supabase
+      .from('insurance_quotes')
+      .update({ assigned_to: agentUserId })
+      .eq('id', quoteId);
+
+    if (error) {
+      toast.error("Erreur lors de l'attribution");
+    } else {
+      const agentName = agents?.find(a => a.user_id === agentUserId)?.full_name || 'Non attribué';
+      toast.success(`Lead attribué à ${agentName}`);
+      onUpdate();
+    }
+  };
+
+  const filteredQuotes = filterStatus === 'all'
     ? quotes 
     : quotes.filter(q => q.status === filterStatus);
 
