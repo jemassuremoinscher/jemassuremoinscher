@@ -144,6 +144,10 @@ export const CRMDashboard = () => {
       toast.error('Erreur lors de la mise à jour');
     } else {
       toast.success('Statut mis à jour');
+      // Update local state immediately for instant UI feedback
+      setLeads(prev => prev.map(l => l.id === leadId ? { ...l, status: newStatus, last_contacted_at: new Date().toISOString() } : l));
+      setSelectedLead(prev => prev && prev.id === leadId ? { ...prev, status: newStatus } : prev);
+      // Also refetch to ensure consistency
       fetchLeads();
     }
   };
