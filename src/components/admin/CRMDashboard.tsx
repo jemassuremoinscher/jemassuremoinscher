@@ -196,7 +196,7 @@ export const CRMDashboard = () => {
 
   const stats = {
     total: leads.length,
-    converted: leads.filter((l) => l.signed_before_hot).length,
+    converted: leads.filter((l) => l.status === 'converted' || l.signed_before_hot).length,
     devisEnvoye: leads.filter((l) => l.lead_score >= 80).length,
     qualified: leads.filter((l) => l.lead_score >= 60 && l.lead_score < 80).length,
     pending: leads.filter((l) => l.status === 'pending').length,
