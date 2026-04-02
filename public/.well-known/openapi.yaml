@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: jemassuremoinscher.fr API
+  description: >
+    API du comparateur d'assurances jemassuremoinscher.fr.
+    Permet d'obtenir des informations sur les types d'assurances disponibles,
+    les partenaires assureurs et de demander un devis gratuit.
+  version: "1.0.0"
+  contact:
+    email: contact@jemassuremoinscher.fr
+    url: https://www.jemassuremoinscher.fr/contact
+servers:
+  - url: https://www.jemassuremoinscher.fr
+    description: Production
+paths:
+  /assurance-auto:
+    get:
+      operationId: getAssuranceAuto
+      summary: Page assurance auto moins chère
+      description: >
+        Comparateur d'assurance auto. Comparez les offres de 50+ assureurs
+        partenaires pour trouver l'assurance auto la moins chère.
+        Formules : tous risques, tiers étendu, au tiers. Dès 25€/mois.
+      responses:
+        "200":
+          description: Page d'information assurance auto
+  /assurance-sante:
+    get:
+      operationId: getAssuranceSante
+      summary: Comparateur mutuelle santé
+      description: >
+        Comparez les mutuelles santé de 50+ assureurs. Couverture hospitalisation,
+        optique, dentaire, médecine douce. Dès 20€/mois.
+      responses:
+        "200":
+          description: Page d'information mutuelle santé
+  /assurance-habitation:
+    get:
+      operationId: getAssuranceHabitation
+      summary: Assurance habitation moins chère
+      description: >
+        Comparateur d'assurance habitation multirisque. Couverture incendie,
+        dégât des eaux, vol, responsabilité civile. Dès 3€/mois.
+      responses:
+        "200":
+          description: Page d'information assurance habitation
+  /assurance-moto:
+    get:
+      operationId: getAssuranceMoto
+      summary: Assurance moto moins chère
+      description: >
+        Comparez les assurances moto. Tous types de deux-roues.
+        Dès 15€/mois.
+      responses:
+        "200":
+          description: Page d'information assurance moto
+  /assurance-animaux:
+    get:
+      operationId: getAssuranceAnimaux
+      summary: Assurance animaux de compagnie
+      description: >
+        Comparez les assurances chien et chat. Remboursement frais vétérinaires.
+        Dès 8€/mois.
+      responses:
+        "200":
+          description: Page d'information assurance animaux
+  /assurance-pret:
+    get:
+      operationId: getAssurancePret
+      summary: Assurance emprunteur moins chère
+      description: >
+        Comparez les assurances de prêt immobilier. Économisez jusqu'à 15 000€
+        sur la durée du crédit grâce à la loi Lemoine.
+      responses:
+        "200":
+          description: Page d'information assurance emprunteur
+  /assurance-vie:
+    get:
+      operationId: getAssuranceVie
+      summary: Assurance vie — épargne et prévoyance
+      description: >
+        Comparez les contrats d'assurance vie. Fonds euros et unités de compte.
+        Préparez votre retraite et transmettez votre patrimoine.
+      responses:
+        "200":
+          description: Page d'information assurance vie
+  /comparateur:
+    get:
+      operationId: getComparateur
+      summary: Comparateur d'assurances gratuit
+      description: >
+        Accédez au comparateur multi-produits. Comparez auto, santé, habitation,
+        moto, animaux et plus en une seule recherche.
+      responses:
+        "200":
+          description: Page comparateur multi-produits
+  /contact:
+    get:
+      operationId: getContact
+      summary: Contacter un conseiller
+      description: >
+        Demandez un rappel gratuit par un conseiller expert.
+        Réponse sous 2 heures, du lundi au vendredi.
+      responses:
+        "200":
+          description: Page de contact
