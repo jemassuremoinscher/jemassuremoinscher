@@ -13,7 +13,7 @@ import aonLogo from "@/assets/logos/aon.webp";
 import aprilLogo from "@/assets/logos/april-new.webp";
 import axaLogo from "@/assets/logos/axa.webp";
 import directAssuranceLogo from "@/assets/logos/direct-assurance-new.webp";
-import ganLogo from "@/assets/logos/generali-new.webp";
+import ganLogo from "@/assets/logos/gan.svg";
 import generaliLogo from "@/assets/logos/generali-new.webp";
 import gmfLogo from "@/assets/logos/gmf-new.webp";
 import leocareLogo from "@/assets/logos/leocare.webp";
