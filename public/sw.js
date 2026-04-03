@@ -1,4 +1,4 @@
-const CACHE_NAME = 'jmamc-v5';
+const CACHE_NAME = 'jmamc-v6';
 const IMG_CACHE_NAME = 'jmamc-img-v2';
 const MAX_IMG_CACHE_ITEMS = 120;
 const MAX_STATIC_CACHE_ITEMS = 200;
