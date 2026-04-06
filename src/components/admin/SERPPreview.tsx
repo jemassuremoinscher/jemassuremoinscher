@@ -12,27 +12,27 @@ import { toast } from "sonner";
 const TITLE_MAX = 60;
 const DESC_MAX = 160;
 
-const PAGES = [
-  { path: "/", label: "Accueil" },
-  { path: "/assurance-auto", label: "Assurance Auto" },
-  { path: "/assurance-moto", label: "Assurance Moto" },
-  { path: "/assurance-habitation", label: "Assurance Habitation" },
-  { path: "/assurance-sante", label: "Mutuelle Santé" },
-  { path: "/assurance-animaux", label: "Assurance Animaux" },
-  { path: "/assurance-vie", label: "Assurance Vie" },
-  { path: "/assurance-pret", label: "Assurance Prêt" },
-  { path: "/assurance-prevoyance", label: "Prévoyance" },
-  { path: "/assurance-rc-pro", label: "RC Professionnelle" },
-  { path: "/assurance-mrp", label: "Assurance MRP" },
-  { path: "/assurance-pno", label: "Assurance PNO" },
-  { path: "/assurance-gli", label: "Garantie Loyers Impayés" },
-  { path: "/comparateur", label: "Comparateur" },
-  { path: "/blog", label: "Blog" },
-  { path: "/glossaire", label: "Glossaire" },
-  { path: "/qui-sommes-nous", label: "Qui sommes-nous" },
-  { path: "/contact", label: "Contact" },
-  { path: "/nos-partenaires", label: "Nos Partenaires" },
-  { path: "/mutuelle-tns", label: "Mutuelle TNS" },
+const PAGES: { path: string; label: string; defaultTitle: string; defaultDesc: string }[] = [
+  { path: "/", label: "Accueil", defaultTitle: "Assurance Moins Chère : Comparateur Gratuit | jemassuremoinscher.fr", defaultDesc: "Comparateur d'assurances gratuit. Comparez 50+ assureurs et économisez jusqu'à 280€. Devis en 2 min, sans engagement." },
+  { path: "/assurance-auto", label: "Assurance Auto", defaultTitle: "Assurance Auto Moins Chère [Month] : -40% ⭐", defaultDesc: "50+ assureurs comparés gratuitement. Nos clients économisent 320€/an en moyenne. Devis auto instantané, sans engagement." },
+  { path: "/assurance-moto", label: "Assurance Moto", defaultTitle: "Assurance Moto Moins Chère [Month] : -35% ⭐", defaultDesc: "Moto, scooter, 125cc : comparez 50+ assureurs. Tous risques dès 15€/mois. Devis gratuit et sans engagement." },
+  { path: "/assurance-habitation", label: "Assurance Habitation", defaultTitle: "Assurance Habitation Moins Chère [Month] dès 3€", defaultDesc: "Comparez 50+ assureurs habitation en 2 min. Maison ou appartement, locataire ou propriétaire. Économisez jusqu'à 40%." },
+  { path: "/assurance-sante", label: "Mutuelle Santé", defaultTitle: "Mutuelle Santé Moins Chère [Month] : -300€/an", defaultDesc: "Comparez 50+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale. 4.8/5 satisfaction client." },
+  { path: "/assurance-animaux", label: "Assurance Animaux", defaultTitle: "Assurance Chien Chat dès 8€/mois [Month]", defaultDesc: "Mutuelle animaux : remboursement vétérinaire jusqu'à 100%. Comparez les offres chien et chat en 2 min. Sans délai de carence." },
+  { path: "/assurance-vie", label: "Assurance Vie", defaultTitle: "Assurance Vie [Month] : Meilleurs Rendements", defaultDesc: "Fonds euros, unités de compte, PER : comparez les meilleures assurances vie. Fiscalité avantageuse après 8 ans. Devis gratuit." },
+  { path: "/assurance-pret", label: "Assurance Prêt", defaultTitle: "Assurance Emprunteur [Month] : -15 000€ (Lemoine)", defaultDesc: "Loi Lemoine : changez d'assurance de prêt à tout moment. Comparez 50+ assureurs, économisez jusqu'à 50%. Devis gratuit en 2 min." },
+  { path: "/assurance-prevoyance", label: "Prévoyance", defaultTitle: "Prévoyance [Month] : Protégez Votre Famille 9€/mois", defaultDesc: "Décès, invalidité, obsèques : comparez les garanties prévoyance de 50+ assureurs. Devis personnalisé gratuit en 2 min." },
+  { path: "/assurance-rc-pro", label: "RC Professionnelle", defaultTitle: "RC Pro dès 15€/mois [Month] : Devis Gratuit", defaultDesc: "Responsabilité civile professionnelle : comparez 50+ assureurs. Tous secteurs : BTP, conseil, IT, commerce. Attestation immédiate." },
+  { path: "/assurance-mrp", label: "Assurance MRP", defaultTitle: "Multirisque Pro (MRP) [Month] dès 20€/mois", defaultDesc: "Locaux, stock, matériel : protégez votre entreprise avec une MRP adaptée. 50+ assureurs comparés. Devis gratuit en 2 min." },
+  { path: "/assurance-pno", label: "Assurance PNO", defaultTitle: "PNO Assurance dès 5€/mois [Month] | Copropriété", defaultDesc: "PNO assurance : comparez les assurances propriétaire non occupant. Obligatoire en copropriété (loi Alur). 50+ assureurs comparés. Devis gratuit." },
+  { path: "/assurance-gli", label: "Garantie Loyers Impayés", defaultTitle: "GLI [Month] : Garantie Loyer Impayé dès 2,5%", defaultDesc: "Loyers impayés, dégradations, frais juridiques : sécurisez vos revenus locatifs. Comparez les GLI de 50+ assureurs. Devis gratuit." },
+  { path: "/comparateur", label: "Comparateur", defaultTitle: "Comparateur d'Assurances Gratuit", defaultDesc: "Comparez les offres de 50+ assureurs en 2 minutes. Auto, santé, habitation, prêt. Sans engagement." },
+  { path: "/blog", label: "Blog", defaultTitle: "Blog Assurance - Conseils & Guides", defaultDesc: "Guides complets, actualités et conseils pour économiser sur vos assurances." },
+  { path: "/glossaire", label: "Glossaire", defaultTitle: "Glossaire de l'Assurance", defaultDesc: "Définitions claires de tous les termes d'assurance : franchise, prime, sinistre, responsabilité civile..." },
+  { path: "/qui-sommes-nous", label: "Qui sommes-nous", defaultTitle: "Qui sommes-nous | jemassuremoinscher.fr", defaultDesc: "Découvrez notre équipe de courtiers en assurances. Indépendant, transparent, gratuit." },
+  { path: "/contact", label: "Contact", defaultTitle: "Contactez-nous | jemassuremoinscher.fr", defaultDesc: "Besoin d'aide ? Contactez notre équipe de conseillers. Réponse sous 2h." },
+  { path: "/nos-partenaires", label: "Nos Partenaires", defaultTitle: "Nos 50+ Partenaires Assureurs", defaultDesc: "AXA, Allianz, MAIF, Groupama... Découvrez tous nos assureurs partenaires." },
+  { path: "/mutuelle-tns", label: "Mutuelle TNS", defaultTitle: "Mutuelle TNS : Meilleure Complémentaire Indépendant", defaultDesc: "Comparez les mutuelles TNS adaptées aux indépendants. Loi Madelin, déduction fiscale. Devis gratuit." },
 ];
 
 const LengthBar = ({ current, max, label }: { current: number; max: number; label: string }) => {
@@ -91,13 +91,14 @@ const SERPPreview = () => {
 
   useEffect(() => {
     const existing = savedMetas.find((m) => m.page_path === selectedPage);
+    const pageDefaults = PAGES.find((p) => p.path === selectedPage);
     if (existing) {
       setMeta(existing);
     } else {
       setMeta({
         page_path: selectedPage,
-        meta_title: "",
-        meta_description: "",
+        meta_title: pageDefaults?.defaultTitle || "",
+        meta_description: pageDefaults?.defaultDesc || "",
         og_title: "",
         og_description: "",
       });
