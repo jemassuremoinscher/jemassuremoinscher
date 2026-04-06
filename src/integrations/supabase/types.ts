@@ -624,6 +624,39 @@ export type Database = {
         }
         Relationships: []
       }
+      page_meta_overrides: {
+        Row: {
+          created_at: string
+          id: string
+          meta_description: string | null
+          meta_title: string | null
+          og_description: string | null
+          og_title: string | null
+          page_path: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          og_description?: string | null
+          og_title?: string | null
+          page_path: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          og_description?: string | null
+          og_title?: string | null
+          page_path?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       quiz_leads: {
         Row: {
           answers: Json
