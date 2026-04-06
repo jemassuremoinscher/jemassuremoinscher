@@ -31,6 +31,26 @@ export default defineConfig(({ mode }) => {
     nosPartenaires: path.resolve(__dirname, "nos-partenaires/index.html"),
     calculateurBonusMalus: path.resolve(__dirname, "outils/calculateur-bonus-malus/index.html"),
     mutuelleTns: path.resolve(__dirname, "mutuelle-tns/index.html"),
+    // Blog articles — static HTML shells for SEO crawlers
+    blogAccident: path.resolve(__dirname, "blog/accident-seul-sans-tiers-declarer-reparer/index.html"),
+    blogArnaques: path.resolve(__dirname, "blog/5-arnaques-assurance-courantes-2026/index.html"),
+    blogFausseDeclaration: path.resolve(__dirname, "blog/fausse-declaration-assurance-risques-reels/index.html"),
+    blogVoitureGarage: path.resolve(__dirname, "blog/voiture-immobilisee-garage-arreter-assurer/index.html"),
+    blogBct: path.resolve(__dirname, "blog/non-lieu-assurance-aucun-assureur-role-bct/index.html"),
+    blogLoiHamon: path.resolve(__dirname, "blog/loi-hamon-2026-resilier-assurance-3-clics/index.html"),
+    blogGuideAuto: path.resolve(__dirname, "blog/guide-choisir-assurance-auto-2026/index.html"),
+    blogMeilleureAuto: path.resolve(__dirname, "blog/meilleure-assurance-auto-2026/index.html"),
+    blogTopMutuelles: path.resolve(__dirname, "blog/top-mutuelles-sante-2026/index.html"),
+    blogComparatifHab: path.resolve(__dirname, "blog/comparatif-habitation-2026/index.html"),
+    blogDroitsAssures: path.resolve(__dirname, "blog/droits-des-assures-2026/index.html"),
+    blogLoiLemoine: path.resolve(__dirname, "blog/loi-lemoine-2026/index.html"),
+    blogNouvelleReglem: path.resolve(__dirname, "blog/nouvelle-reglementation-assurance-2026/index.html"),
+    blogTop10Mutuelles: path.resolve(__dirname, "blog/top-10-meilleures-mutuelles-sante-2026/index.html"),
+    blogJeuneConducteur: path.resolve(__dirname, "blog/assurance-jeune-conducteur-2026-moins-cher/index.html"),
+    blogResiliation: path.resolve(__dirname, "blog/resiliation-assurance-droits-2026/index.html"),
+    blogLoiLemoineEmpr: path.resolve(__dirname, "blog/loi-lemoine-assurance-emprunteur-2026/index.html"),
+    blogMutuelleFrais: path.resolve(__dirname, "blog/mutuelle-sante-reduire-frais-medicaux-2026/index.html"),
+    blogMeilleureAutoComp: path.resolve(__dirname, "blog/meilleure-assurance-auto-2026-comparatif/index.html"),
   };
 
   return {

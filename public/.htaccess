@@ -15,6 +15,34 @@
   RewriteCond %{REQUEST_URI} (.+)/$
   RewriteRule ^ %1 [L,R=301]
 
+  # =============================================
+  # 4. Blog 301 Redirects: old slugs → current
+  # =============================================
+
+  # Year-based redirects (2024 → 2026)
+  RewriteRule ^blog/guide-choisir-assurance-auto-2024$ /blog/guide-choisir-assurance-auto-2026 [L,R=301]
+  RewriteRule ^blog/loi-lemoine-assurance-emprunteur-2024$ /blog/loi-lemoine-assurance-emprunteur-2026 [L,R=301]
+  RewriteRule ^blog/resiliation-assurance-droits-2024$ /blog/resiliation-assurance-droits-2026 [L,R=301]
+  RewriteRule ^blog/mutuelle-sante-reduire-frais-medicaux-2024$ /blog/mutuelle-sante-reduire-frais-medicaux-2026 [L,R=301]
+
+  # Year-based redirects (2025 → 2026)
+  RewriteRule ^blog/assurance-jeune-conducteur-2025-moins-cher$ /blog/assurance-jeune-conducteur-2026-moins-cher [L,R=301]
+  RewriteRule ^blog/comparatif-habitation-2025$ /blog/comparatif-habitation-2026 [L,R=301]
+  RewriteRule ^blog/droits-des-assures-2025$ /blog/droits-des-assures-2026 [L,R=301]
+  RewriteRule ^blog/loi-lemoine-2025$ /blog/loi-lemoine-2026 [L,R=301]
+  RewriteRule ^blog/meilleure-assurance-auto-2025$ /blog/meilleure-assurance-auto-2026 [L,R=301]
+  RewriteRule ^blog/nouvelle-reglementation-assurance-2025$ /blog/nouvelle-reglementation-assurance-2026 [L,R=301]
+  RewriteRule ^blog/top-10-meilleures-mutuelles-sante-2025$ /blog/top-10-meilleures-mutuelles-sante-2026 [L,R=301]
+  RewriteRule ^blog/top-mutuelles-sante-2025$ /blog/top-mutuelles-sante-2026 [L,R=301]
+
+  # Slug variation redirects (typos / old slugs)
+  RewriteRule ^blog/accident-seul-sans-tiers-declarer-ou-reparer$ /blog/accident-seul-sans-tiers-declarer-reparer [L,R=301]
+  RewriteRule ^blog/arnaques-assurance-courantes-2026$ /blog/5-arnaques-assurance-courantes-2026 [L,R=301]
+  RewriteRule ^blog/fausse-declaration-assurance-risques-sanctions$ /blog/fausse-declaration-assurance-risques-reels [L,R=301]
+  RewriteRule ^blog/loi-hamon-2026-resilier-3-clics-apres-un-an$ /blog/loi-hamon-2026-resilier-assurance-3-clics [L,R=301]
+  RewriteRule ^blog/non-lieu-assurance-aucun-assureur-bct$ /blog/non-lieu-assurance-aucun-assureur-role-bct [L,R=301]
+  RewriteRule ^blog/voiture-immobilisee-garage-arreter-assurance$ /blog/voiture-immobilisee-garage-arreter-assurer [L,R=301]
+
   # SPA fallback: if the file/directory doesn't exist, serve index.html
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
