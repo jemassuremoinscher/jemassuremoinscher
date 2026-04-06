@@ -160,16 +160,33 @@ const Admin = () => {
   const pendingQuotes = filteredQuotes.filter(q => q.status === 'pending').length;
   const pendingCallbacks = filteredCallbacks.filter(c => c.status === 'pending').length;
 
-  const tabItems = [
-    { value: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { value: 'analytics', label: 'Analytics', icon: TrendingUp },
-    { value: 'seo', label: 'SEO', icon: Sparkles },
-    { value: 'serp', label: 'SERP', icon: Search },
-    { value: 'supervision', label: 'Supervision', icon: UserCog },
-    { value: 'crm', label: 'CRM', icon: Target },
-    { value: 'agents', label: 'Commerciaux', icon: Users },
-    { value: 'trash', label: 'Corbeille', icon: Trash2 },
+  const categories = [
+    {
+      label: 'Dashboard',
+      tabs: [
+        { value: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+      ],
+    },
+    {
+      label: 'Marketing',
+      tabs: [
+        { value: 'analytics', label: 'Analytics', icon: TrendingUp },
+        { value: 'seo', label: 'SEO', icon: Sparkles },
+        { value: 'serp', label: 'SERP', icon: Search },
+      ],
+    },
+    {
+      label: 'Commercial',
+      tabs: [
+        { value: 'crm', label: 'CRM', icon: Target },
+        { value: 'supervision', label: 'Supervision', icon: UserCog },
+        { value: 'agents', label: 'Commerciaux', icon: Users },
+        { value: 'trash', label: 'Corbeille', icon: Trash2 },
+      ],
+    },
   ];
+
+  const allTabs = categories.flatMap(c => c.tabs);
 
   return (
     <>
