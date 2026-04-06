@@ -160,16 +160,33 @@ const Admin = () => {
   const pendingQuotes = filteredQuotes.filter(q => q.status === 'pending').length;
   const pendingCallbacks = filteredCallbacks.filter(c => c.status === 'pending').length;
 
-  const tabItems = [
-    { value: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { value: 'analytics', label: 'Analytics', icon: TrendingUp },
-    { value: 'seo', label: 'SEO', icon: Sparkles },
-    { value: 'serp', label: 'SERP', icon: Search },
-    { value: 'supervision', label: 'Supervision', icon: UserCog },
-    { value: 'crm', label: 'CRM', icon: Target },
-    { value: 'agents', label: 'Commerciaux', icon: Users },
-    { value: 'trash', label: 'Corbeille', icon: Trash2 },
+  const categories = [
+    {
+      label: 'Dashboard',
+      tabs: [
+        { value: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+      ],
+    },
+    {
+      label: 'Marketing',
+      tabs: [
+        { value: 'analytics', label: 'Analytics', icon: TrendingUp },
+        { value: 'seo', label: 'SEO', icon: Sparkles },
+        { value: 'serp', label: 'SERP', icon: Search },
+      ],
+    },
+    {
+      label: 'Commercial',
+      tabs: [
+        { value: 'crm', label: 'CRM', icon: Target },
+        { value: 'supervision', label: 'Supervision', icon: UserCog },
+        { value: 'agents', label: 'Commerciaux', icon: Users },
+        { value: 'trash', label: 'Corbeille', icon: Trash2 },
+      ],
+    },
   ];
+
+  const allTabs = categories.flatMap(c => c.tabs);
 
   return (
     <>
@@ -257,29 +274,41 @@ const Admin = () => {
       {/* Main Content */}
       <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          {/* Desktop tabs */}
-          <TabsList className="hidden lg:grid w-full grid-cols-8 mb-6">
-            {tabItems.map(tab => (
-              <TabsTrigger key={tab.value} value={tab.value} className="flex items-center gap-2">
-                <tab.icon className="h-4 w-4" />
-                {tab.label}
-              </TabsTrigger>
+          {/* Desktop tabs - grouped by category */}
+          <div className="hidden lg:flex flex-col gap-1 mb-6">
+            {categories.map(cat => (
+              <div key={cat.label} className="flex items-center gap-2">
+                <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider w-24 shrink-0 text-right pr-2">{cat.label}</span>
+                <TabsList className="flex gap-1 p-1 h-auto bg-muted/50">
+                  {cat.tabs.map(tab => (
+                    <TabsTrigger key={tab.value} value={tab.value} className="flex items-center gap-2 px-4 py-2">
+                      <tab.icon className="h-4 w-4" />
+                      {tab.label}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+              </div>
             ))}
-          </TabsList>
+          </div>
 
-          {/* Mobile tabs - scrollable */}
+          {/* Mobile tabs - scrollable with category separators */}
           <div className="lg:hidden mb-4">
             <TabsList className="flex w-full overflow-x-auto no-scrollbar gap-1 p-1">
-              {tabItems.map(tab => (
-                <TabsTrigger
-                  key={tab.value}
-                  value={tab.value}
-                  className="flex items-center gap-1.5 shrink-0 text-xs px-3 py-2"
-                >
-                  <tab.icon className="h-3.5 w-3.5" />
-                  <span className="hidden sm:inline">{tab.label}</span>
-                  <span className="sm:hidden">{tab.label.length > 6 ? tab.label.slice(0, 6) + '.' : tab.label}</span>
-                </TabsTrigger>
+              {categories.map((cat, ci) => (
+                <div key={cat.label} className="flex items-center shrink-0">
+                  {ci > 0 && <div className="w-px h-6 bg-border mx-1 shrink-0" />}
+                  {cat.tabs.map(tab => (
+                    <TabsTrigger
+                      key={tab.value}
+                      value={tab.value}
+                      className="flex items-center gap-1.5 shrink-0 text-xs px-3 py-2"
+                    >
+                      <tab.icon className="h-3.5 w-3.5" />
+                      <span className="hidden sm:inline">{tab.label}</span>
+                      <span className="sm:hidden">{tab.label.length > 6 ? tab.label.slice(0, 6) + '.' : tab.label}</span>
+                    </TabsTrigger>
+                  ))}
+                </div>
               ))}
             </TabsList>
           </div>
