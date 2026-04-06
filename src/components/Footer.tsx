@@ -42,6 +42,9 @@ const Footer = () => {
     { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
     { to: "/profil/resilie-non-paiement", label: "Résilié pour non-paiement" },
     { to: "/profil/retrait-permis", label: "Retrait de permis" },
+    { to: "/blog/loi-hamon-2026-resilier-assurance-3-clics", label: "Loi Hamon 2026" },
+    { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine 2026" },
+    { to: "/blog/guide-choisir-assurance-auto-2026", label: "Guide assurance auto" },
   ];
 
   const aboutLinks = [

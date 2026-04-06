@@ -177,6 +177,28 @@ const Index = () => {
           <li><Link to="/avis-clients">Avis clients - Comparateur d'assurances moins chères</Link></li>
           <li><Link to="/contact">Contactez notre équipe</Link></li>
         </ul>
+        <h2>Articles populaires</h2>
+        <ul>
+          <li><Link to="/blog/loi-hamon-2026-resilier-assurance-3-clics">Loi Hamon 2026 : résilier son assurance en 3 clics</Link></li>
+          <li><Link to="/blog/loi-lemoine-2026">Loi Lemoine 2026 : changer d'assurance emprunteur</Link></li>
+          <li><Link to="/blog/guide-choisir-assurance-auto-2026">Guide complet assurance auto 2026</Link></li>
+          <li><Link to="/blog/top-10-meilleures-mutuelles-sante-2026">Top 10 mutuelles santé 2026</Link></li>
+          <li><Link to="/blog/comparatif-habitation-2026">Comparatif assurance habitation 2026</Link></li>
+          <li><Link to="/blog/meilleure-assurance-auto-2026-comparatif">Meilleure assurance auto 2026</Link></li>
+          <li><Link to="/blog/assurance-jeune-conducteur-2026-moins-cher">Assurance jeune conducteur moins cher</Link></li>
+          <li><Link to="/blog/resiliation-assurance-droits-2026">Résiliation assurance : vos droits 2026</Link></li>
+          <li><Link to="/blog/mutuelle-sante-reduire-frais-medicaux-2026">Réduire ses frais médicaux avec une mutuelle</Link></li>
+          <li><Link to="/blog/nouvelle-reglementation-assurance-2026">Nouvelle réglementation assurance 2026</Link></li>
+        </ul>
+        <h2>Glossaire assurance</h2>
+        <ul>
+          <li><Link to="/glossaire/responsabilite-civile">Responsabilité civile</Link></li>
+          <li><Link to="/glossaire/sinistre">Sinistre</Link></li>
+          <li><Link to="/glossaire/tous-risques">Tous risques</Link></li>
+          <li><Link to="/glossaire/tiers">Tiers</Link></li>
+          <li><Link to="/glossaire/vetuste">Vétusté</Link></li>
+          <li><Link to="/glossaire/ticket-moderateur">Ticket modérateur</Link></li>
+        </ul>
       </nav>
       <DeferredRender minHeight={460}>
         <Suspense fallback={<div aria-hidden="true" className="min-h-[460px]" />}>
