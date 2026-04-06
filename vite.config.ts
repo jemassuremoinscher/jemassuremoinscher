@@ -51,6 +51,10 @@ export default defineConfig(({ mode }) => {
     blogLoiLemoineEmpr: path.resolve(__dirname, "blog/loi-lemoine-assurance-emprunteur-2026/index.html"),
     blogMutuelleFrais: path.resolve(__dirname, "blog/mutuelle-sante-reduire-frais-medicaux-2026/index.html"),
     blogMeilleureAutoComp: path.resolve(__dirname, "blog/meilleure-assurance-auto-2026-comparatif/index.html"),
+    blogDegatEaux: path.resolve(__dirname, "blog/degat-des-eaux-voisins-constat-amiable-2026/index.html"),
+    blogPnoObligatoire: path.resolve(__dirname, "blog/assurance-pno-obligatoire-louer-bien/index.html"),
+    blogColocation: path.resolve(__dirname, "blog/assurance-colocation-contrat-unique-ou-individuel/index.html"),
+    blogMalusEleve: path.resolve(__dirname, "blog/assurance-malus-eleve-compagnies-2026/index.html"),
   };
 
   return {
