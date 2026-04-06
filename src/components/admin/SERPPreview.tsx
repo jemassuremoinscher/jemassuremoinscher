@@ -91,13 +91,14 @@ const SERPPreview = () => {
 
   useEffect(() => {
     const existing = savedMetas.find((m) => m.page_path === selectedPage);
+    const pageDefaults = PAGES.find((p) => p.path === selectedPage);
     if (existing) {
       setMeta(existing);
     } else {
       setMeta({
         page_path: selectedPage,
-        meta_title: "",
-        meta_description: "",
+        meta_title: pageDefaults?.defaultTitle || "",
+        meta_description: pageDefaults?.defaultDesc || "",
         og_title: "",
         og_description: "",
       });
