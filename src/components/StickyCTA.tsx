@@ -23,17 +23,17 @@ const StickyCTA = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isExcluded]);
 
-  const handleClick = useCallback((e: React.MouseEvent) => {
-    e.preventDefault();
-    const form = document.getElementById("quote-form");
-    if (form) {
-      form.scrollIntoView({ behavior: "smooth", block: "center" });
-    } else {
-      window.location.href = "/comparateur";
-    }
+  // Listen for cookie consent changes to hide/show CTA
+  useEffect(() => {
+    const checkCookieConsent = () => {
+      try { setCookieBannerVisible(!localStorage.getItem(COOKIE_CONSENT_KEY)); } catch { /* noop */ }
+    };
+    window.addEventListener('storage', checkCookieConsent);
+    const interval = setInterval(checkCookieConsent, 1000);
+    return () => { window.removeEventListener('storage', checkCookieConsent); clearInterval(interval); };
   }, []);
 
-  if (isExcluded || !isVisible) return null;
+  if (isExcluded || !isVisible || cookieBannerVisible) return null;
 
   return (
     <button
