@@ -185,7 +185,15 @@ const Blog = () => {
 
             {/* Categories */}
             <div className="flex flex-wrap gap-2 justify-center">
-              {blogCategories.map((category) => (
+              <Button
+                variant={selectedCategory === "all" ? "default" : "outline"}
+                onClick={() => setSelectedCategory("all")}
+                size="sm"
+                className="rounded-full"
+              >
+                {t('blogPage.allArticles')}
+              </Button>
+              {blogCategories.filter(c => c !== "Tous les articles").map((category) => (
                 <Button
                   key={category}
                   variant={selectedCategory === category ? "default" : "outline"}
