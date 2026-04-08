@@ -474,7 +474,6 @@ Article complet en markdown
     const generatedCount = suggestions.length;
     const skippedCount = skippedKeywords.length;
     const failedCount = failures.length;
-    const status = generatedCount === 0 && failedCount > 0 ? 422 : 200;
 
     return new Response(JSON.stringify({
       message: generatedCount > 0
@@ -489,7 +488,6 @@ Article complet en markdown
       suggestions,
       errors: failures.slice(0, 5),
     }), {
-      status,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (error) {
