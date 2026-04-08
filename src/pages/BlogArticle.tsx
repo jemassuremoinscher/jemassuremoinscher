@@ -149,7 +149,7 @@ const BlogArticle = () => {
                 variant="ghost" 
                 onClick={() => navigate("/blog")}
                 className="mb-4 text-white/80 hover:text-white hover:bg-white/10 rounded-full"
-                aria-label="Retourner à la liste des articles du blog"
+                aria-label={t('blogArticlePage.backToBlogAria')}
               >
                 ← {t('blogArticlePage.backToBlog')}
               </Button>
