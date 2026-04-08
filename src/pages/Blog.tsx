@@ -35,7 +35,7 @@ const convertToISO = (frenchDate: string): string => {
 const Blog = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState("Tous les articles");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredArticles = blogArticles.filter(article => {
