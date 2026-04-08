@@ -7,7 +7,6 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
   <!-- Main Pages -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/comparateur</loc>
@@ -51,7 +50,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
-
   <!-- Insurance Product Pages -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-auto</loc>
@@ -119,7 +117,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <!-- SEO Pages -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-auto-malusse</loc>
@@ -141,7 +138,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <!-- Landing Pages -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/landing/auto</loc>
@@ -203,7 +199,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <!-- Blog Articles - Legacy -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/mutuelle-sante-reduire-frais-medicaux-2024</loc>
@@ -263,7 +258,6 @@
   <url>
   <url>
   <url>
-
   <!-- Blog Articles - 2026 -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-resiliation-non-paiement-guide</loc>
@@ -505,7 +499,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <!-- Outils -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/outils/calculateur-bonus-malus</loc>
@@ -513,7 +506,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <!-- Glossary -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/glossaire</loc>
@@ -645,7 +637,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <!-- Legal Pages -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/mentions-legales</loc>
