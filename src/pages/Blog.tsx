@@ -49,7 +49,7 @@ const Blog = () => {
   });
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: t('breadcrumb.home'), url: "https://www.jemassuremoinscher.fr/" },
     { name: "Blog", url: "https://www.jemassuremoinscher.fr/blog" }
   ]);
 
