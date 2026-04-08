@@ -178,7 +178,7 @@ const BlogArticle = () => {
                   size="sm" 
                   onClick={handleShare} 
                   className="text-white/80 hover:text-white hover:bg-white/10 rounded-full gap-2"
-                  aria-label="Partager cet article"
+                  aria-label={t('blogArticlePage.shareAria')}
                 >
                   <Share2 className="h-4 w-4" aria-hidden="true" />
                   {t('blogArticlePage.share')}

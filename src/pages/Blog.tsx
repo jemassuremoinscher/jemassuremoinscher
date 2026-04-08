@@ -257,7 +257,7 @@ const Blog = () => {
                 <p className="text-lg text-muted-foreground mb-4">
                   {t('blogPage.noResults')}
                 </p>
-                <Button onClick={() => { setSearchQuery(""); setSelectedCategory("Tous les articles"); }} className="rounded-full">
+                <Button onClick={() => { setSearchQuery(""); setSelectedCategory("all"); }} className="rounded-full">
                   {t('blogPage.resetFilters')}
                 </Button>
               </Card>
