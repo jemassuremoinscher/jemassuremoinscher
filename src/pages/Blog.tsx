@@ -134,7 +134,7 @@ const Blog = () => {
                   ]
                 },
                 {
-                  title: "Profils Spéciaux",
+                  title: t('blogPage.specialProfiles'),
                   links: [
                     { label: "Résilié non-paiement", to: "/profil/resilie-non-paiement" },
                     { label: "Retrait de permis", to: "/profil/retrait-permis" },
