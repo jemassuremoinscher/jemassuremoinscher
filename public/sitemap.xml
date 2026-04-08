@@ -7,7 +7,6 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
   <!-- Main Pages -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/comparateur</loc>
@@ -51,7 +50,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
-
   <!-- Insurance Product Pages -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-auto</loc>
@@ -119,7 +117,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <!-- SEO Pages -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-auto-malusse</loc>
@@ -141,7 +138,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <!-- Landing Pages -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/landing/auto</loc>
@@ -203,7 +199,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <!-- Blog Articles - Legacy -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/mutuelle-sante-reduire-frais-medicaux-2024</loc>
@@ -253,67 +248,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/blog/bien-choisir-mutuelle-sante</loc>
-    <lastmod>2025-11-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/blog/meilleure-assurance-auto-2025-comparatif</loc>
-    <lastmod>2025-11-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/blog/top-10-meilleures-mutuelles-sante-2025</loc>
-    <lastmod>2025-11-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/blog/assurance-jeune-conducteur-2025-moins-cher</loc>
-    <lastmod>2025-11-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/blog/meilleure-assurance-auto-2025</loc>
-    <lastmod>2025-12-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/blog/top-mutuelles-sante-2025</loc>
-    <lastmod>2025-12-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/blog/comparatif-habitation-2025</loc>
-    <lastmod>2025-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/blog/loi-lemoine-2025</loc>
-    <lastmod>2025-12-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/blog/nouvelle-reglementation-assurance-2025</loc>
-    <lastmod>2026-01-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/blog/droits-des-assures-2025</loc>
-    <lastmod>2026-01-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
   <!-- Blog Articles - 2026 -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-resiliation-non-paiement-guide</loc>
@@ -555,7 +489,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <!-- Outils -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/outils/calculateur-bonus-malus</loc>
@@ -563,7 +496,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <!-- Glossary -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/glossaire</loc>
@@ -695,7 +627,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
   <!-- Legal Pages -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/mentions-legales</loc>
@@ -716,5 +647,11 @@
     <loc>https://www.jemassuremoinscher.fr/cgu</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/meilleure-assurance-auto-2026-comparatif</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
