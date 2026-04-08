@@ -34,8 +34,8 @@ const BlogArticle = () => {
   const article = blogArticles.find(a => a.slug === slug);
 
   if (!article) {
-    toast.error("Article introuvable", {
-      description: "L'article demandé n'existe pas ou a été déplacé. Vous allez être redirigé vers le blog.",
+    toast.error(t('blogArticlePage.articleNotFound'), {
+      description: t('blogArticlePage.articleNotFoundDesc'),
     });
     setTimeout(() => navigate("/blog"), 2000);
     return null;
