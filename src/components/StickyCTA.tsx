@@ -3,8 +3,12 @@ import { Calculator } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 const EXCLUDED_ROUTES = ["/admin", "/auth", "/commercial", "/merci"];
+const COOKIE_CONSENT_KEY = 'cookie-consent';
 
 const StickyCTA = () => {
+  const [cookieBannerVisible, setCookieBannerVisible] = useState(() => {
+    try { return !localStorage.getItem(COOKIE_CONSENT_KEY); } catch { return true; }
+  });
   const [isVisible, setIsVisible] = useState(false);
   const location = useLocation();
 
