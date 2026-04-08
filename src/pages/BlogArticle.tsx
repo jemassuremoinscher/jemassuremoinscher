@@ -278,9 +278,9 @@ const BlogArticle = () => {
               <div className="mt-12">
                 <ArticleCTA 
                   variant="subtle"
-                  title="Payez-vous le juste prix ?"
-                  description="Vérifiez en 2 minutes si vous pouvez économiser sur votre assurance."
-                  buttonText="Comparer mes offres"
+                  title={t('blogArticlePage.fairPrice')}
+                  description={t('blogArticlePage.fairPriceDesc')}
+                  buttonText={t('blogArticlePage.compareOffers')}
                 />
               </div>
 
