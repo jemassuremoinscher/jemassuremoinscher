@@ -270,7 +270,7 @@ Format de réponse en JSON:
           try {
             article = JSON.parse(cleaned);
           } catch {
-            // State-machine: escape control chars ONLY inside JSON string values
+            // State-machine: escape control chars and fix unescaped quotes inside JSON string values
             let sanitized = '';
             let inString = false;
             let escaped = false;
@@ -278,7 +278,21 @@ Format de réponse en JSON:
               const ch = cleaned[i];
               if (escaped) { sanitized += ch; escaped = false; continue; }
               if (ch === '\\' && inString) { sanitized += ch; escaped = true; continue; }
-              if (ch === '"') { inString = !inString; sanitized += ch; continue; }
+              if (ch === '"') {
+                if (!inString) {
+                  inString = true; sanitized += ch; continue;
+                }
+                // Check if this quote is actually ending the string
+                // Look ahead: skip whitespace, if next non-ws is : , } ] or end, it's a closing quote
+                let j = i + 1;
+                while (j < cleaned.length && (cleaned[j] === ' ' || cleaned[j] === '\t')) j++;
+                const nextCh = j < cleaned.length ? cleaned[j] : '';
+                if (nextCh === ':' || nextCh === ',' || nextCh === '}' || nextCh === ']' || nextCh === '' || nextCh === '\n' || nextCh === '\r') {
+                  inString = false; sanitized += ch; continue;
+                }
+                // Otherwise it's an unescaped quote inside a string — escape it
+                sanitized += '\\"'; continue;
+              }
               if (inString) {
                 if (ch === '\n') { sanitized += '\\n'; continue; }
                 if (ch === '\r') { sanitized += '\\r'; continue; }
