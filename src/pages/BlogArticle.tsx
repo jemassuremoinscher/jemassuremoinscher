@@ -34,8 +34,8 @@ const BlogArticle = () => {
   const article = blogArticles.find(a => a.slug === slug);
 
   if (!article) {
-    toast.error("Article introuvable", {
-      description: "L'article demandé n'existe pas ou a été déplacé. Vous allez être redirigé vers le blog.",
+    toast.error(t('blogArticlePage.articleNotFound'), {
+      description: t('blogArticlePage.articleNotFoundDesc'),
     });
     setTimeout(() => navigate("/blog"), 2000);
     return null;
@@ -101,10 +101,10 @@ const BlogArticle = () => {
   ]);
 
   const blogFaqItems: FAQItem[] = [
-    { question: "Comment fonctionne un comparateur d'assurances ?", answer: "Un comparateur d'assurances analyse votre profil et vos besoins pour vous proposer les offres les plus adaptées parmi des dizaines d'assureurs partenaires, en quelques minutes seulement." },
-    { question: "Est-ce gratuit de comparer les assurances ?", answer: "Oui, la comparaison est 100% gratuite et sans engagement. Le service est financé par les assureurs partenaires, pas par les utilisateurs." },
-    { question: "Peut-on changer d'assurance à tout moment ?", answer: "Grâce à la loi Hamon, après la première année de contrat, vous pouvez résilier votre assurance auto, moto ou habitation à tout moment, sans frais ni justification." },
-    { question: "Combien de temps faut-il pour obtenir un devis ?", answer: "Avec notre comparateur, vous obtenez des devis personnalisés en moins de 2 minutes. Un conseiller peut ensuite vous rappeler pour finaliser votre choix." },
+    { question: t('blogArticlePage.faq1Q'), answer: t('blogArticlePage.faq1A') },
+    { question: t('blogArticlePage.faq2Q'), answer: t('blogArticlePage.faq2A') },
+    { question: t('blogArticlePage.faq3Q'), answer: t('blogArticlePage.faq3A') },
+    { question: t('blogArticlePage.faq4Q'), answer: t('blogArticlePage.faq4A') },
   ];
 
   const blogFaqSchema = addFAQSchema(blogFaqItems.map(f => ({ question: f.question, answer: f.answer })));
@@ -167,7 +167,7 @@ const BlogArticle = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" aria-hidden="true" />
-                  <time dateTime={convertToISO(article.date)}>Dernière mise à jour le {article.date}</time>
+                  <time dateTime={convertToISO(article.date)}>{t('blogArticlePage.lastUpdated')} {article.date}</time>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4" aria-hidden="true" />
@@ -278,9 +278,9 @@ const BlogArticle = () => {
               <div className="mt-12">
                 <ArticleCTA 
                   variant="subtle"
-                  title="Payez-vous le juste prix ?"
-                  description="Vérifiez en 2 minutes si vous pouvez économiser sur votre assurance."
-                  buttonText="Comparer mes offres"
+                  title={t('blogArticlePage.fairPrice')}
+                  description={t('blogArticlePage.fairPriceDesc')}
+                  buttonText={t('blogArticlePage.compareOffers')}
                 />
               </div>
 
@@ -288,8 +288,8 @@ const BlogArticle = () => {
               <div className="mt-14">
                 <SemanticFAQ
                   items={blogFaqItems}
-                  title="Questions fréquentes sur l'assurance"
-                  subtitle="Les réponses aux questions que vous vous posez le plus souvent."
+                  title={t('blogArticlePage.faqTitle')}
+                  subtitle={t('blogArticlePage.faqSubtitle')}
                 />
               </div>
 

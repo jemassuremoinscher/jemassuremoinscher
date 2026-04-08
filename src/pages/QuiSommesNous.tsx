@@ -14,58 +14,7 @@ import paulPhoto from "@/assets/team/paul.jpg";
 import alexandrePhoto from "@/assets/team/alexandre.jpg";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
-
-const stats = [
-  { value: "+25", label: "Assureurs partenaires" },
-  { value: "280€", label: "Économie moyenne / an" },
-  { value: "4.8/5", label: "Note clients (2 500+ avis)" },
-  { value: "100%", label: "Gratuit & sans engagement" },
-];
-
-const team = [
-  { name: "Paul", role: "Co-fondateur", initials: "P", color: "bg-primary", photo: paulPhoto },
-  { name: "Alexandre", role: "Co-fondateur", initials: "A", color: "bg-accent", photo: alexandrePhoto },
-];
-
-const methodology = [
-  {
-    step: 1,
-    icon: Search,
-    title: "Analyse de votre profil",
-    desc: "Nous recueillons vos besoins réels en 2 minutes : type de couverture, budget, situation personnelle.",
-  },
-  {
-    step: 2,
-    icon: BarChart3,
-    title: "Comparaison de 50+ assureurs",
-    desc: "Notre algorithme interroge en temps réel les grilles tarifaires de nos partenaires pour trouver les meilleures offres.",
-  },
-  {
-    step: 3,
-    icon: Scale,
-    title: "Sélection impartiale",
-    desc: "Aucun favoritisme : les résultats sont classés par rapport qualité-prix, adaptés à votre profil uniquement.",
-  },
-  {
-    step: 4,
-    icon: Handshake,
-    title: "Accompagnement personnalisé",
-    desc: "Un conseiller dédié vous rappelle sous 2h pour finaliser votre choix et gérer la résiliation de votre ancien contrat.",
-  },
-];
-
-const certifications = [
-  {
-    icon: Shield,
-    title: "Garantie Financière",
-    desc: "Couvert par une assurance RC Pro et une garantie financière conforme",
-  },
-  {
-    icon: Lock,
-    title: "Paiement sécurisé",
-    desc: "Transactions cryptées SSL — aucune donnée bancaire stockée",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -77,6 +26,7 @@ const fadeUp = {
 };
 
 const QuiSommesNous = () => {
+  const { t } = useLanguage();
   const baseUrl = "https://www.jemassuremoinscher.fr";
   const jsonLd = [
     addOrganizationSchema(),
@@ -86,11 +36,37 @@ const QuiSommesNous = () => {
     ]),
   ];
 
+  const stats = [
+    { value: t('aboutPage.stat1Value'), label: t('aboutPage.stat1Label') },
+    { value: t('aboutPage.stat2Value'), label: t('aboutPage.stat2Label') },
+    { value: t('aboutPage.stat3Value'), label: t('aboutPage.stat3Label') },
+    { value: t('aboutPage.stat4Value'), label: t('aboutPage.stat4Label') },
+  ];
+
+  const team = [
+    { name: "Paul", role: t('aboutPage.cofounder'), initials: "P", color: "bg-primary", photo: paulPhoto },
+    { name: "Alexandre", role: t('aboutPage.cofounder'), initials: "A", color: "bg-accent", photo: alexandrePhoto },
+  ];
+
+  const methodology = [
+    { step: 1, icon: Search, title: t('aboutPage.step1Title'), desc: t('aboutPage.step1Desc') },
+    { step: 2, icon: BarChart3, title: t('aboutPage.step2Title'), desc: t('aboutPage.step2Desc') },
+    { step: 3, icon: Scale, title: t('aboutPage.step3Title'), desc: t('aboutPage.step3Desc') },
+    { step: 4, icon: Handshake, title: t('aboutPage.step4Title'), desc: t('aboutPage.step4Desc') },
+  ];
+
+  const values = [
+    { icon: Shield, title: t('aboutPage.independence'), desc: t('aboutPage.independenceDesc') },
+    { icon: Heart, title: t('aboutPage.transparency'), desc: t('aboutPage.transparencyDesc') },
+    { icon: Zap, title: t('aboutPage.simplicity'), desc: t('aboutPage.simplicityDesc') },
+    { icon: Users, title: t('aboutPage.support'), desc: t('aboutPage.supportDesc') },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized
         title="Qui sommes-nous | jemassuremoinscher.fr"
-        description="Découvrez l'équipe derrière jemassuremoinscher.fr : un courtier en assurances indépendant, enregistré ORIAS, gratuit et transparent. Notre mission : rendre l'assurance moins chère."
+        description="Découvrez l'équipe derrière jemassuremoinscher.fr : un courtier en assurances indépendant, enregistré ORIAS, gratuit et transparent."
         canonical={`${baseUrl}/qui-sommes-nous`}
         jsonLd={jsonLd}
       />
@@ -99,7 +75,7 @@ const QuiSommesNous = () => {
 
       <main id="main-content">
         <div className="container mx-auto px-4 pt-4">
-          <Breadcrumbs items={[{ label: "Qui sommes-nous" }]} />
+          <Breadcrumbs items={[{ label: t('aboutPage.title') }]} />
         </div>
 
         {/* ─── Hero ─── */}
@@ -112,7 +88,7 @@ const QuiSommesNous = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                Votre partenaire pour une assurance plus juste
+                {t('aboutPage.heroTitle')}
               </motion.h1>
               <motion.p
                 className="text-base md:text-lg text-white/85 leading-relaxed max-w-2xl"
@@ -120,7 +96,7 @@ const QuiSommesNous = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.15 }}
               >
-                Nous croyons qu'une bonne assurance ne devrait pas coûter une fortune. Depuis notre création, nous aidons les Français à reprendre le contrôle de leur budget assurance.
+                {t('aboutPage.heroDesc')}
               </motion.p>
             </div>
             <img
@@ -171,26 +147,17 @@ const QuiSommesNous = () => {
                 <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                   <Heart className="h-6 w-6 text-primary" />
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground">Notre Mission</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">{t('aboutPage.missionTitle')}</h2>
               </div>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p>
-                  Rendre l'assurance <strong className="text-foreground">transparente, compréhensible et moins chère</strong> pour tous les Français. Trop longtemps, les consommateurs ont subi des tarifs opaques, des contrats incompréhensibles et des renouvellements automatiques sans négociation.
-                </p>
-                <p>
-                  Notre comparateur indépendant, enregistré à l'<strong className="text-foreground">ORIAS</strong>, analyse en temps réel les offres de plus de 50 partenaires pour vous présenter, en toute objectivité, les contrats les plus compétitifs du marché. <strong className="text-foreground">Pas de favoritisme, pas de commission cachée</strong> : chaque recommandation est basée uniquement sur votre profil et vos besoins réels.
-                </p>
+                <p dangerouslySetInnerHTML={{ __html: t('aboutPage.missionP1') }} />
+                <p dangerouslySetInnerHTML={{ __html: t('aboutPage.missionP2') }} />
               </div>
             </motion.div>
 
             {/* Valeurs en grille */}
             <div className="grid sm:grid-cols-2 gap-4 mt-10">
-              {[
-                { icon: Shield, title: "Indépendance", desc: "Zéro lien capitalistique avec les assureurs. Recommandations 100 % objectives." },
-                { icon: Heart, title: "Transparence", desc: "Aucune commission cachée. Vous voyez ce que nous voyons." },
-                { icon: Zap, title: "Simplicité", desc: "Un parcours clair, sans jargon ni étapes inutiles." },
-                { icon: Users, title: "Accompagnement", desc: "Une équipe disponible pour vous guider dans votre choix." },
-              ].map(({ icon: Icon, title, desc }, i) => (
+              {values.map(({ icon: Icon, title, desc }, i) => (
                 <motion.div
                   key={title}
                   className="flex items-start gap-3 bg-card rounded-xl border border-border/40 p-5"
@@ -223,9 +190,9 @@ const QuiSommesNous = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">L'équipe derrière le comparateur</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">{t('aboutPage.teamTitle')}</h2>
               <p className="text-muted-foreground max-w-xl mx-auto">
-                De vrais humains, passionnés par l'assurance et la technologie, qui travaillent chaque jour pour vous faire économiser.
+                {t('aboutPage.teamDesc')}
               </p>
             </motion.div>
 
@@ -270,16 +237,15 @@ const QuiSommesNous = () => {
               transition={{ duration: 0.5 }}
             >
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                Notre méthodologie
+                {t('aboutPage.methodTitle')}
               </h2>
               <p className="text-muted-foreground max-w-xl mx-auto">
-                Comment nous comparons plus de 50 assureurs pour vous trouver le meilleur tarif.
+                {t('aboutPage.methodDesc')}
               </p>
             </motion.div>
 
             {/* Vertical timeline */}
             <div className="relative">
-              {/* Vertical line */}
               <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" aria-hidden="true" />
 
               <div className="space-y-8 md:space-y-12">
@@ -295,14 +261,12 @@ const QuiSommesNous = () => {
                       viewport={{ once: true }}
                       variants={fadeUp}
                     >
-                      {/* Step circle — mobile: left-aligned, desktop: centered */}
                       <div className="relative z-10 shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2">
                         <div className="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow-md">
                           {step}
                         </div>
                       </div>
 
-                      {/* Content card */}
                       <div className={`flex-1 md:w-[calc(50%-2.5rem)] ${isLeft ? 'md:mr-auto md:pr-10' : 'md:ml-auto md:pl-10'}`}>
                         <div className="bg-card rounded-xl border border-border/40 p-5 shadow-sm">
                           <div className="flex items-center gap-2 mb-2">
@@ -331,26 +295,23 @@ const QuiSommesNous = () => {
               transition={{ duration: 0.5 }}
             >
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                Nos certifications & garanties légales
+                {t('aboutPage.certTitle')}
               </h2>
               <p className="text-muted-foreground max-w-xl mx-auto">
-                Votre sécurité est notre priorité. Nous respectons les plus hauts standards réglementaires du courtage en assurances.
+                {t('aboutPage.certDesc')}
               </p>
             </motion.div>
 
             <div className="relative">
-              {/* All badges in unified row style */}
               <div className="flex flex-wrap items-stretch justify-center gap-4">
-                {/* ORIAS */}
                 <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
                   <img src={oriasLogo} alt="Logo ORIAS" className="h-10 w-auto object-contain" width={80} height={40} loading="lazy" />
                   <div className="text-left">
-                    <p className="text-xs font-bold text-foreground">Courtier enregistré ORIAS</p>
-                    <p className="text-xs text-muted-foreground">N° 24 XXX XXX</p>
+                    <p className="text-xs font-bold text-foreground">{t('aboutPage.oriasLabel')}</p>
+                    <p className="text-xs text-muted-foreground">{t('aboutPage.oriasNumber')}</p>
                   </div>
                 </div>
 
-                {/* Google Reviews */}
                 <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
                   <div className="flex items-center gap-0.5">
                     {[...Array(5)].map((_, i) => (
@@ -358,44 +319,40 @@ const QuiSommesNous = () => {
                     ))}
                   </div>
                   <div className="text-left">
-                    <p className="text-xs font-bold text-foreground">4.8/5 sur Google</p>
-                    <p className="text-xs text-muted-foreground">2 500+ avis vérifiés</p>
+                    <p className="text-xs font-bold text-foreground">{t('aboutPage.googleReviews')}</p>
+                    <p className="text-xs text-muted-foreground">{t('aboutPage.googleReviewsCount')}</p>
                   </div>
                 </div>
 
-                {/* Garantie Financière */}
                 <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
                   <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                     <Shield className="h-5 w-5 text-primary" />
                   </div>
                   <div className="text-left">
-                    <p className="text-xs font-bold text-foreground">Garantie Financière</p>
-                    <p className="text-xs text-muted-foreground">RC Pro & garantie conforme</p>
+                    <p className="text-xs font-bold text-foreground">{t('aboutPage.financialGuarantee')}</p>
+                    <p className="text-xs text-muted-foreground">{t('aboutPage.financialGuaranteeDesc')}</p>
                   </div>
                 </div>
 
-                {/* Paiement sécurisé */}
                 <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
                   <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                     <Lock className="h-5 w-5 text-primary" />
                   </div>
                   <div className="text-left">
-                    <p className="text-xs font-bold text-foreground">Paiement sécurisé</p>
-                    <p className="text-xs text-muted-foreground">SSL — aucune donnée stockée</p>
+                    <p className="text-xs font-bold text-foreground">{t('aboutPage.securePayment')}</p>
+                    <p className="text-xs text-muted-foreground">{t('aboutPage.securePaymentDesc')}</p>
                   </div>
                 </div>
 
-                {/* CSCA */}
                 <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
                   <img src={cscaLogo} alt="Logo CSCA - Chambre Syndicale des Courtiers d'Assurances" className="h-10 w-auto object-contain" width={40} height={40} loading="lazy" />
                   <div className="text-left">
-                    <p className="text-xs font-bold text-foreground">Membre CSCA</p>
-                    <p className="text-xs text-muted-foreground">Syndicat professionnel</p>
+                    <p className="text-xs font-bold text-foreground">{t('aboutPage.cscaMember')}</p>
+                    <p className="text-xs text-muted-foreground">{t('aboutPage.cscaDesc')}</p>
                   </div>
                 </div>
               </div>
 
-              {/* Arthur pointing */}
               <img
                 src={arthurPointing}
                 alt="Arthur présente les certifications de jemassuremoinscher.fr"
@@ -414,17 +371,17 @@ const QuiSommesNous = () => {
             <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-2xl p-8 md:p-12 text-center max-w-4xl mx-auto overflow-visible">
               <div className="relative z-10">
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Prêt à payer moins cher ?
+                  {t('aboutPage.ctaTitle')}
                 </h2>
                 <p className="text-white/80 mb-6 max-w-xl mx-auto">
-                  Comparez gratuitement en 2 minutes et découvrez combien vous pouvez économiser sur vos assurances.
+                  {t('aboutPage.ctaDesc')}
                 </p>
                 <a
                   href="/comparateur"
-                  aria-label="Comparer gratuitement vos assurances"
+                  aria-label={t('aboutPage.ctaBtn')}
                   className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 py-4 rounded-full text-lg transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
-                  Comparer gratuitement
+                  {t('aboutPage.ctaBtn')}
                 </a>
               </div>
               <img

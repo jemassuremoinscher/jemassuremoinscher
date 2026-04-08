@@ -108,7 +108,7 @@ const Blog = () => {
             {/* Search */}
             <div className="max-w-2xl mx-auto">
               <div className="relative">
-                <label htmlFor="blog-search" className="sr-only">Rechercher un article</label>
+                <label htmlFor="blog-search" className="sr-only">{t('blogPage.searchLabel')}</label>
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" aria-hidden="true" />
                 <Input
                   id="blog-search"
@@ -134,7 +134,7 @@ const Blog = () => {
                   ]
                 },
                 {
-                  title: "Profils Spéciaux",
+                  title: t('blogPage.specialProfiles'),
                   links: [
                     { label: "Résilié non-paiement", to: "/profil/resilie-non-paiement" },
                     { label: "Retrait de permis", to: "/profil/retrait-permis" },
@@ -144,13 +144,13 @@ const Blog = () => {
                   ]
                 },
                 {
-                  title: "Duels Assureurs",
+                  title: t('blogPage.insurerDuels'),
                   links: [
                     { label: "MAIF vs Macif", to: "/comparatif/maif-vs-macif" },
                     { label: "AXA vs Allianz", to: "/comparatif/axa-vs-allianz" },
                     { label: "Direct Assurance vs L'Olivier", to: "/comparatif/direct-assurance-vs-l-olivier" },
                     { label: "Luko vs Alan", to: "/comparatif/luko-vs-alan" },
-                    { label: "Tous les duels →", to: "/comparatif" },
+                    { label: t('blogPage.allDuels'), to: "/comparatif" },
                   ]
                 },
                 {
@@ -226,7 +226,7 @@ const Blog = () => {
                       <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
-                          <time dateTime={convertToISO(article.date)}>Mis à jour le {article.date}</time>
+                          <time dateTime={convertToISO(article.date)}>{t('blogPage.updatedOn')} {article.date}</time>
                         </div>
                         <div className="flex items-center gap-1">
                           <Clock className="w-4 h-4" />

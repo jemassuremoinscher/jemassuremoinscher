@@ -3,8 +3,12 @@ import { Calculator } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 const EXCLUDED_ROUTES = ["/admin", "/auth", "/commercial", "/merci"];
+const COOKIE_CONSENT_KEY = 'cookie-consent';
 
 const StickyCTA = () => {
+  const [cookieBannerVisible, setCookieBannerVisible] = useState(() => {
+    try { return !localStorage.getItem(COOKIE_CONSENT_KEY); } catch { return true; }
+  });
   const [isVisible, setIsVisible] = useState(false);
   const location = useLocation();
 
@@ -19,6 +23,16 @@ const StickyCTA = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isExcluded]);
 
+  // Listen for cookie consent changes to hide/show CTA
+  useEffect(() => {
+    const checkCookieConsent = () => {
+      try { setCookieBannerVisible(!localStorage.getItem(COOKIE_CONSENT_KEY)); } catch { /* noop */ }
+    };
+    window.addEventListener('storage', checkCookieConsent);
+    const interval = setInterval(checkCookieConsent, 1000);
+    return () => { window.removeEventListener('storage', checkCookieConsent); clearInterval(interval); };
+  }, []);
+
   const handleClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
     const form = document.getElementById("quote-form");
@@ -29,7 +43,7 @@ const StickyCTA = () => {
     }
   }, []);
 
-  if (isExcluded || !isVisible) return null;
+  if (isExcluded || !isVisible || cookieBannerVisible) return null;
 
   return (
     <button
