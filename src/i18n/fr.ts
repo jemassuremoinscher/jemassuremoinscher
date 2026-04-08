@@ -2002,6 +2002,14 @@ const fr: Record<string, string> = {
   'landing.reviews': 'avis',
   'landing.avgSavingsLabel': 'Économie moy.',
 
+
+  // Blog page extras
+  'breadcrumb.home': 'Accueil',
+  'blogPage.seoTitle': 'Blog Assurance - Conseils et Actualités',
+  'blogPage.seoDesc': 'Articles sur les assurances : guides, loi Lemoine, loi Hamon, conseils pour économiser.',
+  'blogPage.allArticles': 'Tous les articles',
+  'blogArticlePage.backToBlogAria': 'Retourner à la liste des articles du blog',
+  'blogArticlePage.shareAria': 'Partager cet article',
 };
 
 export default fr;

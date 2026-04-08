@@ -1988,6 +1988,14 @@ const en: Record<string, string> = {
   'landingPret.review3': 'Better guarantees than my bank for 50% less. Incredible!',
   'landingPret.review3Name': 'Pierre M., Marseille',
   'landingPret.ctaBtn': '💰 Calculate my savings',
+
+  // Blog page extras
+  'breadcrumb.home': 'Home',
+  'blogPage.seoTitle': 'Insurance Blog - Tips & News',
+  'blogPage.seoDesc': 'Insurance articles: guides, Lemoine law, Hamon law, tips for saving.',
+  'blogPage.allArticles': 'All articles',
+  'blogArticlePage.backToBlogAria': 'Go back to the blog article list',
+  'blogArticlePage.shareAria': 'Share this article',
 };
 
 export default en;

@@ -35,11 +35,11 @@ const convertToISO = (frenchDate: string): string => {
 const Blog = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState("Tous les articles");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredArticles = blogArticles.filter(article => {
-    const matchesCategory = selectedCategory === "Tous les articles" || article.category === selectedCategory;
+    const matchesCategory = selectedCategory === "all" || article.category === selectedCategory;
     const matchesSearch = searchQuery === "" || 
       article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       article.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -49,7 +49,7 @@ const Blog = () => {
   });
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: t('breadcrumb.home'), url: "https://www.jemassuremoinscher.fr/" },
     { name: "Blog", url: "https://www.jemassuremoinscher.fr/blog" }
   ]);
 
@@ -68,8 +68,8 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized 
-        title="Blog Assurance - Conseils et Actualités"
-        description="Articles sur les assurances : guides, loi Lemoine, loi Hamon, conseils pour économiser."
+        title={t('blogPage.seoTitle')}
+        description={t('blogPage.seoDesc')}
         keyword="blog assurance"
         keywords="conseils assurance, loi lemoine, loi hamon, guide assurance"
         canonical="https://www.jemassuremoinscher.fr/blog"
@@ -185,7 +185,15 @@ const Blog = () => {
 
             {/* Categories */}
             <div className="flex flex-wrap gap-2 justify-center">
-              {blogCategories.map((category) => (
+              <Button
+                variant={selectedCategory === "all" ? "default" : "outline"}
+                onClick={() => setSelectedCategory("all")}
+                size="sm"
+                className="rounded-full"
+              >
+                {t('blogPage.allArticles')}
+              </Button>
+              {blogCategories.filter(c => c !== "Tous les articles").map((category) => (
                 <Button
                   key={category}
                   variant={selectedCategory === category ? "default" : "outline"}
@@ -249,7 +257,7 @@ const Blog = () => {
                 <p className="text-lg text-muted-foreground mb-4">
                   {t('blogPage.noResults')}
                 </p>
-                <Button onClick={() => { setSearchQuery(""); setSelectedCategory("Tous les articles"); }} className="rounded-full">
+                <Button onClick={() => { setSearchQuery(""); setSelectedCategory("all"); }} className="rounded-full">
                   {t('blogPage.resetFilters')}
                 </Button>
               </Card>

@@ -95,7 +95,7 @@ const BlogArticle = () => {
   const essentielSummary = article.description.split(' ').slice(0, 40).join(' ') + (article.description.split(' ').length > 40 ? '...' : '');
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: t('breadcrumb.home'), url: "https://www.jemassuremoinscher.fr/" },
     { name: "Blog", url: "https://www.jemassuremoinscher.fr/blog" },
     { name: article.title, url: `https://www.jemassuremoinscher.fr/blog/${article.slug}` }
   ]);
@@ -149,7 +149,7 @@ const BlogArticle = () => {
                 variant="ghost" 
                 onClick={() => navigate("/blog")}
                 className="mb-4 text-white/80 hover:text-white hover:bg-white/10 rounded-full"
-                aria-label="Retourner à la liste des articles du blog"
+                aria-label={t('blogArticlePage.backToBlogAria')}
               >
                 ← {t('blogArticlePage.backToBlog')}
               </Button>
@@ -178,7 +178,7 @@ const BlogArticle = () => {
                   size="sm" 
                   onClick={handleShare} 
                   className="text-white/80 hover:text-white hover:bg-white/10 rounded-full gap-2"
-                  aria-label="Partager cet article"
+                  aria-label={t('blogArticlePage.shareAria')}
                 >
                   <Share2 className="h-4 w-4" aria-hidden="true" />
                   {t('blogArticlePage.share')}
