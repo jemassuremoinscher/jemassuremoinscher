@@ -1,46 +1,62 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
+};
+
+type ParsedArticle = {
+  title: string;
+  meta_description: string;
+  author: string;
+  content: string;
+};
+
+type FailureDetail = {
+  keyword: string;
+  reason: string;
 };
 
 async function getGoogleAccessToken(serviceAccount: any, scope: string): Promise<string> {
   const now = Math.floor(Date.now() / 1000);
-  const jwtHeader = btoa(JSON.stringify({ alg: 'RS256', typ: 'JWT' })).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+  const jwtHeader = btoa(JSON.stringify({ alg: "RS256", typ: "JWT" })).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
   const jwtPayload = btoa(JSON.stringify({
     iss: serviceAccount.client_email,
     scope,
-    aud: 'https://oauth2.googleapis.com/token',
+    aud: "https://oauth2.googleapis.com/token",
     exp: now + 3600,
     iat: now,
-  })).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+  })).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
 
   const pemContent = serviceAccount.private_key
-    .replace('-----BEGIN PRIVATE KEY-----', '')
-    .replace('-----END PRIVATE KEY-----', '')
-    .replace(/\n/g, '');
+    .replace("-----BEGIN PRIVATE KEY-----", "")
+    .replace("-----END PRIVATE KEY-----", "")
+    .replace(/\n/g, "");
 
-  const binaryKey = Uint8Array.from(atob(pemContent), c => c.charCodeAt(0));
+  const binaryKey = Uint8Array.from(atob(pemContent), (c) => c.charCodeAt(0));
   const cryptoKey = await crypto.subtle.importKey(
-    'pkcs8', binaryKey,
-    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
-    false, ['sign']
+    "pkcs8",
+    binaryKey,
+    { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+    false,
+    ["sign"],
   );
 
   const signatureInput = new TextEncoder().encode(`${jwtHeader}.${jwtPayload}`);
-  const signature = await crypto.subtle.sign('RSASSA-PKCS1-v1_5', cryptoKey, signatureInput);
+  const signature = await crypto.subtle.sign("RSASSA-PKCS1-v1_5", cryptoKey, signatureInput);
   const jwtSignature = btoa(String.fromCharCode(...new Uint8Array(signature)))
-    .replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+    .replace(/=/g, "")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
 
-  const tokenRes = await fetch('https://oauth2.googleapis.com/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  const tokenRes = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${jwtHeader}.${jwtPayload}.${jwtSignature}`,
   });
 
   const tokenData = await tokenRes.json();
-  if (!tokenData.access_token) throw new Error('Failed to get Google access token');
+  if (!tokenData.access_token) throw new Error("Failed to get Google access token");
   return tokenData.access_token;
 }
 
@@ -52,25 +68,25 @@ async function fetchGSCData(accessToken: string, siteUrl: string): Promise<any[]
   const res = await fetch(
     `https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(siteUrl)}/searchAnalytics/query`,
     {
-      method: 'POST',
+      method: "POST",
       headers: {
         Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        startDate: startDate.toISOString().split('T')[0],
-        endDate: endDate.toISOString().split('T')[0],
-        dimensions: ['query', 'page'],
+        startDate: startDate.toISOString().split("T")[0],
+        endDate: endDate.toISOString().split("T")[0],
+        dimensions: ["query", "page"],
         rowLimit: 100,
         dimensionFilterGroups: [{
           filters: [{
-            dimension: 'query',
-            operator: 'notContains',
-            expression: 'jemassuremoinscher',
+            dimension: "query",
+            operator: "notContains",
+            expression: "jemassuremoinscher",
           }],
         }],
       }),
-    }
+    },
   );
 
   const data = await res.json();
@@ -79,9 +95,8 @@ async function fetchGSCData(accessToken: string, siteUrl: string): Promise<any[]
 }
 
 function findOpportunities(rows: any[]): any[] {
-  // Filter queries with position 10-60 and decent impressions
   return rows
-    .filter((r: any) => r.position >= 10 && r.position <= 60 && r.impressions >= 5)
+    .filter((row: any) => row.position >= 10 && row.position <= 60 && row.impressions >= 5)
     .sort((a: any, b: any) => b.impressions - a.impressions)
     .slice(0, 10);
 }
@@ -89,115 +104,267 @@ function findOpportunities(rows: any[]): any[] {
 function slugify(text: string): string {
   return text
     .toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+function stripCodeFences(raw: string): string {
+  return raw
+    .replace(/```json\s*/gi, "")
+    .replace(/```\s*/gi, "")
+    .trim();
+}
+
+function extractTaggedSection(raw: string, tag: string): string | null {
+  const match = raw.match(new RegExp(`\\[\\[${tag}\\]\\]([\\s\\S]*?)\\[\\[\\/${tag}\\]\\]`, "i"));
+  return match?.[1]?.trim() || null;
+}
+
+function sanitizeJsonPayload(cleaned: string): string {
+  let sanitized = "";
+  let inString = false;
+  let escaped = false;
+
+  for (let i = 0; i < cleaned.length; i++) {
+    const ch = cleaned[i];
+
+    if (escaped) {
+      sanitized += ch;
+      escaped = false;
+      continue;
+    }
+
+    if (ch === "\\" && inString) {
+      sanitized += ch;
+      escaped = true;
+      continue;
+    }
+
+    if (ch === '"') {
+      if (!inString) {
+        inString = true;
+        sanitized += ch;
+        continue;
+      }
+
+      let j = i + 1;
+      while (j < cleaned.length && (cleaned[j] === " " || cleaned[j] === "\t")) j++;
+      const nextCh = j < cleaned.length ? cleaned[j] : "";
+
+      if (nextCh === ":" || nextCh === "," || nextCh === "}" || nextCh === "]" || nextCh === "" || nextCh === "\n" || nextCh === "\r") {
+        inString = false;
+        sanitized += ch;
+        continue;
+      }
+
+      sanitized += '\\"';
+      continue;
+    }
+
+    if (inString) {
+      if (ch === "\n") {
+        sanitized += "\\n";
+        continue;
+      }
+      if (ch === "\r") {
+        sanitized += "\\r";
+        continue;
+      }
+      if (ch === "\t") {
+        sanitized += "\\t";
+        continue;
+      }
+    }
+
+    sanitized += ch;
+  }
+
+  return sanitized;
+}
+
+function tryParseJsonArticle(raw: string): Partial<ParsedArticle> | null {
+  const cleaned = stripCodeFences(raw);
+  const firstBrace = cleaned.indexOf("{");
+  const lastBrace = cleaned.lastIndexOf("}");
+
+  if (firstBrace === -1 || lastBrace === -1 || lastBrace <= firstBrace) {
+    return null;
+  }
+
+  const jsonCandidate = cleaned.substring(firstBrace, lastBrace + 1);
+
+  try {
+    return JSON.parse(jsonCandidate);
+  } catch {
+    return JSON.parse(sanitizeJsonPayload(jsonCandidate));
+  }
+}
+
+function normalizeArticle(article: Partial<ParsedArticle>): ParsedArticle {
+  const title = typeof article.title === "string" ? article.title.trim() : "";
+  const content = typeof article.content === "string" ? article.content.trim() : "";
+  const metaDescriptionSource = typeof article.meta_description === "string"
+    ? article.meta_description
+    : "";
+  const author = typeof article.author === "string" && article.author.trim().length > 0
+    ? article.author.trim()
+    : "Arthur Leclerc – Expert assurance";
+
+  if (!title) throw new Error("Titre manquant dans la réponse IA");
+  if (!content) throw new Error("Contenu manquant dans la réponse IA");
+
+  return {
+    title,
+    content,
+    author,
+    meta_description: metaDescriptionSource.trim().slice(0, 150),
+  };
+}
+
+function parseAiArticle(raw: string): ParsedArticle {
+  const taggedArticle = {
+    title: extractTaggedSection(raw, "TITLE") || "",
+    meta_description: extractTaggedSection(raw, "META_DESCRIPTION") || "",
+    author: extractTaggedSection(raw, "AUTHOR") || "",
+    content: extractTaggedSection(raw, "CONTENT") || "",
+  };
+
+  if (taggedArticle.title && taggedArticle.content) {
+    return normalizeArticle(taggedArticle);
+  }
+
+  const jsonArticle = tryParseJsonArticle(raw);
+  if (jsonArticle) {
+    return normalizeArticle(jsonArticle);
+  }
+
+  throw new Error("Impossible d'extraire un format exploitable depuis la réponse IA");
 }
 
 serve(async (req) => {
-  if (req.method === 'OPTIONS') {
+  if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
-    const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    const anonKey = Deno.env.get("SUPABASE_ANON_KEY") || Deno.env.get("SUPABASE_PUBLISHABLE_KEY");
+    const ga4ServiceAccountJson = Deno.env.get("GA4_SERVICE_ACCOUNT_JSON");
+    const lovableApiKey = Deno.env.get("LOVABLE_API_KEY");
 
-    // Check if this is a cron call (anon key) or admin call (user JWT)
-    const authHeader = req.headers.get('Authorization');
-    let isCronCall = false;
-
-    if (authHeader?.startsWith('Bearer ')) {
-      const token = authHeader.replace('Bearer ', '');
-      const anonKey = Deno.env.get('SUPABASE_ANON_KEY') || Deno.env.get('SUPABASE_PUBLISHABLE_KEY');
-      
-      if (token === anonKey) {
-        // Cron job call with anon key — allow
-        isCronCall = true;
-      } else {
-        // User call — verify admin role
-        const supabaseUser = createClient(supabaseUrl, anonKey!, {
-          global: { headers: { Authorization: authHeader } },
-        });
-        const { data: claimsData, error: claimsError } = await supabaseUser.auth.getClaims(token);
-        if (claimsError || !claimsData?.claims) {
-          return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-            status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          });
-        }
-        const userId = claimsData.claims.sub;
-        const { data: roleData } = await supabaseUser.from('user_roles').select('role').eq('user_id', userId).eq('role', 'admin').maybeSingle();
-        if (!roleData) {
-          return new Response(JSON.stringify({ error: 'Forbidden' }), {
-            status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-          });
-        }
-      }
-    } else {
-      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-        status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
+    if (!supabaseUrl || !supabaseServiceKey || !anonKey) {
+      throw new Error("Configuration backend manquante");
     }
-
-    // Use service role for DB operations (needed for cron calls)
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
-    // Get credentials
-    const ga4ServiceAccountJson = Deno.env.get('GA4_SERVICE_ACCOUNT_JSON');
-    const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
 
     if (!ga4ServiceAccountJson) {
-      return new Response(JSON.stringify({ error: 'Service account GSC non configuré' }), {
-        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
-    }
-    if (!LOVABLE_API_KEY) {
-      return new Response(JSON.stringify({ error: 'LOVABLE_API_KEY non configurée' }), {
-        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      return new Response(JSON.stringify({ error: "Service account GSC non configuré" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
+    if (!lovableApiKey) {
+      return new Response(JSON.stringify({ error: "LOVABLE_API_KEY non configurée" }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
+    const authHeader = req.headers.get("Authorization");
+
+    if (!authHeader?.startsWith("Bearer ")) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const token = authHeader.replace("Bearer ", "");
+    const invocationMode = token === anonKey ? "cron" : "admin";
+    console.log(`Invocation mode: ${invocationMode}`);
+
+    if (token !== anonKey) {
+      const supabaseUser = createClient(supabaseUrl, anonKey, {
+        global: { headers: { Authorization: authHeader } },
+      });
+
+      const { data: claimsData, error: claimsError } = await supabaseUser.auth.getClaims(token);
+      if (claimsError || !claimsData?.claims) {
+        return new Response(JSON.stringify({ error: "Unauthorized" }), {
+          status: 401,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      const userId = claimsData.claims.sub;
+      const { data: roleData } = await supabaseUser
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", userId)
+        .eq("role", "admin")
+        .maybeSingle();
+
+      if (!roleData) {
+        return new Response(JSON.stringify({ error: "Forbidden" }), {
+          status: 403,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
     const serviceAccount = JSON.parse(ga4ServiceAccountJson);
 
-    // 1. Get GSC data
-    console.log('Fetching GSC data...');
-    const accessToken = await getGoogleAccessToken(serviceAccount, 'https://www.googleapis.com/auth/webmasters.readonly');
-    const gscRows = await fetchGSCData(accessToken, 'sc-domain:jemassuremoinscher.fr');
+    console.log("Fetching GSC data...");
+    const accessToken = await getGoogleAccessToken(serviceAccount, "https://www.googleapis.com/auth/webmasters.readonly");
+    const gscRows = await fetchGSCData(accessToken, "sc-domain:jemassuremoinscher.fr");
     console.log(`Got ${gscRows.length} GSC rows`);
 
     const opportunities = findOpportunities(gscRows);
     if (opportunities.length === 0) {
-      return new Response(JSON.stringify({ message: 'Aucune opportunité détectée', suggestions: 0 }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      return new Response(JSON.stringify({
+        message: "Aucune opportunité détectée",
+        opportunities: 0,
+        generated: 0,
+        skipped: 0,
+        failed: 0,
+        suggestions: [],
+        errors: [],
+      }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
     console.log(`Found ${opportunities.length} opportunities`);
 
-    // 2. Generate articles via AI for top 3 opportunities
     const topOpportunities = opportunities.slice(0, 3);
-    const suggestions = [];
+    const suggestions: Array<{ keyword: string; title: string; slug: string }> = [];
+    const skippedKeywords: string[] = [];
+    const failures: FailureDetail[] = [];
 
     for (const opp of topOpportunities) {
       const keyword = opp.keys[0];
-      const page = opp.keys[1];
+      const currentPage = opp.keys[1];
 
-      // Check if suggestion already exists
       const { data: existing } = await supabase
-        .from('seo_article_suggestions')
-        .select('id')
-        .eq('target_keyword', keyword)
+        .from("seo_article_suggestions")
+        .select("id")
+        .eq("target_keyword", keyword)
         .maybeSingle();
 
       if (existing) {
         console.log(`Skipping existing keyword: ${keyword}`);
+        skippedKeywords.push(keyword);
         continue;
       }
 
       const prompt = `Tu es un expert SEO et rédacteur pour jemassuremoinscher.fr, un courtier en assurances indépendant.
 
 Génère un article de blog SEO optimisé pour la requête "${keyword}" (position actuelle: ${Math.round(opp.position)}, ${opp.impressions} impressions/28j).
+URL actuellement associée dans Google Search Console: ${currentPage}
 
 Contraintes:
 - 1500+ mots minimum
@@ -211,37 +378,47 @@ Contraintes:
 - Données à jour pour 2026
 - Mentionner "jemassuremoinscher.fr" naturellement 2-3 fois
 - Suggérer un auteur expert crédible avec titre/spécialité
+- Ne jamais utiliser les balises [[TITLE]], [[META_DESCRIPTION]], [[AUTHOR]], [[CONTENT]] à l'intérieur du contenu
 
-Format de réponse en JSON:
-{
-  "title": "...",
-  "meta_description": "...",
-  "author": "Prénom Nom – Titre",
-  "content": "le contenu markdown complet de l'article"
-}`;
+Réponds STRICTEMENT avec ce format, sans JSON, sans bloc de code et sans texte avant/après:
+[[TITLE]]
+Titre de l'article
+[[/TITLE]]
+[[META_DESCRIPTION]]
+Meta description
+[[/META_DESCRIPTION]]
+[[AUTHOR]]
+Prénom Nom – Titre
+[[/AUTHOR]]
+[[CONTENT]]
+Article complet en markdown
+[[/CONTENT]]`;
 
       try {
-        const aiRes = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
-          method: 'POST',
+        const aiRes = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+          method: "POST",
           headers: {
-            Authorization: `Bearer ${LOVABLE_API_KEY}`,
-            'Content-Type': 'application/json',
+            Authorization: `Bearer ${lovableApiKey}`,
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            model: 'google/gemini-2.5-flash',
+            model: "google/gemini-2.5-flash",
             messages: [
-              { role: 'system', content: 'Tu es un expert SEO français spécialisé en assurance. Réponds uniquement en JSON valide.' },
-              { role: 'user', content: prompt },
+              {
+                role: "system",
+                content: "Tu es un expert SEO français spécialisé en assurance. Respecte exactement le format demandé avec les balises [[TITLE]], [[META_DESCRIPTION]], [[AUTHOR]] et [[CONTENT]].",
+              },
+              { role: "user", content: prompt },
             ],
-            response_format: { type: 'json_object' },
           }),
         });
 
         if (!aiRes.ok) {
           const errText = await aiRes.text();
-          console.error(`AI error for "${keyword}": ${aiRes.status} ${errText}`);
+          console.error(`AI error for \"${keyword}\": ${aiRes.status} ${errText}`);
+          failures.push({ keyword, reason: `Erreur IA ${aiRes.status}` });
           if (aiRes.status === 429) {
-            console.log('Rate limited, stopping generation');
+            console.log("Rate limited, stopping generation");
             break;
           }
           continue;
@@ -249,67 +426,24 @@ Format de réponse en JSON:
 
         const aiData = await aiRes.json();
         const rawContent = aiData.choices?.[0]?.message?.content;
-        if (!rawContent) continue;
 
-        // Extract valid JSON from AI response — handle unescaped newlines inside string values
-        let article;
+        if (!rawContent || typeof rawContent !== "string") {
+          failures.push({ keyword, reason: "Réponse IA vide" });
+          continue;
+        }
+
+        let article: ParsedArticle;
         try {
-          let cleaned = rawContent
-            .replace(/```json\s*/gi, '')
-            .replace(/```\s*/gi, '')
-            .trim();
-          
-          const firstBrace = cleaned.indexOf('{');
-          const lastBrace = cleaned.lastIndexOf('}');
-          if (firstBrace === -1 || lastBrace === -1 || lastBrace <= firstBrace) {
-            console.error(`No JSON object found for "${keyword}"`);
-            continue;
-          }
-          cleaned = cleaned.substring(firstBrace, lastBrace + 1);
-          
-          try {
-            article = JSON.parse(cleaned);
-          } catch {
-            // State-machine: escape control chars and fix unescaped quotes inside JSON string values
-            let sanitized = '';
-            let inString = false;
-            let escaped = false;
-            for (let i = 0; i < cleaned.length; i++) {
-              const ch = cleaned[i];
-              if (escaped) { sanitized += ch; escaped = false; continue; }
-              if (ch === '\\' && inString) { sanitized += ch; escaped = true; continue; }
-              if (ch === '"') {
-                if (!inString) {
-                  inString = true; sanitized += ch; continue;
-                }
-                // Check if this quote is actually ending the string
-                // Look ahead: skip whitespace, if next non-ws is : , } ] or end, it's a closing quote
-                let j = i + 1;
-                while (j < cleaned.length && (cleaned[j] === ' ' || cleaned[j] === '\t')) j++;
-                const nextCh = j < cleaned.length ? cleaned[j] : '';
-                if (nextCh === ':' || nextCh === ',' || nextCh === '}' || nextCh === ']' || nextCh === '' || nextCh === '\n' || nextCh === '\r') {
-                  inString = false; sanitized += ch; continue;
-                }
-                // Otherwise it's an unescaped quote inside a string — escape it
-                sanitized += '\\"'; continue;
-              }
-              if (inString) {
-                if (ch === '\n') { sanitized += '\\n'; continue; }
-                if (ch === '\r') { sanitized += '\\r'; continue; }
-                if (ch === '\t') { sanitized += '\\t'; continue; }
-              }
-              sanitized += ch;
-            }
-            article = JSON.parse(sanitized);
-          }
+          article = parseAiArticle(rawContent);
         } catch (parseErr) {
-          console.error(`JSON parse failed for "${keyword}": ${parseErr}. Raw start: ${rawContent.substring(0, 200)}`);
+          const reason = parseErr instanceof Error ? parseErr.message : "Erreur de parsing inconnue";
+          console.error(`Parse failed for \"${keyword}\": ${reason}. Raw start: ${rawContent.substring(0, 200)}`);
+          failures.push({ keyword, reason });
           continue;
         }
 
         const slug = slugify(article.title || keyword);
-
-        const { error: insertError } = await supabase.from('seo_article_suggestions').insert({
+        const { error: insertError } = await supabase.from("seo_article_suggestions").insert({
           title: article.title,
           slug,
           target_keyword: keyword,
@@ -319,31 +453,50 @@ Format de réponse en JSON:
           suggested_content: article.content,
           suggested_meta_description: article.meta_description,
           suggested_author: article.author,
-          status: 'pending',
+          status: "pending",
         });
 
         if (insertError) {
-          console.error(`Insert error: ${insertError.message}`);
-        } else {
-          suggestions.push({ keyword, title: article.title, slug });
-          console.log(`Created suggestion for: ${keyword}`);
+          console.error(`Insert error for \"${keyword}\": ${insertError.message}`);
+          failures.push({ keyword, reason: insertError.message });
+          continue;
         }
+
+        suggestions.push({ keyword, title: article.title, slug });
+        console.log(`Created suggestion for: ${keyword}`);
       } catch (err) {
-        console.error(`Error generating for "${keyword}": ${err}`);
+        const reason = err instanceof Error ? err.message : "Erreur inconnue";
+        console.error(`Error generating for \"${keyword}\": ${reason}`);
+        failures.push({ keyword, reason });
       }
     }
 
+    const generatedCount = suggestions.length;
+    const skippedCount = skippedKeywords.length;
+    const failedCount = failures.length;
+
     return new Response(JSON.stringify({
-      message: `${suggestions.length} suggestion(s) générée(s)`,
+      message: generatedCount > 0
+        ? `${generatedCount} suggestion(s) générée(s)`
+        : failedCount > 0
+          ? "La génération a échoué"
+          : "Aucune nouvelle suggestion à créer",
       opportunities: opportunities.length,
+      generated: generatedCount,
+      skipped: skippedCount,
+      failed: failedCount,
       suggestions,
+      errors: failures.slice(0, 5),
     }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error('Error:', error);
-    return new Response(JSON.stringify({ error: error instanceof Error ? error.message : 'Unknown error' }), {
-      status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    console.error("Error:", error);
+    return new Response(JSON.stringify({
+      error: error instanceof Error ? error.message : "Unknown error",
+    }), {
+      status: 500,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
 });
