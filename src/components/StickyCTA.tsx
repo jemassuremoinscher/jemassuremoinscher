@@ -33,6 +33,16 @@ const StickyCTA = () => {
     return () => { window.removeEventListener('storage', checkCookieConsent); clearInterval(interval); };
   }, []);
 
+  const handleClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    const form = document.getElementById("quote-form");
+    if (form) {
+      form.scrollIntoView({ behavior: "smooth", block: "center" });
+    } else {
+      window.location.href = "/comparateur";
+    }
+  }, []);
+
   if (isExcluded || !isVisible || cookieBannerVisible) return null;
 
   return (
