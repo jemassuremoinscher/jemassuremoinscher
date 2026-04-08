@@ -23,11 +23,20 @@ type Suggestion = {
   created_at: string;
 };
 
+type GenerationResponse = {
+  message?: string;
+  opportunities?: number;
+  generated?: number;
+  skipped?: number;
+  failed?: number;
+  suggestions?: Array<{ keyword: string; title: string; slug: string }>;
+  errors?: Array<{ keyword: string; reason: string }>;
+};
+
 export const SEOSuggestions = () => {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [selectedSuggestion, setSelectedSuggestion] = useState<Suggestion | null>(null);
 
   useEffect(() => {
     fetchSuggestions();
@@ -35,6 +44,7 @@ export const SEOSuggestions = () => {
 
   const fetchSuggestions = async () => {
     setIsLoading(true);
+
     const { data, error } = await supabase
       .from('seo_article_suggestions')
       .select('*')
@@ -45,6 +55,7 @@ export const SEOSuggestions = () => {
     } else {
       setSuggestions((data as Suggestion[]) || []);
     }
+
     setIsLoading(false);
   };
 
@@ -53,32 +64,35 @@ export const SEOSuggestions = () => {
     toast.info('Analyse GSC et génération en cours... (30-60s)');
 
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        toast.error('Session expirée');
-        return;
+      const { data, error } = await supabase.functions.invoke('generate-seo-suggestions', {
+        body: {},
+      });
+
+      if (error) {
+        throw new Error(error.message || 'Erreur génération');
       }
 
-      const res = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/generate-seo-suggestions`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${session.access_token}`,
-          },
-          body: JSON.stringify({}),
-        }
-      );
+      const response = (data || {}) as GenerationResponse;
+      const generated = response.generated ?? response.suggestions?.length ?? 0;
+      const skipped = response.skipped ?? 0;
+      const failed = response.failed ?? 0;
+      const firstError = response.errors?.[0];
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.error || 'Erreur génération');
+      if (generated === 0 && failed > 0) {
+        throw new Error(firstError ? `${firstError.keyword} : ${firstError.reason}` : response.message || 'La génération a échoué');
       }
 
-      toast.success(data.message || 'Suggestions générées');
-      fetchSuggestions();
+      if (generated > 0) {
+        toast.success(`${generated} suggestion(s) générée(s)` + (skipped > 0 ? ` • ${skipped} déjà existante(s)` : ''));
+      } else {
+        toast.info(response.message || 'Aucune nouvelle suggestion créée');
+      }
+
+      if (failed > 0) {
+        toast.info(`${failed} opportunité(s) n'ont pas pu être générées${firstError ? ` • ${firstError.keyword}` : ''}`);
+      }
+
+      await fetchSuggestions();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : 'Erreur inconnue');
     } finally {
@@ -128,11 +142,11 @@ export const SEOSuggestions = () => {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={fetchSuggestions} disabled={isLoading}>
+          <Button variant="outline" size="sm" onClick={fetchSuggestions} disabled={isLoading || isGenerating}>
             <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
             Actualiser
           </Button>
-          <Button onClick={generateSuggestions} disabled={isGenerating} size="sm">
+          <Button onClick={generateSuggestions} disabled={isGenerating || isLoading} size="sm">
             <Search className={`h-4 w-4 mr-2 ${isGenerating ? 'animate-pulse' : ''}`} />
             {isGenerating ? 'Analyse GSC...' : 'Générer depuis GSC'}
           </Button>
@@ -194,7 +208,7 @@ export const SEOSuggestions = () => {
               <div className="flex flex-wrap gap-2">
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button variant="outline" size="sm" onClick={() => setSelectedSuggestion(s)}>
+                    <Button variant="outline" size="sm">
                       <Eye className="h-4 w-4 mr-1" />
                       Prévisualiser
                     </Button>
