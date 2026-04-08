@@ -150,7 +150,7 @@ const Blog = () => {
                     { label: "AXA vs Allianz", to: "/comparatif/axa-vs-allianz" },
                     { label: "Direct Assurance vs L'Olivier", to: "/comparatif/direct-assurance-vs-l-olivier" },
                     { label: "Luko vs Alan", to: "/comparatif/luko-vs-alan" },
-                    { label: "Tous les duels →", to: "/comparatif" },
+                    { label: t('blogPage.allDuels'), to: "/comparatif" },
                   ]
                 },
                 {
