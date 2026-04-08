@@ -68,8 +68,8 @@ const Blog = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized 
-        title="Blog Assurance - Conseils et Actualités"
-        description="Articles sur les assurances : guides, loi Lemoine, loi Hamon, conseils pour économiser."
+        title={t('blogPage.seoTitle')}
+        description={t('blogPage.seoDesc')}
         keyword="blog assurance"
         keywords="conseils assurance, loi lemoine, loi hamon, guide assurance"
         canonical="https://www.jemassuremoinscher.fr/blog"
