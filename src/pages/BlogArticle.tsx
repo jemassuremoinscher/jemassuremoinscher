@@ -288,8 +288,8 @@ const BlogArticle = () => {
               <div className="mt-14">
                 <SemanticFAQ
                   items={blogFaqItems}
-                  title="Questions fréquentes sur l'assurance"
-                  subtitle="Les réponses aux questions que vous vous posez le plus souvent."
+                  title={t('blogArticlePage.faqTitle')}
+                  subtitle={t('blogArticlePage.faqSubtitle')}
                 />
               </div>
 
