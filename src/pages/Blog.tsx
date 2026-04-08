@@ -39,7 +39,7 @@ const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredArticles = blogArticles.filter(article => {
-    const matchesCategory = selectedCategory === "Tous les articles" || article.category === selectedCategory;
+    const matchesCategory = selectedCategory === "all" || article.category === selectedCategory;
     const matchesSearch = searchQuery === "" || 
       article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       article.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
