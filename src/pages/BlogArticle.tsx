@@ -95,7 +95,7 @@ const BlogArticle = () => {
   const essentielSummary = article.description.split(' ').slice(0, 40).join(' ') + (article.description.split(' ').length > 40 ? '...' : '');
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: t('breadcrumb.home'), url: "https://www.jemassuremoinscher.fr/" },
     { name: "Blog", url: "https://www.jemassuremoinscher.fr/blog" },
     { name: article.title, url: `https://www.jemassuremoinscher.fr/blog/${article.slug}` }
   ]);
