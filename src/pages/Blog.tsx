@@ -144,7 +144,7 @@ const Blog = () => {
                   ]
                 },
                 {
-                  title: "Duels Assureurs",
+                  title: t('blogPage.insurerDuels'),
                   links: [
                     { label: "MAIF vs Macif", to: "/comparatif/maif-vs-macif" },
                     { label: "AXA vs Allianz", to: "/comparatif/axa-vs-allianz" },
