@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { ArrowLeft, ArrowRight, Loader2, CheckCircle2, Lock, Phone, Mail, User } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Loader2, CheckCircle2, Lock, Phone, Mail, User, Search } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -16,6 +16,7 @@ import { trackMetaLead } from '@/utils/metaPixelTracking';
 import { normalizeInsuranceType } from '@/utils/insuranceTypeNormalizer';
 import { stepConfigsByType, type InsuranceType, type FormStep, type StepOption } from './stepConfigs';
 import { useFieldTracking } from '@/hooks/useFieldTracking';
+import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from '@/data/vehicleBrands';
 
 // Mascot imports
 import arthurCar from '@/assets/mascotte/arthur-car.webp';
@@ -438,6 +439,32 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
                   />
                 )}
 
+                {step.type === 'vehicle-select' && step.field && (
+                  <VehicleSelectStep
+                    step={step}
+                    formData={formData}
+                    onSelect={(field, value) => {
+                      setFormData(prev => {
+                        const next = { ...prev, [field]: value };
+                        // Clear model when brand changes
+                        if (step.vehicleField === 'brand') {
+                          delete next.vehicleModel;
+                        }
+                        return next;
+                      });
+                      const msg = transitionMessages[currentStep % transitionMessages.length];
+                      setTransitionScreen(msg);
+                      setMicroLoading(true);
+                      setTimeout(() => {
+                        setMicroLoading(false);
+                        setTransitionScreen(null);
+                        setDirection(1);
+                        setCurrentStep(prev => prev + 1);
+                      }, 700);
+                    }}
+                  />
+                )}
+
                 {step.type === 'searching' && (
                   <SearchingStep
                     progress={searchProgress}
@@ -639,6 +666,73 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
         Continuer
         <ArrowRight className="ml-2 h-4 w-4" />
       </Button>
+    </div>
+  );
+}
+
+
+// ─── Vehicle Select Step ─────────────────────────────────────────────────────
+function VehicleSelectStep({ step, formData, onSelect }: {
+  step: FormStep;
+  formData: Record<string, string>;
+  onSelect: (field: string, value: string) => void;
+}) {
+  const [search, setSearch] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const items = useMemo(() => {
+    if (step.vehicleField === 'brand') {
+      const brands = step.vehicleType === 'moto' ? MOTO_BRAND_NAMES : AUTO_BRAND_NAMES;
+      return brands;
+    }
+    if (step.vehicleField === 'model') {
+      const selectedBrand = formData.vehicleBrand;
+      const brandsMap = step.vehicleType === 'moto' ? MOTO_BRANDS : AUTO_BRANDS;
+      return selectedBrand ? (brandsMap[selectedBrand] || []) : [];
+    }
+    return [];
+  }, [step.vehicleField, step.vehicleType, formData.vehicleBrand]);
+
+  const filtered = useMemo(() => {
+    if (!search.trim()) return items;
+    const q = search.toLowerCase();
+    return items.filter(i => i.toLowerCase().includes(q));
+  }, [items, search]);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center gap-3 max-w-sm mx-auto w-full">
+      <div className="relative w-full">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Input
+          ref={inputRef}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Rechercher…"
+          className="h-12 pl-10 rounded-2xl border-2 border-border/50 focus:border-primary bg-background/50"
+        />
+      </div>
+      <div className="w-full max-h-[260px] overflow-y-auto rounded-xl border border-border/30 bg-background/50">
+        {filtered.length === 0 ? (
+          <p className="text-sm text-muted-foreground text-center py-6">Aucun résultat</p>
+        ) : (
+          filtered.map((item, idx) => (
+            <motion.button
+              key={item}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: Math.min(idx * 0.02, 0.3) }}
+              onClick={() => onSelect(step.field!, item)}
+              className="w-full text-left px-4 py-3 text-sm font-medium text-foreground hover:bg-primary/5 hover:text-primary transition-colors border-b border-border/20 last:border-b-0"
+            >
+              {item}
+            </motion.button>
+          ))
+        )}
+      </div>
     </div>
   );
 }
