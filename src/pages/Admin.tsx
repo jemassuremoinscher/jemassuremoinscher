@@ -236,6 +236,16 @@ const Admin = () => {
               
               <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                 <Button
+                  variant={notificationsEnabled ? "default" : "outline"}
+                  size="icon"
+                  onClick={toggleNotifications}
+                  aria-label={notificationsEnabled ? "Désactiver les notifications" : "Activer les notifications"}
+                  title={notificationsEnabled ? "Notifications activées" : "Activer les notifications"}
+                  className={notificationsEnabled ? "bg-green-600 hover:bg-green-700 text-white" : ""}
+                >
+                  {notificationsEnabled ? <Bell className="h-4 w-4" /> : <BellOff className="h-4 w-4" />}
+                </Button>
+                <Button
                   variant="outline"
                   size="sm"
                   onClick={fetchData}
