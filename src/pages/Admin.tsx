@@ -1,10 +1,10 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog, TrendingUp, Menu, Sparkles, Search } from 'lucide-react';
+import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog, TrendingUp, Menu, Sparkles, Search, Bell, BellOff } from 'lucide-react';
 import { ManualLeadForm } from '@/components/admin/ManualLeadForm';
 import arthurWaving from '@/assets/mascotte/arthur-waving.png';
 import { supabase } from '@/integrations/supabase/client';
@@ -28,6 +28,7 @@ import { GoogleAnalyticsDashboard } from '@/components/admin/GoogleAnalyticsDash
 import { SEOSuggestions } from '@/components/admin/SEOSuggestions';
 import SERPPreview from '@/components/admin/SERPPreview';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { useLeadNotifications } from '@/hooks/useLeadNotifications';
 
 const Admin = () => {
   const { user, isAdmin, loading, signOut } = useAuth();
@@ -39,8 +40,31 @@ const Admin = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [notificationsEnabled, setNotificationsEnabled] = useState(() => {
+    return localStorage.getItem('admin-notifications') === 'true';
+  });
   const quotesTableRef = useRef<HTMLDivElement>(null);
   const callbacksTableRef = useRef<HTMLDivElement>(null);
+  const { requestPermission } = useLeadNotifications(notificationsEnabled && isAdmin);
+
+  const toggleNotifications = useCallback(async () => {
+    if (!notificationsEnabled) {
+      const perm = await requestPermission();
+      if (perm === 'granted') {
+        setNotificationsEnabled(true);
+        localStorage.setItem('admin-notifications', 'true');
+        toast.success('🔔 Notifications activées ! Vous serez alerté pour chaque nouveau prospect.');
+      } else if (perm === 'denied') {
+        toast.error('Notifications bloquées. Autorisez-les dans les paramètres de votre navigateur.');
+      } else {
+        toast.info('Veuillez autoriser les notifications dans la popup du navigateur.');
+      }
+    } else {
+      setNotificationsEnabled(false);
+      localStorage.setItem('admin-notifications', 'false');
+      toast.info('Notifications désactivées.');
+    }
+  }, [notificationsEnabled, requestPermission]);
 
   useEffect(() => {
     if (!loading && !user) {
