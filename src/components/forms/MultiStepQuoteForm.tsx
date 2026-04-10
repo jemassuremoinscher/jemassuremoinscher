@@ -670,6 +670,73 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
   );
 }
 
+
+// ─── Vehicle Select Step ─────────────────────────────────────────────────────
+function VehicleSelectStep({ step, formData, onSelect }: {
+  step: FormStep;
+  formData: Record<string, string>;
+  onSelect: (field: string, value: string) => void;
+}) {
+  const [search, setSearch] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const items = useMemo(() => {
+    if (step.vehicleField === 'brand') {
+      const brands = step.vehicleType === 'moto' ? MOTO_BRAND_NAMES : AUTO_BRAND_NAMES;
+      return brands;
+    }
+    if (step.vehicleField === 'model') {
+      const selectedBrand = formData.vehicleBrand;
+      const brandsMap = step.vehicleType === 'moto' ? MOTO_BRANDS : AUTO_BRANDS;
+      return selectedBrand ? (brandsMap[selectedBrand] || []) : [];
+    }
+    return [];
+  }, [step.vehicleField, step.vehicleType, formData.vehicleBrand]);
+
+  const filtered = useMemo(() => {
+    if (!search.trim()) return items;
+    const q = search.toLowerCase();
+    return items.filter(i => i.toLowerCase().includes(q));
+  }, [items, search]);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  return (
+    <div className="flex flex-col items-center gap-3 max-w-sm mx-auto w-full">
+      <div className="relative w-full">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Input
+          ref={inputRef}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Rechercher…"
+          className="h-12 pl-10 rounded-2xl border-2 border-border/50 focus:border-primary bg-background/50"
+        />
+      </div>
+      <div className="w-full max-h-[260px] overflow-y-auto rounded-xl border border-border/30 bg-background/50">
+        {filtered.length === 0 ? (
+          <p className="text-sm text-muted-foreground text-center py-6">Aucun résultat</p>
+        ) : (
+          filtered.map((item, idx) => (
+            <motion.button
+              key={item}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: Math.min(idx * 0.02, 0.3) }}
+              onClick={() => onSelect(step.field!, item)}
+              className="w-full text-left px-4 py-3 text-sm font-medium text-foreground hover:bg-primary/5 hover:text-primary transition-colors border-b border-border/20 last:border-b-0"
+            >
+              {item}
+            </motion.button>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ─── Searching Step ──────────────────────────────────────────────────────────
 function SearchingStep({ progress, currentPartner }: { progress: number; currentPartner: string }) {
   return (
