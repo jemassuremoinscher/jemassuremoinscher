@@ -22,7 +22,8 @@ export const TransferDialog = ({ isOpen, onClose, messages }: TransferDialogProp
     e.preventDefault();
     if (!formData.name.trim() || formData.name.trim().length < 2) { toast.error("Veuillez renseigner votre nom"); return; }
     if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) { toast.error("Email invalide"); return; }
-    if (formData.phone && !PHONE_REGEX.test(formData.phone)) { toast.error("Numéro invalide"); return; }
+    if (!formData.phone.trim()) { toast.error("Veuillez renseigner votre téléphone"); return; }
+    if (!PHONE_REGEX.test(formData.phone)) { toast.error("Numéro invalide"); return; }
     setIsSubmitting(true);
     try {
       const { error } = await supabase.from("chatbot_transfers").insert([{ visitor_email: formData.email, visitor_name: formData.name || null, visitor_phone: formData.phone || null, transfer_reason: formData.reason || null, conversation_history: JSON.parse(JSON.stringify(messages)), status: "pending" }]);
@@ -49,7 +50,7 @@ export const TransferDialog = ({ isOpen, onClose, messages }: TransferDialogProp
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <div className="space-y-2"><Label htmlFor="name">{t('transfer.fullName')}</Label><Input id="name" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="Jean Dupont" /></div>
           <div className="space-y-2"><Label htmlFor="email">{t('transfer.email')}</Label><Input id="email" type="email" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="jean.dupont@example.com" /></div>
-          <div className="space-y-2"><Label htmlFor="phone">{t('transfer.phone')}</Label><Input id="phone" type="tel" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} placeholder="06 12 34 56 78" /></div>
+          <div className="space-y-2"><Label htmlFor="phone">{t('transfer.phone')}</Label><Input id="phone" type="tel" required value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} placeholder="06 12 34 56 78" /></div>
           <div className="space-y-2"><Label htmlFor="reason">{t('transfer.reason')}</Label><Textarea id="reason" value={formData.reason} onChange={(e) => setFormData({ ...formData, reason: e.target.value })} placeholder={t('transfer.reasonPlaceholder')} rows={3} /></div>
           <div className="flex gap-3 pt-4">
             <Button type="button" variant="outline" onClick={onClose} className="flex-1" disabled={isSubmitting}>{t('transfer.cancel')}</Button>

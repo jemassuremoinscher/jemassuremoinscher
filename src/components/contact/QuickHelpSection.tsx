@@ -14,22 +14,24 @@ const PHONE_DISPLAY = "04 93 88 16 84";
 const QuickHelpSection = () => {
   const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState({ prenom: "", email: "", sujet: "" });
+  const PHONE_REGEX = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+  const [formData, setFormData] = useState({ prenom: "", email: "", phone: "", sujet: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.prenom || !formData.email || !formData.sujet) { toast.error("Veuillez remplir tous les champs"); return; }
+    if (!formData.prenom || !formData.email || !formData.phone || !formData.sujet) { toast.error("Veuillez remplir tous les champs"); return; }
+    if (!PHONE_REGEX.test(formData.phone)) { toast.error("Numéro de téléphone invalide"); return; }
     setIsLoading(true);
     try {
       const { error } = await supabase.from("contact_callbacks").insert({
-        full_name: formData.prenom, email: formData.email, phone: "", preferred_time: "morning", message: formData.sujet, status: "pending",
+        full_name: formData.prenom, email: formData.email, phone: formData.phone, preferred_time: "morning", message: formData.sujet, status: "pending",
       });
       if (error) throw error;
       await supabase.functions.invoke('send-quote-email', {
-        body: { name: formData.prenom, email: formData.email, phone: '', type: 'Contact rapide', details: { source: 'quick_help', message: formData.sujet }, estimatedPrice: 0 },
+        body: { name: formData.prenom, email: formData.email, phone: formData.phone, type: 'Contact rapide', details: { source: 'quick_help', message: formData.sujet }, estimatedPrice: 0 },
       }).catch(err => console.error('Email notification error:', err));
       toast.success("Message envoyé ! Nous vous répondons rapidement.");
-      setFormData({ prenom: "", email: "", sujet: "" });
+      setFormData({ prenom: "", email: "", phone: "", sujet: "" });
     } catch (error) {
       console.error("Error submitting contact form:", error);
       toast.error("Erreur. Veuillez réessayer.");
@@ -54,6 +56,7 @@ const QuickHelpSection = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
               <Input type="text" placeholder={t('quickHelp.firstName')} value={formData.prenom} onChange={(e) => setFormData({ ...formData, prenom: e.target.value })} className="h-12 text-base bg-muted/30 border-border/50 focus:border-primary" />
               <Input type="email" placeholder={t('quickHelp.email')} value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="h-12 text-base bg-muted/30 border-border/50 focus:border-primary" />
+              <Input type="tel" placeholder="06 12 34 56 78" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} className="h-12 text-base bg-muted/30 border-border/50 focus:border-primary" />
               <Input type="text" placeholder={t('quickHelp.subject')} value={formData.sujet} onChange={(e) => setFormData({ ...formData, sujet: e.target.value })} className="h-12 text-base bg-muted/30 border-border/50 focus:border-primary" />
               <Button type="submit" disabled={isLoading} className="w-full h-12 text-base font-semibold active:scale-95 transition-transform">
                 {isLoading ? (<><Loader2 className="mr-2 h-5 w-5 animate-spin" />{t('quickHelp.sending')}</>) : t('quickHelp.send')}
