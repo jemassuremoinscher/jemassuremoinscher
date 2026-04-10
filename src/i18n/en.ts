@@ -15,6 +15,10 @@ const en: Record<string, string> = {
   'nav.favorites': 'Favourites',
   'nav.print': 'Print',
   'nav.moreActions': 'More actions',
+  'nav.compare': 'Compare',
+  'nav.calculator': 'Bonus-Malus Calculator',
+  'nav.compareNow': 'Compare now',
+  'nav.contact': 'Contact',
   
   // Insurance types
   'insurance.auto': 'Auto',
