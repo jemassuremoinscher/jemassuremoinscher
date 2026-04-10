@@ -110,6 +110,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
   const navigate = useNavigate();
   const { trackEvent, trackConversion } = useAnalytics();
   const { honeypotRef, isBot } = useHoneypot();
+
+  const [currentStep, setCurrentStep] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [formData, setFormData] = useState<Record<string, string>>({});
+  const [contactData, setContactData] = useState({ fullName: '', email: '', phone: '', acceptTerms: false as boolean });
+
   // For comparateur, dynamically inject vehicle steps when auto/moto is selected
   const steps = useMemo(() => {
     const baseSteps = stepConfigsByType[insuranceType] || stepConfigsByType.comparateur;
@@ -117,21 +123,15 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
     
     const selectedType = formData.insuranceType;
     if (selectedType === 'auto' || selectedType === 'moto') {
-      // Get vehicle steps from the specific insurance type config
       const specificSteps = stepConfigsByType[selectedType as InsuranceType];
       const vehicleSteps = specificSteps.filter(s => s.type === 'vehicle-select' || s.id === 'vehicleYear');
-      // Insert vehicle steps after the comparateur's type + formule steps, before postalCode
-      const typeStep = baseSteps[0]; // insurance type selection
-      const formuleStep = baseSteps[1]; // coverage level
-      const remaining = baseSteps.slice(2); // postalCode, searching, contact
+      const typeStep = baseSteps[0];
+      const formuleStep = baseSteps[1];
+      const remaining = baseSteps.slice(2);
       return [typeStep, formuleStep, ...vehicleSteps, ...remaining];
     }
     return baseSteps;
   }, [insuranceType, formData.insuranceType]);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const [formData, setFormData] = useState<Record<string, string>>({});
-  const [contactData, setContactData] = useState({ fullName: '', email: '', phone: '', acceptTerms: false as boolean });
   const [contactErrors, setContactErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
