@@ -439,6 +439,32 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
                   />
                 )}
 
+                {step.type === 'vehicle-select' && step.field && (
+                  <VehicleSelectStep
+                    step={step}
+                    formData={formData}
+                    onSelect={(field, value) => {
+                      setFormData(prev => {
+                        const next = { ...prev, [field]: value };
+                        // Clear model when brand changes
+                        if (step.vehicleField === 'brand') {
+                          delete next.vehicleModel;
+                        }
+                        return next;
+                      });
+                      const msg = transitionMessages[currentStep % transitionMessages.length];
+                      setTransitionScreen(msg);
+                      setMicroLoading(true);
+                      setTimeout(() => {
+                        setMicroLoading(false);
+                        setTransitionScreen(null);
+                        setDirection(1);
+                        setCurrentStep(prev => prev + 1);
+                      }, 700);
+                    }}
+                  />
+                )}
+
                 {step.type === 'searching' && (
                   <SearchingStep
                     progress={searchProgress}
