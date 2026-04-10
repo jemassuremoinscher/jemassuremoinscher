@@ -20,7 +20,7 @@ export interface StepOption {
 
 export interface FormStep {
   id: string;
-  type: 'card-select' | 'input' | 'searching' | 'contact';
+  type: 'card-select' | 'input' | 'searching' | 'contact' | 'vehicle-select';
   title: string;
   subtitle?: string;
   field?: string;
@@ -30,6 +30,8 @@ export interface FormStep {
   maxLength?: number;
   validation?: RegExp;
   validationMessage?: string;
+  vehicleType?: 'auto' | 'moto';
+  vehicleField?: 'brand' | 'model' | 'year';
 }
 
 export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur';
@@ -89,6 +91,58 @@ const ageStep: FormStep = {
   validationMessage: 'Âge invalide (18-99)',
 };
 
+const vehicleBrandStepAuto: FormStep = {
+  id: 'vehicleBrand',
+  type: 'vehicle-select',
+  title: 'Quelle est la marque de votre véhicule ?',
+  subtitle: 'Sélectionnez la marque pour affiner votre tarif.',
+  field: 'vehicleBrand',
+  vehicleType: 'auto',
+  vehicleField: 'brand',
+};
+
+const vehicleModelStepAuto: FormStep = {
+  id: 'vehicleModel',
+  type: 'vehicle-select',
+  title: 'Quel est le modèle ?',
+  subtitle: 'Le modèle influence directement le tarif.',
+  field: 'vehicleModel',
+  vehicleType: 'auto',
+  vehicleField: 'model',
+};
+
+const vehicleYearStep: FormStep = {
+  id: 'vehicleYear',
+  type: 'input',
+  title: 'Quelle est l\'année de mise en circulation ?',
+  subtitle: 'Plus le véhicule est récent, plus la prime peut varier.',
+  field: 'vehicleYear',
+  inputType: 'number',
+  placeholder: '2020',
+  validation: /^(19[89]\d|20[0-2]\d|203[0-6])$/,
+  validationMessage: 'Année invalide (1980-2026)',
+};
+
+const vehicleBrandStepMoto: FormStep = {
+  id: 'vehicleBrand',
+  type: 'vehicle-select',
+  title: 'Quelle est la marque de votre moto ?',
+  subtitle: 'Sélectionnez la marque pour affiner votre tarif.',
+  field: 'vehicleBrand',
+  vehicleType: 'moto',
+  vehicleField: 'brand',
+};
+
+const vehicleModelStepMoto: FormStep = {
+  id: 'vehicleModel',
+  type: 'vehicle-select',
+  title: 'Quel est le modèle ?',
+  subtitle: 'Le modèle influence directement le tarif.',
+  field: 'vehicleModel',
+  vehicleType: 'moto',
+  vehicleField: 'model',
+};
+
 export const stepConfigsByType: Record<InsuranceType, FormStep[]> = {
   auto: [
     {
@@ -103,6 +157,9 @@ export const stepConfigsByType: Record<InsuranceType, FormStep[]> = {
         { value: 'tous_risques', label: 'Tous Risques', description: 'Protection maximale tous dommages', icon: ShieldPlus },
       ],
     },
+    vehicleBrandStepAuto,
+    vehicleModelStepAuto,
+    vehicleYearStep,
     ageStep,
     postalCodeStep,
     searchingStep,
@@ -121,6 +178,9 @@ export const stepConfigsByType: Record<InsuranceType, FormStep[]> = {
         { value: 'tous_risques', label: 'Tous Risques', description: 'Protection complète pilote et moto', icon: ShieldPlus },
       ],
     },
+    vehicleBrandStepMoto,
+    vehicleModelStepMoto,
+    vehicleYearStep,
     ageStep,
     postalCodeStep,
     searchingStep,
