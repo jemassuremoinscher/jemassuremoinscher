@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { ArrowLeft, ArrowRight, Loader2, CheckCircle2, Lock, Phone, Mail, User } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Loader2, CheckCircle2, Lock, Phone, Mail, User, Search } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -16,6 +16,7 @@ import { trackMetaLead } from '@/utils/metaPixelTracking';
 import { normalizeInsuranceType } from '@/utils/insuranceTypeNormalizer';
 import { stepConfigsByType, type InsuranceType, type FormStep, type StepOption } from './stepConfigs';
 import { useFieldTracking } from '@/hooks/useFieldTracking';
+import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from '@/data/vehicleBrands';
 
 // Mascot imports
 import arthurCar from '@/assets/mascotte/arthur-car.webp';
