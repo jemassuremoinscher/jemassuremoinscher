@@ -111,11 +111,30 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
   const { trackEvent, trackConversion } = useAnalytics();
   const { honeypotRef, isBot } = useHoneypot();
 
-  const steps = stepConfigsByType[insuranceType] || stepConfigsByType.comparateur;
   const [currentStep, setCurrentStep] = useState(0);
   const [direction, setDirection] = useState(1);
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [contactData, setContactData] = useState({ fullName: '', email: '', phone: '', acceptTerms: false as boolean });
+
+  // For comparateur, dynamically inject vehicle + age steps when auto/moto is selected
+  const steps = useMemo(() => {
+    const baseSteps = stepConfigsByType[insuranceType] || stepConfigsByType.comparateur;
+    if (insuranceType !== 'comparateur') return baseSteps;
+    
+    const selectedType = formData.insuranceType;
+    if (selectedType === 'auto' || selectedType === 'moto') {
+      const specificSteps = stepConfigsByType[selectedType as InsuranceType];
+      // Grab vehicle-select, vehicleYear, and age steps from the specific config
+      const extraSteps = specificSteps.filter(s => 
+        s.type === 'vehicle-select' || s.id === 'vehicleYear' || s.id === 'age'
+      );
+      const typeStep = baseSteps[0];
+      const formuleStep = baseSteps[1];
+      const remaining = baseSteps.slice(2); // postalCode, searching, contact
+      return [typeStep, formuleStep, ...extraSteps, ...remaining];
+    }
+    return baseSteps;
+  }, [insuranceType, formData.insuranceType]);
   const [contactErrors, setContactErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
