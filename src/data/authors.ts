@@ -144,6 +144,19 @@ export const getAuthorJsonLd = (author: Author) => ({
   "description": author.bio,
   "knowsAbout": author.specialties,
   ...(author.linkedinUrl && { "sameAs": [author.linkedinUrl] }),
+  ...(author.credentials.length > 0 && {
+    "hasCredential": author.credentials.map((c) => ({
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": c,
+    })),
+  }),
+  ...(author.experienceYears && {
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": author.role,
+      "experienceRequirements": `${author.experienceYears} ans d'expérience`,
+    },
+  }),
   "worksFor": {
     "@type": "Organization",
     "name": "jemassuremoinscher.fr",
