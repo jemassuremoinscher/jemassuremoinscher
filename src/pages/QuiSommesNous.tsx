@@ -369,6 +369,72 @@ const QuiSommesNous = () => {
           </div>
         </section>
 
+        {/* ─── Transparence Courtier ─── */}
+        <section className="py-14 md:py-20">
+          <div className="container mx-auto px-4 max-w-4xl">
+            <motion.div
+              className="text-center mb-10"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <Scale className="h-6 w-6 text-primary" />
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">Notre politique de transparence</h2>
+              </div>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Chez jemassuremoinscher.fr, nous croyons qu'un courtier digne de confiance doit être transparent sur son fonctionnement.
+              </p>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                {
+                  icon: Banknote,
+                  title: "Comment sommes-nous rémunérés ?",
+                  desc: "Nous percevons une commission versée par l'assureur partenaire lorsque vous souscrivez un contrat via notre plateforme. Vous ne payez jamais de frais supplémentaires : notre rémunération est incluse dans la prime d'assurance, au même tarif que si vous alliez directement chez l'assureur.",
+                },
+                {
+                  icon: Scale,
+                  title: "Indépendance garantie",
+                  desc: "Nous ne sommes liés par aucun accord d'exclusivité avec un assureur. Notre comparaison est impartiale : nous présentons les offres de 60+ partenaires sans favoriser aucune compagnie. Notre objectif est de trouver le meilleur rapport garanties/prix pour vous.",
+                },
+                {
+                  icon: Heart,
+                  title: "Service 100% gratuit",
+                  desc: "La comparaison, le conseil personnalisé et l'accompagnement à la souscription sont entièrement gratuits pour vous. Pas de frais cachés, pas de supplément, pas d'abonnement. Vous ne payez que votre prime d'assurance.",
+                },
+                {
+                  icon: Lock,
+                  title: "Protection de vos données",
+                  desc: "Vos données personnelles sont protégées conformément au RGPD. Elles sont utilisées uniquement pour établir votre devis et ne sont jamais revendues à des tiers. Vous pouvez demander leur suppression à tout moment.",
+                },
+              ].map(({ icon: Icon, title, desc }, i) => (
+                <motion.div
+                  key={title}
+                  className="flex items-start gap-3 bg-card rounded-xl border border-border/40 p-5"
+                  custom={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeUp}
+                >
+                  <div className="mt-0.5 h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                    <Icon className="h-4 w-4 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-foreground text-sm">{title}</p>
+                    <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ─── CTA ─── */}
         <section className="py-12 md:py-16">
           <div className="container mx-auto px-4">
