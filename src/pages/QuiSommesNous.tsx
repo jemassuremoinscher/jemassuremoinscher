@@ -29,12 +29,15 @@ const fadeUp = {
 const QuiSommesNous = () => {
   const { t } = useLanguage();
   const baseUrl = "https://www.jemassuremoinscher.fr";
+  // JSON-LD: org + breadcrumb + all author Person schemas
+  const authorSchemas = Object.values(authors).map(getAuthorJsonLd);
   const jsonLd = [
     addOrganizationSchema(),
     addBreadcrumbSchema([
       { name: "Accueil", url: baseUrl },
       { name: "Qui sommes-nous", url: `${baseUrl}/qui-sommes-nous` },
     ]),
+    ...authorSchemas,
   ];
 
   const stats = [
