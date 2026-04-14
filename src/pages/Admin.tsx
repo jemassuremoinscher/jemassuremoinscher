@@ -72,6 +72,27 @@ const Admin = () => {
     }
   }, [user, loading, navigate]);
 
+  // Block non-admin authenticated users
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  if (!user) return null;
+
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-8 text-center">
+        <h1 className="text-2xl font-bold text-destructive">Accès refusé</h1>
+        <p className="text-muted-foreground">Vous n'avez pas les permissions nécessaires pour accéder à cette page.</p>
+        <Button variant="outline" onClick={() => navigate('/')}>Retour à l'accueil</Button>
+      </div>
+    );
+  }
+
   useEffect(() => {
     if (isAdmin) {
       fetchData();
