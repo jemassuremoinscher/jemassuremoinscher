@@ -4718,7 +4718,7 @@ const existingWithDates = _blogArticlesRaw.map((article, index) => {
     ...article,
     id: uniqueId,
     date: dateList[index % dateList.length],
-    noindex: true,
+    noindex: false,
   };
 });
 

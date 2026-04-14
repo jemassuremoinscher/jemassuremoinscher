@@ -8,7 +8,79 @@
 Économisez jusqu&#39;à 60%.">
     <meta name="keywords" content="assurance moins chère, comparateur d'assurances, comparateur assurance, changer d'assurance, assurance moins chère, comparaison assurance en ligne, assurance auto, mutuelle, devis assurance gratuit" />
     <meta name="author" content="jemassuremoinscher.fr" />
-    <!-- robots & canonical managed by react-helmet-async per page -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://www.jemassuremoinscher.fr" />
+
+    <!-- SEO Bootstrap: set page-specific meta BEFORE React hydration so crawlers see correct data -->
+    <script>
+    (function(){
+      var B='https://www.jemassuremoinscher.fr';
+      var p=location.pathname.replace(/\/+$/,'') || '/';
+      var R={
+        '/assurance-auto':{t:'Assurance Auto Moins Chère dès 25€/mois | Comparateur Gratuit',d:'Comparez 50+ assureurs auto et économisez jusqu\'à 40%. Devis gratuit en 2 min, sans engagement.'},
+        '/assurance-moto':{t:'Assurance Moto Moins Chère dès 15€/mois | Comparateur',d:'Trouvez une assurance moto au meilleur prix. Comparaison gratuite et sans engagement en 2 minutes.'},
+        '/assurance-habitation':{t:'Assurance Habitation dès 3€/mois | Comparateur Gratuit',d:'Comparez les assurances habitation de 50+ assureurs. Devis gratuit en 2 min.'},
+        '/assurance-sante':{t:'Mutuelle Santé Moins Chère | Comparateur Gratuit 2026',d:'Comparez les mutuelles santé et économisez jusqu\'à 300€/an. Devis gratuit en 2 min.'},
+        '/assurance-animaux':{t:'Assurance Animaux dès 8€/mois | Comparateur Gratuit',d:'Comparez les assurances chien et chat. Remboursement jusqu\'à 100% des frais vétérinaires.'},
+        '/assurance-pret':{t:'Assurance Prêt Immobilier | Économisez jusqu\'à 15 000€',d:'Comparez les assurances emprunteur grâce à la loi Lemoine. Devis gratuit, sans engagement.'},
+        '/assurance-vie':{t:'Assurance Vie | Comparateur Gratuit 2026',d:'Comparez les contrats d\'assurance vie. Trouvez la solution d\'épargne adaptée à vos objectifs.'},
+        '/assurance-prevoyance':{t:'Assurance Prévoyance | Comparatif Gratuit 2026',d:'Protégez vos revenus avec une assurance prévoyance adaptée. Comparatif gratuit.'},
+        '/assurance-rc-pro':{t:'RC Professionnelle | Comparateur Gratuit 2026',d:'Comparez les assurances RC Pro pour protéger votre activité professionnelle.'},
+        '/assurance-mrp':{t:'Multirisque Professionnelle | Comparateur Gratuit',d:'Comparez les assurances multirisque pro. Devis gratuit en 2 min.'},
+        '/assurance-pno':{t:'Assurance PNO | Comparateur Gratuit 2026',d:'Comparez les assurances propriétaire non occupant. Devis gratuit en 2 min.'},
+        '/assurance-gli':{t:'Garantie Loyers Impayés | Comparateur GLI Gratuit',d:'Comparez les assurances GLI et sécurisez vos revenus locatifs. Devis gratuit.'},
+        '/mutuelle-tns':{t:'Mutuelle TNS | Comparateur Gratuit pour Indépendants',d:'Comparez les mutuelles TNS Madelin. Déduction fiscale et couverture optimale.'},
+        '/comparateur':{t:'Comparateur d\'Assurances Gratuit | Devis en 2 min',d:'Comparez 50+ assureurs et trouvez le meilleur prix. 100% gratuit, sans engagement.'},
+        '/blog':{t:'Blog Assurance | Guides, Conseils et Actualités 2026',d:'Retrouvez nos guides pratiques, conseils d\'experts et actualités sur l\'assurance en France.'},
+        '/glossaire':{t:'Glossaire Assurance | Termes Expliqués Simplement',d:'Tous les termes de l\'assurance expliqués simplement. Franchise, sinistre, bonus-malus…'},
+        '/qui-sommes-nous':{t:'Qui Sommes-Nous | jemassuremoinscher.fr',d:'Découvrez l\'équipe d\'experts derrière jemassuremoinscher.fr. Courtier indépendant, immatriculé ORIAS.'},
+        '/nos-partenaires':{t:'Nos Partenaires Assureurs | 50+ Compagnies',d:'Découvrez nos partenaires : AXA, Allianz, MAIF, Generali, MMA et 50+ assureurs.'},
+        '/contact':{t:'Contact | jemassuremoinscher.fr',d:'Contactez nos conseillers experts. Rappel gratuit sous 2h.'},
+        '/avis-clients':{t:'Avis Clients | 4.8/5 sur 2500+ avis vérifiés',d:'Lisez les avis de nos clients. Note moyenne 4.8/5 sur plus de 2500 avis vérifiés.'},
+      };
+      var m=R[p];
+      if(m){
+        document.title=m.t;
+        var desc=document.querySelector('meta[name="description"]');
+        if(desc) desc.setAttribute('content',m.d);
+        var can=document.querySelector('link[rel="canonical"]');
+        if(can) can.setAttribute('href',B+p);
+        var ogT=document.querySelector('meta[property="og:title"]');
+        if(ogT) ogT.setAttribute('content',m.t);
+        var ogD=document.querySelector('meta[property="og:description"]');
+        if(ogD) ogD.setAttribute('content',m.d);
+        var ogU=document.querySelector('meta[property="og:url"]');
+        if(ogU) ogU.setAttribute('content',B+p);
+        var twT=document.querySelector('meta[name="twitter:title"]');
+        if(twT) twT.setAttribute('content',m.t);
+        var twD=document.querySelector('meta[name="twitter:description"]');
+        if(twD) twD.setAttribute('content',m.d);
+        var twU=document.querySelector('meta[name="twitter:url"]');
+        if(twU) twU.setAttribute('content',B+p);
+      }
+      // Blog articles: set canonical even if no title override
+      if(!m && p.indexOf('/blog/')===0 && p.length>6){
+        var can=document.querySelector('link[rel="canonical"]');
+        if(can) can.setAttribute('href',B+p);
+        var ogU=document.querySelector('meta[property="og:url"]');
+        if(ogU) ogU.setAttribute('content',B+p);
+      }
+      // Glossary terms
+      if(!m && p.indexOf('/glossaire/')===0 && p.length>11){
+        var can=document.querySelector('link[rel="canonical"]');
+        if(can) can.setAttribute('href',B+p);
+        var ogU=document.querySelector('meta[property="og:url"]');
+        if(ogU) ogU.setAttribute('content',B+p);
+      }
+      // SEO landing pages
+      if(!m && (p.indexOf('/assurance-')===0 || p.indexOf('/landing/')===0)){
+        var can=document.querySelector('link[rel="canonical"]');
+        if(can) can.setAttribute('href',B+p);
+        var ogU=document.querySelector('meta[property="og:url"]');
+        if(ogU) ogU.setAttribute('content',B+p);
+      }
+    })();
+    </script>
 
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website" />
