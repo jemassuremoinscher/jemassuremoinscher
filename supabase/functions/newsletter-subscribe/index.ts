@@ -26,6 +26,15 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
+// Hash a token using SHA-256 for secure storage
+async function hashToken(token: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(token);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
 function validateEmail(email: string): { valid: boolean; error?: string } {
   if (!email || typeof email !== 'string') {
     return { valid: false, error: 'Email is required' };
@@ -117,14 +126,17 @@ const handler = async (req: Request): Promise<Response> => {
         );
       }
 
+      // Hash the incoming token to compare against stored hash
+      const hashedToken = await hashToken(token);
+
       const { data: subscriber, error } = await supabase
         .from("newsletter_subscribers")
         .update({
           status: "active",
           confirmed_at: new Date().toISOString(),
-          confirmation_token: null,
+          confirmation_token: null, // Clear token after confirmation
         })
-        .eq("confirmation_token", token)
+        .eq("confirmation_token", hashedToken)
         .eq("status", "pending")
         .select()
         .single();
@@ -159,13 +171,22 @@ const handler = async (req: Request): Promise<Response> => {
     if (action === "unsubscribe") {
       const { email }: UnsubscribeRequest = await req.json();
       
+      // Validate email before processing
+      const unsubValidation = validateEmail(email);
+      if (!unsubValidation.valid) {
+        return new Response(
+          JSON.stringify({ success: false, message: "Email invalide" }),
+          { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+        );
+      }
+
       const { error } = await supabase
         .from("newsletter_subscribers")
         .update({
           status: "unsubscribed",
           unsubscribed_at: new Date().toISOString(),
         })
-        .eq("email", email);
+        .eq("email", email.trim().toLowerCase());
 
       if (error) {
         console.error("Error unsubscribing:", error);
@@ -248,16 +269,17 @@ const handler = async (req: Request): Promise<Response> => {
       }
     }
 
-    // Generate confirmation token
-    const confirmationToken = crypto.randomUUID();
+    // Generate confirmation token (plaintext for URL, hashed for storage)
+    const plaintextToken = crypto.randomUUID();
+    const hashedToken = await hashToken(plaintextToken);
 
-    // Insert new subscriber
+    // Insert new subscriber with HASHED token
     const { error: insertError } = await supabase
       .from("newsletter_subscribers")
       .insert({
         email: normalizedEmail,
         status: "pending",
-        confirmation_token: confirmationToken,
+        confirmation_token: hashedToken, // Store hash, not plaintext
       });
 
     if (insertError) {
@@ -274,8 +296,8 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Send confirmation email
-    const confirmationUrl = `${Deno.env.get("SUPABASE_URL")}/functions/v1/newsletter-subscribe?action=confirm&token=${confirmationToken}`;
+    // Send confirmation email with PLAINTEXT token in URL
+    const confirmationUrl = `${Deno.env.get("SUPABASE_URL")}/functions/v1/newsletter-subscribe?action=confirm&token=${plaintextToken}`;
     
     const { error: emailError } = await resend.emails.send({
       from: "jemassuremoinscher.fr <onboarding@resend.dev>",

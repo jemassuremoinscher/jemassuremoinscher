@@ -5,6 +5,28 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Rate limiting: track requests by IP
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute window
+const MAX_REQUESTS_PER_WINDOW = 10; // 10 requests per minute
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return true;
+  }
+
+  if (record.count >= MAX_REQUESTS_PER_WINDOW) {
+    return false;
+  }
+
+  record.count++;
+  return true;
+}
+
 // Message validation types and functions
 interface ValidatedMessage {
   role: 'user' | 'assistant';
@@ -66,6 +88,18 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Rate limiting
+    const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0] || 
+                     req.headers.get('x-real-ip') || 
+                     'unknown';
+
+    if (!checkRateLimit(clientIP)) {
+      return new Response(
+        JSON.stringify({ error: 'Trop de requêtes. Veuillez réessayer dans quelques instants.' }),
+        { status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
     const body = await req.json();
     
     // Validate and sanitize messages
@@ -168,7 +202,7 @@ Règles :
     console.error('Error in ai-chatbot function:', error);
     return new Response(
       JSON.stringify({ 
-        error: error instanceof Error ? error.message : 'Une erreur est survenue' 
+        error: 'Une erreur est survenue. Veuillez réessayer.' 
       }),
       { 
         status: 500, 
