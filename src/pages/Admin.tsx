@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog, TrendingUp, Menu, Sparkles, Search, Bell, BellOff } from 'lucide-react';
+import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog, TrendingUp, Menu, Sparkles, Search, Bell, BellOff, Linkedin } from 'lucide-react';
 import { ManualLeadForm } from '@/components/admin/ManualLeadForm';
 import arthurWaving from '@/assets/mascotte/arthur-waving.png';
 import { supabase } from '@/integrations/supabase/client';
@@ -27,6 +27,7 @@ import { RedistributionHistory } from '@/components/admin/RedistributionHistory'
 import { GoogleAnalyticsDashboard } from '@/components/admin/GoogleAnalyticsDashboard';
 import { SEOSuggestions } from '@/components/admin/SEOSuggestions';
 import SERPPreview from '@/components/admin/SERPPreview';
+import { LinkedInAutoPoster } from '@/components/admin/LinkedInAutoPoster';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useLeadNotifications } from '@/hooks/useLeadNotifications';
 
@@ -218,6 +219,7 @@ const Admin = () => {
         { value: 'analytics', label: 'Analytics', icon: TrendingUp },
         { value: 'seo', label: 'SEO', icon: Sparkles },
         { value: 'serp', label: 'SERP', icon: Search },
+        { value: 'linkedin', label: 'LinkedIn', icon: Linkedin },
       ],
     },
     {
@@ -385,6 +387,10 @@ const Admin = () => {
 
           <TabsContent value="serp">
             <SERPPreview />
+          </TabsContent>
+
+          <TabsContent value="linkedin">
+            <LinkedInAutoPoster />
           </TabsContent>
 
           <TabsContent value="supervision">

@@ -538,6 +538,69 @@ export type Database = {
         }
         Relationships: []
       }
+      linkedin_auto_posts: {
+        Row: {
+          article_slug: string
+          article_title: string
+          created_at: string
+          error_message: string | null
+          id: string
+          post_content: string | null
+          posted_at: string | null
+          status: string
+        }
+        Insert: {
+          article_slug: string
+          article_title: string
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          post_content?: string | null
+          posted_at?: string | null
+          status?: string
+        }
+        Update: {
+          article_slug?: string
+          article_title?: string
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          post_content?: string | null
+          posted_at?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
+      linkedin_config: {
+        Row: {
+          created_at: string
+          id: string
+          is_active: boolean
+          post_day: string
+          post_hour: number
+          updated_at: string
+          webhook_url: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          post_day?: string
+          post_hour?: number
+          updated_at?: string
+          webhook_url: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          post_day?: string
+          post_hour?: number
+          updated_at?: string
+          webhook_url?: string
+        }
+        Relationships: []
+      }
       monthly_goals: {
         Row: {
           agent_id: string
