@@ -1,0 +1,199 @@
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+};
+
+serve(async (req) => {
+  if (req.method === "OPTIONS") {
+    return new Response("ok", { headers: corsHeaders });
+  }
+
+  try {
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // Check if this is a manual trigger (with auth) or cron trigger
+    const authHeader = req.headers.get("Authorization");
+    let isManual = false;
+    let manualSlug: string | null = null;
+
+    if (authHeader && !authHeader.includes(Deno.env.get("SUPABASE_ANON_KEY")!)) {
+      // Manual trigger from admin - verify admin role
+      const { data: { user }, error: authError } = await supabase.auth.getUser(
+        authHeader.replace("Bearer ", "")
+      );
+      if (authError || !user) {
+        return new Response(JSON.stringify({ error: "Non autorisé" }), {
+          status: 401,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      const { data: hasAdmin } = await supabase.rpc("has_role", {
+        _user_id: user.id,
+        _role: "admin",
+      });
+      if (!hasAdmin) {
+        return new Response(JSON.stringify({ error: "Admin requis" }), {
+          status: 403,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+      isManual = true;
+      try {
+        const body = await req.json();
+        manualSlug = body?.slug || null;
+      } catch {
+        // No body = post next unposted article
+      }
+    }
+
+    // Get config
+    const { data: config, error: configError } = await supabase
+      .from("linkedin_config")
+      .select("*")
+      .limit(1)
+      .maybeSingle();
+
+    if (configError || !config) {
+      return new Response(
+        JSON.stringify({ error: "Aucune configuration LinkedIn trouvée. Configurez le webhook dans le back-office." }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    if (!config.is_active && !isManual) {
+      return new Response(
+        JSON.stringify({ message: "Publication LinkedIn désactivée" }),
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Get already posted slugs
+    const { data: postedArticles } = await supabase
+      .from("linkedin_auto_posts")
+      .select("article_slug")
+      .eq("status", "posted");
+
+    const postedSlugs = new Set((postedArticles || []).map((a: any) => a.article_slug));
+
+    // Fetch all articles from the hardcoded data endpoint
+    // We'll pass the slug to post or pick the next unposted one
+    let targetSlug = manualSlug;
+    let targetTitle = "";
+    let targetDescription = "";
+    let targetCategory = "";
+
+    if (!targetSlug) {
+      // Get articles list from the blog data - we need to call the app
+      // Since articles are hardcoded, we pass them from the admin UI
+      // For cron: we store article metadata in the post record
+      // Alternative: fetch the sitemap or hardcode the article list
+      
+      // For cron jobs, we'll use a different approach:
+      // The admin UI will queue articles for posting
+      const { data: pendingPosts } = await supabase
+        .from("linkedin_auto_posts")
+        .select("*")
+        .eq("status", "pending")
+        .order("created_at", { ascending: true })
+        .limit(1)
+        .maybeSingle();
+
+      if (!pendingPosts) {
+        return new Response(
+          JSON.stringify({ message: "Aucun article en attente de publication" }),
+          { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      targetSlug = pendingPosts.article_slug;
+      targetTitle = pendingPosts.article_title;
+      // Use stored content or generate default
+      targetDescription = pendingPosts.post_content || "";
+    }
+
+    // Build LinkedIn post content
+    const siteUrl = "https://jemassuremoinscher.fr";
+    const articleUrl = `${siteUrl}/blog/${targetSlug}`;
+    
+    const postContent = targetDescription || 
+      `📰 Nouvel article sur jemassuremoinscher.fr !\n\n` +
+      `${targetTitle}\n\n` +
+      `👉 Lire l'article complet : ${articleUrl}\n\n` +
+      `#assurance #comparateur #économies #jemassuremoinscher`;
+
+    // Send to Zapier webhook
+    try {
+      const zapierResponse = await fetch(config.webhook_url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: targetTitle,
+          content: postContent,
+          url: articleUrl,
+          slug: targetSlug,
+          posted_at: new Date().toISOString(),
+        }),
+      });
+
+      if (!zapierResponse.ok) {
+        const errorText = await zapierResponse.text();
+        // Update status to failed
+        await supabase
+          .from("linkedin_auto_posts")
+          .update({
+            status: "failed",
+            error_message: `Zapier error ${zapierResponse.status}: ${errorText}`,
+          })
+          .eq("article_slug", targetSlug)
+          .eq("status", "pending");
+
+        return new Response(
+          JSON.stringify({ error: `Échec Zapier: ${zapierResponse.status}` }),
+          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      // Update status to posted
+      await supabase
+        .from("linkedin_auto_posts")
+        .update({
+          status: "posted",
+          posted_at: new Date().toISOString(),
+        })
+        .eq("article_slug", targetSlug)
+        .eq("status", "pending");
+
+      return new Response(
+        JSON.stringify({ success: true, slug: targetSlug, message: `Article "${targetTitle}" envoyé à LinkedIn` }),
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    } catch (fetchError) {
+      const errorMsg = fetchError instanceof Error ? fetchError.message : "Erreur réseau";
+      await supabase
+        .from("linkedin_auto_posts")
+        .update({
+          status: "failed",
+          error_message: errorMsg,
+        })
+        .eq("article_slug", targetSlug)
+        .eq("status", "pending");
+
+      return new Response(
+        JSON.stringify({ error: errorMsg }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Erreur interne";
+    console.error("post-to-linkedin error:", message);
+    return new Response(
+      JSON.stringify({ error: message }),
+      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    );
+  }
+});
