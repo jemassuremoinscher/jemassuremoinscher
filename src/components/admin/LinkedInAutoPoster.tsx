@@ -132,8 +132,8 @@ export const LinkedInAutoPoster = () => {
 
   const statusBadge = (status: string) => {
     switch (status) {
-      case 'posted': return <Badge className="bg-green-600 text-white">Publié</Badge>;
-      case 'pending': return <Badge variant="outline" className="border-amber-500 text-amber-600">En attente</Badge>;
+      case 'posted': return <Badge className="bg-primary text-primary-foreground">Publié</Badge>;
+      case 'pending': return <Badge variant="outline" className="border-accent text-accent-foreground">En attente</Badge>;
       case 'failed': return <Badge variant="destructive">Échoué</Badge>;
       default: return <Badge variant="secondary">{status}</Badge>;
     }
