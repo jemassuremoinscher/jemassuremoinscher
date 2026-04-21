@@ -24,7 +24,6 @@ const LandingMoto = () => {
         keyword="assurance moto moins chère"
         keywords="devis assurance moto, comparateur assurance scooter"
         jsonLd={jsonLd}
-        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">

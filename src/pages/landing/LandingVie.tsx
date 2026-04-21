@@ -18,7 +18,6 @@ const LandingVie = () => {
         description="Comparez les assurances vie. Jusqu'à 3% rendement garanti. Fiscalité avantageuse."
         keyword="assurance vie"
         keywords="placement, épargne, succession, fiscalité"
-        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">

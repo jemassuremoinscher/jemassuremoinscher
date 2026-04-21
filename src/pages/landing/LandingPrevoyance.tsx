@@ -18,7 +18,6 @@ const LandingPrevoyance = () => {
         description="Protégez votre famille. Jusqu'à 3 000€/mois d'indemnités. Devis gratuit en 2 min."
         keyword="assurance prévoyance"
         keywords="protection famille, invalidité, décès, incapacité"
-        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">

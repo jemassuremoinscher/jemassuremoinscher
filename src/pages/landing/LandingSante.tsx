@@ -24,7 +24,6 @@ const LandingSante = () => {
         keyword="mutuelle santé moins chère"
         keywords="devis mutuelle gratuit, comparateur mutuelle santé"
         jsonLd={jsonLd}
-        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">

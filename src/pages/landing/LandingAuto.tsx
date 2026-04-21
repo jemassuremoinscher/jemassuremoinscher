@@ -29,7 +29,6 @@ const LandingAuto = () => {
         keyword="assurance auto moins chère"
         keywords="devis assurance auto, comparateur assurance voiture"
         jsonLd={jsonLd}
-        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">

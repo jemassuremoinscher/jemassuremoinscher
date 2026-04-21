@@ -18,7 +18,6 @@ const LandingGLI = () => {
         description="Protégez vos revenus locatifs. Remboursement 100 000€. Loyers impayés + contentieux."
         keyword="assurance GLI"
         keywords="garantie loyers impayés, protection bailleur"
-        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">
