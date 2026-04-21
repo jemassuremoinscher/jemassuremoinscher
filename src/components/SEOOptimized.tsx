@@ -89,11 +89,25 @@ const SEOOptimized = ({
 
   const allKeywords = [keyword, keywords].filter(Boolean).join(', ');
 
-  const schemas = jsonLd
+  const rawSchemas = jsonLd
     ? Array.isArray(jsonLd)
       ? jsonLd
       : [jsonLd]
     : [];
+
+  // Deduplicate schemas by @type to prevent Google "Duplicate field" errors
+  // (e.g. multiple FAQPage blocks injected during SPA navigation)
+  const seenTypes = new Set<string>();
+  const schemas = rawSchemas.filter((schema: any) => {
+    const type = schema?.['@type'];
+    // Only dedupe single-type schemas that should appear once per page
+    const singleTypes = ['FAQPage', 'BreadcrumbList', 'Organization', 'WebSite'];
+    if (typeof type === 'string' && singleTypes.includes(type)) {
+      if (seenTypes.has(type)) return false;
+      seenTypes.add(type);
+    }
+    return true;
+  });
 
   return (
     <Helmet>
