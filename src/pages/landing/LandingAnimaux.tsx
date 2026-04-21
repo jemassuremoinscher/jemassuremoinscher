@@ -18,7 +18,6 @@ const LandingAnimaux = () => {
         description="Comparez les assurances chien et chat. Remboursement 100% frais vétérinaires. Devis 30s."
         keyword="assurance animaux"
         keywords="assurance chien, assurance chat, mutuelle animaux"
-        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">

@@ -18,7 +18,6 @@ const LandingPNO = () => {
         description="Protégez votre bien locatif. Dégâts des eaux, incendie, RC. Obligatoire copropriété."
         keyword="assurance PNO"
         keywords="propriétaire non occupant, bien locatif, copropriété"
-        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">

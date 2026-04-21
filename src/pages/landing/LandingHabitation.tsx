@@ -24,7 +24,6 @@ const LandingHabitation = () => {
         keyword="assurance habitation moins chère"
         keywords="devis assurance logement, comparateur assurance habitation"
         jsonLd={jsonLd}
-        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">

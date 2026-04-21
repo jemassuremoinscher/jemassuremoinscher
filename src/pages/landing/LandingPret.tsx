@@ -20,7 +20,6 @@ const LandingPret = () => {
         description="Économisez 60% sur votre assurance emprunteur. Délégation simplifiée. Devis 2 min."
         keyword="assurance prêt immobilier"
         keywords="assurance emprunteur, délégation assurance, ADI"
-        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">

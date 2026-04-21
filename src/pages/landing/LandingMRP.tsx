@@ -18,7 +18,6 @@ const LandingMRP = () => {
         description="Protégez local, matériel et activité professionnelle. Couverture tous risques. Devis 2 min."
         keyword="assurance MRP"
         keywords="multirisque professionnelle, protection entreprise, local"
-        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">

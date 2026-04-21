@@ -18,7 +18,6 @@ const LandingRCPro = () => {
         description="Protégez votre activité. Couverture jusqu'à 5M€. Obligatoire. Devis en 2 min."
         keyword="assurance RC pro"
         keywords="responsabilité civile professionnelle, protection activité"
-        noindex
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">
