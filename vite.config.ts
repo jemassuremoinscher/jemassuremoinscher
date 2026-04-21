@@ -30,7 +30,7 @@ export default defineConfig(({ mode }) => {
     // Utility pages
     nosPartenaires: path.resolve(__dirname, "nos-partenaires/index.html"),
     calculateurBonusMalus: path.resolve(__dirname, "outils/calculateur-bonus-malus/index.html"),
-    mutuelleTns: path.resolve(__dirname, "mutuelle-tns/index.html"),
+    // mutuelle-tns static shell removed — handled by SPA route to avoid duplicate FAQPage JSON-LD
     // Blog articles — static HTML shells for SEO crawlers
     blogAccident: path.resolve(__dirname, "blog/accident-seul-sans-tiers-declarer-reparer/index.html"),
     blogArnaques: path.resolve(__dirname, "blog/5-arnaques-assurance-courantes-2026/index.html"),
