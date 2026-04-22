@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { LucideIcon, Award, CheckCircle2, Shield, Star } from "lucide-react";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, optimizeLandingFaqAnswer, optimizeLandingReassuranceDescription } from "@/utils/seoUtils";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
 import { useMemo } from "react";
 
@@ -75,6 +75,22 @@ const SEOLandingPage = ({
   bottomCtaLabel,
   bottomCtaLink,
 }: SEOLandingPageProps) => {
+  const optimizedAdvantages = useMemo(
+    () => advantages.map((item) => ({
+      ...item,
+      description: optimizeLandingReassuranceDescription(item.title, item.description),
+    })),
+    [advantages]
+  );
+
+  const optimizedFaqs = useMemo(
+    () => faqs.map((faq) => ({
+      ...faq,
+      answer: optimizeLandingFaqAnswer(faq.question, faq.answer),
+    })),
+    [faqs]
+  );
+
   const normalizedContentBody = useMemo(() => {
     const trimmed = contentBody.trim();
     if (!trimmed) return trimmed;
@@ -104,7 +120,7 @@ const SEOLandingPage = ({
     provider: "jemassuremoinscher.fr",
     areaServed: "France",
   });
-  const faqSchema = addFAQSchema(faqs);
+  const faqSchema = addFAQSchema(optimizedFaqs);
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-primary/5 via-background to-accent/5">
@@ -147,7 +163,7 @@ const SEOLandingPage = ({
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {advantages.slice(0, 4).map((item, index) => (
+                {optimizedAdvantages.slice(0, 4).map((item, index) => (
                   <div key={index} className="text-center p-4 bg-card rounded-lg border hover-scale">
                     <item.icon className="h-8 w-8 mx-auto mb-2 text-primary" />
                     <div className="font-semibold text-sm">{item.title}</div>
@@ -162,7 +178,7 @@ const SEOLandingPage = ({
                   Pourquoi choisir <BrandName variant="purple" /> ?
                 </h2>
                 <ul className="space-y-3">
-                  {advantages.map((item, index) => (
+                  {optimizedAdvantages.map((item, index) => (
                     <li key={index} className="flex items-start gap-3">
                       <item.icon className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
@@ -198,7 +214,7 @@ const SEOLandingPage = ({
                   <p className="text-sm text-muted-foreground">Accès direct à nos experts et à nos comparatifs dédiés.</p>
                 </div>
                 <div className="space-y-3 mb-6">
-                  {advantages.slice(0, 3).map((item, index) => (
+                  {optimizedAdvantages.slice(0, 3).map((item, index) => (
                     <div key={index} className="flex items-start gap-3 rounded-lg border bg-muted/30 p-3">
                       <item.icon className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
@@ -230,7 +246,7 @@ const SEOLandingPage = ({
         </section>
 
         <section className="container mx-auto px-4 py-12 md:py-16 max-w-4xl">
-          <InsuranceFAQ title={faqTitle} faqs={faqs} />
+          <InsuranceFAQ title={faqTitle} faqs={optimizedFaqs} />
         </section>
 
         {bottomCtaTitle && (

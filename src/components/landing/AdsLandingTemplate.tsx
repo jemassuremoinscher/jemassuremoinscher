@@ -8,7 +8,7 @@ import SimpleFooter from "@/components/sections/SimpleFooter";
 import BrandName from "@/components/BrandName";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import { SimplifiedLeadForm } from "@/components/landing/SimplifiedLeadForm";
-import { addOrganizationSchema, addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { addOrganizationSchema, addServiceSchema, addFAQSchema, addBreadcrumbSchema, optimizeLandingFaqAnswer, optimizeLandingReassuranceDescription } from "@/utils/seoUtils";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
 export interface LandingAdvantage {
@@ -92,6 +92,16 @@ const AdsLandingTemplate = ({
 }: AdsLandingProps) => {
   const { trackPageView } = useAnalytics();
 
+  const optimizedAdvantages = advantages.map((item) => ({
+    ...item,
+    description: optimizeLandingReassuranceDescription(item.title, item.description),
+  }));
+
+  const optimizedFaqs = faqs.map((faq) => ({
+    ...faq,
+    answer: optimizeLandingFaqAnswer(faq.question, faq.answer),
+  }));
+
   useEffect(() => {
     trackPageView(`/landing/${slug}`, trackingTitle);
   }, [slug, trackingTitle, trackPageView]);
@@ -106,7 +116,7 @@ const AdsLandingTemplate = ({
       provider: "jemassuremoinscher.fr",
       areaServed: "France",
     }),
-    addFAQSchema(faqs),
+    addFAQSchema(optimizedFaqs),
     addBreadcrumbSchema([
       { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
       { name: insuranceLabel, url: canonical },
@@ -174,7 +184,7 @@ const AdsLandingTemplate = ({
                   Pourquoi choisir <BrandName variant="purple" /> ?
                 </h2>
                 <ul className="space-y-3">
-                  {advantages.map((a, i) => (
+                 {optimizedAdvantages.map((a, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <a.icon className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                       <div>
@@ -246,7 +256,7 @@ const AdsLandingTemplate = ({
               Questions fréquentes
             </h2>
             <div className="space-y-4">
-              {faqs.map((f, i) => (
+                 {optimizedFaqs.map((f, i) => (
                 <Card key={i} className="p-6">
                   <h3 className="font-bold text-base mb-2 text-foreground">{f.question}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{f.answer}</p>
