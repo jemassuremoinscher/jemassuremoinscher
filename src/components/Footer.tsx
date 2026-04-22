@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Shield, Lock, FileCheck, X, BadgeCheck, ShieldCheck } from "lucide-react";
+import { Shield, Lock, FileCheck, X, BadgeCheck, ShieldCheck, Instagram, Linkedin, Facebook } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Dialog,
@@ -64,7 +64,7 @@ const Footer = () => {
           <div className="container mx-auto px-4 py-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
               {/* Col 1: Nos Assurances */}
-              <nav aria-label="Nos assurances" className="text-justify">
+              <nav aria-label="Nos assurances">
                 <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-4">
                   Nos Assurances
                 </h3>
@@ -83,7 +83,7 @@ const Footer = () => {
               </nav>
 
               {/* Col 2: Guides & Conseils */}
-              <nav aria-label="Guides et conseils" className="text-justify">
+              <nav aria-label="Guides et conseils">
                 <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-4">
                   Guides & Conseils
                 </h3>
@@ -102,7 +102,7 @@ const Footer = () => {
               </nav>
 
               {/* Col 3: À propos */}
-              <nav aria-label="À propos" className="text-justify">
+              <nav aria-label="À propos">
                 <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-4">
                   À propos
                 </h3>
@@ -121,7 +121,7 @@ const Footer = () => {
               </nav>
 
               {/* Col 4: Informations Légales */}
-              <div className="text-justify">
+              <div>
                 <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-4">
                   Informations Légales
                 </h3>
@@ -151,9 +151,20 @@ const Footer = () => {
                 loading="lazy"
                 decoding="async"
               />
-              <p className="text-xs text-primary-foreground/40 max-w-2xl leading-relaxed text-justify">
+              <p className="text-xs text-primary-foreground/40 max-w-2xl leading-relaxed">
                 {t('footer.disclaimer')}
               </p>
+              <nav aria-label="Réseaux sociaux" className="flex items-center justify-center gap-4 pt-1">
+                <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Instagram" className="text-primary-foreground/50 hover:text-accent transition-colors">
+                  <Instagram className="h-4 w-4" />
+                </a>
+                <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur LinkedIn" className="text-primary-foreground/50 hover:text-accent transition-colors">
+                  <Linkedin className="h-4 w-4" />
+                </a>
+                <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Facebook" className="text-primary-foreground/50 hover:text-accent transition-colors">
+                  <Facebook className="h-4 w-4" />
+                </a>
+              </nav>
             </div>
           </div>
         </div>

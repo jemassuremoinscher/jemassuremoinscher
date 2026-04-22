@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Instagram, Linkedin, Facebook, Lock, ShieldCheck, Shield, BadgeCheck, CreditCard } from "lucide-react";
+import { Instagram, Linkedin, Facebook, Lock, ShieldCheck, Shield, BadgeCheck } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-sprint-coin.webp";
 
@@ -157,13 +157,6 @@ const SimpleFooter = () => {
               </div>
             </div>
 
-            {/* Payment icons */}
-            <div className="flex items-center gap-3 text-primary-foreground/30">
-              <CreditCard className="h-4 w-4" aria-hidden="true" />
-              <span className="text-[9px] uppercase tracking-wider">Visa</span>
-              <span className="text-[9px] uppercase tracking-wider">Mastercard</span>
-              <span className="text-[9px] uppercase tracking-wider">CB</span>
-            </div>
           </div>
 
           {/* Copyright */}
