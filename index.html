@@ -151,17 +151,23 @@
       .app-shell-header { height: 64px; background: hsl(271 81% 56%); border-bottom: 1px solid hsl(271 70% 48%); display: flex; align-items: center; padding: 0 1rem; }
       .app-shell-header .shell-brand { display: inline-flex; align-items: center; gap: 0.5rem; color: hsl(0 0% 100%); font-weight: 700; font-size: 1rem; line-height: 1; white-space: nowrap; }
       .app-shell-header .shell-brand strong { color: hsl(43 80% 65%); font-weight: 700; }
-      .app-shell-hero { padding: 3rem 1rem; text-align: center; background: linear-gradient(135deg, hsl(271 81% 56%), hsl(271 75% 45%)); min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .app-shell-hero { padding: 2rem 1rem 3rem; text-align: center; background: linear-gradient(135deg, hsl(271 81% 56%), hsl(271 75% 45%)); min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .app-shell-hero .shell-mascot { width: 112px; height: auto; margin-bottom: 1rem; filter: drop-shadow(0 20px 28px hsl(220 20% 12% / 0.28)); }
       .app-shell-hero .shell-kicker { color: hsl(0 0% 100% / 0.88); font-size: 1.125rem; font-weight: 700; margin: 0 0 1rem; }
-      .app-shell-hero .shell-title { height: 2rem; max-width: 500px; width: 80%; margin: 0 auto 1rem; background: hsl(0 0% 100% / 0.2); border-radius: 8px; }
-      .app-shell-hero .shell-subtitle { height: 1rem; max-width: 350px; width: 60%; margin: 0 auto 2rem; background: hsl(0 0% 100% / 0.15); border-radius: 6px; }
-      .app-shell-hero .shell-cta { display: inline-block; width: 200px; height: 48px; background: hsl(43 80% 65%); border-radius: 24px; }
+      .app-shell-hero .shell-title { max-width: 920px; margin: 0 auto 1rem; color: hsl(0 0% 100%); font-weight: 900; line-height: 1.08; letter-spacing: 0; font-size: clamp(2.25rem, 6vw, 4.5rem); }
+      .app-shell-hero .shell-title .accent { color: hsl(43 80% 65%); }
+      .app-shell-hero .shell-subtitle { max-width: 540px; margin: 0 auto 2rem; color: hsl(0 0% 100% / 0.9); font-size: clamp(1rem, 2.4vw, 1.25rem); line-height: 1.55; }
+      .app-shell-hero .shell-subtitle strong { color: hsl(0 0% 100%); }
+      .app-shell-hero .shell-cta { display: inline-flex; align-items: center; justify-content: center; min-width: 200px; min-height: 48px; padding: 0 2rem; background: linear-gradient(90deg, hsl(43 80% 65%), hsl(38 75% 58%)); color: hsl(220 20% 18%); border-radius: 999px; font-weight: 700; text-decoration: none; }
       .app-shell-hero .shell-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; max-width: 400px; width: 90%; margin-top: 2rem; }
       .app-shell-hero .shell-card { height: 80px; background: hsl(0 0% 100% / 0.9); border-radius: 12px; }
+      .app-shell-hero .shell-card span { display: block; padding-top: 54px; color: hsl(220 20% 18%); font-size: 0.875rem; font-weight: 700; }
       @media (min-width: 768px) { .app-shell-hero .shell-cards { grid-template-columns: repeat(3, 1fr); max-width: 600px; } }
       @media (min-width: 1024px) { .app-shell-hero .shell-cards { grid-template-columns: repeat(6, 1fr); max-width: 900px; } }
+      @media (min-width: 768px) { .app-shell-hero .shell-mascot { width: 144px; } }
+      @media (min-width: 1024px) { .app-shell-hero .shell-mascot { width: 176px; } }
       @media (prefers-reduced-motion: no-preference) {
-        .shell-logo, .shell-title, .shell-subtitle, .shell-cta {
+        .shell-card {
           animation: shell-pulse 1.5s ease-in-out infinite alternate;
         }
       }
@@ -258,17 +264,18 @@
       <div class="app-shell" aria-hidden="true">
         <div class="app-shell-header"><div class="shell-brand">jemassure<strong>moinscher</strong>.fr</div></div>
         <div class="app-shell-hero">
+            <img class="shell-mascot" src="/arthur-wink-thumbsup.webp" alt="Arthur mascotte jemassuremoinscher.fr" width="176" height="220" fetchpriority="high" decoding="async" />
           <p class="shell-kicker">Comparez 50+ assureurs gratuitement</p>
-          <div class="shell-title"></div>
-          <div class="shell-subtitle"></div>
-          <div class="shell-cta"></div>
+            <h1 class="shell-title">Comparez les assurances <span class="accent">moins chères</span></h1>
+            <p class="shell-subtitle">Trouvez <strong>le meilleur prix</strong> en 2 minutes.<br>Économisez jusqu'à 40% sur vos contrats.</p>
+            <span class="shell-cta">Voir mon prix en 2 min</span>
           <div class="shell-cards">
-            <div class="shell-card"></div>
-            <div class="shell-card"></div>
-            <div class="shell-card"></div>
-            <div class="shell-card"></div>
-            <div class="shell-card"></div>
-            <div class="shell-card"></div>
+              <div class="shell-card"><span>Auto</span></div>
+              <div class="shell-card"><span>Moto</span></div>
+              <div class="shell-card"><span>Habitation</span></div>
+              <div class="shell-card"><span>Santé</span></div>
+              <div class="shell-card"><span>Animaux</span></div>
+              <div class="shell-card"><span>Vie</span></div>
           </div>
         </div>
       </div>
