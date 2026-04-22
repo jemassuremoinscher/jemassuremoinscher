@@ -20,6 +20,9 @@ export default defineConfig(({ mode }) => {
     assuranceMrp: path.resolve(__dirname, "assurance-mrp/index.html"),
     assurancePno: path.resolve(__dirname, "assurance-pno/index.html"),
     assuranceGli: path.resolve(__dirname, "assurance-gli/index.html"),
+    contact: path.resolve(__dirname, "contact/index.html"),
+    blog: path.resolve(__dirname, "blog/index.html"),
+    glossaire: path.resolve(__dirname, "glossaire/index.html"),
     // Glossaire terms
     glossaireRc: path.resolve(__dirname, "glossaire/responsabilite-civile/index.html"),
     glossaireSinistre: path.resolve(__dirname, "glossaire/sinistre/index.html"),
