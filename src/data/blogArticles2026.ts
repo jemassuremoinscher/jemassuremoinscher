@@ -4135,5 +4135,491 @@ Oui, la prime PNO est déductible de vos revenus fonciers si vous êtes au régi
 **Que se passe-t-il si je n'ai pas d'assurance PNO en copropriété ?**
 Le syndic peut vous mettre en demeure de souscrire. En cas de sinistre, vous êtes personnellement responsable de tous les dommages causés, y compris aux parties communes et aux voisins.
 `
+  },
+  {
+    id: "62",
+    title: "Assurance parc accrobranche 2026 : obligations légales, garanties et prix",
+    slug: "assurance-parc-accrobranche-obligations-2026",
+    description: "Le guide 2026 complet pour exploitants de parcs accrobranche : norme EN 15567, RC obligatoire, garanties matériel, tarifs réels, top 5 assureurs spécialisés.",
+    category: "Conseils Experts",
+    date: "8 avril 2026",
+    readTime: "14 min",
+    author: "L'équipe d'experts Jemassuremoinscher",
+    tags: ["assurance accrobranche", "parc aventure", "RC exploitant", "EN 15567", "métiers atypiques"],
+    content: `
+# Assurance Parc Accrobranche 2026 : Le Guide Complet de l'Exploitant
+
+Exploiter un parc accrobranche en France, c'est jongler chaque jour avec la **norme EN 15567**, les contrôles ECP annuels, et un risque corporel non négligeable : chutes, entorses, blocages en tyrolienne, défaillance d'EPI. La RC exploitant n'est pas qu'une formalité administrative — c'est ce qui sépare une saison sereine d'une fermeture définitive après le premier sinistre grave.
+
+> **🦉 L'essentiel** — Un parc accrobranche moyen (45 000 visiteurs/an) paie entre **2 800 et 6 500 €/an** de RC exploitant. Notre intervention de courtage divise généralement la facture par 1,8 grâce à la mise en concurrence d'assureurs spécialisés (Hiscox, Albingia, MMA Pro Sport). [→ Demander mon devis sur-mesure](/assurance-metiers-atypiques)
+
+## 1. Le cadre légal : ce que la loi vous impose en 2026
+
+### La norme NF EN 15567 (parties 1 et 2)
+
+Cette norme européenne, transposée en droit français, encadre :
+- **EN 15567-1** : exigences de construction et installation des parcours acrobatiques en hauteur (PAH)
+- **EN 15567-2** : exigences d'exploitation et de fonctionnement (procédures, formation des opérateurs, EPI)
+
+Le respect de cette norme est **systématiquement vérifié** par les assureurs avant souscription. Un parc non conforme = refus de couverture quasi automatique.
+
+### L'arrêté du 29 août 2008
+
+Cet arrêté définit les **équipements obligatoires** :
+- Lignes de vie continues (« continuous belay ») recommandées depuis 2018, devenues quasi-obligatoires
+- EPI conformes EN 12277 (harnais), EN 1891 (cordes), EN 12275 (mousquetons)
+- Renouvellement EPI selon préconisations fabricant (5 à 10 ans selon usage)
+
+### Le contrôle ECP annuel
+
+L'**Examen de Contrôle Périodique** par un organisme habilité (Veritas, Apave, Socotec, Bureau Veritas Exploitation) est :
+- **Obligatoire chaque année** avant ouverture saisonnière
+- Coût : 800 à 2 200 € selon taille du parc
+- Document à fournir à l'assureur sous peine de **nullité de garantie** en cas de sinistre
+
+## 2. RC Exploitant : la pierre angulaire
+
+### Ce que couvre une bonne RC parc accrobranche
+
+| Garantie | Couverture type 2026 |
+|----------|---------------------|
+| Dommages corporels tiers | 8 000 000 € minimum |
+| Dommages matériels tiers | 1 500 000 € |
+| Dommages immatériels consécutifs | 800 000 € |
+| Faute inexcusable employeur | 2 000 000 € |
+| Pollution accidentelle | 500 000 € |
+| Défense pénale & recours | Inclus |
+
+### Les exclusions à scruter (signature en bas du contrat)
+
+- ⚠️ **Activités annexes non déclarées** : si vous ajoutez tyrolienne géante, accroclim, escape outdoor sans déclaration → exclusion
+- ⚠️ **Mineurs sans encadrement adulte** : certains contrats excluent les groupes scolaires non accompagnés
+- ⚠️ **Dommages aux EPI loués/prêtés** : à couvrir séparément
+- ⚠️ **Sinistres antérieurs non déclarés** : nullité du contrat
+
+> **🦉 Conseil d'Arthur :** Les contrats généralistes (AXA Pro, Allianz Entreprises) contiennent souvent des exclusions destructrices pour le métier. Toujours faire relire le contrat par un courtier spécialisé avant signature. [→ Audit gratuit](/assurance-metiers-atypiques)
+
+## 3. Individuelle Accident des participants : option ou must ?
+
+**Réponse : c'est devenu un must depuis 2023.**
+
+La RC exploitant indemnise un grimpeur uniquement si **votre responsabilité est démontrée**. Or, dans 60 % des accidents de parc, la cause est mixte (faute du grimpeur + défaillance matérielle marginale). Sans individuelle accident, le grimpeur attaque pour faire reconnaître votre responsabilité — procédure de 2 à 4 ans.
+
+### Comment fonctionne l'individuelle accident
+
+Vous souscrivez une garantie **automatique pour tous les visiteurs**, intégrée au prix du billet :
+- Coût pour vous : **0,15 à 0,40 € par visiteur**
+- Indemnisation immédiate du visiteur en cas d'accident (forfait journalier, frais médicaux, invalidité)
+- Désamorce 90 % des contentieux et améliore drastiquement votre image
+
+### Top assureurs sur ce produit (2026)
+
+1. **Albingia Loisirs** — référence du marché, intégration fluide à la billetterie
+2. **MMA Pro Sport** — bon rapport prix/garanties pour les parcs < 30 000 visiteurs
+3. **Generali Évolution Pro Loisirs** — souple sur les activités annexes
+
+## 4. Garanties matériel & EPI
+
+### Multirisque exploitation parc
+
+À ne pas confondre avec votre MRP standard. Une MRP loisirs aventure couvre :
+- **Plateformes en bois & ferrures** — vol, vandalisme, tempête, foudre, incendie
+- **Lignes de vie & câbles** — usure prématurée, sectionnement
+- **Stock EPI** — vol, dégradation, mise au rebut anticipée
+- **Tyroliennes** — démontage et stockage hivernal
+- **Bâtiments d'accueil** — billetterie, vestiaires, sanitaires
+
+### Tarifs 2026 — fourchettes constatées
+
+| Taille parc | Visiteurs/an | RC seule | Pack RC + MRP + Indiv. Accident |
+|-------------|--------------|----------|--------------------------------|
+| Petit | < 15 000 | 1 800–2 800 € | 3 200–4 800 € |
+| Moyen | 15 000–50 000 | 2 800–4 500 € | 4 800–8 500 € |
+| Grand | > 50 000 | 4 500–9 000 € | 8 500–18 000 € |
+
+## 5. Top 5 des assureurs spécialisés en 2026
+
+1. **Hiscox Loisirs Pro** — leader pour les parcs > 30 000 visiteurs, défense juridique premium
+2. **Albingia** — meilleurs tarifs pour parcs en démarrage ou avec un sinistre récent
+3. **MMA Pro Sport** — solution package idéale pour exploitants multi-activités
+4. **Generali Évolution Pro** — souple sur les surprimes après sinistre
+5. **Gras Savoye Loisirs** — courtier wholesaler, taux préférentiel via nos accords
+
+> **🦉 Conseil d'Arthur :** Les tarifs publiés en direct chez ces assureurs sont **30 à 60 % plus chers** qu'en passant par un courtier spécialisé (volume d'affaires + connaissance des grilles internes). [→ Comparer mes 3 meilleurs devis](/assurance-metiers-atypiques)
+
+## 6. Sinistre type : que faire en cas de chute ?
+
+### Les 5 réflexes immédiats
+
+1. **Sécuriser le grimpeur** — déclencher la procédure d'évacuation interne, alerter les secours (15 ou 18)
+2. **Préserver les preuves** — photos de l'EPI, du parcours, des points d'ancrage avant remise en état
+3. **Recueillir les témoignages** — opérateurs au sol, autres grimpeurs, accompagnants
+4. **Déclarer sous 5 jours ouvrés** — par e-mail à votre courtier avec dossier complet
+5. **Ne jamais reconnaître votre responsabilité** par écrit ou oralement avant analyse juridique
+
+### L'enquête expertise
+
+L'assureur mandate un expert (souvent l'**APAVE** ou **Veritas**) sous 72 h. Il vérifie :
+- Conformité de l'installation
+- Validité des contrôles ECP
+- État des EPI au moment du sinistre
+- Procédure d'accueil et d'encadrement
+
+Un dossier solide = indemnisation en 3 mois. Un dossier bancal = procédure de 2 à 5 ans.
+
+## FAQ — Assurance parc accrobranche
+
+**Mon assureur peut-il me refuser après un sinistre corporel grave ?**
+Oui. Après un sinistre > 100 000 €, 80 % des assureurs résilient à l'échéance. C'est précisément le moment où un courtier spécialisé devient indispensable pour replacer le contrat.
+
+**La norme EN 15567 est-elle obligatoire pour un parc enfant (< 3m) ?**
+Oui depuis 2019. Elle s'applique à tout PAH dès lors qu'il y a un risque de chute ≥ 1 m.
+
+**Puis-je exploiter un parc sans contrôle ECP ?**
+Légalement oui, mais aucun assureur ne couvrira le parc. En cas de sinistre, vous êtes personnellement responsable sur vos biens propres.
+
+**Combien coûte une attestation pour un événement ponctuel (location de parc) ?**
+Comptez 250 à 800 € pour une RC événementielle ponctuelle de 1 à 7 jours, négociable selon affluence et activités.
+
+**L'auto-entrepreneur exploitant un mini-parc est-il concerné ?**
+Oui. Le statut juridique ne réduit ni les obligations légales ni les risques. Une micro-entreprise peut être condamnée à plusieurs millions d'euros — d'où l'importance d'une couverture adaptée.
+
+**Liens utiles** : [Assurance Métiers Atypiques](/assurance-metiers-atypiques) · [RC Pro standard](/assurance-rc-pro) · [MRP locaux pro](/assurance-mrp) · [Guide moniteurs sport](/blog/assurance-moniteur-sports-outdoor-2026) · [Guide événementiel](/blog/assurance-organisateur-evenement-festival-2026)
+    `
+  },
+  {
+    id: "63",
+    title: "Assurance moniteur sports outdoor 2026 : escalade, kayak, parapente, VTT",
+    slug: "assurance-moniteur-sports-outdoor-2026",
+    description: "Guide 2026 RC pro encadrant sportif : Code du sport L.321-1, tarifs par discipline, top assureurs spécialisés, statut auto-entrepreneur vs structure.",
+    category: "Conseils Experts",
+    date: "10 avril 2026",
+    readTime: "13 min",
+    author: "L'équipe d'experts Jemassuremoinscher",
+    tags: ["assurance moniteur", "sports outdoor", "RC pro guide", "encadrant sportif", "métiers atypiques"],
+    content: `
+# Assurance Moniteur Sports Outdoor 2026 : Le Guide Complet par Discipline
+
+Un moniteur d'escalade SAE/SNE, un guide de canyoning, un pilote de parapente biplace : trois métiers, trois niveaux de risque, trois tarifs RC qui varient de **280 € à 1 800 €/an**. Le **Code du sport (article L.321-1)** impose à tout encadrant rémunéré une assurance RC couvrant ses pratiquants — sans elle, c'est l'exercice illégal de la profession (1 an de prison, 15 000 € d'amende).
+
+> **🦉 L'essentiel** — Tarifs 2026 : moniteur escalade 280–700 €/an, guide kayak 450–950 €/an, pilote parapente biplace 900–1 800 €/an, BE alpinisme polyvalent 1 200–2 500 €/an. Notre courtage divise en moyenne ces montants par 1,5. [→ Devis personnalisé sous 48 h](/assurance-metiers-atypiques)
+
+## 1. Le statut juridique impose la RC
+
+### Ce que dit l'article L.321-1 du Code du sport
+
+> « Les associations, les sociétés et fédérations sportives souscrivent pour l'exercice de leur activité des garanties d'assurance couvrant leur responsabilité civile, celle de leurs préposés salariés ou bénévoles et celle des pratiquants du sport. »
+
+L'article **L.321-7** étend cette obligation aux **éducateurs sportifs déclarés** (carte professionnelle DDCSPP/DRAJES).
+
+### Les sanctions en cas de défaut
+
+- **Pénal** : 1 an de prison + 15 000 € d'amende (L.212-8)
+- **Administratif** : retrait immédiat de la carte professionnelle
+- **Civil** : indemnisation intégrale des victimes sur biens personnels
+
+## 2. Diplômes & assurance : ce que vérifie l'assureur
+
+### Les diplômes éligibles à la RC pro
+
+- **BPJEPS** (Brevet Professionnel Jeunesse Éducation Populaire Sport) — multi-spécialités
+- **DEJEPS / DESJEPS** — niveau supérieur, équivalent licence/master
+- **Brevets d'État** (BE alpinisme, BE escalade, BE canoë-kayak, BE voile, BE parachutisme)
+- **Diplôme universitaire STAPS** (mention éducation et motricité)
+- **Titres à finalité professionnelle** (TFP) inscrits au RNCP
+
+### Les disciplines à risque accru (surprime systématique)
+
+- 🚨 **Activités aériennes** — parapente biplace, paramoteur, ULM (+80 à +150 %)
+- 🚨 **Canyoning niveau ≥ V4** (+50 à +90 %)
+- 🚨 **Plongée bouteille profondeur ≥ 40 m** (+40 à +70 %)
+- 🚨 **Alpinisme glaciaire haute altitude > 4 000 m** (+30 à +60 %)
+- 🚨 **VTT enduro/DH compétition** (+25 à +50 %)
+
+## 3. Spécificités par discipline
+
+### Escalade (SAE indoor + SNE outdoor)
+
+- **Couverture standard** : 280–500 €/an pour SAE seule, 400–700 €/an avec SNE jusqu'à 6c
+- **Points de vigilance** : déclaration des sites SNE pratiqués, équipements en place vs équipement temporaire, ratio encadrant/grimpeurs
+- **Top assureur** : MMA Pro Sport, Generali Évolution Pro
+
+### Canoë-kayak & eau-vive
+
+- **Couverture standard** : 450–950 €/an selon classe d'eau pratiquée (II à V)
+- **Points de vigilance** : reconnaissance préalable du parcours, briefing sécurité documenté, gilets CE avec sifflet
+- **Top assureur** : Albingia Loisirs, MAIF Sport
+
+### Parapente & activités aériennes
+
+- **Couverture standard** : 900–1 800 €/an pour biplace, 600–1 100 €/an pour vol solo encadré
+- **Points de vigilance** : carnet d'entretien aile à jour, qualif biplace FFVL, déclaration sites de décollage
+- **Top assureur** : Verspieren Aérien, Generali Aviation
+
+### VTT enduro / DH / freeride
+
+- **Couverture standard** : 350–700 €/an pour VTT XC/randonnée, 700–1 200 €/an pour enduro/DH
+- **Points de vigilance** : taille des groupes (max 8), équipement protections obligatoire (casque intégral, dorsale)
+- **Top assureur** : MAIF Sport, Allianz Pro Sport
+
+### Multi-activités (BE alpinisme, accompagnateur montagne)
+
+- **Couverture standard** : 1 200–2 500 €/an
+- **Points de vigilance** : déclaration exhaustive des disciplines pratiquées, justificatifs de formation continue
+- **Top assureur** : MMA Pro Sport, Albingia
+
+## 4. Carte pro & attestation annuelle : le piège
+
+Votre **carte professionnelle d'éducateur sportif** est valable 5 ans, mais doit être **réactualisée chaque année** avec :
+1. L'attestation de RC pro en cours de validité
+2. La preuve de formation continue (recyclage SST, recyclage spécifique discipline)
+3. L'extrait de casier judiciaire B2 (vérifié par l'administration)
+
+> **🦉 Conseil d'Arthur :** Programmez votre renouvellement RC **2 mois avant l'échéance** de votre carte pro. Une attestation expirée = retrait immédiat de la carte = arrêt forcé de l'activité. [→ Programmer mes renouvellements](/assurance-metiers-atypiques)
+
+## 5. Solo vs structure : auto-entrepreneur ou association ?
+
+### Auto-entrepreneur (micro-BNC)
+
+✅ Démarches simplifiées, comptabilité allégée
+✅ RC pro à votre nom personnel, transférable si changement de statut
+❌ Plafond CA 77 700 € (BNC 2026)
+❌ Patrimoine personnel exposé en cas de sinistre > plafond garanti
+
+### Société (EURL, SASU, SARL)
+
+✅ Patrimoine personnel protégé
+✅ Optimisation fiscale possible
+✅ Crédibilité face aux donneurs d'ordres (centres de vacances, mairies)
+❌ Comptabilité, charges sociales, formalisme
+❌ RC pro au nom de la société (à reconstituer si dissolution)
+
+### Association (loi 1901)
+
+✅ Adapté au sport collectif (clubs, sections sportives)
+✅ Possibilité de mutualiser la RC entre encadrants
+❌ Statut bénévole vs salarié à clarifier (URSSAF vigilance)
+
+## 6. Tarifs 2026 par discipline
+
+| Discipline | Auto-entrepreneur | Salarié structure | Multi-activités |
+|------------|-------------------|-------------------|-----------------|
+| Escalade SAE | 280–420 € | 180–290 € (part employeur) | inclus |
+| Escalade SNE | 400–700 € | 280–460 € | + 200 € |
+| Canyoning | 550–950 € | 380–620 € | + 350 € |
+| Kayak eau-vive | 450–800 € | 320–550 € | + 280 € |
+| Parapente biplace | 900–1 800 € | 600–1 200 € | + 600 € |
+| VTT enduro | 700–1 200 € | 480–820 € | + 400 € |
+| BE alpinisme polyvalent | 1 200–2 500 € | 800–1 700 € | inclus |
+
+## 7. Top 4 assureurs sport 2026
+
+1. **MMA Pro Sport** — leader auto-entrepreneurs et petites structures, tarifs imbattables sur escalade et canyoning
+2. **Generali Évolution Pro** — meilleur sur les multi-disciplines et activités aériennes
+3. **MAIF Sport** — référence éducateurs sportifs salariés, bonne couverture VTT et eau-vive
+4. **Verspieren** — courtier wholesaler indispensable pour les disciplines à risque accru
+
+## FAQ — Assurance moniteur sports outdoor
+
+**Suis-je obligé d'avoir une RC pro si j'encadre bénévolement dans un club ?**
+Le club doit souscrire une RC qui vous couvre. Vérifiez que votre nom figure bien sur l'attestation et que la discipline pratiquée est mentionnée. À défaut, prenez une RC personnelle complémentaire (≈ 80 €/an).
+
+**Mon assurance personnelle (MAIF, MACIF) couvre-t-elle mon activité de moniteur ?**
+Non. Les assurances multirisque habitation excluent explicitement les activités professionnelles rémunérées. C'est une cause récurrente de refus de prise en charge.
+
+**Combien coûte une RC pour un week-end de raid ponctuel ?**
+Entre 80 et 250 € pour une RC événementielle de 2 à 5 jours, selon nombre de participants et activités encadrées.
+
+**Puis-je encadrer à l'étranger avec ma RC française ?**
+Oui dans l'UE + Suisse + Norvège. Hors Europe (USA, Canada, Maroc, Népal), demandez une **extension territoriale** : surprime de 30 à 80 % selon destination.
+
+**Que faire si ma RC est résiliée après un sinistre ?**
+Ne signez jamais une nouvelle RC sans déclarer le sinistre — la fausse déclaration est cause de nullité. Notre cellule Métiers Atypiques replace les contrats résiliés en 7 à 15 jours.
+
+**Liens utiles** : [Assurance Métiers Atypiques](/assurance-metiers-atypiques) · [RC Pro standard](/assurance-rc-pro) · [Guide accrobranche](/blog/assurance-parc-accrobranche-obligations-2026) · [Guide événementiel](/blog/assurance-organisateur-evenement-festival-2026)
+    `
+  },
+  {
+    id: "64",
+    title: "Assurance organisateur d'événement 2026 : festival, concert, course, salon",
+    slug: "assurance-organisateur-evenement-festival-2026",
+    description: "Le guide 2026 pour organisateurs : RC obligatoire, garantie annulation, dommages matériel scénique, bénévoles, tarifs réels par taille d'événement.",
+    category: "Conseils Experts",
+    date: "12 avril 2026",
+    readTime: "15 min",
+    author: "L'équipe d'experts Jemassuremoinscher",
+    tags: ["assurance événement", "festival", "RC organisateur", "garantie annulation", "métiers atypiques"],
+    content: `
+# Assurance Organisateur d'Événement 2026 : Festival, Concert, Course, Salon
+
+En 2024, le festival « Les Échappées » en Bretagne a dû annuler à 48 h du J-1 pour intempéries — sans garantie annulation, c'est **380 000 €** qui se sont envolés. La RC organisateur couvre les dommages aux tiers, mais elle ne rembourse **jamais** la perte d'exploitation. Distinguer ces deux garanties, c'est le b.a.-ba de tout organisateur en 2026.
+
+> **🦉 L'essentiel** — Pour un festival de 5 000 personnes (1 jour), comptez 1 800 à 4 200 € de pack assurance complet (RC + annulation + bénévoles + matériel). Pour un marathon de 2 000 coureurs : 800 à 1 600 €. Notre courtage divise ces montants par 1,7 grâce à la mise en concurrence d'Albingia, Hiscox, Circles Group et Gras Savoye Événement. [→ Devis sur-mesure sous 48 h](/assurance-metiers-atypiques)
+
+## 1. RC Organisateur : obligation légale dès 1 spectateur payant
+
+### Le cadre juridique 2026
+
+L'article **L.211-1 du Code des assurances** impose à tout organisateur d'événement public une RC couvrant :
+- Les **spectateurs** (chute dans une tribune, écrasement de foule, intoxication alimentaire)
+- Les **artistes & intervenants** (chute scène, électrocution, blessure technique)
+- Les **bénévoles** (à compléter par individuelle accident)
+- Les **tiers** (riverains, passants, propriétaires terrains adjacents)
+
+### Capitaux minimaux à exiger en 2026
+
+| Type événement | Spectateurs | RC corporel mini | RC matériel mini |
+|----------------|-------------|-----------------|------------------|
+| Petit événement | < 500 | 5 M€ | 500 K€ |
+| Moyen | 500–5 000 | 10 M€ | 1 M€ |
+| Grand | 5 000–30 000 | 20 M€ | 2,5 M€ |
+| Très grand | > 30 000 | 50 M€ + | 5 M€ + |
+
+> **🦉 Conseil d'Arthur :** Les communes et préfectures exigent désormais des **attestations à 10 M€ minimum** dès 1 000 spectateurs. Anticipez : sans attestation conforme, pas d'arrêté municipal d'autorisation. [→ Attestation conforme sous 48 h](/assurance-metiers-atypiques)
+
+## 2. Garantie Annulation : la garantie qui sauve les budgets
+
+### Pourquoi elle est devenue indispensable post-COVID
+
+Depuis 2020-2021, **78 % des organisateurs majeurs** souscrivent désormais une garantie annulation. Les causes les plus fréquentes :
+- **Intempéries** (vents > 80 km/h, pluies abondantes, neige, canicule extrême)
+- **Maladie/décès artiste tête d'affiche**
+- **Décision préfectorale** (sécurité, ordre public)
+- **Catastrophes naturelles** (orages, inondations, tempêtes)
+- **Pandémie** (clauses spécifiques post-COVID, attention aux exclusions)
+
+### Ce qu'elle rembourse
+
+- Frais engagés non récupérables (cachets artistes, location matériel, sécurité)
+- Manque à gagner billetterie (selon prévisionnel validé)
+- Frais de désorganisation (démontage, transport retour matériel)
+
+### Ce qu'elle exclut quasi systématiquement
+
+- ❌ Annulation pour **insuffisance de billetterie**
+- ❌ Annulation par **décision propre** de l'organisateur (sauf force majeure démontrée)
+- ❌ Pandémie si déjà déclarée à la souscription
+- ❌ Acte de terrorisme (à couvrir par garantie spécifique « Terror Cover »)
+
+### Tarifs garantie annulation 2026
+
+- **3 à 7 % du budget total** pour un événement standard
+- **5 à 12 %** pour un festival multi-jours en plein air
+- **2 à 4 %** pour un salon en lieu clos
+- **8 à 15 %** pour un événement avec tête d'affiche internationale (cachet > 200 K€)
+
+## 3. Dommages matériel scénique, son, lumière
+
+### Les biens à couvrir absolument
+
+- **Matériel son & lumière** loué ou possédé (souvent 50 à 500 K€)
+- **Scènes & chapiteaux** (vol, vandalisme, tempête)
+- **Régie technique & vidéo**
+- **Caisses, bracelets billetterie, espèces**
+- **Stands exposants & mobilier**
+
+### Tarifs MRP événementielle 2026
+
+- 0,5 à 2,5 % de la valeur du matériel pour 1 à 7 jours
+- Forfait minimum : 350 € par événement
+- Franchise typique : 500 à 2 000 € selon valeur assurée
+
+## 4. Bénévoles & staff : individuelle accident
+
+### Pourquoi c'est critique
+
+Les **bénévoles ne sont pas des salariés** : ils ne bénéficient pas de la couverture AT/MP de l'URSSAF. En cas de chute, blessure, accident de circulation entre le parking et le site, **vous êtes seul responsable** sauf souscription d'une garantie individuelle accident.
+
+### Tarifs 2026
+
+- **0,80 à 2,50 € par bénévole et par jour** (forfait journalier 80–200 €, capital décès 30–80 K€, frais médicaux complémentaires)
+- Souscription par lots de 10, 50, 100 bénévoles
+
+## 5. Spécificités par typologie d'événement
+
+### Festival musique multi-jours
+
+- RC corporel **20 M€ mini**
+- Annulation **8–12 %** du budget
+- Couverture artistes & techniciens
+- **Risque foule** (mosh pit, écrasement) → garantie spécifique
+
+### Course pédestre / trail / marathon
+
+- RC corporel **15 M€ mini**
+- Individuelle accident participants (50 K€ par coureur)
+- Garantie **balisage & signalisation**
+- Surprime selon dénivelé et autonomie demandée
+
+### Salon professionnel
+
+- RC corporel **5–10 M€**
+- Couverture **stands exposants** (vol, vandalisme, dommages réciproques)
+- Garantie **annulation salon** (3–5 % du budget)
+- Cyber-risque billetterie (souvent oublié)
+
+### Événement sportif amateur
+
+- RC fédérale (souvent souscrite par fédération de tutelle) → vérifier exhaustivité
+- Compléter par **RC organisateur indépendante**
+- Couverture juges, arbitres, encadrants
+- Garantie chronométrage et lots remis
+
+## 6. Le piège des contrats annuels vs ponctuels
+
+### Contrat ponctuel (« événementiel sec »)
+
+✅ Adapté à 1–3 événements par an
+✅ Tarification au cas par cas
+❌ Plus cher au prorata
+❌ Démarches répétées
+
+### Contrat annuel multi-événements
+
+✅ 30 à 50 % moins cher si > 4 événements/an
+✅ Une attestation cadre + déclaration par événement
+✅ Négociation surprimes plus facile
+❌ Engagement 12 mois minimum
+❌ Plafond annuel à respecter
+
+> **🦉 Conseil d'Arthur :** Si vous organisez > 4 événements par an, le contrat annuel est presque toujours rentable. Notre cellule événementielle structure ces contrats package avec Albingia ou Hiscox. [→ Audit gratuit de votre besoin](/assurance-metiers-atypiques)
+
+## 7. Tarifs 2026 — exemples concrets
+
+| Événement type | Spectateurs | Pack RC + Matériel + Bénévoles | + Garantie annulation |
+|----------------|-------------|-------------------------------|----------------------|
+| Concert salle close | 800 | 450–800 € | + 600–1 200 € |
+| Festival 1 jour | 5 000 | 1 800–3 200 € | + 1 400–2 800 € |
+| Festival 3 jours | 15 000 | 5 800–9 500 € | + 4 200–8 600 € |
+| Marathon | 2 000 coureurs | 800–1 600 € | + 600–1 200 € |
+| Trail montagne | 1 200 coureurs | 1 100–2 200 € | + 800–1 800 € |
+| Salon pro 2 jours | 3 000 visiteurs | 1 200–2 400 € | + 800–1 600 € |
+
+## 8. Top 4 assureurs événementiel 2026
+
+1. **Albingia** — leader incontesté du marché français événementiel, capacités importantes
+2. **Hiscox Événementiel** — premium pour événements internationaux et têtes d'affiche
+3. **Circles Group** — spécialiste festivals musique et arts vivants
+4. **Gras Savoye Événement** — courtier wholesaler, accès aux meilleures conditions Lloyd's
+
+## FAQ — Assurance organisateur événement
+
+**Combien de temps avant l'événement dois-je souscrire ?**
+Idéalement **3 à 6 mois avant** pour la garantie annulation (les exclusions « événements connus » se déclenchent souvent à J-30 à J-60). Pour la RC seule, 2 semaines suffisent.
+
+**Mon contrat MRP entreprise couvre-t-il mon événement ?**
+Non. Les MRP standard excluent explicitement les événements publics. Une assurance événementielle dédiée est obligatoire.
+
+**Que faire si la préfecture impose des exigences supérieures ?**
+Demandez immédiatement à votre courtier d'augmenter les capitaux et de modifier l'attestation. Notre cellule événementielle traite ces ajustements en 24 h.
+
+**Suis-je couvert si un spectateur cause des dommages à un autre ?**
+Votre RC organisateur couvre les dommages causés **par votre fait** ou celui de vos préposés. Les rixes entre spectateurs relèvent de leur RC personnelle, mais votre **manque de sécurité** peut engager votre responsabilité subsidiaire.
+
+**Peut-on assurer un événement annulé pour insuffisance de billetterie ?**
+Non, c'est une exclusion universelle. La garantie annulation couvre uniquement les causes externes et imprévisibles (intempéries, force majeure, décès artiste).
+
+**Liens utiles** : [Assurance Métiers Atypiques](/assurance-metiers-atypiques) · [RC Pro standard](/assurance-rc-pro) · [MRP locaux pro](/assurance-mrp) · [Guide accrobranche](/blog/assurance-parc-accrobranche-obligations-2026) · [Guide moniteurs sport](/blog/assurance-moniteur-sports-outdoor-2026)
+    `
   }
 ];
