@@ -105,6 +105,43 @@ export const addFAQSchema = (faqs: { question: string; answer: string }[]) => {
   };
 };
 
+export const optimizeLandingFaqAnswer = (question: string, answer: string) => {
+  const cleanAnswer = answer.replace(/\s+/g, " ").trim();
+  const lowerQuestion = question.toLowerCase();
+
+  if (/^(oui|non)\b/i.test(cleanAnswer)) {
+    return cleanAnswer.replace(/^(oui|non),/i, (_, yn) => `${yn}.`);
+  }
+
+  if (lowerQuestion.startsWith("est-ce") || lowerQuestion.startsWith("puis-je") || lowerQuestion.startsWith("y a-t-il") || lowerQuestion.includes("peut-elle") || lowerQuestion.includes("peut-il")) {
+    return `Oui. ${cleanAnswer.charAt(0).toLowerCase()}${cleanAnswer.slice(1)}`;
+  }
+
+  return cleanAnswer;
+};
+
+export const optimizeLandingReassuranceDescription = (title: string, description: string) => {
+  const lowerTitle = title.toLowerCase();
+
+  if (lowerTitle.includes("gratuit") || lowerTitle.includes("sans engagement")) {
+    return "Le comparatif est gratuit, sans engagement et sans carte bancaire.";
+  }
+
+  if (lowerTitle.includes("assureurs") || lowerTitle.includes("compar")) {
+    return "Nous comparons plus de 30 assureurs pour afficher des options adaptées à votre profil.";
+  }
+
+  if (lowerTitle.includes("expert") || lowerTitle.includes("rappel")) {
+    return "Un expert humain vous rappelle rapidement pour finaliser votre devis si vous le souhaitez.";
+  }
+
+  if (lowerTitle.includes("rgpd") || lowerTitle.includes("données") || lowerTitle.includes("ssl")) {
+    return "Vos données sont chiffrées, hébergées en France et traitées dans le cadre RGPD.";
+  }
+
+  return description.replace(/\s+/g, " ").trim();
+};
+
 export const addProductSchema = (product: {
   name: string;
   description: string;
@@ -214,6 +251,76 @@ export const addInsuranceProductSchema = (product: {
     };
   }
   return schema;
+};
+
+export const addComparisonProductSchemas = (comparison: {
+  name: string;
+  description: string;
+  category: string;
+  url: string;
+  offers: Array<{
+    insurer: string;
+    price: number;
+    rating?: number;
+    reviewCount?: number;
+    coverage?: string;
+    benefits?: string[];
+  }>;
+}) => {
+  const itemList = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: comparison.name,
+    description: comparison.description,
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    numberOfItems: comparison.offers.length,
+    itemListElement: comparison.offers.map((offer, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: offer.insurer,
+      url: comparison.url,
+    })),
+  };
+
+  const products = comparison.offers.map((offer) => ({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `${comparison.category} ${offer.insurer}`,
+    category: comparison.category,
+    description: offer.coverage
+      ? `${offer.insurer} ${offer.coverage}. ${offer.benefits?.slice(0, 3).join(", ") || comparison.description}`
+      : comparison.description,
+    brand: {
+      "@type": "Brand",
+      name: offer.insurer,
+    },
+    offers: {
+      "@type": "Offer",
+      url: comparison.url,
+      price: offer.price,
+      priceCurrency: "EUR",
+      availability: "https://schema.org/InStock",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: offer.price,
+        priceCurrency: "EUR",
+        unitText: "mois",
+      },
+    },
+    ...(offer.rating
+      ? {
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: offer.rating,
+            bestRating: 5,
+            worstRating: 1,
+            reviewCount: offer.reviewCount || 1,
+          },
+        }
+      : {}),
+  }));
+
+  return [itemList, ...products];
 };
 
 export const addHowToSchema = (howTo: {
