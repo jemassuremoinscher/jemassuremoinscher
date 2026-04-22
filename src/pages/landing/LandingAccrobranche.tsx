@@ -15,7 +15,7 @@ const LandingAccrobranche = () => {
     <>
       <SEOOptimized
         title="Assurance Parc Accrobranche & Loisirs Aventure"
-        description="Couverture sur-mesure pour parcs accrobranche, tyroliennes et loisirs aventure. 20 assureurs spécialisés. Rappel sous 48h."
+        description="Couverture sur-mesure pour parcs accrobranche, tyroliennes et loisirs aventure. 20 assureurs spécialisés. Rappel sous 30 minutes."
         keyword="assurance parc accrobranche"
         keywords="assurance tyrolienne, assurance loisirs aventure, RC parc aventure, norme EN 15567"
         noindex={true}
@@ -24,7 +24,7 @@ const LandingAccrobranche = () => {
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">
         <div className="bg-primary text-primary-foreground py-3 px-4 text-center font-semibold">
           <Clock className="inline h-4 w-4 mr-2" />
-          🌲 Spécialiste loisirs aventure : 20 assureurs de niche mobilisés sous 48h
+          🌲 Spécialiste loisirs aventure : 20 assureurs de niche mobilisés sous 30 minutes
         </div>
 
         <section className="container mx-auto px-4 py-12 md:py-20">
@@ -79,7 +79,7 @@ const LandingAccrobranche = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
-                  <span className="text-sm font-medium">Rappel 48h</span>
+                  <span className="text-sm font-medium">Rappel 30 min</span>
                 </div>
               </div>
             </div>
@@ -143,7 +143,7 @@ const LandingAccrobranche = () => {
                 </div>
                 <div>
                   <Clock className="h-12 w-12 mx-auto mb-4" />
-                  <div className="text-xl font-bold mb-2">Rappel 48h</div>
+                  <div className="text-xl font-bold mb-2">Rappel 30 min</div>
                   <div className="text-sm opacity-90">Étude argumentée par un expert</div>
                 </div>
                 <div>
@@ -205,7 +205,7 @@ const LandingAccrobranche = () => {
               Sécurisez votre parc dès aujourd'hui
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Étude gratuite et personnalisée — rappel sous 48h
+              Étude gratuite et personnalisée — rappel sous 30 minutes
             </p>
             <a
               href="#hero"
