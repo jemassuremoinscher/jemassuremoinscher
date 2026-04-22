@@ -1,24 +1,15 @@
 {
-  "generatedAt": "2026-04-22T14:43:13.084Z",
-  "score": 56,
+  "generatedAt": "2026-04-22T14:43:47.272Z",
+  "score": 59,
   "status": "critical",
   "summary": {
     "totalChecks": 27,
-    "passedChecks": 15,
-    "failedChecks": 12,
+    "passedChecks": 16,
+    "failedChecks": 11,
     "auditedFiles": 10,
     "staticRoutes": 4
   },
   "mismatches": [
-    {
-      "id": "src/components/comparison/WhyUsComparison.tsx-shared-rating",
-      "category": "react-source",
-      "file": "src/components/comparison/WhyUsComparison.tsx",
-      "description": "WhyUsComparison.tsx lit bien les métriques GEO depuis la source partagée",
-      "pass": false,
-      "expected": "geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel",
-      "actual": null
-    },
     {
       "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-0",
       "category": "stale-copy",
@@ -251,7 +242,7 @@
       "category": "react-source",
       "file": "src/components/comparison/WhyUsComparison.tsx",
       "description": "WhyUsComparison.tsx lit bien les métriques GEO depuis la source partagée",
-      "pass": false,
+      "pass": true,
       "expected": "geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel",
       "actual": null
     },
