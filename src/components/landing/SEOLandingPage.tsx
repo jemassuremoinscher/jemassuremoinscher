@@ -10,6 +10,7 @@ import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
+import { useMemo } from "react";
 
 interface Advantage {
   icon: LucideIcon;
@@ -74,6 +75,28 @@ const SEOLandingPage = ({
   bottomCtaLabel,
   bottomCtaLink,
 }: SEOLandingPageProps) => {
+  const normalizedContentBody = useMemo(() => {
+    const trimmed = contentBody.trim();
+    if (!trimmed) return trimmed;
+    const hasHeadings = /<h[1-6]\b/i.test(trimmed);
+    if (hasHeadings) return trimmed.replace(/<h3\b/gi, "<h2").replace(/<\/h3>/gi, "</h2>");
+
+    const paragraphs = trimmed
+      .split(/\n\s*\n/)
+      .map((block) => block.trim())
+      .filter(Boolean);
+
+    if (paragraphs.length <= 2) return trimmed;
+
+    return paragraphs
+      .map((block, index) => {
+        if (index === 0) return block;
+        if (index === 1) return `<h2>${contentTitle}</h2>${block}`;
+        return `<h3>Point clé ${index}</h3>${block}`;
+      })
+      .join("\n\n");
+  }, [contentBody, contentTitle]);
+
   const breadcrumbSchema = addBreadcrumbSchema(breadcrumbs);
   const serviceSchema = addServiceSchema({
     name: title,
@@ -201,7 +224,7 @@ const SEOLandingPage = ({
             <h2 className="text-2xl font-bold text-foreground mb-6">{contentTitle}</h2>
             <div
               className="prose prose-lg max-w-none text-muted-foreground leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: contentBody }}
+                dangerouslySetInnerHTML={{ __html: normalizedContentBody }}
             />
           </Card>
         </section>
