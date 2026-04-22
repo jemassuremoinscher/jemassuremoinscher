@@ -363,7 +363,7 @@ const AssuranceMetiersAtypiques = () => {
             ctaTitle="Votre activité mérite une couverture sur-mesure"
             ctaDescription="Demande de rappel gratuite et sans engagement. Un courtier dédié vous rappelle sous 48 h avec une étude personnalisée et 2 à 3 propositions argumentées."
             ctaButtonLabel="Demander mon rappel sous 48 h"
-            ctaMascotSrc={arthurBike}
+            ctaMascotSrc={arthurBtp}
             ctaMascotAlt="Arthur — Métiers Atypiques"
             onCtaClick={scrollToForm}
           />
