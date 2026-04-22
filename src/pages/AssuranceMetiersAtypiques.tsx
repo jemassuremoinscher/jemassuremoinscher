@@ -9,7 +9,7 @@ import SEOOptimized from "@/components/SEOOptimized";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurClimbing from "@/assets/mascotte/arthur-climbing.webp";
 import arthurKayak from "@/assets/mascotte/arthur-kayak.webp";
-import arthurBike from "@/assets/mascotte/arthur-bike.webp";
+import arthurBtp from "@/assets/mascotte/arthur-btp.webp";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
@@ -138,8 +138,8 @@ const AssuranceMetiersAtypiques = () => {
       title: "BTP spécialisé & métiers à risques",
       description: "Cordistes, désamianteurs, élagueurs, travaux acrobatiques, étanchéité toiture. Certifs IRATA, QualiBat.",
       slug: "/assurance-rc-pro",
-      arthur: arthurBike,
-      arthurAlt: "Arthur vélo — métiers à risques",
+      arthur: arthurBtp,
+      arthurAlt: "Arthur cordiste BTP — métiers à risques",
     },
   ];
 
