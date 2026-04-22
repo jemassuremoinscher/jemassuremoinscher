@@ -12,20 +12,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import { UserPlus, TrendingUp, Users, Target } from "lucide-react";
 
-const INSURANCE_TYPES = [
-  { value: "auto", label: "Auto" },
-  { value: "habitation", label: "Habitation" },
-  { value: "sante", label: "Santé" },
-  { value: "vie", label: "Vie" },
-  { value: "pret", label: "Prêt" },
-  { value: "prevoyance", label: "Prévoyance" },
-  { value: "rc-pro", label: "RC Pro" },
-  { value: "mrp", label: "MRP" },
-  { value: "gli", label: "GLI" },
-  { value: "pno", label: "PNO" },
-  { value: "moto", label: "Moto" },
-  { value: "animaux", label: "Animaux" },
-];
+import { CANONICAL_INSURANCE_TYPES, INSURANCE_TYPE_LABELS } from "@/utils/insuranceTypeNormalizer";
+
+const INSURANCE_TYPES = CANONICAL_INSURANCE_TYPES.map((value) => ({
+  value,
+  label: INSURANCE_TYPE_LABELS[value].replace(/^Assurance\s+/, ""),
+}));
 
 export const SalesAgentsManager = () => {
   const [isAddingAgent, setIsAddingAgent] = useState(false);

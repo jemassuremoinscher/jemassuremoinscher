@@ -8,6 +8,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import { CANONICAL_INSURANCE_TYPES, INSURANCE_TYPE_LABELS } from '@/utils/insuranceTypeNormalizer';
 
 export interface FilterOptions {
   searchQuery: string;
@@ -100,16 +101,11 @@ export const LeadsFilters = ({ onFilterChange, showInsuranceType = true }: Leads
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Tous les types</SelectItem>
-              <SelectItem value="auto">Auto</SelectItem>
-              <SelectItem value="moto">Moto</SelectItem>
-              <SelectItem value="habitation">Habitation</SelectItem>
-              <SelectItem value="sante">Santé</SelectItem>
-              <SelectItem value="pret">Prêt</SelectItem>
-              <SelectItem value="animaux">Animaux</SelectItem>
-              <SelectItem value="vie">Vie</SelectItem>
-              <SelectItem value="prevoyance">Prévoyance</SelectItem>
-              <SelectItem value="mrp">MRP</SelectItem>
-              <SelectItem value="rcpro">RC Pro</SelectItem>
+              {CANONICAL_INSURANCE_TYPES.map((type) => (
+                <SelectItem key={type} value={type}>
+                  {INSURANCE_TYPE_LABELS[type].replace(/^Assurance\s+/, '')}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         )}

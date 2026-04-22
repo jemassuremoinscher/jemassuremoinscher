@@ -10,20 +10,12 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { toast } from 'sonner';
 import { Plus } from 'lucide-react';
 
-const INSURANCE_TYPES = [
-  { value: 'auto', label: 'Auto' },
-  { value: 'habitation', label: 'Habitation' },
-  { value: 'sante', label: 'Santé' },
-  { value: 'vie', label: 'Vie' },
-  { value: 'pret', label: 'Prêt' },
-  { value: 'prevoyance', label: 'Prévoyance' },
-  { value: 'rc-pro', label: 'RC Pro' },
-  { value: 'mrp', label: 'MRP' },
-  { value: 'gli', label: 'GLI' },
-  { value: 'pno', label: 'PNO' },
-  { value: 'moto', label: 'Moto' },
-  { value: 'animaux', label: 'Animaux' },
-];
+import { CANONICAL_INSURANCE_TYPES, INSURANCE_TYPE_LABELS } from '@/utils/insuranceTypeNormalizer';
+
+const INSURANCE_TYPES = CANONICAL_INSURANCE_TYPES.map((value) => ({
+  value,
+  label: INSURANCE_TYPE_LABELS[value].replace(/^Assurance\s+/, ''),
+}));
 
 interface ManualLeadFormProps {
   onLeadCreated: () => void;
