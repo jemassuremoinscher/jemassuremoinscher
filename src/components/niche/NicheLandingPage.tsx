@@ -14,6 +14,9 @@ import type { NicheData } from "@/data/nicheInsuranceData";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+const normalizeExpertiseBlockHeadings = (content: string) =>
+  content.replace(/<h1\b/gi, "<h3").replace(/<\/h1>/gi, "</h3>").replace(/<h2\b/gi, "<h3").replace(/<\/h2>/gi, "</h3>");
+
 interface NicheLandingPageProps {
   data: NicheData;
 }
@@ -98,7 +101,7 @@ const NicheLandingPage = ({ data }: NicheLandingPageProps) => {
               <h3 className="text-lg font-bold text-foreground mb-3">{block.title}</h3>
               <div
                 className="text-sm text-muted-foreground leading-relaxed prose prose-sm max-w-none"
-                dangerouslySetInnerHTML={{ __html: block.content }}
+                dangerouslySetInnerHTML={{ __html: normalizeExpertiseBlockHeadings(block.content) }}
               />
             </Card>
           ))}

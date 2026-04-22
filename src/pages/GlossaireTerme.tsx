@@ -11,6 +11,8 @@ import { glossaryTerms } from "@/data/glossaryTerms";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+const normalizeGlossaryMarkdownHeadings = (markdown: string) => markdown.replace(/^#\s+/gm, "## ");
+
 const glossarySeoMeta: Record<string, { title: string; description: string }> = {
   "franchise": { title: "Franchise Assurance : Définition & Guide [Month]", description: "Qu'est-ce que la franchise en assurance ? Absolue, relative, proportionnelle : tout comprendre pour mieux choisir. Guide [Month]." },
   "prime-assurance": { title: "Prime d'Assurance : Payer Moins Cher en [Month]", description: "Comprenez le calcul de votre prime d'assurance et économisez jusqu'à 40% en comparant les offres. Mis à jour [Month]." },
@@ -123,7 +125,7 @@ const GlossaireTerme = () => {
 
             <Card className="mb-8">
               <CardContent className="p-8 prose prose-lg max-w-none dark:prose-invert">
-                <ReactMarkdown>{term.content}</ReactMarkdown>
+                <ReactMarkdown>{normalizeGlossaryMarkdownHeadings(term.content)}</ReactMarkdown>
               </CardContent>
             </Card>
 

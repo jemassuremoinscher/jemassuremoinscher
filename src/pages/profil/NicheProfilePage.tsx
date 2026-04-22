@@ -16,7 +16,7 @@ const NicheProfilePage = () => {
     return (
       <div className="min-h-screen bg-background">
         <SEOOptimized
-          title="Profils Spéciaux — Assurance Auto Adaptée | jemassuremoinscher"
+          title="Profils spéciaux assurance auto | Solutions dédiées"
           description="Solutions d'assurance auto pour profils atypiques : résilié, retrait de permis, multi-sinistré, primo-assuré, jeune conducteur puissant."
           keyword="assurance auto profil spécial"
           canonical="https://jemassuremoinscher.fr/profil"

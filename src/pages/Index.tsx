@@ -82,7 +82,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance Moins Chère : Comparateur Gratuit | jemassuremoinscher.fr"
+        title="Comparateur Assurance Moins Chère | Devis Gratuit"
         description="Comparateur d'assurances gratuit. Comparez 50+ assureurs et économisez jusqu'à 280€. Devis en 2 min, sans engagement."
         ogTitle="Comparateur Assurance Moins Chère"
         ogDescription="Comparez 50+ assureurs gratuitement. Économisez jusqu'à 280€."

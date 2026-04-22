@@ -2009,8 +2009,8 @@ const fr: Record<string, string> = {
 
   // Blog page extras
   'breadcrumb.home': 'Accueil',
-  'blogPage.seoTitle': 'Blog Assurance - Conseils et Actualités',
-  'blogPage.seoDesc': 'Articles sur les assurances : guides, loi Lemoine, loi Hamon, conseils pour économiser.',
+  'blogPage.seoTitle': 'Blog assurance | Guides et conseils 2026',
+  'blogPage.seoDesc': "Retrouvez nos guides assurance 2026, conseils pratiques et décryptages pour comparer, économiser et mieux choisir.",
   'blogPage.allArticles': 'Tous les articles',
   'blogArticlePage.backToBlogAria': 'Retourner à la liste des articles du blog',
   'blogArticlePage.shareAria': 'Partager cet article',

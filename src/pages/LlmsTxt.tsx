@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import SEOOptimized from "@/components/SEOOptimized";
 
 const LLMS_TXT = `# jemassuremoinscher.fr
 
@@ -69,26 +69,32 @@ const LLMS_TXT = `# jemassuremoinscher.fr
 - URL : /blog
 `;
 const LlmsTxt = () => {
-  useEffect(() => {
-    document.title = "llms.txt - jemassuremoinscher.fr";
-  }, []);
-
   return (
-    <pre
-      style={{
-        fontFamily: "monospace",
-        whiteSpace: "pre-wrap",
-        wordBreak: "break-word",
-        padding: "2rem",
-        maxWidth: "80ch",
-        margin: "0 auto",
-        lineHeight: 1.6,
-        color: "#1a1a1a",
-        background: "#fff",
-      }}
-    >
-      {LLMS_TXT}
-    </pre>
+    <>
+      <SEOOptimized
+        title="llms.txt | jemassuremoinscher.fr"
+        description="Fichier llms.txt de jemassuremoinscher.fr pour documenter nos services d'assurance et ressources accessibles aux agents IA."
+        canonical="https://www.jemassuremoinscher.fr/llms.txt"
+      />
+      <main>
+        <h1 className="sr-only">llms.txt jemassuremoinscher.fr</h1>
+        <pre
+          style={{
+            fontFamily: "monospace",
+            whiteSpace: "pre-wrap",
+            wordBreak: "break-word",
+            padding: "2rem",
+            maxWidth: "80ch",
+            margin: "0 auto",
+            lineHeight: 1.6,
+            color: "#1a1a1a",
+            background: "#fff",
+          }}
+        >
+          {LLMS_TXT}
+        </pre>
+      </main>
+    </>
   );
 };
 

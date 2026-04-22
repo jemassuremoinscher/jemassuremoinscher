@@ -9,6 +9,9 @@ import SemanticFAQ, { type FAQItem } from "@/components/SemanticFAQ";
 import { addBreadcrumbSchema, addFAQSchema, addServiceSchema } from "@/utils/seoUtils";
 import { motion } from "framer-motion";
 
+const normalizeContentBlockHeadings = (content: string) =>
+  content.replace(/<h1\b/gi, "<h2").replace(/<\/h1>/gi, "</h2>").replace(/<h2\b/gi, "<h3").replace(/<\/h2>/gi, "</h3>");
+
 export interface SEOContentBlock {
   title: string;
   /** HTML string – rendered via dangerouslySetInnerHTML for rich formatting */
@@ -136,7 +139,7 @@ const SEOCategoryPage = ({
                 </h2>
                 <div
                   className="prose prose-sm md:prose-base text-muted-foreground leading-relaxed [&_strong]:text-foreground [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1"
-                  dangerouslySetInnerHTML={{ __html: block.content }}
+                  dangerouslySetInnerHTML={{ __html: normalizeContentBlockHeadings(block.content) }}
                 />
               </motion.div>
             ))}
