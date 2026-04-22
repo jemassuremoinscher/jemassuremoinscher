@@ -67,6 +67,27 @@ const renderPage = (page) => `<!doctype html>
   </body>
 </html>`;
 
+const syncRootIndex = async () => {
+  const indexPath = path.join(process.cwd(), "index.html");
+  const trust = geoContent.trust;
+  const reviewSnippet = `${trust.ratingValueLabel}/5 sur ${trust.reviewCountLabel}+ avis vérifiés`;
+  const reviewSentence = `Note moyenne ${trust.ratingValueLabel}/5 sur plus de ${trust.reviewCountLabel} avis vérifiés.`;
+
+  const indexTemplate = await readFile(indexPath, "utf8");
+  const updatedIndex = indexTemplate
+    .replace(/Avis Clients \| [^']+ avis vérifiés/g, `Avis Clients | ${reviewSnippet}`)
+    .replace(/Note moyenne [^.]+ avis vérifiés\./g, reviewSentence)
+    .replace(/"ratingValue":"[0-9.]+","reviewCount":"\d+"/g, `"ratingValue":"${trust.ratingValueLabel}","reviewCount":"${trust.reviewCountLabel}"`)
+    .replace(/<strong>[0-9.]+\/5<\/strong> — Plus de [^<]+ avis clients vérifiés/g, `<strong>${trust.ratingValueLabel}/5</strong> — Plus de ${trust.reviewCountLabel} avis clients vérifiés`)
+    .replace(/<strong>[0-9.]+\/5 — Plus de [^<]+ avis clients vérifiés<\/strong>/g, `<strong>${trust.ratingValueLabel}/5 — Plus de ${trust.reviewCountLabel} avis clients vérifiés</strong>`);
+
+  if (updatedIndex !== indexTemplate) {
+    await writeFile(indexPath, updatedIndex, "utf8");
+  }
+};
+
+await syncRootIndex();
+
 for (const page of pages) {
   const outputPath = path.join(process.cwd(), page.outputDir, "index.html");
   await mkdir(path.dirname(outputPath), { recursive: true });

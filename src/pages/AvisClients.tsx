@@ -7,6 +7,7 @@ import { addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils"
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
+import geoContent from "@/data/geo-content.json";
 
 const AvisClients = () => {
   const { t } = useLanguage();
@@ -61,17 +62,13 @@ const AvisClients = () => {
     { name: "Avis Clients", url: "https://www.jemassuremoinscher.fr/avis-clients" }
   ]);
 
-  const ratingSchema = addAggregateRatingSchema(
-    "jemassuremoinscher.fr",
-    4.9,
-    2547
-  );
+  const ratingSchema = addAggregateRatingSchema("jemassuremoinscher.fr", geoContent.trust.ratingValue, geoContent.trust.reviewCount);
 
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized 
         title="Avis Clients | jemassuremoinscher.fr"
-        description="Avis clients sur notre comparateur d'assurance. Note 4.9/5 sur 2 547 avis vérifiés."
+        description={`Avis clients sur notre comparateur d'assurance. Note ${geoContent.trust.ratingValueLabel}/5 sur ${geoContent.trust.reviewCountLabel} avis vérifiés.`}
         keyword="avis clients assurance"
         keywords="témoignages assurance, retour expérience, satisfaction"
         canonical="https://www.jemassuremoinscher.fr/avis-clients"
@@ -112,8 +109,8 @@ const AvisClients = () => {
                   <Star key={star} className="w-8 h-8 fill-secondary text-secondary" />
                 ))}
               </div>
-              <div className="text-4xl font-black text-foreground mb-1">4.8/5</div>
-              <p className="text-muted-foreground">sur <span className="font-semibold text-foreground">250</span> {t('reviewsPage.verifiedReviews')}</p>
+              <div className="text-4xl font-black text-foreground mb-1">{geoContent.trust.ratingValueLabel}/5</div>
+              <p className="text-muted-foreground">sur <span className="font-semibold text-foreground">{geoContent.trust.reviewCountLabel}</span> {t('reviewsPage.verifiedReviews')}</p>
               {/* Google logo */}
               <div className="flex items-center justify-center gap-2 mt-3">
                 <svg viewBox="0 0 24 24" className="w-5 h-5" aria-hidden="true">
