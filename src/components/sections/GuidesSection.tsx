@@ -8,13 +8,18 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { BookOpen, FileText, Scale, X, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
+import arthurBike from "@/assets/mascotte/arthur-bike.webp";
+import arthurClimbing from "@/assets/mascotte/arthur-climbing.webp";
+import arthurKayak from "@/assets/mascotte/arthur-kayak.webp";
+import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 
 interface Article {
   id: number;
   titleKey: string;
   excerptKey: string;
   icon: React.ReactNode;
+  mascot?: string;
+  mascotAlt?: string;
   color: string;
   gradient: string;
   content: {
@@ -62,10 +67,23 @@ const GuideCard = ({ article, index, total, onOpen, t }: {
             </span>
           </div>
 
-          {/* Icon */}
-          <div className={`w-16 h-16 rounded-2xl ${article.gradient} flex items-center justify-center shadow-lg mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
-            {article.icon}
-          </div>
+          {/* Mascot or Icon */}
+          {article.mascot ? (
+            <div className="w-20 h-20 mb-5 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500">
+              <img
+                src={article.mascot}
+                alt={article.mascotAlt || "Arthur mascotte"}
+                className="w-full h-full object-contain"
+                width={80}
+                height={80}
+                loading="lazy"
+              />
+            </div>
+          ) : (
+            <div className={`w-16 h-16 rounded-2xl ${article.gradient} flex items-center justify-center shadow-lg mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
+              {article.icon}
+            </div>
+          )}
 
           {/* Content */}
           <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300 leading-tight">
@@ -98,6 +116,8 @@ const GuidesSection = () => {
       titleKey: 'guides.article1.title',
       excerptKey: 'guides.article1.excerpt',
       icon: <Scale className="w-10 h-10 md:w-12 md:h-12 text-white" />,
+      mascot: arthurClimbing,
+      mascotAlt: "Arthur escalade — guide loi Hamon",
       color: "bg-primary",
       gradient: "bg-gradient-to-br from-primary to-primary/70",
       content: language === 'en' ? {
@@ -123,6 +143,8 @@ const GuidesSection = () => {
       titleKey: 'guides.article2.title',
       excerptKey: 'guides.article2.excerpt',
       icon: <BookOpen className="w-10 h-10 md:w-12 md:h-12 text-white" />,
+      mascot: arthurKayak,
+      mascotAlt: "Arthur kayak — économies d'assurance",
       color: "bg-accent",
       gradient: "bg-gradient-to-br from-accent to-accent/70",
       content: language === 'en' ? {
@@ -152,6 +174,8 @@ const GuidesSection = () => {
       titleKey: 'guides.article3.title',
       excerptKey: 'guides.article3.excerpt',
       icon: <FileText className="w-10 h-10 md:w-12 md:h-12 text-white" />,
+      mascot: arthurKarting,
+      mascotAlt: "Arthur karting — assurance jeune conducteur",
       color: "bg-primary",
       gradient: "bg-gradient-to-br from-primary/80 to-accent/80",
       content: language === 'en' ? {
@@ -194,7 +218,7 @@ const GuidesSection = () => {
         >
           <motion.div className="relative inline-block mb-6">
             <motion.img
-                src={arthurFlying}
+                src={arthurBike}
                 alt="Arthur"
                 className="w-20 h-auto md:w-28"
                 width={112}
