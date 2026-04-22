@@ -17,7 +17,7 @@ import { useHoneypot } from "@/hooks/useHoneypot";
 import { trackGoogleAdsConversionWithParams } from "@/utils/googleAdsTracking";
 import { trackMetaLead } from "@/utils/metaPixelTracking";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { normalizeInsuranceType } from "@/utils/insuranceTypeNormalizer";
+import { normalizeInsuranceTypeStrict } from "@/utils/insuranceTypeNormalizer";
 
 const COVERAGE_OPTIONS: Record<string, { value: string; labelKey: string }[]> = {
   auto: [
@@ -134,11 +134,17 @@ export const QuoteRequestForm = () => {
 
   const onSubmit = async (data: QuoteFormData) => {
     if (isBot()) { setIsSuccess(true); return; }
+    const canonicalType = normalizeInsuranceTypeStrict(data.insuranceType);
+    if (!canonicalType) {
+      toast.error(`Type d'assurance non reconnu: ${data.insuranceType}`);
+      form.setError("insuranceType", { message: "Type d'assurance invalide" });
+      return;
+    }
     setIsSubmitting(true);
 
     try {
       const { data: insertedQuote, error } = await supabase.from("insurance_quotes").insert({
-        insurance_type: normalizeInsuranceType(data.insuranceType),
+        insurance_type: canonicalType,
         full_name: data.fullName,
         email: data.email,
         phone: data.phone,
