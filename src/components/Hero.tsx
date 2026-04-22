@@ -146,17 +146,12 @@ const Hero = () => {
               to={category.link}
               onClick={() => handleCategoryClick(t(category.labelKey))}
               className="block relative group/card">
-              {/* Soft dark drop shadow for depth */}
+              {/* Stacked card behind for 3D relief effect */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-x-2 -bottom-2 h-6 rounded-full bg-black/40 blur-lg opacity-70 group-hover/card:opacity-90 transition-opacity duration-300"
+                className="pointer-events-none absolute inset-0 translate-x-1 translate-y-1.5 rounded-[1.5rem] bg-primary/40 group-hover/card:translate-x-1.5 group-hover/card:translate-y-2 transition-transform duration-300"
               />
-              {/* Warm accent glow behind card */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -inset-2 rounded-[2rem] bg-accent/40 blur-2xl opacity-50 group-hover/card:opacity-80 transition-opacity duration-500"
-              />
-              <Card className="relative p-4 md:p-6 bg-white/95 backdrop-blur-sm border-2 border-transparent hover:border-accent transition-all duration-300 cursor-pointer group card-hover active:scale-95 shadow-[0_12px_28px_-6px_rgba(0,0,0,0.35)]">
+              <Card className="relative p-4 md:p-6 bg-white/95 backdrop-blur-sm border-2 border-transparent hover:border-accent transition-all duration-300 cursor-pointer group card-hover active:scale-95 shadow-[0_6px_16px_-4px_rgba(0,0,0,0.3)]">
                 <div className="flex flex-col items-center gap-2 md:gap-3">
                   <img
                     src={category.mascot}
