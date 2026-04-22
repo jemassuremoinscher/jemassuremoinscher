@@ -114,6 +114,7 @@ const AssuranceMetiersAtypiques = () => {
       title: "Parcs accrobranche & loisirs aventure",
       description: "Tyroliennes, parcours dans les arbres, via ferrata, escape outdoor, accroclim. Norme EN 15567.",
       slug: "/blog/assurance-parc-accrobranche-obligations-2026",
+      landing: "/landing/accrobranche",
       arthur: arthurClimbing,
       arthurAlt: "Arthur grimpeur — assurance accrobranche",
     },
@@ -122,6 +123,7 @@ const AssuranceMetiersAtypiques = () => {
       title: "Sports outdoor & moniteurs",
       description: "Guides de montagne, moniteurs escalade, kayak, parapente, VTT, canyoning. Code du sport L.321-1.",
       slug: "/blog/assurance-moniteur-sports-outdoor-2026",
+      landing: "/landing/moniteur-sport",
       arthur: arthurKayak,
       arthurAlt: "Arthur kayak — assurance moniteur sport",
     },
@@ -130,6 +132,7 @@ const AssuranceMetiersAtypiques = () => {
       title: "Événementiel & festivals",
       description: "Organisateurs de concerts, marathons, salons, courses d'obstacles. RC + annulation + bénévoles.",
       slug: "/blog/assurance-organisateur-evenement-festival-2026",
+      landing: "/landing/evenementiel",
       arthur: arthurKarting,
       arthurAlt: "Arthur karting — assurance événement",
     },
@@ -138,6 +141,7 @@ const AssuranceMetiersAtypiques = () => {
       title: "BTP spécialisé & métiers à risques",
       description: "Cordistes, désamianteurs, élagueurs, travaux acrobatiques, étanchéité toiture. Certifs IRATA, QualiBat.",
       slug: "/assurance-rc-pro",
+      landing: "/landing/cordiste-btp",
       arthur: arthurBike,
       arthurAlt: "Arthur vélo — métiers à risques",
     },
@@ -266,6 +270,37 @@ const AssuranceMetiersAtypiques = () => {
               <p className="text-xs text-muted-foreground mt-4 italic">
                 Votre activité ne figure pas ici ? Contactez-nous, nous trouvons quasi systématiquement une solution.
               </p>
+            </div>
+
+            {/* Landing pages dédiées par métier */}
+            <div className="mt-10">
+              <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2 text-center">
+                Pages dédiées par métier
+              </h3>
+              <p className="text-center text-muted-foreground text-sm mb-6 max-w-2xl mx-auto">
+                Tarifs, garanties, obligations légales et devis express pour chaque activité.
+              </p>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                {niches.map((niche) => (
+                  <Link
+                    key={niche.landing}
+                    to={niche.landing}
+                    className="group flex items-center gap-3 p-4 rounded-xl border border-border/50 bg-card hover:border-primary/40 hover:bg-primary/5 transition-all"
+                  >
+                    <div className="p-2 rounded-lg bg-primary/10 shrink-0">
+                      <niche.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors leading-tight">
+                        {niche.title.split(" & ")[0].split(" spécialisé")[0]}
+                      </div>
+                      <div className="text-xs text-muted-foreground inline-flex items-center gap-1 mt-0.5">
+                        Devis express <ArrowRight className="w-3 h-3" />
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </section>
 
