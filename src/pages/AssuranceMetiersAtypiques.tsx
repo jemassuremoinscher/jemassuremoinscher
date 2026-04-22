@@ -9,7 +9,7 @@ import SEOOptimized from "@/components/SEOOptimized";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurClimbing from "@/assets/mascotte/arthur-climbing.webp";
 import arthurKayak from "@/assets/mascotte/arthur-kayak.webp";
-import arthurBike from "@/assets/mascotte/arthur-bike.webp";
+import arthurBtp from "@/assets/mascotte/arthur-btp.webp";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
@@ -138,8 +138,8 @@ const AssuranceMetiersAtypiques = () => {
       title: "BTP spécialisé & métiers à risques",
       description: "Cordistes, désamianteurs, élagueurs, travaux acrobatiques, étanchéité toiture. Certifs IRATA, QualiBat.",
       slug: "/assurance-rc-pro",
-      arthur: arthurBike,
-      arthurAlt: "Arthur vélo — métiers à risques",
+      arthur: arthurBtp,
+      arthurAlt: "Arthur cordiste BTP — métiers à risques",
     },
   ];
 
@@ -363,7 +363,7 @@ const AssuranceMetiersAtypiques = () => {
             ctaTitle="Votre activité mérite une couverture sur-mesure"
             ctaDescription="Demande de rappel gratuite et sans engagement. Un courtier dédié vous rappelle sous 48 h avec une étude personnalisée et 2 à 3 propositions argumentées."
             ctaButtonLabel="Demander mon rappel sous 48 h"
-            ctaMascotSrc={arthurBike}
+            ctaMascotSrc={arthurBtp}
             ctaMascotAlt="Arthur — Métiers Atypiques"
             onCtaClick={scrollToForm}
           />
