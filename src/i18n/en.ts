@@ -1995,8 +1995,8 @@ const en: Record<string, string> = {
 
   // Blog page extras
   'breadcrumb.home': 'Home',
-  'blogPage.seoTitle': 'Insurance Blog - Tips & News',
-  'blogPage.seoDesc': 'Insurance articles: guides, Lemoine law, Hamon law, tips for saving.',
+  'blogPage.seoTitle': 'Insurance blog | Guides and tips 2026',
+  'blogPage.seoDesc': 'Explore our 2026 insurance guides, practical tips and explainers to compare policies and save money.',
   'blogPage.allArticles': 'All articles',
   'blogArticlePage.backToBlogAria': 'Go back to the blog article list',
   'blogArticlePage.shareAria': 'Share this article',
