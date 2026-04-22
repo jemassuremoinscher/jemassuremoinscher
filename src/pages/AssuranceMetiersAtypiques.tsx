@@ -222,12 +222,12 @@ const AssuranceMetiersAtypiques = () => {
             <div className="grid sm:grid-cols-2 gap-5">
               {niches.map((niche) => (
                 <Link key={niche.slug} to={niche.slug}>
-                  <Card className="p-6 hover:border-primary/40 transition-all group cursor-pointer h-full">
+                  <Card className="p-6 hover:border-primary/40 transition-all group cursor-pointer h-full overflow-hidden relative">
                     <div className="flex items-start gap-4">
                       <div className="p-3 rounded-xl bg-primary/10 shrink-0">
                         <niche.icon className="w-6 h-6 text-primary" />
                       </div>
-                      <div>
+                      <div className="flex-1 min-w-0 pr-16 sm:pr-20">
                         <h3 className="font-bold text-foreground group-hover:text-primary transition-colors mb-2">
                           {niche.title}
                         </h3>
@@ -237,6 +237,14 @@ const AssuranceMetiersAtypiques = () => {
                         </span>
                       </div>
                     </div>
+                    <img
+                      src={niche.arthur}
+                      alt={niche.arthurAlt}
+                      className="absolute -bottom-2 -right-2 w-20 sm:w-24 h-auto opacity-90 group-hover:scale-105 transition-transform select-none pointer-events-none"
+                      width={96}
+                      height={96}
+                      loading="lazy"
+                    />
                   </Card>
                 </Link>
               ))}
@@ -266,9 +274,9 @@ const AssuranceMetiersAtypiques = () => {
             <h2 className="text-3xl font-bold text-foreground mb-10 text-center">Comment ça marche ?</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { step: "1", title: "Analyse risque sectorielle", desc: "Notre courtier identifie les expositions spécifiques de votre activité (corporelles, matérielles, juridiques, financières)." },
-                { step: "2", title: "Mise en concurrence 8+ assureurs", desc: "Nous sollicitons uniquement les assureurs spécialisés ayant un appétit pour votre secteur — pas de refus inutiles." },
-                { step: "3", title: "Contrat sur-mesure signé", desc: "Vous recevez 2 à 3 propositions argumentées sous 72 h. Souscription et attestation immédiate à la signature." },
+                { step: "1", title: "Questionnaire détaillé activité", desc: "9 questions ciblées sur votre activité, vos certifications, votre fréquentation et votre sinistralité — pour un dossier solide dès le départ." },
+                { step: "2", title: "Mise en concurrence 20 assureurs", desc: "Nous sollicitons uniquement les assureurs spécialisés ayant un appétit pour votre secteur — pas de refus inutiles." },
+                { step: "3", title: "Rappel & propositions sous 48 h", desc: "Un courtier dédié vous rappelle sous 48 h ouvrées avec 2 à 3 propositions argumentées. Souscription et attestation immédiate à la signature." },
               ].map((s) => (
                 <Card key={s.step} className="p-6">
                   <div className="text-5xl font-bold text-primary/20 mb-3">{s.step}</div>
@@ -281,7 +289,7 @@ const AssuranceMetiersAtypiques = () => {
 
           {/* Formulaire devis */}
           <div ref={formRef} className="mb-16 min-h-[480px]">
-            <MultiStepQuoteForm insuranceType="rc_pro" />
+            <MultiStepQuoteForm insuranceType="metiers_atypiques" />
           </div>
 
           {/* SEO Tabs (FAQ + Garanties) */}
@@ -291,7 +299,7 @@ const AssuranceMetiersAtypiques = () => {
           <section className="max-w-3xl mx-auto mb-16 prose prose-sm md:prose-base text-muted-foreground leading-relaxed [&_strong]:text-foreground [&_h2]:text-foreground [&_h3]:text-foreground">
             <h2 className="text-2xl font-bold mb-4">Pourquoi un courtier spécialisé pour les métiers atypiques ?</h2>
             <p>
-              Les assureurs généralistes — <strong>AXA, MAIF, Allianz, Groupama, MMA classique</strong> — refusent ou surfacturent systématiquement les activités classées « risques aggravés » par leurs grilles internes : exploitation de tyroliennes, encadrement sportif outdoor, chapiteaux événementiels, travaux en hauteur sur cordes, désamiantage. Pourtant, des assureurs spécialisés comme <strong>Hiscox, Albingia, CFDP, MMA Pro Sport, Generali Évolution Pro, Circles Group, Verspieren et Gras Savoye Événement</strong> disposent de produits dédiés — encore faut-il y accéder, savoir présenter le dossier, et négocier les conditions.
+              Les assureurs généralistes — <strong>AXA, MAIF, Allianz, Groupama, MMA classique</strong> — refusent ou surfacturent systématiquement les activités classées « risques aggravés » par leurs grilles internes : exploitation de tyroliennes, encadrement sportif outdoor, chapiteaux événementiels, travaux en hauteur sur cordes, désamiantage. Pourtant, <strong>20 assureurs spécialisés</strong> du marché français — <strong>Hiscox, Albingia, CFDP, MMA Pro Sport, Generali Évolution Pro, Circles Group, Verspieren, Gras Savoye Événement, Beazley, Markel, Liberty Specialty, Chubb, AIG, Tokio Marine HCC, QBE, Wakam, Helvetia Pro, Société Générale Insurance, Zurich Pro et Allianz Global Specialty</strong> — disposent de produits dédiés. Encore faut-il y accéder, savoir présenter le dossier, et négocier les conditions.
             </p>
             <p>
               C'est notre métier depuis 2018. Chez <strong>jemassuremoinscher.fr</strong>, notre cellule Métiers Atypiques traite chaque année plus de 1 800 dossiers refusés ailleurs : moniteurs de canyoning des gorges du Verdon, exploitants accrobranche en Ardèche, organisateurs de trails dans les Pyrénées, cordistes parisiens intervenant sur la Tour Eiffel, élagueurs de la Côte d'Azur. Notre taux de placement dépasse <strong>92 %</strong>, contre 35 % en souscription directe.
@@ -348,9 +356,9 @@ const AssuranceMetiersAtypiques = () => {
           <InsuranceBottomHub
             currentPage="rcpro"
             ctaTitle="Votre activité mérite une couverture sur-mesure"
-            ctaDescription="Devis gratuit et sans engagement sous 48 h. Un courtier dédié vous accompagne de la souscription au sinistre."
-            ctaButtonLabel="Obtenir mon devis maintenant"
-            ctaMascotSrc={arthurFlying}
+            ctaDescription="Demande de rappel gratuite et sans engagement. Un courtier dédié vous rappelle sous 48 h avec une étude personnalisée et 2 à 3 propositions argumentées."
+            ctaButtonLabel="Demander mon rappel sous 48 h"
+            ctaMascotSrc={arthurBike}
             ctaMascotAlt="Arthur — Métiers Atypiques"
             onCtaClick={scrollToForm}
           />
