@@ -24,7 +24,7 @@ import arthurExcited from "@/assets/mascotte/arthur-excited.webp";
 
 const baseStats = [
   { icon: Users, value: "120k+", label: "Clients accompagnés" },
-  { icon: Star, value: "4.8/5", label: "2 847 avis" },
+  { icon: Star, value: "4.9/5", label: "247 avis" },
   { icon: TrendingDown, value: "Jusqu'à -40%", label: "Économies moy." },
   { icon: Clock, value: "2 min", label: "Pour le devis" },
 ];
@@ -57,7 +57,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     insuranceLabel: "Assurance Auto",
     stats: [
       { icon: Car, value: "15k+", label: "Automobilistes" },
-      { icon: Star, value: "4.8/5", label: "2 847 avis" },
+      { icon: Star, value: "4.9/5", label: "247 avis" },
       { icon: TrendingDown, value: "-600 €", label: "Économie moy." },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],

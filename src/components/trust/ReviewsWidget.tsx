@@ -120,7 +120,7 @@ export const ReviewsWidget = () => {
             <div className="text-sm text-muted-foreground">Avis vérifiés</div>
           </div>
           <div className="text-center p-4 bg-background rounded-lg border">
-            <div className="text-2xl font-bold text-primary">4.8/5</div>
+            <div className="text-2xl font-bold text-primary">4.9/5</div>
             <div className="text-sm text-muted-foreground">Note moyenne</div>
           </div>
           <div className="text-center p-4 bg-background rounded-lg border">
