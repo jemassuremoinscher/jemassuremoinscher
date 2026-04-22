@@ -12,7 +12,7 @@ import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { useHoneypot } from '@/hooks/useHoneypot';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { normalizeInsuranceType } from '@/utils/insuranceTypeNormalizer';
+import { normalizeInsuranceTypeStrict } from '@/utils/insuranceTypeNormalizer';
 
 const simplifiedLeadSchema = z.object({
   fullName: z.string().trim().min(2, 'Nom requis').max(100),
@@ -41,11 +41,16 @@ export const SimplifiedLeadForm = ({ insuranceType, insuranceLabel }: Simplified
 
   const onSubmit = async (data: SimplifiedLeadData) => {
     if (isBot()) { setIsSuccess(true); return; }
+    const canonicalType = normalizeInsuranceTypeStrict(insuranceType);
+    if (!canonicalType) {
+      toast.error(`Type d'assurance invalide: ${insuranceType}`);
+      return;
+    }
     setIsSubmitting(true);
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const utmData = { source: urlParams.get('utm_source') || 'direct', medium: urlParams.get('utm_medium') || 'organic', campaign: urlParams.get('utm_campaign') || 'none', term: urlParams.get('utm_term') || null, content: urlParams.get('utm_content') || null };
-      const { error } = await supabase.from('insurance_quotes').insert({ insurance_type: normalizeInsuranceType(insuranceType), full_name: data.fullName, email: data.email, phone: data.phone, quote_data: { source: `landing_${insuranceType}`, utm_data: utmData }, status: 'pending' });
+      const { error } = await supabase.from('insurance_quotes').insert({ insurance_type: canonicalType, full_name: data.fullName, email: data.email, phone: data.phone, quote_data: { source: `landing_${canonicalType}`, utm_data: utmData }, status: 'pending' });
       if (error) throw error;
       const { error: emailError } = await supabase.functions.invoke('send-quote-email', { body: { name: data.fullName, email: data.email, phone: data.phone, type: insuranceType, details: { source: `landing_${insuranceType}`, utm: utmData }, estimatedPrice: 35 } });
       if (emailError) console.error("Error sending email:", emailError);

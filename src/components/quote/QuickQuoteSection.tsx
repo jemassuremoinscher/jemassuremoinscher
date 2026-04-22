@@ -13,7 +13,7 @@ import { useHoneypot } from "@/hooks/useHoneypot";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-idea.webp";
 import { trackMetaLead } from "@/utils/metaPixelTracking";
-import { normalizeInsuranceType } from "@/utils/insuranceTypeNormalizer";
+import { normalizeInsuranceTypeStrict } from "@/utils/insuranceTypeNormalizer";
 
 type InsuranceType = "auto" | "moto" | "habitation" | "sante" | "pret" | "animaux" | "vie" | "prevoyance" | "rc_pro" | "mrp" | "gli" | "pno" | "";
 
@@ -214,10 +214,15 @@ const QuickQuoteSection = () => {
   const handleSubmit = async () => {
     if (isSubmitting) return;
     if (isBot()) { setIsSuccess(true); return; }
+    const canonicalType = normalizeInsuranceTypeStrict(quoteData.insuranceType);
+    if (!canonicalType) {
+      toast.error(`Type d'assurance invalide: ${quoteData.insuranceType}`);
+      return;
+    }
     setIsSubmitting(true);
     try {
       const { error } = await supabase.from('insurance_quotes').insert({
-        insurance_type: normalizeInsuranceType(quoteData.insuranceType), full_name: '', email: quoteData.email, phone: quoteData.phone,
+        insurance_type: canonicalType, full_name: '', email: quoteData.email, phone: quoteData.phone,
         quote_data: { source: 'quick_quote', profileOption: quoteData.profileOption, coverageLevel: quoteData.coverageLevel, vehicleBrand: quoteData.vehicleBrand || undefined },
         status: 'pending',
       });

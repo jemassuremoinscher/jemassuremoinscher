@@ -926,6 +926,7 @@ export type Database = {
         Returns: boolean
       }
       is_valid_email: { Args: { _email: string }; Returns: boolean }
+      normalize_insurance_type: { Args: { _input: string }; Returns: string }
       reassign_pending_leads: { Args: never; Returns: number }
     }
     Enums: {

@@ -13,7 +13,7 @@ import { useAnalytics } from '@/hooks/useAnalytics';
 import { useHoneypot } from '@/hooks/useHoneypot';
 import { trackGoogleAdsConversionWithParams } from '@/utils/googleAdsTracking';
 import { trackMetaLead } from '@/utils/metaPixelTracking';
-import { normalizeInsuranceType } from '@/utils/insuranceTypeNormalizer';
+import { normalizeInsuranceTypeStrict } from '@/utils/insuranceTypeNormalizer';
 import { stepConfigsByType, type InsuranceType, type FormStep, type StepOption } from './stepConfigs';
 import { useFieldTracking } from '@/hooks/useFieldTracking';
 import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from '@/data/vehicleBrands';
@@ -258,8 +258,15 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
     setIsSubmitting(true);
     try {
       const insType = formData.insuranceType || insuranceType;
+      const rawType = insType === 'comparateur' ? (formData.insuranceType || 'auto') : insType;
+      const canonicalType = normalizeInsuranceTypeStrict(rawType);
+      if (!canonicalType) {
+        toast.error(`Type d'assurance invalide: ${rawType}`);
+        setIsSubmitting(false);
+        return;
+      }
       const { data: insertedQuote, error } = await supabase.from('insurance_quotes').insert({
-        insurance_type: normalizeInsuranceType(insType === 'comparateur' ? (formData.insuranceType || 'auto') : insType),
+        insurance_type: canonicalType,
         full_name: contactData.fullName,
         email: contactData.email,
         phone: contactData.phone,
