@@ -114,24 +114,32 @@ const AssuranceMetiersAtypiques = () => {
       title: "Parcs accrobranche & loisirs aventure",
       description: "Tyroliennes, parcours dans les arbres, via ferrata, escape outdoor, accroclim. Norme EN 15567.",
       slug: "/blog/assurance-parc-accrobranche-obligations-2026",
+      arthur: arthurClimbing,
+      arthurAlt: "Arthur grimpeur — assurance accrobranche",
     },
     {
       icon: Mountain,
       title: "Sports outdoor & moniteurs",
       description: "Guides de montagne, moniteurs escalade, kayak, parapente, VTT, canyoning. Code du sport L.321-1.",
       slug: "/blog/assurance-moniteur-sports-outdoor-2026",
+      arthur: arthurKayak,
+      arthurAlt: "Arthur kayak — assurance moniteur sport",
     },
     {
       icon: PartyPopper,
       title: "Événementiel & festivals",
       description: "Organisateurs de concerts, marathons, salons, courses d'obstacles. RC + annulation + bénévoles.",
       slug: "/blog/assurance-organisateur-evenement-festival-2026",
+      arthur: arthurKarting,
+      arthurAlt: "Arthur karting — assurance événement",
     },
     {
       icon: HardHat,
       title: "BTP spécialisé & métiers à risques",
       description: "Cordistes, désamianteurs, élagueurs, travaux acrobatiques, étanchéité toiture. Certifs IRATA, QualiBat.",
       slug: "/assurance-rc-pro",
+      arthur: arthurBike,
+      arthurAlt: "Arthur vélo — métiers à risques",
     },
   ];
 
@@ -150,7 +158,7 @@ const AssuranceMetiersAtypiques = () => {
     <div className="min-h-screen">
       <SEOOptimized
         title="Assurance Métiers Atypiques 2026 : RC Pro sur-mesure activités à risques"
-        description="Courtier spécialisé activités atypiques : accrobranche, sports outdoor, événementiel, BTP spécialisé. 12 assureurs partenaires. Devis 48 h. Tarifs négociés —50 %."
+        description="Courtier spécialisé activités atypiques : accrobranche, sports outdoor, événementiel, BTP spécialisé. 20 assureurs de niche. Rappel & devis sous 48 h."
         keyword="assurance métiers atypiques"
         keywords="assurance activité à risque, RC pro spécialisée, assurance accrobranche, assurance moniteur sport, assurance organisateur événement, assurance cordiste"
         canonical="https://www.jemassuremoinscher.fr/assurance-metiers-atypiques"
@@ -163,19 +171,19 @@ const AssuranceMetiersAtypiques = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center relative">
               <ArthurHero
-                imageSrc={arthurBusiness}
-                imageAlt="Arthur expert en assurances de métiers atypiques"
-                speechText="Refusé ailleurs ? On a la solution. 12 assureurs de niche, 0 refus, devis sous 48 h."
+                imageSrc={arthurClimbing}
+                imageAlt="Arthur grimpeur — expert en assurances de métiers atypiques"
+                speechText="Refusé ailleurs ? On a la solution. 20 assureurs de niche, 0 refus, rappel sous 48 h."
               />
               <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">
                 Assurance Métiers Atypiques : couvrir l'inassurable, c'est notre métier
               </h1>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Accrobranche, sports outdoor, événementiel, cordistes, métiers à risques aggravés… Nos courtiers négocient avec les 12 assureurs spécialisés du marché français pour vous trouver une couverture sur-mesure, sans surprime injustifiée.
+                Accrobranche, sports outdoor, événementiel, cordistes, métiers à risques aggravés… Nos courtiers négocient avec les 20 assureurs spécialisés du marché français pour vous trouver une couverture sur-mesure, sans surprime injustifiée.
               </p>
               <div className="flex flex-wrap justify-center gap-3 mb-8 text-sm">
-                <span className="px-4 py-2 rounded-full bg-card/80 backdrop-blur border border-border/50 font-semibold text-foreground">+50 partenaires spécialisés</span>
-                <span className="px-4 py-2 rounded-full bg-card/80 backdrop-blur border border-border/50 font-semibold text-foreground">Devis sous 48 h</span>
+                <span className="px-4 py-2 rounded-full bg-card/80 backdrop-blur border border-border/50 font-semibold text-foreground">20 assureurs de niche</span>
+                <span className="px-4 py-2 rounded-full bg-card/80 backdrop-blur border border-border/50 font-semibold text-foreground">Rappel sous 48 h</span>
                 <span className="px-4 py-2 rounded-full bg-card/80 backdrop-blur border border-border/50 font-semibold text-foreground">0 refus = courtier dédié</span>
               </div>
               <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Obtenir un devis assurance métier atypique">
