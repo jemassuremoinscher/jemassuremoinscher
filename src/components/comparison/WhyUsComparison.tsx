@@ -142,7 +142,7 @@ const WhyUsComparison = () => {
                 ))}
               </div>
               <p className="text-3xl font-black text-foreground">{geoContent.trust.ratingValueLabel}<span className="text-lg text-muted-foreground">/5</span></p>
-              <p className="text-xs text-muted-foreground">{t('whyUs.googleReviews')}</p>
+              <p className="text-xs text-muted-foreground">sur Google Reviews • {geoContent.trust.reviewCountLabel} avis vérifiés</p>
           </motion.div>
 
           {/* ORIAS */}
