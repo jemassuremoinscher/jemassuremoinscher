@@ -36,6 +36,7 @@ export const routes: RouteConfig[] = [
   { path: "/assurance-mrp", changefreq: "weekly", priority: 0.7 },
   { path: "/assurance-prevoyance", changefreq: "weekly", priority: 0.7 },
   { path: "/assurance-rc-pro", changefreq: "weekly", priority: 0.9 },
+  { path: "/assurance-metiers-atypiques", changefreq: "weekly", priority: 0.9 },
 
   // SEO Pages
   { path: "/assurance-auto-malusse", changefreq: "weekly", priority: 0.8 },
@@ -161,6 +162,9 @@ export const blogArticles: RouteConfig[] = [
   { path: "/blog/hypnose-remboursement-mutuelle-2026", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/devis-assurance-auto-jeune-conducteur-2026", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/assurance-pno-pas-chere-comparatif-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/assurance-parc-accrobranche-obligations-2026", changefreq: "monthly", priority: 0.9 },
+  { path: "/blog/assurance-moniteur-sports-outdoor-2026", changefreq: "monthly", priority: 0.9 },
+  { path: "/blog/assurance-organisateur-evenement-festival-2026", changefreq: "monthly", priority: 0.9 },
 ];
 
 // Glossary terms
