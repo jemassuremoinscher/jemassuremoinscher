@@ -140,6 +140,7 @@ const Blog = () => {
                     { label: "Retrait de permis", to: "/profil/retrait-permis" },
                     { label: "Multi-sinistré (3+)", to: "/profil/frequence-sinistres" },
                     { label: "Jeune + voiture puissante", to: "/profil/jeune-conducteur-voiture-puissante" },
+                    { label: "Métiers atypiques", to: "/assurance-metiers-atypiques" },
                     { label: "Primo-assuré", to: "/profil/sans-antecedents" },
                   ]
                 },
