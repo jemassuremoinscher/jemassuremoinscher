@@ -68,7 +68,8 @@ const Header = () => {
 
   const assurancesPro = [
     { to: "/assurance-rc-pro", label: t('insurance.rcPro'), icon: Building2 },
-    { to: "/assurance-mrp", label: t('insurance.mrp'), icon: Building2 }
+    { to: "/assurance-mrp", label: t('insurance.mrp'), icon: Building2 },
+    { to: "/assurance-metiers-atypiques", label: "Métiers Atypiques", icon: Building2 }
   ];
 
   const assurancesVieEpargne = [

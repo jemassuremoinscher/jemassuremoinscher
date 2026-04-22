@@ -27,6 +27,7 @@ const allProducts: Record<string, RelatedLink> = {
   trottinette: { to: "/assurance-trottinette-electrique", label: "Assurance Trottinette", description: "EDPM : assurance obligatoire dès 3,50€/mois" },
   permisEtranger: { to: "/assurance-auto-permis-etranger", label: "Permis Étranger", description: "Assurance auto avec permis étranger accepté" },
   emprunteur: { to: "/assurance-emprunteur", label: "Assurance Emprunteur", description: "Changez à tout moment, économisez jusqu'à 15 000€" },
+  metiersAtypiques: { to: "/assurance-metiers-atypiques", label: "Métiers Atypiques", description: "Activités à risques : devis sur-mesure auprès de 12 assureurs spé." },
 };
 
 const nicheLinks = [
@@ -147,9 +148,12 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   rcpro: {
-    products: ["mrp", "prevoyance", "gli"],
+    products: ["mrp", "metiersAtypiques", "prevoyance"],
     articles: [
       { to: "/blog/nouvelle-reglementation-assurance-2026", label: "Nouvelles réglementations 2026" },
+      { to: "/blog/assurance-parc-accrobranche-obligations-2026", label: "Assurance parc accrobranche 2026" },
+      { to: "/blog/assurance-moniteur-sports-outdoor-2026", label: "Assurance moniteur sports outdoor" },
+      { to: "/blog/assurance-organisateur-evenement-festival-2026", label: "Assurance organisateur d'événement" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
@@ -157,9 +161,10 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   mrp: {
-    products: ["rcpro", "pno", "gli"],
+    products: ["rcpro", "metiersAtypiques", "pno"],
     articles: [
       { to: "/blog/nouvelle-reglementation-assurance-2026", label: "Nouvelles réglementations 2026" },
+      { to: "/blog/assurance-parc-accrobranche-obligations-2026", label: "Assurance parc accrobranche 2026" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
