@@ -8,6 +8,10 @@ import arthurDetective from "@/assets/mascotte/arthur-detective.webp";
 import arthurMoto from "@/assets/mascotte/arthur-moto.webp";
 import arthurPointing from "@/assets/mascotte/arthur-pointing.webp";
 import arthurRunningCoin from "@/assets/mascotte/arthur-running-coin.webp";
+import arthurClimbing from "@/assets/mascotte/arthur-climbing.webp";
+import arthurKayak from "@/assets/mascotte/arthur-kayak.webp";
+import arthurBike from "@/assets/mascotte/arthur-bike.webp";
+import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 
 const categoryArthurMap: Record<string, string> = {
   "Assurance Auto": arthurCar,
@@ -17,11 +21,18 @@ const categoryArthurMap: Record<string, string> = {
   "Assurance Emprunteur": arthurBusiness,
   "Assurance Prêt": arthurBusiness,
   "Droits & Litiges": arthurDetective,
-  "Mobilité Verte": arthurMoto,
+  "Mobilité Verte": arthurBike,
   "Conseils Experts": arthurIdea,
   "Guides Pratiques": arthurPointing,
   "Actualités Légales": arthurDetective,
   "Conseils": arthurRunningCoin,
+  "Métiers Atypiques": arthurClimbing,
+  "Sports & Outdoor": arthurClimbing,
+  "Sports Outdoor": arthurClimbing,
+  "Événementiel": arthurKarting,
+  "Loisirs Aventure": arthurClimbing,
+  "Sports Nautiques": arthurKayak,
+  "Vélo & Mobilité": arthurBike,
 };
 
 interface BlogArticleArthurProps {
