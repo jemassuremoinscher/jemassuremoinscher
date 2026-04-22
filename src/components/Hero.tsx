@@ -145,8 +145,13 @@ const Hero = () => {
               key={category.labelKey}
               to={category.link}
               onClick={() => handleCategoryClick(t(category.labelKey))}
-              className="block">
-              <Card className="p-4 md:p-6 bg-white/95 backdrop-blur-sm border-2 border-transparent hover:border-accent transition-all duration-300 cursor-pointer group card-hover active:scale-95">
+              className="block relative group/card">
+              {/* Subtle relief glow behind the card */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-1 rounded-[1.75rem] bg-gradient-to-br from-accent/30 via-white/10 to-primary/20 blur-xl opacity-60 group-hover/card:opacity-90 transition-opacity duration-500"
+              />
+              <Card className="relative p-4 md:p-6 bg-white/95 backdrop-blur-sm border-2 border-transparent hover:border-accent transition-all duration-300 cursor-pointer group card-hover active:scale-95 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)]">
                 <div className="flex flex-col items-center gap-2 md:gap-3">
                   <img
                     src={category.mascot}
