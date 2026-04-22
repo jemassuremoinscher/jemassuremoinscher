@@ -148,9 +148,11 @@
       /* Instant visible shell before JS loads */
       body { margin: 0; font-family: Inter, system-ui, -apple-system, sans-serif; background: hsl(210 20% 98%); color: hsl(220 20% 18%); -webkit-text-size-adjust: 100%; }
       .app-shell { display: flex; flex-direction: column; min-height: 100vh; }
-      .app-shell-header { height: 64px; background: #fff; border-bottom: 1px solid hsl(220 13% 91%); display: flex; align-items: center; padding: 0 1rem; }
-      .app-shell-header .shell-logo { width: 140px; height: 28px; background: hsl(271 81% 56% / 0.12); border-radius: 6px; }
+      .app-shell-header { height: 64px; background: hsl(271 81% 56%); border-bottom: 1px solid hsl(271 70% 48%); display: flex; align-items: center; padding: 0 1rem; }
+      .app-shell-header .shell-brand { display: inline-flex; align-items: center; gap: 0.5rem; color: hsl(0 0% 100%); font-weight: 700; font-size: 1rem; line-height: 1; white-space: nowrap; }
+      .app-shell-header .shell-brand strong { color: hsl(43 80% 65%); font-weight: 700; }
       .app-shell-hero { padding: 3rem 1rem; text-align: center; background: linear-gradient(135deg, hsl(271 81% 56%), hsl(271 75% 45%)); min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      .app-shell-hero .shell-kicker { color: hsl(0 0% 100% / 0.88); font-size: 1.125rem; font-weight: 700; margin: 0 0 1rem; }
       .app-shell-hero .shell-title { height: 2rem; max-width: 500px; width: 80%; margin: 0 auto 1rem; background: hsl(0 0% 100% / 0.2); border-radius: 8px; }
       .app-shell-hero .shell-subtitle { height: 1rem; max-width: 350px; width: 60%; margin: 0 auto 2rem; background: hsl(0 0% 100% / 0.15); border-radius: 6px; }
       .app-shell-hero .shell-cta { display: inline-block; width: 200px; height: 48px; background: hsl(43 80% 65%); border-radius: 24px; }
@@ -254,8 +256,9 @@
     <div id="root">
       <!-- Instant FCP shell — replaced by React on hydration -->
       <div class="app-shell" aria-hidden="true">
-        <div class="app-shell-header"><div class="shell-logo"></div></div>
+        <div class="app-shell-header"><div class="shell-brand">jemassure<strong>moinscher</strong>.fr</div></div>
         <div class="app-shell-hero">
+          <p class="shell-kicker">Comparez 50+ assureurs gratuitement</p>
           <div class="shell-title"></div>
           <div class="shell-subtitle"></div>
           <div class="shell-cta"></div>
