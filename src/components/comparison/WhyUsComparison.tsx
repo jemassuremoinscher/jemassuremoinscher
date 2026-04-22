@@ -140,7 +140,7 @@ const WhyUsComparison = () => {
                   <Star key={star} className={`w-5 h-5 ${star <= 4 ? "fill-yellow-400 text-yellow-400" : "fill-yellow-400/80 text-yellow-400/80"}`} />
                 ))}
               </div>
-              <p className="text-3xl font-black text-foreground">4.8<span className="text-lg text-muted-foreground">/5</span></p>
+              <p className="text-3xl font-black text-foreground">4.9<span className="text-lg text-muted-foreground">/5</span></p>
               <p className="text-xs text-muted-foreground">{t('whyUs.googleReviews')}</p>
           </motion.div>
 
