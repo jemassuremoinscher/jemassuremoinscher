@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Shield, Lock, FileCheck, X, CreditCard, BadgeCheck, ShieldCheck } from "lucide-react";
+import { Shield, Lock, FileCheck, X, BadgeCheck, ShieldCheck } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Dialog,
@@ -181,13 +181,6 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Payment icons */}
-            <div className="flex items-center gap-3 text-primary-foreground/40">
-              <CreditCard className="h-5 w-5" aria-hidden="true" />
-              <span className="text-[10px] uppercase tracking-wider">Visa</span>
-              <span className="text-[10px] uppercase tracking-wider">Mastercard</span>
-              <span className="text-[10px] uppercase tracking-wider">CB</span>
-            </div>
           </div>
 
           {/* Copyright */}
