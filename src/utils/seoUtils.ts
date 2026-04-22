@@ -5,7 +5,7 @@ export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number
     "name": "jemassuremoinscher.fr",
     "url": "https://www.jemassuremoinscher.fr",
     "logo": "https://www.jemassuremoinscher.fr/logo.png",
-    "description": "Comparateur d'assurances pas chères en ligne. Trouvez une assurance pas chère, comparez 50+ assureurs, changez d'assurance facilement. Alternative à LesFurets.",
+    "description": "Comparateur d'assurances pas chères en ligne. Trouvez une assurance pas chère, comparez 50 assureurs, changez d'assurance facilement. Alternative à LesFurets.",
     "alternateName": ["jemassuremoinscher.fr", "je m'assure moins cher", "comparateur assurance pas chère"],
     "contactPoint": {
       "@type": "ContactPoint",
@@ -128,7 +128,7 @@ export const optimizeLandingReassuranceDescription = (title: string, description
   }
 
   if (lowerTitle.includes("assureurs") || lowerTitle.includes("compar")) {
-    return "Nous comparons plus de 30 assureurs pour afficher des options adaptées à votre profil.";
+    return "Nous comparons 50 assureurs pour afficher des options adaptées à votre profil.";
   }
 
   if (lowerTitle.includes("expert") || lowerTitle.includes("rappel")) {
