@@ -50,7 +50,7 @@ const Contact = () => {
     <>
       <SEOOptimized
         title="Contactez-nous | jemassuremoinscher.fr"
-        description="Besoin d'aide ? Contactez-nous par email ou formulaire. Réponse sous 2h."
+        description="Besoin d'aide ? Contactez-nous par email ou formulaire. Réponse sous 30 minutes."
         canonical="https://www.jemassuremoinscher.fr/contact" />
       
       
@@ -186,8 +186,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-foreground mb-1">{t('contactPage.office')}</h3>
-                    <p className="text-sm text-muted-foreground">2, rue d'Angleterre - 06000 Nice </p>
-                    <p className="text-sm text-muted-foreground">{t('contactPage.onlineService')}</p>
+                    <p className="text-sm text-muted-foreground">Notre Siège</p>
+                    <p className="text-sm text-muted-foreground">Service 100% en ligne</p>
                   </div>
                 </div>
               </div>
