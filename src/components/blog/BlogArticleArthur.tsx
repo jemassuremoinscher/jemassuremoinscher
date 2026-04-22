@@ -40,6 +40,7 @@ const slugArthurMap: Record<string, string> = {
   "assurance-parc-accrobranche-obligations-2026": arthurClimbing,
   "assurance-moniteur-sports-outdoor-2026": arthurKayak,
   "assurance-organisateur-evenement-festival-2026": arthurKarting,
+  "velos-cargos-vae-protection-vol-urbain": arthurBike,
 };
 
 interface BlogArticleArthurProps {
