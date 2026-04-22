@@ -221,14 +221,19 @@ const AssuranceMetiersAtypiques = () => {
             </p>
             <div className="grid sm:grid-cols-2 gap-5">
               {niches.map((niche) => (
-                <Link key={niche.slug} to={niche.slug}>
-                  <Card className="p-6 hover:border-primary/40 transition-all group cursor-pointer h-full">
+                <Link
+                  key={niche.slug}
+                  to={niche.slug}
+                  aria-label={`${niche.title} — voir le guide`}
+                  className="group block rounded-[1.5rem] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                >
+                  <Card className="p-6 h-full transition-all duration-300 border-2 border-border/60 group-hover:border-primary group-hover:-translate-y-1 group-hover:shadow-[var(--shadow-hover)] group-active:translate-y-0 group-active:scale-[0.99] group-focus-visible:border-primary">
                     <div className="flex items-start gap-4">
-                      <div className="w-16 h-16 shrink-0 flex items-center justify-center">
+                      <div className="w-16 h-16 shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
                         <img
                           src={niche.arthur}
                           alt={niche.arthurAlt}
-                          className="w-full h-full object-contain group-hover:scale-110 transition-transform select-none pointer-events-none"
+                          className="w-full h-full object-contain select-none pointer-events-none"
                           width={64}
                           height={64}
                           loading="lazy"
@@ -239,8 +244,9 @@ const AssuranceMetiersAtypiques = () => {
                           {niche.title}
                         </h3>
                         <p className="text-sm text-muted-foreground mb-3">{niche.description}</p>
-                        <span className="inline-flex items-center gap-1 text-sm font-medium text-primary">
-                          Voir le guide <ArrowRight className="w-3 h-3" />
+                        <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                          Voir le guide
+                          <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                         </span>
                       </div>
                     </div>
