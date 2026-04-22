@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
-const Header = lazy(() => import("@/components/Header"));
+import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SEOOptimized from "@/components/SEOOptimized";
 import DeferredRender from "@/components/performance/DeferredRender";
@@ -93,9 +93,7 @@ const Index = () => {
         ogImage="https://www.jemassuremoinscher.fr/opengraph-image.png"
         jsonLd={[webSiteSchema, organizationSchema, financialServiceSchema, serviceSchema, breadcrumbSchema, faqSchema]}
       />
-      <Suspense fallback={<div className="h-16 bg-white border-b border-border" />}>
-        <Header />
-      </Suspense>
+      <Header />
       <main id="main-content" role="main">
         <Hero />
 
