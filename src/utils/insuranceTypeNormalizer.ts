@@ -105,6 +105,23 @@ export function normalizeInsuranceType(input: string): CanonicalInsuranceType | 
 }
 
 /**
+ * Strict normalization: returns canonical slug or `null` if input cannot be mapped.
+ * Use this in form validation paths to reject invalid types before DB insert.
+ */
+export function normalizeInsuranceTypeStrict(input: string | null | undefined): CanonicalInsuranceType | null {
+  if (!input) return null;
+  const key = input.trim().toLowerCase();
+  return ALIAS_MAP[key] ?? null;
+}
+
+/**
+ * Type guard: checks whether a value is one of the canonical insurance types.
+ */
+export function isCanonicalInsuranceType(value: unknown): value is CanonicalInsuranceType {
+  return typeof value === 'string' && (CANONICAL_INSURANCE_TYPES as readonly string[]).includes(value);
+}
+
+/**
  * Display labels for canonical insurance types (French).
  */
 export const INSURANCE_TYPE_LABELS: Record<CanonicalInsuranceType, string> = {
