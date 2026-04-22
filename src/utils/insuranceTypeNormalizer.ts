@@ -5,6 +5,7 @@
 export const CANONICAL_INSURANCE_TYPES = [
   'auto', 'moto', 'habitation', 'sante', 'pret', 'animaux',
   'vie', 'prevoyance', 'rc_pro', 'mrp', 'gli', 'pno', 'gestion_locative',
+  'metiers_atypiques',
 ] as const;
 
 export type CanonicalInsuranceType = typeof CANONICAL_INSURANCE_TYPES[number];
@@ -77,6 +78,21 @@ const ALIAS_MAP: Record<string, CanonicalInsuranceType> = {
   'gestion immobilière': 'gestion_locative',
   'gestion immobiliere': 'gestion_locative',
   'administrateur de biens': 'gestion_locative',
+  // Métiers atypiques (risques aggravés)
+  'metiers_atypiques': 'metiers_atypiques',
+  'metiers atypiques': 'metiers_atypiques',
+  'métiers atypiques': 'metiers_atypiques',
+  'assurance metiers atypiques': 'metiers_atypiques',
+  'assurance métiers atypiques': 'metiers_atypiques',
+  'risques aggravés': 'metiers_atypiques',
+  'risques aggraves': 'metiers_atypiques',
+  'accrobranche': 'metiers_atypiques',
+  'cordiste': 'metiers_atypiques',
+  'cordiste btp': 'metiers_atypiques',
+  'evenementiel': 'metiers_atypiques',
+  'événementiel': 'metiers_atypiques',
+  'moniteur sport': 'metiers_atypiques',
+  'moniteur de sport': 'metiers_atypiques',
 };
 
 /**
@@ -105,4 +121,5 @@ export const INSURANCE_TYPE_LABELS: Record<CanonicalInsuranceType, string> = {
   gli: 'Assurance GLI',
   pno: 'Assurance PNO',
   gestion_locative: 'Gestion Locative',
+  metiers_atypiques: 'Métiers Atypiques',
 };
