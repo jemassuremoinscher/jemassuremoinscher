@@ -72,7 +72,7 @@ const Testimonials = () => {
 
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
           <div>
-            <p className="text-4xl font-bold text-accent mb-2">4.8/5</p>
+            <p className="text-4xl font-bold text-accent mb-2">4.9/5</p>
             <p className="text-muted-foreground">{t('testimonials.avgRating')}</p>
           </div>
           <div>

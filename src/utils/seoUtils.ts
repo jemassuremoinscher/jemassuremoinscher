@@ -1,3 +1,5 @@
+import geoContent from "@/data/geo-content.json";
+
 export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number) => {
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
@@ -14,11 +16,7 @@ export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number
       "areaServed": "FR",
       "availableLanguage": "French"
     },
-    "sameAs": [
-      "https://www.facebook.com/jemassuremoinscher",
-      "https://twitter.com/jemassuremoinscher",
-      "https://www.linkedin.com/company/jemassuremoinscher"
-    ]
+    "sameAs": geoContent.trust.sameAs
   };
   if (ratingValue && reviewCount) {
     schema.aggregateRating = {

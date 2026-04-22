@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import SEOOptimized from "@/components/SEOOptimized";
 import DeferredRender from "@/components/performance/DeferredRender";
 import { addOrganizationSchema, addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import geoContent from "@/data/geo-content.json";
 
 // Lazy load below-the-fold sections
 
@@ -21,7 +22,7 @@ const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
 
 const Index = () => {
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }]);
-  const organizationSchema = addOrganizationSchema(4.9, 247);
+  const organizationSchema = addOrganizationSchema(geoContent.trust.ratingValue, geoContent.trust.reviewCount);
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances Moins Chères en Ligne",
     description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 50+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",

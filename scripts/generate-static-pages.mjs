@@ -1,93 +1,10 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-const baseUrl = "https://www.jemassuremoinscher.fr";
+const geoContentPath = path.join(process.cwd(), "src/data/geo-content.json");
+const geoContent = JSON.parse(await readFile(geoContentPath, "utf8"));
 
-const pages = [
-  {
-    route: "/contact",
-    outputDir: "contact",
-    title: "Contact | jemassuremoinscher.fr",
-    description: "Contactez jemassuremoinscher.fr par email ou formulaire. Réponse sous 30 minutes, service 100% en ligne.",
-    h1: "Contact jemassuremoinscher.fr",
-    intro: "Besoin d'aide pour comparer vos assurances ou finaliser votre demande ? Notre équipe vous répond rapidement, avec un accompagnement 100% en ligne.",
-    sections: [
-      {
-        title: "Nous contacter",
-        body: "Écrivez-nous à contact@jemassuremoinscher.fr pour toute question sur un devis, un contrat ou une demande d'information.",
-      },
-      {
-        title: "Délais de réponse",
-        body: "Page Contact : réponse sous 30 minutes pendant les horaires d'ouverture, avec suivi par un conseiller expert.",
-      },
-      {
-        title: "Notre siège",
-        body: "2, rue d'Angleterre 06000 Nice. Service 100% en ligne pour toute la France.",
-      },
-    ],
-    ctaLabel: "Accéder au comparateur",
-    ctaHref: "/comparateur",
-  },
-  {
-    route: "/blog",
-    outputDir: "blog",
-    title: "Blog assurance | Guides et conseils 2026",
-    description: "Retrouvez nos guides, conseils pratiques et actualités pour choisir une assurance moins chère en France.",
-    h1: "Blog assurance",
-    intro: "Explorez nos articles pour comparer les contrats, comprendre les garanties et suivre les évolutions du marché de l'assurance en France.",
-    sections: [
-      {
-        title: "Guides pratiques",
-        list: [
-          { label: "Guide choisir assurance auto 2026", href: "/blog/guide-choisir-assurance-auto-2026" },
-          { label: "Comparatif assurance habitation 2026", href: "/blog/comparatif-habitation-2026" },
-          { label: "Top mutuelles santé 2026", href: "/blog/top-mutuelles-sante-2026" },
-        ],
-      },
-      {
-        title: "Articles populaires",
-        list: [
-          { label: "Loi Hamon 2026 : résilier en 3 clics", href: "/blog/loi-hamon-2026-resilier-assurance-3-clics" },
-          { label: "Loi Lemoine 2026", href: "/blog/loi-lemoine-2026" },
-          { label: "Meilleure assurance auto 2026", href: "/blog/meilleure-assurance-auto-2026" },
-        ],
-      },
-      {
-        title: "Ressources complémentaires",
-        body: "Consultez aussi notre glossaire assurance, nos comparatifs et notre page contact pour être accompagné dans votre recherche.",
-      },
-    ],
-    ctaLabel: "Voir tous les comparatifs",
-    ctaHref: "/comparateur",
-  },
-  {
-    route: "/glossaire",
-    outputDir: "glossaire",
-    title: "Glossaire assurance | Définitions essentielles",
-    description: "Consultez les définitions des principaux termes d'assurance : franchise, sinistre, responsabilité civile, tiers et plus.",
-    h1: "Glossaire assurance",
-    intro: "Retrouvez les définitions claires des mots-clés de l'assurance pour mieux comparer les garanties et comprendre vos contrats.",
-    sections: [
-      {
-        title: "Termes à connaître",
-        list: [
-          { label: "Responsabilité civile", href: "/glossaire/responsabilite-civile" },
-          { label: "Sinistre", href: "/glossaire/sinistre" },
-          { label: "Ticket modérateur", href: "/glossaire/ticket-moderateur" },
-          { label: "Tiers", href: "/glossaire/tiers" },
-          { label: "Tous risques", href: "/glossaire/tous-risques" },
-          { label: "Vétusté", href: "/glossaire/vetuste" },
-        ],
-      },
-      {
-        title: "Pourquoi utiliser ce glossaire ?",
-        body: "Avant de demander un devis, comprendre les notions essentielles aide à choisir une couverture adaptée et à éviter les mauvaises surprises en cas de sinistre.",
-      },
-    ],
-    ctaLabel: "Comparer les assurances",
-    ctaHref: "/comparateur",
-  },
-];
+const { baseUrl, staticPages: pages } = geoContent;
 
 const renderSection = (section) => {
   if (section.list) {
@@ -149,6 +66,27 @@ const renderPage = (page) => `<!doctype html>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>`;
+
+const syncRootIndex = async () => {
+  const indexPath = path.join(process.cwd(), "index.html");
+  const trust = geoContent.trust;
+  const reviewSnippet = `${trust.ratingValueLabel}/5 sur ${trust.reviewCountLabel}+ avis vérifiés`;
+  const reviewSentence = `Note moyenne ${trust.ratingValueLabel}/5 sur plus de ${trust.reviewCountLabel} avis vérifiés.`;
+
+  const indexTemplate = await readFile(indexPath, "utf8");
+  const updatedIndex = indexTemplate
+    .replace(/Avis Clients \| [^']+ avis vérifiés/g, `Avis Clients | ${reviewSnippet}`)
+    .replace(/Note moyenne [^.]+ avis vérifiés\./g, reviewSentence)
+    .replace(/"ratingValue":"[0-9.]+","reviewCount":"\d+"/g, `"ratingValue":"${trust.ratingValueLabel}","reviewCount":"${trust.reviewCountLabel}"`)
+    .replace(/<strong>[0-9.]+\/5<\/strong> — Plus de [^<]+ avis clients vérifiés/g, `<strong>${trust.ratingValueLabel}/5</strong> — Plus de ${trust.reviewCountLabel} avis clients vérifiés`)
+    .replace(/<strong>[0-9.]+\/5 — Plus de [^<]+ avis clients vérifiés<\/strong>/g, `<strong>${trust.ratingValueLabel}/5 — Plus de ${trust.reviewCountLabel} avis clients vérifiés</strong>`);
+
+  if (updatedIndex !== indexTemplate) {
+    await writeFile(indexPath, updatedIndex, "utf8");
+  }
+};
+
+await syncRootIndex();
 
 for (const page of pages) {
   const outputPath = path.join(process.cwd(), page.outputDir, "index.html");
