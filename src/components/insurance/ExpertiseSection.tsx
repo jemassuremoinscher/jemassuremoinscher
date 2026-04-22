@@ -1,5 +1,6 @@
 import { Shield, Award, Users, BookOpen, CheckCircle } from "lucide-react";
 import teamExperts from "@/assets/team-experts.png";
+import geoContent from "@/data/geo-content.json";
 
 interface ExpertiseSectionProps {
   /** Insurance type name for contextual content */
@@ -28,7 +29,7 @@ const ExpertiseSection = ({
     `${partnerCount}+ compagnies d'assurance partenaires comparées`,
     `${yearsExperience} ans d'expérience dans le courtage d'assurance`,
     "Accompagnement personnalisé par un conseiller dédié",
-    "Avis vérifiés : 4.8/5 sur la base de 2 500+ avis clients",
+    `Avis vérifiés : ${geoContent.trust.ratingValueLabel}/5 sur la base de ${geoContent.trust.reviewCountLabel} avis clients`,
   ];
 
   const points = expertisePoints || defaultPoints;
