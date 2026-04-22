@@ -24,7 +24,7 @@ const LandingMoniteurSport = () => {
       <div className="min-h-screen bg-gradient-to-b from-background to-accent/5">
         <div className="bg-primary text-primary-foreground py-3 px-4 text-center font-semibold">
           <Clock className="inline h-4 w-4 mr-2" />
-          🏔️ Spécialiste encadrants outdoor : devis & attestation sous 48h
+          🏔️ Spécialiste encadrants outdoor : devis & attestation sous 30 minutes
         </div>
 
         <section className="container mx-auto px-4 py-12 md:py-20">
@@ -79,7 +79,7 @@ const LandingMoniteurSport = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
-                  <span className="text-sm font-medium">Rappel 48h</span>
+                  <span className="text-sm font-medium">Rappel 30 min</span>
                 </div>
               </div>
             </div>
@@ -143,7 +143,7 @@ const LandingMoniteurSport = () => {
                 </div>
                 <div>
                   <Clock className="h-12 w-12 mx-auto mb-4" />
-                  <div className="text-xl font-bold mb-2">Rappel 48h</div>
+                  <div className="text-xl font-bold mb-2">Rappel 30 min</div>
                   <div className="text-sm opacity-90">Attestation conforme L.321-1</div>
                 </div>
                 <div>
@@ -205,7 +205,7 @@ const LandingMoniteurSport = () => {
               Encadrez en toute sécurité juridique
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Étude gratuite — rappel d'un expert sous 48h
+              Étude gratuite — rappel d'un expert sous 30 minutes
             </p>
             <a
               href="#hero"

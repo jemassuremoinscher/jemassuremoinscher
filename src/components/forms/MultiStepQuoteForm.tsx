@@ -352,7 +352,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
               Dernière étape — finalisez votre demande
             </span>
             <span className="text-primary-foreground/70">
-              Rappel sous <span className="text-accent font-bold">48 h</span>
+              Rappel sous <span className="text-accent font-bold">30 min</span>
             </span>
           </div>
         )}
@@ -1085,7 +1085,7 @@ function CallbackStep({
         </div>
         <h3 className="text-xl font-bold text-foreground">Demande reçue !</h3>
         <p className="text-sm text-muted-foreground text-center max-w-sm">
-          Un courtier expert métiers atypiques vous rappelle sous 48 h avec une étude personnalisée et 2 à 3 propositions chiffrées.
+          Un courtier expert métiers atypiques vous rappelle sous 30 minutes avec une étude personnalisée et 2 à 3 propositions chiffrées.
         </p>
       </motion.div>
     );
@@ -1104,14 +1104,15 @@ function CallbackStep({
           <CheckCircle2 className="h-4 w-4 text-primary" /> Pourquoi pas de prix immédiat ?
         </p>
         <p className="text-xs text-muted-foreground leading-relaxed">
-          Aucune grille tarifaire standard ne peut chiffrer un métier atypique : la prime dépend de votre process,
-          vos certifications, votre sinistralité et l'appétit individuel de chaque assureur.
-          C'est pourquoi nos courtiers étudient votre dossier et négocient auprès de nos
-          <span className="font-semibold text-foreground"> 20 assureurs de niche</span> avant de vous présenter une estimation
-          fiable — souvent <span className="font-semibold text-foreground">2 fois moins chère</span> qu'un devis en direct.
+          Chiffrer un métier atypique demande une analyse fine : votre process, vos certifications,
+          votre sinistralité et les spécificités de votre activité influencent fortement la prime.
+          C'est pourquoi nos courtiers étudient votre dossier en profondeur et le présentent à nos
+          <span className="font-semibold text-foreground"> 20 assureurs de niche</span> les mieux positionnés
+          pour votre secteur, avant de vous transmettre une estimation fiable —
+          souvent <span className="font-semibold text-foreground">2 fois moins chère</span> qu'un devis en direct.
         </p>
         <ul className="text-xs text-muted-foreground space-y-1 pt-1">
-          <li className="flex items-center gap-2"><span className="text-primary">✓</span> Rappel sous 48 h ouvrées</li>
+          <li className="flex items-center gap-2"><span className="text-primary">✓</span> Rappel sous 30 minutes</li>
           <li className="flex items-center gap-2"><span className="text-primary">✓</span> 2 à 3 propositions argumentées</li>
           <li className="flex items-center gap-2"><span className="text-primary">✓</span> Sans engagement</li>
         </ul>
@@ -1191,7 +1192,7 @@ function CallbackStep({
         {isSubmitting ? (
           <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Envoi en cours…</>
         ) : (
-          <>Demander mon rappel sous 48 h</>
+          <>Demander mon rappel sous 30 min</>
         )}
       </Button>
 
