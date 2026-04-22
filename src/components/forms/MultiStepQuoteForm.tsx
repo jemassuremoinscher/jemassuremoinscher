@@ -504,6 +504,17 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
                     insuranceType={insuranceType}
                   />
                 )}
+
+                {step.type === 'callback' && (
+                  <CallbackStep
+                    data={contactData}
+                    errors={contactErrors}
+                    isSubmitting={isSubmitting}
+                    isSuccess={isSuccess}
+                    onChange={setContactData}
+                    onSubmit={handleContactSubmit}
+                  />
+                )}
               </motion.div>
             )}
           </AnimatePresence>
