@@ -9,9 +9,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { BookOpen, FileText, Scale, X, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurIdea from "@/assets/mascotte/arthur-idea.webp";
-import arthurClimbing from "@/assets/mascotte/arthur-climbing.webp";
-import arthurKayak from "@/assets/mascotte/arthur-kayak.webp";
-import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 
 interface Article {
   id: number;
@@ -116,8 +113,6 @@ const GuidesSection = () => {
       titleKey: 'guides.article1.title',
       excerptKey: 'guides.article1.excerpt',
       icon: <Scale className="w-10 h-10 md:w-12 md:h-12 text-white" />,
-      mascot: arthurClimbing,
-      mascotAlt: "Arthur escalade — guide loi Hamon",
       color: "bg-primary",
       gradient: "bg-gradient-to-br from-primary to-primary/70",
       content: language === 'en' ? {
@@ -143,8 +138,6 @@ const GuidesSection = () => {
       titleKey: 'guides.article2.title',
       excerptKey: 'guides.article2.excerpt',
       icon: <BookOpen className="w-10 h-10 md:w-12 md:h-12 text-white" />,
-      mascot: arthurKayak,
-      mascotAlt: "Arthur kayak — économies d'assurance",
       color: "bg-accent",
       gradient: "bg-gradient-to-br from-accent to-accent/70",
       content: language === 'en' ? {
@@ -174,8 +167,6 @@ const GuidesSection = () => {
       titleKey: 'guides.article3.title',
       excerptKey: 'guides.article3.excerpt',
       icon: <FileText className="w-10 h-10 md:w-12 md:h-12 text-white" />,
-      mascot: arthurKarting,
-      mascotAlt: "Arthur karting — assurance jeune conducteur",
       color: "bg-primary",
       gradient: "bg-gradient-to-br from-primary/80 to-accent/80",
       content: language === 'en' ? {
