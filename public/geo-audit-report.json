@@ -1,0 +1,358 @@
+{
+  "generatedAt": "2026-04-22T14:43:47.272Z",
+  "score": 59,
+  "status": "critical",
+  "summary": {
+    "totalChecks": 27,
+    "passedChecks": 16,
+    "failedChecks": 11,
+    "auditedFiles": 10,
+    "staticRoutes": 4
+  },
+  "mismatches": [
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-0",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-1",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-2",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-3",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-4",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-5",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-6",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-7",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-8",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-9",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-10",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    }
+  ],
+  "checks": [
+    {
+      "id": "contact-title",
+      "category": "static-title",
+      "file": "contact/index.html",
+      "description": "Le titre statique de contact correspond à la source GEO",
+      "pass": true,
+      "expected": "Contact | jemassuremoinscher.fr",
+      "actual": null
+    },
+    {
+      "id": "contact-description",
+      "category": "static-description",
+      "file": "contact/index.html",
+      "description": "La meta description statique de contact correspond à la source GEO",
+      "pass": true,
+      "expected": "Contactez jemassuremoinscher.fr par email ou formulaire. Réponse sous 30 minutes, service 100% en ligne.",
+      "actual": null
+    },
+    {
+      "id": "contact-h1",
+      "category": "static-h1",
+      "file": "contact/index.html",
+      "description": "Le H1 statique de contact correspond à la source GEO",
+      "pass": true,
+      "expected": "Contact jemassuremoinscher.fr",
+      "actual": null
+    },
+    {
+      "id": "blog-title",
+      "category": "static-title",
+      "file": "blog/index.html",
+      "description": "Le titre statique de blog correspond à la source GEO",
+      "pass": true,
+      "expected": "Blog assurance | Guides et conseils 2026",
+      "actual": null
+    },
+    {
+      "id": "blog-description",
+      "category": "static-description",
+      "file": "blog/index.html",
+      "description": "La meta description statique de blog correspond à la source GEO",
+      "pass": true,
+      "expected": "Retrouvez nos guides, conseils pratiques et actualités pour choisir une assurance moins chère en France.",
+      "actual": null
+    },
+    {
+      "id": "blog-h1",
+      "category": "static-h1",
+      "file": "blog/index.html",
+      "description": "Le H1 statique de blog correspond à la source GEO",
+      "pass": true,
+      "expected": "Blog assurance",
+      "actual": null
+    },
+    {
+      "id": "glossaire-title",
+      "category": "static-title",
+      "file": "glossaire/index.html",
+      "description": "Le titre statique de glossaire correspond à la source GEO",
+      "pass": true,
+      "expected": "Glossaire assurance | Définitions essentielles",
+      "actual": null
+    },
+    {
+      "id": "glossaire-description",
+      "category": "static-description",
+      "file": "glossaire/index.html",
+      "description": "La meta description statique de glossaire correspond à la source GEO",
+      "pass": true,
+      "expected": "Consultez les définitions des principaux termes d'assurance : franchise, sinistre, responsabilité civile, tiers et plus.",
+      "actual": null
+    },
+    {
+      "id": "glossaire-h1",
+      "category": "static-h1",
+      "file": "glossaire/index.html",
+      "description": "Le H1 statique de glossaire correspond à la source GEO",
+      "pass": true,
+      "expected": "Glossaire assurance",
+      "actual": null
+    },
+    {
+      "id": "home-route-map-review",
+      "category": "static-metric",
+      "file": "index.html",
+      "description": "La route /avis-clients du shell statique utilise les métriques GEO partagées",
+      "pass": true,
+      "expected": "Avis Clients | 4.9/5 sur 247+ avis vérifiés",
+      "actual": null
+    },
+    {
+      "id": "home-jsonld-rating",
+      "category": "structured-data",
+      "file": "index.html",
+      "description": "Le JSON-LD statique utilise la note et le nombre d'avis partagés",
+      "pass": true,
+      "expected": "4.9 / 247",
+      "actual": null
+    },
+    {
+      "id": "react-home-shared-source",
+      "category": "react-source",
+      "file": "src/pages/Index.tsx",
+      "description": "La home React lit la note GEO depuis la source partagée",
+      "pass": true,
+      "expected": "geoContent.trust.ratingValue + geoContent.trust.reviewCount",
+      "actual": null
+    },
+    {
+      "id": "src/pages/AvisClients.tsx-shared-rating",
+      "category": "react-source",
+      "file": "src/pages/AvisClients.tsx",
+      "description": "AvisClients.tsx lit bien les métriques GEO depuis la source partagée",
+      "pass": true,
+      "expected": "geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel",
+      "actual": null
+    },
+    {
+      "id": "src/pages/LlmsTxt.tsx-shared-rating",
+      "category": "react-source",
+      "file": "src/pages/LlmsTxt.tsx",
+      "description": "LlmsTxt.tsx lit bien les métriques GEO depuis la source partagée",
+      "pass": true,
+      "expected": "geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel",
+      "actual": null
+    },
+    {
+      "id": "src/components/comparison/WhyUsComparison.tsx-shared-rating",
+      "category": "react-source",
+      "file": "src/components/comparison/WhyUsComparison.tsx",
+      "description": "WhyUsComparison.tsx lit bien les métriques GEO depuis la source partagée",
+      "pass": true,
+      "expected": "geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel",
+      "actual": null
+    },
+    {
+      "id": "src/components/insurance/ExpertiseSection.tsx-shared-rating",
+      "category": "react-source",
+      "file": "src/components/insurance/ExpertiseSection.tsx",
+      "description": "ExpertiseSection.tsx lit bien les métriques GEO depuis la source partagée",
+      "pass": true,
+      "expected": "geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel",
+      "actual": null
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-0",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-1",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-2",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-3",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-4",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-5",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-6",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-7",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-8",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-9",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-10",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
+      "pass": false,
+      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
+      "actual": "4.8/5"
+    }
+  ]
+}
