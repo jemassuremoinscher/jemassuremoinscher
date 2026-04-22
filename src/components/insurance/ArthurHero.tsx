@@ -29,7 +29,6 @@ const ArthurHero = ({ imageSrc, imageAlt, speechText }: ArthurHeroProps) => {
           height={180}
           loading="eager"
           decoding="async"
-          fetchpriority="high"
         />
         {/* Speech bubble — to the right, anchored at Arthur's head level */}
         <div className="relative mb-8 sm:mb-10 md:mb-14 animate-fade-in-delay flex-shrink min-w-0">
