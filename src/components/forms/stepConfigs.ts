@@ -1,4 +1,4 @@
-import { Shield, ShieldCheck, ShieldPlus, Heart, HeartPulse, Activity, Home, Building, Castle, Car, Bike, PawPrint, Briefcase, FileText, Wallet, Landmark, Baby, Users, User, Stethoscope, Pill, Eye, Search, Lock, Scale, Umbrella, ChevronRight } from 'lucide-react';
+import { Shield, ShieldCheck, ShieldPlus, Heart, HeartPulse, Activity, Home, Building, Castle, Car, Bike, PawPrint, Briefcase, FileText, Wallet, Landmark, Baby, Users, User, Stethoscope, Pill, Eye, Search, Lock, Scale, Umbrella, ChevronRight, TreePine, Mountain, PartyPopper, HardHat, Award, AlertTriangle, Calendar, Building2, Sparkles } from 'lucide-react';
 import mascotCar from '@/assets/mascotte/arthur-car.webp';
 import mascotMoto from '@/assets/mascotte/arthur-moto.webp';
 import mascotHouse from '@/assets/mascotte/arthur-house.webp';
@@ -20,7 +20,7 @@ export interface StepOption {
 
 export interface FormStep {
   id: string;
-  type: 'card-select' | 'input' | 'searching' | 'contact' | 'vehicle-select';
+  type: 'card-select' | 'input' | 'searching' | 'contact' | 'vehicle-select' | 'callback';
   title: string;
   subtitle?: string;
   field?: string;
@@ -34,7 +34,7 @@ export interface FormStep {
   vehicleField?: 'brand' | 'model' | 'year';
 }
 
-export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur';
+export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur' | 'metiers_atypiques';
 
 export const mascotMap: Record<InsuranceType, string> = {
   auto: mascotCar,
@@ -50,6 +50,7 @@ export const mascotMap: Record<InsuranceType, string> = {
   gli: mascotDetective,
   pno: mascotHouse,
   comparateur: mascotThumbsUp,
+  metiers_atypiques: mascotBusiness,
 };
 
 const searchingStep: FormStep = {
