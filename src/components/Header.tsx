@@ -1,4 +1,4 @@
-import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, ArrowLeft, MoreHorizontal, Share2, BookmarkPlus, Printer, BookOpen, Calculator, MessageSquare, Star, Search } from "lucide-react";
+import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, ArrowLeft, MoreHorizontal, Share2, BookmarkPlus, Printer, BookOpen, Calculator, MessageSquare, Star, Search, Instagram, Linkedin, Facebook } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
@@ -133,6 +133,18 @@ const Header = () => {
 
             {/* Right: Actions + Language + Mobile Toggle */}
             <div className="flex items-center gap-1 shrink-0">
+              <nav aria-label="Réseaux sociaux" className="hidden md:flex items-center gap-1 mr-1">
+                <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full text-white/70 hover:bg-muted/80 hover:text-white transition-colors">
+                  <Instagram className="h-4 w-4" />
+                </a>
+                <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="flex h-9 w-9 items-center justify-center rounded-full text-white/70 hover:bg-muted/80 hover:text-white transition-colors">
+                  <Linkedin className="h-4 w-4" />
+                </a>
+                <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full text-white/70 hover:bg-muted/80 hover:text-white transition-colors">
+                  <Facebook className="h-4 w-4" />
+                </a>
+              </nav>
+
               {/* Unified Actions Menu */}
               <Popover open={actionsOpen} onOpenChange={setActionsOpen}>
                 <PopoverTrigger asChild>
@@ -338,7 +350,18 @@ const Header = () => {
         >
           <nav className="p-4 space-y-6" role="navigation" aria-label="Navigation mobile principale">
             {/* Language Toggle - Mobile */}
-            <div className="flex justify-end mb-2">
+            <div className="flex items-center justify-between gap-3 mb-2 px-4">
+              <nav aria-label="Réseaux sociaux" className="flex items-center gap-2">
+                <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
+                  <Instagram className="h-4 w-4" />
+                </a>
+                <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
+                  <Linkedin className="h-4 w-4" />
+                </a>
+                <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
+                  <Facebook className="h-4 w-4" />
+                </a>
+              </nav>
               <LanguageToggle />
             </div>
             
