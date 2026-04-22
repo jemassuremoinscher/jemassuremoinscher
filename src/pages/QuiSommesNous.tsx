@@ -48,8 +48,8 @@ const QuiSommesNous = () => {
   ];
 
   const team = [
-    { name: "Paul", role: t('aboutPage.cofounder'), initials: "P", color: "bg-primary", photo: paulPhoto },
     { name: "Alexandre", role: t('aboutPage.cofounder'), initials: "A", color: "bg-accent", photo: alexandrePhoto },
+    { name: "Paul", role: t('aboutPage.cofounder'), initials: "P", color: "bg-primary", photo: paulPhoto },
   ];
 
   const methodology = [

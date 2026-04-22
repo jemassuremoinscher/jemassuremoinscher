@@ -107,6 +107,13 @@ All colors MUST be HSL.
     -moz-osx-font-smoothing: grayscale;
   }
 
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
   /* WCAG 2.1 AA: Minimum touch target size for mobile */
   button,
   [role="button"],
