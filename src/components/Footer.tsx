@@ -64,7 +64,7 @@ const Footer = () => {
           <div className="container mx-auto px-4 py-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
               {/* Col 1: Nos Assurances */}
-              <nav aria-label="Nos assurances">
+              <nav aria-label="Nos assurances" className="text-justify">
                 <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-4">
                   Nos Assurances
                 </h3>
@@ -83,7 +83,7 @@ const Footer = () => {
               </nav>
 
               {/* Col 2: Guides & Conseils */}
-              <nav aria-label="Guides et conseils">
+              <nav aria-label="Guides et conseils" className="text-justify">
                 <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-4">
                   Guides & Conseils
                 </h3>
@@ -102,7 +102,7 @@ const Footer = () => {
               </nav>
 
               {/* Col 3: À propos */}
-              <nav aria-label="À propos">
+              <nav aria-label="À propos" className="text-justify">
                 <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-4">
                   À propos
                 </h3>
@@ -121,7 +121,7 @@ const Footer = () => {
               </nav>
 
               {/* Col 4: Informations Légales */}
-              <div>
+              <div className="text-justify">
                 <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-4">
                   Informations Légales
                 </h3>
@@ -151,7 +151,7 @@ const Footer = () => {
                 loading="lazy"
                 decoding="async"
               />
-              <p className="text-xs text-primary-foreground/40 max-w-2xl leading-relaxed">
+              <p className="text-xs text-primary-foreground/40 max-w-2xl leading-relaxed text-justify">
                 {t('footer.disclaimer')}
               </p>
             </div>
