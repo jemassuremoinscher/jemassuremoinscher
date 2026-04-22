@@ -157,7 +157,7 @@ const AssuranceMetiersAtypiques = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance Métiers Atypiques 2026 : RC Pro sur-mesure activités à risques"
+        title="Assurance métiers atypiques | RC Pro sur mesure 2026"
         description="Courtier spécialisé activités atypiques : accrobranche, sports outdoor, événementiel, BTP spécialisé. 20 assureurs de niche. Rappel & devis sous 30 minutes."
         keyword="assurance métiers atypiques"
         keywords="assurance activité à risque, RC pro spécialisée, assurance accrobranche, assurance moniteur sport, assurance organisateur événement, assurance cordiste"
