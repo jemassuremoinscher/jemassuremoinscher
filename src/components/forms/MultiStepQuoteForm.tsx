@@ -65,6 +65,7 @@ const mascotImages: Record<InsuranceType, string> = {
   pno: arthurHouse,
   comparateur: arthurThumbsUp,
   metiers_atypiques: arthurClimbing,
+  gestion_locative: arthurHouse,
 };
 
 const mascotSearching = arthurRunningCoin;

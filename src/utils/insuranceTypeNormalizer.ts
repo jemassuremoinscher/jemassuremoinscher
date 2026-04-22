@@ -4,7 +4,7 @@
  */
 export const CANONICAL_INSURANCE_TYPES = [
   'auto', 'moto', 'habitation', 'sante', 'pret', 'animaux',
-  'vie', 'prevoyance', 'rc_pro', 'mrp', 'gli', 'pno',
+  'vie', 'prevoyance', 'rc_pro', 'mrp', 'gli', 'pno', 'gestion_locative',
 ] as const;
 
 export type CanonicalInsuranceType = typeof CANONICAL_INSURANCE_TYPES[number];
@@ -71,6 +71,12 @@ const ALIAS_MAP: Record<string, CanonicalInsuranceType> = {
   'assurance pno': 'pno',
   'propriétaire non occupant': 'pno',
   'proprietaire non occupant': 'pno',
+  // Gestion locative
+  'gestion_locative': 'gestion_locative',
+  'gestion locative': 'gestion_locative',
+  'gestion immobilière': 'gestion_locative',
+  'gestion immobiliere': 'gestion_locative',
+  'administrateur de biens': 'gestion_locative',
 };
 
 /**
@@ -98,4 +104,5 @@ export const INSURANCE_TYPE_LABELS: Record<CanonicalInsuranceType, string> = {
   mrp: 'Assurance MRP',
   gli: 'Assurance GLI',
   pno: 'Assurance PNO',
+  gestion_locative: 'Gestion Locative',
 };

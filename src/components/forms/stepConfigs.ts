@@ -34,7 +34,7 @@ export interface FormStep {
   vehicleField?: 'brand' | 'model' | 'year';
 }
 
-export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur' | 'metiers_atypiques';
+export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur' | 'metiers_atypiques' | 'gestion_locative';
 
 export const mascotMap: Record<InsuranceType, string> = {
   auto: mascotCar,
@@ -51,6 +51,7 @@ export const mascotMap: Record<InsuranceType, string> = {
   pno: mascotHouse,
   comparateur: mascotThumbsUp,
   metiers_atypiques: mascotBusiness,
+  gestion_locative: mascotHouse,
 };
 
 const searchingStep: FormStep = {
@@ -399,6 +400,35 @@ export const stepConfigsByType: Record<InsuranceType, FormStep[]> = {
         { value: 'essentielle', label: 'Essentielle', description: 'Responsabilité civile propriétaire', icon: Shield },
         { value: 'confort', label: 'Confort', description: '+ Dégâts des eaux, incendie', icon: ShieldCheck },
         { value: 'premium', label: 'Premium', description: '+ Vol et recours des locataires', icon: ShieldPlus },
+      ],
+    },
+    postalCodeStep,
+    searchingStep,
+    contactStep,
+  ],
+  gestion_locative: [
+    {
+      id: 'propertyCount',
+      type: 'card-select',
+      title: 'Combien de biens à gérer ?',
+      subtitle: 'Plus vous avez de biens, plus les honoraires sont dégressifs.',
+      field: 'propertyCount',
+      options: [
+        { value: '1', label: '1 bien', description: 'Un seul logement', icon: Home },
+        { value: '2-5', label: '2 à 5 biens', description: 'Petit portefeuille', icon: Building },
+        { value: '5+', label: 'Plus de 5', description: 'Patrimoine important', icon: Building2 },
+      ],
+    },
+    {
+      id: 'managementType',
+      type: 'card-select',
+      title: 'Quel type de gestion ?',
+      subtitle: 'Du suivi déclaratif à la gestion clé en main.',
+      field: 'managementType',
+      options: [
+        { value: 'full', label: 'Gestion complète', description: 'Tout délégué : recherche, baux, loyers, travaux', icon: ShieldPlus },
+        { value: 'partial', label: 'Gestion partielle', description: 'Quelques tâches déléguées', icon: ShieldCheck },
+        { value: 'declaration', label: 'Gestion déclarative', description: 'Suivi administratif & fiscal', icon: FileText },
       ],
     },
     postalCodeStep,
