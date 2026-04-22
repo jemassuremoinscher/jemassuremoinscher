@@ -16,6 +16,9 @@ Disallow: /commercial/
 Disallow: /api/
 Disallow: /*.map$
 
+# Landings publicitaires non indexées (Google Ads / GSC uniquement)
+Disallow: /landing/
+
 # Pages de confirmation / merci
 Disallow: /merci
 Disallow: /merci/
