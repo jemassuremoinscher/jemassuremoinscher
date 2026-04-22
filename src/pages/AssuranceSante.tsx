@@ -18,6 +18,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
+import geoContent from "@/data/geo-content.json";
 
 const AssuranceSante = () => {
   const { t } = useLanguage();
@@ -37,7 +38,7 @@ const AssuranceSante = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Mutuelle Santé Moins Chère [Month] : -300€/an" description="Comparez 50+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale. 4.8/5 satisfaction client." keyword="mutuelle santé moins chère" keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher, mutuelle famille" canonical="https://www.jemassuremoinscher.fr/assurance-sante" jsonLd={[serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title="Mutuelle Santé Moins Chère [Month] : -300€/an" description={`Comparez 50+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale. ${geoContent.trust.ratingValueLabel}/5 satisfaction client.`} keyword="mutuelle santé moins chère" keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher, mutuelle famille" canonical="https://www.jemassuremoinscher.fr/assurance-sante" jsonLd={[serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Mutuelle Santé" }]} />
 
