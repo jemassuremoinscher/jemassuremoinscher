@@ -222,12 +222,19 @@ const AssuranceMetiersAtypiques = () => {
             <div className="grid sm:grid-cols-2 gap-5">
               {niches.map((niche) => (
                 <Link key={niche.slug} to={niche.slug}>
-                  <Card className="p-6 hover:border-primary/40 transition-all group cursor-pointer h-full overflow-hidden relative">
+                  <Card className="p-6 hover:border-primary/40 transition-all group cursor-pointer h-full">
                     <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-xl bg-primary/10 shrink-0">
-                        <niche.icon className="w-6 h-6 text-primary" />
+                      <div className="w-16 h-16 shrink-0 flex items-center justify-center">
+                        <img
+                          src={niche.arthur}
+                          alt={niche.arthurAlt}
+                          className="w-full h-full object-contain group-hover:scale-110 transition-transform select-none pointer-events-none"
+                          width={64}
+                          height={64}
+                          loading="lazy"
+                        />
                       </div>
-                      <div className="flex-1 min-w-0 pr-16 sm:pr-20">
+                      <div className="flex-1 min-w-0">
                         <h3 className="font-bold text-foreground group-hover:text-primary transition-colors mb-2">
                           {niche.title}
                         </h3>
@@ -237,14 +244,6 @@ const AssuranceMetiersAtypiques = () => {
                         </span>
                       </div>
                     </div>
-                    <img
-                      src={niche.arthur}
-                      alt={niche.arthurAlt}
-                      className="absolute -bottom-2 -right-2 w-20 sm:w-24 h-auto opacity-90 group-hover:scale-105 transition-transform select-none pointer-events-none"
-                      width={96}
-                      height={96}
-                      loading="lazy"
-                    />
                   </Card>
                 </Link>
               ))}
