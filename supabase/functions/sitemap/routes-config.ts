@@ -87,6 +87,10 @@ export const routes: RouteConfig[] = [
   { path: "/landing/gli", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/pno", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/mrp", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/accrobranche", changefreq: "weekly", priority: 0.8 },
+  { path: "/landing/moniteur-sport", changefreq: "weekly", priority: 0.8 },
+  { path: "/landing/evenementiel", changefreq: "weekly", priority: 0.8 },
+  { path: "/landing/cordiste-btp", changefreq: "weekly", priority: 0.8 },
 
   // Legal Pages
   { path: "/mentions-legales", changefreq: "yearly", priority: 0.3 },
