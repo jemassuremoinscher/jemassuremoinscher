@@ -35,13 +35,21 @@ const categoryArthurMap: Record<string, string> = {
   "Vélo & Mobilité": arthurBike,
 };
 
+// Per-slug overrides take precedence over category mapping
+const slugArthurMap: Record<string, string> = {
+  "assurance-parc-accrobranche-obligations-2026": arthurClimbing,
+  "assurance-moniteur-sports-outdoor-2026": arthurKayak,
+  "assurance-organisateur-evenement-festival-2026": arthurKarting,
+};
+
 interface BlogArticleArthurProps {
   category: string;
+  slug?: string;
   className?: string;
 }
 
-const BlogArticleArthur = ({ category, className = "" }: BlogArticleArthurProps) => {
-  const src = categoryArthurMap[category] || arthurIdea;
+const BlogArticleArthur = ({ category, slug, className = "" }: BlogArticleArthurProps) => {
+  const src = (slug && slugArthurMap[slug]) || categoryArthurMap[category] || arthurIdea;
   
   return (
     <img
