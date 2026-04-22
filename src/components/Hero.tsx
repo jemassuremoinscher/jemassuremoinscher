@@ -139,19 +139,21 @@ const Hero = () => {
         )}
 
         {/* Category Cards Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 max-w-4xl mx-auto animate-fade-in-up-delay-2">
-          {heroCategories.map((category) =>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 max-w-4xl mx-auto animate-fade-in-up-delay-2 [perspective:1000px]">
+          {heroCategories.map((category, idx) =>
             <Link
               key={category.labelKey}
               to={category.link}
               onClick={() => handleCategoryClick(t(category.labelKey))}
               className="block relative group/card">
-              {/* Stacked card behind for 3D relief effect */}
+              {/* Stacked card behind for 3D relief — grows on hover */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-0 translate-x-1 translate-y-1.5 rounded-[1.5rem] bg-primary/40 group-hover/card:translate-x-1.5 group-hover/card:translate-y-2 transition-transform duration-300"
+                className="pointer-events-none absolute inset-0 translate-x-1 translate-y-1.5 rounded-[1.5rem] bg-primary/50 group-hover/card:translate-x-3 group-hover/card:translate-y-3.5 group-hover/card:bg-primary/70 transition-all duration-300"
               />
-              <Card className="relative p-4 md:p-6 bg-white/95 backdrop-blur-sm border-2 border-transparent hover:border-accent transition-all duration-300 cursor-pointer group card-hover active:scale-95 shadow-[0_6px_16px_-4px_rgba(0,0,0,0.3)]">
+              <Card
+                className={`relative p-4 md:p-6 bg-white/95 backdrop-blur-sm border-2 border-transparent hover:border-accent cursor-pointer group active:scale-95 shadow-[0_6px_16px_-4px_rgba(0,0,0,0.3)] group-hover/card:shadow-[0_22px_36px_-12px_rgba(0,0,0,0.5)] transition-[transform,box-shadow,border-color] duration-300 ease-out will-change-transform group-hover/card:-translate-y-2 ${idx % 2 === 0 ? 'group-hover/card:-rotate-2' : 'group-hover/card:rotate-2'}`}
+              >
                 <div className="flex flex-col items-center gap-2 md:gap-3">
                   <img
                     src={category.mascot}
