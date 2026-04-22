@@ -13,6 +13,8 @@ import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { useLanguage } from '@/contexts/LanguageContext';
 import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.png';
+import SEOOptimized from '@/components/SEOOptimized';
+import { addComparisonProductSchemas } from '@/utils/seoUtils';
 
 
 
@@ -128,8 +130,29 @@ export const InteractiveComparator = () => {
     return ((currentPrice[0] - bestOffer.price) * 12);
   }, [currentPrice, filteredOffers]);
 
+  const comparisonSchemas = useMemo(() => addComparisonProductSchemas({
+    name: `Comparatif assurance ${insuranceType}`,
+    description: `Offres d'assurance ${insuranceType} triées selon les critères sélectionnés par l'utilisateur.`,
+    category: `Assurance ${insuranceType}`,
+    url: "https://www.jemassuremoinscher.fr/comparateur",
+    offers: filteredOffers.map((offer) => ({
+      insurer: offer.insurer,
+      price: offer.price,
+      rating: offer.rating,
+      coverage: offer.coverage,
+      benefits: offer.benefits,
+    })),
+  }), [filteredOffers, insuranceType]);
+
   return (
-    <div className="space-y-0">
+    <>
+      <SEOOptimized
+        title="Comparateur d'assurance personnalisé | jemassuremoinscher.fr"
+        description="Comparez les offres d'assurance affichées selon vos critères et retrouvez les écarts de prix visibles à l'écran."
+        canonical="https://www.jemassuremoinscher.fr/comparateur"
+        jsonLd={comparisonSchemas}
+      />
+      <div className="space-y-0">
       {/* Hero */}
       <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
         <div className="container mx-auto px-4 py-8 md:py-20">
@@ -332,5 +355,6 @@ export const InteractiveComparator = () => {
         />
       )}
     </div>
+    </>
   );
 };

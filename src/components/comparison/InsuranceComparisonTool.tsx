@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { Star, Shield, Check, X, TrendingUp, Filter } from "lucide-react";
+import SEOOptimized from "@/components/SEOOptimized";
+import { addComparisonProductSchemas } from "@/utils/seoUtils";
 
 interface InsuranceOffer {
   id: string;
@@ -84,9 +86,30 @@ export const InsuranceComparisonTool = () => {
       return 0;
     });
 
+  const comparisonSchemas = addComparisonProductSchemas({
+    name: "Comparatif des offres d'assurance affichées",
+    description: "Comparatif des prix et garanties d'assurance affichés dans le tableau de comparaison.",
+    category: "Assurance auto",
+    url: "https://www.jemassuremoinscher.fr/comparateur",
+    offers: filteredOffers.map((offer) => ({
+      insurer: offer.insurer,
+      price: offer.price,
+      rating: offer.rating,
+      coverage: offer.coverage.join(", "),
+      benefits: offer.benefits,
+    })),
+  });
+
   return (
-    <section className="py-16 bg-background">
-      <div className="container mx-auto px-4">
+    <>
+      <SEOOptimized
+        title="Comparatif assurance en temps réel | jemassuremoinscher.fr"
+        description="Comparez les offres d'assurance affichées en temps réel selon le prix, la note et les garanties."
+        canonical="https://www.jemassuremoinscher.fr/comparateur"
+        jsonLd={comparisonSchemas}
+      />
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Comparez les offres <span className="text-primary">en temps réel</span>
@@ -250,7 +273,8 @@ export const InsuranceComparisonTool = () => {
             </p>
           </Card>
         )}
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 };
