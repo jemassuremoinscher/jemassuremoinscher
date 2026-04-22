@@ -561,7 +561,7 @@ export const stepConfigsByType: Record<InsuranceType, FormStep[]> = {
       id: 'callback',
       type: 'callback',
       title: 'Votre dossier mérite une étude personnalisée',
-      subtitle: 'Pour les métiers atypiques, aucune grille standard ne donne de prix juste. Un courtier expert vous rappelle sous 48 h avec une estimation argumentée et 2 à 3 propositions de nos 20 assureurs de niche.',
+      subtitle: 'Pour les métiers atypiques, aucune grille standard ne donne de prix juste. Un courtier expert vous rappelle sous 30 minutes avec une estimation argumentée et 2 à 3 propositions de nos 20 assureurs de niche.',
     },
   ],
 };
