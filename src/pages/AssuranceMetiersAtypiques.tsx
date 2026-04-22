@@ -2,16 +2,18 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Shield, Euro, Clock, Mountain, TreePine, PartyPopper, HardHat, Sparkles, ArrowRight } from "lucide-react";
+import { Shield, Users, Clock, Mountain, TreePine, PartyPopper, HardHat, Sparkles, ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import SEOOptimized from "@/components/SEOOptimized";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
-import arthurBusiness from "@/assets/mascotte/arthur-business.webp";
+import arthurClimbing from "@/assets/mascotte/arthur-climbing.webp";
+import arthurKayak from "@/assets/mascotte/arthur-kayak.webp";
+import arthurBike from "@/assets/mascotte/arthur-bike.webp";
+import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
-import arthurFlying from "@/assets/mascotte/arthur-wink-thumbsup.webp";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
@@ -30,7 +32,7 @@ const AssuranceMetiersAtypiques = () => {
   const serviceSchema = addServiceSchema({
     name: "Assurance Métiers Atypiques",
     description:
-      "Courtage spécialisé pour activités à risques aggravés : parcs accrobranche, sports outdoor, événementiel, BTP spécialisé, cordistes. Solutions sur-mesure auprès de 12 assureurs de niche.",
+      "Courtage spécialisé pour activités à risques aggravés : parcs accrobranche, sports outdoor, événementiel, BTP spécialisé, cordistes. Solutions sur-mesure auprès de 20 assureurs de niche.",
     provider: "jemassuremoinscher.fr",
     areaServed: "France",
   });
@@ -39,17 +41,17 @@ const AssuranceMetiersAtypiques = () => {
     {
       question: "Pourquoi mon assureur refuse-t-il ma RC pro métier atypique ?",
       answer:
-        "Les assureurs généralistes (AXA, MAIF, Allianz) ne disposent pas de grilles tarifaires pour les activités classées « risques aggravés » : exploitation de tyroliennes, encadrement sportif, organisation d'événements > 500 personnes, travaux acrobatiques. Ils refusent par défaut. Nos courtiers sollicitent uniquement les 12 assureurs spécialisés du marché français (Hiscox, Albingia, MMA Pro Sport, Generali Évolution Pro, CFDP, Verspieren, Gras Savoye, Circles Group…) qui disposent de produits dédiés.",
+        "Les assureurs généralistes (AXA, MAIF, Allianz) ne disposent pas de grilles tarifaires pour les activités classées « risques aggravés » : exploitation de tyroliennes, encadrement sportif, organisation d'événements > 500 personnes, travaux acrobatiques. Ils refusent par défaut. Nos courtiers sollicitent uniquement les 20 assureurs spécialisés du marché français (Hiscox, Albingia, MMA Pro Sport, Generali Évolution Pro, CFDP, Verspieren, Gras Savoye, Circles Group, Beazley, Markel, Liberty…) qui disposent de produits dédiés.",
     },
     {
       question: "Combien coûte une RC pro pour un métier atypique ?",
       answer:
-        "Cela dépend du chiffre d'affaires, du nombre d'encadrants et du sinistre historique. À titre indicatif 2026 : exploitant accrobranche 2 800–6 500 €/an, moniteur escalade indépendant 280–1 100 €/an, organisateur festival 5 000 personnes 1 800–4 200 € pour l'événement, cordiste 1 200–2 800 €/an. Notre intervention divise généralement la facture par 2 versus une souscription en direct.",
+        "Aucun prix instantané n'est fiable : la prime dépend du chiffre d'affaires, du nombre d'encadrants, des certifications et de l'historique sinistre. C'est pourquoi nous vous rappelons sous 48 h avec une estimation argumentée. À titre indicatif 2026 : exploitant accrobranche 2 800–6 500 €/an, moniteur escalade indépendant 280–1 100 €/an, organisateur festival 5 000 personnes 1 800–4 200 € pour l'événement, cordiste 1 200–2 800 €/an. Notre intervention divise généralement la facture par 2 versus une souscription en direct.",
     },
     {
       question: "Quel est le délai pour obtenir une attestation ?",
       answer:
-        "48 à 72 h en moyenne après réception de votre dossier complet (Kbis, dernier bilan, descriptif d'activité, sinistralité 5 ans). Pour un événement ponctuel avec date imminente, nous activons une procédure express sous 24 h.",
+        "Rappel sous 48 h ouvrées après votre demande, puis attestation 48 à 72 h après réception du dossier complet (Kbis, dernier bilan, descriptif d'activité, sinistralité 5 ans). Pour un événement ponctuel avec date imminente, nous activons une procédure express sous 24 h.",
     },
     {
       question: "Le BCT peut-il m'imposer un assureur ?",
@@ -83,26 +85,26 @@ const AssuranceMetiersAtypiques = () => {
   const insuranceProductSchema = addInsuranceProductSchema({
     name: "Assurance Métiers Atypiques",
     description:
-      "Courtier spécialisé activités à risques aggravés : accrobranche, sports outdoor, événementiel, BTP spécialisé. Mise en concurrence de 12 assureurs de niche. Devis 48 h.",
+      "Courtier spécialisé activités à risques aggravés : accrobranche, sports outdoor, événementiel, BTP spécialisé. Mise en concurrence de 20 assureurs de niche. Rappel sous 48 h.",
     category: "RC Pro spécialisée — Métiers atypiques",
     url: "https://www.jemassuremoinscher.fr/assurance-metiers-atypiques",
   });
 
   const advantages = [
     {
-      icon: Euro,
-      title: "Tarifs négociés —50 %",
-      description: "Notre volume d'affaires nous permet d'obtenir des tarifs préférentiels chez les 12 assureurs de niche du marché.",
+      icon: Users,
+      title: "20 assureurs de niche",
+      description: "Hiscox, Albingia, MMA Pro Sport, Generali Évolution Pro, Beazley, Markel, Liberty… seuls les spécialistes appétents pour votre secteur.",
     },
     {
       icon: Clock,
-      title: "Attestation sous 48 h",
-      description: "Procédure express disponible pour les événements ponctuels et les démarrages d'activité urgents.",
+      title: "Rappel & devis sous 48 h",
+      description: "Un courtier dédié vous rappelle sous 48 h ouvrées avec une étude personnalisée et 2 à 3 propositions argumentées.",
     },
     {
       icon: Shield,
       title: "0 refus — courtier dédié",
-      description: "Un interlocuteur unique défend votre dossier auprès des assureurs et négocie les surprimes.",
+      description: "Un interlocuteur unique défend votre dossier auprès des assureurs et négocie les surprimes pour vous.",
     },
   ];
 
