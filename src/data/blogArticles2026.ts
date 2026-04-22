@@ -54,7 +54,7 @@ Certains assureurs se sont positionnés sur les profils résiliés :
 - **Courtiers spécialisés résiliés** : accompagnement personnalisé
 - **Assureurs low-cost** : couverture minimale au tiers
 
-> **🦉 Conseil d'Arthur :** Ne mentez jamais sur votre passé d'assuré. La fausse déclaration est un motif de nullité de contrat bien plus grave qu'une résiliation pour impayé. Comparez honnêtement pour trouver votre meilleur tarif. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Ne mentez jamais sur votre passé d'assuré. La fausse déclaration est un motif de nullité de contrat bien plus grave qu'une résiliation pour impayé. Comparez honnêtement pour trouver votre meilleur tarif. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Combien ça coûte en 2026 ?
 
@@ -81,7 +81,7 @@ Si aucun assureur ne vous accepte, vous avez un **droit légal** : saisir le **B
 3. Le BCT désigne un assureur sous **1 mois**
 4. L'assureur fixe librement le tarif
 
-> **🦉 Conseil d'Arthur :** Le BCT est votre filet de sécurité, mais les tarifs imposés sont souvent élevés. Avant d'en arriver là, utilisez un comparateur pour maximiser vos chances de trouver une offre directe. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Le BCT est votre filet de sécurité, mais les tarifs imposés sont souvent élevés. Avant d'en arriver là, utilisez un comparateur pour maximiser vos chances de trouver une offre directe. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -173,7 +173,7 @@ Plutôt que le tous risques (inutilement cher sur un jeune permis), le **tiers �
 
 Les écarts entre assureurs pour ce profil atteignent **jusqu'à 2 000 €/an** en 2026.
 
-> **🦉 Conseil d'Arthur :** Ne déclarez jamais une puissance inférieure à la réalité. En cas de sinistre, l'assureur vérifiera la carte grise et pourra refuser toute indemnisation. Comparez plutôt pour trouver le meilleur tarif honnêtement. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Ne déclarez jamais une puissance inférieure à la réalité. En cas de sinistre, l'assureur vérifiera la carte grise et pourra refuser toute indemnisation. Comparez plutôt pour trouver le meilleur tarif honnêtement. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Le cas de la conduite accompagnée anticipée
 
@@ -183,7 +183,7 @@ Si votre enfant débute à 15 ans en AAC et obtient le permis à 17-18 ans :
 2. **Bonus accéléré** : le coefficient baisse plus vite
 3. **Expérience accumulée** : 3 000 km minimum avant l'examen
 
-> **🦉 Conseil d'Arthur :** L'AAC est le meilleur investissement pour un jeune conducteur qui rêve de puissance. Faites le calcul sur 3 ans : l'économie dépasse souvent 3 000 €. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** L'AAC est le meilleur investissement pour un jeune conducteur qui rêve de puissance. Faites le calcul sur 3 ans : l'économie dépasse souvent 3 000 €. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -368,7 +368,7 @@ Les assureurs en ligne proposent des tarifs **15 à 25 % moins chers** que les a
 
 ### 7. Comparez chaque année
 
-> **🦉 Conseil d'Arthur :** Les écarts de prix pour les seniors peuvent atteindre 800 € par an entre deux assureurs. Un comparatif annuel est indispensable. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Les écarts de prix pour les seniors peuvent atteindre 800 € par an entre deux assureurs. Un comparatif annuel est indispensable. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Le cas de la visite médicale
 
@@ -379,7 +379,7 @@ En 2026, **aucune visite médicale obligatoire** n'est imposée aux conducteurs 
 - Parlez ouvertement de votre santé avec votre médecin
 - Évitez les trajets de nuit si votre vision est réduite
 
-> **🦉 Conseil d'Arthur :** Votre expérience de conduite est un atout. N'acceptez pas une surprime excessive sans avoir comparé. Les assureurs qui valorisent l'ancienneté existent ! **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Votre expérience de conduite est un atout. N'acceptez pas une surprime excessive sans avoir comparé. Les assureurs qui valorisent l'ancienneté existent ! **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -449,7 +449,7 @@ Certains pays ont signé des accords d'échange avec la France (Japon, Québec, 
 | 4 | Souscrivez le contrat | Immédiat |
 | 5 | Lancez l'échange de permis sur ANTS | 2-6 mois |
 
-> **🦉 Conseil d'Arthur :** Tous les assureurs n'acceptent pas les permis étrangers. Utilisez un comparateur pour identifier rapidement ceux qui couvrent votre profil. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Tous les assureurs n'acceptent pas les permis étrangers. Utilisez un comparateur pour identifier rapidement ceux qui couvrent votre profil. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Le bonus-malus avec un permis étranger
 
@@ -473,7 +473,7 @@ Pour un conducteur avec permis étranger, sans historique français :
 - **Berline tiers étendu** : 900 à 1 800 €/an
 - **Tous risques** : 1 500 à 3 000 €/an
 
-> **🦉 Conseil d'Arthur :** Si vous venez d'un pays UE, n'oubliez pas de demander votre relevé d'information avant de quitter votre pays. Cela peut vous faire économiser des centaines d'euros. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Si vous venez d'un pays UE, n'oubliez pas de demander votre relevé d'information avant de quitter votre pays. Cela peut vous faire économiser des centaines d'euros. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -542,7 +542,7 @@ Les compagnies classiques refuseront dans **95 % des cas**. Orientez-vous vers :
 
 ### Étape 4 : Comparez impérativement
 
-> **🦉 Conseil d'Arthur :** Sur ce type de profil, les écarts de prix dépassent 2 000 €/an entre deux assureurs. Ne souscrivez jamais la première offre trouvée. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Sur ce type de profil, les écarts de prix dépassent 2 000 €/an entre deux assureurs. Ne souscrivez jamais la première offre trouvée. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les tarifs en 2026
 
@@ -568,7 +568,7 @@ Si tous les assureurs refusent votre dossier :
 3. Un assureur sera désigné sous 1 mois
 4. Couverture minimum au tiers uniquement
 
-> **🦉 Conseil d'Arthur :** Le BCT impose une couverture minimale à un tarif souvent très élevé. Essayez d'abord toutes les options du marché via un comparateur avant d'y recourir. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Le BCT impose une couverture minimale à un tarif souvent très élevé. Essayez d'abord toutes les options du marché via un comparateur avant d'y recourir. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -633,7 +633,7 @@ Le conducteur secondaire est une personne **désignée au contrat** qui utilise 
 - Le véhicule est stationné à une adresse différente de celle du titulaire
 - Le conducteur principal ne conduit **jamais** le véhicule
 
-> **🦉 Conseil d'Arthur :** Si votre enfant conduit principalement le véhicule, souscrivez un contrat à son nom. La surprime jeune conducteur est un investissement : elle permet de construire son propre bonus. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Si votre enfant conduit principalement le véhicule, souscrivez un contrat à son nom. La surprime jeune conducteur est un investissement : elle permet de construire son propre bonus. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## L'alternative : le contrat individuel jeune conducteur
 
@@ -651,7 +651,7 @@ En 2026, les assureurs en ligne proposent des formules compétitives pour les je
 | Contrat individuel classique | 2 500 € | 1 800 € | 1 400 € | 5 700 € |
 | Contrat connecté | 1 800 € | 1 200 € | 900 € | 3 900 € |
 
-> **🦉 Conseil d'Arthur :** Le conducteur secondaire, c'est comme un tremplin. Utilisez-le de manière honnête pendant 1 à 2 ans, puis passez à un contrat individuel pour construire votre propre historique. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Le conducteur secondaire, c'est comme un tremplin. Utilisez-le de manière honnête pendant 1 à 2 ans, puis passez à un contrat individuel pour construire votre propre historique. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -714,7 +714,7 @@ Notre classement se base sur :
 - **Profil de conducteur** : ces voitures attirent des conducteurs prudents (statistiquement)
 - **Faible attrait pour le vol** : les citadines sont peu ciblées par les voleurs
 
-> **🦉 Conseil d'Arthur :** Le choix du véhicule impacte votre prime autant que votre profil de conducteur. Avant d'acheter, vérifiez le groupe SRA du modèle convoité pour anticiper le coût d'assurance. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Le choix du véhicule impacte votre prime autant que votre profil de conducteur. Avant d'acheter, vérifiez le groupe SRA du modèle convoité pour anticiper le coût d'assurance. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les pièges à éviter sur l'occasion
 
@@ -731,7 +731,7 @@ Notre classement se base sur :
 3. Faites un **devis d'assurance** avant de signer le bon de commande
 4. Comparez **au moins 3 offres**
 
-> **🦉 Conseil d'Arthur :** Avant d'acheter votre prochaine voiture d'occasion, faites un devis d'assurance. Certains modèles au prix d'achat attractif coûtent une fortune à assurer ! **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Avant d'acheter votre prochaine voiture d'occasion, faites un devis d'assurance. Certains modèles au prix d'achat attractif coûtent une fortune à assurer ! **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -803,7 +803,7 @@ Vous payez une **prime fixe réduite** + un **tarif au kilomètre roulé**. Deux
 | 10 000 km | 650 € | 620 € | 30 € (5 %) |
 | 12 000 km | 650 € | 720 € | -70 € (déficit) |
 
-> **🦉 Conseil d'Arthur :** Le seuil de rentabilité se situe autour de 9 000 km/an en 2026. Si vous roulez moins, l'assurance au kilomètre est presque toujours gagnante. Simulez votre tarif ! **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Le seuil de rentabilité se situe autour de 9 000 km/an en 2026. Si vous roulez moins, l'assurance au kilomètre est presque toujours gagnante. Simulez votre tarif ! **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les avantages cachés
 
@@ -819,7 +819,7 @@ Vous payez une **prime fixe réduite** + un **tarif au kilomètre roulé**. Deux
 - **Garanties parfois limitées** : certaines formules excluent le vol ou le bris de glace
 - **Compatibilité véhicule** : le boîtier OBD ne fonctionne pas sur tous les modèles
 
-> **🦉 Conseil d'Arthur :** Avant de souscrire, calculez votre kilométrage réel des 12 derniers mois (relevé compteur ou carnet de bord). Un chiffre précis évite les mauvaises surprises. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Avant de souscrire, calculez votre kilométrage réel des 12 derniers mois (relevé compteur ou carnet de bord). Un chiffre précis évite les mauvaises surprises. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -884,7 +884,7 @@ Les cartes Gold/Premier couvrent souvent :
 - Perte/vol de bagages
 - Garantie achats
 
-> **🦉 Conseil d'Arthur :** Prenez 15 minutes pour lire les garanties de votre carte bancaire. Vous pourriez supprimer 2 à 3 options de votre contrat habitation. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Prenez 15 minutes pour lire les garanties de votre carte bancaire. Vous pourriez supprimer 2 à 3 options de votre contrat habitation. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Comment procéder pour supprimer les options
 
@@ -912,7 +912,7 @@ Les cartes Gold/Premier couvrent souvent :
 | Catastrophes naturelles | Incluse | Oui |
 | Bris de glace | Non | Selon logement |
 
-> **🦉 Conseil d'Arthur :** Ne supprimez jamais les garanties essentielles pour économiser quelques euros. L'objectif est de retirer le superflu, pas de vous mettre en danger. Comparez les contrats pour trouver le bon équilibre. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Ne supprimez jamais les garanties essentielles pour économiser quelques euros. L'objectif est de retirer le superflu, pas de vous mettre en danger. Comparez les contrats pour trouver le bon équilibre. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -996,7 +996,7 @@ Pouvez-vous absorber une dépense imprévue de 500 ou 1 000 € ?
 
 Si vous estimez rester plus de 3 ans sans sinistre, la franchise à 500 € est plus rentable.
 
-> **🦉 Conseil d'Arthur :** La franchise élevée est presque toujours gagnante pour les bons conducteurs. Mais ne choisissez jamais une franchise que vous ne pourriez pas payer en cas de pépin. Comparez les combinaisons franchise/prime. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** La franchise élevée est presque toujours gagnante pour les bons conducteurs. Mais ne choisissez jamais une franchise que vous ne pourriez pas payer en cas de pépin. Comparez les combinaisons franchise/prime. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les cas particuliers
 
@@ -1012,7 +1012,7 @@ En panne, l'assistance ne se déclenche qu'au-delà de X km du domicile. Choisis
 
 Délai de carence avant couverture. Non négociable, mais à vérifier avant souscription.
 
-> **🦉 Conseil d'Arthur :** Attention aux franchises proportionnelles ! Un dégât des eaux de 10 000 € avec 10 % de franchise = 1 000 € à votre charge. Lisez bien les petites lignes. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Attention aux franchises proportionnelles ! Un dégât des eaux de 10 000 € avec 10 % de franchise = 1 000 € à votre charge. Lisez bien les petites lignes. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -1080,7 +1080,7 @@ En 2026, regrouper ses contrats auto et habitation chez le même assureur permet
 2. **Demandez un devis groupé** chez 3 assureurs
 3. **Comparez le total** : parfois, deux assureurs spécialisés coûtent moins cher qu'un seul assureur avec remise multi-contrats
 
-> **🦉 Conseil d'Arthur :** Ne vous laissez pas séduire par le pourcentage affiché. Calculez toujours le montant total annuel, tous contrats confondus. C'est le chiffre final qui compte. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Ne vous laissez pas séduire par le pourcentage affiché. Calculez toujours le montant total annuel, tous contrats confondus. C'est le chiffre final qui compte. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les avantages non financiers du regroupement
 
@@ -1095,7 +1095,7 @@ En 2026, regrouper ses contrats auto et habitation chez le même assureur permet
 - **Moins de flexibilité** pour négocier contrat par contrat
 - **Qualité inégale** : un assureur peut exceller en auto et être moyen en habitation
 
-> **🦉 Conseil d'Arthur :** L'idéal est de comparer à la fois les offres groupées et les offres séparées. Parfois, 2 contrats chez 2 assureurs spécialisés battent 1 offre groupée avec réduction. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** L'idéal est de comparer à la fois les offres groupées et les offres séparées. Parfois, 2 contrats chez 2 assureurs spécialisés battent 1 offre groupée avec réduction. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -1162,7 +1162,7 @@ Un boîtier OBD (branché sur la prise diagnostic) ou une application smartphone
 - **Conducteur mixte** : 80 à 200 €/an
 - **Petit rouleur + bonne conduite** : jusqu'à 400 €/an (cumul km + comportement)
 
-> **🦉 Conseil d'Arthur :** L'assurance connectée est particulièrement intéressante si vous avez un malus ou si vous êtes jeune conducteur. Elle vous permet de prouver par les faits que vous conduisez bien. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** L'assurance connectée est particulièrement intéressante si vous avez un malus ou si vous êtes jeune conducteur. Elle vous permet de prouver par les faits que vous conduisez bien. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les avantages au-delà du prix
 
@@ -1178,7 +1178,7 @@ Un boîtier OBD (branché sur la prise diagnostic) ou une application smartphone
 - **Passagers conducteurs** : un passager au style de conduite différent affecte votre score
 - **Compatibilité** : les boîtiers OBD ne fonctionnent pas sur tous les véhicules (pré-2004)
 
-> **🦉 Conseil d'Arthur :** Si la protection de vos données vous préoccupe, vérifiez la politique RGPD de l'assureur. En 2026, la loi impose une transparence totale sur l'usage des données de conduite. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Si la protection de vos données vous préoccupe, vérifiez la politique RGPD de l'assureur. En 2026, la loi impose une transparence totale sur l'usage des données de conduite. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -1255,7 +1255,7 @@ Revoyez vos besoins réels :
 
 La remise multi-contrats de 5 à 15 % peut compenser une partie de la hausse.
 
-> **🦉 Conseil d'Arthur :** Chaque année, les Français qui comparent leur assurance économisent en moyenne 300 € sur l'ensemble de leurs contrats. Ne subissez pas la hausse, contrez-la ! **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Chaque année, les Français qui comparent leur assurance économisent en moyenne 300 € sur l'ensemble de leurs contrats. Ne subissez pas la hausse, contrez-la ! **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Votre droit à l'information
 
@@ -1266,7 +1266,7 @@ En 2026, votre assureur est **obligé** de vous prévenir de toute augmentation 
 2. Résilier sans frais
 3. Demander le maintien du tarif précédent
 
-> **🦉 Conseil d'Arthur :** Gardez précieusement l'avis d'échéance envoyé par votre assureur. C'est votre preuve en cas de contestation. Et prenez 5 minutes pour comparer : les économies sont souvent au rendez-vous. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Gardez précieusement l'avis d'échéance envoyé par votre assureur. C'est votre preuve en cas de contestation. Et prenez 5 minutes pour comparer : les économies sont souvent au rendez-vous. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -1337,7 +1337,7 @@ Le déménagement est un **motif légitime de résiliation** (article L113-16 du
 
 Si vous passez de locataire à propriétaire (ou inversement), un nouveau contrat est souvent nécessaire.
 
-> **🦉 Conseil d'Arthur :** Le déménagement est le meilleur moment pour comparer. Vous n'êtes plus engagé et les assureurs se battent pour les nouveaux clients. Profitez-en ! **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Le déménagement est le meilleur moment pour comparer. Vous n'êtes plus engagé et les assureurs se battent pour les nouveaux clients. Profitez-en ! **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les erreurs à éviter
 
@@ -1354,7 +1354,7 @@ Pendant la période de transition, vous pouvez couvrir les deux logements :
 
 **Astuce** : certains assureurs offrent gratuitement la **double couverture pendant 30 jours**.
 
-> **🦉 Conseil d'Arthur :** Demandez à votre assureur s'il propose la couverture temporaire des deux logements. Si non, souscrivez un contrat temporaire pour le nouveau logement le jour du déménagement. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Demandez à votre assureur s'il propose la couverture temporaire des deux logements. Si non, souscrivez un contrat temporaire pour le nouveau logement le jour du déménagement. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -1432,7 +1432,7 @@ Chaque colocataire souscrit son propre contrat pour sa **responsabilité civile*
 - **Plus cher au total** : chaque contrat inclut les mêmes garanties de base
 - **Risques de trous de couverture** : les parties communes peuvent être mal couvertes
 
-> **🦉 Conseil d'Arthur :** Pour une colocation de longue durée (bail classique), le contrat unique est presque toujours plus avantageux. Pour une colocation courte ou un turnover fréquent, les contrats individuels sont plus flexibles. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Pour une colocation de longue durée (bail classique), le contrat unique est presque toujours plus avantageux. Pour une colocation courte ou un turnover fréquent, les contrats individuels sont plus flexibles. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les tarifs en 2026
 
@@ -1443,7 +1443,7 @@ Chaque colocataire souscrit son propre contrat pour sa **responsabilité civile*
 | Contrat unique 3 colocs (T4) | 22 à 35 €/mois |
 | 3 contrats individuels (T4) | 35 à 55 €/mois total |
 
-> **🦉 Conseil d'Arthur :** Quel que soit votre choix, assurez-vous que chaque colocataire dispose d'une attestation d'assurance valide. Le bailleur peut demander cette preuve à tout moment. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Quel que soit votre choix, assurez-vous que chaque colocataire dispose d'une attestation d'assurance valide. Le bailleur peut demander cette preuve à tout moment. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -1520,7 +1520,7 @@ En 2026, la plupart des assureurs proposent une **option télétravail** pour 3 
 - RC professionnelle complémentaire
 - Assistance informatique
 
-> **🦉 Conseil d'Arthur :** En cas de sinistre, si votre laptop professionnel est détruit et non couvert, c'est votre responsabilité vis-à-vis de l'employeur. Vérifiez votre contrat dès maintenant et ajoutez l'option si nécessaire. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** En cas de sinistre, si votre laptop professionnel est détruit et non couvert, c'est votre responsabilité vis-à-vis de l'employeur. Vérifiez votre contrat dès maintenant et ajoutez l'option si nécessaire. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les bonnes pratiques du télétravailleur
 
@@ -1529,7 +1529,7 @@ En 2026, la plupart des assureurs proposent une **option télétravail** pour 3 
 - **Sécurisez votre espace** : multiprise parafoudre, stockage cloud
 - **Vérifiez l'accord de télétravail** de votre entreprise
 
-> **🦉 Conseil d'Arthur :** La déclaration de télétravail à votre assureur est gratuite et vous protège en cas de litige. Ne prenez pas de risque inutile. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** La déclaration de télétravail à votre assureur est gratuite et vous protège en cas de litige. Ne prenez pas de risque inutile. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -1595,7 +1595,7 @@ Votre contrat habitation couvre votre usage **personnel** du logement. La locati
 
 Si vous louez régulièrement, une assurance **Propriétaire Non Occupant** avec option « location meublée touristique » est la solution la plus complète.
 
-> **🦉 Conseil d'Arthur :** La garantie AirCover d'Airbnb est un filet de sécurité, mais elle ne remplace pas votre assurance habitation. Les deux sont complémentaires. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** La garantie AirCover d'Airbnb est un filet de sécurité, mais elle ne remplace pas votre assurance habitation. Les deux sont complémentaires. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les obligations légales à respecter
 
@@ -1611,7 +1611,7 @@ Si vous louez régulièrement, une assurance **Propriétaire Non Occupant** avec
 - Sous-louer sans l'accord du bailleur (risque de résiliation du bail)
 - Ne pas vérifier la conformité électrique et incendie du logement
 
-> **🦉 Conseil d'Arthur :** Avant votre première location, appelez votre assureur et déclarez votre activité. C'est souvent gratuit ou peu coûteux, et ça vous protège d'un refus d'indemnisation potentiellement catastrophique. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Avant votre première location, appelez votre assureur et déclarez votre activité. C'est souvent gratuit ou peu coûteux, et ça vous protège d'un refus d'indemnisation potentiellement catastrophique. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -1675,7 +1675,7 @@ Posés sur la toiture sans remplacement de tuiles, ils sont considérés comme d
 4. **Souscrivez les extensions** nécessaires
 5. **Conservez toutes les factures** (installateur, matériel, mise en service)
 
-> **🦉 Conseil d'Arthur :** Ne faites jamais installer de panneaux solaires sans avoir prévenu votre assureur au préalable. Un sinistre sur une installation non déclarée = 0 € d'indemnisation sur un investissement de 15 000 €. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Ne faites jamais installer de panneaux solaires sans avoir prévenu votre assureur au préalable. Un sinistre sur une installation non déclarée = 0 € d'indemnisation sur un investissement de 15 000 €. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## La revente d'électricité et l'assurance
 
@@ -1692,7 +1692,7 @@ Si vous revendez votre surplus à EDF OA (Obligation d'Achat) :
 | 6 kWc | 6 000-8 000 kWh | 800-1 200 € |
 | 9 kWc | 9 000-12 000 kWh | 1 200-1 800 € |
 
-> **🦉 Conseil d'Arthur :** L'assurance de vos panneaux solaires coûte entre 60 et 200 €/an. C'est négligeable face à un investissement de 10 000 à 20 000 €. Protégez votre installation ! **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** L'assurance de vos panneaux solaires coûte entre 60 et 200 €/an. C'est négligeable face à un investissement de 10 000 à 20 000 €. Protégez votre installation ! **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -1761,7 +1761,7 @@ Envoyez à votre assureur :
 
 Pour les sinistres de plus de 1 600 € (seuil 2026), un expert sera mandaté. En dessous, l'indemnisation est directe.
 
-> **🦉 Conseil d'Arthur :** Ne tardez pas ! Le délai légal pour déclarer un dégât des eaux est de 5 jours ouvrés. Passé ce délai, votre assureur peut réduire ou refuser l'indemnisation. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Ne tardez pas ! Le délai légal pour déclarer un dégât des eaux est de 5 jours ouvrés. Passé ce délai, votre assureur peut réduire ou refuser l'indemnisation. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Qui paie quoi ?
 
@@ -1786,7 +1786,7 @@ La convention IRSI (Indemnisation et Recours des Sinistres Immeuble) simplifie l
 3. Déclarez le sinistre à votre assureur **unilatéralement**
 4. L'assureur fera jouer son droit de recours
 
-> **🦉 Conseil d'Arthur :** Même si votre voisin refuse le constat, déclarez le sinistre dans les 5 jours. Votre assureur se chargera du recours. Ne restez jamais sans rien faire. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Même si votre voisin refuse le constat, déclarez le sinistre dans les 5 jours. Votre assureur se chargera du recours. Ne restez jamais sans rien faire. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -1849,7 +1849,7 @@ L'assurance PNO est obligatoire depuis la loi ALUR de 2014 pour les propriétair
 | T2/T3 | 40-70 m² | 120-170 € |
 | T4+ ou maison | 80+ m² | 150-250 € |
 
-> **🦉 Conseil d'Arthur :** L'assurance PNO est déductible de vos revenus fonciers. C'est un coût minime par rapport aux risques d'un bien non couvert. Comparez pour trouver le meilleur tarif. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** L'assurance PNO est déductible de vos revenus fonciers. C'est un coût minime par rapport aux risques d'un bien non couvert. Comparez pour trouver le meilleur tarif. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## PNO vs assurance habitation classique
 
@@ -1861,7 +1861,7 @@ L'assurance PNO est obligatoire depuis la loi ALUR de 2014 pour les propriétair
 | RC propriétaire | Oui | Non |
 | Déductible fiscalement | Oui (revenus fonciers) | Non |
 
-> **🦉 Conseil d'Arthur :** Si vous êtes propriétaire bailleur, l'assurance PNO est un investissement rentable : elle vous protège quand votre locataire ne le fait pas. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Si vous êtes propriétaire bailleur, l'assurance PNO est un investissement rentable : elle vous protège quand votre locataire ne le fait pas. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -1933,7 +1933,7 @@ En 2026, les véhicules électriques bénéficient toujours de réductions d'ass
 | Peugeot e-208 | 480 € | 380 € (-21 %) |
 | MG4 | 520 € | 430 € (-17 %) |
 
-> **🦉 Conseil d'Arthur :** Les réductions pour véhicules électriques sont un vrai avantage, mais elles varient énormément d'un assureur à l'autre. Un comparatif est indispensable pour maximiser l'économie. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Les réductions pour véhicules électriques sont un vrai avantage, mais elles varient énormément d'un assureur à l'autre. Un comparatif est indispensable pour maximiser l'économie. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les tendances pour 2026-2027
 
@@ -1942,7 +1942,7 @@ En 2026, les véhicules électriques bénéficient toujours de réductions d'ass
 - Les Tesla restent les VE les plus chères à assurer (réparations coûteuses)
 - L'hybride rechargeable perd son avantage tarifaire
 
-> **🦉 Conseil d'Arthur :** Profitez des réductions VE tant qu'elles existent ! Le marché se normalise et ces avantages tarifaires pourraient disparaître d'ici 2028. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Profitez des réductions VE tant qu'elles existent ! Le marché se normalise et ces avantages tarifaires pourraient disparaître d'ici 2028. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -2013,7 +2013,7 @@ Depuis 2019, l'assurance responsabilité civile est obligatoire pour tous les ED
 - **Extension de contrat habitation** : certains assureurs incluent la RC EDPM
 - **Assureurs spécialisés mobilité** : formules dédiées
 
-> **🦉 Conseil d'Arthur :** Vérifiez d'abord si votre assurance habitation inclut la RC pour les EDPM. Si oui, vous êtes déjà couvert pour le minimum légal ! Sinon, comparez les offres dédiées. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Vérifiez d'abord si votre assurance habitation inclut la RC pour les EDPM. Si oui, vous êtes déjà couvert pour le minimum légal ! Sinon, comparez les offres dédiées. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les garanties utiles au-delà de la RC
 
@@ -2037,7 +2037,7 @@ Couvre VOS blessures en cas de chute ou collision :
 - Rapatriement en cas de panne
 - Véhicule de remplacement (rare)
 
-> **🦉 Conseil d'Arthur :** Sur une trottinette à 800 €, l'assurance vol représente 5 à 10 % de la valeur par an. C'est un investissement raisonnable vu le taux de vol actuel. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Sur une trottinette à 800 €, l'assurance vol représente 5 à 10 % de la valeur par an. C'est un investissement raisonnable vu le taux de vol actuel. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -2109,7 +2109,7 @@ Obligatoire depuis 2021 sur les vélos neufs, le marquage :
 | Vol + casse | Vol + dommages accidentels | 5-8 % de la valeur |
 | Tous risques | Vol + casse + RC + individuelle | 8-12 % de la valeur |
 
-> **🦉 Conseil d'Arthur :** Pour un vélo cargo à 5 000 €, l'assurance vol coûte environ 150 à 250 €/an. C'est un investissement raisonnable pour un bien aussi coûteux et aussi exposé. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Pour un vélo cargo à 5 000 €, l'assurance vol coûte environ 150 à 250 €/an. C'est un investissement raisonnable pour un bien aussi coûteux et aussi exposé. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les bonnes pratiques anti-vol
 
@@ -2126,7 +2126,7 @@ Certains contrats habitation couvrent le vol de vélo :
 - **À l'extérieur** : souvent limité à 300-500 € (insuffisant pour un VAE)
 - **Extension possible** : ajout d'une garantie vélo spécifique (5-10 €/mois)
 
-> **🦉 Conseil d'Arthur :** Votre assurance habitation couvre probablement le vol de vélo chez vous, mais rarement à l'extérieur. Vérifiez les plafonds et souscrivez une extension si nécessaire. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Votre assurance habitation couvre probablement le vol de vélo chez vous, mais rarement à l'extérieur. Vérifiez les plafonds et souscrivez une extension si nécessaire. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -2191,7 +2191,7 @@ L'installation par un électricien certifié **IRVE** (Infrastructure de Recharg
 - Attestation de conformité IRVE
 - Certificat Consuel (si applicable)
 
-> **🦉 Conseil d'Arthur :** La déclaration de la borne à votre assureur est gratuite et rapide. Ne prenez pas le risque d'un refus d'indemnisation pour un sinistre lié à la recharge. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** La déclaration de la borne à votre assureur est gratuite et rapide. Ne prenez pas le risque d'un refus d'indemnisation pour un sinistre lié à la recharge. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les coûts d'assurance en 2026
 
@@ -2201,7 +2201,7 @@ L'installation par un électricien certifié **IRVE** (Infrastructure de Recharg
 | Borne 11-22 kW | +5 à +15 €/an |
 | Borne + panneaux solaires | +10 à +25 €/an |
 
-> **🦉 Conseil d'Arthur :** La borne de recharge valorise votre logement. Assurez-la correctement : en cas de sinistre, le remplacement coûte 1 000 à 2 500 €. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** La borne de recharge valorise votre logement. Assurez-la correctement : en cas de sinistre, le remplacement coûte 1 000 à 2 500 €. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -2277,7 +2277,7 @@ En cas de panne avec des passagers :
 
 En cas de litige avec un passager.
 
-> **🦉 Conseil d'Arthur :** La garantie individuelle conducteur est le complément essentiel pour le covoitureur. Votre RC protège vos passagers, mais personne ne vous protège, vous, sans cette option. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** La garantie individuelle conducteur est le complément essentiel pour le covoitureur. Votre RC protège vos passagers, mais personne ne vous protège, vous, sans cette option. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Ce que font les plateformes
 
@@ -2287,7 +2287,7 @@ En cas de litige avec un passager.
 - **Ne remplace pas** votre assurance auto
 - **Complémentaire** : couvre les situations non prises en charge par votre RC
 
-> **🦉 Conseil d'Arthur :** L'assurance de BlaBlaCar est un bonus, pas un remplacement. Votre propre contrat auto reste votre protection principale. Vérifiez qu'il inclut bien l'individuelle conducteur. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** L'assurance de BlaBlaCar est un bonus, pas un remplacement. Votre propre contrat auto reste votre protection principale. Vérifiez qu'il inclut bien l'individuelle conducteur. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -2352,7 +2352,7 @@ Le nouvel assureur se charge de **tout** :
 
 Votre ancien assureur vous envoie un accusé de réception. Votre nouveau contrat démarre automatiquement.
 
-> **🦉 Conseil d'Arthur :** Grâce à la loi Hamon, vous n'avez rien à faire côté résiliation. Le nouvel assureur gère tout. Il suffit de trouver une meilleure offre et de souscrire. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Grâce à la loi Hamon, vous n'avez rien à faire côté résiliation. Le nouvel assureur gère tout. Il suffit de trouver une meilleure offre et de souscrire. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les erreurs à éviter
 
@@ -2374,7 +2374,7 @@ Depuis 2023, tous les assureurs doivent proposer un **bouton de résiliation** s
 
 Votre assureur auto doit fournir le relevé d'information en format numérique sous **15 jours**, facilitant le transfert vers un nouvel assureur.
 
-> **🦉 Conseil d'Arthur :** Ne restez jamais fidèle à un assureur par facilité. La loi Hamon a été conçue pour protéger le consommateur. Comparez chaque année pour économiser. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Ne restez jamais fidèle à un assureur par facilité. La loi Hamon a été conçue pour protéger le consommateur. Comparez chaque année pour économiser. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -2440,7 +2440,7 @@ Par email ou téléphone, communiquez :
 
 Si vous avez payé d'avance, l'assureur doit vous rembourser la prime correspondant à la période non utilisée.
 
-> **🦉 Conseil d'Arthur :** N'attendez pas ! Chaque jour de retard dans la déclaration est un jour de prime payée pour un véhicule que vous ne possédez plus. Prévenez votre assureur le jour même de la vente. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** N'attendez pas ! Chaque jour de retard dans la déclaration est un jour de prime payée pour un véhicule que vous ne possédez plus. Prévenez votre assureur le jour même de la vente. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les cas particuliers
 
@@ -2459,7 +2459,7 @@ Résiliez et récupérez votre trop-perçu. Si vous achetez un véhicule plus ta
 
 La couverture est transférée à l'acheteur pendant **24 heures** après la vente. Au-delà, l'acheteur doit avoir sa propre assurance.
 
-> **🦉 Conseil d'Arthur :** Si vous changez de véhicule, c'est le moment idéal pour comparer les assureurs. Votre nouveau véhicule peut être mieux couvert à un tarif plus compétitif. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Si vous changez de véhicule, c'est le moment idéal pour comparer les assureurs. Votre nouveau véhicule peut être mieux couvert à un tarif plus compétitif. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -2527,7 +2527,7 @@ Le FVA centralise toutes les informations d'assurance auto :
 - Ne pas retirer une vignette encore collée (elle ne gêne pas)
 - Ne pas ignorer un contrôle police sous prétexte que « tout est numérique »
 
-> **🦉 Conseil d'Arthur :** Le FVA vérifie automatiquement votre assurance, mais en cas de contrôle, avoir votre attestation numérique sur votre téléphone accélère les choses. Enregistrez-la dans vos fichiers. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Le FVA vérifie automatiquement votre assurance, mais en cas de contrôle, avoir votre attestation numérique sur votre téléphone accélère les choses. Enregistrez-la dans vos fichiers. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les questions fréquentes
 
@@ -2542,7 +2542,7 @@ Si votre véhicule apparaît comme « non assuré » alors que vous l'êtes :
 
 Non. Pour voyager en Europe, conservez votre **carte internationale d'assurance** (ex-carte verte internationale) que votre assureur peut vous fournir.
 
-> **🦉 Conseil d'Arthur :** Si vous voyagez en Europe, demandez votre carte internationale d'assurance à votre assureur avant le départ. Le FVA ne fonctionne qu'en France. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Si vous voyagez en Europe, demandez votre carte internationale d'assurance à votre assureur avant le départ. Le FVA ne fonctionne qu'en France. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -2611,7 +2611,7 @@ Le BCT examine votre dossier et désigne un assureur qui sera **obligé** de vou
 
 L'assureur désigné fixe **librement** le tarif. Le BCT ne contrôle pas le prix, uniquement l'obligation de couverture.
 
-> **🦉 Conseil d'Arthur :** Avant de saisir le BCT, essayez tous les assureurs spécialisés via un comparateur. Le BCT est efficace, mais les tarifs imposés sont souvent plus élevés que ceux du marché spécialisé. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Avant de saisir le BCT, essayez tous les assureurs spécialisés via un comparateur. Le BCT est efficace, mais les tarifs imposés sont souvent plus élevés que ceux du marché spécialisé. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Ce que garantit le BCT
 
@@ -2636,7 +2636,7 @@ L'assureur désigné fixe **librement** le tarif. Le BCT ne contrôle pas le pri
 3. **Comparez chaque année** : votre profil s'améliore avec le temps
 4. **Attendez la fin de l'inscription AGIRA** (2 ans)
 
-> **🦉 Conseil d'Arthur :** Le BCT est votre droit absolu. Utilisez-le si nécessaire, mais travaillez en parallèle à améliorer votre profil pour retrouver des tarifs normaux. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Le BCT est votre droit absolu. Utilisez-le si nécessaire, mais travaillez en parallèle à améliorer votre profil pour retrouver des tarifs normaux. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -2708,7 +2708,7 @@ La solution radicale :
 2. L'obligation d'assurance cesse immédiatement
 3. **Attention** : le véhicule ne peut plus circuler du tout (même pour aller au garage)
 
-> **🦉 Conseil d'Arthur :** Si l'immobilisation dure plus de 3 mois, demandez à votre assureur une suspension ou un passage au tiers. C'est légal, simple, et vous économise de l'argent. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Si l'immobilisation dure plus de 3 mois, demandez à votre assureur une suspension ou un passage au tiers. C'est légal, simple, et vous économise de l'argent. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Cas pratiques
 
@@ -2724,7 +2724,7 @@ La solution radicale :
 
 → Optez pour un contrat saisonnier ou une suspension hivernale (proposée par certains assureurs spécialisés).
 
-> **🦉 Conseil d'Arthur :** Ne résiliez jamais votre assurance tant que votre véhicule est immatriculé. Même au garage, même en panne. C'est la loi, et les risques (vol, incendie) restent réels. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Ne résiliez jamais votre assurance tant que votre véhicule est immatriculé. Même au garage, même en panne. C'est la loi, et les risques (vol, incendie) restent réels. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -2793,7 +2793,7 @@ Sur le site ANTS, effectuez la demande de changement de titulaire :
 - **Coût** : variable selon la puissance fiscale et la région
 - **Délai** : 2 à 4 semaines
 
-> **🦉 Conseil d'Arthur :** Ne tardez pas à assurer le véhicule hérité. Passé 10 jours sans assurance, vous êtes en infraction si vous roulez. Comparez les offres pour trouver le meilleur tarif. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Ne tardez pas à assurer le véhicule hérité. Passé 10 jours sans assurance, vous êtes en infraction si vous roulez. Comparez les offres pour trouver le meilleur tarif. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les questions fréquentes sur le bonus-malus
 
@@ -2808,7 +2808,7 @@ Si plusieurs personnes héritent du véhicule :
 - Les autres héritiers sont indemnisés sur leur part de la valeur du véhicule
 - Le véhicule peut aussi être vendu et le produit réparti
 
-> **🦉 Conseil d'Arthur :** Si vous héritez d'un véhicule ancien ou de collection, faites-le évaluer avant de souscrire l'assurance. La valeur agréée vous garantira une indemnisation juste en cas de sinistre. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Si vous héritez d'un véhicule ancien ou de collection, faites-le évaluer avant de souscrire l'assurance. La valeur agréée vous garantira une indemnisation juste en cas de sinistre. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -2887,7 +2887,7 @@ Le dispositif crée des **paniers de soins** avec des tarifs plafonnés :
 - Période d'essai de **30 jours** obligatoire
 - Suivi inclus pendant **4 ans**
 
-> **🦉 Conseil d'Arthur :** Le 100% Santé est un droit. Demandez systématiquement le devis « panier 100% Santé » à votre opticien ou dentiste. Vous n'êtes pas obligé de choisir l'option la plus chère. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Le 100% Santé est un droit. Demandez systématiquement le devis « panier 100% Santé » à votre opticien ou dentiste. Vous n'êtes pas obligé de choisir l'option la plus chère. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Comment en bénéficier
 
@@ -2912,7 +2912,7 @@ Le dispositif crée des **paniers de soins** avec des tarifs plafonnés :
 - **Délais de renouvellement** : 2 ans pour les lunettes, 4 ans pour les aides auditives
 - **Dépassements exclus** : si vous choisissez le panier libre, le reste à charge peut être important
 
-> **🦉 Conseil d'Arthur :** Le 100% Santé ne signifie pas « moins bien ». Les verres sont identiques, seules les montures diffèrent. Pour vos dents, les couronnes céramiques du panier gratuit sont de bonne qualité. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Le 100% Santé ne signifie pas « moins bien ». Les verres sont identiques, seules les montures diffèrent. Pour vos dents, les couronnes céramiques du panier gratuit sont de bonne qualité. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -2982,7 +2982,7 @@ Oui, dans la majorité des cas, rester sur la mutuelle des parents est plus avan
 | Téléconsultation | Variable | Incluse chez la plupart |
 | Indépendance | Non | Oui |
 
-> **🦉 Conseil d'Arthur :** Si la mutuelle de vos parents vous couvre correctement (optique, dentaire de base), restez-y. L'économie est réelle. Si elle ne couvre pas vos besoins spécifiques (psychologue, ostéo), une mutuelle étudiante dédiée à 20-30 €/mois peut valoir le coup. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Si la mutuelle de vos parents vous couvre correctement (optique, dentaire de base), restez-y. L'économie est réelle. Si elle ne couvre pas vos besoins spécifiques (psychologue, ostéo), une mutuelle étudiante dédiée à 20-30 €/mois peut valoir le coup. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les besoins spécifiques des étudiants
 
@@ -3007,7 +3007,7 @@ Si vos ressources sont faibles, vous pouvez bénéficier de la **CSS** :
 - **Participation réduite** (8 €/mois pour les 25-29 ans) si revenus modestes
 - Couverture complète : optique, dentaire, audiologie
 
-> **🦉 Conseil d'Arthur :** Vérifiez votre éligibilité à la CSS avant de souscrire une mutuelle payante. De nombreux étudiants y ont droit sans le savoir. C'est gratuit et complet ! **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Vérifiez votre éligibilité à la CSS avant de souscrire une mutuelle payante. De nombreux étudiants y ont droit sans le savoir. C'est gratuit et complet ! **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -3073,7 +3073,7 @@ Les cotisations de mutuelle sont **déductibles du bénéfice imposable** :
 
 Vérifiez que le contrat est éligible Madelin pour bénéficier de l'avantage fiscal.
 
-> **🦉 Conseil d'Arthur :** En tant qu'auto-entrepreneur, votre priorité n°1 est la garantie indemnités journalières. Sans elle, un arrêt maladie de 3 mois peut mettre votre activité en péril. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** En tant qu'auto-entrepreneur, votre priorité n°1 est la garantie indemnités journalières. Sans elle, un arrêt maladie de 3 mois peut mettre votre activité en péril. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Comparatif des offres 2026
 
@@ -3099,7 +3099,7 @@ Au-delà de la mutuelle, l'auto-entrepreneur doit penser à la **prévoyance** :
 - **Invalidité** : couverture minimale sans complémentaire
 - **Décès** : capital décès pour protéger vos proches
 
-> **🦉 Conseil d'Arthur :** Ne séparez pas la réflexion mutuelle et prévoyance. Certains contrats Madelin combinent les deux pour une protection complète à un tarif optimisé. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Ne séparez pas la réflexion mutuelle et prévoyance. Certains contrats Madelin combinent les deux pour une protection complète à un tarif optimisé. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -3179,7 +3179,7 @@ La banque a **10 jours ouvrés** pour accepter ou refuser (avec justification ob
 
 Le nouveau contrat remplace l'ancien. Aucune interruption de couverture.
 
-> **🦉 Conseil d'Arthur :** Chaque mois que vous attendez pour changer coûte de l'argent. Sur un prêt de 250 000 €, c'est 40 € par mois d'économie potentielle. Comparez maintenant ! **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Chaque mois que vous attendez pour changer coûte de l'argent. Sur un prêt de 250 000 €, c'est 40 € par mois d'économie potentielle. Comparez maintenant ! **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les pièges à éviter
 
@@ -3200,7 +3200,7 @@ Plus de questionnaire médical si :
 
 Les anciens malades du cancer et de l'hépatite C n'ont plus à déclarer leur maladie après **5 ans de rémission** (au lieu de 10 auparavant).
 
-> **🦉 Conseil d'Arthur :** La suppression du questionnaire médical simplifie considérablement la démarche. Si votre prêt est inférieur à 200 000 €, vous n'avez plus aucune excuse pour ne pas comparer ! **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** La suppression du questionnaire médical simplifie considérablement la démarche. Si votre prêt est inférieur à 200 000 €, vous n'avez plus aucune excuse pour ne pas comparer ! **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -3268,7 +3268,7 @@ En 2026, 70 % des mutuelles proposent un forfait médecines douces, couvrant 2 �
 | Formule B (60 €/mois) | 300 € | 50 € | Ostéo, acupu, sophro, hypnose |
 | Formule C (80 €/mois) | 500 € | 60 € | Toutes médecines alternatives |
 
-> **🦉 Conseil d'Arthur :** Si vous consultez régulièrement un ostéopathe (3-4 séances/an à 60 €), une mutuelle avec 300 € de forfait médecines douces se rentabilise immédiatement. Comparez les offres ! **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Si vous consultez régulièrement un ostéopathe (3-4 séances/an à 60 €), une mutuelle avec 300 € de forfait médecines douces se rentabilise immédiatement. Comparez les offres ! **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les astuces pour maximiser vos remboursements
 
@@ -3292,7 +3292,7 @@ Un forfait de 300 €/an peut couvrir :
 - D'autres demandent une **prescription médicale** préalable
 - Le remboursement peut être exclu pendant les **délais de carence**
 
-> **🦉 Conseil d'Arthur :** Demandez toujours une facture détaillée à votre praticien (nom, qualifications, discipline, tarif). C'est la condition sine qua non pour être remboursé par votre mutuelle. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Demandez toujours une facture détaillée à votre praticien (nom, qualifications, discipline, tarif). C'est la condition sine qua non pour être remboursé par votre mutuelle. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -3385,7 +3385,7 @@ Ne pas déclarer un accident passé pour éviter le malus.
 
 **Risque** : annulation du contrat si l'assureur découvre l'omission (et il la découvrira via le relevé d'information).
 
-> **🦉 Conseil d'Arthur :** L'honnêteté est toujours la meilleure stratégie. Si votre profil fait augmenter votre prime, comparez les assureurs plutôt que de mentir. L'économie d'une fausse déclaration peut vous coûter infiniment plus cher en cas de sinistre. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** L'honnêteté est toujours la meilleure stratégie. Si votre profil fait augmenter votre prime, comparez les assureurs plutôt que de mentir. L'économie d'une fausse déclaration peut vous coûter infiniment plus cher en cas de sinistre. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Comment les assureurs détectent la fraude
 
@@ -3395,7 +3395,7 @@ Ne pas déclarer un accident passé pour éviter le malus.
 - **Intelligence artificielle** : détection des incohérences (en forte progression en 2026)
 - **Réseaux sociaux** : oui, les assureurs vérifient
 
-> **🦉 Conseil d'Arthur :** En 2026, les outils de détection de fraude sont plus sophistiqués que jamais. Ce qui passait inaperçu il y a 10 ans est aujourd'hui systématiquement détecté. Ne prenez pas le risque. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** En 2026, les outils de détection de fraude sont plus sophistiqués que jamais. Ce qui passait inaperçu il y a 10 ans est aujourd'hui systématiquement détecté. Ne prenez pas le risque. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -3501,7 +3501,7 @@ En 2026, la fraude à l'assurance coûte 2,5 milliards d'euros par an en France.
 - Toute résiliation nécessite votre **signature**
 - Vérifiez auprès de votre assureur actuel avant toute action
 
-> **🦉 Conseil d'Arthur :** Pour éviter les arnaques, utilisez uniquement des comparateurs reconnus et des assureurs vérifiables sur orias.fr. La sécurité de vos données et de votre couverture en dépend. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Pour éviter les arnaques, utilisez uniquement des comparateurs reconnus et des assureurs vérifiables sur orias.fr. La sécurité de vos données et de votre couverture en dépend. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les chiffres de la fraude en 2026
 
@@ -3512,7 +3512,7 @@ En 2026, la fraude à l'assurance coûte 2,5 milliards d'euros par an en France.
 | Fausses déclarations | 25 % | 625 M € |
 | Phishing/usurpation | 10 % | 250 M € |
 
-> **🦉 Conseil d'Arthur :** Si une offre semble trop belle pour être vraie, c'est probablement le cas. Comparez toujours avec des acteurs vérifiés et fiables. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Si une offre semble trop belle pour être vraie, c'est probablement le cas. Comparez toujours avec des acteurs vérifiés et fiables. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -3589,7 +3589,7 @@ Un sinistre responsable (accident seul = 100 % responsable) entraîne :
 - Votre franchise est **élevée** (la déclaration ne rapporterait presque rien)
 - Vous avez un **bon bonus** à protéger (0,50)
 
-> **🦉 Conseil d'Arthur :** Faites toujours le calcul avant de déclarer. Un sinistre mineur peut vous coûter bien plus cher à long terme que la réparation immédiate. Protégez votre bonus ! **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Faites toujours le calcul avant de déclarer. Un sinistre mineur peut vous coûter bien plus cher à long terme que la réparation immédiate. Protégez votre bonus ! **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## L'obligation de déclaration
 
@@ -3625,7 +3625,7 @@ Pour les dommages cosmétiques :
 
 Gardez les photos et preuves du sinistre sans déclarer. Si des dommages cachés apparaissent plus tard, vous pourrez toujours déclarer (dans la limite des 5 jours légaux ou des 2 ans de prescription).
 
-> **🦉 Conseil d'Arthur :** Un petit accrochage de 500 € peut coûter 1 500 € sur 3 ans si vous le déclarez (franchise + malus). Faites le calcul, et si nécessaire, comparez les tarifs pour votre prochain renouvellement. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Un petit accrochage de 500 € peut coûter 1 500 € sur 3 ans si vous le déclarez (franchise + malus). Faites le calcul, et si nécessaire, comparez les tarifs pour votre prochain renouvellement. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## FAQ
 
@@ -3689,7 +3689,7 @@ En moyenne, un parcours thérapeutique nécessite **3 à 6 séances** selon la p
 
 **Exception rare** : si l'hypnose est pratiquée par un **médecin conventionné** dans le cadre d'une consultation classique, la consultation elle-même (25€) est remboursée à 70%. Mais la partie « hypnose » n'est pas valorisée.
 
-> **🦉 Conseil d'Arthur :** Certains hôpitaux intègrent l'hypnose dans leur parcours de soins (anesthésie, douleur chronique, préparation à l'accouchement). Dans ce cas, c'est pris en charge. Renseignez-vous auprès de votre centre hospitalier.
+> **Conseil d'Arthur :** Certains hôpitaux intègrent l'hypnose dans leur parcours de soins (anesthésie, douleur chronique, préparation à l'accouchement). Dans ce cas, c'est pris en charge. Renseignez-vous auprès de votre centre hospitalier.
 
 ## Quelles mutuelles remboursent l'hypnose en 2026 ?
 
@@ -3711,7 +3711,7 @@ En moyenne, un parcours thérapeutique nécessite **3 à 6 séances** selon la p
 3. **Attention aux conditions** : certaines mutuelles exigent un praticien certifié (ARCHE, IFH, CFHTB)
 4. **Demandez un devis** si votre mutuelle actuelle ne rembourse pas
 
-> **🦉 Conseil d'Arthur :** Le forfait « médecines douces » est souvent **partagé** entre toutes les disciplines (ostéo, hypnose, acupuncture…). Si vous consultez aussi un ostéopathe, votre plafond sera atteint plus vite. Comparez les mutuelles avec un forfait dédié à l'hypnose. **[→ Comparer les mutuelles](/assurance-sante)**
+> **Conseil d'Arthur :** Le forfait « médecines douces » est souvent **partagé** entre toutes les disciplines (ostéo, hypnose, acupuncture…). Si vous consultez aussi un ostéopathe, votre plafond sera atteint plus vite. Comparez les mutuelles avec un forfait dédié à l'hypnose. **[→ Comparer les mutuelles](/assurance-sante)**
 
 ## Pour quelles pathologies l'hypnose est-elle efficace ?
 
@@ -3766,7 +3766,7 @@ Si votre mutuelle actuelle ne propose pas de forfait médecines douces, vous pou
 
 Pour les indépendants et TNS, le choix de la mutuelle est encore plus stratégique car les cotisations sont déductibles fiscalement. Consultez notre [guide mutuelle TNS](/mutuelle-tns) pour optimiser votre couverture.
 
-> **🦉 Conseil d'Arthur :** En changeant de mutuelle, certains assurés ont récupéré jusqu'à **400€/an** de remboursement pour leurs séances d'hypnose et d'ostéopathie combinées. Comparez gratuitement en 2 minutes. **[→ Comparer les mutuelles maintenant](/assurance-sante)**
+> **Conseil d'Arthur :** En changeant de mutuelle, certains assurés ont récupéré jusqu'à **400€/an** de remboursement pour leurs séances d'hypnose et d'ostéopathie combinées. Comparez gratuitement en 2 minutes. **[→ Comparer les mutuelles maintenant](/assurance-sante)**
 
 ## FAQ
 
@@ -3842,7 +3842,7 @@ Les statistiques de la Sécurité Routière sont implacables :
 | 4ème année | +25% | 0% |
 | 5ème année | 0% | — |
 
-> **🦉 Conseil d'Arthur :** La conduite accompagnée (AAC) est le **meilleur investissement** d'un jeune conducteur. En 3 ans, l'économie cumulée dépasse **1 500€** en assurance auto. Sans compter que le taux de réussite au permis est de 75% en AAC contre 52% en filière classique.
+> **Conseil d'Arthur :** La conduite accompagnée (AAC) est le **meilleur investissement** d'un jeune conducteur. En 3 ans, l'économie cumulée dépasse **1 500€** en assurance auto. Sans compter que le taux de réussite au permis est de 75% en AAC contre 52% en filière classique.
 
 ### Le coefficient bonus-malus (CRM)
 
@@ -3900,7 +3900,7 @@ Si vos parents sont déjà chez un assureur pour leur [habitation](/assurance-ha
 
 Les écarts entre assureurs peuvent atteindre **50%** pour le même profil. Un comparateur indépendant comme jemassuremoinscher.fr interroge 50+ assureurs en 2 minutes.
 
-> **🦉 Conseil d'Arthur :** Ne vous arrêtez pas au premier devis. J'ai vu des écarts de 1 200€ entre le plus cher et le moins cher pour un même profil de jeune conducteur ! **[→ Simuler mon prix en 2 minutes](/assurance-auto)**
+> **Conseil d'Arthur :** Ne vous arrêtez pas au premier devis. J'ai vu des écarts de 1 200€ entre le plus cher et le moins cher pour un même profil de jeune conducteur ! **[→ Simuler mon prix en 2 minutes](/assurance-auto)**
 
 ## Quels assureurs sont les moins chers pour les jeunes conducteurs en 2026 ?
 
@@ -4001,7 +4001,7 @@ Pour une maison individuelle, l'assurance PNO n'est pas légalement obligatoire.
 - En cas de vacance locative, vous n'avez **aucune couverture**
 - Un dégât des eaux ou un incendie peut coûter **des dizaines de milliers d'euros**
 
-> **🦉 Conseil d'Arthur :** J'ai vu un propriétaire à Lyon se retrouver avec 35 000€ de travaux après un dégât des eaux pendant une vacance locative de 2 mois — sans PNO. Pour 100€/an, ne prenez pas ce risque. **[→ Comparer les assurances PNO](/assurance-pno)**
+> **Conseil d'Arthur :** J'ai vu un propriétaire à Lyon se retrouver avec 35 000€ de travaux après un dégât des eaux pendant une vacance locative de 2 mois — sans PNO. Pour 100€/an, ne prenez pas ce risque. **[→ Comparer les assurances PNO](/assurance-pno)**
 
 ## Combien coûte une assurance PNO en 2026 ?
 
@@ -4038,7 +4038,7 @@ Pour une maison individuelle, l'assurance PNO n'est pas légalement obligatoire.
 
 *Tarifs indicatifs relevés en mars 2026 pour un T2 de 45 m² en copropriété à Lyon.*
 
-> **🦉 Conseil d'Arthur :** Attention aux assurances PNO « RC seule » à 30-40€/an : elles ne couvrent que votre responsabilité civile. En cas de dégât des eaux ou d'incendie, vous n'êtes pas indemnisé pour les réparations de votre bien. Optez pour une **multirisque PNO**. **[→ Comparer les assurances PNO](/assurance-pno)**
+> **Conseil d'Arthur :** Attention aux assurances PNO « RC seule » à 30-40€/an : elles ne couvrent que votre responsabilité civile. En cas de dégât des eaux ou d'incendie, vous n'êtes pas indemnisé pour les réparations de votre bien. Optez pour une **multirisque PNO**. **[→ Comparer les assurances PNO](/assurance-pno)**
 
 ## Que couvre exactement l'assurance PNO ?
 
@@ -4116,7 +4116,7 @@ Après des travaux de rénovation, prévenez votre assureur. L'augmentation de l
 
 Grâce à la [loi Hamon](/blog/resiliation-assurance-loi-hamon-guide-2026), vous pouvez changer d'assurance PNO à tout moment après la première année. N'hésitez pas à renégocier ou comparer chaque année.
 
-> **🦉 Conseil d'Arthur :** L'assurance PNO est **déductible de vos revenus fonciers** (régime réel). Conservez bien vos factures ! C'est un avantage fiscal souvent oublié par les investisseurs débutants. **[→ Comparer les assurances PNO](/assurance-pno)**
+> **Conseil d'Arthur :** L'assurance PNO est **déductible de vos revenus fonciers** (régime réel). Conservez bien vos factures ! C'est un avantage fiscal souvent oublié par les investisseurs débutants. **[→ Comparer les assurances PNO](/assurance-pno)**
 
 ## FAQ
 
@@ -4151,7 +4151,7 @@ Le syndic peut vous mettre en demeure de souscrire. En cas de sinistre, vous êt
 
 Exploiter un parc accrobranche en France, c'est jongler chaque jour avec la **norme EN 15567**, les contrôles ECP annuels, et un risque corporel non négligeable : chutes, entorses, blocages en tyrolienne, défaillance d'EPI. La RC exploitant n'est pas qu'une formalité administrative — c'est ce qui sépare une saison sereine d'une fermeture définitive après le premier sinistre grave.
 
-> **🦉 L'essentiel** — Un parc accrobranche moyen (45 000 visiteurs/an) paie entre **2 800 et 6 500 €/an** de RC exploitant. Notre intervention de courtage divise généralement la facture par 1,8 grâce à la mise en concurrence d'assureurs spécialisés (Hiscox, Albingia, MMA Pro Sport). [→ Demander mon devis sur-mesure](/assurance-metiers-atypiques)
+> **L'essentiel** — Un parc accrobranche moyen (45 000 visiteurs/an) paie entre **2 800 et 6 500 €/an** de RC exploitant. Notre intervention de courtage divise généralement la facture par 1,8 grâce à la mise en concurrence d'assureurs spécialisés (Hiscox, Albingia, MMA Pro Sport). [→ Demander mon devis sur-mesure](/assurance-metiers-atypiques)
 
 ## 1. Le cadre légal : ce que la loi vous impose en 2026
 
@@ -4197,7 +4197,7 @@ L'**Examen de Contrôle Périodique** par un organisme habilité (Veritas, Apave
 - ⚠️ **Dommages aux EPI loués/prêtés** : à couvrir séparément
 - ⚠️ **Sinistres antérieurs non déclarés** : nullité du contrat
 
-> **🦉 Conseil d'Arthur :** Les contrats généralistes (AXA Pro, Allianz Entreprises) contiennent souvent des exclusions destructrices pour le métier. Toujours faire relire le contrat par un courtier spécialisé avant signature. [→ Audit gratuit](/assurance-metiers-atypiques)
+> **Conseil d'Arthur :** Les contrats généralistes (AXA Pro, Allianz Entreprises) contiennent souvent des exclusions destructrices pour le métier. Toujours faire relire le contrat par un courtier spécialisé avant signature. [→ Audit gratuit](/assurance-metiers-atypiques)
 
 ## 3. Individuelle Accident des participants : option ou must ?
 
@@ -4245,7 +4245,7 @@ Vous souscrivez une garantie **automatique pour tous les visiteurs**, intégrée
 4. **Generali Évolution Pro** — souple sur les surprimes après sinistre
 5. **Gras Savoye Loisirs** — courtier wholesaler, taux préférentiel via nos accords
 
-> **🦉 Conseil d'Arthur :** Les tarifs publiés en direct chez ces assureurs sont **30 à 60 % plus chers** qu'en passant par un courtier spécialisé (volume d'affaires + connaissance des grilles internes). [→ Comparer mes 3 meilleurs devis](/assurance-metiers-atypiques)
+> **Conseil d'Arthur :** Les tarifs publiés en direct chez ces assureurs sont **30 à 60 % plus chers** qu'en passant par un courtier spécialisé (volume d'affaires + connaissance des grilles internes). [→ Comparer mes 3 meilleurs devis](/assurance-metiers-atypiques)
 
 ## 6. Sinistre type : que faire en cas de chute ?
 
@@ -4302,7 +4302,7 @@ Oui. Le statut juridique ne réduit ni les obligations légales ni les risques. 
 
 Un moniteur d'escalade SAE/SNE, un guide de canyoning, un pilote de parapente biplace : trois métiers, trois niveaux de risque, trois tarifs RC qui varient de **280 € à 1 800 €/an**. Le **Code du sport (article L.321-1)** impose à tout encadrant rémunéré une assurance RC couvrant ses pratiquants — sans elle, c'est l'exercice illégal de la profession (1 an de prison, 15 000 € d'amende).
 
-> **🦉 L'essentiel** — Tarifs 2026 : moniteur escalade 280–700 €/an, guide kayak 450–950 €/an, pilote parapente biplace 900–1 800 €/an, BE alpinisme polyvalent 1 200–2 500 €/an. Notre courtage divise en moyenne ces montants par 1,5. [→ Devis personnalisé sous 48 h](/assurance-metiers-atypiques)
+> **L'essentiel** — Tarifs 2026 : moniteur escalade 280–700 €/an, guide kayak 450–950 €/an, pilote parapente biplace 900–1 800 €/an, BE alpinisme polyvalent 1 200–2 500 €/an. Notre courtage divise en moyenne ces montants par 1,5. [→ Devis personnalisé sous 48 h](/assurance-metiers-atypiques)
 
 ## 1. Le statut juridique impose la RC
 
@@ -4375,7 +4375,7 @@ Votre **carte professionnelle d'éducateur sportif** est valable 5 ans, mais doi
 2. La preuve de formation continue (recyclage SST, recyclage spécifique discipline)
 3. L'extrait de casier judiciaire B2 (vérifié par l'administration)
 
-> **🦉 Conseil d'Arthur :** Programmez votre renouvellement RC **2 mois avant l'échéance** de votre carte pro. Une attestation expirée = retrait immédiat de la carte = arrêt forcé de l'activité. [→ Programmer mes renouvellements](/assurance-metiers-atypiques)
+> **Conseil d'Arthur :** Programmez votre renouvellement RC **2 mois avant l'échéance** de votre carte pro. Une attestation expirée = retrait immédiat de la carte = arrêt forcé de l'activité. [→ Programmer mes renouvellements](/assurance-metiers-atypiques)
 
 ## 5. Solo vs structure : auto-entrepreneur ou association ?
 
@@ -4454,7 +4454,7 @@ Ne signez jamais une nouvelle RC sans déclarer le sinistre — la fausse décla
 
 En 2024, le festival « Les Échappées » en Bretagne a dû annuler à 48 h du J-1 pour intempéries — sans garantie annulation, c'est **380 000 €** qui se sont envolés. La RC organisateur couvre les dommages aux tiers, mais elle ne rembourse **jamais** la perte d'exploitation. Distinguer ces deux garanties, c'est le b.a.-ba de tout organisateur en 2026.
 
-> **🦉 L'essentiel** — Pour un festival de 5 000 personnes (1 jour), comptez 1 800 à 4 200 € de pack assurance complet (RC + annulation + bénévoles + matériel). Pour un marathon de 2 000 coureurs : 800 à 1 600 €. Notre courtage divise ces montants par 1,7 grâce à la mise en concurrence d'Albingia, Hiscox, Circles Group et Gras Savoye Événement. [→ Devis sur-mesure sous 48 h](/assurance-metiers-atypiques)
+> **L'essentiel** — Pour un festival de 5 000 personnes (1 jour), comptez 1 800 à 4 200 € de pack assurance complet (RC + annulation + bénévoles + matériel). Pour un marathon de 2 000 coureurs : 800 à 1 600 €. Notre courtage divise ces montants par 1,7 grâce à la mise en concurrence d'Albingia, Hiscox, Circles Group et Gras Savoye Événement. [→ Devis sur-mesure sous 48 h](/assurance-metiers-atypiques)
 
 ## 1. RC Organisateur : obligation légale dès 1 spectateur payant
 
@@ -4475,7 +4475,7 @@ L'article **L.211-1 du Code des assurances** impose à tout organisateur d'évé
 | Grand | 5 000–30 000 | 20 M€ | 2,5 M€ |
 | Très grand | > 30 000 | 50 M€ + | 5 M€ + |
 
-> **🦉 Conseil d'Arthur :** Les communes et préfectures exigent désormais des **attestations à 10 M€ minimum** dès 1 000 spectateurs. Anticipez : sans attestation conforme, pas d'arrêté municipal d'autorisation. [→ Attestation conforme sous 48 h](/assurance-metiers-atypiques)
+> **Conseil d'Arthur :** Les communes et préfectures exigent désormais des **attestations à 10 M€ minimum** dès 1 000 spectateurs. Anticipez : sans attestation conforme, pas d'arrêté municipal d'autorisation. [→ Attestation conforme sous 48 h](/assurance-metiers-atypiques)
 
 ## 2. Garantie Annulation : la garantie qui sauve les budgets
 
@@ -4582,7 +4582,7 @@ Les **bénévoles ne sont pas des salariés** : ils ne bénéficient pas de la c
 ❌ Engagement 12 mois minimum
 ❌ Plafond annuel à respecter
 
-> **🦉 Conseil d'Arthur :** Si vous organisez > 4 événements par an, le contrat annuel est presque toujours rentable. Notre cellule événementielle structure ces contrats package avec Albingia ou Hiscox. [→ Audit gratuit de votre besoin](/assurance-metiers-atypiques)
+> **Conseil d'Arthur :** Si vous organisez > 4 événements par an, le contrat annuel est presque toujours rentable. Notre cellule événementielle structure ces contrats package avec Albingia ou Hiscox. [→ Audit gratuit de votre besoin](/assurance-metiers-atypiques)
 
 ## 7. Tarifs 2026 — exemples concrets
 
