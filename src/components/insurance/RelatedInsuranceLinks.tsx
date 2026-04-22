@@ -28,6 +28,7 @@ const allProducts: Record<string, RelatedLink> = {
   permisEtranger: { to: "/assurance-auto-permis-etranger", label: "Permis Étranger", description: "Assurance auto avec permis étranger accepté" },
   emprunteur: { to: "/assurance-emprunteur", label: "Assurance Emprunteur", description: "Changez à tout moment, économisez jusqu'à 15 000€" },
   metiersAtypiques: { to: "/assurance-metiers-atypiques", label: "Métiers Atypiques", description: "Activités à risques : devis sur-mesure auprès de 12 assureurs spé." },
+  gestionLocative: { to: "/gestion-locative", label: "Gestion Locative", description: "Confiez vos biens à un pro : honoraires dès 5%" },
 };
 
 const nicheLinks = [
@@ -181,12 +182,24 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   gli: {
-    products: ["pno", "habitation", "mrp"],
+    products: ["pno", "habitation", "gestionLocative"],
     articles: [
+      { to: "/blog/comparatif-habitation-2026", label: "Comparatif habitation 2026" },
+      { to: "/blog/assurance-pno-obligatoire-louer-bien", label: "PNO : obligatoire pour louer ?" },
+    ],
+    tools: [
+      { to: "/comparateur", label: "Comparateur multi-assurances" },
+    ],
+  },
+  gestionLocative: {
+    products: ["gli", "pno", "habitation"],
+    articles: [
+      { to: "/blog/assurance-pno-obligatoire-louer-bien", label: "PNO : obligatoire pour louer ?" },
       { to: "/blog/comparatif-habitation-2026", label: "Comparatif habitation 2026" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
+      { to: "/contact", label: "Contactez un conseiller" },
     ],
   },
 };
