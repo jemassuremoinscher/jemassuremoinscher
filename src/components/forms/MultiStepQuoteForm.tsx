@@ -32,6 +32,7 @@ import arthurDetective from '@/assets/mascotte/arthur-detective.webp';
 import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.webp';
 import arthurExcited from '@/assets/mascotte/arthur-excited.webp';
 import arthurRunningCoin from '@/assets/mascotte/arthur-running-coin.webp';
+import arthurClimbing from '@/assets/mascotte/arthur-climbing.webp';
 
 // Logo imports for teaser prices
 import logoDirectAssurance from '@/assets/logos/direct-assurance-new.webp';
@@ -63,6 +64,7 @@ const mascotImages: Record<InsuranceType, string> = {
   gli: arthurDetective,
   pno: arthurHouse,
   comparateur: arthurThumbsUp,
+  metiers_atypiques: arthurClimbing,
 };
 
 const mascotSearching = arthurRunningCoin;
