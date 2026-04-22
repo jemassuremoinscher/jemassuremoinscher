@@ -32,6 +32,7 @@ import arthurDetective from '@/assets/mascotte/arthur-detective.webp';
 import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.webp';
 import arthurExcited from '@/assets/mascotte/arthur-excited.webp';
 import arthurRunningCoin from '@/assets/mascotte/arthur-running-coin.webp';
+import arthurClimbing from '@/assets/mascotte/arthur-climbing.webp';
 
 // Logo imports for teaser prices
 import logoDirectAssurance from '@/assets/logos/direct-assurance-new.webp';
@@ -63,6 +64,7 @@ const mascotImages: Record<InsuranceType, string> = {
   gli: arthurDetective,
   pno: arthurHouse,
   comparateur: arthurThumbsUp,
+  metiers_atypiques: arthurClimbing,
 };
 
 const mascotSearching = arthurRunningCoin;
@@ -334,13 +336,23 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
       <div className="relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50 shadow-[var(--shadow-lg)] overflow-hidden">
 
         {/* Step banner — urgency + progress */}
-        {step.type !== 'searching' && !transitionScreen && (
+        {step.type !== 'searching' && step.type !== 'callback' && !transitionScreen && (
           <div className="bg-primary px-4 py-2 flex items-center justify-between text-[11px] md:text-xs">
             <span className="font-semibold text-primary-foreground/90">
               Étape {currentStep + 1}/{totalSteps}
             </span>
             <span className="text-primary-foreground/70">
               Plus que <span className="text-accent font-bold">{secondsEstimate}s</span> pour voir vos prix
+            </span>
+          </div>
+        )}
+        {step.type === 'callback' && !transitionScreen && (
+          <div className="bg-primary px-4 py-2 flex items-center justify-between text-[11px] md:text-xs">
+            <span className="font-semibold text-primary-foreground/90">
+              Dernière étape — finalisez votre demande
+            </span>
+            <span className="text-primary-foreground/70">
+              Rappel sous <span className="text-accent font-bold">48 h</span>
             </span>
           </div>
         )}
@@ -500,6 +512,17 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
                     onChange={setContactData}
                     onSubmit={handleContactSubmit}
                     insuranceType={insuranceType}
+                  />
+                )}
+
+                {step.type === 'callback' && (
+                  <CallbackStep
+                    data={contactData}
+                    errors={contactErrors}
+                    isSubmitting={isSubmitting}
+                    isSuccess={isSuccess}
+                    onChange={setContactData}
+                    onSubmit={handleContactSubmit}
                   />
                 )}
               </motion.div>
@@ -1029,6 +1052,146 @@ function ContactStep({
           <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Envoi en cours…</>
         ) : (
           <>Recevoir mon devis gratuit</>
+        )}
+      </Button>
+
+      <p className="text-[11px] text-muted-foreground text-center">
+        🔒 Vos données sont protégées et ne seront jamais vendues.
+      </p>
+    </div>
+  );
+}
+
+// ─── Callback Step (no price, justified call-back request) ───────────────────
+function CallbackStep({
+  data, errors, isSubmitting, isSuccess, onChange, onSubmit,
+}: {
+  data: { fullName: string; email: string; phone: string; acceptTerms: boolean };
+  errors: Record<string, string>;
+  isSubmitting: boolean;
+  isSuccess: boolean;
+  onChange: (d: typeof data) => void;
+  onSubmit: () => void;
+}) {
+  if (isSuccess) {
+    return (
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="flex flex-col items-center gap-4 py-6"
+      >
+        <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
+          <CheckCircle2 className="h-10 w-10 text-primary" />
+        </div>
+        <h3 className="text-xl font-bold text-foreground">Demande reçue !</h3>
+        <p className="text-sm text-muted-foreground text-center max-w-sm">
+          Un courtier expert métiers atypiques vous rappelle sous 48 h avec une étude personnalisée et 2 à 3 propositions chiffrées.
+        </p>
+      </motion.div>
+    );
+  }
+
+  return (
+    <div className="space-y-5 max-w-md mx-auto w-full">
+      {/* Justification block */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="rounded-2xl bg-primary/5 border border-primary/20 p-4 space-y-2"
+      >
+        <p className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <CheckCircle2 className="h-4 w-4 text-primary" /> Pourquoi pas de prix immédiat ?
+        </p>
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          Aucune grille tarifaire standard ne peut chiffrer un métier atypique : la prime dépend de votre process,
+          vos certifications, votre sinistralité et l'appétit individuel de chaque assureur.
+          C'est pourquoi nos courtiers étudient votre dossier et négocient auprès de nos
+          <span className="font-semibold text-foreground"> 20 assureurs de niche</span> avant de vous présenter une estimation
+          fiable — souvent <span className="font-semibold text-foreground">2 fois moins chère</span> qu'un devis en direct.
+        </p>
+        <ul className="text-xs text-muted-foreground space-y-1 pt-1">
+          <li className="flex items-center gap-2"><span className="text-primary">✓</span> Rappel sous 48 h ouvrées</li>
+          <li className="flex items-center gap-2"><span className="text-primary">✓</span> 2 à 3 propositions argumentées</li>
+          <li className="flex items-center gap-2"><span className="text-primary">✓</span> Sans engagement</li>
+        </ul>
+      </motion.div>
+
+      {/* Full name */}
+      <div className="space-y-1.5">
+        <Label htmlFor="cb-name" className="text-sm font-medium flex items-center gap-1.5">
+          <User className="h-3.5 w-3.5 text-muted-foreground" /> Nom complet
+        </Label>
+        <Input
+          id="cb-name"
+          value={data.fullName}
+          onChange={(e) => onChange({ ...data, fullName: e.target.value })}
+          placeholder="Jean Dupont"
+          className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
+          disabled={isSubmitting}
+        />
+        {errors.fullName && <p className="text-xs text-destructive">{errors.fullName}</p>}
+      </div>
+
+      {/* Email */}
+      <div className="space-y-1.5">
+        <Label htmlFor="cb-email" className="text-sm font-medium flex items-center gap-1.5">
+          <Mail className="h-3.5 w-3.5 text-muted-foreground" /> Email professionnel
+        </Label>
+        <Input
+          id="cb-email"
+          type="email"
+          value={data.email}
+          onChange={(e) => onChange({ ...data, email: e.target.value })}
+          placeholder="contact@monentreprise.fr"
+          className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
+          disabled={isSubmitting}
+        />
+        {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
+      </div>
+
+      {/* Phone */}
+      <div className="space-y-1.5">
+        <Label htmlFor="cb-phone" className="text-sm font-medium flex items-center gap-1.5">
+          <Phone className="h-3.5 w-3.5 text-muted-foreground" /> Téléphone (pour le rappel)
+        </Label>
+        <Input
+          id="cb-phone"
+          type="tel"
+          value={data.phone}
+          onChange={(e) => onChange({ ...data, phone: e.target.value })}
+          placeholder="06 12 34 56 78"
+          className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
+          disabled={isSubmitting}
+        />
+        {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
+      </div>
+
+      {/* Terms */}
+      <div className="flex items-start gap-2 pt-1">
+        <Checkbox
+          id="cb-terms"
+          checked={data.acceptTerms}
+          onCheckedChange={(checked) => onChange({ ...data, acceptTerms: checked as boolean })}
+          disabled={isSubmitting}
+        />
+        <Label htmlFor="cb-terms" className="text-xs text-muted-foreground leading-tight cursor-pointer">
+          J'accepte les conditions d'utilisation. Mes données servent uniquement à étudier mon dossier et à me rappeler.
+        </Label>
+      </div>
+      {errors.acceptTerms && <p className="text-xs text-destructive">{errors.acceptTerms}</p>}
+
+      {/* Submit */}
+      <Button
+        onClick={onSubmit}
+        disabled={isSubmitting}
+        size="lg"
+        className="btn-glow w-full rounded-full font-bold text-base h-13 bg-secondary hover:bg-secondary/90 text-secondary-foreground active:scale-[0.97] transition-transform"
+      >
+        {isSubmitting ? (
+          <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Envoi en cours…</>
+        ) : (
+          <>Demander mon rappel sous 48 h</>
         )}
       </Button>
 

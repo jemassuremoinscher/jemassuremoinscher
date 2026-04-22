@@ -1,4 +1,4 @@
-import { Shield, ShieldCheck, ShieldPlus, Heart, HeartPulse, Activity, Home, Building, Castle, Car, Bike, PawPrint, Briefcase, FileText, Wallet, Landmark, Baby, Users, User, Stethoscope, Pill, Eye, Search, Lock, Scale, Umbrella, ChevronRight } from 'lucide-react';
+import { Shield, ShieldCheck, ShieldPlus, Heart, HeartPulse, Activity, Home, Building, Castle, Car, Bike, PawPrint, Briefcase, FileText, Wallet, Landmark, Baby, Users, User, Stethoscope, Pill, Eye, Search, Lock, Scale, Umbrella, ChevronRight, TreePine, Mountain, PartyPopper, HardHat, Award, AlertTriangle, Calendar, Building2, Sparkles } from 'lucide-react';
 import mascotCar from '@/assets/mascotte/arthur-car.webp';
 import mascotMoto from '@/assets/mascotte/arthur-moto.webp';
 import mascotHouse from '@/assets/mascotte/arthur-house.webp';
@@ -20,7 +20,7 @@ export interface StepOption {
 
 export interface FormStep {
   id: string;
-  type: 'card-select' | 'input' | 'searching' | 'contact' | 'vehicle-select';
+  type: 'card-select' | 'input' | 'searching' | 'contact' | 'vehicle-select' | 'callback';
   title: string;
   subtitle?: string;
   field?: string;
@@ -34,7 +34,7 @@ export interface FormStep {
   vehicleField?: 'brand' | 'model' | 'year';
 }
 
-export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur';
+export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur' | 'metiers_atypiques';
 
 export const mascotMap: Record<InsuranceType, string> = {
   auto: mascotCar,
@@ -50,6 +50,7 @@ export const mascotMap: Record<InsuranceType, string> = {
   gli: mascotDetective,
   pno: mascotHouse,
   comparateur: mascotThumbsUp,
+  metiers_atypiques: mascotBusiness,
 };
 
 const searchingStep: FormStep = {
@@ -436,5 +437,131 @@ export const stepConfigsByType: Record<InsuranceType, FormStep[]> = {
     postalCodeStep,
     searchingStep,
     contactStep,
+  ],
+  metiers_atypiques: [
+    {
+      id: 'famille_activite',
+      type: 'card-select',
+      title: 'Quelle famille d\'activité exercez-vous ?',
+      subtitle: 'Cela nous oriente vers les bons assureurs spécialisés.',
+      field: 'activityFamily',
+      options: [
+        { value: 'parc_aventure', label: 'Parc accrobranche & aventure', description: 'Tyroliennes, parcours, via ferrata', icon: TreePine },
+        { value: 'sport_outdoor', label: 'Sport outdoor & encadrement', description: 'Escalade, kayak, parapente, VTT', icon: Mountain },
+        { value: 'evenementiel', label: 'Événementiel & festivals', description: 'Concerts, courses, salons', icon: PartyPopper },
+        { value: 'btp_specialise', label: 'BTP spécialisé / hauteur', description: 'Cordistes, élagueurs, désamiantage', icon: HardHat },
+        { value: 'autre', label: 'Autre métier atypique', description: 'Drone, food truck, plongée, équestre…', icon: Sparkles },
+      ],
+    },
+    {
+      id: 'description_activite',
+      type: 'input',
+      title: 'Décrivez votre activité en quelques mots',
+      subtitle: 'Plus c\'est précis, plus le devis sera juste (ex : « Exploitation parcours acrobatique 8 ateliers »).',
+      field: 'activityDescription',
+      inputType: 'text',
+      placeholder: 'Mon activité principale est…',
+      maxLength: 120,
+      validation: /^.{10,120}$/,
+      validationMessage: '10 caractères minimum, 120 max',
+    },
+    {
+      id: 'statut',
+      type: 'card-select',
+      title: 'Quel est votre statut juridique ?',
+      subtitle: 'Auto-entrepreneur, société, association — chaque cas a son contrat.',
+      field: 'legalStatus',
+      options: [
+        { value: 'micro', label: 'Micro / Auto-ent.', description: 'Indépendant', icon: User },
+        { value: 'sasu_eurl', label: 'SASU / EURL', description: 'Société unipersonnelle', icon: Briefcase },
+        { value: 'sas_sarl', label: 'SAS / SARL', description: 'Société pluripersonnelle', icon: Building2 },
+        { value: 'asso', label: 'Association', description: 'Loi 1901', icon: Users },
+      ],
+    },
+    {
+      id: 'public_encadre',
+      type: 'card-select',
+      title: 'Encadrez-vous du public ?',
+      subtitle: 'Le risque corporel des participants est central pour la tarification.',
+      field: 'publicExposure',
+      options: [
+        { value: 'aucun', label: 'Aucun public', description: 'B2B / chantier uniquement', icon: Lock },
+        { value: 'adultes', label: 'Adultes uniquement', description: '+18 ans', icon: User },
+        { value: 'mixte', label: 'Adultes + enfants', description: 'Familles, scolaires', icon: Users },
+        { value: 'mineurs', label: 'Mineurs majoritaires', description: 'Colos, scolaires, clubs', icon: Baby },
+      ],
+    },
+    {
+      id: 'frequentation',
+      type: 'card-select',
+      title: 'Quelle fréquentation annuelle ?',
+      subtitle: 'Nombre cumulé de participants/visiteurs sur 12 mois.',
+      field: 'attendance',
+      options: [
+        { value: 'sub_500', label: 'Moins de 500', description: 'Activité ponctuelle', icon: Calendar },
+        { value: '500_5k', label: '500 — 5 000', description: 'Petite structure', icon: Users },
+        { value: '5k_50k', label: '5 000 — 50 000', description: 'Structure établie', icon: Users },
+        { value: 'sup_50k', label: '+ de 50 000', description: 'Gros événement / parc', icon: PartyPopper },
+      ],
+    },
+    {
+      id: 'salaries',
+      type: 'card-select',
+      title: 'Combien de personnes interviennent ?',
+      subtitle: 'Salariés + indépendants + bénévoles encadrants.',
+      field: 'staffSize',
+      options: [
+        { value: 'solo', label: 'Solo', description: 'Juste moi', icon: User },
+        { value: '2_5', label: '2 à 5', description: 'Petite équipe', icon: Users },
+        { value: '6_20', label: '6 à 20', description: 'Équipe structurée', icon: Users },
+        { value: 'sup_20', label: '+ de 20', description: 'Grosse structure', icon: Building2 },
+      ],
+    },
+    {
+      id: 'ca',
+      type: 'card-select',
+      title: 'Quel chiffre d\'affaires annuel ?',
+      subtitle: 'CA HT du dernier exercice (ou prévisionnel pour une création).',
+      field: 'revenue',
+      options: [
+        { value: 'sub_50k', label: 'Moins de 50 k€', description: 'Démarrage', icon: Wallet },
+        { value: '50_200k', label: '50 — 200 k€', description: 'Croissance', icon: Wallet },
+        { value: '200k_1m', label: '200 k€ — 1 M€', description: 'Établi', icon: Wallet },
+        { value: 'sup_1m', label: '+ de 1 M€', description: 'Grosse structure', icon: Wallet },
+      ],
+    },
+    {
+      id: 'certifications',
+      type: 'card-select',
+      title: 'Avez-vous des certifications professionnelles ?',
+      subtitle: 'Elles divisent souvent la prime par 2. Cochez le plus représentatif.',
+      field: 'certifications',
+      options: [
+        { value: 'oui_majeures', label: 'Oui (IRATA, BPJEPS, ECP…)', description: 'Certifs sectorielles à jour', icon: Award },
+        { value: 'oui_partielles', label: 'Partielles', description: 'Quelques diplômes / formations', icon: ShieldCheck },
+        { value: 'non', label: 'Aucune formelle', description: 'Expérience uniquement', icon: AlertTriangle },
+        { value: 'en_cours', label: 'En cours d\'obtention', description: 'Formation active', icon: Activity },
+      ],
+    },
+    {
+      id: 'sinistres',
+      type: 'card-select',
+      title: 'Sinistres déclarés sur les 5 dernières années ?',
+      subtitle: 'L\'honnêteté joue en votre faveur — nous le savons valoriser.',
+      field: 'claimsHistory',
+      options: [
+        { value: 'aucun', label: 'Aucun sinistre', description: 'Historique vierge', icon: ShieldCheck },
+        { value: '1_2', label: '1 à 2 sinistres', description: 'Faible sinistralité', icon: Shield },
+        { value: '3_5', label: '3 à 5 sinistres', description: 'À expliquer', icon: AlertTriangle },
+        { value: 'sup_5', label: '+ de 5 ou refus', description: 'On défend votre dossier', icon: AlertTriangle },
+      ],
+    },
+    postalCodeStep,
+    {
+      id: 'callback',
+      type: 'callback',
+      title: 'Votre dossier mérite une étude personnalisée',
+      subtitle: 'Pour les métiers atypiques, aucune grille standard ne donne de prix juste. Un courtier expert vous rappelle sous 48 h avec une estimation argumentée et 2 à 3 propositions de nos 20 assureurs de niche.',
+    },
   ],
 };
