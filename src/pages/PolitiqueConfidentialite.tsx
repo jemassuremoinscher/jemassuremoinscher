@@ -50,7 +50,7 @@ const PolitiqueConfidentialite = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <p><strong>{t('privacy.s1.responsable')}</strong> jemassuremoinscher.fr</p>
+                  <p><strong>{t('privacy.s1.responsable')}</strong> ARPV</p>
                   <p><strong>{t('privacy.s1.adresse')}</strong> {t('privacy.s1.adresseVal')}</p>
                   <p><strong>{t('privacy.s1.email')}</strong> contact@jemassuremoinscher.fr</p>
                   <p><strong>{t('privacy.s1.dpo')}</strong> {t('privacy.s1.dpoVal')}</p>

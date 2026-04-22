@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Shield, Lock, FileCheck, X, CreditCard, BadgeCheck, ShieldCheck } from "lucide-react";
+import { Shield, Lock, FileCheck, X, BadgeCheck, ShieldCheck, Instagram, Linkedin, Facebook } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Dialog,
@@ -154,6 +154,17 @@ const Footer = () => {
               <p className="text-xs text-primary-foreground/40 max-w-2xl leading-relaxed">
                 {t('footer.disclaimer')}
               </p>
+              <nav aria-label="Réseaux sociaux" className="flex items-center justify-center gap-4 pt-1">
+                <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Instagram" className="text-primary-foreground/50 hover:text-accent transition-colors">
+                  <Instagram className="h-4 w-4" />
+                </a>
+                <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur LinkedIn" className="text-primary-foreground/50 hover:text-accent transition-colors">
+                  <Linkedin className="h-4 w-4" />
+                </a>
+                <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Facebook" className="text-primary-foreground/50 hover:text-accent transition-colors">
+                  <Facebook className="h-4 w-4" />
+                </a>
+              </nav>
             </div>
           </div>
         </div>
@@ -181,13 +192,6 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Payment icons */}
-            <div className="flex items-center gap-3 text-primary-foreground/40">
-              <CreditCard className="h-5 w-5" aria-hidden="true" />
-              <span className="text-[10px] uppercase tracking-wider">Visa</span>
-              <span className="text-[10px] uppercase tracking-wider">Mastercard</span>
-              <span className="text-[10px] uppercase tracking-wider">CB</span>
-            </div>
           </div>
 
           {/* Copyright */}
