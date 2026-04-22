@@ -336,13 +336,23 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
       <div className="relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50 shadow-[var(--shadow-lg)] overflow-hidden">
 
         {/* Step banner — urgency + progress */}
-        {step.type !== 'searching' && !transitionScreen && (
+        {step.type !== 'searching' && step.type !== 'callback' && !transitionScreen && (
           <div className="bg-primary px-4 py-2 flex items-center justify-between text-[11px] md:text-xs">
             <span className="font-semibold text-primary-foreground/90">
               Étape {currentStep + 1}/{totalSteps}
             </span>
             <span className="text-primary-foreground/70">
               Plus que <span className="text-accent font-bold">{secondsEstimate}s</span> pour voir vos prix
+            </span>
+          </div>
+        )}
+        {step.type === 'callback' && !transitionScreen && (
+          <div className="bg-primary px-4 py-2 flex items-center justify-between text-[11px] md:text-xs">
+            <span className="font-semibold text-primary-foreground/90">
+              Dernière étape — finalisez votre demande
+            </span>
+            <span className="text-primary-foreground/70">
+              Rappel sous <span className="text-accent font-bold">48 h</span>
             </span>
           </div>
         )}
