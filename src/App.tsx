@@ -36,6 +36,10 @@ const LandingRCPro = lazy(() => import("./pages/landing/LandingRCPro"));
 const LandingGLI = lazy(() => import("./pages/landing/LandingGLI"));
 const LandingPNO = lazy(() => import("./pages/landing/LandingPNO"));
 const LandingMRP = lazy(() => import("./pages/landing/LandingMRP"));
+const LandingAccrobranche = lazy(() => import("./pages/landing/LandingAccrobranche"));
+const LandingMoniteurSport = lazy(() => import("./pages/landing/LandingMoniteurSport"));
+const LandingEvenementiel = lazy(() => import("./pages/landing/LandingEvenementiel"));
+const LandingCordisteBTP = lazy(() => import("./pages/landing/LandingCordisteBTP"));
 const AssuranceAutoMalusse = lazy(() => import("./pages/seo/AssuranceAutoMalusse"));
 const AssuranceJeuneConducteur = lazy(() => import("./pages/seo/AssuranceJeuneConducteur"));
 const MutuelleTNS = lazy(() => import("./pages/seo/MutuelleTNS"));
@@ -174,6 +178,10 @@ const App = () => {
                   <Route path="/landing/gli" element={<LandingGLI />} />
                   <Route path="/landing/pno" element={<LandingPNO />} />
                   <Route path="/landing/mrp" element={<LandingMRP />} />
+                  <Route path="/landing/accrobranche" element={<LandingAccrobranche />} />
+                  <Route path="/landing/moniteur-sport" element={<LandingMoniteurSport />} />
+                  <Route path="/landing/evenementiel" element={<LandingEvenementiel />} />
+                  <Route path="/landing/cordiste-btp" element={<LandingCordisteBTP />} />
                   <Route path="/comparateur" element={<Comparateur />} />
                   <Route path="/assurance-auto-malusse" element={<AssuranceAutoMalusse />} />
                   <Route path="/assurance-auto-jeune-conducteur" element={<AssuranceJeuneConducteur />} />
