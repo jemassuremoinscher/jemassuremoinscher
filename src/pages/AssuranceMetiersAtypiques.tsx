@@ -229,7 +229,7 @@ const AssuranceMetiersAtypiques = () => {
                 >
                   <Card className="p-6 h-full transition-all duration-300 border-2 border-border/60 group-hover:border-primary group-hover:-translate-y-1 group-hover:shadow-[var(--shadow-hover)] group-active:translate-y-0 group-active:scale-[0.99] group-focus-visible:border-primary">
                     <div className="flex items-start gap-4">
-                      <div className="w-16 h-16 shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
+                      <div className="w-16 h-16 shrink-0 flex items-center justify-center rounded-xl bg-primary/5 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
                         <img
                           src={niche.arthur}
                           alt={niche.arthurAlt}
@@ -237,6 +237,19 @@ const AssuranceMetiersAtypiques = () => {
                           width={64}
                           height={64}
                           loading="lazy"
+                          onError={(e) => {
+                            const img = e.currentTarget;
+                            // Avoid infinite loop
+                            if (img.dataset.fallback === "1") return;
+                            img.dataset.fallback = "1";
+                            // Inline SVG fallback — Arthur silhouette icon
+                            img.src =
+                              "data:image/svg+xml;utf8," +
+                              encodeURIComponent(
+                                `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'><rect width='64' height='64' rx='12' fill='hsl(262 83% 58% / 0.1)'/><circle cx='32' cy='24' r='10' fill='hsl(262 83% 58%)'/><path d='M14 54c0-10 8-16 18-16s18 6 18 16' fill='hsl(262 83% 58%)'/><circle cx='28' cy='23' r='1.6' fill='white'/><circle cx='36' cy='23' r='1.6' fill='white'/></svg>`
+                              );
+                            img.alt = `${niche.arthurAlt} (illustration de remplacement)`;
+                          }}
                         />
                       </div>
                       <div className="flex-1 min-w-0">
