@@ -212,7 +212,7 @@ const GuidesSection = () => {
         >
           <motion.div className="relative inline-block mb-6">
             <motion.img
-                src={arthurFlying}
+                src={arthurBike}
                 alt="Arthur"
                 className="w-20 h-auto md:w-28"
                 width={112}
