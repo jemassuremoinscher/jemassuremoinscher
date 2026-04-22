@@ -4725,6 +4725,15 @@ const existingWithDates = _blogArticlesRaw.map((article, index) => {
 // Assign spread dates to 2026 articles
 const articles2026WithDates = blogArticles2026.map((article) => ({
   ...article,
+  author: article.author === "L'équipe d'experts Jemassuremoinscher"
+    ? article.category === "Assurance Habitation"
+      ? "Thomas Leroy"
+      : article.category === "Mutuelle Santé" || article.category === "Assurance Emprunteur"
+        ? "Dr. Antoine Mercier"
+        : article.category === "Droits & Litiges" || article.category === "Actualités Légales"
+          ? "Sophie Martin"
+          : "Thomas Laurent"
+    : article.author,
   date: spreadDates[article.id] || article.date,
 }));
 
