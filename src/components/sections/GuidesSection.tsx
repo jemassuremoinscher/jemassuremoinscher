@@ -8,7 +8,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { BookOpen, FileText, Scale, X, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import arthurBike from "@/assets/mascotte/arthur-bike.webp";
+import arthurIdea from "@/assets/mascotte/arthur-idea.webp";
 import arthurClimbing from "@/assets/mascotte/arthur-climbing.webp";
 import arthurKayak from "@/assets/mascotte/arthur-kayak.webp";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
@@ -218,7 +218,7 @@ const GuidesSection = () => {
         >
           <motion.div className="relative inline-block mb-6">
             <motion.img
-                src={arthurBike}
+                src={arthurIdea}
                 alt="Arthur"
                 className="w-20 h-auto md:w-28"
                 width={112}
