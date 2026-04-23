@@ -158,9 +158,30 @@ export const GeoScoreCard = () => {
   const [error, setError] = useState<string | null>(null);
   const [visibilityError, setVisibilityError] = useState<string | null>(null);
   const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
+  const [appliedSuggestions, setAppliedSuggestions] = useState<AppliedSuggestionState>({});
 
   const copyFixAction = (action: FixAction) => {
     navigator.clipboard.writeText(`${action.label}\n\n${action.details}`);
+  };
+
+  const rememberAppliedSuggestion = (key: string, suggestion: ContentSuggestionDraft) => {
+    setAppliedSuggestions((current) => ({ ...current, [key]: suggestion }));
+  };
+
+  const renderAppliedSuggestion = (key: string) => {
+    const suggestion = appliedSuggestions[key];
+    if (!suggestion) return null;
+
+    return (
+      <div className="mt-3 rounded-lg border border-border bg-card p-3 text-xs text-muted-foreground space-y-1">
+        <p className="font-medium text-foreground">Preuve d'application enregistrée</p>
+        <p><span className="font-medium text-foreground">Brouillon :</span> {suggestion.title}</p>
+        <p><span className="font-medium text-foreground">Slug :</span> {suggestion.slug}</p>
+        <p><span className="font-medium text-foreground">Statut :</span> {suggestion.status}</p>
+        <p><span className="font-medium text-foreground">Présence :</span> visible aussi dans l'encart Articles Blog après rafraîchissement.</p>
+        <p><span className="font-medium text-foreground">Score :</span> la création du brouillon ne modifie pas le score tant que le contenu n'est pas publié puis repris dans le prochain recalcul live.</p>
+      </div>
+    );
   };
 
   const markGeoIssueResolved = (issue: GeoAuditCheck) => {
@@ -281,9 +302,10 @@ export const GeoScoreCard = () => {
       window.dispatchEvent(new CustomEvent(SEO_SUGGESTIONS_REFRESH_EVENT, {
         detail: { title: result.suggestion.title, source: 'geo' },
       }));
+      rememberAppliedSuggestion(key, result.suggestion);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success('Validation effectuée', {
-        description: 'Le brouillon est en cours de synchronisation dans la liste.',
+      toast.success('Amélioration GEO activée', {
+        description: 'Le brouillon est bien enregistré. Le score bougera après publication du contenu puis prochain recalcul.',
       });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
@@ -310,9 +332,10 @@ export const GeoScoreCard = () => {
       window.dispatchEvent(new CustomEvent(SEO_SUGGESTIONS_REFRESH_EVENT, {
         detail: { title: result.suggestion.title, source: 'geo' },
       }));
+      rememberAppliedSuggestion(key, result.suggestion);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success('Validation effectuée', {
-        description: 'Le brouillon est en cours de synchronisation dans la liste.',
+      toast.success('Amélioration GEO activée', {
+        description: 'Le brouillon est bien enregistré. Le score bougera après publication du contenu puis prochain recalcul.',
       });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
@@ -685,13 +708,15 @@ export const GeoScoreCard = () => {
                     </div>
                   </div>
                   <p className="mt-2 text-muted-foreground"><span className="font-medium text-foreground">Amélioration contenu :</span> {page.contentAction}</p>
+                  <p className="mt-2 text-xs text-muted-foreground">Cette action crée un brouillon dans Articles Blog ; elle ne change pas instantanément le score GEO.</p>
                   <div className="mt-3">
-                    <Button size="sm" variant="outline" onClick={() => void runPageContentImprovement(`page-content-${page.path}`, page)} disabled={fixStatuses[`page-content-${page.path}`] === 'sending'}>
+                    <Button size="sm" onClick={() => void runPageContentImprovement(`page-content-${page.path}`, page)} disabled={fixStatuses[`page-content-${page.path}`] === 'sending'}>
                       <Wand2 className="h-4 w-4 mr-1" />
                       {fixStatuses[`page-content-${page.path}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
                     </Button>
                   </div>
                   {renderFixStatus(`page-content-${page.path}`)}
+                  {renderAppliedSuggestion(`page-content-${page.path}`)}
                 </div>
               ))}
             </CardContent>
@@ -717,12 +742,13 @@ export const GeoScoreCard = () => {
                     <p><span className="font-medium text-foreground">Amélioration contenu :</span> {item.recommendation}</p>
                   </div>
                   <div className="mt-3">
-                    <Button size="sm" variant="outline" onClick={() => void runQueryContentImprovement(`query-content-${item.page}-${item.query}`, item)} disabled={fixStatuses[`query-content-${item.page}-${item.query}`] === 'sending'}>
+                    <Button size="sm" onClick={() => void runQueryContentImprovement(`query-content-${item.page}-${item.query}`, item)} disabled={fixStatuses[`query-content-${item.page}-${item.query}`] === 'sending'}>
                       <Wand2 className="h-4 w-4 mr-1" />
                       {fixStatuses[`query-content-${item.page}-${item.query}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
                     </Button>
                   </div>
                   {renderFixStatus(`query-content-${item.page}-${item.query}`)}
+                  {renderAppliedSuggestion(`query-content-${item.page}-${item.query}`)}
                 </div>
               ))}
             </CardContent>
