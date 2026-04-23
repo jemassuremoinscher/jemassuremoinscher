@@ -4,17 +4,16 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, ArrowUpRight } from 'lucide-react';
+import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, Wand2 } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
+import { applySeoIssueFix, canAutoFixSeoIssue } from '@/lib/auditFixes';
 
 type FixAction = {
   label: string;
   details: string;
 };
-
-const LOVABLE_PROJECT_URL = 'https://lovable.dev/projects/0c846637-eedf-4940-bd90-f40cb5a873ee';
 
 type Suggestion = {
   id: string;
@@ -338,37 +337,25 @@ export const SEOSuggestions = () => {
     toast.success('Proposition de correction copiée');
   };
 
-  const openLovableFix = async (key: string, action: FixAction) => {
-    const prompt = `${action.label}\n\n${action.details}`;
+  const runDirectFix = async (key: string, issue: SeoAuditCheck) => {
     setFixStatuses((current) => ({ ...current, [key]: 'sending' }));
 
     try {
-      await navigator.clipboard.writeText(prompt);
-    } catch {}
-
-    try {
-      const url = `${LOVABLE_PROJECT_URL}?prompt=${encodeURIComponent(prompt)}&message=${encodeURIComponent(prompt)}`;
-      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-
-      if (!newWindow) {
-        setFixStatuses((current) => ({ ...current, [key]: 'error' }));
-        toast.error('Impossible d’ouvrir Lovable automatiquement.');
-        return;
-      }
-
+      const result = await applySeoIssueFix(issue);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success('Correction envoyée à Lovable.');
-    } catch {
+      toast.success(result.message);
+      await loadSeoReport();
+    } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
-      toast.error('Erreur pendant l’envoi de la correction.');
+      toast.error(error instanceof Error ? error.message : 'Erreur pendant la correction.');
     }
   };
 
   const renderFixStatus = (key: string) => {
     const status = fixStatuses[key] ?? 'idle';
-    if (status === 'sending') return <p className="text-xs text-muted-foreground">Envoi en cours…</p>;
-    if (status === 'success') return <p className="text-xs text-primary">Correction envoyée à Lovable.</p>;
-    if (status === 'error') return <p className="text-xs text-destructive">Erreur d’envoi. Réessaie.</p>;
+    if (status === 'sending') return <p className="text-xs text-muted-foreground">Correction en cours…</p>;
+    if (status === 'success') return <p className="text-xs text-primary">Correction appliquée.</p>;
+    if (status === 'error') return <p className="text-xs text-destructive">Erreur de correction. Réessaie.</p>;
     return null;
   };
 
@@ -548,11 +535,11 @@ export const SEOSuggestions = () => {
                         <p><span className="font-medium text-foreground">Attendu :</span> {issue.expected}</p>
                         {issue.actual ? <p><span className="font-medium text-foreground">Trouvé :</span> {issue.actual}</p> : null}
                       </div>
-                      {!issue.pass ? (
+                      {!issue.pass && canAutoFixSeoIssue(issue) ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" onClick={() => openLovableFix(issue.id, getSeoFixAction(issue))} disabled={fixStatuses[issue.id] === 'sending'}>
-                            <ArrowUpRight className="h-4 w-4 mr-1" />
-                            {fixStatuses[issue.id] === 'sending' ? 'Envoi...' : 'Proposer la correction'}
+                          <Button size="sm" onClick={() => runDirectFix(issue.id, issue)} disabled={fixStatuses[issue.id] === 'sending'}>
+                            <Wand2 className="h-4 w-4 mr-1" />
+                            {fixStatuses[issue.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
                           </Button>
                         </div>
                       ) : null}
@@ -597,9 +584,9 @@ export const SEOSuggestions = () => {
                       </div>
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" onClick={() => openLovableFix(check.id, getVisibilityFixAction(check))} disabled={fixStatuses[check.id] === 'sending'}>
-                            <ArrowUpRight className="h-4 w-4 mr-1" />
-                            {fixStatuses[check.id] === 'sending' ? 'Envoi...' : 'Proposer la correction'}
+                          <Button size="sm" variant="outline" onClick={() => copyFixAction(getVisibilityFixAction(check))}>
+                            <Copy className="h-4 w-4 mr-1" />
+                            Copier l'action
                           </Button>
                         </div>
                       ) : null}
