@@ -413,8 +413,15 @@ export const SEOSuggestions = () => {
   };
 
   const loadAppliedImprovements = async () => {
-    const items = await listAppliedContentImprovements('seo');
-    setAppliedSuggestions(items);
+    try {
+      setAppliedImprovementsLoaded(false);
+      const items = await listAppliedContentImprovements('seo');
+      setAppliedSuggestions(items);
+    } catch {
+      setAppliedSuggestions({});
+    } finally {
+      setAppliedImprovementsLoaded(true);
+    }
   };
 
   const rememberAppliedSuggestion = (key: string, suggestion: ContentSuggestionDraft) => {
@@ -438,6 +445,10 @@ export const SEOSuggestions = () => {
         <p><span className="font-medium text-foreground">Enregistrement :</span> backend mis à jour sur la page cible et trace conservée pour masquer cette amélioration.</p>
       </div>
     );
+  };
+
+  const refreshSeoScores = async () => {
+    await Promise.all([loadSeoReport(), loadVisibilityReport(), loadAppliedImprovements()]);
   };
 
   const markSeoIssueResolved = (issue: SeoAuditCheck) => {
@@ -544,7 +555,7 @@ export const SEOSuggestions = () => {
       const result = await applySeoContentImprovement(payload);
 
       rememberAppliedSuggestion(key, result.suggestion);
-      await loadSeoReport();
+      await Promise.all([loadAppliedImprovements(), loadVisibilityReport()]);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success('Amélioration SEO activée', {
         description: `Les métadonnées de ${result.suggestion.applied_path ?? page.path} ont été mises à jour.`,
@@ -569,7 +580,7 @@ export const SEOSuggestions = () => {
       const result = await applySeoContentImprovement(payload);
 
       rememberAppliedSuggestion(key, result.suggestion);
-      await loadSeoReport();
+      await Promise.all([loadAppliedImprovements(), loadVisibilityReport()]);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success('Amélioration SEO activée', {
         description: `Les métadonnées de ${result.suggestion.applied_path ?? item.page} ont été mises à jour.`,
@@ -636,6 +647,44 @@ export const SEOSuggestions = () => {
     })]),
     [appliedSuggestions, visibilityReport],
   );
+
+  const seoImprovementProgress = useMemo(() => {
+    if (!visibilityReport) {
+      return { appliedCount: 0, totalCount: 0, bonus: 0, displayScore: 0 };
+    }
+
+    const actionableKeys = new Set([
+      ...visibilityReport.seo.queryOpportunities.map((item) => buildContentImprovementKey({
+        source: 'seo',
+        scope: 'query',
+        path: item.page,
+        query: item.query,
+      })),
+      ...visibilityReport.seo.pageVisibility.map((page) => buildContentImprovementKey({
+        source: 'seo',
+        scope: 'page',
+        path: page.path,
+      })),
+    ]);
+
+    const uniqueApplied = new Map<string, ContentSuggestionDraft>();
+    Object.values(appliedSuggestions).forEach((item) => {
+      if (item?.slug) uniqueApplied.set(item.slug, item);
+    });
+
+    const appliedCount = Array.from(uniqueApplied.keys()).filter((slug) => actionableKeys.has(slug)).length;
+    const totalCount = actionableKeys.size;
+    const bonus = totalCount > 0 ? Math.round((appliedCount / totalCount) * 20) : 0;
+
+    return {
+      appliedCount,
+      totalCount,
+      bonus,
+      displayScore: Math.min(100, visibilityReport.seo.score + bonus),
+    };
+  }, [appliedSuggestions, visibilityReport]);
+
+  const visibilityDisplayScore = visibilityReport ? seoImprovementProgress.displayScore : 0;
 
   return (
     <div className="space-y-6">
