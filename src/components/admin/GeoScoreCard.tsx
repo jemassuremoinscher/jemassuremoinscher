@@ -68,11 +68,77 @@ type VisibilityScore = {
   };
 };
 
+type FixAction = {
+  label: string;
+  details: string;
+};
+
 const statusConfig = {
   excellent: { label: "Fiable", badge: "default" as const },
   good: { label: "Solide", badge: "secondary" as const },
   warning: { label: "À surveiller", badge: "outline" as const },
   critical: { label: "Non fiable", badge: "destructive" as const },
+};
+
+const getGeoFixAction = (item: GeoAuditCheck): FixAction => {
+  const category = item.category.toLowerCase();
+  const description = item.description.toLowerCase();
+
+  if (category.includes("title") || description.includes("title")) {
+    return {
+      label: "Aligner les titres",
+      details: `Harmoniser sur ${item.file} le title React et le shell HTML statique pour éviter les écarts entre rendu applicatif et version servie aux crawlers.`,
+    };
+  }
+
+  if (category.includes("geo") || description.includes("geo")) {
+    return {
+      label: "Aligner les textes GEO",
+      details: `Synchroniser les textes GEO entre React et HTML statique sur ${item.file}, puis régénérer les pages statiques avant build pour supprimer l’écart détecté.`,
+    };
+  }
+
+  if (category.includes("route") || description.includes("route")) {
+    return {
+      label: "Corriger la route statique",
+      details: `Ajouter ou régénérer la route statique correspondante à ${item.file} afin que la couverture HTML reflète bien la route React publiée.`,
+    };
+  }
+
+  return {
+    label: "Proposer un fix GEO",
+    details: `Corriger l’écart GEO détecté sur ${item.file} : ${item.description}. Attendu : ${item.expected}.${item.actual ? ` Observé : ${item.actual}.` : ""}`,
+  };
+};
+
+const getGeoVisibilityFixAction = (check: VisibilityCheck): FixAction => {
+  const label = check.label.toLowerCase();
+
+  if (label.includes("sessions")) {
+    return {
+      label: "Augmenter le trafic IA",
+      details: "Créer des contenus répondant directement à des questions, structurer les réponses en blocs clairs et renforcer les pages qui performent déjà pour capter davantage de visites issues des assistants IA.",
+    };
+  }
+
+  if (label.includes("diversité")) {
+    return {
+      label: "Diversifier les sources IA",
+      details: "Étendre la couverture éditoriale avec des contenus comparatifs, définitions, FAQ et guides de décision pour être repris par plusieurs assistants IA et non une seule source.",
+    };
+  }
+
+  if (label.includes("mentions") || label.includes("requêtes")) {
+    return {
+      label: "Renforcer les citations IA",
+      details: "Ajouter davantage d’entités nommées, FAQ précises, preuves d’expertise et maillage sémantique afin d’augmenter les mentions de marque et de pages dans les parcours IA.",
+    };
+  }
+
+  return {
+    label: "Proposer une action GEO",
+    details: `Traiter ce signal GEO réel : ${check.label}. Attendu : ${check.expected}. Valeur actuelle : ${check.value}.`,
+  };
 };
 
 export const GeoScoreCard = () => {
@@ -81,6 +147,10 @@ export const GeoScoreCard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [visibilityError, setVisibilityError] = useState<string | null>(null);
+
+  const copyFixAction = (action: FixAction) => {
+    navigator.clipboard.writeText(`${action.label}\n\n${action.details}`);
+  };
 
   const loadReport = async () => {
     try {
@@ -282,6 +352,13 @@ export const GeoScoreCard = () => {
                         <p className="text-muted-foreground"><span className="font-medium text-foreground">Attendu :</span> {item.expected}</p>
                         {item.actual ? <p className="text-muted-foreground"><span className="font-medium text-foreground">Trouvé :</span> {item.actual}</p> : null}
                       </div>
+                      {!item.pass ? (
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          <Button variant="outline" size="sm" onClick={() => { copyFixAction(getGeoFixAction(item)); }}>
+                            Proposer la correction
+                          </Button>
+                        </div>
+                      ) : null}
                     </div>
                   ))}
                 </div>
@@ -316,6 +393,13 @@ export const GeoScoreCard = () => {
                         <p><span className="font-medium text-foreground">Attendu :</span> {check.expected}</p>
                         <p><span className="font-medium text-foreground">Pourquoi :</span> {check.reason}</p>
                       </div>
+                      {!check.pass ? (
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          <Button variant="outline" size="sm" onClick={() => { copyFixAction(getGeoVisibilityFixAction(check)); }}>
+                            Proposer la correction
+                          </Button>
+                        </div>
+                      ) : null}
                     </div>
                   ))}
                 </div>
