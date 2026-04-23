@@ -226,3 +226,225 @@ export const validateGeoIssueFix = async (issue: { category: string; description
 
   return false;
 };
+
+type VisibilityCheckLike = { label: string; expected: string; value: string };
+
+const POSITION_PAGE_UPDATES = [
+  {
+    path: "/assurance-auto",
+    meta_title: resolveDynamicTokens("Assurance Auto Pas Chère [Month] : Comparez 50+ devis"),
+    meta_description: "Comparez garanties, prix et franchises de 50+ assurances auto pour trouver une formule plus adaptée à votre profil.",
+  },
+  {
+    path: "/assurance-sante",
+    meta_title: resolveDynamicTokens("Mutuelle Santé Pas Chère [Month] : Comparez les garanties"),
+    meta_description: "Comparez les remboursements optique, dentaire et hospitalisation pour choisir une mutuelle santé réellement adaptée.",
+  },
+  {
+    path: "/assurance-pret",
+    meta_title: resolveDynamicTokens("Assurance Emprunteur [Month] : Comparez et économisez"),
+    meta_description: "Comparez les garanties décès, IPT, ITT et exclusions pour changer d'assurance emprunteur au meilleur coût.",
+  },
+].map((item) => ({
+  ...item,
+  og_title: trimToLength(item.meta_title, 35),
+  og_description: trimToLength(item.meta_description, 65),
+}));
+
+const QUALIFIED_TRAFFIC_PAGE_UPDATES = [
+  {
+    path: "/comparateur",
+    meta_title: "Comparateur Assurance : devis adaptés en 2 minutes",
+    meta_description: "Comparez des devis d'assurance adaptés à votre profil, vos garanties et votre budget sans perdre en lisibilité ni en rapidité.",
+  },
+  {
+    path: "/assurance-habitation",
+    meta_title: resolveDynamicTokens("Assurance Habitation [Month] : Comparez les garanties utiles"),
+    meta_description: "Comparez les garanties essentielles, franchises et tarifs pour trouver une assurance habitation claire et adaptée.",
+  },
+  {
+    path: "/assurance-rc-pro",
+    meta_title: resolveDynamicTokens("RC Pro [Month] : Comparez les garanties par métier"),
+    meta_description: "Comparez les garanties RC Pro par activité pour obtenir une couverture claire, rapide à comprendre et pertinente.",
+  },
+].map((item) => ({
+  ...item,
+  og_title: trimToLength(item.meta_title, 35),
+  og_description: trimToLength(item.meta_description, 65),
+}));
+
+const IA_SOURCE_SUGGESTIONS = [
+  {
+    slug: "comparatif-assurance-auto-profils-2026",
+    title: "Comparatif assurance auto 2026 selon le profil conducteur",
+    target_keyword: "comparatif assurance auto profil conducteur",
+    suggested_meta_description: "Créer un comparatif orienté profils pour multiplier les reprises par les assistants IA.",
+    suggested_content: "Rédiger un comparatif structuré par profils (jeune conducteur, malussé, petit rouleur, famille), avec FAQ courte, tableau comparatif et critères de décision.",
+    suggested_author: "Arthur",
+  },
+  {
+    slug: "definition-franchise-assurance-exemples",
+    title: "Franchise assurance : définition simple et exemples concrets",
+    target_keyword: "franchise assurance définition",
+    suggested_meta_description: "Créer une définition courte, réutilisable et précise pour les assistants IA.",
+    suggested_content: "Créer une page définition avec entités nommées, exemples concrets, mini FAQ et liens vers auto, habitation et santé.",
+    suggested_author: "Arthur",
+  },
+  {
+    slug: "faq-assurance-emprunteur-changement-2026",
+    title: "FAQ assurance emprunteur 2026 : changer, comparer, économiser",
+    target_keyword: "faq assurance emprunteur 2026",
+    suggested_meta_description: "Créer une FAQ dense et cit-able pour diversifier les sources IA.",
+    suggested_content: "Rédiger une FAQ très précise avec réponses courtes, conditions, délais, exclusions et liens internes vers les pages décisionnelles.",
+    suggested_author: "Arthur",
+  },
+  {
+    slug: "guide-choisir-mutuelle-sante-selon-besoins",
+    title: "Guide : choisir une mutuelle santé selon ses vrais besoins",
+    target_keyword: "guide choisir mutuelle santé besoins",
+    suggested_meta_description: "Créer un guide de décision structuré pour augmenter les reprises multi-assistants.",
+    suggested_content: "Construire un guide de décision par cas d'usage avec preuves d'expertise, critères prioritaires et liens vers pages santé associées.",
+    suggested_author: "Arthur",
+  },
+];
+
+const IA_CITATION_SUGGESTIONS = [
+  {
+    slug: "preuves-expertise-courtier-assurance-independant",
+    title: "Pourquoi passer par un courtier en assurance indépendant ?",
+    target_keyword: "courtier assurance indépendant expertise",
+    suggested_meta_description: "Mettre en avant expertise, preuves et entités nommées pour augmenter les citations IA.",
+    suggested_content: "Créer une page avec preuves d'expertise, processus, partenaires, exemples de profils accompagnés et FAQ précise sur le rôle du courtier.",
+    suggested_author: "Arthur",
+  },
+  {
+    slug: "faq-resiliation-assurance-lois-hamon-lemoine",
+    title: "FAQ résiliation assurance : loi Hamon, Lemoine, obligations",
+    target_keyword: "faq résiliation assurance hamon lemoine",
+    suggested_meta_description: "Ajouter une FAQ précise et fiable sur les lois citées par les assistants IA.",
+    suggested_content: "Rédiger une FAQ citant explicitement loi Hamon, loi Lemoine, délais, conditions et documents requis, avec maillage vers les pages concernées.",
+    suggested_author: "Arthur",
+  },
+  {
+    slug: "assurance-glossaire-termes-essentiels-decider",
+    title: "Glossaire assurance : les termes essentiels pour décider sans erreur",
+    target_keyword: "glossaire assurance termes essentiels",
+    suggested_meta_description: "Renforcer les entités nommées et le maillage sémantique avec un glossaire enrichi.",
+    suggested_content: "Créer un contenu pivot regroupant les définitions clés, avec renvois vers les pages glossaire et les offres liées pour renforcer les citations.",
+    suggested_author: "Arthur",
+  },
+];
+
+const upsertMultiplePageMetaOverrides = async (pages: Array<{ path: string; meta_title: string; meta_description: string; og_title: string; og_description: string }>) => {
+  for (const page of pages) {
+    await upsertPageMetaOverride(page.path, {
+      meta_title: page.meta_title,
+      meta_description: page.meta_description,
+      og_title: page.og_title,
+      og_description: page.og_description,
+    });
+  }
+};
+
+const validateMultiplePageMetaOverrides = async (pages: Array<{ path: string; meta_title: string; meta_description: string; og_title: string; og_description: string }>) => {
+  const paths = pages.map((page) => page.path);
+  const { data, error } = await supabase
+    .from("page_meta_overrides")
+    .select("page_path, meta_title, meta_description, og_title, og_description")
+    .in("page_path", paths);
+
+  if (error || !data) return false;
+
+  return pages.every((page) => data.some((row) => row.page_path === page.path
+    && row.meta_title === page.meta_title
+    && row.meta_description === page.meta_description
+    && row.og_title === page.og_title
+    && row.og_description === page.og_description));
+};
+
+const createContentSuggestions = async (suggestions: typeof IA_SOURCE_SUGGESTIONS) => {
+  const slugs = suggestions.map((item) => item.slug);
+  const { data: existing, error: existingError } = await supabase
+    .from("seo_article_suggestions")
+    .select("slug")
+    .in("slug", slugs);
+
+  if (existingError) throw existingError;
+
+  const existingSlugs = new Set((existing ?? []).map((item) => item.slug));
+  const missing = suggestions.filter((item) => !existingSlugs.has(item.slug));
+
+  if (missing.length > 0) {
+    const { error } = await supabase.from("seo_article_suggestions").insert(missing as never);
+    if (error) throw error;
+  }
+
+  return { created: missing.length, total: suggestions.length };
+};
+
+const validateContentSuggestions = async (suggestions: typeof IA_SOURCE_SUGGESTIONS) => {
+  const slugs = suggestions.map((item) => item.slug);
+  const { data, error } = await supabase.from("seo_article_suggestions").select("slug").in("slug", slugs);
+  if (error || !data) return false;
+  return slugs.every((slug) => data.some((item) => item.slug === slug));
+};
+
+export const applySeoVisibilityFix = async (check: VisibilityCheckLike) => {
+  const label = check.label.toLowerCase();
+
+  if (label.includes("position")) {
+    await upsertMultiplePageMetaOverrides(POSITION_PAGE_UPDATES);
+    return { message: "Les pages prioritaires ont été renforcées pour les positions SEO." };
+  }
+
+  if (label.includes("organiques") || label.includes("engagement")) {
+    await upsertMultiplePageMetaOverrides(QUALIFIED_TRAFFIC_PAGE_UPDATES);
+    return { message: "Les landing pages prioritaires ont été optimisées pour le trafic qualifié." };
+  }
+
+  throw new Error("Cette action SEO ne peut pas être appliquée automatiquement.");
+};
+
+export const validateSeoVisibilityFix = async (check: VisibilityCheckLike) => {
+  const label = check.label.toLowerCase();
+
+  if (label.includes("position")) {
+    return validateMultiplePageMetaOverrides(POSITION_PAGE_UPDATES);
+  }
+
+  if (label.includes("organiques") || label.includes("engagement")) {
+    return validateMultiplePageMetaOverrides(QUALIFIED_TRAFFIC_PAGE_UPDATES);
+  }
+
+  return false;
+};
+
+export const applyGeoVisibilityFix = async (check: VisibilityCheckLike) => {
+  const label = check.label.toLowerCase();
+
+  if (label.includes("diversité")) {
+    const result = await createContentSuggestions(IA_SOURCE_SUGGESTIONS);
+    return { message: `${result.created > 0 ? `${result.created} nouveaux` : "Les"} contenus pour diversifier les sources IA sont prêts.` };
+  }
+
+  if (label.includes("mentions") || label.includes("requêtes")) {
+    const result = await createContentSuggestions(IA_CITATION_SUGGESTIONS);
+    return { message: `${result.created > 0 ? `${result.created} nouveaux` : "Les"} contenus pour renforcer les citations IA sont prêts.` };
+  }
+
+  throw new Error("Cette action GEO ne peut pas être appliquée automatiquement.");
+};
+
+export const validateGeoVisibilityFix = async (check: VisibilityCheckLike) => {
+  const label = check.label.toLowerCase();
+
+  if (label.includes("diversité")) {
+    return validateContentSuggestions(IA_SOURCE_SUGGESTIONS);
+  }
+
+  if (label.includes("mentions") || label.includes("requêtes")) {
+    return validateContentSuggestions(IA_CITATION_SUGGESTIONS);
+  }
+
+  return false;
+};
