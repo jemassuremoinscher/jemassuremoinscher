@@ -609,6 +609,44 @@ export const SEOSuggestions = () => {
     return <Badge variant={c.variant}>{c.label}</Badge>;
   };
 
+  const seoImprovementProgress = useMemo(() => {
+    if (!visibilityReport) {
+      return { appliedCount: 0, totalCount: 0, bonus: 0, displayScore: 0 };
+    }
+
+    const actionableKeys = new Set([
+      ...visibilityReport.seo.queryOpportunities.map((item) => buildContentImprovementKey({
+        source: 'seo',
+        scope: 'query',
+        path: item.page,
+        query: item.query,
+      })),
+      ...visibilityReport.seo.pageVisibility.map((page) => buildContentImprovementKey({
+        source: 'seo',
+        scope: 'page',
+        path: page.path,
+      })),
+    ]);
+
+    const uniqueApplied = new Map<string, ContentSuggestionDraft>();
+    Object.values(appliedSuggestions).forEach((item) => {
+      if (item?.slug) uniqueApplied.set(item.slug, item);
+    });
+
+    const appliedCount = Array.from(uniqueApplied.keys()).filter((slug) => actionableKeys.has(slug)).length;
+    const totalCount = actionableKeys.size;
+    const bonus = totalCount > 0 ? Math.round((appliedCount / totalCount) * 20) : 0;
+
+    return {
+      appliedCount,
+      totalCount,
+      bonus,
+      displayScore: Math.min(100, visibilityReport.seo.score + bonus),
+    };
+  }, [appliedSuggestions, visibilityReport]);
+
+  const visibilityDisplayScore = visibilityReport ? seoImprovementProgress.displayScore : 0;
+
   const seoStatus = useMemo(() => {
     if (!seoReport) return scoreMeta.warning;
     return scoreMeta[seoReport.status] ?? scoreMeta.warning;
@@ -647,44 +685,6 @@ export const SEOSuggestions = () => {
     })]),
     [appliedSuggestions, visibilityReport],
   );
-
-  const seoImprovementProgress = useMemo(() => {
-    if (!visibilityReport) {
-      return { appliedCount: 0, totalCount: 0, bonus: 0, displayScore: 0 };
-    }
-
-    const actionableKeys = new Set([
-      ...visibilityReport.seo.queryOpportunities.map((item) => buildContentImprovementKey({
-        source: 'seo',
-        scope: 'query',
-        path: item.page,
-        query: item.query,
-      })),
-      ...visibilityReport.seo.pageVisibility.map((page) => buildContentImprovementKey({
-        source: 'seo',
-        scope: 'page',
-        path: page.path,
-      })),
-    ]);
-
-    const uniqueApplied = new Map<string, ContentSuggestionDraft>();
-    Object.values(appliedSuggestions).forEach((item) => {
-      if (item?.slug) uniqueApplied.set(item.slug, item);
-    });
-
-    const appliedCount = Array.from(uniqueApplied.keys()).filter((slug) => actionableKeys.has(slug)).length;
-    const totalCount = actionableKeys.size;
-    const bonus = totalCount > 0 ? Math.round((appliedCount / totalCount) * 20) : 0;
-
-    return {
-      appliedCount,
-      totalCount,
-      bonus,
-      displayScore: Math.min(100, visibilityReport.seo.score + bonus),
-    };
-  }, [appliedSuggestions, visibilityReport]);
-
-  const visibilityDisplayScore = visibilityReport ? seoImprovementProgress.displayScore : 0;
 
   return (
     <div className="space-y-6">
