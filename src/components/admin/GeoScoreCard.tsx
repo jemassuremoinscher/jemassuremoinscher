@@ -288,9 +288,13 @@ export const GeoScoreCard = () => {
       if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
       setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
-      window.dispatchEvent(new CustomEvent(SEO_SUGGESTIONS_REFRESH_EVENT));
+      window.dispatchEvent(new CustomEvent(SEO_SUGGESTIONS_REFRESH_EVENT, {
+        detail: { title: result.suggestion.title, source: 'geo' },
+      }));
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Le brouillon est visible plus bas dans Suggestions SEO automatiques.`);
+      toast.success('Validation effectuée', {
+        description: 'Le brouillon est en cours de synchronisation dans la liste.',
+      });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : "Erreur pendant l'amélioration contenu.");
@@ -314,9 +318,13 @@ export const GeoScoreCard = () => {
       if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
       setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
-      window.dispatchEvent(new CustomEvent(SEO_SUGGESTIONS_REFRESH_EVENT));
+      window.dispatchEvent(new CustomEvent(SEO_SUGGESTIONS_REFRESH_EVENT, {
+        detail: { title: result.suggestion.title, source: 'geo' },
+      }));
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Le brouillon est visible plus bas dans Suggestions SEO automatiques.`);
+      toast.success('Validation effectuée', {
+        description: 'Le brouillon est en cours de synchronisation dans la liste.',
+      });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : "Erreur pendant l'amélioration contenu.");
