@@ -5,10 +5,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, Wand2 } from 'lucide-react';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
-import { applySeoIssueFix, applySeoVisibilityFix, canAutoFixSeoIssue, hydrateAuditReport, validateSeoIssueFix, validateSeoVisibilityFix } from '@/lib/auditFixes';
+import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, canAutoFixSeoIssue, hydrateAuditReport, validateSeoContentImprovement, validateSeoIssueFix, validateSeoVisibilityFix } from '@/lib/auditFixes';
 
 type FixAction = {
   label: string;
@@ -111,6 +112,12 @@ type VisibilityScore = {
     pageVisibility: Array<{ path: string; clicks: number; impressions: number; avgPosition: number; ctr: number; opportunityScore: number; aiPotential: string; contentAction: string }>;
   };
 };
+
+type PendingSeoAction =
+  | { type: 'issue'; key: string; title: string; description: string; issue: SeoAuditCheck }
+  | { type: 'visibility'; key: string; title: string; description: string; check: VisibilityCheck }
+  | { type: 'page-content'; key: string; title: string; description: string; page: VisibilityScore['seo']['pageVisibility'][number] }
+  | { type: 'query-content'; key: string; title: string; description: string; item: VisibilityScore['seo']['queryOpportunities'][number] };
 
 const scoreMeta = {
   excellent: { label: 'Fiable', badge: 'default' as const },
@@ -218,6 +225,7 @@ export const SEOSuggestions = () => {
   const [visibilityError, setVisibilityError] = useState<string | null>(null);
   const [isSeoLoading, setIsSeoLoading] = useState(true);
   const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
+  const [pendingAction, setPendingAction] = useState<PendingSeoAction | null>(null);
 
   useEffect(() => {
     fetchSuggestions();
@@ -500,6 +508,64 @@ export const SEOSuggestions = () => {
     }
   };
 
+  const runPageContentImprovement = async (key: string, page: VisibilityScore['seo']['pageVisibility'][number]) => {
+    setFixStatuses((current) => ({ ...current, [key]: 'sending' }));
+
+    try {
+      const payload = { scope: 'page' as const, path: page.path, recommendation: page.contentAction };
+      const result = await applySeoContentImprovement(payload);
+      const isValidated = await validateSeoContentImprovement(payload);
+
+      if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
+
+      setFixStatuses((current) => ({ ...current, [key]: 'success' }));
+      toast.success(`${result.message} Validation effectuée.`);
+    } catch (error) {
+      setFixStatuses((current) => ({ ...current, [key]: 'error' }));
+      toast.error(error instanceof Error ? error.message : "Erreur pendant l'amélioration contenu.");
+    }
+  };
+
+  const runQueryContentImprovement = async (key: string, item: VisibilityScore['seo']['queryOpportunities'][number]) => {
+    setFixStatuses((current) => ({ ...current, [key]: 'sending' }));
+
+    try {
+      const payload = {
+        scope: 'query' as const,
+        path: item.page,
+        query: item.query,
+        intent: item.intent,
+        recommendation: item.recommendation,
+      };
+      const result = await applySeoContentImprovement(payload);
+      const isValidated = await validateSeoContentImprovement(payload);
+
+      if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
+
+      setFixStatuses((current) => ({ ...current, [key]: 'success' }));
+      toast.success(`${result.message} Validation effectuée.`);
+    } catch (error) {
+      setFixStatuses((current) => ({ ...current, [key]: 'error' }));
+      toast.error(error instanceof Error ? error.message : "Erreur pendant l'amélioration contenu.");
+    }
+  };
+
+  const confirmPendingAction = async () => {
+    if (!pendingAction) return;
+
+    if (pendingAction.type === 'issue') {
+      await runDirectFix(pendingAction.key, pendingAction.issue);
+    } else if (pendingAction.type === 'visibility') {
+      await runVisibilityFix(pendingAction.key, pendingAction.check);
+    } else if (pendingAction.type === 'page-content') {
+      await runPageContentImprovement(pendingAction.key, pendingAction.page);
+    } else {
+      await runQueryContentImprovement(pendingAction.key, pendingAction.item);
+    }
+
+    setPendingAction(null);
+  };
+
   const renderFixStatus = (key: string) => {
     const status = fixStatuses[key] ?? 'idle';
     if (status === 'sending') return <p className="text-xs text-muted-foreground">Correction en cours…</p>;
@@ -698,7 +764,7 @@ export const SEOSuggestions = () => {
                       </div>
                       {!issue.pass && canAutoFixSeoIssue(issue) ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" onClick={() => runDirectFix(issue.id, issue)} disabled={fixStatuses[issue.id] === 'sending'}>
+                          <Button size="sm" onClick={() => setPendingAction({ type: 'issue', key: issue.id, title: 'Valider la correction SEO', description: `Confirmer l'application de la correction automatique pour “${issue.description}” ?`, issue })} disabled={fixStatuses[issue.id] === 'sending'}>
                             <Wand2 className="h-4 w-4 mr-1" />
                             {fixStatuses[issue.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
                           </Button>
@@ -746,7 +812,7 @@ export const SEOSuggestions = () => {
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
                           {(check.label.toLowerCase().includes('position') || check.label.toLowerCase().includes('organiques') || check.label.toLowerCase().includes('engagement')) ? (
-                            <Button size="sm" onClick={() => runVisibilityFix(check.id, check)} disabled={fixStatuses[check.id] === 'sending'}>
+                            <Button size="sm" onClick={() => setPendingAction({ type: 'visibility', key: check.id, title: 'Valider l\'action SEO', description: `Confirmer l'application de l'amélioration “${getVisibilityFixAction(check).label}” ?`, check })} disabled={fixStatuses[check.id] === 'sending'}>
                               <Wand2 className="h-4 w-4 mr-1" />
                               {fixStatuses[check.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
                             </Button>
@@ -808,6 +874,13 @@ export const SEOSuggestions = () => {
                         <p>Impressions : <span className="font-medium text-foreground">{item.impressions}</span> · Position : <span className="font-medium text-foreground">{item.position.toFixed(1)}</span></p>
                         <p><span className="font-medium text-foreground">Action contenu :</span> {item.recommendation}</p>
                       </div>
+                      <div className="mt-3">
+                        <Button size="sm" variant="outline" onClick={() => setPendingAction({ type: 'query-content', key: `seo-query-content-${item.page}-${item.query}`, title: 'Valider l\'amélioration contenu', description: `Créer directement une amélioration SEO pour la requête “${item.query}” sur ${item.page} ?`, item })} disabled={fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending'}>
+                          <Wand2 className="h-4 w-4 mr-1" />
+                          {fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
+                        </Button>
+                      </div>
+                      {renderFixStatus(`seo-query-content-${item.page}-${item.query}`)}
                     </div>
                   ))}
                 </div>
@@ -835,6 +908,13 @@ export const SEOSuggestions = () => {
                     </div>
                   </div>
                   <p className="mt-2 text-muted-foreground"><span className="font-medium text-foreground">Amélioration contenu :</span> {page.contentAction}</p>
+                  <div className="mt-3">
+                    <Button size="sm" variant="outline" onClick={() => setPendingAction({ type: 'page-content', key: `seo-page-content-${page.path}`, title: 'Valider l\'amélioration contenu', description: `Créer directement une amélioration SEO pour ${page.path} ?`, page })} disabled={fixStatuses[`seo-page-content-${page.path}`] === 'sending'}>
+                      <Wand2 className="h-4 w-4 mr-1" />
+                      {fixStatuses[`seo-page-content-${page.path}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
+                    </Button>
+                  </div>
+                  {renderFixStatus(`seo-page-content-${page.path}`)}
                 </div>
               ))}
             </CardContent>
@@ -958,6 +1038,21 @@ export const SEOSuggestions = () => {
           </Card>
         ))}
       </div>
+
+      <AlertDialog open={Boolean(pendingAction)} onOpenChange={(open) => { if (!open) setPendingAction(null); }}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{pendingAction?.title ?? 'Valider l\'action'}</AlertDialogTitle>
+            <AlertDialogDescription>{pendingAction?.description ?? 'Confirmer cette action.'}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Annuler</AlertDialogCancel>
+            <AlertDialogAction onClick={(event) => { event.preventDefault(); void confirmPendingAction(); }}>
+              Valider avant mise en place
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

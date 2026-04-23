@@ -616,3 +616,11 @@ export const validateGeoContentImprovement = async (input: GeoContentImprovement
   if (error || !data) return false;
   return data.slug === suggestion.slug;
 };
+
+export const applySeoContentImprovement = async (input: GeoContentImprovementInput) => {
+  return applyGeoContentImprovement(input);
+};
+
+export const validateSeoContentImprovement = async (input: GeoContentImprovementInput) => {
+  return validateGeoContentImprovement(input);
+};
