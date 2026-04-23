@@ -355,6 +355,16 @@ export const SEOSuggestions = () => {
     return scoreMeta[visibilityReport.seo.status] ?? scoreMeta.warning;
   }, [visibilityReport]);
 
+  const failedSeoChecks = useMemo(
+    () => seoReport?.checks.filter((issue) => !issue.pass) ?? [],
+    [seoReport],
+  );
+
+  const failedVisibilityChecks = useMemo(
+    () => visibilityReport?.seo.checks.filter((check) => !check.pass) ?? [],
+    [visibilityReport],
+  );
+
   return (
     <div className="space-y-6">
       {seoError ? (
@@ -478,7 +488,11 @@ export const SEOSuggestions = () => {
                 <div className="text-sm text-muted-foreground">Chargement du détail...</div>
               ) : (
                 <div className="space-y-3 max-h-[34rem] overflow-y-auto pr-1">
-                  {seoReport.checks.map((issue) => (
+                  {failedSeoChecks.length === 0 ? (
+                    <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                      Aucun point SEO bloquant détecté sur cet audit.
+                    </div>
+                  ) : failedSeoChecks.map((issue) => (
                     <div key={issue.id} className="rounded-lg border border-border bg-card p-4">
                       <div className="flex items-start justify-between gap-3">
                         <div>
@@ -521,7 +535,11 @@ export const SEOSuggestions = () => {
                 <div className="text-sm text-muted-foreground">Chargement du détail live...</div>
               ) : (
                 <div className="space-y-3">
-                  {visibilityReport.seo.checks.map((check) => (
+                  {failedVisibilityChecks.length === 0 ? (
+                    <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                      Aucun signal de visibilité réelle SEO en échec pour le moment.
+                    </div>
+                  ) : failedVisibilityChecks.map((check) => (
                     <div key={check.id} className="rounded-lg border border-border bg-card p-4">
                       <div className="flex items-start justify-between gap-3">
                         <div>

@@ -202,6 +202,16 @@ export const GeoScoreCard = () => {
     return statusConfig[visibilityReport.geo.status] ?? statusConfig.warning;
   }, [visibilityReport]);
 
+  const failedGeoChecks = useMemo(
+    () => report?.checks.filter((item) => !item.pass) ?? [],
+    [report],
+  );
+
+  const failedGeoVisibilityChecks = useMemo(
+    () => visibilityReport?.geo.checks.filter((check) => !check.pass) ?? [],
+    [visibilityReport],
+  );
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -333,7 +343,11 @@ export const GeoScoreCard = () => {
                 <div className="text-sm text-muted-foreground">Chargement du détail...</div>
               ) : (
                 <div className="space-y-3 max-h-[34rem] overflow-y-auto pr-1">
-                  {report.checks.map((item) => (
+                  {failedGeoChecks.length === 0 ? (
+                    <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                      Aucun écart GEO bloquant détecté sur cet audit.
+                    </div>
+                  ) : failedGeoChecks.map((item) => (
                     <div key={item.id} className="rounded-lg border border-border bg-card p-4">
                       <div className="flex items-start justify-between gap-3">
                         <div>
@@ -376,7 +390,11 @@ export const GeoScoreCard = () => {
                 <div className="text-sm text-muted-foreground">Chargement du détail live...</div>
               ) : (
                 <div className="space-y-3">
-                  {visibilityReport.geo.checks.map((check) => (
+                  {failedGeoVisibilityChecks.length === 0 ? (
+                    <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                      Aucun signal de visibilité réelle GEO en échec pour le moment.
+                    </div>
+                  ) : failedGeoVisibilityChecks.map((check) => (
                     <div key={check.id} className="rounded-lg border border-border bg-card p-4">
                       <div className="flex items-start justify-between gap-3">
                         <div>
