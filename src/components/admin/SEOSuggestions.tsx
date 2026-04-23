@@ -11,6 +11,8 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
 import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, canAutoFixSeoIssue, hydrateAuditReport, validateSeoContentImprovement, validateSeoIssueFix, validateSeoVisibilityFix, type ContentSuggestionDraft } from '@/lib/auditFixes';
 
+const SEO_SUGGESTIONS_REFRESH_EVENT = 'seo-suggestions-refresh';
+
 type FixAction = {
   label: string;
   details: string;
@@ -234,6 +236,15 @@ export const SEOSuggestions = () => {
     fetchSuggestions();
     loadSeoReport();
     loadVisibilityReport();
+  }, []);
+
+  useEffect(() => {
+    const handleRefresh = () => {
+      void fetchSuggestions();
+    };
+
+    window.addEventListener(SEO_SUGGESTIONS_REFRESH_EVENT, handleRefresh);
+    return () => window.removeEventListener(SEO_SUGGESTIONS_REFRESH_EVENT, handleRefresh);
   }, []);
 
   const loadVisibilityReport = async () => {

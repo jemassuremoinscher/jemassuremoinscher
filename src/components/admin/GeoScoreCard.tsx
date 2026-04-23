@@ -9,6 +9,8 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { applyGeoContentImprovement, applyGeoIssueFix, applyGeoVisibilityFix, canAutoFixGeoIssue, hydrateAuditReport, validateGeoContentImprovement, validateGeoIssueFix, validateGeoVisibilityFix, type ContentSuggestionDraft } from "@/lib/auditFixes";
 import { toast } from "sonner";
 
+const SEO_SUGGESTIONS_REFRESH_EVENT = "seo-suggestions-refresh";
+
 type GeoAuditCheck = {
   id: string;
   category: string;
@@ -286,6 +288,7 @@ export const GeoScoreCard = () => {
       if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
       setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
+      window.dispatchEvent(new CustomEvent(SEO_SUGGESTIONS_REFRESH_EVENT));
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success(`${result.message} Le brouillon est visible plus bas dans Suggestions SEO automatiques.`);
     } catch (error) {
@@ -311,6 +314,7 @@ export const GeoScoreCard = () => {
       if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
       setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
+      window.dispatchEvent(new CustomEvent(SEO_SUGGESTIONS_REFRESH_EVENT));
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success(`${result.message} Le brouillon est visible plus bas dans Suggestions SEO automatiques.`);
     } catch (error) {
