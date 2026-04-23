@@ -149,26 +149,41 @@ export const GeoScoreCard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [visibilityError, setVisibilityError] = useState<string | null>(null);
+  const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
 
   const copyFixAction = (action: FixAction) => {
     navigator.clipboard.writeText(`${action.label}\n\n${action.details}`);
   };
 
-  const openLovableFix = async (action: FixAction) => {
+  const openLovableFix = async (key: string, action: FixAction) => {
     const prompt = `${action.label}\n\n${action.details}`;
+    setFixStatuses((current) => ({ ...current, [key]: 'sending' }));
 
     try {
       await navigator.clipboard.writeText(prompt);
+    } catch {}
+
+    try {
+      const url = `${LOVABLE_PROJECT_URL}?prompt=${encodeURIComponent(prompt)}&message=${encodeURIComponent(prompt)}`;
+      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+
+      if (!newWindow) {
+        setFixStatuses((current) => ({ ...current, [key]: 'error' }));
+        return;
+      }
+
+      setFixStatuses((current) => ({ ...current, [key]: 'success' }));
     } catch {
-      // ignore clipboard failures, opening Lovable is the main action
+      setFixStatuses((current) => ({ ...current, [key]: 'error' }));
     }
+  };
 
-    const url = `${LOVABLE_PROJECT_URL}?prompt=${encodeURIComponent(prompt)}&message=${encodeURIComponent(prompt)}`;
-    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-
-    if (!newWindow) {
-      window.location.href = url;
-    }
+  const renderFixStatus = (key: string) => {
+    const status = fixStatuses[key] ?? 'idle';
+    if (status === 'sending') return <p className="text-xs text-muted-foreground">Envoi en cours…</p>;
+    if (status === 'success') return <p className="text-xs text-primary">Correction envoyée à Lovable.</p>;
+    if (status === 'error') return <p className="text-xs text-destructive">Erreur d’envoi. Réessaie.</p>;
+    return null;
   };
 
   const loadReport = async () => {
@@ -387,12 +402,13 @@ export const GeoScoreCard = () => {
                       </div>
                       {!item.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" onClick={() => { void openLovableFix(getGeoFixAction(item)); }}>
+                          <Button size="sm" onClick={() => { void openLovableFix(item.id, getGeoFixAction(item)); }} disabled={fixStatuses[item.id] === 'sending'}>
                             <ArrowUpRight className="h-4 w-4 mr-1" />
-                            Proposer la correction
+                            {fixStatuses[item.id] === 'sending' ? 'Envoi...' : 'Proposer la correction'}
                           </Button>
                         </div>
                       ) : null}
+                      {renderFixStatus(item.id)}
                     </div>
                   ))}
                 </div>
@@ -433,12 +449,13 @@ export const GeoScoreCard = () => {
                       </div>
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" onClick={() => { void openLovableFix(getGeoVisibilityFixAction(check)); }}>
+                          <Button size="sm" onClick={() => { void openLovableFix(check.id, getGeoVisibilityFixAction(check)); }} disabled={fixStatuses[check.id] === 'sending'}>
                             <ArrowUpRight className="h-4 w-4 mr-1" />
-                            Proposer la correction
+                            {fixStatuses[check.id] === 'sending' ? 'Envoi...' : 'Proposer la correction'}
                           </Button>
                         </div>
                       ) : null}
+                      {renderFixStatus(check.id)}
                     </div>
                   ))}
                 </div>
