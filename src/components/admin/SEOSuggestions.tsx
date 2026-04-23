@@ -113,6 +113,7 @@ export const SEOSuggestions = () => {
   const [seoReport, setSeoReport] = useState<SeoAuditReport | null>(null);
   const [visibilityReport, setVisibilityReport] = useState<VisibilityScore | null>(null);
   const [seoError, setSeoError] = useState<string | null>(null);
+  const [visibilityError, setVisibilityError] = useState<string | null>(null);
   const [isSeoLoading, setIsSeoLoading] = useState(true);
 
   useEffect(() => {
@@ -123,6 +124,7 @@ export const SEOSuggestions = () => {
 
   const loadVisibilityReport = async () => {
     try {
+      setVisibilityError(null);
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error('Non authentifié');
 
@@ -134,7 +136,7 @@ export const SEOSuggestions = () => {
 
       setVisibilityReport(response.data as VisibilityScore);
     } catch (err) {
-      setSeoError((current) => current ?? (err instanceof Error ? err.message : 'Impossible de charger la visibilité réelle SEO.'));
+      setVisibilityError(err instanceof Error ? err.message : 'Impossible de charger la visibilité réelle SEO.');
     }
   };
 
@@ -344,6 +346,7 @@ export const SEOSuggestions = () => {
                       <p className="font-semibold text-foreground">{visibilityReport ? `${visibilityReport.seo.metrics.organicEngagementRate.toFixed(1)}%` : '--'}</p>
                     </div>
                   </div>
+                  {visibilityError ? <p className="text-xs text-destructive">{visibilityError}</p> : null}
                 </div>
 
                 <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground space-y-2">

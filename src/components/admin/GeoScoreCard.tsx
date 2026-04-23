@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { supabase } from "@/integrations/supabase/client";
 
 type GeoAuditCheck = {
   id: string;
@@ -79,6 +80,7 @@ export const GeoScoreCard = () => {
   const [visibilityReport, setVisibilityReport] = useState<VisibilityScore | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [visibilityError, setVisibilityError] = useState<string | null>(null);
 
   const loadReport = async () => {
     try {
@@ -106,9 +108,9 @@ export const GeoScoreCard = () => {
 
   const loadVisibilityReport = async () => {
     try {
-      const { data: { session } } = await (await import('@/integrations/supabase/client')).supabase.auth.getSession();
+      setVisibilityError(null);
+      const { data: { session } } = await supabase.auth.getSession();
       if (!session) throw new Error('Non authentifié');
-      const { supabase } = await import('@/integrations/supabase/client');
       const response = await supabase.functions.invoke('visibility-score', { body: {} });
       if (response.error) throw response.error;
       if (response.data?.error && !response.data?.geo) {
@@ -116,7 +118,7 @@ export const GeoScoreCard = () => {
       }
       setVisibilityReport(response.data as VisibilityScore);
     } catch (err) {
-      setError((current) => current ?? (err instanceof Error ? err.message : 'Impossible de charger la visibilité réelle GEO.'));
+      setVisibilityError(err instanceof Error ? err.message : 'Impossible de charger la visibilité réelle GEO.');
     }
   };
 
@@ -245,6 +247,7 @@ export const GeoScoreCard = () => {
                 <p>{visibilityReport?.methodology.geo ?? 'Chargement...'}</p>
                 <p><span className="font-medium text-foreground">Poids validé :</span> {visibilityReport?.geo.weightedPassed ?? 0} / {visibilityReport?.geo.weightedTotal ?? 0}</p>
               </div>
+              {visibilityError ? <p className="text-xs text-destructive">{visibilityError}</p> : null}
             </CardContent>
           </Card>
 
