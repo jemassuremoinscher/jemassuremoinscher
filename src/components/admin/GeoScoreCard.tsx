@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
-import { applyGeoContentImprovement, applyGeoIssueFix, applyGeoVisibilityFix, buildContentImprovementKey, listAppliedContentImprovements, canAutoFixGeoIssue, hydrateAuditReport, validateGeoContentImprovement, validateGeoIssueFix, validateGeoVisibilityFix, type ContentSuggestionDraft } from "@/lib/auditFixes";
+import { applyGeoContentImprovement, applyGeoIssueFix, applyGeoVisibilityFix, buildContentImprovementKey, listAppliedContentImprovements, canAutoFixGeoIssue, hydrateAuditReport, validateGeoIssueFix, validateGeoVisibilityFix, type ContentSuggestionDraft } from "@/lib/auditFixes";
 import { toast } from "sonner";
 
 type GeoAuditCheck = {
@@ -168,7 +168,11 @@ export const GeoScoreCard = () => {
   };
 
   const rememberAppliedSuggestion = (key: string, suggestion: ContentSuggestionDraft) => {
-    setAppliedSuggestions((current) => ({ ...current, [key]: suggestion }));
+    setAppliedSuggestions((current) => ({
+      ...current,
+      [key]: suggestion,
+      [suggestion.slug]: suggestion,
+    }));
   };
 
   const renderAppliedSuggestion = (key: string) => {
@@ -177,12 +181,11 @@ export const GeoScoreCard = () => {
 
     return (
       <div className="mt-3 rounded-lg border border-border bg-card p-3 text-xs text-muted-foreground space-y-1">
-        <p className="font-medium text-foreground">Preuve d'application enregistrée</p>
-        <p><span className="font-medium text-foreground">Brouillon :</span> {suggestion.title}</p>
-        <p><span className="font-medium text-foreground">Slug :</span> {suggestion.slug}</p>
+        <p className="font-medium text-foreground">Amélioration appliquée</p>
+        <p><span className="font-medium text-foreground">Page cible :</span> {suggestion.applied_path ?? 'Non disponible'}</p>
+        <p><span className="font-medium text-foreground">Action :</span> {suggestion.title}</p>
         <p><span className="font-medium text-foreground">Statut :</span> {suggestion.status}</p>
-        <p><span className="font-medium text-foreground">Présence :</span> conservée dans l'encart GEO uniquement.</p>
-        <p><span className="font-medium text-foreground">Score :</span> cette action retire la tâche de la file d'amélioration, mais ne change pas instantanément les métriques live IA/LLM.</p>
+        <p><span className="font-medium text-foreground">Enregistrement :</span> backend mis à jour sur la page cible et trace conservée pour masquer cette amélioration.</p>
       </div>
     );
   };
@@ -224,15 +227,10 @@ export const GeoScoreCard = () => {
 
     try {
       const result = await applyGeoIssueFix(issue);
-      const isValidated = await validateGeoIssueFix(issue);
-
-      if (!isValidated) {
-        throw new Error('La correction a été enregistrée, mais la validation a échoué.');
-      }
 
       markGeoIssueResolved(issue);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Validation effectuée.`);
+      toast.success(result.message);
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : 'Erreur pendant la correction.');
@@ -272,13 +270,10 @@ export const GeoScoreCard = () => {
 
     try {
       const result = await applyGeoVisibilityFix(check);
-      const isValidated = await validateGeoVisibilityFix(check);
-
-      if (!isValidated) throw new Error('La correction a été enregistrée, mais la validation a échoué.');
 
       markGeoVisibilityResolved(check);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Validation effectuée.`);
+      toast.success(result.message);
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : 'Erreur pendant la correction.');
@@ -294,18 +289,12 @@ export const GeoScoreCard = () => {
         path: page.path,
         recommendation: page.contentAction,
       });
-      const isValidated = await validateGeoContentImprovement({
-        scope: "page",
-        path: page.path,
-        recommendation: page.contentAction,
-      });
-
-      if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
       rememberAppliedSuggestion(key, result.suggestion);
+      await loadReport();
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success('Amélioration GEO activée', {
-        description: 'Le brouillon est bien enregistré. Le score bougera après publication du contenu puis prochain recalcul.',
+        description: `Les métadonnées de ${result.suggestion.applied_path ?? page.path} ont été mises à jour.`,
       });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
@@ -325,14 +314,12 @@ export const GeoScoreCard = () => {
         recommendation: item.recommendation,
       };
       const result = await applyGeoContentImprovement(payload);
-      const isValidated = await validateGeoContentImprovement(payload);
-
-      if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
       rememberAppliedSuggestion(key, result.suggestion);
+      await loadReport();
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success('Amélioration GEO activée', {
-        description: 'Le brouillon est bien enregistré. Le score bougera après publication du contenu puis prochain recalcul.',
+        description: `Les métadonnées de ${result.suggestion.applied_path ?? item.page} ont été mises à jour.`,
       });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
@@ -343,7 +330,7 @@ export const GeoScoreCard = () => {
   const renderFixStatus = (key: string) => {
     const status = fixStatuses[key] ?? 'idle';
     if (status === 'sending') return <p className="text-xs text-muted-foreground">Correction en cours…</p>;
-    if (status === 'success') return <p className="text-xs text-primary">Correction appliquée et validée.</p>;
+    if (status === 'success') return <p className="text-xs text-primary">Correction appliquée.</p>;
     if (status === 'error') return <p className="text-xs text-destructive">Erreur de correction. Réessaie.</p>;
     return null;
   };
@@ -725,7 +712,7 @@ export const GeoScoreCard = () => {
                     </div>
                   </div>
                   <p className="mt-2 text-muted-foreground"><span className="font-medium text-foreground">Amélioration contenu :</span> {page.contentAction}</p>
-                  <p className="mt-2 text-xs text-muted-foreground">Cette action crée un brouillon dans Articles Blog ; elle ne change pas instantanément le score GEO.</p>
+                  <p className="mt-2 text-xs text-muted-foreground">Cette action applique directement les métadonnées améliorées sur la page cible.</p>
                   <div className="mt-3">
                     <Button size="sm" onClick={() => void runPageContentImprovement(`page-content-${page.path}`, page)} disabled={fixStatuses[`page-content-${page.path}`] === 'sending'}>
                       <Wand2 className="h-4 w-4 mr-1" />

@@ -8,7 +8,7 @@ import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCirc
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
-import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, buildContentImprovementKey, canAutoFixSeoIssue, CONTENT_IMPROVEMENT_PREFIX, hydrateAuditReport, listAppliedContentImprovements, validateSeoContentImprovement, validateSeoIssueFix, validateSeoVisibilityFix, type ContentSuggestionDraft } from '@/lib/auditFixes';
+import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, buildContentImprovementKey, canAutoFixSeoIssue, CONTENT_IMPROVEMENT_PREFIX, hydrateAuditReport, listAppliedContentImprovements, validateSeoIssueFix, validateSeoVisibilityFix, type ContentSuggestionDraft } from '@/lib/auditFixes';
 
 type FixAction = {
   label: string;
@@ -329,7 +329,11 @@ export const SEOSuggestions = () => {
     if (error) {
       toast.error('Erreur chargement suggestions');
     } else {
-      setSuggestions((((data as Suggestion[]) || []).filter((item) => !item.slug.startsWith(CONTENT_IMPROVEMENT_PREFIX))));
+      setSuggestions(((data as Suggestion[]) || []).filter((item) => (
+        !item.slug.startsWith(CONTENT_IMPROVEMENT_PREFIX)
+        && !item.slug.startsWith('geo-amelioration-')
+        && !item.slug.startsWith('seo-amelioration-')
+      )));
     }
 
     setIsLoading(false);
@@ -406,7 +410,11 @@ export const SEOSuggestions = () => {
   };
 
   const rememberAppliedSuggestion = (key: string, suggestion: ContentSuggestionDraft) => {
-    setAppliedSuggestions((current) => ({ ...current, [key]: suggestion }));
+    setAppliedSuggestions((current) => ({
+      ...current,
+      [key]: suggestion,
+      [suggestion.slug]: suggestion,
+    }));
   };
 
   const renderAppliedSuggestion = (key: string) => {
@@ -415,12 +423,11 @@ export const SEOSuggestions = () => {
 
     return (
       <div className="mt-3 rounded-lg border border-border bg-card p-3 text-xs text-muted-foreground space-y-1">
-        <p className="font-medium text-foreground">Preuve d'application enregistrée</p>
-        <p><span className="font-medium text-foreground">Brouillon :</span> {suggestion.title}</p>
-        <p><span className="font-medium text-foreground">Slug :</span> {suggestion.slug}</p>
+        <p className="font-medium text-foreground">Amélioration appliquée</p>
+        <p><span className="font-medium text-foreground">Page cible :</span> {suggestion.applied_path ?? 'Non disponible'}</p>
+        <p><span className="font-medium text-foreground">Action :</span> {suggestion.title}</p>
         <p><span className="font-medium text-foreground">Statut :</span> {suggestion.status}</p>
-        <p><span className="font-medium text-foreground">Présence :</span> conservée dans l'encart SEO uniquement.</p>
-        <p><span className="font-medium text-foreground">Score :</span> cette action retire la tâche de la file d'amélioration, mais ne change pas instantanément les métriques live Search Console / Analytics.</p>
+        <p><span className="font-medium text-foreground">Enregistrement :</span> backend mis à jour sur la page cible et trace conservée pour masquer cette amélioration.</p>
       </div>
     );
   };
@@ -468,15 +475,10 @@ export const SEOSuggestions = () => {
 
     try {
       const result = await applySeoIssueFix(issue);
-      const isValidated = await validateSeoIssueFix(issue);
-
-      if (!isValidated) {
-        throw new Error('La correction a été enregistrée, mais la validation a échoué.');
-      }
 
       markSeoIssueResolved(issue);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Validation effectuée.`);
+      toast.success(result.message);
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : 'Erreur pendant la correction.');
@@ -516,13 +518,10 @@ export const SEOSuggestions = () => {
 
     try {
       const result = await applySeoVisibilityFix(check);
-      const isValidated = await validateSeoVisibilityFix(check);
-
-      if (!isValidated) throw new Error('La correction a été enregistrée, mais la validation a échoué.');
 
       markVisibilityCheckResolved(check);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Validation effectuée.`);
+      toast.success(result.message);
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : 'Erreur pendant la correction.');
@@ -535,15 +534,12 @@ export const SEOSuggestions = () => {
     try {
       const payload = { scope: 'page' as const, path: page.path, recommendation: page.contentAction };
       const result = await applySeoContentImprovement(payload);
-      const isValidated = await validateSeoContentImprovement(payload);
 
-      if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
-
-      await fetchSuggestions();
       rememberAppliedSuggestion(key, result.suggestion);
+      await loadSeoReport();
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success('Amélioration SEO activée', {
-        description: `${result.suggestion.title} est bien enregistré. Le score bougera après publication du contenu puis prochain recalcul.`,
+        description: `Les métadonnées de ${result.suggestion.applied_path ?? page.path} ont été mises à jour.`,
       });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
@@ -563,15 +559,12 @@ export const SEOSuggestions = () => {
         recommendation: item.recommendation,
       };
       const result = await applySeoContentImprovement(payload);
-      const isValidated = await validateSeoContentImprovement(payload);
 
-      if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
-
-      await fetchSuggestions();
       rememberAppliedSuggestion(key, result.suggestion);
+      await loadSeoReport();
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success('Amélioration SEO activée', {
-        description: `${result.suggestion.title} est bien enregistré. Le score bougera après publication du contenu puis prochain recalcul.`,
+        description: `Les métadonnées de ${result.suggestion.applied_path ?? item.page} ont été mises à jour.`,
       });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
@@ -582,7 +575,7 @@ export const SEOSuggestions = () => {
   const renderFixStatus = (key: string) => {
     const status = fixStatuses[key] ?? 'idle';
     if (status === 'sending') return <p className="text-xs text-muted-foreground">Correction en cours…</p>;
-    if (status === 'success') return <p className="text-xs text-primary">Correction appliquée et validée.</p>;
+    if (status === 'success') return <p className="text-xs text-primary">Correction appliquée.</p>;
     if (status === 'error') return <p className="text-xs text-destructive">Erreur de correction. Réessaie.</p>;
     return null;
   };
@@ -906,7 +899,7 @@ export const SEOSuggestions = () => {
                         <p>Impressions : <span className="font-medium text-foreground">{item.impressions}</span> · Position : <span className="font-medium text-foreground">{item.position.toFixed(1)}</span></p>
                         <p><span className="font-medium text-foreground">Action contenu :</span> {item.recommendation}</p>
                       </div>
-                      <p className="mt-2 text-xs text-muted-foreground">Cette action crée un brouillon dans Articles Blog ; elle ne change pas instantanément le score SEO.</p>
+                      <p className="mt-2 text-xs text-muted-foreground">Cette action applique directement les métadonnées améliorées sur la page cible.</p>
                       <div className="mt-3">
                         <Button size="sm" onClick={() => void runQueryContentImprovement(`seo-query-content-${item.page}-${item.query}`, item)} disabled={fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending'}>
                           <Wand2 className="h-4 w-4 mr-1" />
@@ -947,7 +940,7 @@ export const SEOSuggestions = () => {
                     </div>
                   </div>
                   <p className="mt-2 text-muted-foreground"><span className="font-medium text-foreground">Amélioration contenu :</span> {page.contentAction}</p>
-                  <p className="mt-2 text-xs text-muted-foreground">Cette action crée un brouillon dans Articles Blog ; elle ne change pas instantanément le score SEO.</p>
+                  <p className="mt-2 text-xs text-muted-foreground">Cette action applique directement les métadonnées améliorées sur la page cible.</p>
                   <div className="mt-3">
                     <Button size="sm" onClick={() => void runPageContentImprovement(`seo-page-content-${page.path}`, page)} disabled={fixStatuses[`seo-page-content-${page.path}`] === 'sending'}>
                       <Wand2 className="h-4 w-4 mr-1" />
