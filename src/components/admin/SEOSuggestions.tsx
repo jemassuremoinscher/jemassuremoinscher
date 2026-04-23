@@ -944,7 +944,11 @@ export const SEOSuggestions = () => {
               <div className="space-y-3">
                 <p className="text-sm font-medium text-foreground">Pistes contenu prioritaires</p>
                 <div className="space-y-3 max-h-[24rem] overflow-y-auto pr-1">
-                  {pendingSeoQueryOpportunities.slice(0, 8).map((item) => (
+                  {!appliedImprovementsLoaded ? (
+                    <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                      Chargement des améliorations SEO déjà activées...
+                    </div>
+                  ) : pendingSeoQueryOpportunities.slice(0, 8).map((item) => (
                     <div key={`${item.query}-${item.page}-opp`} className="rounded-lg border border-border p-3 text-sm">
                       <div className="flex items-start justify-between gap-3">
                         <div>
@@ -968,7 +972,7 @@ export const SEOSuggestions = () => {
                       {renderAppliedSuggestion(`seo-query-content-${item.page}-${item.query}`)}
                     </div>
                   ))}
-                  {pendingSeoQueryOpportunities.length === 0 ? (
+                  {appliedImprovementsLoaded && pendingSeoQueryOpportunities.length === 0 ? (
                     <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
                       Toutes les améliorations SEO de contenu de cet encart ont déjà été activées.
                     </div>
@@ -984,7 +988,11 @@ export const SEOSuggestions = () => {
               <CardDescription>Pages visibles ou absentes à travailler côté contenu.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {pendingSeoPageImprovements.slice(0, 10).map((page) => (
+              {!appliedImprovementsLoaded ? (
+                <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                  Chargement des améliorations SEO déjà activées...
+                </div>
+              ) : pendingSeoPageImprovements.slice(0, 10).map((page) => (
                 <div key={page.path} className="rounded-lg border border-border p-3 text-sm">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                     <div>
@@ -1009,7 +1017,7 @@ export const SEOSuggestions = () => {
                   {renderAppliedSuggestion(`seo-page-content-${page.path}`)}
                 </div>
               ))}
-              {pendingSeoPageImprovements.length === 0 ? (
+              {appliedImprovementsLoaded && pendingSeoPageImprovements.length === 0 ? (
                 <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
                   Toutes les améliorations SEO de pages de cet encart ont déjà été activées.
                 </div>
