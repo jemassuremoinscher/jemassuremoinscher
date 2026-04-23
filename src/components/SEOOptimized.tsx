@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet-async';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { supabase } from '@/integrations/supabase/client';
 
 interface SEOOptimizedProps {
   /** Page title — max 60 characters recommended */
@@ -76,10 +78,42 @@ const SEOOptimized = ({
   const normalizedPath = location.pathname === '/' ? '' : location.pathname.replace(/\/+$/, '');
   const pageCanonical = canonical || `${BASE_URL}${normalizedPath}`;
   const pageImage = ogImage || DEFAULT_IMAGE;
+  const [override, setOverride] = useState<{ meta_title: string | null; meta_description: string | null; og_title: string | null; og_description: string | null; } | null>(null);
 
   // Dynamic month replacement
-  const resolvedTitle = resolveDynamicTokens(title);
-  const resolvedDescription = resolveDynamicTokens(description);
+  const fallbackTitle = resolveDynamicTokens(title);
+  const fallbackDescription = resolveDynamicTokens(description);
+  const resolvedTitle = resolveDynamicTokens(override?.meta_title || fallbackTitle);
+  const resolvedDescription = resolveDynamicTokens(override?.meta_description || fallbackDescription);
+  const resolvedOgTitle = resolveDynamicTokens(override?.og_title || ogTitle || resolvedTitle);
+  const resolvedOgDescription = resolveDynamicTokens(override?.og_description || ogDescription || resolvedDescription);
+
+  useEffect(() => {
+    let isActive = true;
+
+    const loadOverride = async () => {
+      const pagePath = normalizedPath || '/';
+      const { data, error } = await supabase
+        .from('page_meta_overrides')
+        .select('meta_title, meta_description, og_title, og_description')
+        .eq('page_path', pagePath)
+        .maybeSingle();
+
+      if (!isActive) return;
+      if (error) {
+        setOverride(null);
+        return;
+      }
+
+      setOverride(data ?? null);
+    };
+
+    void loadOverride();
+
+    return () => {
+      isActive = false;
+    };
+  }, [normalizedPath]);
 
   // SEO length warnings (dev only)
   if (import.meta.env.DEV) {
@@ -128,13 +162,13 @@ const SEOOptimized = ({
       <meta name="format-detection" content="telephone=no" />
 
       {/* Open Graph */}
-      <meta property="og:title" content={ogTitle ? resolveDynamicTokens(ogTitle) : resolvedTitle} />
-      <meta property="og:description" content={ogDescription ? resolveDynamicTokens(ogDescription) : resolvedDescription} />
+      <meta property="og:title" content={resolvedOgTitle} />
+      <meta property="og:description" content={resolvedOgDescription} />
       <meta property="og:url" content={pageCanonical} />
       <meta property="og:image" content={pageImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content={ogTitle ? resolveDynamicTokens(ogTitle) : resolvedTitle} />
+      <meta property="og:image:alt" content={resolvedOgTitle} />
       <meta property="og:type" content={ogType} />
       <meta property="og:locale" content="fr_FR" />
       <meta property="og:locale:alternate" content="en_US" />
@@ -148,10 +182,10 @@ const SEOOptimized = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@jmassuremoinscher" />
       <meta name="twitter:creator" content="@jmassuremoinscher" />
-      <meta name="twitter:title" content={ogTitle ? resolveDynamicTokens(ogTitle) : resolvedTitle} />
-      <meta name="twitter:description" content={twitterDescription ? resolveDynamicTokens(twitterDescription) : resolvedDescription} />
+      <meta name="twitter:title" content={resolvedOgTitle} />
+      <meta name="twitter:description" content={twitterDescription ? resolveDynamicTokens(twitterDescription) : resolvedOgDescription} />
       <meta name="twitter:image" content={pageImage} />
-      <meta name="twitter:image:alt" content={ogTitle ? resolveDynamicTokens(ogTitle) : resolvedTitle} />
+      <meta name="twitter:image:alt" content={resolvedOgTitle} />
 
       {/* JSON-LD */}
       {schemas.map((schema, i) => (

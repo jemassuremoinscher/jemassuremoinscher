@@ -8,7 +8,7 @@ import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCirc
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
-import { applySeoIssueFix, canAutoFixSeoIssue, validateSeoIssueFix } from '@/lib/auditFixes';
+import { applySeoIssueFix, applySeoVisibilityFix, canAutoFixSeoIssue, validateSeoIssueFix, validateSeoVisibilityFix } from '@/lib/auditFixes';
 
 type FixAction = {
   label: string;
@@ -395,6 +395,52 @@ export const SEOSuggestions = () => {
     }
   };
 
+  const markVisibilityCheckResolved = (check: VisibilityCheck) => {
+    setVisibilityReport((current) => {
+      if (!current) return current;
+
+      const existingCheck = current.seo.checks.find((item) => item.id === check.id);
+      if (!existingCheck || existingCheck.pass) return current;
+
+      const updatedChecks = current.seo.checks.map((item) => item.id === check.id
+        ? { ...item, pass: true, reason: 'Action appliquée et validée depuis le backoffice.' }
+        : item);
+      const nextPassedChecks = current.seo.passedChecks + 1;
+      const nextWeightedPassed = current.seo.weightedPassed + check.weight;
+      const nextScore = Math.round((nextWeightedPassed / current.seo.weightedTotal) * 100);
+
+      return {
+        ...current,
+        seo: {
+          ...current.seo,
+          score: nextScore,
+          status: nextPassedChecks === current.seo.totalChecks ? 'excellent' : current.seo.status,
+          passedChecks: nextPassedChecks,
+          weightedPassed: nextWeightedPassed,
+          checks: updatedChecks,
+        },
+      };
+    });
+  };
+
+  const runVisibilityFix = async (key: string, check: VisibilityCheck) => {
+    setFixStatuses((current) => ({ ...current, [key]: 'sending' }));
+
+    try {
+      const result = await applySeoVisibilityFix(check);
+      const isValidated = await validateSeoVisibilityFix(check);
+
+      if (!isValidated) throw new Error('La correction a été enregistrée, mais la validation a échoué.');
+
+      markVisibilityCheckResolved(check);
+      setFixStatuses((current) => ({ ...current, [key]: 'success' }));
+      toast.success(`${result.message} Validation effectuée.`);
+    } catch (error) {
+      setFixStatuses((current) => ({ ...current, [key]: 'error' }));
+      toast.error(error instanceof Error ? error.message : 'Erreur pendant la correction.');
+    }
+  };
+
   const renderFixStatus = (key: string) => {
     const status = fixStatuses[key] ?? 'idle';
     if (status === 'sending') return <p className="text-xs text-muted-foreground">Correction en cours…</p>;
@@ -628,10 +674,17 @@ export const SEOSuggestions = () => {
                       </div>
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" variant="outline" onClick={() => copyFixAction(getVisibilityFixAction(check))}>
-                            <Copy className="h-4 w-4 mr-1" />
-                            Copier l'action
-                          </Button>
+                          {(check.label.toLowerCase().includes('position') || check.label.toLowerCase().includes('organiques') || check.label.toLowerCase().includes('engagement')) ? (
+                            <Button size="sm" onClick={() => runVisibilityFix(check.id, check)} disabled={fixStatuses[check.id] === 'sending'}>
+                              <Wand2 className="h-4 w-4 mr-1" />
+                              {fixStatuses[check.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
+                            </Button>
+                          ) : (
+                            <Button size="sm" variant="outline" onClick={() => copyFixAction(getVisibilityFixAction(check))}>
+                              <Copy className="h-4 w-4 mr-1" />
+                              Copier l'action
+                            </Button>
+                          )}
                         </div>
                       ) : null}
                       {renderFixStatus(check.id)}

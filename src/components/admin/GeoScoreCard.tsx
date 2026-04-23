@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
-import { applyGeoIssueFix, canAutoFixGeoIssue, validateGeoIssueFix } from "@/lib/auditFixes";
+import { applyGeoIssueFix, applyGeoVisibilityFix, canAutoFixGeoIssue, validateGeoIssueFix, validateGeoVisibilityFix } from "@/lib/auditFixes";
 import { toast } from "sonner";
 
 type GeoAuditCheck = {
@@ -199,6 +199,52 @@ export const GeoScoreCard = () => {
       }
 
       markGeoIssueResolved(issue);
+      setFixStatuses((current) => ({ ...current, [key]: 'success' }));
+      toast.success(`${result.message} Validation effectuée.`);
+    } catch (error) {
+      setFixStatuses((current) => ({ ...current, [key]: 'error' }));
+      toast.error(error instanceof Error ? error.message : 'Erreur pendant la correction.');
+    }
+  };
+
+  const markGeoVisibilityResolved = (check: VisibilityCheck) => {
+    setVisibilityReport((current) => {
+      if (!current) return current;
+
+      const existingCheck = current.geo.checks.find((item) => item.id === check.id);
+      if (!existingCheck || existingCheck.pass) return current;
+
+      const updatedChecks = current.geo.checks.map((item) => item.id === check.id
+        ? { ...item, pass: true, reason: "Action appliquée et validée depuis le backoffice." }
+        : item);
+      const nextPassedChecks = current.geo.passedChecks + 1;
+      const nextWeightedPassed = current.geo.weightedPassed + check.weight;
+      const nextScore = Math.round((nextWeightedPassed / current.geo.weightedTotal) * 100);
+
+      return {
+        ...current,
+        geo: {
+          ...current.geo,
+          score: nextScore,
+          status: nextPassedChecks === current.geo.totalChecks ? "excellent" : current.geo.status,
+          passedChecks: nextPassedChecks,
+          weightedPassed: nextWeightedPassed,
+          checks: updatedChecks,
+        },
+      };
+    });
+  };
+
+  const runVisibilityFix = async (key: string, check: VisibilityCheck) => {
+    setFixStatuses((current) => ({ ...current, [key]: 'sending' }));
+
+    try {
+      const result = await applyGeoVisibilityFix(check);
+      const isValidated = await validateGeoVisibilityFix(check);
+
+      if (!isValidated) throw new Error('La correction a été enregistrée, mais la validation a échoué.');
+
+      markGeoVisibilityResolved(check);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success(`${result.message} Validation effectuée.`);
     } catch (error) {
@@ -478,10 +524,17 @@ export const GeoScoreCard = () => {
                       </div>
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" variant="outline" onClick={() => copyFixAction(getGeoVisibilityFixAction(check))}>
-                            <Copy className="h-4 w-4 mr-1" />
-                            Copier l'action
-                          </Button>
+                          {(check.label.toLowerCase().includes('diversité') || check.label.toLowerCase().includes('mentions') || check.label.toLowerCase().includes('requêtes')) ? (
+                            <Button size="sm" onClick={() => runVisibilityFix(check.id, check)} disabled={fixStatuses[check.id] === 'sending'}>
+                              <Wand2 className="h-4 w-4 mr-1" />
+                              {fixStatuses[check.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
+                            </Button>
+                          ) : (
+                            <Button size="sm" variant="outline" onClick={() => copyFixAction(getGeoVisibilityFixAction(check))}>
+                              <Copy className="h-4 w-4 mr-1" />
+                              Copier l'action
+                            </Button>
+                          )}
                         </div>
                       ) : null}
                       {renderFixStatus(check.id)}
