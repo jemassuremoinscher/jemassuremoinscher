@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
 import { applyGeoIssueFix, canAutoFixGeoIssue } from "@/lib/auditFixes";
+import { toast } from "sonner";
 
 type GeoAuditCheck = {
   id: string;
