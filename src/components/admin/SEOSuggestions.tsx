@@ -41,8 +41,10 @@ type SeoAuditCheck = {
   description: string;
   pass: boolean;
   weight: number;
+  impact: number;
   expected: string;
   actual: string | null;
+  reason: string;
 };
 
 type SeoAuditReport = {
@@ -250,6 +252,11 @@ export const SEOSuggestions = () => {
               </div>
 
               <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                <p><span className="font-medium text-foreground">Pages comptées :</span> {seoReport?.summary.auditedPages ?? 0}</p>
+                <p><span className="font-medium text-foreground">Poids cumulé validé :</span> {seoReport?.summary.weightedPassed ?? 0} / {seoReport?.summary.weightedTotal ?? 0}</p>
+              </div>
+
+              <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
                 <p className="font-medium text-foreground">Méthodologie</p>
                 <p className="mt-1">{seoReport?.methodology ?? 'Chargement...'}</p>
               </div>
@@ -264,26 +271,24 @@ export const SEOSuggestions = () => {
             <CardContent>
               {!seoReport || isSeoLoading ? (
                 <div className="text-sm text-muted-foreground">Chargement du détail...</div>
-              ) : seoReport.issues.length === 0 ? (
-                <div className="flex items-center gap-3 rounded-lg border border-border bg-card p-4">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
-                  <div>
-                    <p className="font-medium text-foreground">Aucun point bloquant détecté</p>
-                    <p className="text-sm text-muted-foreground">Le périmètre statique audité respecte les principaux fondamentaux on-page.</p>
-                  </div>
-                </div>
               ) : (
-                <div className="space-y-3">
-                  {seoReport.issues.slice(0, 10).map((issue) => (
+                <div className="space-y-3 max-h-[34rem] overflow-y-auto pr-1">
+                  {seoReport.checks.map((issue) => (
                     <div key={issue.id} className="rounded-lg border border-border bg-card p-4">
                       <div className="flex items-start justify-between gap-3">
                         <div>
                           <p className="font-medium text-foreground">{issue.description}</p>
                           <p className="mt-1 text-xs text-muted-foreground">{issue.file}</p>
                         </div>
-                        <Badge variant="outline">{issue.category}</Badge>
+                        <div className="flex flex-wrap items-center justify-end gap-2">
+                          <Badge variant={issue.pass ? 'secondary' : 'destructive'}>{issue.pass ? 'Passe' : 'Échec'}</Badge>
+                          <Badge variant="outline">{issue.category}</Badge>
+                          <Badge variant="outline">Poids {issue.weight}</Badge>
+                        </div>
                       </div>
                       <div className="mt-3 grid gap-2 text-sm text-muted-foreground">
+                        <p><span className="font-medium text-foreground">Impact score :</span> {issue.pass ? '+' : '-'}{issue.impact}</p>
+                        <p><span className="font-medium text-foreground">Pourquoi :</span> {issue.reason}</p>
                         <p><span className="font-medium text-foreground">Attendu :</span> {issue.expected}</p>
                         {issue.actual ? <p><span className="font-medium text-foreground">Trouvé :</span> {issue.actual}</p> : null}
                       </div>
