@@ -5,7 +5,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, Wand2 } from 'lucide-react';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
@@ -119,12 +118,6 @@ type VisibilityScore = {
   };
 };
 
-type PendingSeoAction =
-  | { type: 'issue'; key: string; title: string; description: string; issue: SeoAuditCheck }
-  | { type: 'visibility'; key: string; title: string; description: string; check: VisibilityCheck }
-  | { type: 'page-content'; key: string; title: string; description: string; page: VisibilityScore['seo']['pageVisibility'][number] }
-  | { type: 'query-content'; key: string; title: string; description: string; item: VisibilityScore['seo']['queryOpportunities'][number] };
-
 type AppliedSuggestionState = Record<string, ContentSuggestionDraft>;
 
 const scoreMeta = {
@@ -233,8 +226,6 @@ export const SEOSuggestions = () => {
   const [visibilityError, setVisibilityError] = useState<string | null>(null);
   const [isSeoLoading, setIsSeoLoading] = useState(true);
   const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
-  const [pendingAction, setPendingAction] = useState<PendingSeoAction | null>(null);
-  const [appliedSuggestions, setAppliedSuggestions] = useState<AppliedSuggestionState>({});
 
   useEffect(() => {
     fetchSuggestions();
@@ -540,7 +531,6 @@ export const SEOSuggestions = () => {
 
       if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
-      setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
       await fetchSuggestions();
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success('Brouillon mis à jour', {
@@ -568,7 +558,6 @@ export const SEOSuggestions = () => {
 
       if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
-      setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
       await fetchSuggestions();
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success('Brouillon mis à jour', {
@@ -580,42 +569,12 @@ export const SEOSuggestions = () => {
     }
   };
 
-  const confirmPendingAction = async () => {
-    if (!pendingAction) return;
-
-    if (pendingAction.type === 'issue') {
-      await runDirectFix(pendingAction.key, pendingAction.issue);
-    } else if (pendingAction.type === 'visibility') {
-      await runVisibilityFix(pendingAction.key, pendingAction.check);
-    } else if (pendingAction.type === 'page-content') {
-      await runPageContentImprovement(pendingAction.key, pendingAction.page);
-    } else {
-      await runQueryContentImprovement(pendingAction.key, pendingAction.item);
-    }
-
-    setPendingAction(null);
-  };
-
   const renderFixStatus = (key: string) => {
     const status = fixStatuses[key] ?? 'idle';
     if (status === 'sending') return <p className="text-xs text-muted-foreground">Correction en cours…</p>;
     if (status === 'success') return <p className="text-xs text-primary">Correction appliquée et validée.</p>;
     if (status === 'error') return <p className="text-xs text-destructive">Erreur de correction. Réessaie.</p>;
     return null;
-  };
-
-  const renderAppliedSuggestion = (key: string) => {
-    const suggestion = appliedSuggestions[key];
-    if (!suggestion) return null;
-
-    return (
-      <div className="mt-3 rounded-lg border border-border bg-muted/40 p-3 text-sm">
-        <p className="font-medium text-foreground">Brouillon créé</p>
-        <p className="mt-1 text-foreground">{suggestion.title}</p>
-        <p className="mt-1 text-xs text-muted-foreground">Slug : {suggestion.slug}</p>
-        {suggestion.suggested_author ? <p className="mt-1 text-xs text-muted-foreground">Auteur : {suggestion.suggested_author}</p> : null}
-      </div>
-    );
   };
 
   const statusBadge = (status: string) => {
