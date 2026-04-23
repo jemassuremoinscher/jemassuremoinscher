@@ -8,7 +8,7 @@ import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCirc
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
-import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, buildContentImprovementKey, canAutoFixSeoIssue, CONTENT_IMPROVEMENT_PREFIX, hydrateAuditReport, listAppliedContentImprovements, validateSeoIssueFix, validateSeoVisibilityFix, type ContentSuggestionDraft } from '@/lib/auditFixes';
+import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, buildContentImprovementKey, canAutoFixSeoIssue, hydrateAuditReport, isBlogArticleSuggestionSlug, listAppliedContentImprovements, validateSeoIssueFix, validateSeoVisibilityFix, type ContentSuggestionDraft } from '@/lib/auditFixes';
 
 type FixAction = {
   label: string;
@@ -337,11 +337,7 @@ export const SEOSuggestions = () => {
     if (error) {
       toast.error('Erreur chargement suggestions');
     } else {
-      setSuggestions(((data as Suggestion[]) || []).filter((item) => (
-        !item.slug.startsWith(CONTENT_IMPROVEMENT_PREFIX)
-        && !item.slug.startsWith('geo-amelioration-')
-        && !item.slug.startsWith('seo-amelioration-')
-      )));
+      setSuggestions(((data as Suggestion[]) || []).filter((item) => isBlogArticleSuggestionSlug(item.slug)));
     }
 
     setIsLoading(false);
