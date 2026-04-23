@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
-import { AlertCircle, CheckCircle2, Info, RefreshCw, ShieldCheck, ArrowUpRight } from "lucide-react";
+import { AlertCircle, CheckCircle2, Info, RefreshCw, ShieldCheck, Copy, Wand2 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
+import { applyGeoIssueFix, canAutoFixGeoIssue } from "@/lib/auditFixes";
 
 type GeoAuditCheck = {
   id: string;
@@ -72,8 +73,6 @@ type FixAction = {
   label: string;
   details: string;
 };
-
-const LOVABLE_PROJECT_URL = 'https://lovable.dev/projects/0c846637-eedf-4940-bd90-f40cb5a873ee';
 
 const statusConfig = {
   excellent: { label: "Fiable", badge: "default" as const },
@@ -155,34 +154,25 @@ export const GeoScoreCard = () => {
     navigator.clipboard.writeText(`${action.label}\n\n${action.details}`);
   };
 
-  const openLovableFix = async (key: string, action: FixAction) => {
-    const prompt = `${action.label}\n\n${action.details}`;
+  const runDirectFix = async (key: string, issue: GeoAuditCheck) => {
     setFixStatuses((current) => ({ ...current, [key]: 'sending' }));
 
     try {
-      await navigator.clipboard.writeText(prompt);
-    } catch {}
-
-    try {
-      const url = `${LOVABLE_PROJECT_URL}?prompt=${encodeURIComponent(prompt)}&message=${encodeURIComponent(prompt)}`;
-      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-
-      if (!newWindow) {
-        setFixStatuses((current) => ({ ...current, [key]: 'error' }));
-        return;
-      }
-
+      const result = await applyGeoIssueFix(issue);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-    } catch {
+      await loadReport();
+      toast.success(result.message);
+    } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
+      toast.error(error instanceof Error ? error.message : 'Erreur pendant la correction.');
     }
   };
 
   const renderFixStatus = (key: string) => {
     const status = fixStatuses[key] ?? 'idle';
-    if (status === 'sending') return <p className="text-xs text-muted-foreground">Envoi en cours…</p>;
-    if (status === 'success') return <p className="text-xs text-primary">Correction envoyée à Lovable.</p>;
-    if (status === 'error') return <p className="text-xs text-destructive">Erreur d’envoi. Réessaie.</p>;
+    if (status === 'sending') return <p className="text-xs text-muted-foreground">Correction en cours…</p>;
+    if (status === 'success') return <p className="text-xs text-primary">Correction appliquée.</p>;
+    if (status === 'error') return <p className="text-xs text-destructive">Erreur de correction. Réessaie.</p>;
     return null;
   };
 
@@ -400,11 +390,11 @@ export const GeoScoreCard = () => {
                         <p className="text-muted-foreground"><span className="font-medium text-foreground">Attendu :</span> {item.expected}</p>
                         {item.actual ? <p className="text-muted-foreground"><span className="font-medium text-foreground">Trouvé :</span> {item.actual}</p> : null}
                       </div>
-                      {!item.pass ? (
+                      {!item.pass && canAutoFixGeoIssue(item) ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" onClick={() => { void openLovableFix(item.id, getGeoFixAction(item)); }} disabled={fixStatuses[item.id] === 'sending'}>
-                            <ArrowUpRight className="h-4 w-4 mr-1" />
-                            {fixStatuses[item.id] === 'sending' ? 'Envoi...' : 'Proposer la correction'}
+                          <Button size="sm" onClick={() => { void runDirectFix(item.id, item); }} disabled={fixStatuses[item.id] === 'sending'}>
+                            <Wand2 className="h-4 w-4 mr-1" />
+                            {fixStatuses[item.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
                           </Button>
                         </div>
                       ) : null}
@@ -449,9 +439,9 @@ export const GeoScoreCard = () => {
                       </div>
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" onClick={() => { void openLovableFix(check.id, getGeoVisibilityFixAction(check)); }} disabled={fixStatuses[check.id] === 'sending'}>
-                            <ArrowUpRight className="h-4 w-4 mr-1" />
-                            {fixStatuses[check.id] === 'sending' ? 'Envoi...' : 'Proposer la correction'}
+                          <Button size="sm" variant="outline" onClick={() => copyFixAction(getGeoVisibilityFixAction(check))}>
+                            <Copy className="h-4 w-4 mr-1" />
+                            Copier l'action
                           </Button>
                         </div>
                       ) : null}
