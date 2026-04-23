@@ -1,115 +1,15 @@
 {
-  "generatedAt": "2026-04-22T14:43:47.272Z",
-  "score": 59,
-  "status": "critical",
+  "generatedAt": "2026-04-23T01:46:01.358Z",
+  "score": 100,
+  "status": "excellent",
   "summary": {
-    "totalChecks": 27,
+    "totalChecks": 16,
     "passedChecks": 16,
-    "failedChecks": 11,
-    "auditedFiles": 10,
+    "failedChecks": 0,
+    "auditedFiles": 9,
     "staticRoutes": 4
   },
-  "mismatches": [
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-0",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-1",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-2",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-3",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-4",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-5",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-6",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-7",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-8",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-9",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-10",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    }
-  ],
+  "mismatches": [],
   "checks": [
     {
       "id": "contact-title",
@@ -254,105 +154,6 @@
       "pass": true,
       "expected": "geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel",
       "actual": null
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-0",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-1",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-2",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-3",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-4",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-5",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-6",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-7",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-8",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-9",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
-    },
-    {
-      "id": "src/data/landingConfigs.tsx-Ancienne note 4.8/5-10",
-      "category": "stale-copy",
-      "file": "src/data/landingConfigs.tsx",
-      "description": "Ancienne note 4.8/5 détecté dans src/data/landingConfigs.tsx",
-      "pass": false,
-      "expected": "Remplacer par 4.9/5 et 247 avis si c'est une métrique marque",
-      "actual": "4.8/5"
     }
   ]
 }

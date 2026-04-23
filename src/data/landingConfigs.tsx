@@ -21,6 +21,9 @@ import arthurClimbing from "@/assets/mascotte/arthur-climbing.webp";
 import arthurKayak from "@/assets/mascotte/arthur-kayak.webp";
 import arthurBtp from "@/assets/mascotte/arthur-btp.webp";
 import arthurExcited from "@/assets/mascotte/arthur-excited.webp";
+import geoContent from "@/data/geo-content.json";
+
+const trustReviewStat = { icon: Star, value: `${geoContent.trust.ratingValueLabel}/5`, label: `${geoContent.trust.reviewCountLabel} avis` };
 
 const baseStats = [
   { icon: Users, value: "120k+", label: "Clients accompagnés" },
@@ -95,7 +98,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     insuranceLabel: "Assurance Moto",
     stats: [
       { icon: Bike, value: "8k+", label: "Motards" },
-      { icon: Star, value: "4.8/5", label: "Avis vérifiés" },
+      trustReviewStat,
       { icon: TrendingDown, value: "-400 €", label: "Économie moy." },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
@@ -133,7 +136,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     insuranceLabel: "Assurance Habitation",
     stats: [
       { icon: Home, value: "22k+", label: "Logements assurés" },
-      { icon: Star, value: "4.8/5", label: "Avis clients" },
+      trustReviewStat,
       { icon: TrendingDown, value: "-35 %", label: "Économie moy." },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
@@ -171,7 +174,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     insuranceLabel: "Mutuelle Santé",
     stats: [
       { icon: HeartPulse, value: "30k+", label: "Adhérents" },
-      { icon: Star, value: "4.8/5", label: "Avis vérifiés" },
+      trustReviewStat,
       { icon: TrendingDown, value: "-50 %", label: "Économie moy." },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
@@ -209,7 +212,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     insuranceLabel: "Assurance Prêt",
     stats: [
       { icon: Wallet, value: "15 000 €", label: "Économies max" },
-      { icon: Star, value: "4.8/5", label: "Avis vérifiés" },
+      trustReviewStat,
       { icon: TrendingDown, value: "-60 %", label: "Sur la prime" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
@@ -247,7 +250,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     insuranceLabel: "Assurance Vie",
     stats: [
       { icon: PiggyBank, value: "5k+", label: "Épargnants" },
-      { icon: Star, value: "4.8/5", label: "Avis vérifiés" },
+      trustReviewStat,
       { icon: TrendingDown, value: "0 €", label: "Frais d'entrée" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
@@ -285,7 +288,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     insuranceLabel: "Prévoyance",
     stats: [
       { icon: Shield, value: "100 %", label: "Maintien salaire" },
-      { icon: Star, value: "4.8/5", label: "Avis vérifiés" },
+      trustReviewStat,
       { icon: TrendingDown, value: "-30 %", label: "Vs marché" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
@@ -323,7 +326,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     insuranceLabel: "Assurance Animaux",
     stats: [
       { icon: PawPrint, value: "12k+", label: "Animaux assurés" },
-      { icon: Star, value: "4.8/5", label: "Avis vérifiés" },
+      trustReviewStat,
       { icon: TrendingDown, value: "100 %", label: "Remboursement" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
@@ -362,7 +365,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     insuranceLabel: "RC Pro",
     stats: [
       { icon: Briefcase, value: "8k+", label: "Pros assurés" },
-      { icon: Star, value: "4.8/5", label: "Avis vérifiés" },
+      trustReviewStat,
       { icon: FileCheck, value: "Immédiat", label: "Attestation" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
@@ -400,7 +403,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     insuranceLabel: "Assurance MRP",
     stats: [
       { icon: Building2, value: "3k+", label: "Entreprises" },
-      { icon: Star, value: "4.8/5", label: "Avis vérifiés" },
+      trustReviewStat,
       { icon: TrendingDown, value: "-25 %", label: "Économie moy." },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
@@ -438,7 +441,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     insuranceLabel: "GLI",
     stats: [
       { icon: KeyRound, value: "2,5 %", label: "Du loyer" },
-      { icon: Star, value: "4.8/5", label: "Avis vérifiés" },
+      trustReviewStat,
       { icon: ShieldCheck, value: "100 %", label: "Loyers couverts" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
@@ -476,7 +479,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     insuranceLabel: "Assurance PNO",
     stats: [
       { icon: Home, value: "5k+", label: "Bailleurs" },
-      { icon: Star, value: "4.8/5", label: "Avis vérifiés" },
+      trustReviewStat,
       { icon: TrendingDown, value: "-30 %", label: "Vs marché" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
