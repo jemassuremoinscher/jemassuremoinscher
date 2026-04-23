@@ -287,6 +287,7 @@ export type ContentSuggestionDraft = {
   suggested_author: string | null;
   status: string;
   created_at?: string | null;
+  applied_path?: string | null;
 };
 
 export type ContentImprovementSource = "seo" | "geo";
@@ -296,6 +297,7 @@ type ContentImprovementScope = "page" | "query" | "visibility";
 export const CONTENT_IMPROVEMENT_PREFIX = "__content-improvement__";
 
 const encodeImprovementSegment = (value: string) => encodeURIComponent(value);
+const decodeImprovementSegment = (value: string) => decodeURIComponent(value);
 
 export const buildContentImprovementKey = (input: {
   source: ContentImprovementSource;
@@ -303,6 +305,58 @@ export const buildContentImprovementKey = (input: {
   path: string;
   query?: string;
 }) => `${CONTENT_IMPROVEMENT_PREFIX}/${input.source}/${input.scope}/${encodeImprovementSegment(input.path)}/${encodeImprovementSegment(input.query ?? "_")}`;
+
+const parseContentImprovementKey = (key: string) => {
+  const [prefix, source, scope, encodedPath, encodedQuery] = key.split("/");
+  if (prefix !== CONTENT_IMPROVEMENT_PREFIX || !source || !scope || !encodedPath || !encodedQuery) {
+    return null;
+  }
+
+  return {
+    source,
+    scope,
+    path: decodeImprovementSegment(encodedPath),
+    query: encodedQuery === "_" ? null : decodeImprovementSegment(encodedQuery),
+  };
+};
+
+const buildLiveContentImprovementOverride = (input: {
+  source: ContentImprovementSource;
+  path: string;
+  query?: string;
+}) => {
+  if (!input.path.startsWith("/")) return null;
+
+  const defaults = getMetaDefaultsForPath(input.path);
+  const routeLabel = input.path === "/"
+    ? "Accueil"
+    : humanizeSlug(input.path.replace(/^\/+|\/+$/g, "").split("/").pop() ?? "page");
+  const focus = input.query?.trim() || routeLabel;
+  const metaTitle = trimToLength(
+    resolveDynamicTokens(input.query?.trim()
+      ? `${focus} | ${routeLabel} | jemassuremoinscher.fr`
+      : defaults.title),
+    60,
+  );
+  const metaDescription = trimToLength(
+    `${defaults.description.replace(/[.!?\s]+$/g, "")}. ${input.source === "seo"
+      ? (input.query?.trim()
+        ? `Réponse enrichie sur ${focus.toLowerCase()}, avec intention clarifiée et promesse plus directe.`
+        : `${routeLabel} renforcé avec une promesse plus claire, des réponses rapides et une couverture SEO plus nette.`)
+      : (input.query?.trim()
+        ? `Réponse plus directe sur ${focus.toLowerCase()}, avec formulation claire pour les assistants IA.`
+        : `${routeLabel} clarifié avec réponses directes, signaux d'expertise et meilleure lisibilité GEO.`)}`,
+    160,
+  );
+
+  return {
+    pagePath: input.path,
+    meta_title: metaTitle,
+    meta_description: metaDescription,
+    og_title: trimToLength(metaTitle, 35),
+    og_description: trimToLength(metaDescription, 65),
+  };
+};
 
 const buildContentImprovementDraft = (input: {
   source: ContentImprovementSource;
@@ -344,14 +398,29 @@ const persistContentImprovement = async (input: {
   intent?: string;
 }) => {
   const draft = buildContentImprovementDraft(input);
-  const payload = {
+  const markerPayload = {
     meta_title: draft.title,
     meta_description: draft.suggested_meta_description,
     og_title: draft.status,
     og_description: draft.suggested_content,
   };
 
-  await upsertPageMetaOverride(draft.slug, payload);
+  const liveOverride = buildLiveContentImprovementOverride({
+    source: input.source,
+    path: input.path,
+    query: input.query,
+  });
+
+  if (liveOverride) {
+    await upsertPageMetaOverride(liveOverride.pagePath, {
+      meta_title: liveOverride.meta_title,
+      meta_description: liveOverride.meta_description,
+      og_title: liveOverride.og_title,
+      og_description: liveOverride.og_description,
+    });
+  }
+
+  await upsertPageMetaOverride(draft.slug, markerPayload);
 
   const { data, error } = await supabase
     .from("page_meta_overrides")
@@ -364,6 +433,7 @@ const persistContentImprovement = async (input: {
   return {
     ...draft,
     created_at: data?.created_at ?? null,
+    applied_path: liveOverride?.pagePath ?? null,
   } satisfies ContentSuggestionDraft;
 };
 
@@ -377,16 +447,20 @@ export const listAppliedContentImprovements = async (source: ContentImprovementS
 
   return Object.fromEntries((data ?? []).map((item) => [
     item.page_path,
-    {
-      slug: item.page_path,
-      title: item.meta_title ?? "Amélioration activée",
-      target_keyword: item.page_path,
-      suggested_meta_description: item.meta_description ?? null,
-      suggested_content: item.og_description ?? item.meta_description ?? "",
-      suggested_author: null,
-      status: item.og_title ?? "applied",
-      created_at: item.created_at ?? null,
-    } satisfies ContentSuggestionDraft,
+    (() => {
+      const parsed = parseContentImprovementKey(item.page_path);
+      return {
+        slug: item.page_path,
+        title: item.meta_title ?? "Amélioration activée",
+        target_keyword: parsed?.query ?? parsed?.path ?? item.page_path,
+        suggested_meta_description: item.meta_description ?? null,
+        suggested_content: item.og_description ?? item.meta_description ?? "",
+        suggested_author: null,
+        status: item.og_title ?? "applied",
+        created_at: item.created_at ?? null,
+        applied_path: parsed?.path ?? null,
+      } satisfies ContentSuggestionDraft;
+    })(),
   ]));
 };
 
