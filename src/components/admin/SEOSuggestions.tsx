@@ -12,6 +12,10 @@ import { Progress } from '@/components/ui/progress';
 import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, canAutoFixSeoIssue, hydrateAuditReport, validateSeoContentImprovement, validateSeoIssueFix, validateSeoVisibilityFix, type ContentSuggestionDraft } from '@/lib/auditFixes';
 
 const SEO_SUGGESTIONS_REFRESH_EVENT = 'seo-suggestions-refresh';
+type SeoSuggestionsRefreshDetail = {
+  title?: string;
+  source?: 'seo' | 'geo';
+};
 
 type FixAction = {
   label: string;
@@ -239,12 +243,16 @@ export const SEOSuggestions = () => {
   }, []);
 
   useEffect(() => {
-    const handleRefresh = () => {
-      void fetchSuggestions();
+    const handleRefresh = async (event: Event) => {
+      const detail = (event as CustomEvent<SeoSuggestionsRefreshDetail>).detail;
+      await fetchSuggestions();
+      toast.success('Brouillon mis à jour', {
+        description: `${detail?.title ?? 'Le brouillon'} a bien été enregistré et la liste a été rafraîchie${detail?.source === 'geo' ? ' depuis GEO' : ''}.`,
+      });
     };
 
-    window.addEventListener(SEO_SUGGESTIONS_REFRESH_EVENT, handleRefresh);
-    return () => window.removeEventListener(SEO_SUGGESTIONS_REFRESH_EVENT, handleRefresh);
+    window.addEventListener(SEO_SUGGESTIONS_REFRESH_EVENT, handleRefresh as EventListener);
+    return () => window.removeEventListener(SEO_SUGGESTIONS_REFRESH_EVENT, handleRefresh as EventListener);
   }, []);
 
   const loadVisibilityReport = async () => {
@@ -535,7 +543,9 @@ export const SEOSuggestions = () => {
       setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
       await fetchSuggestions();
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Le brouillon a été ajouté à la liste.`);
+      toast.success('Brouillon mis à jour', {
+        description: `${result.suggestion.title} a bien été enregistré et la liste a été rafraîchie.`,
+      });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : "Erreur pendant l'amélioration contenu.");
@@ -561,7 +571,9 @@ export const SEOSuggestions = () => {
       setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
       await fetchSuggestions();
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Le brouillon a été ajouté à la liste.`);
+      toast.success('Brouillon mis à jour', {
+        description: `${result.suggestion.title} a bien été enregistré et la liste a été rafraîchie.`,
+      });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : "Erreur pendant l'amélioration contenu.");
