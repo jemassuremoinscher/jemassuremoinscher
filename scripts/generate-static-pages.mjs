@@ -146,6 +146,7 @@ const patchHtmlSeo = (html, relativePath) => {
   if (!title || !description || !heading) return html;
 
   let updated = html.replace(/<noscript>([\s\S]*?)<\/noscript>/i, (match) => match.replace(/<h1>([^<]+)<\/h1>/i, "<h2>$1</h2>"));
+  updated = updated.replace(/(<div id="root">[\s\S]*?<main class="seo-shell">\s*)<h2>([^<]+)<\/h2>/i, "$1<h1>$2</h1>");
 
   if (!/<meta[^>]+property=["']og:title["']/i.test(updated)) {
     updated = injectBeforeHeadEnd(updated, `    <meta property="og:type" content="website" />\n    <meta property="og:title" content="${escapeAttribute(title)}" />\n    <meta property="og:description" content="${escapeAttribute(description)}" />\n    <meta property="og:url" content="${escapeAttribute(canonical)}" />\n    <meta property="og:site_name" content="${escapeAttribute(geoContent.brandName)}" />\n    <meta name="twitter:card" content="summary_large_image" />\n    <meta name="twitter:title" content="${escapeAttribute(title)}" />\n    <meta name="twitter:description" content="${escapeAttribute(description)}" />`);
