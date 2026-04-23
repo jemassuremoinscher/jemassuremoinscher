@@ -18,6 +18,51 @@ type VisibilityCheck = {
   reason: string;
 };
 
+type QueryOpportunity = {
+  query: string;
+  page: string;
+  clicks: number;
+  impressions: number;
+  position: number;
+  ctr: number;
+  intent: "comparatif" | "faq" | "definition" | "guide" | "local" | "transactionnel" | "informationnel";
+  status: "visible" | "opportunité";
+  recommendation: string;
+};
+
+type PageVisibility = {
+  path: string;
+  clicks: number;
+  impressions: number;
+  avgPosition: number;
+  ctr: number;
+  opportunityScore: number;
+  aiPotential: "fort" | "moyen" | "faible";
+  contentAction: string;
+};
+
+const KNOWN_SITE_PATHS = [
+  "/",
+  "/comparateur",
+  "/blog",
+  "/contact",
+  "/glossaire",
+  "/assurance-auto",
+  "/assurance-moto",
+  "/assurance-habitation",
+  "/assurance-sante",
+  "/assurance-pret",
+  "/assurance-animaux",
+  "/assurance-vie",
+  "/assurance-prevoyance",
+  "/assurance-rc-pro",
+  "/assurance-mrp",
+  "/assurance-pno",
+  "/assurance-gli",
+  "/nos-partenaires",
+  "/outils/calculateur-bonus-malus",
+];
+
 const toStatus = (score: number): ScoreStatus => {
   if (score >= 85) return "excellent";
   if (score >= 70) return "good";
