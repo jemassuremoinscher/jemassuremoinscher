@@ -63,6 +63,7 @@ type SeoAuditReport = {
   };
   pageScores: Array<{ file: string; score: number; issues: number }>;
   issues: SeoAuditCheck[];
+  checks: SeoAuditCheck[];
 };
 
 const scoreMeta = {
