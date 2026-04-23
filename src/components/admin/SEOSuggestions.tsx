@@ -66,6 +66,39 @@ type SeoAuditReport = {
   checks: SeoAuditCheck[];
 };
 
+type VisibilityCheck = {
+  id: string;
+  label: string;
+  source: 'gsc' | 'ga4';
+  value: string;
+  expected: string;
+  weight: number;
+  pass: boolean;
+  reason: string;
+};
+
+type VisibilityScore = {
+  generatedAt: string;
+  methodology: { seo: string; geo: string };
+  seo: {
+    score: number;
+    status: 'excellent' | 'good' | 'warning' | 'critical';
+    weightedPassed: number;
+    weightedTotal: number;
+    passedChecks: number;
+    totalChecks: number;
+    checks: VisibilityCheck[];
+    metrics: {
+      impressions: number;
+      clicks: number;
+      ctr: number;
+      avgPosition: number;
+      organicSessions: number;
+      organicEngagementRate: number;
+    };
+  };
+};
+
 const scoreMeta = {
   excellent: { label: 'Fiable', badge: 'default' as const },
   good: { label: 'Solide', badge: 'secondary' as const },
@@ -78,13 +111,32 @@ export const SEOSuggestions = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [seoReport, setSeoReport] = useState<SeoAuditReport | null>(null);
+  const [visibilityReport, setVisibilityReport] = useState<VisibilityScore | null>(null);
   const [seoError, setSeoError] = useState<string | null>(null);
   const [isSeoLoading, setIsSeoLoading] = useState(true);
 
   useEffect(() => {
     fetchSuggestions();
     loadSeoReport();
+    loadVisibilityReport();
   }, []);
+
+  const loadVisibilityReport = async () => {
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error('Non authentifié');
+
+      const response = await supabase.functions.invoke('visibility-score', { body: {} });
+      if (response.error) throw response.error;
+      if (response.data?.error && !response.data?.seo) {
+        throw new Error(response.data.message || response.data.error);
+      }
+
+      setVisibilityReport(response.data as VisibilityScore);
+    } catch (err) {
+      setSeoError((current) => current ?? (err instanceof Error ? err.message : 'Impossible de charger la visibilité réelle SEO.'));
+    }
+  };
 
   const loadSeoReport = async () => {
     try {
@@ -197,6 +249,11 @@ export const SEOSuggestions = () => {
     return scoreMeta[seoReport.status] ?? scoreMeta.warning;
   }, [seoReport]);
 
+  const visibilityStatus = useMemo(() => {
+    if (!visibilityReport) return scoreMeta.warning;
+    return scoreMeta[visibilityReport.seo.status] ?? scoreMeta.warning;
+  }, [visibilityReport]);
+
   return (
     <div className="space-y-6">
       {seoError ? (
@@ -252,6 +309,51 @@ export const SEOSuggestions = () => {
                 </div>
               </div>
 
+              <div className="grid gap-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+                <div className="rounded-lg border border-border bg-card p-4 space-y-3">
+                  <div className="flex items-center justify-between gap-3">
+                    <div>
+                      <p className="text-sm font-medium text-foreground">Visibilité réelle SEO</p>
+                      <p className="text-xs text-muted-foreground">Sous-score séparé basé sur Search Console + Analytics.</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-2xl font-black text-foreground">{visibilityReport?.seo.score ?? '--'}/100</p>
+                      <Badge variant={visibilityStatus.badge}>{visibilityStatus.label}</Badge>
+                    </div>
+                  </div>
+                  <Progress value={visibilityReport?.seo.score ?? 0} className="h-2.5" />
+                  <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3 text-sm">
+                    <div className="rounded-md border border-border p-3">
+                      <p className="text-muted-foreground">Impressions</p>
+                      <p className="font-semibold text-foreground">{visibilityReport?.seo.metrics.impressions ?? 0}</p>
+                    </div>
+                    <div className="rounded-md border border-border p-3">
+                      <p className="text-muted-foreground">CTR</p>
+                      <p className="font-semibold text-foreground">{visibilityReport ? `${visibilityReport.seo.metrics.ctr.toFixed(1)}%` : '--'}</p>
+                    </div>
+                    <div className="rounded-md border border-border p-3">
+                      <p className="text-muted-foreground">Position moy.</p>
+                      <p className="font-semibold text-foreground">{visibilityReport ? visibilityReport.seo.metrics.avgPosition.toFixed(1) : '--'}</p>
+                    </div>
+                    <div className="rounded-md border border-border p-3">
+                      <p className="text-muted-foreground">Sessions organiques</p>
+                      <p className="font-semibold text-foreground">{visibilityReport?.seo.metrics.organicSessions ?? 0}</p>
+                    </div>
+                    <div className="rounded-md border border-border p-3">
+                      <p className="text-muted-foreground">Engagement organique</p>
+                      <p className="font-semibold text-foreground">{visibilityReport ? `${visibilityReport.seo.metrics.organicEngagementRate.toFixed(1)}%` : '--'}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground space-y-2">
+                  <p className="font-medium text-foreground">Méthodologie live</p>
+                  <p>{visibilityReport?.methodology.seo ?? 'Chargement...'}</p>
+                  <p><span className="font-medium text-foreground">Poids validé :</span> {visibilityReport?.seo.weightedPassed ?? 0} / {visibilityReport?.seo.weightedTotal ?? 0}</p>
+                  <p><span className="font-medium text-foreground">Checks validés :</span> {visibilityReport?.seo.passedChecks ?? 0} / {visibilityReport?.seo.totalChecks ?? 0}</p>
+                </div>
+              </div>
+
               <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
                 <p><span className="font-medium text-foreground">Pages comptées :</span> {seoReport?.summary.auditedPages ?? 0}</p>
                 <p><span className="font-medium text-foreground">Poids cumulé validé :</span> {seoReport?.summary.weightedPassed ?? 0} / {seoReport?.summary.weightedTotal ?? 0}</p>
@@ -292,6 +394,40 @@ export const SEOSuggestions = () => {
                         <p><span className="font-medium text-foreground">Pourquoi :</span> {issue.reason}</p>
                         <p><span className="font-medium text-foreground">Attendu :</span> {issue.expected}</p>
                         {issue.actual ? <p><span className="font-medium text-foreground">Trouvé :</span> {issue.actual}</p> : null}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Checks de visibilité réelle SEO</CardTitle>
+              <CardDescription>Search Console + Analytics, séparés du score technique.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              {!visibilityReport ? (
+                <div className="text-sm text-muted-foreground">Chargement du détail live...</div>
+              ) : (
+                <div className="space-y-3">
+                  {visibilityReport.seo.checks.map((check) => (
+                    <div key={check.id} className="rounded-lg border border-border bg-card p-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="font-medium text-foreground">{check.label}</p>
+                          <p className="mt-1 text-xs text-muted-foreground">Source : {check.source.toUpperCase()}</p>
+                        </div>
+                        <div className="flex flex-wrap items-center justify-end gap-2">
+                          <Badge variant={check.pass ? 'secondary' : 'destructive'}>{check.pass ? 'Passe' : 'Échec'}</Badge>
+                          <Badge variant="outline">Poids {check.weight}</Badge>
+                        </div>
+                      </div>
+                      <div className="mt-3 grid gap-2 text-sm text-muted-foreground">
+                        <p><span className="font-medium text-foreground">Valeur :</span> {check.value}</p>
+                        <p><span className="font-medium text-foreground">Attendu :</span> {check.expected}</p>
+                        <p><span className="font-medium text-foreground">Pourquoi :</span> {check.reason}</p>
                       </div>
                     </div>
                   ))}
