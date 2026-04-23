@@ -289,6 +289,107 @@ export type ContentSuggestionDraft = {
   created_at?: string | null;
 };
 
+export type ContentImprovementSource = "seo" | "geo";
+
+type ContentImprovementScope = "page" | "query" | "visibility";
+
+export const CONTENT_IMPROVEMENT_PREFIX = "__content-improvement__";
+
+const encodeImprovementSegment = (value: string) => encodeURIComponent(value);
+
+export const buildContentImprovementKey = (input: {
+  source: ContentImprovementSource;
+  scope: ContentImprovementScope;
+  path: string;
+  query?: string;
+}) => `${CONTENT_IMPROVEMENT_PREFIX}/${input.source}/${input.scope}/${encodeImprovementSegment(input.path)}/${encodeImprovementSegment(input.query ?? "_")}`;
+
+const buildContentImprovementDraft = (input: {
+  source: ContentImprovementSource;
+  scope: ContentImprovementScope;
+  path: string;
+  recommendation: string;
+  query?: string;
+  intent?: string;
+}) => {
+  const scopeLabel = input.source === "seo" ? "SEO" : "GEO";
+  const title = input.scope === "query"
+    ? `Amélioration ${scopeLabel} activée : ${input.query}`
+    : input.scope === "visibility"
+      ? `Amélioration ${scopeLabel} activée : ${input.path}`
+      : `Amélioration ${scopeLabel} activée : ${input.path}`;
+
+  return {
+    slug: buildContentImprovementKey(input),
+    title,
+    target_keyword: input.query ?? input.path,
+    suggested_meta_description: input.recommendation,
+    suggested_content: [
+      `Page cible : ${input.path}`,
+      input.query ? `Requête : ${input.query}` : null,
+      input.intent ? `Intention : ${input.intent}` : null,
+      `Action activée : ${input.recommendation}`,
+    ].filter(Boolean).join("\n\n"),
+    suggested_author: null,
+    status: "applied",
+  } satisfies ContentSuggestionDraft;
+};
+
+const persistContentImprovement = async (input: {
+  source: ContentImprovementSource;
+  scope: ContentImprovementScope;
+  path: string;
+  recommendation: string;
+  query?: string;
+  intent?: string;
+}) => {
+  const draft = buildContentImprovementDraft(input);
+  const payload = {
+    meta_title: draft.title,
+    meta_description: draft.suggested_meta_description,
+    og_title: draft.status,
+    og_description: draft.suggested_content,
+  };
+
+  await upsertPageMetaOverride(draft.slug, payload);
+
+  const { data, error } = await supabase
+    .from("page_meta_overrides")
+    .select("created_at")
+    .eq("page_path", draft.slug)
+    .maybeSingle();
+
+  if (error) throw error;
+
+  return {
+    ...draft,
+    created_at: data?.created_at ?? null,
+  } satisfies ContentSuggestionDraft;
+};
+
+export const listAppliedContentImprovements = async (source: ContentImprovementSource) => {
+  const { data, error } = await supabase
+    .from("page_meta_overrides")
+    .select("page_path, meta_title, meta_description, og_title, og_description, created_at")
+    .ilike("page_path", `${CONTENT_IMPROVEMENT_PREFIX}/${source}/%`);
+
+  if (error) throw error;
+
+  return Object.fromEntries((data ?? []).map((item) => [
+    item.page_path,
+    {
+      slug: item.page_path,
+      title: item.meta_title ?? "Amélioration activée",
+      target_keyword: item.page_path,
+      suggested_meta_description: item.meta_description ?? null,
+      suggested_content: item.og_description ?? item.meta_description ?? "",
+      suggested_author: null,
+      status: item.og_title ?? "applied",
+      created_at: item.created_at ?? null,
+    } satisfies ContentSuggestionDraft,
+  ]));
+};
+
 const slugify = (value: string) => value
   .toLowerCase()
   .normalize("NFD")
@@ -594,13 +695,23 @@ export const applyGeoVisibilityFix = async (check: VisibilityCheckLike) => {
   const label = check.label.toLowerCase();
 
   if (label.includes("diversité")) {
-    const result = await createContentSuggestions(IA_SOURCE_SUGGESTIONS);
-    return { message: `${result.created > 0 ? `${result.created} nouveaux` : "Les"} contenus pour diversifier les sources IA sont prêts.` };
+    const suggestion = await persistContentImprovement({
+      source: "geo",
+      scope: "visibility",
+      path: check.label,
+      recommendation: check.expected,
+    });
+    return { message: "L'amélioration GEO a bien été activée.", suggestion };
   }
 
   if (label.includes("mentions") || label.includes("requêtes")) {
-    const result = await createContentSuggestions(IA_CITATION_SUGGESTIONS);
-    return { message: `${result.created > 0 ? `${result.created} nouveaux` : "Les"} contenus pour renforcer les citations IA sont prêts.` };
+    const suggestion = await persistContentImprovement({
+      source: "geo",
+      scope: "visibility",
+      path: check.label,
+      recommendation: check.expected,
+    });
+    return { message: "L'amélioration GEO a bien été activée.", suggestion };
   }
 
   throw new Error("Cette action GEO ne peut pas être appliquée automatiquement.");
@@ -610,53 +721,75 @@ export const validateGeoVisibilityFix = async (check: VisibilityCheckLike) => {
   const label = check.label.toLowerCase();
 
   if (label.includes("diversité")) {
-    return validateContentSuggestions(IA_SOURCE_SUGGESTIONS);
+    const key = buildContentImprovementKey({ source: "geo", scope: "visibility", path: check.label });
+    const { data, error } = await supabase.from("page_meta_overrides").select("page_path").eq("page_path", key).maybeSingle();
+    return !error && data?.page_path === key;
   }
 
   if (label.includes("mentions") || label.includes("requêtes")) {
-    return validateContentSuggestions(IA_CITATION_SUGGESTIONS);
+    const key = buildContentImprovementKey({ source: "geo", scope: "visibility", path: check.label });
+    const { data, error } = await supabase.from("page_meta_overrides").select("page_path").eq("page_path", key).maybeSingle();
+    return !error && data?.page_path === key;
   }
 
   return false;
 };
 
 export const applyGeoContentImprovement = async (input: GeoContentImprovementInput) => {
-  const suggestion = buildGeoContentSuggestion(input);
-  const result = await createContentSuggestions([suggestion]);
-  const savedSuggestion = result.items[0] ?? {
-    ...suggestion,
-    status: "pending",
-    created_at: null,
-  };
+  const savedSuggestion = await persistContentImprovement({
+    source: "geo",
+    scope: input.scope,
+    path: input.path,
+    query: input.query,
+    intent: input.intent,
+    recommendation: input.recommendation,
+  });
 
   return {
-    slug: suggestion.slug,
-    created: result.created > 0,
+    slug: savedSuggestion.slug,
+    created: true,
     suggestion: savedSuggestion,
-    message: `${result.created > 0 ? "Brouillon GEO créé" : "Brouillon GEO mis à jour"} pour ${input.path}.`,
+    message: `Amélioration GEO activée pour ${input.path}.`,
   };
 };
 
 export const validateGeoContentImprovement = async (input: GeoContentImprovementInput) => {
-  const suggestion = buildGeoContentSuggestion(input);
+  const suggestion = buildContentImprovementKey({ source: "geo", scope: input.scope, path: input.path, query: input.query });
   const { data, error } = await supabase
-    .from("seo_article_suggestions")
-    .select("slug")
-    .eq("slug", suggestion.slug)
+    .from("page_meta_overrides")
+    .select("page_path")
+    .eq("page_path", suggestion)
     .maybeSingle();
 
   if (error || !data) return false;
-  return data.slug === suggestion.slug;
+  return data.page_path === suggestion;
 };
 
 export const applySeoContentImprovement = async (input: GeoContentImprovementInput) => {
-  const result = await applyGeoContentImprovement(input);
+  const savedSuggestion = await persistContentImprovement({
+    source: "seo",
+    scope: input.scope,
+    path: input.path,
+    query: input.query,
+    intent: input.intent,
+    recommendation: input.recommendation,
+  });
   return {
-    ...result,
-    message: `${result.created ? "Brouillon SEO créé" : "Brouillon SEO mis à jour"} pour ${input.path}.`,
+    slug: savedSuggestion.slug,
+    created: true,
+    suggestion: savedSuggestion,
+    message: `Amélioration SEO activée pour ${input.path}.`,
   };
 };
 
 export const validateSeoContentImprovement = async (input: GeoContentImprovementInput) => {
-  return validateGeoContentImprovement(input);
+  const key = buildContentImprovementKey({ source: "seo", scope: input.scope, path: input.path, query: input.query });
+  const { data, error } = await supabase
+    .from("page_meta_overrides")
+    .select("page_path")
+    .eq("page_path", key)
+    .maybeSingle();
+
+  if (error || !data) return false;
+  return data.page_path === key;
 };

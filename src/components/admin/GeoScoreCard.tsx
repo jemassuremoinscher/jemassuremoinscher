@@ -5,10 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
-import { applyGeoContentImprovement, applyGeoIssueFix, applyGeoVisibilityFix, canAutoFixGeoIssue, hydrateAuditReport, validateGeoContentImprovement, validateGeoIssueFix, validateGeoVisibilityFix, type ContentSuggestionDraft } from "@/lib/auditFixes";
+import { applyGeoContentImprovement, applyGeoIssueFix, applyGeoVisibilityFix, buildContentImprovementKey, listAppliedContentImprovements, canAutoFixGeoIssue, hydrateAuditReport, validateGeoContentImprovement, validateGeoIssueFix, validateGeoVisibilityFix, type ContentSuggestionDraft } from "@/lib/auditFixes";
 import { toast } from "sonner";
-
-const SEO_SUGGESTIONS_REFRESH_EVENT = "seo-suggestions-refresh";
 
 type GeoAuditCheck = {
   id: string;
@@ -164,6 +162,11 @@ export const GeoScoreCard = () => {
     navigator.clipboard.writeText(`${action.label}\n\n${action.details}`);
   };
 
+  const loadAppliedImprovements = async () => {
+    const items = await listAppliedContentImprovements('geo');
+    setAppliedSuggestions(items);
+  };
+
   const rememberAppliedSuggestion = (key: string, suggestion: ContentSuggestionDraft) => {
     setAppliedSuggestions((current) => ({ ...current, [key]: suggestion }));
   };
@@ -178,8 +181,8 @@ export const GeoScoreCard = () => {
         <p><span className="font-medium text-foreground">Brouillon :</span> {suggestion.title}</p>
         <p><span className="font-medium text-foreground">Slug :</span> {suggestion.slug}</p>
         <p><span className="font-medium text-foreground">Statut :</span> {suggestion.status}</p>
-        <p><span className="font-medium text-foreground">Présence :</span> visible aussi dans l'encart Articles Blog après rafraîchissement.</p>
-        <p><span className="font-medium text-foreground">Score :</span> la création du brouillon ne modifie pas le score tant que le contenu n'est pas publié puis repris dans le prochain recalcul live.</p>
+        <p><span className="font-medium text-foreground">Présence :</span> conservée dans l'encart GEO uniquement.</p>
+        <p><span className="font-medium text-foreground">Score :</span> cette action retire la tâche de la file d'amélioration, mais ne change pas instantanément les métriques live IA/LLM.</p>
       </div>
     );
   };
@@ -299,9 +302,6 @@ export const GeoScoreCard = () => {
 
       if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
-      window.dispatchEvent(new CustomEvent(SEO_SUGGESTIONS_REFRESH_EVENT, {
-        detail: { title: result.suggestion.title, source: 'geo' },
-      }));
       rememberAppliedSuggestion(key, result.suggestion);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success('Amélioration GEO activée', {
@@ -329,9 +329,6 @@ export const GeoScoreCard = () => {
 
       if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
-      window.dispatchEvent(new CustomEvent(SEO_SUGGESTIONS_REFRESH_EVENT, {
-        detail: { title: result.suggestion.title, source: 'geo' },
-      }));
       rememberAppliedSuggestion(key, result.suggestion);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success('Amélioration GEO activée', {
@@ -388,6 +385,7 @@ export const GeoScoreCard = () => {
   useEffect(() => {
     loadReport();
     loadVisibilityReport();
+    void loadAppliedImprovements();
   }, []);
 
   const loadVisibilityReport = async () => {
@@ -454,6 +452,25 @@ export const GeoScoreCard = () => {
   const failedGeoVisibilityChecks = useMemo(
     () => visibilityReport?.geo.checks.filter((check) => !check.pass) ?? [],
     [visibilityReport],
+  );
+
+  const pendingGeoPageImprovements = useMemo(
+    () => (visibilityReport?.geo.pageRanking ?? []).filter((page) => !appliedSuggestions[buildContentImprovementKey({
+      source: 'geo',
+      scope: 'page',
+      path: page.path,
+    })]),
+    [appliedSuggestions, visibilityReport],
+  );
+
+  const pendingGeoQueryImprovements = useMemo(
+    () => (visibilityReport?.geo.queryOpportunities ?? []).filter((item) => !appliedSuggestions[buildContentImprovementKey({
+      source: 'geo',
+      scope: 'query',
+      path: item.page,
+      query: item.query,
+    })]),
+    [appliedSuggestions, visibilityReport],
   );
 
   return (
@@ -694,7 +711,7 @@ export const GeoScoreCard = () => {
               <CardDescription>Proxy interne basé sur visibilité requêtes, potentiel IA et couverture éditoriale.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {visibilityReport?.geo.pageRanking?.slice(0, 10).map((page) => (
+              {pendingGeoPageImprovements.slice(0, 10).map((page) => (
                 <div key={`geo-${page.path}`} className="rounded-lg border border-border p-3 text-sm">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                     <div>
@@ -719,6 +736,11 @@ export const GeoScoreCard = () => {
                   {renderAppliedSuggestion(`page-content-${page.path}`)}
                 </div>
               ))}
+              {pendingGeoPageImprovements.length === 0 ? (
+                <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                  Toutes les améliorations GEO de pages de cet encart ont déjà été activées.
+                </div>
+              ) : null}
             </CardContent>
           </Card>
 
@@ -728,7 +750,7 @@ export const GeoScoreCard = () => {
               <CardDescription>Comparatifs, FAQ, définitions et guides de décision à forte reprise potentielle.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {visibilityReport?.geo.queryOpportunities?.slice(0, 10).map((item) => (
+              {pendingGeoQueryImprovements.slice(0, 10).map((item) => (
                 <div key={`geo-query-${item.query}-${item.page}`} className="rounded-lg border border-border p-3 text-sm">
                   <div className="flex items-start justify-between gap-3">
                     <div>
@@ -751,6 +773,11 @@ export const GeoScoreCard = () => {
                   {renderAppliedSuggestion(`query-content-${item.page}-${item.query}`)}
                 </div>
               ))}
+              {pendingGeoQueryImprovements.length === 0 ? (
+                <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                  Toutes les améliorations GEO de requêtes de cet encart ont déjà été activées.
+                </div>
+              ) : null}
             </CardContent>
           </Card>
         </>
