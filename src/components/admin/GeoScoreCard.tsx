@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
-import { applyGeoContentImprovement, applyGeoIssueFix, applyGeoVisibilityFix, buildContentImprovementKey, listAppliedContentImprovements, canAutoFixGeoIssue, hydrateAuditReport, validateGeoContentImprovement, validateGeoIssueFix, validateGeoVisibilityFix, type ContentSuggestionDraft } from "@/lib/auditFixes";
+import { applyGeoContentImprovement, applyGeoIssueFix, applyGeoVisibilityFix, buildContentImprovementKey, listAppliedContentImprovements, canAutoFixGeoIssue, hydrateAuditReport, validateGeoIssueFix, validateGeoVisibilityFix, type ContentSuggestionDraft } from "@/lib/auditFixes";
 import { toast } from "sonner";
 
 type GeoAuditCheck = {
