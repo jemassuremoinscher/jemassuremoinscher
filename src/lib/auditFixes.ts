@@ -610,6 +610,20 @@ const IA_CITATION_SUGGESTIONS = [
   },
 ];
 
+const NON_BLOG_SUGGESTION_SLUGS = new Set([
+  ...IA_SOURCE_SUGGESTIONS.map((item) => item.slug),
+  ...IA_CITATION_SUGGESTIONS.map((item) => item.slug),
+]);
+
+export const isBlogArticleSuggestionSlug = (slug: string) => {
+  if (!slug) return false;
+
+  return !slug.startsWith(CONTENT_IMPROVEMENT_PREFIX)
+    && !slug.startsWith("geo-amelioration-")
+    && !slug.startsWith("seo-amelioration-")
+    && !NON_BLOG_SUGGESTION_SLUGS.has(slug);
+};
+
 const upsertMultiplePageMetaOverrides = async (pages: Array<{ path: string; meta_title: string; meta_description: string; og_title: string; og_description: string }>) => {
   for (const page of pages) {
     await upsertPageMetaOverride(page.path, {
