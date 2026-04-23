@@ -902,6 +902,7 @@ export const SEOSuggestions = () => {
                         </Button>
                       </div>
                       {renderFixStatus(`seo-query-content-${item.page}-${item.query}`)}
+                      {renderAppliedSuggestion(`seo-query-content-${item.page}-${item.query}`)}
                     </div>
                   ))}
                 </div>
@@ -936,6 +937,7 @@ export const SEOSuggestions = () => {
                     </Button>
                   </div>
                   {renderFixStatus(`seo-page-content-${page.path}`)}
+                  {renderAppliedSuggestion(`seo-page-content-${page.path}`)}
                 </div>
               ))}
             </CardContent>

@@ -721,6 +721,7 @@ export const GeoScoreCard = () => {
                     </Button>
                   </div>
                   {renderFixStatus(`page-content-${page.path}`)}
+                  {renderAppliedSuggestion(`page-content-${page.path}`)}
                 </div>
               ))}
             </CardContent>
@@ -752,6 +753,7 @@ export const GeoScoreCard = () => {
                     </Button>
                   </div>
                   {renderFixStatus(`query-content-${item.page}-${item.query}`)}
+                  {renderAppliedSuggestion(`query-content-${item.page}-${item.query}`)}
                 </div>
               ))}
             </CardContent>
