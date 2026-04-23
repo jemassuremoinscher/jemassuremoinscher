@@ -277,6 +277,18 @@ type GeoContentImprovementInput = {
   intent?: string;
 };
 
+export type ContentSuggestionDraft = {
+  id?: string;
+  slug: string;
+  title: string;
+  target_keyword: string;
+  suggested_meta_description: string | null;
+  suggested_content: string;
+  suggested_author: string | null;
+  status: string;
+  created_at?: string | null;
+};
+
 const slugify = (value: string) => value
   .toLowerCase()
   .normalize("NFD")
@@ -461,31 +473,43 @@ const createContentSuggestions = async (suggestions: typeof IA_SOURCE_SUGGESTION
 
   const existingMap = new Map((existing ?? []).map((item) => [item.slug, item.id]));
   let created = 0;
+  const items: ContentSuggestionDraft[] = [];
 
   for (const suggestion of suggestions) {
     const author = getSuggestedAuthorLabel(suggestion);
     const payload = {
       ...suggestion,
       suggested_author: author,
+      status: "pending",
+      reviewed_at: null,
+      reviewed_by: null,
     };
 
     const existingId = existingMap.get(suggestion.slug);
 
     if (existingId) {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from("seo_article_suggestions")
         .update(payload as never)
-        .eq("id", existingId);
+        .eq("id", existingId)
+        .select("id, slug, title, target_keyword, suggested_meta_description, suggested_content, suggested_author, status, created_at")
+        .single();
       if (error) throw error;
+      if (data) items.push(data as ContentSuggestionDraft);
       continue;
     }
 
-    const { error } = await supabase.from("seo_article_suggestions").insert(payload as never);
+    const { data, error } = await supabase
+      .from("seo_article_suggestions")
+      .insert(payload as never)
+      .select("id, slug, title, target_keyword, suggested_meta_description, suggested_content, suggested_author, status, created_at")
+      .single();
     if (error) throw error;
+    if (data) items.push(data as ContentSuggestionDraft);
     created += 1;
   }
 
-  return { created, total: suggestions.length };
+  return { created, total: suggestions.length, items };
 };
 
 const resolveAuditIssues = <T extends { id: string; pass: boolean; weight: number; expected: string; actual: string | null; reason: string }>(
@@ -599,9 +623,17 @@ export const validateGeoVisibilityFix = async (check: VisibilityCheckLike) => {
 export const applyGeoContentImprovement = async (input: GeoContentImprovementInput) => {
   const suggestion = buildGeoContentSuggestion(input);
   const result = await createContentSuggestions([suggestion]);
+  const savedSuggestion = result.items[0] ?? {
+    ...suggestion,
+    status: "pending",
+    created_at: null,
+  };
+
   return {
     slug: suggestion.slug,
-    message: `${result.created > 0 ? "Nouvelle" : "Suggestion"} amélioration contenu GEO prête pour ${input.path}.`,
+    created: result.created > 0,
+    suggestion: savedSuggestion,
+    message: `${result.created > 0 ? "Brouillon GEO créé" : "Brouillon GEO mis à jour"} pour ${input.path}.`,
   };
 };
 
@@ -618,7 +650,11 @@ export const validateGeoContentImprovement = async (input: GeoContentImprovement
 };
 
 export const applySeoContentImprovement = async (input: GeoContentImprovementInput) => {
-  return applyGeoContentImprovement(input);
+  const result = await applyGeoContentImprovement(input);
+  return {
+    ...result,
+    message: `${result.created ? "Brouillon SEO créé" : "Brouillon SEO mis à jour"} pour ${input.path}.`,
+  };
 };
 
 export const validateSeoContentImprovement = async (input: GeoContentImprovementInput) => {

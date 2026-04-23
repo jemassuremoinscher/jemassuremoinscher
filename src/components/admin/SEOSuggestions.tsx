@@ -9,7 +9,9 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
-import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, canAutoFixSeoIssue, hydrateAuditReport, validateSeoContentImprovement, validateSeoIssueFix, validateSeoVisibilityFix } from '@/lib/auditFixes';
+import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, canAutoFixSeoIssue, hydrateAuditReport, validateSeoContentImprovement, validateSeoIssueFix, validateSeoVisibilityFix, type ContentSuggestionDraft } from '@/lib/auditFixes';
+
+const SEO_SUGGESTIONS_REFRESH_EVENT = 'seo-suggestions-refresh';
 
 type FixAction = {
   label: string;
@@ -119,6 +121,8 @@ type PendingSeoAction =
   | { type: 'page-content'; key: string; title: string; description: string; page: VisibilityScore['seo']['pageVisibility'][number] }
   | { type: 'query-content'; key: string; title: string; description: string; item: VisibilityScore['seo']['queryOpportunities'][number] };
 
+type AppliedSuggestionState = Record<string, ContentSuggestionDraft>;
+
 const scoreMeta = {
   excellent: { label: 'Fiable', badge: 'default' as const },
   good: { label: 'Solide', badge: 'secondary' as const },
@@ -226,11 +230,21 @@ export const SEOSuggestions = () => {
   const [isSeoLoading, setIsSeoLoading] = useState(true);
   const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
   const [pendingAction, setPendingAction] = useState<PendingSeoAction | null>(null);
+  const [appliedSuggestions, setAppliedSuggestions] = useState<AppliedSuggestionState>({});
 
   useEffect(() => {
     fetchSuggestions();
     loadSeoReport();
     loadVisibilityReport();
+  }, []);
+
+  useEffect(() => {
+    const handleRefresh = () => {
+      void fetchSuggestions();
+    };
+
+    window.addEventListener(SEO_SUGGESTIONS_REFRESH_EVENT, handleRefresh);
+    return () => window.removeEventListener(SEO_SUGGESTIONS_REFRESH_EVENT, handleRefresh);
   }, []);
 
   const loadVisibilityReport = async () => {
@@ -518,8 +532,10 @@ export const SEOSuggestions = () => {
 
       if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
+      setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
+      await fetchSuggestions();
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Validation effectuée.`);
+      toast.success(`${result.message} Le brouillon a été ajouté à la liste.`);
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : "Erreur pendant l'amélioration contenu.");
@@ -542,8 +558,10 @@ export const SEOSuggestions = () => {
 
       if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
+      setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
+      await fetchSuggestions();
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Validation effectuée.`);
+      toast.success(`${result.message} Le brouillon a été ajouté à la liste.`);
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : "Erreur pendant l'amélioration contenu.");
@@ -572,6 +590,20 @@ export const SEOSuggestions = () => {
     if (status === 'success') return <p className="text-xs text-primary">Correction appliquée et validée.</p>;
     if (status === 'error') return <p className="text-xs text-destructive">Erreur de correction. Réessaie.</p>;
     return null;
+  };
+
+  const renderAppliedSuggestion = (key: string) => {
+    const suggestion = appliedSuggestions[key];
+    if (!suggestion) return null;
+
+    return (
+      <div className="mt-3 rounded-lg border border-border bg-muted/40 p-3 text-sm">
+        <p className="font-medium text-foreground">Brouillon créé</p>
+        <p className="mt-1 text-foreground">{suggestion.title}</p>
+        <p className="mt-1 text-xs text-muted-foreground">Slug : {suggestion.slug}</p>
+        {suggestion.suggested_author ? <p className="mt-1 text-xs text-muted-foreground">Auteur : {suggestion.suggested_author}</p> : null}
+      </div>
+    );
   };
 
   const statusBadge = (status: string) => {
@@ -881,6 +913,7 @@ export const SEOSuggestions = () => {
                         </Button>
                       </div>
                       {renderFixStatus(`seo-query-content-${item.page}-${item.query}`)}
+                      {renderAppliedSuggestion(`seo-query-content-${item.page}-${item.query}`)}
                     </div>
                   ))}
                 </div>
@@ -915,6 +948,7 @@ export const SEOSuggestions = () => {
                     </Button>
                   </div>
                   {renderFixStatus(`seo-page-content-${page.path}`)}
+                  {renderAppliedSuggestion(`seo-page-content-${page.path}`)}
                 </div>
               ))}
             </CardContent>
