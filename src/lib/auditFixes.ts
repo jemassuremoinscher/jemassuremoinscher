@@ -145,6 +145,35 @@ export const applySeoIssueFix = async (issue: { category: string; description: s
   throw new Error("Cette correction SEO nécessite une mise à jour manuelle du template.");
 };
 
+export const validateSeoIssueFix = async (issue: { category: string; description: string; file: string }) => {
+  const pagePath = auditFileToPagePath(issue.file);
+  if (!pagePath) return false;
+
+  const meta = getMetaDefaultsForPath(pagePath);
+  const fingerprint = `${issue.category} ${issue.description}`.toLowerCase();
+  const { data, error } = await supabase
+    .from("page_meta_overrides")
+    .select("meta_title, meta_description, og_title, og_description")
+    .eq("page_path", pagePath)
+    .maybeSingle();
+
+  if (error || !data) return false;
+
+  if (fingerprint.includes("open graph") || fingerprint.includes("og")) {
+    return data.og_title === meta.ogTitle && data.og_description === meta.ogDescription;
+  }
+
+  if (fingerprint.includes("meta") || fingerprint.includes("description")) {
+    return data.meta_description === meta.description && data.og_description === meta.ogDescription;
+  }
+
+  if (fingerprint.includes("title")) {
+    return data.meta_title === meta.title && data.og_title === meta.ogTitle;
+  }
+
+  return false;
+};
+
 export const applyGeoIssueFix = async (issue: { category: string; description: string; file: string }) => {
   const pagePath = auditFileToPagePath(issue.file);
   if (!pagePath) throw new Error("Page non supportée pour une correction automatique.");
@@ -168,4 +197,32 @@ export const applyGeoIssueFix = async (issue: { category: string; description: s
   }
 
   throw new Error("Cette correction GEO nécessite une mise à jour manuelle du template ou du build statique.");
+};
+
+export const validateGeoIssueFix = async (issue: { category: string; description: string; file: string }) => {
+  const pagePath = auditFileToPagePath(issue.file);
+  if (!pagePath) return false;
+
+  const meta = getMetaDefaultsForPath(pagePath);
+  const fingerprint = `${issue.category} ${issue.description}`.toLowerCase();
+  const { data, error } = await supabase
+    .from("page_meta_overrides")
+    .select("meta_title, meta_description, og_title, og_description")
+    .eq("page_path", pagePath)
+    .maybeSingle();
+
+  if (error || !data) return false;
+
+  if (fingerprint.includes("title")) {
+    return data.meta_title === meta.title && data.og_title === meta.ogTitle;
+  }
+
+  if (fingerprint.includes("geo")) {
+    return data.meta_title === meta.title
+      && data.meta_description === meta.description
+      && data.og_title === meta.ogTitle
+      && data.og_description === meta.ogDescription;
+  }
+
+  return false;
 };
