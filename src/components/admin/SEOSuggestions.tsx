@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, ArrowUpRight } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
@@ -13,6 +13,8 @@ type FixAction = {
   label: string;
   details: string;
 };
+
+const LOVABLE_PROJECT_URL = 'https://lovable.dev/projects/0c846637-eedf-4940-bd90-f40cb5a873ee';
 
 type Suggestion = {
   id: string;
@@ -335,6 +337,25 @@ export const SEOSuggestions = () => {
     toast.success('Proposition de correction copiée');
   };
 
+  const openLovableFix = async (action: FixAction) => {
+    const prompt = `${action.label}\n\n${action.details}`;
+
+    try {
+      await navigator.clipboard.writeText(prompt);
+    } catch {
+      // ignore clipboard failures, opening Lovable is the main action
+    }
+
+    const url = `${LOVABLE_PROJECT_URL}?prompt=${encodeURIComponent(prompt)}&message=${encodeURIComponent(prompt)}`;
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+
+    if (!newWindow) {
+      window.location.href = url;
+    }
+
+    toast.success('Lovable ouvert avec la correction prête. Le prompt a aussi été copié en secours.');
+  };
+
   const statusBadge = (status: string) => {
     const config: Record<string, { variant: 'default' | 'secondary' | 'destructive' | 'outline'; label: string }> = {
       pending: { variant: 'outline', label: '⏳ En attente' },
@@ -513,7 +534,8 @@ export const SEOSuggestions = () => {
                       </div>
                       {!issue.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button variant="outline" size="sm" onClick={() => copyFixAction(getSeoFixAction(issue))}>
+                          <Button size="sm" onClick={() => openLovableFix(getSeoFixAction(issue))}>
+                            <ArrowUpRight className="h-4 w-4 mr-1" />
                             Proposer la correction
                           </Button>
                         </div>
@@ -558,7 +580,8 @@ export const SEOSuggestions = () => {
                       </div>
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button variant="outline" size="sm" onClick={() => copyFixAction(getVisibilityFixAction(check))}>
+                          <Button size="sm" onClick={() => openLovableFix(getVisibilityFixAction(check))}>
+                            <ArrowUpRight className="h-4 w-4 mr-1" />
                             Proposer la correction
                           </Button>
                         </div>
