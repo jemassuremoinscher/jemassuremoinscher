@@ -205,6 +205,10 @@ export const GeoScoreCard = () => {
     );
   };
 
+  const refreshGeoScores = async () => {
+    await Promise.all([loadReport(), loadVisibilityReport(), loadAppliedImprovements()]);
+  };
+
   const markGeoIssueResolved = (issue: GeoAuditCheck) => {
     setReport((current) => {
       if (!current) return current;
@@ -306,7 +310,7 @@ export const GeoScoreCard = () => {
       });
 
       rememberAppliedSuggestion(key, result.suggestion);
-      await loadReport();
+      await Promise.all([loadAppliedImprovements(), loadVisibilityReport()]);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success('Amélioration GEO activée', {
         description: `Les métadonnées de ${result.suggestion.applied_path ?? page.path} ont été mises à jour.`,
@@ -331,7 +335,7 @@ export const GeoScoreCard = () => {
       const result = await applyGeoContentImprovement(payload);
 
       rememberAppliedSuggestion(key, result.suggestion);
-      await loadReport();
+      await Promise.all([loadAppliedImprovements(), loadVisibilityReport()]);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success('Amélioration GEO activée', {
         description: `Les métadonnées de ${result.suggestion.applied_path ?? item.page} ont été mises à jour.`,
@@ -436,6 +440,44 @@ export const GeoScoreCard = () => {
     }
   };
 
+  const geoImprovementProgress = useMemo(() => {
+    if (!visibilityReport) {
+      return { appliedCount: 0, totalCount: 0, bonus: 0, displayScore: 0 };
+    }
+
+    const actionableKeys = new Set([
+      ...visibilityReport.geo.queryOpportunities.map((item) => buildContentImprovementKey({
+        source: 'geo',
+        scope: 'query',
+        path: item.page,
+        query: item.query,
+      })),
+      ...visibilityReport.geo.pageRanking.map((page) => buildContentImprovementKey({
+        source: 'geo',
+        scope: 'page',
+        path: page.path,
+      })),
+    ]);
+
+    const uniqueApplied = new Map<string, ContentSuggestionDraft>();
+    Object.values(appliedSuggestions).forEach((item) => {
+      if (item?.slug) uniqueApplied.set(item.slug, item);
+    });
+
+    const appliedCount = Array.from(uniqueApplied.keys()).filter((slug) => actionableKeys.has(slug)).length;
+    const totalCount = actionableKeys.size;
+    const bonus = totalCount > 0 ? Math.round((appliedCount / totalCount) * 20) : 0;
+
+    return {
+      appliedCount,
+      totalCount,
+      bonus,
+      displayScore: Math.min(100, visibilityReport.geo.score + bonus),
+    };
+  }, [appliedSuggestions, visibilityReport]);
+
+  const visibilityDisplayScore = visibilityReport ? geoImprovementProgress.displayScore : 0;
+
   const statusMeta = useMemo(() => {
     if (!report) return statusConfig.warning;
     return statusConfig[report.status] ?? statusConfig.warning;
@@ -443,8 +485,8 @@ export const GeoScoreCard = () => {
 
   const visibilityStatus = useMemo(() => {
     if (!visibilityReport) return statusConfig.warning;
-    return statusConfig[visibilityReport.geo.status] ?? statusConfig.warning;
-  }, [visibilityReport]);
+    return statusConfig[getScoreCategory(visibilityDisplayScore)] ?? statusConfig.warning;
+  }, [visibilityDisplayScore, visibilityReport]);
 
   const failedGeoChecks = useMemo(
     () => report?.checks.filter((item) => !item.pass) ?? [],
