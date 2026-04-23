@@ -88,6 +88,13 @@ const statusConfig = {
   critical: { label: "Non fiable", badge: "destructive" as const },
 };
 
+const getScoreCategory = (score: number) => {
+  if (score >= 85) return "excellent" as const;
+  if (score >= 70) return "good" as const;
+  if (score >= 50) return "warning" as const;
+  return "critical" as const;
+};
+
 const getGeoFixAction = (item: GeoAuditCheck): FixAction => {
   const category = item.category.toLowerCase();
   const description = item.description.toLowerCase();
@@ -157,14 +164,22 @@ export const GeoScoreCard = () => {
   const [visibilityError, setVisibilityError] = useState<string | null>(null);
   const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
   const [appliedSuggestions, setAppliedSuggestions] = useState<AppliedSuggestionState>({});
+  const [appliedImprovementsLoaded, setAppliedImprovementsLoaded] = useState(false);
 
   const copyFixAction = (action: FixAction) => {
     navigator.clipboard.writeText(`${action.label}\n\n${action.details}`);
   };
 
   const loadAppliedImprovements = async () => {
-    const items = await listAppliedContentImprovements('geo');
-    setAppliedSuggestions(items);
+    try {
+      setAppliedImprovementsLoaded(false);
+      const items = await listAppliedContentImprovements('geo');
+      setAppliedSuggestions(items);
+    } catch {
+      setAppliedSuggestions({});
+    } finally {
+      setAppliedImprovementsLoaded(true);
+    }
   };
 
   const rememberAppliedSuggestion = (key: string, suggestion: ContentSuggestionDraft) => {
