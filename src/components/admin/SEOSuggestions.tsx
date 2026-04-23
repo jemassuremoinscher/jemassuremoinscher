@@ -121,6 +121,13 @@ const scoreMeta = {
   critical: { label: 'Fragile', badge: 'destructive' as const },
 };
 
+const getScoreCategory = (score: number) => {
+  if (score >= 85) return 'excellent' as const;
+  if (score >= 70) return 'good' as const;
+  if (score >= 50) return 'warning' as const;
+  return 'critical' as const;
+};
+
 const getSeoFixAction = (issue: SeoAuditCheck): FixAction => {
   const category = issue.category.toLowerCase();
   const description = issue.description.toLowerCase();
@@ -221,6 +228,7 @@ export const SEOSuggestions = () => {
   const [isSeoLoading, setIsSeoLoading] = useState(true);
   const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
   const [appliedSuggestions, setAppliedSuggestions] = useState<AppliedSuggestionState>({});
+  const [appliedImprovementsLoaded, setAppliedImprovementsLoaded] = useState(false);
 
   useEffect(() => {
     fetchSuggestions();
