@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { applyGeoContentImprovement, applyGeoIssueFix, applyGeoVisibilityFix, canAutoFixGeoIssue, hydrateAuditReport, validateGeoContentImprovement, validateGeoIssueFix, validateGeoVisibilityFix } from "@/lib/auditFixes";
+import { applyGeoContentImprovement, applyGeoIssueFix, applyGeoVisibilityFix, canAutoFixGeoIssue, hydrateAuditReport, validateGeoContentImprovement, validateGeoIssueFix, validateGeoVisibilityFix, type ContentSuggestionDraft } from "@/lib/auditFixes";
 import { toast } from "sonner";
 
 type GeoAuditCheck = {
@@ -86,6 +86,8 @@ type PendingGeoAction =
   | { type: "page-content"; key: string; title: string; description: string; page: VisibilityScore["geo"]["pageRanking"][number] }
   | { type: "query-content"; key: string; title: string; description: string; item: VisibilityScore["geo"]["queryOpportunities"][number] };
 
+type AppliedSuggestionState = Record<string, ContentSuggestionDraft>;
+
 const statusConfig = {
   excellent: { label: "Fiable", badge: "default" as const },
   good: { label: "Solide", badge: "secondary" as const },
@@ -162,6 +164,7 @@ export const GeoScoreCard = () => {
   const [visibilityError, setVisibilityError] = useState<string | null>(null);
   const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
   const [pendingAction, setPendingAction] = useState<PendingGeoAction | null>(null);
+  const [appliedSuggestions, setAppliedSuggestions] = useState<AppliedSuggestionState>({});
 
   const copyFixAction = (action: FixAction) => {
     navigator.clipboard.writeText(`${action.label}\n\n${action.details}`);
@@ -282,8 +285,9 @@ export const GeoScoreCard = () => {
 
       if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
+      setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Validation effectuée.`);
+      toast.success(`${result.message} Le brouillon est visible plus bas dans Suggestions SEO automatiques.`);
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : "Erreur pendant l'amélioration contenu.");
@@ -306,8 +310,9 @@ export const GeoScoreCard = () => {
 
       if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
+      setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Validation effectuée.`);
+      toast.success(`${result.message} Le brouillon est visible plus bas dans Suggestions SEO automatiques.`);
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : "Erreur pendant l'amélioration contenu.");
@@ -336,6 +341,20 @@ export const GeoScoreCard = () => {
     if (status === 'success') return <p className="text-xs text-primary">Correction appliquée et validée.</p>;
     if (status === 'error') return <p className="text-xs text-destructive">Erreur de correction. Réessaie.</p>;
     return null;
+  };
+
+  const renderAppliedSuggestion = (key: string) => {
+    const suggestion = appliedSuggestions[key];
+    if (!suggestion) return null;
+
+    return (
+      <div className="mt-3 rounded-lg border border-border bg-muted/40 p-3 text-sm">
+        <p className="font-medium text-foreground">Brouillon créé</p>
+        <p className="mt-1 text-foreground">{suggestion.title}</p>
+        <p className="mt-1 text-xs text-muted-foreground">Slug : {suggestion.slug}</p>
+        {suggestion.suggested_author ? <p className="mt-1 text-xs text-muted-foreground">Auteur : {suggestion.suggested_author}</p> : null}
+      </div>
+    );
   };
 
   const loadReport = async () => {
