@@ -616,8 +616,8 @@ export const SEOSuggestions = () => {
 
   const visibilityStatus = useMemo(() => {
     if (!visibilityReport) return scoreMeta.warning;
-    return scoreMeta[visibilityReport.seo.status] ?? scoreMeta.warning;
-  }, [visibilityReport]);
+    return scoreMeta[getScoreCategory(visibilityDisplayScore)] ?? scoreMeta.warning;
+  }, [visibilityDisplayScore, visibilityReport]);
 
   const failedSeoChecks = useMemo(
     () => seoReport?.checks.filter((issue) => !issue.pass) ?? [],
@@ -714,9 +714,9 @@ export const SEOSuggestions = () => {
                 </div>
                 <div className="flex w-full flex-col gap-3 sm:w-72">
                   <Progress value={seoReport?.score ?? 0} className="h-2.5" />
-                  <Button variant="outline" size="sm" onClick={loadSeoReport} disabled={isSeoLoading}>
+                  <Button variant="outline" size="sm" onClick={() => void refreshSeoScores()} disabled={isSeoLoading}>
                     <RefreshCw className={`h-4 w-4 mr-2 ${isSeoLoading ? 'animate-spin' : ''}`} />
-                    Actualiser le score SEO
+                    Actualiser les scores SEO
                   </Button>
                 </div>
               </div>
@@ -749,11 +749,11 @@ export const SEOSuggestions = () => {
                       <p className="text-xs text-muted-foreground">Sous-score séparé basé sur Search Console + Analytics.</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-2xl font-black text-foreground">{visibilityReport?.seo.score ?? '--'}/100</p>
+                      <p className="text-2xl font-black text-foreground">{visibilityReport ? visibilityDisplayScore : '--'}/100</p>
                       <Badge variant={visibilityStatus.badge}>{visibilityStatus.label}</Badge>
                     </div>
                   </div>
-                  <Progress value={visibilityReport?.seo.score ?? 0} className="h-2.5" />
+                  <Progress value={visibilityReport ? visibilityDisplayScore : 0} className="h-2.5" />
                   <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3 text-sm">
                     <div className="rounded-md border border-border p-3">
                       <p className="text-muted-foreground">Impressions</p>
@@ -793,9 +793,10 @@ export const SEOSuggestions = () => {
 
                 <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground space-y-2">
                   <p className="font-medium text-foreground">Méthodologie live</p>
-                  <p>{visibilityReport?.methodology.seo ?? 'Chargement...'}</p>
+                  <p>{visibilityReport?.methodology.seo ?? 'Chargement...'} Le score affiché inclut aussi l'avancement des améliorations activées.</p>
                   <p><span className="font-medium text-foreground">Poids validé :</span> {visibilityReport?.seo.weightedPassed ?? 0} / {visibilityReport?.seo.weightedTotal ?? 0}</p>
                   <p><span className="font-medium text-foreground">Checks validés :</span> {visibilityReport?.seo.passedChecks ?? 0} / {visibilityReport?.seo.totalChecks ?? 0}</p>
+                  <p><span className="font-medium text-foreground">Améliorations activées :</span> {seoImprovementProgress.appliedCount} / {seoImprovementProgress.totalCount} · bonus exécution +{seoImprovementProgress.bonus} pts</p>
                 </div>
               </div>
 
