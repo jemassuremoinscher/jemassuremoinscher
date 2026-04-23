@@ -9,6 +9,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
 
+type FixAction = {
+  label: string;
+  details: string;
+};
+
 type Suggestion = {
   id: string;
   title: string;
@@ -104,6 +109,95 @@ const scoreMeta = {
   good: { label: 'Solide', badge: 'secondary' as const },
   warning: { label: 'À corriger', badge: 'outline' as const },
   critical: { label: 'Fragile', badge: 'destructive' as const },
+};
+
+const getSeoFixAction = (issue: SeoAuditCheck): FixAction => {
+  const category = issue.category.toLowerCase();
+  const description = issue.description.toLowerCase();
+
+  if (category.includes('title')) {
+    return {
+      label: 'Corriger le title',
+      details: `Mettre à jour ${issue.file} avec une balise <title> unique, descriptive et alignée sur l’intention de la page. Attendu : ${issue.expected}.`,
+    };
+  }
+
+  if (category.includes('meta') || description.includes('description')) {
+    return {
+      label: 'Corriger la meta description',
+      details: `Ajouter ou réécrire la meta description sur ${issue.file} pour décrire clairement la page, éviter les doublons et respecter la cible attendue : ${issue.expected}.`,
+    };
+  }
+
+  if (category.includes('canonical')) {
+    return {
+      label: 'Corriger le canonical',
+      details: `Vérifier sur ${issue.file} qu’une seule balise canonical pointe vers l’URL finale correcte de la page. Attendu : ${issue.expected}.`,
+    };
+  }
+
+  if (category.includes('h1') || description.includes('h1')) {
+    return {
+      label: 'Corriger la hiérarchie H1',
+      details: `Garder un seul H1 principal sur ${issue.file}, puis rétrograder les autres titres en H2/H3 pour restaurer une hiérarchie sémantique propre.`,
+    };
+  }
+
+  if (category.includes('open graph') || category.includes('og')) {
+    return {
+      label: 'Corriger les balises Open Graph',
+      details: `Compléter sur ${issue.file} les balises og:title, og:description et og:url pour refléter exactement le contenu de la page et son URL canonique.`,
+    };
+  }
+
+  if (category.includes('json-ld') || description.includes('json-ld')) {
+    return {
+      label: 'Corriger les données structurées',
+      details: `Ajouter ou corriger le JSON-LD de ${issue.file} via le composant SEO centralisé pour que le balisage corresponde au type réel de la page.`,
+    };
+  }
+
+  return {
+    label: 'Proposer un fix SEO',
+    details: `Revoir ${issue.file} pour corriger ce point SEO : ${issue.description}. Attendu : ${issue.expected}.${issue.actual ? ` Observé : ${issue.actual}.` : ''}`,
+  };
+};
+
+const getVisibilityFixAction = (check: VisibilityCheck): FixAction => {
+  const label = check.label.toLowerCase();
+
+  if (label.includes('impressions')) {
+    return {
+      label: 'Augmenter la couverture SEO',
+      details: 'Créer ou enrichir des pages ciblant des requêtes précises, renforcer le maillage interne et pousser l’indexation des pages stratégiques pour augmenter les impressions Search Console.',
+    };
+  }
+
+  if (label.includes('position')) {
+    return {
+      label: 'Améliorer les positions',
+      details: 'Renforcer l’intention de recherche, les titres/H1, le contenu principal, les liens internes et les signaux d’autorité sur les pages qui se positionnent déjà en page 2-4.',
+    };
+  }
+
+  if (label.includes('ctr')) {
+    return {
+      label: 'Améliorer le CTR',
+      details: 'Réécrire les titles et meta descriptions des pages les plus visibles pour mieux matcher la requête, clarifier la promesse et différencier le snippet en SERP.',
+    };
+  }
+
+  if (label.includes('organiques') || label.includes('engagement')) {
+    return {
+      label: 'Améliorer le trafic qualifié',
+      details: 'Optimiser les landing pages qui reçoivent du trafic organique : alignement intention/contenu, CTA plus clairs, vitesse, et sections de réponse plus directes au-dessus de la ligne de flottaison.',
+    };
+  }
+
+  return {
+    label: 'Proposer une action visibilité',
+    details: `Traiter ce signal de visibilité réelle : ${check.label}. Attendu : ${check.expected}. Valeur actuelle : ${check.value}.`,
+  };
 };
 
 export const SEOSuggestions = () => {
@@ -234,6 +328,11 @@ export const SEOSuggestions = () => {
   const copyContent = (suggestion: Suggestion) => {
     navigator.clipboard.writeText(suggestion.suggested_content);
     toast.success('Contenu copié dans le presse-papier');
+  };
+
+  const copyFixAction = (action: FixAction) => {
+    navigator.clipboard.writeText(`${action.label}\n\n${action.details}`);
+    toast.success('Proposition de correction copiée');
   };
 
   const statusBadge = (status: string) => {
@@ -398,6 +497,13 @@ export const SEOSuggestions = () => {
                         <p><span className="font-medium text-foreground">Attendu :</span> {issue.expected}</p>
                         {issue.actual ? <p><span className="font-medium text-foreground">Trouvé :</span> {issue.actual}</p> : null}
                       </div>
+                      {!issue.pass ? (
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          <Button variant="outline" size="sm" onClick={() => copyFixAction(getSeoFixAction(issue))}>
+                            Proposer la correction
+                          </Button>
+                        </div>
+                      ) : null}
                     </div>
                   ))}
                 </div>
@@ -432,6 +538,13 @@ export const SEOSuggestions = () => {
                         <p><span className="font-medium text-foreground">Attendu :</span> {check.expected}</p>
                         <p><span className="font-medium text-foreground">Pourquoi :</span> {check.reason}</p>
                       </div>
+                      {!check.pass ? (
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          <Button variant="outline" size="sm" onClick={() => copyFixAction(getVisibilityFixAction(check))}>
+                            Proposer la correction
+                          </Button>
+                        </div>
+                      ) : null}
                     </div>
                   ))}
                 </div>
