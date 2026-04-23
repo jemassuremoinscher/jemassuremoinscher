@@ -8,7 +8,7 @@ import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCirc
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
-import { applySeoIssueFix, applySeoVisibilityFix, canAutoFixSeoIssue, validateSeoIssueFix, validateSeoVisibilityFix } from '@/lib/auditFixes';
+import { applySeoIssueFix, applySeoVisibilityFix, canAutoFixSeoIssue, hydrateAuditReport, validateSeoIssueFix, validateSeoVisibilityFix } from '@/lib/auditFixes';
 
 type FixAction = {
   label: string;
@@ -230,7 +230,37 @@ export const SEOSuggestions = () => {
         throw new Error(response.data.message || response.data.error);
       }
 
-      setVisibilityReport(response.data as VisibilityScore);
+      const nextReport = response.data as VisibilityScore;
+      const resolvedIds = await Promise.all(
+        nextReport.seo.checks
+          .filter((check) => !check.pass)
+          .map(async (check) => ((await validateSeoVisibilityFix(check)) ? check.id : null)),
+      );
+
+      const resolvedSet = new Set(resolvedIds.filter(Boolean) as string[]);
+      const resolvedWeight = nextReport.seo.checks
+        .filter((check) => !check.pass && resolvedSet.has(check.id))
+        .reduce((sum, check) => sum + check.weight, 0);
+      const resolvedCount = nextReport.seo.checks.filter((check) => !check.pass && resolvedSet.has(check.id)).length;
+      const weightedPassed = nextReport.seo.weightedPassed + resolvedWeight;
+      const passedChecks = nextReport.seo.passedChecks + resolvedCount;
+      const score = Math.round((weightedPassed / nextReport.seo.weightedTotal) * 100);
+
+      setVisibilityReport({
+        ...nextReport,
+        seo: {
+          ...nextReport.seo,
+          score,
+          status: passedChecks === nextReport.seo.totalChecks ? 'excellent' : nextReport.seo.status,
+          passedChecks,
+          weightedPassed,
+          checks: nextReport.seo.checks.map((check) => (
+            resolvedSet.has(check.id)
+              ? { ...check, pass: true, reason: 'Action déjà appliquée et restaurée depuis les données sauvegardées.' }
+              : check
+          )),
+        },
+      });
     } catch (err) {
       setVisibilityError(err instanceof Error ? err.message : 'Impossible de charger la visibilité réelle SEO.');
     }
@@ -247,7 +277,29 @@ export const SEOSuggestions = () => {
       }
 
       const data = (await response.json()) as SeoAuditReport;
-      setSeoReport(data);
+      const resolvedIds = await Promise.all(
+        data.checks
+          .filter((issue) => !issue.pass)
+          .map(async (issue) => ((await validateSeoIssueFix(issue)) ? issue.id : null)),
+      );
+
+      const hydrated = await hydrateAuditReport(
+        data,
+        resolvedIds.filter(Boolean) as string[],
+        'Correction déjà appliquée et restaurée depuis les données sauvegardées.',
+      );
+
+      setSeoReport({
+        ...hydrated,
+        issues: hydrated.checks.filter((item) => !item.pass),
+        pageScores: hydrated.pageScores.map((page) => {
+          const resolvedForPage = data.checks.filter((issue) => issue.file === page.file && !issue.pass).length
+            - hydrated.checks.filter((issue) => issue.file === page.file && !issue.pass).length;
+          return resolvedForPage > 0
+            ? { ...page, issues: Math.max(0, page.issues - resolvedForPage), score: Math.min(100, page.score + resolvedForPage * 10) }
+            : page;
+        }),
+      });
     } catch (err) {
       setSeoError(err instanceof Error ? err.message : 'Impossible de charger le rapport SEO.');
     } finally {

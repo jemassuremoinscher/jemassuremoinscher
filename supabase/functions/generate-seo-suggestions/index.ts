@@ -207,9 +207,12 @@ function normalizeArticle(article: Partial<ParsedArticle>): ParsedArticle {
   const metaDescriptionSource = typeof article.meta_description === "string"
     ? article.meta_description
     : "";
-  const author = typeof article.author === "string" && article.author.trim().length > 0
+  const rawAuthor = typeof article.author === "string" && article.author.trim().length > 0
     ? article.author.trim()
-    : "Arthur Leclerc – Expert assurance";
+    : "L'équipe d'experts Jemassuremoinscher";
+  const author = rawAuthor.toLowerCase().includes("arthur")
+    ? "L'équipe d'experts Jemassuremoinscher"
+    : rawAuthor;
 
   if (!title) throw new Error("Titre manquant dans la réponse IA");
   if (!content) throw new Error("Contenu manquant dans la réponse IA");
