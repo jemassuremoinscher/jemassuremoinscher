@@ -1,50 +1,40 @@
 {
-  "generatedAt": "2026-04-23T01:49:46.689Z",
-  "score": 66,
-  "status": "warning",
+  "generatedAt": "2026-04-23T01:56:32.555Z",
+  "score": 85,
+  "status": "good",
   "methodology": "Score on-page basé sur critères SEO reconnus : title, meta description, canonical, robots, viewport, lang, H1, Open Graph, JSON-LD, maillage interne.",
   "summary": {
     "auditedPages": 4,
     "totalChecks": 40,
-    "passedChecks": 29,
-    "failedChecks": 11,
-    "weightedPassed": 265,
+    "passedChecks": 36,
+    "failedChecks": 4,
+    "weightedPassed": 340,
     "weightedTotal": 400,
-    "strongPages": 1
+    "strongPages": 3
   },
   "pageScores": [
     {
       "file": "index.html",
+      "score": 100,
+      "issues": 0
+    },
+    {
+      "file": "contact/index.html",
       "score": 85,
       "issues": 1
     },
     {
-      "file": "contact/index.html",
-      "score": 65,
-      "issues": 3
-    },
-    {
       "file": "blog/index.html",
-      "score": 65,
-      "issues": 3
+      "score": 85,
+      "issues": 1
     },
     {
       "file": "glossaire/index.html",
-      "score": 50,
-      "issues": 4
+      "score": 70,
+      "issues": 2
     }
   ],
   "issues": [
-    {
-      "id": "index.html-single-h1",
-      "file": "index.html",
-      "category": "headings",
-      "description": "La page contient exactement un H1",
-      "pass": false,
-      "weight": 15,
-      "expected": "1 H1 par page",
-      "actual": "2 H1"
-    },
     {
       "id": "contact/index.html-single-h1",
       "file": "contact/index.html",
@@ -53,27 +43,7 @@
       "pass": false,
       "weight": 15,
       "expected": "1 H1 par page",
-      "actual": "2 H1"
-    },
-    {
-      "id": "contact/index.html-social-tags",
-      "file": "contact/index.html",
-      "category": "social",
-      "description": "Les balises Open Graph principales sont présentes",
-      "pass": false,
-      "weight": 10,
-      "expected": "og:title et og:description",
-      "actual": "og:title=false, og:description=false"
-    },
-    {
-      "id": "contact/index.html-jsonld",
-      "file": "contact/index.html",
-      "category": "structured-data",
-      "description": "La page expose au moins un bloc JSON-LD",
-      "pass": false,
-      "weight": 10,
-      "expected": "Au moins 1 script application/ld+json",
-      "actual": "0 bloc(s)"
+      "actual": "0 H1"
     },
     {
       "id": "blog/index.html-single-h1",
@@ -83,27 +53,7 @@
       "pass": false,
       "weight": 15,
       "expected": "1 H1 par page",
-      "actual": "2 H1"
-    },
-    {
-      "id": "blog/index.html-social-tags",
-      "file": "blog/index.html",
-      "category": "social",
-      "description": "Les balises Open Graph principales sont présentes",
-      "pass": false,
-      "weight": 10,
-      "expected": "og:title et og:description",
-      "actual": "og:title=false, og:description=false"
-    },
-    {
-      "id": "blog/index.html-jsonld",
-      "file": "blog/index.html",
-      "category": "structured-data",
-      "description": "La page expose au moins un bloc JSON-LD",
-      "pass": false,
-      "weight": 10,
-      "expected": "Au moins 1 script application/ld+json",
-      "actual": "0 bloc(s)"
+      "actual": "0 H1"
     },
     {
       "id": "glossaire/index.html-meta-description",
@@ -123,27 +73,7 @@
       "pass": false,
       "weight": 15,
       "expected": "1 H1 par page",
-      "actual": "2 H1"
-    },
-    {
-      "id": "glossaire/index.html-social-tags",
-      "file": "glossaire/index.html",
-      "category": "social",
-      "description": "Les balises Open Graph principales sont présentes",
-      "pass": false,
-      "weight": 10,
-      "expected": "og:title et og:description",
-      "actual": "og:title=false, og:description=false"
-    },
-    {
-      "id": "glossaire/index.html-jsonld",
-      "file": "glossaire/index.html",
-      "category": "structured-data",
-      "description": "La page expose au moins un bloc JSON-LD",
-      "pass": false,
-      "weight": 10,
-      "expected": "Au moins 1 script application/ld+json",
-      "actual": "0 bloc(s)"
+      "actual": "0 H1"
     }
   ],
   "checks": [
@@ -212,10 +142,10 @@
       "file": "index.html",
       "category": "headings",
       "description": "La page contient exactement un H1",
-      "pass": false,
+      "pass": true,
       "weight": 15,
       "expected": "1 H1 par page",
-      "actual": "2 H1"
+      "actual": "1 H1"
     },
     {
       "id": "index.html-social-tags",
@@ -315,27 +245,27 @@
       "pass": false,
       "weight": 15,
       "expected": "1 H1 par page",
-      "actual": "2 H1"
+      "actual": "0 H1"
     },
     {
       "id": "contact/index.html-social-tags",
       "file": "contact/index.html",
       "category": "social",
       "description": "Les balises Open Graph principales sont présentes",
-      "pass": false,
+      "pass": true,
       "weight": 10,
       "expected": "og:title et og:description",
-      "actual": "og:title=false, og:description=false"
+      "actual": "og:title=true, og:description=true"
     },
     {
       "id": "contact/index.html-jsonld",
       "file": "contact/index.html",
       "category": "structured-data",
       "description": "La page expose au moins un bloc JSON-LD",
-      "pass": false,
+      "pass": true,
       "weight": 10,
       "expected": "Au moins 1 script application/ld+json",
-      "actual": "0 bloc(s)"
+      "actual": "1 bloc(s)"
     },
     {
       "id": "contact/index.html-internal-links",
@@ -415,27 +345,27 @@
       "pass": false,
       "weight": 15,
       "expected": "1 H1 par page",
-      "actual": "2 H1"
+      "actual": "0 H1"
     },
     {
       "id": "blog/index.html-social-tags",
       "file": "blog/index.html",
       "category": "social",
       "description": "Les balises Open Graph principales sont présentes",
-      "pass": false,
+      "pass": true,
       "weight": 10,
       "expected": "og:title et og:description",
-      "actual": "og:title=false, og:description=false"
+      "actual": "og:title=true, og:description=true"
     },
     {
       "id": "blog/index.html-jsonld",
       "file": "blog/index.html",
       "category": "structured-data",
       "description": "La page expose au moins un bloc JSON-LD",
-      "pass": false,
+      "pass": true,
       "weight": 10,
       "expected": "Au moins 1 script application/ld+json",
-      "actual": "0 bloc(s)"
+      "actual": "1 bloc(s)"
     },
     {
       "id": "blog/index.html-internal-links",
@@ -515,27 +445,27 @@
       "pass": false,
       "weight": 15,
       "expected": "1 H1 par page",
-      "actual": "2 H1"
+      "actual": "0 H1"
     },
     {
       "id": "glossaire/index.html-social-tags",
       "file": "glossaire/index.html",
       "category": "social",
       "description": "Les balises Open Graph principales sont présentes",
-      "pass": false,
+      "pass": true,
       "weight": 10,
       "expected": "og:title et og:description",
-      "actual": "og:title=false, og:description=false"
+      "actual": "og:title=true, og:description=true"
     },
     {
       "id": "glossaire/index.html-jsonld",
       "file": "glossaire/index.html",
       "category": "structured-data",
       "description": "La page expose au moins un bloc JSON-LD",
-      "pass": false,
+      "pass": true,
       "weight": 10,
       "expected": "Au moins 1 script application/ld+json",
-      "actual": "0 bloc(s)"
+      "actual": "1 bloc(s)"
     },
     {
       "id": "glossaire/index.html-internal-links",

@@ -1,15 +1,43 @@
 {
-  "generatedAt": "2026-04-23T01:49:46.623Z",
-  "score": 100,
-  "status": "excellent",
+  "generatedAt": "2026-04-23T01:56:32.619Z",
+  "score": 81,
+  "status": "good",
   "summary": {
     "totalChecks": 16,
-    "passedChecks": 16,
-    "failedChecks": 0,
+    "passedChecks": 13,
+    "failedChecks": 3,
     "auditedFiles": 9,
     "staticRoutes": 4
   },
-  "mismatches": [],
+  "mismatches": [
+    {
+      "id": "contact-h1",
+      "category": "static-h1",
+      "file": "contact/index.html",
+      "description": "Le H1 statique de contact correspond à la source GEO",
+      "pass": false,
+      "expected": "Contact jemassuremoinscher.fr",
+      "actual": null
+    },
+    {
+      "id": "blog-h1",
+      "category": "static-h1",
+      "file": "blog/index.html",
+      "description": "Le H1 statique de blog correspond à la source GEO",
+      "pass": false,
+      "expected": "Blog assurance",
+      "actual": null
+    },
+    {
+      "id": "glossaire-h1",
+      "category": "static-h1",
+      "file": "glossaire/index.html",
+      "description": "Le H1 statique de glossaire correspond à la source GEO",
+      "pass": false,
+      "expected": "Glossaire assurance",
+      "actual": null
+    }
+  ],
   "checks": [
     {
       "id": "contact-title",
@@ -34,7 +62,7 @@
       "category": "static-h1",
       "file": "contact/index.html",
       "description": "Le H1 statique de contact correspond à la source GEO",
-      "pass": true,
+      "pass": false,
       "expected": "Contact jemassuremoinscher.fr",
       "actual": null
     },
@@ -61,7 +89,7 @@
       "category": "static-h1",
       "file": "blog/index.html",
       "description": "Le H1 statique de blog correspond à la source GEO",
-      "pass": true,
+      "pass": false,
       "expected": "Blog assurance",
       "actual": null
     },
@@ -88,7 +116,7 @@
       "category": "static-h1",
       "file": "glossaire/index.html",
       "description": "Le H1 statique de glossaire correspond à la source GEO",
-      "pass": true,
+      "pass": false,
       "expected": "Glossaire assurance",
       "actual": null
     },
