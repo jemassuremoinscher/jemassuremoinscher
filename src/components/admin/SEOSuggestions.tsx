@@ -8,13 +8,7 @@ import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCirc
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
-import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, canAutoFixSeoIssue, hydrateAuditReport, validateSeoContentImprovement, validateSeoIssueFix, validateSeoVisibilityFix, type ContentSuggestionDraft } from '@/lib/auditFixes';
-
-const SEO_SUGGESTIONS_REFRESH_EVENT = 'seo-suggestions-refresh';
-type SeoSuggestionsRefreshDetail = {
-  title?: string;
-  source?: 'seo' | 'geo';
-};
+import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, buildContentImprovementKey, canAutoFixSeoIssue, CONTENT_IMPROVEMENT_PREFIX, hydrateAuditReport, listAppliedContentImprovements, validateSeoContentImprovement, validateSeoIssueFix, validateSeoVisibilityFix, type ContentSuggestionDraft } from '@/lib/auditFixes';
 
 type FixAction = {
   label: string;
@@ -232,19 +226,7 @@ export const SEOSuggestions = () => {
     fetchSuggestions();
     loadSeoReport();
     loadVisibilityReport();
-  }, []);
-
-  useEffect(() => {
-    const handleRefresh = async (event: Event) => {
-      const detail = (event as CustomEvent<SeoSuggestionsRefreshDetail>).detail;
-      await fetchSuggestions();
-      toast.success('Brouillon mis à jour', {
-        description: `${detail?.title ?? 'Le brouillon'} a bien été enregistré et la liste a été rafraîchie${detail?.source === 'geo' ? ' depuis GEO' : ''}.`,
-      });
-    };
-
-    window.addEventListener(SEO_SUGGESTIONS_REFRESH_EVENT, handleRefresh as EventListener);
-    return () => window.removeEventListener(SEO_SUGGESTIONS_REFRESH_EVENT, handleRefresh as EventListener);
+    void loadAppliedImprovements();
   }, []);
 
   const loadVisibilityReport = async () => {
@@ -347,7 +329,7 @@ export const SEOSuggestions = () => {
     if (error) {
       toast.error('Erreur chargement suggestions');
     } else {
-      setSuggestions((data as Suggestion[]) || []);
+      setSuggestions((((data as Suggestion[]) || []).filter((item) => !item.slug.startsWith(CONTENT_IMPROVEMENT_PREFIX))));
     }
 
     setIsLoading(false);
@@ -418,6 +400,11 @@ export const SEOSuggestions = () => {
     toast.success('Proposition de correction copiée');
   };
 
+  const loadAppliedImprovements = async () => {
+    const items = await listAppliedContentImprovements('seo');
+    setAppliedSuggestions(items);
+  };
+
   const rememberAppliedSuggestion = (key: string, suggestion: ContentSuggestionDraft) => {
     setAppliedSuggestions((current) => ({ ...current, [key]: suggestion }));
   };
@@ -432,8 +419,8 @@ export const SEOSuggestions = () => {
         <p><span className="font-medium text-foreground">Brouillon :</span> {suggestion.title}</p>
         <p><span className="font-medium text-foreground">Slug :</span> {suggestion.slug}</p>
         <p><span className="font-medium text-foreground">Statut :</span> {suggestion.status}</p>
-        <p><span className="font-medium text-foreground">Présence :</span> visible dans l'encart Articles Blog.</p>
-        <p><span className="font-medium text-foreground">Score :</span> la création du brouillon ne modifie pas le score tant que le contenu n'est pas publié puis repris dans le prochain recalcul live.</p>
+        <p><span className="font-medium text-foreground">Présence :</span> conservée dans l'encart SEO uniquement.</p>
+        <p><span className="font-medium text-foreground">Score :</span> cette action retire la tâche de la file d'amélioration, mais ne change pas instantanément les métriques live Search Console / Analytics.</p>
       </div>
     );
   };

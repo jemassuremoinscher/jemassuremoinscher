@@ -293,7 +293,7 @@ export type ContentImprovementSource = "seo" | "geo";
 
 type ContentImprovementScope = "page" | "query" | "visibility";
 
-const CONTENT_IMPROVEMENT_PREFIX = "__content-improvement__";
+export const CONTENT_IMPROVEMENT_PREFIX = "__content-improvement__";
 
 const encodeImprovementSegment = (value: string) => encodeURIComponent(value);
 
