@@ -222,6 +222,9 @@ type SEOSuggestionsProps = {
 };
 
 export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
+  const showSeoPanels = mode === 'all' || mode === 'seo';
+  const showArticlesPanel = mode === 'all' || mode === 'articles';
+
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -235,11 +238,16 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const [appliedImprovementsLoaded, setAppliedImprovementsLoaded] = useState(false);
 
   useEffect(() => {
-    fetchSuggestions();
-    loadSeoReport();
-    loadVisibilityReport();
-    void loadAppliedImprovements();
-  }, []);
+    if (showArticlesPanel) {
+      fetchSuggestions();
+    }
+
+    if (showSeoPanels) {
+      loadSeoReport();
+      loadVisibilityReport();
+      void loadAppliedImprovements();
+    }
+  }, [showArticlesPanel, showSeoPanels]);
 
   const loadVisibilityReport = async () => {
     try {
@@ -336,6 +344,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
     const { data, error } = await supabase
       .from('seo_article_suggestions')
       .select('*')
+      .eq('status', 'pending')
       .order('created_at', { ascending: false });
 
     if (error) {
@@ -685,9 +694,6 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
     })]),
     [appliedSuggestions, visibilityReport],
   );
-
-  const showSeoPanels = mode === 'all' || mode === 'seo';
-  const showArticlesPanel = mode === 'all' || mode === 'articles';
 
   return (
     <div className="space-y-6">
