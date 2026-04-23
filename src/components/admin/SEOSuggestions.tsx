@@ -217,7 +217,11 @@ const getVisibilityFixAction = (check: VisibilityCheck): FixAction => {
   };
 };
 
-export const SEOSuggestions = () => {
+type SEOSuggestionsProps = {
+  mode?: 'all' | 'seo' | 'articles';
+};
+
+export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -682,9 +686,12 @@ export const SEOSuggestions = () => {
     [appliedSuggestions, visibilityReport],
   );
 
+  const showSeoPanels = mode === 'all' || mode === 'seo';
+  const showArticlesPanel = mode === 'all' || mode === 'articles';
+
   return (
     <div className="space-y-6">
-      {seoError ? (
+      {showSeoPanels ? (seoError ? (
         <Card>
           <CardContent className="py-10 text-center space-y-3">
             <AlertCircle className="h-10 w-10 text-destructive mx-auto" />
@@ -1021,9 +1028,9 @@ export const SEOSuggestions = () => {
             </CardContent>
           </Card>
         </>
-      )}
+      )) : null}
 
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      {showArticlesPanel ? <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-primary" />
@@ -1043,9 +1050,9 @@ export const SEOSuggestions = () => {
             {isGenerating ? 'Analyse GSC...' : 'Générer depuis GSC'}
           </Button>
         </div>
-      </div>
+      </div> : null}
 
-      {suggestions.length === 0 && !isLoading && (
+      {showArticlesPanel && suggestions.length === 0 && !isLoading && (
         <Card>
           <CardContent className="py-12 text-center">
             <Sparkles className="h-12 w-12 mx-auto text-muted-foreground/50 mb-4" />
@@ -1057,7 +1064,7 @@ export const SEOSuggestions = () => {
         </Card>
       )}
 
-      <div className="grid gap-4">
+      {showArticlesPanel ? <div className="grid gap-4">
         {suggestions.map((s) => (
           <Card key={s.id} className="hover:shadow-md transition-shadow">
             <CardHeader className="pb-3">
@@ -1138,7 +1145,7 @@ export const SEOSuggestions = () => {
             </CardContent>
           </Card>
         ))}
-      </div>
+      </div> : null}
 
     </div>
   );
