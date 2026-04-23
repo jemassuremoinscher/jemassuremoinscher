@@ -584,9 +584,9 @@ export const SEOSuggestions = () => {
                       </div>
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" onClick={() => openLovableFix(check.id, getVisibilityFixAction(check))} disabled={fixStatuses[check.id] === 'sending'}>
-                            <ArrowUpRight className="h-4 w-4 mr-1" />
-                            {fixStatuses[check.id] === 'sending' ? 'Envoi...' : 'Proposer la correction'}
+                          <Button size="sm" variant="outline" onClick={() => copyFixAction(getVisibilityFixAction(check))}>
+                            <Copy className="h-4 w-4 mr-1" />
+                            Copier l'action
                           </Button>
                         </div>
                       ) : null}
