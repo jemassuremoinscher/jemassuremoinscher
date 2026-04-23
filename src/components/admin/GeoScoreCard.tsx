@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
-import { applyGeoContentImprovement, applyGeoIssueFix, applyGeoVisibilityFix, listAppliedContentImprovements, canAutoFixGeoIssue, hydrateAuditReport, validateGeoContentImprovement, validateGeoIssueFix, validateGeoVisibilityFix, type ContentSuggestionDraft } from "@/lib/auditFixes";
+import { applyGeoContentImprovement, applyGeoIssueFix, applyGeoVisibilityFix, buildContentImprovementKey, listAppliedContentImprovements, canAutoFixGeoIssue, hydrateAuditReport, validateGeoContentImprovement, validateGeoIssueFix, validateGeoVisibilityFix, type ContentSuggestionDraft } from "@/lib/auditFixes";
 import { toast } from "sonner";
 
 type GeoAuditCheck = {
@@ -454,6 +454,25 @@ export const GeoScoreCard = () => {
     [visibilityReport],
   );
 
+  const pendingGeoPageImprovements = useMemo(
+    () => (visibilityReport?.geo.pageRanking ?? []).filter((page) => !appliedSuggestions[buildContentImprovementKey({
+      source: 'geo',
+      scope: 'page',
+      path: page.path,
+    })]),
+    [appliedSuggestions, visibilityReport],
+  );
+
+  const pendingGeoQueryImprovements = useMemo(
+    () => (visibilityReport?.geo.queryOpportunities ?? []).filter((item) => !appliedSuggestions[buildContentImprovementKey({
+      source: 'geo',
+      scope: 'query',
+      path: item.page,
+      query: item.query,
+    })]),
+    [appliedSuggestions, visibilityReport],
+  );
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -692,7 +711,7 @@ export const GeoScoreCard = () => {
               <CardDescription>Proxy interne basé sur visibilité requêtes, potentiel IA et couverture éditoriale.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {visibilityReport?.geo.pageRanking?.slice(0, 10).map((page) => (
+              {pendingGeoPageImprovements.slice(0, 10).map((page) => (
                 <div key={`geo-${page.path}`} className="rounded-lg border border-border p-3 text-sm">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                     <div>
@@ -717,6 +736,11 @@ export const GeoScoreCard = () => {
                   {renderAppliedSuggestion(`page-content-${page.path}`)}
                 </div>
               ))}
+              {pendingGeoPageImprovements.length === 0 ? (
+                <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                  Toutes les améliorations GEO de pages de cet encart ont déjà été activées.
+                </div>
+              ) : null}
             </CardContent>
           </Card>
 
@@ -726,7 +750,7 @@ export const GeoScoreCard = () => {
               <CardDescription>Comparatifs, FAQ, définitions et guides de décision à forte reprise potentielle.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {visibilityReport?.geo.queryOpportunities?.slice(0, 10).map((item) => (
+              {pendingGeoQueryImprovements.slice(0, 10).map((item) => (
                 <div key={`geo-query-${item.query}-${item.page}`} className="rounded-lg border border-border p-3 text-sm">
                   <div className="flex items-start justify-between gap-3">
                     <div>
@@ -749,6 +773,11 @@ export const GeoScoreCard = () => {
                   {renderAppliedSuggestion(`query-content-${item.page}-${item.query}`)}
                 </div>
               ))}
+              {pendingGeoQueryImprovements.length === 0 ? (
+                <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                  Toutes les améliorations GEO de requêtes de cet encart ont déjà été activées.
+                </div>
+              ) : null}
             </CardContent>
           </Card>
         </>
