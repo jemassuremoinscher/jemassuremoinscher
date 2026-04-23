@@ -66,7 +66,11 @@ type VisibilityScore = {
       llmSessions: number;
       llmSources: string[];
       iaCitations: number;
+      rankingScore: number;
+      trackedPages: number;
     };
+    pageRanking: Array<{ path: string; clicks: number; impressions: number; avgPosition: number; ctr: number; opportunityScore: number; aiPotential: string; contentAction: string }>;
+    queryOpportunities: Array<{ query: string; page: string; clicks: number; impressions: number; position: number; ctr: number; intent: string; recommendation: string }>;
   };
 };
 

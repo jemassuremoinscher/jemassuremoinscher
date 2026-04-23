@@ -101,7 +101,14 @@ type VisibilityScore = {
       avgPosition: number;
       organicSessions: number;
       organicEngagementRate: number;
+      coveredPages: number;
+      totalTrackedPages: number;
+      visibleQueries: number;
+      opportunityQueries: number;
     };
+    topQueries: Array<{ query: string; page: string; clicks: number; impressions: number; position: number; ctr: number; intent: string; recommendation: string }>;
+    queryOpportunities: Array<{ query: string; page: string; clicks: number; impressions: number; position: number; ctr: number; intent: string; recommendation: string }>;
+    pageVisibility: Array<{ path: string; clicks: number; impressions: number; avgPosition: number; ctr: number; opportunityScore: number; aiPotential: string; contentAction: string }>;
   };
 };
 
