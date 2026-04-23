@@ -44,7 +44,7 @@ export const auditFileToPagePath = (file: string) => {
 
 const getFallbackMetaForPath = (path: string) => {
   const segments = path.split("/").filter(Boolean);
-  const lastSegment = segments.at(-1) ?? "accueil";
+  const lastSegment = segments[segments.length - 1] ?? "accueil";
   const label = humanizeSlug(lastSegment);
 
   if (segments[0] === "blog") {
