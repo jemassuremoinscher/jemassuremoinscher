@@ -219,6 +219,7 @@ const Admin = () => {
       tabs: [
         { value: 'analytics', label: 'Analytics', icon: TrendingUp },
         { value: 'seo', label: 'SEO', icon: Sparkles },
+        { value: 'articles', label: 'Articles', icon: Search },
         { value: 'geo', label: 'GEO', icon: ShieldCheck },
         { value: 'serp', label: 'SERP', icon: Search },
         { value: 'linkedin', label: 'LinkedIn', icon: Linkedin },
@@ -384,7 +385,11 @@ const Admin = () => {
           </TabsContent>
 
           <TabsContent value="seo">
-            <SEOSuggestions />
+            <SEOSuggestions mode="seo" />
+          </TabsContent>
+
+          <TabsContent value="articles">
+            <SEOSuggestions mode="articles" />
           </TabsContent>
 
           <TabsContent value="geo">
