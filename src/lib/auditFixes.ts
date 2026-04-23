@@ -35,6 +35,46 @@ const trimToLength = (text: string, max: number) => (text.length <= max ? text :
 
 const humanizeSlug = (slug: string) => slug.split("-").filter(Boolean).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
 
+const normalizeTextFingerprint = (...values: Array<string | null | undefined>) => values
+  .filter(Boolean)
+  .join(" ")
+  .toLowerCase();
+
+export const getSuggestedAuthorLabel = (input: {
+  slug?: string | null;
+  title?: string | null;
+  target_keyword?: string | null;
+  suggested_content?: string | null;
+}) => {
+  const fingerprint = normalizeTextFingerprint(input.slug, input.title, input.target_keyword, input.suggested_content);
+
+  if (fingerprint.includes("emprunteur") || fingerprint.includes("lemoine") || fingerprint.includes("crédit")) {
+    return "Sophie Mercier – Juriste en assurance emprunteur";
+  }
+
+  if (fingerprint.includes("mutuelle") || fingerprint.includes("santé") || fingerprint.includes("hospitalisation")) {
+    return "Dr. Marie Dupont – Experte en assurance santé";
+  }
+
+  if (fingerprint.includes("auto") || fingerprint.includes("conducteur") || fingerprint.includes("malussé")) {
+    return "Claire Rousseau – Rédactrice experte assurance auto";
+  }
+
+  if (fingerprint.includes("habitation") || fingerprint.includes("pno") || fingerprint.includes("gli") || fingerprint.includes("immobili")) {
+    return "Thomas Leroy – Courtier en assurance IARD";
+  }
+
+  if (fingerprint.includes("résiliation") || fingerprint.includes("hamon") || fingerprint.includes("glossaire") || fingerprint.includes("définition") || fingerprint.includes("franchise")) {
+    return "Sophie Martin – Juriste spécialisée en droit de l'assurance";
+  }
+
+  if (fingerprint.includes("courtier") || fingerprint.includes("expertise") || fingerprint.includes("preuve")) {
+    return "L'équipe d'experts Jemassuremoinscher";
+  }
+
+  return "L'équipe d'experts Jemassuremoinscher";
+};
+
 export const auditFileToPagePath = (file: string) => {
   const normalized = file.trim().replace(/^\/+/, "");
   if (normalized === "index.html") return "/";
@@ -280,7 +320,7 @@ const IA_SOURCE_SUGGESTIONS = [
     target_keyword: "comparatif assurance auto profil conducteur",
     suggested_meta_description: "Créer un comparatif orienté profils pour multiplier les reprises par les assistants IA.",
     suggested_content: "Rédiger un comparatif structuré par profils (jeune conducteur, malussé, petit rouleur, famille), avec FAQ courte, tableau comparatif et critères de décision.",
-    suggested_author: "Arthur",
+    suggested_author: getSuggestedAuthorLabel({ slug: "comparatif-assurance-auto-profils-2026", title: "Comparatif assurance auto 2026 selon le profil conducteur", target_keyword: "comparatif assurance auto profil conducteur" }),
   },
   {
     slug: "definition-franchise-assurance-exemples",
@@ -288,7 +328,7 @@ const IA_SOURCE_SUGGESTIONS = [
     target_keyword: "franchise assurance définition",
     suggested_meta_description: "Créer une définition courte, réutilisable et précise pour les assistants IA.",
     suggested_content: "Créer une page définition avec entités nommées, exemples concrets, mini FAQ et liens vers auto, habitation et santé.",
-    suggested_author: "Arthur",
+    suggested_author: getSuggestedAuthorLabel({ slug: "definition-franchise-assurance-exemples", title: "Franchise assurance : définition simple et exemples concrets", target_keyword: "franchise assurance définition" }),
   },
   {
     slug: "faq-assurance-emprunteur-changement-2026",
@@ -296,7 +336,7 @@ const IA_SOURCE_SUGGESTIONS = [
     target_keyword: "faq assurance emprunteur 2026",
     suggested_meta_description: "Créer une FAQ dense et cit-able pour diversifier les sources IA.",
     suggested_content: "Rédiger une FAQ très précise avec réponses courtes, conditions, délais, exclusions et liens internes vers les pages décisionnelles.",
-    suggested_author: "Arthur",
+    suggested_author: getSuggestedAuthorLabel({ slug: "faq-assurance-emprunteur-changement-2026", title: "FAQ assurance emprunteur 2026 : changer, comparer, économiser", target_keyword: "faq assurance emprunteur 2026" }),
   },
   {
     slug: "guide-choisir-mutuelle-sante-selon-besoins",
@@ -304,7 +344,7 @@ const IA_SOURCE_SUGGESTIONS = [
     target_keyword: "guide choisir mutuelle santé besoins",
     suggested_meta_description: "Créer un guide de décision structuré pour augmenter les reprises multi-assistants.",
     suggested_content: "Construire un guide de décision par cas d'usage avec preuves d'expertise, critères prioritaires et liens vers pages santé associées.",
-    suggested_author: "Arthur",
+    suggested_author: getSuggestedAuthorLabel({ slug: "guide-choisir-mutuelle-sante-selon-besoins", title: "Guide : choisir une mutuelle santé selon ses vrais besoins", target_keyword: "guide choisir mutuelle santé besoins" }),
   },
 ];
 
@@ -315,7 +355,7 @@ const IA_CITATION_SUGGESTIONS = [
     target_keyword: "courtier assurance indépendant expertise",
     suggested_meta_description: "Mettre en avant expertise, preuves et entités nommées pour augmenter les citations IA.",
     suggested_content: "Créer une page avec preuves d'expertise, processus, partenaires, exemples de profils accompagnés et FAQ précise sur le rôle du courtier.",
-    suggested_author: "Arthur",
+    suggested_author: getSuggestedAuthorLabel({ slug: "preuves-expertise-courtier-assurance-independant", title: "Pourquoi passer par un courtier en assurance indépendant ?", target_keyword: "courtier assurance indépendant expertise" }),
   },
   {
     slug: "faq-resiliation-assurance-lois-hamon-lemoine",
@@ -323,7 +363,7 @@ const IA_CITATION_SUGGESTIONS = [
     target_keyword: "faq résiliation assurance hamon lemoine",
     suggested_meta_description: "Ajouter une FAQ précise et fiable sur les lois citées par les assistants IA.",
     suggested_content: "Rédiger une FAQ citant explicitement loi Hamon, loi Lemoine, délais, conditions et documents requis, avec maillage vers les pages concernées.",
-    suggested_author: "Arthur",
+    suggested_author: getSuggestedAuthorLabel({ slug: "faq-resiliation-assurance-lois-hamon-lemoine", title: "FAQ résiliation assurance : loi Hamon, Lemoine, obligations", target_keyword: "faq résiliation assurance hamon lemoine" }),
   },
   {
     slug: "assurance-glossaire-termes-essentiels-decider",
@@ -331,7 +371,7 @@ const IA_CITATION_SUGGESTIONS = [
     target_keyword: "glossaire assurance termes essentiels",
     suggested_meta_description: "Renforcer les entités nommées et le maillage sémantique avec un glossaire enrichi.",
     suggested_content: "Créer un contenu pivot regroupant les définitions clés, avec renvois vers les pages glossaire et les offres liées pour renforcer les citations.",
-    suggested_author: "Arthur",
+    suggested_author: getSuggestedAuthorLabel({ slug: "assurance-glossaire-termes-essentiels-decider", title: "Glossaire assurance : les termes essentiels pour décider sans erreur", target_keyword: "glossaire assurance termes essentiels" }),
   },
 ];
 
@@ -366,20 +406,79 @@ const createContentSuggestions = async (suggestions: typeof IA_SOURCE_SUGGESTION
   const slugs = suggestions.map((item) => item.slug);
   const { data: existing, error: existingError } = await supabase
     .from("seo_article_suggestions")
-    .select("slug")
+    .select("id, slug")
     .in("slug", slugs);
 
   if (existingError) throw existingError;
 
-  const existingSlugs = new Set((existing ?? []).map((item) => item.slug));
-  const missing = suggestions.filter((item) => !existingSlugs.has(item.slug));
+  const existingMap = new Map((existing ?? []).map((item) => [item.slug, item.id]));
+  let created = 0;
 
-  if (missing.length > 0) {
-    const { error } = await supabase.from("seo_article_suggestions").insert(missing as never);
+  for (const suggestion of suggestions) {
+    const author = getSuggestedAuthorLabel(suggestion);
+    const payload = {
+      ...suggestion,
+      suggested_author: author,
+    };
+
+    const existingId = existingMap.get(suggestion.slug);
+
+    if (existingId) {
+      const { error } = await supabase
+        .from("seo_article_suggestions")
+        .update(payload as never)
+        .eq("id", existingId);
+      if (error) throw error;
+      continue;
+    }
+
+    const { error } = await supabase.from("seo_article_suggestions").insert(payload as never);
     if (error) throw error;
+    created += 1;
   }
 
-  return { created: missing.length, total: suggestions.length };
+  return { created, total: suggestions.length };
+};
+
+const resolveAuditIssues = <T extends { id: string; pass: boolean; weight: number; expected: string; actual: string | null; reason: string }>(
+  items: T[],
+  resolvedIds: Set<string>,
+  successReason: string,
+) => items.map((item) => (resolvedIds.has(item.id)
+  ? { ...item, pass: true, actual: item.expected, reason: successReason }
+  : item));
+
+export const hydrateAuditReport = async <T extends {
+  score: number;
+  status: "excellent" | "good" | "warning" | "critical";
+  checks: Array<{ id: string; pass: boolean; weight: number; expected: string; actual: string | null; reason: string }>;
+  summary: { passedChecks: number; failedChecks: number; weightedPassed: number; weightedTotal: number };
+}>(report: T, resolvedIds: string[], successReason: string) => {
+  if (resolvedIds.length === 0) return report;
+
+  const resolvedSet = new Set(resolvedIds);
+  const resolvedWeight = report.checks
+    .filter((item) => !item.pass && resolvedSet.has(item.id))
+    .reduce((sum, item) => sum + item.weight, 0);
+  const resolvedCount = report.checks.filter((item) => !item.pass && resolvedSet.has(item.id)).length;
+  const checks = resolveAuditIssues(report.checks, resolvedSet, successReason);
+  const weightedPassed = report.summary.weightedPassed + resolvedWeight;
+  const failedChecks = Math.max(0, report.summary.failedChecks - resolvedCount);
+  const passedChecks = report.summary.passedChecks + resolvedCount;
+  const score = Math.round((weightedPassed / report.summary.weightedTotal) * 100);
+
+  return {
+    ...report,
+    score,
+    status: failedChecks === 0 ? "excellent" : report.status,
+    checks,
+    summary: {
+      ...report.summary,
+      passedChecks,
+      failedChecks,
+      weightedPassed,
+    },
+  };
 };
 
 const validateContentSuggestions = async (suggestions: typeof IA_SOURCE_SUGGESTIONS) => {

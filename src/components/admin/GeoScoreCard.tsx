@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
-import { applyGeoIssueFix, applyGeoVisibilityFix, canAutoFixGeoIssue, validateGeoIssueFix, validateGeoVisibilityFix } from "@/lib/auditFixes";
+import { applyGeoIssueFix, applyGeoVisibilityFix, canAutoFixGeoIssue, hydrateAuditReport, validateGeoIssueFix, validateGeoVisibilityFix } from "@/lib/auditFixes";
 import { toast } from "sonner";
 
 type GeoAuditCheck = {
@@ -272,7 +272,22 @@ export const GeoScoreCard = () => {
       }
 
       const data = (await response.json()) as GeoAuditReport;
-      setReport(data);
+      const resolvedIds = await Promise.all(
+        data.checks
+          .filter((item) => !item.pass)
+          .map(async (item) => ((await validateGeoIssueFix(item)) ? item.id : null)),
+      );
+
+      const hydrated = await hydrateAuditReport(
+        data,
+        resolvedIds.filter(Boolean) as string[],
+        "Correction déjà appliquée et restaurée depuis les données sauvegardées.",
+      );
+
+      setReport({
+        ...hydrated,
+        mismatches: hydrated.checks.filter((item) => !item.pass),
+      });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Impossible de charger le rapport GEO.");
     } finally {
@@ -295,7 +310,37 @@ export const GeoScoreCard = () => {
       if (response.data?.error && !response.data?.geo) {
         throw new Error(response.data.message || response.data.error);
       }
-      setVisibilityReport(response.data as VisibilityScore);
+      const nextReport = response.data as VisibilityScore;
+      const resolvedIds = await Promise.all(
+        nextReport.geo.checks
+          .filter((check) => !check.pass)
+          .map(async (check) => ((await validateGeoVisibilityFix(check)) ? check.id : null)),
+      );
+
+      const resolvedSet = new Set(resolvedIds.filter(Boolean) as string[]);
+      const resolvedWeight = nextReport.geo.checks
+        .filter((check) => !check.pass && resolvedSet.has(check.id))
+        .reduce((sum, check) => sum + check.weight, 0);
+      const resolvedCount = nextReport.geo.checks.filter((check) => !check.pass && resolvedSet.has(check.id)).length;
+      const weightedPassed = nextReport.geo.weightedPassed + resolvedWeight;
+      const passedChecks = nextReport.geo.passedChecks + resolvedCount;
+      const score = Math.round((weightedPassed / nextReport.geo.weightedTotal) * 100);
+
+      setVisibilityReport({
+        ...nextReport,
+        geo: {
+          ...nextReport.geo,
+          score,
+          status: passedChecks === nextReport.geo.totalChecks ? "excellent" : nextReport.geo.status,
+          passedChecks,
+          weightedPassed,
+          checks: nextReport.geo.checks.map((check) => (
+            resolvedSet.has(check.id)
+              ? { ...check, pass: true, reason: "Action déjà appliquée et restaurée depuis les données sauvegardées." }
+              : check
+          )),
+        },
+      });
     } catch (err) {
       setVisibilityError(err instanceof Error ? err.message : 'Impossible de charger la visibilité réelle GEO.');
     }
