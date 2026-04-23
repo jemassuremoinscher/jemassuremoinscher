@@ -192,6 +192,47 @@ async function getGa4Report(accessToken: string, propertyId: string) {
   return { organicSources, llmSources };
 }
 
+const normalizePath = (value: string) => {
+  try {
+    const url = new URL(value);
+    return url.pathname === "" ? "/" : url.pathname.replace(/\/+$/, "") || "/";
+  } catch {
+    const sanitized = value.replace(/^https?:\/\/[^/]+/, "");
+    return sanitized === "" ? "/" : sanitized.replace(/\/+$/, "") || "/";
+  }
+};
+
+const detectIntent = (query: string): QueryOpportunity["intent"] => {
+  const q = query.toLowerCase();
+  if (q.includes("comparatif") || q.includes("meilleure") || q.includes("top")) return "comparatif";
+  if (q.includes("faq") || q.includes("question")) return "faq";
+  if (q.includes("définition") || q.includes("definition") || q.includes("veut dire") || q.includes("c'est quoi")) return "definition";
+  if (q.includes("guide") || q.includes("comment choisir") || q.includes("comment")) return "guide";
+  if (q.includes("près de") || q.includes("paris") || q.includes("lyon") || q.includes("marseille")) return "local";
+  if (q.includes("devis") || q.includes("prix") || q.includes("pas cher") || q.includes("tarif")) return "transactionnel";
+  return "informationnel";
+};
+
+const recommendationByIntent = (intent: QueryOpportunity["intent"]) => {
+  switch (intent) {
+    case "comparatif": return "Ajouter un comparatif structuré, un tableau de critères et une synthèse décisionnelle.";
+    case "faq": return "Créer ou enrichir une FAQ courte avec réponses nettes, exemples et liens internes.";
+    case "definition": return "Ajouter une définition concise, des cas d'usage et un maillage vers les pages business.";
+    case "guide": return "Renforcer le guide avec étapes claires, critères de choix et CTA de suite logique.";
+    case "local": return "Ajouter des signaux locaux ou régionaux et des éléments de réassurance contextuels.";
+    case "transactionnel": return "Clarifier la promesse, les garanties et le CTA dès le haut de page.";
+    default: return "Ajouter une réponse plus directe, des preuves d'expertise et du maillage sémantique.";
+  }
+};
+
+const deriveAiPotential = (query: string, impressions: number, position: number): PageVisibility["aiPotential"] => {
+  const q = query.toLowerCase();
+  const hasAiFriendlyShape = ["comparatif", "faq", "guide", "définition", "definition", "comment", "pourquoi"].some((token) => q.includes(token));
+  if (hasAiFriendlyShape && impressions >= 50 && position <= 20) return "fort";
+  if (hasAiFriendlyShape || (impressions >= 20 && position <= 35)) return "moyen";
+  return "faible";
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
