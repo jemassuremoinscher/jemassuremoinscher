@@ -8,7 +8,7 @@ import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCirc
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
-import { applySeoIssueFix, canAutoFixSeoIssue } from '@/lib/auditFixes';
+import { applySeoIssueFix, canAutoFixSeoIssue, validateSeoIssueFix } from '@/lib/auditFixes';
 
 type FixAction = {
   label: string;
@@ -337,14 +337,58 @@ export const SEOSuggestions = () => {
     toast.success('Proposition de correction copiée');
   };
 
+  const markSeoIssueResolved = (issue: SeoAuditCheck) => {
+    setSeoReport((current) => {
+      if (!current) return current;
+
+      const existingIssue = current.checks.find((item) => item.id === issue.id);
+      if (!existingIssue || existingIssue.pass) return current;
+
+      const updatedChecks = current.checks.map((item) => item.id === issue.id
+        ? { ...item, pass: true, actual: item.expected, reason: 'Correction appliquée et validée depuis le backoffice.' }
+        : item);
+
+      const nextFailedChecks = Math.max(0, current.summary.failedChecks - 1);
+      const nextPassedChecks = current.summary.passedChecks + 1;
+      const nextWeightedPassed = current.summary.weightedPassed + issue.weight;
+      const nextScore = Math.round((nextWeightedPassed / current.summary.weightedTotal) * 100);
+      const nextPageScores = current.pageScores.map((page) => page.file === issue.file
+        ? { ...page, issues: Math.max(0, page.issues - 1), score: Math.min(100, page.issues <= 1 ? 100 : page.score) }
+        : page);
+      const becameStrong = current.pageScores.some((page) => page.file === issue.file && page.issues === 1);
+
+      return {
+        ...current,
+        score: nextScore,
+        status: nextFailedChecks === 0 ? 'excellent' : current.status,
+        checks: updatedChecks,
+        issues: updatedChecks.filter((item) => !item.pass),
+        pageScores: nextPageScores,
+        summary: {
+          ...current.summary,
+          failedChecks: nextFailedChecks,
+          passedChecks: nextPassedChecks,
+          weightedPassed: nextWeightedPassed,
+          strongPages: current.summary.strongPages + (becameStrong ? 1 : 0),
+        },
+      };
+    });
+  };
+
   const runDirectFix = async (key: string, issue: SeoAuditCheck) => {
     setFixStatuses((current) => ({ ...current, [key]: 'sending' }));
 
     try {
       const result = await applySeoIssueFix(issue);
+      const isValidated = await validateSeoIssueFix(issue);
+
+      if (!isValidated) {
+        throw new Error('La correction a été enregistrée, mais la validation a échoué.');
+      }
+
+      markSeoIssueResolved(issue);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(result.message);
-      await loadSeoReport();
+      toast.success(`${result.message} Validation effectuée.`);
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : 'Erreur pendant la correction.');
@@ -354,7 +398,7 @@ export const SEOSuggestions = () => {
   const renderFixStatus = (key: string) => {
     const status = fixStatuses[key] ?? 'idle';
     if (status === 'sending') return <p className="text-xs text-muted-foreground">Correction en cours…</p>;
-    if (status === 'success') return <p className="text-xs text-primary">Correction appliquée.</p>;
+    if (status === 'success') return <p className="text-xs text-primary">Correction appliquée et validée.</p>;
     if (status === 'error') return <p className="text-xs text-destructive">Erreur de correction. Réessaie.</p>;
     return null;
   };
