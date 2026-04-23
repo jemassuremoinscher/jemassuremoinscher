@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { AlertCircle, CheckCircle2, Info, RefreshCw, ShieldCheck } from "lucide-react";
+import { AlertCircle, CheckCircle2, Info, RefreshCw, ShieldCheck, ArrowUpRight } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -72,6 +72,8 @@ type FixAction = {
   label: string;
   details: string;
 };
+
+const LOVABLE_PROJECT_URL = 'https://lovable.dev/projects/0c846637-eedf-4940-bd90-f40cb5a873ee';
 
 const statusConfig = {
   excellent: { label: "Fiable", badge: "default" as const },
@@ -150,6 +152,23 @@ export const GeoScoreCard = () => {
 
   const copyFixAction = (action: FixAction) => {
     navigator.clipboard.writeText(`${action.label}\n\n${action.details}`);
+  };
+
+  const openLovableFix = async (action: FixAction) => {
+    const prompt = `${action.label}\n\n${action.details}`;
+
+    try {
+      await navigator.clipboard.writeText(prompt);
+    } catch {
+      // ignore clipboard failures, opening Lovable is the main action
+    }
+
+    const url = `${LOVABLE_PROJECT_URL}?prompt=${encodeURIComponent(prompt)}&message=${encodeURIComponent(prompt)}`;
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+
+    if (!newWindow) {
+      window.location.href = url;
+    }
   };
 
   const loadReport = async () => {
@@ -368,7 +387,8 @@ export const GeoScoreCard = () => {
                       </div>
                       {!item.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button variant="outline" size="sm" onClick={() => { copyFixAction(getGeoFixAction(item)); }}>
+                          <Button size="sm" onClick={() => { void openLovableFix(getGeoFixAction(item)); }}>
+                            <ArrowUpRight className="h-4 w-4 mr-1" />
                             Proposer la correction
                           </Button>
                         </div>
@@ -413,7 +433,8 @@ export const GeoScoreCard = () => {
                       </div>
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button variant="outline" size="sm" onClick={() => { copyFixAction(getGeoVisibilityFixAction(check)); }}>
+                          <Button size="sm" onClick={() => { void openLovableFix(getGeoVisibilityFixAction(check)); }}>
+                            <ArrowUpRight className="h-4 w-4 mr-1" />
                             Proposer la correction
                           </Button>
                         </div>
