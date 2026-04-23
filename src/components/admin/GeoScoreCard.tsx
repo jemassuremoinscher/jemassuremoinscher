@@ -597,7 +597,7 @@ export const GeoScoreCard = () => {
                       </div>
                       {!item.pass && canAutoFixGeoIssue(item) ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" onClick={() => setPendingAction({ type: "issue", key: item.id, title: "Valider la correction GEO", description: `Confirmer l'application de la correction automatique pour “${item.description}” ?`, issue: item })} disabled={fixStatuses[item.id] === 'sending'}>
+                          <Button size="sm" onClick={() => void runDirectFix(item.id, item)} disabled={fixStatuses[item.id] === 'sending'}>
                             <Wand2 className="h-4 w-4 mr-1" />
                             {fixStatuses[item.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
                           </Button>
@@ -645,7 +645,7 @@ export const GeoScoreCard = () => {
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
                           {(check.label.toLowerCase().includes('diversité') || check.label.toLowerCase().includes('mentions') || check.label.toLowerCase().includes('requêtes')) ? (
-                            <Button size="sm" onClick={() => setPendingAction({ type: "visibility", key: check.id, title: "Valider l'action GEO", description: `Confirmer l'application de l'amélioration “${getGeoVisibilityFixAction(check).label}” ?`, check })} disabled={fixStatuses[check.id] === 'sending'}>
+                            <Button size="sm" onClick={() => void runVisibilityFix(check.id, check)} disabled={fixStatuses[check.id] === 'sending'}>
                               <Wand2 className="h-4 w-4 mr-1" />
                               {fixStatuses[check.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
                             </Button>
@@ -686,13 +686,12 @@ export const GeoScoreCard = () => {
                   </div>
                   <p className="mt-2 text-muted-foreground"><span className="font-medium text-foreground">Amélioration contenu :</span> {page.contentAction}</p>
                   <div className="mt-3">
-                    <Button size="sm" variant="outline" onClick={() => setPendingAction({ type: "page-content", key: `page-content-${page.path}`, title: "Valider l'amélioration contenu", description: `Créer directement une amélioration contenu GEO pour ${page.path} ?`, page })} disabled={fixStatuses[`page-content-${page.path}`] === 'sending'}>
+                    <Button size="sm" variant="outline" onClick={() => void runPageContentImprovement(`page-content-${page.path}`, page)} disabled={fixStatuses[`page-content-${page.path}`] === 'sending'}>
                       <Wand2 className="h-4 w-4 mr-1" />
                       {fixStatuses[`page-content-${page.path}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
                     </Button>
                   </div>
                   {renderFixStatus(`page-content-${page.path}`)}
-                  {renderAppliedSuggestion(`page-content-${page.path}`)}
                 </div>
               ))}
             </CardContent>
@@ -718,13 +717,12 @@ export const GeoScoreCard = () => {
                     <p><span className="font-medium text-foreground">Amélioration contenu :</span> {item.recommendation}</p>
                   </div>
                   <div className="mt-3">
-                    <Button size="sm" variant="outline" onClick={() => setPendingAction({ type: "query-content", key: `query-content-${item.page}-${item.query}`, title: "Valider l'amélioration contenu", description: `Créer directement une amélioration GEO pour la requête “${item.query}” sur ${item.page} ?`, item })} disabled={fixStatuses[`query-content-${item.page}-${item.query}`] === 'sending'}>
+                    <Button size="sm" variant="outline" onClick={() => void runQueryContentImprovement(`query-content-${item.page}-${item.query}`, item)} disabled={fixStatuses[`query-content-${item.page}-${item.query}`] === 'sending'}>
                       <Wand2 className="h-4 w-4 mr-1" />
                       {fixStatuses[`query-content-${item.page}-${item.query}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
                     </Button>
                   </div>
                   {renderFixStatus(`query-content-${item.page}-${item.query}`)}
-                  {renderAppliedSuggestion(`query-content-${item.page}-${item.query}`)}
                 </div>
               ))}
             </CardContent>
@@ -732,20 +730,6 @@ export const GeoScoreCard = () => {
         </>
       )}
 
-      <AlertDialog open={Boolean(pendingAction)} onOpenChange={(open) => { if (!open) setPendingAction(null); }}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>{pendingAction?.title ?? "Valider l'action"}</AlertDialogTitle>
-            <AlertDialogDescription>{pendingAction?.description ?? "Confirmer cette action."}</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Annuler</AlertDialogCancel>
-            <AlertDialogAction onClick={(event) => { event.preventDefault(); void confirmPendingAction(); }}>
-              Valider avant mise en place
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
     </div>
   );
 };

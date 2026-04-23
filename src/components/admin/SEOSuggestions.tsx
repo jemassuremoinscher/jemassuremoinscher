@@ -767,7 +767,7 @@ export const SEOSuggestions = () => {
                       </div>
                       {!issue.pass && canAutoFixSeoIssue(issue) ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" onClick={() => setPendingAction({ type: 'issue', key: issue.id, title: 'Valider la correction SEO', description: `Confirmer l'application de la correction automatique pour “${issue.description}” ?`, issue })} disabled={fixStatuses[issue.id] === 'sending'}>
+                          <Button size="sm" onClick={() => void runDirectFix(issue.id, issue)} disabled={fixStatuses[issue.id] === 'sending'}>
                             <Wand2 className="h-4 w-4 mr-1" />
                             {fixStatuses[issue.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
                           </Button>
@@ -815,7 +815,7 @@ export const SEOSuggestions = () => {
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
                           {(check.label.toLowerCase().includes('position') || check.label.toLowerCase().includes('organiques') || check.label.toLowerCase().includes('engagement')) ? (
-                            <Button size="sm" onClick={() => setPendingAction({ type: 'visibility', key: check.id, title: 'Valider l\'action SEO', description: `Confirmer l'application de l'amélioration “${getVisibilityFixAction(check).label}” ?`, check })} disabled={fixStatuses[check.id] === 'sending'}>
+                            <Button size="sm" onClick={() => void runVisibilityFix(check.id, check)} disabled={fixStatuses[check.id] === 'sending'}>
                               <Wand2 className="h-4 w-4 mr-1" />
                               {fixStatuses[check.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
                             </Button>
@@ -878,13 +878,12 @@ export const SEOSuggestions = () => {
                         <p><span className="font-medium text-foreground">Action contenu :</span> {item.recommendation}</p>
                       </div>
                       <div className="mt-3">
-                        <Button size="sm" variant="outline" onClick={() => setPendingAction({ type: 'query-content', key: `seo-query-content-${item.page}-${item.query}`, title: 'Valider l\'amélioration contenu', description: `Créer directement une amélioration SEO pour la requête “${item.query}” sur ${item.page} ?`, item })} disabled={fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending'}>
+                        <Button size="sm" variant="outline" onClick={() => void runQueryContentImprovement(`seo-query-content-${item.page}-${item.query}`, item)} disabled={fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending'}>
                           <Wand2 className="h-4 w-4 mr-1" />
                           {fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
                         </Button>
                       </div>
                       {renderFixStatus(`seo-query-content-${item.page}-${item.query}`)}
-                      {renderAppliedSuggestion(`seo-query-content-${item.page}-${item.query}`)}
                     </div>
                   ))}
                 </div>
@@ -913,13 +912,12 @@ export const SEOSuggestions = () => {
                   </div>
                   <p className="mt-2 text-muted-foreground"><span className="font-medium text-foreground">Amélioration contenu :</span> {page.contentAction}</p>
                   <div className="mt-3">
-                    <Button size="sm" variant="outline" onClick={() => setPendingAction({ type: 'page-content', key: `seo-page-content-${page.path}`, title: 'Valider l\'amélioration contenu', description: `Créer directement une amélioration SEO pour ${page.path} ?`, page })} disabled={fixStatuses[`seo-page-content-${page.path}`] === 'sending'}>
+                    <Button size="sm" variant="outline" onClick={() => void runPageContentImprovement(`seo-page-content-${page.path}`, page)} disabled={fixStatuses[`seo-page-content-${page.path}`] === 'sending'}>
                       <Wand2 className="h-4 w-4 mr-1" />
                       {fixStatuses[`seo-page-content-${page.path}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
                     </Button>
                   </div>
                   {renderFixStatus(`seo-page-content-${page.path}`)}
-                  {renderAppliedSuggestion(`seo-page-content-${page.path}`)}
                 </div>
               ))}
             </CardContent>
@@ -1044,20 +1042,6 @@ export const SEOSuggestions = () => {
         ))}
       </div>
 
-      <AlertDialog open={Boolean(pendingAction)} onOpenChange={(open) => { if (!open) setPendingAction(null); }}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>{pendingAction?.title ?? 'Valider l\'action'}</AlertDialogTitle>
-            <AlertDialogDescription>{pendingAction?.description ?? 'Confirmer cette action.'}</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Annuler</AlertDialogCancel>
-            <AlertDialogAction onClick={(event) => { event.preventDefault(); void confirmPendingAction(); }}>
-              Valider avant mise en place
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
     </div>
   );
 };
