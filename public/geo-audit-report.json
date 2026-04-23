@@ -1,16 +1,584 @@
 {
-  "generatedAt": "2026-04-23T01:49:46.623Z",
+  "generatedAt": "2026-04-23T02:01:44.427Z",
   "score": 100,
   "status": "excellent",
+  "methodology": "Score GEO pondéré sur toutes les pages HTML du site plus les sources React/marketing critiques : dérive des métriques partagées, cohérence du shell statique et absence de stale copy.",
   "summary": {
-    "totalChecks": 16,
-    "passedChecks": 16,
+    "totalChecks": 66,
+    "passedChecks": 66,
     "failedChecks": 0,
-    "auditedFiles": 9,
-    "staticRoutes": 4
+    "auditedFiles": 55,
+    "auditedPages": 47,
+    "staticRoutes": 47,
+    "weightedPassed": 425,
+    "weightedTotal": 425
   },
   "mismatches": [],
   "checks": [
+    {
+      "id": "assurance-animaux/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "assurance-animaux/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "assurance-auto/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "assurance-auto/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "assurance-gli/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "assurance-gli/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "assurance-habitation/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "assurance-habitation/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "assurance-moto/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "assurance-moto/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "assurance-mrp/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "assurance-mrp/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "assurance-pno/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "assurance-pno/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "assurance-pret/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "assurance-pret/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "assurance-prevoyance/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "assurance-prevoyance/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "assurance-rc-pro/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "assurance-rc-pro/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "assurance-sante/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "assurance-sante/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "assurance-vie/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "assurance-vie/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/5-arnaques-assurance-courantes-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/5-arnaques-assurance-courantes-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/accident-seul-sans-tiers-declarer-reparer/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/accident-seul-sans-tiers-declarer-reparer/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-colocation-contrat-unique-ou-individuel/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-colocation-contrat-unique-ou-individuel/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-jeune-conducteur-2026-moins-cher/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-jeune-conducteur-2026-moins-cher/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-malus-eleve-compagnies-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-malus-eleve-compagnies-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-pno-obligatoire-louer-bien/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-pno-obligatoire-louer-bien/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/comparatif-habitation-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/comparatif-habitation-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/degat-des-eaux-voisins-constat-amiable-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/degat-des-eaux-voisins-constat-amiable-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/droits-des-assures-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/droits-des-assures-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/fausse-declaration-assurance-risques-reels/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/fausse-declaration-assurance-risques-reels/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/guide-choisir-assurance-auto-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/guide-choisir-assurance-auto-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/loi-hamon-2026-resilier-assurance-3-clics/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/loi-hamon-2026-resilier-assurance-3-clics/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/loi-lemoine-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/loi-lemoine-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/loi-lemoine-assurance-emprunteur-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/loi-lemoine-assurance-emprunteur-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/meilleure-assurance-auto-2026-comparatif/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/meilleure-assurance-auto-2026-comparatif/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/meilleure-assurance-auto-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/meilleure-assurance-auto-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/mutuelle-sante-reduire-frais-medicaux-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/mutuelle-sante-reduire-frais-medicaux-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/non-lieu-assurance-aucun-assureur-role-bct/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/non-lieu-assurance-aucun-assureur-role-bct/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/nouvelle-reglementation-assurance-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/nouvelle-reglementation-assurance-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/resiliation-assurance-droits-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/resiliation-assurance-droits-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/top-10-meilleures-mutuelles-sante-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/top-10-meilleures-mutuelles-sante-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/top-mutuelles-sante-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/top-mutuelles-sante-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/voiture-immobilisee-garage-arreter-assurer/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/voiture-immobilisee-garage-arreter-assurer/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "contact/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "contact/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "glossaire/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "glossaire/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "glossaire/responsabilite-civile/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "glossaire/responsabilite-civile/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "glossaire/sinistre/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "glossaire/sinistre/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "glossaire/ticket-moderateur/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "glossaire/ticket-moderateur/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "glossaire/tiers/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "glossaire/tiers/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "glossaire/tous-risques/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "glossaire/tous-risques/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "glossaire/vetuste/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "glossaire/vetuste/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "nos-partenaires/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "nos-partenaires/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "outils/calculateur-bonus-malus/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "outils/calculateur-bonus-malus/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis si la page expose une preuve sociale."
+    },
     {
       "id": "contact-title",
       "category": "static-title",
@@ -18,7 +586,10 @@
       "description": "Le titre statique de contact correspond à la source GEO",
       "pass": true,
       "expected": "Contact | jemassuremoinscher.fr",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": "Contact | jemassuremoinscher.fr",
+      "reason": "Passe : Contact | jemassuremoinscher.fr observé, conforme à Contact | jemassuremoinscher.fr."
     },
     {
       "id": "contact-description",
@@ -27,7 +598,10 @@
       "description": "La meta description statique de contact correspond à la source GEO",
       "pass": true,
       "expected": "Contactez jemassuremoinscher.fr par email ou formulaire. Réponse sous 30 minutes, service 100% en ligne.",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": "Contactez jemassuremoinscher.fr par email ou formulaire. Réponse sous 30 minutes, service 100% en ligne.",
+      "reason": "Passe : Contactez jemassuremoinscher.fr par email ou formulaire. Réponse sous 30 minutes, service 100% en ligne. observé, conforme à Contactez jemassuremoinscher.fr par email ou formulaire. Réponse sous 30 minutes, service 100% en ligne.."
     },
     {
       "id": "contact-h1",
@@ -36,7 +610,10 @@
       "description": "Le H1 statique de contact correspond à la source GEO",
       "pass": true,
       "expected": "Contact jemassuremoinscher.fr",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": "Contact jemassuremoinscher.fr",
+      "reason": "Passe : Contact jemassuremoinscher.fr observé, conforme à Contact jemassuremoinscher.fr."
     },
     {
       "id": "blog-title",
@@ -45,7 +622,10 @@
       "description": "Le titre statique de blog correspond à la source GEO",
       "pass": true,
       "expected": "Blog assurance | Guides et conseils 2026",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": "Blog assurance | Guides et conseils 2026",
+      "reason": "Passe : Blog assurance | Guides et conseils 2026 observé, conforme à Blog assurance | Guides et conseils 2026."
     },
     {
       "id": "blog-description",
@@ -54,7 +634,10 @@
       "description": "La meta description statique de blog correspond à la source GEO",
       "pass": true,
       "expected": "Retrouvez nos guides, conseils pratiques et actualités pour choisir une assurance moins chère en France.",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": "Retrouvez nos guides, conseils pratiques et actualités pour choisir une assurance moins chère en France.",
+      "reason": "Passe : Retrouvez nos guides, conseils pratiques et actualités pour choisir une assurance moins chère en France. observé, conforme à Retrouvez nos guides, conseils pratiques et actualités pour choisir une assurance moins chère en France.."
     },
     {
       "id": "blog-h1",
@@ -63,7 +646,10 @@
       "description": "Le H1 statique de blog correspond à la source GEO",
       "pass": true,
       "expected": "Blog assurance",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": "Blog assurance",
+      "reason": "Passe : Blog assurance observé, conforme à Blog assurance."
     },
     {
       "id": "glossaire-title",
@@ -72,7 +658,10 @@
       "description": "Le titre statique de glossaire correspond à la source GEO",
       "pass": true,
       "expected": "Glossaire assurance | Définitions essentielles",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": "Glossaire assurance | Définitions essentielles",
+      "reason": "Passe : Glossaire assurance | Définitions essentielles observé, conforme à Glossaire assurance | Définitions essentielles."
     },
     {
       "id": "glossaire-description",
@@ -81,7 +670,10 @@
       "description": "La meta description statique de glossaire correspond à la source GEO",
       "pass": true,
       "expected": "Consultez les définitions des principaux termes d'assurance : franchise, sinistre, responsabilité civile, tiers et plus.",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": "Consultez les définitions des principaux termes d'assurance : franchise, sinistre, responsabilité civile, tiers et plus.",
+      "reason": "Passe : Consultez les définitions des principaux termes d'assurance : franchise, sinistre, responsabilité civile, tiers et plus. observé, conforme à Consultez les définitions des principaux termes d'assurance : franchise, sinistre, responsabilité civile, tiers et plus.."
     },
     {
       "id": "glossaire-h1",
@@ -90,7 +682,10 @@
       "description": "Le H1 statique de glossaire correspond à la source GEO",
       "pass": true,
       "expected": "Glossaire assurance",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": "Glossaire assurance",
+      "reason": "Passe : Glossaire assurance observé, conforme à Glossaire assurance."
     },
     {
       "id": "home-route-map-review",
@@ -99,7 +694,10 @@
       "description": "La route /avis-clients du shell statique utilise les métriques GEO partagées",
       "pass": true,
       "expected": "Avis Clients | 4.9/5 sur 247+ avis vérifiés",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": null,
+      "reason": "Passe : conforme à Avis Clients | 4.9/5 sur 247+ avis vérifiés."
     },
     {
       "id": "home-jsonld-rating",
@@ -108,7 +706,10 @@
       "description": "Le JSON-LD statique utilise la note et le nombre d'avis partagés",
       "pass": true,
       "expected": "4.9 / 247",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": null,
+      "reason": "Passe : conforme à 4.9 / 247."
     },
     {
       "id": "react-home-shared-source",
@@ -117,7 +718,10 @@
       "description": "La home React lit la note GEO depuis la source partagée",
       "pass": true,
       "expected": "geoContent.trust.ratingValue + geoContent.trust.reviewCount",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": null,
+      "reason": "Passe : conforme à geoContent.trust.ratingValue + geoContent.trust.reviewCount."
     },
     {
       "id": "src/pages/AvisClients.tsx-shared-rating",
@@ -126,7 +730,10 @@
       "description": "AvisClients.tsx lit bien les métriques GEO depuis la source partagée",
       "pass": true,
       "expected": "geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": null,
+      "reason": "Passe : conforme à geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel."
     },
     {
       "id": "src/pages/LlmsTxt.tsx-shared-rating",
@@ -135,7 +742,10 @@
       "description": "LlmsTxt.tsx lit bien les métriques GEO depuis la source partagée",
       "pass": true,
       "expected": "geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": null,
+      "reason": "Passe : conforme à geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel."
     },
     {
       "id": "src/components/comparison/WhyUsComparison.tsx-shared-rating",
@@ -144,7 +754,10 @@
       "description": "WhyUsComparison.tsx lit bien les métriques GEO depuis la source partagée",
       "pass": true,
       "expected": "geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": null,
+      "reason": "Passe : conforme à geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel."
     },
     {
       "id": "src/components/insurance/ExpertiseSection.tsx-shared-rating",
@@ -153,7 +766,46 @@
       "description": "ExpertiseSection.tsx lit bien les métriques GEO depuis la source partagée",
       "pass": true,
       "expected": "geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel",
-      "actual": null
+      "weight": 10,
+      "impact": 10,
+      "actual": null,
+      "reason": "Passe : conforme à geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel."
+    },
+    {
+      "id": "public/llms.txt-stale-copy-free",
+      "category": "stale-copy",
+      "file": "public/llms.txt",
+      "description": "llms.txt ne contient pas d'ancienne métrique marque",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis",
+      "weight": 10,
+      "impact": 10,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis."
+    },
+    {
+      "id": "src/components/admin/SERPPreview.tsx-stale-copy-free",
+      "category": "stale-copy",
+      "file": "src/components/admin/SERPPreview.tsx",
+      "description": "SERPPreview.tsx ne contient pas d'ancienne métrique marque",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis",
+      "weight": 10,
+      "impact": 10,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis."
+    },
+    {
+      "id": "src/data/landingConfigs.tsx-stale-copy-free",
+      "category": "stale-copy",
+      "file": "src/data/landingConfigs.tsx",
+      "description": "landingConfigs.tsx ne contient pas d'ancienne métrique marque",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 4.9/5 et 247 avis",
+      "weight": 10,
+      "impact": 10,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 4.9/5 et 247 avis."
     }
   ]
 }
