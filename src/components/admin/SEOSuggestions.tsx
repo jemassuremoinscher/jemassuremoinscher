@@ -211,6 +211,7 @@ export const SEOSuggestions = () => {
   const [seoError, setSeoError] = useState<string | null>(null);
   const [visibilityError, setVisibilityError] = useState<string | null>(null);
   const [isSeoLoading, setIsSeoLoading] = useState(true);
+  const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
 
   useEffect(() => {
     fetchSuggestions();
@@ -337,23 +338,38 @@ export const SEOSuggestions = () => {
     toast.success('Proposition de correction copiée');
   };
 
-  const openLovableFix = async (action: FixAction) => {
+  const openLovableFix = async (key: string, action: FixAction) => {
     const prompt = `${action.label}\n\n${action.details}`;
+    setFixStatuses((current) => ({ ...current, [key]: 'sending' }));
 
     try {
       await navigator.clipboard.writeText(prompt);
+    } catch {}
+
+    try {
+      const url = `${LOVABLE_PROJECT_URL}?prompt=${encodeURIComponent(prompt)}&message=${encodeURIComponent(prompt)}`;
+      const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+
+      if (!newWindow) {
+        setFixStatuses((current) => ({ ...current, [key]: 'error' }));
+        toast.error('Impossible d’ouvrir Lovable automatiquement.');
+        return;
+      }
+
+      setFixStatuses((current) => ({ ...current, [key]: 'success' }));
+      toast.success('Correction envoyée à Lovable.');
     } catch {
-      // ignore clipboard failures, opening Lovable is the main action
+      setFixStatuses((current) => ({ ...current, [key]: 'error' }));
+      toast.error('Erreur pendant l’envoi de la correction.');
     }
+  };
 
-    const url = `${LOVABLE_PROJECT_URL}?prompt=${encodeURIComponent(prompt)}&message=${encodeURIComponent(prompt)}`;
-    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-
-    if (!newWindow) {
-      window.location.href = url;
-    }
-
-    toast.success('Lovable ouvert avec la correction prête. Le prompt a aussi été copié en secours.');
+  const renderFixStatus = (key: string) => {
+    const status = fixStatuses[key] ?? 'idle';
+    if (status === 'sending') return <p className="text-xs text-muted-foreground">Envoi en cours…</p>;
+    if (status === 'success') return <p className="text-xs text-primary">Correction envoyée à Lovable.</p>;
+    if (status === 'error') return <p className="text-xs text-destructive">Erreur d’envoi. Réessaie.</p>;
+    return null;
   };
 
   const statusBadge = (status: string) => {
@@ -534,12 +550,13 @@ export const SEOSuggestions = () => {
                       </div>
                       {!issue.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" onClick={() => openLovableFix(getSeoFixAction(issue))}>
+                          <Button size="sm" onClick={() => openLovableFix(issue.id, getSeoFixAction(issue))} disabled={fixStatuses[issue.id] === 'sending'}>
                             <ArrowUpRight className="h-4 w-4 mr-1" />
-                            Proposer la correction
+                            {fixStatuses[issue.id] === 'sending' ? 'Envoi...' : 'Proposer la correction'}
                           </Button>
                         </div>
                       ) : null}
+                      {renderFixStatus(issue.id)}
                     </div>
                   ))}
                 </div>
@@ -580,12 +597,13 @@ export const SEOSuggestions = () => {
                       </div>
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" onClick={() => openLovableFix(getVisibilityFixAction(check))}>
+                          <Button size="sm" onClick={() => openLovableFix(check.id, getVisibilityFixAction(check))} disabled={fixStatuses[check.id] === 'sending'}>
                             <ArrowUpRight className="h-4 w-4 mr-1" />
-                            Proposer la correction
+                            {fixStatuses[check.id] === 'sending' ? 'Envoi...' : 'Proposer la correction'}
                           </Button>
                         </div>
                       ) : null}
+                      {renderFixStatus(check.id)}
                     </div>
                   ))}
                 </div>
