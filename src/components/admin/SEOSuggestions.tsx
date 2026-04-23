@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search } from 'lucide-react';
+import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Progress } from '@/components/ui/progress';
 
 type Suggestion = {
   id: string;
@@ -33,14 +34,73 @@ type GenerationResponse = {
   errors?: Array<{ keyword: string; reason: string }>;
 };
 
+type SeoAuditCheck = {
+  id: string;
+  file: string;
+  category: string;
+  description: string;
+  pass: boolean;
+  weight: number;
+  expected: string;
+  actual: string | null;
+};
+
+type SeoAuditReport = {
+  generatedAt: string;
+  score: number;
+  status: 'excellent' | 'good' | 'warning' | 'critical';
+  methodology: string;
+  summary: {
+    auditedPages: number;
+    totalChecks: number;
+    passedChecks: number;
+    failedChecks: number;
+    weightedPassed: number;
+    weightedTotal: number;
+    strongPages: number;
+  };
+  pageScores: Array<{ file: string; score: number; issues: number }>;
+  issues: SeoAuditCheck[];
+};
+
+const scoreMeta = {
+  excellent: { label: 'Fiable', badge: 'default' as const },
+  good: { label: 'Solide', badge: 'secondary' as const },
+  warning: { label: 'À corriger', badge: 'outline' as const },
+  critical: { label: 'Fragile', badge: 'destructive' as const },
+};
+
 export const SEOSuggestions = () => {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [seoReport, setSeoReport] = useState<SeoAuditReport | null>(null);
+  const [seoError, setSeoError] = useState<string | null>(null);
+  const [isSeoLoading, setIsSeoLoading] = useState(true);
 
   useEffect(() => {
     fetchSuggestions();
+    loadSeoReport();
   }, []);
+
+  const loadSeoReport = async () => {
+    try {
+      setIsSeoLoading(true);
+      setSeoError(null);
+      const response = await fetch(`/seo-audit-report.json?ts=${Date.now()}`, { cache: 'no-store' });
+
+      if (!response.ok) {
+        throw new Error('Rapport SEO indisponible. Lancez un build pour générer l’audit.');
+      }
+
+      const data = (await response.json()) as SeoAuditReport;
+      setSeoReport(data);
+    } catch (err) {
+      setSeoError(err instanceof Error ? err.message : 'Impossible de charger le rapport SEO.');
+    } finally {
+      setIsSeoLoading(false);
+    }
+  };
 
   const fetchSuggestions = async () => {
     setIsLoading(true);
@@ -129,8 +189,113 @@ export const SEOSuggestions = () => {
     return <Badge variant={c.variant}>{c.label}</Badge>;
   };
 
+  const seoStatus = useMemo(() => {
+    if (!seoReport) return scoreMeta.warning;
+    return scoreMeta[seoReport.status] ?? scoreMeta.warning;
+  }, [seoReport]);
+
   return (
     <div className="space-y-6">
+      {seoError ? (
+        <Card>
+          <CardContent className="py-10 text-center space-y-3">
+            <AlertCircle className="h-10 w-10 text-destructive mx-auto" />
+            <p className="font-medium text-foreground">Rapport SEO introuvable</p>
+            <p className="text-sm text-muted-foreground">{seoError}</p>
+          </CardContent>
+        </Card>
+      ) : (
+        <>
+          <Card>
+            <CardHeader>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <CardTitle className="flex items-center gap-3">
+                    <span className="text-3xl font-black text-foreground">{seoReport?.score ?? '--'}/100</span>
+                    <Badge variant={seoStatus.badge}>{seoStatus.label}</Badge>
+                  </CardTitle>
+                  <CardDescription>
+                    {seoReport
+                      ? `Dernier audit : ${new Date(seoReport.generatedAt).toLocaleString('fr-FR')}`
+                      : 'Chargement du dernier audit...'}
+                  </CardDescription>
+                </div>
+                <div className="flex w-full flex-col gap-3 sm:w-72">
+                  <Progress value={seoReport?.score ?? 0} className="h-2.5" />
+                  <Button variant="outline" size="sm" onClick={loadSeoReport} disabled={isSeoLoading}>
+                    <RefreshCw className={`h-4 w-4 mr-2 ${isSeoLoading ? 'animate-spin' : ''}`} />
+                    Actualiser le score SEO
+                  </Button>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="rounded-lg border border-border bg-card p-4">
+                  <p className="text-xs text-muted-foreground">Pages auditées</p>
+                  <p className="mt-1 text-2xl font-bold text-foreground">{seoReport?.summary.auditedPages ?? 0}</p>
+                </div>
+                <div className="rounded-lg border border-border bg-card p-4">
+                  <p className="text-xs text-muted-foreground">Checks validés</p>
+                  <p className="mt-1 text-2xl font-bold text-foreground">{seoReport?.summary.passedChecks ?? 0}</p>
+                </div>
+                <div className="rounded-lg border border-border bg-card p-4">
+                  <p className="text-xs text-muted-foreground">Points à corriger</p>
+                  <p className="mt-1 text-2xl font-bold text-foreground">{seoReport?.summary.failedChecks ?? 0}</p>
+                </div>
+                <div className="rounded-lg border border-border bg-card p-4">
+                  <p className="text-xs text-muted-foreground">Pages solides</p>
+                  <p className="mt-1 text-2xl font-bold text-foreground">{seoReport?.summary.strongPages ?? 0}</p>
+                </div>
+              </div>
+
+              <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                <p className="font-medium text-foreground">Méthodologie</p>
+                <p className="mt-1">{seoReport?.methodology ?? 'Chargement...'}</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Points SEO détectés</CardTitle>
+              <CardDescription>Score on-page basé sur des critères reconnus, distinct du trafic réel ou du ranking.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              {!seoReport || isSeoLoading ? (
+                <div className="text-sm text-muted-foreground">Chargement du détail...</div>
+              ) : seoReport.issues.length === 0 ? (
+                <div className="flex items-center gap-3 rounded-lg border border-border bg-card p-4">
+                  <CheckCircle2 className="h-5 w-5 text-primary" />
+                  <div>
+                    <p className="font-medium text-foreground">Aucun point bloquant détecté</p>
+                    <p className="text-sm text-muted-foreground">Le périmètre statique audité respecte les principaux fondamentaux on-page.</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {seoReport.issues.slice(0, 10).map((issue) => (
+                    <div key={issue.id} className="rounded-lg border border-border bg-card p-4">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="font-medium text-foreground">{issue.description}</p>
+                          <p className="mt-1 text-xs text-muted-foreground">{issue.file}</p>
+                        </div>
+                        <Badge variant="outline">{issue.category}</Badge>
+                      </div>
+                      <div className="mt-3 grid gap-2 text-sm text-muted-foreground">
+                        <p><span className="font-medium text-foreground">Attendu :</span> {issue.expected}</p>
+                        {issue.actual ? <p><span className="font-medium text-foreground">Trouvé :</span> {issue.actual}</p> : null}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </>
+      )}
+
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl sm:text-2xl font-bold flex items-center gap-2">

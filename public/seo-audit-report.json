@@ -1,0 +1,551 @@
+{
+  "generatedAt": "2026-04-23T01:49:46.689Z",
+  "score": 66,
+  "status": "warning",
+  "methodology": "Score on-page basé sur critères SEO reconnus : title, meta description, canonical, robots, viewport, lang, H1, Open Graph, JSON-LD, maillage interne.",
+  "summary": {
+    "auditedPages": 4,
+    "totalChecks": 40,
+    "passedChecks": 29,
+    "failedChecks": 11,
+    "weightedPassed": 265,
+    "weightedTotal": 400,
+    "strongPages": 1
+  },
+  "pageScores": [
+    {
+      "file": "index.html",
+      "score": 85,
+      "issues": 1
+    },
+    {
+      "file": "contact/index.html",
+      "score": 65,
+      "issues": 3
+    },
+    {
+      "file": "blog/index.html",
+      "score": 65,
+      "issues": 3
+    },
+    {
+      "file": "glossaire/index.html",
+      "score": 50,
+      "issues": 4
+    }
+  ],
+  "issues": [
+    {
+      "id": "index.html-single-h1",
+      "file": "index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1",
+      "pass": false,
+      "weight": 15,
+      "expected": "1 H1 par page",
+      "actual": "2 H1"
+    },
+    {
+      "id": "contact/index.html-single-h1",
+      "file": "contact/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1",
+      "pass": false,
+      "weight": 15,
+      "expected": "1 H1 par page",
+      "actual": "2 H1"
+    },
+    {
+      "id": "contact/index.html-social-tags",
+      "file": "contact/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": false,
+      "weight": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=false, og:description=false"
+    },
+    {
+      "id": "contact/index.html-jsonld",
+      "file": "contact/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": false,
+      "weight": 10,
+      "expected": "Au moins 1 script application/ld+json",
+      "actual": "0 bloc(s)"
+    },
+    {
+      "id": "blog/index.html-single-h1",
+      "file": "blog/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1",
+      "pass": false,
+      "weight": 15,
+      "expected": "1 H1 par page",
+      "actual": "2 H1"
+    },
+    {
+      "id": "blog/index.html-social-tags",
+      "file": "blog/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": false,
+      "weight": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=false, og:description=false"
+    },
+    {
+      "id": "blog/index.html-jsonld",
+      "file": "blog/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": false,
+      "weight": 10,
+      "expected": "Au moins 1 script application/ld+json",
+      "actual": "0 bloc(s)"
+    },
+    {
+      "id": "glossaire/index.html-meta-description",
+      "file": "glossaire/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": false,
+      "weight": 15,
+      "expected": "Meta description de 70 à 160 caractères",
+      "actual": "49 caractères"
+    },
+    {
+      "id": "glossaire/index.html-single-h1",
+      "file": "glossaire/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1",
+      "pass": false,
+      "weight": 15,
+      "expected": "1 H1 par page",
+      "actual": "2 H1"
+    },
+    {
+      "id": "glossaire/index.html-social-tags",
+      "file": "glossaire/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": false,
+      "weight": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=false, og:description=false"
+    },
+    {
+      "id": "glossaire/index.html-jsonld",
+      "file": "glossaire/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": false,
+      "weight": 10,
+      "expected": "Au moins 1 script application/ld+json",
+      "actual": "0 bloc(s)"
+    }
+  ],
+  "checks": [
+    {
+      "id": "index.html-title-length",
+      "file": "index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": true,
+      "weight": 15,
+      "expected": "Title de 30 à 60 caractères",
+      "actual": "49 caractères"
+    },
+    {
+      "id": "index.html-meta-description",
+      "file": "index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "expected": "Meta description de 70 à 160 caractères",
+      "actual": "94 caractères"
+    },
+    {
+      "id": "index.html-canonical",
+      "file": "index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "expected": "Canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr"
+    },
+    {
+      "id": "index.html-robots",
+      "file": "index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "expected": "Meta robots contenant index, follow",
+      "actual": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    },
+    {
+      "id": "index.html-viewport",
+      "file": "index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "expected": "Meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0"
+    },
+    {
+      "id": "index.html-lang",
+      "file": "index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "expected": "Attribut lang sur <html>",
+      "actual": "fr"
+    },
+    {
+      "id": "index.html-single-h1",
+      "file": "index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1",
+      "pass": false,
+      "weight": 15,
+      "expected": "1 H1 par page",
+      "actual": "2 H1"
+    },
+    {
+      "id": "index.html-social-tags",
+      "file": "index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true"
+    },
+    {
+      "id": "index.html-jsonld",
+      "file": "index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "expected": "Au moins 1 script application/ld+json",
+      "actual": "1 bloc(s)"
+    },
+    {
+      "id": "index.html-internal-links",
+      "file": "index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "expected": "Au moins 1 lien interne relatif",
+      "actual": "52 lien(s)"
+    },
+    {
+      "id": "contact/index.html-title-length",
+      "file": "contact/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": true,
+      "weight": 15,
+      "expected": "Title de 30 à 60 caractères",
+      "actual": "31 caractères"
+    },
+    {
+      "id": "contact/index.html-meta-description",
+      "file": "contact/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "expected": "Meta description de 70 à 160 caractères",
+      "actual": "104 caractères"
+    },
+    {
+      "id": "contact/index.html-canonical",
+      "file": "contact/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "expected": "Canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/contact"
+    },
+    {
+      "id": "contact/index.html-robots",
+      "file": "contact/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "expected": "Meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"
+    },
+    {
+      "id": "contact/index.html-viewport",
+      "file": "contact/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "expected": "Meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0"
+    },
+    {
+      "id": "contact/index.html-lang",
+      "file": "contact/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "expected": "Attribut lang sur <html>",
+      "actual": "fr"
+    },
+    {
+      "id": "contact/index.html-single-h1",
+      "file": "contact/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1",
+      "pass": false,
+      "weight": 15,
+      "expected": "1 H1 par page",
+      "actual": "2 H1"
+    },
+    {
+      "id": "contact/index.html-social-tags",
+      "file": "contact/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": false,
+      "weight": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=false, og:description=false"
+    },
+    {
+      "id": "contact/index.html-jsonld",
+      "file": "contact/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": false,
+      "weight": 10,
+      "expected": "Au moins 1 script application/ld+json",
+      "actual": "0 bloc(s)"
+    },
+    {
+      "id": "contact/index.html-internal-links",
+      "file": "contact/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "expected": "Au moins 1 lien interne relatif",
+      "actual": "2 lien(s)"
+    },
+    {
+      "id": "blog/index.html-title-length",
+      "file": "blog/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": true,
+      "weight": 15,
+      "expected": "Title de 30 à 60 caractères",
+      "actual": "40 caractères"
+    },
+    {
+      "id": "blog/index.html-meta-description",
+      "file": "blog/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "expected": "Meta description de 70 à 160 caractères",
+      "actual": "104 caractères"
+    },
+    {
+      "id": "blog/index.html-canonical",
+      "file": "blog/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "expected": "Canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog"
+    },
+    {
+      "id": "blog/index.html-robots",
+      "file": "blog/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "expected": "Meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"
+    },
+    {
+      "id": "blog/index.html-viewport",
+      "file": "blog/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "expected": "Meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0"
+    },
+    {
+      "id": "blog/index.html-lang",
+      "file": "blog/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "expected": "Attribut lang sur <html>",
+      "actual": "fr"
+    },
+    {
+      "id": "blog/index.html-single-h1",
+      "file": "blog/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1",
+      "pass": false,
+      "weight": 15,
+      "expected": "1 H1 par page",
+      "actual": "2 H1"
+    },
+    {
+      "id": "blog/index.html-social-tags",
+      "file": "blog/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": false,
+      "weight": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=false, og:description=false"
+    },
+    {
+      "id": "blog/index.html-jsonld",
+      "file": "blog/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": false,
+      "weight": 10,
+      "expected": "Au moins 1 script application/ld+json",
+      "actual": "0 bloc(s)"
+    },
+    {
+      "id": "blog/index.html-internal-links",
+      "file": "blog/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "expected": "Au moins 1 lien interne relatif",
+      "actual": "14 lien(s)"
+    },
+    {
+      "id": "glossaire/index.html-title-length",
+      "file": "glossaire/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": true,
+      "weight": 15,
+      "expected": "Title de 30 à 60 caractères",
+      "actual": "46 caractères"
+    },
+    {
+      "id": "glossaire/index.html-meta-description",
+      "file": "glossaire/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": false,
+      "weight": 15,
+      "expected": "Meta description de 70 à 160 caractères",
+      "actual": "49 caractères"
+    },
+    {
+      "id": "glossaire/index.html-canonical",
+      "file": "glossaire/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "expected": "Canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/glossaire"
+    },
+    {
+      "id": "glossaire/index.html-robots",
+      "file": "glossaire/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "expected": "Meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"
+    },
+    {
+      "id": "glossaire/index.html-viewport",
+      "file": "glossaire/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "expected": "Meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0"
+    },
+    {
+      "id": "glossaire/index.html-lang",
+      "file": "glossaire/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "expected": "Attribut lang sur <html>",
+      "actual": "fr"
+    },
+    {
+      "id": "glossaire/index.html-single-h1",
+      "file": "glossaire/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1",
+      "pass": false,
+      "weight": 15,
+      "expected": "1 H1 par page",
+      "actual": "2 H1"
+    },
+    {
+      "id": "glossaire/index.html-social-tags",
+      "file": "glossaire/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": false,
+      "weight": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=false, og:description=false"
+    },
+    {
+      "id": "glossaire/index.html-jsonld",
+      "file": "glossaire/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": false,
+      "weight": 10,
+      "expected": "Au moins 1 script application/ld+json",
+      "actual": "0 bloc(s)"
+    },
+    {
+      "id": "glossaire/index.html-internal-links",
+      "file": "glossaire/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "expected": "Au moins 1 lien interne relatif",
+      "actual": "14 lien(s)"
+    }
+  ]
+}

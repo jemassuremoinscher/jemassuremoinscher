@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { AlertCircle, CheckCircle2, RefreshCw, ShieldCheck } from "lucide-react";
+import { AlertCircle, CheckCircle2, Info, RefreshCw, ShieldCheck } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -131,6 +131,16 @@ export const GeoScoreCard = () => {
               <div className="rounded-lg border border-border bg-card p-4">
                 <p className="text-xs text-muted-foreground">Routes GEO couvertes</p>
                 <p className="mt-1 text-2xl font-bold text-foreground">{report?.summary.staticRoutes ?? 0}</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="flex items-start gap-3 py-4">
+              <Info className="mt-0.5 h-5 w-5 text-primary" />
+              <div className="space-y-1 text-sm text-muted-foreground">
+                <p className="font-medium text-foreground">Ce score mesure l'alignement GEO, pas la visibilité réelle.</p>
+                <p>100/100 signifie que les contenus React et HTML statique audités sont cohérents sur ce périmètre ; cela ne garantit ni rankings ni trafic.</p>
               </div>
             </CardContent>
           </Card>
