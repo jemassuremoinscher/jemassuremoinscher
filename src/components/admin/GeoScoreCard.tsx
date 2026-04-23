@@ -479,6 +479,14 @@ export const GeoScoreCard = () => {
                   <p className="text-muted-foreground">Requêtes IA détectées</p>
                   <p className="font-semibold text-foreground">{visibilityReport?.geo.metrics.iaCitations ?? 0}</p>
                 </div>
+                <div className="rounded-md border border-border p-3">
+                  <p className="text-muted-foreground">Ranking proxy IA</p>
+                  <p className="font-semibold text-foreground">{visibilityReport?.geo.metrics.rankingScore ?? 0}/100</p>
+                </div>
+                <div className="rounded-md border border-border p-3">
+                  <p className="text-muted-foreground">Pages suivies</p>
+                  <p className="font-semibold text-foreground">{visibilityReport?.geo.metrics.trackedPages ?? 0}</p>
+                </div>
               </div>
               <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground space-y-2">
                 <p className="font-medium text-foreground">Méthodologie live</p>
@@ -591,6 +599,55 @@ export const GeoScoreCard = () => {
                   ))}
                 </div>
               )}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Ranking IA par page</CardTitle>
+              <CardDescription>Proxy interne basé sur visibilité requêtes, potentiel IA et couverture éditoriale.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {visibilityReport?.geo.pageRanking?.slice(0, 10).map((page) => (
+                <div key={`geo-${page.path}`} className="rounded-lg border border-border p-3 text-sm">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <p className="font-medium text-foreground">{page.path}</p>
+                      <p className="text-xs text-muted-foreground mt-1">Potentiel IA : {page.aiPotential} · Opportunité : {page.opportunityScore}/100</p>
+                    </div>
+                    <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                      <span>{page.impressions} impressions</span>
+                      <span>Pos. {page.avgPosition.toFixed(1)}</span>
+                      <span>CTR {page.ctr.toFixed(1)}%</span>
+                    </div>
+                  </div>
+                  <p className="mt-2 text-muted-foreground"><span className="font-medium text-foreground">Amélioration contenu :</span> {page.contentAction}</p>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Requêtes IA et contenus à créer</CardTitle>
+              <CardDescription>Comparatifs, FAQ, définitions et guides de décision à forte reprise potentielle.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {visibilityReport?.geo.queryOpportunities?.slice(0, 10).map((item) => (
+                <div key={`geo-query-${item.query}-${item.page}`} className="rounded-lg border border-border p-3 text-sm">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-medium text-foreground">{item.query}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{item.page}</p>
+                    </div>
+                    <Badge variant="outline">{item.intent}</Badge>
+                  </div>
+                  <div className="mt-2 grid gap-1 text-muted-foreground">
+                    <p>Impressions : <span className="font-medium text-foreground">{item.impressions}</span> · Position : <span className="font-medium text-foreground">{item.position.toFixed(1)}</span></p>
+                    <p><span className="font-medium text-foreground">Amélioration contenu :</span> {item.recommendation}</p>
+                  </div>
+                </div>
+              ))}
             </CardContent>
           </Card>
         </>
