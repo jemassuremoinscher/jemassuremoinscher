@@ -11,22 +11,30 @@ type GeoAuditCheck = {
   file: string;
   description: string;
   pass: boolean;
+  weight: number;
+  impact: number;
   expected: string;
   actual: string | null;
+  reason: string;
 };
 
 type GeoAuditReport = {
   generatedAt: string;
   score: number;
   status: "excellent" | "good" | "warning" | "critical";
+  methodology: string;
   summary: {
     totalChecks: number;
     passedChecks: number;
     failedChecks: number;
     auditedFiles: number;
+    auditedPages: number;
     staticRoutes: number;
+    weightedPassed: number;
+    weightedTotal: number;
   };
   mismatches: GeoAuditCheck[];
+  checks: GeoAuditCheck[];
 };
 
 const statusConfig = {
@@ -125,11 +133,15 @@ export const GeoScoreCard = () => {
                 <p className="mt-1 text-2xl font-bold text-foreground">{report?.summary.failedChecks ?? 0}</p>
               </div>
               <div className="rounded-lg border border-border bg-card p-4">
-                <p className="text-xs text-muted-foreground">Fichiers audités</p>
+                <p className="text-xs text-muted-foreground">Pages HTML auditées</p>
+                <p className="mt-1 text-2xl font-bold text-foreground">{report?.summary.auditedPages ?? 0}</p>
+              </div>
+              <div className="rounded-lg border border-border bg-card p-4">
+                <p className="text-xs text-muted-foreground">Fichiers couverts</p>
                 <p className="mt-1 text-2xl font-bold text-foreground">{report?.summary.auditedFiles ?? 0}</p>
               </div>
               <div className="rounded-lg border border-border bg-card p-4">
-                <p className="text-xs text-muted-foreground">Routes GEO couvertes</p>
+                <p className="text-xs text-muted-foreground">Routes statiques couvertes</p>
                 <p className="mt-1 text-2xl font-bold text-foreground">{report?.summary.staticRoutes ?? 0}</p>
               </div>
             </CardContent>
@@ -141,48 +153,44 @@ export const GeoScoreCard = () => {
               <div className="space-y-1 text-sm text-muted-foreground">
                 <p className="font-medium text-foreground">Ce score mesure l'alignement GEO, pas la visibilité réelle.</p>
                 <p>100/100 signifie que les contenus React et HTML statique audités sont cohérents sur ce périmètre ; cela ne garantit ni rankings ni trafic.</p>
+                <p>Méthodologie : {report?.methodology ?? "Chargement..."}</p>
               </div>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-base">Écarts détectés avant build</CardTitle>
+              <CardTitle className="text-base">Checks GEO détaillés</CardTitle>
               <CardDescription>
-                Le score baisse dès qu'un texte GEO ou une métrique diverge entre les sources React et le HTML statique.
+                Chaque check affiche son poids dans le score total et la raison du succès ou de l'échec.
               </CardDescription>
             </CardHeader>
             <CardContent>
               {!report || isLoading ? (
                 <div className="text-sm text-muted-foreground">Chargement du détail...</div>
-              ) : report.mismatches.length === 0 ? (
-                <div className="flex items-center gap-3 rounded-lg border border-border bg-card p-4">
-                  <CheckCircle2 className="h-5 w-5 text-primary" />
-                  <div>
-                    <p className="font-medium text-foreground">Aucune différence détectée</p>
-                    <p className="text-sm text-muted-foreground">Le contenu React audité est aligné avec le HTML statique généré.</p>
-                  </div>
-                </div>
               ) : (
-                <div className="space-y-3">
-                  {report.mismatches.slice(0, 12).map((item) => (
+                <div className="space-y-3 max-h-[34rem] overflow-y-auto pr-1">
+                  {report.checks.map((item) => (
                     <div key={item.id} className="rounded-lg border border-border bg-card p-4">
                       <div className="flex items-start justify-between gap-3">
                         <div>
                           <p className="font-medium text-foreground">{item.description}</p>
                           <p className="text-xs text-muted-foreground mt-1">{item.file}</p>
                         </div>
-                        <Badge variant="outline">{item.category}</Badge>
+                        <div className="flex flex-wrap items-center justify-end gap-2">
+                          <Badge variant={item.pass ? "secondary" : "destructive"}>{item.pass ? "Passe" : "Échec"}</Badge>
+                          <Badge variant="outline">{item.category}</Badge>
+                          <Badge variant="outline">Poids {item.weight}</Badge>
+                        </div>
                       </div>
                       <div className="mt-3 grid gap-2 text-sm">
+                        <p className="text-muted-foreground"><span className="font-medium text-foreground">Impact score :</span> {item.pass ? "+" : "-"}{item.impact}</p>
+                        <p className="text-muted-foreground"><span className="font-medium text-foreground">Pourquoi :</span> {item.reason}</p>
                         <p className="text-muted-foreground"><span className="font-medium text-foreground">Attendu :</span> {item.expected}</p>
                         {item.actual ? <p className="text-muted-foreground"><span className="font-medium text-foreground">Trouvé :</span> {item.actual}</p> : null}
                       </div>
                     </div>
                   ))}
-                  {report.mismatches.length > 12 ? (
-                    <p className="text-xs text-muted-foreground">+ {report.mismatches.length - 12} autres différences dans le rapport.</p>
-                  ) : null}
                 </div>
               )}
             </CardContent>
