@@ -269,6 +269,54 @@ export const validateGeoIssueFix = async (issue: { category: string; description
 
 type VisibilityCheckLike = { label: string; expected: string; value: string };
 
+type GeoContentImprovementInput = {
+  scope: "page" | "query";
+  path: string;
+  recommendation: string;
+  query?: string;
+  intent?: string;
+};
+
+const slugify = (value: string) => value
+  .toLowerCase()
+  .normalize("NFD")
+  .replace(/[\u0300-\u036f]/g, "")
+  .replace(/[^a-z0-9]+/g, "-")
+  .replace(/^-+|-+$/g, "")
+  .slice(0, 80);
+
+const buildGeoContentSuggestion = (input: GeoContentImprovementInput) => {
+  const normalizedPath = input.path === "/" ? "accueil" : input.path.replace(/^\/+|\/+$/g, "").replace(/\//g, "-");
+  const baseKeyword = input.query?.trim() || `${normalizedPath} ${input.intent || "geo"}`;
+  const title = input.scope === "query"
+    ? `${humanizeSlug(slugify(input.query || normalizedPath))} : réponse experte et guide décisionnel`
+    : `Renforcer ${humanizeSlug(normalizedPath)} avec un contenu GEO plus direct`;
+  const slug = input.scope === "query"
+    ? `geo-${slugify(input.query || normalizedPath)}-${slugify(normalizedPath)}`
+    : `geo-amelioration-${slugify(normalizedPath)}`;
+  const suggested_content = [
+    `Page cible : ${input.path}`,
+    input.query ? `Requête à couvrir : ${input.query}` : null,
+    input.intent ? `Intention : ${input.intent}` : null,
+    `Amélioration recommandée : ${input.recommendation}`,
+    "Créer une réponse courte dès le haut de page, ajouter une FAQ précise, renforcer les preuves d'expertise et le maillage interne vers les pages business liées.",
+  ].filter(Boolean).join("\n\n");
+
+  return {
+    slug,
+    title: trimToLength(title, 120),
+    target_keyword: trimToLength(baseKeyword, 120),
+    suggested_meta_description: trimToLength(`Amélioration GEO proposée pour ${input.path}${input.query ? ` autour de “${input.query}”` : ""}.`, 160),
+    suggested_content,
+    suggested_author: getSuggestedAuthorLabel({
+      slug,
+      title,
+      target_keyword: baseKeyword,
+      suggested_content,
+    }),
+  };
+};
+
 const POSITION_PAGE_UPDATES = [
   {
     path: "/assurance-auto",
@@ -546,4 +594,25 @@ export const validateGeoVisibilityFix = async (check: VisibilityCheckLike) => {
   }
 
   return false;
+};
+
+export const applyGeoContentImprovement = async (input: GeoContentImprovementInput) => {
+  const suggestion = buildGeoContentSuggestion(input);
+  const result = await createContentSuggestions([suggestion]);
+  return {
+    slug: suggestion.slug,
+    message: `${result.created > 0 ? "Nouvelle" : "Suggestion"} amélioration contenu GEO prête pour ${input.path}.`,
+  };
+};
+
+export const validateGeoContentImprovement = async (input: GeoContentImprovementInput) => {
+  const suggestion = buildGeoContentSuggestion(input);
+  const { data, error } = await supabase
+    .from("seo_article_suggestions")
+    .select("slug")
+    .eq("slug", suggestion.slug)
+    .maybeSingle();
+
+  if (error || !data) return false;
+  return data.slug === suggestion.slug;
 };
