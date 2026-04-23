@@ -250,8 +250,8 @@ const Admin = () => {
           <div className="flex flex-col gap-3 sm:gap-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0">
-                  <img src={arthurWaving} alt="Arthur mascotte" className="w-full h-full object-contain" width={40} height={40} loading="lazy" decoding="async" />
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0 bg-primary/15 ring-1 ring-primary/25 flex items-center justify-center">
+                  <img src={arthurWaving} alt="Arthur mascotte" className="w-full h-full object-contain p-0.5" width={40} height={40} loading="lazy" decoding="async" />
                 </div>
                 <div className="min-w-0">
                   <h1 className="text-lg sm:text-2xl font-bold truncate">Dashboard Admin</h1>
