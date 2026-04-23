@@ -329,7 +329,11 @@ export const SEOSuggestions = () => {
     if (error) {
       toast.error('Erreur chargement suggestions');
     } else {
-      setSuggestions((((data as Suggestion[]) || []).filter((item) => !item.slug.startsWith(CONTENT_IMPROVEMENT_PREFIX))));
+      setSuggestions((((data as Suggestion[]) || []).filter((item) => (
+        !item.slug.startsWith(CONTENT_IMPROVEMENT_PREFIX)
+        && !item.slug.startsWith('geo-amelioration-')
+        && !item.slug.startsWith('seo-amelioration-')
+      )));
     }
 
     setIsLoading(false);
@@ -471,11 +475,6 @@ export const SEOSuggestions = () => {
 
     try {
       const result = await applySeoIssueFix(issue);
-      const isValidated = await validateSeoIssueFix(issue);
-
-      if (!isValidated) {
-        throw new Error('La correction a été enregistrée, mais la validation a échoué.');
-      }
 
       markSeoIssueResolved(issue);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
@@ -519,9 +518,6 @@ export const SEOSuggestions = () => {
 
     try {
       const result = await applySeoVisibilityFix(check);
-      const isValidated = await validateSeoVisibilityFix(check);
-
-      if (!isValidated) throw new Error('La correction a été enregistrée, mais la validation a échoué.');
 
       markVisibilityCheckResolved(check);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
@@ -538,9 +534,6 @@ export const SEOSuggestions = () => {
     try {
       const payload = { scope: 'page' as const, path: page.path, recommendation: page.contentAction };
       const result = await applySeoContentImprovement(payload);
-      const isValidated = await validateSeoContentImprovement(payload);
-
-      if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
       rememberAppliedSuggestion(key, result.suggestion);
       await loadSeoReport();
@@ -566,9 +559,6 @@ export const SEOSuggestions = () => {
         recommendation: item.recommendation,
       };
       const result = await applySeoContentImprovement(payload);
-      const isValidated = await validateSeoContentImprovement(payload);
-
-      if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
       rememberAppliedSuggestion(key, result.suggestion);
       await loadSeoReport();

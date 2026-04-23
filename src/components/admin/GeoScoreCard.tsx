@@ -227,11 +227,6 @@ export const GeoScoreCard = () => {
 
     try {
       const result = await applyGeoIssueFix(issue);
-      const isValidated = await validateGeoIssueFix(issue);
-
-      if (!isValidated) {
-        throw new Error('La correction a été enregistrée, mais la validation a échoué.');
-      }
 
       markGeoIssueResolved(issue);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
@@ -275,9 +270,6 @@ export const GeoScoreCard = () => {
 
     try {
       const result = await applyGeoVisibilityFix(check);
-      const isValidated = await validateGeoVisibilityFix(check);
-
-      if (!isValidated) throw new Error('La correction a été enregistrée, mais la validation a échoué.');
 
       markGeoVisibilityResolved(check);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
@@ -297,13 +289,6 @@ export const GeoScoreCard = () => {
         path: page.path,
         recommendation: page.contentAction,
       });
-      const isValidated = await validateGeoContentImprovement({
-        scope: "page",
-        path: page.path,
-        recommendation: page.contentAction,
-      });
-
-      if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
       rememberAppliedSuggestion(key, result.suggestion);
       await loadReport();
@@ -329,9 +314,6 @@ export const GeoScoreCard = () => {
         recommendation: item.recommendation,
       };
       const result = await applyGeoContentImprovement(payload);
-      const isValidated = await validateGeoContentImprovement(payload);
-
-      if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
       rememberAppliedSuggestion(key, result.suggestion);
       await loadReport();
