@@ -900,13 +900,15 @@ export const SEOSuggestions = () => {
                         <p>Impressions : <span className="font-medium text-foreground">{item.impressions}</span> · Position : <span className="font-medium text-foreground">{item.position.toFixed(1)}</span></p>
                         <p><span className="font-medium text-foreground">Action contenu :</span> {item.recommendation}</p>
                       </div>
+                      <p className="mt-2 text-xs text-muted-foreground">Cette action crée un brouillon dans Articles Blog ; elle ne change pas instantanément le score SEO.</p>
                       <div className="mt-3">
-                        <Button size="sm" variant="outline" onClick={() => void runQueryContentImprovement(`seo-query-content-${item.page}-${item.query}`, item)} disabled={fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending'}>
+                        <Button size="sm" onClick={() => void runQueryContentImprovement(`seo-query-content-${item.page}-${item.query}`, item)} disabled={fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending'}>
                           <Wand2 className="h-4 w-4 mr-1" />
                           {fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
                         </Button>
                       </div>
                       {renderFixStatus(`seo-query-content-${item.page}-${item.query}`)}
+                      {renderAppliedSuggestion(`seo-query-content-${item.page}-${item.query}`)}
                     </div>
                   ))}
                 </div>
@@ -934,13 +936,15 @@ export const SEOSuggestions = () => {
                     </div>
                   </div>
                   <p className="mt-2 text-muted-foreground"><span className="font-medium text-foreground">Amélioration contenu :</span> {page.contentAction}</p>
+                  <p className="mt-2 text-xs text-muted-foreground">Cette action crée un brouillon dans Articles Blog ; elle ne change pas instantanément le score SEO.</p>
                   <div className="mt-3">
-                    <Button size="sm" variant="outline" onClick={() => void runPageContentImprovement(`seo-page-content-${page.path}`, page)} disabled={fixStatuses[`seo-page-content-${page.path}`] === 'sending'}>
+                    <Button size="sm" onClick={() => void runPageContentImprovement(`seo-page-content-${page.path}`, page)} disabled={fixStatuses[`seo-page-content-${page.path}`] === 'sending'}>
                       <Wand2 className="h-4 w-4 mr-1" />
                       {fixStatuses[`seo-page-content-${page.path}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
                     </Button>
                   </div>
                   {renderFixStatus(`seo-page-content-${page.path}`)}
+                  {renderAppliedSuggestion(`seo-page-content-${page.path}`)}
                 </div>
               ))}
             </CardContent>
