@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "audit:geo": "node scripts/run-geo-audit.mjs",
-    "prebuild": "node scripts/generate-static-pages.mjs && node scripts/run-geo-audit.mjs",
+    "audit:seo": "node scripts/run-seo-audit.mjs",
+    "prebuild": "node scripts/generate-static-pages.mjs && node scripts/run-geo-audit.mjs && node scripts/run-seo-audit.mjs",
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",
