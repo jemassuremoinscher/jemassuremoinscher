@@ -226,6 +226,7 @@ export const SEOSuggestions = () => {
   const [visibilityError, setVisibilityError] = useState<string | null>(null);
   const [isSeoLoading, setIsSeoLoading] = useState(true);
   const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
+  const [appliedSuggestions, setAppliedSuggestions] = useState<AppliedSuggestionState>({});
 
   useEffect(() => {
     fetchSuggestions();
@@ -417,6 +418,26 @@ export const SEOSuggestions = () => {
     toast.success('Proposition de correction copiée');
   };
 
+  const rememberAppliedSuggestion = (key: string, suggestion: ContentSuggestionDraft) => {
+    setAppliedSuggestions((current) => ({ ...current, [key]: suggestion }));
+  };
+
+  const renderAppliedSuggestion = (key: string) => {
+    const suggestion = appliedSuggestions[key];
+    if (!suggestion) return null;
+
+    return (
+      <div className="mt-3 rounded-lg border border-border bg-card p-3 text-xs text-muted-foreground space-y-1">
+        <p className="font-medium text-foreground">Preuve d'application enregistrée</p>
+        <p><span className="font-medium text-foreground">Brouillon :</span> {suggestion.title}</p>
+        <p><span className="font-medium text-foreground">Slug :</span> {suggestion.slug}</p>
+        <p><span className="font-medium text-foreground">Statut :</span> {suggestion.status}</p>
+        <p><span className="font-medium text-foreground">Présence :</span> visible dans l'encart Articles Blog.</p>
+        <p><span className="font-medium text-foreground">Score :</span> la création du brouillon ne modifie pas le score tant que le contenu n'est pas publié puis repris dans le prochain recalcul live.</p>
+      </div>
+    );
+  };
+
   const markSeoIssueResolved = (issue: SeoAuditCheck) => {
     setSeoReport((current) => {
       if (!current) return current;
@@ -532,9 +553,10 @@ export const SEOSuggestions = () => {
       if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
       await fetchSuggestions();
+      rememberAppliedSuggestion(key, result.suggestion);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success('Brouillon mis à jour', {
-        description: `${result.suggestion.title} a bien été enregistré et la liste a été rafraîchie.`,
+      toast.success('Amélioration SEO activée', {
+        description: `${result.suggestion.title} est bien enregistré. Le score bougera après publication du contenu puis prochain recalcul.`,
       });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
@@ -559,9 +581,10 @@ export const SEOSuggestions = () => {
       if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
 
       await fetchSuggestions();
+      rememberAppliedSuggestion(key, result.suggestion);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success('Brouillon mis à jour', {
-        description: `${result.suggestion.title} a bien été enregistré et la liste a été rafraîchie.`,
+      toast.success('Amélioration SEO activée', {
+        description: `${result.suggestion.title} est bien enregistré. Le score bougera après publication du contenu puis prochain recalcul.`,
       });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
@@ -877,13 +900,15 @@ export const SEOSuggestions = () => {
                         <p>Impressions : <span className="font-medium text-foreground">{item.impressions}</span> · Position : <span className="font-medium text-foreground">{item.position.toFixed(1)}</span></p>
                         <p><span className="font-medium text-foreground">Action contenu :</span> {item.recommendation}</p>
                       </div>
+                      <p className="mt-2 text-xs text-muted-foreground">Cette action crée un brouillon dans Articles Blog ; elle ne change pas instantanément le score SEO.</p>
                       <div className="mt-3">
-                        <Button size="sm" variant="outline" onClick={() => void runQueryContentImprovement(`seo-query-content-${item.page}-${item.query}`, item)} disabled={fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending'}>
+                        <Button size="sm" onClick={() => void runQueryContentImprovement(`seo-query-content-${item.page}-${item.query}`, item)} disabled={fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending'}>
                           <Wand2 className="h-4 w-4 mr-1" />
                           {fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
                         </Button>
                       </div>
                       {renderFixStatus(`seo-query-content-${item.page}-${item.query}`)}
+                      {renderAppliedSuggestion(`seo-query-content-${item.page}-${item.query}`)}
                     </div>
                   ))}
                 </div>
@@ -911,13 +936,15 @@ export const SEOSuggestions = () => {
                     </div>
                   </div>
                   <p className="mt-2 text-muted-foreground"><span className="font-medium text-foreground">Amélioration contenu :</span> {page.contentAction}</p>
+                  <p className="mt-2 text-xs text-muted-foreground">Cette action crée un brouillon dans Articles Blog ; elle ne change pas instantanément le score SEO.</p>
                   <div className="mt-3">
-                    <Button size="sm" variant="outline" onClick={() => void runPageContentImprovement(`seo-page-content-${page.path}`, page)} disabled={fixStatuses[`seo-page-content-${page.path}`] === 'sending'}>
+                    <Button size="sm" onClick={() => void runPageContentImprovement(`seo-page-content-${page.path}`, page)} disabled={fixStatuses[`seo-page-content-${page.path}`] === 'sending'}>
                       <Wand2 className="h-4 w-4 mr-1" />
                       {fixStatuses[`seo-page-content-${page.path}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
                     </Button>
                   </div>
                   {renderFixStatus(`seo-page-content-${page.path}`)}
+                  {renderAppliedSuggestion(`seo-page-content-${page.path}`)}
                 </div>
               ))}
             </CardContent>
