@@ -101,7 +101,14 @@ type VisibilityScore = {
       avgPosition: number;
       organicSessions: number;
       organicEngagementRate: number;
+      coveredPages: number;
+      totalTrackedPages: number;
+      visibleQueries: number;
+      opportunityQueries: number;
     };
+    topQueries: Array<{ query: string; page: string; clicks: number; impressions: number; position: number; ctr: number; intent: string; recommendation: string }>;
+    queryOpportunities: Array<{ query: string; page: string; clicks: number; impressions: number; position: number; ctr: number; intent: string; recommendation: string }>;
+    pageVisibility: Array<{ path: string; clicks: number; impressions: number; avgPosition: number; ctr: number; opportunityScore: number; aiPotential: string; contentAction: string }>;
   };
 };
 
@@ -620,6 +627,18 @@ export const SEOSuggestions = () => {
                       <p className="text-muted-foreground">Engagement organique</p>
                       <p className="font-semibold text-foreground">{visibilityReport ? `${visibilityReport.seo.metrics.organicEngagementRate.toFixed(1)}%` : '--'}</p>
                     </div>
+                    <div className="rounded-md border border-border p-3">
+                      <p className="text-muted-foreground">Pages couvertes</p>
+                      <p className="font-semibold text-foreground">{visibilityReport ? `${visibilityReport.seo.metrics.coveredPages}/${visibilityReport.seo.metrics.totalTrackedPages}` : '--'}</p>
+                    </div>
+                    <div className="rounded-md border border-border p-3">
+                      <p className="text-muted-foreground">Requêtes visibles</p>
+                      <p className="font-semibold text-foreground">{visibilityReport?.seo.metrics.visibleQueries ?? 0}</p>
+                    </div>
+                    <div className="rounded-md border border-border p-3">
+                      <p className="text-muted-foreground">Requêtes opportunités</p>
+                      <p className="font-semibold text-foreground">{visibilityReport?.seo.metrics.opportunityQueries ?? 0}</p>
+                    </div>
                   </div>
                   {visibilityError ? <p className="text-xs text-destructive">{visibilityError}</p> : null}
                 </div>
@@ -744,6 +763,80 @@ export const SEOSuggestions = () => {
                   ))}
                 </div>
               )}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Couverture requêtes & opportunités</CardTitle>
+              <CardDescription>Volume SEO réel, requêtes visibles et contenus à renforcer.</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 lg:grid-cols-2">
+              <div className="space-y-3">
+                <p className="text-sm font-medium text-foreground">Top requêtes visibles</p>
+                <div className="space-y-3 max-h-[24rem] overflow-y-auto pr-1">
+                  {visibilityReport?.seo.topQueries?.slice(0, 8).map((item) => (
+                    <div key={`${item.query}-${item.page}`} className="rounded-lg border border-border p-3 text-sm">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="font-medium text-foreground">{item.query}</p>
+                          <p className="text-xs text-muted-foreground mt-1">{item.page}</p>
+                        </div>
+                        <Badge variant="outline">{item.intent}</Badge>
+                      </div>
+                      <div className="mt-2 grid gap-1 text-muted-foreground">
+                        <p>Impressions : <span className="font-medium text-foreground">{item.impressions}</span></p>
+                        <p>Position : <span className="font-medium text-foreground">{item.position.toFixed(1)}</span> · CTR : <span className="font-medium text-foreground">{item.ctr.toFixed(1)}%</span></p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-3">
+                <p className="text-sm font-medium text-foreground">Pistes contenu prioritaires</p>
+                <div className="space-y-3 max-h-[24rem] overflow-y-auto pr-1">
+                  {visibilityReport?.seo.queryOpportunities?.slice(0, 8).map((item) => (
+                    <div key={`${item.query}-${item.page}-opp`} className="rounded-lg border border-border p-3 text-sm">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="font-medium text-foreground">{item.query}</p>
+                          <p className="text-xs text-muted-foreground mt-1">{item.page}</p>
+                        </div>
+                        <Badge variant="secondary">{item.intent}</Badge>
+                      </div>
+                      <div className="mt-2 grid gap-1 text-muted-foreground">
+                        <p>Impressions : <span className="font-medium text-foreground">{item.impressions}</span> · Position : <span className="font-medium text-foreground">{item.position.toFixed(1)}</span></p>
+                        <p><span className="font-medium text-foreground">Action contenu :</span> {item.recommendation}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Pages à renforcer</CardTitle>
+              <CardDescription>Pages visibles ou absentes à travailler côté contenu.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {visibilityReport?.seo.pageVisibility?.slice(0, 10).map((page) => (
+                <div key={page.path} className="rounded-lg border border-border p-3 text-sm">
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <p className="font-medium text-foreground">{page.path}</p>
+                      <p className="text-xs text-muted-foreground mt-1">Potentiel IA : {page.aiPotential} · Score d'opportunité : {page.opportunityScore}/100</p>
+                    </div>
+                    <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                      <span>{page.impressions} impressions</span>
+                      <span>Pos. {page.avgPosition.toFixed(1)}</span>
+                      <span>CTR {page.ctr.toFixed(1)}%</span>
+                    </div>
+                  </div>
+                  <p className="mt-2 text-muted-foreground"><span className="font-medium text-foreground">Amélioration contenu :</span> {page.contentAction}</p>
+                </div>
+              ))}
             </CardContent>
           </Card>
         </>
