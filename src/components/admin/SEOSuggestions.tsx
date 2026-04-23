@@ -674,10 +674,17 @@ export const SEOSuggestions = () => {
                       </div>
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" variant="outline" onClick={() => copyFixAction(getVisibilityFixAction(check))}>
-                            <Copy className="h-4 w-4 mr-1" />
-                            Copier l'action
-                          </Button>
+                          {(check.label.toLowerCase().includes('position') || check.label.toLowerCase().includes('organiques') || check.label.toLowerCase().includes('engagement')) ? (
+                            <Button size="sm" onClick={() => runVisibilityFix(check.id, check)} disabled={fixStatuses[check.id] === 'sending'}>
+                              <Wand2 className="h-4 w-4 mr-1" />
+                              {fixStatuses[check.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
+                            </Button>
+                          ) : (
+                            <Button size="sm" variant="outline" onClick={() => copyFixAction(getVisibilityFixAction(check))}>
+                              <Copy className="h-4 w-4 mr-1" />
+                              Copier l'action
+                            </Button>
+                          )}
                         </div>
                       ) : null}
                       {renderFixStatus(check.id)}
