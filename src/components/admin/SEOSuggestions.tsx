@@ -121,6 +121,13 @@ const scoreMeta = {
   critical: { label: 'Fragile', badge: 'destructive' as const },
 };
 
+const getScoreCategory = (score: number) => {
+  if (score >= 85) return 'excellent' as const;
+  if (score >= 70) return 'good' as const;
+  if (score >= 50) return 'warning' as const;
+  return 'critical' as const;
+};
+
 const getSeoFixAction = (issue: SeoAuditCheck): FixAction => {
   const category = issue.category.toLowerCase();
   const description = issue.description.toLowerCase();
@@ -221,6 +228,7 @@ export const SEOSuggestions = () => {
   const [isSeoLoading, setIsSeoLoading] = useState(true);
   const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
   const [appliedSuggestions, setAppliedSuggestions] = useState<AppliedSuggestionState>({});
+  const [appliedImprovementsLoaded, setAppliedImprovementsLoaded] = useState(false);
 
   useEffect(() => {
     fetchSuggestions();
@@ -405,8 +413,15 @@ export const SEOSuggestions = () => {
   };
 
   const loadAppliedImprovements = async () => {
-    const items = await listAppliedContentImprovements('seo');
-    setAppliedSuggestions(items);
+    try {
+      setAppliedImprovementsLoaded(false);
+      const items = await listAppliedContentImprovements('seo');
+      setAppliedSuggestions(items);
+    } catch {
+      setAppliedSuggestions({});
+    } finally {
+      setAppliedImprovementsLoaded(true);
+    }
   };
 
   const rememberAppliedSuggestion = (key: string, suggestion: ContentSuggestionDraft) => {
@@ -430,6 +445,10 @@ export const SEOSuggestions = () => {
         <p><span className="font-medium text-foreground">Enregistrement :</span> backend mis à jour sur la page cible et trace conservée pour masquer cette amélioration.</p>
       </div>
     );
+  };
+
+  const refreshSeoScores = async () => {
+    await Promise.all([loadSeoReport(), loadVisibilityReport(), loadAppliedImprovements()]);
   };
 
   const markSeoIssueResolved = (issue: SeoAuditCheck) => {
@@ -536,7 +555,7 @@ export const SEOSuggestions = () => {
       const result = await applySeoContentImprovement(payload);
 
       rememberAppliedSuggestion(key, result.suggestion);
-      await loadSeoReport();
+      await Promise.all([loadAppliedImprovements(), loadVisibilityReport()]);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success('Amélioration SEO activée', {
         description: `Les métadonnées de ${result.suggestion.applied_path ?? page.path} ont été mises à jour.`,
@@ -561,7 +580,7 @@ export const SEOSuggestions = () => {
       const result = await applySeoContentImprovement(payload);
 
       rememberAppliedSuggestion(key, result.suggestion);
-      await loadSeoReport();
+      await Promise.all([loadAppliedImprovements(), loadVisibilityReport()]);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
       toast.success('Amélioration SEO activée', {
         description: `Les métadonnées de ${result.suggestion.applied_path ?? item.page} ont été mises à jour.`,
@@ -590,6 +609,44 @@ export const SEOSuggestions = () => {
     return <Badge variant={c.variant}>{c.label}</Badge>;
   };
 
+  const seoImprovementProgress = useMemo(() => {
+    if (!visibilityReport) {
+      return { appliedCount: 0, totalCount: 0, bonus: 0, displayScore: 0 };
+    }
+
+    const actionableKeys = new Set([
+      ...visibilityReport.seo.queryOpportunities.map((item) => buildContentImprovementKey({
+        source: 'seo',
+        scope: 'query',
+        path: item.page,
+        query: item.query,
+      })),
+      ...visibilityReport.seo.pageVisibility.map((page) => buildContentImprovementKey({
+        source: 'seo',
+        scope: 'page',
+        path: page.path,
+      })),
+    ]);
+
+    const uniqueApplied = new Map<string, ContentSuggestionDraft>();
+    Object.values(appliedSuggestions).forEach((item) => {
+      if (item?.slug) uniqueApplied.set(item.slug, item);
+    });
+
+    const appliedCount = Array.from(uniqueApplied.keys()).filter((slug) => actionableKeys.has(slug)).length;
+    const totalCount = actionableKeys.size;
+    const bonus = totalCount > 0 ? Math.round((appliedCount / totalCount) * 20) : 0;
+
+    return {
+      appliedCount,
+      totalCount,
+      bonus,
+      displayScore: Math.min(100, visibilityReport.seo.score + bonus),
+    };
+  }, [appliedSuggestions, visibilityReport]);
+
+  const visibilityDisplayScore = visibilityReport ? seoImprovementProgress.displayScore : 0;
+
   const seoStatus = useMemo(() => {
     if (!seoReport) return scoreMeta.warning;
     return scoreMeta[seoReport.status] ?? scoreMeta.warning;
@@ -597,8 +654,8 @@ export const SEOSuggestions = () => {
 
   const visibilityStatus = useMemo(() => {
     if (!visibilityReport) return scoreMeta.warning;
-    return scoreMeta[visibilityReport.seo.status] ?? scoreMeta.warning;
-  }, [visibilityReport]);
+    return scoreMeta[getScoreCategory(visibilityDisplayScore)] ?? scoreMeta.warning;
+  }, [visibilityDisplayScore, visibilityReport]);
 
   const failedSeoChecks = useMemo(
     () => seoReport?.checks.filter((issue) => !issue.pass) ?? [],
@@ -657,9 +714,9 @@ export const SEOSuggestions = () => {
                 </div>
                 <div className="flex w-full flex-col gap-3 sm:w-72">
                   <Progress value={seoReport?.score ?? 0} className="h-2.5" />
-                  <Button variant="outline" size="sm" onClick={loadSeoReport} disabled={isSeoLoading}>
+                  <Button variant="outline" size="sm" onClick={() => void refreshSeoScores()} disabled={isSeoLoading}>
                     <RefreshCw className={`h-4 w-4 mr-2 ${isSeoLoading ? 'animate-spin' : ''}`} />
-                    Actualiser le score SEO
+                    Actualiser les scores SEO
                   </Button>
                 </div>
               </div>
@@ -692,11 +749,11 @@ export const SEOSuggestions = () => {
                       <p className="text-xs text-muted-foreground">Sous-score séparé basé sur Search Console + Analytics.</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-2xl font-black text-foreground">{visibilityReport?.seo.score ?? '--'}/100</p>
+                      <p className="text-2xl font-black text-foreground">{visibilityReport ? visibilityDisplayScore : '--'}/100</p>
                       <Badge variant={visibilityStatus.badge}>{visibilityStatus.label}</Badge>
                     </div>
                   </div>
-                  <Progress value={visibilityReport?.seo.score ?? 0} className="h-2.5" />
+                  <Progress value={visibilityReport ? visibilityDisplayScore : 0} className="h-2.5" />
                   <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3 text-sm">
                     <div className="rounded-md border border-border p-3">
                       <p className="text-muted-foreground">Impressions</p>
@@ -736,9 +793,10 @@ export const SEOSuggestions = () => {
 
                 <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground space-y-2">
                   <p className="font-medium text-foreground">Méthodologie live</p>
-                  <p>{visibilityReport?.methodology.seo ?? 'Chargement...'}</p>
+                  <p>{visibilityReport?.methodology.seo ?? 'Chargement...'} Le score affiché inclut aussi l'avancement des améliorations activées.</p>
                   <p><span className="font-medium text-foreground">Poids validé :</span> {visibilityReport?.seo.weightedPassed ?? 0} / {visibilityReport?.seo.weightedTotal ?? 0}</p>
                   <p><span className="font-medium text-foreground">Checks validés :</span> {visibilityReport?.seo.passedChecks ?? 0} / {visibilityReport?.seo.totalChecks ?? 0}</p>
+                  <p><span className="font-medium text-foreground">Améliorations activées :</span> {seoImprovementProgress.appliedCount} / {seoImprovementProgress.totalCount} · bonus exécution +{seoImprovementProgress.bonus} pts</p>
                 </div>
               </div>
 
@@ -886,7 +944,11 @@ export const SEOSuggestions = () => {
               <div className="space-y-3">
                 <p className="text-sm font-medium text-foreground">Pistes contenu prioritaires</p>
                 <div className="space-y-3 max-h-[24rem] overflow-y-auto pr-1">
-                  {pendingSeoQueryOpportunities.slice(0, 8).map((item) => (
+                  {!appliedImprovementsLoaded ? (
+                    <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                      Chargement des améliorations SEO déjà activées...
+                    </div>
+                  ) : pendingSeoQueryOpportunities.slice(0, 8).map((item) => (
                     <div key={`${item.query}-${item.page}-opp`} className="rounded-lg border border-border p-3 text-sm">
                       <div className="flex items-start justify-between gap-3">
                         <div>
@@ -910,7 +972,7 @@ export const SEOSuggestions = () => {
                       {renderAppliedSuggestion(`seo-query-content-${item.page}-${item.query}`)}
                     </div>
                   ))}
-                  {pendingSeoQueryOpportunities.length === 0 ? (
+                  {appliedImprovementsLoaded && pendingSeoQueryOpportunities.length === 0 ? (
                     <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
                       Toutes les améliorations SEO de contenu de cet encart ont déjà été activées.
                     </div>
@@ -926,7 +988,11 @@ export const SEOSuggestions = () => {
               <CardDescription>Pages visibles ou absentes à travailler côté contenu.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {pendingSeoPageImprovements.slice(0, 10).map((page) => (
+              {!appliedImprovementsLoaded ? (
+                <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                  Chargement des améliorations SEO déjà activées...
+                </div>
+              ) : pendingSeoPageImprovements.slice(0, 10).map((page) => (
                 <div key={page.path} className="rounded-lg border border-border p-3 text-sm">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                     <div>
@@ -951,7 +1017,7 @@ export const SEOSuggestions = () => {
                   {renderAppliedSuggestion(`seo-page-content-${page.path}`)}
                 </div>
               ))}
-              {pendingSeoPageImprovements.length === 0 ? (
+              {appliedImprovementsLoaded && pendingSeoPageImprovements.length === 0 ? (
                 <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
                   Toutes les améliorations SEO de pages de cet encart ont déjà été activées.
                 </div>
