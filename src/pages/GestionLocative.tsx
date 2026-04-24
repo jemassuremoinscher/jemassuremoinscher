@@ -10,6 +10,7 @@ import arthurHouse from "@/assets/mascotte/arthur-house.webp";
 import arthurFlying from "@/assets/mascotte/arthur-welcome.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
+import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -100,6 +101,8 @@ const GestionLocative = () => {
           <div ref={formRef} className="mb-16 min-h-[480px]">
             <MultiStepQuoteForm insuranceType="gestion_locative" />
           </div>
+
+          <ProductGuaranteeTable product="gestion-locative" />
 
           <InsuranceSEOTabs faqTitle={t('insPage.faqTitle')} faqs={faqs} />
 
