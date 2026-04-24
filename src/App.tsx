@@ -77,6 +77,7 @@ const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentia
 const Contact = lazy(() => import("./pages/Contact"));
 const NewsletterGestion = lazy(() => import("./pages/NewsletterGestion"));
 const PlanDuSite = lazy(() => import("./pages/PlanDuSite"));
+const SourcesEtMethodologie = lazy(() => import("./pages/SourcesEtMethodologie"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Merci = lazy(() => import("./pages/Merci"));
 const LlmsTxt = lazy(() => import("./pages/LlmsTxt"));
@@ -218,6 +219,7 @@ const App = () => {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/newsletter-gestion" element={<NewsletterGestion />} />
                 <Route path="/plan-du-site" element={<PlanDuSite />} />
+                <Route path="/sources-et-methodologie" element={<SourcesEtMethodologie />} />
                 <Route path="/merci" element={<Merci />} />
                 <Route path="/outils/calculateur-bonus-malus" element={<CalculateurBonusMalus />} />
                 <Route path="/comparatif/:slug" element={<DuelPage />} />

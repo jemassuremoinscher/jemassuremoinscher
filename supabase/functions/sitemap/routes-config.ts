@@ -22,6 +22,7 @@ export const routes: RouteConfig[] = [
   { path: "/gestion-locative", changefreq: "weekly", priority: 0.8 },
   { path: "/glossaire", changefreq: "weekly", priority: 0.8 },
   { path: "/plan-du-site", changefreq: "monthly", priority: 0.5 },
+  { path: "/sources-et-methodologie", changefreq: "monthly", priority: 0.6 },
 
   // Insurance Product Pages - High Priority
   { path: "/assurance-auto", changefreq: "weekly", priority: 0.9 },
