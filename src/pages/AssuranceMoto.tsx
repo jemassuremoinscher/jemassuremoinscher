@@ -10,6 +10,7 @@ import arthurMoto from "@/assets/mascotte/arthur-moto.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
+import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import EnBref from "@/components/seo/EnBref";
 import BrandName from "@/components/BrandName";
@@ -70,6 +71,8 @@ const AssuranceMoto = () => {
         <div ref={formRef} className="mb-16 min-h-[480px]">
           <MultiStepQuoteForm insuranceType="moto" />
         </div>
+
+        <ProductGuaranteeTable product="moto" />
 
         <InsuranceSEOTabs
           faqTitle={t('insPage.faqTitle')}

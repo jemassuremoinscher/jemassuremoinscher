@@ -13,6 +13,7 @@ import arthurBtp from "@/assets/mascotte/arthur-btp.webp";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
+import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
@@ -309,6 +310,9 @@ const AssuranceMetiersAtypiques = () => {
           <div ref={formRef} className="mb-16 min-h-[480px]">
             <MultiStepQuoteForm insuranceType="metiers_atypiques" />
           </div>
+
+          {/* Tableau garanties par formule (SEO/GEO) */}
+          <ProductGuaranteeTable product="metiers-atypiques" />
 
           {/* SEO Tabs (FAQ + Garanties) */}
           <InsuranceSEOTabs faqTitle="Questions fréquentes — Métiers atypiques" faqs={faqs} />

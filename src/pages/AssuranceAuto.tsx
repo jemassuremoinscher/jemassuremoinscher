@@ -10,6 +10,7 @@ import arthurCar from "@/assets/mascotte/arthur-car.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
+import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import EnBref from "@/components/seo/EnBref";
 import BrandName from "@/components/BrandName";
@@ -73,6 +74,9 @@ const AssuranceAuto = () => {
         <div ref={formRef} className="mb-16 min-h-[480px]">
           <MultiStepQuoteForm insuranceType="auto" />
         </div>
+
+        {/* Tableau garanties par formule (SEO/GEO — extraction LLM) */}
+        <ProductGuaranteeTable product="auto" />
 
         {/* Zone 3 — FAQ + Garanties en tabs */}
         <InsuranceSEOTabs

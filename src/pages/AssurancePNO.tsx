@@ -9,6 +9,7 @@ import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProduc
 import arthurHouse from "@/assets/mascotte/arthur-house.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
+import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import arthurFlying from "@/assets/mascotte/arthur-welcome.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -49,6 +50,8 @@ const AssurancePNO = () => {
 
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="pno" /></div>
+
+        <ProductGuaranteeTable product="pno" />
 
         <InsuranceSEOTabs
           faqTitle={t('insPage.faqTitle')}
