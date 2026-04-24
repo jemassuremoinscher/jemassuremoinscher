@@ -50,6 +50,7 @@ const Footer = () => {
   const aboutLinks = [
     { to: "/qui-sommes-nous", label: "Qui sommes-nous ?" },
     { to: "/contact", label: "Contact" },
+    { to: "/sources-et-methodologie", label: "Sources & méthodologie" },
     { to: "/mentions-legales", label: "Mentions légales" },
     { to: "/politique-confidentialite", label: "Politique de confidentialité" },
     { to: "/cgu", label: "CGU" },
