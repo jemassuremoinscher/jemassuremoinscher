@@ -73,6 +73,8 @@ const AssuranceSante = () => {
           <MultiStepQuoteForm insuranceType="sante" />
         </div>
 
+        <ProductGuaranteeTable product="sante" />
+
         <InsuranceSEOTabs
           faqTitle={t('insPage.faqTitle')}
           faqs={[
