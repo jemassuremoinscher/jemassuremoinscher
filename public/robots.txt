@@ -16,8 +16,8 @@ Disallow: /commercial/
 Disallow: /api/
 Disallow: /*.map$
 
-# Landings publicitaires non indexées (Google Ads / GSC uniquement)
-Disallow: /landing/
+# Landing pages : indexables (présentes dans le sitemap)
+# (anciennement bloquées — cohérence sitemap rétablie)
 
 # Pages de confirmation / merci
 Disallow: /merci
