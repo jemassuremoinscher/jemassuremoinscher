@@ -350,18 +350,7 @@ const Header = () => {
         >
           <nav className="p-4 space-y-6" role="navigation" aria-label="Navigation mobile principale">
             {/* Language Toggle - Mobile */}
-            <div className="flex items-center justify-between gap-3 mb-2 px-4">
-              <nav aria-label="Réseaux sociaux" className="flex items-center gap-2">
-                <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
-                  <Instagram className="h-4 w-4" />
-                </a>
-                <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
-                  <Linkedin className="h-4 w-4" />
-                </a>
-                <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
-                  <Facebook className="h-4 w-4" />
-                </a>
-              </nav>
+            <div className="flex items-center justify-end gap-3 mb-2 px-4">
               <LanguageToggle />
             </div>
             
