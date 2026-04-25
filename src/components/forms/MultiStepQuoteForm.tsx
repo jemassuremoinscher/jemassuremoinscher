@@ -119,22 +119,18 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [contactData, setContactData] = useState({ fullName: '', email: '', phone: '', acceptTerms: false as boolean });
 
-  // For comparateur, dynamically inject vehicle + age steps when auto/moto is selected
+  // For comparateur, dynamically inject the full product-specific path after type selection
   const steps = useMemo(() => {
     const baseSteps = stepConfigsByType[insuranceType] || stepConfigsByType.comparateur;
     if (insuranceType !== 'comparateur') return baseSteps;
     
     const selectedType = formData.insuranceType;
-    if (selectedType === 'auto' || selectedType === 'moto') {
+    if (selectedType && selectedType in stepConfigsByType) {
       const specificSteps = stepConfigsByType[selectedType as InsuranceType];
-      // Grab vehicle-select, vehicleYear, and age steps from the specific config
-      const extraSteps = specificSteps.filter(s => 
-        s.type === 'vehicle-select' || s.id === 'vehicleYear' || s.id === 'age'
-      );
       const typeStep = baseSteps[0];
-      const formuleStep = baseSteps[1];
-      const remaining = baseSteps.slice(2); // postalCode, searching, contact
-      return [typeStep, formuleStep, ...extraSteps, ...remaining];
+      const productSteps = specificSteps.filter(s => s.type !== 'searching' && s.type !== 'contact' && s.type !== 'callback');
+      const finalSteps = baseSteps.filter(s => s.type === 'searching' || s.type === 'contact');
+      return [typeStep, ...productSteps, ...finalSteps];
     }
     return baseSteps;
   }, [insuranceType, formData.insuranceType]);
@@ -519,7 +515,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
                     isSuccess={isSuccess}
                     onChange={setContactData}
                     onSubmit={handleContactSubmit}
-                    insuranceType={insuranceType}
+                    insuranceType={formData.insuranceType || insuranceType}
                   />
                 )}
 
@@ -552,20 +548,20 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
       <div className="mt-5 rounded-2xl border border-border/50 bg-muted/50 px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         {/* Google review */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-0.5 text-accent" aria-label="Note 4.8 sur 5">
+          <div className="flex items-center gap-0.5 text-accent" aria-label="Note 4.9 sur 5">
             {[1, 2, 3, 4, 5].map(i => (
               <svg key={i} className="w-4 h-4" viewBox="0 0 20 20" fill={i <= 4 ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5">
-                <path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.62l5.34-.78L10 1z" />
+                <path d="M10 1l2.39 4.94 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.62l5.34-.78L10 1z" />
               </svg>
             ))}
           </div>
           <span className="text-sm text-foreground">
-            <span className="font-bold text-base">4,8</span>/5 — Google Reviews
+            <span className="font-bold text-base">4,9</span>/5 — Google Reviews
           </span>
         </div>
         {/* Social proof */}
         <p className="text-sm text-muted-foreground">
-          Déjà plus de <span className="font-bold text-foreground">250</span> Français assurés via notre comparateur
+          Déjà <span className="font-bold text-foreground">+1000</span> clients assurés via notre comparateur
         </p>
       </div>
     </div>
@@ -859,7 +855,7 @@ const teaserPrices: Record<string, { label: string; prices: { name: string; pric
     { name: 'Confort', price: '29€', badge: 'Dès', logo: logoHarmonie },
     { name: 'Premium', price: '49€', badge: 'Dès', logo: logoAxa },
   ]},
-  pret: { label: 'Assurance Prêt', prices: [
+  pret: { label: 'Assurance Emprunteur', prices: [
     { name: 'Décès', price: '8€', badge: 'Dès', logo: logoApril },
     { name: 'Décès + PTIA', price: '14€', badge: 'Dès', logo: logoCardif },
     { name: 'Complète', price: '22€', badge: 'Dès', logo: logoGenerali },
@@ -898,6 +894,11 @@ const teaserPrices: Record<string, { label: string; prices: { name: string; pric
     { name: 'Essentielle', price: '6€', badge: 'Dès', logo: logoDirectAssurance },
     { name: 'Confort', price: '11€', badge: 'Dès', logo: logoMaif },
     { name: 'Premium', price: '18€', badge: 'Dès', logo: logoGroupama },
+  ]},
+  gestion_locative: { label: 'Gestion Locative', prices: [
+    { name: 'Essentielle', price: '5%', badge: 'Dès', logo: logoMaif },
+    { name: 'Confort', price: '7%', badge: 'Dès', logo: logoAllianz },
+    { name: 'Premium', price: '9%', badge: 'Dès', logo: logoAxa },
   ]},
 };
 
@@ -943,7 +944,7 @@ function ContactStep({
         className="space-y-3"
       >
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">
-          Tarifs trouvés pour votre profil
+          Estimations cohérentes pour votre profil
         </p>
         <div className="grid grid-cols-3 gap-2">
           {prices.map((p, i) => (
@@ -974,7 +975,7 @@ function ContactStep({
               </div>
               <span className="text-[10px] text-muted-foreground font-medium uppercase">{p.badge}</span>
               <div className="text-xl md:text-2xl font-extrabold text-accent mt-0.5">{p.price}</div>
-              <span className="text-[11px] text-muted-foreground">/mois</span>
+              <span className="text-[11px] text-muted-foreground">{p.price.includes('%') ? ' des loyers' : '/mois'}</span>
               <p className="text-xs font-medium text-foreground mt-1">{p.name}</p>
             </motion.div>
           ))}

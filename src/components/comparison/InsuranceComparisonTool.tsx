@@ -28,7 +28,7 @@ const mockOffers: InsuranceOffer[] = [
     id: "1",
     insurer: "AXA Premium",
     price: 45,
-    rating: 4.8,
+    rating: 4.9,
     coverage: ["Responsabilité civile", "Tous risques", "Protection juridique", "Bris de glace"],
     deductible: 200,
     monthlyPayment: 45,

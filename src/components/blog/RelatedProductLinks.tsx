@@ -99,11 +99,6 @@ const categoryToProducts: Record<string, ProductLink[]> = {
     { to: "/assurance-sante", label: "Mutuelle santé" },
     { to: "/comparateur", label: "Comparateur multi-assurances" },
   ],
-  "Assurance Prêt": [
-    { to: "/assurance-pret", label: "Comparer les assurances prêt" },
-    { to: "/assurance-emprunteur", label: "Assurance emprunteur" },
-    { to: "/comparateur", label: "Comparateur multi-assurances" },
-  ],
 };
 
 // Fallback for unknown categories

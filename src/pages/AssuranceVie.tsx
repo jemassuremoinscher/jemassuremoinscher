@@ -9,7 +9,7 @@ import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProduc
 import arthurIdea from "@/assets/mascotte/arthur-idea.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
-import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
+import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import EnBref from "@/components/seo/EnBref";
 import BrandName from "@/components/BrandName";
@@ -25,19 +25,19 @@ const AssuranceVie = () => {
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
 
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Vie", url: "https://www.jemassuremoinscher.fr/assurance-vie" }]);
-  const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Vie", description: "Comparez les contrats d'assurance vie pour l'épargne et la protection.", provider: "jemassuremoinscher.fr", areaServed: "France" });
+  const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Vie", description: "Comparez les contrats d'assurance vie pour l'épargne et la protection, avec 0% de frais d'entrée et frais d'arbitrage offerts sur nos contrats partenaires.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   
-  const faqSchema = addFAQSchema([{ question: t('viePage.faq1.q'), answer: t('viePage.faq1.a') }, { question: t('viePage.faq2.q'), answer: t('viePage.faq2.a') }]);
-  const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Vie", description: "Comparateur d'assurance vie. Fonds euros, unités de compte, PER : comparez les meilleurs rendements 2026.", category: "Assurance Vie", url: "https://www.jemassuremoinscher.fr/assurance-vie", ratingValue: 4.6, reviewCount: 1124 });
+  const faqSchema = addFAQSchema([{ question: t('viePage.faq1.q'), answer: t('viePage.faq1.a') }, { question: t('viePage.faq2.q'), answer: t('viePage.faq2.a') }, { question: "Les frais d'entrée et d'arbitrage sont-ils offerts ?", answer: "Oui, sur nos contrats partenaires sélectionnés, les frais d'entrée sont à 0% et les frais d'arbitrage sont offerts, sous réserve des conditions du contrat choisi." }]);
+  const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Vie", description: "Comparateur d'assurance vie. Fonds euros, unités de compte, PER : comparez les meilleurs rendements 2026 avec 0% de frais d'entrée et frais d'arbitrage offerts sur nos contrats partenaires.", category: "Assurance Vie", url: "https://www.jemassuremoinscher.fr/assurance-vie", ratingValue: 4.9, reviewCount: 1124 });
   const advantages = [
-    { icon: Euro, title: t('viePage.adv1.title'), description: t('viePage.adv1.desc') },
+    { icon: Euro, title: "0% de frais d'entrée", description: "Frais d'entrée offerts sur nos contrats partenaires sélectionnés." },
     { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
-    { icon: Shield, title: t('viePage.adv2.title'), description: t('viePage.adv2.desc') }
+    { icon: Shield, title: "Frais d'arbitrage offerts", description: "Ajustez votre allocation plus librement selon les conditions du contrat." }
   ];
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Vie [Month] : Meilleurs Rendements" description="Fonds euros, unités de compte, PER : comparez les meilleures assurances vie. Fiscalité avantageuse après 8 ans. Devis gratuit." keyword="assurance vie meilleur rendement" keywords="assurance vie 2026, épargne, placement, transmission patrimoine, PER" canonical="https://www.jemassuremoinscher.fr/assurance-vie" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title="Assurance Vie [Month] : Frais 0% Offerts" description="Assurance vie : comparez fonds euros et UC. 0% de frais d'entrée, frais d'arbitrage offerts, fiscalité avantageuse après 8 ans." keyword="assurance vie frais entrée offerts" keywords="assurance vie 2026, 0% frais entrée, frais arbitrage offerts, épargne, placement, transmission patrimoine, PER" canonical="https://www.jemassuremoinscher.fr/assurance-vie" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Vie" }]} />
       <main id="main-content">
@@ -53,15 +53,16 @@ const AssuranceVie = () => {
 
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="vie" /></div>
-
-        <ProductGuaranteeTable product="vie" />
+        <CourtierValueCards product="vie" />
 
         <InsuranceSEOTabs
+          showGuarantees={false}
           faqTitle={t('insPage.faqTitle')}
           faqs={[
             { question: t('viePage.faq1.q'), answer: t('viePage.faq1.a') },
             { question: t('viePage.faq2.q'), answer: t('viePage.faq2.a') },
             { question: t('viePage.faq3.q'), answer: t('viePage.faq3.a') },
+            { question: "Quels frais sont offerts sur l'assurance vie ?", answer: "Les contrats partenaires mis en avant peuvent proposer 0% de frais d'entrée et des frais d'arbitrage offerts, pour réduire le coût d'accès et de gestion de votre épargne." },
           ]}
         />
 
@@ -70,9 +71,9 @@ const AssuranceVie = () => {
           enBref={
             <EnBref facts={[
               <><BrandName /> compare les contrats d'assurance vie des meilleurs assureurs.</>,
+              "0% de frais d'entrée et frais d'arbitrage offerts sur nos contrats partenaires sélectionnés.",
               "Fonds euros, unités de compte, PER : toutes les options comparées.",
               "Fiscalité avantageuse après 8 ans de détention.",
-              "Devis gratuit et personnalisé, sans engagement.",
             ]} />
           }
           ctaTitle={t('viePage.ctaTitle')}

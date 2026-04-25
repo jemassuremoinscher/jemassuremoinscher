@@ -109,7 +109,7 @@ const AdsLandingTemplate = ({
   const canonical = `https://www.jemassuremoinscher.fr/landing/${slug}`;
 
   const jsonLd = [
-    addOrganizationSchema(4.8, 2847),
+    addOrganizationSchema(4.9, 2847),
     addServiceSchema({
       name: seoTitle,
       description: seoDescription,
@@ -205,7 +205,7 @@ const AdsLandingTemplate = ({
                   <CheckCircle2 className="h-4 w-4" /> ORIAS vérifié
                 </Badge>
                 <Badge variant="outline" className="gap-2">
-                  <Star className="h-4 w-4 fill-current" /> 4,8/5 — 2847 avis
+                  <Star className="h-4 w-4 fill-current" /> 4,9/5 — 2847 avis
                 </Badge>
               </div>
             </div>

@@ -13,7 +13,7 @@ const SimpleFooter = () => {
     { label: "Mutuelle Santé", href: "/assurance-sante" },
     { label: "Assurance Animaux", href: "/assurance-animaux" },
     { label: "Assurance Vie", href: "/assurance-vie" },
-    { label: "Assurance Prêt", href: "/assurance-pret" },
+    { label: "Assurance Emprunteur", href: "/assurance-pret" },
     { label: "Prévoyance", href: "/assurance-prevoyance" },
     { label: "RC Professionnelle", href: "/assurance-rc-pro" },
     { label: "Assurance MRP", href: "/assurance-mrp" },

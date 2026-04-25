@@ -10,6 +10,7 @@ interface FAQ {
 interface InsuranceSEOTabsProps {
   faqTitle: string;
   faqs: FAQ[];
+  showGuarantees?: boolean;
   /** Optional extra content below FAQ */
   children?: ReactNode;
 }
@@ -23,14 +24,15 @@ const tabs = [
  * Tabbed SEO section combining FAQ and Guarantee Table
  * in a clean, compact layout for insurance product pages.
  */
-const InsuranceSEOTabs = ({ faqTitle, faqs, children }: InsuranceSEOTabsProps) => {
+const InsuranceSEOTabs = ({ faqTitle, faqs, showGuarantees = true, children }: InsuranceSEOTabsProps) => {
   const [active, setActive] = useState<"faq" | "guarantees">("faq");
+  const visibleTabs = showGuarantees ? tabs : tabs.filter((tab) => tab.id === "faq");
 
   return (
     <section className="max-w-5xl mx-auto mb-12" aria-label="Informations détaillées">
       {/* Tab bar */}
       <div className="flex border-b border-border/50 mb-0">
-        {tabs.map((tab) => (
+        {visibleTabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActive(tab.id)}
@@ -60,7 +62,7 @@ const InsuranceSEOTabs = ({ faqTitle, faqs, children }: InsuranceSEOTabsProps) =
             {children}
           </div>
         )}
-        {active === "guarantees" && (
+        {showGuarantees && active === "guarantees" && (
           <div className="animate-fade-in -mx-4 sm:mx-0">
             <GuaranteeTable />
           </div>

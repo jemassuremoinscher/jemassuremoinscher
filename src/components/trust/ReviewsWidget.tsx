@@ -29,7 +29,7 @@ export const ReviewsWidget = () => {
                   <div>
                     <h3 className="font-bold text-lg">Google</h3>
                     <div className="flex items-center gap-1">
-                      <span className="font-semibold">4.8</span>
+                      <span className="font-semibold">4.9</span>
                       <div className="flex">
                         {[...Array(5)].map((_, i) => (
                           <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
@@ -69,7 +69,7 @@ export const ReviewsWidget = () => {
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
                   <svg className="w-10 h-10" viewBox="0 0 24 24">
-                    <path fill="#00B67A" d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    <path fill="#00B67A" d="M12 2l3.09 6.26L22 9.27l-5 4.97 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
                   <div>
                     <h3 className="font-bold text-lg">Trustpilot</h3>
