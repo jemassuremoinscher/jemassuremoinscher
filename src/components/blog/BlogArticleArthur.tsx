@@ -42,6 +42,20 @@ const slugArthurMap: Record<string, string> = {
   "velos-cargos-vae-protection-vol-urbain": arthurBike,
 };
 
+const subjectArthurRules: Array<{ keywords: string[]; src: string }> = [
+  { keywords: ["accrobranche", "escalade", "cordiste", "hauteur", "grimpe", "aventure"], src: arthurClimbing },
+  { keywords: ["kayak", "nautique", "canyon", "plongee", "outdoor", "moniteur", "sport"], src: arthurKayak },
+  { keywords: ["festival", "evenement", "organisateur", "concert", "karting"], src: arthurKarting },
+  { keywords: ["velo", "vae", "cargo", "mobilite"], src: arthurBike },
+  { keywords: ["moto", "scooter", "deux-roues"], src: arthurMoto },
+  { keywords: ["auto", "voiture", "conducteur", "malus", "bct"], src: arthurCar },
+  { keywords: ["habitation", "colocation", "logement", "degat", "pno"], src: arthurHouse },
+  { keywords: ["sante", "mutuelle", "medical", "frais"], src: arthurSick },
+  { keywords: ["animaux", "chien", "chat"], src: arthurAnimals },
+  { keywords: ["emprunteur", "pret", "lemoine", "credit"], src: arthurBusiness },
+  { keywords: ["arnaque", "litige", "droits", "resiliation", "declaration"], src: arthurDetective },
+];
+
 interface BlogArticleArthurProps {
   category: string;
   slug?: string;
@@ -49,7 +63,11 @@ interface BlogArticleArthurProps {
 }
 
 const BlogArticleArthur = ({ category, slug, className = "" }: BlogArticleArthurProps) => {
-  const src = (slug && slugArthurMap[slug]) || categoryArthurMap[category] || arthurIdea;
+  const normalizedSlug = slug?.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") || "";
+  const inferredSrc = subjectArthurRules.find((rule) =>
+    rule.keywords.some((keyword) => normalizedSlug.includes(keyword))
+  )?.src;
+  const src = (slug && slugArthurMap[slug]) || inferredSrc || categoryArthurMap[category] || arthurIdea;
   
   return (
     <img
