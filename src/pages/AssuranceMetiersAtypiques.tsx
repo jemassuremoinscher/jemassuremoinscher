@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Shield, Users, Clock, Mountain, TreePine, PartyPopper, HardHat, Sparkles, ArrowRight } from "lucide-react";
+import { Shield, Users, Clock, Mountain, TreePine, PartyPopper, HardHat, Sparkles, ArrowRight, Search, FileCheck } from "lucide-react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import SEOOptimized from "@/components/SEOOptimized";
@@ -177,7 +177,7 @@ const AssuranceMetiersAtypiques = () => {
                 imageAlt="Arthur grimpeur — expert en assurances de métiers atypiques"
                 speechText="Refusé ailleurs ? On a la solution. 20 assureurs de niche, 0 refus, rappel sous 30 minutes."
               />
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">
                 Assurance Métiers Atypiques : couvrir l'inassurable, c'est notre métier
               </h1>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
@@ -312,23 +312,30 @@ const AssuranceMetiersAtypiques = () => {
             <MultiStepQuoteForm insuranceType="metiers_atypiques" />
           </div>
 
-          {/* Tableau garanties par formule (SEO/GEO) */}
-          <ProductGuaranteeTable product="metiers-atypiques" />
-
-        <CourtierValueCards product="metiers-atypiques" />
+          <CourtierValueCards product="metiers-atypiques" />
 
           {/* SEO Tabs (FAQ + Garanties) */}
-          <InsuranceSEOTabs faqTitle="Questions fréquentes — Métiers atypiques" faqs={faqs} />
+          <InsuranceSEOTabs faqTitle="Questions fréquentes — Métiers atypiques" faqs={faqs} showGuarantees={false} />
 
           {/* Bloc SEO 400+ mots */}
           <section className="max-w-3xl mx-auto mb-16 prose prose-sm md:prose-base text-muted-foreground leading-relaxed [&_strong]:text-foreground [&_h2]:text-foreground [&_h3]:text-foreground">
-            <h2 className="text-2xl font-bold mb-4">Pourquoi un courtier spécialisé pour les métiers atypiques ?</h2>
-            <p>
-              Les assureurs généralistes — <strong>AXA, MAIF, Allianz, Groupama, MMA classique</strong> — refusent ou surfacturent systématiquement les activités classées « risques aggravés » par leurs grilles internes : exploitation de tyroliennes, encadrement sportif outdoor, chapiteaux événementiels, travaux en hauteur sur cordes, désamiantage. Pourtant, <strong>20 assureurs spécialisés</strong> du marché français — <strong>Hiscox, Albingia, CFDP, MMA Pro Sport, Generali Évolution Pro, Circles Group, Verspieren, Gras Savoye Événement, Beazley, Markel, Liberty Specialty, Chubb, AIG, Tokio Marine HCC, QBE, Wakam, Helvetia Pro, Société Générale Insurance, Zurich Pro et Allianz Global Specialty</strong> — disposent de produits dédiés. Encore faut-il y accéder, savoir présenter le dossier, et négocier les conditions.
-            </p>
-            <p>
-              C'est notre métier depuis 2018. Chez <strong>jemassuremoinscher.fr</strong>, notre cellule Métiers Atypiques traite chaque année plus de 1 800 dossiers refusés ailleurs : moniteurs de canyoning des gorges du Verdon, exploitants accrobranche en Ardèche, organisateurs de trails dans les Pyrénées, cordistes parisiens intervenant sur la Tour Eiffel, élagueurs de la Côte d'Azur. Notre taux de placement dépasse <strong>92 %</strong>, contre 35 % en souscription directe.
-            </p>
+            <h2 className="text-2xl font-bold mb-6">Pourquoi un courtier spécialisé pour les métiers atypiques ?</h2>
+            <div className="grid md:grid-cols-2 gap-5 not-prose mb-8">
+              {[
+                { icon: Search, title: "Accès aux assureurs de niche", desc: "Hiscox, Albingia, CFDP, MMA Pro Sport, Generali Évolution Pro, Beazley ou Markel disposent de produits dédiés, mais demandent un dossier technique bien présenté." },
+                { icon: FileCheck, title: "Dossier défendu", desc: "Nous valorisons vos certifications, procédures, contrôles, fréquentation et sinistralité pour éviter les refus automatiques et les surprimes injustifiées." },
+                { icon: Shield, title: "Couverture structurée", desc: "RC exploitation, individuelle accident, matériel, annulation, protection juridique ou perte d'exploitation : chaque garantie est calibrée selon votre activité réelle." },
+                { icon: Users, title: "Expérience terrain", desc: "Depuis 2018, notre cellule Métiers Atypiques accompagne des moniteurs outdoor, exploitants accrobranche, organisateurs d'événements et cordistes." },
+              ].map((item) => (
+                <Card key={item.title} className="p-6 h-full border-2 border-border/60">
+                  <div className="p-3 rounded-2xl bg-primary/10 w-fit mb-4">
+                    <item.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="font-bold text-foreground mb-2">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </Card>
+              ))}
+            </div>
             <h3 className="text-xl font-bold mt-6 mb-3">Notre méthode en 3 piliers</h3>
             <ul>
               <li><strong>Audit de risque sectoriel</strong> — Nous cartographions vos expositions réelles : corporel (chutes, blessures clients/salariés), matériel (EPI, scènes, chapiteaux), juridique (mise en cause après accident), financier (annulation, perte exploitation).</li>
