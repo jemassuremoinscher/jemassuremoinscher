@@ -119,22 +119,18 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [contactData, setContactData] = useState({ fullName: '', email: '', phone: '', acceptTerms: false as boolean });
 
-  // For comparateur, dynamically inject vehicle + age steps when auto/moto is selected
+  // For comparateur, dynamically inject the full product-specific path after type selection
   const steps = useMemo(() => {
     const baseSteps = stepConfigsByType[insuranceType] || stepConfigsByType.comparateur;
     if (insuranceType !== 'comparateur') return baseSteps;
     
     const selectedType = formData.insuranceType;
-    if (selectedType === 'auto' || selectedType === 'moto') {
+    if (selectedType && selectedType in stepConfigsByType) {
       const specificSteps = stepConfigsByType[selectedType as InsuranceType];
-      // Grab vehicle-select, vehicleYear, and age steps from the specific config
-      const extraSteps = specificSteps.filter(s => 
-        s.type === 'vehicle-select' || s.id === 'vehicleYear' || s.id === 'age'
-      );
       const typeStep = baseSteps[0];
-      const formuleStep = baseSteps[1];
-      const remaining = baseSteps.slice(2); // postalCode, searching, contact
-      return [typeStep, formuleStep, ...extraSteps, ...remaining];
+      const productSteps = specificSteps.filter(s => s.type !== 'searching' && s.type !== 'contact' && s.type !== 'callback');
+      const finalSteps = baseSteps.filter(s => s.type === 'searching' || s.type === 'contact');
+      return [typeStep, ...productSteps, ...finalSteps];
     }
     return baseSteps;
   }, [insuranceType, formData.insuranceType]);
@@ -519,7 +515,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
                     isSuccess={isSuccess}
                     onChange={setContactData}
                     onSubmit={handleContactSubmit}
-                    insuranceType={insuranceType}
+                    insuranceType={formData.insuranceType || insuranceType}
                   />
                 )}
 
