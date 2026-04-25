@@ -617,7 +617,7 @@ Vous payez 600€/an, résiliation le 15 avril :
     date: "15 janvier 2026",
     readTime: "8 min",
     author: "Sophie Martin",
-    tags: ["loi lemoine", "assurance prêt", "législation", "économies"],
+    tags: ["loi lemoine", "assurance emprunteur", "législation", "économies"],
     content: `
 # Loi Lemoine : Ce Que Votre Banque Ne Vous Dit Pas Sur Votre Assurance Emprunteur
 
@@ -4764,7 +4764,7 @@ export const blogCategories = [
   "Mutuelle Santé",
   "Assurance Habitation",
   "Assurance Animaux",
-  "Assurance Prêt",
+  "Assurance Emprunteur",
   "Conseils",
   "Mobilité Verte",
   "Assurance Emprunteur",

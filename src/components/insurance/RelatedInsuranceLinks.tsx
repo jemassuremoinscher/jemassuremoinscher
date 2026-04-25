@@ -18,7 +18,7 @@ const allProducts: Record<string, RelatedLink> = {
   sante: { to: "/assurance-sante", label: "Mutuelle Santé", description: "Remboursements optimaux, cotisation maîtrisée" },
   animaux: { to: "/assurance-animaux", label: "Assurance Animaux", description: "Frais vétérinaires couverts jusqu'à 100%" },
   vie: { to: "/assurance-vie", label: "Assurance Vie", description: "Protégez vos proches et faites fructifier votre épargne" },
-  pret: { to: "/assurance-pret", label: "Assurance Prêt", description: "Économisez sur votre assurance emprunteur" },
+  pret: { to: "/assurance-pret", label: "Assurance Emprunteur", description: "Économisez sur votre assurance emprunteur" },
   prevoyance: { to: "/assurance-prevoyance", label: "Prévoyance", description: "Anticipez les aléas de la vie" },
   rcpro: { to: "/assurance-rc-pro", label: "RC Professionnelle", description: "Protégez votre activité professionnelle" },
   mrp: { to: "/assurance-mrp", label: "Assurance MRP", description: "Multirisque pour vos locaux professionnels" },
@@ -130,7 +130,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   pret: {
     products: ["emprunteur", "vie", "habitation"],
     articles: [
-      { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine : changer d'assurance prêt" },
+      { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine : changer d'assurance emprunteur" },
       { to: "/blog/resiliation-assurance-droits-2026", label: "Vos droits de résiliation" },
     ],
     tools: [

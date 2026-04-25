@@ -26,7 +26,7 @@ const Footer = () => {
     { to: "/assurance-sante", label: "Mutuelle Santé" },
     { to: "/assurance-animaux", label: "Assurance Animaux" },
     { to: "/assurance-vie", label: "Assurance Vie" },
-    { to: "/assurance-pret", label: "Assurance Prêt" },
+    { to: "/assurance-pret", label: "Assurance Emprunteur" },
     { to: "/assurance-prevoyance", label: "Prévoyance" },
     { to: "/assurance-rc-pro", label: "RC Professionnelle" },
     { to: "/assurance-mrp", label: "Assurance MRP" },

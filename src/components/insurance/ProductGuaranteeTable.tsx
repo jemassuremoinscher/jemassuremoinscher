@@ -236,7 +236,7 @@ const DATA: Record<ProductKey, ProductTableData> = {
     footnote: "Obligatoire pour les professions réglementées (santé, droit, expertise comptable, BTP, conseil).",
   },
   pret: {
-    title: "Garanties — Assurance de Prêt Immobilier",
+    title: "Garanties — Assurance Emprunteur Immobilier",
     intro: "Délégation d'assurance emprunteur (loi Lemoine). Économie moyenne : 5 000 à 15 000€ sur la durée du prêt.",
     columns: [
       { key: "base", label: "Base légale" },

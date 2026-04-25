@@ -20,7 +20,7 @@ const stats: Stat[] = [
   },
   {
     icon: Star,
-    value: 4.8,
+    value: 4.9,
     suffix: "/5",
     label: "Note moyenne",
     color: "text-accent",

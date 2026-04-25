@@ -11,7 +11,7 @@ Ce document explique comment utiliser les landing pages optimisées pour maximis
 3. **Assurance Habitation** : `/landing/habitation`
 4. **Assurance Moto** : `/landing/moto`
 5. **Assurance Animaux** : `/landing/animaux`
-6. **Assurance Prêt Immobilier** : `/landing/pret`
+6. **Assurance Emprunteur** : `/landing/pret`
 7. **Assurance Vie** : `/landing/vie`
 8. **Assurance Prévoyance** : `/landing/prevoyance`
 9. **Assurance RC Pro** : `/landing/rc-pro`
@@ -73,7 +73,7 @@ Chaque landing page contient un formulaire de **3 champs uniquement** :
 ### Éléments de Conversion
 
 1. **Barre d'urgence** : Offre limitée avec deadline
-2. **Social Proof** : 15 000+ clients, note 4.8/5
+2. **Social Proof** : 15 000+ clients, note 4.9/5
 3. **Garantie de rappel** : Sous 2h
 4. **Témoignages spécifiques** : Selon le type d'assurance
 5. **Trust badges** : SSL, RGPD, Service Premium
@@ -132,7 +132,7 @@ Parameters:
 
 - **Accroches** : "100% Gratuit", "Sans Engagement", "Réponse Sous 2h"
 - **Liens annexes** : Vers pages spécifiques (Comparateur, Contact)
-- **Extraits de site** : "15 000 Clients", "4.8/5 Étoiles", "-600€ en Moyenne"
+- **Extraits de site** : "15 000 Clients", "4.9/5 Étoiles", "-600€ en Moyenne"
 - **Appel** : Bouton d'appel direct
 
 ### Budget Recommandé par Type

@@ -19,7 +19,7 @@ const categoryArthurMap: Record<string, string> = {
   "Mutuelle Santé": arthurSick,
   "Assurance Animaux": arthurAnimals,
   "Assurance Emprunteur": arthurBusiness,
-  "Assurance Prêt": arthurBusiness,
+  "Assurance Emprunteur": arthurBusiness,
   "Droits & Litiges": arthurDetective,
   "Mobilité Verte": arthurBike,
   "Conseils Experts": arthurIdea,

@@ -25,8 +25,8 @@ const AssurancePret = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
 
-  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Prêt", url: "https://www.jemassuremoinscher.fr/assurance-pret" }]);
-  const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Prêt Immobilier", description: "Économisez des milliers d'euros sur votre crédit immobilier. Loi Lemoine.", provider: "jemassuremoinscher.fr", areaServed: "France" });
+  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Emprunteur", url: "https://www.jemassuremoinscher.fr/assurance-pret" }]);
+  const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Emprunteur", description: "Économisez des milliers d'euros sur votre crédit immobilier. Loi Lemoine.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const faqSchema = addFAQSchema([{ question: t('pretPage.faq1.q'), answer: t('pretPage.faq1.a') }, { question: t('pretPage.faq2.q'), answer: t('pretPage.faq2.a') }]);
   const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Emprunteur", description: "Comparateur d'assurance de prêt immobilier. Loi Lemoine : changez à tout moment. Économisez jusqu'à 15 000€.", category: "Assurance Emprunteur", url: "https://www.jemassuremoinscher.fr/assurance-pret" });
   const advantages = [
@@ -37,13 +37,13 @@ const AssurancePret = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Emprunteur [Month] : -15 000€ (Lemoine)" description="Loi Lemoine : changez d'assurance de prêt à tout moment. Comparez 50+ assureurs, économisez jusqu'à 50%. Devis gratuit en 2 min." keyword="assurance prêt immobilier moins chère" keywords="assurance emprunteur, loi Lemoine, délégation assurance, changer assurance prêt" canonical="https://www.jemassuremoinscher.fr/assurance-pret" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title="Assurance Emprunteur [Month] : -15 000€ (Lemoine)" description="Loi Lemoine : changez d'assurance de prêt à tout moment. Comparez 50+ assureurs, économisez jusqu'à 50%. Devis gratuit en 2 min." keyword="assurance emprunteur moins chère" keywords="assurance emprunteur, loi Lemoine, délégation assurance, changer assurance emprunteur" canonical="https://www.jemassuremoinscher.fr/assurance-pret" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
-      <Breadcrumbs items={[{ label: "Assurance Prêt" }]} />
+      <Breadcrumbs items={[{ label: "Assurance Emprunteur" }]} />
       <main id="main-content">
       <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
         <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
-          <ArthurHero imageSrc={arthurThinking} imageAlt="Arthur réfléchit - assurance prêt moins chère" speechText={t('pretPage.subtitle')} />
+          <ArthurHero imageSrc={arthurThinking} imageAlt="Arthur réfléchit - assurance emprunteur moins chère" speechText={t('pretPage.subtitle')} />
           <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('pretPage.title')}</h1>
           <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Comparer les assurances emprunteur maintenant">{t('insPage.compareNow')}</Button>
         </div></div>
@@ -82,7 +82,7 @@ const AssurancePret = () => {
           ctaDescription={t('pretPage.ctaDesc')}
           ctaButtonLabel={t('insPage.compareNowBtn')}
           ctaMascotSrc={arthurFlying}
-          ctaMascotAlt="Arthur - assurance prêt"
+          ctaMascotAlt="Arthur - assurance emprunteur"
           onCtaClick={scrollToForm}
         />
       </div>

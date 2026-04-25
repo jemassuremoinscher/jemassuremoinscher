@@ -84,7 +84,7 @@ const AssuranceEmprunteurSEO = () => {
       faqs={faqs}
       breadcrumbs={[
         { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-        { name: "Assurance Prêt", url: "https://www.jemassuremoinscher.fr/assurance-pret" },
+        { name: "Assurance Emprunteur", url: "https://www.jemassuremoinscher.fr/assurance-pret" },
         { name: "Assurance Emprunteur", url: "https://www.jemassuremoinscher.fr/assurance-emprunteur" },
       ]}
       bottomCtaTitle="Changez d'assurance emprunteur et économisez"

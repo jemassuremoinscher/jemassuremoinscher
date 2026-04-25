@@ -8,7 +8,7 @@ Objectif : appliquer toutes les demandes sans toucher au design global du site, 
 - Garder le sélecteur de langue dans le drawer.
 
 2. Avis et nombre de clients partout
-- Remplacer toutes les occurrences visibles et structurées de 4.8 / 4,8 par 4.9 / 4,9.
+- Remplacer toutes les occurrences visibles et structurées de 4.9 / 4,9 par 4.9 / 4,9.
 - Mettre à jour les composants de preuve sociale : formulaire, widgets avis, landing pages, schemas JSON-LD.
 - Remplacer le seuil “250 Français/clients assurés” par “+1000 clients assurés” partout où il apparaît.
 - Vérifier les occurrences restantes par recherche globale après modification.
@@ -48,8 +48,8 @@ Objectif : appliquer toutes les demandes sans toucher au design global du site, 
 - Retirer l’assurance vie du type `ProductGuaranteeTable` si elle n’est plus utilisée, pour éviter une réintroduction future.
 - Vérifier qu’il n’y a pas de duplication avec l’onglet “Garanties comparées” existant d’`InsuranceSEOTabs`.
 
-8. Renommer Assurance de Prêt en Assurance Emprunteur
-- Remplacer les libellés visibles “Assurance de Prêt”, “Assurance Prêt” et “Assurance Prêt Immobilier” par “Assurance Emprunteur” quand il s’agit du produit/page.
+8. Renommer Assurance Emprunteur en Assurance Emprunteur
+- Remplacer les libellés visibles “Assurance Emprunteur”, “Assurance Emprunteur” et “Assurance Emprunteur” par “Assurance Emprunteur” quand il s’agit du produit/page.
 - Mettre à jour : header, footer, liens internes, breadcrumbs, titres, landing config, glossaire, SEO pages, index static, blog categories/titres/tags si ambigu.
 - Garder l’expression “assurance de prêt immobilier” uniquement comme synonyme explicatif dans les contenus longs quand elle aide le SEO, mais éviter qu’elle soit le titre principal.
 
@@ -59,7 +59,7 @@ Objectif : appliquer toutes les demandes sans toucher au design global du site, 
 - Règle future : priorité au slug, puis catégorie, puis tags/titre, puis fallback neutre ; ne pas utiliser Arthur ampoule par défaut pour les sujets métiers/auto/moto/habitation/santé.
 
 10. Contrôle final
-- Recherche globale pour vérifier : aucune occurrence visible restante de 4.8/4,8, 250 clients, “Assurance Prêt” comme libellé principal, `ProductGuaranteeTable product="vie"`.
+- Recherche globale pour vérifier : aucune occurrence visible restante de 4.9/4,9, 250 clients, “Assurance Emprunteur” comme libellé principal, `ProductGuaranteeTable product="vie"`.
 - Vérification que les pages produits ont bien le bloc cartes sans doublon.
 - Vérification TypeScript/build si disponible en mode exécution après approbation.
 

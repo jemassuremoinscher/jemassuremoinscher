@@ -8,7 +8,7 @@ const trust = geoContent.trust;
 const excludedDirectories = new Set(["dist", "node_modules", ".git", "test-hosting-paths"]);
 
 const stalePatterns = [
-  { pattern: /4\.8\/5/g, label: "Ancienne note 4.8/5" },
+  { pattern: /4\.8\/5/g, label: "Ancienne note 4.9/5" },
   { pattern: /2 500\+ avis/g, label: "Ancien volume d'avis 2 500+" },
   { pattern: /2500\+ avis/g, label: "Ancien volume d'avis 2500+" },
   { pattern: /2500 avis/g, label: "Ancien volume d'avis 2500" },
