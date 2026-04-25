@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T09:29:05.433Z",
+  "generatedAt": "2026-04-25T02:46:55.512Z",
   "score": 100,
   "status": "excellent",
   "methodology": "Score on-page pondéré sur toutes les pages HTML du site : title, meta description, canonical, robots, viewport, lang, H1 principal, Open Graph, JSON-LD et maillage interne.",
@@ -3260,8 +3260,8 @@
       "weight": 15,
       "impact": 15,
       "expected": "title de 30 à 60 caractères",
-      "actual": "45 caractères",
-      "reason": "Passe : 45 caractères observé, conforme à title de 30 à 60 caractères."
+      "actual": "51 caractères",
+      "reason": "Passe : 51 caractères observé, conforme à title de 30 à 60 caractères."
     },
     {
       "id": "blog/loi-lemoine-2026/index.html-meta-description",
@@ -5540,8 +5540,8 @@
       "weight": 15,
       "impact": 15,
       "expected": "title de 30 à 60 caractères",
-      "actual": "49 caractères",
-      "reason": "Passe : 49 caractères observé, conforme à title de 30 à 60 caractères."
+      "actual": "45 caractères",
+      "reason": "Passe : 45 caractères observé, conforme à title de 30 à 60 caractères."
     },
     {
       "id": "index.html-meta-description",
