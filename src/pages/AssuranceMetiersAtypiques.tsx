@@ -177,7 +177,7 @@ const AssuranceMetiersAtypiques = () => {
                 imageAlt="Arthur grimpeur — expert en assurances de métiers atypiques"
                 speechText="Refusé ailleurs ? On a la solution. 20 assureurs de niche, 0 refus, rappel sous 30 minutes."
               />
-              <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
                 Assurance Métiers Atypiques : couvrir l'inassurable, c'est notre métier
               </h1>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
