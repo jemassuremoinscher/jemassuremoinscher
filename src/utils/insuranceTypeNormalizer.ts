@@ -39,7 +39,6 @@ const ALIAS_MAP: Record<string, CanonicalInsuranceType> = {
   'prêt': 'pret',
   'assurance pret': 'pret',
   'assurance emprunteur': 'pret',
-  'assurance emprunteur': 'pret',
   'assurance pret immobilier': 'pret',
   // Animaux
   'animaux': 'animaux',
