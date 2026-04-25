@@ -450,7 +450,11 @@ export const stepConfigsByType: Record<InsuranceType, FormStep[]> = {
         { value: 'pno', label: 'PNO', description: 'Propriétaire non occupant', icon: Building },
         { value: 'gli', label: 'GLI', description: 'Garantie loyers impayés', icon: Lock },
         { value: 'vie', label: 'Assurance Vie', description: 'Épargne et succession', icon: Landmark },
-        { value: 'pret', label: 'Prêt immobilier', description: 'Assurance emprunteur', icon: FileText },
+        { value: 'pret', label: 'Assurance Emprunteur', description: 'Crédit immobilier', icon: FileText },
+        { value: 'prevoyance', label: 'Prévoyance', description: 'Décès, invalidité, revenus', icon: Umbrella },
+        { value: 'rc_pro', label: 'RC Pro', description: 'Responsabilité professionnelle', icon: Briefcase },
+        { value: 'mrp', label: 'MRP', description: 'Locaux et matériel pro', icon: Building2 },
+        { value: 'gestion_locative', label: 'Gestion locative', description: 'Honoraires et services bailleur', icon: KeyRound },
       ],
     },
     {
