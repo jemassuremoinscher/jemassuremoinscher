@@ -312,10 +312,13 @@ const AssuranceMetiersAtypiques = () => {
             <MultiStepQuoteForm insuranceType="metiers_atypiques" />
           </div>
 
+          {/* Tableau garanties par formule (SEO/GEO) */}
+          <ProductGuaranteeTable product="metiers-atypiques" />
+
           <CourtierValueCards product="metiers-atypiques" />
 
           {/* SEO Tabs (FAQ + Garanties) */}
-          <InsuranceSEOTabs faqTitle="Questions fréquentes — Métiers atypiques" faqs={faqs} showGuarantees={false} />
+          <InsuranceSEOTabs faqTitle="Questions fréquentes — Métiers atypiques" faqs={faqs} />
 
           {/* Bloc SEO 400+ mots */}
           <section className="max-w-3xl mx-auto mb-16 prose prose-sm md:prose-base text-muted-foreground leading-relaxed [&_strong]:text-foreground [&_h2]:text-foreground [&_h3]:text-foreground">
