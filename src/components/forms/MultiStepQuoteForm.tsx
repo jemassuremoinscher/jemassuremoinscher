@@ -855,7 +855,7 @@ const teaserPrices: Record<string, { label: string; prices: { name: string; pric
     { name: 'Confort', price: '29€', badge: 'Dès', logo: logoHarmonie },
     { name: 'Premium', price: '49€', badge: 'Dès', logo: logoAxa },
   ]},
-  pret: { label: 'Assurance Prêt', prices: [
+  pret: { label: 'Assurance Emprunteur', prices: [
     { name: 'Décès', price: '8€', badge: 'Dès', logo: logoApril },
     { name: 'Décès + PTIA', price: '14€', badge: 'Dès', logo: logoCardif },
     { name: 'Complète', price: '22€', badge: 'Dès', logo: logoGenerali },
@@ -894,6 +894,11 @@ const teaserPrices: Record<string, { label: string; prices: { name: string; pric
     { name: 'Essentielle', price: '6€', badge: 'Dès', logo: logoDirectAssurance },
     { name: 'Confort', price: '11€', badge: 'Dès', logo: logoMaif },
     { name: 'Premium', price: '18€', badge: 'Dès', logo: logoGroupama },
+  ]},
+  gestion_locative: { label: 'Gestion Locative', prices: [
+    { name: 'Essentielle', price: '5%', badge: 'Dès', logo: logoMaif },
+    { name: 'Confort', price: '7%', badge: 'Dès', logo: logoAllianz },
+    { name: 'Premium', price: '9%', badge: 'Dès', logo: logoAxa },
   ]},
 };
 
@@ -939,7 +944,7 @@ function ContactStep({
         className="space-y-3"
       >
         <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">
-          Tarifs trouvés pour votre profil
+          Estimations cohérentes pour votre profil
         </p>
         <div className="grid grid-cols-3 gap-2">
           {prices.map((p, i) => (
@@ -970,7 +975,7 @@ function ContactStep({
               </div>
               <span className="text-[10px] text-muted-foreground font-medium uppercase">{p.badge}</span>
               <div className="text-xl md:text-2xl font-extrabold text-accent mt-0.5">{p.price}</div>
-              <span className="text-[11px] text-muted-foreground">/mois</span>
+              <span className="text-[11px] text-muted-foreground">{p.price.includes('%') ? ' des loyers' : '/mois'}</span>
               <p className="text-xs font-medium text-foreground mt-1">{p.name}</p>
             </motion.div>
           ))}
