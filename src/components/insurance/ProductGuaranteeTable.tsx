@@ -25,7 +25,6 @@ export type ProductKey =
   | "mrp"
   | "rc-pro"
   | "pret"
-  | "vie"
   | "prevoyance"
   | "metiers-atypiques"
   | "gestion-locative";
@@ -254,25 +253,6 @@ const DATA: Record<ProductKey, ProductTableData> = {
       { name: "Suppression questionnaire santé (loi Lemoine)", values: { base: "Si prêt < 200 000€", renforcee: "Si prêt < 200 000€" } },
     ],
     footnote: "Loi Lemoine (2022) : changement possible à tout moment, sans frais. Suppression du questionnaire santé sous conditions.",
-  },
-  vie: {
-    title: "Caractéristiques — Assurance Vie",
-    intro: "Placement long terme, fiscalité avantageuse après 8 ans, transmission optimisée.",
-    columns: [
-      { key: "monosup", label: "Mono-support (€)" },
-      { key: "multisup", label: "Multi-supports" },
-    ],
-    rows: [
-      { name: "Capital garanti (fonds €)", values: { monosup: "Oui", multisup: "Partiel" } },
-      { name: "Unités de compte (UC)", values: { monosup: "—", multisup: "Oui" } },
-      { name: "Versements libres", values: { monosup: "Incluse", multisup: "Incluse" } },
-      { name: "Rachats partiels / totaux", values: { monosup: "Incluse", multisup: "Incluse" } },
-      { name: "Avance sur contrat", values: { monosup: "Incluse", multisup: "Incluse" } },
-      { name: "Fiscalité avantageuse après 8 ans", values: { monosup: "Incluse", multisup: "Incluse" } },
-      { name: "Abattement transmission (152 500€/bénéficiaire)", values: { monosup: "Incluse", multisup: "Incluse" } },
-      { name: "Gestion pilotée", values: { monosup: "—", multisup: "Option" } },
-    ],
-    footnote: "Fiscalité 2026 : abattement annuel 4 600€ (célibataire) / 9 200€ (couple) après 8 ans.",
   },
   prevoyance: {
     title: "Garanties — Assurance Prévoyance",
