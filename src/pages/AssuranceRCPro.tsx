@@ -10,6 +10,7 @@ import arthurBusiness from "@/assets/mascotte/arthur-business.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
 import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
+import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import arthurFlying from "@/assets/mascotte/arthur-wink-thumbsup.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -52,6 +53,8 @@ const AssuranceRCPro = () => {
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="rc_pro" /></div>
 
         <ProductGuaranteeTable product="rc-pro" />
+
+        <CourtierValueCards product="rc-pro" />
 
         <InsuranceSEOTabs
           faqTitle={t('insPage.faqTitle')}

@@ -11,6 +11,7 @@ import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
 import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
+import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import EnBref from "@/components/seo/EnBref";
 import BrandName from "@/components/BrandName";
@@ -74,6 +75,8 @@ const AssuranceSante = () => {
         </div>
 
         <ProductGuaranteeTable product="sante" />
+
+        <CourtierValueCards product="sante" />
 
         <InsuranceSEOTabs
           faqTitle={t('insPage.faqTitle')}

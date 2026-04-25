@@ -10,6 +10,7 @@ import arthurDetective from "@/assets/mascotte/arthur-detective.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
 import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
+import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import arthurFlying from "@/assets/mascotte/arthur-question.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -52,6 +53,8 @@ const AssuranceGLI = () => {
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="gli" /></div>
 
         <ProductGuaranteeTable product="gli" />
+
+        <CourtierValueCards product="gli" />
 
         <InsuranceSEOTabs
           faqTitle={t('insPage.faqTitle')}

@@ -11,6 +11,7 @@ import arthurFlying from "@/assets/mascotte/arthur-welcome.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
 import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
+import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -103,6 +104,8 @@ const GestionLocative = () => {
           </div>
 
           <ProductGuaranteeTable product="gestion-locative" />
+
+        <CourtierValueCards product="gestion-locative" />
 
           <InsuranceSEOTabs faqTitle={t('insPage.faqTitle')} faqs={faqs} />
 

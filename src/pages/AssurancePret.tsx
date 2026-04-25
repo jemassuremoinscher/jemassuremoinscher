@@ -10,6 +10,7 @@ import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
 import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
+import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import EnBref from "@/components/seo/EnBref";
 import BrandName from "@/components/BrandName";
@@ -54,6 +55,8 @@ const AssurancePret = () => {
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="pret" /></div>
 
         <ProductGuaranteeTable product="pret" />
+
+        <CourtierValueCards product="pret" />
 
         <InsuranceSEOTabs
           faqTitle={t('insPage.faqTitle')}
