@@ -65,7 +65,7 @@ const SERPPreview = () => {
       .from("page_meta_overrides")
       .select("*")
       .order("page_path");
-    if (data) setSavedMetas(data as PageMeta[]);
+    setSavedMetas((data ?? []) as PageMeta[]);
     setIsLoading(false);
   };
 

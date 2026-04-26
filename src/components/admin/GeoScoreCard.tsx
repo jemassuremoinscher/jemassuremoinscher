@@ -66,7 +66,6 @@ type VisibilityScore = {
       llmSessions: number;
       llmSources: string[];
       iaCitations: number;
-      rankingScore: number;
       trackedPages: number;
     };
     pageRanking: Array<{ path: string; clicks: number; impressions: number; avgPosition: number; ctr: number; opportunityScore: number; aiPotential: string; contentAction: string }>;
@@ -625,10 +624,6 @@ export const GeoScoreCard = () => {
                 <div className="rounded-md border border-border p-3">
                   <p className="text-muted-foreground">Requêtes IA détectées</p>
                   <p className="font-semibold text-foreground">{visibilityReport?.geo.metrics.iaCitations ?? 0}</p>
-                </div>
-                <div className="rounded-md border border-border p-3">
-                  <p className="text-muted-foreground">Ranking proxy IA</p>
-                  <p className="font-semibold text-foreground">{visibilityReport?.geo.metrics.rankingScore ?? 0}/100</p>
                 </div>
                 <div className="rounded-md border border-border p-3">
                   <p className="text-muted-foreground">Pages suivies</p>
