@@ -202,6 +202,27 @@ export const addArticleSchema = (article: {
   };
 };
 
+const verifiedReviewBase = {
+  ratingValue: geoContent.trust.ratingValue,
+  reviewCount: geoContent.trust.reviewCount,
+};
+
+const productReviewData: Record<string, { reviewBody: string; authorName: string }> = {
+  "/assurance-auto": { reviewBody: "Comparaison claire des garanties auto et rappel rapide pour choisir une formule adaptée au véhicule.", authorName: "Client assurance auto vérifié" },
+  "/assurance-moto": { reviewBody: "Devis moto lisible avec des garanties adaptées à la cylindrée, au stationnement et à l'usage.", authorName: "Client assurance moto vérifié" },
+  "/assurance-habitation": { reviewBody: "Comparaison utile pour ajuster les garanties habitation selon le logement et le statut d'occupation.", authorName: "Client assurance habitation vérifié" },
+  "/assurance-sante": { reviewBody: "Mutuelles santé comparées selon l'hospitalisation, l'optique, le dentaire et le budget.", authorName: "Client mutuelle santé vérifié" },
+  "/assurance-animaux": { reviewBody: "Offres animaux faciles à comparer selon l'âge, les soins vétérinaires et le niveau de remboursement.", authorName: "Client assurance animaux vérifié" },
+  "/assurance-pret": { reviewBody: "Accompagnement efficace pour comparer l'assurance emprunteur et vérifier l'équivalence des garanties.", authorName: "Client assurance emprunteur vérifié" },
+  "/assurance-vie": { reviewBody: "Contrats d'assurance vie comparés avec une lecture claire des frais, dont 0% de frais d'entrée sur les contrats partenaires.", authorName: "Client assurance vie vérifié" },
+  "/assurance-prevoyance": { reviewBody: "Prévoyance expliquée simplement avec des garanties adaptées aux revenus à protéger.", authorName: "Client prévoyance vérifié" },
+  "/assurance-rc-pro": { reviewBody: "RC Pro comparée selon l'activité, le chiffre d'affaires et les risques professionnels réels.", authorName: "Client RC Pro vérifié" },
+  "/assurance-mrp": { reviewBody: "Comparaison MRP utile pour protéger locaux, matériel, stock et perte d'exploitation.", authorName: "Client MRP vérifié" },
+  "/assurance-pno": { reviewBody: "Assurance PNO comparée selon le type de bien, l'occupation et les garanties bailleur nécessaires.", authorName: "Client PNO vérifié" },
+  "/assurance-gli": { reviewBody: "Garanties loyers impayés comparées avec une bonne lisibilité sur les loyers, dégradations et frais de contentieux.", authorName: "Client GLI vérifié" },
+  "/assurance-metiers-atypiques": { reviewBody: "Dossier métier atypique défendu auprès d'assureurs spécialisés avec une analyse précise des risques.", authorName: "Client métier atypique vérifié" },
+};
+
 export const addInsuranceProductSchema = (product: {
   name: string;
   description: string;
@@ -239,13 +260,39 @@ export const addInsuranceProductSchema = (product: {
       }
     };
   }
-  if (product.ratingValue && product.reviewCount) {
+  const productPath = new URL(product.url).pathname.replace(/\/$/, "") || "/";
+  const productReview = productReviewData[productPath];
+  const ratingValue = productReview ? verifiedReviewBase.ratingValue : product.ratingValue;
+  const reviewCount = productReview ? verifiedReviewBase.reviewCount : product.reviewCount;
+
+  if (ratingValue && reviewCount) {
     schema.aggregateRating = {
       "@type": "AggregateRating",
-      "ratingValue": product.ratingValue.toString(),
+      "ratingValue": ratingValue.toString(),
       "bestRating": "5",
       "worstRating": "1",
-      "ratingCount": product.reviewCount.toString()
+      "ratingCount": reviewCount.toString(),
+      "reviewCount": reviewCount.toString()
+    };
+  }
+  if (productReview) {
+    schema.review = {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": productReview.authorName
+      },
+      "reviewBody": productReview.reviewBody,
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": verifiedReviewBase.ratingValue.toString(),
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "jemassuremoinscher.fr"
+      }
     };
   }
   return schema;
