@@ -479,33 +479,38 @@ Article complet en markdown
           }),
         });
 
+        let article: ParsedArticle;
+
         if (!aiRes.ok) {
           const errText = await aiRes.text();
           console.error(`AI error for \"${keyword}\": ${aiRes.status} ${errText}`);
-          failures.push({ keyword, reason: `Erreur IA ${aiRes.status}` });
-          if (aiRes.status === 429) {
-            console.log("Rate limited, stopping generation");
-            break;
+          if (aiRes.status === 401 || aiRes.status === 402) {
+            article = buildFallbackArticle(keyword, currentPage, opp);
+          } else {
+            failures.push({ keyword, reason: `Erreur IA ${aiRes.status}` });
+            if (aiRes.status === 429) {
+              console.log("Rate limited, stopping generation");
+              break;
+            }
+            continue;
           }
-          continue;
-        }
+        } else {
+          const aiData = await aiRes.json();
+          const rawContent = aiData.choices?.[0]?.message?.content;
 
-        const aiData = await aiRes.json();
-        const rawContent = aiData.choices?.[0]?.message?.content;
+          if (!rawContent || typeof rawContent !== "string") {
+            failures.push({ keyword, reason: "Réponse IA vide" });
+            continue;
+          }
 
-        if (!rawContent || typeof rawContent !== "string") {
-          failures.push({ keyword, reason: "Réponse IA vide" });
-          continue;
-        }
-
-        let article: ParsedArticle;
-        try {
-          article = parseAiArticle(rawContent);
-        } catch (parseErr) {
-          const reason = parseErr instanceof Error ? parseErr.message : "Erreur de parsing inconnue";
-          console.error(`Parse failed for \"${keyword}\": ${reason}. Raw start: ${rawContent.substring(0, 200)}`);
-          failures.push({ keyword, reason });
-          continue;
+          try {
+            article = parseAiArticle(rawContent);
+          } catch (parseErr) {
+            const reason = parseErr instanceof Error ? parseErr.message : "Erreur de parsing inconnue";
+            console.error(`Parse failed for \"${keyword}\": ${reason}. Raw start: ${rawContent.substring(0, 200)}`);
+            failures.push({ keyword, reason });
+            continue;
+          }
         }
 
         const slug = slugify(article.title || keyword);
