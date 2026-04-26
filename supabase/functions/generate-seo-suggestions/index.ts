@@ -245,6 +245,69 @@ function parseAiArticle(raw: string): ParsedArticle {
   throw new Error("Impossible d'extraire un format exploitable depuis la réponse IA");
 }
 
+function buildFallbackArticle(keyword: string, currentPage: string, opp: any): ParsedArticle {
+  const normalizedKeyword = keyword.trim() || "définition assurance";
+  const title = `${normalizedKeyword.charAt(0).toUpperCase()}${normalizedKeyword.slice(1)} : définition, garanties et conseils 2026`;
+  const meta = `${normalizedKeyword} : définition claire, exemples, démarches et conseils pour mieux comprendre votre assurance en 2026.`;
+
+  return normalizeArticle({
+    title,
+    meta_description: meta,
+    author: "L'équipe d'experts Jemassuremoinscher",
+    content: `# ${title}
+
+## En bref
+
+Le sujet **${normalizedKeyword}** mérite une explication simple, fiable et directement exploitable pour comparer un contrat d'assurance. Cette fiche sert de base éditoriale : elle peut être enrichie manuellement avant publication avec les exemples, chiffres et liens internes les plus pertinents.
+
+## Définition
+
+En assurance, un sinistre désigne généralement un événement prévu au contrat qui déclenche potentiellement l'intervention de l'assureur : accident, dégât des eaux, vol, incendie, dommage corporel ou autre événement garanti selon le type de couverture souscrite.
+
+## Pourquoi c'est important
+
+Comprendre cette notion aide à vérifier si une situation est couverte, quelles démarches effectuer et quels justificatifs transmettre. C'est aussi un point clé pour comparer les exclusions, franchises, plafonds d'indemnisation et délais de déclaration.
+
+## Démarches à prévoir
+
+| Étape | Action recommandée | Point de vigilance |
+|---|---|---|
+| 1 | Relire les garanties du contrat | Vérifier exclusions et franchises |
+| 2 | Déclarer l'événement rapidement | Respecter les délais contractuels |
+| 3 | Réunir les preuves | Photos, factures, constat, témoignages |
+| 4 | Suivre l'indemnisation | Contrôler les plafonds et vétusté appliquée |
+
+## Conseils pour comparer
+
+- Comparez le niveau de garantie réel, pas seulement le prix.
+- Vérifiez les franchises applicables à chaque type de sinistre.
+- Contrôlez les délais de déclaration et les documents demandés.
+- Regardez les plafonds d'indemnisation et les exclusions.
+
+## Maillage interne utile
+
+Selon votre besoin, consultez aussi nos pages dédiées : [assurance auto](/assurance-auto), [assurance habitation](/assurance-habitation), [mutuelle santé](/assurance-sante), [assurance moto](/assurance-moto) et [glossaire assurance](/glossaire).
+
+## FAQ
+
+### Que faire après un sinistre ?
+
+Prévenez votre assureur dans les délais prévus, rassemblez les justificatifs et conservez une trace écrite de vos échanges.
+
+### Un sinistre est-il toujours indemnisé ?
+
+Non. L'indemnisation dépend des garanties souscrites, des exclusions, des franchises et des plafonds prévus au contrat.
+
+### Comment réduire le risque de mauvaise surprise ?
+
+Comparez les contrats avant de signer et demandez une explication claire des exclusions, franchises et limites d'indemnisation.
+
+---
+
+Note backoffice : brouillon de secours créé automatiquement après indisponibilité temporaire de l'IA pour la requête "${normalizedKeyword}". Page GSC associée : ${currentPage || "non disponible"}. Position observée : ${Math.round(Number(opp?.position || 0) * 10) / 10}, impressions : ${Number(opp?.impressions || 0)}.`,
+  });
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
