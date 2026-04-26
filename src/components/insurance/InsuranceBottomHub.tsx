@@ -1,4 +1,5 @@
 import { type ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import RelatedInsuranceLinks from "@/components/insurance/RelatedInsuranceLinks";
 
@@ -46,6 +47,14 @@ const InsuranceBottomHub = ({
           {enBref}
         </div>
       )}
+
+      <p className="-mt-4 mb-10 text-center text-xs text-muted-foreground">
+        Calculé selon notre{" "}
+        <Link to="/sources-et-methodologie" className="font-medium text-primary hover:underline underline-offset-4">
+          méthodologie
+        </Link>
+        .
+      </p>
 
       {/* CTA final */}
       <section className="max-w-2xl mx-auto text-center mb-16">
