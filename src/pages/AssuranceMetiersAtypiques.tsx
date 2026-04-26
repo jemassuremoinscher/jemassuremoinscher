@@ -13,7 +13,6 @@ import arthurBtp from "@/assets/mascotte/arthur-btp.webp";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
-import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
 import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -312,13 +311,10 @@ const AssuranceMetiersAtypiques = () => {
             <MultiStepQuoteForm insuranceType="metiers_atypiques" />
           </div>
 
-          {/* Tableau garanties par formule (SEO/GEO) */}
-          <ProductGuaranteeTable product="metiers-atypiques" />
-
           <CourtierValueCards product="metiers-atypiques" />
 
           {/* SEO Tabs (FAQ + Garanties) */}
-          <InsuranceSEOTabs faqTitle="Questions fréquentes — Métiers atypiques" faqs={faqs} />
+          <InsuranceSEOTabs faqTitle="Questions fréquentes — Métiers atypiques" faqs={faqs} showGuarantees={false} />
 
           {/* Bloc SEO 400+ mots */}
           <section className="max-w-3xl mx-auto mb-16 prose prose-sm md:prose-base text-muted-foreground leading-relaxed [&_strong]:text-foreground [&_h2]:text-foreground [&_h3]:text-foreground">
