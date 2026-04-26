@@ -408,7 +408,6 @@ serve(async (req) => {
       makeCheck({ id: "geo-llm-sessions", label: "Sessions issues d'outils IA", source: "ga4", value: `${llmSessions}`, expected: ">= 5 sessions / 28 jours", weight: 45, pass: llmSessions >= 5 }),
       makeCheck({ id: "geo-llm-source-diversity", label: "Diversité des sources IA", source: "ga4", value: `${llmSources.length}`, expected: ">= 2 sources IA distinctes", weight: 25, pass: llmSources.length >= 2 }),
       makeCheck({ id: "geo-ia-citations", label: "Mentions IA détectables dans Search Console", source: "gsc", value: `${iaCitations}`, expected: ">= 1 requête liée IA", weight: 30, pass: iaCitations >= 1 }),
-      makeCheck({ id: "geo-ai-ranking", label: "Ranking proxy IA", source: "gsc", value: `${rankingIaScore}/100`, expected: ">= 60/100", weight: 20, pass: rankingIaScore >= 60 }),
       makeCheck({ id: "geo-ai-opportunity-pages", label: "Pages à potentiel IA", source: "gsc", value: `${aiOpportunityPages}`, expected: ">= 5 pages à potentiel", weight: 15, pass: aiOpportunityPages >= 5 }),
     ];
 
@@ -461,7 +460,6 @@ serve(async (req) => {
           llmSessions,
           llmSources,
           iaCitations,
-          rankingScore: rankingIaScore,
           trackedPages: pageVisibility.length,
         },
         pageRanking: pageVisibility.slice(0, 20),
