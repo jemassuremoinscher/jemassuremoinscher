@@ -724,7 +724,7 @@ export const GeoScoreCard = () => {
                       </div>
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          {(check.label.toLowerCase().includes('diversité') || check.label.toLowerCase().includes('mentions') || check.label.toLowerCase().includes('requêtes')) ? (
+                          {(check.label.toLowerCase().includes('sessions') || check.label.toLowerCase().includes('diversité') || check.label.toLowerCase().includes('mentions') || check.label.toLowerCase().includes('requêtes')) ? (
                             <Button size="sm" onClick={() => void runVisibilityFix(check.id, check)} disabled={fixStatuses[check.id] === 'sending'}>
                               <Wand2 className="h-4 w-4 mr-1" />
                               {fixStatuses[check.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}

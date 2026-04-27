@@ -798,7 +798,19 @@ export const validateSeoVisibilityFix = async (check: VisibilityCheckLike) => {
 export const applyGeoVisibilityFix = async (check: VisibilityCheckLike) => {
   const label = check.label.toLowerCase();
 
+  if (label.includes("sessions")) {
+    await createContentSuggestions(IA_SOURCE_SUGGESTIONS);
+    const suggestion = await persistContentImprovement({
+      source: "geo",
+      scope: "visibility",
+      path: check.label,
+      recommendation: "Créer des contenus FAQ, comparatifs et définitions ciblés pour augmenter les reprises par assistants IA.",
+    });
+    return { message: "Plan de contenus IA activé pour augmenter les sessions LLM.", suggestion };
+  }
+
   if (label.includes("diversité")) {
+    await createContentSuggestions(IA_SOURCE_SUGGESTIONS);
     const suggestion = await persistContentImprovement({
       source: "geo",
       scope: "visibility",
@@ -809,6 +821,7 @@ export const applyGeoVisibilityFix = async (check: VisibilityCheckLike) => {
   }
 
   if (label.includes("mentions") || label.includes("requêtes")) {
+    await createContentSuggestions(IA_CITATION_SUGGESTIONS);
     const suggestion = await persistContentImprovement({
       source: "geo",
       scope: "visibility",
@@ -824,16 +837,22 @@ export const applyGeoVisibilityFix = async (check: VisibilityCheckLike) => {
 export const validateGeoVisibilityFix = async (check: VisibilityCheckLike) => {
   const label = check.label.toLowerCase();
 
+  if (label.includes("sessions")) {
+    const key = buildContentImprovementKey({ source: "geo", scope: "visibility", path: check.label });
+    const { data, error } = await supabase.from("page_meta_overrides").select("page_path").eq("page_path", key).maybeSingle();
+    return !error && data?.page_path === key && await validateContentSuggestions(IA_SOURCE_SUGGESTIONS);
+  }
+
   if (label.includes("diversité")) {
     const key = buildContentImprovementKey({ source: "geo", scope: "visibility", path: check.label });
     const { data, error } = await supabase.from("page_meta_overrides").select("page_path").eq("page_path", key).maybeSingle();
-    return !error && data?.page_path === key;
+    return !error && data?.page_path === key && await validateContentSuggestions(IA_SOURCE_SUGGESTIONS);
   }
 
   if (label.includes("mentions") || label.includes("requêtes")) {
     const key = buildContentImprovementKey({ source: "geo", scope: "visibility", path: check.label });
     const { data, error } = await supabase.from("page_meta_overrides").select("page_path").eq("page_path", key).maybeSingle();
-    return !error && data?.page_path === key;
+    return !error && data?.page_path === key && await validateContentSuggestions(IA_CITATION_SUGGESTIONS);
   }
 
   return false;
