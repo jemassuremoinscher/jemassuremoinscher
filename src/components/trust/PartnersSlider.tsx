@@ -1,20 +1,33 @@
 import { memo, useMemo } from "react";
-import { Building2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import logoAbeille from "@/assets/logos/abeille.webp";
+import logoAlan from "@/assets/logos/alan-new.webp";
+import logoAllianz from "@/assets/logos/allianz.webp";
+import logoAmv from "@/assets/logos/amv.webp";
+import logoAxa from "@/assets/logos/axa.webp";
+import logoDirectAssurance from "@/assets/logos/direct-assurance-new.webp";
+import logoGenerali from "@/assets/logos/generali-new.webp";
+import logoGmf from "@/assets/logos/gmf-new.webp";
+import logoGroupama from "@/assets/logos/groupama.png";
+import logoMaaf from "@/assets/logos/maaf.webp";
+import logoMaif from "@/assets/logos/maif.webp";
+import logoMma from "@/assets/logos/mma-new.webp";
+import logoSwissLife from "@/assets/logos/swisslife.webp";
 
 const partners = [
-  { id: 1, name: "Allianz" },
-  { id: 2, name: "AXA" },
-  { id: 3, name: "MAIF" },
-  { id: 4, name: "MAAF" },
-  { id: 5, name: "Groupama" },
-  { id: 6, name: "Generali" },
-  { id: 7, name: "GMF" },
-  { id: 8, name: "Direct Assurance" },
-  { id: 9, name: "SwissLife" },
-  { id: 10, name: "MMA" },
-  { id: 11, name: "Abeille" },
-  { id: 12, name: "Alan" },
+  { id: 1, name: "Abeille", logo: logoAbeille },
+  { id: 2, name: "Alan", logo: logoAlan },
+  { id: 3, name: "Allianz", logo: logoAllianz },
+  { id: 4, name: "AMV", logo: logoAmv },
+  { id: 5, name: "AXA", logo: logoAxa },
+  { id: 6, name: "Direct Assurance", logo: logoDirectAssurance },
+  { id: 7, name: "Generali", logo: logoGenerali },
+  { id: 8, name: "GMF", logo: logoGmf },
+  { id: 9, name: "Groupama", logo: logoGroupama },
+  { id: 10, name: "MAAF", logo: logoMaaf },
+  { id: 11, name: "MAIF", logo: logoMaif },
+  { id: 12, name: "MMA", logo: logoMma },
+  { id: 13, name: "Swiss Life", logo: logoSwissLife },
 ] as const;
 
 const PartnersSlider = memo(() => {
@@ -40,7 +53,7 @@ const PartnersSlider = memo(() => {
               className="flex-shrink-0 flex items-center gap-2 h-12 md:h-14 rounded-full bg-card border border-border/60 px-4 md:px-5"
               aria-label={`${partner.name} - assureur partenaire assurance moins chère`}
             >
-              <Building2 className="w-4 h-4 text-primary" aria-hidden="true" />
+              <img src={partner.logo} alt="" className="h-6 w-14 object-contain" width={56} height={24} loading="lazy" decoding="async" aria-hidden="true" />
               <span className="text-sm md:text-base font-semibold text-foreground whitespace-nowrap">
                 {partner.name}
               </span>

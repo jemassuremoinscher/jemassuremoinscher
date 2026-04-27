@@ -9,14 +9,14 @@ import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
-import { Linkedin, Send, Settings, History, Plus, Loader2, Trash2, RefreshCw } from 'lucide-react';
+import { Facebook, Send, Settings, History, Plus, Loader2, Trash2, RefreshCw, Share2 } from 'lucide-react';
 import { blogArticles } from '@/data/blogArticles';
 import { blogArticles2026 } from '@/data/blogArticles2026';
 
 const allArticles = [...blogArticles, ...blogArticles2026];
 
 export const LinkedInAutoPoster = () => {
-  const [webhookUrl, setWebhookUrl] = useState('');
+  const [webhookUrl, setWebhookUrl] = useState('https://hook.eu1.make.com/swhr61xm1p2alnmmfrlif7af4ofd71o7');
   const [isActive, setIsActive] = useState(true);
   const [postDay, setPostDay] = useState('monday');
   const [postHour, setPostHour] = useState(9);
@@ -40,7 +40,7 @@ export const LinkedInAutoPoster = () => {
 
     if (configRes.data) {
       setConfigId(configRes.data.id);
-      setWebhookUrl(configRes.data.webhook_url);
+      setWebhookUrl(configRes.data.webhook_url || 'https://hook.eu1.make.com/swhr61xm1p2alnmmfrlif7af4ofd71o7');
       setIsActive(configRes.data.is_active);
       setPostDay(configRes.data.post_day);
       setPostHour(configRes.data.post_hour);
@@ -53,11 +53,11 @@ export const LinkedInAutoPoster = () => {
 
   const saveConfig = async () => {
     if (!webhookUrl.trim()) {
-      toast.error('Veuillez entrer l\'URL du webhook Zapier');
+      toast.error('Veuillez entrer l\'URL du webhook Make.com');
       return;
     }
     setSaving(true);
-    const configData = { webhook_url: webhookUrl, is_active: isActive, post_day: postDay, post_hour: postHour };
+    const configData = { webhook_url: webhookUrl, is_active: isActive, post_day: postDay, post_hour: postHour, provider: 'make', linkedin_enabled: true, facebook_enabled: true } as any;
 
     if (configId) {
       const { error } = await supabase.from('linkedin_config').update(configData).eq('id', configId);
@@ -80,14 +80,21 @@ export const LinkedInAutoPoster = () => {
     if (existing) { toast.error('Cet article est déjà en file d\'attente'); return; }
 
     const siteUrl = 'https://jemassuremoinscher.fr';
+    const articleUrl = `${siteUrl}/blog/${article.slug}`;
+    const imageUrl = article.image ? (article.image.startsWith('http') ? article.image : `${siteUrl}${article.image}`) : null;
     const defaultContent = `📰 Nouvel article sur jemassuremoinscher.fr !\n\n${article.title}\n\n👉 Lire l'article complet : ${siteUrl}/blog/${article.slug}\n\n#assurance #comparateur #économies #jemassuremoinscher`;
 
     const { error } = await supabase.from('linkedin_auto_posts').insert({
       article_slug: article.slug,
       article_title: article.title,
+      article_url: articleUrl,
+      image_url: imageUrl,
       post_content: customContent.trim() || defaultContent,
+      provider: 'make',
       status: 'pending',
-    });
+      linkedin_status: 'pending',
+      facebook_status: 'pending',
+    } as any);
 
     if (error) toast.error('Erreur: ' + error.message);
     else {
@@ -112,7 +119,7 @@ export const LinkedInAutoPoster = () => {
       });
 
       if (res.error) toast.error('Erreur: ' + res.error.message);
-      else toast.success(res.data?.message || 'Article envoyé à LinkedIn ! 🎉');
+      else toast.success(res.data?.message || 'Article envoyé à Make.com pour LinkedIn et Facebook ! 🎉');
       fetchData();
     } catch (e: any) {
       toast.error(e.message || 'Erreur d\'envoi');
@@ -132,7 +139,7 @@ export const LinkedInAutoPoster = () => {
 
   const statusBadge = (status: string) => {
     switch (status) {
-      case 'posted': return <Badge className="bg-primary text-primary-foreground">Publié</Badge>;
+      case 'posted': return <Badge className="bg-primary text-primary-foreground">Envoyé</Badge>;
       case 'pending': return <Badge variant="outline" className="border-accent text-accent-foreground">En attente</Badge>;
       case 'failed': return <Badge variant="destructive">Échoué</Badge>;
       default: return <Badge variant="secondary">{status}</Badge>;
@@ -144,26 +151,26 @@ export const LinkedInAutoPoster = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <Linkedin className="h-6 w-6 text-[#0A66C2]" />
-        <h2 className="text-2xl font-bold">Publication LinkedIn automatique</h2>
+        <Share2 className="h-6 w-6 text-primary" />
+        <h2 className="text-2xl font-bold">Publications sociales automatiques</h2>
       </div>
 
       {/* Config */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2"><Settings className="h-5 w-5" /> Configuration</CardTitle>
-          <CardDescription>Connectez votre Zap LinkedIn via le webhook Zapier</CardDescription>
+          <CardTitle className="flex items-center gap-2"><Settings className="h-5 w-5" /> Configuration Make.com</CardTitle>
+          <CardDescription>Envoi automatique vers Make.com pour publier ou monitorer LinkedIn et Facebook.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <label className="text-sm font-medium mb-1 block">URL Webhook Zapier</label>
+            <label className="text-sm font-medium mb-1 block">URL Webhook Make.com</label>
             <Input
               value={webhookUrl}
               onChange={e => setWebhookUrl(e.target.value)}
-              placeholder="https://hooks.zapier.com/hooks/catch/..."
+              placeholder="https://hook.eu1.make.com/..."
               type="url"
             />
-            <p className="text-xs text-muted-foreground mt-1">Créez un Zap avec un déclencheur Webhook → action LinkedIn "Create Share Update"</p>
+            <p className="text-xs text-muted-foreground mt-1">Payload envoyé : titre, URL de l'article, URL d'image si disponible, slug et canaux LinkedIn/Facebook.</p>
           </div>
           <div className="flex flex-wrap items-center gap-6">
             <div className="flex items-center gap-2">
@@ -254,7 +261,8 @@ export const LinkedInAutoPoster = () => {
               <TableHeader>
                 <TableRow>
                   <TableHead>Article</TableHead>
-                  <TableHead>Statut</TableHead>
+                  <TableHead>Canaux</TableHead>
+                  <TableHead>Article</TableHead>
                   <TableHead>Date</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
@@ -263,9 +271,17 @@ export const LinkedInAutoPoster = () => {
                 {posts.map(post => (
                   <TableRow key={post.id}>
                     <TableCell className="font-medium max-w-xs truncate">{post.article_title}</TableCell>
-                    <TableCell>
+                    <TableCell className="space-y-1">
+                      <div className="flex flex-wrap gap-1">
+                        <Badge variant={post.linkedin_status === 'posted' ? 'default' : post.linkedin_status === 'failed' ? 'destructive' : 'outline'}>LinkedIn</Badge>
+                        <Badge variant={post.facebook_status === 'posted' ? 'default' : post.facebook_status === 'failed' ? 'destructive' : 'outline'}><Facebook className="h-3 w-3 mr-1" />Facebook</Badge>
+                      </div>
                       {statusBadge(post.status)}
                       {post.error_message && <p className="text-xs text-destructive mt-1">{post.error_message}</p>}
+                    </TableCell>
+                    <TableCell className="text-xs text-muted-foreground max-w-xs truncate">
+                      {post.article_url || `https://jemassuremoinscher.fr/blog/${post.article_slug}`}
+                      {post.image_url ? <p className="truncate">Image : {post.image_url}</p> : null}
                     </TableCell>
                     <TableCell className="text-sm text-muted-foreground">
                       {post.posted_at
