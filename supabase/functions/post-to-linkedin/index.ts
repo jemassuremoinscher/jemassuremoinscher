@@ -86,6 +86,26 @@ serve(async (req) => {
     let targetTitle = "";
     let targetDescription = "";
     let targetCategory = "";
+    let targetArticleUrl = "";
+    let targetImageUrl: string | null = null;
+
+    if (targetSlug) {
+      const { data: queuedPost } = await supabase
+        .from("linkedin_auto_posts")
+        .select("*")
+        .eq("article_slug", targetSlug)
+        .in("status", ["pending", "failed"])
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (queuedPost) {
+        targetTitle = queuedPost.article_title || "";
+        targetDescription = queuedPost.post_content || "";
+        targetArticleUrl = queuedPost.article_url || "";
+        targetImageUrl = queuedPost.image_url || null;
+      }
+    }
 
     if (!targetSlug) {
       // Get articles list from the blog data - we need to call the app
@@ -112,13 +132,15 @@ serve(async (req) => {
 
       targetSlug = pendingPosts.article_slug;
       targetTitle = pendingPosts.article_title;
+      targetArticleUrl = pendingPosts.article_url || "";
+      targetImageUrl = pendingPosts.image_url || null;
       // Use stored content or generate default
       targetDescription = pendingPosts.post_content || "";
     }
 
     // Build social post content for Make.com (LinkedIn + Facebook)
     const siteUrl = "https://jemassuremoinscher.fr";
-    const articleUrl = `${siteUrl}/blog/${targetSlug}`;
+    const articleUrl = targetArticleUrl || `${siteUrl}/blog/${targetSlug}`;
     
     const postContent = targetDescription || 
       `📰 Nouvel article sur jemassuremoinscher.fr !\n\n` +
@@ -137,7 +159,7 @@ serve(async (req) => {
           content: postContent,
           url: articleUrl,
           article_url: articleUrl,
-          image_url: null,
+          image_url: targetImageUrl,
           slug: targetSlug,
           channels: ["linkedin", "facebook"],
           provider: "make",
