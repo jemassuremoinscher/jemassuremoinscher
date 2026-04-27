@@ -42,6 +42,15 @@ type PageMeta = {
   og_description: string;
 };
 
+const normalizeMeta = (item: Partial<PageMeta>): PageMeta => ({
+  id: item.id,
+  page_path: item.page_path || "/",
+  meta_title: item.meta_title || "",
+  meta_description: item.meta_description || "",
+  og_title: item.og_title || "",
+  og_description: item.og_description || "",
+});
+
 const SERPPreview = () => {
   const [selectedPage, setSelectedPage] = useState("/");
   const [meta, setMeta] = useState<PageMeta>({
@@ -65,7 +74,7 @@ const SERPPreview = () => {
       .from("page_meta_overrides")
       .select("*")
       .order("page_path");
-    setSavedMetas((data ?? []) as PageMeta[]);
+    setSavedMetas((data ?? []).map(normalizeMeta));
     setIsLoading(false);
   };
 
@@ -73,7 +82,7 @@ const SERPPreview = () => {
     const existing = savedMetas.find((m) => m.page_path === selectedPage);
     const pageDefaults = PAGES.find((p) => p.path === selectedPage);
     if (existing) {
-      setMeta(existing);
+      setMeta(normalizeMeta(existing));
     } else {
       setMeta({
         page_path: selectedPage,
