@@ -752,6 +752,16 @@ const validateContentSuggestions = async (suggestions: typeof IA_SOURCE_SUGGESTI
 export const applySeoVisibilityFix = async (check: VisibilityCheckLike) => {
   const label = check.label.toLowerCase();
 
+  if (label.includes("impressions") || label.includes("ctr") || label.includes("couverture") || label.includes("requêtes")) {
+    const suggestion = await persistContentImprovement({
+      source: "seo",
+      scope: "visibility",
+      path: check.label,
+      recommendation: check.expected,
+    });
+    return { message: "L'action de visibilité SEO a bien été activée.", suggestion };
+  }
+
   if (label.includes("position")) {
     await upsertMultiplePageMetaOverrides(POSITION_PAGE_UPDATES);
     return { message: "Les pages prioritaires ont été renforcées pour les positions SEO." };
@@ -767,6 +777,12 @@ export const applySeoVisibilityFix = async (check: VisibilityCheckLike) => {
 
 export const validateSeoVisibilityFix = async (check: VisibilityCheckLike) => {
   const label = check.label.toLowerCase();
+
+  if (label.includes("impressions") || label.includes("ctr") || label.includes("couverture") || label.includes("requêtes")) {
+    const key = buildContentImprovementKey({ source: "seo", scope: "visibility", path: check.label });
+    const { data, error } = await supabase.from("page_meta_overrides").select("page_path").eq("page_path", key).maybeSingle();
+    return !error && data?.page_path === key;
+  }
 
   if (label.includes("position")) {
     return validateMultiplePageMetaOverrides(POSITION_PAGE_UPDATES);
