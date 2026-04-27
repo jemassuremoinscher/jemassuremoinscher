@@ -542,31 +542,49 @@ export type Database = {
         Row: {
           article_slug: string
           article_title: string
+          article_url: string | null
           created_at: string
           error_message: string | null
+          facebook_status: string
           id: string
+          image_url: string | null
+          linkedin_status: string
           post_content: string | null
           posted_at: string | null
+          provider: string
+          response_payload: Json | null
           status: string
         }
         Insert: {
           article_slug: string
           article_title: string
+          article_url?: string | null
           created_at?: string
           error_message?: string | null
+          facebook_status?: string
           id?: string
+          image_url?: string | null
+          linkedin_status?: string
           post_content?: string | null
           posted_at?: string | null
+          provider?: string
+          response_payload?: Json | null
           status?: string
         }
         Update: {
           article_slug?: string
           article_title?: string
+          article_url?: string | null
           created_at?: string
           error_message?: string | null
+          facebook_status?: string
           id?: string
+          image_url?: string | null
+          linkedin_status?: string
           post_content?: string | null
           posted_at?: string | null
+          provider?: string
+          response_payload?: Json | null
           status?: string
         }
         Relationships: []
@@ -574,28 +592,37 @@ export type Database = {
       linkedin_config: {
         Row: {
           created_at: string
+          facebook_enabled: boolean
           id: string
           is_active: boolean
+          linkedin_enabled: boolean
           post_day: string
           post_hour: number
+          provider: string
           updated_at: string
           webhook_url: string
         }
         Insert: {
           created_at?: string
+          facebook_enabled?: boolean
           id?: string
           is_active?: boolean
+          linkedin_enabled?: boolean
           post_day?: string
           post_hour?: number
+          provider?: string
           updated_at?: string
           webhook_url: string
         }
         Update: {
           created_at?: string
+          facebook_enabled?: boolean
           id?: string
           is_active?: boolean
+          linkedin_enabled?: boolean
           post_day?: string
           post_hour?: number
+          provider?: string
           updated_at?: string
           webhook_url?: string
         }
