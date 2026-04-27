@@ -261,7 +261,8 @@ export const LinkedInAutoPoster = () => {
               <TableHeader>
                 <TableRow>
                   <TableHead>Article</TableHead>
-                  <TableHead>Statut</TableHead>
+                  <TableHead>Canaux</TableHead>
+                  <TableHead>Article</TableHead>
                   <TableHead>Date</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
@@ -270,9 +271,17 @@ export const LinkedInAutoPoster = () => {
                 {posts.map(post => (
                   <TableRow key={post.id}>
                     <TableCell className="font-medium max-w-xs truncate">{post.article_title}</TableCell>
-                    <TableCell>
+                    <TableCell className="space-y-1">
+                      <div className="flex flex-wrap gap-1">
+                        <Badge variant={post.linkedin_status === 'posted' ? 'default' : post.linkedin_status === 'failed' ? 'destructive' : 'outline'}>LinkedIn</Badge>
+                        <Badge variant={post.facebook_status === 'posted' ? 'default' : post.facebook_status === 'failed' ? 'destructive' : 'outline'}><Facebook className="h-3 w-3 mr-1" />Facebook</Badge>
+                      </div>
                       {statusBadge(post.status)}
                       {post.error_message && <p className="text-xs text-destructive mt-1">{post.error_message}</p>}
+                    </TableCell>
+                    <TableCell className="text-xs text-muted-foreground max-w-xs truncate">
+                      {post.article_url || `https://jemassuremoinscher.fr/blog/${post.article_slug}`}
+                      {post.image_url ? <p className="truncate">Image : {post.image_url}</p> : null}
                     </TableCell>
                     <TableCell className="text-sm text-muted-foreground">
                       {post.posted_at
