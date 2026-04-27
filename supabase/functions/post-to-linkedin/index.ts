@@ -116,7 +116,7 @@ serve(async (req) => {
       targetDescription = pendingPosts.post_content || "";
     }
 
-    // Build LinkedIn post content
+    // Build social post content for Make.com (LinkedIn + Facebook)
     const siteUrl = "https://jemassuremoinscher.fr";
     const articleUrl = `${siteUrl}/blog/${targetSlug}`;
     
@@ -128,32 +128,39 @@ serve(async (req) => {
 
     // Send to Zapier webhook
     try {
-      const zapierResponse = await fetch(config.webhook_url, {
+      const makeResponse = await fetch(config.webhook_url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          event: "article_inserted",
           title: targetTitle,
           content: postContent,
           url: articleUrl,
+          article_url: articleUrl,
+          image_url: null,
           slug: targetSlug,
+          channels: ["linkedin", "facebook"],
+          provider: "make",
           posted_at: new Date().toISOString(),
         }),
       });
 
-      if (!zapierResponse.ok) {
-        const errorText = await zapierResponse.text();
+      if (!makeResponse.ok) {
+        const errorText = await makeResponse.text();
         // Update status to failed
         await supabase
           .from("linkedin_auto_posts")
           .update({
             status: "failed",
-            error_message: `Zapier error ${zapierResponse.status}: ${errorText}`,
+            linkedin_status: "failed",
+            facebook_status: "failed",
+            error_message: `Make.com error ${makeResponse.status}: ${errorText}`,
           })
           .eq("article_slug", targetSlug)
           .eq("status", "pending");
 
         return new Response(
-          JSON.stringify({ error: `Échec Zapier: ${zapierResponse.status}` }),
+          JSON.stringify({ error: `Échec Make.com: ${makeResponse.status}` }),
           { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
@@ -163,13 +170,15 @@ serve(async (req) => {
         .from("linkedin_auto_posts")
         .update({
           status: "posted",
+          linkedin_status: "posted",
+          facebook_status: "posted",
           posted_at: new Date().toISOString(),
         })
         .eq("article_slug", targetSlug)
         .eq("status", "pending");
 
       return new Response(
-        JSON.stringify({ success: true, slug: targetSlug, message: `Article "${targetTitle}" envoyé à LinkedIn` }),
+        JSON.stringify({ success: true, slug: targetSlug, message: `Article "${targetTitle}" envoyé à Make.com pour LinkedIn et Facebook` }),
         { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     } catch (fetchError) {
@@ -178,6 +187,8 @@ serve(async (req) => {
         .from("linkedin_auto_posts")
         .update({
           status: "failed",
+            linkedin_status: "failed",
+            facebook_status: "failed",
           error_message: errorMsg,
         })
         .eq("article_slug", targetSlug)
