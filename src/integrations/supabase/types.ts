@@ -553,6 +553,7 @@ export type Database = {
           posted_at: string | null
           provider: string
           response_payload: Json | null
+          short_description: string | null
           status: string
         }
         Insert: {
@@ -569,6 +570,7 @@ export type Database = {
           posted_at?: string | null
           provider?: string
           response_payload?: Json | null
+          short_description?: string | null
           status?: string
         }
         Update: {
@@ -585,6 +587,7 @@ export type Database = {
           posted_at?: string | null
           provider?: string
           response_payload?: Json | null
+          short_description?: string | null
           status?: string
         }
         Relationships: []
@@ -825,6 +828,7 @@ export type Database = {
           id: string
           reviewed_at: string | null
           reviewed_by: string | null
+          short_description: string | null
           slug: string
           status: string
           suggested_author: string | null
@@ -841,6 +845,7 @@ export type Database = {
           id?: string
           reviewed_at?: string | null
           reviewed_by?: string | null
+          short_description?: string | null
           slug: string
           status?: string
           suggested_author?: string | null
@@ -857,6 +862,7 @@ export type Database = {
           id?: string
           reviewed_at?: string | null
           reviewed_by?: string | null
+          short_description?: string | null
           slug?: string
           status?: string
           suggested_author?: string | null
@@ -922,6 +928,10 @@ export type Database = {
       }
     }
     Functions: {
+      build_social_short_description: {
+        Args: { _content?: string; _meta?: string; _title: string }
+        Returns: string
+      }
       calculate_assignment_score: {
         Args: {
           p_agent_id: string
