@@ -85,6 +85,7 @@ serve(async (req) => {
     let targetSlug = manualSlug;
     let targetTitle = "";
     let targetDescription = "";
+    let targetShortDescription = "";
     let targetCategory = "";
     let targetArticleUrl = "";
     let targetImageUrl: string | null = null;
@@ -102,6 +103,7 @@ serve(async (req) => {
       if (queuedPost) {
         targetTitle = queuedPost.article_title || "";
         targetDescription = queuedPost.post_content || "";
+        targetShortDescription = queuedPost.short_description || "";
         targetArticleUrl = queuedPost.article_url || "";
         targetImageUrl = queuedPost.image_url || null;
       }
@@ -134,6 +136,7 @@ serve(async (req) => {
       targetTitle = pendingPosts.article_title;
       targetArticleUrl = pendingPosts.article_url || "";
       targetImageUrl = pendingPosts.image_url || null;
+      targetShortDescription = pendingPosts.short_description || "";
       // Use stored content or generate default
       targetDescription = pendingPosts.post_content || "";
     }
@@ -147,6 +150,7 @@ serve(async (req) => {
       `${targetTitle}\n\n` +
       `👉 Lire l'article complet : ${articleUrl}\n\n` +
       `#assurance #comparateur #économies #jemassuremoinscher`;
+    const shortDescription = targetShortDescription || `🛡️ ${targetDescription || targetTitle}`.replace(/\s+/g, " ").slice(0, 220);
 
     // Send to Zapier webhook
     try {
@@ -156,6 +160,7 @@ serve(async (req) => {
         body: JSON.stringify({
           event: "article_inserted",
           title: targetTitle,
+          short_description: shortDescription,
           content: postContent,
           url: articleUrl,
           article_url: articleUrl,
