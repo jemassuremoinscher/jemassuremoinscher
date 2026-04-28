@@ -73,6 +73,9 @@ const Blog = () => {
         keyword="blog assurance"
         keywords="conseils assurance, loi lemoine, loi hamon, guide assurance"
         canonical="https://www.jemassuremoinscher.fr/blog"
+        ogTitle="Blog Assurance [Month] : Conseils, Guides & Actualités par des Experts"
+        ogDescription="Guides pratiques, actualités loi Lemoine & Hamon, comparatifs 2026 rédigés par nos courtiers ORIAS. Tout pour payer votre assurance moins cher."
+        twitterDescription="Conseils assurance par des experts ORIAS : guides, lois, comparatifs 2026. Tout pour économiser sur vos contrats."
         jsonLd={[breadcrumbSchema, blogSchema]}
       />
       <Header />
