@@ -15,6 +15,11 @@ import { blogArticles2026 } from '@/data/blogArticles2026';
 
 const allArticles = [...blogArticles, ...blogArticles2026];
 
+const buildShortDescription = (title: string, content?: string | null) => {
+  const base = (content || title).replace(/\s+/g, ' ').trim();
+  return `🛡️ ${base.length > 210 ? `${base.slice(0, 207).trim()}...` : base}`;
+};
+
 export const LinkedInAutoPoster = () => {
   const [webhookUrl, setWebhookUrl] = useState('https://hook.eu1.make.com/swhr61xm1p2alnmmfrlif7af4ofd71o7');
   const [isActive, setIsActive] = useState(true);
@@ -83,12 +88,14 @@ export const LinkedInAutoPoster = () => {
     const articleUrl = `${siteUrl}/blog/${article.slug}`;
     const imageUrl = article.image ? (article.image.startsWith('http') ? article.image : `${siteUrl}${article.image}`) : null;
     const defaultContent = `📰 Nouvel article sur jemassuremoinscher.fr !\n\n${article.title}\n\n👉 Lire l'article complet : ${siteUrl}/blog/${article.slug}\n\n#assurance #comparateur #économies #jemassuremoinscher`;
+    const shortDescription = buildShortDescription(article.title, customContent || article.excerpt || article.description);
 
     const { error } = await supabase.from('linkedin_auto_posts').insert({
       article_slug: article.slug,
       article_title: article.title,
       article_url: articleUrl,
       image_url: imageUrl,
+      short_description: shortDescription,
       post_content: customContent.trim() || defaultContent,
       provider: 'make',
       status: 'pending',
@@ -170,7 +177,7 @@ export const LinkedInAutoPoster = () => {
               placeholder="https://hook.eu1.make.com/..."
               type="url"
             />
-            <p className="text-xs text-muted-foreground mt-1">Payload envoyé : titre, URL de l'article, URL d'image si disponible, slug et canaux LinkedIn/Facebook.</p>
+            <p className="text-xs text-muted-foreground mt-1">Payload envoyé : titre, description courte, URL de l'article, URL d'image si disponible, slug et canaux LinkedIn/Facebook.</p>
           </div>
           <div className="flex flex-wrap items-center gap-6">
             <div className="flex items-center gap-2">
@@ -281,6 +288,7 @@ export const LinkedInAutoPoster = () => {
                     </TableCell>
                     <TableCell className="text-xs text-muted-foreground max-w-xs truncate">
                       {post.article_url || `https://jemassuremoinscher.fr/blog/${post.article_slug}`}
+                      {post.short_description ? <p className="truncate">Accroche : {post.short_description}</p> : null}
                       {post.image_url ? <p className="truncate">Image : {post.image_url}</p> : null}
                     </TableCell>
                     <TableCell className="text-sm text-muted-foreground">
