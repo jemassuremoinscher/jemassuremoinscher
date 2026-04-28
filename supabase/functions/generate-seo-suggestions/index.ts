@@ -234,6 +234,7 @@ function parseAiArticle(raw: string): ParsedArticle {
   const taggedArticle = {
     title: extractTaggedSection(raw, "TITLE") || "",
     meta_description: extractTaggedSection(raw, "META_DESCRIPTION") || "",
+    short_description: extractTaggedSection(raw, "SHORT_DESCRIPTION") || "",
     author: extractTaggedSection(raw, "AUTHOR") || "",
     content: extractTaggedSection(raw, "CONTENT") || "",
   };
@@ -441,6 +442,7 @@ Contraintes:
 - 1500+ mots minimum
 - Titre H1 optimisé contenant le mot-clé exact
 - Meta description de 150 caractères max
+- Short description de 3 phrases maximum, optimisée réseaux sociaux, avec un emoji au début
 - Structure avec H2/H3 logiques
 - Inclure un tableau de données chiffrées
 - Inclure une FAQ de 3-4 questions
@@ -458,6 +460,9 @@ Titre de l'article
 [[META_DESCRIPTION]]
 Meta description
 [[/META_DESCRIPTION]]
+[[SHORT_DESCRIPTION]]
+Accroche sociale courte avec emoji, 3 phrases maximum
+[[/SHORT_DESCRIPTION]]
 [[AUTHOR]]
 Prénom Nom – Titre
 [[/AUTHOR]]
