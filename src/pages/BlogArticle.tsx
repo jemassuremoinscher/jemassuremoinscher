@@ -19,7 +19,7 @@ import type { FAQItem } from "@/components/SemanticFAQ";
 import { addArticleSchema, addBreadcrumbSchema, addFAQSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import SuggestedKeywords from "@/components/blog/SuggestedKeywords";
+import SuggestedKeywords from "@/components/blog/SuggestedKeywords"
 import PopularArticles from "@/components/blog/PopularArticles";
 import RelatedProductLinks from "@/components/blog/RelatedProductLinks";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
@@ -127,10 +127,13 @@ const BlogArticle = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized 
-        title={`${article.title.substring(0, 50)} | Blog`}
-        description={article.description.substring(0, 150)}
+        title={`${article.title.substring(0, 60)}`}
+        description={article.description.substring(0, 160)}
         keywords={article.tags.join(", ")}
         canonical={`https://www.jemassuremoinscher.fr/blog/${article.slug}`}
+        ogTitle={article.title}
+        ogDescription={article.description.substring(0, 200)}
+        twitterDescription={article.description.substring(0, 200)}
         ogType="article"
         articlePublishedTime={convertToISO(article.date)}
         articleModifiedTime={convertToISO(article.date)}
