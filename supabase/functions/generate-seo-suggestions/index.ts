@@ -533,6 +533,7 @@ Article complet en markdown
           gsc_clicks: opp.clicks,
           suggested_content: article.content,
           suggested_meta_description: article.meta_description,
+          short_description: article.short_description,
           suggested_author: article.author,
           status: "pending",
         });
