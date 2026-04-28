@@ -25,6 +25,7 @@ type Suggestion = {
   gsc_clicks: number | null;
   suggested_content: string;
   suggested_meta_description: string | null;
+  short_description: string | null;
   suggested_author: string | null;
   status: string;
   created_at: string;
@@ -1100,6 +1101,11 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
               {s.suggested_meta_description && (
                 <p className="text-sm text-muted-foreground italic mb-4 border-l-2 border-primary/30 pl-3">
                   {s.suggested_meta_description}
+                </p>
+              )}
+              {s.short_description && (
+                <p className="text-sm mb-4 border-l-2 border-accent/40 pl-3">
+                  {s.short_description}
                 </p>
               )}
 

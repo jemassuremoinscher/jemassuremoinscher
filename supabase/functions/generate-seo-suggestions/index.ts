@@ -8,6 +8,7 @@ const corsHeaders = {
 type ParsedArticle = {
   title: string;
   meta_description: string;
+  short_description: string;
   author: string;
   content: string;
 };
@@ -207,6 +208,9 @@ function normalizeArticle(article: Partial<ParsedArticle>): ParsedArticle {
   const metaDescriptionSource = typeof article.meta_description === "string"
     ? article.meta_description
     : "";
+  const shortDescriptionSource = typeof article.short_description === "string" && article.short_description.trim().length > 0
+    ? article.short_description.trim()
+    : `🛡️ ${metaDescriptionSource || title}`;
   const rawAuthor = typeof article.author === "string" && article.author.trim().length > 0
     ? article.author.trim()
     : "L'équipe d'experts Jemassuremoinscher";
@@ -222,6 +226,7 @@ function normalizeArticle(article: Partial<ParsedArticle>): ParsedArticle {
     content,
     author,
     meta_description: metaDescriptionSource.trim().slice(0, 150),
+    short_description: shortDescriptionSource.replace(/\s+/g, " ").slice(0, 220),
   };
 }
 
@@ -229,6 +234,7 @@ function parseAiArticle(raw: string): ParsedArticle {
   const taggedArticle = {
     title: extractTaggedSection(raw, "TITLE") || "",
     meta_description: extractTaggedSection(raw, "META_DESCRIPTION") || "",
+    short_description: extractTaggedSection(raw, "SHORT_DESCRIPTION") || "",
     author: extractTaggedSection(raw, "AUTHOR") || "",
     content: extractTaggedSection(raw, "CONTENT") || "",
   };
@@ -436,6 +442,7 @@ Contraintes:
 - 1500+ mots minimum
 - Titre H1 optimisé contenant le mot-clé exact
 - Meta description de 150 caractères max
+- Short description de 3 phrases maximum, optimisée réseaux sociaux, avec un emoji au début
 - Structure avec H2/H3 logiques
 - Inclure un tableau de données chiffrées
 - Inclure une FAQ de 3-4 questions
@@ -453,6 +460,9 @@ Titre de l'article
 [[META_DESCRIPTION]]
 Meta description
 [[/META_DESCRIPTION]]
+[[SHORT_DESCRIPTION]]
+Accroche sociale courte avec emoji, 3 phrases maximum
+[[/SHORT_DESCRIPTION]]
 [[AUTHOR]]
 Prénom Nom – Titre
 [[/AUTHOR]]
@@ -523,6 +533,7 @@ Article complet en markdown
           gsc_clicks: opp.clicks,
           suggested_content: article.content,
           suggested_meta_description: article.meta_description,
+          short_description: article.short_description,
           suggested_author: article.author,
           status: "pending",
         });
