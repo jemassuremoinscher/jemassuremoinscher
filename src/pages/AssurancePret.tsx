@@ -35,7 +35,7 @@ const AssurancePret = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Emprunteur [Month] : -15 000€ (Lemoine)" description="Loi Lemoine : changez d'assurance de prêt à tout moment. Comparez 50+ assureurs, économisez jusqu'à 50%. Devis gratuit en 2 min." keyword="assurance prêt immobilier moins chère" keywords="assurance emprunteur, loi Lemoine, délégation assurance, changer assurance prêt" canonical="https://www.jemassuremoinscher.fr/assurance-pret" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title="Assurance Emprunteur [Month] : -15 000€ (Lemoine)" description="Loi Lemoine : changez d'assurance de prêt à tout moment. Comparez 50+ assureurs, économisez jusqu'à 50%. Devis gratuit en 2 min." keyword="assurance prêt immobilier moins chère" keywords="assurance emprunteur, loi Lemoine, délégation assurance, changer assurance prêt" canonical="https://www.jemassuremoinscher.fr/assurance-pret" ogTitle="Assurance Emprunteur [Month] : Économisez jusqu'à 15 000€ grâce à la Loi Lemoine" ogDescription="Changez d'assurance de prêt à tout moment grâce à la Loi Lemoine. Comparez 50+ assureurs, économisez jusqu'à 50% sur votre assurance emprunteur. Devis gratuit." twitterDescription="Loi Lemoine : changez d'assurance emprunteur à tout moment. Économisez jusqu'à 15 000€. Comparez 50+ assureurs, devis gratuit en 2 min." jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Prêt" }]} />
       <main id="main-content">
