@@ -35,7 +35,7 @@ const AssuranceAnimaux = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Chien Chat dès 8€/mois [Month]" description="Mutuelle animaux : remboursement vétérinaire jusqu'à 100%. Comparez les offres chien et chat en 2 min. Sans délai de carence." keyword="assurance animaux moins chère" keywords="assurance chien, assurance chat, mutuelle animaux, assurance NAC" canonical="https://www.jemassuremoinscher.fr/assurance-animaux" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title="Assurance Chien Chat dès 8€/mois [Month]" description="Mutuelle animaux : remboursement vétérinaire jusqu'à 100%. Comparez les offres chien et chat en 2 min. Sans délai de carence." keyword="assurance animaux moins chère" keywords="assurance chien, assurance chat, mutuelle animaux, assurance NAC" canonical="https://www.jemassuremoinscher.fr/assurance-animaux" ogTitle="Assurance Chien & Chat [Month] : Remboursement jusqu'à 100%, dès 8€/mois" ogDescription="Comparez les meilleures mutuelles animaux en 2 minutes. Remboursement vétérinaire jusqu'à 100%, sans délai de carence. Devis gratuit pour chien et chat." twitterDescription="Mutuelle chien ou chat dès 8€/mois. Remboursement jusqu'à 100% des frais vétérinaires. Devis gratuit en 2 min." jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Animaux" }]} />
       <main id="main-content">
