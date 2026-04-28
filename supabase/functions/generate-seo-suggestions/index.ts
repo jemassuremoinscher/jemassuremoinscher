@@ -8,6 +8,7 @@ const corsHeaders = {
 type ParsedArticle = {
   title: string;
   meta_description: string;
+  short_description: string;
   author: string;
   content: string;
 };
@@ -207,6 +208,9 @@ function normalizeArticle(article: Partial<ParsedArticle>): ParsedArticle {
   const metaDescriptionSource = typeof article.meta_description === "string"
     ? article.meta_description
     : "";
+  const shortDescriptionSource = typeof article.short_description === "string" && article.short_description.trim().length > 0
+    ? article.short_description.trim()
+    : `🛡️ ${metaDescriptionSource || title}`;
   const rawAuthor = typeof article.author === "string" && article.author.trim().length > 0
     ? article.author.trim()
     : "L'équipe d'experts Jemassuremoinscher";
@@ -222,6 +226,7 @@ function normalizeArticle(article: Partial<ParsedArticle>): ParsedArticle {
     content,
     author,
     meta_description: metaDescriptionSource.trim().slice(0, 150),
+    short_description: shortDescriptionSource.replace(/\s+/g, " ").slice(0, 220),
   };
 }
 
