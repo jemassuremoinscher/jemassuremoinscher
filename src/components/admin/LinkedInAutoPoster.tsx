@@ -88,7 +88,8 @@ export const LinkedInAutoPoster = () => {
     const articleUrl = `${siteUrl}/blog/${article.slug}`;
     const imageUrl = article.image ? (article.image.startsWith('http') ? article.image : `${siteUrl}${article.image}`) : null;
     const defaultContent = `📰 Nouvel article sur jemassuremoinscher.fr !\n\n${article.title}\n\n👉 Lire l'article complet : ${siteUrl}/blog/${article.slug}\n\n#assurance #comparateur #économies #jemassuremoinscher`;
-    const shortDescription = buildShortDescription(article.title, customContent || article.excerpt || article.description);
+    const articleSummary = (article as any).excerpt || (article as any).description || null;
+    const shortDescription = buildShortDescription(article.title, customContent || articleSummary);
 
     const { error } = await supabase.from('linkedin_auto_posts').insert({
       article_slug: article.slug,
