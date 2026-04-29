@@ -826,6 +826,8 @@ export type Database = {
           gsc_impressions: number | null
           gsc_position: number | null
           id: string
+          image_url: string | null
+          published_at: string | null
           reviewed_at: string | null
           reviewed_by: string | null
           short_description: string | null
@@ -843,6 +845,8 @@ export type Database = {
           gsc_impressions?: number | null
           gsc_position?: number | null
           id?: string
+          image_url?: string | null
+          published_at?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
           short_description?: string | null
@@ -860,6 +864,8 @@ export type Database = {
           gsc_impressions?: number | null
           gsc_position?: number | null
           id?: string
+          image_url?: string | null
+          published_at?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
           short_description?: string | null
