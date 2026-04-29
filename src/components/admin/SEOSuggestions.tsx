@@ -4,10 +4,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, Wand2 } from 'lucide-react';
+import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, Wand2, Pencil, Save, CalendarDays, Image as ImageIcon } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
+import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, buildContentImprovementKey, canAutoFixSeoIssue, hydrateAuditReport, isBlogArticleSuggestionSlug, listAppliedContentImprovements, validateSeoIssueFix, validateSeoVisibilityFix, type ContentSuggestionDraft } from '@/lib/auditFixes';
 
 type FixAction = {
@@ -26,9 +29,17 @@ type Suggestion = {
   suggested_content: string;
   suggested_meta_description: string | null;
   short_description: string | null;
+  image_url: string | null;
+  published_at: string | null;
   suggested_author: string | null;
   status: string;
   created_at: string;
+  reviewed_at: string | null;
+};
+
+type EditingSuggestion = {
+  suggested_content: string;
+  image_url: string;
 };
 
 type GenerationResponse = {
@@ -237,6 +248,9 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
   const [appliedSuggestions, setAppliedSuggestions] = useState<AppliedSuggestionState>({});
   const [appliedImprovementsLoaded, setAppliedImprovementsLoaded] = useState(false);
+  const [editingSuggestionId, setEditingSuggestionId] = useState<string | null>(null);
+  const [editingSuggestion, setEditingSuggestion] = useState<EditingSuggestion>({ suggested_content: '', image_url: '' });
+  const [isSavingEdit, setIsSavingEdit] = useState(false);
 
   useEffect(() => {
     if (showArticlesPanel) {
@@ -345,7 +359,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
     const { data, error } = await supabase
       .from('seo_article_suggestions')
       .select('*')
-      .eq('status', 'pending')
+      .in('status', ['pending', 'approved'])
       .order('created_at', { ascending: false });
 
     if (error) {
@@ -401,7 +415,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const updateStatus = async (id: string, status: string) => {
     const { error } = await supabase
       .from('seo_article_suggestions')
-      .update({ status, reviewed_at: new Date().toISOString() } as any)
+      .update({ status, reviewed_at: new Date().toISOString(), ...(status === 'approved' ? { published_at: new Date().toISOString() } : {}) } as any)
       .eq('id', id);
 
     if (error) {
@@ -410,6 +424,35 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
       toast.success(status === 'approved' ? 'Article approuvé ✓' : 'Article rejeté');
       fetchSuggestions();
     }
+  };
+
+  const startEditingSuggestion = (suggestion: Suggestion) => {
+    setEditingSuggestionId(suggestion.id);
+    setEditingSuggestion({
+      suggested_content: suggestion.suggested_content,
+      image_url: suggestion.image_url || '',
+    });
+  };
+
+  const saveSuggestionEdit = async (id: string) => {
+    setIsSavingEdit(true);
+    const { error } = await supabase
+      .from('seo_article_suggestions')
+      .update({
+        suggested_content: editingSuggestion.suggested_content,
+        image_url: editingSuggestion.image_url.trim() || null,
+      } as any)
+      .eq('id', id);
+
+    setIsSavingEdit(false);
+    if (error) {
+      toast.error('Erreur sauvegarde article');
+      return;
+    }
+
+    toast.success('Article mis à jour');
+    setEditingSuggestionId(null);
+    await fetchSuggestions();
   };
 
   const copyContent = (suggestion: Suggestion) => {
@@ -1081,6 +1124,10 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-4 text-sm mb-4">
+                <div className="flex items-center gap-1.5 text-muted-foreground">
+                  <CalendarDays className="h-3.5 w-3.5" />
+                  <span>Publication : <strong>{new Date(s.published_at || s.reviewed_at || s.created_at).toLocaleDateString('fr-FR')}</strong></span>
+                </div>
                 {s.gsc_position && (
                   <div className="flex items-center gap-1.5">
                     <TrendingUp className="h-3.5 w-3.5 text-muted-foreground" />
@@ -1108,6 +1155,44 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
                   {s.short_description}
                 </p>
               )}
+              {s.image_url && (
+                <div className="mb-4 flex items-center gap-2 text-sm text-muted-foreground">
+                  <ImageIcon className="h-4 w-4" />
+                  <span className="truncate">Image : {s.image_url}</span>
+                </div>
+              )}
+
+              {editingSuggestionId === s.id && (
+                <div className="mb-4 space-y-4 rounded-lg border border-border bg-muted/30 p-4">
+                  <div className="space-y-2">
+                    <Label htmlFor={`article-image-${s.id}`}>URL de l'image</Label>
+                    <Input
+                      id={`article-image-${s.id}`}
+                      value={editingSuggestion.image_url}
+                      onChange={(event) => setEditingSuggestion((current) => ({ ...current, image_url: event.target.value }))}
+                      placeholder="https://..."
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor={`article-content-${s.id}`}>Texte de l'article</Label>
+                    <Textarea
+                      id={`article-content-${s.id}`}
+                      value={editingSuggestion.suggested_content}
+                      onChange={(event) => setEditingSuggestion((current) => ({ ...current, suggested_content: event.target.value }))}
+                      className="min-h-[20rem] font-mono text-sm"
+                    />
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <Button size="sm" onClick={() => void saveSuggestionEdit(s.id)} disabled={isSavingEdit}>
+                      <Save className="h-4 w-4 mr-1" />
+                      {isSavingEdit ? 'Sauvegarde...' : 'Sauvegarder'}
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={() => setEditingSuggestionId(null)}>
+                      Annuler
+                    </Button>
+                  </div>
+                </div>
+              )}
 
               <div className="flex flex-wrap gap-2">
                 <Dialog>
@@ -1132,6 +1217,11 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
                 <Button variant="outline" size="sm" onClick={() => copyContent(s)}>
                   <Copy className="h-4 w-4 mr-1" />
                   Copier
+                </Button>
+
+                <Button variant="outline" size="sm" onClick={() => startEditingSuggestion(s)}>
+                  <Pencil className="h-4 w-4 mr-1" />
+                  Modifier texte/image
                 </Button>
 
                 {s.status === 'pending' && (

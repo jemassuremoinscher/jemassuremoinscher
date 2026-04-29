@@ -24,6 +24,7 @@ import logoMaif from "@/assets/logos/maif.webp";
 import logoMacif from "@/assets/logos/macif-new.png";
 import logoAxa from "@/assets/logos/axa.webp";
 import logoAllianz from "@/assets/logos/allianz.webp";
+import logoAmv from "@/assets/logos/amv.webp";
 import logoDirectAssurance from "@/assets/logos/direct-assurance-new.webp";
 import logoMaaf from "@/assets/logos/maaf.webp";
 import logoGmf from "@/assets/logos/gmf-new.png";
@@ -97,6 +98,20 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
     rapiditeJours: 3,
     pointsForts: ["Protection juridique incluse", "Bris de glace avantageux", "Réseau européen"],
     pointsFaibles: ["Assistance 0km en option", "Tarifs premium"],
+  },
+  amv: {
+    slug: "amv",
+    name: "AMV",
+    logo: logoAmv,
+    prixMoyen: 430,
+    franchise: 320,
+    assistance0km: true,
+    avisNote: 4.2,
+    avisCount: 2100,
+    rapiditeRemboursement: "72h",
+    rapiditeJours: 3,
+    pointsForts: ["Spécialiste moto reconnu", "Contrats adaptés deux-roues", "Souscription rapide"],
+    pointsFaibles: ["Moins pertinent hors moto", "Options à vérifier selon profil"],
   },
   "direct-assurance": {
     slug: "direct-assurance",
@@ -329,6 +344,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
 const popularDuels: [string, string][] = [
   ["maif", "macif"],
   ["axa", "allianz"],
+  ["amv", "maaf"],
   ["direct-assurance", "l-olivier"],
   ["maaf", "gmf"],
   ["matmut", "mma"],

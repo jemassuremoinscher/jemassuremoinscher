@@ -194,34 +194,29 @@ const BlogArticle = () => {
             {/* Article */}
             <article className="flex-1 min-w-0">
               
-              {/* Author E-E-A-T */}
-              <div className="mb-8">
-                <AuthorExpertise authorName={article.author} />
-              </div>
-
               {/* ToC — mobile only (desktop in sidebar) */}
               {tocItems.length > 0 && (
-                <div className="mb-8 lg:hidden">
+                <div className="mb-6 lg:hidden">
                   <TableOfContents items={tocItems} />
                 </div>
               )}
 
               {/* L'Essentiel */}
-              <div className="mb-10">
+              <div className="mb-8">
                 <EssentielBox summary={essentielSummary} />
               </div>
 
               {/* Article Content */}
-              <div className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground">
+              <div className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-p:my-4 prose-ul:my-4 prose-ol:my-4">
                 <ReactMarkdown
                   components={{
-                    h1: ({node, ...props}) => <h2 className="text-3xl font-bold mt-12 mb-6 text-foreground" {...props} />,
+                    h1: ({node, ...props}) => <h2 className="text-3xl font-bold mt-10 mb-5 text-foreground" {...props} />,
                     h2: ({node, children, ...props}) => {
                       const id = `section-${headingIndex++}`;
                       return (
                         <h2 
                           id={id} 
-                          className="text-2xl font-bold mt-14 mb-5 pt-6 text-foreground scroll-mt-24 border-t border-border/40" 
+                          className="text-2xl font-bold mt-11 mb-4 pt-5 text-foreground scroll-mt-24 border-t border-border/30" 
                           {...props}
                         >
                           {children}
@@ -231,10 +226,10 @@ const BlogArticle = () => {
                     h3: ({node, ...props}) => <h3 className="text-xl font-semibold mt-8 mb-3 text-foreground" {...props} />,
                     p: ({node, ...props}) => {
                       paragraphIndex++;
-                      const showWidget = paragraphIndex === 2 || paragraphIndex === 5;
+                      const showWidget = paragraphIndex === 4;
                       return (
                         <>
-                          <p className="mb-6 leading-relaxed text-muted-foreground text-base md:text-[1.0625rem]" {...props} />
+                          <p className="mb-4 leading-relaxed text-muted-foreground text-base md:text-[1.0625rem]" {...props} />
                           {showWidget && <SmartConversionWidget category={widgetCategory} />}
                         </>
                       );
@@ -272,6 +267,11 @@ const BlogArticle = () => {
                 >
                   {article.content}
                 </ReactMarkdown>
+              </div>
+
+              {/* Author E-E-A-T */}
+              <div className="mt-12">
+                <AuthorExpertise authorName={article.author} />
               </div>
 
               {/* CTA */}

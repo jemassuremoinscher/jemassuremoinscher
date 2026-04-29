@@ -9,6 +9,7 @@ import agfLogo from "@/assets/logos/agf.webp";
 import alanLogo from "@/assets/logos/alan-new.webp";
 import allianzLogo from "@/assets/logos/allianz.webp";
 import amaguizLogo from "@/assets/logos/amaguiz.webp";
+import amvLogo from "@/assets/logos/amv.webp";
 import aonLogo from "@/assets/logos/aon.webp";
 import aprilLogo from "@/assets/logos/april-new.webp";
 import axaLogo from "@/assets/logos/axa.webp";
@@ -47,6 +48,7 @@ const partners = [
   { name: "Alan", logo: alanLogo },
   { name: "Allianz", logo: allianzLogo },
   { name: "Amaguiz", logo: amaguizLogo },
+  { name: "AMV", logo: amvLogo },
   { name: "AON", logo: aonLogo },
   { name: "April", logo: aprilLogo },
   { name: "AXA", logo: axaLogo },

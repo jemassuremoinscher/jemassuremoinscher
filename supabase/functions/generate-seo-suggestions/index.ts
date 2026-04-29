@@ -210,7 +210,7 @@ function normalizeArticle(article: Partial<ParsedArticle>): ParsedArticle {
     : "";
   const shortDescriptionSource = typeof article.short_description === "string" && article.short_description.trim().length > 0
     ? article.short_description.trim()
-    : `🛡️ ${metaDescriptionSource || title}`;
+    : buildPunchyShortDescription(title);
   const rawAuthor = typeof article.author === "string" && article.author.trim().length > 0
     ? article.author.trim()
     : "L'équipe d'experts Jemassuremoinscher";
@@ -226,8 +226,26 @@ function normalizeArticle(article: Partial<ParsedArticle>): ParsedArticle {
     content,
     author,
     meta_description: metaDescriptionSource.trim().slice(0, 150),
-    short_description: shortDescriptionSource.replace(/\s+/g, " ").slice(0, 220),
+    short_description: normalizeShortDescription(shortDescriptionSource, title),
   };
+}
+
+function buildPunchyShortDescription(title: string): string {
+  const topic = title
+    .replace(/^#+\s*/, "")
+    .replace(/\s*[:|–-]\s*(guide|comparatif|définition|conseils).*$/i, "")
+    .trim()
+    .slice(0, 95);
+  return `🚨 Et si ${topic.toLowerCase() || "votre assurance"} vous coûtait plus cher que prévu ? La réponse ici ⬇️`;
+}
+
+function normalizeShortDescription(raw: string, title: string): string {
+  const cleaned = raw.replace(/["“”]/g, "").replace(/\s+/g, " ").trim();
+  const sentenceCount = cleaned.split(/[.!?…]+\s+/).filter(Boolean).length;
+  const startsPunchy = /^[🚨⚡️🔥💥🛑]/.test(cleaned);
+  const hasCta = /(ici|erreur|réponse|découvrez|cliquez|⬇️)/i.test(cleaned);
+  if (!startsPunchy || !hasCta || sentenceCount > 2) return buildPunchyShortDescription(title);
+  return cleaned.slice(0, 220);
 }
 
 function parseAiArticle(raw: string): ParsedArticle {
@@ -260,6 +278,7 @@ function buildFallbackArticle(keyword: string, currentPage: string, opp: any): P
     title,
     meta_description: meta,
     author: "L'équipe d'experts Jemassuremoinscher",
+    short_description: buildPunchyShortDescription(title),
     content: `# ${title}
 
 ## En bref
@@ -442,7 +461,9 @@ Contraintes:
 - 1500+ mots minimum
 - Titre H1 optimisé contenant le mot-clé exact
 - Meta description de 150 caractères max
-- Short description de 3 phrases maximum, optimisée réseaux sociaux, avec un emoji au début
+- Short description réseaux sociaux en 2 phrases maximum, sans guillemets
+- Commencer par un emoji punchy puis une question forte ou un constat surprenant lié au sujet pour stopper le scroll
+- Terminer par un appel à l'action court et mystérieux, par exemple: La réponse ici ⬇️ ou Ne faites pas cette erreur...
 - Structure avec H2/H3 logiques
 - Inclure un tableau de données chiffrées
 - Inclure une FAQ de 3-4 questions
@@ -461,7 +482,7 @@ Titre de l'article
 Meta description
 [[/META_DESCRIPTION]]
 [[SHORT_DESCRIPTION]]
-Accroche sociale courte avec emoji, 3 phrases maximum
+🚨 Question forte ou constat surprenant lié au sujet ? Appel à l'action court et mystérieux ⬇️
 [[/SHORT_DESCRIPTION]]
 [[AUTHOR]]
 Prénom Nom – Titre
@@ -482,7 +503,7 @@ Article complet en markdown
             messages: [
               {
                 role: "system",
-                content: "Tu es un expert SEO français spécialisé en assurance. Respecte exactement le format demandé avec les balises [[TITLE]], [[META_DESCRIPTION]], [[AUTHOR]] et [[CONTENT]].",
+                content: "Tu es un expert SEO français spécialisé en assurance. Respecte exactement le format demandé avec les balises [[TITLE]], [[META_DESCRIPTION]], [[SHORT_DESCRIPTION]], [[AUTHOR]] et [[CONTENT]].",
               },
               { role: "user", content: prompt },
             ],

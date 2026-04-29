@@ -60,6 +60,7 @@ export const routes: RouteConfig[] = [
   { path: "/comparatif", changefreq: "weekly", priority: 0.8 },
   { path: "/comparatif/maif-vs-macif", changefreq: "monthly", priority: 0.7 },
   { path: "/comparatif/axa-vs-allianz", changefreq: "monthly", priority: 0.7 },
+  { path: "/comparatif/amv-vs-maaf", changefreq: "monthly", priority: 0.7 },
   { path: "/comparatif/direct-assurance-vs-l-olivier", changefreq: "monthly", priority: 0.7 },
   { path: "/comparatif/luko-vs-alan", changefreq: "monthly", priority: 0.7 },
   { path: "/comparatif/groupama-vs-gmf", changefreq: "monthly", priority: 0.7 },
