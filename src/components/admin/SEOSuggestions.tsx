@@ -247,6 +247,9 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
   const [appliedSuggestions, setAppliedSuggestions] = useState<AppliedSuggestionState>({});
   const [appliedImprovementsLoaded, setAppliedImprovementsLoaded] = useState(false);
+  const [editingSuggestionId, setEditingSuggestionId] = useState<string | null>(null);
+  const [editingSuggestion, setEditingSuggestion] = useState<EditingSuggestion>({ suggested_content: '', image_url: '' });
+  const [isSavingEdit, setIsSavingEdit] = useState(false);
 
   useEffect(() => {
     if (showArticlesPanel) {
@@ -411,7 +414,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const updateStatus = async (id: string, status: string) => {
     const { error } = await supabase
       .from('seo_article_suggestions')
-      .update({ status, reviewed_at: new Date().toISOString() } as any)
+      .update({ status, reviewed_at: new Date().toISOString(), ...(status === 'approved' ? { published_at: new Date().toISOString() } : {}) } as any)
       .eq('id', id);
 
     if (error) {
@@ -420,6 +423,35 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
       toast.success(status === 'approved' ? 'Article approuvé ✓' : 'Article rejeté');
       fetchSuggestions();
     }
+  };
+
+  const startEditingSuggestion = (suggestion: Suggestion) => {
+    setEditingSuggestionId(suggestion.id);
+    setEditingSuggestion({
+      suggested_content: suggestion.suggested_content,
+      image_url: suggestion.image_url || '',
+    });
+  };
+
+  const saveSuggestionEdit = async (id: string) => {
+    setIsSavingEdit(true);
+    const { error } = await supabase
+      .from('seo_article_suggestions')
+      .update({
+        suggested_content: editingSuggestion.suggested_content,
+        image_url: editingSuggestion.image_url.trim() || null,
+      } as any)
+      .eq('id', id);
+
+    setIsSavingEdit(false);
+    if (error) {
+      toast.error('Erreur sauvegarde article');
+      return;
+    }
+
+    toast.success('Article mis à jour');
+    setEditingSuggestionId(null);
+    await fetchSuggestions();
   };
 
   const copyContent = (suggestion: Suggestion) => {
