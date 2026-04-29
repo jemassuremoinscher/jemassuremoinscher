@@ -1123,6 +1123,10 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-4 text-sm mb-4">
+                <div className="flex items-center gap-1.5 text-muted-foreground">
+                  <CalendarDays className="h-3.5 w-3.5" />
+                  <span>Publication : <strong>{new Date(s.published_at || s.reviewed_at || s.created_at).toLocaleDateString('fr-FR')}</strong></span>
+                </div>
                 {s.gsc_position && (
                   <div className="flex items-center gap-1.5">
                     <TrendingUp className="h-3.5 w-3.5 text-muted-foreground" />
@@ -1150,6 +1154,44 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
                   {s.short_description}
                 </p>
               )}
+              {s.image_url && (
+                <div className="mb-4 flex items-center gap-2 text-sm text-muted-foreground">
+                  <ImageIcon className="h-4 w-4" />
+                  <span className="truncate">Image : {s.image_url}</span>
+                </div>
+              )}
+
+              {editingSuggestionId === s.id && (
+                <div className="mb-4 space-y-4 rounded-lg border border-border bg-muted/30 p-4">
+                  <div className="space-y-2">
+                    <Label htmlFor={`article-image-${s.id}`}>URL de l'image</Label>
+                    <Input
+                      id={`article-image-${s.id}`}
+                      value={editingSuggestion.image_url}
+                      onChange={(event) => setEditingSuggestion((current) => ({ ...current, image_url: event.target.value }))}
+                      placeholder="https://..."
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor={`article-content-${s.id}`}>Texte de l'article</Label>
+                    <Textarea
+                      id={`article-content-${s.id}`}
+                      value={editingSuggestion.suggested_content}
+                      onChange={(event) => setEditingSuggestion((current) => ({ ...current, suggested_content: event.target.value }))}
+                      className="min-h-[20rem] font-mono text-sm"
+                    />
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <Button size="sm" onClick={() => void saveSuggestionEdit(s.id)} disabled={isSavingEdit}>
+                      <Save className="h-4 w-4 mr-1" />
+                      {isSavingEdit ? 'Sauvegarde...' : 'Sauvegarder'}
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={() => setEditingSuggestionId(null)}>
+                      Annuler
+                    </Button>
+                  </div>
+                </div>
+              )}
 
               <div className="flex flex-wrap gap-2">
                 <Dialog>
@@ -1174,6 +1216,11 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
                 <Button variant="outline" size="sm" onClick={() => copyContent(s)}>
                   <Copy className="h-4 w-4 mr-1" />
                   Copier
+                </Button>
+
+                <Button variant="outline" size="sm" onClick={() => startEditingSuggestion(s)}>
+                  <Pencil className="h-4 w-4 mr-1" />
+                  Modifier texte/image
                 </Button>
 
                 {s.status === 'pending' && (
