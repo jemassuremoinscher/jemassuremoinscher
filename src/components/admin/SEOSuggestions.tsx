@@ -34,6 +34,7 @@ type Suggestion = {
   suggested_author: string | null;
   status: string;
   created_at: string;
+  reviewed_at: string | null;
 };
 
 type EditingSuggestion = {
