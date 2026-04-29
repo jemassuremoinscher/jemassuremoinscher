@@ -359,7 +359,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
     const { data, error } = await supabase
       .from('seo_article_suggestions')
       .select('*')
-      .eq('status', 'pending')
+      .in('status', ['pending', 'approved'])
       .order('created_at', { ascending: false });
 
     if (error) {
