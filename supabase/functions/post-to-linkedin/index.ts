@@ -141,6 +141,24 @@ serve(async (req) => {
       targetDescription = pendingPosts.post_content || "";
     }
 
+    const buildPunchyShortDescription = (title: string, fallback: string) => {
+      const base = (title || fallback || "votre assurance")
+        .replace(/^#+\s*/, "")
+        .replace(/\s*[:|–-]\s*(guide|comparatif|définition|conseils).*$/i, "")
+        .trim()
+        .slice(0, 95);
+      return `🚨 Et si ${base.toLowerCase() || "votre assurance"} vous coûtait plus cher que prévu ? La réponse ici ⬇️`;
+    };
+
+    const normalizeShortDescription = (raw: string, title: string, fallback: string) => {
+      const cleaned = raw.replace(/["“”]/g, "").replace(/\s+/g, " ").trim();
+      const sentenceCount = cleaned.split(/[.!?…]+\s+/).filter(Boolean).length;
+      const startsPunchy = /^[🚨⚡️🔥💥🛑]/.test(cleaned);
+      const hasCta = /(ici|erreur|réponse|découvrez|cliquez|⬇️)/i.test(cleaned);
+      if (!startsPunchy || !hasCta || sentenceCount > 2) return buildPunchyShortDescription(title, fallback);
+      return cleaned.slice(0, 220);
+    };
+
     // Build social post content for Make.com (LinkedIn + Facebook)
     const siteUrl = "https://jemassuremoinscher.fr";
     const articleUrl = targetArticleUrl || `${siteUrl}/blog/${targetSlug}`;
@@ -150,7 +168,7 @@ serve(async (req) => {
       `${targetTitle}\n\n` +
       `👉 Lire l'article complet : ${articleUrl}\n\n` +
       `#assurance #comparateur #économies #jemassuremoinscher`;
-    const shortDescription = targetShortDescription || `🛡️ ${targetDescription || targetTitle}`.replace(/\s+/g, " ").slice(0, 220);
+    const shortDescription = normalizeShortDescription(targetShortDescription, targetTitle, targetDescription);
 
     // Send to Zapier webhook
     try {
@@ -200,6 +218,7 @@ serve(async (req) => {
           linkedin_status: "posted",
           facebook_status: "posted",
           posted_at: new Date().toISOString(),
+          short_description: shortDescription,
         })
         .eq("article_slug", targetSlug)
         .eq("status", "pending");
