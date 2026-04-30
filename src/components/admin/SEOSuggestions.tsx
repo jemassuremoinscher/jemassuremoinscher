@@ -1255,7 +1255,16 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
                   Modifier texte/image
                 </Button>
 
-                {s.status === 'pending' && (
+                <Button variant="outline" size="sm" onClick={() => updateStatus(s.id, 'draft')} disabled={s.status === 'draft'}>
+                  Brouillon
+                </Button>
+
+                <Button variant="destructive" size="sm" onClick={() => void deleteSuggestion(s.id, s.title)}>
+                  <Trash2 className="h-4 w-4 mr-1" />
+                  Supprimer
+                </Button>
+
+                {(s.status === 'pending' || s.status === 'draft') && (
                   <>
                     <Button size="sm" onClick={() => updateStatus(s.id, 'approved')}>
                       <Check className="h-4 w-4 mr-1" />
