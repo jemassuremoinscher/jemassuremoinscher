@@ -117,7 +117,7 @@ serve(async (req) => {
       
       // For cron jobs, we'll use a different approach:
       // The admin UI will queue articles for posting
-      const { data: pendingPosts } = await supabase
+      const { data: pendingRows } = await supabase
         .from("linkedin_auto_posts")
         .select("*")
         .eq("status", "pending")
@@ -126,7 +126,7 @@ serve(async (req) => {
         .limit(10);
 
       const nowIso = new Date().toISOString();
-      const pendingPosts = (pendingPosts || []).find((post: any) => !post.scheduled_at || post.scheduled_at <= nowIso) || null;
+      const pendingPosts = (pendingRows || []).find((post: any) => !post.scheduled_at || post.scheduled_at <= nowIso) || null;
 
       if (!pendingPosts) {
         return new Response(
