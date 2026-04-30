@@ -675,6 +675,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
 
   const statusBadge = (status: string) => {
     const config: Record<string, { variant: 'default' | 'secondary' | 'destructive' | 'outline'; label: string }> = {
+      draft: { variant: 'secondary', label: '📝 Brouillon' },
       pending: { variant: 'outline', label: '⏳ En attente' },
       approved: { variant: 'default', label: '✅ Approuvé' },
       rejected: { variant: 'destructive', label: '❌ Rejeté' },
@@ -1192,6 +1193,15 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
                       value={editingSuggestion.image_url}
                       onChange={(event) => setEditingSuggestion((current) => ({ ...current, image_url: event.target.value }))}
                       placeholder="https://..."
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor={`article-date-${s.id}`}>Date de publication prévue</Label>
+                    <Input
+                      id={`article-date-${s.id}`}
+                      type="datetime-local"
+                      value={editingSuggestion.published_at}
+                      onChange={(event) => setEditingSuggestion((current) => ({ ...current, published_at: event.target.value }))}
                     />
                   </div>
                   <div className="space-y-2">
