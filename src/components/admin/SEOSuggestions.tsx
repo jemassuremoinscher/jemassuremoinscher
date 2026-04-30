@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, Wand2, Pencil, Save, CalendarDays, Image as ImageIcon } from 'lucide-react';
+import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, Wand2, Pencil, Save, CalendarDays, Image as ImageIcon, Trash2 } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
@@ -40,6 +40,7 @@ type Suggestion = {
 type EditingSuggestion = {
   suggested_content: string;
   image_url: string;
+  published_at: string;
 };
 
 type GenerationResponse = {
@@ -249,7 +250,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const [appliedSuggestions, setAppliedSuggestions] = useState<AppliedSuggestionState>({});
   const [appliedImprovementsLoaded, setAppliedImprovementsLoaded] = useState(false);
   const [editingSuggestionId, setEditingSuggestionId] = useState<string | null>(null);
-  const [editingSuggestion, setEditingSuggestion] = useState<EditingSuggestion>({ suggested_content: '', image_url: '' });
+  const [editingSuggestion, setEditingSuggestion] = useState<EditingSuggestion>({ suggested_content: '', image_url: '', published_at: '' });
   const [isSavingEdit, setIsSavingEdit] = useState(false);
 
   useEffect(() => {
@@ -359,7 +360,8 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
     const { data, error } = await supabase
       .from('seo_article_suggestions')
       .select('*')
-      .in('status', ['pending', 'approved'])
+      .in('status', ['draft', 'pending', 'approved'])
+      .order('published_at', { ascending: true, nullsFirst: false })
       .order('created_at', { ascending: false });
 
     if (error) {
@@ -413,9 +415,14 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   };
 
   const updateStatus = async (id: string, status: string) => {
+    const currentSuggestion = suggestions.find((item) => item.id === id);
     const { error } = await supabase
       .from('seo_article_suggestions')
-      .update({ status, reviewed_at: new Date().toISOString(), ...(status === 'approved' ? { published_at: new Date().toISOString() } : {}) } as any)
+      .update({
+        status,
+        reviewed_at: new Date().toISOString(),
+        ...(status === 'approved' ? { published_at: currentSuggestion?.published_at || new Date().toISOString() } : {}),
+      } as any)
       .eq('id', id);
 
     if (error) {
@@ -431,6 +438,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
     setEditingSuggestion({
       suggested_content: suggestion.suggested_content,
       image_url: suggestion.image_url || '',
+      published_at: suggestion.published_at ? suggestion.published_at.slice(0, 16) : '',
     });
   };
 
@@ -441,6 +449,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
       .update({
         suggested_content: editingSuggestion.suggested_content,
         image_url: editingSuggestion.image_url.trim() || null,
+        published_at: editingSuggestion.published_at ? new Date(editingSuggestion.published_at).toISOString() : null,
       } as any)
       .eq('id', id);
 
@@ -452,6 +461,23 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
 
     toast.success('Article mis à jour');
     setEditingSuggestionId(null);
+    await fetchSuggestions();
+  };
+
+  const deleteSuggestion = async (id: string, title: string) => {
+    if (!window.confirm(`Supprimer définitivement l'article « ${title} » ?`)) return;
+
+    const { error } = await supabase
+      .from('seo_article_suggestions')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      toast.error('Erreur suppression article');
+      return;
+    }
+
+    toast.success('Article supprimé');
     await fetchSuggestions();
   };
 
@@ -654,6 +680,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
 
   const statusBadge = (status: string) => {
     const config: Record<string, { variant: 'default' | 'secondary' | 'destructive' | 'outline'; label: string }> = {
+      draft: { variant: 'secondary', label: '📝 Brouillon' },
       pending: { variant: 'outline', label: '⏳ En attente' },
       approved: { variant: 'default', label: '✅ Approuvé' },
       rejected: { variant: 'destructive', label: '❌ Rejeté' },
@@ -1174,6 +1201,15 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
                     />
                   </div>
                   <div className="space-y-2">
+                    <Label htmlFor={`article-date-${s.id}`}>Date de publication prévue</Label>
+                    <Input
+                      id={`article-date-${s.id}`}
+                      type="datetime-local"
+                      value={editingSuggestion.published_at}
+                      onChange={(event) => setEditingSuggestion((current) => ({ ...current, published_at: event.target.value }))}
+                    />
+                  </div>
+                  <div className="space-y-2">
                     <Label htmlFor={`article-content-${s.id}`}>Texte de l'article</Label>
                     <Textarea
                       id={`article-content-${s.id}`}
@@ -1224,7 +1260,16 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
                   Modifier texte/image
                 </Button>
 
-                {s.status === 'pending' && (
+                <Button variant="outline" size="sm" onClick={() => updateStatus(s.id, 'draft')} disabled={s.status === 'draft'}>
+                  Brouillon
+                </Button>
+
+                <Button variant="destructive" size="sm" onClick={() => void deleteSuggestion(s.id, s.title)}>
+                  <Trash2 className="h-4 w-4 mr-1" />
+                  Supprimer
+                </Button>
+
+                {(s.status === 'pending' || s.status === 'draft') && (
                   <>
                     <Button size="sm" onClick={() => updateStatus(s.id, 'approved')}>
                       <Check className="h-4 w-4 mr-1" />

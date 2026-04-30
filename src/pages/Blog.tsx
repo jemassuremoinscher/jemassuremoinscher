@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -15,6 +15,12 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
+import { supabase } from "@/integrations/supabase/client";
+
+const formatFrenchDate = (value?: string | null) => {
+  if (!value) return new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+  return new Date(value).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+};
 
 const convertToISO = (frenchDate: string): string => {
   const months: Record<string, string> = {
@@ -37,8 +43,39 @@ const Blog = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [dynamicArticles, setDynamicArticles] = useState<typeof blogArticles>([]);
 
-  const filteredArticles = blogArticles.filter(article => {
+  useEffect(() => {
+    supabase
+      .from("seo_article_suggestions")
+      .select("title, slug, suggested_meta_description, suggested_content, target_keyword, published_at, created_at, suggested_author, image_url")
+      .eq("status", "approved")
+      .lte("published_at", new Date().toISOString())
+      .not("slug", "ilike", "%test%")
+      .order("published_at", { ascending: false })
+      .then(({ data }) => {
+        const existingSlugs = new Set(blogArticles.map((article) => article.slug));
+        setDynamicArticles((data || [])
+          .filter((item) => !existingSlugs.has(item.slug))
+          .map((item) => ({
+            id: `dynamic-${item.slug}`,
+            title: item.title,
+            slug: item.slug,
+            description: item.suggested_meta_description || item.title,
+            category: "Conseils Experts",
+            date: formatFrenchDate(item.published_at || item.created_at),
+            readTime: `${Math.max(5, Math.ceil((item.suggested_content || "").split(/\s+/).length / 220))} min`,
+            author: item.suggested_author || "L'équipe d'experts Jemassuremoinscher",
+            image: item.image_url || undefined,
+            content: item.suggested_content,
+            tags: [item.target_keyword, "assurance", "conseils"].filter(Boolean),
+          })));
+      });
+  }, []);
+
+  const allArticles = useMemo(() => [...dynamicArticles, ...blogArticles], [dynamicArticles]);
+
+  const filteredArticles = allArticles.filter(article => {
     const matchesCategory = selectedCategory === "all" || article.category === selectedCategory;
     const matchesSearch = searchQuery === "" || 
       article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||

@@ -248,6 +248,18 @@ function normalizeShortDescription(raw: string, title: string): string {
   return cleaned.slice(0, 220);
 }
 
+function getPlannedPublishDate(index: number): string {
+  const slots = [2, 4, 6];
+  const now = new Date();
+  const targetDay = slots[index % slots.length];
+  const weekOffset = Math.floor(index / slots.length) * 7;
+  const currentDay = now.getUTCDay();
+  let daysUntil = (targetDay - currentDay + 7) % 7;
+  if (daysUntil === 0 && now.getUTCHours() >= 8) daysUntil = 7;
+  const planned = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + daysUntil + weekOffset, 8, 30, 0));
+  return planned.toISOString();
+}
+
 function parseAiArticle(raw: string): ParsedArticle {
   const taggedArticle = {
     title: extractTaggedSection(raw, "TITLE") || "",
@@ -436,7 +448,7 @@ serve(async (req) => {
     const skippedKeywords: string[] = [];
     const failures: FailureDetail[] = [];
 
-    for (const opp of topOpportunities) {
+    for (const [opportunityIndex, opp] of topOpportunities.entries()) {
       const keyword = opp.keys[0];
       const currentPage = opp.keys[1];
 
@@ -555,8 +567,9 @@ Article complet en markdown
           suggested_content: article.content,
           suggested_meta_description: article.meta_description,
           short_description: article.short_description,
+          published_at: getPlannedPublishDate(opportunityIndex),
           suggested_author: article.author,
-          status: "pending",
+          status: "draft",
         });
 
         if (insertError) {

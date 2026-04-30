@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -25,13 +25,62 @@ import RelatedProductLinks from "@/components/blog/RelatedProductLinks";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 import SmartConversionWidget, { detectCategory } from "@/components/blog/SmartConversionWidget";
+import { supabase } from "@/integrations/supabase/client";
+
+const formatFrenchDate = (value?: string | null) => {
+  if (!value) return new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+  return new Date(value).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+};
 
 const BlogArticle = () => {
   const { t } = useLanguage();
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  const article = blogArticles.find(a => a.slug === slug);
+  const [dynamicArticle, setDynamicArticle] = useState<typeof blogArticles[number] | null>(null);
+  const [dynamicLoaded, setDynamicLoaded] = useState(false);
+  const staticArticle = blogArticles.find(a => a.slug === slug);
+
+  useEffect(() => {
+    let mounted = true;
+    if (!slug || staticArticle) {
+      setDynamicLoaded(true);
+      return;
+    }
+
+    supabase
+      .from("seo_article_suggestions")
+      .select("title, slug, suggested_meta_description, suggested_content, target_keyword, published_at, created_at, suggested_author, image_url")
+      .eq("slug", slug)
+      .eq("status", "approved")
+      .lte("published_at", new Date().toISOString())
+      .maybeSingle()
+      .then(({ data }) => {
+        if (!mounted) return;
+        if (data) {
+          setDynamicArticle({
+            id: `dynamic-${data.slug}`,
+            title: data.title,
+            slug: data.slug,
+            description: data.suggested_meta_description || data.title,
+            category: "Conseils Experts",
+            date: formatFrenchDate(data.published_at || data.created_at),
+            readTime: `${Math.max(5, Math.ceil((data.suggested_content || "").split(/\s+/).length / 220))} min`,
+            author: data.suggested_author || "L'équipe d'experts Jemassuremoinscher",
+            image: data.image_url || undefined,
+            tags: [data.target_keyword, "assurance", "conseils"].filter(Boolean),
+            content: data.suggested_content,
+          });
+        }
+        setDynamicLoaded(true);
+      });
+
+    return () => { mounted = false; };
+  }, [slug, staticArticle]);
+
+  const article = staticArticle || dynamicArticle;
+
+  if (!article && !dynamicLoaded) return null;
 
   if (!article) {
     toast.error(t('blogArticlePage.articleNotFound'), {
