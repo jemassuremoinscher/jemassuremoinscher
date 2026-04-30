@@ -24,18 +24,27 @@ const formatFrenchDate = (value?: string | null) => {
 
 const convertToISO = (frenchDate: string): string => {
   const months: Record<string, string> = {
-    'janvier': '01', 'février': '02', 'mars': '03', 'avril': '04',
-    'mai': '05', 'juin': '06', 'juillet': '07', 'août': '08',
-    'septembre': '09', 'octobre': '10', 'novembre': '11', 'décembre': '12'
+    janvier: "01",
+    février: "02",
+    mars: "03",
+    avril: "04",
+    mai: "05",
+    juin: "06",
+    juillet: "07",
+    août: "08",
+    septembre: "09",
+    octobre: "10",
+    novembre: "11",
+    décembre: "12",
   };
-  const parts = frenchDate.split(' ');
+  const parts = frenchDate.split(" ");
   if (parts.length === 3) {
-    const day = parts[0].padStart(2, '0');
-    const month = months[parts[1].toLowerCase()] || '01';
+    const day = parts[0].padStart(2, "0");
+    const month = months[parts[1].toLowerCase()] || "01";
     const year = parts[2];
     return `${year}-${month}-${day}`;
   }
-  return new Date().toISOString().split('T')[0];
+  return new Date().toISOString().split("T")[0];
 };
 
 const Blog = () => {
@@ -48,84 +57,88 @@ const Blog = () => {
   useEffect(() => {
     supabase
       .from("seo_article_suggestions")
-      .select("title, slug, suggested_meta_description, suggested_content, target_keyword, published_at, created_at, suggested_author, image_url")
+      .select(
+        "title, slug, suggested_meta_description, suggested_content, target_keyword, published_at, created_at, suggested_author, image_url",
+      )
       .eq("status", "approved")
       .lte("published_at", new Date().toISOString())
       .not("slug", "ilike", "%test%")
       .order("published_at", { ascending: false })
       .then(({ data }) => {
         const existingSlugs = new Set(blogArticles.map((article) => article.slug));
-        setDynamicArticles((data || [])
-          .filter((item) => !existingSlugs.has(item.slug))
-          .map((item) => ({
-            id: `dynamic-${item.slug}`,
-            title: item.title,
-            slug: item.slug,
-            description: item.suggested_meta_description || item.title,
-            category: "Conseils Experts",
-            date: formatFrenchDate(item.published_at || item.created_at),
-            readTime: `${Math.max(5, Math.ceil((item.suggested_content || "").split(/\s+/).length / 220))} min`,
-            author: item.suggested_author || "L'équipe d'experts Jemassuremoinscher",
-            image: item.image_url || undefined,
-            content: item.suggested_content,
-            tags: [item.target_keyword, "assurance", "conseils"].filter(Boolean),
-          })));
+        setDynamicArticles(
+          (data || [])
+            .filter((item) => !existingSlugs.has(item.slug))
+            .map((item) => ({
+              id: `dynamic-${item.slug}`,
+              title: item.title,
+              slug: item.slug,
+              description: item.suggested_meta_description || item.title,
+              category: "Conseils Experts",
+              date: formatFrenchDate(item.published_at || item.created_at),
+              readTime: `${Math.max(5, Math.ceil((item.suggested_content || "").split(/\s+/).length / 220))} min`,
+              author: item.suggested_author || "L'équipe d'experts Jemassuremoinscher",
+              image: item.image_url || undefined,
+              content: item.suggested_content,
+              tags: [item.target_keyword, "assurance", "conseils"].filter(Boolean),
+            })),
+        );
       });
   }, []);
 
   const allArticles = useMemo(() => [...dynamicArticles, ...blogArticles], [dynamicArticles]);
 
-  const filteredArticles = allArticles.filter(article => {
+  const filteredArticles = allArticles.filter((article) => {
     const matchesCategory = selectedCategory === "all" || article.category === selectedCategory;
-    const matchesSearch = searchQuery === "" || 
+    const matchesSearch =
+      searchQuery === "" ||
       article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       article.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      article.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-    
+      article.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+
     return matchesCategory && matchesSearch;
   });
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: t('breadcrumb.home'), url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Blog", url: "https://www.jemassuremoinscher.fr/blog" }
+    { name: t("breadcrumb.home"), url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Blog", url: "https://www.jemassuremoinscher.fr/blog" },
   ]);
 
   const blogSchema = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "Blog Assurance - jemassuremoinscher.fr",
-    "description": "Conseils, guides pratiques et actualités sur les assurances en France",
-    "url": "https://www.jemassuremoinscher.fr/blog",
-    "publisher": {
+    name: "Blog Assurance - jemassuremoinscher.fr",
+    description: "Conseils, guides pratiques et actualités sur les assurances en France",
+    url: "https://www.jemassuremoinscher.fr/blog",
+    publisher: {
       "@type": "Organization",
-      "name": "jemassuremoinscher.fr"
-    }
+      name: "jemassuremoinscher.fr",
+    },
   };
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOOptimized 
-        title={t('blogPage.seoTitle')}
-        description={t('blogPage.seoDesc')}
+      <SEOOptimized
+        title={t("blogPage.seoTitle")}
+        description={t("blogPage.seoDesc")}
         keyword="blog assurance"
         keywords="conseils assurance, loi lemoine, loi hamon, guide assurance"
         canonical="https://www.jemassuremoinscher.fr/blog"
+        ogTitle="Blog Assurance : Conseils, Guides et Actualités pour Économiser"
+        ogDescription="Retrouvez tous nos conseils assurance auto, santé, habitation. Guides pratiques, comparatifs et actualités pour payer moins cher votre assurance."
+        twitterDescription="Conseils et guides pratiques pour payer moins cher vos assurances. Auto, santé, habitation et plus."
         jsonLd={[breadcrumbSchema, blogSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Blog" }]} />
-      
+
       <main>
         {/* Hero */}
         <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
           <div className="container mx-auto px-4 py-14 md:py-20">
             <div className="max-w-[65%] sm:max-w-[70%] md:max-w-2xl relative z-10">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                {t('blogPage.title')}
-              </h1>
-              <p className="text-base md:text-lg text-white/80 leading-relaxed">
-                {t('blogPage.subtitle')}
-              </p>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">{t("blogPage.title")}</h1>
+              <p className="text-base md:text-lg text-white/80 leading-relaxed">{t("blogPage.subtitle")}</p>
             </div>
             <img
               src={arthurThinking}
@@ -141,16 +154,20 @@ const Blog = () => {
         <div className="container mx-auto px-4 py-10 md:py-14">
           <DynamicUpdateDate />
           <div className="max-w-7xl mx-auto space-y-10">
-
             {/* Search */}
             <div className="max-w-2xl mx-auto">
               <div className="relative">
-                <label htmlFor="blog-search" className="sr-only">{t('blogPage.searchLabel')}</label>
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" aria-hidden="true" />
+                <label htmlFor="blog-search" className="sr-only">
+                  {t("blogPage.searchLabel")}
+                </label>
+                <Search
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5"
+                  aria-hidden="true"
+                />
                 <Input
                   id="blog-search"
                   type="search"
-                  placeholder={t('blogPage.searchPlaceholder')}
+                  placeholder={t("blogPage.searchPlaceholder")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-12 py-6 text-lg rounded-full"
@@ -162,16 +179,16 @@ const Blog = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 {
-                  title: t('blogPage.guidesTitle'),
+                  title: t("blogPage.guidesTitle"),
                   links: [
                     { label: "Meilleure assurance auto 2026", slug: "meilleure-assurance-auto-2026" },
                     { label: "Top mutuelles santé 2026", slug: "top-mutuelles-sante-2026" },
                     { label: "Astuces jeune conducteur", slug: "assurance-auto-jeune-conducteur-astuces" },
                     { label: "Comparatif habitation 2026", slug: "comparatif-habitation-2026" },
-                  ]
+                  ],
                 },
                 {
-                  title: t('blogPage.specialProfiles'),
+                  title: t("blogPage.specialProfiles"),
                   links: [
                     { label: "Résilié non-paiement", to: "/profil/resilie-non-paiement" },
                     { label: "Retrait de permis", to: "/profil/retrait-permis" },
@@ -179,27 +196,27 @@ const Blog = () => {
                     { label: "Jeune + voiture puissante", to: "/profil/jeune-conducteur-voiture-puissante" },
                     { label: "Métiers atypiques", to: "/assurance-metiers-atypiques" },
                     { label: "Primo-assuré", to: "/profil/sans-antecedents" },
-                  ]
+                  ],
                 },
                 {
-                  title: t('blogPage.insurerDuels'),
+                  title: t("blogPage.insurerDuels"),
                   links: [
                     { label: "MAIF vs Macif", to: "/comparatif/maif-vs-macif" },
                     { label: "AXA vs Allianz", to: "/comparatif/axa-vs-allianz" },
                     { label: "Direct Assurance vs L'Olivier", to: "/comparatif/direct-assurance-vs-l-olivier" },
                     { label: "Luko vs Alan", to: "/comparatif/luko-vs-alan" },
-                    { label: t('blogPage.allDuels'), to: "/comparatif" },
-                  ]
+                    { label: t("blogPage.allDuels"), to: "/comparatif" },
+                  ],
                 },
                 {
-                  title: t('blogPage.byTypeTitle'),
+                  title: t("blogPage.byTypeTitle"),
                   links: [
                     { label: "Auto & Moto", to: "/assurance-auto" },
                     { label: "Santé & Prévoyance", to: "/assurance-sante" },
                     { label: "Habitation & PNO", to: "/assurance-habitation" },
                     { label: "Vie & Emprunteur", to: "/assurance-pret" },
                     { label: "Calculateur Bonus-Malus", to: "/outils/calculateur-bonus-malus" },
-                  ]
+                  ],
                 },
               ].map((section) => (
                 <div key={section.title} className="glass-card p-6 rounded-[2rem]">
@@ -229,32 +246,35 @@ const Blog = () => {
                 size="sm"
                 className="rounded-full"
               >
-                {t('blogPage.allArticles')}
+                {t("blogPage.allArticles")}
               </Button>
-              {blogCategories.filter(c => c !== "Tous les articles").map((category) => (
-                <Button
-                  key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
-                  onClick={() => setSelectedCategory(category)}
-                  size="sm"
-                  className="rounded-full"
-                >
-                  {category}
-                </Button>
-              ))}
+              {blogCategories
+                .filter((c) => c !== "Tous les articles")
+                .map((category) => (
+                  <Button
+                    key={category}
+                    variant={selectedCategory === category ? "default" : "outline"}
+                    onClick={() => setSelectedCategory(category)}
+                    size="sm"
+                    className="rounded-full"
+                  >
+                    {category}
+                  </Button>
+                ))}
             </div>
 
             {/* Results count */}
             <div className="text-center text-muted-foreground text-sm">
-              {filteredArticles.length} article{filteredArticles.length > 1 ? 's' : ''} {filteredArticles.length > 1 ? t('blogPage.articlesFoundPlural') : t('blogPage.articlesFound')}
+              {filteredArticles.length} article{filteredArticles.length > 1 ? "s" : ""}{" "}
+              {filteredArticles.length > 1 ? t("blogPage.articlesFoundPlural") : t("blogPage.articlesFound")}
             </div>
 
             {/* Articles grid */}
             {filteredArticles.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredArticles.map((article) => (
-                  <Card 
-                    key={article.id} 
+                  <Card
+                    key={article.id}
                     className="glass-card rounded-[2rem] hover:shadow-[var(--shadow-hover)] cursor-pointer group transition-all duration-300"
                     onClick={() => navigate(`/blog/${article.slug}`)}
                   >
@@ -272,7 +292,9 @@ const Blog = () => {
                       <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
-                          <time dateTime={convertToISO(article.date)}>{t('blogPage.updatedOn')} {article.date}</time>
+                          <time dateTime={convertToISO(article.date)}>
+                            {t("blogPage.updatedOn")} {article.date}
+                          </time>
                         </div>
                         <div className="flex items-center gap-1">
                           <Clock className="w-4 h-4" />
@@ -292,23 +314,24 @@ const Blog = () => {
               </div>
             ) : (
               <Card className="glass-card p-12 text-center rounded-[2rem]">
-                <p className="text-lg text-muted-foreground mb-4">
-                  {t('blogPage.noResults')}
-                </p>
-                <Button onClick={() => { setSearchQuery(""); setSelectedCategory("all"); }} className="rounded-full">
-                  {t('blogPage.resetFilters')}
+                <p className="text-lg text-muted-foreground mb-4">{t("blogPage.noResults")}</p>
+                <Button
+                  onClick={() => {
+                    setSearchQuery("");
+                    setSelectedCategory("all");
+                  }}
+                  className="rounded-full"
+                >
+                  {t("blogPage.resetFilters")}
                 </Button>
               </Card>
             )}
 
             {/* Newsletter CTA */}
             <div className="bg-gradient-to-r from-primary to-primary/80 rounded-[2rem] p-8 md:p-12 text-center">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">{t('blogPage.stayInformed')}</h2>
-              <p className="text-white/80 mb-6 max-w-xl mx-auto">
-                {t('blogPage.newsletterDesc')}
-              </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">{t("blogPage.stayInformed")}</h2>
+              <p className="text-white/80 mb-6 max-w-xl mx-auto">{t("blogPage.newsletterDesc")}</p>
             </div>
-
           </div>
         </div>
       </main>
