@@ -448,7 +448,7 @@ serve(async (req) => {
     const skippedKeywords: string[] = [];
     const failures: FailureDetail[] = [];
 
-    for (const opp of topOpportunities) {
+    for (const [opportunityIndex, opp] of topOpportunities.entries()) {
       const keyword = opp.keys[0];
       const currentPage = opp.keys[1];
 
@@ -567,8 +567,9 @@ Article complet en markdown
           suggested_content: article.content,
           suggested_meta_description: article.meta_description,
           short_description: article.short_description,
+          published_at: getPlannedPublishDate(opportunityIndex),
           suggested_author: article.author,
-          status: "pending",
+          status: "draft",
         });
 
         if (insertError) {
