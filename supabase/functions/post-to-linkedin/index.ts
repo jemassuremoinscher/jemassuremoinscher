@@ -121,6 +121,8 @@ serve(async (req) => {
         .from("linkedin_auto_posts")
         .select("*")
         .eq("status", "pending")
+        .lte("scheduled_at", new Date().toISOString())
+        .not("article_slug", "ilike", "%test%")
         .order("created_at", { ascending: true })
         .limit(1)
         .maybeSingle();
