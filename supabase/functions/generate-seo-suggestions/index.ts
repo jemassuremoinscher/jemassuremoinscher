@@ -107,7 +107,28 @@ function slugify(text: string): string {
     .toLowerCase()
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+    .replace(/(^-|-$)/g, "") || "article";
+}
+
+async function buildUniqueSlug(supabase: any, baseSlug: string): Promise<string> {
+  const normalizedBase = slugify(baseSlug);
+  const { data, error } = await supabase
+    .from("seo_article_suggestions")
+    .select("slug")
+    .like("slug", `${normalizedBase}%`);
+
+  if (error) throw new Error(`Vérification slug impossible: ${error.message}`);
+
+  const usedSlugs = new Set((data || []).map((item: { slug: string }) => item.slug));
+  let candidate = normalizedBase;
+  let suffix = 2;
+
+  while (usedSlugs.has(candidate)) {
+    candidate = `${normalizedBase}-${suffix}`;
+    suffix += 1;
+  }
+
+  return candidate;
 }
 
 function stripCodeFences(raw: string): string {
@@ -556,7 +577,7 @@ Article complet en markdown
           }
         }
 
-        const slug = slugify(article.title || keyword);
+        const slug = await buildUniqueSlug(supabase, article.title || keyword);
         const { error: insertError } = await supabase.from("seo_article_suggestions").insert({
           title: article.title,
           slug,

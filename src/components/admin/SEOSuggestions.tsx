@@ -53,6 +53,13 @@ type GenerationResponse = {
   errors?: Array<{ keyword: string; reason: string }>;
 };
 
+const normalizeArticleSlug = (value: string) => value
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/(^-+|-+$)/g, '') || 'article';
+
 type SeoAuditCheck = {
   id: string;
   file: string;
@@ -416,9 +423,36 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
 
   const updateStatus = async (id: string, status: string) => {
     const currentSuggestion = suggestions.find((item) => item.id === id);
+    if (!currentSuggestion) return;
+
+    let nextSlug = currentSuggestion.slug;
+    if (status === 'approved') {
+      const baseSlug = normalizeArticleSlug(currentSuggestion.slug || currentSuggestion.title);
+      const { data: slugRows, error: slugError } = await supabase
+        .from('seo_article_suggestions')
+        .select('id, slug')
+        .like('slug', `${baseSlug}%`);
+
+      if (slugError) {
+        toast.error('Impossible de vérifier le slug avant approbation');
+        return;
+      }
+
+      const usedSlugs = new Set(((slugRows as Pick<Suggestion, 'id' | 'slug'>[]) || [])
+        .filter((item) => item.id !== id)
+        .map((item) => item.slug));
+      nextSlug = baseSlug;
+      let suffix = 2;
+      while (usedSlugs.has(nextSlug)) {
+        nextSlug = `${baseSlug}-${suffix}`;
+        suffix += 1;
+      }
+    }
+
     const { error } = await supabase
       .from('seo_article_suggestions')
       .update({
+        ...(status === 'approved' ? { slug: nextSlug } : {}),
         status,
         reviewed_at: new Date().toISOString(),
         ...(status === 'approved' ? { published_at: currentSuggestion?.published_at || new Date().toISOString() } : {}),
@@ -428,7 +462,9 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
     if (error) {
       toast.error('Erreur mise à jour');
     } else {
-      toast.success(status === 'approved' ? 'Article approuvé ✓' : 'Article rejeté');
+      toast.success(status === 'approved'
+        ? `Article approuvé ✓${nextSlug !== currentSuggestion.slug ? ` Slug corrigé : ${nextSlug}` : ''}`
+        : status === 'draft' ? 'Article passé en brouillon' : 'Article rejeté');
       fetchSuggestions();
     }
   };

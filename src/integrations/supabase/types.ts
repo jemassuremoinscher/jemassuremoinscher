@@ -963,6 +963,10 @@ export type Database = {
         }[]
       }
       cleanup_old_deleted_items: { Args: never; Returns: undefined }
+      generate_unique_seo_article_slug: {
+        Args: { _base_slug: string; _exclude_id?: string }
+        Returns: string
+      }
       get_agent_current_load: { Args: { p_agent_id: string }; Returns: number }
       has_role: {
         Args: {
