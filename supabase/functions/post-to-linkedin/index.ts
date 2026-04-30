@@ -121,11 +121,12 @@ serve(async (req) => {
         .from("linkedin_auto_posts")
         .select("*")
         .eq("status", "pending")
-        .lte("scheduled_at", new Date().toISOString())
         .not("article_slug", "ilike", "%test%")
         .order("created_at", { ascending: true })
-        .limit(1)
-        .maybeSingle();
+        .limit(10);
+
+      const nowIso = new Date().toISOString();
+      const pendingPosts = (pendingPosts || []).find((post: any) => !post.scheduled_at || post.scheduled_at <= nowIso) || null;
 
       if (!pendingPosts) {
         return new Response(
