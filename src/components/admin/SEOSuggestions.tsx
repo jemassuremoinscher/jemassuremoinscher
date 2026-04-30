@@ -415,9 +415,14 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   };
 
   const updateStatus = async (id: string, status: string) => {
+    const currentSuggestion = suggestions.find((item) => item.id === id);
     const { error } = await supabase
       .from('seo_article_suggestions')
-      .update({ status, reviewed_at: new Date().toISOString(), ...(status === 'approved' ? { published_at: new Date().toISOString() } : {}) } as any)
+      .update({
+        status,
+        reviewed_at: new Date().toISOString(),
+        ...(status === 'approved' ? { published_at: currentSuggestion?.published_at || new Date().toISOString() } : {}),
+      } as any)
       .eq('id', id);
 
     if (error) {
