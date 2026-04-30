@@ -553,6 +553,7 @@ export type Database = {
           posted_at: string | null
           provider: string
           response_payload: Json | null
+          scheduled_at: string | null
           short_description: string | null
           status: string
         }
@@ -570,6 +571,7 @@ export type Database = {
           posted_at?: string | null
           provider?: string
           response_payload?: Json | null
+          scheduled_at?: string | null
           short_description?: string | null
           status?: string
         }
@@ -587,6 +589,7 @@ export type Database = {
           posted_at?: string | null
           provider?: string
           response_payload?: Json | null
+          scheduled_at?: string | null
           short_description?: string | null
           status?: string
         }
