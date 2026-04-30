@@ -360,7 +360,8 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
     const { data, error } = await supabase
       .from('seo_article_suggestions')
       .select('*')
-      .in('status', ['pending', 'approved'])
+      .in('status', ['draft', 'pending', 'approved'])
+      .order('published_at', { ascending: true, nullsFirst: false })
       .order('created_at', { ascending: false });
 
     if (error) {
@@ -432,6 +433,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
     setEditingSuggestion({
       suggested_content: suggestion.suggested_content,
       image_url: suggestion.image_url || '',
+      published_at: suggestion.published_at ? suggestion.published_at.slice(0, 16) : '',
     });
   };
 
@@ -442,6 +444,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
       .update({
         suggested_content: editingSuggestion.suggested_content,
         image_url: editingSuggestion.image_url.trim() || null,
+        published_at: editingSuggestion.published_at ? new Date(editingSuggestion.published_at).toISOString() : null,
       } as any)
       .eq('id', id);
 
@@ -453,6 +456,23 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
 
     toast.success('Article mis à jour');
     setEditingSuggestionId(null);
+    await fetchSuggestions();
+  };
+
+  const deleteSuggestion = async (id: string, title: string) => {
+    if (!window.confirm(`Supprimer définitivement l'article « ${title} » ?`)) return;
+
+    const { error } = await supabase
+      .from('seo_article_suggestions')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      toast.error('Erreur suppression article');
+      return;
+    }
+
+    toast.success('Article supprimé');
     await fetchSuggestions();
   };
 
