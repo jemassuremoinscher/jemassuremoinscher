@@ -205,4 +205,155 @@ for (const page of pages) {
   await writeFile(outputPath, renderPage(page), "utf8");
 }
 
+// ============ Blog articles prerender ============
+const markdownToHtml = (md = "") => {
+  if (!md) return "";
+  const escaped = escapeHtml(md);
+  const lines = escaped.split(/\r?\n/);
+  const out = [];
+  let inList = false;
+  const closeList = () => { if (inList) { out.push("</ul>"); inList = false; } };
+  for (const raw of lines) {
+    const line = raw.trim();
+    if (!line) { closeList(); continue; }
+    if (/^######\s+/.test(line)) { closeList(); out.push(`<h6>${line.replace(/^######\s+/, "")}</h6>`); continue; }
+    if (/^#####\s+/.test(line)) { closeList(); out.push(`<h5>${line.replace(/^#####\s+/, "")}</h5>`); continue; }
+    if (/^####\s+/.test(line)) { closeList(); out.push(`<h4>${line.replace(/^####\s+/, "")}</h4>`); continue; }
+    if (/^###\s+/.test(line)) { closeList(); out.push(`<h3>${line.replace(/^###\s+/, "")}</h3>`); continue; }
+    if (/^##\s+/.test(line)) { closeList(); out.push(`<h2>${line.replace(/^##\s+/, "")}</h2>`); continue; }
+    if (/^#\s+/.test(line)) { closeList(); out.push(`<h2>${line.replace(/^#\s+/, "")}</h2>`); continue; }
+    if (/^[-*]\s+/.test(line)) {
+      if (!inList) { out.push("<ul>"); inList = true; }
+      out.push(`<li>${line.replace(/^[-*]\s+/, "")}</li>`);
+      continue;
+    }
+    closeList();
+    out.push(`<p>${line}</p>`);
+  }
+  closeList();
+  return out.join("\n        ");
+};
+
+const renderArticle = (article) => {
+  const canonical = `${baseUrl}/blog/${article.slug}`;
+  const title = article.title || "Article";
+  const description = article.suggested_meta_description || article.short_description || article.title || "";
+  const author = article.suggested_author || "Rédaction jemassuremoinscher.fr";
+  const publishedAt = article.published_at || article.created_at || new Date().toISOString();
+  const image = article.image_url || `${baseUrl}/opengraph-image.png`;
+  const bodyHtml = markdownToHtml(article.suggested_content || "");
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description,
+    image,
+    datePublished: publishedAt,
+    dateModified: publishedAt,
+    author: { "@type": "Person", name: author },
+    publisher: {
+      "@type": "Organization",
+      name: geoContent.brandName,
+      logo: { "@type": "ImageObject", url: `${baseUrl}/favicon.ico` },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+    inLanguage: "fr-FR",
+  };
+
+  return `<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>${escapeHtml(title)}</title>
+    <meta name="description" content="${escapeAttribute(description)}" />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <meta name="author" content="${escapeAttribute(author)}" />
+    <link rel="canonical" href="${escapeAttribute(canonical)}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="${escapeAttribute(title)}" />
+    <meta property="og:description" content="${escapeAttribute(description)}" />
+    <meta property="og:url" content="${escapeAttribute(canonical)}" />
+    <meta property="og:image" content="${escapeAttribute(image)}" />
+    <meta property="og:site_name" content="${escapeAttribute(geoContent.brandName)}" />
+    <meta property="article:published_time" content="${escapeAttribute(publishedAt)}" />
+    <meta property="article:author" content="${escapeAttribute(author)}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${escapeAttribute(title)}" />
+    <meta name="twitter:description" content="${escapeAttribute(description)}" />
+    <meta name="twitter:image" content="${escapeAttribute(image)}" />
+    <script type="application/ld+json">${JSON.stringify(articleJsonLd)}</script>
+    <style>
+      body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #111827; background: #ffffff; }
+      .seo-shell { max-width: 820px; margin: 0 auto; padding: 2rem 1rem; line-height: 1.7; }
+      h1 { font-size: clamp(1.75rem, 3vw, 2.5rem); margin: 0 0 1rem; }
+      h2 { font-size: 1.4rem; margin: 1.75rem 0 0.75rem; }
+      h3 { font-size: 1.15rem; margin: 1.5rem 0 0.5rem; }
+      ul { padding-left: 1.25rem; }
+      li { margin-bottom: 0.4rem; }
+      a { color: #1d4ed8; }
+      .meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <main class="seo-shell">
+        <h2>${escapeHtml(title)}</h2>
+        <p class="meta">Par ${escapeHtml(author)} — ${escapeHtml(new Date(publishedAt).toLocaleDateString("fr-FR"))}</p>
+        ${bodyHtml}
+      </main>
+    </noscript>
+
+    <div id="root">
+      <main class="seo-shell">
+        <h1>${escapeHtml(title)}</h1>
+        <p class="meta">Par ${escapeHtml(author)} — ${escapeHtml(new Date(publishedAt).toLocaleDateString("fr-FR"))}</p>
+        ${bodyHtml}
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>`;
+};
+
+const generateBlogArticles = async () => {
+  try {
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { persistSession: false } });
+    const { data, error } = await supabase
+      .from("seo_article_suggestions")
+      .select("slug,title,suggested_content,suggested_meta_description,suggested_author,short_description,image_url,published_at,created_at,status")
+      .eq("status", "approved")
+      .lte("published_at", new Date().toISOString())
+      .not("slug", "ilike", "%test%")
+      .not("title", "ilike", "%test%")
+      .order("published_at", { ascending: false })
+      .limit(500);
+
+    if (error) {
+      console.warn("[generate-static-pages] Supabase error:", error.message);
+      return;
+    }
+    if (!data?.length) {
+      console.log("[generate-static-pages] No approved articles to prerender.");
+      return;
+    }
+
+    let count = 0;
+    for (const article of data) {
+      if (!article.slug) continue;
+      const outputPath = path.join(rootDir, "blog", article.slug, "index.html");
+      await mkdir(path.dirname(outputPath), { recursive: true });
+      await writeFile(outputPath, renderArticle(article), "utf8");
+      count += 1;
+    }
+    console.log(`[generate-static-pages] Prerendered ${count} blog articles.`);
+  } catch (err) {
+    console.warn("[generate-static-pages] Skipping blog prerender:", err?.message || err);
+  }
+};
+
+await generateBlogArticles();
+
 await syncExistingHtmlPages();
