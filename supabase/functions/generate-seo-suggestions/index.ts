@@ -224,6 +224,7 @@ function normalizeArticle(article: Partial<ParsedArticle>): ParsedArticle {
     content,
     author,
     meta_description: metaDescriptionSource.trim().slice(0, 150),
+      social_summary: (typeof article.social_summary === "string" ? article.social_summary.trim().slice(0, 255) : ""),
   };
 }
 
@@ -233,6 +234,7 @@ function parseAiArticle(raw: string): ParsedArticle {
     meta_description: extractTaggedSection(raw, "META_DESCRIPTION") || "",
     author: extractTaggedSection(raw, "AUTHOR") || "",
     content: extractTaggedSection(raw, "CONTENT") || "",
+        social_summary: extractTaggedSection(raw, "SOCIAL_SUMMARY") || "",
   };
 
   if (taggedArticle.title && taggedArticle.content) {
@@ -384,6 +386,7 @@ Contraintes:
 - Mentionner "jemassuremoinscher.fr" naturellement 2-3 fois
 - Suggérer un auteur expert crédible avec titre/spécialité
 - Ne jamais utiliser les balises [[TITLE]], [[META_DESCRIPTION]], [[AUTHOR]], [[CONTENT]] à l'intérieur du contenu
+- Résumé social de 2 LIGNES MAX, punchy et accrocheur pour LinkedIn/Facebook (contenu percutant, pas tronqué)
 
 Réponds STRICTEMENT avec ce format, sans JSON, sans bloc de code et sans texte avant/après:
 [[TITLE]]
@@ -395,6 +398,9 @@ Meta description
 [[AUTHOR]]
 Prénom Nom – Titre
 [[/AUTHOR]]
+[[SOCIAL_SUMMARY]]
+Résumé social de 2 lignes max
+[[/SOCIAL_SUMMARY]]
 [[CONTENT]]
 Article complet en markdown
 [[/CONTENT]]`;
@@ -459,6 +465,7 @@ Article complet en markdown
           suggested_meta_description: article.meta_description,
           suggested_author: article.author,
           status: "pending",
+              social_summary: article.social_summary,
         });
 
         if (insertError) {
