@@ -10,10 +10,12 @@ type ParsedArticle = {
   meta_description: string;
   author: string;
   content: string;
+    social_summary: string;
 };
 
 type FailureDetail = {
   keyword: string;
+    social_summary: string;
   reason: string;
 };
 
