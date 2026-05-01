@@ -34,7 +34,8 @@ type Suggestion = {
   suggested_meta_description: string | null;
   suggested_author: string | null;
   status: string;
-  created_at: string;
+    social_summary?: string | null;
+suggested_content  created_at: string;
 };
 
 type GenerationResponse = {
