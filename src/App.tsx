@@ -5,12 +5,12 @@ import { Routes, Route } from "react-router-dom";
 import React, { lazy, Suspense } from "react";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import CookieBanner from "@/components/CookieBanner";
 
 // Lazy load non-critical global components
 const AIChatbot = lazy(() => import("@/components/chatbot/AIChatbot").then(m => ({ default: m.AIChatbot })));
 const ReadingProgressBar = lazy(() => import("@/components/ReadingProgressBar"));
 const ContractOptimizerWidget = lazy(() => import("@/components/optimizer/ContractOptimizerWidget"));
-const CookieBanner = lazy(() => import("@/components/CookieBanner"));
 const SkipToMain = lazy(() => import("@/components/SkipToMain"));
 const RouteTracker = lazy(() => import("@/components/RouteTracker"));
 const StickyCTA = lazy(() => import("@/components/StickyCTA"));
