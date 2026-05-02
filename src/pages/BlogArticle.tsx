@@ -373,6 +373,11 @@ const BlogArticle = () => {
               {/* Related product links */}
               <RelatedProductLinks category={article.category} tags={article.tags} />
 
+              {/* Popular articles — mobile only (desktop in sidebar) */}
+              <div className="mt-8 lg:hidden">
+                <PopularArticles currentSlug={article.slug} />
+              </div>
+
               {/* Keywords */}
               <SuggestedKeywords tags={article.tags} />
             </article>
