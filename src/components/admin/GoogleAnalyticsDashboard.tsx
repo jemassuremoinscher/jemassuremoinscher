@@ -12,7 +12,7 @@ import {
 } from 'recharts';
 import {
   Users, Eye, Clock, TrendingUp, Globe, FileText,
-  Loader2, AlertCircle, RefreshCw, ArrowUpRight,
+  Loader2, AlertCircle, RefreshCw, ArrowUpRight, MousePointerClick, Layers,
 } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
@@ -76,7 +76,30 @@ export const GoogleAnalyticsDashboard = () => {
     );
   }
 
-  const { overview, pages, sources, daily } = data || {};
+  const { overview, pages, sources, daily, events, pricing } = data || {};
+
+  // Aggregate pricing flips by insurance category (sum of formulas).
+  const pricingByCategory = (() => {
+    if (!pricing) return [];
+    const map = new Map<string, { insuranceType: string; flips: number; details: number; users: number }>();
+    pricing.forEach((row: any) => {
+      const key = row.insuranceType || '(non défini)';
+      const cur = map.get(key) || { insuranceType: key, flips: 0, details: 0, users: 0 };
+      if (row.eventName === 'pricing_card_flip') cur.flips += row.count;
+      if (row.eventName === 'pricing_card_view_details') cur.details += row.count;
+      cur.users = Math.max(cur.users, row.users);
+      map.set(key, cur);
+    });
+    return Array.from(map.values()).sort((a, b) => b.flips - a.flips);
+  })();
+
+  // Top formulas across all categories (eventName = view_details for unique-user intent).
+  const topFormulas = (() => {
+    if (!pricing) return [];
+    return pricing
+      .filter((r: any) => r.eventName === 'pricing_card_view_details')
+      .slice(0, 10);
+  })();
 
   return (
     <div className="space-y-6">
