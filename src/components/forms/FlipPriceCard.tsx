@@ -1,4 +1,4 @@
-import { useRef, useState, type KeyboardEvent } from "react";
+import { useRef, useState, type KeyboardEvent, type PointerEvent as ReactPointerEvent } from "react";
 import { Check, RotateCcw } from "lucide-react";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
@@ -23,8 +23,13 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
   const isPercent = price.includes("%");
   const { trackEvent } = useAnalytics();
   const detailsTrackedRef = useRef(false);
+  // Guard against double-firing: pointerup + click can both trigger on some browsers.
+  const lastFlipAtRef = useRef(0);
 
   const toggleFlip = () => {
+    const now = Date.now();
+    if (now - lastFlipAtRef.current < 300) return;
+    lastFlipAtRef.current = now;
     setFlipped((f) => {
       const next = !f;
       trackEvent("pricing_card_flip", {
@@ -37,7 +42,6 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
         highlight: !!highlight,
         action: next ? "show_details" : "show_price",
       });
-      // Count "view_details" only once per card per session for cleaner funnels.
       if (next && !detailsTrackedRef.current) {
         detailsTrackedRef.current = true;
         trackEvent("pricing_card_view_details", {
@@ -54,6 +58,15 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
     });
   };
 
+  // Fire on pointerup (touch + mouse + pen) for instant tactile feedback,
+  // bypassing the legacy ~300ms click delay on some mobile browsers.
+  const onPointerUp = (e: ReactPointerEvent<HTMLButtonElement>) => {
+    // Only primary button / first finger; ignore right-clicks.
+    if (e.button !== 0 && e.pointerType === "mouse") return;
+    e.preventDefault();
+    toggleFlip();
+  };
+
   const onKey = (e: KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -65,11 +78,11 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
     <div className="relative h-[170px] [perspective:1000px]">
       <button
         type="button"
-        onClick={toggleFlip}
+        onPointerUp={onPointerUp}
         onKeyDown={onKey}
         aria-pressed={flipped}
         aria-label={`Formule ${name} — ${flipped ? "voir le prix" : "voir les garanties incluses"}`}
-        className="absolute inset-0 w-full h-full rounded-xl [transform-style:preserve-3d] transition-transform duration-500 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        className="absolute inset-0 w-full h-full rounded-xl [transform-style:preserve-3d] transition-transform duration-300 ease-out touch-manipulation select-none [-webkit-tap-highlight-color:transparent] [will-change:transform] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         style={{ transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
       >
         {/* Front */}
