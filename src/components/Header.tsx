@@ -479,7 +479,7 @@ const Header = () => {
           <button
             type="button"
             onClick={() => {
-              trackEvent('chat_open', { category: 'mobile_bottom_bar', label: 'chat' });
+              trackEvent('insurance_type_click', { category: 'mobile_bottom_bar', label: 'chat', insurance_type: 'all' });
               window.dispatchEvent(new CustomEvent('open-chatbot'));
             }}
             className="flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl text-foreground hover:bg-muted active:scale-95 transition"
