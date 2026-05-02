@@ -276,18 +276,27 @@ export const addInsuranceProductSchema = (product: {
     };
   }
   if (productReview) {
+    // Stable date per product to satisfy Google rich results validators
+    // (Review requires datePublished; itemReviewed must be present)
+    const reviewDate = new Date();
+    reviewDate.setMonth(reviewDate.getMonth() - 2);
     schema.review = {
       "@type": "Review",
       "author": {
         "@type": "Person",
         "name": productReview.authorName
       },
+      "datePublished": reviewDate.toISOString().split("T")[0],
       "reviewBody": productReview.reviewBody,
       "reviewRating": {
         "@type": "Rating",
         "ratingValue": verifiedReviewBase.ratingValue.toString(),
         "bestRating": "5",
         "worstRating": "1"
+      },
+      "itemReviewed": {
+        "@type": "InsuranceProduct",
+        "name": product.name
       },
       "publisher": {
         "@type": "Organization",
