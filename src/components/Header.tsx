@@ -503,7 +503,7 @@ const Header = () => {
             className="flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl text-foreground hover:bg-muted active:scale-95 transition"
             aria-label="Nous contacter"
           >
-            <MessageSquare className="h-5 w-5 text-primary" aria-hidden="true" />
+            <Mail className="h-5 w-5 text-primary" aria-hidden="true" />
             <span className="text-[11px] font-semibold">Nous contacter</span>
           </Link>
         </div>
