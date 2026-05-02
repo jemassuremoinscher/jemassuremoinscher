@@ -954,35 +954,20 @@ function ContactStep({
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.1, duration: 0.3 }}
-              className={`relative rounded-xl border-2 p-3 text-center transition-all ${
-                i === 0
-                  ? 'border-primary bg-primary/5 shadow-[var(--shadow-card)]'
-                  : 'border-border/40 bg-background/50'
-              }`}
             >
-              {i === 0 && (
-                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
-                  Meilleur prix
-                </span>
-              )}
-              {/* Insurer logo */}
-              <div className="flex justify-center mb-1.5 mt-1">
-                <img
-                  src={p.logo}
-                  alt={p.name}
-                  className="h-6 max-w-[60px] object-contain"
-                  loading="lazy"
-                />
-              </div>
-              <span className="text-[10px] text-muted-foreground font-medium uppercase">{p.badge}</span>
-              <div className="text-xl md:text-2xl font-extrabold text-accent mt-0.5">{p.price}</div>
-              <span className="text-[11px] text-muted-foreground">{p.price.includes('%') ? ' des loyers' : '/mois'}</span>
-              <p className="text-xs font-medium text-foreground mt-1">{p.name}</p>
+              <FlipPriceCard
+                name={p.name}
+                price={p.price}
+                badge={p.badge}
+                logo={p.logo}
+                features={p.features}
+                highlight={i === 0}
+              />
             </motion.div>
           ))}
         </div>
         <p className="text-[11px] text-muted-foreground text-center italic">
-          * Tarifs indicatifs. Recevez votre devis exact en 30 min.
+          * Tarifs indicatifs. Cliquez sur une carte pour voir les garanties. Recevez votre devis exact en 30 min.
         </p>
       </motion.div>
 
