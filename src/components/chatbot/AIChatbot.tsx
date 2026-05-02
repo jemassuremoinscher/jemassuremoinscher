@@ -58,7 +58,7 @@ export const AIChatbot = () => {
   return (
     <>
       {!isOpen && (
-        <Button onClick={() => setIsOpen(true)} className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-elegant hover:shadow-glow z-50 bg-gradient-primary hover:scale-110 transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 animate-pulse-subtle" aria-label={t('chatbot.openLabel')}>
+        <Button onClick={() => setIsOpen(true)} className="hidden lg:flex fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-elegant hover:shadow-glow z-50 bg-gradient-primary hover:scale-110 transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 animate-pulse-subtle" aria-label={t('chatbot.openLabel')}>
           <MessageCircle className="h-6 w-6" aria-hidden="true" />
         </Button>
       )}
