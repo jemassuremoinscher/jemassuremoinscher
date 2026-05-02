@@ -25,7 +25,8 @@
     "skipLibCheck": true,
     "strict": false,
     "target": "ES2020",
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+    "types": ["vite/client", "vitest/globals"]
   },
   "include": [
     "src"
