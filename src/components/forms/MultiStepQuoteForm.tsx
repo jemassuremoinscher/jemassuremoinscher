@@ -962,6 +962,8 @@ function ContactStep({
                 logo={p.logo}
                 features={p.features}
                 highlight={i === 0}
+                insuranceType={insuranceType || 'auto'}
+                position={i}
               />
             </motion.div>
           ))}
