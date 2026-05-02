@@ -17,6 +17,7 @@ import { normalizeInsuranceTypeStrict } from '@/utils/insuranceTypeNormalizer';
 import { stepConfigsByType, type InsuranceType, type FormStep, type StepOption } from './stepConfigs';
 import { useFieldTracking } from '@/hooks/useFieldTracking';
 import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from '@/data/vehicleBrands';
+import FlipPriceCard from './FlipPriceCard';
 
 // Mascot imports
 import arthurCar from '@/assets/mascotte/arthur-car.webp';
@@ -834,71 +835,71 @@ function SearchingStep({ progress, currentPartner }: { progress: number; current
 }
 
 // ─── Teaser Prices by insurance type with insurer logos ──────────────────────
-const teaserPrices: Record<string, { label: string; prices: { name: string; price: string; badge?: string; logo: string }[] }> = {
+const teaserPrices: Record<string, { label: string; prices: { name: string; price: string; badge?: string; logo: string; features: string[] }[] }> = {
   auto: { label: 'Assurance Auto', prices: [
-    { name: 'Tiers', price: '11€', badge: 'Dès', logo: logoDirectAssurance },
-    { name: 'Tiers+', price: '18€', badge: 'Dès', logo: logoAllianz },
-    { name: 'Tous risques', price: '29€', badge: 'Dès', logo: logoAxa },
+    { name: 'Tiers', price: '11€', badge: 'Dès', logo: logoDirectAssurance, features: ['Responsabilité civile obligatoire', 'Défense pénale et recours', 'Assistance 50 km du domicile'] },
+    { name: 'Tiers+', price: '18€', badge: 'Dès', logo: logoAllianz, features: ['Tout du Tiers', 'Vol et incendie', 'Bris de glace', 'Catastrophes naturelles'] },
+    { name: 'Tous risques', price: '29€', badge: 'Dès', logo: logoAxa, features: ['Tous dommages au véhicule', 'Vol, incendie, vandalisme', 'Bris de glace 0€ franchise', 'Véhicule de prêt'] },
   ]},
   moto: { label: 'Assurance Moto', prices: [
-    { name: 'Tiers', price: '9€', badge: 'Dès', logo: logoAmaguiz },
-    { name: 'Intermédiaire', price: '15€', badge: 'Dès', logo: logoAllianz },
-    { name: 'Tous risques', price: '24€', badge: 'Dès', logo: logoAxa },
+    { name: 'Tiers', price: '9€', badge: 'Dès', logo: logoAmaguiz, features: ['Responsabilité civile', 'Défense pénale', 'Assistance dépannage'] },
+    { name: 'Intermédiaire', price: '15€', badge: 'Dès', logo: logoAllianz, features: ['Tout du Tiers', 'Vol et incendie', 'Équipement pilote 500€'] },
+    { name: 'Tous risques', price: '24€', badge: 'Dès', logo: logoAxa, features: ['Tous dommages moto', 'Vol et incendie', 'Équipement 1500€', 'Assistance 0 km'] },
   ]},
   habitation: { label: 'Assurance Habitation', prices: [
-    { name: 'Essentielle', price: '5€', badge: 'Dès', logo: logoDirectAssurance },
-    { name: 'Confort', price: '12€', badge: 'Dès', logo: logoMaif },
-    { name: 'Premium', price: '19€', badge: 'Dès', logo: logoGroupama },
+    { name: 'Essentielle', price: '5€', badge: 'Dès', logo: logoDirectAssurance, features: ['Responsabilité civile vie privée', 'Incendie et explosion', 'Dégâts des eaux'] },
+    { name: 'Confort', price: '12€', badge: 'Dès', logo: logoMaif, features: ['Tout de l\'Essentielle', 'Vol et vandalisme', 'Bris de glace', 'Catastrophes naturelles'] },
+    { name: 'Premium', price: '19€', badge: 'Dès', logo: logoGroupama, features: ['Couverture tous risques', 'Objets de valeur protégés', 'Protection juridique', 'Relogement inclus'] },
   ]},
   sante: { label: 'Mutuelle Santé', prices: [
-    { name: 'Essentielle', price: '14€', badge: 'Dès', logo: logoAlanNew },
-    { name: 'Confort', price: '29€', badge: 'Dès', logo: logoHarmonie },
-    { name: 'Premium', price: '49€', badge: 'Dès', logo: logoAxa },
+    { name: 'Essentielle', price: '14€', badge: 'Dès', logo: logoAlanNew, features: ['Hospitalisation 100% BR', 'Soins courants 100%', 'Optique simple'] },
+    { name: 'Confort', price: '29€', badge: 'Dès', logo: logoHarmonie, features: ['Hospitalisation 200% BR', 'Dentaire 200%', 'Optique 200€/an', 'Médecines douces'] },
+    { name: 'Premium', price: '49€', badge: 'Dès', logo: logoAxa, features: ['Hospitalisation 300% BR', 'Dentaire 400%', 'Optique 500€/an', 'Chambre particulière'] },
   ]},
   pret: { label: 'Assurance Emprunteur', prices: [
-    { name: 'Décès', price: '8€', badge: 'Dès', logo: logoApril },
-    { name: 'Décès + PTIA', price: '14€', badge: 'Dès', logo: logoCardif },
-    { name: 'Complète', price: '22€', badge: 'Dès', logo: logoGenerali },
+    { name: 'Décès', price: '8€', badge: 'Dès', logo: logoApril, features: ['Garantie décès toutes causes', 'Capital remboursé à la banque', 'Couverture jusqu\'à 75 ans'] },
+    { name: 'Décès + PTIA', price: '14€', badge: 'Dès', logo: logoCardif, features: ['Décès', 'PTIA (perte totale d\'autonomie)', 'Délégation loi Lemoine'] },
+    { name: 'Complète', price: '22€', badge: 'Dès', logo: logoGenerali, features: ['Décès et PTIA', 'Invalidité (IPT, IPP)', 'Incapacité de travail (ITT)', 'Perte d\'emploi en option'] },
   ]},
   animaux: { label: 'Assurance Animaux', prices: [
-    { name: 'Accident', price: '7€', badge: 'Dès', logo: logoAcheel },
-    { name: 'Confort', price: '19€', badge: 'Dès', logo: logoAllianz },
-    { name: 'Intégrale', price: '34€', badge: 'Dès', logo: logoAxa },
+    { name: 'Accident', price: '7€', badge: 'Dès', logo: logoAcheel, features: ['Frais vétérinaires accident', 'Chirurgie d\'urgence', 'Hospitalisation'] },
+    { name: 'Confort', price: '19€', badge: 'Dès', logo: logoAllianz, features: ['Accidents et maladies', 'Remboursement 70%', 'Plafond 1500€/an', 'Vaccins inclus'] },
+    { name: 'Intégrale', price: '34€', badge: 'Dès', logo: logoAxa, features: ['Accidents et maladies', 'Remboursement 100%', 'Plafond 2500€/an', 'Prévention et stérilisation'] },
   ]},
   vie: { label: 'Assurance Vie', prices: [
-    { name: 'Essentielle', price: '20€', badge: 'Dès', logo: logoSwisslife },
-    { name: 'Confort', price: '45€', badge: 'Dès', logo: logoGenerali },
-    { name: 'Premium', price: '80€', badge: 'Dès', logo: logoAxa },
+    { name: 'Essentielle', price: '20€', badge: 'Dès', logo: logoSwisslife, features: ['Fonds euros sécurisé', 'Versements libres', 'Frais d\'entrée 0%'] },
+    { name: 'Confort', price: '45€', badge: 'Dès', logo: logoGenerali, features: ['Fonds euros + unités de compte', 'Gestion pilotée', 'Arbitrages gratuits', 'Avance sur épargne'] },
+    { name: 'Premium', price: '80€', badge: 'Dès', logo: logoAxa, features: ['Multi-supports premium', 'Gestion sous mandat', 'SCPI accessibles', 'Conseiller dédié'] },
   ]},
   prevoyance: { label: 'Prévoyance', prices: [
-    { name: 'Essentielle', price: '12€', badge: 'Dès', logo: logoApril },
-    { name: 'Confort', price: '25€', badge: 'Dès', logo: logoAllianz },
-    { name: 'Intégrale', price: '42€', badge: 'Dès', logo: logoAxa },
+    { name: 'Essentielle', price: '12€', badge: 'Dès', logo: logoApril, features: ['Capital décès', 'Rente éducation enfants', 'Frais d\'obsèques'] },
+    { name: 'Confort', price: '25€', badge: 'Dès', logo: logoAllianz, features: ['Capital décès', 'Invalidité permanente', 'Indemnités journalières', 'Rente conjoint'] },
+    { name: 'Intégrale', price: '42€', badge: 'Dès', logo: logoAxa, features: ['Toutes garanties Confort', 'IJ majorées', 'Rente éducation', 'Assistance famille'] },
   ]},
   rc_pro: { label: 'RC Pro', prices: [
-    { name: 'Basique', price: '15€', badge: 'Dès', logo: logoAon },
-    { name: 'Standard', price: '29€', badge: 'Dès', logo: logoAllianz },
-    { name: 'Premium', price: '49€', badge: 'Dès', logo: logoAxa },
+    { name: 'Basique', price: '15€', badge: 'Dès', logo: logoAon, features: ['RC exploitation', 'RC professionnelle', 'Plafond 1M€'] },
+    { name: 'Standard', price: '29€', badge: 'Dès', logo: logoAllianz, features: ['RC exploitation et pro', 'Défense recours', 'Plafond 3M€', 'Faute inexcusable'] },
+    { name: 'Premium', price: '49€', badge: 'Dès', logo: logoAxa, features: ['Toutes garanties Standard', 'Cyber-risques inclus', 'Plafond 8M€', 'Protection juridique étendue'] },
   ]},
   mrp: { label: 'Multirisque Pro', prices: [
-    { name: 'Essentielle', price: '25€', badge: 'Dès', logo: logoGenerali },
-    { name: 'Confort', price: '45€', badge: 'Dès', logo: logoAllianz },
-    { name: 'Premium', price: '75€', badge: 'Dès', logo: logoAxa },
+    { name: 'Essentielle', price: '25€', badge: 'Dès', logo: logoGenerali, features: ['Locaux et matériel', 'Incendie, dégâts des eaux', 'RC exploitation'] },
+    { name: 'Confort', price: '45€', badge: 'Dès', logo: logoAllianz, features: ['Tout de l\'Essentielle', 'Vol et vandalisme', 'Bris de machines', 'Perte d\'exploitation'] },
+    { name: 'Premium', price: '75€', badge: 'Dès', logo: logoAxa, features: ['Couverture tous risques', 'Cyber-risques', 'Marchandises transportées', 'Protection juridique pro'] },
   ]},
   gli: { label: 'GLI', prices: [
-    { name: 'Basique', price: '2,5%', badge: 'Dès', logo: logoAllianz },
-    { name: 'Standard', price: '3%', badge: 'Dès', logo: logoGenerali },
-    { name: 'Premium', price: '3,5%', badge: 'Dès', logo: logoAxa },
+    { name: 'Basique', price: '2,5%', badge: 'Dès', logo: logoAllianz, features: ['Loyers impayés couverts', 'Plafond 50 000€', 'Carence 3 mois'] },
+    { name: 'Standard', price: '3%', badge: 'Dès', logo: logoGenerali, features: ['Loyers impayés', 'Détériorations immobilières', 'Frais de procédure', 'Carence 2 mois'] },
+    { name: 'Premium', price: '3,5%', badge: 'Dès', logo: logoAxa, features: ['Toutes garanties Standard', 'Vacance locative', 'Plafond 90 000€', 'Sans carence'] },
   ]},
   pno: { label: 'PNO', prices: [
-    { name: 'Essentielle', price: '6€', badge: 'Dès', logo: logoDirectAssurance },
-    { name: 'Confort', price: '11€', badge: 'Dès', logo: logoMaif },
-    { name: 'Premium', price: '18€', badge: 'Dès', logo: logoGroupama },
+    { name: 'Essentielle', price: '6€', badge: 'Dès', logo: logoDirectAssurance, features: ['Responsabilité civile propriétaire', 'Incendie et dégâts des eaux', 'Recours des locataires'] },
+    { name: 'Confort', price: '11€', badge: 'Dès', logo: logoMaif, features: ['Tout de l\'Essentielle', 'Vol entre locataires', 'Bris de glace', 'Vacance locative 3 mois'] },
+    { name: 'Premium', price: '18€', badge: 'Dès', logo: logoGroupama, features: ['Couverture tous risques', 'Vacance locative 6 mois', 'Protection juridique', 'Détériorations immobilières'] },
   ]},
   gestion_locative: { label: 'Gestion Locative', prices: [
-    { name: 'Essentielle', price: '5%', badge: 'Dès', logo: logoMaif },
-    { name: 'Confort', price: '7%', badge: 'Dès', logo: logoAllianz },
-    { name: 'Premium', price: '9%', badge: 'Dès', logo: logoAxa },
+    { name: 'Essentielle', price: '5%', badge: 'Dès', logo: logoMaif, features: ['Encaissement loyers', 'Quittancement', 'Révision annuelle'] },
+    { name: 'Confort', price: '7%', badge: 'Dès', logo: logoAllianz, features: ['Tout de l\'Essentielle', 'GLI incluse', 'Gestion technique', 'Visites annuelles'] },
+    { name: 'Premium', price: '9%', badge: 'Dès', logo: logoAxa, features: ['Gestion complète', 'GLI + vacance', 'Travaux supervisés', 'Reporting détaillé'] },
   ]},
 };
 
@@ -953,35 +954,20 @@ function ContactStep({
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.1, duration: 0.3 }}
-              className={`relative rounded-xl border-2 p-3 text-center transition-all ${
-                i === 0
-                  ? 'border-primary bg-primary/5 shadow-[var(--shadow-card)]'
-                  : 'border-border/40 bg-background/50'
-              }`}
             >
-              {i === 0 && (
-                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
-                  Meilleur prix
-                </span>
-              )}
-              {/* Insurer logo */}
-              <div className="flex justify-center mb-1.5 mt-1">
-                <img
-                  src={p.logo}
-                  alt={p.name}
-                  className="h-6 max-w-[60px] object-contain"
-                  loading="lazy"
-                />
-              </div>
-              <span className="text-[10px] text-muted-foreground font-medium uppercase">{p.badge}</span>
-              <div className="text-xl md:text-2xl font-extrabold text-accent mt-0.5">{p.price}</div>
-              <span className="text-[11px] text-muted-foreground">{p.price.includes('%') ? ' des loyers' : '/mois'}</span>
-              <p className="text-xs font-medium text-foreground mt-1">{p.name}</p>
+              <FlipPriceCard
+                name={p.name}
+                price={p.price}
+                badge={p.badge}
+                logo={p.logo}
+                features={p.features}
+                highlight={i === 0}
+              />
             </motion.div>
           ))}
         </div>
         <p className="text-[11px] text-muted-foreground text-center italic">
-          * Tarifs indicatifs. Recevez votre devis exact en 30 min.
+          * Tarifs indicatifs. Cliquez sur une carte pour voir les garanties. Recevez votre devis exact en 30 min.
         </p>
       </motion.div>
 
