@@ -97,7 +97,7 @@ const Hero = () => {
     if (typeof idleWindow.requestIdleCallback === "function") {
       idleId = idleWindow.requestIdleCallback(warmUpCategoryImages, { timeout: 3000 });
     } else {
-      timeoutId = setTimeout(warmUpCategoryImages, 1200);
+      timeoutId = window.setTimeout(warmUpCategoryImages, 1200);
     }
 
     return () => {

@@ -127,7 +127,7 @@ const App = () => {
     if (typeof idleWindow.requestIdleCallback === "function") {
       idleId = idleWindow.requestIdleCallback(mountWidgets, { timeout: 2500 });
     } else {
-      timeoutId = setTimeout(mountWidgets, 1200);
+      timeoutId = window.setTimeout(mountWidgets, 1200);
     }
 
     return () => {
