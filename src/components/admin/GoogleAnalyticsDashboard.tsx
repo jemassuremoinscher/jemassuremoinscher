@@ -320,6 +320,93 @@ export const GoogleAnalyticsDashboard = () => {
           </div>
         </Card>
       )}
+
+      {/* Top engagement events */}
+      {events && events.length > 0 && (
+        <Card className="p-4 sm:p-6">
+          <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+            <MousePointerClick className="h-5 w-5 text-primary" />
+            Événements d'engagement
+            <span className="text-xs font-normal text-muted-foreground ml-2">
+              (callbacks, devis, chatbot, flips, clics CTA…)
+            </span>
+          </h3>
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Événement</TableHead>
+                  <TableHead className="text-right">Déclenchements</TableHead>
+                  <TableHead className="text-right">Utilisateurs uniques</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {events.map((ev: any, i: number) => (
+                  <TableRow key={i}>
+                    <TableCell className="font-mono text-sm">{ev.eventName}</TableCell>
+                    <TableCell className="text-right font-medium">{ev.count.toLocaleString('fr-FR')}</TableCell>
+                    <TableCell className="text-right text-muted-foreground">{ev.users.toLocaleString('fr-FR')}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </Card>
+      )}
+
+      {/* Pricing card engagement (flip cards by insurance category) */}
+      {pricingByCategory.length > 0 && (
+        <Card className="p-4 sm:p-6">
+          <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+            <Layers className="h-5 w-5 text-primary" />
+            Intérêt par catégorie d'assurance (cartes tarifaires)
+            <span className="text-xs font-normal text-muted-foreground ml-2">
+              Mesure des flips/dépliages sur les 3 cartes finales du formulaire
+            </span>
+          </h3>
+          <ResponsiveContainer width="100%" height={260}>
+            <BarChart data={pricingByCategory}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="insuranceType" tick={{ fontSize: 11 }} />
+              <YAxis tick={{ fontSize: 11 }} />
+              <Tooltip />
+              <Legend wrapperStyle={{ fontSize: '12px' }} />
+              <Bar dataKey="flips" fill="#7c3aed" name="Flips" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="details" fill="#f59e0b" name="Dépliages uniques" radius={[4, 4, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+
+          {topFormulas.length > 0 && (
+            <div className="mt-6">
+              <h4 className="text-sm font-semibold mb-2 text-muted-foreground">
+                Top formules consultées
+              </h4>
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Catégorie</TableHead>
+                      <TableHead>Formule</TableHead>
+                      <TableHead className="text-right">Dépliages</TableHead>
+                      <TableHead className="text-right">Utilisateurs</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {topFormulas.map((f: any, i: number) => (
+                      <TableRow key={i}>
+                        <TableCell className="font-medium capitalize">{f.insuranceType}</TableCell>
+                        <TableCell>{f.formulaName}</TableCell>
+                        <TableCell className="text-right font-medium">{f.count.toLocaleString('fr-FR')}</TableCell>
+                        <TableCell className="text-right text-muted-foreground">{f.users.toLocaleString('fr-FR')}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+          )}
+        </Card>
+      )}
     </div>
   );
 };
