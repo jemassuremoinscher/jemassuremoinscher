@@ -1,5 +1,6 @@
-import { useState, type KeyboardEvent } from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
 import { Check, RotateCcw } from "lucide-react";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 export interface FlipPriceCardProps {
   name: string;
@@ -8,20 +9,55 @@ export interface FlipPriceCardProps {
   logo: string;
   features: string[];
   highlight?: boolean;
+  insuranceType?: string;
+  position?: number;
 }
 
 /**
  * Click/tap to flip the card and reveal the formula's main coverages.
  * Pure CSS 3D flip — no external lib. Keyboard accessible (Enter/Space).
+ * Tracks flips and detail-views per insurance category for engagement analytics.
  */
-const FlipPriceCard = ({ name, price, badge, logo, features, highlight }: FlipPriceCardProps) => {
+const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranceType, position }: FlipPriceCardProps) => {
   const [flipped, setFlipped] = useState(false);
   const isPercent = price.includes("%");
+  const { trackEvent } = useAnalytics();
+  const detailsTrackedRef = useRef(false);
+
+  const toggleFlip = () => {
+    setFlipped((f) => {
+      const next = !f;
+      trackEvent("pricing_card_flip", {
+        category: "pricing_engagement",
+        label: `${insuranceType || "unknown"}:${name}`,
+        insurance_type: insuranceType,
+        formula_name: name,
+        formula_price: price,
+        position,
+        highlight: !!highlight,
+        action: next ? "show_details" : "show_price",
+      });
+      // Count "view_details" only once per card per session for cleaner funnels.
+      if (next && !detailsTrackedRef.current) {
+        detailsTrackedRef.current = true;
+        trackEvent("pricing_card_view_details", {
+          category: "pricing_engagement",
+          label: `${insuranceType || "unknown"}:${name}`,
+          insurance_type: insuranceType,
+          formula_name: name,
+          formula_price: price,
+          position,
+          highlight: !!highlight,
+        });
+      }
+      return next;
+    });
+  };
 
   const onKey = (e: KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      setFlipped((f) => !f);
+      toggleFlip();
     }
   };
 
@@ -29,7 +65,7 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight }: FlipPr
     <div className="relative h-[170px] [perspective:1000px]">
       <button
         type="button"
-        onClick={() => setFlipped((f) => !f)}
+        onClick={toggleFlip}
         onKeyDown={onKey}
         aria-pressed={flipped}
         aria-label={`Formule ${name} — ${flipped ? "voir le prix" : "voir les garanties incluses"}`}

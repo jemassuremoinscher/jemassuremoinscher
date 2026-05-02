@@ -27,7 +27,9 @@ export type AnalyticsEvent =
   | 'ads_form_submit'
   | 'quiz_answer'
   | 'quiz_complete'
-  | 'cta_click';
+  | 'cta_click'
+  | 'pricing_card_flip'
+  | 'pricing_card_view_details';
 
 interface EventParams {
   category?: string;
