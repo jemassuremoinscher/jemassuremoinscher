@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { useLocation, useMatches } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useMemo } from "react";
 import geoContent from "@/data/geo-content.json";
 import { addOrganizationSchema, addBreadcrumbSchema } from "@/utils/seoUtils";

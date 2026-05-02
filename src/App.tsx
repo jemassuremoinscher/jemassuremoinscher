@@ -6,6 +6,7 @@ import React, { lazy, Suspense } from "react";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import CookieBanner from "@/components/CookieBanner";
+import GlobalSchemas from "@/components/seo/GlobalSchemas";
 
 // Lazy load non-critical global components
 const AIChatbot = lazy(() => import("@/components/chatbot/AIChatbot").then(m => ({ default: m.AIChatbot })));
@@ -144,6 +145,7 @@ const App = () => {
       <LanguageProvider>
         <TooltipProvider>
           <Toaster />
+          <GlobalSchemas />
           <Suspense fallback={null}>
             <RouteTracker />
           </Suspense>
