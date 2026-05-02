@@ -105,6 +105,11 @@ All colors MUST be HSL.
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Reserve space for mobile bottom bar (3 cols x ~64px + padding) */
+    padding-bottom: 76px;
+  }
+  @media (min-width: 1024px) {
+    body { padding-bottom: 0; }
   }
 
   button,
