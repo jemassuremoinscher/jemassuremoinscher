@@ -1,4 +1,4 @@
-import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, ArrowLeft, MoreHorizontal, Share2, BookmarkPlus, Printer, BookOpen, Calculator, MessageSquare, Star, Search, Instagram, Linkedin, Facebook } from "lucide-react";
+import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, ArrowLeft, MoreHorizontal, Share2, BookmarkPlus, Printer, BookOpen, Calculator, MessageSquare, Star, Search, Instagram, Linkedin, Facebook, Phone } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
@@ -469,6 +469,42 @@ const Header = () => {
           </nav>
         </div>
       )}
+
+      {/* Mobile Bottom Bar - 2026 Conversion CTAs */}
+      <nav
+        aria-label="Actions rapides"
+        className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-card/95 backdrop-blur-xl border-t border-border shadow-[0_-4px_20px_rgba(0,0,0,0.08)] pb-[env(safe-area-inset-bottom)]"
+      >
+        <div className="grid grid-cols-3 gap-1 px-2 py-2">
+          <a
+            href="tel:+33686122820"
+            onClick={() => trackEvent('phone_click', { category: 'mobile_bottom_bar', label: 'call_now' })}
+            className="flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl text-foreground hover:bg-muted active:scale-95 transition"
+            aria-label="Appeler un conseiller"
+          >
+            <Phone className="h-5 w-5 text-primary" aria-hidden="true" />
+            <span className="text-[11px] font-semibold">Appeler</span>
+          </a>
+          <Link
+            to="/comparateur"
+            onClick={() => trackEvent('insurance_type_click', { category: 'mobile_bottom_bar', label: 'compare', insurance_type: 'all' })}
+            className="flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl bg-gradient-to-br from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] text-foreground font-bold shadow-md active:scale-95 transition"
+            aria-label="Comparer les assurances"
+          >
+            <Search className="h-5 w-5" aria-hidden="true" />
+            <span className="text-[11px]">Comparer</span>
+          </Link>
+          <Link
+            to="/contact"
+            onClick={() => trackEvent('insurance_type_click', { category: 'mobile_bottom_bar', label: 'callback', insurance_type: 'all' })}
+            className="flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl text-foreground hover:bg-muted active:scale-95 transition"
+            aria-label="Être rappelé gratuitement"
+          >
+            <MessageSquare className="h-5 w-5 text-primary" aria-hidden="true" />
+            <span className="text-[11px] font-semibold">Rappel</span>
+          </Link>
+        </div>
+      </nav>
     </>
   );
 };
