@@ -29,6 +29,11 @@ export const AIChatbot = () => {
 
   useEffect(() => { scrollToBottom(); }, [messages]);
   useEffect(() => { checkBusinessHours(); const interval = setInterval(checkBusinessHours, 60000); return () => clearInterval(interval); }, []);
+  useEffect(() => {
+    const open = () => setIsOpen(true);
+    window.addEventListener('open-chatbot', open);
+    return () => window.removeEventListener('open-chatbot', open);
+  }, []);
 
   const sendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;
