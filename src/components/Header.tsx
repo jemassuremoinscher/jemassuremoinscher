@@ -470,21 +470,24 @@ const Header = () => {
         </div>
       )}
 
-      {/* Mobile Bottom Bar - 2026 Conversion CTAs */}
+      {/* Mobile Bottom Bar - 2026 Conversion CTAs (no phone — we don't operate by phone) */}
       <nav
         aria-label="Actions rapides"
         className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-card/95 backdrop-blur-xl border-t border-border shadow-[0_-4px_20px_rgba(0,0,0,0.08)] pb-[env(safe-area-inset-bottom)]"
       >
         <div className="grid grid-cols-3 gap-1 px-2 py-2">
-          <a
-            href="tel:+33686122820"
-            onClick={() => trackEvent('phone_click', { category: 'mobile_bottom_bar', label: 'call_now' })}
+          <button
+            type="button"
+            onClick={() => {
+              trackEvent('chat_open', { category: 'mobile_bottom_bar', label: 'chat' });
+              window.dispatchEvent(new CustomEvent('open-chatbot'));
+            }}
             className="flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl text-foreground hover:bg-muted active:scale-95 transition"
-            aria-label="Appeler un conseiller"
+            aria-label="Ouvrir le chat"
           >
-            <Phone className="h-5 w-5 text-primary" aria-hidden="true" />
-            <span className="text-[11px] font-semibold">Appeler</span>
-          </a>
+            <MessageSquare className="h-5 w-5 text-primary" aria-hidden="true" />
+            <span className="text-[11px] font-semibold">Chat</span>
+          </button>
           <Link
             to="/comparateur"
             onClick={() => trackEvent('insurance_type_click', { category: 'mobile_bottom_bar', label: 'compare', insurance_type: 'all' })}
@@ -494,15 +497,23 @@ const Header = () => {
             <Search className="h-5 w-5" aria-hidden="true" />
             <span className="text-[11px]">Comparer</span>
           </Link>
-          <Link
-            to="/contact"
-            onClick={() => trackEvent('insurance_type_click', { category: 'mobile_bottom_bar', label: 'callback', insurance_type: 'all' })}
+          <button
+            type="button"
+            onClick={() => {
+              trackEvent('insurance_type_click', { category: 'mobile_bottom_bar', label: 'price_direct', insurance_type: 'all' });
+              const form = document.getElementById('quote-form');
+              if (form) {
+                form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              } else {
+                navigate('/comparateur');
+              }
+            }}
             className="flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl text-foreground hover:bg-muted active:scale-95 transition"
-            aria-label="Être rappelé gratuitement"
+            aria-label="Voir mon prix direct"
           >
-            <MessageSquare className="h-5 w-5 text-primary" aria-hidden="true" />
-            <span className="text-[11px] font-semibold">Rappel</span>
-          </Link>
+            <Calculator className="h-5 w-5 text-primary" aria-hidden="true" />
+            <span className="text-[11px] font-semibold">Prix direct</span>
+          </button>
         </div>
       </nav>
     </>
