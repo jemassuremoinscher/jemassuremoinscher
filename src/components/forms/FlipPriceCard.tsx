@@ -26,10 +26,16 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
   // Guard against double-firing: pointerup + click can both trigger on some browsers.
   const lastFlipAtRef = useRef(0);
 
-  const toggleFlip = () => {
+  const toggleFlip = (fromPointer = false) => {
     const now = Date.now();
     if (now - lastFlipAtRef.current < 300) return;
     lastFlipAtRef.current = now;
+
+    // Light haptic feedback (Android Chrome supports it; iOS Safari ignores silently).
+    if (fromPointer && typeof navigator !== "undefined" && typeof navigator.vibrate === "function") {
+      try { navigator.vibrate(10); } catch { /* noop */ }
+    }
+
     setFlipped((f) => {
       const next = !f;
       trackEvent("pricing_card_flip", {
@@ -64,13 +70,13 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
     // Only primary button / first finger; ignore right-clicks.
     if (e.button !== 0 && e.pointerType === "mouse") return;
     e.preventDefault();
-    toggleFlip();
+    toggleFlip(true);
   };
 
   const onKey = (e: KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      toggleFlip();
+      toggleFlip(false);
     }
   };
 
