@@ -2,10 +2,11 @@ import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Buildin
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageToggle from "@/components/LanguageToggle";
+import { useChatTeaser } from "@/hooks/useChatTeaser";
 
 // Use public/ path to avoid bundling this image in JS
 const arthurThumbsUp = "/arthur-thumbs-up.webp";
