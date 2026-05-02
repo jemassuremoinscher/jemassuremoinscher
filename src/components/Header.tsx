@@ -522,13 +522,21 @@ const Header = () => {
             type="button"
             onClick={() => {
               trackEvent('insurance_type_click', { category: 'mobile_bottom_bar', label: 'chat', insurance_type: 'all' });
+              setChatTeaser(false);
               window.dispatchEvent(new CustomEvent('open-chatbot'));
             }}
-            className="flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl text-foreground hover:bg-muted active:scale-95 transition"
-            aria-label="Ouvrir le chat"
+            className="relative flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl text-foreground hover:bg-muted active:scale-95 transition"
+            aria-label={chatTeaser ? "Nouveau message — ouvrir le chat" : "Ouvrir le chat"}
           >
-            <MessageSquare className="h-5 w-5 text-primary" aria-hidden="true" />
-            <span className="text-[11px] font-semibold">Chat</span>
+            <span className="relative">
+              <MessageSquare className={`h-5 w-5 ${chatTeaser ? 'text-primary animate-pulse' : 'text-primary'}`} aria-hidden="true" />
+              {chatTeaser && (
+                <span className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-secondary ring-2 ring-card animate-pulse" aria-hidden="true" />
+              )}
+            </span>
+            <span className={`text-[11px] font-semibold ${chatTeaser ? 'text-primary' : ''}`}>
+              {chatTeaser ? 'Nouveau message' : 'Chat'}
+            </span>
           </button>
           <Link
             to="/comparateur"
