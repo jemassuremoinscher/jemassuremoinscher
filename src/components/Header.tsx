@@ -15,54 +15,13 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openPopover, setOpenPopover] = useState<string | null>(null);
   const [actionsOpen, setActionsOpen] = useState(false);
-  const [chatTeaser, setChatTeaser] = useState(false);
+  const chatTeaser = useChatTeaser();
   const { trackEvent } = useAnalytics();
   const { t } = useLanguage();
   const location = useLocation();
   const navigate = useNavigate();
 
   const isHomePage = location.pathname === "/";
-
-  // Chat teaser: show "Nouveau message" pulse if chat hasn't been opened yet.
-  // Cycle: wait 20s → show 8s → hide 30s → repeat. Stops permanently once opened.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (sessionStorage.getItem("chat-opened") === "1") return;
-
-    let showTimer: number;
-    let hideTimer: number;
-    let cycleTimer: number;
-
-    const cycle = () => {
-      showTimer = window.setTimeout(() => {
-        if (sessionStorage.getItem("chat-opened") === "1") return;
-        setChatTeaser(true);
-        hideTimer = window.setTimeout(() => {
-          setChatTeaser(false);
-          cycleTimer = window.setTimeout(cycle, 30000);
-        }, 8000);
-      }, 20000);
-    };
-
-    cycle();
-    const onOpen = () => {
-      sessionStorage.setItem("chat-opened", "1");
-      setChatTeaser(false);
-      window.clearTimeout(showTimer);
-      window.clearTimeout(hideTimer);
-      window.clearTimeout(cycleTimer);
-    };
-    window.addEventListener("open-chatbot", onOpen);
-    window.addEventListener("chatbot-opened", onOpen);
-
-    return () => {
-      window.clearTimeout(showTimer);
-      window.clearTimeout(hideTimer);
-      window.clearTimeout(cycleTimer);
-      window.removeEventListener("open-chatbot", onOpen);
-      window.removeEventListener("chatbot-opened", onOpen);
-    };
-  }, []);
 
   const handleInsuranceTypeClick = (type: string, category: string) => {
     trackEvent('insurance_type_click', {
