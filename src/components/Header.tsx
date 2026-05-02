@@ -1,4 +1,4 @@
-import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, ArrowLeft, MoreHorizontal, Share2, BookmarkPlus, Printer, BookOpen, Calculator, MessageSquare, Star, Search, Instagram, Linkedin, Facebook } from "lucide-react";
+import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, ArrowLeft, MoreHorizontal, Share2, BookmarkPlus, Printer, BookOpen, Calculator, MessageSquare, Star, Search, Instagram, Linkedin, Facebook, Mail } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
@@ -503,7 +503,7 @@ const Header = () => {
             className="flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl text-foreground hover:bg-muted active:scale-95 transition"
             aria-label="Nous contacter"
           >
-            <MessageSquare className="h-5 w-5 text-primary" aria-hidden="true" />
+            <Mail className="h-5 w-5 text-primary" aria-hidden="true" />
             <span className="text-[11px] font-semibold">Nous contacter</span>
           </Link>
         </div>
