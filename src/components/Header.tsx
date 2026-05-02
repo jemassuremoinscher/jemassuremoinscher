@@ -497,23 +497,15 @@ const Header = () => {
             <Search className="h-5 w-5" aria-hidden="true" />
             <span className="text-[11px]">Comparer</span>
           </Link>
-          <button
-            type="button"
-            onClick={() => {
-              trackEvent('insurance_type_click', { category: 'mobile_bottom_bar', label: 'price_direct', insurance_type: 'all' });
-              const form = document.getElementById('quote-form');
-              if (form) {
-                form.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              } else {
-                navigate('/comparateur');
-              }
-            }}
+          <Link
+            to="/contact"
+            onClick={() => trackEvent('insurance_type_click', { category: 'mobile_bottom_bar', label: 'contact', insurance_type: 'all' })}
             className="flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl text-foreground hover:bg-muted active:scale-95 transition"
-            aria-label="Voir mon prix direct"
+            aria-label="Nous contacter"
           >
-            <Calculator className="h-5 w-5 text-primary" aria-hidden="true" />
-            <span className="text-[11px] font-semibold">Prix direct</span>
-          </button>
+            <MessageSquare className="h-5 w-5 text-primary" aria-hidden="true" />
+            <span className="text-[11px] font-semibold">Nous contacter</span>
+          </Link>
         </div>
       </nav>
     </>
