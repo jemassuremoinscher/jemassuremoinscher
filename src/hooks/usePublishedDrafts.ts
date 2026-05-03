@@ -7,14 +7,12 @@ let inflight: Promise<Set<string>> | null = null;
 export const fetchPublishedDraftSlugs = (): Promise<Set<string>> => {
   if (cache) return Promise.resolve(cache);
   if (inflight) return inflight;
-  inflight = supabase
-    .from("published_drafts")
-    .select("slug")
-    .then(({ data }) => {
-      cache = new Set((data || []).map((r: { slug: string }) => r.slug));
-      inflight = null;
-      return cache;
-    });
+  inflight = (async () => {
+    const { data } = await supabase.from("published_drafts").select("slug");
+    cache = new Set((data || []).map((r: { slug: string }) => r.slug));
+    inflight = null;
+    return cache;
+  })();
   return inflight;
 };
 
