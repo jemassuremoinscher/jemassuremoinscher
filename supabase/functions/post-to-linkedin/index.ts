@@ -175,7 +175,9 @@ serve(async (req) => {
       `#assurance #comparateur #économies #jemassuremoinscher`;
     const shortDescription = normalizeShortDescription(targetShortDescription, targetTitle, targetDescription);
 
-    // Send to Zapier webhook
+    // Send to Make.com webhook
+    const manualHeadlines = (globalThis as any).__manualHeadlines || null;
+    const manualChannels = (globalThis as any).__manualChannels || ["linkedin", "facebook"];
     try {
       const makeResponse = await fetch(config.webhook_url, {
         method: "POST",
@@ -189,7 +191,8 @@ serve(async (req) => {
           article_url: articleUrl,
           image_url: targetImageUrl,
           slug: targetSlug,
-          channels: ["linkedin", "facebook"],
+          channels: manualChannels,
+          headlines: manualHeadlines, // { linkedin, facebook, instagram }
           provider: "make",
           posted_at: new Date().toISOString(),
         }),
