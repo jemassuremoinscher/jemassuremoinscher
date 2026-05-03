@@ -29,6 +29,7 @@ import { SEOSuggestions } from '@/components/admin/SEOSuggestions';
 import SERPPreview from '@/components/admin/SERPPreview';
 import { GeoScoreCard } from '@/components/admin/GeoScoreCard';
 import { LinkedInAutoPoster } from '@/components/admin/LinkedInAutoPoster';
+import { DraftArticlesPublisher } from '@/components/admin/DraftArticlesPublisher';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useLeadNotifications } from '@/hooks/useLeadNotifications';
 
