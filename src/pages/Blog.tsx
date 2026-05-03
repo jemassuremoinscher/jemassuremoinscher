@@ -9,7 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, Search } from "lucide-react";
 import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
-import { blogArticles, blogCategories } from "@/data/blogArticles";
+import { blogArticles, blogArticleDrafts, blogCategories } from "@/data/blogArticles";
+import { usePublishedDraftSlugs } from "@/hooks/usePublishedDrafts";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
@@ -86,7 +87,15 @@ const Blog = () => {
       });
   }, []);
 
-  const allArticles = useMemo(() => [...dynamicArticles, ...blogArticles], [dynamicArticles]);
+  const publishedDraftSlugs = usePublishedDraftSlugs();
+  const publishedDrafts = useMemo(
+    () => blogArticleDrafts.filter((a) => publishedDraftSlugs.has(a.slug)),
+    [publishedDraftSlugs],
+  );
+  const allArticles = useMemo(
+    () => [...dynamicArticles, ...publishedDrafts, ...blogArticles],
+    [dynamicArticles, publishedDrafts],
+  );
 
   const filteredArticles = allArticles.filter((article) => {
     const matchesCategory = selectedCategory === "all" || article.category === selectedCategory;
