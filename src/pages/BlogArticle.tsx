@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, Share2 } from "lucide-react";
 import { blogArticles, blogArticleDrafts } from "@/data/blogArticles";
+import { usePublishedDraftSlugs } from "@/hooks/usePublishedDrafts";
 import SEOOptimized from "@/components/SEOOptimized";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
@@ -39,11 +40,13 @@ const BlogArticle = () => {
   const location = useLocation();
   const isPreview = location.pathname.startsWith("/blog-preview/");
 
+  const publishedDraftSlugs = usePublishedDraftSlugs();
   const [dynamicArticle, setDynamicArticle] = useState<(typeof blogArticles)[number] | null>(null);
   const [dynamicLoaded, setDynamicLoaded] = useState(false);
   const staticArticle = isPreview
     ? blogArticleDrafts.find((a) => a.slug === slug)
-    : blogArticles.find((a) => a.slug === slug);
+    : blogArticles.find((a) => a.slug === slug)
+      || blogArticleDrafts.find((a) => a.slug === slug && publishedDraftSlugs.has(a.slug));
 
   useEffect(() => {
     let mounted = true;

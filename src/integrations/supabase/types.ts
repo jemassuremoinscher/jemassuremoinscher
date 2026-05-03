@@ -753,6 +753,24 @@ export type Database = {
         }
         Relationships: []
       }
+      published_drafts: {
+        Row: {
+          published_at: string
+          published_by: string | null
+          slug: string
+        }
+        Insert: {
+          published_at?: string
+          published_by?: string | null
+          slug: string
+        }
+        Update: {
+          published_at?: string
+          published_by?: string | null
+          slug?: string
+        }
+        Relationships: []
+      }
       quiz_leads: {
         Row: {
           answers: Json
