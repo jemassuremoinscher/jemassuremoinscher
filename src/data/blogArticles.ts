@@ -11,6 +11,14 @@ export interface BlogArticle {
   content: string;
   tags: string[];
   noindex?: boolean;
+  /** When false, article is hidden from blog listing, sitemap, and direct URL access. Defaults to true. */
+  published?: boolean;
+  /** Optional social headlines for cross-posting. Not rendered on the article page. */
+  socialHeadlines?: {
+    linkedin?: string;
+    facebook?: string;
+    instagram?: string;
+  };
 }
 
 const _blogArticlesRaw: BlogArticle[] = [
@@ -4752,8 +4760,20 @@ function parseFrenchDate(d: string): Date {
   return new Date();
 }
 
-export const blogArticles: BlogArticle[] = [...existingWithDates, ...articles2026WithDates]
+import { blogDrafts2026 } from "./blogDrafts2026";
+
+export const blogArticles: BlogArticle[] = [
+  ...existingWithDates,
+  ...articles2026WithDates,
+  ...blogDrafts2026,
+]
+  .filter((a) => a.published !== false) // Hide drafts (published: false) from listings, sitemap, and routing
   .sort((a, b) => parseFrenchDate(b.date).getTime() - parseFrenchDate(a.date).getTime());
+
+/** Drafts only — for admin preview, never rendered publicly. */
+export const blogArticleDrafts: BlogArticle[] = blogDrafts2026.filter(
+  (a) => a.published === false,
+);
 
 export const blogCategories = [
   "Tous les articles",
