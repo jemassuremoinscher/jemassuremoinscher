@@ -60,7 +60,6 @@ export const DraftArticlesPublisher = () => {
         status: "pending",
         linkedin_status: "pending",
         facebook_status: "pending",
-        social_headlines: { linkedin: linkedin.headline, facebook: facebook.headline, instagram: instagram.headline },
       } as any;
 
       if (existing) {
