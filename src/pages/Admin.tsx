@@ -389,7 +389,8 @@ const Admin = () => {
             <SEOSuggestions mode="seo" />
           </TabsContent>
 
-          <TabsContent value="articles">
+          <TabsContent value="articles" className="space-y-6">
+            <DraftArticlesPublisher />
             <SEOSuggestions mode="articles" />
           </TabsContent>
 
@@ -401,7 +402,8 @@ const Admin = () => {
             <SERPPreview />
           </TabsContent>
 
-          <TabsContent value="linkedin">
+          <TabsContent value="linkedin" className="space-y-6">
+            <DraftArticlesPublisher />
             <LinkedInAutoPoster />
           </TabsContent>
 
