@@ -73,7 +73,11 @@ export const DraftArticlesPublisher = () => {
       if (!session) { toast.error("Non authentifié"); setPosting(null); return; }
 
       const res = await supabase.functions.invoke("post-to-linkedin", {
-        body: { slug: article.slug },
+        body: {
+          slug: article.slug,
+          channels: ["linkedin", "facebook", "instagram"],
+          headlines: { linkedin: linkedin.headline, facebook: facebook.headline, instagram: instagram.headline },
+        },
         headers: { Authorization: `Bearer ${session.access_token}` },
       });
 
