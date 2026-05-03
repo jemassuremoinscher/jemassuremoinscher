@@ -29,6 +29,7 @@ import { SEOSuggestions } from '@/components/admin/SEOSuggestions';
 import SERPPreview from '@/components/admin/SERPPreview';
 import { GeoScoreCard } from '@/components/admin/GeoScoreCard';
 import { LinkedInAutoPoster } from '@/components/admin/LinkedInAutoPoster';
+import { DraftArticlesPublisher } from '@/components/admin/DraftArticlesPublisher';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useLeadNotifications } from '@/hooks/useLeadNotifications';
 
@@ -388,7 +389,8 @@ const Admin = () => {
             <SEOSuggestions mode="seo" />
           </TabsContent>
 
-          <TabsContent value="articles">
+          <TabsContent value="articles" className="space-y-6">
+            <DraftArticlesPublisher />
             <SEOSuggestions mode="articles" />
           </TabsContent>
 
@@ -400,7 +402,8 @@ const Admin = () => {
             <SERPPreview />
           </TabsContent>
 
-          <TabsContent value="linkedin">
+          <TabsContent value="linkedin" className="space-y-6">
+            <DraftArticlesPublisher />
             <LinkedInAutoPoster />
           </TabsContent>
 
