@@ -30,6 +30,7 @@ import SERPPreview from '@/components/admin/SERPPreview';
 import { GeoScoreCard } from '@/components/admin/GeoScoreCard';
 import { LinkedInAutoPoster } from '@/components/admin/LinkedInAutoPoster';
 import { DraftArticlesPublisher } from '@/components/admin/DraftArticlesPublisher';
+import { DraftArticlesSocialPublisher } from '@/components/admin/DraftArticlesSocialPublisher';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useLeadNotifications } from '@/hooks/useLeadNotifications';
 
@@ -403,7 +404,7 @@ const Admin = () => {
           </TabsContent>
 
           <TabsContent value="linkedin" className="space-y-6">
-            <DraftArticlesPublisher />
+            <DraftArticlesSocialPublisher />
             <LinkedInAutoPoster />
           </TabsContent>
 
