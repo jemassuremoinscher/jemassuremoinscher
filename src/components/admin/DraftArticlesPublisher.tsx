@@ -3,98 +3,48 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import { Send, Eye, Loader2, FileText, Linkedin, Facebook, Instagram, RefreshCw, CheckCircle2 } from "lucide-react";
+import { Eye, Loader2, FileText, Globe, RefreshCw, CheckCircle2, EyeOff } from "lucide-react";
 import { Link } from "react-router-dom";
 import { blogDrafts2026 } from "@/data/blogDrafts2026";
-import type { BlogArticle } from "@/data/blogArticles";
-
-const SITE_URL = "https://jemassuremoinscher.fr";
-
-type Channel = "linkedin" | "facebook" | "instagram";
-
-const buildPayload = (article: BlogArticle, channel: Channel) => {
-  const headline = article.socialHeadlines?.[channel] || article.description;
-  const url = `${SITE_URL}/blog/${article.slug}`;
-  const image = article.image
-    ? (article.image.startsWith("http") ? article.image : `${SITE_URL}${article.image}`)
-    : null;
-  return { headline, url, image };
-};
+import { invalidatePublishedDraftsCache } from "@/hooks/usePublishedDrafts";
 
 export const DraftArticlesPublisher = () => {
-  const [posts, setPosts] = useState<any[]>([]);
+  const [publishedSlugs, setPublishedSlugs] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
-  const [posting, setPosting] = useState<string | null>(null);
+  const [busy, setBusy] = useState<string | null>(null);
 
-  const fetchPosts = useCallback(async () => {
+  const fetchPublished = useCallback(async () => {
     setLoading(true);
-    const { data } = await supabase
-      .from("linkedin_auto_posts")
-      .select("article_slug,status,linkedin_status,facebook_status,posted_at")
-      .in("article_slug", blogDrafts2026.map((d) => d.slug));
-    setPosts(data || []);
+    const { data, error } = await supabase.from("published_drafts").select("slug");
+    if (error) toast.error("Erreur de chargement : " + error.message);
+    setPublishedSlugs(new Set((data || []).map((r) => r.slug)));
+    invalidatePublishedDraftsCache();
     setLoading(false);
   }, []);
 
-  useEffect(() => { fetchPosts(); }, [fetchPosts]);
+  useEffect(() => { fetchPublished(); }, [fetchPublished]);
 
-  const publishToMake = async (article: BlogArticle) => {
-    setPosting(article.slug);
-    try {
-      const linkedin = buildPayload(article, "linkedin");
-      const facebook = buildPayload(article, "facebook");
-      const instagram = buildPayload(article, "instagram");
-
-      // Create / update the queued post entry
-      const existing = posts.find((p) => p.article_slug === article.slug);
-      const payload = {
-        article_slug: article.slug,
-        article_title: article.title,
-        article_url: linkedin.url,
-        image_url: linkedin.image,
-        short_description: linkedin.headline,
-        post_content: `${linkedin.headline}\n\n👉 ${linkedin.url}\n\n#assurance #jemassuremoinscher`,
-        provider: "make",
-        status: "pending",
-        linkedin_status: "pending",
-        facebook_status: "pending",
-      } as any;
-
-      if (existing) {
-        await supabase.from("linkedin_auto_posts").update(payload).eq("article_slug", article.slug);
-      } else {
-        await supabase.from("linkedin_auto_posts").insert(payload);
-      }
-
-      // Trigger Make.com via edge function
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) { toast.error("Non authentifié"); setPosting(null); return; }
-
-      const res = await supabase.functions.invoke("post-to-linkedin", {
-        body: {
-          slug: article.slug,
-          channels: ["linkedin", "facebook", "instagram"],
-          headlines: { linkedin: linkedin.headline, facebook: facebook.headline, instagram: instagram.headline },
-        },
-        headers: { Authorization: `Bearer ${session.access_token}` },
-      });
-
-      if (res.error) {
-        toast.error("Erreur Make.com : " + res.error.message);
-      } else {
-        toast.success(`"${article.title}" envoyé à Make.com 🎉 (LinkedIn + Facebook + Instagram)`);
-      }
-      fetchPosts();
-    } catch (e: any) {
-      toast.error(e.message || "Erreur d'envoi");
-    } finally {
-      setPosting(null);
-    }
+  const publish = async (slug: string, title: string) => {
+    setBusy(slug);
+    const { data: { session } } = await supabase.auth.getSession();
+    const { error } = await supabase
+      .from("published_drafts")
+      .insert({ slug, published_by: session?.user.id });
+    if (error) toast.error("Erreur : " + error.message);
+    else toast.success(`"${title}" est en ligne 🎉`);
+    await fetchPublished();
+    setBusy(null);
   };
 
-  const statusForSlug = (slug: string) => posts.find((p) => p.article_slug === slug);
+  const unpublish = async (slug: string, title: string) => {
+    setBusy(slug);
+    const { error } = await supabase.from("published_drafts").delete().eq("slug", slug);
+    if (error) toast.error("Erreur : " + error.message);
+    else toast.info(`"${title}" est repassé en brouillon`);
+    await fetchPublished();
+    setBusy(null);
+  };
 
   return (
     <Card>
@@ -107,10 +57,10 @@ export const DraftArticlesPublisher = () => {
               <Badge variant="outline">{blogDrafts2026.length} articles</Badge>
             </CardTitle>
             <CardDescription>
-              Articles en brouillon (invisibles du site). Aperçu, vérification, puis envoi à Make.com pour LinkedIn, Facebook et Instagram.
+              Vérifiez chaque article via l'aperçu, puis publiez-le sur le site public d'un clic.
             </CardDescription>
           </div>
-          <Button variant="ghost" size="icon" onClick={fetchPosts}>
+          <Button variant="ghost" size="icon" onClick={fetchPublished} aria-label="Rafraîchir">
             <RefreshCw className="h-4 w-4" />
           </Button>
         </div>
@@ -120,8 +70,8 @@ export const DraftArticlesPublisher = () => {
           <div className="flex justify-center p-8"><Loader2 className="h-6 w-6 animate-spin" /></div>
         ) : (
           blogDrafts2026.map((article) => {
-            const status = statusForSlug(article.slug);
-            const isPosted = status?.status === "posted";
+            const isPublished = publishedSlugs.has(article.slug);
+            const isBusy = busy === article.slug;
             return (
               <Card key={article.slug} className="overflow-hidden">
                 <div className="grid md:grid-cols-[200px_1fr] gap-4">
@@ -141,49 +91,51 @@ export const DraftArticlesPublisher = () => {
                           {article.category} · {article.author} · {article.readTime}
                         </p>
                       </div>
-                      {isPosted && (
+                      {isPublished ? (
                         <Badge className="bg-primary text-primary-foreground gap-1">
-                          <CheckCircle2 className="h-3 w-3" /> Envoyé
+                          <CheckCircle2 className="h-3 w-3" /> En ligne
                         </Badge>
-                      )}
-                      {status?.status === "pending" && (
-                        <Badge variant="outline">En file d'attente</Badge>
+                      ) : (
+                        <Badge variant="outline">Brouillon</Badge>
                       )}
                     </div>
 
-                    <Tabs defaultValue="linkedin" className="w-full">
-                      <TabsList className="h-8">
-                        <TabsTrigger value="linkedin" className="text-xs gap-1"><Linkedin className="h-3 w-3" />LinkedIn</TabsTrigger>
-                        <TabsTrigger value="facebook" className="text-xs gap-1"><Facebook className="h-3 w-3" />Facebook</TabsTrigger>
-                        <TabsTrigger value="instagram" className="text-xs gap-1"><Instagram className="h-3 w-3" />Instagram</TabsTrigger>
-                      </TabsList>
-                      {(["linkedin", "facebook", "instagram"] as Channel[]).map((ch) => (
-                        <TabsContent key={ch} value={ch} className="mt-2">
-                          <p className="text-sm bg-muted/50 p-3 rounded-md whitespace-pre-line">
-                            {article.socialHeadlines?.[ch] || article.description}
-                          </p>
-                        </TabsContent>
-                      ))}
-                    </Tabs>
+                    <p className="text-sm text-muted-foreground line-clamp-2">{article.description}</p>
 
                     <div className="flex flex-wrap gap-2 pt-2">
                       <Button asChild variant="outline" size="sm">
-                        <Link to={`/blog-preview/${article.slug}`} target="_blank">
+                        <Link to={`/blog-preview/${article.slug}`} target="_blank" rel="noopener">
                           <Eye className="h-3 w-3 mr-1" /> Aperçu
                         </Link>
                       </Button>
-                      <Button
-                        size="sm"
-                        onClick={() => publishToMake(article)}
-                        disabled={posting === article.slug}
-                      >
-                        {posting === article.slug ? (
-                          <Loader2 className="h-3 w-3 mr-1 animate-spin" />
-                        ) : (
-                          <Send className="h-3 w-3 mr-1" />
-                        )}
-                        {isPosted ? "Renvoyer à Make.com" : "Publier sur réseaux sociaux"}
-                      </Button>
+                      {isPublished ? (
+                        <>
+                          <Button asChild variant="outline" size="sm">
+                            <Link to={`/blog/${article.slug}`} target="_blank" rel="noopener">
+                              <Globe className="h-3 w-3 mr-1" /> Voir en ligne
+                            </Link>
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => unpublish(article.slug, article.title)}
+                            disabled={isBusy}
+                            aria-label="Dépublier"
+                          >
+                            {isBusy ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <EyeOff className="h-3 w-3 mr-1" />}
+                            Dépublier
+                          </Button>
+                        </>
+                      ) : (
+                        <Button
+                          size="sm"
+                          onClick={() => publish(article.slug, article.title)}
+                          disabled={isBusy}
+                        >
+                          {isBusy ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Globe className="h-3 w-3 mr-1" />}
+                          Publier sur le site
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -192,8 +144,7 @@ export const DraftArticlesPublisher = () => {
           })
         )}
         <p className="text-xs text-muted-foreground border-t pt-3">
-          ℹ️ Le bouton "Publier sur réseaux sociaux" envoie l'article à Make.com (LinkedIn + Facebook + Instagram).
-          Pour rendre l'article visible sur le blog public, modifiez <code>published: false</code> → <code>true</code> dans <code>src/data/blogDrafts2026.ts</code>.
+          ℹ️ « Publier sur le site » rend l'article immédiatement visible sur <code>/blog/{`{slug}`}</code> et dans la liste publique. Vous pouvez le repasser en brouillon à tout moment.
         </p>
       </CardContent>
     </Card>
