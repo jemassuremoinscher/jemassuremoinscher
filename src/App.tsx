@@ -69,6 +69,7 @@ const NosPartenaires = lazy(() => import("./pages/NosPartenaires"));
 const AvisClients = lazy(() => import("./pages/AvisClients"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogArticle = lazy(() => import("./pages/BlogArticle"));
+const BlogPreview = lazy(() => import("./pages/BlogPreview"));
 const Glossaire = lazy(() => import("./pages/Glossaire"));
 const GlossaireTerme = lazy(() => import("./pages/GlossaireTerme"));
 const PolitiqueCookies = lazy(() => import("./pages/PolitiqueCookies"));
@@ -212,6 +213,8 @@ const App = () => {
                 <Route path="/avis-clients" element={<AvisClients />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogArticle />} />
+                <Route path="/blog-preview" element={<BlogPreview />} />
+                <Route path="/blog-preview/:slug" element={<BlogArticle />} />
                 <Route path="/glossaire" element={<Glossaire />} />
                 <Route path="/glossaire/:slug" element={<GlossaireTerme />} />
                 <Route path="/politique-cookies" element={<PolitiqueCookies />} />

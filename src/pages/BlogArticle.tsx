@@ -1,11 +1,11 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, Share2 } from "lucide-react";
-import { blogArticles } from "@/data/blogArticles";
+import { blogArticles, blogArticleDrafts } from "@/data/blogArticles";
 import SEOOptimized from "@/components/SEOOptimized";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
@@ -36,10 +36,14 @@ const BlogArticle = () => {
   const { t } = useLanguage();
   const { slug } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const isPreview = location.pathname.startsWith("/blog-preview/");
 
   const [dynamicArticle, setDynamicArticle] = useState<(typeof blogArticles)[number] | null>(null);
   const [dynamicLoaded, setDynamicLoaded] = useState(false);
-  const staticArticle = blogArticles.find((a) => a.slug === slug);
+  const staticArticle = isPreview
+    ? blogArticleDrafts.find((a) => a.slug === slug)
+    : blogArticles.find((a) => a.slug === slug);
 
   useEffect(() => {
     let mounted = true;
@@ -201,7 +205,7 @@ const BlogArticle = () => {
         articlePublishedTime={convertToISO(article.date)}
         articleModifiedTime={convertToISO(article.date)}
         jsonLd={[breadcrumbSchema, articleSchema, blogFaqSchema, authorJsonLd]}
-        noindex={article.noindex}
+        noindex={article.noindex || isPreview}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: article.title }]} />
