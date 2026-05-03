@@ -46,6 +46,8 @@ serve(async (req) => {
       try {
         const body = await req.json();
         manualSlug = body?.slug || null;
+        (globalThis as any).__manualHeadlines = body?.headlines || null;
+        (globalThis as any).__manualChannels = body?.channels || null;
       } catch {
         // No body = post next unposted article
       }
