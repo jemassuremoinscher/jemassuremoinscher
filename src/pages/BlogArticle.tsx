@@ -36,10 +36,14 @@ const BlogArticle = () => {
   const { t } = useLanguage();
   const { slug } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const isPreview = location.pathname.startsWith("/blog-preview/");
 
   const [dynamicArticle, setDynamicArticle] = useState<(typeof blogArticles)[number] | null>(null);
   const [dynamicLoaded, setDynamicLoaded] = useState(false);
-  const staticArticle = blogArticles.find((a) => a.slug === slug);
+  const staticArticle = isPreview
+    ? blogArticleDrafts.find((a) => a.slug === slug)
+    : blogArticles.find((a) => a.slug === slug);
 
   useEffect(() => {
     let mounted = true;
