@@ -1,11 +1,11 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, Share2 } from "lucide-react";
-import { blogArticles } from "@/data/blogArticles";
+import { blogArticles, blogArticleDrafts } from "@/data/blogArticles";
 import SEOOptimized from "@/components/SEOOptimized";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
