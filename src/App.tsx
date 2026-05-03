@@ -69,6 +69,7 @@ const NosPartenaires = lazy(() => import("./pages/NosPartenaires"));
 const AvisClients = lazy(() => import("./pages/AvisClients"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogArticle = lazy(() => import("./pages/BlogArticle"));
+const BlogPreview = lazy(() => import("./pages/BlogPreview"));
 const Glossaire = lazy(() => import("./pages/Glossaire"));
 const GlossaireTerme = lazy(() => import("./pages/GlossaireTerme"));
 const PolitiqueCookies = lazy(() => import("./pages/PolitiqueCookies"));
