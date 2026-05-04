@@ -364,10 +364,15 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const fetchSuggestions = async () => {
     setIsLoading(true);
 
+    // In 'articles' mode, exclude 'approved' (they appear in the published-articles card below).
+    const statusFilter = mode === 'articles'
+      ? ['draft', 'pending']
+      : ['draft', 'pending', 'approved'];
+
     const { data, error } = await supabase
       .from('seo_article_suggestions')
       .select('*')
-      .in('status', ['draft', 'pending', 'approved'])
+      .in('status', statusFilter)
       .order('published_at', { ascending: true, nullsFirst: false })
       .order('created_at', { ascending: false });
 
