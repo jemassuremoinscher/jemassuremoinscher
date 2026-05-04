@@ -21,6 +21,13 @@ import arthurClimbing from "@/assets/mascotte/arthur-climbing.webp";
 import arthurKayak from "@/assets/mascotte/arthur-kayak.webp";
 import arthurBtp from "@/assets/mascotte/arthur-btp.webp";
 import arthurExcited from "@/assets/mascotte/arthur-excited.webp";
+import arthurVtc from "@/assets/mascotte/arthur-vtc.webp";
+import arthurTrottinette from "@/assets/mascotte/arthur-trottinette.webp";
+import arthurChef from "@/assets/mascotte/arthur-chef.webp";
+import arthurCoach from "@/assets/mascotte/arthur-coach.webp";
+import arthurPhotographer from "@/assets/mascotte/arthur-photographer.webp";
+import arthurInfluencer from "@/assets/mascotte/arthur-influencer.webp";
+import arthurDrone from "@/assets/mascotte/arthur-drone.webp";
 import geoContent from "@/data/geo-content.json";
 
 const trustReviewStat = { icon: Star, value: `${geoContent.trust.ratingValueLabel}/5`, label: `${geoContent.trust.reviewCountLabel} avis` };
