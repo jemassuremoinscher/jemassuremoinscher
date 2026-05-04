@@ -4,13 +4,29 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import { Eye, Loader2, FileText, Globe, RefreshCw, CheckCircle2, EyeOff, Pencil, Save, Sparkles } from "lucide-react";
+import {
+  Eye, Loader2, FileText, Globe, RefreshCw, CheckCircle2, EyeOff, Pencil, Save, Sparkles,
+  Linkedin, Facebook, Instagram, Send,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import { blogDrafts2026 } from "@/data/blogDrafts2026";
 import { invalidatePublishedDraftsCache } from "@/hooks/usePublishedDrafts";
 
+type Channel = "linkedin" | "facebook" | "instagram";
 type PublishedRow = { slug: string; short_description: string | null };
+type SocialPost = {
+  id: string;
+  article_slug: string;
+  status: string;
+  linkedin_status: string;
+  facebook_status: string;
+  posted_at: string | null;
+  short_description: string | null;
+  channel_overrides: Partial<Record<Channel, string>> | null;
+  image_url: string | null;
+};
 
 type CombinedArticle = {
   source: "draft" | "seo";
@@ -21,9 +37,7 @@ type CombinedArticle = {
   author?: string;
   readTime?: string;
   image?: string | null;
-  // for short description / make.com slug
   defaultShort: string;
-  // for SEO articles
   seoId?: string;
   seoShort?: string | null;
 };
@@ -34,30 +48,45 @@ const buildShortFromTitle = (title: string) => {
   return `🚨 Et si ${safe.toLowerCase()} vous coûtait plus cher que prévu ? La réponse ici ⬇️`;
 };
 
+const resolveImage = (img: any): string | null => {
+  if (!img) return null;
+  const SITE = "https://www.jemassuremoinscher.fr";
+  if (typeof img !== "string") return null;
+  if (img.startsWith("http")) return img;
+  try {
+    return new URL(img, typeof window !== "undefined" ? window.location.origin : SITE).href;
+  } catch {
+    return `${SITE}${img.startsWith("/") ? "" : "/"}${img}`;
+  }
+};
+
 export const DraftArticlesPublisher = () => {
   const [publishedRows, setPublishedRows] = useState<PublishedRow[]>([]);
   const [seoApproved, setSeoApproved] = useState<any[]>([]);
+  const [socialPosts, setSocialPosts] = useState<SocialPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState<string | null>(null);
+  const [posting, setPosting] = useState<string | null>(null);
 
-  // editing of "social short description" (the make.com accroche) — keyed by slug
-  const [editingSlug, setEditingSlug] = useState<string | null>(null);
-  const [editValue, setEditValue] = useState("");
-  const [savingEdit, setSavingEdit] = useState(false);
+  // Edit state — global short OR per-channel: key = `${slug}` or `${slug}:${channel}`
+  const [editing, setEditing] = useState<Record<string, string>>({});
+  const [savingEdit, setSavingEdit] = useState<string | null>(null);
 
   const fetchAll = useCallback(async () => {
     setLoading(true);
-    const [pubRes, seoRes] = await Promise.all([
+    const [pubRes, seoRes, postsRes] = await Promise.all([
       supabase.from("published_drafts").select("slug, short_description"),
       supabase
         .from("seo_article_suggestions")
         .select("*")
         .eq("status", "approved")
         .order("published_at", { ascending: false, nullsFirst: false }),
+      supabase.from("linkedin_auto_posts").select("*"),
     ]);
     if (pubRes.error) toast.error("Erreur chargement publiés : " + pubRes.error.message);
     setPublishedRows((pubRes.data as any) || []);
     setSeoApproved((seoRes.data as any) || []);
+    setSocialPosts((postsRes.data as any) || []);
     invalidatePublishedDraftsCache();
     setLoading(false);
   }, []);
@@ -65,13 +94,12 @@ export const DraftArticlesPublisher = () => {
   useEffect(() => {
     fetchAll();
     const ch = supabase
-      .channel("published_drafts_admin")
+      .channel("content_manager_admin")
       .on("postgres_changes", { event: "*", schema: "public", table: "published_drafts" }, () => fetchAll())
       .on("postgres_changes", { event: "*", schema: "public", table: "seo_article_suggestions" }, () => fetchAll())
+      .on("postgres_changes", { event: "*", schema: "public", table: "linkedin_auto_posts" }, () => fetchAll())
       .subscribe();
-    return () => {
-      supabase.removeChannel(ch);
-    };
+    return () => { supabase.removeChannel(ch); };
   }, [fetchAll]);
 
   const publishedSlugSet = useMemo(() => new Set(publishedRows.map((r) => r.slug)), [publishedRows]);
@@ -80,8 +108,12 @@ export const DraftArticlesPublisher = () => {
     publishedRows.forEach((r) => m.set(r.slug, r.short_description));
     return m;
   }, [publishedRows]);
+  const postBySlug = useMemo(() => {
+    const m = new Map<string, SocialPost>();
+    socialPosts.forEach((p) => m.set(p.article_slug, p));
+    return m;
+  }, [socialPosts]);
 
-  // All static drafts (always shown — published or not)
   const staticArticles: CombinedArticle[] = useMemo(
     () =>
       blogDrafts2026.map((a) => ({
@@ -98,7 +130,6 @@ export const DraftArticlesPublisher = () => {
     [],
   );
 
-  // SEO approved articles
   const seoArticles: CombinedArticle[] = useMemo(
     () =>
       seoApproved.map((s) => ({
@@ -118,6 +149,7 @@ export const DraftArticlesPublisher = () => {
 
   const allArticles = useMemo(() => [...staticArticles, ...seoArticles], [staticArticles, seoArticles]);
 
+  // ----- Site publish actions -----
   const publish = async (slug: string, title: string) => {
     setBusy(slug);
     const { data: { session } } = await supabase.auth.getSession();
@@ -127,7 +159,6 @@ export const DraftArticlesPublisher = () => {
     await fetchAll();
     setBusy(null);
   };
-
   const unpublish = async (slug: string, title: string) => {
     setBusy(slug);
     const { error } = await supabase.from("published_drafts").delete().eq("slug", slug);
@@ -137,71 +168,144 @@ export const DraftArticlesPublisher = () => {
     setBusy(null);
   };
 
-  const startEditShort = (article: CombinedArticle) => {
-    setEditingSlug(article.slug);
-    const current =
-      article.source === "seo"
-        ? (article.seoShort ?? article.defaultShort)
-        : (publishedShortBySlug.get(article.slug) ?? article.defaultShort);
-    setEditValue(current || "");
+  // ----- Global short description -----
+  const startEditGlobal = (article: CombinedArticle) => {
+    const current = article.source === "seo"
+      ? (article.seoShort ?? article.defaultShort)
+      : (publishedShortBySlug.get(article.slug) ?? article.defaultShort);
+    setEditing((s) => ({ ...s, [article.slug]: current || "" }));
   };
-
-  const saveShort = async (article: CombinedArticle) => {
-    setSavingEdit(true);
-    const value = editValue.trim() || null;
+  const saveGlobal = async (article: CombinedArticle) => {
+    const value = (editing[article.slug] ?? "").trim() || null;
+    setSavingEdit(article.slug);
     let error: any = null;
     if (article.source === "seo") {
-      const res = await supabase
-        .from("seo_article_suggestions")
-        .update({ short_description: value } as any)
-        .eq("id", article.seoId!);
-      error = res.error;
+      const r = await supabase.from("seo_article_suggestions").update({ short_description: value } as any).eq("id", article.seoId!);
+      error = r.error;
+    } else if (publishedSlugSet.has(article.slug)) {
+      const r = await supabase.from("published_drafts").update({ short_description: value } as any).eq("slug", article.slug);
+      error = r.error;
     } else {
-      // Upsert into published_drafts (must exist — only published items can be edited from this card normally,
-      // but we also allow editing draft-only by inserting a row with just slug+short_description? Keep simple:
-      // require it to be already published, otherwise create a stub row.
-      if (publishedSlugSet.has(article.slug)) {
-        const res = await supabase
-          .from("published_drafts")
-          .update({ short_description: value } as any)
-          .eq("slug", article.slug);
-        error = res.error;
-      } else {
-        const { data: { session } } = await supabase.auth.getSession();
-        const res = await supabase
-          .from("published_drafts")
-          .insert({ slug: article.slug, published_by: session?.user.id, short_description: value } as any);
-        error = res.error;
-      }
+      const { data: { session } } = await supabase.auth.getSession();
+      const r = await supabase.from("published_drafts").insert({ slug: article.slug, published_by: session?.user.id, short_description: value } as any);
+      error = r.error;
     }
-    setSavingEdit(false);
-    if (error) {
-      toast.error("Erreur sauvegarde : " + error.message);
-      return;
-    }
-    toast.success("Accroche réseaux sociaux mise à jour ✅");
-    setEditingSlug(null);
-    setEditValue("");
+    setSavingEdit(null);
+    if (error) { toast.error("Erreur : " + error.message); return; }
+    toast.success("Accroche par défaut mise à jour ✅");
+    setEditing((s) => { const n = { ...s }; delete n[article.slug]; return n; });
     await fetchAll();
   };
 
+  // ----- Per-channel override (stored on linkedin_auto_posts) -----
+  const ensurePostRow = async (article: CombinedArticle): Promise<SocialPost | null> => {
+    const existing = postBySlug.get(article.slug);
+    if (existing) return existing;
+    const siteUrl = "https://www.jemassuremoinscher.fr";
+    const articleUrl = `${siteUrl}/blog/${article.slug}`;
+    const imageUrl = resolveImage(article.image);
+    const currentShort = article.source === "seo"
+      ? (article.seoShort ?? article.defaultShort)
+      : (publishedShortBySlug.get(article.slug) ?? article.defaultShort);
+    const { data, error } = await supabase
+      .from("linkedin_auto_posts")
+      .insert({
+        article_slug: article.slug,
+        article_title: article.title,
+        article_url: articleUrl,
+        image_url: imageUrl,
+        short_description: currentShort,
+        provider: "make",
+        status: "pending",
+        linkedin_status: "pending",
+        facebook_status: "pending",
+      } as any)
+      .select()
+      .single();
+    if (error) { toast.error("Erreur création file : " + error.message); return null; }
+    return data as any;
+  };
+
+  const channelKey = (slug: string, ch: Channel) => `${slug}:${ch}`;
+  const startEditChannel = (article: CombinedArticle, ch: Channel) => {
+    const post = postBySlug.get(article.slug);
+    const current =
+      post?.channel_overrides?.[ch] ??
+      post?.short_description ??
+      (article.source === "seo" ? (article.seoShort ?? article.defaultShort)
+        : (publishedShortBySlug.get(article.slug) ?? article.defaultShort));
+    setEditing((s) => ({ ...s, [channelKey(article.slug, ch)]: current || "" }));
+  };
+  const saveChannel = async (article: CombinedArticle, ch: Channel) => {
+    const k = channelKey(article.slug, ch);
+    const value = (editing[k] ?? "").trim();
+    setSavingEdit(k);
+    const post = await ensurePostRow(article);
+    if (!post) { setSavingEdit(null); return; }
+    const next = { ...(post.channel_overrides || {}), [ch]: value };
+    const { error } = await supabase.from("linkedin_auto_posts").update({ channel_overrides: next } as any).eq("id", post.id);
+    setSavingEdit(null);
+    if (error) { toast.error("Erreur : " + error.message); return; }
+    toast.success(`Accroche ${ch} mise à jour ✅`);
+    setEditing((s) => { const n = { ...s }; delete n[k]; return n; });
+    await fetchAll();
+  };
+  const resetChannel = async (article: CombinedArticle, ch: Channel) => {
+    const post = postBySlug.get(article.slug);
+    if (!post) return;
+    const next = { ...(post.channel_overrides || {}) };
+    delete next[ch];
+    const { error } = await supabase.from("linkedin_auto_posts").update({ channel_overrides: next } as any).eq("id", post.id);
+    if (error) { toast.error("Erreur : " + error.message); return; }
+    toast.success(`Accroche ${ch} réinitialisée`);
+    await fetchAll();
+  };
+
+  // ----- Publish to socials now -----
+  const publishToSocialsNow = async (article: CombinedArticle) => {
+    setPosting(article.slug);
+    try {
+      await ensurePostRow(article);
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) { toast.error("Non authentifié"); return; }
+      const res = await supabase.functions.invoke("post-to-linkedin", {
+        body: { slug: article.slug },
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      });
+      if (res.error) toast.error("Erreur: " + res.error.message);
+      else toast.success(res.data?.message || `"${article.title}" envoyé aux réseaux 🎉`);
+      await fetchAll();
+    } catch (e: any) {
+      toast.error(e.message || "Erreur d'envoi");
+    } finally {
+      setPosting(null);
+    }
+  };
+
   const totalPublished = publishedSlugSet.size + seoArticles.length;
+
+  const channelStatusBadge = (status: string | undefined) => {
+    if (status === "posted") return <Badge className="bg-primary text-primary-foreground text-[10px] gap-1"><CheckCircle2 className="h-2.5 w-2.5" />Envoyé</Badge>;
+    if (status === "failed") return <Badge variant="destructive" className="text-[10px]">Échoué</Badge>;
+    if (status === "disabled") return <Badge variant="outline" className="text-[10px]">Désactivé</Badge>;
+    return <Badge variant="outline" className="text-[10px]">En attente</Badge>;
+  };
 
   return (
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between gap-3 flex-wrap">
           <div>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 flex-wrap">
               <FileText className="h-5 w-5 text-primary" />
-              Articles
+              Articles & diffusion
               <Badge variant="outline">{allArticles.length} articles</Badge>
               <Badge className="bg-primary text-primary-foreground gap-1">
-                <CheckCircle2 className="h-3 w-3" /> {totalPublished} publiés
+                <CheckCircle2 className="h-3 w-3" /> {totalPublished} en ligne
               </Badge>
             </CardTitle>
             <CardDescription>
-              Brouillons statiques + suggestions SEO approuvées. Modifiez l'accroche envoyée aux réseaux (Make.com) directement ici.
+              Brouillons + suggestions SEO approuvées. Modifiez l'accroche par défaut ou par réseau, et publiez sur les réseaux en un clic.
             </CardDescription>
           </div>
           <Button variant="ghost" size="icon" onClick={fetchAll} aria-label="Rafraîchir">
@@ -218,26 +322,20 @@ export const DraftArticlesPublisher = () => {
           allArticles.map((article) => {
             const isPublished = article.source === "seo" ? true : publishedSlugSet.has(article.slug);
             const isBusy = busy === article.slug;
-            const currentShort =
-              article.source === "seo"
-                ? (article.seoShort ?? article.defaultShort)
-                : (publishedShortBySlug.get(article.slug) ?? article.defaultShort);
-            const isOverridden =
-              article.source === "seo"
-                ? !!article.seoShort
-                : (publishedShortBySlug.get(article.slug) ?? null) !== null;
-            const isEditing = editingSlug === article.slug;
+            const post = postBySlug.get(article.slug);
+            const globalShort = article.source === "seo"
+              ? (article.seoShort ?? article.defaultShort)
+              : (publishedShortBySlug.get(article.slug) ?? article.defaultShort);
+            const isOverridden = article.source === "seo"
+              ? !!article.seoShort
+              : (publishedShortBySlug.get(article.slug) ?? null) !== null;
+            const isEditingGlobal = article.slug in editing;
 
             return (
               <Card key={`${article.source}-${article.slug}`} className="overflow-hidden">
                 <div className="grid md:grid-cols-[200px_1fr] gap-4">
                   {article.image ? (
-                    <img
-                      src={article.image}
-                      alt={article.title}
-                      className="w-full h-40 md:h-full object-cover"
-                      loading="lazy"
-                    />
+                    <img src={article.image} alt={article.title} className="w-full h-40 md:h-full object-cover" loading="lazy" />
                   ) : (
                     <div className="w-full h-40 md:h-full bg-muted flex items-center justify-center text-muted-foreground text-xs">
                       Pas d'image
@@ -251,18 +349,21 @@ export const DraftArticlesPublisher = () => {
                           {[article.category, article.author, article.readTime].filter(Boolean).join(" · ")}
                         </p>
                       </div>
-                      <div className="flex items-center gap-1">
-                        {article.source === "seo" && (
-                          <Badge variant="secondary" className="gap-1">
-                            <Sparkles className="h-3 w-3" /> SEO
-                          </Badge>
-                        )}
-                        {isPublished ? (
-                          <Badge className="bg-primary text-primary-foreground gap-1">
-                            <CheckCircle2 className="h-3 w-3" /> En ligne
-                          </Badge>
-                        ) : (
-                          <Badge variant="outline">Brouillon</Badge>
+                      <div className="flex flex-col items-end gap-1">
+                        <div className="flex items-center gap-1">
+                          {article.source === "seo" && (
+                            <Badge variant="secondary" className="gap-1"><Sparkles className="h-3 w-3" /> SEO</Badge>
+                          )}
+                          {isPublished ? (
+                            <Badge className="bg-primary text-primary-foreground gap-1"><CheckCircle2 className="h-3 w-3" /> En ligne</Badge>
+                          ) : (
+                            <Badge variant="outline">Brouillon</Badge>
+                          )}
+                        </div>
+                        {post?.posted_at && (
+                          <span className="text-[10px] text-muted-foreground">
+                            Réseaux : {new Date(post.posted_at).toLocaleDateString("fr-FR", { day: "numeric", month: "short" })}
+                          </span>
                         )}
                       </div>
                     </div>
@@ -271,51 +372,105 @@ export const DraftArticlesPublisher = () => {
                       <p className="text-sm text-muted-foreground line-clamp-2">{article.description}</p>
                     )}
 
-                    {/* Social short description (Make.com accroche) */}
+                    {/* Global accroche */}
                     <div className="rounded-md border border-border bg-muted/40 p-3 space-y-2">
-                      <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center justify-between gap-2 flex-wrap">
                         <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                          Accroche réseaux (Make.com)
+                          Accroche par défaut
                         </span>
-                        {isOverridden && !isEditing && (
-                          <Badge variant="secondary" className="text-[10px]">Personnalisée</Badge>
-                        )}
+                        <div className="flex items-center gap-2">
+                          {isOverridden && !isEditingGlobal && <Badge variant="secondary" className="text-[10px]">Personnalisée</Badge>}
+                          {!isEditingGlobal && (
+                            <Button size="sm" variant="ghost" className="h-6 px-2 text-xs" onClick={() => startEditGlobal(article)}>
+                              <Pencil className="h-3 w-3 mr-1" /> Modifier
+                            </Button>
+                          )}
+                        </div>
                       </div>
-                      {isEditing ? (
+                      {isEditingGlobal ? (
                         <>
                           <Textarea
-                            value={editValue}
-                            onChange={(e) => setEditValue(e.target.value)}
+                            value={editing[article.slug]}
+                            onChange={(e) => setEditing((s) => ({ ...s, [article.slug]: e.target.value }))}
                             rows={3}
                             className="text-sm"
                             placeholder="🚨 Et si …"
                           />
                           <div className="flex gap-2">
-                            <Button size="sm" onClick={() => saveShort(article)} disabled={savingEdit}>
-                              {savingEdit ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Save className="h-3 w-3 mr-1" />}
+                            <Button size="sm" onClick={() => saveGlobal(article)} disabled={savingEdit === article.slug}>
+                              {savingEdit === article.slug ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Save className="h-3 w-3 mr-1" />}
                               Enregistrer
                             </Button>
-                            <Button size="sm" variant="ghost" onClick={() => setEditingSlug(null)}>
+                            <Button size="sm" variant="ghost" onClick={() => setEditing((s) => { const n = { ...s }; delete n[article.slug]; return n; })}>
                               Annuler
                             </Button>
                           </div>
                         </>
                       ) : (
-                        <p className="text-sm whitespace-pre-line">{currentShort}</p>
+                        <p className="text-sm whitespace-pre-line">{globalShort}</p>
                       )}
                     </div>
 
-                    <div className="flex flex-wrap gap-2 pt-1">
+                    {/* Per-channel tabs */}
+                    <Tabs defaultValue="linkedin" className="w-full">
+                      <TabsList className="h-auto flex-wrap justify-start">
+                        <TabsTrigger value="linkedin" className="text-xs gap-1"><Linkedin className="h-3 w-3" />LinkedIn {channelStatusBadge(post?.linkedin_status)}</TabsTrigger>
+                        <TabsTrigger value="facebook" className="text-xs gap-1"><Facebook className="h-3 w-3" />Facebook {channelStatusBadge(post?.facebook_status)}</TabsTrigger>
+                        <TabsTrigger value="instagram" className="text-xs gap-1"><Instagram className="h-3 w-3" />Instagram</TabsTrigger>
+                      </TabsList>
+                      {(["linkedin", "facebook", "instagram"] as Channel[]).map((ch) => {
+                        const k = channelKey(article.slug, ch);
+                        const isEditingCh = k in editing;
+                        const override = post?.channel_overrides?.[ch];
+                        const display = override ?? globalShort;
+                        return (
+                          <TabsContent key={ch} value={ch} className="mt-2 space-y-2">
+                            {isEditingCh ? (
+                              <>
+                                <Textarea
+                                  value={editing[k]}
+                                  onChange={(e) => setEditing((s) => ({ ...s, [k]: e.target.value }))}
+                                  rows={3}
+                                  className="text-sm"
+                                />
+                                <div className="flex gap-2">
+                                  <Button size="sm" onClick={() => saveChannel(article, ch)} disabled={savingEdit === k}>
+                                    {savingEdit === k ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Save className="h-3 w-3 mr-1" />}
+                                    Enregistrer
+                                  </Button>
+                                  <Button size="sm" variant="ghost" onClick={() => setEditing((s) => { const n = { ...s }; delete n[k]; return n; })}>
+                                    Annuler
+                                  </Button>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <p className="text-sm bg-muted/30 p-2 rounded whitespace-pre-line">{display}</p>
+                                <div className="flex items-center gap-2 flex-wrap">
+                                  <Button size="sm" variant="outline" onClick={() => startEditChannel(article, ch)}>
+                                    <Pencil className="h-3 w-3 mr-1" /> Modifier {ch}
+                                  </Button>
+                                  {override !== undefined && (
+                                    <>
+                                      <Badge variant="secondary" className="text-[10px]">Override actif</Badge>
+                                      <Button size="sm" variant="ghost" onClick={() => resetChannel(article, ch)}>Réinitialiser</Button>
+                                    </>
+                                  )}
+                                </div>
+                              </>
+                            )}
+                          </TabsContent>
+                        );
+                      })}
+                    </Tabs>
+
+                    {/* Actions row */}
+                    <div className="flex flex-wrap gap-2 pt-1 border-t border-border/50">
                       <Button asChild variant="outline" size="sm">
                         <Link to={`/blog-preview/${article.slug}`} target="_blank" rel="noopener">
                           <Eye className="h-3 w-3 mr-1" /> Aperçu
                         </Link>
                       </Button>
-                      {!isEditing && (
-                        <Button variant="outline" size="sm" onClick={() => startEditShort(article)}>
-                          <Pencil className="h-3 w-3 mr-1" /> Modifier accroche
-                        </Button>
-                      )}
                       {article.source === "draft" && (
                         isPublished ? (
                           <>
@@ -324,13 +479,7 @@ export const DraftArticlesPublisher = () => {
                                 <Globe className="h-3 w-3 mr-1" /> Voir en ligne
                               </Link>
                             </Button>
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              onClick={() => unpublish(article.slug, article.title)}
-                              disabled={isBusy}
-                              aria-label="Dépublier"
-                            >
+                            <Button size="sm" variant="ghost" onClick={() => unpublish(article.slug, article.title)} disabled={isBusy} aria-label="Dépublier">
                               {isBusy ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <EyeOff className="h-3 w-3 mr-1" />}
                               Dépublier
                             </Button>
@@ -349,6 +498,15 @@ export const DraftArticlesPublisher = () => {
                           </Link>
                         </Button>
                       )}
+                      <Button
+                        size="sm"
+                        variant={post?.status === "posted" ? "outline" : "default"}
+                        onClick={() => publishToSocialsNow(article)}
+                        disabled={posting === article.slug}
+                      >
+                        {posting === article.slug ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Send className="h-3 w-3 mr-1" />}
+                        {post?.status === "posted" ? "Renvoyer aux réseaux" : "Publier sur les réseaux"}
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -357,7 +515,7 @@ export const DraftArticlesPublisher = () => {
           })
         )}
         <p className="text-xs text-muted-foreground border-t pt-3">
-          ℹ️ L'accroche modifiée ici est utilisée par Make.com pour les publications LinkedIn / Facebook (champ <code>short_description</code>).
+          ℹ️ L'accroche par défaut est utilisée par tous les réseaux ; un override par réseau prend le dessus si défini. « Publier sur les réseaux » envoie immédiatement à Make.com.
         </p>
       </CardContent>
     </Card>
