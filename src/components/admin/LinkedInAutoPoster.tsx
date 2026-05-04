@@ -40,10 +40,14 @@ export const LinkedInAutoPoster = () => {
   const [customContent, setCustomContent] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
 
-  // Dismissed drafts (persisted locally)
+  // Dismissed drafts + draft social overrides (persisted locally until queued)
   const DISMISSED_KEY = 'lap.dismissedDrafts.v1';
+  const DRAFT_OVERRIDES_KEY = 'lap.draftChannelOverrides.v1';
   const [dismissedDrafts, setDismissedDrafts] = useState<string[]>(() => {
     try { return JSON.parse(localStorage.getItem(DISMISSED_KEY) || '[]'); } catch { return []; }
+  });
+  const [draftChannelOverrides, setDraftChannelOverrides] = useState<Record<string, Partial<Record<Channel, string>>>>(() => {
+    try { return JSON.parse(localStorage.getItem(DRAFT_OVERRIDES_KEY) || '{}'); } catch { return {}; }
   });
   const dismissDraft = (slug: string, title: string) => {
     if (!confirm(`Supprimer le brouillon « ${title} » de cette liste ?`)) return;
@@ -51,6 +55,10 @@ export const LinkedInAutoPoster = () => {
     setDismissedDrafts(next);
     localStorage.setItem(DISMISSED_KEY, JSON.stringify(next));
     toast.success('Brouillon retiré de la liste');
+  };
+  const persistDraftOverrides = (next: Record<string, Partial<Record<Channel, string>>>) => {
+    setDraftChannelOverrides(next);
+    localStorage.setItem(DRAFT_OVERRIDES_KEY, JSON.stringify(next));
   };
 
   const resolveArticleImage = (img: any): string | null => {
@@ -83,6 +91,13 @@ export const LinkedInAutoPoster = () => {
     setEditing((e) => { const n = { ...e }; delete n[key]; return n; });
     fetchData();
   };
+  const saveDraftChannelOverride = (slug: string, ch: Channel, value: string) => {
+    const key = editKey(`draft-${slug}`, ch);
+    const next = { ...draftChannelOverrides, [slug]: { ...(draftChannelOverrides[slug] || {}), [ch]: value } };
+    persistDraftOverrides(next);
+    setEditing((e) => { const n = { ...e }; delete n[key]; return n; });
+    toast.success(`Description ${ch} du brouillon mise à jour ✅`);
+  };
   const resetChannelOverride = async (post: any, ch: Channel) => {
     const next = { ...(post.channel_overrides || {}) };
     delete next[ch];
@@ -93,6 +108,13 @@ export const LinkedInAutoPoster = () => {
     if (error) { toast.error('Erreur: ' + error.message); return; }
     toast.success(`Description ${ch} réinitialisée`);
     fetchData();
+  };
+  const resetDraftChannelOverride = (slug: string, ch: Channel) => {
+    const next = { ...draftChannelOverrides, [slug]: { ...(draftChannelOverrides[slug] || {}) } };
+    delete next[slug]?.[ch];
+    if (next[slug] && Object.keys(next[slug]).length === 0) delete next[slug];
+    persistDraftOverrides(next);
+    toast.success(`Description ${ch} du brouillon réinitialisée`);
   };
 
   const fetchData = useCallback(async () => {
