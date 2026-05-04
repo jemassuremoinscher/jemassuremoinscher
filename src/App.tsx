@@ -41,6 +41,16 @@ const LandingAccrobranche = lazy(() => import("./pages/landing/LandingAccrobranc
 const LandingMoniteurSport = lazy(() => import("./pages/landing/LandingMoniteurSport"));
 const LandingEvenementiel = lazy(() => import("./pages/landing/LandingEvenementiel"));
 const LandingCordisteBTP = lazy(() => import("./pages/landing/LandingCordisteBTP"));
+const LandingVtc = lazy(() => import("./pages/landing/LandingVtc"));
+const LandingAutoEntrepreneur = lazy(() => import("./pages/landing/LandingAutoEntrepreneur"));
+const LandingSenior = lazy(() => import("./pages/landing/LandingSenior"));
+const LandingScooter = lazy(() => import("./pages/landing/LandingScooter"));
+const LandingRcProMicroEntreprise = lazy(() => import("./pages/landing/LandingRcProMicroEntreprise"));
+const LandingRestaurant = lazy(() => import("./pages/landing/LandingRestaurant"));
+const LandingCoachSportif = lazy(() => import("./pages/landing/LandingCoachSportif"));
+const LandingPhotographe = lazy(() => import("./pages/landing/LandingPhotographe"));
+const LandingInfluenceur = lazy(() => import("./pages/landing/LandingInfluenceur"));
+const LandingDrone = lazy(() => import("./pages/landing/LandingDrone"));
 const AssuranceAutoMalusse = lazy(() => import("./pages/seo/AssuranceAutoMalusse"));
 const AssuranceJeuneConducteur = lazy(() => import("./pages/seo/AssuranceJeuneConducteur"));
 const MutuelleTNS = lazy(() => import("./pages/seo/MutuelleTNS"));
