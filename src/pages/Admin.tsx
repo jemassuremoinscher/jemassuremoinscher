@@ -406,7 +406,6 @@ const Admin = () => {
           </TabsContent>
 
           <TabsContent value="linkedin" className="space-y-6">
-            <DraftArticlesSocialPublisher />
             <LinkedInAutoPoster />
           </TabsContent>
 
