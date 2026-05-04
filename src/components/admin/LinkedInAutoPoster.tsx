@@ -388,47 +388,137 @@ export const LinkedInAutoPoster = () => {
         </CardHeader>
         <CardContent className="space-y-4">
           {unqueuedDrafts.length > 0 && (
-            <div className="space-y-2">
+            <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <Badge variant="secondary" className="gap-1"><Plus className="h-3 w-3" /> Brouillons disponibles ({unqueuedDrafts.length})</Badge>
-                <span className="text-xs text-muted-foreground">Pas encore planifiés sur les réseaux</span>
+                <span className="text-xs text-muted-foreground">Même format que la file d'attente, modifiable par réseau avant planification</span>
               </div>
-              <div className="grid sm:grid-cols-2 gap-3">
-                {unqueuedDrafts.map((draft) => {
-                  const img = resolveArticleImage(draft.image);
-                  return (
-                    <Card key={draft.slug} className="overflow-hidden">
-                      <div className="grid grid-cols-[100px_1fr] gap-3">
-                        {img ? (
-                          <img src={img} alt={draft.title} className="w-full h-full object-cover" loading="lazy" />
-                        ) : (
-                          <div className="w-full h-full bg-muted flex items-center justify-center text-[10px] text-muted-foreground">Sans image</div>
-                        )}
-                        <div className="p-3 flex flex-col justify-between gap-2">
-                          <div>
-                            <p className="text-sm font-semibold line-clamp-2">{draft.title}</p>
-                            <Badge variant="outline" className="mt-1 text-[10px]">Brouillon</Badge>
+              {unqueuedDrafts.map((draft) => {
+                const image = resolveArticleImage(draft.image);
+                const overrides = draftChannelOverrides[draft.slug] || {};
+                const draftSummary = (draft as any).excerpt || (draft as any).description || draft.title;
+                const defaultHeadlines: Record<Channel, string> = {
+                  linkedin: draft.socialHeadlines?.linkedin || buildShortDescription(draft.title, draftSummary),
+                  facebook: draft.socialHeadlines?.facebook || buildShortDescription(draft.title, draftSummary),
+                  instagram: draft.socialHeadlines?.instagram || buildShortDescription(draft.title, draftSummary),
+                };
+                const headlines: Record<Channel, string> = {
+                  linkedin: overrides.linkedin ?? defaultHeadlines.linkedin,
+                  facebook: overrides.facebook ?? defaultHeadlines.facebook,
+                  instagram: overrides.instagram ?? defaultHeadlines.instagram,
+                };
+
+                return (
+                  <Card key={draft.slug} className="overflow-hidden">
+                    <div className="grid md:grid-cols-[200px_1fr] gap-4">
+                      {image ? (
+                        <img
+                          src={image}
+                          alt={draft.title}
+                          className="w-full h-40 md:h-full object-cover"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <div className="w-full h-40 md:h-full bg-muted flex items-center justify-center text-muted-foreground text-xs">
+                          Pas d'image
+                        </div>
+                      )}
+                      <div className="p-4 space-y-3">
+                        <div className="flex items-start justify-between gap-3 flex-wrap">
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-bold text-base leading-tight">{draft.title}</h3>
+                            <p className="text-xs text-muted-foreground mt-1 flex items-center gap-2 flex-wrap">
+                              <span className="inline-flex items-center gap-1">
+                                <Calendar className="h-3 w-3" />
+                                Brouillon disponible
+                              </span>
+                            </p>
                           </div>
-                          <div className="flex items-center gap-1">
-                            <Button size="sm" variant="outline" onClick={() => { setSelectedSlug(draft.slug); setShowAddForm(true); }}>
-                              <Plus className="h-3 w-3 mr-1" /> Planifier
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              className="text-destructive hover:text-destructive"
-                              onClick={() => dismissDraft(draft.slug, draft.title)}
-                              aria-label={`Supprimer le brouillon ${draft.title}`}
-                            >
-                              <Trash2 className="h-3 w-3" />
-                            </Button>
+                          <div className="flex flex-col items-end gap-1">
+                            <Badge variant="outline">Brouillon</Badge>
+                            <div className="flex gap-1">
+                              <Badge variant="outline" className="text-[10px] gap-1"><Linkedin className="h-2.5 w-2.5" />LI</Badge>
+                              <Badge variant="outline" className="text-[10px] gap-1"><Facebook className="h-2.5 w-2.5" />FB</Badge>
+                            </div>
                           </div>
                         </div>
+
+                        <Tabs defaultValue="linkedin" className="w-full">
+                          <TabsList className="h-auto flex-wrap justify-start">
+                            <TabsTrigger value="linkedin" className="text-xs gap-1"><Linkedin className="h-3 w-3" />LinkedIn</TabsTrigger>
+                            <TabsTrigger value="facebook" className="text-xs gap-1"><Facebook className="h-3 w-3" />Facebook</TabsTrigger>
+                            <TabsTrigger value="instagram" className="text-xs gap-1"><Instagram className="h-3 w-3" />Instagram</TabsTrigger>
+                          </TabsList>
+                          {(['linkedin', 'facebook', 'instagram'] as Channel[]).map((ch) => {
+                            const k = editKey(`draft-${draft.slug}`, ch);
+                            const isEditing = k in editing;
+                            const isOverridden = overrides[ch] !== undefined;
+                            return (
+                              <TabsContent key={ch} value={ch} className="mt-2 space-y-2">
+                                {isEditing ? (
+                                  <>
+                                    <Textarea
+                                      value={editing[k]}
+                                      onChange={(e) => setEditing((state) => ({ ...state, [k]: e.target.value }))}
+                                      rows={4}
+                                      className="text-sm"
+                                    />
+                                    <div className="flex gap-2">
+                                      <Button size="sm" onClick={() => saveDraftChannelOverride(draft.slug, ch, editing[k])}>
+                                        Enregistrer
+                                      </Button>
+                                      <Button size="sm" variant="ghost" onClick={() => setEditing((state) => { const next = { ...state }; delete next[k]; return next; })}>
+                                        Annuler
+                                      </Button>
+                                    </div>
+                                  </>
+                                ) : (
+                                  <>
+                                    <p className="text-sm bg-muted/50 p-3 rounded-md whitespace-pre-line">{headlines[ch]}</p>
+                                    <div className="flex items-center gap-2">
+                                      <Button size="sm" variant="outline" onClick={() => setEditing((state) => ({ ...state, [k]: headlines[ch] }))}>
+                                        Modifier
+                                      </Button>
+                                      {isOverridden && (
+                                        <>
+                                          <Badge variant="secondary" className="text-[10px]">Personnalisé</Badge>
+                                          <Button size="sm" variant="ghost" onClick={() => resetDraftChannelOverride(draft.slug, ch)}>
+                                            Réinitialiser
+                                          </Button>
+                                        </>
+                                      )}
+                                    </div>
+                                  </>
+                                )}
+                              </TabsContent>
+                            );
+                          })}
+                        </Tabs>
+
+                        <div className="flex flex-wrap gap-2 pt-2">
+                          <Button asChild variant="outline" size="sm">
+                            <Link to={`/blog-preview/${draft.slug}`} target="_blank" rel="noopener">
+                              <Eye className="h-3 w-3 mr-1" /> Aperçu
+                            </Link>
+                          </Button>
+                          <Button size="sm" onClick={() => { setSelectedSlug(draft.slug); setShowAddForm(true); }}>
+                            <Plus className="h-3 w-3 mr-1" /> Ajouter à la file
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => dismissDraft(draft.slug, draft.title)}
+                            aria-label={`Supprimer le brouillon ${draft.title}`}
+                            className="text-destructive hover:text-destructive"
+                          >
+                            <Trash2 className="h-3 w-3" />
+                          </Button>
+                        </div>
                       </div>
-                    </Card>
-                  );
-                })}
-              </div>
+                    </div>
+                  </Card>
+                );
+              })}
               {posts.length > 0 && <div className="border-t pt-2" />}
             </div>
           )}
