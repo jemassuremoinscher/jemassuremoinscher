@@ -94,6 +94,7 @@ export default defineConfig(({ mode }) => {
               '@radix-ui/react-select',
               '@radix-ui/react-tabs',
             ],
+            'icons': ['lucide-react'],
             'charts': ['recharts'],
             'carousel': ['embla-carousel-react', 'embla-carousel-autoplay'],
             'animation': ['framer-motion'],
@@ -105,6 +106,9 @@ export default defineConfig(({ mode }) => {
       chunkSizeWarningLimit: 1000,
       target: 'es2020',
       cssMinify: true,
+      cssCodeSplit: true,
+      minify: 'esbuild',
+      reportCompressedSize: false,
     },
   };
 });
