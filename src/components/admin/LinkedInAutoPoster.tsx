@@ -288,6 +288,51 @@ export const LinkedInAutoPoster = () => {
         )}
       </Card>
 
+      {/* Brouillons disponibles (non encore mis en file) */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Plus className="h-5 w-5 text-accent" />
+            Brouillons disponibles
+            <Badge variant="outline">{unqueuedDrafts.length}</Badge>
+          </CardTitle>
+          <CardDescription>
+            Articles brouillons (non publiés sur le blog) pas encore planifiés sur les réseaux. Cliquez pour les ajouter à la file.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {unqueuedDrafts.length === 0 ? (
+            <p className="text-muted-foreground text-center py-6 text-sm">Tous les brouillons sont planifiés ✅</p>
+          ) : (
+            <div className="grid sm:grid-cols-2 gap-3">
+              {unqueuedDrafts.map((draft) => {
+                const img = resolveArticleImage(draft.image);
+                return (
+                  <div key={draft.slug} className="flex gap-3 border rounded-lg p-2 hover:bg-muted/40 transition">
+                    {img ? (
+                      <img src={img} alt={draft.title} className="w-20 h-20 object-cover rounded flex-shrink-0" loading="lazy" />
+                    ) : (
+                      <div className="w-20 h-20 bg-muted rounded flex items-center justify-center text-[10px] text-muted-foreground flex-shrink-0">Sans image</div>
+                    )}
+                    <div className="flex-1 min-w-0 flex flex-col justify-between">
+                      <p className="text-sm font-medium line-clamp-2">{draft.title}</p>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="self-start mt-1"
+                        onClick={() => { setSelectedSlug(draft.slug); setShowAddForm(true); }}
+                      >
+                        <Plus className="h-3 w-3 mr-1" /> Planifier
+                      </Button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       {/* All articles — card layout with social sub-tabs */}
       <Card>
         <CardHeader>
