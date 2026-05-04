@@ -212,12 +212,6 @@ const Admin = () => {
 
   const categories = [
     {
-      label: 'Dashboard',
-      tabs: [
-        { value: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-      ],
-    },
-    {
       label: 'Marketing',
       tabs: [
         { value: 'analytics', label: 'Analytics', icon: TrendingUp },
