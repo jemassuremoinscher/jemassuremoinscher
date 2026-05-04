@@ -188,7 +188,7 @@ export const LinkedInAutoPoster = () => {
   };
 
   const queuedSlugs = new Set(posts.map((p) => p.article_slug));
-  const unqueuedDrafts = blogDrafts2026.filter((d) => !queuedSlugs.has(d.slug));
+  const unqueuedDrafts = blogDrafts2026.filter((d) => !queuedSlugs.has(d.slug) && !dismissedDrafts.includes(d.slug));
 
   const postedSlugs = new Set(posts.filter(p => p.status === 'posted').map(p => p.article_slug));
   const availableArticles = allArticles.filter(a => !postedSlugs.has(a.slug));
