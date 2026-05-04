@@ -6,14 +6,17 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
-import { Facebook, Send, Settings, History, Plus, Loader2, Trash2, RefreshCw, Share2 } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Send, Settings, Plus, Loader2, Trash2, RefreshCw, Share2, Eye, CheckCircle2, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { blogArticles } from '@/data/blogArticles';
 import { blogArticles2026 } from '@/data/blogArticles2026';
+import { blogDrafts2026 } from '@/data/blogDrafts2026';
 
-const allArticles = [...blogArticles, ...blogArticles2026];
+const allArticles = [...blogArticles, ...blogArticles2026, ...blogDrafts2026];
+type Channel = 'linkedin' | 'facebook' | 'instagram';
 
 const buildShortDescription = (title: string, content?: string | null) => {
   const base = (content || title).replace(/\s+/g, ' ').trim();
@@ -253,75 +256,143 @@ export const LinkedInAutoPoster = () => {
         )}
       </Card>
 
-      {/* History */}
+      {/* All articles — card layout with social sub-tabs */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span className="flex items-center gap-2"><History className="h-5 w-5" /> Historique des publications</span>
-            <Button variant="ghost" size="icon" onClick={fetchData}><RefreshCw className="h-4 w-4" /></Button>
-          </CardTitle>
+          <div className="flex items-center justify-between gap-3 flex-wrap">
+            <div>
+              <CardTitle className="flex items-center gap-2">
+                <Share2 className="h-5 w-5 text-primary" />
+                Tous les articles
+                <Badge variant="outline">{posts.length}</Badge>
+              </CardTitle>
+              <CardDescription>
+                Brouillons et articles publiés sur les réseaux sociaux. Visualisez l'accroche par canal et publiez en un clic.
+              </CardDescription>
+            </div>
+            <Button variant="ghost" size="icon" onClick={fetchData} aria-label="Rafraîchir">
+              <RefreshCw className="h-4 w-4" />
+            </Button>
+          </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-4">
           {posts.length === 0 ? (
-            <p className="text-muted-foreground text-center py-8">Aucune publication planifiée</p>
+            <p className="text-muted-foreground text-center py-8">Aucun article planifié</p>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Article</TableHead>
-                  <TableHead>Canaux</TableHead>
-                  <TableHead>Article</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {posts.map(post => (
-                  <TableRow key={post.id}>
-                    <TableCell className="font-medium max-w-xs truncate">{post.article_title}</TableCell>
-                    <TableCell className="space-y-1">
-                      <div className="flex flex-wrap gap-1">
-                        <Badge variant={post.linkedin_status === 'posted' ? 'default' : post.linkedin_status === 'failed' ? 'destructive' : 'outline'}>LinkedIn</Badge>
-                        <Badge variant={post.facebook_status === 'posted' ? 'default' : post.facebook_status === 'failed' ? 'destructive' : 'outline'}><Facebook className="h-3 w-3 mr-1" />Facebook</Badge>
+            posts.map((post) => {
+              const article = allArticles.find((a) => a.slug === post.article_slug);
+              const image = post.image_url || (article?.image
+                ? (typeof article.image === 'string' && article.image.startsWith('http')
+                    ? article.image
+                    : `https://jemassuremoinscher.fr${article.image}`)
+                : null);
+              const headlines: Record<Channel, string> = {
+                linkedin: article?.socialHeadlines?.linkedin || post.short_description || post.post_content || article?.description || post.article_title,
+                facebook: article?.socialHeadlines?.facebook || post.short_description || post.post_content || article?.description || post.article_title,
+                instagram: article?.socialHeadlines?.instagram || post.short_description || post.post_content || article?.description || post.article_title,
+              };
+              const isPosted = post.status === 'posted';
+              const isPending = post.status === 'pending';
+              const isFailed = post.status === 'failed';
+
+              return (
+                <Card key={post.id} className="overflow-hidden">
+                  <div className="grid md:grid-cols-[200px_1fr] gap-4">
+                    {image ? (
+                      <img
+                        src={image}
+                        alt={post.article_title}
+                        className="w-full h-40 md:h-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-40 md:h-full bg-muted flex items-center justify-center text-muted-foreground text-xs">
+                        Pas d'image
                       </div>
-                      {statusBadge(post.status)}
-                      {post.error_message && <p className="text-xs text-destructive mt-1">{post.error_message}</p>}
-                    </TableCell>
-                    <TableCell className="text-xs text-muted-foreground max-w-xs truncate">
-                      {post.article_url || `https://jemassuremoinscher.fr/blog/${post.article_slug}`}
-                      {post.short_description ? <p className="truncate">Accroche : {post.short_description}</p> : null}
-                      {post.image_url ? <p className="truncate">Image : {post.image_url}</p> : null}
-                    </TableCell>
-                    <TableCell className="text-sm text-muted-foreground">
-                      {post.posted_at
-                        ? new Date(post.posted_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-                        : new Date(post.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) + ' (planifié)'}
-                    </TableCell>
-                    <TableCell className="text-right space-x-2">
-                      {post.status === 'pending' && (
+                    )}
+                    <div className="p-4 space-y-3">
+                      <div className="flex items-start justify-between gap-3 flex-wrap">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-bold text-base leading-tight">{post.article_title}</h3>
+                          <p className="text-xs text-muted-foreground mt-1 flex items-center gap-2 flex-wrap">
+                            <span className="inline-flex items-center gap-1">
+                              <Calendar className="h-3 w-3" />
+                              Ajouté le {new Date(post.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })}
+                            </span>
+                            {post.posted_at && (
+                              <span className="inline-flex items-center gap-1 text-primary">
+                                · Publié le {new Date(post.posted_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                              </span>
+                            )}
+                          </p>
+                        </div>
+                        <div className="flex flex-col items-end gap-1">
+                          {isPosted && <Badge className="bg-primary text-primary-foreground gap-1"><CheckCircle2 className="h-3 w-3" /> Envoyé</Badge>}
+                          {isPending && <Badge variant="outline">En file d'attente</Badge>}
+                          {isFailed && <Badge variant="destructive">Échoué</Badge>}
+                          <div className="flex gap-1">
+                            <Badge variant={post.linkedin_status === 'posted' ? 'default' : post.linkedin_status === 'failed' ? 'destructive' : 'outline'} className="text-[10px] gap-1"><Linkedin className="h-2.5 w-2.5" />LI</Badge>
+                            <Badge variant={post.facebook_status === 'posted' ? 'default' : post.facebook_status === 'failed' ? 'destructive' : 'outline'} className="text-[10px] gap-1"><Facebook className="h-2.5 w-2.5" />FB</Badge>
+                          </div>
+                        </div>
+                      </div>
+
+                      <Tabs defaultValue="linkedin" className="w-full">
+                        <TabsList className="h-8">
+                          <TabsTrigger value="linkedin" className="text-xs gap-1"><Linkedin className="h-3 w-3" />LinkedIn</TabsTrigger>
+                          <TabsTrigger value="facebook" className="text-xs gap-1"><Facebook className="h-3 w-3" />Facebook</TabsTrigger>
+                          <TabsTrigger value="instagram" className="text-xs gap-1"><Instagram className="h-3 w-3" />Instagram</TabsTrigger>
+                        </TabsList>
+                        {(['linkedin', 'facebook', 'instagram'] as Channel[]).map((ch) => (
+                          <TabsContent key={ch} value={ch} className="mt-2">
+                            <p className="text-sm bg-muted/50 p-3 rounded-md whitespace-pre-line">
+                              {headlines[ch]}
+                            </p>
+                          </TabsContent>
+                        ))}
+                      </Tabs>
+
+                      {post.error_message && <p className="text-xs text-destructive">{post.error_message}</p>}
+
+                      <div className="flex flex-wrap gap-2 pt-2">
+                        <Button asChild variant="outline" size="sm">
+                          <Link to={`/blog-preview/${post.article_slug}`} target="_blank" rel="noopener">
+                            <Eye className="h-3 w-3 mr-1" /> Aperçu
+                          </Link>
+                        </Button>
+                        {(isPending || isFailed) && (
+                          <Button
+                            size="sm"
+                            onClick={() => triggerNow(post.article_slug)}
+                            disabled={posting === post.article_slug}
+                          >
+                            {posting === post.article_slug ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : isFailed ? <RefreshCw className="h-3 w-3 mr-1" /> : <Send className="h-3 w-3 mr-1" />}
+                            {isFailed ? 'Réessayer' : 'Publier maintenant'}
+                          </Button>
+                        )}
+                        {isPosted && (
+                          <Button size="sm" variant="outline" onClick={() => triggerNow(post.article_slug)} disabled={posting === post.article_slug}>
+                            {posting === post.article_slug ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <RefreshCw className="h-3 w-3 mr-1" />}
+                            Renvoyer
+                          </Button>
+                        )}
                         <Button
                           size="sm"
-                          variant="default"
-                          onClick={() => triggerNow(post.article_slug)}
-                          disabled={posting === post.article_slug}
+                          variant="ghost"
+                          onClick={() => {
+                            if (confirm(`Supprimer "${post.article_title}" ?`)) deletePost(post.id);
+                          }}
+                          aria-label="Supprimer"
+                          className="text-destructive hover:text-destructive"
                         >
-                          {posting === post.article_slug ? <Loader2 className="h-3 w-3 animate-spin mr-1" /> : <Send className="h-3 w-3 mr-1" />}
-                          Publier
+                          <Trash2 className="h-3 w-3" />
                         </Button>
-                      )}
-                      {post.status === 'failed' && (
-                        <Button size="sm" variant="outline" onClick={() => triggerNow(post.article_slug)} disabled={posting === post.article_slug}>
-                          <RefreshCw className="h-3 w-3 mr-1" /> Réessayer
-                        </Button>
-                      )}
-                      <Button size="sm" variant="ghost" onClick={() => deletePost(post.id)}>
-                        <Trash2 className="h-3 w-3" />
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              );
+            })
           )}
         </CardContent>
       </Card>

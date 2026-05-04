@@ -249,12 +249,12 @@ function DefaultHeroContent({ t, trackEvent }: { t: (key: string) => string; tra
             <ZapIcon />
             Découvrez votre prix en 2 min
           </Link>
-          <div className="absolute -right-2 -top-3 md:-right-4 md:-top-4 bg-white rounded-lg px-2 py-1 md:px-2.5 md:py-1.5 shadow-md border border-accent/30 rotate-3 pointer-events-none">
-            <span className="text-[10px] md:text-xs font-bold text-primary whitespace-nowrap">
+          <div className="absolute left-1/2 -translate-x-1/2 -top-7 md:-top-9 bg-white rounded-lg px-2 py-1 md:px-2.5 md:py-1.5 shadow-md border border-accent/30 -rotate-3 pointer-events-none text-center">
+            <span className="block text-[10px] md:text-xs font-bold text-primary whitespace-nowrap leading-tight">
               -240€<span className="text-muted-foreground font-semibold">/an</span>
             </span>
-            <span className="block text-[8px] md:text-[9px] text-muted-foreground font-medium leading-tight">
-              moyenne observée
+            <span className="block text-[7px] md:text-[8px] text-muted-foreground font-normal italic leading-tight whitespace-nowrap">
+              (moyenne observée)
             </span>
           </div>
         </div>
