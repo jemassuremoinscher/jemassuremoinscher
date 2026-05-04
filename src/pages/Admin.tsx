@@ -392,8 +392,8 @@ const Admin = () => {
           </TabsContent>
 
           <TabsContent value="articles" className="space-y-6">
-            <DraftArticlesPublisher />
             <SEOSuggestions mode="articles" />
+            <DraftArticlesPublisher />
           </TabsContent>
 
           <TabsContent value="geo">
