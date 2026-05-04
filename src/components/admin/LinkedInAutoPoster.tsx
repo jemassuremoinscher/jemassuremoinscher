@@ -171,8 +171,8 @@ export const LinkedInAutoPoster = () => {
     const defaultContent = `📰 Nouvel article sur jemassuremoinscher.fr !\n\n${article.title}\n\n👉 Lire l'article complet : ${siteUrl}/blog/${article.slug}\n\n#assurance #comparateur #économies #jemassuremoinscher`;
     const articleSummary = (article as any).excerpt || (article as any).description || null;
     const shortDescription = buildShortDescription(article.title, customContent || articleSummary);
-
-    const { error } = await supabase.from('linkedin_auto_posts').insert({
+    const savedOverrides = draftChannelOverrides[article.slug] || {};
+    const payload: any = {
       article_slug: article.slug,
       article_title: article.title,
       article_url: articleUrl,
@@ -183,7 +183,10 @@ export const LinkedInAutoPoster = () => {
       status: 'pending',
       linkedin_status: 'pending',
       facebook_status: 'pending',
-    } as any);
+    };
+    if (Object.keys(savedOverrides).length > 0) payload.channel_overrides = savedOverrides;
+
+    const { error } = await supabase.from('linkedin_auto_posts').insert(payload);
 
     if (error) toast.error('Erreur: ' + error.message);
     else {
@@ -191,6 +194,11 @@ export const LinkedInAutoPoster = () => {
       setSelectedSlug('');
       setCustomContent('');
       setShowAddForm(false);
+      if (draftChannelOverrides[article.slug]) {
+        const next = { ...draftChannelOverrides };
+        delete next[article.slug];
+        persistDraftOverrides(next);
+      }
       fetchData();
     }
   };
