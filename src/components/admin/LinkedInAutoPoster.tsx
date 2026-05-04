@@ -302,9 +302,15 @@ export const LinkedInAutoPoster = () => {
                 Brouillons et articles publiés sur les réseaux sociaux. Visualisez l'accroche par canal et publiez en un clic.
               </CardDescription>
             </div>
-            <Button variant="ghost" size="icon" onClick={fetchData} aria-label="Rafraîchir">
-              <RefreshCw className="h-4 w-4" />
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="sm" onClick={syncImagesForQueue} disabled={syncingImages}>
+                {syncingImages ? <Loader2 className="h-4 w-4 mr-1 animate-spin" /> : <RefreshCw className="h-4 w-4 mr-1" />}
+                Synchroniser images
+              </Button>
+              <Button variant="ghost" size="icon" onClick={fetchData} aria-label="Rafraîchir">
+                <RefreshCw className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -313,11 +319,7 @@ export const LinkedInAutoPoster = () => {
           ) : (
             posts.map((post) => {
               const article = allArticles.find((a) => a.slug === post.article_slug);
-              const image = post.image_url || (article?.image
-                ? (typeof article.image === 'string' && article.image.startsWith('http')
-                    ? article.image
-                    : `https://jemassuremoinscher.fr${article.image}`)
-                : null);
+              const image = post.image_url || resolveArticleImage(article?.image);
               const headlines: Record<Channel, string> = {
                 linkedin: article?.socialHeadlines?.linkedin || post.short_description || post.post_content || article?.description || post.article_title,
                 facebook: article?.socialHeadlines?.facebook || post.short_description || post.post_content || article?.description || post.article_title,
