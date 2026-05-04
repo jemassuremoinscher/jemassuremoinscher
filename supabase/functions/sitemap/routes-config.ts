@@ -89,6 +89,16 @@ export const routes: RouteConfig[] = [
   { path: "/landing/gli", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/pno", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/mrp", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/vtc", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/auto-entrepreneur", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/senior", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/scooter", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/rc-pro-micro-entreprise", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/restaurant", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/coach-sportif", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/photographe", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/influenceur", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/drone", changefreq: "weekly", priority: 0.7 },
 
   // Legal Pages
   { path: "/mentions-legales", changefreq: "yearly", priority: 0.3 },
