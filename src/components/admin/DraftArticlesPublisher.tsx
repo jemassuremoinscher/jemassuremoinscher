@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import {
   Eye, Loader2, FileText, Globe, RefreshCw, CheckCircle2, EyeOff, Pencil, Save, Sparkles,
-  Linkedin, Facebook, Instagram, Send,
+  Linkedin, Facebook, Send, Share2,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { blogDrafts2026 } from "@/data/blogDrafts2026";
