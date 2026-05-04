@@ -313,209 +313,211 @@ export const DraftArticlesPublisher = () => {
           </Button>
         </div>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-6">
         {loading ? (
           <div className="flex justify-center p-8"><Loader2 className="h-6 w-6 animate-spin" /></div>
         ) : allArticles.length === 0 ? (
           <p className="text-sm text-muted-foreground text-center py-6">Aucun article disponible.</p>
         ) : (
-          allArticles.map((article) => {
-            const isPublished = article.source === "seo" ? true : publishedSlugSet.has(article.slug);
-            const isBusy = busy === article.slug;
-            const post = postBySlug.get(article.slug);
-            const globalShort = article.source === "seo"
-              ? (article.seoShort ?? article.defaultShort)
-              : (publishedShortBySlug.get(article.slug) ?? article.defaultShort);
-            const isOverridden = article.source === "seo"
-              ? !!article.seoShort
-              : (publishedShortBySlug.get(article.slug) ?? null) !== null;
-            const isEditingGlobal = article.slug in editing;
+          (() => {
+            const renderCard = (article: CombinedArticle) => {
+              const isPublishedSite = article.source === "seo" ? true : publishedSlugSet.has(article.slug);
+              const isBusy = busy === article.slug;
+              const post = postBySlug.get(article.slug);
+              const isPublishedSocial = post?.status === "posted";
+              const globalShort = article.source === "seo"
+                ? (article.seoShort ?? article.defaultShort)
+                : (publishedShortBySlug.get(article.slug) ?? article.defaultShort);
+              const isOverridden = article.source === "seo"
+                ? !!article.seoShort
+                : (publishedShortBySlug.get(article.slug) ?? null) !== null;
+              const isEditingGlobal = article.slug in editing;
 
-            return (
-              <Card key={`${article.source}-${article.slug}`} className="overflow-hidden">
-                <div className="grid md:grid-cols-[200px_1fr] gap-4">
-                  {article.image ? (
-                    <img src={article.image} alt={article.title} className="w-full h-40 md:h-full object-cover" loading="lazy" />
-                  ) : (
-                    <div className="w-full h-40 md:h-full bg-muted flex items-center justify-center text-muted-foreground text-xs">
-                      Pas d'image
-                    </div>
-                  )}
-                  <div className="p-4 space-y-3">
-                    <div className="flex items-start justify-between gap-3 flex-wrap">
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-base leading-tight">{article.title}</h3>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          {[article.category, article.author, article.readTime].filter(Boolean).join(" · ")}
-                        </p>
+              return (
+                <Card key={`${article.source}-${article.slug}`} className="overflow-hidden">
+                  <div className="grid md:grid-cols-[200px_1fr] gap-4">
+                    {article.image ? (
+                      <img src={article.image} alt={article.title} className="w-full h-40 md:h-full object-cover" loading="lazy" />
+                    ) : (
+                      <div className="w-full h-40 md:h-full bg-muted flex items-center justify-center text-muted-foreground text-xs">
+                        Pas d'image
                       </div>
-                      <div className="flex flex-col items-end gap-1">
-                        <div className="flex items-center gap-1">
-                          {article.source === "seo" && (
-                            <Badge variant="secondary" className="gap-1"><Sparkles className="h-3 w-3" /> SEO</Badge>
-                          )}
-                          {isPublished ? (
-                            <Badge className="bg-primary text-primary-foreground gap-1"><CheckCircle2 className="h-3 w-3" /> En ligne</Badge>
-                          ) : (
-                            <Badge variant="outline">Brouillon</Badge>
-                          )}
-                        </div>
-                        {post?.posted_at && (
-                          <span className="text-[10px] text-muted-foreground">
-                            Réseaux : {new Date(post.posted_at).toLocaleDateString("fr-FR", { day: "numeric", month: "short" })}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {article.description && (
-                      <p className="text-sm text-muted-foreground line-clamp-2">{article.description}</p>
                     )}
-
-                    {/* Global accroche */}
-                    <div className="rounded-md border border-border bg-muted/40 p-3 space-y-2">
-                      <div className="flex items-center justify-between gap-2 flex-wrap">
-                        <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-                          Accroche par défaut
-                        </span>
-                        <div className="flex items-center gap-2">
-                          {isOverridden && !isEditingGlobal && <Badge variant="secondary" className="text-[10px]">Personnalisée</Badge>}
-                          {!isEditingGlobal && (
-                            <Button size="sm" variant="ghost" className="h-6 px-2 text-xs" onClick={() => startEditGlobal(article)}>
-                              <Pencil className="h-3 w-3 mr-1" /> Modifier
-                            </Button>
+                    <div className="p-4 space-y-3">
+                      <div className="flex items-start justify-between gap-3 flex-wrap">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-bold text-base leading-tight">{article.title}</h3>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {[article.category, article.author, article.readTime].filter(Boolean).join(" · ")}
+                          </p>
+                        </div>
+                        <div className="flex flex-col items-end gap-1">
+                          <div className="flex flex-wrap items-center gap-1 justify-end">
+                            {article.source === "seo" && (
+                              <Badge variant="secondary" className="gap-1"><Sparkles className="h-3 w-3" /> SEO</Badge>
+                            )}
+                            {isPublishedSite && (
+                              <Badge className="bg-primary text-primary-foreground gap-1"><Globe className="h-3 w-3" /> Site internet</Badge>
+                            )}
+                            {isPublishedSocial && (
+                              <Badge className="bg-accent text-accent-foreground gap-1"><Share2 className="h-3 w-3" /> Réseaux Sociaux</Badge>
+                            )}
+                            {!isPublishedSite && !isPublishedSocial && (
+                              <Badge variant="outline">Brouillon</Badge>
+                            )}
+                          </div>
+                          {post?.posted_at && (
+                            <span className="text-[10px] text-muted-foreground">
+                              Réseaux : {new Date(post.posted_at).toLocaleDateString("fr-FR", { day: "numeric", month: "short" })}
+                            </span>
                           )}
                         </div>
                       </div>
-                      {isEditingGlobal ? (
-                        <>
-                          <Textarea
-                            value={editing[article.slug]}
-                            onChange={(e) => setEditing((s) => ({ ...s, [article.slug]: e.target.value }))}
-                            rows={3}
-                            className="text-sm"
-                            placeholder="🚨 Et si …"
-                          />
-                          <div className="flex gap-2">
-                            <Button size="sm" onClick={() => saveGlobal(article)} disabled={savingEdit === article.slug}>
-                              {savingEdit === article.slug ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Save className="h-3 w-3 mr-1" />}
-                              Enregistrer
-                            </Button>
-                            <Button size="sm" variant="ghost" onClick={() => setEditing((s) => { const n = { ...s }; delete n[article.slug]; return n; })}>
-                              Annuler
-                            </Button>
-                          </div>
-                        </>
-                      ) : (
-                        <p className="text-sm whitespace-pre-line">{globalShort}</p>
+
+                      {article.description && (
+                        <p className="text-sm text-muted-foreground line-clamp-2">{article.description}</p>
                       )}
-                    </div>
 
-                    {/* Per-channel tabs */}
-                    <Tabs defaultValue="linkedin" className="w-full">
-                      <TabsList className="h-auto flex-wrap justify-start">
-                        <TabsTrigger value="linkedin" className="text-xs gap-1"><Linkedin className="h-3 w-3" />LinkedIn {channelStatusBadge(post?.linkedin_status)}</TabsTrigger>
-                        <TabsTrigger value="facebook" className="text-xs gap-1"><Facebook className="h-3 w-3" />Facebook {channelStatusBadge(post?.facebook_status)}</TabsTrigger>
-                        <TabsTrigger value="instagram" className="text-xs gap-1"><Instagram className="h-3 w-3" />Instagram</TabsTrigger>
-                      </TabsList>
-                      {(["linkedin", "facebook", "instagram"] as Channel[]).map((ch) => {
-                        const k = channelKey(article.slug, ch);
-                        const isEditingCh = k in editing;
-                        const override = post?.channel_overrides?.[ch];
-                        const display = override ?? globalShort;
-                        return (
-                          <TabsContent key={ch} value={ch} className="mt-2 space-y-2">
-                            {isEditingCh ? (
-                              <>
-                                <Textarea
-                                  value={editing[k]}
-                                  onChange={(e) => setEditing((s) => ({ ...s, [k]: e.target.value }))}
-                                  rows={3}
-                                  className="text-sm"
-                                />
-                                <div className="flex gap-2">
-                                  <Button size="sm" onClick={() => saveChannel(article, ch)} disabled={savingEdit === k}>
-                                    {savingEdit === k ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Save className="h-3 w-3 mr-1" />}
-                                    Enregistrer
-                                  </Button>
-                                  <Button size="sm" variant="ghost" onClick={() => setEditing((s) => { const n = { ...s }; delete n[k]; return n; })}>
-                                    Annuler
-                                  </Button>
-                                </div>
-                              </>
-                            ) : (
-                              <>
-                                <p className="text-sm bg-muted/30 p-2 rounded whitespace-pre-line">{display}</p>
-                                <div className="flex items-center gap-2 flex-wrap">
-                                  <Button size="sm" variant="outline" onClick={() => startEditChannel(article, ch)}>
-                                    <Pencil className="h-3 w-3 mr-1" /> Modifier {ch}
-                                  </Button>
-                                  {override !== undefined && (
-                                    <>
-                                      <Badge variant="secondary" className="text-[10px]">Override actif</Badge>
-                                      <Button size="sm" variant="ghost" onClick={() => resetChannel(article, ch)}>Réinitialiser</Button>
-                                    </>
-                                  )}
-                                </div>
-                              </>
+                      {/* Accroche par défaut (utilisée pour tous les réseaux) */}
+                      <div className="rounded-md border border-border bg-muted/40 p-3 space-y-2">
+                        <div className="flex items-center justify-between gap-2 flex-wrap">
+                          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                            Accroche réseaux sociaux
+                          </span>
+                          <div className="flex items-center gap-2">
+                            {isOverridden && !isEditingGlobal && <Badge variant="secondary" className="text-[10px]">Personnalisée</Badge>}
+                            {!isEditingGlobal && (
+                              <Button size="sm" variant="ghost" className="h-6 px-2 text-xs" onClick={() => startEditGlobal(article)}>
+                                <Pencil className="h-3 w-3 mr-1" /> Modifier
+                              </Button>
                             )}
-                          </TabsContent>
-                        );
-                      })}
-                    </Tabs>
-
-                    {/* Actions row */}
-                    <div className="flex flex-wrap gap-2 pt-1 border-t border-border/50">
-                      <Button asChild variant="outline" size="sm">
-                        <Link to={`/blog-preview/${article.slug}`} target="_blank" rel="noopener">
-                          <Eye className="h-3 w-3 mr-1" /> Aperçu
-                        </Link>
-                      </Button>
-                      {article.source === "draft" && (
-                        isPublished ? (
+                          </div>
+                        </div>
+                        {isEditingGlobal ? (
                           <>
-                            <Button asChild variant="outline" size="sm">
-                              <Link to={`/blog/${article.slug}`} target="_blank" rel="noopener">
-                                <Globe className="h-3 w-3 mr-1" /> Voir en ligne
-                              </Link>
-                            </Button>
-                            <Button size="sm" variant="ghost" onClick={() => unpublish(article.slug, article.title)} disabled={isBusy} aria-label="Dépublier">
-                              {isBusy ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <EyeOff className="h-3 w-3 mr-1" />}
-                              Dépublier
-                            </Button>
+                            <Textarea
+                              value={editing[article.slug]}
+                              onChange={(e) => setEditing((s) => ({ ...s, [article.slug]: e.target.value }))}
+                              rows={3}
+                              className="text-sm"
+                              placeholder="🚨 Et si …"
+                            />
+                            <div className="flex gap-2">
+                              <Button size="sm" onClick={() => saveGlobal(article)} disabled={savingEdit === article.slug}>
+                                {savingEdit === article.slug ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Save className="h-3 w-3 mr-1" />}
+                                Enregistrer
+                              </Button>
+                              <Button size="sm" variant="ghost" onClick={() => setEditing((s) => { const n = { ...s }; delete n[article.slug]; return n; })}>
+                                Annuler
+                              </Button>
+                            </div>
                           </>
                         ) : (
-                          <Button size="sm" onClick={() => publish(article.slug, article.title)} disabled={isBusy}>
-                            {isBusy ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Globe className="h-3 w-3 mr-1" />}
-                            Publier sur le site
-                          </Button>
-                        )
-                      )}
-                      {article.source === "seo" && (
+                          <p className="text-sm whitespace-pre-line">{globalShort}</p>
+                        )}
+                      </div>
+
+                      {/* Statut par réseau (LinkedIn + Facebook) */}
+                      <div className="flex flex-wrap gap-2 text-xs">
+                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-muted/40">
+                          <Linkedin className="h-3 w-3" /> LinkedIn {channelStatusBadge(post?.linkedin_status)}
+                        </span>
+                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-muted/40">
+                          <Facebook className="h-3 w-3" /> Facebook {channelStatusBadge(post?.facebook_status)}
+                        </span>
+                      </div>
+
+                      {/* Actions row */}
+                      <div className="flex flex-wrap gap-2 pt-1 border-t border-border/50">
                         <Button asChild variant="outline" size="sm">
-                          <Link to={`/blog/${article.slug}`} target="_blank" rel="noopener">
-                            <Globe className="h-3 w-3 mr-1" /> Voir en ligne
+                          <Link to={`/blog-preview/${article.slug}`} target="_blank" rel="noopener">
+                            <Eye className="h-3 w-3 mr-1" /> Aperçu
                           </Link>
                         </Button>
-                      )}
-                      <Button
-                        size="sm"
-                        variant={post?.status === "posted" ? "outline" : "default"}
-                        onClick={() => publishToSocialsNow(article)}
-                        disabled={posting === article.slug}
-                      >
-                        {posting === article.slug ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Send className="h-3 w-3 mr-1" />}
-                        {post?.status === "posted" ? "Renvoyer aux réseaux" : "Publier sur les réseaux"}
-                      </Button>
+                        {article.source === "draft" && (
+                          isPublishedSite ? (
+                            <>
+                              <Button asChild variant="outline" size="sm">
+                                <Link to={`/blog/${article.slug}`} target="_blank" rel="noopener">
+                                  <Globe className="h-3 w-3 mr-1" /> Voir en ligne
+                                </Link>
+                              </Button>
+                              <Button size="sm" variant="ghost" onClick={() => unpublish(article.slug, article.title)} disabled={isBusy} aria-label="Dépublier">
+                                {isBusy ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <EyeOff className="h-3 w-3 mr-1" />}
+                                Dépublier
+                              </Button>
+                            </>
+                          ) : (
+                            <Button size="sm" onClick={() => publish(article.slug, article.title)} disabled={isBusy}>
+                              {isBusy ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Globe className="h-3 w-3 mr-1" />}
+                              Publier sur le site
+                            </Button>
+                          )
+                        )}
+                        {article.source === "seo" && (
+                          <Button asChild variant="outline" size="sm">
+                            <Link to={`/blog/${article.slug}`} target="_blank" rel="noopener">
+                              <Globe className="h-3 w-3 mr-1" /> Voir en ligne
+                            </Link>
+                          </Button>
+                        )}
+                        <Button
+                          size="sm"
+                          variant={isPublishedSocial ? "outline" : "default"}
+                          onClick={() => publishToSocialsNow(article)}
+                          disabled={posting === article.slug}
+                        >
+                          {posting === article.slug ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Send className="h-3 w-3 mr-1" />}
+                          {isPublishedSocial ? "Renvoyer aux réseaux" : "Publier sur les réseaux"}
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              );
+            };
+
+            const isArticlePublished = (a: CombinedArticle) => {
+              const siteOk = a.source === "seo" ? true : publishedSlugSet.has(a.slug);
+              const socialOk = postBySlug.get(a.slug)?.status === "posted";
+              return siteOk || socialOk;
+            };
+            const drafts = allArticles.filter((a) => !isArticlePublished(a));
+            const published = allArticles.filter(isArticlePublished);
+
+            return (
+              <>
+                <section className="space-y-3">
+                  <h3 className="text-sm font-semibold flex items-center gap-2">
+                    <FileText className="h-4 w-4 text-primary" />
+                    Brouillons & à publier
+                    <Badge variant="outline">{drafts.length}</Badge>
+                  </h3>
+                  {drafts.length === 0 ? (
+                    <p className="text-sm text-muted-foreground">Aucun brouillon en attente.</p>
+                  ) : (
+                    <div className="space-y-4">{drafts.map(renderCard)}</div>
+                  )}
+                </section>
+
+                <section className="space-y-3 pt-2 border-t border-border">
+                  <h3 className="text-sm font-semibold flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-primary" />
+                    Articles publiés
+                    <Badge variant="outline">{published.length}</Badge>
+                  </h3>
+                  {published.length === 0 ? (
+                    <p className="text-sm text-muted-foreground">Aucun article publié pour le moment.</p>
+                  ) : (
+                    <div className="space-y-4">{published.map(renderCard)}</div>
+                  )}
+                </section>
+              </>
             );
-          })
+          })()
         )}
         <p className="text-xs text-muted-foreground border-t pt-3">
-          ℹ️ L'accroche par défaut est utilisée par tous les réseaux ; un override par réseau prend le dessus si défini. « Publier sur les réseaux » envoie immédiatement à Make.com.
+          ℹ️ L'accroche est unique pour LinkedIn et Facebook. « Publier sur les réseaux » envoie immédiatement à Make.com.
         </p>
       </CardContent>
     </Card>
