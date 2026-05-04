@@ -217,9 +217,8 @@ const Admin = () => {
         { value: 'analytics', label: 'Analytics', icon: TrendingUp },
         { value: 'seo', label: 'SEO', icon: Sparkles },
         { value: 'geo', label: 'GEO', icon: ShieldCheck },
-        { value: 'articles', label: 'Articles', icon: Search },
+        { value: 'articles', label: 'Contenu', icon: FileText },
         { value: 'serp', label: 'SERP', icon: Search },
-        { value: 'linkedin', label: 'Social', icon: Share2 },
       ],
     },
     {
