@@ -1,0 +1,1 @@
+ALTER TABLE public.published_drafts ADD COLUMN IF NOT EXISTS short_description text;
