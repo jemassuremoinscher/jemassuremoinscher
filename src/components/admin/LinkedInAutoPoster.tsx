@@ -388,10 +388,16 @@ export const LinkedInAutoPoster = () => {
             posts.map((post) => {
               const article = allArticles.find((a) => a.slug === post.article_slug);
               const image = post.image_url || resolveArticleImage(article?.image);
-              const headlines: Record<Channel, string> = {
+              const overrides = (post.channel_overrides || {}) as Partial<Record<Channel, string>>;
+              const defaultHeadlines: Record<Channel, string> = {
                 linkedin: article?.socialHeadlines?.linkedin || post.short_description || post.post_content || article?.description || post.article_title,
                 facebook: article?.socialHeadlines?.facebook || post.short_description || post.post_content || article?.description || post.article_title,
                 instagram: article?.socialHeadlines?.instagram || post.short_description || post.post_content || article?.description || post.article_title,
+              };
+              const headlines: Record<Channel, string> = {
+                linkedin: overrides.linkedin ?? defaultHeadlines.linkedin,
+                facebook: overrides.facebook ?? defaultHeadlines.facebook,
+                instagram: overrides.instagram ?? defaultHeadlines.instagram,
               };
               const isPosted = post.status === 'posted';
               const isPending = post.status === 'pending';
