@@ -33,11 +33,24 @@ export const LinkedInAutoPoster = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [posting, setPosting] = useState<string | null>(null);
+  const [syncingImages, setSyncingImages] = useState(false);
 
   // New post form
   const [selectedSlug, setSelectedSlug] = useState('');
   const [customContent, setCustomContent] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
+
+  const resolveArticleImage = (img: any): string | null => {
+    if (!img) return null;
+    const SITE = 'https://www.jemassuremoinscher.fr';
+    if (typeof img !== 'string') return null;
+    if (img.startsWith('http')) return img;
+    try {
+      return new URL(img, typeof window !== 'undefined' ? window.location.origin : SITE).href;
+    } catch {
+      return `${SITE}${img.startsWith('/') ? '' : '/'}${img}`;
+    }
+  };
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -87,9 +100,9 @@ export const LinkedInAutoPoster = () => {
     const existing = posts.find(p => p.article_slug === selectedSlug && p.status === 'pending');
     if (existing) { toast.error('Cet article est déjà en file d\'attente'); return; }
 
-    const siteUrl = 'https://jemassuremoinscher.fr';
+    const siteUrl = 'https://www.jemassuremoinscher.fr';
     const articleUrl = `${siteUrl}/blog/${article.slug}`;
-    const imageUrl = article.image ? (article.image.startsWith('http') ? article.image : `${siteUrl}${article.image}`) : null;
+    const imageUrl = resolveArticleImage(article.image);
     const defaultContent = `📰 Nouvel article sur jemassuremoinscher.fr !\n\n${article.title}\n\n👉 Lire l'article complet : ${siteUrl}/blog/${article.slug}\n\n#assurance #comparateur #économies #jemassuremoinscher`;
     const articleSummary = (article as any).excerpt || (article as any).description || null;
     const shortDescription = buildShortDescription(article.title, customContent || articleSummary);
@@ -144,6 +157,25 @@ export const LinkedInAutoPoster = () => {
     if (error) toast.error('Erreur suppression');
     else { toast.success('Supprimé'); fetchData(); }
   };
+
+  const syncImagesForQueue = async () => {
+    setSyncingImages(true);
+    let updated = 0; let skipped = 0;
+    for (const post of posts) {
+      if (post.image_url) { skipped++; continue; }
+      const article = allArticles.find((a) => a.slug === post.article_slug);
+      const url = resolveArticleImage(article?.image);
+      if (!url) continue;
+      const { error } = await supabase.from('linkedin_auto_posts').update({ image_url: url }).eq('id', post.id);
+      if (!error) updated++;
+    }
+    setSyncingImages(false);
+    toast.success(`${updated} image(s) synchronisée(s) · ${skipped} déjà OK`);
+    fetchData();
+  };
+
+  const queuedSlugs = new Set(posts.map((p) => p.article_slug));
+  const unqueuedDrafts = blogDrafts2026.filter((d) => !queuedSlugs.has(d.slug));
 
   const postedSlugs = new Set(posts.filter(p => p.status === 'posted').map(p => p.article_slug));
   const availableArticles = allArticles.filter(a => !postedSlugs.has(a.slug));
@@ -256,6 +288,51 @@ export const LinkedInAutoPoster = () => {
         )}
       </Card>
 
+      {/* Brouillons disponibles (non encore mis en file) */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Plus className="h-5 w-5 text-accent" />
+            Brouillons disponibles
+            <Badge variant="outline">{unqueuedDrafts.length}</Badge>
+          </CardTitle>
+          <CardDescription>
+            Articles brouillons (non publiés sur le blog) pas encore planifiés sur les réseaux. Cliquez pour les ajouter à la file.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {unqueuedDrafts.length === 0 ? (
+            <p className="text-muted-foreground text-center py-6 text-sm">Tous les brouillons sont planifiés ✅</p>
+          ) : (
+            <div className="grid sm:grid-cols-2 gap-3">
+              {unqueuedDrafts.map((draft) => {
+                const img = resolveArticleImage(draft.image);
+                return (
+                  <div key={draft.slug} className="flex gap-3 border rounded-lg p-2 hover:bg-muted/40 transition">
+                    {img ? (
+                      <img src={img} alt={draft.title} className="w-20 h-20 object-cover rounded flex-shrink-0" loading="lazy" />
+                    ) : (
+                      <div className="w-20 h-20 bg-muted rounded flex items-center justify-center text-[10px] text-muted-foreground flex-shrink-0">Sans image</div>
+                    )}
+                    <div className="flex-1 min-w-0 flex flex-col justify-between">
+                      <p className="text-sm font-medium line-clamp-2">{draft.title}</p>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="self-start mt-1"
+                        onClick={() => { setSelectedSlug(draft.slug); setShowAddForm(true); }}
+                      >
+                        <Plus className="h-3 w-3 mr-1" /> Planifier
+                      </Button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
       {/* All articles — card layout with social sub-tabs */}
       <Card>
         <CardHeader>
@@ -270,9 +347,15 @@ export const LinkedInAutoPoster = () => {
                 Brouillons et articles publiés sur les réseaux sociaux. Visualisez l'accroche par canal et publiez en un clic.
               </CardDescription>
             </div>
-            <Button variant="ghost" size="icon" onClick={fetchData} aria-label="Rafraîchir">
-              <RefreshCw className="h-4 w-4" />
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button variant="outline" size="sm" onClick={syncImagesForQueue} disabled={syncingImages}>
+                {syncingImages ? <Loader2 className="h-4 w-4 mr-1 animate-spin" /> : <RefreshCw className="h-4 w-4 mr-1" />}
+                Synchroniser images
+              </Button>
+              <Button variant="ghost" size="icon" onClick={fetchData} aria-label="Rafraîchir">
+                <RefreshCw className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -281,11 +364,7 @@ export const LinkedInAutoPoster = () => {
           ) : (
             posts.map((post) => {
               const article = allArticles.find((a) => a.slug === post.article_slug);
-              const image = post.image_url || (article?.image
-                ? (typeof article.image === 'string' && article.image.startsWith('http')
-                    ? article.image
-                    : `https://jemassuremoinscher.fr${article.image}`)
-                : null);
+              const image = post.image_url || resolveArticleImage(article?.image);
               const headlines: Record<Channel, string> = {
                 linkedin: article?.socialHeadlines?.linkedin || post.short_description || post.post_content || article?.description || post.article_title,
                 facebook: article?.socialHeadlines?.facebook || post.short_description || post.post_content || article?.description || post.article_title,
