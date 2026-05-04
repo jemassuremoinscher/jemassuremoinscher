@@ -398,9 +398,9 @@ export const LinkedInAutoPoster = () => {
                 const overrides = draftChannelOverrides[draft.slug] || {};
                 const draftSummary = (draft as any).excerpt || (draft as any).description || draft.title;
                 const defaultHeadlines: Record<Channel, string> = {
-                  linkedin: draft.socialHeadlines?.linkedin || buildShortDescription(draft.title, draftSummary),
-                  facebook: draft.socialHeadlines?.facebook || buildShortDescription(draft.title, draftSummary),
-                  instagram: draft.socialHeadlines?.instagram || buildShortDescription(draft.title, draftSummary),
+                  linkedin: (draft as any).socialHeadlines?.linkedin || buildShortDescription(draft.title, draftSummary),
+                  facebook: (draft as any).socialHeadlines?.facebook || buildShortDescription(draft.title, draftSummary),
+                  instagram: (draft as any).socialHeadlines?.instagram || buildShortDescription(draft.title, draftSummary),
                 };
                 const headlines: Record<Channel, string> = {
                   linkedin: overrides.linkedin ?? defaultHeadlines.linkedin,
