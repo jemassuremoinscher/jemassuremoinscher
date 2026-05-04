@@ -100,9 +100,9 @@ export const LinkedInAutoPoster = () => {
     const existing = posts.find(p => p.article_slug === selectedSlug && p.status === 'pending');
     if (existing) { toast.error('Cet article est déjà en file d\'attente'); return; }
 
-    const siteUrl = 'https://jemassuremoinscher.fr';
+    const siteUrl = 'https://www.jemassuremoinscher.fr';
     const articleUrl = `${siteUrl}/blog/${article.slug}`;
-    const imageUrl = article.image ? (article.image.startsWith('http') ? article.image : `${siteUrl}${article.image}`) : null;
+    const imageUrl = resolveArticleImage(article.image);
     const defaultContent = `📰 Nouvel article sur jemassuremoinscher.fr !\n\n${article.title}\n\n👉 Lire l'article complet : ${siteUrl}/blog/${article.slug}\n\n#assurance #comparateur #économies #jemassuremoinscher`;
     const articleSummary = (article as any).excerpt || (article as any).description || null;
     const shortDescription = buildShortDescription(article.title, customContent || articleSummary);
