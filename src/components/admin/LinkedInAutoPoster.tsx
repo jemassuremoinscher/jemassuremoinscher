@@ -40,6 +40,19 @@ export const LinkedInAutoPoster = () => {
   const [customContent, setCustomContent] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
 
+  // Dismissed drafts (persisted locally)
+  const DISMISSED_KEY = 'lap.dismissedDrafts.v1';
+  const [dismissedDrafts, setDismissedDrafts] = useState<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem(DISMISSED_KEY) || '[]'); } catch { return []; }
+  });
+  const dismissDraft = (slug: string, title: string) => {
+    if (!confirm(`Supprimer le brouillon « ${title} » de cette liste ?`)) return;
+    const next = Array.from(new Set([...dismissedDrafts, slug]));
+    setDismissedDrafts(next);
+    localStorage.setItem(DISMISSED_KEY, JSON.stringify(next));
+    toast.success('Brouillon retiré de la liste');
+  };
+
   const resolveArticleImage = (img: any): string | null => {
     if (!img) return null;
     const SITE = 'https://www.jemassuremoinscher.fr';
