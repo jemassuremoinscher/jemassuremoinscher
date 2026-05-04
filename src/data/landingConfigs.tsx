@@ -672,6 +672,8 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
       { question: "Sorties multi-jours couvertes ?", answer: "Oui, raids, treks et stages multi-jours inclus dans la RC, à préciser à la souscription." },
       { question: "Et si j'encadre à l'étranger ?", answer: "Extension monde possible (Europe, monde entier) — à intégrer au contrat dès l'origine." },
     ],
+    bottomCtaTitle: "Encadrez en toute sérénité",
+    bottomCtaDescription: "RC pro adaptée à votre discipline, devis en 30 min.",
   },
 
   // ────────────────────────────── Nouvelles niches 2026 ──────────────────────────────
