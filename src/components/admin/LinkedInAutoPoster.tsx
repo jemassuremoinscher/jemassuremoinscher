@@ -203,6 +203,58 @@ export const LinkedInAutoPoster = () => {
     }
   };
 
+  const queueAndPostDraftNow = async (slug: string) => {
+    if (!configId) { toast.error('Configurez d\'abord le webhook'); return; }
+    const article = allArticles.find(a => a.slug === slug);
+    if (!article) return;
+    setPosting(slug);
+    try {
+      // 1. Queue if not already
+      const existing = posts.find(p => p.article_slug === slug);
+      if (!existing) {
+        const siteUrl = 'https://www.jemassuremoinscher.fr';
+        const articleUrl = `${siteUrl}/blog/${article.slug}`;
+        const imageUrl = resolveArticleImage(article.image);
+        const articleSummary = (article as any).excerpt || (article as any).description || null;
+        const shortDescription = buildShortDescription(article.title, articleSummary);
+        const savedOverrides = draftChannelOverrides[article.slug] || {};
+        const payload: any = {
+          article_slug: article.slug,
+          article_title: article.title,
+          article_url: articleUrl,
+          image_url: imageUrl,
+          short_description: shortDescription,
+          provider: 'make',
+          status: 'pending',
+          linkedin_status: 'pending',
+          facebook_status: 'pending',
+        };
+        if (Object.keys(savedOverrides).length > 0) payload.channel_overrides = savedOverrides;
+        const { error: insertErr } = await supabase.from('linkedin_auto_posts').insert(payload);
+        if (insertErr) { toast.error('Erreur file : ' + insertErr.message); setPosting(null); return; }
+        if (draftChannelOverrides[article.slug]) {
+          const next = { ...draftChannelOverrides };
+          delete next[article.slug];
+          persistDraftOverrides(next);
+        }
+      }
+      // 2. Trigger immediately
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) { toast.error('Non authentifié'); setPosting(null); return; }
+      const res = await supabase.functions.invoke('post-to-linkedin', {
+        body: { slug },
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      });
+      if (res.error) toast.error('Erreur: ' + res.error.message);
+      else toast.success(res.data?.message || `"${article.title}" envoyé à Make.com 🎉`);
+      fetchData();
+    } catch (e: any) {
+      toast.error(e.message || 'Erreur d\'envoi');
+    } finally {
+      setPosting(null);
+    }
+  };
+
   const triggerNow = async (slug: string) => {
     if (!configId) { toast.error('Configurez d\'abord le webhook'); return; }
     setPosting(slug);
@@ -501,7 +553,15 @@ export const LinkedInAutoPoster = () => {
                               <Eye className="h-3 w-3 mr-1" /> Aperçu
                             </Link>
                           </Button>
-                          <Button size="sm" onClick={() => { setSelectedSlug(draft.slug); setShowAddForm(true); }}>
+                          <Button
+                            size="sm"
+                            onClick={() => queueAndPostDraftNow(draft.slug)}
+                            disabled={posting === draft.slug}
+                          >
+                            {posting === draft.slug ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Send className="h-3 w-3 mr-1" />}
+                            Publier maintenant
+                          </Button>
+                          <Button size="sm" variant="outline" onClick={() => { setSelectedSlug(draft.slug); setShowAddForm(true); }}>
                             <Plus className="h-3 w-3 mr-1" /> Ajouter à la file
                           </Button>
                           <Button

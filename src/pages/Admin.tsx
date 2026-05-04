@@ -212,12 +212,6 @@ const Admin = () => {
 
   const categories = [
     {
-      label: 'Dashboard',
-      tabs: [
-        { value: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-      ],
-    },
-    {
       label: 'Marketing',
       tabs: [
         { value: 'analytics', label: 'Analytics', icon: TrendingUp },
@@ -253,7 +247,12 @@ const Admin = () => {
         <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
           <div className="flex flex-col gap-3 sm:gap-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+              <button
+                type="button"
+                onClick={() => setActiveTab('dashboard')}
+                className="flex items-center gap-2 sm:gap-3 min-w-0 text-left rounded-md hover:bg-primary-foreground/10 -mx-1 px-1 py-0.5 transition-colors"
+                aria-label="Retour au dashboard"
+              >
                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0 bg-primary ring-1 ring-primary/40 flex items-center justify-center shadow-sm">
                   <img src={arthurWaving} alt="Arthur mascotte" className="w-full h-full object-contain p-0.5" width={40} height={40} loading="lazy" decoding="async" />
                 </div>
@@ -261,7 +260,7 @@ const Admin = () => {
                   <h1 className="text-lg sm:text-2xl font-bold truncate">Dashboard Admin</h1>
                   <p className="text-xs sm:text-sm text-primary-foreground/80 truncate">{user?.email}</p>
                 </div>
-              </div>
+              </button>
               
               <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                 <Button
@@ -393,8 +392,8 @@ const Admin = () => {
           </TabsContent>
 
           <TabsContent value="articles" className="space-y-6">
-            <DraftArticlesPublisher />
             <SEOSuggestions mode="articles" />
+            <DraftArticlesPublisher />
           </TabsContent>
 
           <TabsContent value="geo">

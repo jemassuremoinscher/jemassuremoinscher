@@ -760,16 +760,19 @@ export type Database = {
         Row: {
           published_at: string
           published_by: string | null
+          short_description: string | null
           slug: string
         }
         Insert: {
           published_at?: string
           published_by?: string | null
+          short_description?: string | null
           slug: string
         }
         Update: {
           published_at?: string
           published_by?: string | null
+          short_description?: string | null
           slug?: string
         }
         Relationships: []
