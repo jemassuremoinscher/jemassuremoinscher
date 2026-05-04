@@ -249,7 +249,7 @@ const Admin = () => {
       </Helmet>
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-card sticky top-0 z-50 shadow-sm">
+      <header className="border-b border-primary/30 bg-primary text-primary-foreground sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
           <div className="flex flex-col gap-3 sm:gap-4">
             <div className="flex items-center justify-between">
@@ -259,7 +259,7 @@ const Admin = () => {
                 </div>
                 <div className="min-w-0">
                   <h1 className="text-lg sm:text-2xl font-bold truncate">Dashboard Admin</h1>
-                  <p className="text-xs sm:text-sm text-muted-foreground truncate">{user?.email}</p>
+                  <p className="text-xs sm:text-sm text-primary-foreground/80 truncate">{user?.email}</p>
                 </div>
               </div>
               
@@ -270,7 +270,7 @@ const Admin = () => {
                   onClick={toggleNotifications}
                   aria-label={notificationsEnabled ? "Désactiver les notifications" : "Activer les notifications"}
                   title={notificationsEnabled ? "Notifications activées" : "Activer les notifications"}
-                  className={notificationsEnabled ? "bg-green-600 hover:bg-green-700 text-white" : ""}
+                  className={notificationsEnabled ? "bg-accent text-accent-foreground hover:bg-accent/90" : "border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground"}
                 >
                   {notificationsEnabled ? <Bell className="h-4 w-4" /> : <BellOff className="h-4 w-4" />}
                 </Button>
@@ -279,7 +279,7 @@ const Admin = () => {
                   size="sm"
                   onClick={fetchData}
                   disabled={isRefreshing}
-                  className="hidden sm:flex"
+                  className="hidden sm:flex border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground"
                 >
                   <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
                   Actualiser
@@ -289,7 +289,7 @@ const Admin = () => {
                   size="icon"
                   onClick={fetchData}
                   disabled={isRefreshing}
-                  className="sm:hidden"
+                  className="sm:hidden border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground"
                   aria-label="Actualiser les données"
                 >
                   <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
@@ -298,7 +298,7 @@ const Admin = () => {
                   variant="ghost"
                   size="sm"
                   onClick={() => navigate('/')}
-                  className="hidden md:flex"
+                  className="hidden md:flex text-primary-foreground hover:bg-primary-foreground/15 hover:text-primary-foreground"
                 >
                   Voir le site
                 </Button>
@@ -337,23 +337,23 @@ const Admin = () => {
       {/* Main Content */}
       <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          {/* Tabs - single row with category separators */}
-          <TabsList className="flex w-full overflow-x-auto no-scrollbar gap-1 p-1.5 mb-6 bg-primary/10 border border-primary/20 rounded-lg">
-            {categories.map((cat, ci) => (
-              <div key={cat.label} className="flex items-center shrink-0">
-                {ci > 0 && <div className="w-px h-6 bg-primary/30 mx-1.5 shrink-0" />}
-                <span className="text-[10px] font-semibold text-primary/60 uppercase tracking-wider px-2 shrink-0 hidden sm:inline">{cat.label}</span>
-                {cat.tabs.map(tab => (
-                  <TabsTrigger
-                    key={tab.value}
-                    value={tab.value}
-                    className="flex items-center gap-1.5 shrink-0 text-xs sm:text-sm px-3 py-2 text-primary/70 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md hover:bg-primary/20 transition-colors rounded-md"
-                  >
-                    <tab.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                    <span className="hidden sm:inline">{tab.label}</span>
-                    <span className="sm:hidden">{tab.label.length > 6 ? tab.label.slice(0, 6) + '.' : tab.label}</span>
-                  </TabsTrigger>
-                ))}
+          {/* Tabs - responsive groups for mobile and tablet */}
+          <TabsList className="grid h-auto w-full grid-cols-1 items-stretch gap-2 p-2 mb-6 bg-primary/10 border border-primary/20 rounded-lg sm:grid-cols-2 xl:grid-cols-3">
+            {categories.map((cat) => (
+              <div key={cat.label} className="min-w-0 rounded-md border border-primary/10 bg-background/70 p-1.5">
+                <span className="block px-2 pb-1 text-[10px] font-semibold text-primary/70 uppercase tracking-wider">{cat.label}</span>
+                <div className="grid grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-2 2xl:grid-cols-4">
+                  {cat.tabs.map(tab => (
+                    <TabsTrigger
+                      key={tab.value}
+                      value={tab.value}
+                      className="min-w-0 flex items-center gap-1.5 text-xs sm:text-sm px-2 py-2 text-primary/75 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md hover:bg-primary/20 transition-colors rounded-md"
+                    >
+                      <tab.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
+                      <span className="truncate">{tab.label}</span>
+                    </TabsTrigger>
+                  ))}
+                </div>
               </div>
             ))}
           </TabsList>
