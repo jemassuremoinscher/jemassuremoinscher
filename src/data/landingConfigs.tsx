@@ -21,13 +21,7 @@ import arthurClimbing from "@/assets/mascotte/arthur-climbing.webp";
 import arthurKayak from "@/assets/mascotte/arthur-kayak.webp";
 import arthurBtp from "@/assets/mascotte/arthur-btp.webp";
 import arthurExcited from "@/assets/mascotte/arthur-excited.webp";
-import arthurVtc from "@/assets/mascotte/arthur-vtc.webp";
-import arthurTrottinette from "@/assets/mascotte/arthur-trottinette.webp";
-import arthurChef from "@/assets/mascotte/arthur-chef.webp";
-import arthurCoach from "@/assets/mascotte/arthur-coach.webp";
-import arthurPhotographer from "@/assets/mascotte/arthur-photographer.webp";
-import arthurInfluencer from "@/assets/mascotte/arthur-influencer.webp";
-import arthurDrone from "@/assets/mascotte/arthur-drone.webp";
+import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import geoContent from "@/data/geo-content.json";
 
 const trustReviewStat = { icon: Star, value: `${geoContent.trust.ratingValueLabel}/5`, label: `${geoContent.trust.reviewCountLabel} avis` };
@@ -678,6 +672,8 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
       { question: "Sorties multi-jours couvertes ?", answer: "Oui, raids, treks et stages multi-jours inclus dans la RC, à préciser à la souscription." },
       { question: "Et si j'encadre à l'étranger ?", answer: "Extension monde possible (Europe, monde entier) — à intégrer au contrat dès l'origine." },
     ],
+    bottomCtaTitle: "Encadrez en toute sérénité",
+    bottomCtaDescription: "RC pro adaptée à votre discipline, devis en 30 min.",
   },
 
   // ────────────────────────────── Nouvelles niches 2026 ──────────────────────────────
@@ -693,7 +689,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     heroTitle: "Assurance VTC",
     heroHighlight: "dès 90 €/mois",
     heroSubtitle: <>Couverture <strong>RC pro + flotte + assistance</strong> pour chauffeurs Uber, Bolt, Heetch. Attestation immédiate.</>,
-    mascotSrc: arthurVtc,
+    mascotSrc: arthurCar,
     mascotAlt: "Arthur chauffeur VTC — assurance VTC pas chère",
     speechText: "Chauffeur VTC ? Je négocie votre assurance flotte et RC pro !",
     insuranceType: "auto",
@@ -908,7 +904,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     heroTitle: "Assurance Restaurant",
     heroHighlight: "100% restauration",
     heroSubtitle: <>MRP, RC pro, perte d'exploitation, intoxication alimentaire pour <strong>restaurants, food trucks, brasseries</strong>.</>,
-    mascotSrc: arthurChef,
+    mascotSrc: arthurExcited,
     mascotAlt: "Arthur chef — assurance restaurant",
     speechText: "Restaurateur ? Pack MRP + RC pro adapté à votre cuisine !",
     insuranceType: "mrp",
@@ -951,7 +947,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     heroTitle: "RC Pro Coach Sportif",
     heroHighlight: "dès 12 €/mois",
     heroSubtitle: <>Couverture <strong>cours collectifs, individuels, à domicile, en salle ou outdoor</strong>. Yoga, pilates, fitness, crossfit.</>,
-    mascotSrc: arthurCoach,
+    mascotSrc: arthurClimbing,
     mascotAlt: "Arthur coach sportif — assurance coach",
     speechText: "Coach sportif ? RC pro adaptée à toutes vos prestations !",
     insuranceType: "rc_pro",
@@ -994,7 +990,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     heroTitle: "Assurance Photographe",
     heroHighlight: "RC pro + matériel",
     heroSubtitle: <>Protection complète pour <strong>photographes & vidéastes</strong> : prestations, matériel, droit à l'image, livrables clients.</>,
-    mascotSrc: arthurPhotographer,
+    mascotSrc: arthurDetective,
     mascotAlt: "Arthur photographe — assurance photographe",
     speechText: "Photographe ? RC pro + votre matériel couvert dès 18 €/mois !",
     insuranceType: "rc_pro",
@@ -1037,7 +1033,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     heroTitle: "Assurance Influenceur",
     heroHighlight: "RC pro digitale",
     heroSubtitle: <>Protégez-vous contre <strong>litiges marques, droit à l'image, diffamation, mentions trompeuses</strong>. Conforme loi du 9 juin 2023.</>,
-    mascotSrc: arthurInfluencer,
+    mascotSrc: arthurExcited,
     mascotAlt: "Arthur influenceur — assurance créateur de contenu",
     speechText: "Influenceur ? RC pro conforme loi 2023 dès 19 €/mois !",
     insuranceType: "rc_pro",
@@ -1080,7 +1076,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     heroTitle: "Assurance Drone Pro",
     heroHighlight: "DGAC + matériel",
     heroSubtitle: <>RC pro <strong>scénarios S1, S2, S3</strong>, couverture matériel tous risques, conforme exigences DGAC.</>,
-    mascotSrc: arthurDrone,
+    mascotSrc: arthurFlying,
     mascotAlt: "Arthur télépilote drone — assurance drone professionnel",
     speechText: "Télépilote drone ? RC pro DGAC + votre matériel couvert !",
     insuranceType: "rc_pro",

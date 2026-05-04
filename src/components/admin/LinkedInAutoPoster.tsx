@@ -40,6 +40,19 @@ export const LinkedInAutoPoster = () => {
   const [customContent, setCustomContent] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
 
+  // Dismissed drafts (persisted locally)
+  const DISMISSED_KEY = 'lap.dismissedDrafts.v1';
+  const [dismissedDrafts, setDismissedDrafts] = useState<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem(DISMISSED_KEY) || '[]'); } catch { return []; }
+  });
+  const dismissDraft = (slug: string, title: string) => {
+    if (!confirm(`Supprimer le brouillon « ${title} » de cette liste ?`)) return;
+    const next = Array.from(new Set([...dismissedDrafts, slug]));
+    setDismissedDrafts(next);
+    localStorage.setItem(DISMISSED_KEY, JSON.stringify(next));
+    toast.success('Brouillon retiré de la liste');
+  };
+
   const resolveArticleImage = (img: any): string | null => {
     if (!img) return null;
     const SITE = 'https://www.jemassuremoinscher.fr';
@@ -175,7 +188,7 @@ export const LinkedInAutoPoster = () => {
   };
 
   const queuedSlugs = new Set(posts.map((p) => p.article_slug));
-  const unqueuedDrafts = blogDrafts2026.filter((d) => !queuedSlugs.has(d.slug));
+  const unqueuedDrafts = blogDrafts2026.filter((d) => !queuedSlugs.has(d.slug) && !dismissedDrafts.includes(d.slug));
 
   const postedSlugs = new Set(posts.filter(p => p.status === 'posted').map(p => p.article_slug));
   const availableArticles = allArticles.filter(a => !postedSlugs.has(a.slug));
@@ -316,14 +329,24 @@ export const LinkedInAutoPoster = () => {
                     )}
                     <div className="flex-1 min-w-0 flex flex-col justify-between">
                       <p className="text-sm font-medium line-clamp-2">{draft.title}</p>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="self-start mt-1"
-                        onClick={() => { setSelectedSlug(draft.slug); setShowAddForm(true); }}
-                      >
-                        <Plus className="h-3 w-3 mr-1" /> Planifier
-                      </Button>
+                      <div className="flex items-center gap-2 mt-1">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => { setSelectedSlug(draft.slug); setShowAddForm(true); }}
+                        >
+                          <Plus className="h-3 w-3 mr-1" /> Planifier
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="text-destructive hover:text-destructive"
+                          onClick={() => dismissDraft(draft.slug, draft.title)}
+                          aria-label={`Supprimer le brouillon ${draft.title}`}
+                        >
+                          <Trash2 className="h-3 w-3" />
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 );
