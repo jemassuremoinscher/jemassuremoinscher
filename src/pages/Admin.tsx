@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, UserCog, TrendingUp, Sparkles, Search, Bell, BellOff, Share2, ShieldCheck } from 'lucide-react';
+import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, UserCog, TrendingUp, Sparkles, Search, Bell, BellOff, Share2, ShieldCheck, FileText, Settings, ChevronDown } from 'lucide-react';
 import { ManualLeadForm } from '@/components/admin/ManualLeadForm';
 import arthurWaving from '@/assets/mascotte/arthur-waving.png';
 import { supabase } from '@/integrations/supabase/client';
@@ -217,9 +217,8 @@ const Admin = () => {
         { value: 'analytics', label: 'Analytics', icon: TrendingUp },
         { value: 'seo', label: 'SEO', icon: Sparkles },
         { value: 'geo', label: 'GEO', icon: ShieldCheck },
-        { value: 'articles', label: 'Articles', icon: Search },
+        { value: 'articles', label: 'Contenu', icon: FileText },
         { value: 'serp', label: 'SERP', icon: Search },
-        { value: 'linkedin', label: 'Social', icon: Share2 },
       ],
     },
     {
@@ -394,6 +393,18 @@ const Admin = () => {
           <TabsContent value="articles" className="space-y-6">
             <SEOSuggestions mode="articles" />
             <DraftArticlesPublisher />
+            <details className="rounded-lg border border-border bg-card group">
+              <summary className="cursor-pointer list-none flex items-center justify-between gap-2 p-4 hover:bg-muted/50 transition-colors">
+                <span className="flex items-center gap-2 font-semibold">
+                  <Settings className="h-4 w-4 text-primary" />
+                  Réglages diffusion (Make.com, file d'attente avancée)
+                </span>
+                <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+              </summary>
+              <div className="border-t border-border p-4">
+                <LinkedInAutoPoster />
+              </div>
+            </details>
           </TabsContent>
 
           <TabsContent value="geo">
@@ -402,10 +413,6 @@ const Admin = () => {
 
           <TabsContent value="serp">
             <SERPPreview />
-          </TabsContent>
-
-          <TabsContent value="linkedin" className="space-y-6">
-            <LinkedInAutoPoster />
           </TabsContent>
 
           <TabsContent value="supervision">
