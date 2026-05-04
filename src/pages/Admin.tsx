@@ -393,6 +393,18 @@ const Admin = () => {
           <TabsContent value="articles" className="space-y-6">
             <SEOSuggestions mode="articles" />
             <DraftArticlesPublisher />
+            <details className="rounded-lg border border-border bg-card group">
+              <summary className="cursor-pointer list-none flex items-center justify-between gap-2 p-4 hover:bg-muted/50 transition-colors">
+                <span className="flex items-center gap-2 font-semibold">
+                  <Settings className="h-4 w-4 text-primary" />
+                  Réglages diffusion (Make.com, file d'attente avancée)
+                </span>
+                <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+              </summary>
+              <div className="border-t border-border p-4">
+                <LinkedInAutoPoster />
+              </div>
+            </details>
           </TabsContent>
 
           <TabsContent value="geo">
@@ -401,10 +413,6 @@ const Admin = () => {
 
           <TabsContent value="serp">
             <SERPPreview />
-          </TabsContent>
-
-          <TabsContent value="linkedin" className="space-y-6">
-            <LinkedInAutoPoster />
           </TabsContent>
 
           <TabsContent value="supervision">
