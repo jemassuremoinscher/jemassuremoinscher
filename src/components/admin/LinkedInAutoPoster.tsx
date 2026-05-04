@@ -65,6 +65,36 @@ export const LinkedInAutoPoster = () => {
     }
   };
 
+  // Editing per-channel descriptions
+  const [editing, setEditing] = useState<Record<string, string>>({}); // key = `${postId}:${channel}`
+  const [savingEdit, setSavingEdit] = useState<string | null>(null);
+  const editKey = (id: string, ch: Channel) => `${id}:${ch}`;
+  const saveChannelOverride = async (post: any, ch: Channel, value: string) => {
+    const key = editKey(post.id, ch);
+    setSavingEdit(key);
+    const next = { ...(post.channel_overrides || {}), [ch]: value };
+    const { error } = await supabase
+      .from('linkedin_auto_posts')
+      .update({ channel_overrides: next } as any)
+      .eq('id', post.id);
+    setSavingEdit(null);
+    if (error) { toast.error('Erreur: ' + error.message); return; }
+    toast.success(`Description ${ch} mise à jour ✅`);
+    setEditing((e) => { const n = { ...e }; delete n[key]; return n; });
+    fetchData();
+  };
+  const resetChannelOverride = async (post: any, ch: Channel) => {
+    const next = { ...(post.channel_overrides || {}) };
+    delete next[ch];
+    const { error } = await supabase
+      .from('linkedin_auto_posts')
+      .update({ channel_overrides: next } as any)
+      .eq('id', post.id);
+    if (error) { toast.error('Erreur: ' + error.message); return; }
+    toast.success(`Description ${ch} réinitialisée`);
+    fetchData();
+  };
+
   const fetchData = useCallback(async () => {
     setLoading(true);
     const [configRes, postsRes] = await Promise.all([
@@ -388,10 +418,16 @@ export const LinkedInAutoPoster = () => {
             posts.map((post) => {
               const article = allArticles.find((a) => a.slug === post.article_slug);
               const image = post.image_url || resolveArticleImage(article?.image);
-              const headlines: Record<Channel, string> = {
+              const overrides = (post.channel_overrides || {}) as Partial<Record<Channel, string>>;
+              const defaultHeadlines: Record<Channel, string> = {
                 linkedin: article?.socialHeadlines?.linkedin || post.short_description || post.post_content || article?.description || post.article_title,
                 facebook: article?.socialHeadlines?.facebook || post.short_description || post.post_content || article?.description || post.article_title,
                 instagram: article?.socialHeadlines?.instagram || post.short_description || post.post_content || article?.description || post.article_title,
+              };
+              const headlines: Record<Channel, string> = {
+                linkedin: overrides.linkedin ?? defaultHeadlines.linkedin,
+                facebook: overrides.facebook ?? defaultHeadlines.facebook,
+                instagram: overrides.instagram ?? defaultHeadlines.instagram,
               };
               const isPosted = post.status === 'posted';
               const isPending = post.status === 'pending';
@@ -445,13 +481,51 @@ export const LinkedInAutoPoster = () => {
                           <TabsTrigger value="facebook" className="text-xs gap-1"><Facebook className="h-3 w-3" />Facebook</TabsTrigger>
                           <TabsTrigger value="instagram" className="text-xs gap-1"><Instagram className="h-3 w-3" />Instagram</TabsTrigger>
                         </TabsList>
-                        {(['linkedin', 'facebook', 'instagram'] as Channel[]).map((ch) => (
-                          <TabsContent key={ch} value={ch} className="mt-2">
-                            <p className="text-sm bg-muted/50 p-3 rounded-md whitespace-pre-line">
-                              {headlines[ch]}
-                            </p>
-                          </TabsContent>
-                        ))}
+                        {(['linkedin', 'facebook', 'instagram'] as Channel[]).map((ch) => {
+                          const k = editKey(post.id, ch);
+                          const isEditing = k in editing;
+                          const isOverridden = overrides[ch] !== undefined;
+                          return (
+                            <TabsContent key={ch} value={ch} className="mt-2 space-y-2">
+                              {isEditing ? (
+                                <>
+                                  <Textarea
+                                    value={editing[k]}
+                                    onChange={(e) => setEditing((s) => ({ ...s, [k]: e.target.value }))}
+                                    rows={4}
+                                    className="text-sm"
+                                  />
+                                  <div className="flex gap-2">
+                                    <Button size="sm" onClick={() => saveChannelOverride(post, ch, editing[k])} disabled={savingEdit === k}>
+                                      {savingEdit === k ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : null}
+                                      Enregistrer
+                                    </Button>
+                                    <Button size="sm" variant="ghost" onClick={() => setEditing((s) => { const n = { ...s }; delete n[k]; return n; })}>
+                                      Annuler
+                                    </Button>
+                                  </div>
+                                </>
+                              ) : (
+                                <>
+                                  <p className="text-sm bg-muted/50 p-3 rounded-md whitespace-pre-line">{headlines[ch]}</p>
+                                  <div className="flex items-center gap-2">
+                                    <Button size="sm" variant="outline" onClick={() => setEditing((s) => ({ ...s, [k]: headlines[ch] }))}>
+                                      Modifier
+                                    </Button>
+                                    {isOverridden && (
+                                      <>
+                                        <Badge variant="secondary" className="text-[10px]">Personnalisé</Badge>
+                                        <Button size="sm" variant="ghost" onClick={() => resetChannelOverride(post, ch)}>
+                                          Réinitialiser
+                                        </Button>
+                                      </>
+                                    )}
+                                  </div>
+                                </>
+                              )}
+                            </TabsContent>
+                          );
+                        })}
                       </Tabs>
 
                       {post.error_message && <p className="text-xs text-destructive">{post.error_message}</p>}

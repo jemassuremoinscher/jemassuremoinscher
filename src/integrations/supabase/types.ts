@@ -543,6 +543,7 @@ export type Database = {
           article_slug: string
           article_title: string
           article_url: string | null
+          channel_overrides: Json
           created_at: string
           error_message: string | null
           facebook_status: string
@@ -561,6 +562,7 @@ export type Database = {
           article_slug: string
           article_title: string
           article_url?: string | null
+          channel_overrides?: Json
           created_at?: string
           error_message?: string | null
           facebook_status?: string
@@ -579,6 +581,7 @@ export type Database = {
           article_slug?: string
           article_title?: string
           article_url?: string | null
+          channel_overrides?: Json
           created_at?: string
           error_message?: string | null
           facebook_status?: string
