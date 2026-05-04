@@ -38,7 +38,7 @@ const fr: Record<string, string> = {
   // Hero
   'hero.titleAccent': 'LE',
   'hero.titleAccentSuffix': ' site',
-  'hero.title': ' pour payer votre assurance moins cher,',
+  'hero.title': ' pour comparer son assurance et la payer moins cher,',
   'hero.titleHighlight': 'sans compromis.',
   'hero.subtitle': 'Comparez',
   'hero.subtitleBold': '50+ assureurs',
