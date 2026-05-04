@@ -158,6 +158,25 @@ export const LinkedInAutoPoster = () => {
     else { toast.success('Supprimé'); fetchData(); }
   };
 
+  const syncImagesForQueue = async () => {
+    setSyncingImages(true);
+    let updated = 0; let skipped = 0;
+    for (const post of posts) {
+      if (post.image_url) { skipped++; continue; }
+      const article = allArticles.find((a) => a.slug === post.article_slug);
+      const url = resolveArticleImage(article?.image);
+      if (!url) continue;
+      const { error } = await supabase.from('linkedin_auto_posts').update({ image_url: url }).eq('id', post.id);
+      if (!error) updated++;
+    }
+    setSyncingImages(false);
+    toast.success(`${updated} image(s) synchronisée(s) · ${skipped} déjà OK`);
+    fetchData();
+  };
+
+  const queuedSlugs = new Set(posts.map((p) => p.article_slug));
+  const unqueuedDrafts = blogDrafts2026.filter((d) => !queuedSlugs.has(d.slug));
+
   const postedSlugs = new Set(posts.filter(p => p.status === 'posted').map(p => p.article_slug));
   const availableArticles = allArticles.filter(a => !postedSlugs.has(a.slug));
 
