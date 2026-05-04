@@ -94,6 +94,8 @@ export const LinkedInAutoPoster = () => {
     toast.success(`Description ${ch} réinitialisée`);
     fetchData();
   };
+
+  const fetchData = useCallback(async () => {
     setLoading(true);
     const [configRes, postsRes] = await Promise.all([
       supabase.from('linkedin_config').select('*').limit(1).maybeSingle(),
