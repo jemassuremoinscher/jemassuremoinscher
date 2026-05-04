@@ -6,14 +6,17 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
-import { Facebook, Send, Settings, History, Plus, Loader2, Trash2, RefreshCw, Share2 } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Send, Settings, Plus, Loader2, Trash2, RefreshCw, Share2, Eye, CheckCircle2, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { blogArticles } from '@/data/blogArticles';
 import { blogArticles2026 } from '@/data/blogArticles2026';
+import { blogDrafts2026 } from '@/data/blogDrafts2026';
 
-const allArticles = [...blogArticles, ...blogArticles2026];
+const allArticles = [...blogArticles, ...blogArticles2026, ...blogDrafts2026];
+type Channel = 'linkedin' | 'facebook' | 'instagram';
 
 const buildShortDescription = (title: string, content?: string | null) => {
   const base = (content || title).replace(/\s+/g, ' ').trim();
