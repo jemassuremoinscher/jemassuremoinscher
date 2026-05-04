@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import React, { lazy, Suspense } from "react";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { LanguageProvider } from "@/contexts/LanguageContext";
@@ -232,6 +232,29 @@ const App = () => {
                 <Route path="/profil/:slug" element={<NicheProfilePage />} />
                 <Route path="/profil" element={<NicheProfilePage />} />
                 <Route path="/llms.txt" element={<LlmsTxt />} />
+
+                {/* Legacy slug redirects (mirrors public/.htaccess for Lovable hosting) */}
+                <Route path="/landing" element={<Navigate to="/comparateur" replace />} />
+                <Route path="/blog/guide-choisir-assurance-auto-2024" element={<Navigate to="/blog/guide-choisir-assurance-auto-2026" replace />} />
+                <Route path="/blog/loi-lemoine-assurance-emprunteur-2024" element={<Navigate to="/blog/loi-lemoine-assurance-emprunteur-2026" replace />} />
+                <Route path="/blog/resiliation-assurance-droits-2024" element={<Navigate to="/blog/resiliation-assurance-droits-2026" replace />} />
+                <Route path="/blog/mutuelle-sante-reduire-frais-medicaux-2024" element={<Navigate to="/blog/mutuelle-sante-reduire-frais-medicaux-2026" replace />} />
+                <Route path="/blog/assurance-jeune-conducteur-2025-moins-cher" element={<Navigate to="/blog/assurance-jeune-conducteur-2026-moins-cher" replace />} />
+                <Route path="/blog/comparatif-habitation-2025" element={<Navigate to="/blog/comparatif-habitation-2026" replace />} />
+                <Route path="/blog/droits-des-assures-2025" element={<Navigate to="/blog/droits-des-assures-2026" replace />} />
+                <Route path="/blog/loi-lemoine-2025" element={<Navigate to="/blog/loi-lemoine-2026" replace />} />
+                <Route path="/blog/meilleure-assurance-auto-2025" element={<Navigate to="/blog/meilleure-assurance-auto-2026" replace />} />
+                <Route path="/blog/meilleure-assurance-auto-2025-comparatif" element={<Navigate to="/blog/meilleure-assurance-auto-2026-comparatif" replace />} />
+                <Route path="/blog/nouvelle-reglementation-assurance-2025" element={<Navigate to="/blog/nouvelle-reglementation-assurance-2026" replace />} />
+                <Route path="/blog/top-10-meilleures-mutuelles-sante-2025" element={<Navigate to="/blog/top-10-meilleures-mutuelles-sante-2026" replace />} />
+                <Route path="/blog/top-mutuelles-sante-2025" element={<Navigate to="/blog/top-mutuelles-sante-2026" replace />} />
+                <Route path="/blog/accident-seul-sans-tiers-declarer-ou-reparer" element={<Navigate to="/blog/accident-seul-sans-tiers-declarer-reparer" replace />} />
+                <Route path="/blog/arnaques-assurance-courantes-2026" element={<Navigate to="/blog/5-arnaques-assurance-courantes-2026" replace />} />
+                <Route path="/blog/fausse-declaration-assurance-risques-sanctions" element={<Navigate to="/blog/fausse-declaration-assurance-risques-reels" replace />} />
+                <Route path="/blog/loi-hamon-2026-resilier-3-clics-apres-un-an" element={<Navigate to="/blog/loi-hamon-2026-resilier-assurance-3-clics" replace />} />
+                <Route path="/blog/non-lieu-assurance-aucun-assureur-bct" element={<Navigate to="/blog/non-lieu-assurance-aucun-assureur-role-bct" replace />} />
+                <Route path="/blog/voiture-immobilisee-garage-arreter-assurance" element={<Navigate to="/blog/voiture-immobilisee-garage-arreter-assurer" replace />} />
+
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
