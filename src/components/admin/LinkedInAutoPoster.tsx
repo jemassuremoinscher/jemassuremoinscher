@@ -329,14 +329,24 @@ export const LinkedInAutoPoster = () => {
                     )}
                     <div className="flex-1 min-w-0 flex flex-col justify-between">
                       <p className="text-sm font-medium line-clamp-2">{draft.title}</p>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="self-start mt-1"
-                        onClick={() => { setSelectedSlug(draft.slug); setShowAddForm(true); }}
-                      >
-                        <Plus className="h-3 w-3 mr-1" /> Planifier
-                      </Button>
+                      <div className="flex items-center gap-2 mt-1">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => { setSelectedSlug(draft.slug); setShowAddForm(true); }}
+                        >
+                          <Plus className="h-3 w-3 mr-1" /> Planifier
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="text-destructive hover:text-destructive"
+                          onClick={() => dismissDraft(draft.slug, draft.title)}
+                          aria-label={`Supprimer le brouillon ${draft.title}`}
+                        >
+                          <Trash2 className="h-3 w-3" />
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 );
