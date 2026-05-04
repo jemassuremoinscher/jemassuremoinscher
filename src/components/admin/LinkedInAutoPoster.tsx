@@ -33,11 +33,24 @@ export const LinkedInAutoPoster = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [posting, setPosting] = useState<string | null>(null);
+  const [syncingImages, setSyncingImages] = useState(false);
 
   // New post form
   const [selectedSlug, setSelectedSlug] = useState('');
   const [customContent, setCustomContent] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
+
+  const resolveArticleImage = (img: any): string | null => {
+    if (!img) return null;
+    const SITE = 'https://www.jemassuremoinscher.fr';
+    if (typeof img !== 'string') return null;
+    if (img.startsWith('http')) return img;
+    try {
+      return new URL(img, typeof window !== 'undefined' ? window.location.origin : SITE).href;
+    } catch {
+      return `${SITE}${img.startsWith('/') ? '' : '/'}${img}`;
+    }
+  };
 
   const fetchData = useCallback(async () => {
     setLoading(true);
