@@ -238,6 +238,28 @@ function DefaultHeroContent({ t, trackEvent }: { t: (key: string) => string; tra
         </p>
       </div>
 
+      {/* CTA Button + floating badge — moved above savings badge for higher conversion */}
+      <div className="flex justify-center mb-6 animate-fade-in-up-delay">
+        <div className="relative inline-flex items-center">
+          <Link
+            to="/comparateur"
+            onClick={() => trackEvent('insurance_type_click', { category: 'hero_cta', label: 'decouvrez_votre_prix', ref: 'default' })}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] hover:from-[hsl(43_80%_60%)] hover:to-[hsl(38_75%_53%)] text-foreground font-bold text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
+            aria-label="Découvrez votre prix en 2 min">
+            <ZapIcon />
+            Découvrez votre prix en 2 min
+          </Link>
+          <div className="absolute -right-2 -top-3 md:-right-4 md:-top-4 bg-white rounded-lg px-2 py-1 md:px-2.5 md:py-1.5 shadow-md border border-accent/30 rotate-3 pointer-events-none">
+            <span className="text-[10px] md:text-xs font-bold text-primary whitespace-nowrap">
+              -240€<span className="text-muted-foreground font-semibold">/an</span>
+            </span>
+            <span className="block text-[8px] md:text-[9px] text-muted-foreground font-medium leading-tight">
+              moyenne observée
+            </span>
+          </div>
+        </div>
+      </div>
+
       {/* Savings Badge */}
       <div className="flex justify-center mb-6 animate-fade-in-up-delay">
         <Link
@@ -250,25 +272,6 @@ function DefaultHeroContent({ t, trackEvent }: { t: (key: string) => string; tra
             {t('hero.savingsBadge')} <span className="text-accent">{t('hero.savingsPercent')}</span> {t('hero.savingsEnd')}
           </span>
         </Link>
-      </div>
-
-      {/* CTA Button + floating badge */}
-      <div className="flex justify-center mb-6 animate-fade-in-up-delay">
-        <div className="relative inline-flex items-center">
-          <Link
-            to="/comparateur"
-            onClick={() => trackEvent('insurance_type_click', { category: 'hero_cta', label: 'voir_mon_prix', ref: 'default' })}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] hover:from-[hsl(43_80%_60%)] hover:to-[hsl(38_75%_53%)] text-foreground font-bold text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95"
-            aria-label="Voir mon prix en 2 min">
-            <ZapIcon />
-            Voir mon prix en 2 min
-          </Link>
-          <div className="absolute -right-2 -top-3 md:-right-4 md:-top-4 bg-white rounded-lg px-2 py-1 md:px-2.5 md:py-1.5 shadow-md border border-accent/30 rotate-3 pointer-events-none">
-            <span className="text-[10px] md:text-xs font-bold text-primary whitespace-nowrap">
-              -240€<span className="text-muted-foreground font-semibold">/an</span>*
-            </span>
-          </div>
-        </div>
       </div>
 
       {/* Devis counter — social proof */}
