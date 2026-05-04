@@ -65,7 +65,35 @@ export const LinkedInAutoPoster = () => {
     }
   };
 
-  const fetchData = useCallback(async () => {
+  // Editing per-channel descriptions
+  const [editing, setEditing] = useState<Record<string, string>>({}); // key = `${postId}:${channel}`
+  const [savingEdit, setSavingEdit] = useState<string | null>(null);
+  const editKey = (id: string, ch: Channel) => `${id}:${ch}`;
+  const saveChannelOverride = async (post: any, ch: Channel, value: string) => {
+    const key = editKey(post.id, ch);
+    setSavingEdit(key);
+    const next = { ...(post.channel_overrides || {}), [ch]: value };
+    const { error } = await supabase
+      .from('linkedin_auto_posts')
+      .update({ channel_overrides: next } as any)
+      .eq('id', post.id);
+    setSavingEdit(null);
+    if (error) { toast.error('Erreur: ' + error.message); return; }
+    toast.success(`Description ${ch} mise à jour ✅`);
+    setEditing((e) => { const n = { ...e }; delete n[key]; return n; });
+    fetchData();
+  };
+  const resetChannelOverride = async (post: any, ch: Channel) => {
+    const next = { ...(post.channel_overrides || {}) };
+    delete next[ch];
+    const { error } = await supabase
+      .from('linkedin_auto_posts')
+      .update({ channel_overrides: next } as any)
+      .eq('id', post.id);
+    if (error) { toast.error('Erreur: ' + error.message); return; }
+    toast.success(`Description ${ch} réinitialisée`);
+    fetchData();
+  };
     setLoading(true);
     const [configRes, postsRes] = await Promise.all([
       supabase.from('linkedin_config').select('*').limit(1).maybeSingle(),
