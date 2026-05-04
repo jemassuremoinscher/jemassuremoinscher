@@ -553,7 +553,15 @@ export const LinkedInAutoPoster = () => {
                               <Eye className="h-3 w-3 mr-1" /> Aperçu
                             </Link>
                           </Button>
-                          <Button size="sm" onClick={() => { setSelectedSlug(draft.slug); setShowAddForm(true); }}>
+                          <Button
+                            size="sm"
+                            onClick={() => queueAndPostDraftNow(draft.slug)}
+                            disabled={posting === draft.slug}
+                          >
+                            {posting === draft.slug ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <Send className="h-3 w-3 mr-1" />}
+                            Publier maintenant
+                          </Button>
+                          <Button size="sm" variant="outline" onClick={() => { setSelectedSlug(draft.slug); setShowAddForm(true); }}>
                             <Plus className="h-3 w-3 mr-1" /> Ajouter à la file
                           </Button>
                           <Button
