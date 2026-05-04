@@ -25,6 +25,7 @@ import { RedistributionLog } from '@/components/admin/RedistributionLog';
 import { RedistributionButton } from '@/components/admin/RedistributionButton';
 import { RedistributionHistory } from '@/components/admin/RedistributionHistory';
 import { GoogleAnalyticsDashboard } from '@/components/admin/GoogleAnalyticsDashboard';
+import MicrosoftClarityWidget from '@/components/admin/MicrosoftClarityWidget';
 import { SEOSuggestions } from '@/components/admin/SEOSuggestions';
 import SERPPreview from '@/components/admin/SERPPreview';
 import { GeoScoreCard } from '@/components/admin/GeoScoreCard';
@@ -382,8 +383,9 @@ const Admin = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="analytics">
+          <TabsContent value="analytics" className="space-y-6">
             <GoogleAnalyticsDashboard />
+            <MicrosoftClarityWidget />
           </TabsContent>
 
           <TabsContent value="seo">
