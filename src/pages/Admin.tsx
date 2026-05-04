@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, UserCog, TrendingUp, Sparkles, Search, Bell, BellOff, Share2, ShieldCheck } from 'lucide-react';
+import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, UserCog, TrendingUp, Sparkles, Search, Bell, BellOff, Share2, ShieldCheck, FileText, Settings, ChevronDown } from 'lucide-react';
 import { ManualLeadForm } from '@/components/admin/ManualLeadForm';
 import arthurWaving from '@/assets/mascotte/arthur-waving.png';
 import { supabase } from '@/integrations/supabase/client';
