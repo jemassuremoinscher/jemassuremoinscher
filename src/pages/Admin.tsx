@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, UserCog, TrendingUp, Sparkles, Search, Bell, BellOff, Share2, ShieldCheck, FileText, Settings, ChevronDown } from 'lucide-react';
+import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, UserCog, TrendingUp, Sparkles, Search, Bell, BellOff, Share2, ShieldCheck, FileText, Settings, ChevronDown, Wallet } from 'lucide-react';
 import { ManualLeadForm } from '@/components/admin/ManualLeadForm';
 import arthurWaving from '@/assets/mascotte/arthur-waving.png';
 import { supabase } from '@/integrations/supabase/client';
@@ -31,6 +31,7 @@ import SERPPreview from '@/components/admin/SERPPreview';
 import { GeoScoreCard } from '@/components/admin/GeoScoreCard';
 import { LinkedInAutoPoster } from '@/components/admin/LinkedInAutoPoster';
 import { DraftArticlesPublisher } from '@/components/admin/DraftArticlesPublisher';
+import { FinancePanel } from '@/components/admin/FinancePanel';
 
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useLeadNotifications } from '@/hooks/useLeadNotifications';
@@ -228,6 +229,12 @@ const Admin = () => {
         { value: 'supervision', label: 'Supervision', icon: UserCog },
         { value: 'agents', label: 'Commerciaux', icon: Users },
         { value: 'trash', label: 'Corbeille', icon: Trash2 },
+      ],
+    },
+    {
+      label: 'Finance',
+      tabs: [
+        { value: 'finance', label: 'Finance', icon: Wallet },
       ],
     },
   ];
@@ -446,6 +453,10 @@ const Admin = () => {
 
           <TabsContent value="trash">
             <TrashBin />
+          </TabsContent>
+
+          <TabsContent value="finance">
+            <FinancePanel />
           </TabsContent>
         </Tabs>
       </main>
