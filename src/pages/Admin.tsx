@@ -231,6 +231,12 @@ const Admin = () => {
         { value: 'trash', label: 'Corbeille', icon: Trash2 },
       ],
     },
+    {
+      label: 'Finance',
+      tabs: [
+        { value: 'finance', label: 'Finance', icon: Wallet },
+      ],
+    },
   ];
 
   const allTabs = categories.flatMap(c => c.tabs);
