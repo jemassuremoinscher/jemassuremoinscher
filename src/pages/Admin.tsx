@@ -454,6 +454,10 @@ const Admin = () => {
           <TabsContent value="trash">
             <TrashBin />
           </TabsContent>
+
+          <TabsContent value="finance">
+            <FinancePanel />
+          </TabsContent>
         </Tabs>
       </main>
     </div>
