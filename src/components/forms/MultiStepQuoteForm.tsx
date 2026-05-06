@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -112,12 +112,24 @@ const slideVariants = {
 
 export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }: MultiStepQuoteFormProps) => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { trackEvent, trackConversion } = useAnalytics();
   const { honeypotRef, isBot } = useHoneypot();
 
+  // Prefill from URL: ?type=auto&age=35&zipcode=75001
+  const prefillType = searchParams.get('type');
+  const prefillAge = searchParams.get('age') || '';
+  const prefillZip = searchParams.get('zipcode') || searchParams.get('postalCode') || '';
+  const initialFormData: Record<string, string> = {};
+  if (insuranceType === 'comparateur' && prefillType && prefillType in stepConfigsByType) {
+    initialFormData.insuranceType = prefillType;
+  }
+  if (prefillAge) initialFormData.age = prefillAge;
+  if (prefillZip && /^\d{5}$/.test(prefillZip)) initialFormData.postalCode = prefillZip;
+
   const [currentStep, setCurrentStep] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [formData, setFormData] = useState<Record<string, string>>({});
+  const [formData, setFormData] = useState<Record<string, string>>(initialFormData);
   const [contactData, setContactData] = useState({ fullName: '', email: '', phone: '', acceptTerms: false as boolean });
 
   // For comparateur, dynamically inject the full product-specific path after type selection
