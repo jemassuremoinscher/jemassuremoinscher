@@ -112,6 +112,19 @@ serve(async (req) => {
       'Content-Type': 'application/json',
     };
 
+    // Global exclusion filter: drop Lovable preview/sandbox hosts and /admin pages.
+    // Applied to ALL reports so overview cards, daily charts and tables match.
+    const exclusionFilter = {
+      notExpression: {
+        orGroup: {
+          expressions: [
+            { filter: { fieldName: 'hostName', stringFilter: { matchType: 'CONTAINS', value: 'lovable', caseSensitive: false } } },
+            { filter: { fieldName: 'pagePath', stringFilter: { matchType: 'BEGINS_WITH', value: '/admin', caseSensitive: false } } },
+          ],
+        },
+      },
+    };
+
     const [overviewRes, pagesRes, sourcesRes, dailyRes, eventsRes, pricingRes] = await Promise.all([
       // Overview metrics
       fetch(baseUrl, {
@@ -127,6 +140,7 @@ serve(async (req) => {
             { name: 'bounceRate' },
             { name: 'newUsers' },
           ],
+          dimensionFilter: exclusionFilter,
         }),
       }),
       // Top pages
@@ -143,6 +157,7 @@ serve(async (req) => {
           ],
           orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
           limit: 15,
+          dimensionFilter: exclusionFilter,
         }),
       }),
       // Traffic sources
@@ -159,6 +174,7 @@ serve(async (req) => {
           ],
           orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
           limit: 10,
+          dimensionFilter: exclusionFilter,
         }),
       }),
       // Daily visitors
@@ -174,6 +190,7 @@ serve(async (req) => {
             { name: 'screenPageViews' },
           ],
           orderBys: [{ dimension: { dimensionName: 'date' }, desc: false }],
+          dimensionFilter: exclusionFilter,
         }),
       }),
       // Top custom events (engagement)
@@ -189,10 +206,10 @@ serve(async (req) => {
           ],
           orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
           limit: 25,
+          dimensionFilter: exclusionFilter,
         }),
       }),
       // Pricing card flip breakdown by insurance_type + formula_name (custom params).
-      // Uses event_label which is already populated as "<insurance_type>:<formula_name>".
       fetch(baseUrl, {
         method: 'POST',
         headers,
@@ -208,11 +225,18 @@ serve(async (req) => {
             { name: 'totalUsers' },
           ],
           dimensionFilter: {
-            filter: {
-              fieldName: 'eventName',
-              inListFilter: {
-                values: ['pricing_card_flip', 'pricing_card_view_details'],
-              },
+            andGroup: {
+              expressions: [
+                exclusionFilter,
+                {
+                  filter: {
+                    fieldName: 'eventName',
+                    inListFilter: {
+                      values: ['pricing_card_flip', 'pricing_card_view_details'],
+                    },
+                  },
+                },
+              ],
             },
           },
           orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
