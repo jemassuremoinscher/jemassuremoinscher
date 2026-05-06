@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Lock, FileSpreadsheet, TrendingUp, Percent } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
-const OWNER_EMAIL = "jemassuremoinscher@gmail.com";
+const OWNER_EMAIL = "contact@jemassuremoinscher.fr";
 
 export const FinancePanel = () => {
   const { user } = useAuth();
