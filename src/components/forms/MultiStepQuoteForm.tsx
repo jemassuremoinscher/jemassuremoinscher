@@ -160,6 +160,15 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
   const totalSteps = steps.length;
   const progressPercent = ((currentStep + 1) / totalSteps) * 100;
 
+  // Auto-advance past steps already pre-filled from URL params (hero form, deep links).
+  useEffect(() => {
+    if (!step || step.type === 'searching' || step.type === 'contact' || step.type === 'callback') return;
+    if (step.field && formData[step.field]) {
+      setCurrentStep((s) => Math.min(s + 1, steps.length - 1));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentStep, steps.length]);
+
   // Contextual transition messages
   const transitionMessages = [
     'Recherche des meilleurs tarifs en cours…',
