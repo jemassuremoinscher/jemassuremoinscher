@@ -56,8 +56,6 @@ export const HeroQuoteForm = () => {
       className="bg-white rounded-2xl shadow-2xl p-5 md:p-7 space-y-4 border border-white/40"
       aria-label="Formulaire de demande de devis"
     >
-      <h2 className="text-lg md:text-xl font-bold text-foreground">Obtenez votre prix en 2 minutes</h2>
-
       {/* Type */}
       <div className="space-y-1.5">
         <label htmlFor="hero-type" className="text-sm font-semibold text-foreground">
@@ -71,7 +69,7 @@ export const HeroQuoteForm = () => {
             {INSURANCE_TYPES.map((t) => (
               <SelectItem key={t.value} value={t.value}>
                 <span className="flex items-center gap-2">
-                  <img src={t.mascot} alt="" className="h-6 w-6 object-contain shrink-0" loading="lazy" decoding="async" />
+                  <img src={t.mascot} alt="" className="h-9 w-9 object-contain shrink-0" loading="lazy" decoding="async" />
                   <span>Assurance {t.label}</span>
                 </span>
               </SelectItem>
