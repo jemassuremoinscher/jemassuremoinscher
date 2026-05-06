@@ -76,7 +76,20 @@ export const GoogleAnalyticsDashboard = () => {
     );
   }
 
-  const { overview, pages, sources, daily, events, pricing } = data || {};
+  const rawData = data || {};
+  const overview = rawData.overview;
+  const daily = rawData.daily;
+  const events = rawData.events;
+  const pricing = rawData.pricing;
+  // Exclude internal admin pages — they aren't customer traffic.
+  const pages = (rawData.pages || []).filter(
+    (p: any) => !String(p.path || '').toLowerCase().startsWith('/admin')
+  );
+  // Exclude internal/dev sources (lovable.dev preview, sandbox, etc.) — not real customers.
+  const sources = (rawData.sources || []).filter((s: any) => {
+    const src = String(s.source || '').toLowerCase();
+    return !src.includes('lovable.dev') && !src.includes('lovable.app') && !src.includes('lovableproject');
+  });
 
   // Aggregate pricing flips by insurance category (sum of formulas).
   const pricingByCategory = (() => {
