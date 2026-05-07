@@ -215,7 +215,7 @@ const FAQPage = () => {
                 </div>
               </div>
               <img
-                src="/src/assets/mascotte/arthur-question.webp"
+                src={arthurQuestion}
                 alt="Arthur mascotte jemassuremoinscher.fr - questions fréquentes"
                 className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none"
                 width={224}
