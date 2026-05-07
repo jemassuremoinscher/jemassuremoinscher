@@ -22,7 +22,7 @@
       "route": "/contact",
       "outputDir": "contact",
       "title": "Contact | jemassuremoinscher.fr",
-      "description": "Contactez jemassuremoinscher.fr par email ou formulaire. Réponse sous 30 minutes, service 100% en ligne.",
+      "description": "Contactez jemassuremoinscher.fr par email ou formulaire. Réponse sous 10 minutes, service 100% en ligne.",
       "h1": "Contact jemassuremoinscher.fr",
       "intro": "Besoin d'aide pour comparer vos assurances ou finaliser votre demande ? Notre équipe vous répond rapidement, avec un accompagnement 100% en ligne.",
       "sections": [
@@ -32,7 +32,7 @@
         },
         {
           "title": "Délais de réponse",
-          "body": "Page Contact : réponse sous 30 minutes pendant les horaires d'ouverture, avec suivi par un conseiller expert."
+          "body": "Page Contact : réponse sous 10 minutes pendant les horaires d'ouverture, avec suivi par un conseiller expert."
         },
         {
           "title": "Notre siège",

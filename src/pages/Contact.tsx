@@ -50,7 +50,7 @@ const Contact = () => {
     <>
       <SEOOptimized
         title="Contactez-nous | jemassuremoinscher.fr"
-        description="Une question sur votre assurance ? Contactez nos courtiers par email, formulaire ou rappel gratuit. Réponse experte sous 2h, 6j/7."
+        description="Une question sur votre assurance ? Contactez nos courtiers par email, formulaire ou rappel gratuit. Réponse experte sous 10 minutes, 6j/7."
         canonical="https://www.jemassuremoinscher.fr/contact" />
       
       

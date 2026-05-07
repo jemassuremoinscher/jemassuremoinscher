@@ -44,14 +44,14 @@ export const nicheProfiles: NicheData[] = [
     metaDescription: "Résilié pour non-paiement ? Retrouvez un contrat auto adapté. Nos courtiers spécialisés négocient des tarifs jusqu'à 30% moins chers que le marché.",
     keyword: "assurance auto résilié non-paiement",
     heroTitle: "Assurance Auto après Résiliation pour Non-Paiement : Retrouvez un contrat aujourd'hui",
-    heroSubtitle: "Une résiliation ne signifie pas la fin. 87% de nos clients résiliés retrouvent une couverture sous 48h grâce à nos partenaires spécialisés.",
+    heroSubtitle: "Une résiliation ne signifie pas la fin. 87% de nos clients résiliés retrouvent une couverture sous 10 minutes grâce à nos partenaires spécialisés.",
     quickCheckQuestions: [
       { id: "dette", label: "Votre dette auprès de l'ancien assureur est-elle soldée ?", yesText: "Soldée", noText: "En cours" },
       { id: "coupure", label: "Moins de 2 mois sans assurance ?", yesText: "Oui", noText: "Non" },
       { id: "permis", label: "Votre permis est-il valide ?", yesText: "Valide", noText: "Suspendu" },
     ],
-    eligibleMessage: "Profil éligible à nos solutions partenaires. Tarif estimé sous 48h.",
-    notEligibleMessage: "Votre profil nécessite une étude personnalisée. Un courtier vous rappelle sous 24h.",
+    eligibleMessage: "Profil éligible à nos solutions partenaires. Tarif estimé sous 10 minutes.",
+    notEligibleMessage: "Votre profil nécessite une étude personnalisée. Un courtier vous rappelle sous 10 minutes.",
     expertiseBlocks: [
       {
         title: "Le saviez-vous ? Le fichier AGIRA",
@@ -95,7 +95,7 @@ export const nicheProfiles: NicheData[] = [
       { id: "ethylotest", label: "Disposez-vous d'un éthylotest anti-démarrage (EAD) si imposé ?", yesText: "Oui / Non requis", noText: "Non" },
     ],
     eligibleMessage: "Profil éligible. Nous travaillons avec 8 assureurs spécialisés dans les risques aggravés.",
-    notEligibleMessage: "Votre situation nécessite une analyse approfondie. Un courtier spécialisé vous contacte sous 24h.",
+    notEligibleMessage: "Votre situation nécessite une analyse approfondie. Un courtier spécialisé vous contacte sous 10 minutes.",
     expertiseBlocks: [
       {
         title: "Suspension vs. Annulation : ce que l'assureur voit vraiment",
@@ -137,7 +137,7 @@ export const nicheProfiles: NicheData[] = [
       { id: "responsabilite", label: "Étiez-vous responsable à plus de 50% dans la majorité des cas ?", yesText: "Oui", noText: "Non" },
       { id: "resilie", label: "Avez-vous été résilié par votre assureur pour sinistralité ?", yesText: "Oui", noText: "Non" },
     ],
-    eligibleMessage: "Nous avons des solutions adaptées à votre profil. Devis personnalisé sous 48h.",
+    eligibleMessage: "Nous avons des solutions adaptées à votre profil. Devis personnalisé sous 10 minutes.",
     notEligibleMessage: "Votre profil est complexe mais pas impossible. Un expert vous contacte pour une étude approfondie.",
     expertiseBlocks: [
       {
@@ -181,7 +181,7 @@ export const nicheProfiles: NicheData[] = [
       { id: "conducteur", label: "Serez-vous le conducteur principal ?", yesText: "Oui", noText: "Non" },
     ],
     eligibleMessage: "Profil standard primo-assuré. Tarifs compétitifs disponibles chez nos partenaires.",
-    notEligibleMessage: "Votre profil nécessite une étude spécifique. Un courtier vous propose un devis adapté sous 48h.",
+    notEligibleMessage: "Votre profil nécessite une étude spécifique. Un courtier vous propose un devis adapté sous 10 minutes.",
     expertiseBlocks: [
       {
         title: "Le saviez-vous ? CRM neutre ≠ CRM pénalisant",
@@ -224,7 +224,7 @@ export const nicheProfiles: NicheData[] = [
       { id: "conduite", label: "Avez-vous fait la conduite accompagnée ?", yesText: "AAC", noText: "Classique" },
     ],
     eligibleMessage: "Des solutions existent pour votre profil. Nos partenaires spécialisés proposent des tarifs négociés.",
-    notEligibleMessage: "Profil sensible — un courtier analyse votre dossier et vous rappelle sous 24h avec une proposition ferme.",
+    notEligibleMessage: "Profil sensible — un courtier analyse votre dossier et vous rappelle sous 10 minutes avec une proposition ferme.",
     expertiseBlocks: [
       {
         title: "Le saviez-vous ? La puissance fiscale n'est pas la puissance réelle",
@@ -257,7 +257,7 @@ export const nicheProfiles: NicheData[] = [
   {
     slug: "fausse-declaration",
     title: "Assurance Auto Résilié pour Fausse Déclaration — Solutions 2026",
-    metaDescription: "Résilié pour fausse déclaration ? Nos courtiers spécialisés trouvent une assurance même fichage AGIRA. Tarif sous 48h.",
+    metaDescription: "Résilié pour fausse déclaration ? Nos courtiers spécialisés trouvent une assurance même fichage AGIRA. Tarif sous 10 minutes.",
     keyword: "assurance auto fausse déclaration",
     heroTitle: "Résilié pour Fausse Déclaration : retrouvez une assurance auto",
     heroSubtitle: "Une fausse déclaration n'est pas une fin de parcours. Nos partenaires risque aggravé acceptent ces profils sous conditions.",
@@ -266,8 +266,8 @@ export const nicheProfiles: NicheData[] = [
       { id: "ancien", label: "Plus de 6 mois depuis la résiliation ?", yesText: "Oui", noText: "Non" },
       { id: "permis", label: "Permis valide aujourd'hui ?", yesText: "Valide", noText: "Suspendu" },
     ],
-    eligibleMessage: "Profil étudié sous 48h par nos partenaires risque aggravé.",
-    notEligibleMessage: "Étude personnalisée requise. Un courtier vous rappelle sous 24h.",
+    eligibleMessage: "Profil étudié sous 10 minutes par nos partenaires risque aggravé.",
+    notEligibleMessage: "Étude personnalisée requise. Un courtier vous rappelle sous 10 minutes.",
     expertiseBlocks: [
       { title: "Fichage AGIRA et conséquences", content: "La résiliation pour fausse déclaration est inscrite 5 ans au fichier AGIRA. Tous les assureurs y ont accès. Mais la majoration appliquée dépend de la nature : omission (oubli) vs mensonge intentionnel. Les courtiers spécialisés savent argumenter votre dossier." },
     ],
@@ -295,7 +295,7 @@ export const nicheProfiles: NicheData[] = [
       { id: "sinistres", label: "Moins de 3 sinistres responsables sur 24 mois ?", yesText: "Oui", noText: "Non" },
       { id: "permis", label: "Permis valide ?", yesText: "Valide", noText: "Suspendu" },
     ],
-    eligibleMessage: "Plusieurs assureurs partenaires acceptent votre profil. Devis sous 48h.",
+    eligibleMessage: "Plusieurs assureurs partenaires acceptent votre profil. Devis sous 10 minutes.",
     notEligibleMessage: "Profil complexe — étude approfondie en 24h.",
     expertiseBlocks: [
       { title: "Le coefficient bonus-malus", content: "Le coef se réduit de 5% par an sans sinistre, mais augmente de 25% par sinistre responsable. Au-delà de 1,5, vous entrez dans le risque aggravé. À 3,5, c'est le BCT qui prend le relais." },
@@ -324,8 +324,8 @@ export const nicheProfiles: NicheData[] = [
       { id: "releve", label: "Avez-vous un relevé d'information étranger ?", yesText: "Oui", noText: "Non" },
       { id: "residence", label: "Résidence française établie ?", yesText: "Oui", noText: "Non" },
     ],
-    eligibleMessage: "Profil éligible. Tarif personnalisé sous 48h.",
-    notEligibleMessage: "Étude de cas — un courtier vous appelle sous 24h.",
+    eligibleMessage: "Profil éligible. Tarif personnalisé sous 10 minutes.",
+    notEligibleMessage: "Étude de cas — un courtier vous appelle sous 10 minutes.",
     expertiseBlocks: [
       { title: "Reconnaissance du bonus étranger", content: "Si vous venez de l'UE/EEE, votre relevé d'information est reconnu (directive 2009/103/CE). Hors UE, certains accords bilatéraux s'appliquent (Suisse, Maroc, Tunisie). Sinon, vous repartez à coef 1,00 — mais pas en risque aggravé." },
     ],
@@ -353,7 +353,7 @@ export const nicheProfiles: NicheData[] = [
       { id: "km", label: "Moins de 10 000 km/an ?", yesText: "Oui", noText: "Non" },
       { id: "sinistres", label: "0 sinistre responsable depuis 3 ans ?", yesText: "Oui", noText: "Non" },
     ],
-    eligibleMessage: "Profil senior valorisé. Tarif optimisé sous 48h.",
+    eligibleMessage: "Profil senior valorisé. Tarif optimisé sous 10 minutes.",
     notEligibleMessage: "Étude personnalisée selon votre situation.",
     expertiseBlocks: [
       { title: "Visite médicale après 75 ans", content: "Pas obligatoire en France pour le permis B (sauf si suspension médicale). Mais certains assureurs la demandent à partir de 75 ou 80 ans. Anticiper la visite peut vous faire gagner 10-15% sur la prime." },
@@ -411,7 +411,7 @@ export const nicheProfiles: NicheData[] = [
       { id: "wp", label: "Plaques W ou WW ou homologation en cours ?", yesText: "Oui", noText: "Non" },
       { id: "controle", label: "Contrôle technique français à jour ?", yesText: "Oui", noText: "À faire" },
     ],
-    eligibleMessage: "Couverture provisoire possible sous 48h.",
+    eligibleMessage: "Couverture provisoire possible sous 10 minutes.",
     notEligibleMessage: "Étude technique requise — courtier vous appelle.",
     expertiseBlocks: [
       { title: "Plaques W garage et assurance temporaire", content: "Avant l'homologation, vous pouvez circuler avec des plaques W (professionnel) ou WW (provisoire 4 mois). Dans les deux cas, une assurance RC est obligatoire. Nos partenaires délivrent des contrats temporaires renouvelables." },
@@ -440,8 +440,8 @@ export const nicheProfiles: NicheData[] = [
       { id: "usage", label: "Plus de 30 000 km/an ?", yesText: "Oui", noText: "Non" },
       { id: "sinistres", label: "0 sinistre responsable sur 12 mois ?", yesText: "Oui", noText: "Non" },
     ],
-    eligibleMessage: "Profil pro éligible. Tarif sous 48h avec garantie marchandises possible.",
-    notEligibleMessage: "Étude pro complète sous 24h.",
+    eligibleMessage: "Profil pro éligible. Tarif sous 10 minutes avec garantie marchandises possible.",
+    notEligibleMessage: "Étude pro complète sous 10 minutes.",
     expertiseBlocks: [
       { title: "Usage privé vs usage professionnel", content: "Si vous déclarez 'usage privé' alors que vous faites du VTC, l'assureur peut refuser toute indemnisation. L'assurance pro coûte +30 à +60% mais elle couvre vraiment votre activité, vos passagers et votre revenu." },
     ],
@@ -490,7 +490,7 @@ export const nicheProfiles: NicheData[] = [
   {
     slug: "delit-de-fuite",
     title: "Assurance Auto après Délit de Fuite — 2026",
-    metaDescription: "Résilié pour délit de fuite ? Nos partenaires risque aggravé étudient votre dossier sous 48h.",
+    metaDescription: "Résilié pour délit de fuite ? Nos partenaires risque aggravé étudient votre dossier sous 10 minutes.",
     keyword: "assurance auto délit de fuite",
     heroTitle: "Délit de Fuite : retrouver une assurance auto",
     heroSubtitle: "Le délit de fuite entraîne souvent une résiliation. Nos partenaires acceptent ces profils sous conditions.",
