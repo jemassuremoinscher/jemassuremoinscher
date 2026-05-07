@@ -35,7 +35,7 @@ const helpLinks = [
     text: "Une question sur votre contrat ?",
     anchor: "Parlez à un conseiller",
     href: "/contact",
-    context: "qui vous rappelle sous 10 minutes.",
+    context: "qui vous rappelle sous 5 minutes.",
   },
 ] as const;
 
