@@ -55,6 +55,15 @@ export const routes: RouteConfig[] = [
   { path: "/profil/frequence-sinistres", changefreq: "weekly", priority: 0.8 },
   { path: "/profil/sans-antecedents", changefreq: "weekly", priority: 0.8 },
   { path: "/profil/jeune-conducteur-voiture-puissante", changefreq: "weekly", priority: 0.8 },
+  { path: "/profil/fausse-declaration", changefreq: "weekly", priority: 0.8 },
+  { path: "/profil/malus-eleve", changefreq: "weekly", priority: 0.8 },
+  { path: "/profil/permis-etranger", changefreq: "weekly", priority: 0.8 },
+  { path: "/profil/senior-75-plus", changefreq: "weekly", priority: 0.8 },
+  { path: "/profil/voiture-collection", changefreq: "weekly", priority: 0.8 },
+  { path: "/profil/vehicule-importe", changefreq: "weekly", priority: 0.8 },
+  { path: "/profil/chauffeur-vtc-taxi", changefreq: "weekly", priority: 0.8 },
+  { path: "/profil/alcoolemie-stupefiants", changefreq: "weekly", priority: 0.8 },
+  { path: "/profil/delit-de-fuite", changefreq: "weekly", priority: 0.8 },
 
   // Comparatifs / Duels
   { path: "/comparatif", changefreq: "weekly", priority: 0.8 },
