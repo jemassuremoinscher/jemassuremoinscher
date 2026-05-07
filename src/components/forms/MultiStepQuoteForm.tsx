@@ -164,6 +164,41 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   const totalSteps = steps.length;
   const progressPercent = ((currentStep + 1) / totalSteps) * 100;
 
+  // Funnel tracking — emit step_view on each step change
+  const reachedSubmitRef = useRef(false);
+  const effectiveType = formData.insuranceType || insuranceType;
+  useEffect(() => {
+    if (!step) return;
+    trackFunnel('step_view', {
+      stepIndex: currentStep,
+      stepId: step.id,
+      insuranceType: effectiveType,
+      metadata: { totalSteps, type: step.type },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentStep, steps.length]);
+
+  // Track form_view once on mount, abandon on unload if not submitted
+  useEffect(() => {
+    trackFunnel('form_view', { stepIndex: 0, stepId: steps[0]?.id, insuranceType: effectiveType });
+    const onLeave = () => {
+      if (!reachedSubmitRef.current) {
+        trackFunnel('abandon', {
+          stepIndex: currentStep,
+          stepId: steps[currentStep]?.id,
+          insuranceType: formData.insuranceType || insuranceType,
+          metadata: { totalSteps: steps.length },
+        });
+      }
+    };
+    window.addEventListener('pagehide', onLeave);
+    return () => {
+      window.removeEventListener('pagehide', onLeave);
+      onLeave();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Auto-advance past steps already pre-filled from URL params (hero form, deep links).
   useEffect(() => {
     if (!step || step.type === 'searching' || step.type === 'contact' || step.type === 'callback') return;
@@ -233,6 +268,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
   const goBack = () => {
     if (currentStep > 0) {
+      trackFunnel('step_back', { stepIndex: currentStep, stepId: steps[currentStep]?.id, insuranceType: effectiveType });
       setDirection(-1);
       setCurrentStep(prev => prev - 1);
     }
@@ -240,6 +276,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
   const handleCardSelect = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    trackFunnel('step_complete', {
+      stepIndex: currentStep,
+      stepId: steps[currentStep]?.id,
+      insuranceType: effectiveType,
+      metadata: { field, value },
+    });
     // Show transition screen with contextual message
     const msg = transitionMessages[currentStep % transitionMessages.length];
     setTransitionScreen(msg);
@@ -257,6 +299,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       return;
     }
     setFormData(prev => ({ ...prev, [field]: value }));
+    trackFunnel('step_complete', {
+      stepIndex: currentStep,
+      stepId: steps[currentStep]?.id,
+      insuranceType: effectiveType,
+      metadata: { field },
+    });
     goNext();
   };
 
