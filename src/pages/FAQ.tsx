@@ -14,6 +14,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Search, ShieldCheck, Wallet, FileText, Phone, HelpCircle, ArrowRight } from "lucide-react";
+import arthurQuestion from "@/assets/mascotte/arthur-question.webp";
 
 type FaqItem = { q: string; a: string };
 type FaqCategory = {
@@ -182,7 +183,7 @@ const FAQPage = () => {
           {/* Hero */}
           <section className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/80 overflow-hidden">
             <div className="container mx-auto px-4 py-14 md:py-20">
-              <div className="max-w-3xl relative z-10">
+              <div className="max-w-[65%] sm:max-w-[70%] md:max-w-2xl relative z-10">
                 <Badge variant="accent" className="mb-4">
                   <HelpCircle aria-hidden="true" /> Aide & Support
                 </Badge>
@@ -213,6 +214,14 @@ const FAQPage = () => {
                   />
                 </div>
               </div>
+              <img
+                src={arthurQuestion}
+                alt="Arthur mascotte jemassuremoinscher.fr - questions fréquentes"
+                className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none"
+                width={224}
+                height={280}
+                loading="lazy"
+              />
             </div>
           </section>
 
