@@ -363,6 +363,13 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       }).catch(console.error);
 
       setIsSuccess(true);
+      reachedSubmitRef.current = true;
+      trackFunnel('submit_success', {
+        stepIndex: currentStep,
+        stepId: steps[currentStep]?.id,
+        insuranceType: insType,
+        metadata: { leadId: insertedQuote?.id },
+      });
       toast.success('Demande envoyée !', { description: 'Un conseiller vous contacte très vite.' });
 
       trackConversion('quote_request', 100);
@@ -402,6 +409,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       }, 2000);
     } catch (error) {
       console.error('Error submitting quote:', error);
+      trackFunnel('submit_error', {
+        stepIndex: currentStep,
+        stepId: steps[currentStep]?.id,
+        insuranceType: formData.insuranceType || insuranceType,
+        metadata: { message: (error as Error)?.message?.slice(0, 200) },
+      });
       toast.error('Erreur', { description: 'Veuillez réessayer.' });
     } finally {
       setIsSubmitting(false);
