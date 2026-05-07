@@ -94,7 +94,7 @@ const GuidesSection = () => {
       id: 1,
       titleKey: 'guides.article1.title',
       excerptKey: 'guides.article1.excerpt',
-      icon: <Scale className="w-10 h-10 md:w-12 md:h-12 text-white" />,
+      icon: <Scale className="w-6 h-6 text-white" />,
       color: "bg-primary",
       gradient: "bg-gradient-to-br from-primary to-primary/70",
       content: language === 'en' ? {
@@ -119,7 +119,7 @@ const GuidesSection = () => {
       id: 2,
       titleKey: 'guides.article2.title',
       excerptKey: 'guides.article2.excerpt',
-      icon: <BookOpen className="w-10 h-10 md:w-12 md:h-12 text-white" />,
+      icon: <BookOpen className="w-6 h-6 text-white" />,
       color: "bg-accent",
       gradient: "bg-gradient-to-br from-accent to-accent/70",
       content: language === 'en' ? {
@@ -148,7 +148,7 @@ const GuidesSection = () => {
       id: 3,
       titleKey: 'guides.article3.title',
       excerptKey: 'guides.article3.excerpt',
-      icon: <FileText className="w-10 h-10 md:w-12 md:h-12 text-white" />,
+      icon: <FileText className="w-6 h-6 text-white" />,
       color: "bg-primary",
       gradient: "bg-gradient-to-br from-primary/80 to-accent/80",
       content: language === 'en' ? {
