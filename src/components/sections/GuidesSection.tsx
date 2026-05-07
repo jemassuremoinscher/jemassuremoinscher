@@ -220,20 +220,18 @@ const GuidesSection = () => {
           </p>
         </motion.div>
 
-        {/* Horizontal stacking cards */}
-        <div className="relative -mx-4 px-4 md:mx-0 md:px-0">
-          <div className="flex items-stretch gap-4 md:gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide pl-4 md:pl-0 md:overflow-visible">
-            {articles.map((article, index) => (
-              <GuideCard
-                key={article.id}
-                article={article}
-                index={index}
-                total={articles.length}
-                onOpen={handleOpenArticle}
-                t={t}
-              />
-            ))}
-          </div>
+        {/* Grid of cards — harmonized with ClientCases */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          {articles.map((article, index) => (
+            <GuideCard
+              key={article.id}
+              article={article}
+              index={index}
+              total={articles.length}
+              onOpen={handleOpenArticle}
+              t={t}
+            />
+          ))}
         </div>
       </div>
 
