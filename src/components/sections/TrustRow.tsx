@@ -1,5 +1,5 @@
 import { Star, Scale, BadgeCheck } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import oriasLogo from "@/assets/logos/orias.jpg";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
