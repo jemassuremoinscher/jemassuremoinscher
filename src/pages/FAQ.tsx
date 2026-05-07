@@ -14,6 +14,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Search, ShieldCheck, Wallet, FileText, Phone, HelpCircle, ArrowRight } from "lucide-react";
+import arthurQuestion from "@/assets/mascotte/arthur-question.webp";
 
 type FaqItem = { q: string; a: string };
 type FaqCategory = {
