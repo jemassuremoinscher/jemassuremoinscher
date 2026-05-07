@@ -568,26 +568,8 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         </div>
       </div>
 
-      {/* Trust block — Google Review + social proof */}
-      <div className="mt-5 rounded-2xl border border-border/50 bg-muted/50 px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-        {/* Google review */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-0.5 text-accent" aria-label="Note 4.9 sur 5">
-            {[1, 2, 3, 4, 5].map(i => (
-              <svg key={i} className="w-4 h-4" viewBox="0 0 20 20" fill={i <= 4 ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5">
-                <path d="M10 1l2.39 4.94 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.62l5.34-.78L10 1z" />
-              </svg>
-            ))}
-          </div>
-          <span className="text-sm text-foreground">
-            <span className="font-bold text-base">4,9</span>/5 — Google Reviews
-          </span>
-        </div>
-        {/* Social proof */}
-        <p className="text-sm text-muted-foreground">
-          Déjà <span className="font-bold text-foreground">+1000</span> clients assurés via notre comparateur
-        </p>
-      </div>
+
+
     </div>
   );
 };
