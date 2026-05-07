@@ -361,7 +361,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   return (
     <div className={`w-full max-w-2xl mx-auto ${className}`} id="quote-form">
       {/* Glass container */}
-      <div className="relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50 shadow-[var(--shadow-lg)] overflow-hidden">
+      <div className={`relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50 shadow-[var(--shadow-lg)] overflow-hidden ${fixedHeight ? 'flex flex-col h-[640px]' : ''}`}>
 
         {/* Step banner — urgency + progress */}
         {step.type !== 'searching' && step.type !== 'callback' && !transitionScreen && (
