@@ -230,10 +230,10 @@ const FAQPage = () => {
           </section>
 
           {/* Category filter */}
-          <section className="border-b border-border/40 bg-background sticky top-16 z-20">
-            <div className="container mx-auto px-4 py-4">
+          <section className="border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 sticky top-14 md:top-16 z-20">
+            <div className="container mx-auto px-0 md:px-4 py-3">
               <div
-                className="flex gap-2 overflow-x-auto scrollbar-hide"
+                className="flex gap-2 overflow-x-auto scrollbar-hide px-4 md:px-0 snap-x"
                 role="tablist"
                 aria-label="Filtrer par catégorie"
               >
@@ -243,7 +243,7 @@ const FAQPage = () => {
                   aria-selected={activeCat === "all"}
                   onClick={() => setActiveCat("all")}
                   data-no-md
-                  className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`shrink-0 snap-start whitespace-nowrap rounded-full px-3.5 py-2 text-xs sm:text-sm font-medium transition-colors ${
                     activeCat === "all"
                       ? "bg-primary text-primary-foreground"
                       : "bg-muted text-muted-foreground hover:bg-muted/70"
@@ -262,13 +262,13 @@ const FAQPage = () => {
                       aria-selected={active}
                       onClick={() => setActiveCat(c.id)}
                       data-no-md
-                      className={`flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                      className={`shrink-0 snap-start flex items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-2 text-xs sm:text-sm font-medium transition-colors ${
                         active
                           ? "bg-primary text-primary-foreground"
                           : "bg-muted text-muted-foreground hover:bg-muted/70"
                       }`}
                     >
-                      <Icon className="w-4 h-4" aria-hidden="true" />
+                      <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" aria-hidden="true" />
                       {c.label}
                     </button>
                   );
