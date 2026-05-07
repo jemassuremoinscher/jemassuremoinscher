@@ -404,4 +404,89 @@ All colors MUST be HSL.
     background-size: 200% 100%;
     animation: step-shimmer 1.5s ease-in-out infinite;
   }
+
+  /* ============================================
+     MD3 EXPRESSIVE MOTION SYSTEM
+     Inspired by Material Design 3 Expressive
+     Easing tokens + reveal-on-scroll utilities
+  ============================================ */
+  :root {
+    /* MD3 Expressive easing tokens */
+    --md-emphasized: cubic-bezier(0.2, 0, 0, 1);
+    --md-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+    --md-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+    --md-spring-fast: cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* MD3 durations */
+    --md-duration-short: 200ms;
+    --md-duration-medium: 400ms;
+    --md-duration-long: 550ms;
+  }
+
+  @keyframes md-reveal-up {
+    from { opacity: 0; transform: translate3d(0, 28px, 0) scale(0.985); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  }
+  @keyframes md-reveal-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes md-reveal-scale {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* Base: hidden until in view (uses :where for low specificity) */
+  .md-reveal {
+    opacity: 0;
+    will-change: opacity, transform;
+  }
+  .md-reveal.is-visible {
+    animation: md-reveal-up var(--md-duration-long) var(--md-emphasized-decelerate) both;
+  }
+  .md-reveal-fade.is-visible {
+    animation: md-reveal-fade var(--md-duration-medium) var(--md-emphasized) both;
+  }
+  .md-reveal-scale.is-visible {
+    animation: md-reveal-scale var(--md-duration-long) var(--md-spring-fast) both;
+  }
+
+  /* Stagger children when parent has .md-stagger */
+  .md-stagger.is-visible > * {
+    animation: md-reveal-up var(--md-duration-long) var(--md-emphasized-decelerate) both;
+  }
+  .md-stagger.is-visible > *:nth-child(1) { animation-delay: 0ms; }
+  .md-stagger.is-visible > *:nth-child(2) { animation-delay: 70ms; }
+  .md-stagger.is-visible > *:nth-child(3) { animation-delay: 140ms; }
+  .md-stagger.is-visible > *:nth-child(4) { animation-delay: 210ms; }
+  .md-stagger.is-visible > *:nth-child(5) { animation-delay: 280ms; }
+  .md-stagger.is-visible > *:nth-child(6) { animation-delay: 350ms; }
+  .md-stagger.is-visible > *:nth-child(n+7) { animation-delay: 420ms; }
+
+  /* Expressive interactive transitions (Google-like state layers) */
+  .md-interactive {
+    transition: transform var(--md-duration-short) var(--md-emphasized),
+                box-shadow var(--md-duration-medium) var(--md-emphasized),
+                background-color var(--md-duration-short) var(--md-emphasized);
+  }
+  .md-interactive:hover {
+    transform: translateY(-2px);
+  }
+  .md-interactive:active {
+    transform: translateY(0) scale(0.98);
+    transition-duration: var(--md-duration-short);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .md-reveal,
+    .md-reveal-fade,
+    .md-reveal-scale,
+    .md-stagger > * {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .md-interactive { transition: none !important; }
+    .md-interactive:hover,
+    .md-interactive:active { transform: none !important; }
+  }
 }

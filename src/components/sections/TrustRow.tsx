@@ -1,5 +1,5 @@
 import { Star, Scale, BadgeCheck } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import oriasLogo from "@/assets/logos/orias.jpg";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
@@ -19,6 +19,15 @@ const arthurVariants = {
 
 const TrustRow = () => {
   const { t } = useLanguage();
+  const prefersReducedMotion = useReducedMotion();
+
+  const arthurReveal = prefersReducedMotion
+    ? { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.2 } } }
+    : arthurVariants;
+  const arthurFloat = prefersReducedMotion
+    ? undefined
+    : { x: [0, 4, 0, -4, 0] };
+
 
   const handleArthurClick = () => {
     const target = document.getElementById('hero-quote-form') || document.getElementById('quote-form');
@@ -98,9 +107,9 @@ const TrustRow = () => {
           <motion.button
             type="button"
             onClick={handleArthurClick}
-            variants={arthurVariants}
-            whileHover={{ y: -6, scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            variants={arthurReveal}
+            whileHover={prefersReducedMotion ? undefined : { y: -6, scale: 1.02 }}
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
             aria-label="Être rappelé sous 5 minutes par Arthur, ouvrir le formulaire de contact"
             className="col-span-2 lg:col-span-1 bg-primary rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(124,58,237,0.3)] hover:shadow-[0_16px_32px_-10px_rgba(124,58,237,0.6)] transition-shadow border border-primary-foreground/10 flex flex-col items-center text-center gap-3 relative overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
           >
@@ -111,8 +120,8 @@ const TrustRow = () => {
               className="h-10 w-auto object-contain drop-shadow-lg"
               loading="lazy"
               decoding="async"
-              animate={{ x: [0, 4, 0, -4, 0] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+              animate={arthurFloat}
+              transition={prefersReducedMotion ? undefined : { duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
             />
             <p className="text-sm font-bold text-white">Rappel sous 5 min</p>
             <p className="text-xs text-white/90">Arthur vous rappelle immédiatement pour finaliser</p>

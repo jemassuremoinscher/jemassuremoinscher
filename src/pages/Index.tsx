@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SEOOptimized from "@/components/SEOOptimized";
 import DeferredRender from "@/components/performance/DeferredRender";
+import MdReveal from "@/components/motion/MdReveal";
 import { addOrganizationSchema, addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import geoContent from "@/data/geo-content.json";
 
@@ -98,53 +99,53 @@ const Index = () => {
       <Header />
       <main id="main-content" role="main">
         <Hero />
-        <TrustRow />
+        <MdReveal variant="up"><TrustRow /></MdReveal>
 
         <DeferredRender minHeight={300}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[300px]" />}>
-            <Partners />
+            <MdReveal variant="fade"><Partners /></MdReveal>
           </Suspense>
         </DeferredRender>
 
         <DeferredRender minHeight={1200}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[1200px]" />}>
-            <WhyUsComparison />
+            <MdReveal variant="up"><WhyUsComparison /></MdReveal>
           </Suspense>
         </DeferredRender>
 
         <DeferredRender minHeight={760}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[760px]" />}>
-            <HowItWorks />
+            <MdReveal variant="up"><HowItWorks /></MdReveal>
           </Suspense>
         </DeferredRender>
 
         <DeferredRender minHeight={560}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[560px]" />}>
-            <SEOFaq />
+            <MdReveal variant="up"><SEOFaq /></MdReveal>
           </Suspense>
         </DeferredRender>
 
         <DeferredRender minHeight={400}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[400px]" />}>
-            <ClientCases />
+            <MdReveal variant="scale"><ClientCases /></MdReveal>
           </Suspense>
         </DeferredRender>
 
         <DeferredRender minHeight={880}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[880px]" />}>
-            <GuidesSection />
+            <MdReveal variant="up"><GuidesSection /></MdReveal>
           </Suspense>
         </DeferredRender>
 
         <DeferredRender minHeight={720}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[720px]" />}>
-            <SEOContent />
+            <MdReveal variant="fade"><SEOContent /></MdReveal>
           </Suspense>
         </DeferredRender>
 
         <DeferredRender minHeight={280}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[280px]" />}>
-            <ContextualHelp />
+            <MdReveal variant="up"><ContextualHelp /></MdReveal>
           </Suspense>
         </DeferredRender>
 
