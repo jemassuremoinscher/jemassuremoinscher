@@ -455,6 +455,40 @@ const Header = () => {
               </Link>
             </div>
 
+            {/* Social icons */}
+            <div className="px-4 pt-2">
+              <h3 className="px-0 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">Suivez-nous</h3>
+              <div className="flex items-center gap-2 mt-1">
+                <a
+                  href="https://www.instagram.com/jemassuremoinscher/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-muted text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                >
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/jemassuremoinscher"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-muted text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.facebook.com/jemassuremoinscher"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-muted text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                >
+                  <Facebook className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
+
             {/* CTA Footer */}
             <div className="px-4 pt-2 pb-6">
               <Link
