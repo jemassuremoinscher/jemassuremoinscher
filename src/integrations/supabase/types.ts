@@ -807,6 +807,39 @@ export type Database = {
         }
         Relationships: []
       }
+      quote_funnel_events: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          insurance_type: string | null
+          metadata: Json | null
+          session_id: string
+          step_id: string | null
+          step_index: number
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          insurance_type?: string | null
+          metadata?: Json | null
+          session_id: string
+          step_id?: string | null
+          step_index: number
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          insurance_type?: string | null
+          metadata?: Json | null
+          session_id?: string
+          step_id?: string | null
+          step_index?: number
+        }
+        Relationships: []
+      }
       sales_agents: {
         Row: {
           created_at: string
