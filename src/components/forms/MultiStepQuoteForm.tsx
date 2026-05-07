@@ -90,6 +90,8 @@ interface MultiStepQuoteFormProps {
   insuranceType: InsuranceType;
   onComplete?: () => void;
   className?: string;
+  /** Constrain card to fixed height with internal scroll (Hero usage) */
+  fixedHeight?: boolean;
 }
 
 const slideVariants = {
@@ -110,7 +112,7 @@ const slideVariants = {
   }),
 };
 
-export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }: MultiStepQuoteFormProps) => {
+export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', fixedHeight = false }: MultiStepQuoteFormProps) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { trackEvent, trackConversion } = useAnalytics();
@@ -359,7 +361,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
   return (
     <div className={`w-full max-w-2xl mx-auto ${className}`} id="quote-form">
       {/* Glass container */}
-      <div className="relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50 shadow-[var(--shadow-lg)] overflow-hidden">
+      <div className={`relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50 shadow-[var(--shadow-lg)] overflow-hidden ${fixedHeight ? 'flex flex-col h-[640px]' : ''}`}>
 
         {/* Step banner — urgency + progress */}
         {step.type !== 'searching' && step.type !== 'callback' && !transitionScreen && (
@@ -416,7 +418,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
         <input ref={honeypotRef} type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0 }} />
 
         {/* Content area */}
-        <div className="px-6 pb-8 min-h-[420px] flex flex-col">
+        <div className={`px-6 pb-8 flex flex-col ${fixedHeight ? 'flex-1 overflow-y-auto min-h-0' : 'min-h-[420px]'}`}>
           <AnimatePresence mode="wait" custom={direction}>
             {transitionScreen ? (
               <motion.div
@@ -566,26 +568,8 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
         </div>
       </div>
 
-      {/* Trust block — Google Review + social proof */}
-      <div className="mt-5 rounded-2xl border border-border/50 bg-muted/50 px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-        {/* Google review */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-0.5 text-accent" aria-label="Note 4.9 sur 5">
-            {[1, 2, 3, 4, 5].map(i => (
-              <svg key={i} className="w-4 h-4" viewBox="0 0 20 20" fill={i <= 4 ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5">
-                <path d="M10 1l2.39 4.94 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.62l5.34-.78L10 1z" />
-              </svg>
-            ))}
-          </div>
-          <span className="text-sm text-foreground">
-            <span className="font-bold text-base">4,9</span>/5 — Google Reviews
-          </span>
-        </div>
-        {/* Social proof */}
-        <p className="text-sm text-muted-foreground">
-          Déjà <span className="font-bold text-foreground">+1000</span> clients assurés via notre comparateur
-        </p>
-      </div>
+
+
     </div>
   );
 };
@@ -629,15 +613,28 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
               }}
               aria-label={option.label}
             >
-              <div className={`
-                h-14 w-14 md:h-16 md:w-16 rounded-2xl flex items-center justify-center mb-3 transition-all duration-200
-                ${isSelected
-                  ? 'bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]'
-                  : 'bg-muted/60 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
-                }
-              `}>
-                <Icon className="h-7 w-7 md:h-8 md:w-8" />
-              </div>
+              {option.iconImage ? (
+                <div className="h-16 w-16 md:h-20 md:w-20 flex items-center justify-center mb-2">
+                  <img
+                    src={option.iconImage}
+                    alt=""
+                    aria-hidden="true"
+                    className="h-full w-full object-contain drop-shadow-md"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ) : (
+                <div className={`
+                  h-14 w-14 md:h-16 md:w-16 rounded-2xl flex items-center justify-center mb-3 transition-all duration-200
+                  ${isSelected
+                    ? 'bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]'
+                    : 'bg-muted/60 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
+                  }
+                `}>
+                  <Icon className="h-7 w-7 md:h-8 md:w-8" />
+                </div>
+              )}
               <span className="font-semibold text-foreground text-sm md:text-base">{option.label}</span>
               {option.description && (
                 <span className="text-xs text-muted-foreground mt-1 leading-tight">{option.description}</span>

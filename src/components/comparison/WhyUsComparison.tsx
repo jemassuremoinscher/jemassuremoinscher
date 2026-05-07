@@ -129,7 +129,7 @@ const WhyUsComparison = () => {
         {/* Bento Grid - Social Proof */}
         <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
           {/* Google Reviews */}
-          <motion.div variants={itemVariants} className="bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow flex flex-col items-center text-center gap-3">
+          <motion.div variants={itemVariants} className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-shadow flex flex-col items-center text-center gap-3">
               <svg viewBox="0 0 24 24" className="w-8 h-8 flex-shrink-0" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -146,7 +146,7 @@ const WhyUsComparison = () => {
           </motion.div>
 
           {/* ORIAS */}
-          <motion.div variants={itemVariants} className="bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow flex flex-col items-center text-center gap-3">
+          <motion.div variants={itemVariants} className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-shadow flex flex-col items-center text-center gap-3">
               <img
                 src={oriasLogo}
                 alt="ORIAS - Organisme pour le registre unique des intermédiaires en assurance"
@@ -164,7 +164,7 @@ const WhyUsComparison = () => {
           </motion.div>
 
           {/* Courtier Indépendant */}
-          <motion.div variants={itemVariants} className="bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow flex flex-col items-center text-center gap-3">
+          <motion.div variants={itemVariants} className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-shadow flex flex-col items-center text-center gap-3">
             <div className="p-3 rounded-full bg-primary/10">
               <Scale className="w-7 h-7 text-primary" />
             </div>
@@ -173,7 +173,7 @@ const WhyUsComparison = () => {
           </motion.div>
 
           {/* Transparence Totale */}
-          <motion.div variants={itemVariants} className="bg-card rounded-xl p-6 shadow-sm border border-border/50 hover:shadow-md transition-shadow flex flex-col items-center text-center gap-3">
+          <motion.div variants={itemVariants} className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-shadow flex flex-col items-center text-center gap-3">
             <div className="p-3 rounded-full bg-primary/10">
               <BadgeCheck className="w-7 h-7 text-primary" />
             </div>
@@ -181,29 +181,8 @@ const WhyUsComparison = () => {
             <p className="text-xs text-muted-foreground">Aucun frais caché. Service gratuit et sans engagement pour vous.</p>
           </motion.div>
 
-          {/* Arthur Banner */}
-          <motion.div variants={itemVariants} className="md:col-span-2 lg:col-span-4 bg-gradient-to-r from-primary to-primary/90 rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row items-center gap-4 md:gap-8">
-              <motion.img
-                src={arthurThinking}
-                alt="Arthur"
-                className="w-20 h-auto md:w-28"
-                width={112}
-                height={140}
-                loading="lazy"
-                decoding="async"
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <div className="flex-1 text-center md:text-left">
-                <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-                  <MessageCircle className="w-5 h-5 text-accent" />
-                  <span className="text-primary-foreground/80 text-sm font-medium">{t('whyUs.arthurSays')}</span>
-                </div>
-                <p className="text-xl md:text-2xl lg:text-3xl font-bold text-primary-foreground">
-                  {t('whyUs.arthurQuote')} <span className="text-accent">{t('whyUs.bestRates')}</span> !"
-                </p>
-              </div>
-          </motion.div>
+
+
         </motion.div>
       </div>
     </section>
