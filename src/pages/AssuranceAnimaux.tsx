@@ -75,7 +75,7 @@ const AssuranceAnimaux = () => {
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Animaux" }]} />
       <main id="main-content">
-        <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
+        <section className="relative overflow-hidden py-16 md:py-20 bg-gradient-to-b from-primary/[0.06] via-background to-accent/[0.05]">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center relative">
               <ArthurHero
