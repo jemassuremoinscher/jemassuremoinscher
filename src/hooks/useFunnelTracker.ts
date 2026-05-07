@@ -57,7 +57,7 @@ export function useFunnelTracker() {
               step_index: payload.stepIndex,
               step_id: payload.stepId ?? null,
               event_type: eventType,
-              metadata: (payload.metadata ?? {}) as Record<string, unknown>,
+              metadata: (payload.metadata ?? {}) as any,
             },
           ]);
         } catch {
