@@ -247,6 +247,7 @@ const App = () => {
                 <Route path="/cgu" element={<CGU />} />
                 <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/faq" element={<FAQ />} />
                 <Route path="/newsletter-gestion" element={<NewsletterGestion />} />
                 <Route path="/plan-du-site" element={<PlanDuSite />} />
                 <Route path="/sources-et-methodologie" element={<SourcesEtMethodologie />} />
