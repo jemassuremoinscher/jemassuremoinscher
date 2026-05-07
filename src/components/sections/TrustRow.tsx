@@ -19,6 +19,15 @@ const arthurVariants = {
 
 const TrustRow = () => {
   const { t } = useLanguage();
+  const prefersReducedMotion = useReducedMotion();
+
+  const arthurReveal = prefersReducedMotion
+    ? { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.2 } } }
+    : arthurVariants;
+  const arthurFloat = prefersReducedMotion
+    ? undefined
+    : { x: [0, 4, 0, -4, 0] };
+
 
   const handleArthurClick = () => {
     const target = document.getElementById('hero-quote-form') || document.getElementById('quote-form');
