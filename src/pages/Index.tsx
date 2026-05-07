@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SEOOptimized from "@/components/SEOOptimized";
 import DeferredRender from "@/components/performance/DeferredRender";
+import MdReveal from "@/components/motion/MdReveal";
 import { addOrganizationSchema, addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import geoContent from "@/data/geo-content.json";
 
