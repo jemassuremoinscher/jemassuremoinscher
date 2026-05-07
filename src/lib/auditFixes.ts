@@ -18,7 +18,7 @@ export const PAGE_META_CATALOG: { path: string; label: string; defaultTitle: str
   { path: "/blog", label: "Blog", defaultTitle: "Blog Assurance - Conseils & Guides", defaultDesc: "Guides complets, actualités et conseils pour économiser sur vos assurances." },
   { path: "/glossaire", label: "Glossaire", defaultTitle: "Glossaire de l'Assurance", defaultDesc: "Définitions claires de tous les termes d'assurance : franchise, prime, sinistre, responsabilité civile..." },
   { path: "/qui-sommes-nous", label: "Qui sommes-nous", defaultTitle: "Qui sommes-nous | jemassuremoinscher.fr", defaultDesc: "Découvrez notre équipe de courtiers en assurances. Indépendant, transparent, gratuit." },
-  { path: "/contact", label: "Contact", defaultTitle: "Contactez-nous | jemassuremoinscher.fr", defaultDesc: "Besoin d'aide ? Contactez notre équipe de conseillers. Réponse sous 2h." },
+  { path: "/contact", label: "Contact", defaultTitle: "Contactez-nous | jemassuremoinscher.fr", defaultDesc: "Besoin d'aide ? Contactez notre équipe de conseillers. Réponse sous 10 minutes." },
   { path: "/nos-partenaires", label: "Nos Partenaires", defaultTitle: "Nos 50+ Partenaires Assureurs", defaultDesc: "AXA, Allianz, MAIF, Groupama... Découvrez tous nos assureurs partenaires." },
   { path: "/mutuelle-tns", label: "Mutuelle TNS", defaultTitle: "Mutuelle TNS : Meilleure Complémentaire Indépendant", defaultDesc: "Comparez les mutuelles TNS adaptées aux indépendants. Loi Madelin, déduction fiscale. Devis gratuit." },
 ];

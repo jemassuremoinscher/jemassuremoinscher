@@ -13,7 +13,7 @@ const fieldHints: Record<string, string> = {
   vehicleYear: "L'année de mise en circulation figure sur votre carte grise, au champ B.",
   fullName: "Indiquez votre nom tel qu'il apparaît sur vos documents officiels.",
   email: "Nous vous enverrons votre devis personnalisé à cette adresse.",
-  phone: "Un conseiller vous rappelle sous 30 minutes au numéro indiqué.",
+  phone: "Un conseiller vous rappelle sous 10 minutes au numéro indiqué.",
 };
 
 const HINT_DELAY_MS = 10_000;

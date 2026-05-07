@@ -36,7 +36,7 @@ const baseStats = [
 const baseAdvantages = [
   { icon: CheckCircle2, title: "100% gratuit & sans engagement", description: "Aucune carte bancaire, aucun frais caché." },
   { icon: Award, title: "30+ assureurs comparés", description: "AXA, Allianz, MAIF, Matmut, Generali et bien d'autres." },
-  { icon: Phone, title: "Expert dédié — rappel sous 2h", description: "Un humain, jamais un robot, pour finaliser." },
+  { icon: Phone, title: "Expert dédié — rappel sous 10 minutes", description: "Un humain, jamais un robot, pour finaliser." },
   { icon: Lock, title: "Données protégées RGPD", description: "Site SSL, hébergement France, courtier ORIAS." },
 ];
 
@@ -46,7 +46,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     slug: "auto",
     trackingTitle: "Landing Page Assurance Auto",
     seoTitle: "Assurance Auto Moins Chère | Devis Gratuit en 2 min",
-    seoDescription: "Comparez les assurances auto en 2 min. Expert dédié, rappel sous 2h. Économisez jusqu'à 40%.",
+    seoDescription: "Comparez les assurances auto en 2 min. Expert dédié, rappel sous 10 minutes. Économisez jusqu'à 40%.",
     seoKeyword: "assurance auto moins chère",
     seoKeywords: "devis assurance auto, comparateur assurance voiture, assurance auto pas chère",
     topBarText: "🚗 Offre spéciale Auto : jusqu'à -40% la 1ère année !",
@@ -74,17 +74,17 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     faqs: [
       { question: "Comment comparer les assurances auto ?", answer: "Remplissez notre formulaire en 2 min avec votre véhicule et profil. Vous recevrez plusieurs devis personnalisés." },
       { question: "Combien peut-on économiser ?", answer: "En moyenne, nos clients économisent jusqu'à 40 % en comparant 30+ assureurs partenaires." },
-      { question: "Est-ce vraiment gratuit ?", answer: "Oui, 100 % gratuit et sans engagement. Un expert vous rappelle sous 2 h pour finaliser." },
+      { question: "Est-ce vraiment gratuit ?", answer: "Oui, 100 % gratuit et sans engagement. Un expert vous rappelle sous 10 minutes pour finaliser." },
     ],
     bottomCtaTitle: "Prêt à économiser sur votre assurance auto ?",
-    bottomCtaDescription: "Devis gratuit en 2 minutes — rappel d'un expert sous 2 h.",
+    bottomCtaDescription: "Devis gratuit en 2 minutes — rappel d'un expert sous 10 minutes.",
   },
 
   moto: {
     slug: "moto",
     trackingTitle: "Landing Page Assurance Moto",
     seoTitle: "Assurance Moto Moins Chère | Devis Gratuit",
-    seoDescription: "Comparez les assurances moto en 2 min. Économisez jusqu'à 40 %. Rappel expert sous 2 h.",
+    seoDescription: "Comparez les assurances moto en 2 min. Économisez jusqu'à 40 %. Rappel expert sous 10 minutes.",
     seoKeyword: "assurance moto moins chère",
     seoKeywords: "devis assurance moto, comparateur moto, assurance scooter",
     topBarText: "🏍️ Offre Moto : -35 % la 1ère année + assistance 0 km offerte",
@@ -143,7 +143,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     ],
     advantages: baseAdvantages,
     testimonials: [
-      { name: "Émilie R.", location: "Toulouse", text: "Dégât des eaux géré sous 48 h. Et j'économise 180 €/an, je recommande !" },
+      { name: "Émilie R.", location: "Toulouse", text: "Dégât des eaux géré sous 10 minutes. Et j'économise 180 €/an, je recommande !" },
       { name: "Pierre D.", location: "Rennes", text: "Propriétaire d'une maison de 120 m² : assurance moins chère que mon studio précédent." },
       { name: "Léa F.", location: "Strasbourg", text: "Étudiante, j'avais besoin d'une assurance vraiment pas chère. Trouvée à 6,90 €/mois." },
     ],
@@ -508,7 +508,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     seoKeyword: "assurance parc accrobranche",
     seoKeywords: "assurance tyrolienne, assurance loisirs aventure, RC parc aventure, norme EN 15567",
     noindex: true,
-    topBarText: "🌲 Spécialiste loisirs aventure — 20 assureurs de niche, rappel sous 30 minutes",
+    topBarText: "🌲 Spécialiste loisirs aventure — 20 assureurs de niche, rappel sous 10 minutes",
     badgeText: "Métiers atypiques",
     heroTitle: "Assurance Parc",
     heroHighlight: "Accrobranche & Aventure",
@@ -537,11 +537,11 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     ],
     faqs: [
       { question: "Pourquoi un courtier spécialisé ?", answer: "Les généralistes refusent les activités classées risques aggravés. Nous travaillons avec 20 assureurs de niche (Hiscox, Albingia, MMA Pro Sport, Generali Évolution…)." },
-      { question: "Combien de temps pour une attestation ?", answer: "Rappel sous 30 minutes, attestation 48 à 72 h après dossier complet (Kbis, dernier bilan, descriptif activité)." },
+      { question: "Combien de temps pour une attestation ?", answer: "Rappel sous 10 minutes, attestation 48 à 72 h après dossier complet (Kbis, dernier bilan, descriptif activité)." },
       { question: "Mes animateurs sont-ils couverts ?", answer: "RC exploitation oui ; pour leur santé personnelle souscrivez en plus AT/MP et garantie individuelle accident." },
     ],
     bottomCtaTitle: "Sécurisez votre parc dès aujourd'hui",
-    bottomCtaDescription: "Étude gratuite et personnalisée — rappel sous 30 minutes par un courtier expert.",
+    bottomCtaDescription: "Étude gratuite et personnalisée — rappel sous 10 minutes par un courtier expert.",
   },
 
   "cordiste-btp": {
@@ -552,7 +552,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     seoKeyword: "assurance cordiste",
     seoKeywords: "assurance travaux en hauteur, RC pro cordiste, assurance BTP spécialisé, IRATA",
     noindex: true,
-    topBarText: "⛏️ Cordistes & BTP en hauteur — 20 assureurs spécialisés, rappel sous 30 minutes",
+    topBarText: "⛏️ Cordistes & BTP en hauteur — 20 assureurs spécialisés, rappel sous 10 minutes",
     badgeText: "Métiers atypiques",
     heroTitle: "Assurance",
     heroHighlight: "Cordiste & BTP en hauteur",
@@ -585,7 +585,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
       { question: "Faut-il une certification IRATA ?", answer: "Pas obligatoire pour souscrire mais elle réduit fortement la prime — démontre votre maîtrise du risque." },
     ],
     bottomCtaTitle: "Travaillez en hauteur en toute sécurité",
-    bottomCtaDescription: "Étude personnalisée — rappel sous 30 minutes par un courtier spécialisé risques aggravés.",
+    bottomCtaDescription: "Étude personnalisée — rappel sous 10 minutes par un courtier spécialisé risques aggravés.",
   },
 
   evenementiel: {

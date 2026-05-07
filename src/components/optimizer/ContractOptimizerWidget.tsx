@@ -276,7 +276,7 @@ export default function ContractOptimizerWidget() {
                   </div>
                   <p className="text-base font-bold text-foreground">C'est envoyé !</p>
                   <p className="text-sm text-muted-foreground">
-                    Un conseiller auto vous contactera sous 24h avec votre analyse personnalisée.
+                    Un conseiller auto vous contactera sous 10 minutes avec votre analyse personnalisée.
                   </p>
                   <a
                     href="/comparateur?step=1&profile=auto"

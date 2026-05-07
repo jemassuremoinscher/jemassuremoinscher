@@ -4302,7 +4302,7 @@ Oui. Le statut juridique ne réduit ni les obligations légales ni les risques. 
 
 Un moniteur d'escalade SAE/SNE, un guide de canyoning, un pilote de parapente biplace : trois métiers, trois niveaux de risque, trois tarifs RC qui varient de **280 € à 1 800 €/an**. Le **Code du sport (article L.321-1)** impose à tout encadrant rémunéré une assurance RC couvrant ses pratiquants — sans elle, c'est l'exercice illégal de la profession (1 an de prison, 15 000 € d'amende).
 
-> **L'essentiel** — Tarifs 2026 : moniteur escalade 280–700 €/an, guide kayak 450–950 €/an, pilote parapente biplace 900–1 800 €/an, BE alpinisme polyvalent 1 200–2 500 €/an. Notre courtage divise en moyenne ces montants par 1,5. [→ Devis personnalisé sous 48 h](/assurance-metiers-atypiques)
+> **L'essentiel** — Tarifs 2026 : moniteur escalade 280–700 €/an, guide kayak 450–950 €/an, pilote parapente biplace 900–1 800 €/an, BE alpinisme polyvalent 1 200–2 500 €/an. Notre courtage divise en moyenne ces montants par 1,5. [→ Devis personnalisé sous 10 minutes](/assurance-metiers-atypiques)
 
 ## 1. Le statut juridique impose la RC
 
@@ -4454,7 +4454,7 @@ Ne signez jamais une nouvelle RC sans déclarer le sinistre — la fausse décla
 
 En 2024, le festival « Les Échappées » en Bretagne a dû annuler à 48 h du J-1 pour intempéries — sans garantie annulation, c'est **380 000 €** qui se sont envolés. La RC organisateur couvre les dommages aux tiers, mais elle ne rembourse **jamais** la perte d'exploitation. Distinguer ces deux garanties, c'est le b.a.-ba de tout organisateur en 2026.
 
-> **L'essentiel** — Pour un festival de 5 000 personnes (1 jour), comptez 1 800 à 4 200 € de pack assurance complet (RC + annulation + bénévoles + matériel). Pour un marathon de 2 000 coureurs : 800 à 1 600 €. Notre courtage divise ces montants par 1,7 grâce à la mise en concurrence d'Albingia, Hiscox, Circles Group et Gras Savoye Événement. [→ Devis sur-mesure sous 48 h](/assurance-metiers-atypiques)
+> **L'essentiel** — Pour un festival de 5 000 personnes (1 jour), comptez 1 800 à 4 200 € de pack assurance complet (RC + annulation + bénévoles + matériel). Pour un marathon de 2 000 coureurs : 800 à 1 600 €. Notre courtage divise ces montants par 1,7 grâce à la mise en concurrence d'Albingia, Hiscox, Circles Group et Gras Savoye Événement. [→ Devis sur-mesure sous 10 minutes](/assurance-metiers-atypiques)
 
 ## 1. RC Organisateur : obligation légale dès 1 spectateur payant
 
@@ -4475,7 +4475,7 @@ L'article **L.211-1 du Code des assurances** impose à tout organisateur d'évé
 | Grand | 5 000–30 000 | 20 M€ | 2,5 M€ |
 | Très grand | > 30 000 | 50 M€ + | 5 M€ + |
 
-> **Conseil d'Arthur :** Les communes et préfectures exigent désormais des **attestations à 10 M€ minimum** dès 1 000 spectateurs. Anticipez : sans attestation conforme, pas d'arrêté municipal d'autorisation. [→ Attestation conforme sous 48 h](/assurance-metiers-atypiques)
+> **Conseil d'Arthur :** Les communes et préfectures exigent désormais des **attestations à 10 M€ minimum** dès 1 000 spectateurs. Anticipez : sans attestation conforme, pas d'arrêté municipal d'autorisation. [→ Attestation conforme sous 10 minutes](/assurance-metiers-atypiques)
 
 ## 2. Garantie Annulation : la garantie qui sauve les budgets
 
