@@ -7,9 +7,29 @@ import geoContent from "@/data/geo-content.json";
 
 const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
 const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
+const arthurVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.92 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring" as const, stiffness: 180, damping: 14, delay: 0.4 },
+  },
+};
 
 const TrustRow = () => {
   const { t } = useLanguage();
+
+  const handleArthurClick = () => {
+    const target = document.getElementById('hero-quote-form') || document.getElementById('quote-form');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const firstInput = target.querySelector<HTMLElement>('input, select, textarea, button');
+      firstInput?.focus({ preventScroll: true });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <section className="py-12 md:py-16 bg-muted/40" aria-label="Pourquoi nous faire confiance">
@@ -19,7 +39,7 @@ const TrustRow = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4"
+          className="grid grid-cols-2 lg:grid-cols-5 gap-4"
         >
           {/* Google Reviews */}
           <motion.div variants={itemVariants} className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
