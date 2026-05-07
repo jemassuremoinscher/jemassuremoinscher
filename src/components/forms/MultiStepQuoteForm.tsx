@@ -10,6 +10,7 @@ import { ArrowLeft, ArrowRight, Loader2, CheckCircle2, Lock, Phone, Mail, User, 
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { useFunnelTracker } from '@/hooks/useFunnelTracker';
 import { useHoneypot } from '@/hooks/useHoneypot';
 import { trackGoogleAdsConversionWithParams } from '@/utils/googleAdsTracking';
 import { trackMetaLead } from '@/utils/metaPixelTracking';
@@ -116,6 +117,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { trackEvent, trackConversion } = useAnalytics();
+  const { track: trackFunnel } = useFunnelTracker();
   const { honeypotRef, isBot } = useHoneypot();
 
   // Prefill from URL: ?type=auto&age=35&zipcode=75001
