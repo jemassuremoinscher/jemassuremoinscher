@@ -181,29 +181,8 @@ const WhyUsComparison = () => {
             <p className="text-xs text-muted-foreground">Aucun frais caché. Service gratuit et sans engagement pour vous.</p>
           </motion.div>
 
-          {/* Arthur Banner */}
-          <motion.div variants={itemVariants} className="md:col-span-2 lg:col-span-4 bg-gradient-to-r from-primary to-primary/90 rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row items-center gap-4 md:gap-8">
-              <motion.img
-                src={arthurThinking}
-                alt="Arthur"
-                className="w-20 h-auto md:w-28"
-                width={112}
-                height={140}
-                loading="lazy"
-                decoding="async"
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <div className="flex-1 text-center md:text-left">
-                <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-                  <MessageCircle className="w-5 h-5 text-accent" />
-                  <span className="text-primary-foreground/80 text-sm font-medium">{t('whyUs.arthurSays')}</span>
-                </div>
-                <p className="text-xl md:text-2xl lg:text-3xl font-bold text-primary-foreground">
-                  {t('whyUs.arthurQuote')} <span className="text-accent">{t('whyUs.bestRates')}</span> !"
-                </p>
-              </div>
-          </motion.div>
+
+
         </motion.div>
       </div>
     </section>
