@@ -144,31 +144,41 @@ All colors MUST be HSL.
     min-width: 44px;
   }
 
-  /* Focus visible styles for keyboard navigation — MD3 Expressive (3px ring) */
+  /* Focus visible styles — MD3 Expressive + WCAG (3px outline + 2px offset) */
   *:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.55);
-    border-radius: 0.375rem;
-    transition: box-shadow 150ms cubic-bezier(0.2, 0, 0, 1);
+    outline: 3px solid hsl(var(--primary));
+    outline-offset: 2px;
+    transition: outline-color 150ms cubic-bezier(0.2, 0, 0, 1);
   }
 
-  /* Inputs: border → primary on focus, MD3 timing */
+  /* Inputs: border → primary on focus + inset 2px shadow, MD3 timing */
   input,
   textarea,
   select {
-    transition: border-color 150ms cubic-bezier(0.2, 0, 0, 1),
-                box-shadow 150ms cubic-bezier(0.2, 0, 0, 1),
-                background-color 150ms cubic-bezier(0.2, 0, 0, 1);
+    transition: border-color 150ms ease-in-out,
+                box-shadow 150ms ease-in-out,
+                background-color 150ms ease-in-out;
   }
   input:focus,
+  input:focus-visible,
   textarea:focus,
-  select:focus {
+  textarea:focus-visible,
+  select:focus,
+  select:focus-visible {
+    outline: none;
     border-color: hsl(var(--primary));
+    box-shadow: inset 0 0 0 2px hsl(var(--primary));
   }
 
   /* Links: primary color, underline on hover */
-  a:not([class*="btn"]):not([class*="nav"]):not([class*="Button"]) {
-    transition: color 150ms cubic-bezier(0.2, 0, 0, 1);
+  a:not([class*="btn"]):not([class*="nav"]):not([class*="Button"]):not([class*="Card"]) {
+    transition: color 150ms ease-in-out, text-decoration-color 150ms ease-in-out;
+  }
+  a:not([class*="btn"]):not([class*="nav"]):not([class*="Button"]):not([class*="Card"]):hover {
+    color: hsl(var(--primary));
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
   }
 
   /* Skip to main content link for accessibility */
@@ -230,6 +240,51 @@ All colors MUST be HSL.
   .md-dropdown {
     animation: md-dropdown-in 250ms cubic-bezier(0.05, 0.7, 0.1, 1) both;
     box-shadow: var(--elevation-4);
+  }
+
+  /* MD3 Expressive — global defaults applied across the site */
+  button:not([data-no-md]),
+  [role="button"]:not([data-no-md]) {
+    transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                filter 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  button:not([data-no-md]):not(:disabled):hover,
+  [role="button"]:not([data-no-md]):hover {
+    box-shadow: var(--elevation-3);
+    filter: brightness(1.05);
+  }
+  button:not([data-no-md]):active,
+  [role="button"]:not([data-no-md]):active {
+    transform: scale(0.97);
+  }
+
+  [data-slot="card"],
+  .md-auto-card {
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--elevation-2);
+  }
+  [data-slot="card"]:hover,
+  .md-auto-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-3);
+  }
+
+  [data-radix-popper-content-wrapper] > * {
+    box-shadow: var(--elevation-4) !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    button:not([data-no-md]),
+    [role="button"]:not([data-no-md]),
+    [data-slot="card"],
+    .md-auto-card {
+      transition: none !important;
+      transform: none !important;
+    }
   }
 
   /* Semantic color utilities */
