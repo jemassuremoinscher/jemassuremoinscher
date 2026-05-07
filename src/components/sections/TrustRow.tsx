@@ -31,7 +31,10 @@ const TrustRow = () => {
               <img src={oriasLogo} alt="Logo Orias" className="h-10 w-auto object-contain" loading="lazy" decoding="async" />
             </div>
             <h3 className="font-bold text-base text-foreground">Orias certifié</h3>
-            <p className="text-xs text-muted-foreground mt-1">Courtier immatriculé</p>
+            <p className="text-xs font-mono text-primary font-semibold mt-1">N° 24 XXX XXX</p>
+            <a href="https://www.orias.fr" target="_blank" rel="noopener noreferrer" className="text-[11px] text-muted-foreground hover:text-primary underline underline-offset-2 mt-1 inline-block">
+              Vérifier sur orias.fr →
+            </a>
           </article>
 
           {/* Indépendant */}
