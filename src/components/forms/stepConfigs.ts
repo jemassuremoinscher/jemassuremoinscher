@@ -67,7 +67,7 @@ const contactStep: FormStep = {
   id: 'contact',
   type: 'contact',
   title: 'Recevez votre devis personnalisé',
-  subtitle: 'Un conseiller vous rappelle sous 10 minutes avec les meilleures offres.',
+  subtitle: 'Un conseiller vous rappelle sous 5 minutes avec les meilleures offres.',
 };
 
 const postalCodeStep: FormStep = {
@@ -909,7 +909,7 @@ export const stepConfigsByType: Record<InsuranceType, FormStep[]> = {
       id: 'callback',
       type: 'callback',
       title: 'Votre dossier mérite une étude personnalisée',
-      subtitle: 'Pour les métiers atypiques, aucune grille standard ne donne de prix juste. Un courtier expert vous rappelle sous 10 minutes avec une estimation argumentée et 2 à 3 propositions de nos 20 assureurs de niche.',
+      subtitle: 'Pour les métiers atypiques, aucune grille standard ne donne de prix juste. Un courtier expert vous rappelle sous 5 minutes avec une estimation argumentée et 2 à 3 propositions de nos 20 assureurs de niche.',
     },
   ],
 };

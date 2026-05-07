@@ -100,7 +100,7 @@ const AssuranceMetiersAtypiques = () => {
     {
       icon: Clock,
       title: "Rappel & devis sous 10 minutes",
-      description: "Un courtier dédié vous rappelle sous 10 minutes avec une étude personnalisée et 2 à 3 propositions argumentées.",
+      description: "Un courtier dédié vous rappelle sous 5 minutes avec une étude personnalisée et 2 à 3 propositions argumentées.",
     },
     {
       icon: Shield,
@@ -295,7 +295,7 @@ const AssuranceMetiersAtypiques = () => {
               {[
                 { step: "1", title: "Questionnaire détaillé activité", desc: "9 questions ciblées sur votre activité, vos certifications, votre fréquentation et votre sinistralité — pour un dossier solide dès le départ." },
                 { step: "2", title: "Mise en concurrence 20 assureurs", desc: "Nous sollicitons uniquement les assureurs spécialisés ayant un appétit pour votre secteur — pas de refus inutiles." },
-                { step: "3", title: "Rappel & propositions sous 10 minutes", desc: "Un courtier dédié vous rappelle sous 10 minutes avec 2 à 3 propositions argumentées. Souscription et attestation immédiate à la signature." },
+                { step: "3", title: "Rappel & propositions sous 10 minutes", desc: "Un courtier dédié vous rappelle sous 5 minutes avec 2 à 3 propositions argumentées. Souscription et attestation immédiate à la signature." },
               ].map((s) => (
                 <Card key={s.step} className="p-6">
                   <div className="text-5xl font-bold text-primary/20 mb-3">{s.step}</div>
@@ -387,7 +387,7 @@ const AssuranceMetiersAtypiques = () => {
           <InsuranceBottomHub
             currentPage="rcpro"
             ctaTitle="Votre activité mérite une couverture sur-mesure"
-            ctaDescription="Demande de rappel gratuite et sans engagement. Un courtier dédié vous rappelle sous 10 minutes avec une étude personnalisée et 2 à 3 propositions argumentées."
+            ctaDescription="Demande de rappel gratuite et sans engagement. Un courtier dédié vous rappelle sous 5 minutes avec une étude personnalisée et 2 à 3 propositions argumentées."
             ctaButtonLabel="Demander mon rappel sous 10 minutes"
             ctaMascotSrc={arthurBtp}
             ctaMascotAlt="Arthur — Métiers Atypiques"

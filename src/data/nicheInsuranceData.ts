@@ -51,7 +51,7 @@ export const nicheProfiles: NicheData[] = [
       { id: "permis", label: "Votre permis est-il valide ?", yesText: "Valide", noText: "Suspendu" },
     ],
     eligibleMessage: "Profil éligible à nos solutions partenaires. Tarif estimé sous 10 minutes.",
-    notEligibleMessage: "Votre profil nécessite une étude personnalisée. Un courtier vous rappelle sous 10 minutes.",
+    notEligibleMessage: "Votre profil nécessite une étude personnalisée. Un courtier vous rappelle sous 5 minutes.",
     expertiseBlocks: [
       {
         title: "Le saviez-vous ? Le fichier AGIRA",
@@ -224,7 +224,7 @@ export const nicheProfiles: NicheData[] = [
       { id: "conduite", label: "Avez-vous fait la conduite accompagnée ?", yesText: "AAC", noText: "Classique" },
     ],
     eligibleMessage: "Des solutions existent pour votre profil. Nos partenaires spécialisés proposent des tarifs négociés.",
-    notEligibleMessage: "Profil sensible — un courtier analyse votre dossier et vous rappelle sous 10 minutes avec une proposition ferme.",
+    notEligibleMessage: "Profil sensible — un courtier analyse votre dossier et vous rappelle sous 5 minutes avec une proposition ferme.",
     expertiseBlocks: [
       {
         title: "Le saviez-vous ? La puissance fiscale n'est pas la puissance réelle",
@@ -267,7 +267,7 @@ export const nicheProfiles: NicheData[] = [
       { id: "permis", label: "Permis valide aujourd'hui ?", yesText: "Valide", noText: "Suspendu" },
     ],
     eligibleMessage: "Profil étudié sous 10 minutes par nos partenaires risque aggravé.",
-    notEligibleMessage: "Étude personnalisée requise. Un courtier vous rappelle sous 10 minutes.",
+    notEligibleMessage: "Étude personnalisée requise. Un courtier vous rappelle sous 5 minutes.",
     expertiseBlocks: [
       { title: "Fichage AGIRA et conséquences", content: "La résiliation pour fausse déclaration est inscrite 5 ans au fichier AGIRA. Tous les assureurs y ont accès. Mais la majoration appliquée dépend de la nature : omission (oubli) vs mensonge intentionnel. Les courtiers spécialisés savent argumenter votre dossier." },
     ],

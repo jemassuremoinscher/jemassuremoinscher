@@ -1009,7 +1009,7 @@ function ContactStep({
         </div>
         <h3 className="text-xl font-bold text-foreground">Demande envoyée !</h3>
         <p className="text-sm text-muted-foreground text-center max-w-sm">
-          Un expert vous rappelle sous 10 minutes avec les meilleures offres personnalisées.
+          Un expert vous rappelle sous 5 minutes avec les meilleures offres personnalisées.
         </p>
       </motion.div>
     );
@@ -1164,7 +1164,7 @@ function CallbackStep({
         </div>
         <h3 className="text-xl font-bold text-foreground">Demande reçue !</h3>
         <p className="text-sm text-muted-foreground text-center max-w-sm">
-          Un courtier expert métiers atypiques vous rappelle sous 10 minutes avec une étude personnalisée et 2 à 3 propositions chiffrées.
+          Un courtier expert métiers atypiques vous rappelle sous 5 minutes avec une étude personnalisée et 2 à 3 propositions chiffrées.
         </p>
       </motion.div>
     );

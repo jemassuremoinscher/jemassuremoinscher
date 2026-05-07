@@ -74,7 +74,7 @@ export const landingConfigs: Record<string, AdsLandingProps> = {
     faqs: [
       { question: "Comment comparer les assurances auto ?", answer: "Remplissez notre formulaire en 2 min avec votre véhicule et profil. Vous recevrez plusieurs devis personnalisés." },
       { question: "Combien peut-on économiser ?", answer: "En moyenne, nos clients économisent jusqu'à 40 % en comparant 30+ assureurs partenaires." },
-      { question: "Est-ce vraiment gratuit ?", answer: "Oui, 100 % gratuit et sans engagement. Un expert vous rappelle sous 10 minutes pour finaliser." },
+      { question: "Est-ce vraiment gratuit ?", answer: "Oui, 100 % gratuit et sans engagement. Un expert vous rappelle sous 5 minutes pour finaliser." },
     ],
     bottomCtaTitle: "Prêt à économiser sur votre assurance auto ?",
     bottomCtaDescription: "Devis gratuit en 2 minutes — rappel d'un expert sous 10 minutes.",
