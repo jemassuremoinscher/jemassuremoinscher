@@ -182,46 +182,50 @@ const FAQPage = () => {
         <main id="main-content" className="flex-grow">
           {/* Hero */}
           <section className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/80 overflow-hidden">
-            <div className="container mx-auto px-4 py-14 md:py-20">
-              <div className="max-w-[65%] sm:max-w-[70%] md:max-w-2xl relative z-10">
-                <Badge variant="accent" className="mb-4">
-                  <HelpCircle aria-hidden="true" /> Aide & Support
-                </Badge>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                  Questions fréquentes
-                </h1>
-                <p className="text-base md:text-lg text-white/85 leading-relaxed mb-6">
-                  Tout ce que vous devez savoir sur la comparaison d'assurance,
-                  la souscription, les garanties et notre accompagnement.
-                </p>
+            <div className="container mx-auto px-4 py-10 md:py-16 lg:py-20">
+              <div className="grid md:grid-cols-[1fr_auto] items-end gap-6 md:gap-8">
+                <div className="relative z-10 max-w-2xl">
+                  <Badge variant="accent" className="mb-4">
+                    <HelpCircle aria-hidden="true" /> Aide & Support
+                  </Badge>
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4">
+                    Questions fréquentes
+                  </h1>
+                  <p className="text-sm sm:text-base md:text-lg text-white/85 leading-relaxed mb-5 md:mb-6">
+                    Tout ce que vous devez savoir sur la comparaison
+                    d'assurance, la souscription, les garanties et notre
+                    accompagnement.
+                  </p>
 
-                {/* Search */}
-                <div className="relative max-w-xl">
-                  <Search
-                    className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
-                    aria-hidden="true"
-                  />
-                  <label htmlFor="faq-search" className="sr-only">
-                    Rechercher une question
-                  </label>
-                  <Input
-                    id="faq-search"
-                    type="search"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Rechercher une question…"
-                    className="pl-9 bg-white"
-                  />
+                  {/* Search */}
+                  <div className="relative max-w-xl">
+                    <Search
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
+                      aria-hidden="true"
+                    />
+                    <label htmlFor="faq-search" className="sr-only">
+                      Rechercher une question
+                    </label>
+                    <Input
+                      id="faq-search"
+                      type="search"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                      placeholder="Rechercher une question…"
+                      className="pl-9 bg-white w-full"
+                    />
+                  </div>
                 </div>
+
+                <img
+                  src={arthurQuestion}
+                  alt="Arthur mascotte jemassuremoinscher.fr - questions fréquentes"
+                  className="hidden md:block justify-self-end h-40 lg:h-56 object-contain opacity-95 pointer-events-none select-none"
+                  width={224}
+                  height={280}
+                  loading="lazy"
+                />
               </div>
-              <img
-                src={arthurQuestion}
-                alt="Arthur mascotte jemassuremoinscher.fr - questions fréquentes"
-                className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none"
-                width={224}
-                height={280}
-                loading="lazy"
-              />
             </div>
           </section>
 
