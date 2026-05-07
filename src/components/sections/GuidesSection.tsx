@@ -26,7 +26,7 @@ interface Article {
   };
 }
 
-const GuideCard = ({ article, index, total, onOpen, t }: {
+const GuideCard = ({ article, index, onOpen, t }: {
   article: Article;
   index: number;
   total: number;
@@ -35,67 +35,49 @@ const GuideCard = ({ article, index, total, onOpen, t }: {
 }) => {
   return (
     <motion.article
-      initial={{ opacity: 0, x: 40 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.12 }}
-      whileHover={{ y: -6, rotate: -1 }}
-      className="group cursor-pointer flex-shrink-0 w-[82vw] snap-center md:flex-1 md:w-auto md:min-w-0"
+      transition={{ delay: index * 0.12 }}
+      className="group relative overflow-hidden rounded-2xl border border-border/40 bg-card shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer"
       onClick={() => onOpen(article)}
-      style={{ 
-        zIndex: total - index,
-        // Negative margin creates the overlapping/stacking effect
-        marginLeft: index === 0 ? '0' : '-24px',
-      }}
     >
-      <div className="relative overflow-hidden rounded-3xl border border-border/40 bg-card shadow-[0_8px_32px_-8px_hsl(var(--primary)/0.12)] backdrop-blur-sm transition-all duration-500 hover:shadow-[0_24px_64px_-12px_hsl(var(--primary)/0.3)] hover:border-primary/30 h-full">
-        {/* Decorative gradient orbs */}
-        <div className={`absolute -top-20 -right-20 w-60 h-60 rounded-full ${article.gradient} opacity-20 blur-3xl group-hover:opacity-40 transition-opacity duration-500`} />
-        <div className={`absolute -bottom-16 -left-16 w-40 h-40 rounded-full ${article.gradient} opacity-10 blur-2xl`} />
+      {/* Decorative gradient orb */}
+      <div
+        className={`absolute -top-16 -right-16 w-48 h-48 rounded-full ${article.gradient} opacity-10 blur-3xl group-hover:opacity-20 transition-opacity duration-500`}
+        aria-hidden="true"
+      />
 
-        <div className="relative z-10 p-7 md:p-8 flex flex-col h-full min-h-[340px]">
-          {/* Top row: badge + number */}
-          <div className="flex items-center justify-between mb-5">
-            <Badge className={`${article.color} border-0 text-white font-semibold text-xs tracking-wide uppercase`}>
-              {t('common.advice')}
-            </Badge>
-            <span className="text-6xl font-black text-foreground/[0.04] select-none leading-none">
-              0{index + 1}
-            </span>
-          </div>
+      <div className="relative z-10 p-6 md:p-7 flex flex-col h-full min-h-[280px]">
+        {/* Header: badge + number */}
+        <div className="flex items-center justify-between mb-4">
+          <Badge className={`${article.color} border-0 text-white font-semibold text-[11px] tracking-wide uppercase rounded-full px-2.5 py-1`}>
+            {t('common.advice')}
+          </Badge>
+          <span className="text-3xl font-black text-foreground/[0.06] select-none leading-none">
+            0{index + 1}
+          </span>
+        </div>
 
-          {/* Mascot or Icon */}
-          {article.mascot ? (
-            <div className="w-20 h-20 mb-5 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-500">
-              <img
-                src={article.mascot}
-                alt={article.mascotAlt || "Arthur mascotte"}
-                className="w-full h-full object-contain"
-                width={80}
-                height={80}
-                loading="lazy"
-              />
-            </div>
-          ) : (
-            <div className={`w-16 h-16 rounded-2xl ${article.gradient} flex items-center justify-center shadow-lg mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
-              {article.icon}
-            </div>
-          )}
+        {/* Icon */}
+        <div className={`w-12 h-12 rounded-xl ${article.gradient} flex items-center justify-center shadow-sm mb-4 group-hover:scale-105 transition-transform duration-300`}>
+          {article.icon}
+        </div>
 
-          {/* Content */}
-          <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300 leading-tight">
-            {t(article.titleKey)}
-          </h3>
+        {/* Title */}
+        <h3 className="text-base md:text-lg font-bold text-foreground mb-2 leading-tight group-hover:text-primary transition-colors duration-300">
+          {t(article.titleKey)}
+        </h3>
 
-          <p className="text-muted-foreground text-sm leading-relaxed mb-5 flex-grow line-clamp-3">
-            {t(article.excerptKey)}
-          </p>
+        {/* Description */}
+        <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-grow line-clamp-3">
+          {t(article.excerptKey)}
+        </p>
 
-          {/* CTA */}
-          <div className="flex items-center gap-2 text-primary font-semibold group-hover:gap-4 transition-all duration-300 mt-auto">
-            <span className="text-sm">{t('common.readMore')}</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </div>
+        {/* CTA */}
+        <div className="flex items-center gap-2 text-primary font-semibold pt-4 border-t border-border/30 group-hover:gap-3 transition-all duration-300">
+          <span className="text-sm">{t('common.readMore')}</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </div>
       </div>
     </motion.article>
@@ -112,7 +94,7 @@ const GuidesSection = () => {
       id: 1,
       titleKey: 'guides.article1.title',
       excerptKey: 'guides.article1.excerpt',
-      icon: <Scale className="w-10 h-10 md:w-12 md:h-12 text-white" />,
+      icon: <Scale className="w-6 h-6 text-white" />,
       color: "bg-primary",
       gradient: "bg-gradient-to-br from-primary to-primary/70",
       content: language === 'en' ? {
@@ -137,7 +119,7 @@ const GuidesSection = () => {
       id: 2,
       titleKey: 'guides.article2.title',
       excerptKey: 'guides.article2.excerpt',
-      icon: <BookOpen className="w-10 h-10 md:w-12 md:h-12 text-white" />,
+      icon: <BookOpen className="w-6 h-6 text-white" />,
       color: "bg-accent",
       gradient: "bg-gradient-to-br from-accent to-accent/70",
       content: language === 'en' ? {
@@ -166,7 +148,7 @@ const GuidesSection = () => {
       id: 3,
       titleKey: 'guides.article3.title',
       excerptKey: 'guides.article3.excerpt',
-      icon: <FileText className="w-10 h-10 md:w-12 md:h-12 text-white" />,
+      icon: <FileText className="w-6 h-6 text-white" />,
       color: "bg-primary",
       gradient: "bg-gradient-to-br from-primary/80 to-accent/80",
       content: language === 'en' ? {
@@ -238,20 +220,18 @@ const GuidesSection = () => {
           </p>
         </motion.div>
 
-        {/* Horizontal stacking cards */}
-        <div className="relative -mx-4 px-4 md:mx-0 md:px-0">
-          <div className="flex items-stretch gap-4 md:gap-5 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide pl-4 md:pl-0 md:overflow-visible">
-            {articles.map((article, index) => (
-              <GuideCard
-                key={article.id}
-                article={article}
-                index={index}
-                total={articles.length}
-                onOpen={handleOpenArticle}
-                t={t}
-              />
-            ))}
-          </div>
+        {/* Grid of cards — harmonized with ClientCases */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          {articles.map((article, index) => (
+            <GuideCard
+              key={article.id}
+              article={article}
+              index={index}
+              total={articles.length}
+              onOpen={handleOpenArticle}
+              t={t}
+            />
+          ))}
         </div>
       </div>
 
