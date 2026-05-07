@@ -15,6 +15,7 @@ const ContractOptimizerWidget = lazy(() => import("@/components/optimizer/Contra
 const SkipToMain = lazy(() => import("@/components/SkipToMain"));
 const RouteTracker = lazy(() => import("@/components/RouteTracker"));
 const StickyCTA = lazy(() => import("@/components/StickyCTA"));
+const GlobalMdReveal = lazy(() => import("@/components/motion/GlobalMdReveal"));
 
 // Auth-protected routes wrapper — lazy loaded to avoid Supabase init on public pages
 const AuthProvider = lazy(() => import("@/contexts/AuthContext").then(m => ({ default: m.AuthProvider })));
