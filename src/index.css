@@ -36,6 +36,22 @@ All colors MUST be HSL.
     --input: 220 13% 91%;
     --ring: 271 81% 56%;
 
+    /* MD3 Expressive extended tokens */
+    --tertiary: 271 91% 65%;
+    --tertiary-foreground: 0 0% 100%;
+    --error: 0 84% 60%;
+    --error-foreground: 0 0% 100%;
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+    --outline: 220 13% 91%;
+    --surface: 0 0% 100%;
+
+    /* MD3 Elevation system */
+    --elevation-1: 0 1px 3px rgba(0,0,0,0.12);
+    --elevation-2: 0 3px 6px rgba(0,0,0,0.16);
+    --elevation-3: 0 10px 20px rgba(0,0,0,0.19);
+    --elevation-4: 0 15px 25px rgba(0,0,0,0.25);
+
     --radius: 1.5rem;
 
     /* Fintech soft shadows */
@@ -128,9 +144,31 @@ All colors MUST be HSL.
     min-width: 44px;
   }
 
-  /* Focus visible styles for keyboard navigation */
+  /* Focus visible styles for keyboard navigation — MD3 Expressive (3px ring) */
   *:focus-visible {
-    @apply outline-none ring-2 ring-primary ring-offset-2 rounded;
+    outline: none;
+    box-shadow: 0 0 0 3px hsl(var(--primary) / 0.55);
+    border-radius: 0.375rem;
+    transition: box-shadow 150ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  /* Inputs: border → primary on focus, MD3 timing */
+  input,
+  textarea,
+  select {
+    transition: border-color 150ms cubic-bezier(0.2, 0, 0, 1),
+                box-shadow 150ms cubic-bezier(0.2, 0, 0, 1),
+                background-color 150ms cubic-bezier(0.2, 0, 0, 1);
+  }
+  input:focus,
+  textarea:focus,
+  select:focus {
+    border-color: hsl(var(--primary));
+  }
+
+  /* Links: primary color, underline on hover */
+  a:not([class*="btn"]):not([class*="nav"]):not([class*="Button"]) {
+    transition: color 150ms cubic-bezier(0.2, 0, 0, 1);
   }
 
   /* Skip to main content link for accessibility */
@@ -153,6 +191,56 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
+  /* MD3 Elevation utilities */
+  .elevation-1 { box-shadow: var(--elevation-1); }
+  .elevation-2 { box-shadow: var(--elevation-2); }
+  .elevation-3 { box-shadow: var(--elevation-3); }
+  .elevation-4 { box-shadow: var(--elevation-4); }
+
+  /* MD3 Expressive button — elevation lift on hover */
+  .md-btn {
+    transition: box-shadow var(--md-duration-short, 200ms) cubic-bezier(0.4, 0, 0.2, 1),
+                transform var(--md-duration-short, 200ms) cubic-bezier(0.4, 0, 0.2, 1),
+                background-color var(--md-duration-short, 200ms) cubic-bezier(0.4, 0, 0.2, 1),
+                filter var(--md-duration-short, 200ms) cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--elevation-1);
+  }
+  .md-btn:hover {
+    box-shadow: var(--elevation-3);
+    filter: brightness(1.05);
+  }
+  .md-btn:active { transform: scale(0.97); box-shadow: var(--elevation-2); }
+
+  /* MD3 Card hover — translateY -2px + elevation up */
+  .md-card {
+    transition: box-shadow var(--md-duration-medium, 400ms) cubic-bezier(0.2, 0, 0, 1),
+                transform var(--md-duration-short, 200ms) cubic-bezier(0.2, 0, 0, 1);
+    box-shadow: var(--elevation-2);
+  }
+  .md-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-3);
+  }
+
+  /* MD3 Dropdown — slide + fade in 250ms */
+  @keyframes md-dropdown-in {
+    from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .md-dropdown {
+    animation: md-dropdown-in 250ms cubic-bezier(0.05, 0.7, 0.1, 1) both;
+    box-shadow: var(--elevation-4);
+  }
+
+  /* Semantic color utilities */
+  .text-error { color: hsl(var(--error)); }
+  .bg-error { background-color: hsl(var(--error)); }
+  .text-success { color: hsl(var(--success)); }
+  .bg-success { background-color: hsl(var(--success)); }
+  .text-tertiary { color: hsl(var(--tertiary)); }
+  .bg-tertiary { background-color: hsl(var(--tertiary)); }
+  .border-outline { border-color: hsl(var(--outline)); }
+
   .text-gradient {
     @apply bg-clip-text text-transparent;
     background-image: var(--accent-gradient);
