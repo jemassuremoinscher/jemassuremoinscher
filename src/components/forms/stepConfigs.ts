@@ -16,6 +16,8 @@ export interface StepOption {
   label: string;
   description?: string;
   icon: any;
+  /** Optional mascot image rendered in place of the flat icon */
+  iconImage?: string;
 }
 
 export interface FormStep {
@@ -755,18 +757,18 @@ export const stepConfigsByType: Record<InsuranceType, FormStep[]> = {
       subtitle: 'Nous comparerons 50+ offres pour vous.',
       field: 'insuranceType',
       options: [
-        { value: 'auto', label: 'Auto', description: 'Voiture et utilitaire', icon: Car },
-        { value: 'moto', label: 'Moto', description: '2 roues et scooter', icon: Bike },
-        { value: 'habitation', label: 'Habitation', description: 'Maison ou appartement', icon: Home },
-        { value: 'sante', label: 'Santé', description: 'Mutuelle et complémentaire', icon: Heart },
-        { value: 'pno', label: 'PNO', description: 'Propriétaire non occupant', icon: Building },
-        { value: 'gli', label: 'GLI', description: 'Garantie loyers impayés', icon: Lock },
-        { value: 'vie', label: 'Assurance Vie', description: 'Épargne et succession', icon: Landmark },
-        { value: 'pret', label: 'Assurance Emprunteur', description: 'Crédit immobilier', icon: FileText },
-        { value: 'prevoyance', label: 'Prévoyance', description: 'Décès, invalidité, revenus', icon: Umbrella },
-        { value: 'rc_pro', label: 'RC Pro', description: 'Responsabilité professionnelle', icon: Briefcase },
-        { value: 'mrp', label: 'MRP', description: 'Locaux et matériel pro', icon: Building2 },
-        { value: 'gestion_locative', label: 'Gestion locative', description: 'Honoraires et services bailleur', icon: KeyRound },
+        { value: 'auto', label: 'Auto', description: 'Voiture et utilitaire', icon: Car, iconImage: mascotCar },
+        { value: 'moto', label: 'Moto', description: '2 roues et scooter', icon: Bike, iconImage: mascotMoto },
+        { value: 'habitation', label: 'Habitation', description: 'Maison ou appartement', icon: Home, iconImage: mascotHouse },
+        { value: 'sante', label: 'Santé', description: 'Mutuelle et complémentaire', icon: Heart, iconImage: mascotSick },
+        { value: 'pno', label: 'PNO', description: 'Propriétaire non occupant', icon: Building, iconImage: mascotHouse },
+        { value: 'gli', label: 'GLI', description: 'Garantie loyers impayés', icon: Lock, iconImage: mascotDetective },
+        { value: 'vie', label: 'Assurance Vie', description: 'Épargne et succession', icon: Landmark, iconImage: mascotIdea },
+        { value: 'pret', label: 'Assurance Emprunteur', description: 'Crédit immobilier', icon: FileText, iconImage: mascotThinking },
+        { value: 'prevoyance', label: 'Prévoyance', description: 'Décès, invalidité, revenus', icon: Umbrella, iconImage: mascotInjured },
+        { value: 'rc_pro', label: 'RC Pro', description: 'Responsabilité professionnelle', icon: Briefcase, iconImage: mascotBusiness },
+        { value: 'mrp', label: 'MRP', description: 'Locaux et matériel pro', icon: Building2, iconImage: mascotBusiness },
+        { value: 'gestion_locative', label: 'Gestion locative', description: 'Honoraires et services bailleur', icon: KeyRound, iconImage: mascotHouse },
       ],
     },
     {
