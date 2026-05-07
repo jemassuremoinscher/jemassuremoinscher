@@ -57,9 +57,7 @@ const TrustRow = () => {
           </article>
           {/* Rappel 5 min */}
           <article className="rounded-3xl bg-primary p-6 text-center shadow-[0_4px_16px_-6px_rgba(124,58,237,0.3)] hover:shadow-[0_12px_28px_-10px_rgba(124,58,237,0.5)] hover:-translate-y-1 transition-all border border-primary-foreground/10 relative overflow-hidden group">
-            <div className="mx-auto mb-3 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15">
-              <img src={arthurKarting} alt="Arthur en karting fonçant pour vous rappeler" className="h-12 w-auto object-contain" loading="lazy" decoding="async" />
-            </div>
+            <img src={arthurKarting} alt="Arthur en karting fonçant pour vous rappeler" className="mx-auto mb-3 h-20 w-auto object-contain drop-shadow-lg" loading="lazy" decoding="async" />
             <h3 className="font-bold text-base text-white">Rappel sous 5 min</h3>
             <p className="text-xs text-white/80 mt-1">Arthur vous rappelle immédiatement pour finaliser</p>
           </article>
