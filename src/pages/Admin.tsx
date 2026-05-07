@@ -25,6 +25,7 @@ import { RedistributionLog } from '@/components/admin/RedistributionLog';
 import { RedistributionButton } from '@/components/admin/RedistributionButton';
 import { RedistributionHistory } from '@/components/admin/RedistributionHistory';
 import { GoogleAnalyticsDashboard } from '@/components/admin/GoogleAnalyticsDashboard';
+import FunnelAnalytics from '@/components/admin/FunnelAnalytics';
 import MicrosoftClarityWidget from '@/components/admin/MicrosoftClarityWidget';
 import { SEOSuggestions } from '@/components/admin/SEOSuggestions';
 import SERPPreview from '@/components/admin/SERPPreview';
@@ -389,6 +390,7 @@ const Admin = () => {
           </TabsContent>
 
           <TabsContent value="analytics" className="space-y-6">
+            <FunnelAnalytics />
             <GoogleAnalyticsDashboard />
             <MicrosoftClarityWidget />
           </TabsContent>
