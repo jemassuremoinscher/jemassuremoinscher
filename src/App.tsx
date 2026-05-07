@@ -88,6 +88,7 @@ const MentionsLegales = lazy(() => import("./pages/MentionsLegales"));
 const CGU = lazy(() => import("./pages/CGU"));
 const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentialite"));
 const Contact = lazy(() => import("./pages/Contact"));
+const FAQ = lazy(() => import("./pages/FAQ"));
 const NewsletterGestion = lazy(() => import("./pages/NewsletterGestion"));
 const PlanDuSite = lazy(() => import("./pages/PlanDuSite"));
 const SourcesEtMethodologie = lazy(() => import("./pages/SourcesEtMethodologie"));
@@ -246,6 +247,7 @@ const App = () => {
                 <Route path="/cgu" element={<CGU />} />
                 <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/faq" element={<FAQ />} />
                 <Route path="/newsletter-gestion" element={<NewsletterGestion />} />
                 <Route path="/plan-du-site" element={<PlanDuSite />} />
                 <Route path="/sources-et-methodologie" element={<SourcesEtMethodologie />} />
