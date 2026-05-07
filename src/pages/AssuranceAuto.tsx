@@ -108,7 +108,7 @@ const AssuranceAuto = () => {
 
       <main id="main-content">
         {/* Zone 1 — Hero */}
-        <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
+        <section className="relative overflow-hidden py-16 md:py-20 bg-gradient-to-b from-primary/[0.06] via-background to-accent/[0.05]">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center relative">
               <ArthurHero
@@ -116,7 +116,7 @@ const AssuranceAuto = () => {
                 imageAlt="Arthur en voiture - assurance auto moins chère"
                 speechText={t("autoPage.subtitle")}
               />
-              <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t("autoPage.title")}</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance bg-gradient-to-br from-accent via-accent to-primary bg-clip-text text-transparent leading-tight tracking-tight">{t("autoPage.title")}</h1>
               <Button
                 size="lg"
                 onClick={scrollToForm}
