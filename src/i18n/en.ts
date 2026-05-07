@@ -964,6 +964,16 @@ const en: Record<string, string> = {
   'mrpPage.learnMore': 'business multi-risk',
   'mrpPage.ctaTitle': 'Protect your business',
   'mrpPage.ctaDesc': 'Compare MRP offers for free.',
+  'mrpPage.form.local': 'Premises type',
+  'mrpPage.form.propriete': 'Owned',
+  'mrpPage.form.location': 'Rented',
+  'mrpPage.form.bail': 'Commercial lease',
+  'mrpPage.form.restauration': 'Restaurant',
+  'mrpPage.form.industrie': 'Industrial',
+  'mrpPage.faq1.q': 'What does MRP cover exactly?',
+  'mrpPage.faq1.a': 'Fire, water damage, theft, equipment breakdown, business interruption and operating liability.',
+  'mrpPage.faq2.q': 'How to assess the amount to insure?',
+  'mrpPage.faq2.a': 'Take inventory of your premises, equipment, stock and estimate potential business interruption losses.',
 
   // GLI Page
   'gliPage.title': 'Rent Guarantee Insurance',
@@ -981,6 +991,15 @@ const en: Record<string, string> = {
   'gliPage.faq2.a': 'Unpaid rent, tenant damage, legal protection and relocation costs.',
   'gliPage.faq3.q': 'Can rent guarantee be combined with a deposit?',
   'gliPage.faq3.a': 'No, except for students or apprentices.',
+  'gliPage.form.propertyType': 'Property type',
+  'gliPage.form.apartment': 'Apartment',
+  'gliPage.form.house': 'House',
+  'gliPage.form.commercial': 'Commercial premises',
+  'gliPage.form.rent': 'Monthly rent (€)',
+  'gliPage.form.tenantType': 'Tenant type',
+  'gliPage.form.individual': 'Individual',
+  'gliPage.form.company': 'Company',
+  'gliPage.form.student': 'Student',
 
   // PNO Page
   'pnoPage.title': 'Non-Occupant Owner Insurance',

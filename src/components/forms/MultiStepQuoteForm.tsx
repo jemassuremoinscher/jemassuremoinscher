@@ -464,9 +464,10 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         {/* Step indicator */}
         <div className="flex items-center justify-between px-6 pt-4 pb-2">
           <button
+            type="button"
             onClick={goBack}
             disabled={currentStep === 0 || step.type === 'searching' || !!transitionScreen}
-            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors disabled:opacity-0 disabled:pointer-events-none"
+            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors disabled:opacity-0 disabled:pointer-events-none relative z-10"
             aria-label="Étape précédente"
           >
             <ArrowLeft className="h-4 w-4" />
