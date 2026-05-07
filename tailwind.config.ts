@@ -82,20 +82,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0", opacity: "0" },
+          to: { height: "var(--radix-accordion-content-height)", opacity: "1" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)", opacity: "1" },
+          to: { height: "0", opacity: "0" },
         },
         "slide-in-left": {
           "0%": {
@@ -122,8 +114,8 @@ export default {
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "accordion-down": "accordion-down 320ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "accordion-up": "accordion-up 260ms cubic-bezier(0.4, 0, 0.2, 1)",
         "slide-in-left": "slide-in-left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
         "slide-out-left": "slide-out-left 0.3s ease-in-out",
       },
