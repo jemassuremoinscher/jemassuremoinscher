@@ -90,6 +90,8 @@ interface MultiStepQuoteFormProps {
   insuranceType: InsuranceType;
   onComplete?: () => void;
   className?: string;
+  /** Constrain card to fixed height with internal scroll (Hero usage) */
+  fixedHeight?: boolean;
 }
 
 const slideVariants = {
@@ -110,7 +112,7 @@ const slideVariants = {
   }),
 };
 
-export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }: MultiStepQuoteFormProps) => {
+export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', fixedHeight = false }: MultiStepQuoteFormProps) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { trackEvent, trackConversion } = useAnalytics();
