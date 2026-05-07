@@ -418,7 +418,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         <input ref={honeypotRef} type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0 }} />
 
         {/* Content area */}
-        <div className="px-6 pb-8 min-h-[420px] flex flex-col">
+        <div className={`px-6 pb-8 flex flex-col ${fixedHeight ? 'flex-1 overflow-y-auto min-h-0' : 'min-h-[420px]'}`}>
           <AnimatePresence mode="wait" custom={direction}>
             {transitionScreen ? (
               <motion.div
