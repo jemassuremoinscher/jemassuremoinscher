@@ -10,6 +10,7 @@ import geoContent from "@/data/geo-content.json";
 // Lazy load below-the-fold sections
 
 const Partners = lazy(() => import("@/components/Partners"));
+const TrustRow = lazy(() => import("@/components/sections/TrustRow"));
 const WhyUsComparison = lazy(() => import("@/components/comparison/WhyUsComparison"));
 const HowItWorks = lazy(() => import("@/components/sections/HowItWorks"));
 const SEOFaq = lazy(() => import("@/components/sections/SEOFaq"));
@@ -99,6 +100,12 @@ const Index = () => {
         <Hero />
 
 
+
+        <DeferredRender minHeight={260}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[260px]" />}>
+            <TrustRow />
+          </Suspense>
+        </DeferredRender>
 
         <DeferredRender minHeight={300}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[300px]" />}>
