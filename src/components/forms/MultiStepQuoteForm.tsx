@@ -10,6 +10,7 @@ import { ArrowLeft, ArrowRight, Loader2, CheckCircle2, Lock, Phone, Mail, User, 
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { useFunnelTracker } from '@/hooks/useFunnelTracker';
 import { useHoneypot } from '@/hooks/useHoneypot';
 import { trackGoogleAdsConversionWithParams } from '@/utils/googleAdsTracking';
 import { trackMetaLead } from '@/utils/metaPixelTracking';
@@ -116,6 +117,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { trackEvent, trackConversion } = useAnalytics();
+  const { track: trackFunnel } = useFunnelTracker();
   const { honeypotRef, isBot } = useHoneypot();
 
   // Prefill from URL: ?type=auto&age=35&zipcode=75001
@@ -161,6 +163,41 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   const step = steps[currentStep];
   const totalSteps = steps.length;
   const progressPercent = ((currentStep + 1) / totalSteps) * 100;
+
+  // Funnel tracking — emit step_view on each step change
+  const reachedSubmitRef = useRef(false);
+  const effectiveType = formData.insuranceType || insuranceType;
+  useEffect(() => {
+    if (!step) return;
+    trackFunnel('step_view', {
+      stepIndex: currentStep,
+      stepId: step.id,
+      insuranceType: effectiveType,
+      metadata: { totalSteps, type: step.type },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentStep, steps.length]);
+
+  // Track form_view once on mount, abandon on unload if not submitted
+  useEffect(() => {
+    trackFunnel('form_view', { stepIndex: 0, stepId: steps[0]?.id, insuranceType: effectiveType });
+    const onLeave = () => {
+      if (!reachedSubmitRef.current) {
+        trackFunnel('abandon', {
+          stepIndex: currentStep,
+          stepId: steps[currentStep]?.id,
+          insuranceType: formData.insuranceType || insuranceType,
+          metadata: { totalSteps: steps.length },
+        });
+      }
+    };
+    window.addEventListener('pagehide', onLeave);
+    return () => {
+      window.removeEventListener('pagehide', onLeave);
+      onLeave();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Auto-advance past steps already pre-filled from URL params (hero form, deep links).
   useEffect(() => {
@@ -231,6 +268,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
   const goBack = () => {
     if (currentStep > 0) {
+      trackFunnel('step_back', { stepIndex: currentStep, stepId: steps[currentStep]?.id, insuranceType: effectiveType });
       setDirection(-1);
       setCurrentStep(prev => prev - 1);
     }
@@ -238,6 +276,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
   const handleCardSelect = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    trackFunnel('step_complete', {
+      stepIndex: currentStep,
+      stepId: steps[currentStep]?.id,
+      insuranceType: effectiveType,
+      metadata: { field, value },
+    });
     // Show transition screen with contextual message
     const msg = transitionMessages[currentStep % transitionMessages.length];
     setTransitionScreen(msg);
@@ -255,6 +299,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       return;
     }
     setFormData(prev => ({ ...prev, [field]: value }));
+    trackFunnel('step_complete', {
+      stepIndex: currentStep,
+      stepId: steps[currentStep]?.id,
+      insuranceType: effectiveType,
+      metadata: { field },
+    });
     goNext();
   };
 
@@ -313,6 +363,13 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       }).catch(console.error);
 
       setIsSuccess(true);
+      reachedSubmitRef.current = true;
+      trackFunnel('submit_success', {
+        stepIndex: currentStep,
+        stepId: steps[currentStep]?.id,
+        insuranceType: insType,
+        metadata: { leadId: insertedQuote?.id },
+      });
       toast.success('Demande envoyée !', { description: 'Un conseiller vous contacte très vite.' });
 
       trackConversion('quote_request', 100);
@@ -352,6 +409,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       }, 2000);
     } catch (error) {
       console.error('Error submitting quote:', error);
+      trackFunnel('submit_error', {
+        stepIndex: currentStep,
+        stepId: steps[currentStep]?.id,
+        insuranceType: formData.insuranceType || insuranceType,
+        metadata: { message: (error as Error)?.message?.slice(0, 200) },
+      });
       toast.error('Erreur', { description: 'Veuillez réessayer.' });
     } finally {
       setIsSubmitting(false);
