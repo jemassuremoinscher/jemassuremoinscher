@@ -48,18 +48,22 @@ export function useFunnelTracker() {
 
       const session_id = getSessionId();
       // Fire-and-forget — never block UI
-      supabase
-        .from("quote_funnel_events")
-        .insert({
-          session_id,
-          insurance_type: payload.insuranceType ?? null,
-          step_index: payload.stepIndex,
-          step_id: payload.stepId ?? null,
-          event_type: eventType,
-          metadata: payload.metadata ?? {},
-        })
-        .then(() => {})
-        .catch(() => {});
+      void (async () => {
+        try {
+          await supabase.from("quote_funnel_events").insert([
+            {
+              session_id,
+              insurance_type: payload.insuranceType ?? null,
+              step_index: payload.stepIndex,
+              step_id: payload.stepId ?? null,
+              event_type: eventType,
+              metadata: (payload.metadata ?? {}) as Record<string, unknown>,
+            },
+          ]);
+        } catch {
+          /* ignore */
+        }
+      })();
     },
     []
   );
