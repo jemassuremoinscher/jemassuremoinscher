@@ -86,7 +86,7 @@ const AssuranceHabitation = () => {
                 imageAlt="Arthur devant une maison - assurance habitation moins chère"
                 speechText={t("habitationPage.subtitle")}
               />
-              <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t("habitationPage.title")}</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance bg-gradient-to-br from-accent via-accent to-primary bg-clip-text text-transparent leading-tight tracking-tight">{t("habitationPage.title")}</h1>
               <Button
                 size="lg"
                 onClick={scrollToForm}

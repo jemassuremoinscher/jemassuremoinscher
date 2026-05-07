@@ -116,7 +116,7 @@ const AssuranceAuto = () => {
                 imageAlt="Arthur en voiture - assurance auto moins chère"
                 speechText={t("autoPage.subtitle")}
               />
-              <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t("autoPage.title")}</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance bg-gradient-to-br from-accent via-accent to-primary bg-clip-text text-transparent leading-tight tracking-tight">{t("autoPage.title")}</h1>
               <Button
                 size="lg"
                 onClick={scrollToForm}

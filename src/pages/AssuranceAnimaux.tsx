@@ -83,7 +83,7 @@ const AssuranceAnimaux = () => {
                 imageAlt="Arthur avec des animaux"
                 speechText={t("animauxPage.subtitle")}
               />
-              <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t("animauxPage.title")}</h1>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance bg-gradient-to-br from-accent via-accent to-primary bg-clip-text text-transparent leading-tight tracking-tight">{t("animauxPage.title")}</h1>
               <Button
                 size="lg"
                 onClick={scrollToForm}
