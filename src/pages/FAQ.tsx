@@ -182,7 +182,7 @@ const FAQPage = () => {
           {/* Hero */}
           <section className="relative bg-gradient-to-br from-primary via-primary/95 to-primary/80 overflow-hidden">
             <div className="container mx-auto px-4 py-14 md:py-20">
-              <div className="max-w-3xl relative z-10">
+              <div className="max-w-[65%] sm:max-w-[70%] md:max-w-2xl relative z-10">
                 <Badge variant="accent" className="mb-4">
                   <HelpCircle aria-hidden="true" /> Aide & Support
                 </Badge>
