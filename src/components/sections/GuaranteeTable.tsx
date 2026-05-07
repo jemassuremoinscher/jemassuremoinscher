@@ -115,21 +115,21 @@ const GuaranteeTable = () => {
           </p>
 
           {/* Desktop table */}
-          <div className="hidden md:block overflow-x-auto rounded-xl border border-border/50">
-            <table className="w-full text-sm">
+          <div className="hidden md:block overflow-hidden rounded-2xl border border-primary/15 bg-card shadow-elevation-2">
+            <table className="w-full text-sm border-collapse">
               <caption className="sr-only">
                 Comparatif des garanties par type d'assurance proposé par jemassuremoinscher.fr
               </caption>
               <thead>
-                <tr className="bg-muted/40">
-                  <th scope="col" className="text-left p-3 font-semibold text-foreground">
+                <tr className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10">
+                  <th scope="col" className="text-left p-4 font-bold text-foreground text-sm uppercase tracking-wide">
                     Garantie
                   </th>
                   {columns.map((col) => (
                     <th
                       key={col.key}
                       scope="col"
-                      className="p-3 text-center font-semibold text-foreground"
+                      className="p-4 text-center font-bold text-primary text-sm uppercase tracking-wide border-l border-primary/10"
                     >
                       {col.label}
                     </th>
@@ -140,27 +140,33 @@ const GuaranteeTable = () => {
                 {guarantees.map((row, i) => (
                   <tr
                     key={row.name}
-                    className={i % 2 === 0 ? "bg-background" : "bg-muted/20"}
+                    className={`group transition-colors duration-200 border-t border-border/30 ${
+                      i % 2 === 0 ? "bg-background" : "bg-primary/[0.04]"
+                    } hover:bg-primary/[0.08]`}
                   >
-                    <th scope="row" className="text-left p-3 font-medium text-foreground">
+                    <th scope="row" className="text-left p-3.5 font-medium text-foreground group-hover:text-primary transition-colors">
                       {row.name}
                     </th>
                     {columns.map((col) => {
                       const val = row[col.key];
                       const isIncluded = val === "Incluse";
+                      const isOption = val === "Option";
                       const isDash = val === "—";
                       return (
-                        <td
-                          key={col.key}
-                          className={`p-3 text-center text-sm ${
-                            isIncluded
-                              ? "text-emerald-600 font-semibold"
-                              : isDash
-                              ? "text-muted-foreground/40"
-                              : "text-foreground"
-                          }`}
-                        >
-                          {isIncluded ? "✓ Incluse" : val}
+                        <td key={col.key} className="p-3.5 text-center text-sm border-l border-border/20">
+                          {isIncluded ? (
+                            <span className="inline-flex items-center gap-1 text-success font-semibold">
+                              <span aria-hidden="true">✓</span> Incluse
+                            </span>
+                          ) : isOption ? (
+                            <span className="inline-flex items-center rounded-full bg-secondary/20 text-foreground px-2.5 py-0.5 text-[11px] font-semibold">
+                              Option
+                            </span>
+                          ) : isDash ? (
+                            <span className="text-muted-foreground/40">—</span>
+                          ) : (
+                            <span className="text-foreground font-semibold">{val}</span>
+                          )}
                         </td>
                       );
                     })}
@@ -172,33 +178,36 @@ const GuaranteeTable = () => {
 
           {/* Mobile cards */}
           <div className="md:hidden space-y-3">
-            {guarantees.map((row) => (
+            {guarantees.map((row, i) => (
               <div
                 key={row.name}
-                className="bg-card rounded-xl border border-border/40 p-4"
+                className={`rounded-2xl border border-primary/15 p-4 ${
+                  i % 2 === 0 ? "bg-card" : "bg-primary/[0.04]"
+                }`}
               >
-                <p className="font-semibold text-foreground text-sm mb-2">
+                <p className="font-semibold text-foreground text-sm mb-3 pb-2 border-b border-border/30">
                   {row.name}
                 </p>
-                <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                   {columns.map((col) => {
                     const val = row[col.key];
                     const isIncluded = val === "Incluse";
+                    const isOption = val === "Option";
                     const isDash = val === "—";
                     return (
-                      <div key={col.key} className="flex justify-between text-xs">
-                        <span className="text-muted-foreground">{col.label}</span>
-                        <span
-                          className={
-                            isIncluded
-                              ? "text-emerald-600 font-semibold"
-                              : isDash
-                              ? "text-muted-foreground/40"
-                              : "text-foreground font-medium"
-                          }
-                        >
-                          {isIncluded ? "✓" : val}
-                        </span>
+                      <div key={col.key} className="flex items-center justify-between text-xs">
+                        <span className="text-muted-foreground font-medium">{col.label}</span>
+                        {isIncluded ? (
+                          <span className="text-success font-semibold">✓</span>
+                        ) : isOption ? (
+                          <span className="inline-flex items-center rounded-full bg-secondary/20 text-foreground px-2 py-0.5 text-[10px] font-semibold">
+                            Option
+                          </span>
+                        ) : isDash ? (
+                          <span className="text-muted-foreground/40">—</span>
+                        ) : (
+                          <span className="text-foreground font-semibold">{val}</span>
+                        )}
                       </div>
                     );
                   })}
