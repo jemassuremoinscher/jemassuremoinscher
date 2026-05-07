@@ -1,5 +1,6 @@
 import { Star, Scale, Eye } from "lucide-react";
 import oriasLogo from "@/assets/logos/orias.jpg";
+import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 
 const TrustRow = () => {
   return (
