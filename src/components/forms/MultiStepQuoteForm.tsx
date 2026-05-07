@@ -613,15 +613,28 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
               }}
               aria-label={option.label}
             >
-              <div className={`
-                h-14 w-14 md:h-16 md:w-16 rounded-2xl flex items-center justify-center mb-3 transition-all duration-200
-                ${isSelected
-                  ? 'bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]'
-                  : 'bg-muted/60 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
-                }
-              `}>
-                <Icon className="h-7 w-7 md:h-8 md:w-8" />
-              </div>
+              {option.iconImage ? (
+                <div className="h-16 w-16 md:h-20 md:w-20 flex items-center justify-center mb-2">
+                  <img
+                    src={option.iconImage}
+                    alt=""
+                    aria-hidden="true"
+                    className="h-full w-full object-contain drop-shadow-md"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ) : (
+                <div className={`
+                  h-14 w-14 md:h-16 md:w-16 rounded-2xl flex items-center justify-center mb-3 transition-all duration-200
+                  ${isSelected
+                    ? 'bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]'
+                    : 'bg-muted/60 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
+                  }
+                `}>
+                  <Icon className="h-7 w-7 md:h-8 md:w-8" />
+                </div>
+              )}
               <span className="font-semibold text-foreground text-sm md:text-base">{option.label}</span>
               {option.description && (
                 <span className="text-xs text-muted-foreground mt-1 leading-tight">{option.description}</span>
