@@ -54,6 +54,19 @@ const TrustRow = () => {
             <h3 className="font-bold text-base text-foreground">Transparence totale</h3>
             <p className="text-xs text-muted-foreground mt-1">Commissions affichées</p>
           </article>
+          {/* Rappel 5 min */}
+          <article className="rounded-3xl bg-primary p-6 text-center shadow-[0_4px_16px_-6px_rgba(124,58,237,0.3)] hover:shadow-[0_12px_28px_-10px_rgba(124,58,237,0.5)] hover:-translate-y-1 transition-all border border-primary-foreground/10 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
+               <img src="/arthur-wink-thumbsup.webp" alt="" className="w-12 h-auto" />
+            </div>
+            <div className="mx-auto mb-3 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/20 text-white">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <h3 className="font-bold text-base text-white">Rappel sous 5 min</h3>
+            <p className="text-xs text-white/80 mt-1">Arthur vous rappelle immédiatement pour finaliser</p>
+          </article>
         </div>
       </div>
     </section>
