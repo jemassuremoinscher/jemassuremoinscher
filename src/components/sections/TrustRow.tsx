@@ -5,7 +5,7 @@ const TrustRow = () => {
   return (
     <section className="py-12 md:py-16 bg-muted/40" aria-label="Pourquoi nous faire confiance">
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 items-stretch">
           {/* Google */}
           <article className="rounded-3xl bg-card p-6 text-center shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all border border-border/40">
             <div className="mx-auto mb-3 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white border border-border/40">
