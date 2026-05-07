@@ -754,7 +754,7 @@ export const stepConfigsByType: Record<InsuranceType, FormStep[]> = {
       id: 'type',
       type: 'card-select',
       title: 'Que souhaitez-vous assurer ?',
-      subtitle: 'Nous comparerons 50+ offres pour vous.',
+      subtitle: 'Nous comparerons 5000+ offres pour vous.',
       field: 'insuranceType',
       options: [
         { value: 'auto', label: 'Auto', description: 'Voiture et utilitaire', icon: Car, iconImage: mascotCar },
