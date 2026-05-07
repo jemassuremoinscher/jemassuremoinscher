@@ -991,6 +991,15 @@ const en: Record<string, string> = {
   'gliPage.faq2.a': 'Unpaid rent, tenant damage, legal protection and relocation costs.',
   'gliPage.faq3.q': 'Can rent guarantee be combined with a deposit?',
   'gliPage.faq3.a': 'No, except for students or apprentices.',
+  'gliPage.form.propertyType': 'Property type',
+  'gliPage.form.apartment': 'Apartment',
+  'gliPage.form.house': 'House',
+  'gliPage.form.commercial': 'Commercial premises',
+  'gliPage.form.rent': 'Monthly rent (€)',
+  'gliPage.form.tenantType': 'Tenant type',
+  'gliPage.form.individual': 'Individual',
+  'gliPage.form.company': 'Company',
+  'gliPage.form.student': 'Student',
 
   // PNO Page
   'pnoPage.title': 'Non-Occupant Owner Insurance',
