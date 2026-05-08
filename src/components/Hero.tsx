@@ -23,7 +23,7 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.5rem] font-black text-white text-center mb-10 md:mb-14 leading-tight font-[Inter] animate-fade-in-up">
           {slogan.line1Prefix}
-          <span className="underline decoration-accent decoration-4 underline-offset-[6px] md:underline-offset-8">
+          <span className="underline decoration-white decoration-[6px] md:decoration-8 underline-offset-[6px] md:underline-offset-8">
             {slogan.line1Highlight}
           </span>
           {slogan.line1Suffix}
