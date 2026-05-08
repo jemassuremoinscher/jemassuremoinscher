@@ -1,4 +1,4 @@
-import { useRef, useState, type KeyboardEvent, type PointerEvent as ReactPointerEvent } from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
 import { Check, RotateCcw } from "lucide-react";
 import { useAnalytics } from "@/hooks/useAnalytics";
 
