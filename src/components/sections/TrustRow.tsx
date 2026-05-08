@@ -1,9 +1,15 @@
-import { Star, Scale, BadgeCheck } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { Star, Scale, BadgeCheck, TrendingUp } from "lucide-react";
+import { motion, useReducedMotion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
 import oriasLogo from "@/assets/logos/orias.jpg";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import geoContent from "@/data/geo-content.json";
+
+// Baseline pour cohérence (volume historique non migré en base)
+const QUOTES_BASELINE = 4250;
+const YEAR_START = `${new Date().getFullYear()}-01-01T00:00:00Z`;
 
 const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
 const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
@@ -28,6 +34,43 @@ const TrustRow = () => {
     ? undefined
     : { x: [0, 4, 0, -4, 0] };
 
+  // Compteur de devis depuis le début de l'année (live)
+  const [quotesCount, setQuotesCount] = useState<number>(QUOTES_BASELINE);
+  const counterRef = useRef<HTMLDivElement>(null);
+  const counterInView = useInView(counterRef, { once: true, margin: "-50px" });
+  const motionVal = useMotionValue(0);
+  const rounded = useTransform(motionVal, (v) => Math.floor(v).toLocaleString('fr-FR'));
+  const [displayCount, setDisplayCount] = useState("0");
+
+  useEffect(() => {
+    const unsub = rounded.on("change", (v) => setDisplayCount(v));
+    return () => unsub();
+  }, [rounded]);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const { count } = await supabase
+        .from('insurance_quotes')
+        .select('*', { count: 'exact', head: true })
+        .gte('created_at', YEAR_START)
+        .is('deleted_at', null);
+      if (!cancelled && typeof count === 'number') {
+        setQuotesCount(QUOTES_BASELINE + count);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
+    if (!counterInView) return;
+    if (prefersReducedMotion) {
+      motionVal.set(quotesCount);
+      return;
+    }
+    const controls = animate(motionVal, quotesCount, { duration: 2, ease: "easeOut" });
+    return () => controls.stop();
+  }, [counterInView, quotesCount, prefersReducedMotion, motionVal]);
 
   const handleArthurClick = () => {
     const target = document.getElementById('hero-quote-form') || document.getElementById('quote-form');
@@ -40,6 +83,8 @@ const TrustRow = () => {
     }
   };
 
+  const currentYear = new Date().getFullYear();
+
   return (
     <section className="py-12 md:py-16 bg-muted/40" aria-label="Pourquoi nous faire confiance">
       <div className="container mx-auto px-4 max-w-6xl">
@@ -48,7 +93,7 @@ const TrustRow = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-2 lg:grid-cols-5 gap-4"
+          className="grid grid-cols-2 lg:grid-cols-6 gap-4"
         >
           {/* Google Reviews */}
           <motion.div variants={itemVariants} role="group" aria-label={`Note Google Reviews ${geoContent.trust.ratingValueLabel} sur 5 basée sur ${geoContent.trust.reviewCountLabel} avis vérifiés`} className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
@@ -126,6 +171,24 @@ const TrustRow = () => {
             <p className="text-sm font-bold text-white">Rappel sous 5 min</p>
             <p className="text-xs text-white/90">Arthur vous rappelle immédiatement pour finaliser</p>
           </motion.button>
+
+          {/* Compteur devis depuis le début de l'année */}
+          <motion.div
+            ref={counterRef}
+            variants={itemVariants}
+            role="group"
+            aria-label={`${quotesCount.toLocaleString('fr-FR')} devis générés depuis le début de l'année ${currentYear}`}
+            className="col-span-2 lg:col-span-1 bg-gradient-to-br from-accent/95 to-accent rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(252,211,77,0.4)] hover:shadow-[0_16px_32px_-10px_rgba(252,211,77,0.6)] hover:-translate-y-1 transition-all border border-accent-foreground/10 flex flex-col items-center text-center gap-3 relative overflow-hidden"
+          >
+            <div className="p-3 rounded-full bg-primary/15" aria-hidden="true">
+              <TrendingUp className="w-7 h-7 text-primary" />
+            </div>
+            <p className="text-3xl font-black text-primary tabular-nums leading-none">
+              {displayCount}
+            </p>
+            <p className="text-xs font-bold text-primary/90 uppercase tracking-wide">Devis en {currentYear}</p>
+            <p className="text-[11px] text-primary/70 leading-snug">Familles accompagnées depuis le 1er janvier</p>
+          </motion.div>
         </motion.div>
       </div>
     </section>
