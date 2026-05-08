@@ -1416,7 +1416,7 @@ const fr: Record<string, string> = {
   'partnersComponent.titleHighlight': '70 assureurs',
   'partnersComponent.titleEnd': 'comparés',
   'partnersComponent.subtitle': 'Et près de',
-  'partnersComponent.agencies': '2000 agences locales',
+  'partnersComponent.agencies': '2500 agences locales',
   'partnersComponent.autoScroll': 'Le carrousel défile automatiquement. Passez la souris dessus pour mettre en pause.',
 
   // Landing Pages Common
