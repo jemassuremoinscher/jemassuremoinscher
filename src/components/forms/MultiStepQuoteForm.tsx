@@ -1170,7 +1170,131 @@ function CallbackStep({
   onChange: (d: typeof data) => void;
   onSubmit: () => void;
 }) {
+  const { t } = useLanguage();
   if (isSuccess) {
+    return (
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="flex flex-col items-center gap-4 py-6"
+      >
+        <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
+          <CheckCircle2 className="h-10 w-10 text-primary" />
+        </div>
+        <h3 className="text-xl font-bold text-foreground">{t('form.callbackSuccessTitle')}</h3>
+        <p className="text-sm text-muted-foreground text-center max-w-sm">
+          {t('form.callbackSuccessDescription')}
+        </p>
+      </motion.div>
+    );
+  }
+
+  return (
+    <div className="space-y-5 max-w-md mx-auto w-full">
+      {/* Justification block */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="rounded-2xl bg-primary/5 border border-primary/20 p-4 space-y-2"
+      >
+        <p className="text-sm font-semibold text-foreground flex items-center gap-2">
+          <CheckCircle2 className="h-4 w-4 text-primary" /> {t('form.callback.whyNoPrice')}
+        </p>
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          {t('form.callback.explanation')}
+        </p>
+        <ul className="text-xs text-muted-foreground space-y-1 pt-1">
+          <li className="flex items-center gap-2"><span className="text-primary">✓</span> {t('form.callback.list1')}</li>
+          <li className="flex items-center gap-2"><span className="text-primary">✓</span> {t('form.callback.list2')}</li>
+          <li className="flex items-center gap-2"><span className="text-primary">✓</span> {t('form.callback.list3')}</li>
+        </ul>
+      </motion.div>
+
+      {/* Full name */}
+      <div className="space-y-1.5">
+        <Label htmlFor="cb-name" className="text-sm font-medium flex items-center gap-1.5">
+          <User className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.fullName')}
+        </Label>
+        <Input
+          id="cb-name"
+          value={data.fullName}
+          onChange={(e) => onChange({ ...data, fullName: e.target.value })}
+          placeholder={t('form.fullNamePlaceholder')}
+          className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
+          disabled={isSubmitting}
+        />
+        {errors.fullName && <p className="text-xs text-destructive">{errors.fullName}</p>}
+      </div>
+
+      {/* Email */}
+      <div className="space-y-1.5">
+        <Label htmlFor="cb-email" className="text-sm font-medium flex items-center gap-1.5">
+          <Mail className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.businessEmail')}
+        </Label>
+        <Input
+          id="cb-email"
+          type="email"
+          value={data.email}
+          onChange={(e) => onChange({ ...data, email: e.target.value })}
+          placeholder={t('form.businessEmailPlaceholder')}
+          className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
+          disabled={isSubmitting}
+        />
+        {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
+      </div>
+
+      {/* Phone */}
+      <div className="space-y-1.5">
+        <Label htmlFor="cb-phone" className="text-sm font-medium flex items-center gap-1.5">
+          <Phone className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.phoneCallback')}
+        </Label>
+        <Input
+          id="cb-phone"
+          type="tel"
+          value={data.phone}
+          onChange={(e) => onChange({ ...data, phone: e.target.value })}
+          placeholder={t('form.phonePlaceholder')}
+          className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
+          disabled={isSubmitting}
+        />
+        {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
+      </div>
+
+      {/* Terms */}
+      <div className="flex items-start gap-2 pt-1">
+        <Checkbox
+          id="cb-terms"
+          checked={data.acceptTerms}
+          onCheckedChange={(checked) => onChange({ ...data, acceptTerms: checked as boolean })}
+          disabled={isSubmitting}
+        />
+        <Label htmlFor="cb-terms" className="text-xs text-muted-foreground leading-tight cursor-pointer">
+          {t('form.callbackAcceptTerms')}
+        </Label>
+      </div>
+      {errors.acceptTerms && <p className="text-xs text-destructive">{errors.acceptTerms}</p>}
+
+      {/* Submit */}
+      <Button
+        onClick={onSubmit}
+        disabled={isSubmitting}
+        size="lg"
+        className="btn-glow w-full rounded-full font-bold text-base h-13 bg-secondary hover:bg-secondary/90 text-secondary-foreground active:scale-[0.97] transition-transform"
+      >
+        {isSubmitting ? (
+          <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> {t('form.submitting')}</>
+        ) : (
+          <>{t('form.submitCallback')}</>
+        )}
+      </Button>
+
+      <p className="text-[11px] text-muted-foreground text-center">
+        {t('form.dataProtected')}
+      </p>
+    </div>
+  );
+}
     return (
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
