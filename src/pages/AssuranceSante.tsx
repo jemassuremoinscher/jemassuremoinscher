@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
