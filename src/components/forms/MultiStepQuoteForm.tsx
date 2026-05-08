@@ -334,7 +334,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       const rawType = insType === 'comparateur' ? (formData.insuranceType || 'auto') : insType;
       const canonicalType = normalizeInsuranceTypeStrict(rawType);
       if (!canonicalType) {
-        toast.error(`Type d'assurance invalide: ${rawType}`);
+        toast.error(`${t('form.toast.invalidType')}: ${rawType}`);
         setIsSubmitting(false);
         return;
       }
@@ -373,7 +373,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         insuranceType: insType,
         metadata: { leadId: insertedQuote?.id },
       });
-      toast.success('Demande envoyée !', { description: 'Un conseiller vous contacte très vite.' });
+      toast.success(t('form.toast.successTitle'), { description: t('form.toast.successDescription') });
 
       trackConversion('quote_request', 100);
       trackEvent('quote_request', {
@@ -418,7 +418,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         insuranceType: formData.insuranceType || insuranceType,
         metadata: { message: (error as Error)?.message?.slice(0, 200) },
       });
-      toast.error('Erreur', { description: 'Veuillez réessayer.' });
+      toast.error(t('form.toast.errorTitle'), { description: t('form.toast.errorRetry') });
     } finally {
       setIsSubmitting(false);
     }
@@ -733,7 +733,7 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
           className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground"
         >
           <Loader2 className="h-3.5 w-3.5 animate-spin text-primary" />
-          <span>Calcul de précision…</span>
+          <span>{useLanguage().t('form.precisionCalc')}</span>
         </motion.div>
       )}
     </div>
