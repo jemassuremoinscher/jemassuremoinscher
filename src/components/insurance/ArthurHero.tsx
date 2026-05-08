@@ -4,19 +4,16 @@ import { Zap, PiggyBank, Star } from "lucide-react";
 interface ArthurHeroProps {
   imageSrc: string;
   imageAlt: string;
-  /** Optional speech bubble (kept for compatibility) */
+  /** Legacy speech bubble — used when title is not provided */
   speechText?: string;
   /** Main H1 text — e.g. "Assurance Auto Moins Chère" */
-  title: string;
-  /** Subtitle paragraph — e.g. "Comparez 50+ assureurs et économisez…" */
-  subtitle: string;
-  /** Highlighted savings string shown in subtitle — e.g. "jusqu'à 400€/an" */
+  title?: string;
+  /** Subtitle paragraph */
+  subtitle?: string;
+  /** Highlighted savings string — e.g. "jusqu'à 400€/an" */
   savingsHighlight?: string;
-  /** CTA label */
-  ctaLabel: string;
-  /** CTA action */
-  onCtaClick: () => void;
-  /** Stats card values */
+  ctaLabel?: string;
+  onCtaClick?: () => void;
   savingsValue?: string;
   savingsLabel?: string;
   reviewsValue?: string;
@@ -26,6 +23,7 @@ interface ArthurHeroProps {
 const ArthurHero = ({
   imageSrc,
   imageAlt,
+  speechText,
   title,
   subtitle,
   savingsHighlight,
@@ -36,6 +34,32 @@ const ArthurHero = ({
   reviewsValue = "47K+",
   reviewsLabel = "Avis clients",
 }: ArthurHeroProps) => {
+  // Legacy fallback (landing templates) — keep simple speech bubble layout
+  if (!title) {
+    return (
+      <div className="relative flex flex-col items-center mb-8 px-4 animate-fade-in">
+        <div className="relative z-10 flex items-end gap-3">
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            className="w-24 sm:w-32 md:w-40 h-auto drop-shadow-2xl animate-hero-float"
+            width={160}
+            height={200}
+            loading="eager"
+            decoding="async"
+          />
+          {speechText && (
+            <div className="relative mb-8 sm:mb-12 rounded-2xl bg-white/80 backdrop-blur-xl border border-primary/20 px-4 py-2.5 shadow-elevation-2">
+              <p className="text-foreground font-medium text-xs sm:text-sm md:text-base leading-snug">
+                {speechText} <span className="inline-block animate-pulse">✨</span>
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative w-full">
       {/* Hero card — violet background, asymmetric 70/30 */}
