@@ -64,12 +64,10 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
     });
   };
 
-  // Fire on pointerup (touch + mouse + pen) for instant tactile feedback,
-  // bypassing the legacy ~300ms click delay on some mobile browsers.
-  const onPointerUp = (e: ReactPointerEvent<HTMLButtonElement>) => {
-    // Only primary button / first finger; ignore right-clicks.
-    if (e.button !== 0 && e.pointerType === "mouse") return;
+  // Use onClick (more reliable across browsers/iframes than pointerup with preventDefault).
+  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    e.stopPropagation();
     toggleFlip(true);
   };
 
@@ -84,11 +82,11 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
     <div className="relative h-[170px] [perspective:1000px]">
       <button
         type="button"
-        onPointerUp={onPointerUp}
+        onClick={onClick}
         onKeyDown={onKey}
         aria-pressed={flipped}
         aria-label={`Formule ${name} — ${flipped ? "voir le prix" : "voir les garanties incluses"}`}
-        className="absolute inset-0 w-full h-full rounded-xl [transform-style:preserve-3d] transition-transform duration-300 ease-out touch-manipulation select-none [-webkit-tap-highlight-color:transparent] [will-change:transform] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+        className="absolute inset-0 w-full h-full rounded-xl [transform-style:preserve-3d] transition-transform duration-500 ease-out touch-manipulation select-none cursor-pointer [-webkit-tap-highlight-color:transparent] [will-change:transform] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         style={{ transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
       >
         {/* Front */}
