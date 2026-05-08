@@ -428,22 +428,29 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
         {/* Step banner — urgency + progress */}
         {step.type !== 'searching' && step.type !== 'callback' && !transitionScreen && (
-          <div className="bg-primary px-4 py-2 flex items-center justify-between text-[11px] md:text-xs">
+          <div className="bg-primary px-4 py-2.5 flex items-center justify-between gap-3 text-[11px] md:text-xs">
             <span className="font-semibold text-primary-foreground/90">
               Étape {currentStep + 1}/{totalSteps}
             </span>
-            <span className="text-primary-foreground/70">
-              Plus que <span className="text-accent font-bold">{secondsEstimate}s</span> pour voir vos prix
+            <span className="text-primary-foreground/80 flex items-baseline gap-1.5">
+              Plus que{' '}
+              <span className="text-[26px] md:text-[32px] font-extrabold leading-none text-[#ef4444] animate-[pulse_1.6s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(239,68,68,0.45)]">
+                {secondsEstimate}s
+              </span>{' '}
+              pour voir vos prix
             </span>
           </div>
         )}
         {step.type === 'callback' && !transitionScreen && (
-          <div className="bg-primary px-4 py-2 flex items-center justify-between text-[11px] md:text-xs">
+          <div className="bg-primary px-4 py-2.5 flex items-center justify-between gap-3 text-[11px] md:text-xs">
             <span className="font-semibold text-primary-foreground/90">
               Dernière étape — finalisez votre demande
             </span>
-            <span className="text-primary-foreground/70">
-              Rappel sous <span className="text-accent font-bold">30 min</span>
+            <span className="text-primary-foreground/80 flex items-baseline gap-1.5">
+              Rappel sous{' '}
+              <span className="text-[26px] md:text-[32px] font-extrabold leading-none text-[#ef4444] animate-[pulse_1.6s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(239,68,68,0.45)]">
+                30 min
+              </span>
             </span>
           </div>
         )}
