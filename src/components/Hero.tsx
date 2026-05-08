@@ -60,7 +60,7 @@ const Hero = () => {
             <div className="relative inline-block">
               <img
                 src={arthurMascot}
-                alt="Arthur mascotte jemassuremoinscher, guide pour comparer assurance auto, habitation et santé"
+                alt={arthurImageAlt}
                 className="w-56 lg:w-72 h-auto drop-shadow-2xl animate-hero-float"
                 width={288}
                 height={360}
@@ -70,7 +70,7 @@ const Hero = () => {
               />
               <div className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 bg-white rounded-2xl px-4 py-2 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] animate-fade-in-delay">
                 <p className="text-primary font-bold text-sm whitespace-nowrap">
-                  Hello, moi c'est Arthur 👋
+                  {arthurBubble}
                 </p>
                 <div className="absolute -bottom-1.5 left-4 w-3 h-3 bg-white transform rotate-45" />
               </div>
