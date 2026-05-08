@@ -53,7 +53,7 @@ const Hero = () => {
             <div className="relative inline-block">
               <img
                 src={arthurMascot}
-                alt="Arthur mascotte jemassuremoinscher.fr"
+                alt="Arthur mascotte jemassuremoinscher, guide pour comparer assurance auto, habitation et santé"
                 className="w-56 lg:w-72 h-auto drop-shadow-2xl animate-hero-float"
                 width={288}
                 height={360}

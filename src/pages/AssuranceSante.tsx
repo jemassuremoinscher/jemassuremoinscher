@@ -90,7 +90,7 @@ const AssuranceSante = () => {
             <div className="max-w-6xl mx-auto">
               <ArthurHero
                 imageSrc={arthurSick}
-                imageAlt="Arthur malade - mutuelle santé moins chère"
+                imageAlt="Arthur mascotte avec assurance santé mutuelle jemassuremoinscher"
                 title={t("santePage.title")}
                 subtitle={t("santePage.subtitle")}
                 ctaLabel={t("insPage.compareNow")}
