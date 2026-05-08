@@ -19,9 +19,9 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.5rem] font-black text-white text-center mb-10 md:mb-14 leading-tight font-[Inter] animate-fade-in-up">
-          Comparez votre assurance,
+          Comparez votre assurance avec Arthur,
           <br />
-          payez moins cher,
+          et payez moins cher,
           <br />
           <span className="relative inline-block">
             <span className="relative z-10" style={{ color: "#f5b80a" }}>sans compromis.</span>
