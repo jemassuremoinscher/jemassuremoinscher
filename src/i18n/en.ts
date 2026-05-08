@@ -54,6 +54,13 @@ const en: Record<string, string> = {
   'hero.line2': 'Free, no commitment.',
   'hero.line3': 'We take care of everything.',
   'hero.ctaSubtext': 'Free, no commitment and Hamon Law compliant',
+  'hero.slogan.line1Prefix': 'Compare your insurance with ',
+  'hero.slogan.line1Highlight': 'Arthur',
+  'hero.slogan.line1Suffix': ',',
+  'hero.slogan.line2': 'and pay less,',
+  'hero.slogan.line3': 'without compromise.',
+  'hero.arthurBubble': "Hi, I'm Arthur 👋",
+  'hero.arthurImageAlt': "Arthur, jemassuremoinscher mascot — your guide to compare car, home and health insurance",
 
   // Comparator Page
   'comparatorPage.breadcrumb': 'Comparator',

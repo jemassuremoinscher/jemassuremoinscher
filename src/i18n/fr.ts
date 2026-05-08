@@ -54,6 +54,13 @@ const fr: Record<string, string> = {
   'hero.line2': 'Gratuit, sans engagement.',
   'hero.line3': 'On s\'occupe de tout.',
   'hero.ctaSubtext': 'Gratuit, sans engagement et conforme Loi Hamon',
+  'hero.slogan.line1Prefix': 'Comparez votre assurance avec ',
+  'hero.slogan.line1Highlight': 'Arthur',
+  'hero.slogan.line1Suffix': ',',
+  'hero.slogan.line2': 'et payez moins cher,',
+  'hero.slogan.line3': 'sans compromis.',
+  'hero.arthurBubble': "Hello, moi c'est Arthur 👋",
+  'hero.arthurImageAlt': "Arthur mascotte jemassuremoinscher, guide pour comparer assurance auto, habitation et santé",
 
   // Comparator Page
   'comparatorPage.breadcrumb': 'Comparateur',
