@@ -15,7 +15,7 @@ import { useHoneypot } from '@/hooks/useHoneypot';
 import { trackGoogleAdsConversionWithParams } from '@/utils/googleAdsTracking';
 import { trackMetaLead } from '@/utils/metaPixelTracking';
 import { normalizeInsuranceTypeStrict } from '@/utils/insuranceTypeNormalizer';
-import { stepConfigsByType, type InsuranceType, type FormStep, type StepOption } from './stepConfigs';
+import { buildStepConfigs, type InsuranceType, type FormStep, type StepOption } from './stepConfigs';
 import { useFieldTracking } from '@/hooks/useFieldTracking';
 import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from '@/data/vehicleBrands';
 import FlipPriceCard from './FlipPriceCard';
