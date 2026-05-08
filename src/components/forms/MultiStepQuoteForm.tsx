@@ -1033,9 +1033,12 @@ function ContactStep({
         transition={{ duration: 0.4 }}
         className="space-y-3"
       >
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">
-          Estimations cohérentes pour votre profil
-        </p>
+        <div className="flex flex-col items-center gap-1">
+          <p className="text-sm font-semibold text-primary text-center">
+            ⬇️ Continuez ci-dessous pour recevoir vos prix exacts
+          </p>
+          <span className="text-xl text-primary animate-bounce" aria-hidden="true">↓</span>
+        </div>
         <div className="grid grid-cols-3 gap-2">
           {prices.map((p, i) => (
             <motion.div
