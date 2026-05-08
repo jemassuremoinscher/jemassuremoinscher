@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Shield, Users, Clock, Mountain, TreePine, PartyPopper, HardHat, Sparkles, ArrowRight, Search, FileCheck } from "lucide-react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
@@ -168,28 +167,22 @@ const AssuranceMetiersAtypiques = () => {
       <Header />
       <Breadcrumbs items={[{ label: "Métiers Atypiques" }]} />
       <main id="main-content">
-        <section className="relative overflow-hidden py-16 md:py-20 bg-gradient-to-b from-primary/[0.06] via-background to-accent/[0.05]">
+        <section className="relative pt-6 pb-10 md:pt-8 md:pb-14">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center relative">
+            <div className="max-w-6xl mx-auto">
               <ArthurHero
                 imageSrc={arthurClimbing}
                 imageAlt="Arthur grimpeur — expert en assurances de métiers atypiques"
-                speechText="Refusé ailleurs ? On a la solution. 20 assureurs de niche, 0 refus, rappel sous 10 minutes."
+                title="Assurance Métiers Atypiques : couvrir l'inassurable, c'est notre métier"
+                subtitle="Accrobranche, sports outdoor, événementiel, cordistes, métiers à risques aggravés… Nos courtiers négocient avec les 20 assureurs spécialisés du marché français pour vous trouver une couverture sur-mesure."
+                savingsHighlight="Rappel sous 10 minutes, 0 refus"
+                ctaLabel="Obtenir mon devis sur-mesure"
+                onCtaClick={scrollToForm}
+                savingsValue="20+"
+                savingsLabel="Assureurs de niche"
+                reviewsValue="0 refus"
+                reviewsLabel="Courtier dédié"
               />
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance bg-gradient-to-br from-accent via-accent to-primary bg-clip-text text-transparent leading-tight tracking-tight">
-                Assurance Métiers Atypiques : couvrir l'inassurable, c'est notre métier
-              </h1>
-              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Accrobranche, sports outdoor, événementiel, cordistes, métiers à risques aggravés… Nos courtiers négocient avec les 20 assureurs spécialisés du marché français pour vous trouver une couverture sur-mesure, sans surprime injustifiée.
-              </p>
-              <div className="flex flex-wrap justify-center gap-3 mb-8 text-sm">
-                <span className="px-4 py-2 rounded-full bg-card/80 backdrop-blur border border-border/50 font-semibold text-foreground">20 assureurs de niche</span>
-                <span className="px-4 py-2 rounded-full bg-card/80 backdrop-blur border border-border/50 font-semibold text-foreground">Rappel sous 10 minutes</span>
-                <span className="px-4 py-2 rounded-full bg-card/80 backdrop-blur border border-border/50 font-semibold text-foreground">0 refus = courtier dédié</span>
-              </div>
-              <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Obtenir un devis assurance métier atypique">
-                Obtenir mon devis sur-mesure
-              </Button>
             </div>
           </div>
         </section>

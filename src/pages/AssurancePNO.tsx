@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Shield, Home, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
@@ -39,12 +38,19 @@ const AssurancePNO = () => {
       <Header />
       <Breadcrumbs items={[{ label: "Assurance PNO" }]} />
       <main id="main-content">
-      <section className="relative overflow-hidden py-16 md:py-20 bg-gradient-to-b from-primary/[0.06] via-background to-accent/[0.05]">
-        <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
-          <ArthurHero imageSrc={arthurHouse} imageAlt="Arthur - PNO" speechText={t('pnoPage.subtitle')} />
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance bg-gradient-to-br from-accent via-accent to-primary bg-clip-text text-transparent leading-tight tracking-tight">PNO Assurance : Comparez et Économisez dès 5€/mois</h1>
-          <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Comparer les assurances PNO maintenant">{t('insPage.compareNow')}</Button>
-        </div></div>
+      <section className="relative pt-6 pb-10 md:pt-8 md:pb-14">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <ArthurHero
+              imageSrc={arthurHouse}
+              imageAlt="Arthur - PNO"
+              title="PNO Assurance : Comparez et Économisez dès 5€/mois"
+              subtitle={t('pnoPage.subtitle')}
+              ctaLabel={t('insPage.compareNow')}
+              onCtaClick={scrollToForm}
+            />
+          </div>
+        </div>
       </section>
       <div className="container mx-auto px-4 py-12">
         <DynamicUpdateDate />

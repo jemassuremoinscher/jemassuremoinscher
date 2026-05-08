@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
@@ -78,23 +77,17 @@ const AssuranceMoto = () => {
       <Breadcrumbs items={[{ label: "Assurance Moto" }]} />
 
       <main id="main-content">
-        <section className="relative overflow-hidden py-16 md:py-20 bg-gradient-to-b from-primary/[0.06] via-background to-accent/[0.05]">
+        <section className="relative pt-6 pb-10 md:pt-8 md:pb-14">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center relative">
+            <div className="max-w-6xl mx-auto">
               <ArthurHero
                 imageSrc={arthurMoto}
                 imageAlt="Arthur en moto - assurance moto moins chère"
-                speechText={t("motoPage.subtitle")}
+                title={t("motoPage.title")}
+                subtitle={t("motoPage.subtitle")}
+                ctaLabel={t("insPage.compareNow")}
+                onCtaClick={scrollToForm}
               />
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance bg-gradient-to-br from-accent via-accent to-primary bg-clip-text text-transparent leading-tight tracking-tight">{t("motoPage.title")}</h1>
-              <Button
-                size="lg"
-                onClick={scrollToForm}
-                className="text-lg px-8 py-6"
-                aria-label="Comparer les assurances moto maintenant"
-              >
-                {t("insPage.compareNow")}
-              </Button>
             </div>
           </div>
         </section>

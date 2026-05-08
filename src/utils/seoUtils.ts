@@ -277,7 +277,9 @@ export const addInsuranceProductSchema = (product: {
   }
   if (productReview) {
     // Stable date per product to satisfy Google rich results validators
-    // (Review requires datePublished; itemReviewed must be present)
+    // (Review requires datePublished). NOTE: when the Review is nested
+    // inside a parent InsuranceProduct/Product, do NOT set "itemReviewed"
+    // — Google flags it as a directional conflict (parent already implies it).
     const reviewDate = new Date();
     reviewDate.setMonth(reviewDate.getMonth() - 2);
     schema.review = {
@@ -293,10 +295,6 @@ export const addInsuranceProductSchema = (product: {
         "ratingValue": verifiedReviewBase.ratingValue.toString(),
         "bestRating": "5",
         "worstRating": "1"
-      },
-      "itemReviewed": {
-        "@type": "InsuranceProduct",
-        "name": product.name
       },
       "publisher": {
         "@type": "Organization",
