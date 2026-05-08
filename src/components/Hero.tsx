@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { heroContent } from "@/config/heroContent";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const MultiStepQuoteForm = lazy(() =>
   import("@/components/forms/MultiStepQuoteForm").then((m) => ({ default: m.MultiStepQuoteForm }))
@@ -8,7 +9,18 @@ const MultiStepQuoteForm = lazy(() =>
 const arthurMascot = "/arthur-wink-thumbsup.webp";
 
 const Hero = () => {
-  const { slogan, arthurBubble, arthurImageAlt } = heroContent;
+  const { language, t } = useLanguage();
+  const slogan = language === "en"
+    ? {
+        line1Prefix: t("hero.slogan.line1Prefix"),
+        line1Highlight: t("hero.slogan.line1Highlight"),
+        line1Suffix: t("hero.slogan.line1Suffix"),
+        line2: t("hero.slogan.line2"),
+        line3: t("hero.slogan.line3"),
+      }
+    : heroContent.slogan;
+  const arthurBubble = language === "en" ? t("hero.arthurBubble") : heroContent.arthurBubble;
+  const arthurImageAlt = language === "en" ? t("hero.arthurImageAlt") : heroContent.arthurImageAlt;
 
   return (
     <section
@@ -23,7 +35,7 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.5rem] font-black text-white text-center mb-10 md:mb-14 leading-tight font-[Inter] animate-fade-in-up">
           {slogan.line1Prefix}
-          <span className="underline decoration-accent decoration-4 underline-offset-[6px] md:underline-offset-8">
+          <span className="underline decoration-white decoration-[6px] md:decoration-8 underline-offset-[6px] md:underline-offset-8">
             {slogan.line1Highlight}
           </span>
           {slogan.line1Suffix}
