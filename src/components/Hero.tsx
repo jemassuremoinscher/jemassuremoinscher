@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { heroContent } from "@/config/heroContent";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const MultiStepQuoteForm = lazy(() =>
   import("@/components/forms/MultiStepQuoteForm").then((m) => ({ default: m.MultiStepQuoteForm }))
@@ -8,7 +9,18 @@ const MultiStepQuoteForm = lazy(() =>
 const arthurMascot = "/arthur-wink-thumbsup.webp";
 
 const Hero = () => {
-  const { slogan, arthurBubble, arthurImageAlt } = heroContent;
+  const { language, t } = useLanguage();
+  const slogan = language === "en"
+    ? {
+        line1Prefix: t("hero.slogan.line1Prefix"),
+        line1Highlight: t("hero.slogan.line1Highlight"),
+        line1Suffix: t("hero.slogan.line1Suffix"),
+        line2: t("hero.slogan.line2"),
+        line3: t("hero.slogan.line3"),
+      }
+    : heroContent.slogan;
+  const arthurBubble = language === "en" ? t("hero.arthurBubble") : heroContent.arthurBubble;
+  const arthurImageAlt = language === "en" ? t("hero.arthurImageAlt") : heroContent.arthurImageAlt;
 
   return (
     <section
