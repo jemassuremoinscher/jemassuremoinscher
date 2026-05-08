@@ -39,8 +39,8 @@ const TrustRow = () => {
     ? undefined
     : { x: [0, 4, 0, -4, 0] };
 
-  // Compteur de devis depuis le début de l'année (live)
-  const [quotesCount, setQuotesCount] = useState<number>(QUOTES_BASELINE);
+  // Compteur de devis depuis le début de l'année (auto +4/jour)
+  const [quotesCount, setQuotesCount] = useState<number>(computeQuotesSinceJan1());
   const counterRef = useRef<HTMLDivElement>(null);
   const counterInView = useInView(counterRef, { once: true, margin: "-50px" });
   const motionVal = useMotionValue(0);
@@ -53,18 +53,9 @@ const TrustRow = () => {
   }, [rounded]);
 
   useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      const { count } = await supabase
-        .from('insurance_quotes')
-        .select('*', { count: 'exact', head: true })
-        .gte('created_at', YEAR_START)
-        .is('deleted_at', null);
-      if (!cancelled && typeof count === 'number') {
-        setQuotesCount(QUOTES_BASELINE + count);
-      }
-    })();
-    return () => { cancelled = true; };
+    // Recalcule chaque heure pour suivre le passage des jours sans rechargement
+    const interval = setInterval(() => setQuotesCount(computeQuotesSinceJan1()), 3600000);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
