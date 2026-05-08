@@ -79,74 +79,66 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
   };
 
   return (
-    <div className="relative h-[200px] [perspective:1000px]">
+    <div className="relative h-[220px]">
       <button
         type="button"
         onClick={onClick}
         onKeyDown={onKey}
         aria-pressed={flipped}
+        aria-expanded={flipped}
         aria-label={`Formule ${name} — ${flipped ? "voir le prix" : "voir les garanties incluses"}`}
-        className="absolute inset-0 w-full h-full rounded-xl [transform-style:preserve-3d] transition-transform duration-500 ease-out touch-manipulation select-none cursor-pointer [-webkit-tap-highlight-color:transparent] [will-change:transform] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-        style={{ transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
+        className={`absolute inset-0 w-full h-full rounded-xl border-2 p-3 touch-manipulation select-none cursor-pointer [-webkit-tap-highlight-color:transparent] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-all duration-300 hover:-translate-y-0.5 ${
+          highlight
+            ? "border-primary bg-primary/5 shadow-[var(--shadow-card)]"
+            : "border-border/40 bg-background/80 hover:border-primary/40"
+        }`}
       >
-        {/* Front */}
-        <div
-          className={`absolute inset-0 rounded-xl border-2 p-2.5 text-center flex flex-col items-center justify-between [backface-visibility:hidden] ${
-            highlight
-              ? "border-primary bg-primary/5 shadow-[var(--shadow-card)]"
-              : "border-border/40 bg-background/60"
-          }`}
-        >
-          {highlight && (
-            <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap shadow-md">
-              Meilleur prix
-            </span>
-          )}
-          <div className="flex flex-col items-center gap-0.5 mt-1">
-            <img src={logo} alt={name} className="h-6 max-w-[60px] object-contain" loading="lazy" />
-            <p className="text-[11px] font-semibold text-foreground leading-tight">{name}</p>
-          </div>
-
-          {/* Price bubble — violet bg + gold text for contrast */}
-          <div className="bg-gradient-to-br from-primary to-[hsl(265,85%,45%)] rounded-full px-3 py-1.5 shadow-md flex items-baseline gap-0.5">
-            {badge && (
-              <span className="text-[9px] text-white/80 font-medium uppercase mr-0.5">{badge}</span>
+        {!flipped ? (
+          <div className="h-full text-center flex flex-col items-center justify-between">
+            {highlight && (
+              <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap shadow-md">
+                Meilleur prix
+              </span>
             )}
-            <span className="text-lg md:text-xl font-extrabold text-[#fcd34d] leading-none tabular-nums">{price}</span>
-            <span className="text-[9px] text-white/85 font-medium">
-              {isPercent ? "loyers" : "/mois"}
-            </span>
-          </div>
+            <div className="flex flex-col items-center gap-1 mt-1">
+              <img src={logo} alt={name} className="h-7 max-w-[68px] object-contain" loading="lazy" />
+              <p className="text-xs font-bold text-foreground leading-tight">{name}</p>
+            </div>
 
-          <p className="text-[10px] text-primary font-semibold flex items-center gap-1">
-            Voir les garanties <span aria-hidden="true">→</span>
-          </p>
-        </div>
+            {/* Price bubble — violet bg + gold text for contrast */}
+            <div className="bg-gradient-to-br from-primary to-[hsl(265,85%,45%)] rounded-full px-4 py-2 shadow-md flex items-baseline gap-1">
+              {badge && (
+                <span className="text-[9px] text-white/80 font-medium uppercase mr-0.5">{badge}</span>
+              )}
+              <span className="text-xl md:text-2xl font-extrabold text-[#fcd34d] leading-none tabular-nums">{price}</span>
+              <span className="text-[10px] text-white/85 font-medium">
+                {isPercent ? "loyers" : "/mois"}
+              </span>
+            </div>
 
-        {/* Back */}
-        <div
-          className={`absolute inset-0 rounded-xl border-2 p-2.5 text-left [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden flex flex-col ${
-            highlight
-              ? "border-primary bg-primary/5 shadow-[var(--shadow-card)]"
-              : "border-border/40 bg-background"
-          }`}
-        >
-          <div className="flex items-center justify-between mb-1.5 pb-1 border-b border-border/40">
-            <span className="text-[11px] font-bold text-foreground truncate">{name}</span>
-            <RotateCcw className="h-3 w-3 text-primary shrink-0" aria-hidden="true" />
+            <p className="text-[11px] text-primary font-bold flex items-center gap-1">
+              Voir les garanties <span aria-hidden="true">→</span>
+            </p>
           </div>
-          <ul className="space-y-1 flex-1 overflow-y-auto">
-            {features.map((f) => (
-              <li key={f} className="flex items-start gap-1 text-[10px] text-foreground/85 leading-snug">
-                <Check className="h-2.5 w-2.5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="text-[9px] text-primary/70 italic text-center mt-1 pt-1 border-t border-border/40">
-            Cliquez pour revenir au prix
-          </p>
-        </div>
+        ) : (
+          <div className="h-full text-left flex flex-col">
+            <div className="flex items-center justify-between mb-2 pb-1.5 border-b border-border/50">
+              <span className="text-xs font-extrabold text-foreground truncate">Garanties {name}</span>
+              <RotateCcw className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
+            </div>
+            <ul className="space-y-1.5 flex-1 overflow-y-auto pr-1">
+              {features.map((feature) => (
+                <li key={feature} className="flex items-start gap-1.5 text-[11px] text-foreground leading-snug">
+                  <Check className="h-3 w-3 text-primary shrink-0 mt-0.5" aria-hidden="true" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="text-[10px] text-primary/75 font-semibold text-center mt-2 pt-1.5 border-t border-border/50">
+              Cliquez pour revenir au prix
+            </p>
+          </div>
+        )}
       </button>
     </div>
   );
