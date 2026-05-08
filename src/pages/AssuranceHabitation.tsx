@@ -82,7 +82,7 @@ const AssuranceHabitation = () => {
             <div className="max-w-6xl mx-auto">
               <ArthurHero
                 imageSrc={arthurHouse}
-                imageAlt="Arthur devant une maison - assurance habitation moins chère"
+                imageAlt="Arthur mascotte avec assurance habitation jemassuremoinscher protégeant maison"
                 title={t("habitationPage.title")}
                 subtitle={t("habitationPage.subtitle")}
                 ctaLabel={t("insPage.compareNow")}

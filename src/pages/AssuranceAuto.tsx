@@ -112,7 +112,7 @@ const AssuranceAuto = () => {
             <div className="max-w-6xl mx-auto">
               <ArthurHero
                 imageSrc={arthurCar}
-                imageAlt="Arthur en voiture - assurance auto moins chère"
+                imageAlt="Arthur mascotte avec assurance auto jemassuremoinscher protégeant voiture"
                 title={t("autoPage.title")}
                 subtitle={t("autoPage.subtitle")}
                 ctaLabel={t("insPage.compareNow")}
