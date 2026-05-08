@@ -75,23 +75,17 @@ const AssuranceAnimaux = () => {
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Animaux" }]} />
       <main id="main-content">
-        <section className="relative overflow-hidden py-16 md:py-20 bg-gradient-to-b from-primary/[0.06] via-background to-accent/[0.05]">
+        <section className="relative pt-6 pb-10 md:pt-8 md:pb-14">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center relative">
+            <div className="max-w-6xl mx-auto">
               <ArthurHero
                 imageSrc={arthurAnimals}
                 imageAlt="Arthur avec des animaux"
-                speechText={t("animauxPage.subtitle")}
+                title={t("animauxPage.title")}
+                subtitle={t("animauxPage.subtitle")}
+                ctaLabel={t("insPage.compareNow")}
+                onCtaClick={scrollToForm}
               />
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance bg-gradient-to-br from-accent via-accent to-primary bg-clip-text text-transparent leading-tight tracking-tight">{t("animauxPage.title")}</h1>
-              <Button
-                size="lg"
-                onClick={scrollToForm}
-                className="text-lg px-8 py-6"
-                aria-label="Comparer les assurances animaux maintenant"
-              >
-                {t("insPage.compareNow")}
-              </Button>
             </div>
           </div>
         </section>
