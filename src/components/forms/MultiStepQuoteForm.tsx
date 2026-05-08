@@ -19,6 +19,7 @@ import { stepConfigsByType, type InsuranceType, type FormStep, type StepOption }
 import { useFieldTracking } from '@/hooks/useFieldTracking';
 import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from '@/data/vehicleBrands';
 import FlipPriceCard from './FlipPriceCard';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Mascot imports
 import arthurCar from '@/assets/mascotte/arthur-car.webp';
@@ -118,6 +119,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   const [searchParams] = useSearchParams();
   const { trackEvent, trackConversion } = useAnalytics();
   const { track: trackFunnel } = useFunnelTracker();
+  const { t } = useLanguage();
   const { honeypotRef, isBot } = useHoneypot();
 
   // Prefill from URL: ?type=auto&age=35&zipcode=75001
@@ -430,24 +432,24 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         {step.type !== 'searching' && step.type !== 'callback' && !transitionScreen && (
           <div className="bg-primary px-4 py-2.5 flex items-center justify-between gap-3 text-[11px] md:text-xs">
             <span className="font-semibold text-primary-foreground/90">
-              Étape {currentStep + 1}/{totalSteps}
+              {t("form.stepOf", { current: currentStep + 1, total: totalSteps })}
             </span>
             <span className="text-primary-foreground/85 flex items-baseline gap-1.5">
-              Plus que{' '}
+              {t("form.timeLeftPrefix")}{' '}
               <span className="text-[22px] md:text-[26px] font-bold leading-none text-[#fcd34d] tabular-nums tracking-tight animate-[pulse_2.4s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(252,211,77,0.45)]">
                 {secondsEstimate}s
               </span>{' '}
-              pour voir vos prix
+              {t("form.timeLeftSuffix")}
             </span>
           </div>
         )}
         {step.type === 'callback' && !transitionScreen && (
           <div className="bg-primary px-4 py-2.5 flex items-center justify-between gap-3 text-[11px] md:text-xs">
             <span className="font-semibold text-primary-foreground/90">
-              Dernière étape — finalisez votre demande
+              {t("form.lastStep")}
             </span>
             <span className="text-primary-foreground/85 flex items-baseline gap-1.5">
-              Rappel sous{' '}
+              {t("form.callbackPrefix")}{' '}
               <span className="text-[22px] md:text-[26px] font-bold leading-none text-[#fcd34d] tabular-nums tracking-tight animate-[pulse_2.4s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(252,211,77,0.45)]">
                 30 min
               </span>
@@ -475,10 +477,10 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
             onClick={goBack}
             disabled={currentStep === 0 || step.type === 'searching' || !!transitionScreen}
             className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors disabled:opacity-0 disabled:pointer-events-none relative z-10"
-            aria-label="Étape précédente"
+            aria-label={t("form.previousStep")}
           >
             <ArrowLeft className="h-4 w-4" />
-            Retour
+            {t("common.back")}
           </button>
           <span className="text-xs font-medium text-muted-foreground tracking-wide">
             {step.type !== 'searching' && !transitionScreen && `${currentStep + 1} / ${totalSteps}`}
@@ -631,11 +633,11 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
         {/* Trust badges at bottom */}
         <div className="border-t border-border/30 px-6 py-3 flex items-center justify-center gap-4 text-xs text-muted-foreground">
-          <span className="flex items-center gap-1"><Lock className="h-3 w-3" /> Données sécurisées</span>
+          <span className="flex items-center gap-1"><Lock className="h-3 w-3" /> {t("form.trust.secured")}</span>
           <span className="hidden sm:inline">•</span>
-          <span className="hidden sm:flex items-center gap-1">100% gratuit</span>
+          <span className="hidden sm:flex items-center gap-1">{t("form.trust.free")}</span>
           <span className="hidden sm:inline">•</span>
-          <span className="hidden sm:flex items-center gap-1">Sans engagement</span>
+          <span className="hidden sm:flex items-center gap-1">{t("form.trust.noCommit")}</span>
         </div>
       </div>
 
@@ -1061,7 +1063,7 @@ function ContactStep({
           ))}
         </div>
         <p className="text-[11px] text-muted-foreground text-center italic">
-          👆 Cliquez sur une carte pour voir les garanties incluses
+          {t("form.clickCardToReveal")}
         </p>
       </motion.div>
 
