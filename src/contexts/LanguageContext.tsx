@@ -6,7 +6,7 @@ export type Language = 'fr' | 'en';
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
+  t: (key: string, vars?: Record<string, string | number>) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -51,11 +51,19 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   }, [language]);
 
-  const t = useCallback((key: string): string => {
+  const t = useCallback((key: string, vars?: Record<string, string | number>): string => {
+    let raw: string;
     if (language === 'en' && enTranslations) {
-      return enTranslations[key] || fr[key] || key;
+      raw = enTranslations[key] || fr[key] || key;
+    } else {
+      raw = fr[key] || key;
     }
-    return fr[key] || key;
+    if (vars) {
+      for (const [k, v] of Object.entries(vars)) {
+        raw = raw.replace(new RegExp(`\\{${k}\\}`, 'g'), String(v));
+      }
+    }
+    return raw;
   }, [language, enLoaded]);
 
   return (
