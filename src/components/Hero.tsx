@@ -1,4 +1,5 @@
 import { lazy, Suspense } from "react";
+import { heroContent } from "@/config/heroContent";
 
 const MultiStepQuoteForm = lazy(() =>
   import("@/components/forms/MultiStepQuoteForm").then((m) => ({ default: m.MultiStepQuoteForm }))
@@ -7,6 +8,8 @@ const MultiStepQuoteForm = lazy(() =>
 const arthurMascot = "/arthur-wink-thumbsup.webp";
 
 const Hero = () => {
+  const { slogan, arthurBubble, arthurImageAlt } = heroContent;
+
   return (
     <section
       className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90 py-10 md:py-14"
@@ -19,12 +22,16 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.5rem] font-black text-white text-center mb-10 md:mb-14 leading-tight font-[Inter] animate-fade-in-up">
-          Comparez votre assurance avec Arthur,
+          {slogan.line1Prefix}
+          <span className="underline decoration-accent decoration-4 underline-offset-[6px] md:underline-offset-8">
+            {slogan.line1Highlight}
+          </span>
+          {slogan.line1Suffix}
           <br />
-          et payez moins cher,
+          {slogan.line2}
           <br />
           <span className="relative inline-block">
-            <span className="relative z-10" style={{ color: "#f5b80a" }}>sans compromis.</span>
+            <span className="relative z-10" style={{ color: "#f5b80a" }}>{slogan.line3}</span>
             <svg
               aria-hidden="true"
               viewBox="0 0 200 14"
@@ -53,7 +60,7 @@ const Hero = () => {
             <div className="relative inline-block">
               <img
                 src={arthurMascot}
-                alt="Arthur mascotte jemassuremoinscher, guide pour comparer assurance auto, habitation et santé"
+                alt={arthurImageAlt}
                 className="w-56 lg:w-72 h-auto drop-shadow-2xl animate-hero-float"
                 width={288}
                 height={360}
@@ -63,7 +70,7 @@ const Hero = () => {
               />
               <div className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 bg-white rounded-2xl px-4 py-2 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] animate-fade-in-delay">
                 <p className="text-primary font-bold text-sm whitespace-nowrap">
-                  Hello, moi c'est Arthur 👋
+                  {arthurBubble}
                 </p>
                 <div className="absolute -bottom-1.5 left-4 w-3 h-3 bg-white transform rotate-45" />
               </div>
