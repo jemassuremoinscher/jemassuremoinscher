@@ -171,6 +171,24 @@ const TrustRow = () => {
             <p className="text-sm font-bold text-white">Rappel sous 5 min</p>
             <p className="text-xs text-white/90">Arthur vous rappelle immédiatement pour finaliser</p>
           </motion.button>
+
+          {/* Compteur devis depuis le début de l'année */}
+          <motion.div
+            ref={counterRef}
+            variants={itemVariants}
+            role="group"
+            aria-label={`${quotesCount.toLocaleString('fr-FR')} devis générés depuis le début de l'année ${currentYear}`}
+            className="col-span-2 lg:col-span-1 bg-gradient-to-br from-accent/95 to-accent rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(252,211,77,0.4)] hover:shadow-[0_16px_32px_-10px_rgba(252,211,77,0.6)] hover:-translate-y-1 transition-all border border-accent-foreground/10 flex flex-col items-center text-center gap-3 relative overflow-hidden"
+          >
+            <div className="p-3 rounded-full bg-primary/15" aria-hidden="true">
+              <TrendingUp className="w-7 h-7 text-primary" />
+            </div>
+            <p className="text-3xl font-black text-primary tabular-nums leading-none">
+              {displayCount}
+            </p>
+            <p className="text-xs font-bold text-primary/90 uppercase tracking-wide">Devis en {currentYear}</p>
+            <p className="text-[11px] text-primary/70 leading-snug">Familles accompagnées depuis le 1er janvier</p>
+          </motion.div>
         </motion.div>
       </div>
     </section>
