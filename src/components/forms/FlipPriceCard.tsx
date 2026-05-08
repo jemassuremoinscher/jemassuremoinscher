@@ -79,7 +79,7 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
   };
 
   return (
-    <div className="relative h-[170px] [perspective:1000px]">
+    <div className="relative h-[200px] [perspective:1000px]">
       <button
         type="button"
         onClick={onClick}
@@ -91,51 +91,61 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
       >
         {/* Front */}
         <div
-          className={`absolute inset-0 rounded-xl border-2 p-3 text-center [backface-visibility:hidden] ${
+          className={`absolute inset-0 rounded-xl border-2 p-2.5 text-center flex flex-col items-center justify-between [backface-visibility:hidden] ${
             highlight
               ? "border-primary bg-primary/5 shadow-[var(--shadow-card)]"
-              : "border-border/40 bg-background/50"
+              : "border-border/40 bg-background/60"
           }`}
         >
           {highlight && (
-            <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
+            <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap shadow-md">
               Meilleur prix
             </span>
           )}
-          <div className="flex justify-center mb-1.5 mt-1">
+          <div className="flex flex-col items-center gap-0.5 mt-1">
             <img src={logo} alt={name} className="h-6 max-w-[60px] object-contain" loading="lazy" />
+            <p className="text-[11px] font-semibold text-foreground leading-tight">{name}</p>
           </div>
-          {badge && (
-            <span className="text-[10px] text-muted-foreground font-medium uppercase">{badge}</span>
-          )}
-          <div className="text-xl md:text-2xl font-extrabold text-accent mt-0.5">{price}</div>
-          <span className="text-[11px] text-muted-foreground">
-            {isPercent ? " des loyers" : "/mois"}
-          </span>
-          <p className="text-xs font-medium text-foreground mt-1">{name}</p>
-          <p className="text-[10px] text-primary/70 mt-1.5 font-medium">Détails →</p>
+
+          {/* Price bubble — violet bg + gold text for contrast */}
+          <div className="bg-gradient-to-br from-primary to-[hsl(265,85%,45%)] rounded-full px-3 py-1.5 shadow-md flex items-baseline gap-0.5">
+            {badge && (
+              <span className="text-[9px] text-white/80 font-medium uppercase mr-0.5">{badge}</span>
+            )}
+            <span className="text-lg md:text-xl font-extrabold text-[#fcd34d] leading-none tabular-nums">{price}</span>
+            <span className="text-[9px] text-white/85 font-medium">
+              {isPercent ? "loyers" : "/mois"}
+            </span>
+          </div>
+
+          <p className="text-[10px] text-primary font-semibold flex items-center gap-1">
+            Voir les garanties <span aria-hidden="true">→</span>
+          </p>
         </div>
 
         {/* Back */}
         <div
-          className={`absolute inset-0 rounded-xl border-2 p-3 text-left [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden ${
+          className={`absolute inset-0 rounded-xl border-2 p-2.5 text-left [backface-visibility:hidden] [transform:rotateY(180deg)] overflow-hidden flex flex-col ${
             highlight
               ? "border-primary bg-primary/5 shadow-[var(--shadow-card)]"
               : "border-border/40 bg-background"
           }`}
         >
-          <p className="text-[11px] font-bold text-foreground mb-1.5 flex items-center justify-between">
-            <span className="truncate">{name}</span>
+          <div className="flex items-center justify-between mb-1.5 pb-1 border-b border-border/40">
+            <span className="text-[11px] font-bold text-foreground truncate">{name}</span>
             <RotateCcw className="h-3 w-3 text-primary shrink-0" aria-hidden="true" />
-          </p>
-          <ul className="space-y-1">
-            {features.slice(0, 4).map((f) => (
-              <li key={f} className="flex items-start gap-1 text-[10px] text-muted-foreground leading-tight">
+          </div>
+          <ul className="space-y-1 flex-1 overflow-y-auto">
+            {features.map((f) => (
+              <li key={f} className="flex items-start gap-1 text-[10px] text-foreground/85 leading-snug">
                 <Check className="h-2.5 w-2.5 text-primary shrink-0 mt-0.5" aria-hidden="true" />
                 <span>{f}</span>
               </li>
             ))}
           </ul>
+          <p className="text-[9px] text-primary/70 italic text-center mt-1 pt-1 border-t border-border/40">
+            Cliquez pour revenir au prix
+          </p>
         </div>
       </button>
     </div>
