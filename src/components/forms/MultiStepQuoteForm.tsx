@@ -126,6 +126,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   const prefillType = searchParams.get('type');
   const prefillAge = searchParams.get('age') || '';
   const prefillZip = searchParams.get('zipcode') || searchParams.get('postalCode') || '';
+  const stepConfigsByType = useMemo(() => buildStepConfigs(t), [t]);
   const initialFormData: Record<string, string> = {};
   if (insuranceType === 'comparateur' && prefillType && prefillType in stepConfigsByType) {
     initialFormData.insuranceType = prefillType;
@@ -152,7 +153,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       return [typeStep, ...productSteps, ...finalSteps];
     }
     return baseSteps;
-  }, [insuranceType, formData.insuranceType]);
+  }, [insuranceType, formData.insuranceType, stepConfigsByType]);
   const [contactErrors, setContactErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
