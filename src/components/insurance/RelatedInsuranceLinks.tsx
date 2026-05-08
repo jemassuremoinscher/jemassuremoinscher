@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, Calculator, MessageSquare, ShieldAlert } from "lucide-react";
+import { ArrowRight, BookOpen, Calculator, ShieldAlert } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface RelatedLink {
   to: string;
