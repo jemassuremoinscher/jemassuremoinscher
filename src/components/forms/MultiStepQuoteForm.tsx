@@ -432,9 +432,9 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
             <span className="font-semibold text-primary-foreground/90">
               Étape {currentStep + 1}/{totalSteps}
             </span>
-            <span className="text-primary-foreground/80 flex items-baseline gap-1.5">
+            <span className="text-primary-foreground/85 flex items-baseline gap-1.5">
               Plus que{' '}
-              <span className="text-[26px] md:text-[32px] font-extrabold leading-none text-[#ef4444] animate-[pulse_1.6s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(239,68,68,0.45)]">
+              <span className="text-[22px] md:text-[26px] font-bold leading-none text-[#fcd34d] tabular-nums tracking-tight animate-[pulse_2.4s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(252,211,77,0.45)]">
                 {secondsEstimate}s
               </span>{' '}
               pour voir vos prix
@@ -446,9 +446,9 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
             <span className="font-semibold text-primary-foreground/90">
               Dernière étape — finalisez votre demande
             </span>
-            <span className="text-primary-foreground/80 flex items-baseline gap-1.5">
+            <span className="text-primary-foreground/85 flex items-baseline gap-1.5">
               Rappel sous{' '}
-              <span className="text-[26px] md:text-[32px] font-extrabold leading-none text-[#ef4444] animate-[pulse_1.6s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(239,68,68,0.45)]">
+              <span className="text-[22px] md:text-[26px] font-bold leading-none text-[#fcd34d] tabular-nums tracking-tight animate-[pulse_2.4s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(252,211,77,0.45)]">
                 30 min
               </span>
             </span>
