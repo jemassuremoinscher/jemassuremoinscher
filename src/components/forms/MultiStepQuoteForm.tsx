@@ -1297,5 +1297,3 @@ function CallbackStep({
 }
 
 export default MultiStepQuoteForm;
-
-export default MultiStepQuoteForm;
