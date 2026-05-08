@@ -1006,6 +1006,7 @@ function ContactStep({
   onSubmit: () => void;
   insuranceType?: string;
 }) {
+  const { t } = useLanguage();
   if (isSuccess) {
     return (
       <motion.div
