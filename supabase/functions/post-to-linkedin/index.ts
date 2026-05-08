@@ -16,16 +16,25 @@ serve(async (req) => {
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Check if this is a manual trigger (with auth) or cron trigger
+    // Require auth: either CRON_SECRET (scheduled) or admin JWT (manual)
     const authHeader = req.headers.get("Authorization");
+    const cronSecret = Deno.env.get("CRON_SECRET");
     let isManual = false;
     let manualSlug: string | null = null;
 
-    if (authHeader && !authHeader.includes(Deno.env.get("SUPABASE_ANON_KEY")!)) {
+    if (!authHeader) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const token = authHeader.replace("Bearer ", "");
+    const isCron = !!cronSecret && token === cronSecret;
+
+    if (!isCron) {
       // Manual trigger from admin - verify admin role
-      const { data: { user }, error: authError } = await supabase.auth.getUser(
-        authHeader.replace("Bearer ", "")
-      );
+      const { data: { user }, error: authError } = await supabase.auth.getUser(token);
       if (authError || !user) {
         return new Response(JSON.stringify({ error: "Non autorisé" }), {
           status: 401,

@@ -138,23 +138,31 @@ const handler = async (req: Request): Promise<Response> => {
       from: `jemassuremoinscher.fr <${businessEmail}>`,
       to: businessEmail,
       subject: `Nouvelle demande de devis - ${type}`,
-      html: `
+      html: (() => {
+        const esc = (s: unknown) => String(s ?? '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+        return `
         <h1>Nouvelle demande de devis</h1>
-        <h2>Type d'assurance: ${type}</h2>
+        <h2>Type d'assurance: ${esc(type)}</h2>
         
         <h3>Coordonnées du client:</h3>
         <ul>
-          <li><strong>Nom:</strong> ${name}</li>
-          <li><strong>Email:</strong> ${email}</li>
-          <li><strong>Téléphone:</strong> ${phone}</li>
+          <li><strong>Nom:</strong> ${esc(name)}</li>
+          <li><strong>Email:</strong> ${esc(email)}</li>
+          <li><strong>Téléphone:</strong> ${esc(phone)}</li>
         </ul>
         
         <h3>Détails de la demande:</h3>
-        <pre>${JSON.stringify(details, null, 2)}</pre>
+        <pre>${esc(JSON.stringify(details, null, 2))}</pre>
         
         <h3>Tarif estimé:</h3>
-        <p style="font-size: 24px; color: #7e22ce; font-weight: bold;">${estimatedPrice}€/mois</p>
-      `,
+        <p style="font-size: 24px; color: #7e22ce; font-weight: bold;">${esc(estimatedPrice)}€/mois</p>
+      `;
+      })(),
     });
 
     // Track owner email

@@ -407,10 +407,12 @@ serve(async (req) => {
     }
 
     const token = authHeader.replace("Bearer ", "");
-    const invocationMode = token === anonKey ? "cron" : "admin";
+    const cronSecret = Deno.env.get("CRON_SECRET");
+    const isCron = !!cronSecret && token === cronSecret;
+    const invocationMode = isCron ? "cron" : "admin";
     console.log(`Invocation mode: ${invocationMode}`);
 
-    if (token !== anonKey) {
+    if (!isCron) {
       const supabaseUser = createClient(supabaseUrl, anonKey, {
         global: { headers: { Authorization: authHeader } },
       });
