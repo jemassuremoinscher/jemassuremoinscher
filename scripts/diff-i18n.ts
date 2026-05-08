@@ -1,15 +1,16 @@
 import fr from '../src/i18n/fr';
 import en from '../src/i18n/en';
-const frKeys = Object.keys(fr);
-const enKeys = Object.keys(en);
-const missingInEn = frKeys.filter(k => !(k in en));
-console.log('FR:', frKeys.length, 'EN:', enKeys.length, 'Missing in EN:', missingInEn.length);
-missingInEn.forEach(k=>console.log(' -',k,'=>',(fr as any)[k].slice(0,100)));
-console.log('---LOOKS FRENCH IN EN---');
-const re = /\b(gratuit|assurez|moins cher|votre|nous|sans engagement|découvrez|économies|protégeant|comparateur|santé|habitation|voiture|pour|avec|votre|c'est|qu'|à |de |en |le |la |les |des |est |sont |moins|cher|économisez)\b/i;
+// Detect EN values that contain French-specific words/accents
+const frenchOnly = /\b(gratuit|moins cher|sans engagement|découvr|économ|protégeant|santé|habitation|voiture|comparateur|votre|nous|c'est|qu'|à |de |en |le |la |les |des |est |sont |moins|cher|économisez|conseillers?|assureurs?|devis|jeune|conducteur|emprunteur|prévoyance|partenaires?|maison|chien|chat|véhicule|façon|résili|garanties?|tarifs?|pas chère?|meilleure?s?)\b/i;
+const accents = /[àâäéèêëïîôöùûüÿç]/;
 let count = 0;
-for (const k of enKeys) {
+const out: string[] = [];
+for (const k of Object.keys(en)) {
   const v = (en as any)[k];
-  if (typeof v==='string' && re.test(v) && !/^(EN|En|FR)$/.test(v)) { console.log(' ?',k,'=>',v.slice(0,140)); count++; }
+  if (typeof v!=='string') continue;
+  if (accents.test(v) || frenchOnly.test(v)) {
+    out.push(`${k} => ${v}`); count++;
+  }
 }
-console.log('Total suspicious:', count);
+console.log('Suspicious EN entries:', count);
+console.log(out.slice(0,500).join('\n'));
