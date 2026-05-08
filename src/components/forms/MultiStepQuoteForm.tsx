@@ -213,11 +213,11 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
   // Contextual transition messages
   const transitionMessages = [
-    'Recherche des meilleurs tarifs en cours…',
-    'Vérification de votre éligibilité aux bonus…',
-    'Analyse de votre profil…',
-    'Comparaison des garanties disponibles…',
-    'Optimisation de votre tarif…',
+    t('form.transition.1'),
+    t('form.transition.2'),
+    t('form.transition.3'),
+    t('form.transition.4'),
+    t('form.transition.5'),
   ];
 
   // Step time estimate
