@@ -1065,19 +1065,6 @@ function ContactStep({
         </p>
       </motion.div>
 
-      {/* Scroll-down CTA — make it obvious that contact fields are below */}
-      <motion.div
-        initial={{ opacity: 0, y: -4 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.4 }}
-        className="flex flex-col items-center gap-1.5 pt-1"
-      >
-        <p className="text-sm font-semibold text-primary text-center">
-          ⬇️ Continuez ci-dessous pour recevoir vos prix exacts
-        </p>
-        <span className="text-2xl text-primary animate-bounce" aria-hidden="true">↓</span>
-      </motion.div>
-
       <div className="h-px bg-border/40" />
       {/* Full name */}
       <div className="space-y-1.5">
