@@ -66,8 +66,8 @@ const searchingStep: FormStep = {
 const contactStep: FormStep = {
   id: 'contact',
   type: 'contact',
-  title: 'Recevez votre devis personnalisé',
-  subtitle: 'Un conseiller vous rappelle sous 5 minutes avec les meilleures offres.',
+  title: 'Vos estimations sont prêtes 🎉',
+  subtitle: 'Faites défiler vers le bas pour saisir vos coordonnées et recevoir vos prix exacts par email en moins de 5 min.',
 };
 
 const postalCodeStep: FormStep = {
