@@ -644,3 +644,66 @@ All colors MUST be HSL.
     .md-interactive:active { transform: none !important; }
   }
 }
+
+/* ============================================================
+   MD3 Expressive — global elevation, hover, focus, animations
+   Uses design-system HSL tokens (--primary, --elevation-*, --md-easing-*)
+   ============================================================ */
+@layer components {
+  /* CARDS — Elevation 2 → 3 on hover */
+  .card,
+  .form-card,
+  .trust-element,
+  .product-card {
+    box-shadow: var(--elevation-2);
+    transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .card:hover,
+  .form-card:hover,
+  .trust-element:hover,
+  .product-card:hover {
+    box-shadow: var(--elevation-3);
+    transform: translateY(-2px);
+  }
+
+  /* TIMER — urgency styling */
+  .timer,
+  [data-timer] {
+    font-size: 28px;
+    font-weight: 700;
+    color: hsl(var(--destructive));
+    animation: md-timer-pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes md-timer-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  /* DROPDOWN / LISTBOX entrance */
+  @keyframes md-slide-in-down {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  [role="listbox"],
+  .dropdown-menu {
+    animation: md-slide-in-down 250ms ease-out;
+    box-shadow: var(--elevation-3);
+  }
+
+  /* Reduced-motion safety */
+  @media (prefers-reduced-motion: reduce) {
+    .card:hover,
+    .form-card:hover,
+    .trust-element:hover,
+    .product-card:hover {
+      transform: none;
+    }
+    .timer,
+    [data-timer],
+    [role="listbox"],
+    .dropdown-menu {
+      animation: none;
+    }
+  }
+}
