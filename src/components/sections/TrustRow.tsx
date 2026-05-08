@@ -2,7 +2,7 @@ import { Star, Scale, BadgeCheck, TrendingUp } from "lucide-react";
 import { motion, useReducedMotion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { supabase } from "@/integrations/supabase/client";
+
 import oriasLogo from "@/assets/logos/orias.jpg";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import geoContent from "@/data/geo-content.json";
