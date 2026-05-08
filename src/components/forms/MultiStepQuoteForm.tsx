@@ -1140,7 +1140,7 @@ function ContactStep({
         {isSubmitting ? (
           <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Envoi en cours…</>
         ) : (
-          <>Recevoir mon devis gratuit</>
+          <>Recevoir mon devis personnalisé</>
         )}
       </Button>
 
