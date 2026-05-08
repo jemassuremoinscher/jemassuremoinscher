@@ -1033,9 +1033,12 @@ function ContactStep({
         transition={{ duration: 0.4 }}
         className="space-y-3"
       >
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">
-          Estimations cohérentes pour votre profil
-        </p>
+        <div className="flex flex-col items-center gap-1">
+          <p className="text-sm font-semibold text-primary text-center">
+            ⬇️ Continuez ci-dessous pour recevoir vos prix exacts
+          </p>
+          <span className="text-xl text-primary animate-bounce" aria-hidden="true">↓</span>
+        </div>
         <div className="grid grid-cols-3 gap-2">
           {prices.map((p, i) => (
             <motion.div
@@ -1060,19 +1063,6 @@ function ContactStep({
         <p className="text-[11px] text-muted-foreground text-center italic">
           👆 Cliquez sur une carte pour voir les garanties incluses
         </p>
-      </motion.div>
-
-      {/* Scroll-down CTA — make it obvious that contact fields are below */}
-      <motion.div
-        initial={{ opacity: 0, y: -4 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.4 }}
-        className="flex flex-col items-center gap-1.5 pt-1"
-      >
-        <p className="text-sm font-semibold text-primary text-center">
-          ⬇️ Continuez ci-dessous pour recevoir vos prix exacts
-        </p>
-        <span className="text-2xl text-primary animate-bounce" aria-hidden="true">↓</span>
       </motion.div>
 
       <div className="h-px bg-border/40" />
@@ -1150,7 +1140,7 @@ function ContactStep({
         {isSubmitting ? (
           <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Envoi en cours…</>
         ) : (
-          <>Recevoir mon devis gratuit</>
+          <>Recevoir mon devis personnalisé</>
         )}
       </Button>
 
