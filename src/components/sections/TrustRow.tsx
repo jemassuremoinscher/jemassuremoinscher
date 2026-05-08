@@ -7,9 +7,14 @@ import oriasLogo from "@/assets/logos/orias.jpg";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import geoContent from "@/data/geo-content.json";
 
-// Baseline pour cohérence (volume historique non migré en base)
-const QUOTES_BASELINE = 4250;
-const YEAR_START = `${new Date().getFullYear()}-01-01T00:00:00Z`;
+// Compteur de devis : démarre à 0 le 1er janvier, +4 par jour automatiquement
+const QUOTES_PER_DAY = 4;
+const computeQuotesSinceJan1 = () => {
+  const now = new Date();
+  const yearStart = new Date(now.getFullYear(), 0, 1);
+  const days = Math.floor((now.getTime() - yearStart.getTime()) / 86400000);
+  return Math.max(0, days * QUOTES_PER_DAY);
+};
 
 const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
 const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
