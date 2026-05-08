@@ -650,6 +650,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
 // ─── Card Select Step ────────────────────────────────────────────────────────
 function CardSelectStep({ options, selected, onSelect, microLoading }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void; microLoading?: boolean }) {
+  const { t } = useLanguage();
   return (
     <div className="relative">
       <div className={`grid gap-3 ${options.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : options.length <= 4 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}`}>
@@ -733,7 +734,7 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
           className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground"
         >
           <Loader2 className="h-3.5 w-3.5 animate-spin text-primary" />
-          <span>{useLanguage().t('form.precisionCalc')}</span>
+          <span>{t('form.precisionCalc')}</span>
         </motion.div>
       )}
     </div>
@@ -745,11 +746,12 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
   step: FormStep; value: string; onChange: (v: string) => void; onSubmit: (v: string) => void;
   activeHint?: string | null; onFocus?: () => void; onBlur?: () => void; onDismissHint?: () => void;
 }) {
+  const { t } = useLanguage();
   const [error, setError] = useState('');
 
   const handleSubmit = () => {
     if (step.validation && !step.validation.test(value)) {
-      setError(step.validationMessage || 'Valeur invalide');
+      setError(step.validationMessage || t('form.invalidValue'));
       return;
     }
     setError('');
@@ -791,7 +793,7 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
               <div className="flex items-start gap-2">
                 <span className="text-primary text-sm flex-shrink-0">💡</span>
                 <span>{activeHint}</span>
-                <button onClick={onDismissHint} className="text-muted-foreground/60 hover:text-foreground ml-auto flex-shrink-0" aria-label="Fermer">✕</button>
+                <button onClick={onDismissHint} className="text-muted-foreground/60 hover:text-foreground ml-auto flex-shrink-0" aria-label={t('form.closeAria')}>✕</button>
               </div>
             </div>
           </motion.div>
@@ -802,7 +804,7 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
         size="lg"
         className="btn-glow w-full rounded-full font-bold text-base h-12 bg-primary hover:bg-primary/90 active:scale-[0.96] active:brightness-90 transition-all duration-75"
       >
-        Continuer
+        {t('form.continue')}
         <ArrowRight className="ml-2 h-4 w-4" />
       </Button>
     </div>
@@ -816,6 +818,7 @@ function VehicleSelectStep({ step, formData, onSelect }: {
   formData: Record<string, string>;
   onSelect: (field: string, value: string) => void;
 }) {
+  const { t } = useLanguage();
   const [search, setSearch] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
