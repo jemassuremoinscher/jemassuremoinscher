@@ -27,7 +27,7 @@ const Index = () => {
   const organizationSchema = addOrganizationSchema(geoContent.trust.ratingValue, geoContent.trust.reviewCount);
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances Moins Chères en Ligne",
-    description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 50+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
+    description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 70+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
     provider: "jemassuremoinscher.fr",
     areaServed: "France"
   });
@@ -38,7 +38,7 @@ const Index = () => {
     "name": "jemassuremoinscher.fr",
     "url": "https://www.jemassuremoinscher.fr",
     "logo": "https://www.jemassuremoinscher.fr/logo.png",
-    "description": "Courtier en assurances en ligne. Comparez gratuitement les offres de 50 assureurs partenaires et économisez en moyenne 40% sur votre contrat.",
+    "description": "Courtier en assurances en ligne. Comparez gratuitement les offres de 70 assureurs partenaires et économisez en moyenne 40% sur votre contrat.",
     "areaServed": {
       "@type": "Country",
       "name": "France"
@@ -53,7 +53,7 @@ const Index = () => {
     "name": "jemassuremoinscher.fr",
     "alternateName": "Je M'Assure Moins Cher",
     "url": "https://www.jemassuremoinscher.fr",
-    "description": "Comparateur d'assurances gratuit. Comparez 50+ assureurs et trouvez l'assurance moins chère en 2 minutes.",
+    "description": "Comparateur d'assurances gratuit. Comparez 70+ assureurs et trouvez l'assurance moins chère en 2 minutes.",
     "inLanguage": ["fr", "en"],
     "potentialAction": {
       "@type": "SearchAction",
@@ -67,29 +67,29 @@ const Index = () => {
 
   const faqSchema = addFAQSchema([{
     question: "Comment trouver une assurance moins chère ?",
-    answer: "Pour trouver une assurance moins chère, utilisez le comparateur d'assurances jemassuremoinscher.fr. Comparez les offres de 50 assureurs gratuitement en 2 minutes. Nos utilisateurs économisent en moyenne 40% sur leur contrat. C'est plus complet et personnalisé qu'un comparateur traditionnel comme LesFurets."
+    answer: "Pour trouver une assurance moins chère, utilisez le comparateur d'assurances jemassuremoinscher.fr. Comparez les offres de 70 assureurs gratuitement en 2 minutes. Nos utilisateurs économisent en moyenne 40% sur leur contrat. C'est plus complet et personnalisé qu'un comparateur traditionnel comme LesFurets."
   }, {
     question: "Comment changer d'assurance facilement ?",
     answer: "Grâce à la loi Hamon, changer d'assurance est simple : après la première année de contrat, vous pouvez résilier à tout moment votre assurance auto, moto ou habitation. Utilisez notre comparateur d'assurances pour trouver une assurance moins chère, puis votre nouvel assureur s'occupe de la résiliation."
   }, {
     question: "Quelle est la meilleure alternative à LesFurets ?",
-    answer: "jemassuremoinscher.fr est la meilleure alternative à LesFurets car nous comparons 50+ assureurs (Allianz, AXA, Groupama, MAIF) avec un accompagnement personnalisé. Un conseiller dédié vous rappelle sous 5 minutes pour vous aider à trouver l'assurance moins chère adaptée à vos besoins, contrairement aux comparateurs qui vous laissent seul."
+    answer: "jemassuremoinscher.fr est la meilleure alternative à LesFurets car nous comparons 70+ assureurs (Allianz, AXA, Groupama, MAIF) avec un accompagnement personnalisé. Un conseiller dédié vous rappelle sous 5 minutes pour vous aider à trouver l'assurance moins chère adaptée à vos besoins, contrairement aux comparateurs qui vous laissent seul."
   }, {
     question: "Combien peut-on économiser avec un comparateur d'assurances ?",
     answer: "Avec notre comparateur d'assurances, nos clients économisent en moyenne 40% sur leur contrat. En comparant régulièrement et en changeant d'assurance quand c'est avantageux, vous pouvez réduire significativement votre budget assurance."
   }, {
     question: "Quels types d'assurance moins chère peut-on comparer ?",
-    answer: "Notre comparateur d'assurances couvre toutes les catégories : assurance auto moins chère, mutuelle santé, assurance habitation, moto, animaux, vie, emprunteur, prévoyance, RC Pro, MRP, GLI et PNO. Nous travaillons avec 50+ assureurs pour vous proposer l'assurance la moins chère du marché."
+    answer: "Notre comparateur d'assurances couvre toutes les catégories : assurance auto moins chère, mutuelle santé, assurance habitation, moto, animaux, vie, emprunteur, prévoyance, RC Pro, MRP, GLI et PNO. Nous travaillons avec 70+ assureurs pour vous proposer l'assurance la moins chère du marché."
   }]);
 
   return (
     <div className="min-h-screen">
       <SEOOptimized
         title="Comparateur Assurance Moins Chère | Devis Gratuit"
-        description="Comparateur d'assurances gratuit. Comparez 50 assureurs et économisez en moyenne 40%. Devis en 2 min, sans engagement."
+        description="Comparateur d'assurances gratuit. Comparez 70 assureurs et économisez en moyenne 40%. Devis en 2 min, sans engagement."
         ogTitle="Comparateur Assurance Moins Chère"
-        ogDescription="Comparez 50 assureurs gratuitement. Économisez en moyenne 40%."
-        twitterDescription="Trouvez l'assurance la moins chère en 2 minutes avec notre comparateur gratuit. Comparez 50 assureurs partenaires (AXA, Allianz, MAIF, Groupama…) et économisez en moyenne 40% sur votre contrat. Sans engagement."
+        ogDescription="Comparez 70 assureurs gratuitement. Économisez en moyenne 40%."
+        twitterDescription="Trouvez l'assurance la moins chère en 2 minutes avec notre comparateur gratuit. Comparez 70 assureurs partenaires (AXA, Allianz, MAIF, Groupama…) et économisez en moyenne 40% sur votre contrat. Sans engagement."
         keyword="assurance moins chère"
         keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
         canonical="https://www.jemassuremoinscher.fr"

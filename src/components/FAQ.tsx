@@ -8,7 +8,7 @@ const FAQ = () => {
   const { trackEvent } = useAnalytics();
 
   const faqData = [
-    { question: "Comment fonctionne le comparateur ?", answer: "C'est très simple : vous répondez à quelques questions sur vos besoins (2 minutes max), et notre outil compare les offres de plus de 50 assureurs. Un expert vous rappelle ensuite pour vous présenter les meilleures options. Vous n'avez rien à faire d'autre !" },
+    { question: "Comment fonctionne le comparateur ?", answer: "C'est très simple : vous répondez à quelques questions sur vos besoins (2 minutes max), et notre outil compare les offres de plus de 70 assureurs. Un expert vous rappelle ensuite pour vous présenter les meilleures options. Vous n'avez rien à faire d'autre !" },
     { question: "C'est vraiment gratuit ?", answer: "Oui, 100% gratuit et sans engagement. Comparez autant d'offres que vous voulez, sans frais cachés. Nos partenaires assureurs nous rémunèrent directement, jamais vous." },
     { question: "Comment me faire rappeler ?", answer: "Une fois votre comparaison terminée, cliquez sur 'Me faire rappeler'. Un conseiller vous contacte rapidement pour vous accompagner. Ne vous inquiétez pas, aucun engagement de votre part." },
     { question: "Les tarifs affichés sont-ils définitifs ?", answer: "Ce sont des estimations très proches de la réalité, calculées selon vos réponses. Le prix final peut légèrement varier lors de la souscription. Ne vous inquiétez pas, votre conseiller vous expliquera tout en détail." },
