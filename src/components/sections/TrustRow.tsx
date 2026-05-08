@@ -34,6 +34,43 @@ const TrustRow = () => {
     ? undefined
     : { x: [0, 4, 0, -4, 0] };
 
+  // Compteur de devis depuis le début de l'année (live)
+  const [quotesCount, setQuotesCount] = useState<number>(QUOTES_BASELINE);
+  const counterRef = useRef<HTMLDivElement>(null);
+  const counterInView = useInView(counterRef, { once: true, margin: "-50px" });
+  const motionVal = useMotionValue(0);
+  const rounded = useTransform(motionVal, (v) => Math.floor(v).toLocaleString('fr-FR'));
+  const [displayCount, setDisplayCount] = useState("0");
+
+  useEffect(() => {
+    const unsub = rounded.on("change", (v) => setDisplayCount(v));
+    return () => unsub();
+  }, [rounded]);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const { count } = await supabase
+        .from('insurance_quotes')
+        .select('*', { count: 'exact', head: true })
+        .gte('created_at', YEAR_START)
+        .is('deleted_at', null);
+      if (!cancelled && typeof count === 'number') {
+        setQuotesCount(QUOTES_BASELINE + count);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
+    if (!counterInView) return;
+    if (prefersReducedMotion) {
+      motionVal.set(quotesCount);
+      return;
+    }
+    const controls = animate(motionVal, quotesCount, { duration: 2, ease: "easeOut" });
+    return () => controls.stop();
+  }, [counterInView, quotesCount, prefersReducedMotion, motionVal]);
 
   const handleArthurClick = () => {
     const target = document.getElementById('hero-quote-form') || document.getElementById('quote-form');
@@ -46,6 +83,8 @@ const TrustRow = () => {
     }
   };
 
+  const currentYear = new Date().getFullYear();
+
   return (
     <section className="py-12 md:py-16 bg-muted/40" aria-label="Pourquoi nous faire confiance">
       <div className="container mx-auto px-4 max-w-6xl">
@@ -54,7 +93,7 @@ const TrustRow = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-2 lg:grid-cols-5 gap-4"
+          className="grid grid-cols-2 lg:grid-cols-6 gap-4"
         >
           {/* Google Reviews */}
           <motion.div variants={itemVariants} role="group" aria-label={`Note Google Reviews ${geoContent.trust.ratingValueLabel} sur 5 basée sur ${geoContent.trust.reviewCountLabel} avis vérifiés`} className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
