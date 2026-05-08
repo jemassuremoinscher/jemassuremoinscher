@@ -32,7 +32,7 @@ const categories: FaqCategory[] = [
     items: [
       {
         q: "Comment fonctionne le comparateur jemassuremoinscher.fr ?",
-        a: "Vous remplissez un formulaire en 2 minutes, nos experts analysent les offres de plus de 50 assureurs partenaires (Allianz, AXA, Groupama, MAIF, Generali, Swiss Life…) et un conseiller dédié vous rappelle sous 5 minutes avec les meilleures propositions adaptées à votre profil.",
+        a: "Vous remplissez un formulaire en 2 minutes, nos experts analysent les offres de plus de 70 assureurs partenaires (Allianz, AXA, Groupama, MAIF, Generali, Swiss Life…) et un conseiller dédié vous rappelle sous 5 minutes avec les meilleures propositions adaptées à votre profil.",
       },
       {
         q: "La comparaison est-elle vraiment gratuite ?",
