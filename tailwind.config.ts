@@ -122,7 +122,7 @@ export default {
       boxShadow: {
         "elevation-1": "0 1px 3px rgba(0,0,0,0.12)",
         "elevation-2": "0 3px 6px rgba(0,0,0,0.16)",
-        "elevation-3": "0 10px 20px rgba(0,0,0,0.19)",
+        "elevation-3": "0 5px 12px rgba(0,0,0,0.20)",
         "elevation-4": "0 15px 25px rgba(0,0,0,0.25)",
       },
       transitionTimingFunction: {
