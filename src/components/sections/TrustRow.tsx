@@ -2,14 +2,19 @@ import { Star, Scale, BadgeCheck, TrendingUp } from "lucide-react";
 import { motion, useReducedMotion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { supabase } from "@/integrations/supabase/client";
+
 import oriasLogo from "@/assets/logos/orias.jpg";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import geoContent from "@/data/geo-content.json";
 
-// Baseline pour cohérence (volume historique non migré en base)
-const QUOTES_BASELINE = 4250;
-const YEAR_START = `${new Date().getFullYear()}-01-01T00:00:00Z`;
+// Compteur de devis : démarre à 0 le 1er janvier, +4 par jour automatiquement
+const QUOTES_PER_DAY = 4;
+const computeQuotesSinceJan1 = () => {
+  const now = new Date();
+  const yearStart = new Date(now.getFullYear(), 0, 1);
+  const days = Math.floor((now.getTime() - yearStart.getTime()) / 86400000);
+  return Math.max(0, days * QUOTES_PER_DAY);
+};
 
 const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
 const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
@@ -34,8 +39,8 @@ const TrustRow = () => {
     ? undefined
     : { x: [0, 4, 0, -4, 0] };
 
-  // Compteur de devis depuis le début de l'année (live)
-  const [quotesCount, setQuotesCount] = useState<number>(QUOTES_BASELINE);
+  // Compteur de devis depuis le début de l'année (auto +4/jour)
+  const [quotesCount, setQuotesCount] = useState<number>(computeQuotesSinceJan1());
   const counterRef = useRef<HTMLDivElement>(null);
   const counterInView = useInView(counterRef, { once: true, margin: "-50px" });
   const motionVal = useMotionValue(0);
@@ -48,18 +53,9 @@ const TrustRow = () => {
   }, [rounded]);
 
   useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      const { count } = await supabase
-        .from('insurance_quotes')
-        .select('*', { count: 'exact', head: true })
-        .gte('created_at', YEAR_START)
-        .is('deleted_at', null);
-      if (!cancelled && typeof count === 'number') {
-        setQuotesCount(QUOTES_BASELINE + count);
-      }
-    })();
-    return () => { cancelled = true; };
+    // Recalcule chaque heure pour suivre le passage des jours sans rechargement
+    const interval = setInterval(() => setQuotesCount(computeQuotesSinceJan1()), 3600000);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
