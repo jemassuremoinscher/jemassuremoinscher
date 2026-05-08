@@ -1022,9 +1022,9 @@ function ContactStep({
         <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
           <CheckCircle2 className="h-10 w-10 text-primary" />
         </div>
-        <h3 className="text-xl font-bold text-foreground">Demande envoyée !</h3>
+        <h3 className="text-xl font-bold text-foreground">{t('form.successTitle')}</h3>
         <p className="text-sm text-muted-foreground text-center max-w-sm">
-          Un expert vous rappelle sous 5 minutes avec les meilleures offres personnalisées.
+          {t('form.successDescription')}
         </p>
       </motion.div>
     );
@@ -1043,7 +1043,7 @@ function ContactStep({
       >
         <div className="flex flex-col items-center gap-1">
           <p className="text-sm font-semibold text-primary text-center">
-            ⬇️ Continuez ci-dessous pour recevoir vos prix exacts
+            {t('form.scrollToContinue')}
           </p>
           <span className="text-xl text-primary animate-bounce" aria-hidden="true">↓</span>
         </div>
@@ -1077,13 +1077,13 @@ function ContactStep({
       {/* Full name */}
       <div className="space-y-1.5">
         <Label htmlFor="msf-name" className="text-sm font-medium flex items-center gap-1.5">
-          <User className="h-3.5 w-3.5 text-muted-foreground" /> Nom complet
+          <User className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.fullName')}
         </Label>
         <Input
           id="msf-name"
           value={data.fullName}
           onChange={(e) => onChange({ ...data, fullName: e.target.value })}
-          placeholder="Jean Dupont"
+          placeholder={t('form.fullNamePlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1093,14 +1093,14 @@ function ContactStep({
       {/* Email */}
       <div className="space-y-1.5">
         <Label htmlFor="msf-email" className="text-sm font-medium flex items-center gap-1.5">
-          <Mail className="h-3.5 w-3.5 text-muted-foreground" /> Email
+          <Mail className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.email')}
         </Label>
         <Input
           id="msf-email"
           type="email"
           value={data.email}
           onChange={(e) => onChange({ ...data, email: e.target.value })}
-          placeholder="jean.dupont@email.com"
+          placeholder={t('form.emailPlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1110,14 +1110,14 @@ function ContactStep({
       {/* Phone */}
       <div className="space-y-1.5">
         <Label htmlFor="msf-phone" className="text-sm font-medium flex items-center gap-1.5">
-          <Phone className="h-3.5 w-3.5 text-muted-foreground" /> Téléphone
+          <Phone className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.phone')}
         </Label>
         <Input
           id="msf-phone"
           type="tel"
           value={data.phone}
           onChange={(e) => onChange({ ...data, phone: e.target.value })}
-          placeholder="06 12 34 56 78"
+          placeholder={t('form.phonePlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1133,7 +1133,7 @@ function ContactStep({
           disabled={isSubmitting}
         />
         <Label htmlFor="msf-terms" className="text-xs text-muted-foreground leading-tight cursor-pointer">
-          J'accepte les conditions d'utilisation et la politique de confidentialité. Mes données sont utilisées uniquement pour me recontacter.
+          {t('form.acceptTerms')}
         </Label>
       </div>
       {errors.acceptTerms && <p className="text-xs text-destructive">{errors.acceptTerms}</p>}
@@ -1146,14 +1146,14 @@ function ContactStep({
         className="btn-glow w-full rounded-full font-bold text-base h-13 bg-secondary hover:bg-secondary/90 text-secondary-foreground active:scale-[0.97] transition-transform"
       >
         {isSubmitting ? (
-          <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Envoi en cours…</>
+          <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> {t('form.submitting')}</>
         ) : (
-          <>Recevoir mon devis personnalisé</>
+          <>{t('form.submit')}</>
         )}
       </Button>
 
       <p className="text-[11px] text-muted-foreground text-center">
-        🔒 Vos données sont protégées et ne seront jamais vendues.
+        {t('form.dataProtected')}
       </p>
     </div>
   );
