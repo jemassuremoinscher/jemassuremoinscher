@@ -1,9 +1,15 @@
-import { Star, Scale, BadgeCheck } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { Star, Scale, BadgeCheck, TrendingUp } from "lucide-react";
+import { motion, useReducedMotion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
 import oriasLogo from "@/assets/logos/orias.jpg";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import geoContent from "@/data/geo-content.json";
+
+// Baseline pour cohérence (volume historique non migré en base)
+const QUOTES_BASELINE = 4250;
+const YEAR_START = `${new Date().getFullYear()}-01-01T00:00:00Z`;
 
 const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
 const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
