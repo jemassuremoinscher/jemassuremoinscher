@@ -1,68 +1,86 @@
-Plan de correction proposé
+## Objectif
 
-Objectif : appliquer toutes les demandes sans toucher au design global du site, uniquement avec des ajustements de contenu, de structure réutilisable et de cohérence.
+Quand le visiteur passe en EN, **plus aucun texte FR ne doit apparaître** sur la homepage, les pages assurance (Vie, Auto, Habitation, Santé, Moto, Animaux, Pret, Prevoyance, RC Pro, MRP, GLI, PNO) ni dans les briques transverses (Header, Footer, formulaire multi-step, chatbot, sticky CTA).
 
-1. Header mobile/tablet
-- Supprimer les icônes réseaux sociaux du drawer mobile/tablet.
-- Conserver les réseaux sociaux uniquement dans le header desktop/tablet haut, comme demandé.
-- Garder le sélecteur de langue dans le drawer.
+## Périmètre identifié (audit)
 
-2. Avis et nombre de clients partout
-- Remplacer toutes les occurrences visibles et structurées de 4.9 / 4,9 par 4.9 / 4,9.
-- Mettre à jour les composants de preuve sociale : formulaire, widgets avis, landing pages, schemas JSON-LD.
-- Remplacer le seuil “250 Français/clients assurés” par “+1000 clients assurés” partout où il apparaît.
-- Vérifier les occurrences restantes par recherche globale après modification.
+Composants 100% FR hard-codé (zéro `t()`):
 
-3. Lisibilité des héros avec Arthur en arrière-plan
-- Ajuster le composant commun `ArthurHero` pour rendre le grand Arthur décoratif un peu plus transparent.
-- Garder le design existant, mais améliorer la lisibilité sur toutes les pages qui utilisent ce même hero.
-- Pour la page métiers atypiques, assombrir légèrement la couleur du titre en passant de l’accent doré à une couleur de texte plus lisible, sans changer la mise en page.
+- `src/components/insurance/CourtierValueCards.tsx` — "Pourquoi passer par un courtier spécialisé…", 4 cartes (Comparaison ciblée, Garanties vérifiées, Dossier défendu, Conseil indépendant)
+- `src/components/insurance/InsuranceSEOTabs.tsx` — labels onglets, titres internes
+- `src/components/insurance/InsuranceBottomHub.tsx` — "Nos clients consultent aussi", "Articles conseils", "Outils & Ressources", labels CTA
+- `src/components/seo/EnBref.tsx` — libellé "En bref"
+- `src/components/DynamicUpdateDate.tsx` — "Données mises à jour en temps réel le …"
 
-4. Bloc “Pourquoi un courtier spécialisé…” en cartes
-- Transformer sur `/assurance-metiers-atypiques` le bloc texte long “Pourquoi un courtier spécialisé pour les métiers atypiques ?” en cartes, en conservant le contenu SEO/GEO utile.
-- Créer un composant réutilisable de cartes explicatives qui reprend le style des cartes de la home : Card, icône, titre, texte, tokens Tailwind existants.
-- Ajouter ce bloc de cartes naturellement dans le flux des 14 pages produit des onglets :
-  - Particuliers : auto, moto, habitation, santé, animaux
-  - Professionnels : RC Pro, MRP, métiers atypiques
-  - Vie & Épargne : assurance vie, assurance emprunteur, prévoyance
-  - Immobilier : GLI, PNO, gestion locative
-- Ne pas dupliquer un bloc s’il existe déjà sur une page ; uniquement compléter les pages où il manque.
+Pages avec strings FR hard-codées dans le code page (en plus des `t()`):
 
-5. Comparateur : plus de questions et tarifs cohérents
-- Étendre la logique `/comparateur` : après le choix du type d’assurance, injecter davantage de questions spécifiques selon le cas, pas seulement auto/moto.
-- Réutiliser les étapes déjà présentes dans `stepConfigsByType` pour habitation, santé, animaux, vie, emprunteur, prévoyance, RC Pro, MRP, GLI, PNO et gestion locative.
-- Ajouter, si nécessaire, quelques étapes simples cohérentes pour améliorer la précision : âge, type de bien, niveau de garantie, code postal, etc.
-- Calculer/afficher des estimations de tarifs cohérentes en fin de parcours selon le type sélectionné et les réponses, en restant indicatif et sans promesse ferme.
-- Conserver le formulaire et ses animations existantes.
+- `src/pages/AssuranceVie.tsx` — "0% de frais d'entrée", "Frais d'arbitrage offerts", FAQ extra, EnBref facts, breadcrumb "Accueil"
+- Idem (à vérifier/aligner) pour: AssuranceAuto, AssuranceHabitation, AssuranceSante, AssuranceMoto, AssuranceAnimaux, AssurancePret, AssuranceVie, AssurancePrevoyance, AssuranceRCPro, AssuranceMRP, AssuranceGLI, AssurancePNO
 
-6. Assurance vie : frais offerts, sans tableau garanties
-- Retirer `ProductGuaranteeTable product="vie"` de `/assurance-vie`, car le tableau de garanties n’est pas pertinent pour l’assurance vie.
-- Mettre en avant subtilement mais clairement :
-  - “0% de frais d’entrée”
-  - “frais d’arbitrage offerts”
-  - “frais d’entrée offerts”
-- Ajouter ces signaux dans les zones SEO/GEO déjà présentes : avantages, En bref, FAQ/schema si pertinent, metadata, sans alourdir le design.
+Composants partiellement traduits à compléter:
 
-7. Tableaux garanties uniquement sur pages concernées
-- Garder le tableau garanties sur les pages où il a du sens : auto, moto, habitation, santé, animaux, PNO, GLI, MRP, RC Pro, emprunteur, prévoyance, métiers atypiques, gestion locative.
-- Retirer l’assurance vie du type `ProductGuaranteeTable` si elle n’est plus utilisée, pour éviter une réintroduction future.
-- Vérifier qu’il n’y a pas de duplication avec l’onglet “Garanties comparées” existant d’`InsuranceSEOTabs`.
+- `src/components/Footer.tsx` (seulement 9 `t()` pour ~30 libellés visibles: "Nos Assurances", "Ressources", "À propos", "Informations légales", listes de produits, badges légaux, disclaimer, copyright)
+- `src/components/forms/MultiStepQuoteForm.tsx` — "Étape 1/5", "Plus que 60s pour voir vos prix", chips "Données sécurisées / 100% gratuit / Sans engagement", labels métier des choix d'assurance et tuiles (visibles dans les screenshots)
+- Header/menu (sous-menus "Vie & Épargne", "Immobilier" → vérifier que tous les items sont traduits)
+- ArthurHero (alt-text + label CTA résiduels)
 
-8. Renommer Assurance Emprunteur en Assurance Emprunteur
-- Remplacer les libellés visibles “Assurance Emprunteur”, “Assurance Emprunteur” et “Assurance Emprunteur” par “Assurance Emprunteur” quand il s’agit du produit/page.
-- Mettre à jour : header, footer, liens internes, breadcrumbs, titres, landing config, glossaire, SEO pages, index static, blog categories/titres/tags si ambigu.
-- Garder l’expression “assurance de prêt immobilier” uniquement comme synonyme explicatif dans les contenus longs quand elle aide le SEO, mais éviter qu’elle soit le titre principal.
+## Stratégie d'implémentation
 
-9. Articles blog et Arthur thématique
-- Confirmer et renforcer la logique existante : les trois articles métiers atypiques utilisent déjà les bons Arthur par slug : accrobranche, sports outdoor/kayak, événementiel/karting.
-- Corriger les catégories restantes qui tombent trop souvent sur Arthur ampoule (`arthur-idea`) en ajoutant une fonction de mapping par sujet/tags/titre.
-- Règle future : priorité au slug, puis catégorie, puis tags/titre, puis fallback neutre ; ne pas utiliser Arthur ampoule par défaut pour les sujets métiers/auto/moto/habitation/santé.
+1. **Créer un script d'audit** `scripts/audit-i18n-coverage.ts` qui parcourt les `.tsx` et liste les chaînes JSX françaises (mots-clés: `Que souhaitez|votre|assurance|gratuit|sans engagement|comparez|conseiller|économ|découvr|cher`) **hors** appels `t(...)`. Servira de checklist exhaustive.
+2. **Refactorer les composants 0-`t()`** en y branchant `useLanguage` + clés `componentName.*`. Toujours conserver les valeurs FR existantes comme défaut dans `fr.ts`, créer la traduction EN parallèle.
+3. **Compléter Footer** + **MultiStepQuoteForm** (zone à plus fort impact visuel sur toutes les pages).
+4. **Pages assurance**: extraire chaque string FR locale vers une clé `<page>.*` (ex. `viePage.adv.zeroFees.title`). Mutualiser les libellés communs (breadcrumb "Home", "0% entry fees", "Free arbitration fees") sous un namespace `insPage.*`.
+5. **Étendre `src/i18n/fr.ts` et `src/i18n/en.ts`** avec toutes les nouvelles clés. Re-vérifier la parité via le script existant `scripts/diff-i18n.ts`.
+6. **Vérification visuelle** route par route: `/`, `/assurance-vie`, `/assurance-auto`, `/assurance-habitation`, `/assurance-sante`, `/assurance-moto`, `/assurance-animaux`, `/assurance-pret`, `/contact`, `/blog`, `/glossaire`. (Routes blog/glossaire restent FR par nature SEO — confirmer ce point.)
 
-10. Contrôle final
-- Recherche globale pour vérifier : aucune occurrence visible restante de 4.9/4,9, 250 clients, “Assurance Emprunteur” comme libellé principal, `ProductGuaranteeTable product="vie"`.
-- Vérification que les pages produits ont bien le bloc cartes sans doublon.
-- Vérification TypeScript/build si disponible en mode exécution après approbation.
+## Périmètre exclu (à confirmer par toi)
 
-Détails techniques
-- Fichiers probablement concernés : `Header.tsx`, `ArthurHero.tsx`, `MultiStepQuoteForm.tsx`, `stepConfigs.ts`, `AssuranceVie.tsx`, `AssurancePret.tsx`, pages produit, `ProductGuaranteeTable.tsx`, `BlogArticleArthur.tsx`, `fr.ts`, `Footer.tsx`, `SimpleFooter.tsx`, landing configs, index static et contenus blog.
-- Pas de modification de design global : uniquement classes Tailwind existantes, composants UI déjà utilisés et contenu SEO/GEO.
+- **Articles de blog & glossaire**: contenu éditorial FR, optimisé SEO français — ne sont **pas** traduits. La langue de l'article reste FR même en mode EN (canonical FR uniquement). À confirmer.
+- **Meta tags par page** (title/description/OG): aujourd'hui en FR; le site cible la France (hreflang fr/en pointe la même URL FR). Si tu veux des meta EN dynamiques, dis-le et j'ajouterai un namespace `seo.<page>.title/description` consommé par `SEOOptimized` quand `language === 'en'`.
+- **Schemas JSON-LD**: descriptions FR conservées (référencement FR).
+- **Données métier** (noms d'assureurs, produits, mentions ORIAS, RGPD): non traduites.
+
+## Détails techniques
+
+Contrats de nommage des clés:
+
+```
+courtierValue.title / .subtitle
+courtierValue.card1.title / .desc  (… card1..card4)
+seoTabs.tabFAQ / .tabGuide / .tabBenefits
+bottomHub.alsoConsulted / .articles / .toolsResources / .ctaReady
+enBref.title  (= "En bref" / "In brief")
+updateDate.label  (= "Data updated in real time on {date}")
+form.stepOf  (= "Step {n}/{total}" / "Étape {n}/{total}")
+form.timeLeft  (= "Only {n}s left to see your prices")
+form.trust.secured / .free / .noCommit
+footer.nosAssurances / .resources / .about / .legal / .copyright
+```
+
+Pour les chaînes interpolées (ex. date, n° d'étape), `t()` retourne un template avec `{x}` puis `String.replace` côté composant (pattern existant dans le projet).
+
+Livraisons:
+
+```
+src/i18n/fr.ts          (+ ~120 clés)
+src/i18n/en.ts          (+ ~120 clés, parité 1:1)
+src/components/insurance/CourtierValueCards.tsx
+src/components/insurance/InsuranceSEOTabs.tsx
+src/components/insurance/InsuranceBottomHub.tsx
+src/components/seo/EnBref.tsx
+src/components/DynamicUpdateDate.tsx
+src/components/Footer.tsx                          (compléments)
+src/components/forms/MultiStepQuoteForm.tsx        (compléments)
+src/pages/Assurance{Vie,Auto,Habitation,Sante,Moto,Animaux,Pret,Prevoyance,RCPro,MRP,GLI,PNO}.tsx
+scripts/audit-i18n-coverage.ts                     (nouveau)
+```
+
+## Questions pour toi avant d'attaquer
+
+1. **Blog & glossaire**: on laisse en FR uniquement (recommandé pour le SEO FR), ou tu veux qu'on traduise aussi les coquilles (titres de section, dates, "Lire la suite", "Auteur")?
+2. **Meta SEO par page en EN**: on les bascule aussi (title/description/OG) quand `language === 'en'`, ou on garde tout en FR puisque hreflang pointe la même URL?
+3. **Ordre de priorité** si tu veux découper en plusieurs livraisons:  
+   a) Pages assurance + composants insurance (le plus visible pour un visiteur EN)  
+   b) Footer + MultiStepQuoteForm (transverses, présentes partout)  
+   c) Header/menus + chatbot + StickyCTA  
+   d) Blog/glossaire (si retenu)
