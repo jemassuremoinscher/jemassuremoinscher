@@ -853,13 +853,13 @@ function VehicleSelectStep({ step, formData, onSelect }: {
           ref={inputRef}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Rechercher…"
+          placeholder={t('form.search.placeholder')}
           className="h-12 pl-10 rounded-2xl border-2 border-border/50 focus:border-primary bg-background/50"
         />
       </div>
       <div className="w-full max-h-[260px] overflow-y-auto rounded-xl border border-border/30 bg-background/50">
         {filtered.length === 0 ? (
-          <p className="text-sm text-muted-foreground text-center py-6">Aucun résultat</p>
+          <p className="text-sm text-muted-foreground text-center py-6">{t('form.search.noResults')}</p>
         ) : (
           filtered.map((item, idx) => (
             <motion.button
@@ -881,6 +881,7 @@ function VehicleSelectStep({ step, formData, onSelect }: {
 
 // ─── Searching Step ──────────────────────────────────────────────────────────
 function SearchingStep({ progress, currentPartner }: { progress: number; currentPartner: string }) {
+  const { t } = useLanguage();
   return (
     <div className="flex flex-col items-center gap-6 py-4">
       {/* Spinning loader */}
@@ -911,7 +912,7 @@ function SearchingStep({ progress, currentPartner }: { progress: number; current
           transition={{ duration: 0.15 }}
           className="text-sm text-muted-foreground font-medium"
         >
-          Analyse de <span className="text-foreground font-semibold">{currentPartner}</span>…
+          {t('form.searching.analysing')} <span className="text-foreground font-semibold">{currentPartner}</span>…
         </motion.div>
       </AnimatePresence>
 
@@ -924,7 +925,7 @@ function SearchingStep({ progress, currentPartner }: { progress: number; current
         />
       </div>
 
-      <p className="text-xs text-muted-foreground">50+ assureurs comparés en temps réel</p>
+      <p className="text-xs text-muted-foreground">{t('form.searching.realtime')}</p>
     </div>
   );
 }
