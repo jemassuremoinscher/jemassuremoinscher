@@ -432,9 +432,9 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
             <span className="font-semibold text-primary-foreground/90">
               Étape {currentStep + 1}/{totalSteps}
             </span>
-            <span className="text-primary-foreground/80 flex items-baseline gap-1.5">
+            <span className="text-primary-foreground/85 flex items-baseline gap-1.5">
               Plus que{' '}
-              <span className="text-[26px] md:text-[32px] font-extrabold leading-none text-[#ef4444] animate-[pulse_1.6s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(239,68,68,0.45)]">
+              <span className="text-[22px] md:text-[26px] font-bold leading-none text-[#fcd34d] tabular-nums tracking-tight animate-[pulse_2.4s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(252,211,77,0.45)]">
                 {secondsEstimate}s
               </span>{' '}
               pour voir vos prix
@@ -446,9 +446,9 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
             <span className="font-semibold text-primary-foreground/90">
               Dernière étape — finalisez votre demande
             </span>
-            <span className="text-primary-foreground/80 flex items-baseline gap-1.5">
+            <span className="text-primary-foreground/85 flex items-baseline gap-1.5">
               Rappel sous{' '}
-              <span className="text-[26px] md:text-[32px] font-extrabold leading-none text-[#ef4444] animate-[pulse_1.6s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(239,68,68,0.45)]">
+              <span className="text-[22px] md:text-[26px] font-bold leading-none text-[#fcd34d] tabular-nums tracking-tight animate-[pulse_2.4s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(252,211,77,0.45)]">
                 30 min
               </span>
             </span>
@@ -1058,8 +1058,21 @@ function ContactStep({
           ))}
         </div>
         <p className="text-[11px] text-muted-foreground text-center italic">
-          * Tarifs indicatifs. Cliquez sur une carte pour voir les garanties. Recevez votre devis exact en 30 min.
+          👆 Cliquez sur une carte pour voir les garanties incluses
         </p>
+      </motion.div>
+
+      {/* Scroll-down CTA — make it obvious that contact fields are below */}
+      <motion.div
+        initial={{ opacity: 0, y: -4 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.4 }}
+        className="flex flex-col items-center gap-1.5 pt-1"
+      >
+        <p className="text-sm font-semibold text-primary text-center">
+          ⬇️ Continuez ci-dessous pour recevoir vos prix exacts
+        </p>
+        <span className="text-2xl text-primary animate-bounce" aria-hidden="true">↓</span>
       </motion.div>
 
       <div className="h-px bg-border/40" />

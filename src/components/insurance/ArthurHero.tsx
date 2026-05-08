@@ -29,10 +29,10 @@ const ArthurHero = ({
   savingsHighlight,
   ctaLabel,
   onCtaClick,
-  savingsValue = "400€/an",
-  savingsLabel = "Économies moyennes",
-  reviewsValue = "47K+",
-  reviewsLabel = "Avis clients",
+  savingsValue = "280€/an",
+  savingsLabel = "Économie moyenne",
+  reviewsValue = "4.9/5",
+  reviewsLabel = "247 avis vérifiés",
 }: ArthurHeroProps) => {
   // Legacy fallback (landing templates) — keep simple speech bubble layout
   if (!title) {

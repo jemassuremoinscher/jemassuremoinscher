@@ -829,7 +829,7 @@ const en: Record<string, string> = {
   'insPage.toast.errorDesc': 'An error occurred. Please try again.',
 
   // Vie Page
-  'viePage.title': 'Life Insurance: Best Returns 2026',
+  'viePage.title': 'Cheaper Life Insurance',
   'viePage.subtitle': 'Build savings, prepare for retirement or protect your loved ones.',
   'viePage.adv1.title': 'Tax advantages',
   'viePage.adv1.desc': 'Attractive tax benefits after 8 years.',
@@ -955,7 +955,7 @@ const en: Record<string, string> = {
   'rcProPage.faq3.a': 'From €12/month for sole traders. Price varies by sector, revenue and claims history.',
 
   // MRP Page
-  'mrpPage.title': 'Business Multi-Risk Insurance',
+  'mrpPage.title': 'Cheaper Business Multi-Risk Insurance',
   'mrpPage.subtitle': 'Complete protection for your business premises.',
   'mrpPage.adv1.title': 'All-in-one protection',
   'mrpPage.adv1.desc': 'Premises, equipment, liability.',
@@ -976,7 +976,7 @@ const en: Record<string, string> = {
   'mrpPage.faq2.a': 'Take inventory of your premises, equipment, stock and estimate potential business interruption losses.',
 
   // GLI Page
-  'gliPage.title': 'Rent Guarantee Insurance',
+  'gliPage.title': 'Cheaper Rent Guarantee Insurance',
   'gliPage.subtitle': 'Secure your rental income.',
   'gliPage.adv1.title': 'Guaranteed rent',
   'gliPage.adv1.desc': 'Up to 36 months of coverage.',
@@ -1026,7 +1026,7 @@ const en: Record<string, string> = {
   'pnoPage.faq3.a': "Yes, the tenant's insurance doesn't cover walls or your liability.",
 
   // Gestion Locative
-  'gestionPage.title': 'Online Property Management',
+  'gestionPage.title': 'Cheaper Property Management',
   'gestionPage.subtitle': 'Trust professionals with your properties',
   'gestionPage.formTitle': 'Get your management quotes',
   'gestionPage.formDesc': 'Compare the best offers for your portfolio',

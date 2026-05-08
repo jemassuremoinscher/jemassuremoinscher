@@ -824,7 +824,7 @@ const fr: Record<string, string> = {
   'insPage.toast.errorDesc': 'Une erreur est survenue. Veuillez réessayer.',
 
   // Vie Page
-  'viePage.title': 'Assurance Vie : Meilleurs Rendements 2026',
+  'viePage.title': 'Assurance Vie Moins Chère',
   'viePage.subtitle': 'Constituez une épargne, préparez votre retraite ou protégez vos proches.',
   'viePage.adv1.title': 'Avantages fiscaux',
   'viePage.adv1.desc': 'Fiscalité attractive après 8 ans de détention.',
@@ -950,7 +950,7 @@ const fr: Record<string, string> = {
   'rcProPage.faq3.a': 'Généralement immédiat ou sous 24-48h après la souscription.',
 
   // MRP Page
-  'mrpPage.title': 'Assurance Multirisque Professionnelle',
+  'mrpPage.title': 'Assurance Multirisque Pro Moins Chère',
   'mrpPage.subtitle': 'Protégez vos locaux, matériel et activité au meilleur prix.',
   'mrpPage.adv1.title': 'Tarifs compétitifs',
   'mrpPage.adv1.desc': 'Comparez et économisez sur votre MRP.',
@@ -971,7 +971,7 @@ const fr: Record<string, string> = {
   'mrpPage.faq2.a': "Faites l'inventaire de vos locaux, matériel, stock et estimez la perte d'exploitation potentielle.",
 
   // GLI Page
-  'gliPage.title': 'Garantie Loyer Impayé (GLI)',
+  'gliPage.title': 'Garantie Loyer Impayé Moins Chère',
   'gliPage.subtitle': 'Protégez vos revenus locatifs et louez en toute sérénité.',
   'gliPage.adv1.title': 'Revenus sécurisés',
   'gliPage.adv1.desc': 'Protégez vos loyers contre les impayés.',
@@ -1021,7 +1021,7 @@ const fr: Record<string, string> = {
   'pnoPage.faq3.a': "Oui, l'assurance du locataire ne couvre pas les murs ni votre responsabilité de propriétaire.",
 
   // Gestion Locative Page
-  'gestionPage.title': 'Gestion Locative en Ligne',
+  'gestionPage.title': 'Gestion Locative Moins Chère',
   'gestionPage.subtitle': 'Confiez vos biens à des professionnels et profitez de revenus sereins',
   'gestionPage.formTitle': 'Obtenez vos devis de gestion',
   'gestionPage.formDesc': 'Comparez les meilleures offres pour votre patrimoine',
