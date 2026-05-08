@@ -15,7 +15,7 @@ import { useHoneypot } from '@/hooks/useHoneypot';
 import { trackGoogleAdsConversionWithParams } from '@/utils/googleAdsTracking';
 import { trackMetaLead } from '@/utils/metaPixelTracking';
 import { normalizeInsuranceTypeStrict } from '@/utils/insuranceTypeNormalizer';
-import { stepConfigsByType, type InsuranceType, type FormStep, type StepOption } from './stepConfigs';
+import { buildStepConfigs, type InsuranceType, type FormStep, type StepOption } from './stepConfigs';
 import { useFieldTracking } from '@/hooks/useFieldTracking';
 import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from '@/data/vehicleBrands';
 import FlipPriceCard from './FlipPriceCard';
@@ -126,6 +126,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   const prefillType = searchParams.get('type');
   const prefillAge = searchParams.get('age') || '';
   const prefillZip = searchParams.get('zipcode') || searchParams.get('postalCode') || '';
+  const stepConfigsByType = useMemo(() => buildStepConfigs(t), [t]);
   const initialFormData: Record<string, string> = {};
   if (insuranceType === 'comparateur' && prefillType && prefillType in stepConfigsByType) {
     initialFormData.insuranceType = prefillType;
@@ -152,7 +153,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       return [typeStep, ...productSteps, ...finalSteps];
     }
     return baseSteps;
-  }, [insuranceType, formData.insuranceType]);
+  }, [insuranceType, formData.insuranceType, stepConfigsByType]);
   const [contactErrors, setContactErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -212,11 +213,11 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
   // Contextual transition messages
   const transitionMessages = [
-    'Recherche des meilleurs tarifs en cours…',
-    'Vérification de votre éligibilité aux bonus…',
-    'Analyse de votre profil…',
-    'Comparaison des garanties disponibles…',
-    'Optimisation de votre tarif…',
+    t('form.transition.1'),
+    t('form.transition.2'),
+    t('form.transition.3'),
+    t('form.transition.4'),
+    t('form.transition.5'),
   ];
 
   // Step time estimate
@@ -333,7 +334,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       const rawType = insType === 'comparateur' ? (formData.insuranceType || 'auto') : insType;
       const canonicalType = normalizeInsuranceTypeStrict(rawType);
       if (!canonicalType) {
-        toast.error(`Type d'assurance invalide: ${rawType}`);
+        toast.error(`${t('form.toast.invalidType')}: ${rawType}`);
         setIsSubmitting(false);
         return;
       }
@@ -372,7 +373,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         insuranceType: insType,
         metadata: { leadId: insertedQuote?.id },
       });
-      toast.success('Demande envoyée !', { description: 'Un conseiller vous contacte très vite.' });
+      toast.success(t('form.toast.successTitle'), { description: t('form.toast.successDescription') });
 
       trackConversion('quote_request', 100);
       trackEvent('quote_request', {
@@ -417,7 +418,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         insuranceType: formData.insuranceType || insuranceType,
         metadata: { message: (error as Error)?.message?.slice(0, 200) },
       });
-      toast.error('Erreur', { description: 'Veuillez réessayer.' });
+      toast.error(t('form.toast.errorTitle'), { description: t('form.toast.errorRetry') });
     } finally {
       setIsSubmitting(false);
     }
@@ -649,6 +650,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
 // ─── Card Select Step ────────────────────────────────────────────────────────
 function CardSelectStep({ options, selected, onSelect, microLoading }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void; microLoading?: boolean }) {
+  const { t } = useLanguage();
   return (
     <div className="relative">
       <div className={`grid gap-3 ${options.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : options.length <= 4 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}`}>
@@ -732,7 +734,7 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
           className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground"
         >
           <Loader2 className="h-3.5 w-3.5 animate-spin text-primary" />
-          <span>Calcul de précision…</span>
+          <span>{t('form.precisionCalc')}</span>
         </motion.div>
       )}
     </div>
@@ -744,11 +746,12 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
   step: FormStep; value: string; onChange: (v: string) => void; onSubmit: (v: string) => void;
   activeHint?: string | null; onFocus?: () => void; onBlur?: () => void; onDismissHint?: () => void;
 }) {
+  const { t } = useLanguage();
   const [error, setError] = useState('');
 
   const handleSubmit = () => {
     if (step.validation && !step.validation.test(value)) {
-      setError(step.validationMessage || 'Valeur invalide');
+      setError(step.validationMessage || t('form.invalidValue'));
       return;
     }
     setError('');
@@ -790,7 +793,7 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
               <div className="flex items-start gap-2">
                 <span className="text-primary text-sm flex-shrink-0">💡</span>
                 <span>{activeHint}</span>
-                <button onClick={onDismissHint} className="text-muted-foreground/60 hover:text-foreground ml-auto flex-shrink-0" aria-label="Fermer">✕</button>
+                <button onClick={onDismissHint} className="text-muted-foreground/60 hover:text-foreground ml-auto flex-shrink-0" aria-label={t('form.closeAria')}>✕</button>
               </div>
             </div>
           </motion.div>
@@ -801,7 +804,7 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
         size="lg"
         className="btn-glow w-full rounded-full font-bold text-base h-12 bg-primary hover:bg-primary/90 active:scale-[0.96] active:brightness-90 transition-all duration-75"
       >
-        Continuer
+        {t('form.continue')}
         <ArrowRight className="ml-2 h-4 w-4" />
       </Button>
     </div>
@@ -815,6 +818,7 @@ function VehicleSelectStep({ step, formData, onSelect }: {
   formData: Record<string, string>;
   onSelect: (field: string, value: string) => void;
 }) {
+  const { t } = useLanguage();
   const [search, setSearch] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -849,13 +853,13 @@ function VehicleSelectStep({ step, formData, onSelect }: {
           ref={inputRef}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Rechercher…"
+          placeholder={t('form.search.placeholder')}
           className="h-12 pl-10 rounded-2xl border-2 border-border/50 focus:border-primary bg-background/50"
         />
       </div>
       <div className="w-full max-h-[260px] overflow-y-auto rounded-xl border border-border/30 bg-background/50">
         {filtered.length === 0 ? (
-          <p className="text-sm text-muted-foreground text-center py-6">Aucun résultat</p>
+          <p className="text-sm text-muted-foreground text-center py-6">{t('form.search.noResults')}</p>
         ) : (
           filtered.map((item, idx) => (
             <motion.button
@@ -877,6 +881,7 @@ function VehicleSelectStep({ step, formData, onSelect }: {
 
 // ─── Searching Step ──────────────────────────────────────────────────────────
 function SearchingStep({ progress, currentPartner }: { progress: number; currentPartner: string }) {
+  const { t } = useLanguage();
   return (
     <div className="flex flex-col items-center gap-6 py-4">
       {/* Spinning loader */}
@@ -907,7 +912,7 @@ function SearchingStep({ progress, currentPartner }: { progress: number; current
           transition={{ duration: 0.15 }}
           className="text-sm text-muted-foreground font-medium"
         >
-          Analyse de <span className="text-foreground font-semibold">{currentPartner}</span>…
+          {t('form.searching.analysing')} <span className="text-foreground font-semibold">{currentPartner}</span>…
         </motion.div>
       </AnimatePresence>
 
@@ -920,7 +925,7 @@ function SearchingStep({ progress, currentPartner }: { progress: number; current
         />
       </div>
 
-      <p className="text-xs text-muted-foreground">50+ assureurs comparés en temps réel</p>
+      <p className="text-xs text-muted-foreground">{t('form.searching.realtime')}</p>
     </div>
   );
 }
@@ -1017,9 +1022,9 @@ function ContactStep({
         <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
           <CheckCircle2 className="h-10 w-10 text-primary" />
         </div>
-        <h3 className="text-xl font-bold text-foreground">Demande envoyée !</h3>
+        <h3 className="text-xl font-bold text-foreground">{t('form.successTitle')}</h3>
         <p className="text-sm text-muted-foreground text-center max-w-sm">
-          Un expert vous rappelle sous 5 minutes avec les meilleures offres personnalisées.
+          {t('form.successDescription')}
         </p>
       </motion.div>
     );
@@ -1038,7 +1043,7 @@ function ContactStep({
       >
         <div className="flex flex-col items-center gap-1">
           <p className="text-sm font-semibold text-primary text-center">
-            ⬇️ Continuez ci-dessous pour recevoir vos prix exacts
+            {t('form.scrollToContinue')}
           </p>
           <span className="text-xl text-primary animate-bounce" aria-hidden="true">↓</span>
         </div>
@@ -1072,13 +1077,13 @@ function ContactStep({
       {/* Full name */}
       <div className="space-y-1.5">
         <Label htmlFor="msf-name" className="text-sm font-medium flex items-center gap-1.5">
-          <User className="h-3.5 w-3.5 text-muted-foreground" /> Nom complet
+          <User className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.fullName')}
         </Label>
         <Input
           id="msf-name"
           value={data.fullName}
           onChange={(e) => onChange({ ...data, fullName: e.target.value })}
-          placeholder="Jean Dupont"
+          placeholder={t('form.fullNamePlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1088,14 +1093,14 @@ function ContactStep({
       {/* Email */}
       <div className="space-y-1.5">
         <Label htmlFor="msf-email" className="text-sm font-medium flex items-center gap-1.5">
-          <Mail className="h-3.5 w-3.5 text-muted-foreground" /> Email
+          <Mail className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.email')}
         </Label>
         <Input
           id="msf-email"
           type="email"
           value={data.email}
           onChange={(e) => onChange({ ...data, email: e.target.value })}
-          placeholder="jean.dupont@email.com"
+          placeholder={t('form.emailPlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1105,14 +1110,14 @@ function ContactStep({
       {/* Phone */}
       <div className="space-y-1.5">
         <Label htmlFor="msf-phone" className="text-sm font-medium flex items-center gap-1.5">
-          <Phone className="h-3.5 w-3.5 text-muted-foreground" /> Téléphone
+          <Phone className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.phone')}
         </Label>
         <Input
           id="msf-phone"
           type="tel"
           value={data.phone}
           onChange={(e) => onChange({ ...data, phone: e.target.value })}
-          placeholder="06 12 34 56 78"
+          placeholder={t('form.phonePlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1128,7 +1133,7 @@ function ContactStep({
           disabled={isSubmitting}
         />
         <Label htmlFor="msf-terms" className="text-xs text-muted-foreground leading-tight cursor-pointer">
-          J'accepte les conditions d'utilisation et la politique de confidentialité. Mes données sont utilisées uniquement pour me recontacter.
+          {t('form.acceptTerms')}
         </Label>
       </div>
       {errors.acceptTerms && <p className="text-xs text-destructive">{errors.acceptTerms}</p>}
@@ -1141,14 +1146,14 @@ function ContactStep({
         className="btn-glow w-full rounded-full font-bold text-base h-13 bg-secondary hover:bg-secondary/90 text-secondary-foreground active:scale-[0.97] transition-transform"
       >
         {isSubmitting ? (
-          <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Envoi en cours…</>
+          <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> {t('form.submitting')}</>
         ) : (
-          <>Recevoir mon devis personnalisé</>
+          <>{t('form.submit')}</>
         )}
       </Button>
 
       <p className="text-[11px] text-muted-foreground text-center">
-        🔒 Vos données sont protégées et ne seront jamais vendues.
+        {t('form.dataProtected')}
       </p>
     </div>
   );
@@ -1165,6 +1170,7 @@ function CallbackStep({
   onChange: (d: typeof data) => void;
   onSubmit: () => void;
 }) {
+  const { t } = useLanguage();
   if (isSuccess) {
     return (
       <motion.div
@@ -1175,9 +1181,9 @@ function CallbackStep({
         <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
           <CheckCircle2 className="h-10 w-10 text-primary" />
         </div>
-        <h3 className="text-xl font-bold text-foreground">Demande reçue !</h3>
+        <h3 className="text-xl font-bold text-foreground">{t('form.callbackSuccessTitle')}</h3>
         <p className="text-sm text-muted-foreground text-center max-w-sm">
-          Un courtier expert métiers atypiques vous rappelle sous 5 minutes avec une étude personnalisée et 2 à 3 propositions chiffrées.
+          {t('form.callbackSuccessDescription')}
         </p>
       </motion.div>
     );
@@ -1193,33 +1199,28 @@ function CallbackStep({
         className="rounded-2xl bg-primary/5 border border-primary/20 p-4 space-y-2"
       >
         <p className="text-sm font-semibold text-foreground flex items-center gap-2">
-          <CheckCircle2 className="h-4 w-4 text-primary" /> Pourquoi pas de prix immédiat ?
+          <CheckCircle2 className="h-4 w-4 text-primary" /> {t('form.callback.whyNoPrice')}
         </p>
         <p className="text-xs text-muted-foreground leading-relaxed">
-          Chiffrer un métier atypique demande une analyse fine : votre process, vos certifications,
-          votre sinistralité et les spécificités de votre activité influencent fortement la prime.
-          C'est pourquoi nos courtiers étudient votre dossier en profondeur et le présentent à nos
-          <span className="font-semibold text-foreground"> 20 assureurs de niche</span> les mieux positionnés
-          pour votre secteur, avant de vous transmettre une estimation fiable —
-          souvent <span className="font-semibold text-foreground">2 fois moins chère</span> qu'un devis en direct.
+          {t('form.callback.explanation')}
         </p>
         <ul className="text-xs text-muted-foreground space-y-1 pt-1">
-          <li className="flex items-center gap-2"><span className="text-primary">✓</span> Rappel sous 10 minutes</li>
-          <li className="flex items-center gap-2"><span className="text-primary">✓</span> 2 à 3 propositions argumentées</li>
-          <li className="flex items-center gap-2"><span className="text-primary">✓</span> Sans engagement</li>
+          <li className="flex items-center gap-2"><span className="text-primary">✓</span> {t('form.callback.list1')}</li>
+          <li className="flex items-center gap-2"><span className="text-primary">✓</span> {t('form.callback.list2')}</li>
+          <li className="flex items-center gap-2"><span className="text-primary">✓</span> {t('form.callback.list3')}</li>
         </ul>
       </motion.div>
 
       {/* Full name */}
       <div className="space-y-1.5">
         <Label htmlFor="cb-name" className="text-sm font-medium flex items-center gap-1.5">
-          <User className="h-3.5 w-3.5 text-muted-foreground" /> Nom complet
+          <User className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.fullName')}
         </Label>
         <Input
           id="cb-name"
           value={data.fullName}
           onChange={(e) => onChange({ ...data, fullName: e.target.value })}
-          placeholder="Jean Dupont"
+          placeholder={t('form.fullNamePlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1229,14 +1230,14 @@ function CallbackStep({
       {/* Email */}
       <div className="space-y-1.5">
         <Label htmlFor="cb-email" className="text-sm font-medium flex items-center gap-1.5">
-          <Mail className="h-3.5 w-3.5 text-muted-foreground" /> Email professionnel
+          <Mail className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.businessEmail')}
         </Label>
         <Input
           id="cb-email"
           type="email"
           value={data.email}
           onChange={(e) => onChange({ ...data, email: e.target.value })}
-          placeholder="contact@monentreprise.fr"
+          placeholder={t('form.businessEmailPlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1246,14 +1247,14 @@ function CallbackStep({
       {/* Phone */}
       <div className="space-y-1.5">
         <Label htmlFor="cb-phone" className="text-sm font-medium flex items-center gap-1.5">
-          <Phone className="h-3.5 w-3.5 text-muted-foreground" /> Téléphone (pour le rappel)
+          <Phone className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.phoneCallback')}
         </Label>
         <Input
           id="cb-phone"
           type="tel"
           value={data.phone}
           onChange={(e) => onChange({ ...data, phone: e.target.value })}
-          placeholder="06 12 34 56 78"
+          placeholder={t('form.phonePlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1269,7 +1270,7 @@ function CallbackStep({
           disabled={isSubmitting}
         />
         <Label htmlFor="cb-terms" className="text-xs text-muted-foreground leading-tight cursor-pointer">
-          J'accepte les conditions d'utilisation. Mes données servent uniquement à étudier mon dossier et à me rappeler.
+          {t('form.callbackAcceptTerms')}
         </Label>
       </div>
       {errors.acceptTerms && <p className="text-xs text-destructive">{errors.acceptTerms}</p>}
@@ -1282,14 +1283,14 @@ function CallbackStep({
         className="btn-glow w-full rounded-full font-bold text-base h-13 bg-secondary hover:bg-secondary/90 text-secondary-foreground active:scale-[0.97] transition-transform"
       >
         {isSubmitting ? (
-          <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Envoi en cours…</>
+          <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> {t('form.submitting')}</>
         ) : (
-          <>Demander mon rappel sous 10 minutes</>
+          <>{t('form.submitCallback')}</>
         )}
       </Button>
 
       <p className="text-[11px] text-muted-foreground text-center">
-        🔒 Vos données sont protégées et ne seront jamais vendues.
+        {t('form.dataProtected')}
       </p>
     </div>
   );
