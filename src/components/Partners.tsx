@@ -25,6 +25,7 @@ import fidanimoLogo from "@/assets/logos/fidanimo.png";
 import ganLogo from "@/assets/logos/gan.svg";
 import generaliLogo from "@/assets/logos/generali-new.webp";
 import gmfLogo from "@/assets/logos/gmf-new.webp";
+import goodflairLogo from "@/assets/logos/goodflair.png";
 import leocareLogo from "@/assets/logos/leocare.webp";
 import lolivierLogo from "@/assets/logos/lolivier.webp";
 import maafLogo from "@/assets/logos/maaf.webp";
@@ -38,6 +39,8 @@ import mpaLogo from "@/assets/logos/mpa.webp";
 import neoLogo from "@/assets/logos/neo.webp";
 import omerosLogo from "@/assets/logos/omeros.png";
 import ornikarLogo from "@/assets/logos/ornikar.webp";
+import santevetLogo from "@/assets/logos/santevet.png";
+import sollyAzarLogo from "@/assets/logos/solly-azar.png";
 import swissLifeLogo from "@/assets/logos/swisslife.webp";
 import wilovLogo from "@/assets/logos/wilov.webp";
 
@@ -73,6 +76,7 @@ const partners = [
   { name: "GAN", logo: ganLogo },
   { name: "Generali", logo: generaliLogo },
   { name: "GMF", logo: gmfLogo },
+  { name: "Goodflair", logo: goodflairLogo },
   { name: "Leocare", logo: leocareLogo },
   { name: "L'Olivier Assurance", logo: lolivierLogo },
   { name: "MAAF", logo: maafLogo },
@@ -86,6 +90,8 @@ const partners = [
   { name: "Neo Assurances", logo: neoLogo },
   { name: "Omeros", logo: omerosLogo },
   { name: "Ornikar", logo: ornikarLogo },
+  { name: "Santevet", logo: santevetLogo },
+  { name: "Solly Azar", logo: sollyAzarLogo },
   { name: "SwissLife", logo: swissLifeLogo },
   { name: "Wilov", logo: wilovLogo },
 ];
