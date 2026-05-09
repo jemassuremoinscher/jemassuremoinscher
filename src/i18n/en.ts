@@ -41,7 +41,7 @@ const en: Record<string, string> = {
   'hero.title': ' to pay less for your insurance,',
   'hero.titleHighlight': 'without compromise.',
   'hero.subtitle': 'Compare',
-  'hero.subtitleBold': '50+ insurers',
+  'hero.subtitleBold': '70+ insurers',
   'hero.subtitleEnd': 'in 2 minutes.',
   'hero.subtitleSecondary': 'Free and no commitment.',
   'hero.savingsBadge': 'Save up to',
@@ -70,7 +70,7 @@ const en: Record<string, string> = {
   'comparatorPage.contactUs': 'Contact Us',
   'comparatorPage.customerReviews': 'Customer Reviews',
   'comparatorPage.howItWorksTitle': 'How does our insurance comparison tool work?',
-  'comparatorPage.howItWorksDesc': 'Our online insurance comparison tool lets you compare offers from 50 partner insurers for free. Select your insurance type (car, motorcycle, home or health), enter your current budget, and instantly discover the best offers on the market. Our users save an average of 40% by switching insurers with our tool. The comparator is 100% free, no commitment, and you can request a personalised callback to finalise your subscription with one of our expert advisors.',
+  'comparatorPage.howItWorksDesc': 'Our online insurance comparison tool lets you compare offers from 70 partner insurers for free. Select your insurance type (car, motorcycle, home or health), enter your current budget, and instantly discover the best offers on the market. Our users save an average of 40% by switching insurers with our tool. The comparator is 100% free, no commitment, and you can request a personalised callback to finalise your subscription with one of our expert advisors.',
 
   // Landing Prêt
   'landingPret.ctaTitle': 'Calculate your savings in 2 minutes',
@@ -158,7 +158,7 @@ const en: Record<string, string> = {
   
   // Partners
   'partners.title': 'Our Partners',
-  'partners.subtitle': '50 trusted insurers',
+  'partners.subtitle': '70 trusted insurers',
   
   // Common
   'common.learnMore': 'Learn more',
@@ -184,7 +184,7 @@ const en: Record<string, string> = {
   'howItWorks.step1.title': 'Describe your needs',
   'howItWorks.step1.description': 'In 2 minutes, tell us what you need. No jargon, just the essentials.',
   'howItWorks.step2.title': 'Arthur compares for you',
-  'howItWorks.step2.description': 'Our tool analyses 50+ insurers and finds the best offers for your profile.',
+  'howItWorks.step2.description': 'Our tool analyses 70+ insurers and finds the best offers for your profile.',
   'howItWorks.step3.title': 'An expert calls you back',
   'howItWorks.step3.description': 'Pick the offer you like, and an advisor assists you for free.',
   'howItWorks.arthurCta': 'takes care of everything!',
@@ -199,7 +199,7 @@ const en: Record<string, string> = {
   'whyUs.speedUs': 'Quote in 2 minutes',
   'whyUs.speedThem': 'Up to 15 minutes',
   'whyUs.insurerCount': 'Number of insurers',
-  'whyUs.insurerCountUs': '50 partners',
+  'whyUs.insurerCountUs': '70 partners',
   'whyUs.insurerCountThem': '10-20 insurers',
   'whyUs.transparency': 'Price transparency',
   'whyUs.transparencyUs': 'No surprise pricing',
@@ -233,26 +233,26 @@ const en: Record<string, string> = {
   'seoFaq.title': 'Frequently Asked Questions About Cheap Insurance',
   'seoFaq.subtitle': 'Everything you need to know to find cheap insurance and switch easily',
   'seoFaq.q1': 'How can I find cheap insurance?',
-  'seoFaq.a1': 'To find cheap insurance, use a comparison tool like jemassuremoinscher.fr. Our comparator analyses offers from 50 insurers to find the cheapest insurance suited to your profile. On average, our users save 40% on their policy by comparing prices.',
+  'seoFaq.a1': 'To find cheap insurance, use a comparison tool like jemassuremoinscher.fr. Our comparator analyses offers from 70 insurers to find the cheapest insurance suited to your profile. On average, our users save 40% on their policy by comparing prices.',
   'seoFaq.q2': 'Why use our comparator instead of others?',
-  'seoFaq.a2': 'Our insurance comparator stands out through personalised support. Where other comparators leave you alone with quotes, jemassuremoinscher.fr offers a dedicated advisor who calls you back within 2 hours. Our service is 100% free, no commitment, and compares 50+ insurers.',
+  'seoFaq.a2': 'Our insurance comparator stands out through personalised support. Where other comparators leave you alone with quotes, jemassuremoinscher.fr offers a dedicated advisor who calls you back within 2 hours. Our service is 100% free, no commitment, and compares 70+ insurers.',
   'seoFaq.q3': 'Can I switch insurance at any time?',
   'seoFaq.a3': "Switching insurance is now very simple thanks to the Hamon law of 2015. You can cancel your car, motorcycle or home insurance contract at any time after the first year. Your new insurer handles all the cancellation paperwork for you.",
   'seoFaq.q4': 'How long does it take to compare insurance?',
-  'seoFaq.a4': 'Comparing insurance on our site takes just 2 minutes. Fill in our quick form, and our expert advisors call you back within 2 hours with the best offer for your needs from our 50+ partners: Allianz, AXA, Groupama, MAIF, Generali and many more.',
+  'seoFaq.a4': 'Comparing insurance on our site takes just 2 minutes. Fill in our quick form, and our expert advisors call you back within 2 hours with the best offer for your needs from our 70+ partners: Allianz, AXA, Groupama, MAIF, Generali and many more.',
   'seoFaq.q5': 'What types of cheap insurance can I compare?',
-  'seoFaq.a5': 'Our comparator covers all types: cheap car insurance, health insurance, home, motorcycle, pet, life, loan, income protection, professional liability, business multi-risk (MRP), rent guarantee (GLI) and non-occupant owner (PNO). We compare 50+ insurers to find you the best deal.',
+  'seoFaq.a5': 'Our comparator covers all types: cheap car insurance, health insurance, home, motorcycle, pet, life, loan, income protection, professional liability, business multi-risk (MRP), rent guarantee (GLI) and non-occupant owner (PNO). We compare 70+ insurers to find you the best deal.',
   'seoFaq.moreQuestions': 'More questions?',
   'seoFaq.arthurHere': 'is here for you!',
 
   // SEO Content
   'seoContent.title': 'Insurance comparison: find the ideal cheap insurance',
-  'seoContent.p1': 'Welcome to jemassuremoinscher.fr, the free insurance comparison tool that helps you find cheap insurance. Whether you need cheap car insurance, an affordable health plan, or cheaper home insurance, our platform compares offers from over 50 partner insurers in real time.',
+  'seoContent.p1': 'Welcome to jemassuremoinscher.fr, the free insurance comparison tool that helps you find cheap insurance. Whether you need cheap car insurance, an affordable health plan, or cheaper home insurance, our platform compares offers from over 70 partner insurers in real time.',
   'seoContent.p2': 'Every year, thousands of people in France overpay for their insurance without knowing it. Rates vary considerably from one insurer to another for equivalent coverage. Thanks to the Hamon law, switching insurance has become simple and fast: your new insurer handles all the cancellation paperwork.',
   'seoContent.h3_1': 'How does our insurance comparator work?',
   'seoContent.p3': 'Our insurance comparator is simple and fast: fill in a form in 2 minutes, and our experts analyse offers from our partners (Allianz, AXA, Groupama, MAIF, Generali, Swiss Life) to identify the cheapest insurance that matches your profile. A dedicated advisor calls you back within 2 hours.',
   'seoContent.h3_2': 'Why choose jemassuremoinscher.fr?',
-  'seoContent.p4': 'Our insurance comparator stands out through its 50 insurer partners and personalised advisor support. Unlike traditional comparators that leave you alone with quotes, we guide you from A to Z. 100% free service, no commitment, GDPR-protected data.',
+  'seoContent.p4': 'Our insurance comparator stands out through its 70 insurer partners and personalised advisor support. Unlike traditional comparators that leave you alone with quotes, we guide you from A to Z. 100% free service, no commitment, GDPR-protected data.',
   'seoContent.h3_3': 'All types of insurance to compare',
   'seoContent.p5': 'Our comparator covers all needs: car, motorcycle, home, health, pet, life, loan, income protection, professional liability, business multi-risk (MRP), rent guarantee (GLI) and landlord (PNO) insurance. Switching has never been easier.',
   'seoContent.linksTitle': 'Find your cheaper insurance',
@@ -660,7 +660,7 @@ const en: Record<string, string> = {
 
   // Auto Page
   'autoPage.title': 'Cheaper Car Insurance',
-  'autoPage.subtitle': 'Compare 50+ insurers and save up to €400 per year on your car insurance.',
+  'autoPage.subtitle': 'Compare 70+ insurers and save up to €400 per year on your car insurance.',
   'autoPage.adv1.title': 'Save up to €400',
   'autoPage.adv1.desc': 'Compare and save on your car insurance.',
   'autoPage.adv2.desc': 'The best offers on the market.',
@@ -702,7 +702,7 @@ const en: Record<string, string> = {
 
   // Santé Page
   'santePage.title': 'Cheaper Health Insurance',
-  'santePage.subtitle': 'Compare 50+ health plans and save up to €300 per year.',
+  'santePage.subtitle': 'Compare 70+ health plans and save up to €300 per year.',
   'santePage.adv1.title': 'Save up to €300',
   'santePage.adv1.desc': 'Compare and save on your health insurance.',
   'santePage.adv2.title': '20+ health plans compared',
@@ -734,7 +734,7 @@ const en: Record<string, string> = {
 
   // Habitation Page
   'habitationPage.title': 'Cheaper Home Insurance',
-  'habitationPage.subtitle': 'Compare 50+ insurers and save up to €300 per year on your home insurance.',
+  'habitationPage.subtitle': 'Compare 70+ insurers and save up to €300 per year on your home insurance.',
   'habitationPage.adv1.title': 'Save up to €300',
   'habitationPage.adv1.desc': 'Compare and save on your home insurance.',
   'habitationPage.adv2.title': '20+ insurers compared',
@@ -1104,7 +1104,7 @@ const en: Record<string, string> = {
   'aboutPage.missionTitle': 'Our Mission',
   'aboutPage.missionDesc': 'Simplify insurance comparison and help you save.',
   'aboutPage.missionP1': 'Making insurance <strong>transparent, understandable and affordable</strong> for everyone. For too long, consumers have endured opaque pricing, incomprehensible contracts and automatic renewals without negotiation.',
-  'aboutPage.missionP2': 'Our independent comparator, registered with <strong>ORIAS</strong>, analyses offers from over 50 partners in real time to objectively present the most competitive contracts on the market. <strong>No favouritism, no hidden commissions</strong>: every recommendation is based solely on your profile and your real needs.',
+  'aboutPage.missionP2': 'Our independent comparator, registered with <strong>ORIAS</strong>, analyses offers from over 70 partners in real time to objectively present the most competitive contracts on the market. <strong>No favouritism, no hidden commissions</strong>: every recommendation is based solely on your profile and your real needs.',
   'aboutPage.expertiseTitle': 'Our expertise',
   'aboutPage.expertiseDesc': 'Over 10 years of experience with dedicated experts.',
   'aboutPage.communityTitle': 'Our community',
@@ -1124,10 +1124,10 @@ const en: Record<string, string> = {
   'aboutPage.teamDesc': 'Real people, passionate about insurance and technology, working every day to help you save.',
   'aboutPage.cofounder': 'Co-founder',
   'aboutPage.methodTitle': 'Our methodology',
-  'aboutPage.methodDesc': 'How we compare over 50 insurers to find you the best rate.',
+  'aboutPage.methodDesc': 'How we compare over 70 insurers to find you the best rate.',
   'aboutPage.step1Title': 'Profile analysis',
   'aboutPage.step1Desc': 'We gather your real needs in 2 minutes: coverage type, budget, personal situation.',
-  'aboutPage.step2Title': 'Comparing 50+ insurers',
+  'aboutPage.step2Title': 'Comparing 70+ insurers',
   'aboutPage.step2Desc': 'Our algorithm queries partner pricing grids in real time to find the best offers.',
   'aboutPage.step3Title': 'Impartial selection',
   'aboutPage.step3Desc': 'No favouritism: results are ranked by value for money, tailored to your profile only.',
@@ -1423,10 +1423,10 @@ const en: Record<string, string> = {
   // Partners Component
   'partnersComponent.badge': 'Our partners',
   'partnersComponent.title': 'More than',
-  'partnersComponent.titleHighlight': '50 insurers',
+  'partnersComponent.titleHighlight': '70 insurers',
   'partnersComponent.titleEnd': 'compared',
   'partnersComponent.subtitle': 'And nearly',
-  'partnersComponent.agencies': '2,000 local agencies',
+  'partnersComponent.agencies': '2,500 local agencies',
   'partnersComponent.autoScroll': 'Auto-scrolling carousel. Hover to pause.',
 
   // Landing Common
