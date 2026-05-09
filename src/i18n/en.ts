@@ -2669,6 +2669,17 @@ const en: Record<string, string> = {
   "form.toast.errorTitle": "Error",
   "form.toast.errorRetry": "Please try again.",
   "form.toast.invalidType": "Invalid insurance type",
+
+  // Landing template (Ads pages)
+  "landingTpl.serviceBy": "Service operated by",
+  "landingTpl.broker": "independent ORIAS-registered broker.",
+  "landingTpl.whyChoose": "Why choose",
+  "landingTpl.trust.ssl": "SSL / GDPR",
+  "landingTpl.trust.orias": "ORIAS verified",
+  "landingTpl.trust.reviews": "4.9/5 — 2,847 reviews",
+  "landingTpl.testimonials.title": "Trusted by thousands",
+  "landingTpl.faq.title": "Frequently asked questions",
+  "landingTpl.bottomCta.button": "Get my free quote",
 };
 
 export default en;
