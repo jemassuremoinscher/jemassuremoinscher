@@ -2664,6 +2664,17 @@ const fr: Record<string, string> = {
   "form.toast.errorTitle": "Erreur",
   "form.toast.errorRetry": "Veuillez réessayer.",
   "form.toast.invalidType": "Type d'assurance invalide",
+
+  // Landing template (Ads pages)
+  "landingTpl.serviceBy": "Service proposé par",
+  "landingTpl.broker": "courtier indépendant ORIAS.",
+  "landingTpl.whyChoose": "Pourquoi choisir",
+  "landingTpl.trust.ssl": "SSL / RGPD",
+  "landingTpl.trust.orias": "ORIAS vérifié",
+  "landingTpl.trust.reviews": "4,9/5 — 2 847 avis",
+  "landingTpl.testimonials.title": "Ils nous ont fait confiance",
+  "landingTpl.faq.title": "Questions fréquentes",
+  "landingTpl.bottomCta.button": "Recevoir mon devis gratuit",
 };
 
 export default fr;
