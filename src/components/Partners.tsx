@@ -3,6 +3,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+import aCommeAssureLogo from "@/assets/logos/a-comme-assure.png";
 import abeilleLogo from "@/assets/logos/abeille.webp";
 import acheelLogo from "@/assets/logos/acheel.webp";
 import agfLogo from "@/assets/logos/agf.webp";
@@ -10,10 +11,17 @@ import alanLogo from "@/assets/logos/alan-new.webp";
 import allianzLogo from "@/assets/logos/allianz.webp";
 import amaguizLogo from "@/assets/logos/amaguiz.webp";
 import amvLogo from "@/assets/logos/amv.webp";
+import animauxSanteLogo from "@/assets/logos/animaux-sante.png";
 import aonLogo from "@/assets/logos/aon.webp";
 import aprilLogo from "@/assets/logos/april-new.webp";
+import aprilMotoLogo from "@/assets/logos/april-moto.png";
+import assu2000Logo from "@/assets/logos/assu-2000.png";
+import assurpeopleLogo from "@/assets/logos/assurpeople.png";
 import axaLogo from "@/assets/logos/axa.webp";
+import bulleBleueLogo from "@/assets/logos/bulle-bleue.png";
+import cardifLogo from "@/assets/logos/cardif.png";
 import directAssuranceLogo from "@/assets/logos/direct-assurance-new.webp";
+import fidanimoLogo from "@/assets/logos/fidanimo.png";
 import ganLogo from "@/assets/logos/gan.svg";
 import generaliLogo from "@/assets/logos/generali-new.webp";
 import gmfLogo from "@/assets/logos/gmf-new.webp";
@@ -28,6 +36,7 @@ import milaLogo from "@/assets/logos/mila.webp";
 import mmaLogo from "@/assets/logos/mma-new.webp";
 import mpaLogo from "@/assets/logos/mpa.webp";
 import neoLogo from "@/assets/logos/neo.webp";
+import omerosLogo from "@/assets/logos/omeros.png";
 import ornikarLogo from "@/assets/logos/ornikar.webp";
 import swissLifeLogo from "@/assets/logos/swisslife.webp";
 import wilovLogo from "@/assets/logos/wilov.webp";
@@ -42,6 +51,7 @@ const logoScaleMap: Record<string, string> = {
 };
 
 const partners = [
+  { name: "A comme Assure", logo: aCommeAssureLogo },
   { name: "Abeille Assurances", logo: abeilleLogo },
   { name: "Acheel", logo: acheelLogo },
   { name: "AGF", logo: agfLogo },
@@ -49,10 +59,17 @@ const partners = [
   { name: "Allianz", logo: allianzLogo },
   { name: "Amaguiz", logo: amaguizLogo },
   { name: "AMV", logo: amvLogo },
+  { name: "Animaux Santé", logo: animauxSanteLogo },
   { name: "AON", logo: aonLogo },
   { name: "April", logo: aprilLogo },
+  { name: "April Moto", logo: aprilMotoLogo },
+  { name: "Assu 2000", logo: assu2000Logo },
+  { name: "Assurpeople", logo: assurpeopleLogo },
   { name: "AXA", logo: axaLogo },
+  { name: "Bulle Bleue", logo: bulleBleueLogo },
+  { name: "Cardif", logo: cardifLogo },
   { name: "Direct Assurance", logo: directAssuranceLogo },
+  { name: "Fidanimo", logo: fidanimoLogo },
   { name: "GAN", logo: ganLogo },
   { name: "Generali", logo: generaliLogo },
   { name: "GMF", logo: gmfLogo },
@@ -67,6 +84,7 @@ const partners = [
   { name: "MMA", logo: mmaLogo },
   { name: "Mutuelle de Poitiers", logo: mpaLogo },
   { name: "Neo Assurances", logo: neoLogo },
+  { name: "Omeros", logo: omerosLogo },
   { name: "Ornikar", logo: ornikarLogo },
   { name: "SwissLife", logo: swissLifeLogo },
   { name: "Wilov", logo: wilovLogo },
