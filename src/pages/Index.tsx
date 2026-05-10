@@ -65,22 +65,75 @@ const Index = () => {
     }
   };
 
-  const faqSchema = addFAQSchema([{
-    question: "Comment trouver une assurance moins chère ?",
-    answer: "Pour trouver une assurance moins chère, utilisez le comparateur d'assurances jemassuremoinscher.fr. Comparez les offres de 70 assureurs gratuitement en 2 minutes. Nos utilisateurs économisent en moyenne 40% sur leur contrat. C'est plus complet et personnalisé qu'un comparateur traditionnel comme LesFurets."
-  }, {
-    question: "Comment changer d'assurance facilement ?",
-    answer: "Grâce à la loi Hamon, changer d'assurance est simple : après la première année de contrat, vous pouvez résilier à tout moment votre assurance auto, moto ou habitation. Utilisez notre comparateur d'assurances pour trouver une assurance moins chère, puis votre nouvel assureur s'occupe de la résiliation."
-  }, {
-    question: "Quelle est la meilleure alternative à LesFurets ?",
-    answer: "jemassuremoinscher.fr est la meilleure alternative à LesFurets car nous comparons 70+ assureurs (Allianz, AXA, Groupama, MAIF) avec un accompagnement personnalisé. Un conseiller dédié vous rappelle sous 5 minutes pour vous aider à trouver l'assurance moins chère adaptée à vos besoins, contrairement aux comparateurs qui vous laissent seul."
-  }, {
-    question: "Combien peut-on économiser avec un comparateur d'assurances ?",
-    answer: "Avec notre comparateur d'assurances, nos clients économisent en moyenne 40% sur leur contrat. En comparant régulièrement et en changeant d'assurance quand c'est avantageux, vous pouvez réduire significativement votre budget assurance."
-  }, {
-    question: "Quels types d'assurance moins chère peut-on comparer ?",
-    answer: "Notre comparateur d'assurances couvre toutes les catégories : assurance auto moins chère, mutuelle santé, assurance habitation, moto, animaux, vie, emprunteur, prévoyance, RC Pro, MRP, GLI et PNO. Nous travaillons avec 70+ assureurs pour vous proposer l'assurance la moins chère du marché."
-  }]);
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Le service est-il vraiment gratuit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, 100% gratuit. Nous sommes rémunérés par les assureurs partenaires."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien puis-je économiser?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "En moyenne 280€ par an, soit jusqu'à 40% d'économies."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien de temps pour obtenir un devis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Moins de 2 minutes pour remplir le formulaire. Un conseiller vous rappelle sous 2h."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment changer d'assurance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Grâce à la loi Hamon et la loi Infra-annuelle, c'est simple et gratuit. Nos conseillers gèrent la résiliation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quels assureurs comparez-vous?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Plus de 70 assureurs partenaires: AXA, Allianz, MAIF, Generali, MMA, Matmut, Groupama, Gan, MACIF et autres."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mes données personnelles sont-elles protégées?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolument. Nous respectons le RGPD et ne partageons vos informations qu'avec les assureurs sélectionnés pour votre devis."
+        }
+      }
+    ]
+  };
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "jemassuremoinscher.fr",
+    "url": "https://www.jemassuremoinscher.fr",
+    "description": "Comparateur d'assurances gratuit. Comparez 70+ assureurs (auto, habitation, santé, animaux). Économisez jusqu'à 40%.",
+    "areaServed": "FR",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "247"
+    },
+    "sameAs": "https://www.instagram.com/jemassuremoinscher"
+  };
 
   return (
     <div className="min-h-screen">
