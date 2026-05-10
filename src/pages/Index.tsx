@@ -5,7 +5,7 @@ import Hero from "@/components/Hero";
 import SEOOptimized from "@/components/SEOOptimized";
 import DeferredRender from "@/components/performance/DeferredRender";
 import MdReveal from "@/components/motion/MdReveal";
-import { addOrganizationSchema, addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { addOrganizationSchema, addServiceSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import geoContent from "@/data/geo-content.json";
 
 // Lazy load below-the-fold sections
@@ -147,7 +147,7 @@ const Index = () => {
         keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
         canonical="https://www.jemassuremoinscher.fr"
         ogImage="https://www.jemassuremoinscher.fr/opengraph-image.png"
-        jsonLd={[webSiteSchema, organizationSchema, financialServiceSchema, serviceSchema, breadcrumbSchema, faqSchema]}
+        jsonLd={[webSiteSchema, organizationSchema, financialServiceSchema, serviceSchema, breadcrumbSchema, faqSchema, localBusinessSchema]}
       />
       <Header />
       <main id="main-content" role="main">
