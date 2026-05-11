@@ -4769,11 +4769,13 @@ function parseFrenchDate(d: string): Date {
 }
 
 import { blogDrafts2026 } from "./blogDrafts2026";
+import { blogArticlesExpat2026 } from "./blogArticlesExpat2026";
 
 export const blogArticles: BlogArticle[] = [
   ...existingWithDates,
   ...articles2026WithDates,
   ...blogDrafts2026,
+  ...blogArticlesExpat2026,
 ]
   .filter((a) => a.published !== false) // Hide drafts (published: false) from listings, sitemap, and routing
   .sort((a, b) => parseFrenchDate(b.date).getTime() - parseFrenchDate(a.date).getTime());
