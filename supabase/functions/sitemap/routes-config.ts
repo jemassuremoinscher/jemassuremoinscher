@@ -186,6 +186,23 @@ export const blogArticles: RouteConfig[] = [
   { path: "/blog/assurance-parc-accrobranche-obligations-2026", changefreq: "monthly", priority: 0.9 },
   { path: "/blog/assurance-moniteur-sports-outdoor-2026", changefreq: "monthly", priority: 0.9 },
   { path: "/blog/assurance-organisateur-evenement-festival-2026", changefreq: "monthly", priority: 0.9 },
+
+  // === Série Expatriés 2026 (15 articles) ===
+  { path: "/blog/assurance-auto-expatries-france", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/assurance-habitation-expatries", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/mutuelle-sante-expatries-france", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/changer-assurance-expatrie", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/assurance-couples-mixtes-france", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/assurance-etudiant-etranger-france", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/cotisations-sociales-assurance-expatrie", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/rapatriement-assurance-expatries", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/temoignages-expatries-assurance", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/assurance-expat-france-vs-origine", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/visa-long-sejour-assurance-france", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/assurance-tech-workers-expatries", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/assurance-cadres-expatries-mutation", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/assurance-retraite-expatrie-france", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/assurance-frontalier-france", changefreq: "monthly", priority: 0.7 },
 ];
 
 // Glossary terms
