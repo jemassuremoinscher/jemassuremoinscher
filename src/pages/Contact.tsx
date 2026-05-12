@@ -175,7 +175,7 @@ const Contact = () => {
                     <Clock className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-foreground mb-1">{t('contactPage.hours')}</h3>
+                    <h3 className="font-bold text-foreground mb-1">Horaires de contact</h3>
                     <p className="text-sm text-muted-foreground">{t('contactPage.weekdays')}</p>
                     <p className="text-sm text-muted-foreground">{t('contactPage.saturday')}</p>
                   </div>
@@ -186,8 +186,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-foreground mb-1">{t('contactPage.office')}</h3>
-                    <p className="text-sm text-muted-foreground">2, rue d'Angleterre - 06000 Nice </p>
-                    <p className="text-sm text-muted-foreground">{t('contactPage.onlineService')}</p>
+                    <p className="text-sm text-muted-foreground">06000 Nice</p>
+                    <p className="text-sm text-muted-foreground">Service 100% en ligne</p>
                   </div>
                 </div>
               </div>
