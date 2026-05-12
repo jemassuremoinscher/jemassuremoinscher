@@ -177,9 +177,15 @@ const AvisClients = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
                 {t('reviewsPage.shareTitle')}
               </h2>
-              <p className="text-muted-foreground max-w-lg mx-auto">
+              <p className="text-muted-foreground max-w-lg mx-auto mb-6">
                 {t('reviewsPage.shareDesc')}
               </p>
+              <Button asChild size="lg" className="rounded-full">
+                <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">
+                  Laisser un avis sur Google
+                  <Star className="ml-2 h-4 w-4 fill-current" aria-hidden="true" />
+                </a>
+              </Button>
             </div>
 
             {/* CTA */}
