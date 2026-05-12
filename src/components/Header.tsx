@@ -1,4 +1,4 @@
-import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, ArrowLeft, MoreHorizontal, Share2, BookmarkPlus, Printer, BookOpen, Calculator, MessageSquare, Star, Search, Instagram, Linkedin, Facebook, Mail } from "lucide-react";
+import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, ArrowLeft, MoreHorizontal, Share2, BookmarkPlus, Printer, BookOpen, Calculator, MessageSquare, Star, Search, Instagram, Linkedin, Facebook, Mail, Globe } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
@@ -77,7 +77,8 @@ const Header = () => {
   const assurancesVieEpargne = [
     { to: "/assurance-vie", label: t('insurance.life'), icon: PiggyBank },
     { to: "/assurance-pret", label: t('insurance.loan'), icon: FileText },
-    { to: "/assurance-prevoyance", label: t('insurance.provident'), icon: Users }
+    { to: "/assurance-prevoyance", label: t('insurance.provident'), icon: Users },
+    { to: "/assurance-expatries", label: "Expatriés", icon: Globe }
   ];
 
   const assurancesImmobilier = [

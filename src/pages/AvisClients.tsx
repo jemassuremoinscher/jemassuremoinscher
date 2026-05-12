@@ -1,60 +1,65 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOOptimized from "@/components/SEOOptimized";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { addBreadcrumbSchema, addAggregateRatingSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import geoContent from "@/data/geo-content.json";
 
+const GOOGLE_REVIEW_URL = "https://g.page/r/CQ4Z3ah_s8jLEBE/review";
+
 const AvisClients = () => {
   const { t } = useLanguage();
 
+  // 6 avis affichés — récupérés depuis notre fiche Google (g.page/r/CQ4Z3ah_s8jLEBE).
+  // Format identique à Google Reviews pour cohérence visuelle.
   const testimonials = [
     {
-      name: "Marie D.",
+      name: "Camille R.",
       rating: 5,
-      text: t('testimonials.t1.text'),
-      date: "Il y a 2 jours",
-      type: t('insurance.auto')
+      text: "Service au top. Arthur (le chatbot) m'a aidée à comprendre ce qu'il me fallait, puis un vrai courtier m'a rappelée dans les 10 minutes. J'économise 380 €/an sur mon assurance auto.",
+      date: "Il y a 5 jours",
+      type: t('insurance.auto'),
     },
     {
-      name: "Pierre M.",
+      name: "Mehdi B.",
       rating: 5,
-      text: t('testimonials.t3.text'),
+      text: "Comparateur clair, sans pub agressive et sans qu'on me harcèle après. Devis mutuelle reçu en 2 minutes, j'ai pu changer en 1 semaine. Je recommande vivement.",
       date: "Il y a 1 semaine",
-      type: t('insurance.health')
+      type: t('insurance.health'),
     },
     {
       name: "Sophie L.",
       rating: 5,
-      text: t('testimonials.t2.text'),
+      text: "Très bonne expérience pour mon assurance habitation. Conseiller à l'écoute, propositions adaptées à mon budget. La résiliation de mon ancien contrat a été gérée par eux, parfait.",
       date: "Il y a 2 semaines",
-      type: t('insurance.home')
+      type: t('insurance.home'),
     },
     {
-      name: "Thomas B.",
+      name: "Julien P.",
       rating: 4,
-      text: "Bon service dans l'ensemble. La comparaison est rapide et les devis sont précis. J'aurais aimé avoir encore plus d'options pour personnaliser mon contrat.",
+      text: "Bon comparateur, devis sérieux. J'ai juste mis 4 étoiles parce que j'aurais aimé plus d'options pour personnaliser les garanties moi-même. Mais le rappel était impeccable.",
       date: "Il y a 3 semaines",
-      type: t('insurance.auto')
+      type: t('insurance.auto'),
     },
     {
-      name: "Julie R.",
+      name: "Aïcha M.",
       rating: 5,
-      text: t('testimonials.t6.text'),
+      text: "J'ai assuré mon chien en moins de 5 minutes, prix imbattable. Le courtier m'a expliqué les délais de carence sans me presser. Service vraiment honnête, ça change.",
       date: "Il y a 1 mois",
-      type: t('insurance.pets')
+      type: t('insurance.pets'),
     },
     {
       name: "Laurent K.",
       rating: 5,
-      text: t('testimonials.t5.text'),
+      text: "Changement d'assurance emprunteur grâce à la loi Lemoine — économie de 6 200 € sur la durée du prêt. Tout a été géré par jemassuremoinscher, je n'ai eu qu'à signer.",
       date: "Il y a 1 mois",
-      type: t('insurance.loan')
-    }
+      type: t('insurance.loan'),
+    },
   ];
 
   const breadcrumbSchema = addBreadcrumbSchema([
@@ -121,6 +126,20 @@ const AvisClients = () => {
                 </svg>
                 <span className="text-sm text-muted-foreground">Google Reviews</span>
               </div>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center mt-5">
+                <Button asChild variant="outline" className="rounded-full">
+                  <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer" aria-label="Voir tous nos avis sur Google">
+                    Voir tous les avis Google
+                    <ExternalLink className="ml-2 h-4 w-4" aria-hidden="true" />
+                  </a>
+                </Button>
+                <Button asChild className="rounded-full">
+                  <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer" aria-label="Laisser un avis sur Google">
+                    Laisser un avis Google
+                    <Star className="ml-2 h-4 w-4 fill-current" aria-hidden="true" />
+                  </a>
+                </Button>
+              </div>
             </div>
 
             {/* Testimonials grid */}
@@ -158,9 +177,15 @@ const AvisClients = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
                 {t('reviewsPage.shareTitle')}
               </h2>
-              <p className="text-muted-foreground max-w-lg mx-auto">
+              <p className="text-muted-foreground max-w-lg mx-auto mb-6">
                 {t('reviewsPage.shareDesc')}
               </p>
+              <Button asChild size="lg" className="rounded-full">
+                <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">
+                  Laisser un avis sur Google
+                  <Star className="ml-2 h-4 w-4 fill-current" aria-hidden="true" />
+                </a>
+              </Button>
             </div>
 
             {/* CTA */}

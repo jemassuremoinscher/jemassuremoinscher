@@ -4770,14 +4770,22 @@ function parseFrenchDate(d: string): Date {
 
 import { blogDrafts2026 } from "./blogDrafts2026";
 import { blogArticlesExpat2026 } from "./blogArticlesExpat2026";
+import { blogArticlesNiches2026 } from "./blogArticlesNiches2026";
+
+// Auto-publication: articles dont la date est dans le futur sont masqués
+// jusqu'à ce jour-là (équivalent d'une publication programmée).
+const _now = new Date();
+_now.setHours(23, 59, 59, 999);
 
 export const blogArticles: BlogArticle[] = [
   ...existingWithDates,
   ...articles2026WithDates,
   ...blogDrafts2026,
   ...blogArticlesExpat2026,
+  ...blogArticlesNiches2026,
 ]
   .filter((a) => a.published !== false) // Hide drafts (published: false) from listings, sitemap, and routing
+  .filter((a) => parseFrenchDate(a.date).getTime() <= _now.getTime()) // Auto-publication par date
   .sort((a, b) => parseFrenchDate(b.date).getTime() - parseFrenchDate(a.date).getTime());
 
 /** Drafts only — for admin preview, never rendered publicly. */

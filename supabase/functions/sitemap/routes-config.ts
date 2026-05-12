@@ -19,6 +19,7 @@ export const routes: RouteConfig[] = [
   { path: "/qui-sommes-nous", changefreq: "monthly", priority: 0.6 },
   { path: "/nos-partenaires", changefreq: "monthly", priority: 0.6 },
   { path: "/avis-clients", changefreq: "weekly", priority: 0.8 },
+  { path: "/assurance-expatries", changefreq: "weekly", priority: 0.85 },
   { path: "/gestion-locative", changefreq: "weekly", priority: 0.8 },
   { path: "/glossaire", changefreq: "weekly", priority: 0.8 },
   { path: "/plan-du-site", changefreq: "monthly", priority: 0.5 },
@@ -203,6 +204,14 @@ export const blogArticles: RouteConfig[] = [
   { path: "/blog/assurance-cadres-expatries-mutation", changefreq: "monthly", priority: 0.7 },
   { path: "/blog/assurance-retraite-expatrie-france", changefreq: "monthly", priority: 0.7 },
   { path: "/blog/assurance-frontalier-france", changefreq: "monthly", priority: 0.7 },
+
+  // Niches spécialisées 2026
+  { path: "/blog/assurance-auto-malus-eleve-crm", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/assurance-jeune-conducteur-sans-experience", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/assurance-auto-vintage-collection", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/assurance-auto-teletravail-peu-kilometrage", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/assurance-auto-apres-retrait-permis", changefreq: "monthly", priority: 0.7 },
+  { path: "/blog/assurance-habitation-zone-inondable-sinistre", changefreq: "monthly", priority: 0.7 },
 ];
 
 // Glossary terms
