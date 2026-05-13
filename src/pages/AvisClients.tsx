@@ -131,7 +131,7 @@ const AvisClients = () => {
               </div>
               <div className="flex flex-col sm:flex-row gap-3 justify-center mt-5">
                 <Button asChild variant="outline" className="rounded-full">
-                  <a href={GOOGLE_REVIEW_WRITE_URL} target="_blank" rel="noopener noreferrer" aria-label="Voir tous nos avis sur Google">
+                  <a href={GOOGLE_REVIEW_READ_URL} target="_blank" rel="noopener noreferrer" aria-label="Voir tous nos avis sur Google">
                     Voir tous les avis Google
                     <ExternalLink className="ml-2 h-4 w-4" aria-hidden="true" />
                   </a>
