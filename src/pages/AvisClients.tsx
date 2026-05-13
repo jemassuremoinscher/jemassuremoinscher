@@ -10,7 +10,10 @@ import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import geoContent from "@/data/geo-content.json";
 
-const GOOGLE_REVIEW_URL = "https://g.page/r/CQ4Z3ah_s8jLEBE/review";
+// "Voir tous les avis" → page publique de la fiche Google (lecture)
+// "Laisser un avis"  → URL spéciale d'écriture (g.page/r/.../review)
+const GOOGLE_REVIEW_WRITE_URL = "https://g.page/r/CQ4Z3ah_s8jLEBE/review";
+const GOOGLE_REVIEW_READ_URL = "https://www.google.com/search?q=jemassuremoinscher.fr+avis";
 
 const AvisClients = () => {
   const { t } = useLanguage();
@@ -128,13 +131,13 @@ const AvisClients = () => {
               </div>
               <div className="flex flex-col sm:flex-row gap-3 justify-center mt-5">
                 <Button asChild variant="outline" className="rounded-full">
-                  <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer" aria-label="Voir tous nos avis sur Google">
+                  <a href={GOOGLE_REVIEW_READ_URL} target="_blank" rel="noopener noreferrer" aria-label="Voir tous nos avis sur Google">
                     Voir tous les avis Google
                     <ExternalLink className="ml-2 h-4 w-4" aria-hidden="true" />
                   </a>
                 </Button>
                 <Button asChild className="rounded-full">
-                  <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer" aria-label="Laisser un avis sur Google">
+                  <a href={GOOGLE_REVIEW_WRITE_URL} target="_blank" rel="noopener noreferrer" aria-label="Laisser un avis sur Google">
                     Laisser un avis Google
                     <Star className="ml-2 h-4 w-4 fill-current" aria-hidden="true" />
                   </a>
@@ -181,7 +184,7 @@ const AvisClients = () => {
                 {t('reviewsPage.shareDesc')}
               </p>
               <Button asChild size="lg" className="rounded-full">
-                <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer">
+                <a href={GOOGLE_REVIEW_WRITE_URL} target="_blank" rel="noopener noreferrer">
                   Laisser un avis sur Google
                   <Star className="ml-2 h-4 w-4 fill-current" aria-hidden="true" />
                 </a>
