@@ -10,7 +10,10 @@ import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import geoContent from "@/data/geo-content.json";
 
-const GOOGLE_REVIEW_URL = "https://g.page/r/CQ4Z3ah_s8jLEBE/review";
+// "Voir tous les avis" → page publique de la fiche Google (lecture)
+// "Laisser un avis"  → URL spéciale d'écriture (g.page/r/.../review)
+const GOOGLE_REVIEW_WRITE_URL = "https://g.page/r/CQ4Z3ah_s8jLEBE/review";
+const GOOGLE_REVIEW_READ_URL = "https://www.google.com/search?q=jemassuremoinscher.fr+avis";
 
 const AvisClients = () => {
   const { t } = useLanguage();
