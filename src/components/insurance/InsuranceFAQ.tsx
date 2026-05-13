@@ -26,13 +26,17 @@ const InsuranceFAQ = ({ title, faqs }: InsuranceFAQProps) => {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-foreground mb-8 text-center">{displayTitle}</h2>
         <Card className="p-6 max-w-4xl mx-auto">
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full space-y-3">
             {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left font-semibold">
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="border border-border rounded-2xl px-5 bg-card/50 hover:bg-card transition-colors data-[state=open]:shadow-[var(--shadow-card)] data-[state=open]:border-primary/30"
+              >
+                <AccordionTrigger className="text-left font-semibold hover:no-underline py-4">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
+                <AccordionContent className="text-muted-foreground pb-4 leading-relaxed">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

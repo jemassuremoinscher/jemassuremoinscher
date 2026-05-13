@@ -473,16 +473,18 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
         {/* Step indicator */}
         <div className="flex items-center justify-between px-6 pt-4 pb-2">
-          <button
+          <Button
             type="button"
+            variant="ghost"
+            size="sm"
             onClick={goBack}
             disabled={currentStep === 0 || step.type === 'searching' || !!transitionScreen}
-            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors disabled:opacity-0 disabled:pointer-events-none relative z-10"
+            className="rounded-full px-4 h-10 gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted disabled:opacity-0 disabled:pointer-events-none relative z-10"
             aria-label={t("form.previousStep")}
           >
             <ArrowLeft className="h-4 w-4" />
             {t("common.back")}
-          </button>
+          </Button>
           <span className="text-xs font-medium text-muted-foreground tracking-wide">
             {step.type !== 'searching' && !transitionScreen && `${currentStep + 1} / ${totalSteps}`}
           </span>
