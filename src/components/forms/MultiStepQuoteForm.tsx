@@ -94,6 +94,8 @@ interface MultiStepQuoteFormProps {
   className?: string;
   /** Constrain card to fixed height with internal scroll (Hero usage) */
   fixedHeight?: boolean;
+  /** Step IDs to exclude (e.g. ['postalCode'] for expat abroad) */
+  excludeStepIds?: string[];
 }
 
 const slideVariants = {
@@ -114,7 +116,7 @@ const slideVariants = {
   }),
 };
 
-export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', fixedHeight = false }: MultiStepQuoteFormProps) => {
+export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', fixedHeight = false, excludeStepIds }: MultiStepQuoteFormProps) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { trackEvent, trackConversion } = useAnalytics();
@@ -142,18 +144,22 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   // For comparateur, dynamically inject the full product-specific path after type selection
   const steps = useMemo(() => {
     const baseSteps = stepConfigsByType[insuranceType] || stepConfigsByType.comparateur;
-    if (insuranceType !== 'comparateur') return baseSteps;
-    
-    const selectedType = formData.insuranceType;
-    if (selectedType && selectedType in stepConfigsByType) {
-      const specificSteps = stepConfigsByType[selectedType as InsuranceType];
-      const typeStep = baseSteps[0];
-      const productSteps = specificSteps.filter(s => s.type !== 'searching' && s.type !== 'contact' && s.type !== 'callback');
-      const finalSteps = baseSteps.filter(s => s.type === 'searching' || s.type === 'contact');
-      return [typeStep, ...productSteps, ...finalSteps];
+    let computed = baseSteps;
+    if (insuranceType === 'comparateur') {
+      const selectedType = formData.insuranceType;
+      if (selectedType && selectedType in stepConfigsByType) {
+        const specificSteps = stepConfigsByType[selectedType as InsuranceType];
+        const typeStep = baseSteps[0];
+        const productSteps = specificSteps.filter(s => s.type !== 'searching' && s.type !== 'contact' && s.type !== 'callback');
+        const finalSteps = baseSteps.filter(s => s.type === 'searching' || s.type === 'contact');
+        computed = [typeStep, ...productSteps, ...finalSteps];
+      }
     }
-    return baseSteps;
-  }, [insuranceType, formData.insuranceType, stepConfigsByType]);
+    if (excludeStepIds && excludeStepIds.length > 0) {
+      computed = computed.filter((s) => !excludeStepIds.includes(s.id));
+    }
+    return computed;
+  }, [insuranceType, formData.insuranceType, stepConfigsByType, excludeStepIds]);
   const [contactErrors, setContactErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);

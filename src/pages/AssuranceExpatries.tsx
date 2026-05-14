@@ -200,7 +200,11 @@ const AssuranceExpatries = () => {
           </section>
 
           <div ref={formRef} className="mb-16 min-h-[480px]">
-            <MultiStepQuoteForm key={formInsuranceType} insuranceType={formInsuranceType} />
+            <MultiStepQuoteForm
+              key={formInsuranceType}
+              insuranceType={formInsuranceType}
+              excludeStepIds={audience === "abroad" ? ["postalCode"] : undefined}
+            />
           </div>
 
           <CourtierValueCards product="vie" />
