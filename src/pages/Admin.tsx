@@ -32,7 +32,7 @@ import SERPPreview from '@/components/admin/SERPPreview';
 import { GeoScoreCard } from '@/components/admin/GeoScoreCard';
 import { LinkedInAutoPoster } from '@/components/admin/LinkedInAutoPoster';
 import { DraftArticlesPublisher } from '@/components/admin/DraftArticlesPublisher';
-import { StaticArticlesPanel } from '@/components/admin/StaticArticlesPanel';
+
 import { FinancePanel } from '@/components/admin/FinancePanel';
 
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -403,7 +403,7 @@ const Admin = () => {
           <TabsContent value="articles" className="space-y-6">
             <SEOSuggestions mode="articles" />
             <DraftArticlesPublisher />
-            <StaticArticlesPanel />
+            
             <details className="rounded-lg border border-border bg-card group">
               <summary className="cursor-pointer list-none flex items-center justify-between gap-2 p-4 hover:bg-muted/50 transition-colors">
                 <span className="flex items-center gap-2 font-semibold">
