@@ -13,7 +13,8 @@ import geoContent from "@/data/geo-content.json";
 // "Voir tous les avis" → page publique de la fiche Google (lecture)
 // "Laisser un avis"  → URL spéciale d'écriture (g.page/r/.../review)
 const GOOGLE_REVIEW_WRITE_URL = "https://g.page/r/CQ4Z3ah_s8jLEBE/review";
-const GOOGLE_REVIEW_READ_URL = "https://www.google.com/search?q=jemassuremoinscher.fr+avis";
+// Page publique Google Business Profile (lecture des avis) — g.page sans /review redirige vers la fiche
+const GOOGLE_REVIEW_READ_URL = "https://g.page/r/CQ4Z3ah_s8jLEBE";
 
 const AvisClients = () => {
   const { t } = useLanguage();
