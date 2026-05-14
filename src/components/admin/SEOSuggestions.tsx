@@ -259,7 +259,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const [appliedSuggestions, setAppliedSuggestions] = useState<AppliedSuggestionState>({});
   const [appliedImprovementsLoaded, setAppliedImprovementsLoaded] = useState(false);
   const [editingSuggestionId, setEditingSuggestionId] = useState<string | null>(null);
-  const [editingSuggestion, setEditingSuggestion] = useState<EditingSuggestion>({ suggested_content: '', image_url: '', published_at: '' });
+  const [editingSuggestion, setEditingSuggestion] = useState<EditingSuggestion>({ title: '', suggested_meta_description: '', suggested_content: '', image_url: '', published_at: '' });
   const [isSavingEdit, setIsSavingEdit] = useState(false);
 
   useEffect(() => {
@@ -479,6 +479,8 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const startEditingSuggestion = (suggestion: Suggestion) => {
     setEditingSuggestionId(suggestion.id);
     setEditingSuggestion({
+      title: suggestion.title,
+      suggested_meta_description: suggestion.suggested_meta_description || '',
       suggested_content: suggestion.suggested_content,
       image_url: suggestion.image_url || '',
       published_at: suggestion.published_at ? suggestion.published_at.slice(0, 16) : '',
@@ -490,6 +492,8 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
     const { error } = await supabase
       .from('seo_article_suggestions')
       .update({
+        title: editingSuggestion.title.trim(),
+        suggested_meta_description: editingSuggestion.suggested_meta_description.trim() || null,
         suggested_content: editingSuggestion.suggested_content,
         image_url: editingSuggestion.image_url.trim() || null,
         published_at: editingSuggestion.published_at ? new Date(editingSuggestion.published_at).toISOString() : null,
@@ -1234,6 +1238,31 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
 
               {editingSuggestionId === s.id && (
                 <div className="mb-4 space-y-4 rounded-lg border border-border bg-muted/30 p-4">
+                  <div className="space-y-2">
+                    <Label htmlFor={`article-title-${s.id}`}>Titre</Label>
+                    <Input
+                      id={`article-title-${s.id}`}
+                      value={editingSuggestion.title}
+                      onChange={(event) => setEditingSuggestion((current) => ({ ...current, title: event.target.value }))}
+                      placeholder="Titre H1 de l'article"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor={`article-meta-${s.id}`}>
+                      Meta description{' '}
+                      <span className="text-xs text-muted-foreground">
+                        ({editingSuggestion.suggested_meta_description.length}/160)
+                      </span>
+                    </Label>
+                    <Textarea
+                      id={`article-meta-${s.id}`}
+                      value={editingSuggestion.suggested_meta_description}
+                      onChange={(event) => setEditingSuggestion((current) => ({ ...current, suggested_meta_description: event.target.value }))}
+                      maxLength={170}
+                      className="min-h-[4.5rem]"
+                      placeholder="Description SEO (140-160 caractères idéal)"
+                    />
+                  </div>
                   <div className="space-y-2">
                     <Label htmlFor={`article-image-${s.id}`}>URL de l'image</Label>
                     <Input
