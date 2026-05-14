@@ -31,7 +31,7 @@ const InsuranceFAQ = ({ title, faqs }: InsuranceFAQProps) => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="border border-border rounded-2xl px-5 bg-card/50 hover:bg-card transition-colors data-[state=open]:shadow-[var(--shadow-card)] data-[state=open]:border-primary/30"
+                className="border-0 rounded-2xl px-5 bg-muted/30 hover:bg-muted/60 transition-colors data-[state=open]:bg-muted/60 data-[state=open]:shadow-[var(--shadow-card)]"
               >
                 <AccordionTrigger className="text-left font-semibold hover:no-underline py-4">
                   {faq.question}
