@@ -38,6 +38,8 @@ type Suggestion = {
 };
 
 type EditingSuggestion = {
+  title: string;
+  suggested_meta_description: string;
   suggested_content: string;
   image_url: string;
   published_at: string;
