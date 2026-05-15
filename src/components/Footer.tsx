@@ -20,41 +20,41 @@ const Footer = () => {
   const { t } = useLanguage();
 
   const insuranceLinks = [
-    { to: "/assurance-auto", label: "Assurance Auto" },
-    { to: "/assurance-moto", label: "Assurance Moto" },
-    { to: "/assurance-habitation", label: "Assurance Habitation" },
-    { to: "/assurance-sante", label: "Mutuelle Santé" },
-    { to: "/assurance-animaux", label: "Assurance Animaux" },
-    { to: "/assurance-vie", label: "Assurance Vie" },
-    { to: "/assurance-pret", label: "Assurance Emprunteur" },
-    { to: "/assurance-prevoyance", label: "Prévoyance" },
-    { to: "/assurance-rc-pro", label: "RC Professionnelle" },
-    { to: "/assurance-mrp", label: "Assurance MRP" },
-    { to: "/assurance-pno", label: "Assurance PNO" },
-    { to: "/assurance-gli", label: "Garantie Loyers Impayés" },
+    { to: "/assurance-auto", label: t('footer.autoInsurance') },
+    { to: "/assurance-moto", label: t('footer.motoInsurance') },
+    { to: "/assurance-habitation", label: t('footer.homeInsurance') },
+    { to: "/assurance-sante", label: t('footer.healthInsurance') },
+    { to: "/assurance-animaux", label: t('footer.petInsurance') },
+    { to: "/assurance-vie", label: t('footer.lifeInsurance') },
+    { to: "/assurance-pret", label: t('footer.loanInsurance') },
+    { to: "/assurance-prevoyance", label: t('footer.prevoyanceInsurance') },
+    { to: "/assurance-rc-pro", label: t('footer.rcProInsurance') },
+    { to: "/assurance-mrp", label: t('footer.mrpInsurance') },
+    { to: "/assurance-pno", label: t('footer.pnoInsurance') },
+    { to: "/assurance-gli", label: t('footer.gliInsurance') },
   ];
 
   const guidesLinks = [
-    { to: "/blog", label: "Tous nos guides" },
-    { to: "/comparatif", label: "Comparatifs assureurs" },
-    { to: "/profil", label: "Profils spéciaux" },
-    { to: "/glossaire", label: "Glossaire de l'assurance" },
-    { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
-    { to: "/profil/resilie-non-paiement", label: "Résilié pour non-paiement" },
-    { to: "/profil/retrait-permis", label: "Retrait de permis" },
-    { to: "/blog/loi-hamon-2026-resilier-assurance-3-clics", label: "Loi Hamon 2026" },
-    { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine 2026" },
-    { to: "/blog/guide-choisir-assurance-auto-2026", label: "Guide assurance auto" },
+    { to: "/blog", label: t('footer.linkAllGuides') },
+    { to: "/comparatif", label: t('footer.linkComparators') },
+    { to: "/profil", label: t('footer.linkProfiles') },
+    { to: "/glossaire", label: t('footer.linkGlossary') },
+    { to: "/outils/calculateur-bonus-malus", label: t('footer.linkBonusMalus') },
+    { to: "/profil/resilie-non-paiement", label: t('footer.linkResiliated') },
+    { to: "/profil/retrait-permis", label: t('footer.linkLicenseLoss') },
+    { to: "/blog/loi-hamon-2026-resilier-assurance-3-clics", label: t('footer.linkLawHamon') },
+    { to: "/blog/loi-lemoine-2026", label: t('footer.linkLawLemoine') },
+    { to: "/blog/guide-choisir-assurance-auto-2026", label: t('footer.linkAutoGuide') },
   ];
 
   const aboutLinks = [
-    { to: "/qui-sommes-nous", label: "Qui sommes-nous ?" },
-    { to: "/contact", label: "Contact" },
-    { to: "/sources-et-methodologie", label: "Sources & méthodologie" },
-    { to: "/mentions-legales", label: "Mentions légales" },
-    { to: "/politique-confidentialite", label: "Politique de confidentialité" },
-    { to: "/cgu", label: "CGU" },
-    { to: "/plan-du-site", label: "Plan du site" },
+    { to: "/qui-sommes-nous", label: t('footer.linkWhoWeAre') },
+    { to: "/contact", label: t('footer.contact') },
+    { to: "/sources-et-methodologie", label: t('footer.linkSourcesMethod') },
+    { to: "/mentions-legales", label: t('footer.legal') },
+    { to: "/politique-confidentialite", label: t('footer.privacyPolicy') },
+    { to: "/cgu", label: t('footer.terms') },
+    { to: "/plan-du-site", label: t('footer.sitemap') },
   ];
 
   return (
@@ -65,9 +65,9 @@ const Footer = () => {
           <div className="container mx-auto px-4 py-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
               {/* Col 1: Nos Assurances */}
-              <nav aria-label="Nos assurances">
+              <nav aria-label={t('footer.colInsurances')}>
                 <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-4">
-                  Nos Assurances
+                  {t('footer.colInsurances')}
                 </h3>
                 <ul className="space-y-2">
                   {insuranceLinks.map((link) => (
@@ -84,9 +84,9 @@ const Footer = () => {
               </nav>
 
               {/* Col 2: Guides & Conseils */}
-              <nav aria-label="Guides et conseils">
+              <nav aria-label={t('footer.colGuides')}>
                 <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-4">
-                  Guides & Conseils
+                  {t('footer.colGuides')}
                 </h3>
                 <ul className="space-y-2">
                   {guidesLinks.map((link) => (
@@ -103,9 +103,9 @@ const Footer = () => {
               </nav>
 
               {/* Col 3: À propos */}
-              <nav aria-label="À propos">
+              <nav aria-label={t('footer.colAbout')}>
                 <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-4">
-                  À propos
+                  {t('footer.colAbout')}
                 </h3>
                 <ul className="space-y-2">
                   {aboutLinks.map((link) => (
@@ -124,14 +124,14 @@ const Footer = () => {
               {/* Col 4: Informations Légales */}
               <div>
                 <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-4">
-                  Informations Légales
+                  {t('footer.colLegal')}
                 </h3>
                 <div className="space-y-3">
                   <p className="text-xs text-primary-foreground/50 leading-relaxed">
-                    Jemassuremoinscher.fr est un comparateur d'assurances indépendant, immatriculé à l'ORIAS sous le N° 24 XXX XXX en qualité de courtier en assurances. Nous sommes rémunérés par nos partenaires assureurs lors de la mise en relation.
+                    {t('footer.legalMandatoryNotice')}
                   </p>
                   <p className="text-xs text-primary-foreground/50 leading-relaxed">
-                    Conformément à la réglementation, nous vous rappelons que l'utilisation de notre comparateur est gratuite et sans engagement. Les tarifs affichés sont indicatifs et peuvent varier selon votre profil.
+                    {t('footer.legalRatesNotice')}
                   </p>
                 </div>
               </div>
@@ -145,7 +145,7 @@ const Footer = () => {
             <div className="flex flex-col items-center text-center gap-3">
               <img
                 src={arthurRunning}
-                alt="Arthur, mascotte de jemassuremoinscher.fr"
+                alt={t('footer.mascotAlt')}
                 className="h-14 w-auto"
                 width={56}
                 height={56}
@@ -155,14 +155,14 @@ const Footer = () => {
               <p className="text-xs text-primary-foreground/40 max-w-2xl leading-relaxed">
                 {t('footer.disclaimer')}
               </p>
-              <nav aria-label="Réseaux sociaux" className="flex items-center justify-center gap-4 pt-1">
-                <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Instagram" className="text-primary-foreground/50 hover:text-accent transition-colors">
+              <nav aria-label={t('footer.socialLabel')} className="flex items-center justify-center gap-4 pt-1">
+                <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label={t('footer.followInstagram')} className="text-primary-foreground/50 hover:text-accent transition-colors">
                   <Instagram className="h-4 w-4" />
                 </a>
-                <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur LinkedIn" className="text-primary-foreground/50 hover:text-accent transition-colors">
+                <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label={t('footer.followLinkedIn')} className="text-primary-foreground/50 hover:text-accent transition-colors">
                   <Linkedin className="h-4 w-4" />
                 </a>
-                <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Facebook" className="text-primary-foreground/50 hover:text-accent transition-colors">
+                <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label={t('footer.followFacebook')} className="text-primary-foreground/50 hover:text-accent transition-colors">
                   <Facebook className="h-4 w-4" />
                 </a>
               </nav>
@@ -177,19 +177,19 @@ const Footer = () => {
             <div className="flex flex-wrap items-center justify-center gap-5">
               <div className="flex items-center gap-1.5 text-primary-foreground/60">
                 <Lock className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                <span className="text-[11px] font-medium">Paiement sécurisé</span>
+                <span className="text-[11px] font-medium">{t('footer.trustSecurePayment')}</span>
               </div>
               <div className="flex items-center gap-1.5 text-primary-foreground/60">
                 <ShieldCheck className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                <span className="text-[11px] font-medium">Site sécurisé SSL</span>
+                <span className="text-[11px] font-medium">{t('footer.trustSSL')}</span>
               </div>
               <div className="flex items-center gap-1.5 text-primary-foreground/60">
                 <Shield className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                <span className="text-[11px] font-medium">RGPD conforme</span>
+                <span className="text-[11px] font-medium">{t('footer.trustGDPR')}</span>
               </div>
               <div className="flex items-center gap-1.5 text-primary-foreground/60">
                 <BadgeCheck className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                <span className="text-[11px] font-medium">ORIAS vérifié</span>
+                <span className="text-[11px] font-medium">{t('footer.trustOrias')}</span>
               </div>
             </div>
 
@@ -197,7 +197,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <p className="text-[11px] text-primary-foreground/30 text-center mt-4">
-            © {new Date().getFullYear()} <span className="text-primary-foreground/50">jemassure</span><span className="text-accent">moinscher</span><span className="text-primary-foreground/50">.fr</span> — Tous droits réservés
+            © {new Date().getFullYear()} <span className="text-primary-foreground/50">jemassure</span><span className="text-accent">moinscher</span><span className="text-primary-foreground/50">.fr</span> — {t('footer.rights')}
           </p>
         </div>
       </footer>
