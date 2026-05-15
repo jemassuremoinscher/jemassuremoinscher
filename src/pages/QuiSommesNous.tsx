@@ -32,6 +32,7 @@ import alexandrePhoto from "@/assets/team/alexandre.jpg";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
+import ArthurHero from "@/components/insurance/ArthurHero";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -102,34 +103,20 @@ const QuiSommesNous = () => {
         </div>
 
         {/* ─── Hero ─── */}
-        <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
-          <div className="container mx-auto px-4 py-16 md:py-24">
-            <div className="max-w-[65%] sm:max-w-[70%] md:max-w-3xl relative z-10">
-              <motion.h1
-                className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-5"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                {t("aboutPage.heroTitle")}
-              </motion.h1>
-              <motion.p
-                className="text-base md:text-lg text-white/85 leading-relaxed max-w-2xl"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.15 }}
-              >
-                {t("aboutPage.heroDesc")}
-              </motion.p>
+        <section className="relative pt-6 pb-10 md:pt-8 md:pb-14">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <ArthurHero
+                imageSrc={arthurThumbsUp}
+                imageAlt="Arthur mascotte jemassuremoinscher.fr"
+                title={t("aboutPage.heroTitle")}
+                subtitle={t("aboutPage.heroDesc")}
+                ctaLabel={t("aboutPage.ctaBtn")}
+                onCtaClick={() => {
+                  window.location.href = "/comparateur";
+                }}
+              />
             </div>
-            <img
-              src={arthurThumbsUp}
-              alt="Arthur mascotte jemassuremoinscher.fr"
-              className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-56 lg:h-64 object-contain opacity-90 pointer-events-none select-none"
-              width={256}
-              height={320}
-              loading="eager"
-            />
           </div>
         </section>
 
