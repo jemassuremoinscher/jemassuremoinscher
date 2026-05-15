@@ -82,7 +82,7 @@ const TrustRow = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <section className="py-12 md:py-16 bg-muted/40" aria-label="Pourquoi nous faire confiance">
+    <section className="py-12 md:py-16 bg-muted/40" aria-label={t('trustRow.sectionLabel')}>
       <div className="container mx-auto px-4 max-w-6xl">
         <motion.div
           variants={containerVariants}
@@ -106,7 +106,7 @@ const TrustRow = () => {
               ))}
             </div>
             <p className="text-3xl font-black text-foreground">{geoContent.trust.ratingValueLabel}<span className="text-lg text-muted-foreground">/5</span></p>
-            <p className="text-xs text-muted-foreground">sur Google Reviews • {geoContent.trust.reviewCountLabel} avis vérifiés</p>
+            <p className="text-xs text-muted-foreground">{t('trustRow.googleReviewsSuffix', { count: geoContent.trust.reviewCountLabel })}</p>
           </motion.div>
 
           {/* ORIAS */}
@@ -132,8 +132,8 @@ const TrustRow = () => {
             <div className="p-3 rounded-full bg-primary/10" aria-hidden="true">
               <Scale className="w-7 h-7 text-primary" />
             </div>
-            <p className="text-sm font-bold text-foreground">Courtier indépendant</p>
-            <p className="text-xs text-muted-foreground">Aucun lien capitalistique avec les assureurs. Conseil 100% impartial.</p>
+            <p className="text-sm font-bold text-foreground">{t('trustRow.independent')}</p>
+            <p className="text-xs text-muted-foreground">{t('trustRow.independentDesc')}</p>
           </motion.div>
 
           {/* Transparence Totale */}
@@ -141,8 +141,8 @@ const TrustRow = () => {
             <div className="p-3 rounded-full bg-primary/10" aria-hidden="true">
               <BadgeCheck className="w-7 h-7 text-primary" />
             </div>
-            <p className="text-sm font-bold text-foreground">Transparence totale</p>
-            <p className="text-xs text-muted-foreground">Aucun frais caché. Service gratuit et sans engagement pour vous.</p>
+            <p className="text-sm font-bold text-foreground">{t('trustRow.transparency')}</p>
+            <p className="text-xs text-muted-foreground">{t('trustRow.transparencyDesc')}</p>
           </motion.div>
 
           {/* Rappel 5 min - Arthur Karting (clickable) */}
@@ -152,7 +152,7 @@ const TrustRow = () => {
             variants={arthurReveal}
             whileHover={prefersReducedMotion ? undefined : { y: -6, scale: 1.02 }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
-            aria-label="Être rappelé sous 5 minutes par Arthur, ouvrir le formulaire de contact"
+            aria-label={t('trustRow.callbackAria')}
             className="col-span-2 lg:col-span-1 bg-primary rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(124,58,237,0.3)] hover:shadow-[0_16px_32px_-10px_rgba(124,58,237,0.6)] transition-shadow border border-primary-foreground/10 flex flex-col items-center text-center gap-3 relative overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
           >
             <motion.img
@@ -165,8 +165,8 @@ const TrustRow = () => {
               animate={arthurFloat}
               transition={prefersReducedMotion ? undefined : { duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
             />
-            <p className="text-sm font-bold text-white">Rappel sous 5 min</p>
-            <p className="text-xs text-white/90">Arthur vous rappelle immédiatement pour finaliser</p>
+            <p className="text-sm font-bold text-white">{t('trustRow.callback')}</p>
+            <p className="text-xs text-white/90">{t('trustRow.callbackDesc')}</p>
           </motion.button>
 
           {/* Compteur devis depuis le début de l'année */}
@@ -183,8 +183,8 @@ const TrustRow = () => {
             <p className="text-3xl font-black text-primary tabular-nums leading-none">
               {displayCount}
             </p>
-            <p className="text-xs font-bold text-primary/90 uppercase tracking-wide">Devis en {currentYear}</p>
-            <p className="text-[11px] text-primary/70 leading-snug">Familles accompagnées depuis le 1er janvier</p>
+            <p className="text-xs font-bold text-primary/90 uppercase tracking-wide">{t('trustRow.quotesYear', { year: currentYear })}</p>
+            <p className="text-[11px] text-primary/70 leading-snug">{t('trustRow.quotesDesc')}</p>
           </motion.div>
         </motion.div>
       </div>
