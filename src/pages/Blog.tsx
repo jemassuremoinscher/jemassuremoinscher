@@ -15,6 +15,7 @@ import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import ArthurHero from "@/components/insurance/ArthurHero";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -141,26 +142,25 @@ const Blog = () => {
       <Header />
       <Breadcrumbs items={[{ label: "Blog" }]} />
 
-      <main>
-        {/* Hero */}
-        <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
-          <div className="container mx-auto px-4 py-14 md:py-20">
-            <div className="max-w-[65%] sm:max-w-[70%] md:max-w-2xl relative z-10">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">{t("blogPage.title")}</h1>
-              <p className="text-base md:text-lg text-white/80 leading-relaxed">{t("blogPage.subtitle")}</p>
+      <main id="main-content">
+        <section className="relative pt-6 pb-10 md:pt-8 md:pb-14">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <ArthurHero
+                imageSrc={arthurThinking}
+                imageAlt="Arthur mascotte blog assurance - conseils et guides"
+                title={t("blogPage.title")}
+                subtitle={t("blogPage.subtitle")}
+                ctaLabel={t("blogPage.allArticles")}
+                onCtaClick={() => {
+                  document.getElementById("blog-search")?.focus();
+                }}
+              />
             </div>
-            <img
-              src={arthurThinking}
-              alt="Arthur mascotte blog assurance - conseils et guides"
-              width={224}
-              height={224}
-              className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none"
-              loading="lazy"
-            />
           </div>
         </section>
 
-        <div className="container mx-auto px-4 py-10 md:py-14">
+        <div className="container mx-auto px-4 py-6 md:py-10">
           <DynamicUpdateDate />
           <div className="max-w-7xl mx-auto space-y-10">
             {/* Search */}
