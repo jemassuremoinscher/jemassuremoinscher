@@ -15,6 +15,7 @@ import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import ArthurHero from "@/components/insurance/ArthurHero";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { supabase } from "@/integrations/supabase/client";
 
