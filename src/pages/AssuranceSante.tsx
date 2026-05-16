@@ -71,8 +71,8 @@ const AssuranceSante = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Mutuelle Santé Moins Chère [Month] : -300€/an"
-        description={`Comparez 50+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale. ${geoContent.trust.ratingValueLabel}/5 satisfaction client.`}
+        title={t("seo.sante.title")}
+        description={t("seo.sante.description")}
         keyword="mutuelle santé moins chère"
         keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher, mutuelle famille"
         canonical="https://www.jemassuremoinscher.fr/assurance-sante"
