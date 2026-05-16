@@ -2718,6 +2718,22 @@ const en: Record<string, string> = {
   "landingTpl.testimonials.title": "Trusted by thousands",
   "landingTpl.faq.title": "Frequently asked questions",
   "landingTpl.bottomCta.button": "Get my free quote",
+
+  // SEO meta — per page
+  "seo.home.title": "Cheaper Insurance Comparator | Free Quote",
+  "seo.home.description": "Free insurance comparator. Compare 70 insurers and save 40% on average. Quote in 2 min, no commitment.",
+  "seo.contact.title": "Contact Us | jemassuremoinscher.fr",
+  "seo.contact.description": "A question about your insurance? Contact our brokers by email, form or free callback. Expert reply within 10 minutes, 6 days a week.",
+  "seo.about.title": "About Us | jemassuremoinscher.fr",
+  "seo.about.description": "Meet the team behind jemassuremoinscher.fr: an independent insurance broker, ORIAS registered, free and transparent.",
+  "seo.auto.title": "Cheaper Car Insurance [Month]: -40% ⭐",
+  "seo.auto.description": "50+ insurers compared free of charge. Our clients save €320/year on average. Instant car quote, no commitment.",
+  "seo.habitation.title": "Cheaper Home Insurance [Month] from €3",
+  "seo.habitation.description": "Compare 50+ home insurers in 2 min. House or flat, tenant or owner. Save up to 40%.",
+  "seo.sante.title": "Cheaper Health Insurance [Month]: -€300/year",
+  "seo.sante.description": "Compare 50+ health plans in 2 min. Optical, dental, hospital: find the ideal cover.",
+  "seo.reviews.title": "Customer Reviews | jemassuremoinscher.fr",
+  "seo.reviews.description": "Customer reviews of our insurance comparator. Rating 4.9/5 across 247 verified reviews.",
 };
 
 export default en;
