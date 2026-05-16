@@ -11,8 +11,8 @@ const PolitiqueConfidentialite = () => {
   return (
     <>
       <SEOOptimized 
-        title="Politique de Confidentialité - jemassuremoinscher.fr"
-        description="Politique de confidentialité et protection des données personnelles."
+        title={t("seo.confidentialite.title")}
+        description={t("seo.confidentialite.description")}
         noindex
       />
       

@@ -10,8 +10,8 @@ const MentionsLegales = () => {
   return (
     <>
       <SEOOptimized
-        title="Mentions Légales - jemassuremoinscher.fr"
-        description="Mentions légales et informations juridiques de jemassuremoinscher.fr." />
+        title={t("seo.mentions.title")}
+        description={t("seo.mentions.description")} />
       
       
       <div className="min-h-screen flex flex-col">

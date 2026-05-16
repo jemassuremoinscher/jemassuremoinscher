@@ -34,7 +34,7 @@ const AssuranceGLI = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="GLI [Month] : Garantie Loyer Impayé dès 2,5%" description="Loyers impayés, dégradations, frais juridiques : sécurisez vos revenus locatifs. Comparez les GLI de 50+ assureurs. Devis gratuit." keyword="garantie loyer impayé" keywords="assurance GLI, protection bailleur, assurance loyer impayé, GLI comparateur" canonical="https://www.jemassuremoinscher.fr/assurance-gli" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title={t("seo.gli.title")} description={t("seo.gli.description")} keyword="garantie loyer impayé" keywords="assurance GLI, protection bailleur, assurance loyer impayé, GLI comparateur" canonical="https://www.jemassuremoinscher.fr/assurance-gli" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Garantie Loyer Impayé" }]} />
       <main id="main-content">

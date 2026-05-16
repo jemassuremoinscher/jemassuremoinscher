@@ -56,8 +56,8 @@ const GestionLocative = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Gestion Locative : Comparez les Gestionnaires"
-        description="Comparez gratuitement les offres de gestion locative. Gestion complète, partielle ou déclarative. Honoraires dès 5%. Devis en 2 minutes."
+        title={t("seo.gestionLocative.title")}
+        description={t("seo.gestionLocative.description")}
         keyword="gestion locative"
         keywords="gestion immobilière, administrateur de biens, gestionnaire locatif, honoraires gestion locative"
         canonical="https://www.jemassuremoinscher.fr/gestion-locative"

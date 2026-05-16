@@ -11,8 +11,8 @@ const Comparateur = () => {
   return (
     <>
        <SEOOptimized
-        title="Comparateur d'Assurances — Comparez 70+ Assureurs"
-        description="Comparez gratuitement plus de 70 assureurs auto, moto, habitation et santé. Économisez jusqu'à 40% sur votre assurance en 2 minutes."
+        title={t("seo.comparateur.title")}
+        description={t("seo.comparateur.description")}
         keyword="comparateur d'assurances"
         keywords="assurance moins chère, changer d'assurance, comparaison assurance gratuit"
         jsonLd={{
