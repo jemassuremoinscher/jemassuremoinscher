@@ -26,8 +26,8 @@ const NosPartenaires = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized
-        title="Nos Partenaires Assureurs | jemassuremoinscher.fr"
-        description="Découvrez nos 50+ partenaires assureurs : AXA, Allianz, MAIF, Groupama. Comparaison indépendante et gratuite."
+        title={t("seo.partenaires.title")}
+        description={t("seo.partenaires.description")}
         keyword="partenaires assureurs"
         canonical="https://www.jemassuremoinscher.fr/nos-partenaires"
         jsonLd={[breadcrumbSchema]}

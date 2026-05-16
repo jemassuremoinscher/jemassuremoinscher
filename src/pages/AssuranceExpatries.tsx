@@ -21,10 +21,12 @@ import BrandName from "@/components/BrandName";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type Audience = "in-france" | "abroad";
 
 const AssuranceExpatries = () => {
+  const { t } = useLanguage();
   const formRef = useRef<HTMLDivElement>(null);
   const [audience, setAudience] = useState<Audience>("in-france");
   const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -125,8 +127,8 @@ const AssuranceExpatries = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance Expatriés — Français à l'étranger & Étrangers en France"
-        description="Expatrié français à l'étranger ou étranger en France ? Compare santé internationale, rapatriement, auto, habitation. 70+ assureurs, devis 2 min."
+        title={t("seo.expatries.title")}
+        description={t("seo.expatries.description")}
         keyword="assurance expatriés"
         keywords="assurance expatrié, français à l'étranger, étranger en France, CFE, 1er euro, visa long séjour, rapatriement, mutuelle expat"
         canonical="https://www.jemassuremoinscher.fr/assurance-expatries"

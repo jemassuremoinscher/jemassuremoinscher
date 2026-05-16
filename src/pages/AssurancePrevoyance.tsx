@@ -36,7 +36,7 @@ const AssurancePrevoyance = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Prévoyance [Month] : Protégez Votre Famille 9€/mois" description="Décès, invalidité, obsèques : comparez les garanties prévoyance de 50+ assureurs. Devis personnalisé gratuit en 2 min." keyword="assurance prévoyance" keywords="assurance décès, assurance obsèques, dépendance, prévoyance TNS" canonical="https://www.jemassuremoinscher.fr/assurance-prevoyance" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title={t("seo.prevoyance.title")} description={t("seo.prevoyance.description")} keyword="assurance prévoyance" keywords="assurance décès, assurance obsèques, dépendance, prévoyance TNS" canonical="https://www.jemassuremoinscher.fr/assurance-prevoyance" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Prévoyance" }]} />
       <main id="main-content">

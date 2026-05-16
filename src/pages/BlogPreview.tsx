@@ -7,13 +7,15 @@ import { Calendar, Clock, User, Eye, Linkedin, Facebook, Instagram } from "lucid
 import { blogArticleDrafts } from "@/data/blogArticles";
 import SEOOptimized from "@/components/SEOOptimized";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BlogPreview = () => {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized
-        title="Aperçu brouillons blog"
-        description="Aperçu interne des articles en brouillon avant publication."
+        title={t("seo.blogPreview.title")}
+        description={t("seo.blogPreview.description")}
         canonical="https://www.jemassuremoinscher.fr/blog-preview"
         noindex
       />

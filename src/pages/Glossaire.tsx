@@ -59,8 +59,8 @@ const Glossaire = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Glossaire Assurance - Définitions et Termes"
-        description="Glossaire de l'assurance : franchise, bonus-malus, mutuelle, sinistre, loi Hamon, vétusté, RC pro… 50+ termes expliqués clairement."
+        title={t("seo.glossaire.title")}
+        description={t("seo.glossaire.description")}
         keyword="glossaire assurance"
         keywords="définition franchise, bonus malus, loi hamon"
         canonical="https://www.jemassuremoinscher.fr/glossaire"

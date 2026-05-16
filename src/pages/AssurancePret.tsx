@@ -56,8 +56,8 @@ const AssurancePret = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance Emprunteur [Month] : -15 000€ (Lemoine)"
-        description="Loi Lemoine : changez d'assurance de prêt à tout moment. Comparez 50+ assureurs, économisez jusqu'à 50%. Devis gratuit en 2 min."
+        title={t("seo.pret.title")}
+        description={t("seo.pret.description")}
         keyword="assurance emprunteur moins chère"
         keywords="assurance emprunteur, loi Lemoine, délégation assurance, changer assurance emprunteur"
         canonical="https://www.jemassuremoinscher.fr/assurance-pret"

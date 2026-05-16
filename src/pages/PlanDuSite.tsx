@@ -73,8 +73,8 @@ const PlanDuSite = () => {
   return (
     <>
       <SEOOptimized 
-        title="Plan du site - jemassuremoinscher.fr"
-        description="Plan du site avec tous les liens vers nos pages d'assurances et outils."
+        title={t("seo.plan.title")}
+        description={t("seo.plan.description")}
         canonical="https://www.jemassuremoinscher.fr/plan-du-site"
         jsonLd={[breadcrumbSchema, webPageSchema]}
         noindex

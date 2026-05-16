@@ -1,5 +1,6 @@
 import SEOOptimized from "@/components/SEOOptimized";
 import geoContent from "@/data/geo-content.json";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const LLMS_TXT = `# jemassuremoinscher.fr
 
@@ -70,11 +71,12 @@ const LLMS_TXT = `# jemassuremoinscher.fr
 - URL : /blog
 `;
 const LlmsTxt = () => {
+  const { t } = useLanguage();
   return (
     <>
       <SEOOptimized
-        title="llms.txt | jemassuremoinscher.fr"
-        description="Fichier llms.txt de jemassuremoinscher.fr pour documenter nos services d'assurance et ressources accessibles aux agents IA."
+        title={t("seo.llmsTxt.title")}
+        description={t("seo.llmsTxt.description")}
         canonical="https://www.jemassuremoinscher.fr/llms.txt"
       />
       <main>

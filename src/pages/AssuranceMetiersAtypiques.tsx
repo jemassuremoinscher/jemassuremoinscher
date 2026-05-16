@@ -17,8 +17,10 @@ import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const AssuranceMetiersAtypiques = () => {
+  const { t } = useLanguage();
   const formRef = useRef<HTMLDivElement>(null);
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -157,8 +159,8 @@ const AssuranceMetiersAtypiques = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance métiers atypiques | RC Pro sur mesure 2026"
-        description="Courtier spécialisé métiers atypiques : accrobranche, sports outdoor, événementiel, BTP spécialisé. 20 assureurs de niche. Rappel sous 10 minutes."
+        title={t("seo.metiersAtypiques.title")}
+        description={t("seo.metiersAtypiques.description")}
         keyword="assurance métiers atypiques"
         keywords="assurance activité à risque, RC pro spécialisée, assurance accrobranche, assurance moniteur sport, assurance organisateur événement, assurance cordiste"
         canonical="https://www.jemassuremoinscher.fr/assurance-metiers-atypiques"

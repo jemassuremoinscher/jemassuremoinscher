@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/accordion";
 import { Search, ShieldCheck, Wallet, FileText, Phone, HelpCircle, ArrowRight } from "lucide-react";
 import arthurQuestion from "@/assets/mascotte/arthur-question.webp";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type FaqItem = { q: string; a: string };
 type FaqCategory = {
@@ -131,6 +132,7 @@ const categories: FaqCategory[] = [
 ];
 
 const FAQPage = () => {
+  const { t } = useLanguage();
   const [search, setSearch] = useState("");
   const [activeCat, setActiveCat] = useState<string>("all");
 
@@ -169,8 +171,8 @@ const FAQPage = () => {
   return (
     <>
       <SEOOptimized
-        title="FAQ — Questions fréquentes sur la comparaison d'assurance"
-        description="Toutes les réponses sur le comparateur d'assurance jemassuremoinscher.fr : fonctionnement, tarifs, souscription, garanties, sinistres et notre service de conseil."
+        title={t("seo.faq.title")}
+        description={t("seo.faq.description")}
         canonical="https://www.jemassuremoinscher.fr/faq"
         jsonLd={faqJsonLd}
       />

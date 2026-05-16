@@ -13,12 +13,14 @@ import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { Mail, Trash2, CheckCircle2 } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const formSchema = z.object({
   email: z.string().email('Email invalide'),
 });
 
 const NewsletterGestion = () => {
+  const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -72,8 +74,8 @@ const NewsletterGestion = () => {
   return (
     <>
       <SEOOptimized 
-        title="Gestion Newsletter - jemassuremoinscher.fr"
-        description="Gérez votre abonnement à la newsletter de jemassuremoinscher.fr."
+        title={t("seo.newsletter.title")}
+        description={t("seo.newsletter.description")}
         noindex
       />
       

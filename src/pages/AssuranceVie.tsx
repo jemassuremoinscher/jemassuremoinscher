@@ -72,8 +72,8 @@ const AssuranceVie = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance Vie [Month] : Frais 0% Offerts"
-        description="Assurance vie : comparez fonds euros et UC. 0% de frais d'entrée, frais d'arbitrage offerts, fiscalité avantageuse après 8 ans."
+        title={t("seo.vie.title")}
+        description={t("seo.vie.description")}
         keyword="assurance vie frais entrée offerts"
         keywords="assurance vie 2026, 0% frais entrée, frais arbitrage offerts, épargne, placement, transmission patrimoine, PER"
         canonical="https://www.jemassuremoinscher.fr/assurance-vie"

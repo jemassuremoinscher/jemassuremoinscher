@@ -5,8 +5,10 @@ import SEOOptimized from "@/components/SEOOptimized";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { ShieldCheck, BookOpen, Database, RefreshCw, Users, Scale } from "lucide-react";
 import BrandName from "@/components/BrandName";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const SourcesEtMethodologie = () => {
+  const { t } = useLanguage();
   const breadcrumbSchema = addBreadcrumbSchema([
     { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
     { name: "Sources & Méthodologie", url: "https://www.jemassuremoinscher.fr/sources-et-methodologie" },
@@ -75,8 +77,8 @@ const SourcesEtMethodologie = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Sources & Méthodologie | Comment nous comparons les assurances"
-        description="Découvrez nos sources légales (Legifrance, ACPR, ORIAS), notre méthode de calcul des tarifs et économies, et nos engagements de transparence en tant que courtier indépendant."
+        title={t("seo.sources.title")}
+        description={t("seo.sources.description")}
         keyword="méthodologie comparateur assurance"
         keywords="sources comparateur assurance, méthodologie courtier, transparence assurance, ORIAS"
         canonical="https://www.jemassuremoinscher.fr/sources-et-methodologie"
