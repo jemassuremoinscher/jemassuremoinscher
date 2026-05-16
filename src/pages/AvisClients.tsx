@@ -76,8 +76,8 @@ const AvisClients = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized 
-        title="Avis Clients | jemassuremoinscher.fr"
-        description={`Avis clients sur notre comparateur d'assurance. Note ${geoContent.trust.ratingValueLabel}/5 sur ${geoContent.trust.reviewCountLabel} avis vérifiés.`}
+        title={t("seo.reviews.title")}
+        description={t("seo.reviews.description")}
         keyword="avis clients assurance"
         keywords="témoignages assurance, retour expérience, satisfaction"
         canonical="https://www.jemassuremoinscher.fr/avis-clients"

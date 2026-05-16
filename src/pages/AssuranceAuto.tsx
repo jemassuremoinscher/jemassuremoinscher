@@ -92,8 +92,8 @@ const AssuranceAuto = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance Auto Moins Chère [Month] : -40% ⭐"
-        description="50+ assureurs comparés gratuitement. Nos clients économisent 320€/an en moyenne. Devis auto instantané, sans engagement."
+        title={t("seo.auto.title")}
+        description={t("seo.auto.description")}
         keyword="assurance auto moins chère"
         keywords="assurance auto moins cher, comparateur assurance auto, devis assurance voiture, changer assurance auto"
         canonical="https://www.jemassuremoinscher.fr/assurance-auto"

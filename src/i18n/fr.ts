@@ -2713,6 +2713,22 @@ const fr: Record<string, string> = {
   "landingTpl.testimonials.title": "Ils nous ont fait confiance",
   "landingTpl.faq.title": "Questions fréquentes",
   "landingTpl.bottomCta.button": "Recevoir mon devis gratuit",
+
+  // SEO meta — per page
+  "seo.home.title": "Comparateur Assurance Moins Chère | Devis Gratuit",
+  "seo.home.description": "Comparateur d'assurances gratuit. Comparez 70 assureurs et économisez en moyenne 40%. Devis en 2 min, sans engagement.",
+  "seo.contact.title": "Contactez-nous | jemassuremoinscher.fr",
+  "seo.contact.description": "Une question sur votre assurance ? Contactez nos courtiers par email, formulaire ou rappel gratuit. Réponse experte sous 10 minutes, 6j/7.",
+  "seo.about.title": "Qui sommes-nous | jemassuremoinscher.fr",
+  "seo.about.description": "Découvrez l'équipe derrière jemassuremoinscher.fr : un courtier en assurances indépendant, enregistré ORIAS, gratuit et transparent.",
+  "seo.auto.title": "Assurance Auto Moins Chère [Month] : -40% ⭐",
+  "seo.auto.description": "50+ assureurs comparés gratuitement. Nos clients économisent 320€/an en moyenne. Devis auto instantané, sans engagement.",
+  "seo.habitation.title": "Assurance Habitation Moins Chère [Month] dès 3€",
+  "seo.habitation.description": "Comparez 50+ assureurs habitation en 2 min. Maison ou appartement, locataire ou propriétaire. Économisez jusqu'à 40%.",
+  "seo.sante.title": "Mutuelle Santé Moins Chère [Month] : -300€/an",
+  "seo.sante.description": "Comparez 50+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale.",
+  "seo.reviews.title": "Avis Clients | jemassuremoinscher.fr",
+  "seo.reviews.description": "Avis clients sur notre comparateur d'assurance. Note 4.9/5 sur 247 avis vérifiés.",
 };
 
 export default fr;

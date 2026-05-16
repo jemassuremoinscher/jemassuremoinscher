@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SEOOptimized from "@/components/SEOOptimized";
+import { useLanguage } from "@/contexts/LanguageContext";
 import DeferredRender from "@/components/performance/DeferredRender";
 import MdReveal from "@/components/motion/MdReveal";
 import { addOrganizationSchema, addServiceSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
@@ -23,6 +24,7 @@ const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
 
 
 const Index = () => {
+  const { t } = useLanguage();
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }]);
   const organizationSchema = addOrganizationSchema(geoContent.trust.ratingValue, geoContent.trust.reviewCount);
   const serviceSchema = addServiceSchema({
@@ -138,8 +140,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Comparateur Assurance Moins Chère | Devis Gratuit"
-        description="Comparateur d'assurances gratuit. Comparez 70 assureurs et économisez en moyenne 40%. Devis en 2 min, sans engagement."
+        title={t("seo.home.title")}
+        description={t("seo.home.description")}
         ogTitle="Comparateur Assurance Moins Chère"
         ogDescription="Comparez 70 assureurs gratuitement. Économisez en moyenne 40%."
         twitterDescription="Trouvez l'assurance la moins chère en 2 minutes avec notre comparateur gratuit. Comparez 70 assureurs partenaires (AXA, Allianz, MAIF, Groupama…) et économisez en moyenne 40% sur votre contrat. Sans engagement."

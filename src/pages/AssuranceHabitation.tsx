@@ -63,8 +63,8 @@ const AssuranceHabitation = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance Habitation Moins Chère [Month] dès 3€"
-        description="Comparez 50+ assureurs habitation en 2 min. Maison ou appartement, locataire ou propriétaire. Économisez jusqu'à 40%."
+        title={t("seo.habitation.title")}
+        description={t("seo.habitation.description")}
         keyword="assurance habitation moins chère"
         keywords="assurance maison, assurance appartement, assurance logement, assurance locataire"
         canonical="https://www.jemassuremoinscher.fr/assurance-habitation"

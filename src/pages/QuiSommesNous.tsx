@@ -86,8 +86,8 @@ const QuiSommesNous = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized
-        title="Qui sommes-nous | jemassuremoinscher.fr"
-        description="Découvrez l'équipe derrière jemassuremoinscher.fr : un courtier en assurances indépendant, enregistré ORIAS, gratuit et transparent."
+        title={t("seo.about.title")}
+        description={t("seo.about.description")}
         canonical={`${baseUrl}/qui-sommes-nous`}
         ogTitle="Qui sommes-nous ? | jemassuremoinscher.fr — Courtier indépendant enregistré ORIAS"
         ogDescription="Découvrez l'équipe derrière jemassuremoinscher.fr : courtier en assurances indépendant, enregistré ORIAS, gratuit et 100% transparent."
