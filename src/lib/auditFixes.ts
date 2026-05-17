@@ -272,7 +272,11 @@ export const validateGeoIssueFix = async (issue: { category: string; description
       && data.og_description === meta.ogDescription;
   }
 
-  return false;
+  // Fallback : harmonisation complète des 4 métadonnées
+  return data.meta_title === meta.title
+    && data.meta_description === meta.description
+    && data.og_title === meta.ogTitle
+    && data.og_description === meta.ogDescription;
 };
 
 type VisibilityCheckLike = { label: string; expected: string; value: string };
