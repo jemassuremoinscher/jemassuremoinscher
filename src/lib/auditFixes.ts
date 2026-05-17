@@ -174,6 +174,15 @@ export const applySeoIssueFix = async (issue: { category: string; description: s
     return { pagePath, message: `Title SEO mis à jour pour ${pagePath}.` };
   }
 
+  // Fallback pérenne : harmonisation complète des 4 métadonnées
+  await upsertPageMetaOverride(pagePath, {
+    meta_title: meta.title,
+    meta_description: meta.description,
+    og_title: meta.ogTitle,
+    og_description: meta.ogDescription,
+  });
+  return { pagePath, message: `Métadonnées SEO harmonisées pour ${pagePath}.` };
+
   throw new Error("Cette correction SEO nécessite une mise à jour manuelle du template.");
 };
 
