@@ -87,7 +87,7 @@ Le tarif dépend de **6 critères principaux** :
 
 - [RC Pro et décennale : quelles différences pour les artisans ?](/blog/rc-pro-decennale-differences-artisans-btp)
 - [Décennale auto-entrepreneur : tout ce qu'il faut savoir](/blog/decennale-auto-entrepreneur-btp-2026)
-- [Assurance RC Pro pour micro-entrepreneurs](/blog/devis-assurance-auto-jeune-conducteur-2026)
+- [Comparatif RC Pro pour artisans et indépendants](/landing/rc-pro)
 
 ## Conclusion
 
