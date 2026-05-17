@@ -44,6 +44,7 @@ export default function RegionalDataWidget({
   initialDepartment,
   compact = false,
 }: RegionalDataWidgetProps) {
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [selectedCode, setSelectedCode] = useState<string>(
     initialDepartment
