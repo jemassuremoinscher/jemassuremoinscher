@@ -888,7 +888,10 @@ export const validateGeoVisibilityFix = async (check: VisibilityCheckLike) => {
     return !error && data?.page_path === key && await validateContentSuggestions(IA_CITATION_SUGGESTIONS);
   }
 
-  return false;
+  // Fallback : content_improvement tracé en base
+  const key = buildContentImprovementKey({ source: "geo", scope: "visibility", path: check.label });
+  const { data, error } = await supabase.from("page_meta_overrides").select("page_path").eq("page_path", key).maybeSingle();
+  return !error && data?.page_path === key;
 };
 
 export const applyGeoContentImprovement = async (input: GeoContentImprovementInput) => {
