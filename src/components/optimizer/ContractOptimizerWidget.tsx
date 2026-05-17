@@ -99,7 +99,7 @@ export default function ContractOptimizerWidget() {
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-56 h-56 pointer-events-none select-none z-0">
               <img
                 src={arthurCar}
-                alt="Arthur en voiture pour l'optimiseur d'assurance auto"
+                alt={t("a11y.optimizer.mascotAlt")}
                 aria-hidden="true"
                 className="w-full h-full object-contain opacity-[0.18]"
                 loading="lazy"
