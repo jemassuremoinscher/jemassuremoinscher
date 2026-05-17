@@ -52,7 +52,75 @@ interface Lead {
   signed_before_hot?: boolean;
   type: 'quote' | 'callback';
   agent_name?: string;
+  quote_data?: any;
+  message?: string;
+  preferred_time?: string;
 }
+
+const FIELD_LABELS: Record<string, string> = {
+  postalCode: 'Code postal',
+  city: 'Ville',
+  address: 'Adresse',
+  birthDate: 'Date de naissance',
+  age: 'Âge',
+  profession: 'Profession',
+  maritalStatus: 'Situation familiale',
+  currentInsurer: 'Assureur actuel',
+  contractEndDate: 'Échéance du contrat',
+  desiredStartDate: 'Date de début souhaitée',
+  monthlyBudget: 'Budget mensuel',
+  // Auto / moto
+  vehicleBrand: 'Marque',
+  vehicleModel: 'Modèle',
+  vehicleYear: 'Année',
+  vehicleVersion: 'Version',
+  fuelType: 'Carburant',
+  registrationDate: 'Mise en circulation',
+  licensePlate: 'Immatriculation',
+  vehicleUsage: 'Usage du véhicule',
+  annualKm: 'Km/an',
+  parkingType: 'Stationnement',
+  licenseDate: "Date d'obtention du permis",
+  bonusMalus: 'Bonus-Malus',
+  claimsLast3Years: 'Sinistres (3 ans)',
+  coverageType: 'Formule souhaitée',
+  // Habitation / PNO
+  housingType: 'Type de logement',
+  surface: 'Surface (m²)',
+  rooms: 'Nombre de pièces',
+  occupancyType: 'Statut occupant',
+  constructionYear: 'Année de construction',
+  // Santé / prévoyance
+  beneficiaries: 'Bénéficiaires',
+  smokingStatus: 'Fumeur',
+  coverageLevel: 'Niveau de couverture',
+  // Pro
+  companyName: 'Entreprise',
+  legalStatus: 'Statut juridique',
+  siret: 'SIRET',
+  turnover: "Chiffre d'affaires",
+  activity: 'Activité',
+  employees: 'Effectif',
+  // Tracking
+  source: 'Source',
+  utm_data: 'UTM',
+};
+
+const formatFieldValue = (value: any): string => {
+  if (value === null || value === undefined || value === '') return '—';
+  if (typeof value === 'boolean') return value ? 'Oui' : 'Non';
+  if (Array.isArray(value)) return value.join(', ');
+  if (typeof value === 'object') return JSON.stringify(value, null, 2);
+  return String(value);
+};
+
+const humanizeKey = (key: string): string =>
+  FIELD_LABELS[key] ||
+  key
+    .replace(/_/g, ' ')
+    .replace(/([A-Z])/g, ' $1')
+    .replace(/^./, (s) => s.toUpperCase())
+    .trim();
 
 const getScoreColor = (score: number) => {
   if (score >= 80) return 'text-green-600 bg-green-50 dark:bg-green-900/20';
