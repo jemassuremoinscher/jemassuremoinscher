@@ -101,7 +101,7 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
               </span>
             )}
             <div className="flex flex-col items-center gap-1 mt-1">
-              <img src={logo} alt={name} className="h-7 max-w-[68px] object-contain" loading="lazy" />
+              <img src={logo} alt={name} width={68} height={28} className="h-7 max-w-[68px] object-contain" loading="lazy" />
               <p className="text-xs font-bold text-foreground leading-tight">{name}</p>
             </div>
 
