@@ -39,6 +39,16 @@ export const routes: RouteConfig[] = [
   { path: "/assurance-prevoyance", changefreq: "weekly", priority: 0.7 },
   { path: "/assurance-rc-pro", changefreq: "weekly", priority: 0.9 },
   { path: "/assurance-metiers-atypiques", changefreq: "weekly", priority: 0.9 },
+  // Nouvelles verticales (pages complètes)
+  { path: "/assurance-decennale", changefreq: "weekly", priority: 0.9 },
+  { path: "/assurance-flotte-auto", changefreq: "weekly", priority: 0.9 },
+  { path: "/assurance-mutuelle-entreprise", changefreq: "weekly", priority: 0.9 },
+  { path: "/assurance-cyber", changefreq: "weekly", priority: 0.9 },
+  { path: "/assurance-sans-permis", changefreq: "weekly", priority: 0.9 },
+  { path: "/assurance-camping-car", changefreq: "weekly", priority: 0.9 },
+  { path: "/assurance-velo", changefreq: "weekly", priority: 0.9 },
+  { path: "/assurance-protection-juridique", changefreq: "weekly", priority: 0.9 },
+  { path: "/assurance-auto-temporaire", changefreq: "weekly", priority: 0.9 },
 
   // SEO Pages
   { path: "/assurance-auto-malusse", changefreq: "weekly", priority: 0.8 },
