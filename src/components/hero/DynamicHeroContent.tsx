@@ -12,7 +12,6 @@ interface Props {
 }
 
 const DynamicHeroContent = ({ t, trackEvent }: Props) => {
-  const { t } = useLanguage();
   const greeting = useDynamicGreeting();
 
   if (!greeting) {
