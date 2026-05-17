@@ -99,7 +99,7 @@ const AvisClients = () => {
             </div>
             <img
               src={arthurThumbsUp}
-              alt="Arthur mascotte jemassuremoinscher.fr - avis clients vérifiés"
+              alt={t("a11y.avis.mascotAlt1")}
               className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none"
               width={224}
               height={280}
@@ -210,7 +210,7 @@ const AvisClients = () => {
               </div>
               <img
                 src={arthurFlying}
-                alt="Arthur mascotte jemassuremoinscher.fr - avis clients assurance moins chère"
+                alt={t("a11y.avis.mascotAlt2")}
                 loading="lazy"
                 className="absolute -top-10 right-4 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none"
               />

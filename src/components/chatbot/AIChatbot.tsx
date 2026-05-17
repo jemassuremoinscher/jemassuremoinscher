@@ -86,7 +86,7 @@ export const AIChatbot = () => {
                 </div>
               </div>
             ))}
-            {isLoading && (<div className="flex gap-3"><img src={arthurThumbsUp} alt="Arthur réfléchit" className="flex-shrink-0 w-8 h-8 object-contain animate-pulse" width={32} height={32} /><div className="bg-card border rounded-lg p-3"><Loader2 className="h-4 w-4 animate-spin" /></div></div>)}
+            {isLoading && (<div className="flex gap-3"><img src={arthurThumbsUp} alt={t("a11y.chatbot.mascotAlt")} className="flex-shrink-0 w-8 h-8 object-contain animate-pulse" width={32} height={32} /><div className="bg-card border rounded-lg p-3"><Loader2 className="h-4 w-4 animate-spin" /></div></div>)}
             <div ref={messagesEndRef} />
           </div>
           <div className="border-t p-4 bg-background space-y-3">

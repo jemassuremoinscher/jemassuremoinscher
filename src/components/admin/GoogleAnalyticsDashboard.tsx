@@ -15,6 +15,7 @@ import {
   Loader2, AlertCircle, RefreshCw, ArrowUpRight, MousePointerClick, Layers,
 } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const SOURCE_COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4', '#f97316', '#14b8a6', '#6366f1'];
 
@@ -25,6 +26,7 @@ const formatDuration = (seconds: number) => {
 };
 
 export const GoogleAnalyticsDashboard = () => {
+  const { t } = useLanguage();
   const [dateRange, setDateRange] = useState('1daysAgo');
 
   const { data, isLoading, error, refetch, isRefetching } = useQuery({
@@ -137,7 +139,7 @@ export const GoogleAnalyticsDashboard = () => {
               <SelectItem value="90daysAgo">90 derniers jours</SelectItem>
             </SelectContent>
           </Select>
-          <Button variant="outline" size="icon" onClick={() => refetch()} disabled={isRefetching} aria-label="Rafraîchir les données Analytics">
+          <Button variant="outline" size="icon" onClick={() => refetch()} disabled={isRefetching} aria-label={t("a11y.admin.refreshAnalytics")}>
             <RefreshCw className={`h-4 w-4 ${isRefetching ? 'animate-spin' : ''}`} />
           </Button>
         </div>

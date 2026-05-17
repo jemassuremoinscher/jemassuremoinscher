@@ -168,7 +168,7 @@ export const InteractiveComparator = () => {
               {t('comparator.heroSubtitle')}
             </p>
           </div>
-          <img src={arthurThumbsUp} alt="Arthur mascotte comparateur assurance moins chère" className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none" width={224} height={280} loading="lazy" />
+          <img src={arthurThumbsUp} alt={t("a11y.compare.mascotAlt")} className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none" width={224} height={280} loading="lazy" />
         </div>
       </section>
 
@@ -240,7 +240,7 @@ export const InteractiveComparator = () => {
                 role="button"
                 onClick={() => setHasCompared(true)}
                 className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-10 rounded-full text-lg"
-                aria-label="Lancer la comparaison des tarifs d'assurance"
+                aria-label={t("a11y.compare.launch")}
               >
                 Comparer maintenant
               </Button>
@@ -256,7 +256,7 @@ export const InteractiveComparator = () => {
             <h2 className="text-xl md:text-2xl font-bold text-foreground">
               {filteredOffers.length} {t('comparator.offersAvailable')}
             </h2>
-            <Button variant="ghost" size="sm" onClick={handleShare} className="gap-2 text-muted-foreground hover:text-foreground" aria-label="Partager les résultats de comparaison">
+            <Button variant="ghost" size="sm" onClick={handleShare} className="gap-2 text-muted-foreground hover:text-foreground" aria-label={t("a11y.compare.share")}>
               <Share2 className="h-4 w-4" aria-hidden="true" />
               {t('comparator.share')}
             </Button>

@@ -25,7 +25,7 @@ const Hero = () => {
   return (
     <section
       className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90 py-10 md:py-14"
-      aria-label="Section principale - Comparateur d'assurances"
+      aria-label={t("a11y.hero.section")}
     >
       <div className="absolute inset-0 opacity-10 pointer-events-none" aria-hidden="true">
         <div className="absolute top-20 left-10 w-32 h-32 bg-white rounded-full blur-3xl" />

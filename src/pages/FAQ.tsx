@@ -221,7 +221,7 @@ const FAQPage = () => {
 
                 <img
                   src={arthurQuestion}
-                  alt="Arthur mascotte jemassuremoinscher.fr - questions fréquentes"
+                  alt={t("a11y.faq.mascotAlt")}
                   className="hidden md:block justify-self-end h-40 lg:h-56 object-contain opacity-95 pointer-events-none select-none"
                   width={224}
                   height={280}
@@ -237,7 +237,7 @@ const FAQPage = () => {
               <div
                 className="flex gap-2 overflow-x-auto scrollbar-hide px-4 md:px-0 snap-x"
                 role="tablist"
-                aria-label="Filtrer par catégorie"
+                aria-label={t("a11y.faq.filter")}
               >
                 <button
                   type="button"
@@ -280,7 +280,7 @@ const FAQPage = () => {
           </section>
 
           {/* FAQ content */}
-          <section className="py-12 md:py-16" aria-label="Liste des questions fréquentes">
+          <section className="py-12 md:py-16" aria-label={t("a11y.faq.list")}>
             <div className="container mx-auto px-4 max-w-3xl">
               {filtered.length === 0 ? (
                 <p className="text-center text-muted-foreground py-12">

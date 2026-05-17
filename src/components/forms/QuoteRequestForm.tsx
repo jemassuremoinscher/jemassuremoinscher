@@ -424,7 +424,7 @@ export const QuoteRequestForm = () => {
                 )}
               />
 
-              <Button type="submit" className="w-full" size="lg" disabled={isSubmitting} aria-label="Envoyer ma demande de devis d'assurance gratuit">
+              <Button type="submit" className="w-full" size="lg" disabled={isSubmitting} aria-label={t("a11y.quote.submit")}>
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />

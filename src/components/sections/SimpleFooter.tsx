@@ -78,7 +78,7 @@ const SimpleFooter = () => {
           </nav>
 
           {/* Col 3: À propos */}
-          <nav aria-label="À propos">
+          <nav aria-label={t("a11y.simpleFooter.about")}>
             <h4 className="font-bold text-accent mb-4 text-xs uppercase tracking-wider">
               À propos
             </h4>
@@ -114,20 +114,20 @@ const SimpleFooter = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <Link to="/" aria-label="Accueil jemassuremoinscher.fr">
-                <img alt="Arthur - mascotte jemassuremoinscher.fr assurance moins chère" className="h-10 w-auto" src={arthurThumbsUp} loading="lazy" width={40} height={40} />
+                <img alt={t("a11y.simpleFooter.mascotAlt")} className="h-10 w-auto" src={arthurThumbsUp} loading="lazy" width={40} height={40} />
               </Link>
               <p className="text-primary-foreground/50 text-[11px] max-w-xs leading-relaxed">
                 {t('footer.description')}
               </p>
             </div>
-            <nav aria-label="Réseaux sociaux" className="flex items-center gap-3">
-              <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Instagram" className="text-primary-foreground/50 hover:text-accent transition-colors">
+            <nav aria-label={t("a11y.common.socials")} className="flex items-center gap-3">
+              <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label={t("a11y.social.instagram")} className="text-primary-foreground/50 hover:text-accent transition-colors">
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur LinkedIn" className="text-primary-foreground/50 hover:text-accent transition-colors">
+              <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label={t("a11y.social.linkedin")} className="text-primary-foreground/50 hover:text-accent transition-colors">
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Facebook" className="text-primary-foreground/50 hover:text-accent transition-colors">
+              <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label={t("a11y.social.facebook")} className="text-primary-foreground/50 hover:text-accent transition-colors">
                 <Facebook className="w-4 h-4" />
               </a>
             </nav>

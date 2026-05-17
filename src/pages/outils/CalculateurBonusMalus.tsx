@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import arthurCoin from "@/assets/mascotte/arthur-sprint-coin.webp";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const MIN_COEF = 0.50;
 const MAX_COEF = 3.50;
@@ -77,6 +78,7 @@ function useAnimatedValue(target: number, duration = 600): number {
 }
 
 const CalculateurBonusMalus = () => {
+  const { t } = useLanguage();
   const [currentCoef, setCurrentCoef] = useState(1.00);
   const [yearsWithout, setYearsWithout] = useState(3);
 
@@ -207,7 +209,7 @@ const CalculateurBonusMalus = () => {
                     max={13}
                     step={1}
                     className="py-2"
-                    aria-label="Années sans accident"
+                    aria-label={t("a11y.bonusMalus.years")}
                   />
                   <div className="flex justify-between text-[11px] text-muted-foreground mt-2 px-0.5">
                     <span>0 an</span>

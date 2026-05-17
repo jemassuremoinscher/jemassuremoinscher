@@ -1,4 +1,5 @@
 import { Lightbulb } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ExpertTipProps {
   children: React.ReactNode;
@@ -10,9 +11,10 @@ interface ExpertTipProps {
  * Uses semantic <aside> with brand-colored left border.
  */
 const ExpertTip = ({ children, title = "Conseil de l'expert" }: ExpertTipProps) => {
+  const { t } = useLanguage();
   return (
     <aside
-      aria-label="Conseil de l'expert"
+      aria-label={t("a11y.blog.expertTip")}
       className="relative bg-secondary/10 border-l-4 border-secondary rounded-r-xl p-5 md:p-6 my-6"
     >
       <div className="flex items-center gap-2 mb-3">

@@ -1,4 +1,5 @@
 import { List } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface TocItem {
   id: string;
@@ -16,11 +17,12 @@ interface TableOfContentsProps {
  * Semantic <nav> + <ul> for accessibility and SEO.
  */
 const TableOfContents = ({ items, title = "Sommaire" }: TableOfContentsProps) => {
+  const { t } = useLanguage();
   if (items.length === 0) return null;
 
   return (
     <nav
-      aria-label="Sommaire de l'article"
+      aria-label={t("a11y.blog.toc")}
       className="bg-muted/30 border border-border/50 rounded-xl p-5 md:p-6"
     >
       <div className="flex items-center gap-2 mb-4">

@@ -1,6 +1,7 @@
 import { Shield, CheckCircle, Award, Briefcase, BookOpen } from "lucide-react";
 import teamExperts from "@/assets/team-experts.png";
 import { getAuthor, type Author } from "@/data/authors";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface AuthorExpertiseProps {
   /** Author name as it appears in blogArticles */
@@ -12,6 +13,7 @@ interface AuthorExpertiseProps {
  * Displays credentials, bio, specialties, and trust signals.
  */
 const AuthorExpertise = ({ authorName }: AuthorExpertiseProps) => {
+  const { t } = useLanguage();
   const author: Author = authorName
     ? getAuthor(authorName)
     : getAuthor("L'équipe d'experts jemassuremoinscher.fr");
@@ -38,7 +40,7 @@ const AuthorExpertise = ({ authorName }: AuthorExpertiseProps) => {
             <h3 className="font-bold text-foreground text-base truncate" itemProp="name">
               {author.name}
             </h3>
-            <Shield className="h-4 w-4 text-primary shrink-0" aria-label="Auteur vérifié" />
+            <Shield className="h-4 w-4 text-primary shrink-0" aria-label={t("a11y.blog.verifiedAuthor")} />
           </div>
           <p className="text-sm text-muted-foreground" itemProp="jobTitle">
             {author.role}

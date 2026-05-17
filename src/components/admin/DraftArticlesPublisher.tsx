@@ -13,6 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import { blogDrafts2026 } from "@/data/blogDrafts2026";
 import { invalidatePublishedDraftsCache } from "@/hooks/usePublishedDrafts";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type Channel = "linkedin" | "facebook" | "instagram";
 type PublishedRow = { slug: string; short_description: string | null };
@@ -61,6 +62,7 @@ const resolveImage = (img: any): string | null => {
 };
 
 export const DraftArticlesPublisher = () => {
+  const { t } = useLanguage();
   const [publishedRows, setPublishedRows] = useState<PublishedRow[]>([]);
   const [seoApproved, setSeoApproved] = useState<any[]>([]);
   const [socialPosts, setSocialPosts] = useState<SocialPost[]>([]);
@@ -308,7 +310,7 @@ export const DraftArticlesPublisher = () => {
               Brouillons + suggestions SEO approuvées. Modifiez l'accroche par défaut ou par réseau, et publiez sur les réseaux en un clic.
             </CardDescription>
           </div>
-          <Button variant="ghost" size="icon" onClick={fetchAll} aria-label="Rafraîchir">
+          <Button variant="ghost" size="icon" onClick={fetchAll} aria-label={t("a11y.common.refresh")}>
             <RefreshCw className="h-4 w-4" />
           </Button>
         </div>
@@ -442,7 +444,7 @@ export const DraftArticlesPublisher = () => {
                                   <Globe className="h-3 w-3 mr-1" /> Voir en ligne
                                 </Link>
                               </Button>
-                              <Button size="sm" variant="ghost" onClick={() => unpublish(article.slug, article.title)} disabled={isBusy} aria-label="Dépublier">
+                              <Button size="sm" variant="ghost" onClick={() => unpublish(article.slug, article.title)} disabled={isBusy} aria-label={t("a11y.common.unpublish")}>
                                 {isBusy ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <EyeOff className="h-3 w-3 mr-1" />}
                                 Dépublier
                               </Button>
