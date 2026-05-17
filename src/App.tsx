@@ -220,6 +220,15 @@ const App = () => {
                 <Route path="/landing/photographe" element={<LandingPhotographe />} />
                 <Route path="/landing/influenceur" element={<LandingInfluenceur />} />
                 <Route path="/landing/drone" element={<LandingDrone />} />
+                <Route path="/landing/decennale" element={<LandingDecennale />} />
+                <Route path="/landing/flotte-auto" element={<LandingFlotteAuto />} />
+                <Route path="/landing/mutuelle-entreprise" element={<LandingMutuelleEntreprise />} />
+                <Route path="/landing/cyber" element={<LandingCyber />} />
+                <Route path="/landing/sans-permis" element={<LandingSansPermis />} />
+                <Route path="/landing/camping-car" element={<LandingCampingCar />} />
+                <Route path="/landing/velo" element={<LandingVelo />} />
+                <Route path="/landing/protection-juridique" element={<LandingProtectionJuridique />} />
+                <Route path="/landing/auto-temporaire" element={<LandingAutoTemporaire />} />
                 <Route path="/comparateur" element={<Comparateur />} />
                 <Route path="/assurance-auto-malusse" element={<AssuranceAutoMalusse />} />
                 <Route path="/assurance-auto-jeune-conducteur" element={<AssuranceJeuneConducteur />} />
