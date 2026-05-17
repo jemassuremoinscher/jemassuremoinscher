@@ -339,7 +339,7 @@ export const DraftArticlesPublisher = () => {
                 <Card key={`${article.source}-${article.slug}`} className="overflow-hidden">
                   <div className="grid md:grid-cols-[200px_1fr] gap-4">
                     {article.image ? (
-                      <img src={article.image} alt={article.title} className="w-full h-40 md:h-full object-cover" loading="lazy" />
+                      <img src={article.image} alt={article.title} width={800} height={450} className="w-full h-40 md:h-full object-cover" loading="lazy" />
                     ) : (
                       <div className="w-full h-40 md:h-full bg-muted flex items-center justify-center text-muted-foreground text-xs">
                         Pas d'image
