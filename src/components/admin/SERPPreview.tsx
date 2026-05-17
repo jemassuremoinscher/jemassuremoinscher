@@ -246,7 +246,7 @@ const SERPPreview = () => {
         <CardContent>
           <div className="bg-white rounded-lg p-6 border border-border/50 max-w-2xl font-[Arial,sans-serif]">
             <div className="flex items-center gap-2 mb-1">
-              <img src="/favicon.png" alt="favicon" className="w-7 h-7 rounded-full shrink-0 object-contain" />
+              <img src="/favicon.png" alt="favicon" width={28} height={28} className="w-7 h-7 rounded-full shrink-0 object-contain" />
               <div className="min-w-0">
                 <p className="text-sm text-[#202124] truncate">jemassuremoinscher.fr</p>
                 <p className="text-xs text-[#4d5156] truncate">{url}</p>
