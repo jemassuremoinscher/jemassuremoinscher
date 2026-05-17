@@ -107,7 +107,7 @@ export default function InsuranceComparisonDuel({ duel }: Props) {
 
         <div className="flex flex-col items-center gap-2">
           <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-card border border-border shadow-[var(--shadow-card)] p-3 flex items-center justify-center">
-            <img src={b.logo} alt={`Logo ${b.name}`} className="max-w-full max-h-full object-contain" loading="lazy" />
+            <img src={b.logo} alt={`Logo ${b.name}`} width={120} height={60} className="max-w-full max-h-full object-contain" loading="lazy" />
           </div>
           <span className="font-bold text-foreground text-sm md:text-base">{b.name}</span>
         </div>
