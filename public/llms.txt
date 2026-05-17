@@ -95,3 +95,39 @@ R : Un courtier est un intermédiaire indépendant enregistré ORIAS qui compare
 - Conseils d'experts certifiés ORIAS
 - Glossaire complet des termes d'assurance
 - URL : /blog
+
+## Pages
+
+- [Accueil](/): Comparateur d'assurances en ligne, 25+ assureurs, devis en 2 min
+- [Comparateur](/comparateur): Comparer les devis d'assurance personnalisés
+- [Assurance Auto](/assurance-auto): Devis assurance auto pas chère
+- [Assurance Moto](/assurance-moto): Devis assurance moto et scooter
+- [Assurance Habitation](/assurance-habitation): Devis assurance habitation locataire/propriétaire
+- [Mutuelle Santé](/assurance-sante): Comparer les mutuelles santé 2026
+- [Assurance Vie](/assurance-vie): Contrats d'assurance vie et épargne
+- [Assurance Emprunteur](/assurance-pret): Délégation d'assurance de prêt (loi Lemoine)
+- [Assurance Animaux](/assurance-animaux): Mutuelle pour chien et chat
+- [Assurance Prévoyance](/assurance-prevoyance): Garanties décès, invalidité, arrêt de travail
+- [RC Pro](/assurance-rc-pro): Responsabilité civile professionnelle
+- [Assurance PNO](/assurance-pno): Propriétaire non occupant
+- [Assurance MRP](/assurance-mrp): Multirisque professionnelle
+- [GLI](/assurance-gli): Garantie loyers impayés pour bailleur
+- [Métiers Atypiques](/assurance-metiers-atypiques): Accrobranche, sports outdoor, événementiel, BTP
+- [Expatriés](/assurance-expatries): Assurance pour expatriés en France
+- [Gestion Locative](/gestion-locative): Solutions pour bailleurs
+- [Blog](/blog): Guides, actualités et conseils assurance
+- [Glossaire](/glossaire): Définitions des termes d'assurance
+- [FAQ](/faq): Questions fréquentes
+- [Avis Clients](/avis-clients): 247 avis vérifiés, note 4.9/5
+- [Nos Partenaires](/nos-partenaires): 25+ assureurs partenaires
+- [Qui Sommes Nous](/qui-sommes-nous): À propos du courtier
+- [Contact](/contact): Nous contacter, rappel sous 10 min
+- [Sources et Méthodologie](/sources-et-methodologie): Transparence éditoriale
+
+## Optional
+
+- [Mentions Légales](/mentions-legales): Mentions légales
+- [Politique de Confidentialité](/politique-confidentialite): Traitement des données
+- [Politique Cookies](/politique-cookies): Gestion des cookies
+- [CGU](/cgu): Conditions générales d'utilisation
+- [Plan du Site](/plan-du-site): Toutes les pages
