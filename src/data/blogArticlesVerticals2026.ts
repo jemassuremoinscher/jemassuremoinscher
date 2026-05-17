@@ -87,7 +87,7 @@ Le tarif dépend de **6 critères principaux** :
 
 - [RC Pro et décennale : quelles différences pour les artisans ?](/blog/rc-pro-decennale-differences-artisans-btp)
 - [Décennale auto-entrepreneur : tout ce qu'il faut savoir](/blog/decennale-auto-entrepreneur-btp-2026)
-- [Assurance RC Pro pour micro-entrepreneurs](/blog/devis-assurance-auto-jeune-conducteur-2026)
+- [Comparatif RC Pro pour artisans et indépendants](/landing/rc-pro)
 
 ## Conclusion
 
@@ -586,7 +586,7 @@ Les cotisations de mutuelle TNS sont **déductibles du revenu imposable** dans l
 
 - [Guide complet de la mutuelle entreprise](/blog/mutuelle-entreprise-2026-guide-complementaire-sante-collective)
 - [Surcomplémentaire santé en entreprise](/blog/surcomplementaire-sante-entreprise-2026)
-- [Mutuelle TNS pour micro-entrepreneurs](/blog/auto-entrepreneur-mutuelle-protection-optimale)
+- [Bien choisir sa mutuelle santé en 2026](/blog/bien-choisir-mutuelle-sante)
 
 **Quel statut, quelle mutuelle ?** [Obtenez un comparatif personnalisé](/landing/mutuelle-entreprise).
     `,
