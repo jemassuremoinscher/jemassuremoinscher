@@ -225,6 +225,17 @@ export const blogArticles: RouteConfig[] = [
   { path: "/blog/assurance-auto-teletravail-peu-kilometrage", changefreq: "monthly", priority: 0.7 },
   { path: "/blog/assurance-auto-apres-retrait-permis", changefreq: "monthly", priority: 0.7 },
   { path: "/blog/assurance-habitation-zone-inondable-sinistre", changefreq: "monthly", priority: 0.7 },
+
+  // === Série Verticales 2026 (Décennale, Flotte auto, Mutuelle entreprise) ===
+  { path: "/blog/garantie-decennale-2026-guide-complet-artisans-btp", changefreq: "monthly", priority: 0.9 },
+  { path: "/blog/rc-pro-decennale-differences-artisans-btp", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/decennale-auto-entrepreneur-btp-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/assurance-flotte-auto-2026-guide-entreprise", changefreq: "monthly", priority: 0.9 },
+  { path: "/blog/boitiers-connectes-flotte-auto-entreprise-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/reduire-cout-flotte-auto-entreprise-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/mutuelle-entreprise-2026-guide-complementaire-sante-collective", changefreq: "monthly", priority: 0.9 },
+  { path: "/blog/mutuelle-tns-vs-mutuelle-entreprise-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/surcomplementaire-sante-entreprise-2026", changefreq: "monthly", priority: 0.8 },
 ];
 
 // Glossary terms
