@@ -4784,6 +4784,7 @@ export const blogArticles: BlogArticle[] = [
   ...articles2026WithDates,
   ...blogDrafts2026,
   ...blogArticlesVerticals2026,
+  ...blogArticlesVerticals2026Lot2,
 ]
   .filter((a) => a.published !== false) // Hide drafts (published: false) from listings, sitemap, and routing
   .filter((a) => parseFrenchDate(a.date).getTime() <= _now.getTime()) // Auto-publication par date
