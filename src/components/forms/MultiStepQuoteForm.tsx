@@ -527,22 +527,31 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
                 transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="flex-1 flex flex-col"
               >
-                {/* Arthur mascot */}
+                {/* Arthur mascot + speech bubble (mobile only) */}
                 <div className="flex justify-center mb-4">
-                  <motion.img
-                    src={mascotSrc}
-                    alt="Arthur"
-                    className="h-20 md:h-24 object-contain drop-shadow-lg"
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1, y: [0, -6, 0] }}
-                    transition={{
-                      scale: { duration: 0.4 },
-                      opacity: { duration: 0.4 },
-                      y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
-                    }}
-                    width={96}
-                    height={120}
-                  />
+                  <div className="relative inline-flex items-end gap-2 md:block">
+                    <motion.img
+                      src={mascotSrc}
+                      alt="Arthur"
+                      className="h-20 md:h-24 object-contain drop-shadow-lg"
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1, y: [0, -6, 0] }}
+                      transition={{
+                        scale: { duration: 0.4 },
+                        opacity: { duration: 0.4 },
+                        y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
+                      }}
+                      width={96}
+                      height={120}
+                    />
+                    {/* Bulle mobile uniquement, vient d'Arthur */}
+                    <div className="md:hidden relative bg-white border border-border rounded-2xl px-3 py-2 shadow-md mb-2 max-w-[180px]">
+                      <p className="text-primary font-bold text-xs leading-tight">
+                        Hello, moi c'est Arthur 👋
+                      </p>
+                      <div className="absolute bottom-3 -left-1.5 w-3 h-3 bg-white border-l border-b border-border transform rotate-45" />
+                    </div>
+                  </div>
                 </div>
 
                 {/* Title */}
