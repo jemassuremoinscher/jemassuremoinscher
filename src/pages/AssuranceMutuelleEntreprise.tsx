@@ -2,7 +2,7 @@ import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage"
 import BrandName from "@/components/BrandName";
 import arthurBusiness from "@/assets/mascotte/arthur-business.webp";
 
-const LandingMutuelleEntreprise = () => (
+const AssuranceMutuelleEntreprise = () => (
   <VerticalInsurancePage
     slug="mutuelle-entreprise"
     breadcrumbLabel="Mutuelle Entreprise (Collective)"
@@ -12,7 +12,7 @@ const LandingMutuelleEntreprise = () => (
     heroSubtitle="Conforme ANI, panier de soins minimum, financement 50% employeur : trouvez le contrat collectif au meilleur rapport garanties/prix."
     seoTitle="Mutuelle entreprise 2026 | Comparateur ANI collective"
     seoDescription="Comparez les mutuelles entreprise collectives obligatoires. Conformité ANI, panier de soins, prise en charge 50% employeur."
-    canonical="https://www.jemassuremoinscher.fr/landing/mutuelle-entreprise"
+    canonical="https://www.jemassuremoinscher.fr/assurance-mutuelle-entreprise"
     keyword="mutuelle entreprise"
     keywords="mutuelle entreprise, mutuelle collective, mutuelle ANI, complémentaire santé entreprise"
     insuranceType="sante"
@@ -37,4 +37,4 @@ const LandingMutuelleEntreprise = () => (
     ctaDescription="Devis mutuelle entreprise gratuit en 2 minutes."
   />
 );
-export default LandingMutuelleEntreprise;
+export default AssuranceMutuelleEntreprise;

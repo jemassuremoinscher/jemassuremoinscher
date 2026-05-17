@@ -2,7 +2,7 @@ import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage"
 import BrandName from "@/components/BrandName";
 import arthurBtp from "@/assets/mascotte/arthur-btp.webp";
 
-const LandingDecennale = () => (
+const AssuranceDecennale = () => (
   <VerticalInsurancePage
     slug="decennale"
     breadcrumbLabel="Garantie Décennale BTP"
@@ -12,7 +12,7 @@ const LandingDecennale = () => (
     heroSubtitle="Maçon, plombier, électricien, artisan du bâtiment… Obtenez votre attestation décennale en 48h et au meilleur prix."
     seoTitle="Assurance décennale BTP 2026 | Comparateur artisans"
     seoDescription="Comparez les meilleures assurances décennales pour artisans du BTP. Attestation 48h. Tarifs dès 80€/mois selon métier."
-    canonical="https://www.jemassuremoinscher.fr/landing/decennale"
+    canonical="https://www.jemassuremoinscher.fr/assurance-decennale"
     keyword="assurance décennale"
     keywords="assurance décennale, garantie décennale, RC décennale, assurance artisan BTP"
     insuranceType="rc_pro"
@@ -37,4 +37,4 @@ const LandingDecennale = () => (
     ctaDescription="Devis gratuit en 2 minutes pour artisans et entreprises du BTP."
   />
 );
-export default LandingDecennale;
+export default AssuranceDecennale;

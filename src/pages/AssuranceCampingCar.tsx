@@ -2,7 +2,7 @@ import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage"
 import BrandName from "@/components/BrandName";
 import arthurCar from "@/assets/mascotte/arthur-car.webp";
 
-const LandingCampingCar = () => (
+const AssuranceCampingCar = () => (
   <VerticalInsurancePage
     slug="camping-car"
     breadcrumbLabel="Assurance Camping-car & Van"
@@ -12,7 +12,7 @@ const LandingCampingCar = () => (
     heroSubtitle="Capucine, profilé, intégral, van aménagé… Couvrez votre maison sur roues au juste prix avec une formule adaptée à votre usage."
     seoTitle="Assurance camping-car 2026 | Comparateur van aménagé"
     seoDescription="Comparez les meilleures assurances camping-car et van aménagé. Devis gratuit en 2 min. Garanties contenu, accessoires, hivernage incluses."
-    canonical="https://www.jemassuremoinscher.fr/landing/camping-car"
+    canonical="https://www.jemassuremoinscher.fr/assurance-camping-car"
     keyword="assurance camping-car"
     keywords="assurance camping-car, assurance van aménagé, assurance fourgon, hivernage camping-car"
     insuranceType="auto"
@@ -37,4 +37,4 @@ const LandingCampingCar = () => (
     ctaDescription="Recevez votre devis camping-car en 2 minutes, gratuit et sans engagement."
   />
 );
-export default LandingCampingCar;
+export default AssuranceCampingCar;

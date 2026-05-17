@@ -2,7 +2,7 @@ import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage"
 import BrandName from "@/components/BrandName";
 import arthurBike from "@/assets/mascotte/arthur-bike.webp";
 
-const LandingVelo = () => (
+const AssuranceVelo = () => (
   <VerticalInsurancePage
     slug="velo"
     breadcrumbLabel="Assurance Vélo & VAE"
@@ -12,7 +12,7 @@ const LandingVelo = () => (
     heroSubtitle="Vol, casse, assistance, responsabilité civile : protégez votre vélo musculaire ou électrique dès 4€/mois."
     seoTitle="Assurance vélo & VAE 2026 | Comparateur vol & casse"
     seoDescription="Comparez les meilleures assurances vélo et VAE. Garanties vol, casse, dommages, RC. Dès 4€/mois. Devis gratuit en 2 minutes."
-    canonical="https://www.jemassuremoinscher.fr/landing/velo"
+    canonical="https://www.jemassuremoinscher.fr/assurance-velo"
     keyword="assurance vélo"
     keywords="assurance vélo, assurance VAE, assurance vélo électrique, vol vélo, assurance vélo cargo"
     insuranceType="moto"
@@ -36,4 +36,4 @@ const LandingVelo = () => (
     ctaDescription="Comparez les assurances vélo en 2 minutes, gratuitement."
   />
 );
-export default LandingVelo;
+export default AssuranceVelo;

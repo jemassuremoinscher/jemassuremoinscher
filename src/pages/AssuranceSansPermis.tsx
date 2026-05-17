@@ -2,7 +2,7 @@ import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage"
 import BrandName from "@/components/BrandName";
 import arthurCar from "@/assets/mascotte/arthur-car.webp";
 
-const LandingSansPermis = () => (
+const AssuranceSansPermis = () => (
   <VerticalInsurancePage
     slug="sans-permis"
     breadcrumbLabel="Assurance Voiture Sans Permis"
@@ -12,7 +12,7 @@ const LandingSansPermis = () => (
     heroSubtitle="Aixam, Ligier, Microcar, Chatenet… Comparez les meilleures offres VSP et économisez jusqu'à 35% en 2 minutes."
     seoTitle="Assurance voiture sans permis 2026 | Comparateur VSP"
     seoDescription="Comparez les assurances voiture sans permis (Aixam, Ligier, Microcar). Devis gratuit en 2 min. Dès 22€/mois. Tiers, intermédiaire, tous risques."
-    canonical="https://www.jemassuremoinscher.fr/landing/sans-permis"
+    canonical="https://www.jemassuremoinscher.fr/assurance-sans-permis"
     keyword="assurance voiture sans permis"
     keywords="assurance VSP, assurance voiturette, assurance Aixam, assurance Ligier, assurance sans permis pas cher"
     insuranceType="auto"
@@ -37,4 +37,4 @@ const LandingSansPermis = () => (
     ctaDescription="Comparez en 2 minutes les meilleures offres VSP du marché."
   />
 );
-export default LandingSansPermis;
+export default AssuranceSansPermis;

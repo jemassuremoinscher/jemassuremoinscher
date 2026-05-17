@@ -2,7 +2,7 @@ import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage"
 import BrandName from "@/components/BrandName";
 import arthurBusiness from "@/assets/mascotte/arthur-business.webp";
 
-const LandingProtectionJuridique = () => (
+const AssuranceProtectionJuridique = () => (
   <VerticalInsurancePage
     slug="protection-juridique"
     breadcrumbLabel="Protection Juridique"
@@ -12,7 +12,7 @@ const LandingProtectionJuridique = () => (
     heroSubtitle="Litiges consommation, voisinage, travail, immobilier… Faites-vous défendre par un avocat sans avancer de frais."
     seoTitle="Protection juridique 2026 | Assurance litiges & avocat"
     seoDescription="Comparez les meilleures protections juridiques. Avocats, expertises, frais de justice pris en charge. Dès 8€/mois."
-    canonical="https://www.jemassuremoinscher.fr/landing/protection-juridique"
+    canonical="https://www.jemassuremoinscher.fr/assurance-protection-juridique"
     keyword="protection juridique"
     keywords="assurance protection juridique, avocat, litige consommation, défense recours"
     insuranceType="rc_pro"
@@ -36,4 +36,4 @@ const LandingProtectionJuridique = () => (
     ctaDescription="Comparez en 2 minutes les meilleures protections juridiques."
   />
 );
-export default LandingProtectionJuridique;
+export default AssuranceProtectionJuridique;

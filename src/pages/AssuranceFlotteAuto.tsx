@@ -2,7 +2,7 @@ import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage"
 import BrandName from "@/components/BrandName";
 import arthurCar from "@/assets/mascotte/arthur-car.webp";
 
-const LandingFlotteAuto = () => (
+const AssuranceFlotteAuto = () => (
   <VerticalInsurancePage
     slug="flotte-auto"
     breadcrumbLabel="Assurance Flotte Auto Entreprise"
@@ -12,7 +12,7 @@ const LandingFlotteAuto = () => (
     heroSubtitle="VL, VU, poids lourds, véhicules de fonction : un seul contrat, une seule échéance, une gestion simplifiée et des tarifs négociés."
     seoTitle="Assurance flotte auto entreprise 2026 | Comparateur"
     seoDescription="Comparez les assurances flotte auto entreprise (dès 3 véhicules). Tarifs négociés, gestion centralisée, économies jusqu'à 30%."
-    canonical="https://www.jemassuremoinscher.fr/landing/flotte-auto"
+    canonical="https://www.jemassuremoinscher.fr/assurance-flotte-auto"
     keyword="assurance flotte auto"
     keywords="assurance flotte auto, assurance flotte entreprise, flotte VL VU, assurance véhicules de société"
     insuranceType="auto"
@@ -37,4 +37,4 @@ const LandingFlotteAuto = () => (
     ctaDescription="Devis flotte gratuit en 2 minutes. Un expert dédié vous rappelle."
   />
 );
-export default LandingFlotteAuto;
+export default AssuranceFlotteAuto;

@@ -2,7 +2,7 @@ import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage"
 import BrandName from "@/components/BrandName";
 import arthurDetective from "@/assets/mascotte/arthur-detective.webp";
 
-const LandingCyber = () => (
+const AssuranceCyber = () => (
   <VerticalInsurancePage
     slug="cyber"
     breadcrumbLabel="Assurance Cyber-risques"
@@ -12,7 +12,7 @@ const LandingCyber = () => (
     heroSubtitle="Ransomware, fuite RGPD, fraude au président, perte d'exploitation IT… Couvrez votre entreprise contre les menaces numériques 2026."
     seoTitle="Assurance cyber-risques entreprise 2026 | Comparateur"
     seoDescription="Comparez les assurances cyber pour entreprises. Ransomware, RGPD, fraude, perte d'exploitation. Devis gratuit en 2 min."
-    canonical="https://www.jemassuremoinscher.fr/landing/cyber"
+    canonical="https://www.jemassuremoinscher.fr/assurance-cyber"
     keyword="assurance cyber"
     keywords="assurance cyber, assurance cyber-risques, ransomware, RGPD, fuite de données"
     insuranceType="rc_pro"
@@ -37,4 +37,4 @@ const LandingCyber = () => (
     ctaDescription="Devis cyber gratuit en 2 minutes pour TPE et PME."
   />
 );
-export default LandingCyber;
+export default AssuranceCyber;

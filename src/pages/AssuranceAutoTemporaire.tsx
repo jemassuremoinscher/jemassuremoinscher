@@ -2,7 +2,7 @@ import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage"
 import BrandName from "@/components/BrandName";
 import arthurCar from "@/assets/mascotte/arthur-car.webp";
 
-const LandingAutoTemporaire = () => (
+const AssuranceAutoTemporaire = () => (
   <VerticalInsurancePage
     slug="auto-temporaire"
     breadcrumbLabel="Assurance Auto Temporaire"
@@ -12,7 +12,7 @@ const LandingAutoTemporaire = () => (
     heroSubtitle="Besoin d'assurer une voiture pour 1 jour, 1 semaine, 1 mois ? Souscription immédiate, attestation envoyée en 5 minutes."
     seoTitle="Assurance auto temporaire 2026 | 1 jour à 90 jours"
     seoDescription="Souscrivez une assurance auto temporaire de 1 à 90 jours en ligne. Attestation immédiate. Idéal achat, prêt de véhicule, vacances."
-    canonical="https://www.jemassuremoinscher.fr/landing/auto-temporaire"
+    canonical="https://www.jemassuremoinscher.fr/assurance-auto-temporaire"
     keyword="assurance auto temporaire"
     keywords="assurance auto temporaire, assurance 1 jour, assurance courte durée, assurance voiture vacances"
     insuranceType="auto"
@@ -37,4 +37,4 @@ const LandingAutoTemporaire = () => (
     ctaDescription="Souscription 100% en ligne, attestation immédiate."
   />
 );
-export default LandingAutoTemporaire;
+export default AssuranceAutoTemporaire;
