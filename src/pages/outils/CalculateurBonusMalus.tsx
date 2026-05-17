@@ -78,6 +78,7 @@ function useAnimatedValue(target: number, duration = 600): number {
 }
 
 const CalculateurBonusMalus = () => {
+  const { t } = useLanguage();
   const [currentCoef, setCurrentCoef] = useState(1.00);
   const [yearsWithout, setYearsWithout] = useState(3);
 
