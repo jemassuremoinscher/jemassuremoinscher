@@ -15,7 +15,6 @@ const SITE_URL = "https://jemassuremoinscher.fr";
 type Channel = "linkedin" | "facebook" | "instagram";
 
 const buildPayload = (article: BlogArticle, channel: Channel) => {
-  const { t } = useLanguage();
   const headline = article.socialHeadlines?.[channel] || article.description;
   const url = `${SITE_URL}/blog/${article.slug}`;
   const image = article.image
@@ -25,6 +24,7 @@ const buildPayload = (article: BlogArticle, channel: Channel) => {
 };
 
 export const DraftArticlesSocialPublisher = () => {
+  const { t } = useLanguage();
   const [posts, setPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [posting, setPosting] = useState<string | null>(null);
