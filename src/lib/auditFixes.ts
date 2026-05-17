@@ -815,7 +815,10 @@ export const validateSeoVisibilityFix = async (check: VisibilityCheckLike) => {
     return validateMultiplePageMetaOverrides(QUALIFIED_TRAFFIC_PAGE_UPDATES);
   }
 
-  return false;
+  // Fallback : content_improvement tracé en base
+  const key = buildContentImprovementKey({ source: "seo", scope: "visibility", path: check.label });
+  const { data, error } = await supabase.from("page_meta_overrides").select("page_path").eq("page_path", key).maybeSingle();
+  return !error && data?.page_path === key;
 };
 
 export const applyGeoVisibilityFix = async (check: VisibilityCheckLike) => {
