@@ -125,6 +125,8 @@ export const DraftArticlesSocialPublisher = () => {
                     <img
                       src={typeof article.image === "string" ? article.image : (article.image as any)}
                       alt={article.title}
+                      width={800}
+                      height={450}
                       className="w-full h-40 md:h-full object-cover"
                       loading="lazy"
                     />
