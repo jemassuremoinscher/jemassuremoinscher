@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useDynamicGreeting } from "@/components/hero/DynamicGreeting";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const SparklesIcon = () => <svg className="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>;
 const ZapIcon = () => <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>;
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const DynamicHeroContent = ({ t, trackEvent }: Props) => {
+  const { t } = useLanguage();
   const greeting = useDynamicGreeting();
 
   if (!greeting) {
@@ -54,7 +56,7 @@ const DynamicHeroContent = ({ t, trackEvent }: Props) => {
         <Link
           to="/avis-clients"
           className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-accent/40 rounded-full px-4 py-2 md:px-6 md:py-3 hover:bg-accent/30 transition-colors duration-200"
-          aria-label="Voir les avis clients"
+          aria-label={t("a11y.hero.viewReviews")}
         >
           <span className="text-accent"><SparklesIcon /></span>
           <span className="text-sm md:text-base font-bold text-primary-foreground text-center">

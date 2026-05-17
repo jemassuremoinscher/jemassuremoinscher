@@ -2,12 +2,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { ExternalLink, MousePointerClick, Eye, Activity } from "lucide-react";
 import { CLARITY_PROJECT_ID } from "@/config/analytics";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 /**
  * Microsoft Clarity dashboard widget — link to external dashboard
  * (Clarity does not expose an embeddable iframe; deep-link only)
  */
 const MicrosoftClarityWidget = () => {
+  const { t } = useLanguage();
   const dashboardUrl = `https://clarity.microsoft.com/projects/view/${CLARITY_PROJECT_ID}/dashboard`;
 
   return (
@@ -30,7 +32,7 @@ const MicrosoftClarityWidget = () => {
               href={dashboardUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Ouvrir le tableau de bord Microsoft Clarity"
+              aria-label={t("a11y.admin.openClarity")}
             >
               Ouvrir Clarity
               <ExternalLink className="w-4 h-4 ml-2" />

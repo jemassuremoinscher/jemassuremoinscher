@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import {
+import { useLanguage } from "@/contexts/LanguageContext";
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 
@@ -34,6 +35,7 @@ const INSURANCE_TYPES: InsType[] = [
 ];
 
 export const HeroQuoteForm = () => {
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const { trackEvent } = useAnalytics();
   const [type, setType] = useState<string>("auto");
@@ -54,7 +56,7 @@ export const HeroQuoteForm = () => {
     <form
       onSubmit={handleSubmit}
       className="bg-white rounded-2xl shadow-2xl p-5 md:p-7 space-y-4 border border-white/40"
-      aria-label="Formulaire de demande de devis"
+      aria-label={t("a11y.hero.quoteForm")}
     >
       {/* Type */}
       <div className="space-y-1.5">
@@ -113,7 +115,7 @@ export const HeroQuoteForm = () => {
       <button
         type="submit"
         className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] hover:from-[hsl(43_80%_60%)] hover:to-[hsl(38_75%_53%)] text-foreground font-bold text-base md:text-lg px-6 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] active:scale-95"
-        aria-label="Découvrez votre prix en 2 min"
+        aria-label={t("a11y.hero.discoverPrice")}
       >
         <ZapIcon />
         Découvrez votre prix en 2 min

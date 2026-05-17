@@ -247,7 +247,7 @@ const GuidesSection = () => {
                 </DrawerTitle>
               </div>
               <DrawerClose asChild>
-                <Button variant="ghost" size="icon" className="rounded-full" aria-label="Fermer le guide"><X className="w-5 h-5" /></Button>
+                <Button variant="ghost" size="icon" className="rounded-full" aria-label={t("a11y.guides.close")}><X className="w-5 h-5" /></Button>
               </DrawerClose>
             </div>
             <DrawerDescription className="text-muted-foreground mt-2">

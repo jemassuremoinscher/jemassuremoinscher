@@ -9,11 +9,13 @@ import { Send, Eye, Loader2, Share2, Linkedin, Facebook, Instagram, RefreshCw, C
 import { Link } from "react-router-dom";
 import { blogDrafts2026 } from "@/data/blogDrafts2026";
 import type { BlogArticle } from "@/data/blogArticles";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const SITE_URL = "https://jemassuremoinscher.fr";
 type Channel = "linkedin" | "facebook" | "instagram";
 
 const buildPayload = (article: BlogArticle, channel: Channel) => {
+  const { t } = useLanguage();
   const headline = article.socialHeadlines?.[channel] || article.description;
   const url = `${SITE_URL}/blog/${article.slug}`;
   const image = article.image
@@ -104,7 +106,7 @@ export const DraftArticlesSocialPublisher = () => {
               Envoie l'article à Make.com pour publication sur LinkedIn, Facebook et Instagram. La publication sur le site se gère depuis l'onglet « Articles ».
             </CardDescription>
           </div>
-          <Button variant="ghost" size="icon" onClick={fetchPosts} aria-label="Rafraîchir">
+          <Button variant="ghost" size="icon" onClick={fetchPosts} aria-label={t("a11y.common.refresh")}>
             <RefreshCw className="h-4 w-4" />
           </Button>
         </div>

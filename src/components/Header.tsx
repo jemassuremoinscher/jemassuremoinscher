@@ -119,7 +119,7 @@ const Header = () => {
               >
                 <img 
                   src={arthurThumbsUp} 
-                  alt="Arthur, la mascotte" 
+                  alt={t("a11y.header.mascotAlt")} 
                   className="h-9 w-9 sm:h-10 sm:w-10 object-contain shrink-0"
                   width={40}
                   height={40}
@@ -136,7 +136,7 @@ const Header = () => {
 
             {/* Right: Actions + Language + Mobile Toggle */}
             <div className="flex items-center gap-1 shrink-0">
-              <nav aria-label="Réseaux sociaux" className="hidden md:flex items-center gap-1 mr-1">
+              <nav aria-label={t("a11y.common.socials")} className="hidden md:flex items-center gap-1 mr-1">
                 <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full text-white/70 hover:bg-muted/80 hover:text-white transition-colors">
                   <Instagram className="h-4 w-4" />
                 </a>
@@ -349,7 +349,7 @@ const Header = () => {
           id="mobile-menu" 
           className="fixed top-[64px] left-0 right-0 bottom-0 bg-card/98 backdrop-blur-xl z-50 overflow-y-auto lg:hidden"
           role="dialog" 
-          aria-label="Menu de navigation mobile"
+          aria-label={t("a11y.header.mobileMenu")}
         >
           <nav className="p-4 space-y-6" role="navigation" aria-label="Navigation mobile principale">
             {/* Language Toggle - Mobile */}
@@ -536,7 +536,7 @@ const Header = () => {
             to="/comparateur"
             onClick={() => trackEvent('insurance_type_click', { category: 'mobile_bottom_bar', label: 'compare', insurance_type: 'all' })}
             className="flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl bg-gradient-to-br from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] text-foreground font-bold shadow-md active:scale-95 transition"
-            aria-label="Comparer les assurances"
+            aria-label={t("a11y.header.compare")}
           >
             <Search className="h-5 w-5" aria-hidden="true" />
             <span className="text-[11px]">Comparer</span>
@@ -545,7 +545,7 @@ const Header = () => {
             to="/contact"
             onClick={() => trackEvent('insurance_type_click', { category: 'mobile_bottom_bar', label: 'contact', insurance_type: 'all' })}
             className="flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl text-foreground hover:bg-muted active:scale-95 transition"
-            aria-label="Nous contacter"
+            aria-label={t("a11y.header.contact")}
           >
             <Mail className="h-5 w-5 text-primary" aria-hidden="true" />
             <span className="text-[11px] font-semibold">Nous contacter</span>

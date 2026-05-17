@@ -110,7 +110,7 @@ const TrustRow = () => {
           </motion.div>
 
           {/* ORIAS */}
-          <motion.div variants={itemVariants} role="group" aria-label="Courtier immatriculé ORIAS" className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
+          <motion.div variants={itemVariants} role="group" aria-label={t("a11y.trust.orias")} className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
             <img
               src={oriasLogo}
               alt="Logo ORIAS"
@@ -122,13 +122,13 @@ const TrustRow = () => {
             />
             <p className="text-sm font-bold text-foreground">{t('whyUs.oriasRegistered')}</p>
             <p className="text-xs font-mono text-primary font-semibold">{t('whyUs.oriasNumber')}</p>
-            <a href="https://www.orias.fr" target="_blank" rel="noopener noreferrer" aria-label="Vérifier notre immatriculation sur le site officiel ORIAS (nouvelle fenêtre)" className="text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2">
+            <a href="https://www.orias.fr" target="_blank" rel="noopener noreferrer" aria-label={t("a11y.trust.oriasVerify")} className="text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2">
               {t('whyUs.verifyOrias')}
             </a>
           </motion.div>
 
           {/* Courtier Indépendant */}
-          <motion.div variants={itemVariants} role="group" aria-label="Courtier indépendant, conseil 100% impartial" className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
+          <motion.div variants={itemVariants} role="group" aria-label={t("a11y.trust.independent")} className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
             <div className="p-3 rounded-full bg-primary/10" aria-hidden="true">
               <Scale className="w-7 h-7 text-primary" />
             </div>
@@ -137,7 +137,7 @@ const TrustRow = () => {
           </motion.div>
 
           {/* Transparence Totale */}
-          <motion.div variants={itemVariants} role="group" aria-label="Transparence totale, service gratuit et sans engagement" className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
+          <motion.div variants={itemVariants} role="group" aria-label={t("a11y.trust.transparent")} className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
             <div className="p-3 rounded-full bg-primary/10" aria-hidden="true">
               <BadgeCheck className="w-7 h-7 text-primary" />
             </div>

@@ -115,7 +115,7 @@ export const CallbackForm = () => {
                   <Textarea placeholder={t('callbackForm.messagePlaceholder')} className="min-h-[100px]" {...field} />
                 </FormControl><FormMessage /></FormItem>
               )} />
-              <Button type="submit" className="w-full" size="lg" disabled={isSubmitting} aria-label="Demander un rappel téléphonique gratuit">
+              <Button type="submit" className="w-full" size="lg" disabled={isSubmitting} aria-label={t("a11y.callback.submit")}>
                 {isSubmitting ? (<><Loader2 className="mr-2 h-5 w-5 animate-spin" />{t('callbackForm.sending')}</>) : (<><Phone className="mr-2 h-5 w-5" />{t('callbackForm.submit')}</>)}
               </Button>
               <p className="text-xs text-muted-foreground text-center">{t('callbackForm.required')}</p>

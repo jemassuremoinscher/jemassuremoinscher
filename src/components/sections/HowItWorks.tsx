@@ -104,7 +104,7 @@ const HowItWorks = () => {
           <Link to="/comparateur" className="flex items-center gap-4 bg-accent/10 rounded-full px-6 py-3 border border-accent/30 hover:bg-accent/20 transition-colors">
             <img
               src={arthurRunning}
-              alt="Arthur court avec une pièce - économisez sur votre assurance moins chère"
+              alt={t("a11y.howItWorks.mascotAlt")}
               className="w-12 h-auto animate-hero-float"
               width={48}
               height={60}

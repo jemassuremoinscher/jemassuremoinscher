@@ -357,7 +357,7 @@ const QuiSommesNous = () => {
                 <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
                   <img
                     src={cscaLogo}
-                    alt="Logo CSCA - Chambre Syndicale des Courtiers d'Assurances"
+                    alt={t("a11y.about.cscaAlt")}
                     className="h-10 w-auto object-contain"
                     width={40}
                     height={40}
@@ -372,7 +372,7 @@ const QuiSommesNous = () => {
 
               <img
                 src={arthurPointing}
-                alt="Arthur présente les certifications de jemassuremoinscher.fr"
+                alt={t("a11y.about.certifAlt")}
                 className="hidden lg:block absolute -right-8 -bottom-12 h-36 object-contain opacity-80 pointer-events-none select-none"
                 width={144}
                 height={180}
@@ -466,7 +466,7 @@ const QuiSommesNous = () => {
               </div>
               <img
                 src={arthurFlying}
-                alt="Arthur en vol"
+                alt={t("a11y.about.flyAlt")}
                 className="absolute -top-8 sm:-top-12 right-2 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none"
                 width={144}
                 height={144}

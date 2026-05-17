@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import arthurCar from "@/assets/mascotte/arthur-car.webp";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type Step = "closed" | "form" | "result" | "email" | "done";
 
@@ -24,6 +25,7 @@ const avgByProfile: Record<string, number> = {
 };
 
 export default function ContractOptimizerWidget() {
+  const { t } = useLanguage();
   const [step, setStep] = useState<Step>("closed");
   const [dismissed, setDismissed] = useState(false);
   const [price, setPrice] = useState("");
@@ -300,7 +302,7 @@ export default function ContractOptimizerWidget() {
           whileTap={{ scale: 0.95 }}
           onClick={() => setStep("form")}
           className="flex items-center gap-2 rounded-full bg-card border border-border shadow-[var(--shadow-hover)] px-4 py-2.5 text-sm font-medium text-foreground hover:shadow-[var(--shadow-lg)] transition-shadow"
-          aria-label="Vérifiez votre assurance auto"
+          aria-label={t("a11y.optimizer.check")}
         >
           <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">

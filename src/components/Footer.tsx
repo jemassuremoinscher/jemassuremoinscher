@@ -208,7 +208,7 @@ const Footer = () => {
           <DialogHeader className="p-6 pb-0 flex flex-row items-center justify-between">
             <DialogTitle className="text-2xl font-bold">{t('footer.legal')}</DialogTitle>
             <DialogClose asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8" aria-label="Fermer les mentions légales">
+              <Button variant="ghost" size="icon" className="h-8 w-8" aria-label={t("a11y.footer.closeLegal")}>
                 <X className="h-5 w-5" />
               </Button>
             </DialogClose>
@@ -252,7 +252,7 @@ const Footer = () => {
           <DialogHeader className="p-6 pb-0 flex flex-row items-center justify-between">
             <DialogTitle className="text-2xl font-bold">{t('footer.terms')}</DialogTitle>
             <DialogClose asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8" aria-label="Fermer les conditions générales">
+              <Button variant="ghost" size="icon" className="h-8 w-8" aria-label={t("a11y.footer.closeCgu")}>
                 <X className="h-5 w-5" />
               </Button>
             </DialogClose>
@@ -311,7 +311,7 @@ const Footer = () => {
           <DialogHeader className="p-6 pb-0 flex flex-row items-center justify-between">
             <DialogTitle className="text-2xl font-bold">{t('footer.privacy')}</DialogTitle>
             <DialogClose asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8" aria-label="Fermer la politique de confidentialité">
+              <Button variant="ghost" size="icon" className="h-8 w-8" aria-label={t("a11y.footer.closePrivacy")}>
                 <X className="h-5 w-5" />
               </Button>
             </DialogClose>

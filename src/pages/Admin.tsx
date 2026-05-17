@@ -37,8 +37,10 @@ import { FinancePanel } from '@/components/admin/FinancePanel';
 
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useLeadNotifications } from '@/hooks/useLeadNotifications';
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Admin = () => {
+  const { t } = useLanguage();
   const { user, isAdmin, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const [quotes, setQuotes] = useState<any[]>([]);
@@ -297,7 +299,7 @@ const Admin = () => {
                   onClick={fetchData}
                   disabled={isRefreshing}
                   className="sm:hidden border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground"
-                  aria-label="Actualiser les données"
+                  aria-label={t("a11y.common.refreshData")}
                 >
                   <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
                 </Button>
@@ -323,7 +325,7 @@ const Admin = () => {
                   size="icon"
                   onClick={handleSignOut}
                   className="sm:hidden"
-                  aria-label="Déconnexion"
+                  aria-label={t("a11y.common.signOut")}
                 >
                   <LogOut className="h-4 w-4" />
                 </Button>

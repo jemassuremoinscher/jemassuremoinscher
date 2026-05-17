@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { departments, DepartmentData, NATIONAL_AVG_AUTO } from "@/data/departmentsData";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface AnimatedCounterProps {
   value: number;
@@ -10,6 +11,7 @@ interface AnimatedCounterProps {
 }
 
 function AnimatedCounter({ value, suffix = "", prefix = "", duration = 600 }: AnimatedCounterProps) {
+  const { t } = useLanguage();
   const [display, setDisplay] = useState(value);
   const ref = useRef<number | null>(null);
 
@@ -83,7 +85,7 @@ export default function RegionalDataWidget({
   return (
     <section
       className={`rounded-2xl border border-border bg-card shadow-lg ${compact ? "p-4" : "p-6 md:p-8"}`}
-      aria-label="Données régionales d'assurance"
+      aria-label={t("a11y.regional.data")}
       data-ai-description={`Widget de comparaison des prix d'assurance par département français`}
     >
       {/* Titre */}
