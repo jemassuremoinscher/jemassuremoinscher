@@ -702,6 +702,8 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
                     src={option.iconImage}
                     alt=""
                     aria-hidden="true"
+                    width={64}
+                    height={64}
                     className="h-full w-full object-contain drop-shadow-md"
                     loading="lazy"
                     decoding="async"

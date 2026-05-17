@@ -101,6 +101,8 @@ export default function ContractOptimizerWidget() {
                 src={arthurCar}
                 alt={t("a11y.optimizer.mascotAlt")}
                 aria-hidden="true"
+                width={400}
+                height={400}
                 className="w-full h-full object-contain opacity-[0.18]"
                 loading="lazy"
               />

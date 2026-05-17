@@ -71,7 +71,7 @@ export const HeroQuoteForm = () => {
             {INSURANCE_TYPES.map((t) => (
               <SelectItem key={t.value} value={t.value}>
                 <span className="flex items-center gap-2">
-                  <img src={t.mascot} alt="" className="h-9 w-9 object-contain shrink-0" loading="lazy" decoding="async" />
+                  <img src={t.mascot} alt="" width={36} height={36} className="h-9 w-9 object-contain shrink-0" loading="lazy" decoding="async" />
                   <span>Assurance {t.label}</span>
                 </span>
               </SelectItem>
