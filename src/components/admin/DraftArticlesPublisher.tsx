@@ -62,6 +62,7 @@ const resolveImage = (img: any): string | null => {
 };
 
 export const DraftArticlesPublisher = () => {
+  const { t } = useLanguage();
   const [publishedRows, setPublishedRows] = useState<PublishedRow[]>([]);
   const [seoApproved, setSeoApproved] = useState<any[]>([]);
   const [socialPosts, setSocialPosts] = useState<SocialPost[]>([]);
