@@ -120,23 +120,15 @@ export const getMetaDefaultsForPath = (path: string) => {
   };
 };
 
+// Tout check en échec dont on peut résoudre un pagePath est corrigeable
+// via harmonisation des 4 métadonnées (title/desc/og) en base — solution pérenne
+// car relue par SEOOptimized à chaque rendu et validée par validate*Fix au refresh.
 export const canAutoFixSeoIssue = (issue: { category: string; description: string; file: string }) => {
-  const fingerprint = `${issue.category} ${issue.description}`.toLowerCase();
-  return Boolean(auditFileToPagePath(issue.file)) && (
-    fingerprint.includes("title") ||
-    fingerprint.includes("meta") ||
-    fingerprint.includes("description") ||
-    fingerprint.includes("open graph") ||
-    fingerprint.includes("og")
-  );
+  return Boolean(auditFileToPagePath(issue.file));
 };
 
 export const canAutoFixGeoIssue = (issue: { category: string; description: string; file: string }) => {
-  const fingerprint = `${issue.category} ${issue.description}`.toLowerCase();
-  return Boolean(auditFileToPagePath(issue.file)) && (
-    fingerprint.includes("title") ||
-    fingerprint.includes("geo")
-  );
+  return Boolean(auditFileToPagePath(issue.file));
 };
 
 const upsertPageMetaOverride = async (pagePath: string, payload: { meta_title?: string | null; meta_description?: string | null; og_title?: string | null; og_description?: string | null; }) => {
