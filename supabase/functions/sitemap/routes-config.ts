@@ -236,6 +236,16 @@ export const blogArticles: RouteConfig[] = [
   { path: "/blog/mutuelle-entreprise-2026-guide-complementaire-sante-collective", changefreq: "monthly", priority: 0.9 },
   { path: "/blog/mutuelle-tns-vs-mutuelle-entreprise-2026", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/surcomplementaire-sante-entreprise-2026", changefreq: "monthly", priority: 0.8 },
+  // Verticales 2026 - Lot 2 (Cyber, Sans permis, Camping-car)
+  { path: "/blog/assurance-cyber-2026-guide-entreprise", changefreq: "monthly", priority: 0.9 },
+  { path: "/blog/ransomware-5-reflexes-eviter-pire-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/rgpd-fuite-donnees-assurance-cyber-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/assurance-voiture-sans-permis-2026-guide", changefreq: "monthly", priority: 0.9 },
+  { path: "/blog/vsp-ado-14-ans-permis-am-assurance-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/vsp-suspension-permis-assurance-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/assurance-camping-car-2026-guide-complet", changefreq: "monthly", priority: 0.9 },
+  { path: "/blog/van-amenage-assurance-2026", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/camping-car-hivernage-assurance-2026", changefreq: "monthly", priority: 0.8 },
 ];
 
 // Glossary terms
