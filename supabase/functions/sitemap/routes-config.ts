@@ -109,6 +109,10 @@ export const routes: RouteConfig[] = [
   { path: "/landing/photographe", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/influenceur", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/drone", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/accrobranche", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/evenementiel", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/cordiste-btp", changefreq: "weekly", priority: 0.7 },
+  { path: "/landing/moniteur-sport", changefreq: "weekly", priority: 0.7 },
 
   // Legal Pages
   { path: "/mentions-legales", changefreq: "yearly", priority: 0.3 },
