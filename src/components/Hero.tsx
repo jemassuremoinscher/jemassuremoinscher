@@ -55,25 +55,6 @@ const Hero = () => {
           </span>
         </h1>
 
-        {/* Bulle Arthur — uniquement mobile, au-dessus du form */}
-        <div className="md:hidden mb-4 flex justify-center animate-fade-in-delay">
-          <div className="relative inline-flex items-center gap-2 bg-white rounded-2xl px-4 py-2 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] max-w-[90%]">
-            <img
-              src={arthurMascot}
-              alt={arthurImageAlt}
-              className="w-10 h-10 rounded-full object-cover shrink-0"
-              width={40}
-              height={40}
-              loading="eager"
-              decoding="async"
-            />
-            <p className="text-primary font-bold text-sm leading-tight">
-              {arthurBubble}
-            </p>
-            <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white transform rotate-45" />
-          </div>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center">
           {/* GAUCHE — Form (taille fixe + scroll interne) */}
           <div className="w-full animate-fade-in-up-delay">
