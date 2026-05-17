@@ -44,7 +44,6 @@ type CombinedArticle = {
 };
 
 const buildShortFromTitle = (title: string) => {
-  const { t } = useLanguage();
   const t = title.replace(/\s+/g, " ").trim();
   const safe = t.length > 95 ? `${t.slice(0, 92)}...` : t;
   return `🚨 Et si ${safe.toLowerCase()} vous coûtait plus cher que prévu ? La réponse ici ⬇️`;
