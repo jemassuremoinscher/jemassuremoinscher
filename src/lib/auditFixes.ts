@@ -183,7 +183,7 @@ export const applySeoIssueFix = async (issue: { category: string; description: s
   });
   return { pagePath, message: `Métadonnées SEO harmonisées pour ${pagePath}.` };
 
-  throw new Error("Cette correction SEO nécessite une mise à jour manuelle du template.");
+  
 };
 
 export const validateSeoIssueFix = async (issue: { category: string; description: string; file: string }) => {
