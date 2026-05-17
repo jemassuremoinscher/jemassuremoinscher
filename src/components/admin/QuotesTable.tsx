@@ -67,6 +67,7 @@ interface QuotesTableProps {
 export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProps) => {
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [selectedQuote, setSelectedQuote] = useState<Quote | null>(null);
 
   const { data: agents } = useQuery({
     queryKey: ['sales-agents-list'],
