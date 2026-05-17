@@ -40,9 +40,9 @@ export default function DuelPage() {
                   to={`/comparatif/${d.slug}`}
                   className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 shadow-sm hover:shadow-[var(--shadow-hover)] transition-all group"
                 >
-                  <img src={d.insurerA.logo} alt={d.insurerA.name} className="w-10 h-10 object-contain" loading="lazy" />
+                  <img src={d.insurerA.logo} alt={d.insurerA.name} width={40} height={40} className="w-10 h-10 object-contain" loading="lazy" />
                   <span className="font-black text-primary text-lg">VS</span>
-                  <img src={d.insurerB.logo} alt={d.insurerB.name} className="w-10 h-10 object-contain" loading="lazy" />
+                  <img src={d.insurerB.logo} alt={d.insurerB.name} width={40} height={40} className="w-10 h-10 object-contain" loading="lazy" />
                   <span className="flex-1 font-semibold text-foreground text-sm group-hover:text-primary transition-colors">
                     {d.insurerA.name} vs {d.insurerB.name}
                   </span>
