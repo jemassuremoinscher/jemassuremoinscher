@@ -378,6 +378,58 @@ export const CRMDashboard = () => {
         </Button>
       </div>
 
+      {lead.type === 'callback' && (lead.message || lead.preferred_time) && (
+        <div className="rounded-lg border bg-muted/30 p-4 space-y-2">
+          <p className="text-sm font-semibold">Demande de rappel</p>
+          {lead.preferred_time && (
+            <div className="text-sm">
+              <span className="text-muted-foreground">Créneau préféré : </span>
+              {lead.preferred_time}
+            </div>
+          )}
+          {lead.message && (
+            <div className="text-sm whitespace-pre-wrap">
+              <span className="text-muted-foreground">Message : </span>
+              {lead.message}
+            </div>
+          )}
+        </div>
+      )}
+
+      {lead.type === 'quote' && lead.quote_data && Object.keys(lead.quote_data).length > 0 && (
+        <div className="rounded-lg border bg-muted/30 p-4">
+          <p className="text-sm font-semibold mb-3">
+            Informations du formulaire ({Object.keys(lead.quote_data).length} champs)
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
+            {Object.entries(lead.quote_data).map(([key, value]) => {
+              if (key === 'utm_data' || value === null || value === undefined || value === '') return null;
+              const formatted = formatFieldValue(value);
+              const isLong = formatted.length > 60 || formatted.includes('\n');
+              return (
+                <div
+                  key={key}
+                  className={`flex flex-col gap-0.5 ${isLong ? 'md:col-span-2' : ''}`}
+                >
+                  <span className="text-xs text-muted-foreground">{humanizeKey(key)}</span>
+                  <span className="font-medium break-words whitespace-pre-wrap">{formatted}</span>
+                </div>
+              );
+            })}
+          </div>
+          {lead.quote_data.utm_data && (
+            <details className="mt-3">
+              <summary className="text-xs text-muted-foreground cursor-pointer hover:text-foreground">
+                Données de tracking (UTM)
+              </summary>
+              <pre className="mt-2 text-xs bg-background p-2 rounded overflow-x-auto">
+                {JSON.stringify(lead.quote_data.utm_data, null, 2)}
+              </pre>
+            </details>
+          )}
+        </div>
+      )}
+
       {lead.last_contacted_at && (
         <div className="text-sm text-muted-foreground">
           Dernier contact: {format(new Date(lead.last_contacted_at), 'dd/MM/yyyy à HH:mm', { locale: fr })}
