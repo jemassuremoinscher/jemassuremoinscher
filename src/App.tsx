@@ -61,6 +61,15 @@ const LandingCampingCar = lazy(() => import("./pages/landing/LandingCampingCar")
 const LandingVelo = lazy(() => import("./pages/landing/LandingVelo"));
 const LandingProtectionJuridique = lazy(() => import("./pages/landing/LandingProtectionJuridique"));
 const LandingAutoTemporaire = lazy(() => import("./pages/landing/LandingAutoTemporaire"));
+const AssuranceDecennale = lazy(() => import("./pages/AssuranceDecennale"));
+const AssuranceFlotteAuto = lazy(() => import("./pages/AssuranceFlotteAuto"));
+const AssuranceMutuelleEntreprise = lazy(() => import("./pages/AssuranceMutuelleEntreprise"));
+const AssuranceCyber = lazy(() => import("./pages/AssuranceCyber"));
+const AssuranceSansPermis = lazy(() => import("./pages/AssuranceSansPermis"));
+const AssuranceCampingCar = lazy(() => import("./pages/AssuranceCampingCar"));
+const AssuranceVelo = lazy(() => import("./pages/AssuranceVelo"));
+const AssuranceProtectionJuridique = lazy(() => import("./pages/AssuranceProtectionJuridique"));
+const AssuranceAutoTemporaire = lazy(() => import("./pages/AssuranceAutoTemporaire"));
 const AssuranceAutoMalusse = lazy(() => import("./pages/seo/AssuranceAutoMalusse"));
 const AssuranceJeuneConducteur = lazy(() => import("./pages/seo/AssuranceJeuneConducteur"));
 const MutuelleTNS = lazy(() => import("./pages/seo/MutuelleTNS"));
@@ -252,6 +261,15 @@ const App = () => {
                 <Route path="/assurance-metiers-atypiques" element={<AssuranceMetiersAtypiques />} />
                 <Route path="/assurance-gli" element={<AssuranceGLI />} />
                 <Route path="/assurance-pno" element={<AssurancePNO />} />
+                <Route path="/assurance-decennale" element={<AssuranceDecennale />} />
+                <Route path="/assurance-flotte-auto" element={<AssuranceFlotteAuto />} />
+                <Route path="/assurance-mutuelle-entreprise" element={<AssuranceMutuelleEntreprise />} />
+                <Route path="/assurance-cyber" element={<AssuranceCyber />} />
+                <Route path="/assurance-sans-permis" element={<AssuranceSansPermis />} />
+                <Route path="/assurance-camping-car" element={<AssuranceCampingCar />} />
+                <Route path="/assurance-velo" element={<AssuranceVelo />} />
+                <Route path="/assurance-protection-juridique" element={<AssuranceProtectionJuridique />} />
+                <Route path="/assurance-auto-temporaire" element={<AssuranceAutoTemporaire />} />
                 <Route path="/gestion-locative" element={<GestionLocative />} />
                 <Route path="/qui-sommes-nous" element={<QuiSommesNous />} />
                 <Route path="/nos-partenaires" element={<NosPartenaires />} />
