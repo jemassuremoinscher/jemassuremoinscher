@@ -20,13 +20,13 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const SOURCE_COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4', '#f97316', '#14b8a6', '#6366f1'];
 
 const formatDuration = (seconds: number) => {
-  const { t } = useLanguage();
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
   return `${mins}m ${secs}s`;
 };
 
 export const GoogleAnalyticsDashboard = () => {
+  const { t } = useLanguage();
   const [dateRange, setDateRange] = useState('1daysAgo');
 
   const { data, isLoading, error, refetch, isRefetching } = useQuery({
