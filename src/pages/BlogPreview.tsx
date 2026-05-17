@@ -42,6 +42,8 @@ const BlogPreview = () => {
                     <img
                       src={article.image}
                       alt={article.title}
+                      width={800}
+                      height={450}
                       className="w-full h-48 md:h-full object-cover"
                       loading="lazy"
                     />
