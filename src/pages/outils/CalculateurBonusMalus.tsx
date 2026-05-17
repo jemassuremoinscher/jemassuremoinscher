@@ -60,7 +60,6 @@ function useAnimatedValue(target: number, duration = 600): number {
     startRef.current = { value: target, time: startTime };
 
     function animate(now: number) {
-  const { t } = useLanguage();
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
