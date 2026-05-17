@@ -11,7 +11,6 @@ interface AnimatedCounterProps {
 }
 
 function AnimatedCounter({ value, suffix = "", prefix = "", duration = 600 }: AnimatedCounterProps) {
-  const { t } = useLanguage();
   const [display, setDisplay] = useState(value);
   const ref = useRef<number | null>(null);
 
