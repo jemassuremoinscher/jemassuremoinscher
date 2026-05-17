@@ -262,7 +262,7 @@ const SERPPreview = () => {
             <p className="text-xs text-muted-foreground mb-2">📱 Aperçu mobile</p>
             <div className="bg-white rounded-lg p-4 border border-border/50 max-w-sm font-[Arial,sans-serif]">
               <div className="flex items-center gap-2 mb-1">
-                <img src="/favicon.png" alt="favicon" className="w-6 h-6 rounded-full shrink-0 object-contain" />
+                <img src="/favicon.png" alt="favicon" width={24} height={24} className="w-6 h-6 rounded-full shrink-0 object-contain" />
                 <p className="text-xs text-[#4d5156] truncate">{url}</p>
               </div>
               <h3 className="text-base text-[#1a0dab] leading-snug mt-1 mb-1">{truncatedTitle}</h3>
