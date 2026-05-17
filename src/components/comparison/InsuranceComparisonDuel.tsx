@@ -209,7 +209,7 @@ export default function InsuranceComparisonDuel({ duel }: Props) {
           {[a, b].map((insurer) => (
             <div key={insurer.slug} className="rounded-xl bg-muted/30 p-4">
               <p className="font-semibold text-foreground text-sm mb-2 flex items-center gap-2">
-                <img src={insurer.logo} alt={`Logo ${insurer.name}`} className="w-5 h-5 object-contain" loading="lazy" />
+                <img src={insurer.logo} alt={`Logo ${insurer.name}`} width={20} height={20} className="w-5 h-5 object-contain" loading="lazy" />
                 {insurer.name}
               </p>
               <div className="space-y-1">
