@@ -65,13 +65,22 @@ const Header = () => {
     { to: "/assurance-moto", label: t('insurance.moto'), icon: Bike },
     { to: "/assurance-habitation", label: t('insurance.home'), icon: Home },
     { to: "/assurance-sante", label: t('insurance.health'), icon: Heart },
-    { to: "/assurance-animaux", label: t('insurance.pets'), icon: Heart }
+    { to: "/assurance-animaux", label: t('insurance.pets'), icon: Heart },
+    { to: "/landing/sans-permis", label: "Voiture sans permis", icon: Car },
+    { to: "/landing/camping-car", label: "Camping-car & van", icon: Car },
+    { to: "/landing/velo", label: "Vélo & VAE", icon: Bike },
+    { to: "/landing/auto-temporaire", label: "Auto temporaire", icon: Car },
+    { to: "/landing/protection-juridique", label: "Protection juridique", icon: FileText }
   ];
 
   const assurancesPro = [
     { to: "/assurance-rc-pro", label: t('insurance.rcPro'), icon: Building2 },
     { to: "/assurance-mrp", label: t('insurance.mrp'), icon: Building2 },
-    { to: "/assurance-metiers-atypiques", label: "Métiers Atypiques", icon: Building2 }
+    { to: "/assurance-metiers-atypiques", label: "Métiers Atypiques", icon: Building2 },
+    { to: "/landing/decennale", label: "Garantie décennale", icon: Building2 },
+    { to: "/landing/flotte-auto", label: "Flotte auto", icon: Car },
+    { to: "/landing/mutuelle-entreprise", label: "Mutuelle entreprise", icon: Heart },
+    { to: "/landing/cyber", label: "Cyber-risques", icon: Building2 }
   ];
 
   const assurancesVieEpargne = [
