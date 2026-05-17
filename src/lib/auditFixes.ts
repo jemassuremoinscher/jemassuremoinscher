@@ -212,7 +212,11 @@ export const validateSeoIssueFix = async (issue: { category: string; description
     return data.meta_title === meta.title && data.og_title === meta.ogTitle;
   }
 
-  return false;
+  // Fallback : harmonisation complète des 4 métadonnées
+  return data.meta_title === meta.title
+    && data.meta_description === meta.description
+    && data.og_title === meta.ogTitle
+    && data.og_description === meta.ogDescription;
 };
 
 export const applyGeoIssueFix = async (issue: { category: string; description: string; file: string }) => {
