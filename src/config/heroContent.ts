@@ -12,10 +12,10 @@
 export const heroContent = {
   /** Slogan principal — affiché dans le <h1> du Hero (3 lignes) */
   slogan: {
-    line1Prefix: "Comparez votre assurance avec ", // texte avant "Arthur"
-    line1Highlight: "Arthur", // mot souligné (la mascotte)
-    line1Suffix: ",", // ponctuation après Arthur
-    line2: "et payez moins cher,",
+    line1: "Comparez votre assurance",
+    line2Prefix: "avec ",
+    line2Highlight: "Arthur",
+    line2Suffix: ", et payez moins cher,",
     line3: "sans compromis.", // mis en jaune + ondulation
   },
 
