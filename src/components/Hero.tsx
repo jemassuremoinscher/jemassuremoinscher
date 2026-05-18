@@ -57,16 +57,18 @@ const Hero = () => {
             </div>
           </div>
 
-          <h1 className="flex-1 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.5rem] font-black text-white text-center md:text-left leading-tight font-[Inter] animate-fade-in-up">
-            {slogan.line1Prefix}
-            <span className="underline decoration-white decoration-[6px] md:decoration-8 underline-offset-[6px] md:underline-offset-8">
-              {slogan.line1Highlight}
+          <h1 className="flex-1 min-w-0 text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] font-black text-white text-center md:text-left leading-tight font-[Inter] animate-fade-in-up [text-wrap:balance]">
+            <span className="md:whitespace-nowrap">
+              {slogan.line1Prefix}
+              <span className="underline decoration-white decoration-[6px] md:decoration-8 underline-offset-[6px] md:underline-offset-8">
+                {slogan.line1Highlight}
+              </span>
+              {slogan.line1Suffix}
             </span>
-            {slogan.line1Suffix}
             <br />
-            {slogan.line2}
+            <span className="md:whitespace-nowrap">{slogan.line2}</span>
             <br />
-            <span className="relative inline-block">
+            <span className="relative inline-block md:whitespace-nowrap">
               <span className="relative z-10" style={{ color: "#f5b80a" }}>{slogan.line3}</span>
               <svg
                 aria-hidden="true"
@@ -81,7 +83,7 @@ const Hero = () => {
         </div>
 
         {/* Form — élargi et centré sur md+ */}
-        <div className="w-full md:max-w-3xl lg:max-w-4xl md:mx-auto animate-fade-in-up-delay">
+        <div className="w-full md:max-w-4xl lg:max-w-5xl md:mx-auto animate-fade-in-up-delay">
           <Suspense
             fallback={
               <div aria-hidden="true" className="h-[600px] rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50" />
