@@ -12,10 +12,10 @@ const Hero = () => {
   const { language, t } = useLanguage();
   const slogan = language === "en"
     ? {
-        line1Prefix: t("hero.slogan.line1Prefix"),
-        line1Highlight: t("hero.slogan.line1Highlight"),
-        line1Suffix: t("hero.slogan.line1Suffix"),
-        line2: t("hero.slogan.line2"),
+        line1: t("hero.slogan.line1"),
+        line2Prefix: t("hero.slogan.line2Prefix"),
+        line2Highlight: t("hero.slogan.line2Highlight"),
+        line2Suffix: t("hero.slogan.line2Suffix"),
         line3: t("hero.slogan.line3"),
       }
     : heroContent.slogan;
@@ -34,22 +34,22 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">
         {/* Top row: Arthur (md+) à gauche du H1 */}
-        <div className="flex flex-col md:flex-row md:items-center md:gap-8 lg:gap-10 mb-10 md:mb-12">
+        <div className="flex flex-col md:flex-row md:items-center md:gap-6 lg:gap-10 mb-10 md:mb-12">
           {/* Arthur + bulle — desktop & tablet uniquement */}
           <div className="hidden md:flex shrink-0 justify-center items-center animate-fade-in">
             <div className="relative inline-block">
               <img
                 src={arthurMascot}
                 alt={arthurImageAlt}
-                className="w-40 lg:w-52 h-auto drop-shadow-2xl animate-hero-float"
-                width={208}
-                height={260}
+                className="w-32 lg:w-48 h-auto drop-shadow-2xl animate-hero-float"
+                width={192}
+                height={240}
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"
               />
-              <div className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 bg-white rounded-2xl px-4 py-2 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] animate-fade-in-delay">
-                <p className="text-primary font-bold text-sm whitespace-nowrap">
+              <div className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 bg-white rounded-2xl px-3 py-1.5 lg:px-4 lg:py-2 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] animate-fade-in-delay">
+                <p className="text-primary font-bold text-xs lg:text-sm whitespace-nowrap">
                   {arthurBubble}
                 </p>
                 <div className="absolute -bottom-1.5 left-4 w-3 h-3 bg-white transform rotate-45" />
@@ -57,18 +57,16 @@ const Hero = () => {
             </div>
           </div>
 
-          <h1 className="flex-1 min-w-0 text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.75rem] xl:text-[3.25rem] font-black text-white text-center md:text-left leading-tight font-[Inter] animate-fade-in-up [text-wrap:balance]">
-            <span className="md:whitespace-nowrap">
-              {slogan.line1Prefix}
-              <span className="underline decoration-white decoration-[6px] md:decoration-8 underline-offset-[6px] md:underline-offset-8">
-                {slogan.line1Highlight}
-              </span>
-              {slogan.line1Suffix}
+          <h1 className="flex-1 min-w-0 text-2xl sm:text-3xl md:text-[1.75rem] lg:text-5xl xl:text-[3.5rem] font-black text-white text-center md:text-left leading-tight font-[Inter] animate-fade-in-up">
+            {slogan.line1}
+            <br />
+            {slogan.line2Prefix}
+            <span className="underline decoration-white decoration-[6px] md:decoration-8 underline-offset-[6px] md:underline-offset-8">
+              {slogan.line2Highlight}
             </span>
+            {slogan.line2Suffix}
             <br />
-            <span className="md:whitespace-nowrap">{slogan.line2}</span>
-            <br />
-            <span className="relative inline-block md:whitespace-nowrap">
+            <span className="relative inline-block">
               <span className="relative z-10" style={{ color: "#f5b80a" }}>{slogan.line3}</span>
               <svg
                 aria-hidden="true"
