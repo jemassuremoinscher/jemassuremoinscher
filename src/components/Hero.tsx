@@ -33,49 +33,17 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.5rem] font-black text-white text-center mb-10 md:mb-14 leading-tight font-[Inter] animate-fade-in-up">
-          {slogan.line1Prefix}
-          <span className="underline decoration-white decoration-[6px] md:decoration-8 underline-offset-[6px] md:underline-offset-8">
-            {slogan.line1Highlight}
-          </span>
-          {slogan.line1Suffix}
-          <br />
-          {slogan.line2}
-          <br />
-          <span className="relative inline-block">
-            <span className="relative z-10" style={{ color: "#f5b80a" }}>{slogan.line3}</span>
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 200 14"
-              preserveAspectRatio="none"
-              className="absolute left-0 right-0 -bottom-1 md:-bottom-2 w-full h-3 md:h-4"
-            >
-              <path d="M3 8 L 197 6" stroke="#f5b80a" strokeWidth="9" strokeLinecap="round" fill="none" opacity="0.9" />
-            </svg>
-          </span>
-        </h1>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-center">
-          {/* GAUCHE — Form (taille fixe + scroll interne) */}
-          <div className="w-full animate-fade-in-up-delay">
-            <Suspense
-              fallback={
-                <div aria-hidden="true" className="h-[600px] rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50" />
-              }
-            >
-              <MultiStepQuoteForm insuranceType="comparateur" className="!max-w-none" fixedHeight />
-            </Suspense>
-          </div>
-
-          {/* DROITE — Arthur centré */}
-          <div className="hidden md:flex justify-center items-center animate-fade-in">
+        {/* Top row: Arthur (md+) à gauche du H1 */}
+        <div className="flex flex-col md:flex-row md:items-center md:gap-8 lg:gap-10 mb-10 md:mb-12">
+          {/* Arthur + bulle — desktop & tablet uniquement */}
+          <div className="hidden md:flex shrink-0 justify-center items-center animate-fade-in">
             <div className="relative inline-block">
               <img
                 src={arthurMascot}
                 alt={arthurImageAlt}
-                className="w-56 lg:w-72 h-auto drop-shadow-2xl animate-hero-float"
-                width={288}
-                height={360}
+                className="w-40 lg:w-52 h-auto drop-shadow-2xl animate-hero-float"
+                width={208}
+                height={260}
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"
@@ -88,6 +56,39 @@ const Hero = () => {
               </div>
             </div>
           </div>
+
+          <h1 className="flex-1 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[3.5rem] font-black text-white text-center md:text-left leading-tight font-[Inter] animate-fade-in-up">
+            {slogan.line1Prefix}
+            <span className="underline decoration-white decoration-[6px] md:decoration-8 underline-offset-[6px] md:underline-offset-8">
+              {slogan.line1Highlight}
+            </span>
+            {slogan.line1Suffix}
+            <br />
+            {slogan.line2}
+            <br />
+            <span className="relative inline-block">
+              <span className="relative z-10" style={{ color: "#f5b80a" }}>{slogan.line3}</span>
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 200 14"
+                preserveAspectRatio="none"
+                className="absolute left-0 right-0 -bottom-1 md:-bottom-2 w-full h-3 md:h-4"
+              >
+                <path d="M3 8 L 197 6" stroke="#f5b80a" strokeWidth="9" strokeLinecap="round" fill="none" opacity="0.9" />
+              </svg>
+            </span>
+          </h1>
+        </div>
+
+        {/* Form — élargi et centré sur md+ */}
+        <div className="w-full md:max-w-3xl lg:max-w-4xl md:mx-auto animate-fade-in-up-delay">
+          <Suspense
+            fallback={
+              <div aria-hidden="true" className="h-[600px] rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50" />
+            }
+          >
+            <MultiStepQuoteForm insuranceType="comparateur" className="!max-w-none" fixedHeight />
+          </Suspense>
         </div>
       </div>
     </section>
