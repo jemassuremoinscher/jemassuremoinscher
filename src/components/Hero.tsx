@@ -61,9 +61,7 @@ const Hero = () => {
             {slogan.line1}
             <br />
             {slogan.line2Prefix}
-            <span className="underline decoration-white decoration-[6px] md:decoration-8 underline-offset-[6px] md:underline-offset-8">
-              {slogan.line2Highlight}
-            </span>
+            <span>{slogan.line2Highlight}</span>
             {slogan.line2Suffix}
             <br />
             <span className="relative inline-block">
