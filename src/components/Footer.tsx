@@ -147,8 +147,8 @@ const Footer = () => {
                 src={arthurRunning}
                 alt={t('footer.mascotAlt')}
                 className="h-14 w-auto"
-                width={56}
-                height={56}
+                width={176}
+                height={220}
                 loading="lazy"
                 decoding="async"
               />

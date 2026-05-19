@@ -130,8 +130,8 @@ const Header = () => {
                   src={arthurThumbsUp} 
                   alt={t("a11y.header.mascotAlt")} 
                   className="h-9 w-9 sm:h-10 sm:w-10 object-contain shrink-0"
-                  width={40}
-                  height={40}
+                  width={176}
+                  height={220}
                   loading="eager"
                   decoding="async"
                 />
