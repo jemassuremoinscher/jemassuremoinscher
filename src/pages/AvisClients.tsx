@@ -1,6 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOOptimized from "@/components/SEOOptimized";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import ArthurHero from "@/components/insurance/ArthurHero";
 import { Star, Quote, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
