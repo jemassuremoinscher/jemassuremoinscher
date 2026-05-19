@@ -1,6 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOOptimized from "@/components/SEOOptimized";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import ArthurHero from "@/components/insurance/ArthurHero";
 import { Star, Quote, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -85,28 +87,31 @@ const AvisClients = () => {
       />
       <Header />
       
-      <main>
+      <main id="main-content">
+        <div className="container mx-auto px-4 pt-4">
+          <Breadcrumbs items={[{ label: t('reviewsPage.title') }]} />
+        </div>
+
         {/* Hero */}
-        <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
-          <div className="container mx-auto px-4 py-14 md:py-20">
-            <div className="max-w-[65%] sm:max-w-[70%] md:max-w-2xl relative z-10">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                {t('reviewsPage.title')}
-              </h1>
-              <p className="text-base md:text-lg text-white/80 leading-relaxed">
-                {t('reviewsPage.subtitle')}
-              </p>
+        <section className="relative pt-6 pb-10 md:pt-8 md:pb-14">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <ArthurHero
+                imageSrc={arthurThumbsUp}
+                imageAlt={t("a11y.avis.mascotAlt1")}
+                title={t('reviewsPage.title')}
+                subtitle={t('reviewsPage.subtitle')}
+                ctaLabel={t('insPage.compareNowBtn')}
+                onCtaClick={() => { window.location.href = "/comparateur"; }}
+                savingsValue={`${geoContent.trust.ratingValueLabel}/5`}
+                savingsLabel="Note Google"
+                reviewsValue={geoContent.trust.reviewCountLabel}
+                reviewsLabel="avis vérifiés"
+              />
             </div>
-            <img
-              src={arthurThumbsUp}
-              alt={t("a11y.avis.mascotAlt1")}
-              className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none"
-              width={224}
-              height={280}
-              loading="lazy"
-            />
           </div>
         </section>
+
 
         <div className="container mx-auto px-4 py-10 md:py-14">
           <div className="max-w-5xl mx-auto space-y-10">
