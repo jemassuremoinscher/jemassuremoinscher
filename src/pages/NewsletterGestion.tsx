@@ -33,16 +33,11 @@ const NewsletterGestion = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
-    
-    try {
-      // Use Edge Function for secure unsubscription (service role handles DB access)
-      const { data, error } = await supabase.functions.invoke('newsletter-subscribe', {
-        body: { email: values.email.trim().toLowerCase() },
-        headers: { 'Content-Type': 'application/json' },
-        method: 'POST',
-      });
 
-      // Parse query params for action - need to call with action=unsubscribe
+    try {
+      // Request an unsubscribe confirmation email. The edge function always
+      // returns success (to avoid leaking subscriber existence) and emails
+      // a one-time token link that completes the unsubscription.
       const response = await fetch(
         `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/newsletter-subscribe?action=unsubscribe`,
         {
@@ -57,11 +52,11 @@ const NewsletterGestion = () => {
 
       const result = await response.json();
 
-      if (!response.ok || !result.success) {
-        toast.error(result.message || 'Aucun abonnement trouvé avec cet email ou déjà désinscrit');
+      if (!response.ok) {
+        toast.error(result.message || 'Erreur lors de la demande');
       } else {
         setIsSuccess(true);
-        toast.success('Vous avez été désinscrit(e) avec succès de notre newsletter');
+        toast.success("Si cet email est abonné, un lien de confirmation vient d'être envoyé.");
       }
     } catch (error) {
       console.error('Error:', error);
@@ -70,6 +65,7 @@ const NewsletterGestion = () => {
       setIsLoading(false);
     }
   };
+
 
   return (
     <>
