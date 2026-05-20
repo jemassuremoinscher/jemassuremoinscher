@@ -94,14 +94,14 @@ const NewsletterGestion = () => {
               <Card>
                 <CardContent className="py-12 text-center">
                   <CheckCircle2 className="h-16 w-16 text-green-600 mx-auto mb-4" />
-                  <h2 className="text-2xl font-bold mb-2">Désinscription confirmée</h2>
+                  <h2 className="text-2xl font-bold mb-2">Vérifiez votre boîte mail</h2>
                   <p className="text-muted-foreground mb-6">
-                    Vous avez été désinscrit(e) avec succès de notre newsletter.
+                    Si cette adresse est abonnée, un email vient de vous être envoyé avec un lien pour confirmer votre désinscription.
                   </p>
                   <p className="text-sm text-muted-foreground mb-6">
-                    Vous ne recevrez plus d'emails promotionnels de notre part. 
-                    Nous conservons votre adresse uniquement pour respecter votre choix.
+                    Cette étape de confirmation protège votre abonnement contre toute désinscription non sollicitée.
                   </p>
+
                   <Button onClick={() => setIsSuccess(false)} variant="outline">
                     Faire une nouvelle demande
                   </Button>
