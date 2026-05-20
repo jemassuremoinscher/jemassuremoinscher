@@ -18,6 +18,7 @@ import { trackGoogleAdsConversionWithParams } from "@/utils/googleAdsTracking";
 import { trackMetaLead } from "@/utils/metaPixelTracking";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { normalizeInsuranceTypeStrict } from "@/utils/insuranceTypeNormalizer";
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 const COVERAGE_OPTIONS: Record<string, { value: string; labelKey: string }[]> = {
   auto: [
@@ -158,8 +159,7 @@ export const QuoteRequestForm = () => {
 
       if (error) throw error;
 
-      const { error: emailError } = await supabase.functions.invoke('send-quote-email', {
-        body: {
+      const { error: emailError } = await invokeSendQuoteEmail({
           name: data.fullName,
           email: data.email,
           phone: data.phone,
@@ -170,8 +170,7 @@ export const QuoteRequestForm = () => {
             coverageLevel: data.coverageLevel || 'Non renseigné',
           },
           estimatedPrice: 35,
-        },
-      });
+        },);
 
       if (emailError) {
         console.error("Error sending email:", emailError);

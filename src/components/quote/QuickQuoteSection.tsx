@@ -14,6 +14,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-idea.webp";
 import { trackMetaLead } from "@/utils/metaPixelTracking";
 import { normalizeInsuranceTypeStrict } from "@/utils/insuranceTypeNormalizer";
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 type InsuranceType = "auto" | "moto" | "habitation" | "sante" | "pret" | "animaux" | "vie" | "prevoyance" | "rc_pro" | "mrp" | "gli" | "pno" | "";
 
@@ -227,10 +228,8 @@ const QuickQuoteSection = () => {
         status: 'pending',
       });
       if (error) throw error;
-      await supabase.functions.invoke('send-quote-email', {
-        body: { name: 'Prospect Devis Rapide', email: quoteData.email, phone: quoteData.phone, type: quoteData.insuranceType,
-          details: { source: 'quick_quote', profileOption: quoteData.profileOption, coverageLevel: quoteData.coverageLevel } },
-      }).catch(err => console.error('Email error:', err));
+      await invokeSendQuoteEmail({ name: 'Prospect Devis Rapide', email: quoteData.email, phone: quoteData.phone, type: quoteData.insuranceType,
+          details: { source: 'quick_quote', profileOption: quoteData.profileOption, coverageLevel: quoteData.coverageLevel } },).catch(err => console.error('Email error:', err));
       trackConversion('quick_quote', 150);
       trackEvent('quote_request', { category: 'quick_quote', label: `${quoteData.insuranceType}_${quoteData.profileOption}_${quoteData.coverageLevel}`, insurance_type: quoteData.insuranceType, value: 150 });
       trackMetaLead({

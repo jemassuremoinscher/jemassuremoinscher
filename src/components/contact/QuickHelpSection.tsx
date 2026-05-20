@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 const PHONE_NUMBER = "+33493881684";
 const PHONE_DISPLAY = "04 93 88 16 84";
@@ -27,9 +28,7 @@ const QuickHelpSection = () => {
         full_name: formData.prenom, email: formData.email, phone: formData.phone, preferred_time: "morning", message: formData.sujet, status: "pending",
       });
       if (error) throw error;
-      await supabase.functions.invoke('send-quote-email', {
-        body: { name: formData.prenom, email: formData.email, phone: formData.phone, type: 'Contact rapide', details: { source: 'quick_help', message: formData.sujet }, estimatedPrice: 0 },
-      }).catch(err => console.error('Email notification error:', err));
+      await invokeSendQuoteEmail({ name: formData.prenom, email: formData.email, phone: formData.phone, type: 'Contact rapide', details: { source: 'quick_help', message: formData.sujet }, estimatedPrice: 0 },).catch(err => console.error('Email notification error:', err));
       toast.success("Message envoyé ! Nous vous répondons rapidement.");
       setFormData({ prenom: "", email: "", phone: "", sujet: "" });
     } catch (error) {

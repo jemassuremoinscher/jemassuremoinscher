@@ -19,6 +19,7 @@ import { toast } from "sonner";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { normalizeInsuranceType } from "@/utils/insuranceTypeNormalizer";
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 const subscriptionSchema = z.object({
   fullName: z.string().trim().min(2, "Le nom doit contenir au moins 2 caractères").max(100, "Le nom ne peut pas dépasser 100 caractères"),
@@ -74,14 +75,12 @@ export const SubscriptionModal = ({ open, onOpenChange, offerDetails }: Subscrip
       });
       if (error) throw error;
 
-      const { error: emailError } = await supabase.functions.invoke("send-quote-email", {
-        body: {
+      const { error: emailError } = await invokeSendQuoteEmail({
           name: data.fullName, email: data.email, phone: data.phone,
           type: offerDetails.insuranceType,
           details: { insurer: offerDetails.insurer, price: offerDetails.price, coverage: offerDetails.coverage, source: "comparateur" },
           estimatedPrice: offerDetails.price,
-        },
-      });
+        },);
       if (emailError) console.error("Error sending email:", emailError);
 
       setIsSuccess(true);
