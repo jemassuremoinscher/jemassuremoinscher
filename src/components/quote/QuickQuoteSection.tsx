@@ -14,6 +14,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-idea.webp";
 import { trackMetaLead } from "@/utils/metaPixelTracking";
 import { normalizeInsuranceTypeStrict } from "@/utils/insuranceTypeNormalizer";
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 type InsuranceType = "auto" | "moto" | "habitation" | "sante" | "pret" | "animaux" | "vie" | "prevoyance" | "rc_pro" | "mrp" | "gli" | "pno" | "";
 

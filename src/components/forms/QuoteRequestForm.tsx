@@ -18,6 +18,7 @@ import { trackGoogleAdsConversionWithParams } from "@/utils/googleAdsTracking";
 import { trackMetaLead } from "@/utils/metaPixelTracking";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { normalizeInsuranceTypeStrict } from "@/utils/insuranceTypeNormalizer";
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 const COVERAGE_OPTIONS: Record<string, { value: string; labelKey: string }[]> = {
   auto: [

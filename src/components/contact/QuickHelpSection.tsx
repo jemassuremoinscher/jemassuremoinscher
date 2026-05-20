@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 const PHONE_NUMBER = "+33493881684";
 const PHONE_DISPLAY = "04 93 88 16 84";

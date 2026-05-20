@@ -52,6 +52,7 @@ import logoGenerali from '@/assets/logos/generali-new.png';
 import logoAcheel from '@/assets/logos/acheel.webp';
 import logoSwisslife from '@/assets/logos/swisslife.webp';
 import logoAon from '@/assets/logos/aon.webp';
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 const mascotImages: Record<InsuranceType, string> = {
   auto: arthurCar,

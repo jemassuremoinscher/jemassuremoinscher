@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 export const InsuranceQuiz = () => {
   const { t } = useLanguage();

@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 const commentSchema = z.object({
   authorName: z.string().trim().min(2).max(100),

@@ -8,6 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 interface Message { role: "user" | "assistant"; content: string; }
 interface TransferDialogProps { isOpen: boolean; onClose: () => void; messages: Message[]; }

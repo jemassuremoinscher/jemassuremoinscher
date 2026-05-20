@@ -15,6 +15,7 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { useHoneypot } from "@/hooks/useHoneypot";
 import { trackGoogleAdsConversion } from "@/utils/googleAdsTracking";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 const callbackSchema = z.object({
   fullName: z.string().trim().min(2, "Le nom doit contenir au moins 2 caractères").max(100),

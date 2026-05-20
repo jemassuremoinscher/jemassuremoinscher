@@ -13,6 +13,7 @@ import { useAnalytics } from '@/hooks/useAnalytics';
 import { useHoneypot } from '@/hooks/useHoneypot';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { normalizeInsuranceTypeStrict } from '@/utils/insuranceTypeNormalizer';
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 const simplifiedLeadSchema = z.object({
   fullName: z.string().trim().min(2, 'Nom requis').max(100),
