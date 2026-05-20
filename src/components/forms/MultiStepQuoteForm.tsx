@@ -361,16 +361,14 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       if (error) throw error;
 
       // Send email
-      await supabase.functions.invoke('send-quote-email', {
-        body: {
+      await invokeSendQuoteEmail({
           name: contactData.fullName,
           email: contactData.email,
           phone: contactData.phone,
           type: insType,
           details: formData,
           estimatedPrice: 35,
-        },
-      }).catch(console.error);
+        },).catch(console.error);
 
       setIsSuccess(true);
       reachedSubmitRef.current = true;

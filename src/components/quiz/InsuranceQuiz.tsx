@@ -75,9 +75,7 @@ export const InsuranceQuiz = () => {
       const recommendations = getRecommendation();
       const { error } = await supabase.from('quiz_leads' as any).insert({ full_name: fullName, email, answers, recommendations: recommendations.map((r: any) => r?.title).join(', ') });
       if (error) throw error;
-      await supabase.functions.invoke('send-quote-email', {
-        body: { name: fullName, email, phone: '', type: 'Quiz assurance', details: { source: 'quiz', answers, recommendations: recommendations.map((r: any) => r?.title).join(', ') }, estimatedPrice: 0 },
-      }).catch(err => console.error('Email notification error:', err));
+      await invokeSendQuoteEmail({ name: fullName, email, phone: '', type: 'Quiz assurance', details: { source: 'quiz', answers, recommendations: recommendations.map((r: any) => r?.title).join(', ') }, estimatedPrice: 0 },).catch(err => console.error('Email notification error:', err));
       trackConversion('quiz_complete', 10);
       trackEvent('quote_request', { category: 'quiz', label: 'Quiz completed' });
       toast.success(t('insPage.toast.success'));

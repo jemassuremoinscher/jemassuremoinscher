@@ -48,9 +48,7 @@ export const CommentsSection = ({ articleSlug }: CommentsSectionProps) => {
     try {
       const { error } = await supabase.from("blog_comments").insert({ article_slug: articleSlug, author_name: data.authorName, author_email: data.authorEmail, content: data.content, status: "pending" });
       if (error) throw error;
-      await supabase.functions.invoke('send-quote-email', {
-        body: { name: data.authorName, email: data.authorEmail, phone: '', type: 'Commentaire blog', details: { source: 'blog_comment', articleSlug, content: data.content }, estimatedPrice: 0 },
-      }).catch(err => console.error('Email notification error:', err));
+      await invokeSendQuoteEmail({ name: data.authorName, email: data.authorEmail, phone: '', type: 'Commentaire blog', details: { source: 'blog_comment', articleSlug, content: data.content }, estimatedPrice: 0 },).catch(err => console.error('Email notification error:', err));
       toast.success(t('comments.successTitle'), { description: t('comments.successDesc') });
       form.reset();
     } catch (error) { console.error("Error submitting comment:", error); toast.error(t('insPage.toast.error')); }

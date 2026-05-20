@@ -75,14 +75,12 @@ export const SubscriptionModal = ({ open, onOpenChange, offerDetails }: Subscrip
       });
       if (error) throw error;
 
-      const { error: emailError } = await supabase.functions.invoke("send-quote-email", {
-        body: {
+      const { error: emailError } = await invokeSendQuoteEmail({
           name: data.fullName, email: data.email, phone: data.phone,
           type: offerDetails.insuranceType,
           details: { insurer: offerDetails.insurer, price: offerDetails.price, coverage: offerDetails.coverage, source: "comparateur" },
           estimatedPrice: offerDetails.price,
-        },
-      });
+        },);
       if (emailError) console.error("Error sending email:", emailError);
 
       setIsSuccess(true);

@@ -53,7 +53,7 @@ export const SimplifiedLeadForm = ({ insuranceType, insuranceLabel }: Simplified
       const utmData = { source: urlParams.get('utm_source') || 'direct', medium: urlParams.get('utm_medium') || 'organic', campaign: urlParams.get('utm_campaign') || 'none', term: urlParams.get('utm_term') || null, content: urlParams.get('utm_content') || null };
       const { error } = await supabase.from('insurance_quotes').insert({ insurance_type: canonicalType, full_name: data.fullName, email: data.email, phone: data.phone, quote_data: { source: `landing_${canonicalType}`, utm_data: utmData }, status: 'pending' });
       if (error) throw error;
-      const { error: emailError } = await supabase.functions.invoke('send-quote-email', { body: { name: data.fullName, email: data.email, phone: data.phone, type: insuranceType, details: { source: `landing_${insuranceType}`, utm: utmData }, estimatedPrice: 35 } });
+      const { error: emailError } = await invokeSendQuoteEmail({ name: data.fullName, email: data.email, phone: data.phone, type: insuranceType, details: { source: `landing_${insuranceType}`, utm: utmData }, estimatedPrice: 35 });
       if (emailError) console.error("Error sending email:", emailError);
       trackConversion(`landing_${insuranceType}`, 200);
       trackEvent('quote_request', { category: 'landing_page', label: `landing_${insuranceType}`, insurance_type: insuranceType, value: 200 });
