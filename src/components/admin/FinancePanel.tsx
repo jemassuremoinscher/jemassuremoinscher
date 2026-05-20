@@ -1,13 +1,41 @@
+import { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Lock, FileSpreadsheet, TrendingUp, Percent } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-
-const OWNER_EMAIL = "contact@jemassuremoinscher.fr";
+import { supabase } from "@/integrations/supabase/client";
 
 export const FinancePanel = () => {
   const { user } = useAuth();
-  const isOwner = (user?.email || "").toLowerCase() === OWNER_EMAIL.toLowerCase();
+  const [isOwner, setIsOwner] = useState(false);
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    const check = async () => {
+      if (!user?.id) {
+        setIsOwner(false);
+        setChecking(false);
+        return;
+      }
+      // Server-side authorization: requires an explicit 'owner' role row in user_roles.
+      // RLS on user_roles restricts SELECT to the authenticated user's own rows,
+      // so the result cannot be spoofed from the client.
+      const { data, error } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", user.id)
+        .eq("role", "owner" as any)
+        .maybeSingle();
+      if (cancelled) return;
+      setIsOwner(!error && !!data);
+      setChecking(false);
+    };
+    check();
+    return () => { cancelled = true; };
+  }, [user?.id]);
+
+  if (checking) return null;
 
   if (!isOwner) {
     return (
