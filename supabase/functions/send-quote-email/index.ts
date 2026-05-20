@@ -74,6 +74,29 @@ function validateQuoteRequest(data: any): { valid: boolean; errors: string[] } {
   return { valid: errors.length === 0, errors };
 }
 
+async function verifyCaptcha(token: string, ip: string): Promise<boolean> {
+  const secret = Deno.env.get("RECAPTCHA_SECRET_KEY");
+  if (!secret) {
+    console.error("RECAPTCHA_SECRET_KEY not configured — rejecting request");
+    return false;
+  }
+  try {
+    const params = new URLSearchParams({ secret, response: token });
+    if (ip && ip !== "unknown") params.append("remoteip", ip);
+    const res = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: params.toString(),
+    });
+    const data = await res.json();
+    // v3 returns score 0..1 — accept 0.3+ to keep false-positive rate low
+    return Boolean(data?.success) && (typeof data?.score !== "number" || data.score >= 0.3);
+  } catch (e) {
+    console.error("reCAPTCHA verification failed:", e);
+    return false;
+  }
+}
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -84,6 +107,23 @@ const handler = async (req: Request): Promise<Response> => {
     const clientIP = req.headers.get('x-forwarded-for')?.split(',')[0] || 
                      req.headers.get('x-real-ip') || 
                      'unknown';
+
+    // Verify reCAPTCHA v3 token (required for all public callers)
+    const captchaToken = req.headers.get("x-captcha-token") || "";
+    if (!captchaToken) {
+      return new Response(
+        JSON.stringify({ error: "Missing captcha token" }),
+        { status: 401, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+    const captchaOk = await verifyCaptcha(captchaToken, clientIP);
+    if (!captchaOk) {
+      console.warn(`reCAPTCHA rejected for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ error: "Captcha verification failed" }),
+        { status: 403, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
 
     // Check rate limit
     if (!checkRateLimit(clientIP)) {
@@ -96,6 +136,7 @@ const handler = async (req: Request): Promise<Response> => {
         }
       );
     }
+
 
     const requestData = await req.json();
     
