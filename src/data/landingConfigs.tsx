@@ -22,7 +22,7 @@ import arthurKayak from "@/assets/mascotte/arthur-kayak.webp";
 import arthurBtp from "@/assets/mascotte/arthur-btp.webp";
 import arthurExcited from "@/assets/mascotte/arthur-excited.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
-import arthurBike from "@/assets/mascotte/arthur-bike.webp";
+import arthurBike from "@/assets/mascotte/arthur-bike.png";
 import geoContent from "@/data/geo-content.json";
 
 const trustReviewStat = { icon: Star, value: `${geoContent.trust.ratingValueLabel}/5`, label: `${geoContent.trust.reviewCountLabel} avis` };

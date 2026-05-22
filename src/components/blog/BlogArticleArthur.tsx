@@ -10,7 +10,7 @@ import arthurPointing from "@/assets/mascotte/arthur-pointing.webp";
 import arthurRunningCoin from "@/assets/mascotte/arthur-running-coin.webp";
 import arthurClimbing from "@/assets/mascotte/arthur-climbing.webp";
 import arthurKayak from "@/assets/mascotte/arthur-kayak.webp";
-import arthurBike from "@/assets/mascotte/arthur-bike.webp";
+import arthurBike from "@/assets/mascotte/arthur-bike.png";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 
 const categoryArthurMap: Record<string, string> = {

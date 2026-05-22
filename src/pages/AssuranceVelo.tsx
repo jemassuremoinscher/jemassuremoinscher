@@ -1,6 +1,6 @@
 import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage";
 import BrandName from "@/components/BrandName";
-import arthurBike from "@/assets/mascotte/arthur-bike.webp";
+import arthurBike from "@/assets/mascotte/arthur-bike.png";
 
 const AssuranceVelo = () => (
   <VerticalInsurancePage
