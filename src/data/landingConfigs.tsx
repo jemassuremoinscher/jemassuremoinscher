@@ -22,6 +22,7 @@ import arthurKayak from "@/assets/mascotte/arthur-kayak.webp";
 import arthurBtp from "@/assets/mascotte/arthur-btp.webp";
 import arthurExcited from "@/assets/mascotte/arthur-excited.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
+import arthurBike from "@/assets/mascotte/arthur-bike.webp";
 import geoContent from "@/data/geo-content.json";
 
 const trustReviewStat = { icon: Star, value: `${geoContent.trust.ratingValueLabel}/5`, label: `${geoContent.trust.reviewCountLabel} avis` };
@@ -1430,8 +1431,8 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     heroTitle: "Assurance",
     heroHighlight: "Vélo & VAE électrique",
     heroSubtitle: <><strong>Vol, casse, RC, assistance.</strong> Vélo classique, VAE, vélo cargo, gravel ou route. Couverture France + Europe dès 4€/mois.</>,
-    mascotSrc: arthurRunningCoin,
-    mascotAlt: "Arthur cycliste — assurance vélo",
+    mascotSrc: arthurBike,
+    mascotAlt: "Arthur cycliste avec casque — assurance vélo",
     speechText: "Vélo ou VAE volé toutes les 12 minutes en France — protégez le vôtre dès 4€/mois.",
     insuranceType: "habitation",
     insuranceLabel: "Vélo & VAE",
