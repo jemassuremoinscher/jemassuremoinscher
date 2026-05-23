@@ -36,6 +36,7 @@ import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.webp';
 import arthurExcited from '@/assets/mascotte/arthur-excited.webp';
 import arthurRunningCoin from '@/assets/mascotte/arthur-running-coin.webp';
 import arthurClimbing from '@/assets/mascotte/arthur-climbing.webp';
+import arthurBike from '@/assets/mascotte/arthur-bike.png';
 
 // Logo imports for teaser prices
 import logoDirectAssurance from '@/assets/logos/direct-assurance-new.webp';
@@ -70,6 +71,15 @@ const mascotImages: Record<InsuranceType, string> = {
   comparateur: arthurThumbsUp,
   metiers_atypiques: arthurClimbing,
   gestion_locative: arthurHouse,
+  velo: arthurBike,
+  camping_car: arthurCar,
+  sans_permis: arthurCar,
+  auto_temporaire: arthurCar,
+  flotte: arthurBusiness,
+  cyber: arthurDetective,
+  decennale: arthurBusiness,
+  protection_juridique: arthurIdea,
+  mutuelle_entreprise: arthurBusiness,
 };
 
 const mascotSearching = arthurRunningCoin;

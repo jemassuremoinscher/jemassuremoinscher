@@ -15,7 +15,7 @@ const AssuranceMutuelleEntreprise = () => (
     canonical="https://www.jemassuremoinscher.fr/assurance-mutuelle-entreprise"
     keyword="mutuelle entreprise"
     keywords="mutuelle entreprise, mutuelle collective, mutuelle ANI, complémentaire santé entreprise"
-    insuranceType="sante"
+    insuranceType="mutuelle_entreprise"
     productKey="sante"
     serviceName="Mutuelle Entreprise Collective"
     serviceDescription="Comparateur de mutuelles entreprise obligatoires (loi ANI). Tarifs négociés, conformité légale, gestion simplifiée."

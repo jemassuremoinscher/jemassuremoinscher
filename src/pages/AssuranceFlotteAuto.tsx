@@ -15,7 +15,7 @@ const AssuranceFlotteAuto = () => (
     canonical="https://www.jemassuremoinscher.fr/assurance-flotte-auto"
     keyword="assurance flotte auto"
     keywords="assurance flotte auto, assurance flotte entreprise, flotte VL VU, assurance véhicules de société"
-    insuranceType="auto"
+    insuranceType="flotte"
     productKey="auto"
     serviceName="Assurance Flotte Auto Entreprise"
     serviceDescription="Comparateur d'assurance flotte auto pour entreprises (3 véhicules et +). Tarifs négociés, gestion simplifiée."

@@ -15,7 +15,7 @@ const AssuranceProtectionJuridique = () => (
     canonical="https://www.jemassuremoinscher.fr/assurance-protection-juridique"
     keyword="protection juridique"
     keywords="assurance protection juridique, avocat, litige consommation, défense recours"
-    insuranceType="rc_pro"
+    insuranceType="protection_juridique"
     serviceName="Assurance Protection Juridique"
     serviceDescription="Protection juridique pour litiges du quotidien (consommation, travail, voisinage, immobilier)."
     productCategory="Assurance Juridique"

@@ -6,6 +6,8 @@ export const CANONICAL_INSURANCE_TYPES = [
   'auto', 'moto', 'habitation', 'sante', 'pret', 'animaux',
   'vie', 'prevoyance', 'rc_pro', 'mrp', 'gli', 'pno', 'gestion_locative',
   'metiers_atypiques',
+  'velo', 'camping_car', 'sans_permis', 'auto_temporaire', 'flotte',
+  'cyber', 'decennale', 'protection_juridique', 'mutuelle_entreprise',
 ] as const;
 
 export type CanonicalInsuranceType = typeof CANONICAL_INSURANCE_TYPES[number];
@@ -92,6 +94,52 @@ const ALIAS_MAP: Record<string, CanonicalInsuranceType> = {
   'événementiel': 'metiers_atypiques',
   'moniteur sport': 'metiers_atypiques',
   'moniteur de sport': 'metiers_atypiques',
+  // Vélo / VAE
+  'velo': 'velo',
+  'vélo': 'velo',
+  'assurance velo': 'velo',
+  'assurance vélo': 'velo',
+  'vae': 'velo',
+  'assurance vae': 'velo',
+  // Camping-car
+  'camping_car': 'camping_car',
+  'camping car': 'camping_car',
+  'camping-car': 'camping_car',
+  'assurance camping car': 'camping_car',
+  'assurance camping-car': 'camping_car',
+  // Sans permis
+  'sans_permis': 'sans_permis',
+  'sans permis': 'sans_permis',
+  'voiture sans permis': 'sans_permis',
+  'vsp': 'sans_permis',
+  // Auto temporaire
+  'auto_temporaire': 'auto_temporaire',
+  'auto temporaire': 'auto_temporaire',
+  'assurance auto temporaire': 'auto_temporaire',
+  // Flotte
+  'flotte': 'flotte',
+  'flotte auto': 'flotte',
+  'assurance flotte': 'flotte',
+  'assurance flotte auto': 'flotte',
+  // Cyber
+  'cyber': 'cyber',
+  'cyber risques': 'cyber',
+  'cyber-risques': 'cyber',
+  'assurance cyber': 'cyber',
+  // Décennale
+  'decennale': 'decennale',
+  'décennale': 'decennale',
+  'assurance decennale': 'decennale',
+  'assurance décennale': 'decennale',
+  // Protection juridique
+  'protection_juridique': 'protection_juridique',
+  'protection juridique': 'protection_juridique',
+  'assurance protection juridique': 'protection_juridique',
+  // Mutuelle entreprise
+  'mutuelle_entreprise': 'mutuelle_entreprise',
+  'mutuelle entreprise': 'mutuelle_entreprise',
+  'mutuelle collective': 'mutuelle_entreprise',
+  'ani': 'mutuelle_entreprise',
 };
 
 /**
@@ -138,4 +186,13 @@ export const INSURANCE_TYPE_LABELS: Record<CanonicalInsuranceType, string> = {
   pno: 'Assurance PNO',
   gestion_locative: 'Gestion Locative',
   metiers_atypiques: 'Métiers Atypiques',
+  velo: 'Assurance Vélo & VAE',
+  camping_car: 'Assurance Camping-Car',
+  sans_permis: 'Assurance Sans Permis',
+  auto_temporaire: 'Assurance Auto Temporaire',
+  flotte: 'Assurance Flotte Auto',
+  cyber: 'Assurance Cyber',
+  decennale: 'Garantie Décennale',
+  protection_juridique: 'Protection Juridique',
+  mutuelle_entreprise: 'Mutuelle Entreprise',
 };

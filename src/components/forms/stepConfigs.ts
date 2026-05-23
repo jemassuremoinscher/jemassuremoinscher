@@ -1,4 +1,5 @@
-import { Shield, ShieldCheck, ShieldPlus, Heart, HeartPulse, Activity, Home, Building, Castle, Car, Bike, PawPrint, Briefcase, FileText, Wallet, Landmark, Baby, Users, User, Stethoscope, Pill, Eye, Search, Lock, Scale, Umbrella, ChevronRight, TreePine, Mountain, PartyPopper, HardHat, Award, AlertTriangle, Calendar, Building2, Sparkles, KeyRound } from 'lucide-react';
+import { Shield, ShieldCheck, ShieldPlus, Heart, HeartPulse, Activity, Home, Building, Castle, Car, Bike, PawPrint, Briefcase, FileText, Wallet, Landmark, Baby, Users, User, Stethoscope, Pill, Eye, Search, Lock, Scale, Umbrella, ChevronRight, TreePine, Mountain, PartyPopper, HardHat, Award, AlertTriangle, Calendar, Building2, Sparkles, KeyRound, Zap, Truck, Hammer, Clock, Globe, Database } from 'lucide-react';
+import mascotBike from '@/assets/mascotte/arthur-bike.png';
 import mascotCar from '@/assets/mascotte/arthur-car.webp';
 import mascotMoto from '@/assets/mascotte/arthur-moto.webp';
 import mascotHouse from '@/assets/mascotte/arthur-house.webp';
@@ -36,7 +37,7 @@ export interface FormStep {
   vehicleField?: 'brand' | 'model' | 'year';
 }
 
-export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur' | 'metiers_atypiques' | 'gestion_locative';
+export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur' | 'metiers_atypiques' | 'gestion_locative' | 'velo' | 'camping_car' | 'sans_permis' | 'auto_temporaire' | 'flotte' | 'cyber' | 'decennale' | 'protection_juridique' | 'mutuelle_entreprise';
 
 export const mascotMap: Record<InsuranceType, string> = {
   auto: mascotCar,
@@ -54,7 +55,17 @@ export const mascotMap: Record<InsuranceType, string> = {
   comparateur: mascotThumbsUp,
   metiers_atypiques: mascotBusiness,
   gestion_locative: mascotHouse,
+  velo: mascotBike,
+  camping_car: mascotCar,
+  sans_permis: mascotCar,
+  auto_temporaire: mascotCar,
+  flotte: mascotBusiness,
+  cyber: mascotDetective,
+  decennale: mascotBusiness,
+  protection_juridique: mascotIdea,
+  mutuelle_entreprise: mascotBusiness,
 };
+
 
 type TFn = (key: string, vars?: Record<string, string | number>) => string;
 
@@ -537,7 +548,183 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         subtitle: t('step.metiers_atypiques.callback.subtitle'),
       },
     ],
+    // ============ NICHES (inline FR, no i18n keys) ============
+    velo: [
+      { id: 'velo_type', type: 'card-select', title: 'Quel type de vélo souhaitez-vous assurer ?', field: 'bikeType', options: [
+        { value: 'musculaire', label: 'Vélo musculaire', description: 'Ville, route, VTT classique', icon: Bike },
+        { value: 'vae', label: 'Vélo à assistance électrique (VAE)', description: 'Pédalage assisté ≤ 25 km/h', icon: Zap },
+        { value: 'cargo', label: 'Vélo cargo / pliant / speed-bike', description: 'Usage spécifique ou > 25 km/h', icon: Truck },
+      ]},
+      { id: 'velo_valeur', type: 'card-select', title: 'Quelle est la valeur de votre vélo ?', field: 'bikeValue', options: [
+        { value: 'sub_800', label: 'Moins de 800 €', icon: Wallet },
+        { value: '800_2500', label: 'Entre 800 € et 2 500 €', icon: Shield },
+        { value: 'sup_2500', label: 'Plus de 2 500 €', icon: ShieldPlus },
+      ]},
+      { id: 'velo_formule', type: 'card-select', title: 'Quelles garanties recherchez-vous ?', field: 'coverageLevel', options: [
+        { value: 'vol', label: 'Vol uniquement', description: 'Protection antivol agréé', icon: Lock },
+        { value: 'vol_casse', label: 'Vol + Casse', description: 'Couverture étendue', icon: ShieldCheck },
+        { value: 'tous_risques', label: 'Tous risques + Assistance', description: 'Protection maximale', icon: ShieldPlus },
+      ]},
+      { id: 'velo_stationnement', type: 'card-select', title: 'Où stationnez-vous votre vélo ?', field: 'parkingType', options: [
+        { value: 'garage', label: 'Garage / local fermé', icon: Lock },
+        { value: 'local_velo', label: 'Local vélo / cave', icon: Building },
+        { value: 'exterieur', label: 'Rue / extérieur', icon: AlertTriangle },
+      ]},
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    camping_car: [
+      { id: 'cc_type', type: 'card-select', title: 'Quel type de camping-car possédez-vous ?', field: 'vehicleSubtype', options: [
+        { value: 'capucine', label: 'Capucine / Profilé', icon: Truck },
+        { value: 'integral', label: 'Intégral', icon: Castle },
+        { value: 'fourgon', label: 'Van / Fourgon aménagé', icon: Car },
+      ]},
+      { id: 'cc_formule', type: 'card-select', title: 'Quelle formule souhaitez-vous ?', field: 'coverageLevel', options: [
+        { value: 'tiers', label: 'Au tiers', icon: Shield },
+        { value: 'tiers_plus', label: 'Tiers étendu (vol/incendie)', icon: ShieldCheck },
+        { value: 'tous_risques', label: 'Tous risques', icon: ShieldPlus },
+      ]},
+      { id: 'cc_usage', type: 'card-select', title: 'Quel est votre usage annuel ?', field: 'vehicleUse', options: [
+        { value: 'occasionnel', label: 'Occasionnel (< 5 000 km/an)', icon: Calendar },
+        { value: 'regulier', label: 'Régulier (5 000 - 15 000 km)', icon: Activity },
+        { value: 'intensif', label: 'Intensif (> 15 000 km)', icon: Award },
+      ]},
+      vehicleYearStep, ageStep, postalCodeStep, searchingStep, contactStep,
+    ],
+    sans_permis: [
+      { id: 'sp_type', type: 'card-select', title: 'Quel type de véhicule sans permis ?', field: 'vehicleSubtype', options: [
+        { value: 'voiturette', label: 'Voiturette (quadricycle léger)', icon: Car },
+        { value: 'scooter', label: 'Scooter 50cm³', icon: Bike },
+        { value: 'autre', label: 'Autre (quad, etc.)', icon: Activity },
+      ]},
+      { id: 'sp_formule', type: 'card-select', title: 'Quelle formule recherchez-vous ?', field: 'coverageLevel', options: [
+        { value: 'tiers', label: 'Au tiers (obligatoire)', icon: Shield },
+        { value: 'tiers_plus', label: 'Tiers + vol / incendie', icon: ShieldCheck },
+        { value: 'tous_risques', label: 'Tous risques', icon: ShieldPlus },
+      ]},
+      { id: 'sp_conducteur', type: 'card-select', title: 'Qui sera le conducteur principal ?', field: 'driverProfile', options: [
+        { value: 'jeune', label: 'Jeune (14-18 ans, sans permis B)', icon: User },
+        { value: 'adulte', label: 'Adulte sans permis B', icon: User },
+        { value: 'senior', label: 'Senior (suspension/perte permis)', icon: User },
+      ]},
+      ageStep, postalCodeStep, searchingStep, contactStep,
+    ],
+    auto_temporaire: [
+      { id: 'at_duree', type: 'card-select', title: 'Quelle durée souhaitez-vous assurer ?', field: 'duration', options: [
+        { value: '1_3j', label: '1 à 3 jours', icon: Clock },
+        { value: '4_15j', label: '4 à 15 jours', icon: Calendar },
+        { value: '16_90j', label: '16 à 90 jours', icon: Calendar },
+      ]},
+      { id: 'at_motif', type: 'card-select', title: 'Pour quelle utilisation ?', field: 'usage', options: [
+        { value: 'voyage', label: 'Voyage / vacances', icon: Globe },
+        { value: 'achat_vente', label: 'Achat / vente d\'un véhicule', icon: Car },
+        { value: 'pret_emprunt', label: 'Prêt ou emprunt ponctuel', icon: KeyRound },
+      ]},
+      { id: 'at_formule', type: 'card-select', title: 'Quelle formule ?', field: 'coverageLevel', options: [
+        { value: 'tiers', label: 'Au tiers', icon: Shield },
+        { value: 'tiers_plus', label: 'Tiers étendu', icon: ShieldCheck },
+        { value: 'tous_risques', label: 'Tous risques', icon: ShieldPlus },
+      ]},
+      ageStep, postalCodeStep, searchingStep, contactStep,
+    ],
+    flotte: [
+      { id: 'fl_taille', type: 'card-select', title: 'Combien de véhicules à assurer ?', field: 'fleetSize', options: [
+        { value: '3_5', label: '3 à 5 véhicules', icon: Car },
+        { value: '6_20', label: '6 à 20 véhicules', icon: Truck },
+        { value: 'sup_20', label: 'Plus de 20 véhicules', icon: Building2 },
+      ]},
+      { id: 'fl_compo', type: 'card-select', title: 'Composition de votre flotte ?', field: 'fleetComposition', options: [
+        { value: 'vp', label: 'Véhicules particuliers', icon: Car },
+        { value: 'utilitaires', label: 'Utilitaires / fourgons', icon: Truck },
+        { value: 'mixte', label: 'Mixte (VP + utilitaires)', icon: Briefcase },
+      ]},
+      { id: 'fl_usage', type: 'card-select', title: 'Usage principal ?', field: 'vehicleUse', options: [
+        { value: 'tournee', label: 'Tournées / livraisons', icon: Truck },
+        { value: 'commercial', label: 'Déplacements commerciaux', icon: Briefcase },
+        { value: 'mixte', label: 'Mixte', icon: Scale },
+      ]},
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    cyber: [
+      { id: 'cy_taille', type: 'card-select', title: 'Quelle est la taille de votre entreprise ?', field: 'companySize', options: [
+        { value: 'tpe', label: 'TPE (< 10 salariés)', icon: User },
+        { value: 'pme', label: 'PME (10 - 250 salariés)', icon: Users },
+        { value: 'eti', label: 'ETI / Grand groupe', icon: Building2 },
+      ]},
+      { id: 'cy_donnees', type: 'card-select', title: 'Manipulez-vous des données sensibles ?', field: 'dataSensitivity', options: [
+        { value: 'oui_clients', label: 'Oui (données clients RGPD)', icon: Database },
+        { value: 'oui_sante_fin', label: 'Oui (santé / financier)', icon: HeartPulse },
+        { value: 'non', label: 'Peu / pas de données sensibles', icon: Shield },
+      ]},
+      { id: 'cy_ca', type: 'card-select', title: 'Quel est votre chiffre d\'affaires annuel ?', field: 'revenue', options: [
+        { value: 'sub_500k', label: 'Moins de 500 k€', icon: Wallet },
+        { value: '500k_5m', label: '500 k€ - 5 M€', icon: Landmark },
+        { value: 'sup_5m', label: 'Plus de 5 M€', icon: Building2 },
+      ]},
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    decennale: [
+      { id: 'dc_metier', type: 'card-select', title: 'Quel est votre métier du bâtiment ?', field: 'activityType', options: [
+        { value: 'gros_oeuvre', label: 'Gros œuvre (maçon, charpentier)', icon: HardHat },
+        { value: 'second_oeuvre', label: 'Second œuvre (électricien, plombier)', icon: Hammer },
+        { value: 'finition', label: 'Finition (peintre, carreleur)', icon: Sparkles },
+        { value: 'autre', label: 'Autre / multi-activités', icon: Building },
+      ]},
+      { id: 'dc_statut', type: 'card-select', title: 'Quel est votre statut juridique ?', field: 'legalStatus', options: [
+        { value: 'micro', label: 'Auto-entrepreneur / micro', icon: User },
+        { value: 'sasu_eurl', label: 'SASU / EURL', icon: Briefcase },
+        { value: 'sas_sarl', label: 'SAS / SARL', icon: Building2 },
+      ]},
+      { id: 'dc_ca', type: 'card-select', title: 'Chiffre d\'affaires annuel ?', field: 'revenue', options: [
+        { value: 'sub_70k', label: 'Moins de 70 k€', icon: Wallet },
+        { value: '70_250k', label: '70 - 250 k€', icon: Briefcase },
+        { value: 'sup_250k', label: 'Plus de 250 k€', icon: Building2 },
+      ]},
+      { id: 'dc_anciennete', type: 'card-select', title: 'Depuis combien de temps exercez-vous ?', field: 'experience', options: [
+        { value: 'creation', label: 'Création / < 1 an', icon: Sparkles },
+        { value: '1_5', label: '1 à 5 ans', icon: Activity },
+        { value: 'sup_5', label: 'Plus de 5 ans', icon: Award },
+      ]},
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    protection_juridique: [
+      { id: 'pj_profil', type: 'card-select', title: 'Pour qui souhaitez-vous une protection juridique ?', field: 'profile', options: [
+        { value: 'particulier', label: 'Particulier / famille', icon: User },
+        { value: 'pro', label: 'Professionnel / indépendant', icon: Briefcase },
+        { value: 'entreprise', label: 'Entreprise / société', icon: Building2 },
+      ]},
+      { id: 'pj_domaines', type: 'card-select', title: 'Quels litiges souhaitez-vous couvrir en priorité ?', field: 'coverageScope', options: [
+        { value: 'conso_habitat', label: 'Consommation / habitation', icon: Home },
+        { value: 'travail', label: 'Travail / contrat', icon: FileText },
+        { value: 'tous', label: 'Tous domaines (vie privée + pro)', icon: Scale },
+      ]},
+      { id: 'pj_formule', type: 'card-select', title: 'Quel niveau de couverture ?', field: 'coverageLevel', options: [
+        { value: 'essentielle', label: 'Essentielle', icon: Shield },
+        { value: 'confort', label: 'Confort', icon: ShieldCheck },
+        { value: 'premium', label: 'Premium (avocat libre choix)', icon: ShieldPlus },
+      ]},
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    mutuelle_entreprise: [
+      { id: 'me_effectif', type: 'card-select', title: 'Combien de salariés à couvrir ?', field: 'staffSize', options: [
+        { value: '1_5', label: '1 à 5 salariés', icon: User },
+        { value: '6_20', label: '6 à 20 salariés', icon: Users },
+        { value: '21_100', label: '21 à 100 salariés', icon: Building },
+        { value: 'sup_100', label: 'Plus de 100 salariés', icon: Building2 },
+      ]},
+      { id: 'me_convention', type: 'card-select', title: 'Avez-vous une convention collective imposant un socle ?', field: 'collectiveAgreement', options: [
+        { value: 'oui_connue', label: 'Oui, je connais le socle', icon: ShieldCheck },
+        { value: 'oui_a_verifier', label: 'Oui, mais à vérifier', icon: Search },
+        { value: 'non', label: 'Non / je ne sais pas', icon: AlertTriangle },
+      ]},
+      { id: 'me_niveau', type: 'card-select', title: 'Quel niveau de garanties souhaitez-vous ?', field: 'coverageLevel', options: [
+        { value: 'socle_anim', label: 'Socle ANI (minimum légal)', icon: Shield },
+        { value: 'intermediaire', label: 'Intermédiaire (confort)', icon: ShieldCheck },
+        { value: 'premium', label: 'Premium (optique/dentaire renforcés)', icon: ShieldPlus },
+      ]},
+      postalCodeStep, searchingStep, contactStep,
+    ],
   };
+
 };
 
 // Backward-compatible export — fallback returns French text by reading raw keys via no-op t.
