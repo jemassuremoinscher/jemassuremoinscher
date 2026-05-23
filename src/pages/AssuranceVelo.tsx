@@ -15,7 +15,7 @@ const AssuranceVelo = () => (
     canonical="https://www.jemassuremoinscher.fr/assurance-velo"
     keyword="assurance vélo"
     keywords="assurance vélo, assurance VAE, assurance vélo électrique, vol vélo, assurance vélo cargo"
-    insuranceType="moto"
+    insuranceType="velo"
     serviceName="Assurance Vélo & VAE"
     serviceDescription="Comparateur d'assurance vélo et vélo à assistance électrique (VAE). Garanties vol, casse, assistance."
     productCategory="Assurance Mobilité"
