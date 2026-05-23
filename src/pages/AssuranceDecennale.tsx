@@ -15,7 +15,7 @@ const AssuranceDecennale = () => (
     canonical="https://www.jemassuremoinscher.fr/assurance-decennale"
     keyword="assurance décennale"
     keywords="assurance décennale, garantie décennale, RC décennale, assurance artisan BTP"
-    insuranceType="rc_pro"
+    insuranceType="decennale"
     productKey="rc-pro"
     serviceName="Assurance Décennale BTP"
     serviceDescription="Comparateur d'assurance décennale pour artisans et entreprises du bâtiment. Attestation rapide, tarifs négociés."
