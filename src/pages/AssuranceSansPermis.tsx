@@ -15,7 +15,7 @@ const AssuranceSansPermis = () => (
     canonical="https://www.jemassuremoinscher.fr/assurance-sans-permis"
     keyword="assurance voiture sans permis"
     keywords="assurance VSP, assurance voiturette, assurance Aixam, assurance Ligier, assurance sans permis pas cher"
-    insuranceType="auto"
+    insuranceType="sans_permis"
     productKey="auto"
     serviceName="Assurance Voiture Sans Permis"
     serviceDescription="Comparateur d'assurance VSP (voiturette). Aixam, Ligier, Microcar, Chatenet. Devis gratuit en 2 minutes."
