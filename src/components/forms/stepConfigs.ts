@@ -37,7 +37,7 @@ export interface FormStep {
   vehicleField?: 'brand' | 'model' | 'year';
 }
 
-export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur' | 'metiers_atypiques' | 'gestion_locative';
+export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur' | 'metiers_atypiques' | 'gestion_locative' | 'velo' | 'camping_car' | 'sans_permis' | 'auto_temporaire' | 'flotte' | 'cyber' | 'decennale' | 'protection_juridique' | 'mutuelle_entreprise';
 
 export const mascotMap: Record<InsuranceType, string> = {
   auto: mascotCar,
@@ -55,7 +55,17 @@ export const mascotMap: Record<InsuranceType, string> = {
   comparateur: mascotThumbsUp,
   metiers_atypiques: mascotBusiness,
   gestion_locative: mascotHouse,
+  velo: mascotBike,
+  camping_car: mascotCar,
+  sans_permis: mascotCar,
+  auto_temporaire: mascotCar,
+  flotte: mascotBusiness,
+  cyber: mascotDetective,
+  decennale: mascotBusiness,
+  protection_juridique: mascotIdea,
+  mutuelle_entreprise: mascotBusiness,
 };
+
 
 type TFn = (key: string, vars?: Record<string, string | number>) => string;
 
