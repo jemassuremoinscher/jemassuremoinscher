@@ -614,6 +614,15 @@ Article complet en markdown
           }
         }
 
+        // 🛡️ Garde anti prompt-leak avant insertion
+        const leak = detectPromptLeak(article.content);
+        if (leak.isPromptLeak) {
+          const reason = `Prompt-leak détecté (score ${leak.score}) : ${leak.reasons.slice(0, 2).join(" • ")}`;
+          console.warn(`Skipping "${keyword}" — ${reason}`);
+          failures.push({ keyword, reason });
+          continue;
+        }
+
         const slug = await buildUniqueSlug(supabase, article.title || keyword);
         const { error: insertError } = await supabase.from("seo_article_suggestions").insert({
           title: article.title,
@@ -621,6 +630,7 @@ Article complet en markdown
           target_keyword: keyword,
           gsc_position: Math.round(opp.position * 10) / 10,
           gsc_impressions: opp.impressions,
+
           gsc_clicks: opp.clicks,
           suggested_content: article.content,
           suggested_meta_description: article.meta_description,
