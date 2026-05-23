@@ -12,6 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, buildContentImprovementKey, canAutoFixSeoIssue, hydrateAuditReport, isBlogArticleSuggestionSlug, listAppliedContentImprovements, validateSeoIssueFix, validateSeoVisibilityFix, type ContentSuggestionDraft } from '@/lib/auditFixes';
+import { detectPromptLeak } from '@/utils/promptLeakDetector';
 
 type FixAction = {
   label: string;
