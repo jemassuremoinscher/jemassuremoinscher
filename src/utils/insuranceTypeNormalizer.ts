@@ -6,6 +6,8 @@ export const CANONICAL_INSURANCE_TYPES = [
   'auto', 'moto', 'habitation', 'sante', 'pret', 'animaux',
   'vie', 'prevoyance', 'rc_pro', 'mrp', 'gli', 'pno', 'gestion_locative',
   'metiers_atypiques',
+  'velo', 'camping_car', 'sans_permis', 'auto_temporaire', 'flotte',
+  'cyber', 'decennale', 'protection_juridique', 'mutuelle_entreprise',
 ] as const;
 
 export type CanonicalInsuranceType = typeof CANONICAL_INSURANCE_TYPES[number];
