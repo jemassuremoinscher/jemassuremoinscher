@@ -18,6 +18,41 @@ type FailureDetail = {
   reason: string;
 };
 
+// ============================================================
+// Détecteur de prompt-leak (dupliqué côté Deno, voir src/utils/promptLeakDetector.ts)
+// Bloque l'insertion d'articles dont le "contenu" est en réalité le prompt LLM.
+// ============================================================
+const PROMPT_LEAK_PATTERNS: { regex: RegExp; weight: number; label: string }[] = [
+  { regex: /^\s*(tu es|vous êtes|you are|act as|agis comme)/i, weight: 5, label: "Ouverture type prompt" },
+  { regex: /\b(rédige|écris|génère|generate|write)\s+(un|une|a|an)\s+(article|texte|post)/i, weight: 4, label: "Instruction de génération" },
+  { regex: /\{(keyword|topic|sujet|mot[_-]?cl[eé]|title|titre|slug|insert|placeholder)\}/i, weight: 4, label: "Placeholders non remplacés" },
+  { regex: /\[(INSERT|INSÉRER|TODO|PLACEHOLDER|YOUR\s+\w+)/i, weight: 4, label: "Marqueurs [INSERT]" },
+  { regex: /\b(format de sortie|output format|réponds en|return json|return only)/i, weight: 4, label: "Spécification de format" },
+  { regex: /\b(longueur|length)\s*:?\s*\d+\s*(mots|words|caractères|characters)/i, weight: 3, label: "Contrainte de longueur" },
+  { regex: /```json[\s\S]{0,80}\{[\s\S]*"(title|slug|content|meta_description)"/i, weight: 5, label: "Bloc JSON brut" },
+  { regex: /^[\s\S]{0,200}\{\s*"(title|slug|suggested_content|content|meta_description)"\s*:/i, weight: 5, label: "Sortie JSON brute" },
+  { regex: /\b(voici (le|un) prompt|here is the prompt|system prompt)/i, weight: 5, label: "Mention du prompt" },
+  { regex: /\b(role|rôle)\s*:\s*(system|user|assistant)\b/i, weight: 4, label: "Structure messages OpenAI" },
+];
+const HTML_INDICATORS_RX = /<(h1|h2|h3|p|ul|ol|li|article|section)\b[^>]*>/i;
+const MD_HEADING_RX = /^#{1,3}\s+\S/m;
+
+function detectPromptLeak(content: string | null | undefined): { isPromptLeak: boolean; reasons: string[]; score: number } {
+  const reasons: string[] = [];
+  let score = 0;
+  if (!content || typeof content !== "string") return { isPromptLeak: true, reasons: ["Contenu vide"], score: 99 };
+  const trimmed = content.trim();
+  if (trimmed.length < 600) { reasons.push(`Contenu très court (${trimmed.length} caractères)`); score += 3; }
+  if (!HTML_INDICATORS_RX.test(trimmed) && !MD_HEADING_RX.test(trimmed) && trimmed.length < 2000) {
+    reasons.push("Aucune structure HTML/Markdown"); score += 3;
+  }
+  for (const { regex, weight, label } of PROMPT_LEAK_PATTERNS) {
+    if (regex.test(trimmed)) { reasons.push(label); score += weight; }
+  }
+  return { isPromptLeak: score >= 5, reasons, score };
+}
+
+
 async function getGoogleAccessToken(serviceAccount: any, scope: string): Promise<string> {
   const now = Math.floor(Date.now() / 1000);
   const jwtHeader = btoa(JSON.stringify({ alg: "RS256", typ: "JWT" })).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
@@ -579,14 +614,23 @@ Article complet en markdown
           }
         }
 
+        // 🛡️ Garde anti prompt-leak avant insertion
+        const leak = detectPromptLeak(article.content);
+        if (leak.isPromptLeak) {
+          const reason = `Prompt-leak détecté (score ${leak.score}) : ${leak.reasons.slice(0, 2).join(" • ")}`;
+          console.warn(`Skipping "${keyword}" — ${reason}`);
+          failures.push({ keyword, reason });
+          continue;
+        }
+
         const slug = await buildUniqueSlug(supabase, article.title || keyword);
         const { error: insertError } = await supabase.from("seo_article_suggestions").insert({
           title: article.title,
           slug,
           target_keyword: keyword,
           gsc_position: Math.round(opp.position * 10) / 10,
-          gsc_impressions: opp.impressions,
           gsc_clicks: opp.clicks,
+
           suggested_content: article.content,
           suggested_meta_description: article.meta_description,
           short_description: article.short_description,

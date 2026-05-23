@@ -12,6 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, buildContentImprovementKey, canAutoFixSeoIssue, hydrateAuditReport, isBlogArticleSuggestionSlug, listAppliedContentImprovements, validateSeoIssueFix, validateSeoVisibilityFix, type ContentSuggestionDraft } from '@/lib/auditFixes';
+import { detectPromptLeak } from '@/utils/promptLeakDetector';
 
 type FixAction = {
   label: string;
@@ -431,6 +432,20 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const updateStatus = async (id: string, status: string) => {
     const currentSuggestion = suggestions.find((item) => item.id === id);
     if (!currentSuggestion) return;
+
+    // 🛡️ Garde anti prompt-leak : bloque l'approbation si le contenu ressemble à un prompt
+    if (status === 'approved') {
+      const leak = detectPromptLeak(currentSuggestion.suggested_content);
+      if (leak.isPromptLeak) {
+        toast.error(
+          `Publication bloquée : le contenu ressemble à un prompt (score ${leak.score}).`,
+          { description: leak.reasons.slice(0, 3).join(' • '), duration: 8000 },
+        );
+        return;
+      }
+    }
+
+
 
     let nextSlug = currentSuggestion.slug;
     if (status === 'approved') {
@@ -1197,6 +1212,20 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
               </div>
             </CardHeader>
             <CardContent>
+              {(() => {
+                const leak = detectPromptLeak(s.suggested_content);
+                if (!leak.isPromptLeak) return null;
+                return (
+                  <div role="alert" className="mb-4 rounded-md border border-destructive/40 bg-destructive/10 p-3 text-sm text-destructive">
+                    <strong>⚠️ Contenu suspect — publication bloquée</strong>
+                    <p className="mt-1 text-xs opacity-90">Le contenu ressemble à un prompt (score {leak.score}). Régénère ou modifie l'article avant approbation.</p>
+                    <ul className="mt-1 list-disc pl-5 text-xs opacity-90">
+                      {leak.reasons.slice(0, 3).map((r, i) => <li key={i}>{r}</li>)}
+                    </ul>
+                  </div>
+                );
+              })()}
+
               <div className="flex flex-wrap gap-4 text-sm mb-4">
                 <div className="flex items-center gap-1.5 text-muted-foreground">
                   <CalendarDays className="h-3.5 w-3.5" />
