@@ -186,4 +186,13 @@ export const INSURANCE_TYPE_LABELS: Record<CanonicalInsuranceType, string> = {
   pno: 'Assurance PNO',
   gestion_locative: 'Gestion Locative',
   metiers_atypiques: 'Métiers Atypiques',
+  velo: 'Assurance Vélo & VAE',
+  camping_car: 'Assurance Camping-Car',
+  sans_permis: 'Assurance Sans Permis',
+  auto_temporaire: 'Assurance Auto Temporaire',
+  flotte: 'Assurance Flotte Auto',
+  cyber: 'Assurance Cyber',
+  decennale: 'Garantie Décennale',
+  protection_juridique: 'Protection Juridique',
+  mutuelle_entreprise: 'Mutuelle Entreprise',
 };
