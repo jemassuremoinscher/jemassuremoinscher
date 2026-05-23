@@ -432,6 +432,20 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
     const currentSuggestion = suggestions.find((item) => item.id === id);
     if (!currentSuggestion) return;
 
+    // 🛡️ Garde anti prompt-leak : bloque l'approbation si le contenu ressemble à un prompt
+    if (status === 'approved') {
+      const leak = detectPromptLeak(currentSuggestion.suggested_content);
+      if (leak.isPromptLeak) {
+        toast.error(
+          `Publication bloquée : le contenu ressemble à un prompt (score ${leak.score}).`,
+          { description: leak.reasons.slice(0, 3).join(' • '), duration: 8000 },
+        );
+        return;
+      }
+    }
+
+
+
     let nextSlug = currentSuggestion.slug;
     if (status === 'approved') {
       const baseSlug = normalizeArticleSlug(currentSuggestion.slug || currentSuggestion.title);
