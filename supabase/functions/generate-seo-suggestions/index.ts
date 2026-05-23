@@ -629,9 +629,8 @@ Article complet en markdown
           slug,
           target_keyword: keyword,
           gsc_position: Math.round(opp.position * 10) / 10,
-          gsc_impressions: opp.impressions,
-
           gsc_clicks: opp.clicks,
+
           suggested_content: article.content,
           suggested_meta_description: article.meta_description,
           short_description: article.short_description,
