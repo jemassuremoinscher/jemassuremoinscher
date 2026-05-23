@@ -15,7 +15,7 @@ const AssuranceCyber = () => (
     canonical="https://www.jemassuremoinscher.fr/assurance-cyber"
     keyword="assurance cyber"
     keywords="assurance cyber, assurance cyber-risques, ransomware, RGPD, fuite de données"
-    insuranceType="rc_pro"
+    insuranceType="cyber"
     productKey="rc-pro"
     serviceName="Assurance Cyber-risques"
     serviceDescription="Comparateur d'assurance cyber pour entreprises. Couverture ransomware, RGPD, fraude, perte d'exploitation IT."
