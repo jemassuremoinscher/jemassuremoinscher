@@ -15,7 +15,7 @@ const AssuranceAutoTemporaire = () => (
     canonical="https://www.jemassuremoinscher.fr/assurance-auto-temporaire"
     keyword="assurance auto temporaire"
     keywords="assurance auto temporaire, assurance 1 jour, assurance courte durée, assurance voiture vacances"
-    insuranceType="auto"
+    insuranceType="auto_temporaire"
     productKey="auto"
     serviceName="Assurance Auto Temporaire"
     serviceDescription="Assurance auto à la journée, à la semaine ou au mois. Souscription en ligne, attestation immédiate."
