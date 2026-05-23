@@ -15,7 +15,7 @@ const AssuranceCampingCar = () => (
     canonical="https://www.jemassuremoinscher.fr/assurance-camping-car"
     keyword="assurance camping-car"
     keywords="assurance camping-car, assurance van aménagé, assurance fourgon, hivernage camping-car"
-    insuranceType="auto"
+    insuranceType="camping_car"
     productKey="auto"
     serviceName="Assurance Camping-car & Van"
     serviceDescription="Comparateur d'assurance camping-car et van aménagé. Garanties spécifiques contenu, accessoires, hivernage."
