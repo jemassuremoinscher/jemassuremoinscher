@@ -1104,9 +1104,6 @@ const teaserPrices: Record<string, { label: string; prices: TeaserTier[] }> = {
   ]},
 };
 
-// Fallback to keep TS happy where a logo wasn't imported
-const logoHiscoxFallback = undefined as unknown as string;
-
 // ─── Contact Step ────────────────────────────────────────────────────────────
 function ContactStep({
   data, errors, isSubmitting, isSuccess, onChange, onSubmit, insuranceType,
