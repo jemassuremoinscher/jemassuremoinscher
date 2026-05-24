@@ -1138,7 +1138,17 @@ function ContactStep({
     );
   }
 
-  const prices = teaserPrices[insuranceType || 'auto']?.prices || teaserPrices.auto.prices;
+  const rawPrices = teaserPrices[insuranceType || 'auto']?.prices || teaserPrices.auto.prices;
+  // Session-stable rotation so a returning visitor sees different insurers
+  const rotationSeed = useMemo(() => Math.floor(Math.random() * 997), []);
+  const prices = useMemo(
+    () => rawPrices.map((p, i) => {
+      const pool = (p.logoPool || []).filter(Boolean);
+      const logo = pool.length ? pool[(rotationSeed + i * 7) % pool.length] : '';
+      return { ...p, logo };
+    }),
+    [rawPrices, rotationSeed]
+  );
 
   return (
     <div className="space-y-5 max-w-md mx-auto w-full">
