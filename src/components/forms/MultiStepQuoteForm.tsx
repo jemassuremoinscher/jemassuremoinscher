@@ -1033,7 +1033,7 @@ const teaserPrices: Record<string, { label: string; prices: TeaserTier[] }> = {
     { name: 'Intégrale', price: '49€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoMetlife, logoCardif], features: ['Toutes garanties Confort', 'IJ majorées', 'Rente éducation', 'Assistance famille'] },
   ]},
   rc_pro: { label: 'RC Pro', prices: [
-    { name: 'Basique', price: '19€', badge: 'Dès', logoPool: [logoAon, logoHiscoxFallback ?? logoApril, logoAComme, logoSollyAzar], features: ['RC exploitation', 'RC professionnelle', 'Plafond 1M€'] },
+    { name: 'Basique', price: '19€', badge: 'Dès', logoPool: [logoAon, logoApril, logoAComme, logoSollyAzar], features: ['RC exploitation', 'RC professionnelle', 'Plafond 1M€'] },
     { name: 'Standard', price: '35€', badge: 'Dès', logoPool: [logoAllianz, logoMma, logoMaaf, logoGenerali], features: ['RC exploitation et pro', 'Défense recours', 'Plafond 3M€', 'Faute inexcusable'] },
     { name: 'Premium', price: '59€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: ['Toutes garanties Standard', 'Cyber-risques inclus', 'Plafond 8M€', 'Protection juridique étendue'] },
   ]},
