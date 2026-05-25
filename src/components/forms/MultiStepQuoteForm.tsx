@@ -1093,7 +1093,7 @@ const teaserPrices: Record<string, { label: string; prices: TeaserTier[] }> = {
     { name: 'Premium', price: '229€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: ['Tous métiers BTP', 'Dommages avant réception', 'Protection juridique'] },
   ]},
   protection_juridique: { label: 'Protection juridique', prices: [
-    { name: 'Vie privée', price: '9€', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoMatmut, logoMutuelleGenerale], features: ['Litiges consommation', 'Voisinage', 'Conseils juridiques'] },
+    { name: 'Vie privée', price: '9€', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoMatmut, logoMaaf], features: ['Litiges consommation', 'Voisinage', 'Conseils juridiques'] },
     { name: 'Étendue', price: '16€', badge: 'Dès', logoPool: [logoAllianz, logoGroupama, logoMma, logoAbeille], features: ['Vie privée + travail', 'Frais d\'avocat', 'Médiation incluse'] },
     { name: 'Premium', price: '25€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoAllianz, logoMaaf], features: ['Tous domaines', 'Plafond 30 000€', 'Avocat libre choix'] },
   ]},
