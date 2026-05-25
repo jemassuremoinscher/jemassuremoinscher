@@ -998,7 +998,7 @@ const teaserPrices: Record<string, { label: string; prices: TeaserTier[] }> = {
     { name: 'Tous risques', price: '49€', badge: 'Dès', logoPool: [logoAxa, logoGroupama, logoGenerali, logoGmf, logoAllianz, logoLuko], features: ['Tous dommages au véhicule', 'Vol, incendie, vandalisme', 'Bris de glace 0€ franchise', 'Véhicule de prêt'] },
   ]},
   moto: { label: 'Assurance Moto', prices: [
-    { name: 'Tiers', price: '14€', badge: 'Dès', logoPool: [logoAmaguiz, logoAprilMoto, logoAmv, logoSollyAzar, logoMutuelleGenerale], features: ['Responsabilité civile', 'Défense pénale', 'Assistance dépannage'] },
+    { name: 'Tiers', price: '14€', badge: 'Dès', logoPool: [logoAmaguiz, logoAprilMoto, logoAmv, logoSollyAzar, logoAssu2000], features: ['Responsabilité civile', 'Défense pénale', 'Assistance dépannage'] },
     { name: 'Intermédiaire', price: '26€', badge: 'Dès', logoPool: [logoAllianz, logoMaif, logoMacif, logoMma, logoAbeille], features: ['Tout du Tiers', 'Vol et incendie', 'Équipement pilote 500€'] },
     { name: 'Tous risques', price: '45€', badge: 'Dès', logoPool: [logoAxa, logoGroupama, logoGenerali, logoGmf, logoMaaf], features: ['Tous dommages moto', 'Vol et incendie', 'Équipement 1500€', 'Assistance 0 km'] },
   ]},
