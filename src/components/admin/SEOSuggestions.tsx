@@ -368,9 +368,9 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const fetchSuggestions = async () => {
     setIsLoading(true);
 
-    // In 'articles' mode, exclude 'approved' (they appear in the published-articles card below).
+    // In 'articles' mode, include approved so the user can review pending AND published in the same list.
     const statusFilter = mode === 'articles'
-      ? ['draft', 'pending']
+      ? ['draft', 'pending', 'approved']
       : ['draft', 'pending', 'approved'];
 
     const { data, error } = await supabase
