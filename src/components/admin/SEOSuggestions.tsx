@@ -1232,7 +1232,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
       )}
 
       {showArticlesPanel ? <div className="grid gap-4">
-        {suggestions.map((s) => (
+        {filteredArticleSuggestions.map((s) => (
           <Card key={s.id} className="hover:shadow-md transition-shadow">
             <CardHeader className="pb-3">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
