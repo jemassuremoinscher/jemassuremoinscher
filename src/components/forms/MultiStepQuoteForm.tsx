@@ -1083,7 +1083,7 @@ const teaserPrices: Record<string, { label: string; prices: TeaserTier[] }> = {
     { name: 'Premium', price: '105€', badge: '/véh.', logoPool: [logoAxa, logoAllianz, logoGenerali, logoMaaf], features: ['Tous risques flotte', 'Bonus mutualisé', 'Véhicule de prêt'] },
   ]},
   cyber: { label: 'Cyber-risques', prices: [
-    { name: 'TPE', price: '39€', badge: 'Dès', logoPool: [logoAon, logoAComme, logoSollyAzar, logoApril], features: ['Cyber-extorsion', 'Restauration données', 'Plafond 100 K€'] },
+    { name: 'TPE', price: '39€', badge: 'Dès', logoPool: [logoAon, logoApril, logoSollyAzar, logoMma], features: ['Cyber-extorsion', 'Restauration données', 'Plafond 100 K€'] },
     { name: 'PME', price: '89€', badge: 'Dès', logoPool: [logoAllianz, logoMma, logoMaaf, logoGenerali], features: ['Atteintes aux données', 'Frais juridiques RGPD', 'Plafond 500 K€'] },
     { name: 'ETI', price: '159€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: ['Couverture étendue', 'Cellule de crise 24/7', 'Plafond 2 M€'] },
   ]},
