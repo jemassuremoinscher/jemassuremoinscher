@@ -1088,7 +1088,7 @@ const teaserPrices: Record<string, { label: string; prices: TeaserTier[] }> = {
     { name: 'ETI', price: '159€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: ['Couverture étendue', 'Cellule de crise 24/7', 'Plafond 2 M€'] },
   ]},
   decennale: { label: 'Décennale', prices: [
-    { name: 'Artisan', price: '89€', badge: 'Dès', logoPool: [logoSollyAzar, logoAComme, logoAssu2000, logoApril], features: ['Couverture 10 ans', 'Activités principales', 'Attestation immédiate'] },
+    { name: 'Artisan', price: '89€', badge: 'Dès', logoPool: [logoSollyAzar, logoMaaf, logoAssu2000, logoMma], features: ['Couverture 10 ans', 'Activités principales', 'Attestation immédiate'] },
     { name: 'Entreprise', price: '149€', badge: 'Dès', logoPool: [logoMma, logoMaaf, logoGenerali, logoAllianz], features: ['Multi-activités', 'Sous-traitance incluse', 'RC pro associée'] },
     { name: 'Premium', price: '229€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: ['Tous métiers BTP', 'Dommages avant réception', 'Protection juridique'] },
   ]},
