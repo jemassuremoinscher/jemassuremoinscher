@@ -998,7 +998,7 @@ const teaserPrices: Record<string, { label: string; prices: TeaserTier[] }> = {
     { name: 'Tous risques', price: '49€', badge: 'Dès', logoPool: [logoAxa, logoGroupama, logoGenerali, logoGmf, logoAllianz, logoLuko], features: ['Tous dommages au véhicule', 'Vol, incendie, vandalisme', 'Bris de glace 0€ franchise', 'Véhicule de prêt'] },
   ]},
   moto: { label: 'Assurance Moto', prices: [
-    { name: 'Tiers', price: '14€', badge: 'Dès', logoPool: [logoAmaguiz, logoAprilMoto, logoAmv, logoSollyAzar, logoMutuelleGenerale], features: ['Responsabilité civile', 'Défense pénale', 'Assistance dépannage'] },
+    { name: 'Tiers', price: '14€', badge: 'Dès', logoPool: [logoAmaguiz, logoAprilMoto, logoAmv, logoSollyAzar, logoAssu2000], features: ['Responsabilité civile', 'Défense pénale', 'Assistance dépannage'] },
     { name: 'Intermédiaire', price: '26€', badge: 'Dès', logoPool: [logoAllianz, logoMaif, logoMacif, logoMma, logoAbeille], features: ['Tout du Tiers', 'Vol et incendie', 'Équipement pilote 500€'] },
     { name: 'Tous risques', price: '45€', badge: 'Dès', logoPool: [logoAxa, logoGroupama, logoGenerali, logoGmf, logoMaaf], features: ['Tous dommages moto', 'Vol et incendie', 'Équipement 1500€', 'Assistance 0 km'] },
   ]},
@@ -1083,17 +1083,17 @@ const teaserPrices: Record<string, { label: string; prices: TeaserTier[] }> = {
     { name: 'Premium', price: '105€', badge: '/véh.', logoPool: [logoAxa, logoAllianz, logoGenerali, logoMaaf], features: ['Tous risques flotte', 'Bonus mutualisé', 'Véhicule de prêt'] },
   ]},
   cyber: { label: 'Cyber-risques', prices: [
-    { name: 'TPE', price: '39€', badge: 'Dès', logoPool: [logoAon, logoAComme, logoSollyAzar, logoApril], features: ['Cyber-extorsion', 'Restauration données', 'Plafond 100 K€'] },
+    { name: 'TPE', price: '39€', badge: 'Dès', logoPool: [logoAon, logoApril, logoSollyAzar, logoMma], features: ['Cyber-extorsion', 'Restauration données', 'Plafond 100 K€'] },
     { name: 'PME', price: '89€', badge: 'Dès', logoPool: [logoAllianz, logoMma, logoMaaf, logoGenerali], features: ['Atteintes aux données', 'Frais juridiques RGPD', 'Plafond 500 K€'] },
     { name: 'ETI', price: '159€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: ['Couverture étendue', 'Cellule de crise 24/7', 'Plafond 2 M€'] },
   ]},
   decennale: { label: 'Décennale', prices: [
-    { name: 'Artisan', price: '89€', badge: 'Dès', logoPool: [logoSollyAzar, logoAComme, logoAssu2000, logoApril], features: ['Couverture 10 ans', 'Activités principales', 'Attestation immédiate'] },
+    { name: 'Artisan', price: '89€', badge: 'Dès', logoPool: [logoSollyAzar, logoMaaf, logoAssu2000, logoMma], features: ['Couverture 10 ans', 'Activités principales', 'Attestation immédiate'] },
     { name: 'Entreprise', price: '149€', badge: 'Dès', logoPool: [logoMma, logoMaaf, logoGenerali, logoAllianz], features: ['Multi-activités', 'Sous-traitance incluse', 'RC pro associée'] },
     { name: 'Premium', price: '229€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: ['Tous métiers BTP', 'Dommages avant réception', 'Protection juridique'] },
   ]},
   protection_juridique: { label: 'Protection juridique', prices: [
-    { name: 'Vie privée', price: '9€', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoMatmut, logoMutuelleGenerale], features: ['Litiges consommation', 'Voisinage', 'Conseils juridiques'] },
+    { name: 'Vie privée', price: '9€', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoMatmut, logoMaaf], features: ['Litiges consommation', 'Voisinage', 'Conseils juridiques'] },
     { name: 'Étendue', price: '16€', badge: 'Dès', logoPool: [logoAllianz, logoGroupama, logoMma, logoAbeille], features: ['Vie privée + travail', 'Frais d\'avocat', 'Médiation incluse'] },
     { name: 'Premium', price: '25€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoAllianz, logoMaaf], features: ['Tous domaines', 'Plafond 30 000€', 'Avocat libre choix'] },
   ]},
