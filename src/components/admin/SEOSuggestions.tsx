@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, Wand2, Pencil, Save, CalendarDays, Image as ImageIcon, Trash2 } from 'lucide-react';
+import { Sparkles, RefreshCw, Eye, EyeOff, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, Wand2, Pencil, Save, CalendarDays, Image as ImageIcon, Trash2 } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
