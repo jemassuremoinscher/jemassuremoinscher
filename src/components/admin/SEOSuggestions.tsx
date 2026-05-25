@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, Wand2, Pencil, Save, CalendarDays, Image as ImageIcon, Trash2 } from 'lucide-react';
+import { Sparkles, RefreshCw, Eye, EyeOff, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, Wand2, Pencil, Save, CalendarDays, Image as ImageIcon, Trash2 } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
@@ -262,6 +262,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const [editingSuggestionId, setEditingSuggestionId] = useState<string | null>(null);
   const [editingSuggestion, setEditingSuggestion] = useState<EditingSuggestion>({ title: '', suggested_meta_description: '', suggested_content: '', image_url: '', published_at: '' });
   const [isSavingEdit, setIsSavingEdit] = useState(false);
+  const [articleFilter, setArticleFilter] = useState<'pending' | 'published' | 'all'>('pending');
 
   useEffect(() => {
     if (showArticlesPanel) {
@@ -367,9 +368,9 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const fetchSuggestions = async () => {
     setIsLoading(true);
 
-    // In 'articles' mode, exclude 'approved' (they appear in the published-articles card below).
+    // In 'articles' mode, include approved so the user can review pending AND published in the same list.
     const statusFilter = mode === 'articles'
-      ? ['draft', 'pending']
+      ? ['draft', 'pending', 'approved']
       : ['draft', 'pending', 'approved'];
 
     const { data, error } = await supabase
@@ -743,13 +744,25 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const statusBadge = (status: string) => {
     const config: Record<string, { variant: 'default' | 'secondary' | 'destructive' | 'outline'; label: string }> = {
       draft: { variant: 'secondary', label: '📝 Brouillon' },
-      pending: { variant: 'outline', label: '⏳ En attente' },
-      approved: { variant: 'default', label: '✅ Approuvé' },
+      pending: { variant: 'outline', label: '🟡 À publier' },
+      approved: { variant: 'default', label: '🟢 Publié' },
       rejected: { variant: 'destructive', label: '❌ Rejeté' },
     };
     const c = config[status] || config.pending;
     return <Badge variant={c.variant}>{c.label}</Badge>;
   };
+
+  const filteredArticleSuggestions = useMemo(() => {
+    if (articleFilter === 'pending') return suggestions.filter((s) => s.status === 'pending' || s.status === 'draft');
+    if (articleFilter === 'published') return suggestions.filter((s) => s.status === 'approved');
+    return suggestions;
+  }, [suggestions, articleFilter]);
+
+  const counts = useMemo(() => ({
+    pending: suggestions.filter((s) => s.status === 'pending' || s.status === 'draft').length,
+    published: suggestions.filter((s) => s.status === 'approved').length,
+    all: suggestions.length,
+  }), [suggestions]);
 
   const seoImprovementProgress = useMemo(() => {
     if (!visibilityReport) {
@@ -1162,33 +1175,55 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
         </>
       )) : null}
 
-      {showArticlesPanel ? <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
-            Suggestions SEO automatiques
-          </h2>
-          <p className="text-sm text-muted-foreground mt-1">
-            Articles générés par IA à partir de vos données Google Search Console
-          </p>
+      {showArticlesPanel ? <div className="flex flex-col gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-primary" />
+              Articles SEO — revue & publication
+            </h2>
+            <p className="text-sm text-muted-foreground mt-1">
+              Relisez, prévisualisez puis publiez chaque article un par un.
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" onClick={fetchSuggestions} disabled={isLoading || isGenerating}>
+              <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+              Actualiser
+            </Button>
+            <Button onClick={generateSuggestions} disabled={isGenerating || isLoading} size="sm">
+              <Search className={`h-4 w-4 mr-2 ${isGenerating ? 'animate-pulse' : ''}`} />
+              {isGenerating ? 'Analyse GSC...' : 'Générer depuis GSC'}
+            </Button>
+          </div>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={fetchSuggestions} disabled={isLoading || isGenerating}>
-            <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
-            Actualiser
-          </Button>
-          <Button onClick={generateSuggestions} disabled={isGenerating || isLoading} size="sm">
-            <Search className={`h-4 w-4 mr-2 ${isGenerating ? 'animate-pulse' : ''}`} />
-            {isGenerating ? 'Analyse GSC...' : 'Générer depuis GSC'}
-          </Button>
+        <div className="inline-flex rounded-md border border-border bg-card p-1 self-start">
+          {([
+            { key: 'pending' as const, label: `🟡 À publier (${counts.pending})` },
+            { key: 'published' as const, label: `🟢 Publiés (${counts.published})` },
+            { key: 'all' as const, label: `Tous (${counts.all})` },
+          ]).map((tab) => (
+            <button
+              key={tab.key}
+              type="button"
+              onClick={() => setArticleFilter(tab.key)}
+              className={`px-3 py-1.5 text-sm rounded-sm transition-colors ${articleFilter === tab.key ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted'}`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
       </div> : null}
 
-      {showArticlesPanel && suggestions.length === 0 && !isLoading && (
+      {showArticlesPanel && filteredArticleSuggestions.length === 0 && !isLoading && (
         <Card>
           <CardContent className="py-12 text-center">
             <Sparkles className="h-12 w-12 mx-auto text-muted-foreground/50 mb-4" />
-            <p className="text-muted-foreground">Aucune suggestion pour le moment.</p>
+            <p className="text-muted-foreground">
+              {articleFilter === 'pending' && 'Aucun article en attente de publication.'}
+              {articleFilter === 'published' && 'Aucun article publié pour le moment.'}
+              {articleFilter === 'all' && 'Aucune suggestion pour le moment.'}
+            </p>
             <p className="text-sm text-muted-foreground mt-1">
               Cliquez sur "Générer depuis GSC" pour analyser vos requêtes et créer des brouillons d'articles.
             </p>
@@ -1197,7 +1232,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
       )}
 
       {showArticlesPanel ? <div className="grid gap-4">
-        {suggestions.map((s) => (
+        {filteredArticleSuggestions.map((s) => (
           <Card key={s.id} className="hover:shadow-md transition-shadow">
             <CardHeader className="pb-3">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -1374,13 +1409,20 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
                   <>
                     <Button size="sm" onClick={() => updateStatus(s.id, 'approved')}>
                       <Check className="h-4 w-4 mr-1" />
-                      Approuver
+                      Publier
                     </Button>
                     <Button variant="destructive" size="sm" onClick={() => updateStatus(s.id, 'rejected')}>
                       <X className="h-4 w-4 mr-1" />
                       Rejeter
                     </Button>
                   </>
+                )}
+
+                {s.status === 'approved' && (
+                  <Button variant="outline" size="sm" onClick={() => updateStatus(s.id, 'pending')}>
+                    <EyeOff className="h-4 w-4 mr-1" />
+                    Dépublier
+                  </Button>
                 )}
               </div>
             </CardContent>
