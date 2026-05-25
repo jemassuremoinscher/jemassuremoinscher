@@ -262,6 +262,7 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const [editingSuggestionId, setEditingSuggestionId] = useState<string | null>(null);
   const [editingSuggestion, setEditingSuggestion] = useState<EditingSuggestion>({ title: '', suggested_meta_description: '', suggested_content: '', image_url: '', published_at: '' });
   const [isSavingEdit, setIsSavingEdit] = useState(false);
+  const [articleFilter, setArticleFilter] = useState<'pending' | 'published' | 'all'>('pending');
 
   useEffect(() => {
     if (showArticlesPanel) {
