@@ -1409,13 +1409,20 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
                   <>
                     <Button size="sm" onClick={() => updateStatus(s.id, 'approved')}>
                       <Check className="h-4 w-4 mr-1" />
-                      Approuver
+                      Publier
                     </Button>
                     <Button variant="destructive" size="sm" onClick={() => updateStatus(s.id, 'rejected')}>
                       <X className="h-4 w-4 mr-1" />
                       Rejeter
                     </Button>
                   </>
+                )}
+
+                {s.status === 'approved' && (
+                  <Button variant="outline" size="sm" onClick={() => updateStatus(s.id, 'pending')}>
+                    <EyeOff className="h-4 w-4 mr-1" />
+                    Dépublier
+                  </Button>
                 )}
               </div>
             </CardContent>
