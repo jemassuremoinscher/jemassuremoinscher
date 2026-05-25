@@ -1175,33 +1175,55 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
         </>
       )) : null}
 
-      {showArticlesPanel ? <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
-            Suggestions SEO automatiques
-          </h2>
-          <p className="text-sm text-muted-foreground mt-1">
-            Articles générés par IA à partir de vos données Google Search Console
-          </p>
+      {showArticlesPanel ? <div className="flex flex-col gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-primary" />
+              Articles SEO — revue & publication
+            </h2>
+            <p className="text-sm text-muted-foreground mt-1">
+              Relisez, prévisualisez puis publiez chaque article un par un.
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" onClick={fetchSuggestions} disabled={isLoading || isGenerating}>
+              <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+              Actualiser
+            </Button>
+            <Button onClick={generateSuggestions} disabled={isGenerating || isLoading} size="sm">
+              <Search className={`h-4 w-4 mr-2 ${isGenerating ? 'animate-pulse' : ''}`} />
+              {isGenerating ? 'Analyse GSC...' : 'Générer depuis GSC'}
+            </Button>
+          </div>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={fetchSuggestions} disabled={isLoading || isGenerating}>
-            <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
-            Actualiser
-          </Button>
-          <Button onClick={generateSuggestions} disabled={isGenerating || isLoading} size="sm">
-            <Search className={`h-4 w-4 mr-2 ${isGenerating ? 'animate-pulse' : ''}`} />
-            {isGenerating ? 'Analyse GSC...' : 'Générer depuis GSC'}
-          </Button>
+        <div className="inline-flex rounded-md border border-border bg-card p-1 self-start">
+          {([
+            { key: 'pending' as const, label: `🟡 À publier (${counts.pending})` },
+            { key: 'published' as const, label: `🟢 Publiés (${counts.published})` },
+            { key: 'all' as const, label: `Tous (${counts.all})` },
+          ]).map((tab) => (
+            <button
+              key={tab.key}
+              type="button"
+              onClick={() => setArticleFilter(tab.key)}
+              className={`px-3 py-1.5 text-sm rounded-sm transition-colors ${articleFilter === tab.key ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted'}`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
       </div> : null}
 
-      {showArticlesPanel && suggestions.length === 0 && !isLoading && (
+      {showArticlesPanel && filteredArticleSuggestions.length === 0 && !isLoading && (
         <Card>
           <CardContent className="py-12 text-center">
             <Sparkles className="h-12 w-12 mx-auto text-muted-foreground/50 mb-4" />
-            <p className="text-muted-foreground">Aucune suggestion pour le moment.</p>
+            <p className="text-muted-foreground">
+              {articleFilter === 'pending' && 'Aucun article en attente de publication.'}
+              {articleFilter === 'published' && 'Aucun article publié pour le moment.'}
+              {articleFilter === 'all' && 'Aucune suggestion pour le moment.'}
+            </p>
             <p className="text-sm text-muted-foreground mt-1">
               Cliquez sur "Générer depuis GSC" pour analyser vos requêtes et créer des brouillons d'articles.
             </p>
