@@ -744,13 +744,25 @@ export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
   const statusBadge = (status: string) => {
     const config: Record<string, { variant: 'default' | 'secondary' | 'destructive' | 'outline'; label: string }> = {
       draft: { variant: 'secondary', label: '📝 Brouillon' },
-      pending: { variant: 'outline', label: '⏳ En attente' },
-      approved: { variant: 'default', label: '✅ Approuvé' },
+      pending: { variant: 'outline', label: '🟡 À publier' },
+      approved: { variant: 'default', label: '🟢 Publié' },
       rejected: { variant: 'destructive', label: '❌ Rejeté' },
     };
     const c = config[status] || config.pending;
     return <Badge variant={c.variant}>{c.label}</Badge>;
   };
+
+  const filteredArticleSuggestions = useMemo(() => {
+    if (articleFilter === 'pending') return suggestions.filter((s) => s.status === 'pending' || s.status === 'draft');
+    if (articleFilter === 'published') return suggestions.filter((s) => s.status === 'approved');
+    return suggestions;
+  }, [suggestions, articleFilter]);
+
+  const counts = useMemo(() => ({
+    pending: suggestions.filter((s) => s.status === 'pending' || s.status === 'draft').length,
+    published: suggestions.filter((s) => s.status === 'approved').length,
+    all: suggestions.length,
+  }), [suggestions]);
 
   const seoImprovementProgress = useMemo(() => {
     if (!visibilityReport) {
