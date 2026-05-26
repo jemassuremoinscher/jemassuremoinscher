@@ -105,10 +105,10 @@ const SERPPreview = () => {
     setIsSaving(true);
     const payload = {
       page_path: selectedPage,
-      meta_title: meta.meta_title || null,
-      meta_description: meta.meta_description || null,
-      og_title: meta.og_title || null,
-      og_description: meta.og_description || null,
+      meta_title: detokenizeMonth(meta.meta_title) || null,
+      meta_description: detokenizeMonth(meta.meta_description) || null,
+      og_title: detokenizeMonth(meta.og_title) || null,
+      og_description: detokenizeMonth(meta.og_description) || null,
     };
 
     if (meta.id) {
