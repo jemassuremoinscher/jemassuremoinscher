@@ -143,8 +143,8 @@ const SERPPreview = () => {
   };
 
   const url = `https://www.jemassuremoinscher.fr${selectedPage === "/" ? "" : selectedPage}`;
-  const displayTitle = meta.meta_title || "Titre non défini";
-  const displayDesc = meta.meta_description || "Description non définie";
+  const displayTitle = resolveMonth(meta.meta_title) || "Titre non défini";
+  const displayDesc = resolveMonth(meta.meta_description) || "Description non définie";
   const truncatedTitle = displayTitle.length > 60 ? displayTitle.slice(0, 57) + "..." : displayTitle;
   const truncatedDesc = displayDesc.length > 160 ? displayDesc.slice(0, 157) + "..." : displayDesc;
 
