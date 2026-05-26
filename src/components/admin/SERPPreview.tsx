@@ -8,7 +8,14 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search, Save, Plus, Trash2, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
-import { PAGE_META_CATALOG } from "@/lib/auditFixes";
+import { PAGE_META_CATALOG, detokenizeMonth } from "@/lib/auditFixes";
+
+const MONTHS_FR = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+const resolveMonth = (t: string) => {
+  if (!t || !t.includes("[Month]")) return t;
+  const d = new Date();
+  return t.replace(/\[Month\]/g, `${MONTHS_FR[d.getMonth()]} ${d.getFullYear()}`);
+};
 
 const TITLE_MAX = 60;
 const DESC_MAX = 160;
@@ -98,10 +105,10 @@ const SERPPreview = () => {
     setIsSaving(true);
     const payload = {
       page_path: selectedPage,
-      meta_title: meta.meta_title || null,
-      meta_description: meta.meta_description || null,
-      og_title: meta.og_title || null,
-      og_description: meta.og_description || null,
+      meta_title: detokenizeMonth(meta.meta_title) || null,
+      meta_description: detokenizeMonth(meta.meta_description) || null,
+      og_title: detokenizeMonth(meta.og_title) || null,
+      og_description: detokenizeMonth(meta.og_description) || null,
     };
 
     if (meta.id) {
@@ -136,8 +143,8 @@ const SERPPreview = () => {
   };
 
   const url = `https://www.jemassuremoinscher.fr${selectedPage === "/" ? "" : selectedPage}`;
-  const displayTitle = meta.meta_title || "Titre non défini";
-  const displayDesc = meta.meta_description || "Description non définie";
+  const displayTitle = resolveMonth(meta.meta_title) || "Titre non défini";
+  const displayDesc = resolveMonth(meta.meta_description) || "Description non définie";
   const truncatedTitle = displayTitle.length > 60 ? displayTitle.slice(0, 57) + "..." : displayTitle;
   const truncatedDesc = displayDesc.length > 160 ? displayDesc.slice(0, 157) + "..." : displayDesc;
 
@@ -178,6 +185,10 @@ const SERPPreview = () => {
               <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
             </Button>
           </div>
+
+          <p className="text-xs text-muted-foreground -mt-2">
+            💡 Astuce : utilisez <code className="bg-muted px-1 rounded">[Month]</code> dans le titre/description pour insérer automatiquement le mois et l'année en cours (ex. « Mai 2026 »). Ne tapez pas le mois en dur — il serait figé.
+          </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">

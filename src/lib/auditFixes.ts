@@ -21,7 +21,28 @@ export const PAGE_META_CATALOG: { path: string; label: string; defaultTitle: str
   { path: "/contact", label: "Contact", defaultTitle: "Contactez-nous | jemassuremoinscher.fr", defaultDesc: "Besoin d'aide ? Contactez notre équipe de conseillers. Réponse sous 10 minutes." },
   { path: "/nos-partenaires", label: "Nos Partenaires", defaultTitle: "Nos 50+ Partenaires Assureurs", defaultDesc: "AXA, Allianz, MAIF, Groupama... Découvrez tous nos assureurs partenaires." },
   { path: "/mutuelle-tns", label: "Mutuelle TNS", defaultTitle: "Mutuelle TNS : Meilleure Complémentaire Indépendant", defaultDesc: "Comparez les mutuelles TNS adaptées aux indépendants. Loi Madelin, déduction fiscale. Devis gratuit." },
+  // Nouvelles verticales (niches) — toutes avec [Month] dynamique
+  { path: "/assurance-velo", label: "Assurance Vélo", defaultTitle: "Assurance Vélo & VAE dès 4€/mois [Month]", defaultDesc: "Vélo, VAE, vélo cargo : protégez contre vol, casse, accident. Comparez 20+ assureurs. Devis instantané, sans engagement." },
+  { path: "/assurance-camping-car", label: "Assurance Camping-Car", defaultTitle: "Assurance Camping-Car [Month] dès 28€/mois", defaultDesc: "Camping-car, van, fourgon aménagé : tous risques, assistance Europe. Comparez 30+ assureurs spécialisés. Devis 2 min." },
+  { path: "/assurance-cyber", label: "Assurance Cyber", defaultTitle: "Assurance Cyber TPE/PME [Month] : dès 29€/mois", defaultDesc: "Cyberattaque, ransomware, fuite de données : protégez votre entreprise. RC cyber, frais de notification, expertise IT. Devis gratuit." },
+  { path: "/assurance-decennale", label: "Garantie Décennale", defaultTitle: "Assurance Décennale [Month] : dès 89€/mois", defaultDesc: "Garantie décennale obligatoire BTP : artisans, maîtres d'œuvre, auto-entrepreneurs. Attestation rapide. Comparez 20+ assureurs." },
+  { path: "/assurance-flotte-auto", label: "Flotte Auto Entreprise", defaultTitle: "Assurance Flotte Auto [Month] : -25% Pro", defaultDesc: "3 véhicules ou plus : optimisez le coût de votre flotte pro. Bonus collectif, assistance 24/7, gestion centralisée. Devis gratuit." },
+  { path: "/assurance-mutuelle-entreprise", label: "Mutuelle Entreprise", defaultTitle: "Mutuelle Entreprise (ANI) [Month] dès 29€/mois", defaultDesc: "Mutuelle collective obligatoire : conforme ANI, 50% employeur. Comparez 30+ contrats adaptés à vos salariés. Devis 2 min." },
+  { path: "/assurance-protection-juridique", label: "Protection Juridique", defaultTitle: "Protection Juridique [Month] dès 9€/mois", defaultDesc: "Conflits du quotidien : conso, voisinage, travail, immobilier. Conseils juridiques + prise en charge des frais. Devis gratuit." },
+  { path: "/assurance-sans-permis", label: "Assurance Sans Permis", defaultTitle: "Assurance Voiturette Sans Permis [Month] dès 25€", defaultDesc: "Voiture sans permis (VSP), quadricycle léger : comparez 15+ assureurs. Tiers, vol, tous risques. Devis instantané." },
+  { path: "/assurance-auto-temporaire", label: "Auto Temporaire", defaultTitle: "Assurance Auto Temporaire [Month] : 1 à 90 jours", defaultDesc: "Assurance auto courte durée : 1 jour, 1 semaine, 1 mois. Idéal essai, prêt, déménagement. Attestation immédiate par email." },
+  { path: "/assurance-expatries", label: "Assurance Expatriés", defaultTitle: "Assurance Expatriés [Month] : Santé Internationale", defaultDesc: "Français à l'étranger ou étrangers en France : santé internationale, rapatriement, auto, habitation. 70+ assureurs comparés." },
+  { path: "/assurance-metiers-atypiques", label: "Métiers Atypiques", defaultTitle: "Assurance Métiers Atypiques [Month] | RC Pro Niche", defaultDesc: "Accrobranche, sports outdoor, événementiel, BTP spécialisé : 20+ assureurs de niche. Rappel sous 10 min." },
 ];
+
+/** Re-tokenize any resolved month (e.g. "Mai 2026", "(Avril 2026)") back to [Month].
+ *  Used before persisting overrides so titles stay dynamic across months. */
+const MONTH_NAMES_FR = ["Janvier","Février","Fevrier","Mars","Avril","Mai","Juin","Juillet","Août","Aout","Septembre","Octobre","Novembre","Décembre","Decembre"];
+export const detokenizeMonth = (text: string | null | undefined): string | null => {
+  if (!text) return text ?? null;
+  const pattern = new RegExp(`\\(?\\s*(?:${MONTH_NAMES_FR.join("|")})\\s+\\d{4}\\s*\\)?`, "gi");
+  return text.replace(pattern, (match) => match.trim().startsWith("(") ? "([Month])" : "[Month]");
+};
 
 const MONTHS_FR = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
