@@ -186,6 +186,10 @@ const SERPPreview = () => {
             </Button>
           </div>
 
+          <p className="text-xs text-muted-foreground -mt-2">
+            💡 Astuce : utilisez <code className="bg-muted px-1 rounded">[Month]</code> dans le titre/description pour insérer automatiquement le mois et l'année en cours (ex. « Mai 2026 »). Ne tapez pas le mois en dur — il serait figé.
+          </p>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label>Titre SEO</Label>
