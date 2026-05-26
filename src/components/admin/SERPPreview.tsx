@@ -8,7 +8,14 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search, Save, Plus, Trash2, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
-import { PAGE_META_CATALOG } from "@/lib/auditFixes";
+import { PAGE_META_CATALOG, detokenizeMonth } from "@/lib/auditFixes";
+
+const MONTHS_FR = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+const resolveMonth = (t: string) => {
+  if (!t || !t.includes("[Month]")) return t;
+  const d = new Date();
+  return t.replace(/\[Month\]/g, `${MONTHS_FR[d.getMonth()]} ${d.getFullYear()}`);
+};
 
 const TITLE_MAX = 60;
 const DESC_MAX = 160;
