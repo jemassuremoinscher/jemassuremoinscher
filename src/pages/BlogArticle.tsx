@@ -347,6 +347,20 @@ const BlogArticle = () => {
                     td: ({ node, ...props }) => (
                       <td className="px-4 py-3 text-muted-foreground border-b border-border/50" {...props} />
                     ),
+                    img: ({ node, alt, ...props }) => (
+                      <span className="block my-6 aspect-video w-full overflow-hidden rounded-xl bg-muted">
+                        {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                        <img
+                          {...props}
+                          alt={alt || ""}
+                          loading="lazy"
+                          decoding="async"
+                          width={1200}
+                          height={675}
+                          className="w-full h-full object-cover"
+                        />
+                      </span>
+                    ),
                   }}
                 >
                   {article.content}
