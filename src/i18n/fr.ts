@@ -692,8 +692,8 @@ const fr: Record<string, string> = {
   'insPage.yourAge': 'Votre âge',
 
   // Auto Page
-  'autoPage.title': 'Assurance Auto Moins Chère',
-  'autoPage.subtitle': "Comparez 70+ assureurs et économisez jusqu'à 400€ par an sur votre assurance auto.",
+ 'autoPage.title': 'Assurances voiture moins chères',
+ 'autoPage.subtitle': "Comparez 70+ assureurs auto et économisez jusqu'à 400€/an. Devis gratuit en 2 minutes, sans engagement.",
   'autoPage.adv1.title': "Jusqu'à 400€ d'économies",
   'autoPage.adv1.desc': 'Comparez et économisez sur votre assurance auto.',
   'autoPage.adv2.desc': "Les meilleures offres du marché.",
