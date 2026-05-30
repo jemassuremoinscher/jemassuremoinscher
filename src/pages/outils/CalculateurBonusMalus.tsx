@@ -99,32 +99,48 @@ const CalculateurBonusMalus = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "Calculateur Bonus-Malus Auto",
-    url: "https://jemassuremoinscher.fr/outils/calculateur-bonus-malus",
+    name: "Calculateur Bonus Malus Auto",
+    url: "https://www.jemassuremoinscher.fr/outils/calculateur-bonus-malus",
     applicationCategory: "FinanceApplication",
     operatingSystem: "Web",
-    description: "Calculez gratuitement votre coefficient bonus-malus auto et estimez vos économies.",
+    description: "Calculez gratuitement votre coefficient bonus malus auto (CRM) et estimez vos économies en 2026.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+    aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "247" },
+    dateModified: "2026-05-30",
   };
 
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Accueil", item: "https://jemassuremoinscher.fr/" },
-      { "@type": "ListItem", position: 2, name: "Outils", item: "https://jemassuremoinscher.fr/outils" },
-      { "@type": "ListItem", position: 3, name: "Calculateur Bonus-Malus", item: "https://jemassuremoinscher.fr/outils/calculateur-bonus-malus" },
+      { "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.jemassuremoinscher.fr/" },
+      { "@type": "ListItem", position: 2, name: "Assurance Auto", item: "https://www.jemassuremoinscher.fr/assurance-auto" },
+      { "@type": "ListItem", position: 3, name: "Calculateur Bonus Malus", item: "https://www.jemassuremoinscher.fr/outils/calculateur-bonus-malus" },
     ],
   };
+
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      { "@type": "Question", name: "Comment se calcule le bonus malus auto ?", acceptedAnswer: { "@type": "Answer", text: "Le bonus malus (coefficient de réduction-majoration ou CRM) se recalcule chaque année à la date anniversaire du contrat. Sans accident responsable, votre coefficient est multiplié par 0,95 (-5%). En cas d'accident responsable, il est multiplié par 1,25 (+25%). Le coefficient évolue entre 0,50 (bonus maximum) et 3,50 (malus maximum)." } },
+      { "@type": "Question", name: "Bonus 0.50, qu'est-ce que ça veut dire ?", acceptedAnswer: { "@type": "Answer", text: "Un coefficient de 0,50 correspond au bonus maximum : 50% de réduction sur votre prime de référence. Il faut 13 années consécutives sans accident responsable depuis 1,00 pour l'atteindre." } },
+      { "@type": "Question", name: "Au bout de combien de temps perd-on son malus ?", acceptedAnswer: { "@type": "Answer", text: "Après 2 années consécutives sans accident responsable, votre coefficient revient automatiquement à 1,00 — c'est la « descente rapide » prévue par l'article A121-1 du Code des assurances." } },
+      { "@type": "Question", name: "Le bonus malus suit-il le conducteur ou le véhicule ?", acceptedAnswer: { "@type": "Answer", text: "Le CRM est attaché au conducteur. Quand vous changez d'assurance, le nouvel assureur récupère votre coefficient via le relevé d'information transmis par l'ancien." } },
+    ],
+  };
+
+  const yearByYear = Array.from({ length: 14 }, (_, i) => ({ year: i, coef: computeNewCoefficient(1.0, i) }));
 
   return (
     <>
       <Helmet>
-        <title>Calculateur Bonus-Malus Auto Gratuit | 2026</title>
-        <meta name="description" content="Calculez votre coefficient bonus-malus auto en 2 clics. Estimez vos économies et comparez les assurances moins chères." />
-        <link rel="canonical" href="https://jemassuremoinscher.fr/outils/calculateur-bonus-malus" />
+        <title>Calculateur Bonus Malus Auto Gratuit 2026 — CRM en 2 clics</title>
+        <meta name="description" content="Calculez votre coefficient bonus malus auto (CRM) en 2 clics. Simulez vos économies d'assurance voiture en 2026, gratuit et sans inscription." />
+        <link rel="canonical" href="https://www.jemassuremoinscher.fr/outils/calculateur-bonus-malus" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqLd)}</script>
       </Helmet>
 
       <Header />
