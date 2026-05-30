@@ -939,6 +939,45 @@ export type Database = {
         }
         Relationships: []
       }
+      sitemap_submission_log: {
+        Row: {
+          created_at: string
+          duration_ms: number | null
+          error_message: string | null
+          http_status: number | null
+          id: string
+          response_body: string | null
+          site_url: string
+          sitemap_url: string
+          status: string
+          trigger_source: string
+        }
+        Insert: {
+          created_at?: string
+          duration_ms?: number | null
+          error_message?: string | null
+          http_status?: number | null
+          id?: string
+          response_body?: string | null
+          site_url: string
+          sitemap_url: string
+          status: string
+          trigger_source: string
+        }
+        Update: {
+          created_at?: string
+          duration_ms?: number | null
+          error_message?: string | null
+          http_status?: number | null
+          id?: string
+          response_body?: string | null
+          site_url?: string
+          sitemap_url?: string
+          status?: string
+          trigger_source?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
