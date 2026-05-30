@@ -165,10 +165,13 @@ const CalculateurBonusMalus = () => {
               Outil gratuit
             </div>
             <h1 className="text-3xl md:text-4xl font-extrabold text-foreground mb-3">
-              Calculateur <span className="text-primary">Bonus-Malus</span> Auto
+              Calculateur <span className="text-primary">Bonus Malus</span> Auto
             </h1>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Estimez votre futur coefficient en quelques secondes et découvrez combien vous pouvez économiser.
+              Estimez votre futur coefficient CRM en quelques secondes et découvrez combien vous pouvez économiser sur votre assurance voiture.
+            </p>
+            <p className="text-xs text-muted-foreground/80 mt-3">
+              Mis à jour le 30 mai 2026 · Conforme article A121-1 du Code des assurances
             </p>
           </div>
         </section>
