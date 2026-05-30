@@ -22,10 +22,38 @@ Deno.serve(async (req) => {
     Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
   );
 
+  // Authorization: allow internal DB trigger (header) or authenticated admin JWT
+  const internalTrigger = req.headers.get("x-internal-trigger") === "db-sitemap-submission";
+  const authHeader = req.headers.get("Authorization") ?? "";
+  let authorized = internalTrigger;
+
+  if (!authorized && authHeader.startsWith("Bearer ")) {
+    const token = authHeader.replace("Bearer ", "");
+    const { data: claimsData } = await supabase.auth.getClaims(token);
+    if (claimsData?.claims?.sub) {
+      const { data: roleRow } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", claimsData.claims.sub)
+        .eq("role", "admin")
+        .maybeSingle();
+      authorized = !!roleRow;
+    }
+  }
+
+  if (!authorized) {
+    return new Response(JSON.stringify({ error: "Unauthorized" }), {
+      status: 401,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
+
   let trigger_source = "manual";
   try {
     const body = await req.json().catch(() => ({}));
-    if (body?.trigger_source) trigger_source = String(body.trigger_source);
+    if (body?.trigger_source) {
+      trigger_source = String(body.trigger_source).replace(/[^a-zA-Z0-9_\-]/g, "").slice(0, 64) || "manual";
+    }
   } catch (_) {
     // ignore
   }
