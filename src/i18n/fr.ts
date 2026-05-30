@@ -692,8 +692,8 @@ const fr: Record<string, string> = {
   'insPage.yourAge': 'Votre âge',
 
   // Auto Page
-  'autoPage.title': 'Assurance Auto Moins Chère',
-  'autoPage.subtitle': "Comparez 70+ assureurs et économisez jusqu'à 400€ par an sur votre assurance auto.",
+ 'autoPage.title': 'Assurances voiture moins chères',
+ 'autoPage.subtitle': "Comparez 70+ assureurs auto et économisez jusqu'à 400€/an. Devis gratuit en 2 minutes, sans engagement.",
   'autoPage.adv1.title': "Jusqu'à 400€ d'économies",
   'autoPage.adv1.desc': 'Comparez et économisez sur votre assurance auto.',
   'autoPage.adv2.desc': "Les meilleures offres du marché.",
@@ -2721,8 +2721,8 @@ const fr: Record<string, string> = {
   "seo.contact.description": "Une question sur votre assurance ? Contactez nos courtiers par email, formulaire ou rappel gratuit. Réponse experte sous 10 minutes, 6j/7.",
   "seo.about.title": "Qui sommes-nous | jemassuremoinscher.fr",
   "seo.about.description": "Découvrez l'équipe derrière jemassuremoinscher.fr : un courtier en assurances indépendant, enregistré ORIAS, gratuit et transparent.",
-  "seo.auto.title": "Assurance Auto Moins Chère [Month] : -40% ⭐",
-  "seo.auto.description": "50+ assureurs comparés gratuitement. Nos clients économisent 320€/an en moyenne. Devis auto instantané, sans engagement.",
+ "seo.auto.title": "Assurances voiture moins chères 2026 — Comparez & économisez 400€",
+ "seo.auto.description": "Assurances voiture moins chères : comparez 70+ assureurs en 2 min. Devis gratuit, économies moyennes 320€/an. Note 4,9/5 (247 avis Google).",
   "seo.habitation.title": "Assurance Habitation Moins Chère [Month] dès 3€",
   "seo.habitation.description": "Comparez 50+ assureurs habitation en 2 min. Maison ou appartement, locataire ou propriétaire. Économisez jusqu'à 40%.",
   "seo.sante.title": "Mutuelle Santé Moins Chère [Month] : -300€/an",

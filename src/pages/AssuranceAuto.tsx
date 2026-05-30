@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -128,6 +129,25 @@ const AssuranceAuto = () => {
         >
           <DynamicUpdateDate />
 
+          {/* H2 above-the-fold ciblé "assurances voiture moins chères" */}
+          <section className="max-w-4xl mx-auto mb-10 prose prose-sm md:prose-base max-w-none">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Comment trouver les <span className="text-primary">assurances voiture moins chères</span> en 2026 ?
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Pour décrocher l'assurance voiture la moins chère adaptée à votre profil, trois leviers font 90% de l'écart de prix : <strong>la formule</strong> (Tiers à partir de 25€/mois, Tous Risques jusqu'à 80€/mois), <strong>votre coefficient bonus malus</strong> (un CRM de 0,50 divise la prime par deux par rapport à 1,00) et <strong>la mise en concurrence</strong> des assureurs. Nos clients qui changent d'assurance après comparaison économisent en moyenne <strong>320€ par an</strong>, jusqu'à 400€ pour les conducteurs avec un bon bonus.
+            </p>
+            <ul className="text-sm text-muted-foreground mt-4 space-y-1.5 list-none pl-0">
+              <li>✓ Connaître son CRM exact avant de demander un devis — <Link to="/outils/calculateur-bonus-malus" className="text-primary hover:underline font-medium">calculer mon bonus malus</Link></li>
+              <li>✓ Comparer au moins 3 formules équivalentes (Tiers / Tiers+ / Tous Risques)</li>
+              <li>✓ Profiter de la loi Hamon pour résilier à tout moment après 1 an, sans frais</li>
+              <li>✓ Adapter ses garanties à l'usage réel et à l'âge du véhicule</li>
+            </ul>
+            <p className="text-xs text-muted-foreground/80 mt-4">
+              Note clients <strong className="text-foreground">4,9/5</strong> sur 247 avis Google vérifiés — Service 100% en ligne basé à Nice (06000).
+            </p>
+          </section>
+
           {/* Zone 2 — Avantages + Formulaire */}
           <section className="max-w-4xl mx-auto mb-12">
             <div className="grid md:grid-cols-3 gap-6">
@@ -138,7 +158,7 @@ const AssuranceAuto = () => {
                       <item.icon className="h-8 w-8 text-primary" />
                     </div>
                   </div>
-                  <h2 className="font-bold text-lg mb-2">{item.title}</h2>
+                  <h3 className="font-bold text-lg mb-2">{item.title}</h3>
                   <p className="text-muted-foreground text-sm">{item.description}</p>
                 </Card>
               ))}
