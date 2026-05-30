@@ -364,7 +364,74 @@ const CalculateurBonusMalus = () => {
             </div>
           </div>
         </section>
+
+        {/* Tableau année par année */}
+        <section className="max-w-5xl mx-auto px-4 pb-12">
+          <div className="bg-card rounded-3xl border border-border/50 p-6 md:p-8">
+            <h2 className="text-xl font-bold text-foreground mb-4">Évolution du bonus malus année par année (depuis 1,00)</h2>
+            <p className="text-sm text-muted-foreground mb-4">
+              Voici la trajectoire d'un conducteur qui démarre à 1,00 (coefficient neutre) et ne déclare aucun accident responsable. C'est la base utilisée par tous les assureurs auto en France.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-border/50 text-left text-muted-foreground">
+                    <th className="py-2 pr-4 font-semibold">Année sans sinistre</th>
+                    <th className="py-2 pr-4 font-semibold">Coefficient CRM</th>
+                    <th className="py-2 font-semibold">Réduction vs base</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {yearByYear.map(({ year, coef }) => (
+                    <tr key={year} className="border-b border-border/30 last:border-0">
+                      <td className="py-2 pr-4 font-medium text-foreground">{year === 0 ? "Départ" : `${year} an${year > 1 ? "s" : ""}`}</td>
+                      <td className="py-2 pr-4 tabular-nums text-primary font-semibold">{coef.toFixed(2)}</td>
+                      <td className="py-2 tabular-nums text-muted-foreground">{Math.round((1 - coef) * 100)} %</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="max-w-5xl mx-auto px-4 pb-12">
+          <div className="bg-card rounded-3xl border border-border/50 p-6 md:p-8">
+            <h2 className="text-xl font-bold text-foreground mb-6">Questions fréquentes sur le bonus malus</h2>
+            <div className="space-y-5">
+              {[
+                { q: "Comment se calcule le bonus malus auto ?", a: "Le CRM se recalcule à chaque date anniversaire du contrat. Sans accident responsable : coefficient × 0,95 (-5%). Avec accident responsable : coefficient × 1,25 (+25%). Plafonné entre 0,50 et 3,50." },
+                { q: "Bonus 0.50, qu'est-ce que ça veut dire ?", a: "C'est le bonus maximum : 50% de réduction sur votre prime de référence. Atteint après 13 années consécutives sans accident responsable depuis 1,00." },
+                { q: "Au bout de combien de temps perd-on son malus ?", a: "2 ans consécutifs sans accident responsable suffisent pour repasser automatiquement à 1,00. C'est la « descente rapide » prévue par l'article A121-1 du Code des assurances." },
+                { q: "Le bonus malus suit-il le conducteur ?", a: "Oui, le CRM est attaché au conducteur, pas au véhicule. Lors d'un changement d'assureur, le relevé d'information transmet votre coefficient exact." },
+              ].map((item) => (
+                <details key={item.q} className="group border border-border/40 rounded-2xl p-4 open:bg-muted/30 transition-colors">
+                  <summary className="font-semibold text-foreground cursor-pointer list-none flex items-center justify-between gap-2">
+                    <span>{item.q}</span>
+                    <svg className="w-4 h-4 text-muted-foreground transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  </summary>
+                  <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Maillage interne */}
+        <section className="max-w-5xl mx-auto px-4 pb-16">
+          <div className="bg-gradient-to-br from-primary/5 to-accent/10 rounded-3xl border border-primary/20 p-6 md:p-8">
+            <h2 className="text-xl font-bold text-foreground mb-4">Pour aller plus loin</h2>
+            <ul className="grid md:grid-cols-2 gap-3 text-sm">
+              <li><Link to="/assurance-auto" className="text-primary hover:underline font-medium">→ Comparer les assurances voiture moins chères</Link></li>
+              <li><Link to="/glossaire/bonus-malus" className="text-primary hover:underline font-medium">→ Définition complète du bonus-malus (glossaire)</Link></li>
+              <li><Link to="/comparateur" className="text-primary hover:underline font-medium">→ Comparateur multi-assureurs (auto, moto, habitation)</Link></li>
+              <li><Link to="/blog" className="text-primary hover:underline font-medium">→ Tous nos guides assurance auto</Link></li>
+            </ul>
+          </div>
+        </section>
       </main>
+
 
       <Footer />
     </>
