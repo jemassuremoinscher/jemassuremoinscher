@@ -9,7 +9,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const SITE_URL = "https://www.jemassuremoinscher.fr/";
+const SITE_URL = "sc-domain:jemassuremoinscher.fr";
 const SITEMAP_URL = "https://www.jemassuremoinscher.fr/sitemap.xml";
 const GATEWAY = "https://connector-gateway.lovable.dev/google_search_console";
 
