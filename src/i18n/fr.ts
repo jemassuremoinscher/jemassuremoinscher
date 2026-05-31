@@ -2755,7 +2755,7 @@ const fr: Record<string, string> = {
   "seo.blogPreview.description": "Aperçu interne des articles en brouillon avant publication.",
   "seo.cgu.title": "CGU - jemassuremoinscher.fr",
   "seo.cgu.description": "Conditions générales d'utilisation du service jemassuremoinscher.fr.",
-  "seo.comparateur.title": "Comparateur d'Assurances — Comparez 70+ Assureurs",
+  "seo.comparateur.title": "Comparateur d'Assurances — Comparez 50+ Assureurs",
   "seo.comparateur.description": "Comparez gratuitement plus de 70 assureurs auto, moto, habitation et santé. Économisez jusqu'à 40% sur votre assurance en 2 minutes.",
   "seo.faq.title": "FAQ — Questions fréquentes sur la comparaison d'assurance",
   "seo.faq.description": "Toutes les réponses sur le comparateur d'assurance jemassuremoinscher.fr : fonctionnement, tarifs, souscription, garanties, sinistres et notre service de conseil.",
