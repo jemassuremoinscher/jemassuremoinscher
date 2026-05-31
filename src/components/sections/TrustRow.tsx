@@ -7,13 +7,15 @@ import oriasLogo from "@/assets/logos/orias.jpg";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import geoContent from "@/data/geo-content.json";
 
-// Compteur de devis : démarre à 0 le 1er janvier, +4 par jour automatiquement
-const QUOTES_PER_DAY = 4;
-const computeQuotesSinceJan1 = () => {
+// Compteur familles accompagnées : démarre à 8 500 (familles déjà accompagnées
+// depuis la création) + 4 nouvelles familles par jour automatiquement.
+const FAMILIES_BASELINE = 8500;
+const FAMILIES_PER_DAY = 4;
+const FAMILIES_SINCE = new Date("2024-01-01T00:00:00");
+const computeFamiliesTotal = () => {
   const now = new Date();
-  const yearStart = new Date(now.getFullYear(), 0, 1);
-  const days = Math.floor((now.getTime() - yearStart.getTime()) / 86400000);
-  return Math.max(0, days * QUOTES_PER_DAY);
+  const days = Math.max(0, Math.floor((now.getTime() - FAMILIES_SINCE.getTime()) / 86400000));
+  return FAMILIES_BASELINE + days * FAMILIES_PER_DAY;
 };
 
 const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
@@ -39,8 +41,8 @@ const TrustRow = () => {
     ? undefined
     : { x: [0, 4, 0, -4, 0] };
 
-  // Compteur de devis depuis le début de l'année (auto +4/jour)
-  const [quotesCount, setQuotesCount] = useState<number>(computeQuotesSinceJan1());
+  // Compteur "familles accompagnées" (baseline + +4/jour)
+  const [familiesCount, setFamiliesCount] = useState<number>(computeFamiliesTotal());
   const counterRef = useRef<HTMLDivElement>(null);
   const counterInView = useInView(counterRef, { once: true, margin: "-50px" });
   const motionVal = useMotionValue(0);
@@ -53,20 +55,19 @@ const TrustRow = () => {
   }, [rounded]);
 
   useEffect(() => {
-    // Recalcule chaque heure pour suivre le passage des jours sans rechargement
-    const interval = setInterval(() => setQuotesCount(computeQuotesSinceJan1()), 3600000);
+    const interval = setInterval(() => setFamiliesCount(computeFamiliesTotal()), 3600000);
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (!counterInView) return;
     if (prefersReducedMotion) {
-      motionVal.set(quotesCount);
+      motionVal.set(familiesCount);
       return;
     }
-    const controls = animate(motionVal, quotesCount, { duration: 2, ease: "easeOut" });
+    const controls = animate(motionVal, familiesCount, { duration: 2, ease: "easeOut" });
     return () => controls.stop();
-  }, [counterInView, quotesCount, prefersReducedMotion, motionVal]);
+  }, [counterInView, familiesCount, prefersReducedMotion, motionVal]);
 
   const handleArthurClick = () => {
     const target = document.getElementById('hero-quote-form') || document.getElementById('quote-form');
@@ -79,7 +80,7 @@ const TrustRow = () => {
     }
   };
 
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear(); void currentYear;
 
   return (
     <section className="py-12 md:py-16 bg-muted/40" aria-label={t('trustRow.sectionLabel')}>
@@ -169,22 +170,22 @@ const TrustRow = () => {
             <p className="text-xs text-white/90">{t('trustRow.callbackDesc')}</p>
           </motion.button>
 
-          {/* Compteur devis depuis le début de l'année */}
+          {/* Compteur familles accompagnées (total cumulé) */}
           <motion.div
             ref={counterRef}
             variants={itemVariants}
             role="group"
-            aria-label={`${quotesCount.toLocaleString('fr-FR')} devis générés depuis le début de l'année ${currentYear}`}
+            aria-label={`${familiesCount.toLocaleString('fr-FR')} familles accompagnées par jemassuremoinscher.fr`}
             className="col-span-2 lg:col-span-1 bg-gradient-to-br from-accent/95 to-accent rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(252,211,77,0.4)] hover:shadow-[0_16px_32px_-10px_rgba(252,211,77,0.6)] hover:-translate-y-1 transition-all border border-accent-foreground/10 flex flex-col items-center text-center gap-3 relative overflow-hidden"
           >
             <div className="p-3 rounded-full bg-primary/15" aria-hidden="true">
               <TrendingUp className="w-7 h-7 text-primary" />
             </div>
             <p className="text-3xl font-black text-primary tabular-nums leading-none">
-              {displayCount}
+              {displayCount}+
             </p>
-            <p className="text-xs font-bold text-primary/90 uppercase tracking-wide">{t('trustRow.quotesYear', { year: currentYear })}</p>
-            <p className="text-[11px] text-primary/70 leading-snug">{t('trustRow.quotesDesc')}</p>
+            <p className="text-xs font-bold text-primary/90 uppercase tracking-wide">Familles accompagnées</p>
+            <p className="text-[11px] text-primary/70 leading-snug">Depuis la création de jemassuremoinscher.fr</p>
           </motion.div>
         </motion.div>
       </div>

@@ -12,11 +12,11 @@
 export const heroContent = {
   /** Slogan principal — affiché dans le <h1> du Hero (3 lignes) */
   slogan: {
-    line1: "Comparez votre assurance",
-    line2Prefix: "avec ",
+    line1: "Économisez jusqu'à 280€/an",
+    line2Prefix: "sur votre assurance avec ",
     line2Highlight: "Arthur",
-    line2Suffix: ", et payez moins cher,",
-    line3: "sans compromis.", // mis en jaune + ondulation
+    line2Suffix: ".",
+    line3: "Devis gratuit en 2 minutes.", // mis en jaune + ondulation
   },
 
   /** Bulle Arthur (à droite du Hero, desktop) */
@@ -28,15 +28,15 @@ export const heroContent = {
 
   /** Meta SEO de la homepage — alimente <title>, <meta description>, OG, Twitter */
   seo: {
-    title: "Comparez votre assurance avec Arthur | Devis 2 min",
+    title: "Économisez jusqu'à 280€/an sur votre assurance | Devis 2 min",
     description:
-      "Comparez votre assurance avec Arthur et payez moins cher, sans compromis. 50+ assureurs comparés en 2 minutes. Gratuit et sans engagement.",
-    ogTitle: "Comparez votre assurance avec Arthur | Je m'assure moins cher",
+      "Économisez jusqu'à 280€/an sur votre assurance avec Arthur. Comparez 50+ assureurs en 2 minutes. Gratuit, sans engagement.",
+    ogTitle: "Économisez jusqu'à 280€/an sur votre assurance avec Arthur",
     ogDescription:
-      "Avec Arthur, comparez 50+ assureurs en 2 min et payez moins cher, sans compromis. Devis gratuit, sans engagement.",
-    twitterTitle: "Comparez votre assurance avec Arthur | Devis gratuit 2 min",
+      "Comparez 50+ assureurs en 2 minutes avec Arthur. Économisez jusqu'à 280€/an. Devis gratuit, sans engagement.",
+    twitterTitle: "Économisez jusqu'à 280€/an | Devis assurance 2 min",
     twitterDescription:
-      "Avec Arthur, comparez 50+ assureurs (auto, santé, habitation) en 2 min. Économisez jusqu'à 40%, sans compromis.",
+      "Avec Arthur, comparez 50+ assureurs (auto, santé, habitation) en 2 min et économisez jusqu'à 280€/an.",
   },
 } as const;
 
