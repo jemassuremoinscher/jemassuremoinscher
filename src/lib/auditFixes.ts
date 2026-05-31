@@ -31,7 +31,7 @@ export const PAGE_META_CATALOG: { path: string; label: string; defaultTitle: str
   { path: "/assurance-protection-juridique", label: "Protection Juridique", defaultTitle: "Protection Juridique [Month] dès 9€/mois", defaultDesc: "Conflits du quotidien : conso, voisinage, travail, immobilier. Conseils juridiques + prise en charge des frais. Devis gratuit." },
   { path: "/assurance-sans-permis", label: "Assurance Sans Permis", defaultTitle: "Assurance Voiturette Sans Permis [Month] dès 25€", defaultDesc: "Voiture sans permis (VSP), quadricycle léger : comparez 15+ assureurs. Tiers, vol, tous risques. Devis instantané." },
   { path: "/assurance-auto-temporaire", label: "Auto Temporaire", defaultTitle: "Assurance Auto Temporaire [Month] : 1 à 90 jours", defaultDesc: "Assurance auto courte durée : 1 jour, 1 semaine, 1 mois. Idéal essai, prêt, déménagement. Attestation immédiate par email." },
-  { path: "/assurance-expatries", label: "Assurance Expatriés", defaultTitle: "Assurance Expatriés [Month] : Santé Internationale", defaultDesc: "Français à l'étranger ou étrangers en France : santé internationale, rapatriement, auto, habitation. 70+ assureurs comparés." },
+  { path: "/assurance-expatries", label: "Assurance Expatriés", defaultTitle: "Assurance Expatriés [Month] : Santé Internationale", defaultDesc: "Français à l'étranger ou étrangers en France : santé internationale, rapatriement, auto, habitation. 50+ assureurs comparés." },
   { path: "/assurance-metiers-atypiques", label: "Métiers Atypiques", defaultTitle: "Assurance Métiers Atypiques [Month] | RC Pro Niche", defaultDesc: "Accrobranche, sports outdoor, événementiel, BTP spécialisé : 20+ assureurs de niche. Rappel sous 10 min." },
 ];
 
