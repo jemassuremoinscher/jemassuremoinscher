@@ -198,7 +198,6 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
                       🔒 Email confidentiel, jamais revendu. Désinscription en 1 clic.
                     </p>
                   </form>
-                </>
             </div>
           </motion.div>
         </motion.div>
