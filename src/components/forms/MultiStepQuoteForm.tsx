@@ -20,6 +20,7 @@ import { useFieldTracking } from '@/hooks/useFieldTracking';
 import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from '@/data/vehicleBrands';
 import FlipPriceCard from './FlipPriceCard';
 import { useLanguage } from '@/contexts/LanguageContext';
+import ExitIntentLeadMagnet from './ExitIntentLeadMagnet';
 
 // Mascot imports
 import arthurCar from '@/assets/mascotte/arthur-car.webp';
