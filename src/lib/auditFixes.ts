@@ -545,7 +545,7 @@ const POSITION_PAGE_UPDATES = [
   {
     path: "/assurance-auto",
     meta_title: resolveDynamicTokens("Assurance Auto Pas Chère [Month] : Comparez 5 000+ devis"),
-    meta_description: "Comparez garanties, prix et franchises de 50+ assurances auto pour trouver une formule plus adaptée à votre profil.",
+    meta_description: "Comparez garanties, prix et franchises de 5 000+ devis auto pour trouver une formule plus adaptée à votre profil.",
   },
   {
     path: "/assurance-sante",
