@@ -700,6 +700,10 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
 
       {/* Exit-intent monté globalement dans App.tsx via <GlobalExitIntent /> */}
+    </div>
+  );
+};
+
 
 // ─── Card Select Step ────────────────────────────────────────────────────────
 function CardSelectStep({ options, selected, onSelect, microLoading }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void; microLoading?: boolean }) {
