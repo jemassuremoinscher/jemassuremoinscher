@@ -199,7 +199,6 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
                     </p>
                   </form>
                 </>
-              )}
             </div>
           </motion.div>
         </motion.div>
