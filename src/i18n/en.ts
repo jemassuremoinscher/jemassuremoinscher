@@ -2544,7 +2544,7 @@ const en: Record<string, string> = {
   "step.gestion_locative.gli_included.opt.comparer.label": "Compare",
   "step.gestion_locative.gli_included.opt.comparer.description": "With and without guarantee",
   "step.comparateur.type.title": "What would you like to insure?",
-  "step.comparateur.type.subtitle": "We'll compare 5000+ offers for you.",
+  "step.comparateur.type.subtitle": "We'll compare 50+ insurer partners for you.",
   "step.comparateur.type.opt.auto.label": "Car",
   "step.comparateur.type.opt.auto.description": "Car and utility",
   "step.comparateur.type.opt.moto.label": "Motorcycle",
