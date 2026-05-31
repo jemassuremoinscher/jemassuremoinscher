@@ -18,33 +18,31 @@ const LeadMagnetSection = () => {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
 
+  const triggerDownload = () => {
+    const a = document.createElement("a");
+    a.href = PDF_URL;
+    a.download = "7-erreurs-assurance.pdf";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
     setStatus("loading");
     setErrorMsg("");
+    // Best-effort signup ; en cas d'erreur (email déjà inscrit, etc.) on
+    // sert quand même le PDF — l'utilisateur ne doit pas être bloqué.
     try {
-      const { error } = await supabase.functions.invoke("newsletter-subscribe", {
+      await supabase.functions.invoke("newsletter-subscribe", {
         body: { email: email.trim() },
       });
-      if (error) throw error;
-      setStatus("success");
-      // Déclenche le téléchargement après un court délai pour laisser le
-      // visuel de succès apparaître.
-      setTimeout(() => {
-        const a = document.createElement("a");
-        a.href = PDF_URL;
-        a.download = "7-erreurs-assurance.pdf";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      }, 400);
-    } catch (err) {
-      setStatus("error");
-      setErrorMsg(
-        err instanceof Error ? err.message : "Une erreur est survenue. Réessayez."
-      );
+    } catch {
+      /* soft fail */
     }
+    setStatus("success");
+    setTimeout(triggerDownload, 400);
   };
 
   return (

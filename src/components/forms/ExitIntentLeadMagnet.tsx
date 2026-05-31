@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 const PDF_URL = "/lead-magnets/7-erreurs-assurance.pdf";
 const SESSION_KEY = "exit_intent_lead_magnet_shown";
-const INACTIVITY_MS = 45_000; // 45s sans interaction
+const INACTIVITY_MS = 25_000; // 25s sans interaction
 
 /**
  * Exit-intent / abandon rattrapage pour les formulaires multi-step.
@@ -86,29 +86,30 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
 
   const close = () => setOpen(false);
 
+  const triggerDownload = () => {
+    const a = document.createElement("a");
+    a.href = PDF_URL;
+    a.download = "7-erreurs-assurance.pdf";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
     setStatus("loading");
     setErrorMsg("");
+    // Best-effort newsletter signup; on any failure we still serve the PDF.
     try {
-      const { error } = await supabase.functions.invoke("newsletter-subscribe", {
+      await supabase.functions.invoke("newsletter-subscribe", {
         body: { email: email.trim(), source: "exit_intent_multistep" },
       });
-      if (error) throw error;
-      setStatus("success");
-      setTimeout(() => {
-        const a = document.createElement("a");
-        a.href = PDF_URL;
-        a.download = "7-erreurs-assurance.pdf";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      }, 400);
-    } catch (err) {
-      setStatus("error");
-      setErrorMsg(err instanceof Error ? err.message : "Une erreur est survenue. Réessayez.");
+    } catch {
+      /* soft fail — PDF still delivered */
     }
+    setStatus("success");
+    setTimeout(triggerDownload, 400);
   };
 
   return (

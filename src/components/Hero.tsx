@@ -48,8 +48,8 @@ const Hero = () => {
                 decoding="async"
                 fetchPriority="high"
               />
-              <div className="absolute -top-2 -right-2 lg:-top-4 lg:-right-4 bg-white rounded-2xl px-3 py-1.5 lg:px-4 lg:py-2 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] animate-fade-in-delay">
-                <p className="text-primary font-bold text-xs lg:text-sm whitespace-nowrap">
+              <div className="hidden lg:block absolute -top-4 -right-4 bg-white rounded-2xl px-4 py-2 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] animate-fade-in-delay z-10">
+                <p className="text-primary font-bold text-sm whitespace-nowrap">
                   {arthurBubble}
                 </p>
                 <div className="absolute -bottom-1.5 left-4 w-3 h-3 bg-white transform rotate-45" />
