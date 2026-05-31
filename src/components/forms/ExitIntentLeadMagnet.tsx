@@ -86,30 +86,29 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
 
   const close = () => setOpen(false);
 
-  const triggerDownload = () => {
-    const a = document.createElement("a");
-    a.href = PDF_URL;
-    a.download = "7-erreurs-assurance.pdf";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
+    const trimmed = email.trim();
+    if (!trimmed) return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+      setStatus("error");
+      setErrorMsg("Merci de saisir un email valide.");
+      return;
+    }
     setStatus("loading");
     setErrorMsg("");
-    // Best-effort newsletter signup; on any failure we still serve the PDF.
     try {
-      await supabase.functions.invoke("newsletter-subscribe", {
-        body: { email: email.trim(), source: "exit_intent_multistep" },
+      const { data, error } = await supabase.functions.invoke("lead-magnet-capture", {
+        body: { email: trimmed, source: `exit_intent_${insuranceType ?? "global"}` },
       });
-    } catch {
-      /* soft fail — PDF still delivered */
+      if (error || !data?.success) {
+        // soft fail — on garde le lien dispo quand même
+        console.warn("lead-magnet-capture failed", error || data);
+      }
+    } catch (err) {
+      console.warn("lead-magnet-capture exception", err);
     }
     setStatus("success");
-    setTimeout(triggerDownload, 400);
   };
 
   return (
@@ -153,18 +152,20 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
                     <CheckCircle2 className="w-8 h-8 text-primary" aria-hidden="true" />
                   </div>
                   <h3 id="exit-intent-title" className="text-lg font-bold text-foreground mb-2">
-                    Merci ! Ton guide arrive.
+                    Merci ! Ton guide est prêt.
                   </h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Si le téléchargement n'a pas démarré&nbsp;:
+                    Clique ci-dessous pour télécharger ton PDF.
                   </p>
                   <a
                     href={PDF_URL}
                     download="7-erreurs-assurance.pdf"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-colors"
+                    target="_blank"
+                    rel="noopener"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-colors shadow-lg"
                   >
                     <Download className="w-4 h-4" aria-hidden="true" />
-                    Télécharger le PDF
+                    Télécharger mon guide (PDF)
                   </a>
                 </div>
               ) : (

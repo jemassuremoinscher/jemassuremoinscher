@@ -7,33 +7,30 @@ const PDF_URL = "/lead-magnets/7-erreurs-assurance.pdf";
 
 const LeadMagnetSection = () => {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
-
-  const triggerDownload = () => {
-    const a = document.createElement("a");
-    a.href = PDF_URL;
-    a.download = "7-erreurs-assurance.pdf";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
+    const trimmed = email.trim();
+    if (!trimmed) return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+      setStatus("error");
+      setErrorMsg("Email invalide");
+      return;
+    }
     setStatus("loading");
-    
-    // Best-effort signup ; en cas d'erreur (email déjà inscrit, etc.) on
-    // sert quand même le PDF — l'utilisateur ne doit pas être bloqué.
     try {
-      await supabase.functions.invoke("newsletter-subscribe", {
-        body: { email: email.trim() },
+      const { data, error } = await supabase.functions.invoke("lead-magnet-capture", {
+        body: { email: trimmed, source: "homepage_lead_magnet" },
       });
-    } catch {
-      /* soft fail */
+      if (error || !data?.success) {
+        console.warn("lead-magnet-capture failed", error || data);
+      }
+    } catch (err) {
+      console.warn("lead-magnet-capture exception", err);
     }
     setStatus("success");
-    setTimeout(triggerDownload, 400);
   };
 
   return (
@@ -70,13 +67,16 @@ const LeadMagnetSection = () => {
             aria-describedby="lead-magnet-help"
           >
             {status === "success" ? (
-              <div className="flex items-center gap-2 text-sm text-primary font-semibold">
+              <a
+                href={PDF_URL}
+                download="7-erreurs-assurance.pdf"
+                target="_blank"
+                rel="noopener"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap shadow-md"
+              >
                 <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
-                Merci&nbsp;! Ton guide arrive.
-                <a href={PDF_URL} download="7-erreurs-assurance.pdf" className="underline ml-1">
-                  Télécharger
-                </a>
-              </div>
+                Télécharger mon guide (PDF)
+              </a>
             ) : (
               <>
                 <label htmlFor="lead-magnet-email" className="sr-only">Ton email</label>
@@ -92,6 +92,7 @@ const LeadMagnetSection = () => {
                     autoComplete="email"
                     className="w-full pl-9 pr-3 py-2.5 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary text-foreground"
                     disabled={status === "loading"}
+                    aria-invalid={status === "error"}
                   />
                 </div>
                 <button
@@ -106,6 +107,9 @@ const LeadMagnetSection = () => {
             )}
           </motion.form>
         </div>
+        {status === "error" && errorMsg && (
+          <p className="text-[11px] text-destructive mt-2 text-center">{errorMsg}</p>
+        )}
         <p id="lead-magnet-help" className="text-[11px] text-muted-foreground mt-2 text-center">
           🔒 Email confidentiel, jamais revendu. Désinscription en 1 clic.
         </p>
