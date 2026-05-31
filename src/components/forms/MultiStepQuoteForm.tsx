@@ -780,21 +780,7 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
                   }
                 `}>
                   <Icon className="h-7 w-7 md:h-8 md:w-8" />
-      </div>
-      {collapsible && (
-        <div className="mt-4 flex justify-center">
-          <button
-            type="button"
-            onClick={() => setExpanded((v) => !v)}
-            className="text-sm font-semibold text-primary hover:text-primary/80 underline underline-offset-4 decoration-primary/40 hover:decoration-primary transition-colors"
-            aria-expanded={expanded}
-          >
-            {expanded
-              ? "Voir moins"
-              : `Voir plus d'assurances (${options.length - PRIMARY_COUNT} pro & niche)`}
-          </button>
-        </div>
-      )}
+                </div>
               )}
               <span className="font-semibold text-foreground text-sm md:text-base">{option.label}</span>
               {option.description && (
