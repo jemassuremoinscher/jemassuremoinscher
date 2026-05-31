@@ -149,7 +149,7 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
             <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
 
             <div className="relative p-6 md:p-8">
-              <>
+              
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/20 border border-accent/40 mb-4">
                   <BookOpen className="w-4 h-4 text-primary" aria-hidden="true" />
                   <span className="text-xs font-bold text-primary uppercase tracking-wide">
