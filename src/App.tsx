@@ -201,6 +201,7 @@ const App = () => {
             }>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/merci-guide" element={<MerciGuide />} />
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
                 <Route path="/admin" element={<AuthRoute><Admin /></AuthRoute>} />
                 <Route path="/commercial" element={<AuthRoute><Commercial /></AuthRoute>} />
