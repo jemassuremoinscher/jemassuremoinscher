@@ -41,7 +41,7 @@ const MerciGuide = () => {
       <SEOOptimized
         title="Merci ! Votre guide gratuit est prêt — JMMC"
         description="Téléchargez votre guide PDF gratuit : les 7 erreurs qui font exploser votre assurance, et comment économiser jusqu'à 540 € par an."
-        noIndex
+        noindex
       />
       <main className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/10">
         <div className="container mx-auto px-4 py-10 md:py-16 max-w-3xl">
