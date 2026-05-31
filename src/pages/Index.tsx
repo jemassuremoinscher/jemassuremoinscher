@@ -21,6 +21,7 @@ const GuidesSection = lazy(() => import("@/components/sections/GuidesSection"));
 const SEOContent = lazy(() => import("@/components/sections/SEOContent"));
 const ContextualHelp = lazy(() => import("@/components/sections/ContextualHelp"));
 const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
+const LeadMagnetSection = lazy(() => import("@/components/sections/LeadMagnetSection"));
 
 
 const Index = () => {
@@ -183,6 +184,12 @@ const Index = () => {
         <DeferredRender minHeight={400}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[400px]" />}>
             <MdReveal variant="scale"><ClientCases /></MdReveal>
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={420}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[420px]" />}>
+            <MdReveal variant="up"><LeadMagnetSection /></MdReveal>
           </Suspense>
         </DeferredRender>
 
