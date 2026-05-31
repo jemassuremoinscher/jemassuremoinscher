@@ -22,7 +22,7 @@ const LeadMagnetSection = () => {
     e.preventDefault();
     if (!email.trim()) return;
     setStatus("loading");
-    setErrorMsg("");
+    
     // Best-effort signup ; en cas d'erreur (email déjà inscrit, etc.) on
     // sert quand même le PDF — l'utilisateur ne doit pas être bloqué.
     try {
