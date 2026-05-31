@@ -32,7 +32,7 @@ const LeadMagnetSection = () => {
     } catch (err) {
       console.warn("lead-magnet-capture exception", err);
     }
-    setStatus("success");
+    navigate(`/merci-guide?email=${encodeURIComponent(trimmed)}`);
   };
 
   return (
