@@ -21,6 +21,7 @@ const GuidesSection = lazy(() => import("@/components/sections/GuidesSection"));
 const SEOContent = lazy(() => import("@/components/sections/SEOContent"));
 const ContextualHelp = lazy(() => import("@/components/sections/ContextualHelp"));
 const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
+const LeadMagnetSection = lazy(() => import("@/components/sections/LeadMagnetSection"));
 
 
 const Index = () => {
@@ -29,7 +30,7 @@ const Index = () => {
   const organizationSchema = addOrganizationSchema(geoContent.trust.ratingValue, geoContent.trust.reviewCount);
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances Moins Chères en Ligne",
-    description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 70+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
+    description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 50+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
     provider: "jemassuremoinscher.fr",
     areaServed: "France"
   });
@@ -55,7 +56,7 @@ const Index = () => {
     "name": "jemassuremoinscher.fr",
     "alternateName": "Je M'Assure Moins Cher",
     "url": "https://www.jemassuremoinscher.fr",
-    "description": "Comparateur d'assurances gratuit. Comparez 70+ assureurs et trouvez l'assurance moins chère en 2 minutes.",
+    "description": "Comparateur d'assurances gratuit. Comparez 50+ assureurs et trouvez l'assurance moins chère en 2 minutes.",
     "inLanguage": ["fr", "en"],
     "potentialAction": {
       "@type": "SearchAction",
@@ -127,7 +128,7 @@ const Index = () => {
     "@type": "LocalBusiness",
     "name": "jemassuremoinscher.fr",
     "url": "https://www.jemassuremoinscher.fr",
-    "description": "Comparateur d'assurances gratuit. Comparez 70+ assureurs (auto, habitation, santé, animaux). Économisez jusqu'à 40%.",
+    "description": "Comparateur d'assurances gratuit. Comparez 50+ assureurs (auto, habitation, santé, animaux). Économisez jusqu'à 40%.",
     "areaServed": "FR",
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -183,6 +184,12 @@ const Index = () => {
         <DeferredRender minHeight={400}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[400px]" />}>
             <MdReveal variant="scale"><ClientCases /></MdReveal>
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={420}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[420px]" />}>
+            <MdReveal variant="up"><LeadMagnetSection /></MdReveal>
           </Suspense>
         </DeferredRender>
 
