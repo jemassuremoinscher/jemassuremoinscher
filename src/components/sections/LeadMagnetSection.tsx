@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { Download, Mail, CheckCircle2, BookOpen } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Download, Mail, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 
-const PDF_URL = "/lead-magnets/7-erreurs-assurance.pdf";
+
+
 
 const LeadMagnetSection = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,7 +33,7 @@ const LeadMagnetSection = () => {
     } catch (err) {
       console.warn("lead-magnet-capture exception", err);
     }
-    setStatus("success");
+    navigate(`/merci-guide?email=${encodeURIComponent(trimmed)}`);
   };
 
   return (
@@ -66,45 +69,30 @@ const LeadMagnetSection = () => {
             className="flex flex-col sm:flex-row gap-2 md:w-auto md:min-w-[340px]"
             aria-describedby="lead-magnet-help"
           >
-            {status === "success" ? (
-              <a
-                href={PDF_URL}
-                download="7-erreurs-assurance.pdf"
-                target="_blank"
-                rel="noopener"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap shadow-md"
-              >
-                <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
-                Télécharger mon guide (PDF)
-              </a>
-            ) : (
-              <>
-                <label htmlFor="lead-magnet-email" className="sr-only">Ton email</label>
-                <div className="relative flex-1">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" aria-hidden="true" />
-                  <input
-                    id="lead-magnet-email"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => { setEmail(e.target.value); setStatus("idle"); }}
-                    placeholder="ton.email@exemple.fr"
-                    autoComplete="email"
-                    className="w-full pl-9 pr-3 py-2.5 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary text-foreground"
-                    disabled={status === "loading"}
-                    aria-invalid={status === "error"}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
-                >
-                  <Download className="w-4 h-4" aria-hidden="true" />
-                  {status === "loading" ? "Envoi…" : "Recevoir le guide"}
-                </button>
-              </>
-            )}
+            <label htmlFor="lead-magnet-email" className="sr-only">Ton email</label>
+            <div className="relative flex-1">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" aria-hidden="true" />
+              <input
+                id="lead-magnet-email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => { setEmail(e.target.value); setStatus("idle"); }}
+                placeholder="ton.email@exemple.fr"
+                autoComplete="email"
+                className="w-full pl-9 pr-3 py-2.5 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary text-foreground"
+                disabled={status === "loading"}
+                aria-invalid={status === "error"}
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
+            >
+              <Download className="w-4 h-4" aria-hidden="true" />
+              {status === "loading" ? "Envoi…" : "Recevoir le guide"}
+            </button>
           </motion.form>
         </div>
         {status === "error" && errorMsg && (

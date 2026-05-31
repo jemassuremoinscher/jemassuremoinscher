@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Download, Mail, X, BookOpen, CheckCircle2, AlertCircle } from "lucide-react";
+import { Download, Mail, X, BookOpen, AlertCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
-const PDF_URL = "/lead-magnets/7-erreurs-assurance.pdf";
+
 const SESSION_KEY = "exit_intent_lead_magnet_shown";
 const INACTIVITY_MS = 25_000; // 25s sans interaction
 
@@ -24,9 +25,10 @@ interface Props {
 }
 
 const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const shownRef = useRef(false);
 
@@ -108,7 +110,8 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
     } catch (err) {
       console.warn("lead-magnet-capture exception", err);
     }
-    setStatus("success");
+    setOpen(false);
+    navigate(`/merci-guide?email=${encodeURIComponent(trimmed)}`);
   };
 
   return (
@@ -146,36 +149,13 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
             <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
 
             <div className="relative p-6 md:p-8">
-              {status === "success" ? (
-                <div className="text-center py-4">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 mb-3">
-                    <CheckCircle2 className="w-8 h-8 text-primary" aria-hidden="true" />
-                  </div>
-                  <h3 id="exit-intent-title" className="text-lg font-bold text-foreground mb-2">
-                    Merci ! Ton guide est prêt.
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Clique ci-dessous pour télécharger ton PDF.
-                  </p>
-                  <a
-                    href={PDF_URL}
-                    download="7-erreurs-assurance.pdf"
-                    target="_blank"
-                    rel="noopener"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-colors shadow-lg"
-                  >
-                    <Download className="w-4 h-4" aria-hidden="true" />
-                    Télécharger mon guide (PDF)
-                  </a>
+              
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/20 border border-accent/40 mb-4">
+                  <BookOpen className="w-4 h-4 text-primary" aria-hidden="true" />
+                  <span className="text-xs font-bold text-primary uppercase tracking-wide">
+                    Avant de partir…
+                  </span>
                 </div>
-              ) : (
-                <>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/20 border border-accent/40 mb-4">
-                    <BookOpen className="w-4 h-4 text-primary" aria-hidden="true" />
-                    <span className="text-xs font-bold text-primary uppercase tracking-wide">
-                      Avant de partir…
-                    </span>
-                  </div>
                   <h3 id="exit-intent-title" className="text-2xl md:text-3xl font-black text-foreground leading-tight mb-3">
                     Garde nos <span className="text-primary">7 astuces</span> pour payer moins cher.
                   </h3>
@@ -218,8 +198,6 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
                       🔒 Email confidentiel, jamais revendu. Désinscription en 1 clic.
                     </p>
                   </form>
-                </>
-              )}
             </div>
           </motion.div>
         </motion.div>

@@ -23,6 +23,7 @@ const AuthProvider = lazy(() => import("@/contexts/AuthContext").then(m => ({ de
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
+const MerciGuide = lazy(() => import("./pages/MerciGuide"));
 const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Commercial = lazy(() => import("./pages/Commercial"));
@@ -200,6 +201,7 @@ const App = () => {
             }>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/merci-guide" element={<MerciGuide />} />
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
                 <Route path="/admin" element={<AuthRoute><Admin /></AuthRoute>} />
                 <Route path="/commercial" element={<AuthRoute><Commercial /></AuthRoute>} />
