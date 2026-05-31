@@ -25,7 +25,7 @@ const LeadMagnetSection = () => {
     setErrorMsg("");
     try {
       const { error } = await supabase.functions.invoke("newsletter-subscribe", {
-        body: { email: email.trim(), action: "subscribe", source: "lead-magnet-7-erreurs" },
+        body: { email: email.trim() },
       });
       if (error) throw error;
       setStatus("success");
