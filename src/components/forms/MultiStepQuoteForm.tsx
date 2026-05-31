@@ -798,6 +798,20 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
           );
         })}
       </div>
+      {collapsible && (
+        <div className="mt-4 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setExpanded((v) => !v)}
+            className="text-sm font-semibold text-primary hover:text-primary/80 underline underline-offset-4 decoration-primary/40 hover:decoration-primary transition-colors"
+            aria-expanded={expanded}
+          >
+            {expanded
+              ? "Voir moins"
+              : `Voir plus d'assurances (${options.length - PRIMARY_COUNT} pro & niche)`}
+          </button>
+        </div>
+      )}
       {/* Micro-loading feedback */}
       {microLoading && (
         <motion.div
