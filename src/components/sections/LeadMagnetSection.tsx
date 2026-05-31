@@ -1,22 +1,13 @@
 import { useState } from "react";
-import { Download, Mail, CheckCircle2, AlertCircle, BookOpen } from "lucide-react";
+import { Download, Mail, CheckCircle2, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 
 const PDF_URL = "/lead-magnets/7-erreurs-assurance.pdf";
 
-/**
- * Lead magnet secondaire — capture les visiteurs "haut de funnel"
- * qui ne sont pas encore prêts à faire un devis.
- *
- * Flux : email → newsletter-subscribe (RGPD double opt-in) →
- * téléchargement immédiat du PDF "7 erreurs qui te font payer
- * ton assurance trop cher" pour nourrir le lead.
- */
 const LeadMagnetSection = () => {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState<string>("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
 
   const triggerDownload = () => {
     const a = document.createElement("a");
