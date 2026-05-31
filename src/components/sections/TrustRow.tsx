@@ -7,11 +7,11 @@ import oriasLogo from "@/assets/logos/orias.jpg";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import geoContent from "@/data/geo-content.json";
 
-// Compteur familles accompagnées : démarre à 8 500 (familles déjà accompagnées
-// depuis la création) + 4 nouvelles familles par jour automatiquement.
-const FAMILIES_BASELINE = 8500;
+// Compteur familles accompagnées : démarre au 1er janvier 2026 (date de
+// création de jemassuremoinscher.fr) à 0, + 4 nouvelles familles par jour.
+const FAMILIES_BASELINE = 0;
 const FAMILIES_PER_DAY = 4;
-const FAMILIES_SINCE = new Date("2024-01-01T00:00:00");
+const FAMILIES_SINCE = new Date("2026-01-01T00:00:00");
 const computeFamiliesTotal = () => {
   const now = new Date();
   const days = Math.max(0, Math.floor((now.getTime() - FAMILIES_SINCE.getTime()) / 86400000));
@@ -90,7 +90,7 @@ const TrustRow = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-2 lg:grid-cols-6 gap-4"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4"
         >
           {/* Google Reviews */}
           <motion.div variants={itemVariants} role="group" aria-label={`Note Google Reviews ${geoContent.trust.ratingValueLabel} sur 5 basée sur ${geoContent.trust.reviewCountLabel} avis vérifiés`} className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
@@ -154,7 +154,7 @@ const TrustRow = () => {
             whileHover={prefersReducedMotion ? undefined : { y: -6, scale: 1.02 }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
             aria-label={t('trustRow.callbackAria')}
-            className="col-span-2 lg:col-span-1 bg-primary rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(124,58,237,0.3)] hover:shadow-[0_16px_32px_-10px_rgba(124,58,237,0.6)] transition-shadow border border-primary-foreground/10 flex flex-col items-center text-center gap-3 relative overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
+            className="col-span-2 md:col-span-1 lg:col-span-1 bg-primary rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(124,58,237,0.3)] hover:shadow-[0_16px_32px_-10px_rgba(124,58,237,0.6)] transition-shadow border border-primary-foreground/10 flex flex-col items-center text-center gap-3 relative overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
           >
             <motion.img
               src={arthurKarting}
@@ -176,7 +176,7 @@ const TrustRow = () => {
             variants={itemVariants}
             role="group"
             aria-label={`${familiesCount.toLocaleString('fr-FR')} familles accompagnées par jemassuremoinscher.fr`}
-            className="col-span-2 lg:col-span-1 bg-gradient-to-br from-accent/95 to-accent rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(252,211,77,0.4)] hover:shadow-[0_16px_32px_-10px_rgba(252,211,77,0.6)] hover:-translate-y-1 transition-all border border-accent-foreground/10 flex flex-col items-center text-center gap-3 relative overflow-hidden"
+            className="col-span-2 md:col-span-1 lg:col-span-1 bg-gradient-to-br from-accent/95 to-accent rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(252,211,77,0.4)] hover:shadow-[0_16px_32px_-10px_rgba(252,211,77,0.6)] hover:-translate-y-1 transition-all border border-accent-foreground/10 flex flex-col items-center text-center gap-3 relative overflow-hidden"
           >
             <div className="p-3 rounded-full bg-primary/15" aria-hidden="true">
               <TrendingUp className="w-7 h-7 text-primary" />

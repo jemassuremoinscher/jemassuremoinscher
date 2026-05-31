@@ -20,6 +20,7 @@ import { useFieldTracking } from '@/hooks/useFieldTracking';
 import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from '@/data/vehicleBrands';
 import FlipPriceCard from './FlipPriceCard';
 import { useLanguage } from '@/contexts/LanguageContext';
+import ExitIntentLeadMagnet from './ExitIntentLeadMagnet';
 
 // Mascot imports
 import arthurCar from '@/assets/mascotte/arthur-car.webp';
@@ -698,7 +699,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       </div>
 
 
-
+      {/* Exit-intent / abandon rattrapage — propose le guide PDF si le
+          visiteur quitte ou reste inactif avant la soumission. */}
+      <ExitIntentLeadMagnet
+        disabled={isSuccess}
+        insuranceType={formData.insuranceType || insuranceType}
+      />
     </div>
   );
 };
@@ -799,17 +805,46 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
         })}
       </div>
       {collapsible && (
-        <div className="mt-4 flex justify-center">
-          <button
+        <div className="mt-5 flex justify-center">
+          <motion.button
             type="button"
             onClick={() => setExpanded((v) => !v)}
-            className="text-sm font-semibold text-primary hover:text-primary/80 underline underline-offset-4 decoration-primary/40 hover:decoration-primary transition-colors"
+            whileTap={{ scale: 0.96 }}
             aria-expanded={expanded}
+            className={`
+              group relative inline-flex items-center gap-2 pl-5 pr-6 py-3 rounded-full
+              font-semibold text-sm
+              bg-primary/10 text-primary
+              border border-primary/20
+              shadow-[0_1px_2px_rgba(0,0,0,0.04)]
+              hover:bg-primary/15 hover:shadow-[0_6px_18px_-8px_hsl(var(--primary)/0.45)]
+              hover:border-primary/40
+              focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/30
+              transition-all duration-300 ease-out
+              ${expanded ? 'bg-primary/15 border-primary/40' : ''}
+            `}
           >
-            {expanded
-              ? "Voir moins"
-              : `Voir plus d'assurances (${options.length - PRIMARY_COUNT} pro & niche)`}
-          </button>
+            <motion.span
+              animate={{ rotate: expanded ? 180 : 0 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 22 }}
+              className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground shadow-sm"
+              aria-hidden="true"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </motion.span>
+            <span>
+              {expanded
+                ? "Voir moins d'assurances"
+                : `Voir plus d'assurances`}
+            </span>
+            {!expanded && (
+              <span className="inline-flex items-center justify-center min-w-[26px] h-6 px-2 rounded-full bg-primary text-primary-foreground text-[11px] font-bold tabular-nums">
+                +{options.length - PRIMARY_COUNT}
+              </span>
+            )}
+          </motion.button>
         </div>
       )}
       {/* Micro-loading feedback */}
