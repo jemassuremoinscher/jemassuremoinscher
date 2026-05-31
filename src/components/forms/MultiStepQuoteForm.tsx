@@ -706,10 +706,25 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 // ─── Card Select Step ────────────────────────────────────────────────────────
 function CardSelectStep({ options, selected, onSelect, microLoading }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void; microLoading?: boolean }) {
   const { t } = useLanguage();
+  // Si la liste d'options est longue (typiquement l'étape "type d'assurance"
+  // du comparateur avec 12 options), on n'affiche que les 4 principales et on
+  // propose un toggle "Voir plus" pour révéler le reste. 80% des leads viennent
+  // des 4 premières catégories (Auto, Moto, Habitation, Santé).
+  const COLLAPSE_THRESHOLD = 8;
+  const PRIMARY_COUNT = 4;
+  const collapsible = options.length >= COLLAPSE_THRESHOLD;
+  const [expanded, setExpanded] = useState(false);
+  // Toujours montrer la sélection courante même si elle est dans la zone repliée
+  const selectedHidden = collapsible && !expanded && selected
+    ? options.findIndex((o) => o.value === selected) >= PRIMARY_COUNT
+    : false;
+  const visibleOptions = collapsible && !expanded && !selectedHidden
+    ? options.slice(0, PRIMARY_COUNT)
+    : options;
   return (
     <div className="relative">
-      <div className={`grid gap-3 ${options.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : options.length <= 4 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}`}>
-        {options.map((option, idx) => {
+      <div className={`grid gap-3 ${visibleOptions.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : visibleOptions.length <= 4 ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}`}>
+        {visibleOptions.map((option, idx) => {
           const Icon = option.icon;
           const isSelected = selected === option.value;
           return (
