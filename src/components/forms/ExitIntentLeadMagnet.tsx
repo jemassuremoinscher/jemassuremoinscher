@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Download, Mail, X, BookOpen, CheckCircle2, AlertCircle } from "lucide-react";
+import { Download, Mail, X, BookOpen, AlertCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 const PDF_URL = "/lead-magnets/7-erreurs-assurance.pdf";
