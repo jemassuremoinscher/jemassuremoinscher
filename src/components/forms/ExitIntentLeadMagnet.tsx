@@ -110,7 +110,8 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
     } catch (err) {
       console.warn("lead-magnet-capture exception", err);
     }
-    setStatus("success");
+    setOpen(false);
+    navigate(`/merci-guide?email=${encodeURIComponent(trimmed)}`);
   };
 
   return (
