@@ -23,6 +23,7 @@ const AuthProvider = lazy(() => import("@/contexts/AuthContext").then(m => ({ de
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
+const MerciGuide = lazy(() => import("./pages/MerciGuide"));
 const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Commercial = lazy(() => import("./pages/Commercial"));
