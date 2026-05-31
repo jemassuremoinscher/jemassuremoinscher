@@ -152,18 +152,20 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
                     <CheckCircle2 className="w-8 h-8 text-primary" aria-hidden="true" />
                   </div>
                   <h3 id="exit-intent-title" className="text-lg font-bold text-foreground mb-2">
-                    Merci ! Ton guide arrive.
+                    Merci ! Ton guide est prêt.
                   </h3>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Si le téléchargement n'a pas démarré&nbsp;:
+                    Clique ci-dessous pour télécharger ton PDF.
                   </p>
                   <a
                     href={PDF_URL}
                     download="7-erreurs-assurance.pdf"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-colors"
+                    target="_blank"
+                    rel="noopener"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-colors shadow-lg"
                   >
                     <Download className="w-4 h-4" aria-hidden="true" />
-                    Télécharger le PDF
+                    Télécharger mon guide (PDF)
                   </a>
                 </div>
               ) : (

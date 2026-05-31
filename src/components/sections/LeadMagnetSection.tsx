@@ -67,13 +67,16 @@ const LeadMagnetSection = () => {
             aria-describedby="lead-magnet-help"
           >
             {status === "success" ? (
-              <div className="flex items-center gap-2 text-sm text-primary font-semibold">
+              <a
+                href={PDF_URL}
+                download="7-erreurs-assurance.pdf"
+                target="_blank"
+                rel="noopener"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap shadow-md"
+              >
                 <CheckCircle2 className="w-4 h-4" aria-hidden="true" />
-                Merci&nbsp;! Ton guide arrive.
-                <a href={PDF_URL} download="7-erreurs-assurance.pdf" className="underline ml-1">
-                  Télécharger
-                </a>
-              </div>
+                Télécharger mon guide (PDF)
+              </a>
             ) : (
               <>
                 <label htmlFor="lead-magnet-email" className="sr-only">Ton email</label>
@@ -89,6 +92,7 @@ const LeadMagnetSection = () => {
                     autoComplete="email"
                     className="w-full pl-9 pr-3 py-2.5 rounded-lg border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary text-foreground"
                     disabled={status === "loading"}
+                    aria-invalid={status === "error"}
                   />
                 </div>
                 <button
@@ -103,6 +107,9 @@ const LeadMagnetSection = () => {
             )}
           </motion.form>
         </div>
+        {status === "error" && errorMsg && (
+          <p className="text-[11px] text-destructive mt-2 text-center">{errorMsg}</p>
+        )}
         <p id="lead-magnet-help" className="text-[11px] text-muted-foreground mt-2 text-center">
           🔒 Email confidentiel, jamais revendu. Désinscription en 1 clic.
         </p>
