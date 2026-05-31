@@ -7,11 +7,11 @@ import oriasLogo from "@/assets/logos/orias.jpg";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import geoContent from "@/data/geo-content.json";
 
-// Compteur familles accompagnées : démarre à 8 500 (familles déjà accompagnées
-// depuis la création) + 4 nouvelles familles par jour automatiquement.
-const FAMILIES_BASELINE = 8500;
+// Compteur familles accompagnées : démarre au 1er janvier 2026 (date de
+// création de jemassuremoinscher.fr) à 0, + 4 nouvelles familles par jour.
+const FAMILIES_BASELINE = 0;
 const FAMILIES_PER_DAY = 4;
-const FAMILIES_SINCE = new Date("2024-01-01T00:00:00");
+const FAMILIES_SINCE = new Date("2026-01-01T00:00:00");
 const computeFamiliesTotal = () => {
   const now = new Date();
   const days = Math.max(0, Math.floor((now.getTime() - FAMILIES_SINCE.getTime()) / 86400000));
