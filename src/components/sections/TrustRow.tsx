@@ -176,7 +176,7 @@ const TrustRow = () => {
             variants={itemVariants}
             role="group"
             aria-label={`${familiesCount.toLocaleString('fr-FR')} familles accompagnées par jemassuremoinscher.fr`}
-            className="col-span-2 lg:col-span-1 bg-gradient-to-br from-accent/95 to-accent rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(252,211,77,0.4)] hover:shadow-[0_16px_32px_-10px_rgba(252,211,77,0.6)] hover:-translate-y-1 transition-all border border-accent-foreground/10 flex flex-col items-center text-center gap-3 relative overflow-hidden"
+            className="col-span-2 md:col-span-1 lg:col-span-1 bg-gradient-to-br from-accent/95 to-accent rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(252,211,77,0.4)] hover:shadow-[0_16px_32px_-10px_rgba(252,211,77,0.6)] hover:-translate-y-1 transition-all border border-accent-foreground/10 flex flex-col items-center text-center gap-3 relative overflow-hidden"
           >
             <div className="p-3 rounded-full bg-primary/15" aria-hidden="true">
               <TrendingUp className="w-7 h-7 text-primary" />
