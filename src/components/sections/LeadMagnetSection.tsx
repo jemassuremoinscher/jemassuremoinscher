@@ -7,33 +7,30 @@ const PDF_URL = "/lead-magnets/7-erreurs-assurance.pdf";
 
 const LeadMagnetSection = () => {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
-
-  const triggerDownload = () => {
-    const a = document.createElement("a");
-    a.href = PDF_URL;
-    a.download = "7-erreurs-assurance.pdf";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
+    const trimmed = email.trim();
+    if (!trimmed) return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+      setStatus("error");
+      setErrorMsg("Email invalide");
+      return;
+    }
     setStatus("loading");
-    
-    // Best-effort signup ; en cas d'erreur (email déjà inscrit, etc.) on
-    // sert quand même le PDF — l'utilisateur ne doit pas être bloqué.
     try {
-      await supabase.functions.invoke("newsletter-subscribe", {
-        body: { email: email.trim() },
+      const { data, error } = await supabase.functions.invoke("lead-magnet-capture", {
+        body: { email: trimmed, source: "homepage_lead_magnet" },
       });
-    } catch {
-      /* soft fail */
+      if (error || !data?.success) {
+        console.warn("lead-magnet-capture failed", error || data);
+      }
+    } catch (err) {
+      console.warn("lead-magnet-capture exception", err);
     }
     setStatus("success");
-    setTimeout(triggerDownload, 400);
   };
 
   return (

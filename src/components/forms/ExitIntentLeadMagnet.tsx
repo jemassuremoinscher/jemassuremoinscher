@@ -86,30 +86,29 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
 
   const close = () => setOpen(false);
 
-  const triggerDownload = () => {
-    const a = document.createElement("a");
-    a.href = PDF_URL;
-    a.download = "7-erreurs-assurance.pdf";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
+    const trimmed = email.trim();
+    if (!trimmed) return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+      setStatus("error");
+      setErrorMsg("Merci de saisir un email valide.");
+      return;
+    }
     setStatus("loading");
     setErrorMsg("");
-    // Best-effort newsletter signup; on any failure we still serve the PDF.
     try {
-      await supabase.functions.invoke("newsletter-subscribe", {
-        body: { email: email.trim(), source: "exit_intent_multistep" },
+      const { data, error } = await supabase.functions.invoke("lead-magnet-capture", {
+        body: { email: trimmed, source: `exit_intent_${insuranceType ?? "global"}` },
       });
-    } catch {
-      /* soft fail — PDF still delivered */
+      if (error || !data?.success) {
+        // soft fail — on garde le lien dispo quand même
+        console.warn("lead-magnet-capture failed", error || data);
+      }
+    } catch (err) {
+      console.warn("lead-magnet-capture exception", err);
     }
     setStatus("success");
-    setTimeout(triggerDownload, 400);
   };
 
   return (
