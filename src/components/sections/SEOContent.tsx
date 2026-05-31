@@ -75,7 +75,7 @@ const SEOContent = () => {
             <p className="text-sm text-muted-foreground leading-relaxed flex-1">
               {t('seoContent.p5')}{' '}
               Découvrez les <Link to="/avis-clients" className="text-primary hover:underline font-medium">avis de nos clients</Link> et
-              ce que disent nos <Link to="/nos-partenaires" className="text-primary hover:underline font-medium">50+ assureurs partenaires</Link>.
+              ce que disent nos <Link to="/nos-partenaires" className="text-primary hover:underline font-medium">70+ assureurs partenaires</Link>.
             </p>
           </article>
         </div>
