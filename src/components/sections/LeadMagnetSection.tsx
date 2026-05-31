@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Download, Mail, CheckCircle2, BookOpen } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Download, Mail, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 
