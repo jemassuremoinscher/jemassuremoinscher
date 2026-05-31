@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Download, Mail, X, BookOpen, AlertCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
-const PDF_URL = "/lead-magnets/7-erreurs-assurance.pdf";
+
 const SESSION_KEY = "exit_intent_lead_magnet_shown";
 const INACTIVITY_MS = 25_000; // 25s sans interaction
 
