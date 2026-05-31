@@ -698,7 +698,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       </div>
 
 
-
+      {/* Exit-intent / abandon rattrapage — propose le guide PDF si le
+          visiteur quitte ou reste inactif avant la soumission. */}
+      <ExitIntentLeadMagnet
+        disabled={isSuccess}
+        insuranceType={formData.insuranceType || insuranceType}
+      />
     </div>
   );
 };
