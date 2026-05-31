@@ -33,7 +33,7 @@ const glossarySeoMeta: Record<string, { title: string; description: string }> = 
   "gli": { title: "GLI : Protégez Vos Loyers dès 2,5% [Month]", description: "Garantie Loyers Impayés : couverture, conditions et coût. Sécurisez vos revenus locatifs. Guide [Month]." },
   "vetuste": { title: "Vétusté Assurance : Calcul & Impact [Month]", description: "Comment la vétusté affecte votre indemnisation ? Taux, calcul et astuces pour être mieux remboursé. [Month]." },
   "resiliation": { title: "Résiliation Assurance : Vos Droits en [Month]", description: "Loi Hamon, Chatel, infra-annuelle : tous les moyens pour résilier votre assurance facilement. Guide [Month]." },
-  "devis": { title: "Devis Assurance Gratuit : Comparez en [Month]", description: "Obtenez un devis assurance gratuit en 2 minutes. Comparez 50+ assureurs et économisez. [Month]." },
+  "devis": { title: "Devis Assurance Gratuit : Comparez en [Month]", description: "Obtenez un devis assurance gratuit en 2 minutes. Comparez 70+ assureurs et économisez. [Month]." },
 };
 
 const GlossaireTerme = () => {

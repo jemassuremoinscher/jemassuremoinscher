@@ -1,7 +1,7 @@
 {
   "name": "jemassuremoinscher.fr - Comparateur d'Assurances",
   "short_name": "jemassuremoinscher",
-  "description": "Comparez 50+ assureurs et trouvez l'assurance la moins chère. Devis gratuit en 2 minutes.",
+  "description": "Comparez 70+ assureurs et trouvez l'assurance la moins chère. Devis gratuit en 2 minutes.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#7c3aed",

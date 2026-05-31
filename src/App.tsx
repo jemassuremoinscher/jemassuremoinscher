@@ -16,6 +16,7 @@ const SkipToMain = lazy(() => import("@/components/SkipToMain"));
 const RouteTracker = lazy(() => import("@/components/RouteTracker"));
 const StickyCTA = lazy(() => import("@/components/StickyCTA"));
 const GlobalMdReveal = lazy(() => import("@/components/motion/GlobalMdReveal"));
+const GlobalExitIntent = lazy(() => import("@/components/forms/GlobalExitIntent"));
 
 // Auth-protected routes wrapper — lazy loaded to avoid Supabase init on public pages
 const AuthProvider = lazy(() => import("@/contexts/AuthContext").then(m => ({ default: m.AuthProvider })));
@@ -329,6 +330,11 @@ const App = () => {
           <Suspense fallback={null}>
             <StickyCTA />
           </Suspense>
+          {showDeferredWidgets && (
+            <Suspense fallback={null}>
+              <GlobalExitIntent />
+            </Suspense>
+          )}
           {showDeferredWidgets && (
             <>
               <Suspense fallback={null}>

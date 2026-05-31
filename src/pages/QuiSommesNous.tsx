@@ -91,7 +91,7 @@ const QuiSommesNous = () => {
         canonical={`${baseUrl}/qui-sommes-nous`}
         ogTitle="Qui sommes-nous ? | jemassuremoinscher.fr — Courtier indépendant enregistré ORIAS"
         ogDescription="Découvrez l'équipe derrière jemassuremoinscher.fr : courtier en assurances indépendant, enregistré ORIAS, gratuit et 100% transparent."
-        twitterDescription="Courtier en assurances indépendant, enregistré ORIAS. Comparez 50+ assureurs gratuitement sur jemassuremoinscher.fr."
+        twitterDescription="Courtier en assurances indépendant, enregistré ORIAS. Comparez 70+ assureurs gratuitement sur jemassuremoinscher.fr."
         jsonLd={jsonLd}
       />
 

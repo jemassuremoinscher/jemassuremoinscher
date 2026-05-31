@@ -68,9 +68,9 @@ const AssuranceMoto = () => {
         keyword="assurance moto moins chère"
         keywords="assurance scooter, comparateur assurance moto, assurance 125, assurance moto jeune conducteur"
         canonical="https://www.jemassuremoinscher.fr/assurance-moto"
-        ogTitle="Assurance Moto Moins Chère en 2025 : Comparez 50+ assureurs, économisez 35%"
-        ogDescription="Comparez 50+ assureurs moto et scooter en 2 minutes. Tous risques dès 15€/mois. Devis gratuit pour moto, scooter, 125cc."
-        twitterDescription="Comparez 50+ assureurs moto en 2 min. Économisez jusqu'à 35%. Devis gratuit sans engagement."
+        ogTitle="Assurance Moto Moins Chère en 2025 : Comparez 70+ assureurs, économisez 35%"
+        ogDescription="Comparez 70+ assureurs moto et scooter en 2 minutes. Tous risques dès 15€/mois. Devis gratuit pour moto, scooter, 125cc."
+        twitterDescription="Comparez 70+ assureurs moto en 2 min. Économisez jusqu'à 35%. Devis gratuit sans engagement."
         jsonLd={[serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />

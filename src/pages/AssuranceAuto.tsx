@@ -98,9 +98,9 @@ const AssuranceAuto = () => {
         keyword="assurance auto moins chère"
         keywords="assurance auto moins cher, comparateur assurance auto, devis assurance voiture, changer assurance auto"
         canonical="https://www.jemassuremoinscher.fr/assurance-auto"
-        ogTitle="Assurance Auto Moins Chère en 2025 : Comparez 50+ assureurs, économisez jusqu'à 40%"
-        ogDescription="Comparez 50+ assureurs auto en 2 minutes. Devis gratuit et personnalisé. Nos clients économisent 320€/an. Tiers, Tiers+, Tous Risques dès 25€/mois."
-        twitterDescription="Comparez 50+ assureurs auto en 2 minutes. Économisez jusqu'à 40%/an. Gratuit et sans engagement."
+        ogTitle="Assurance Auto Moins Chère en 2025 : Comparez 70+ assureurs, économisez jusqu'à 40%"
+        ogDescription="Comparez 70+ assureurs auto en 2 minutes. Devis gratuit et personnalisé. Nos clients économisent 320€/an. Tiers, Tiers+, Tous Risques dès 25€/mois."
+        twitterDescription="Comparez 70+ assureurs auto en 2 minutes. Économisez jusqu'à 40%/an. Gratuit et sans engagement."
         jsonLd={[serviceSchema, howToSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />

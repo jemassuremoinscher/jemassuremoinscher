@@ -53,7 +53,7 @@ const resolveDynamicTokens = (text: string): string => {
  * ```tsx
  * <SEOOptimized
  *   title="Assurance Auto Moins Chère"
- *   description="Comparez 50+ assureurs auto. Devis gratuit en 2 min."
+ *   description="Comparez 70+ assureurs auto. Devis gratuit en 2 min."
  *   keyword="assurance auto pas chère"
  * />
  * ```

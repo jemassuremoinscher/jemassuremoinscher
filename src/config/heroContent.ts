@@ -30,13 +30,13 @@ export const heroContent = {
   seo: {
     title: "Économisez jusqu'à 280€/an sur votre assurance | Devis 2 min",
     description:
-      "Économisez jusqu'à 280€/an sur votre assurance avec Arthur. Comparez 50+ assureurs en 2 minutes. Gratuit, sans engagement.",
+      "Économisez jusqu'à 280€/an sur votre assurance avec Arthur. 70+ assureurs, 5 000+ offres comparées en 2 minutes. Gratuit, sans engagement.",
     ogTitle: "Économisez jusqu'à 280€/an sur votre assurance avec Arthur",
     ogDescription:
-      "Comparez 50+ assureurs en 2 minutes avec Arthur. Économisez jusqu'à 280€/an. Devis gratuit, sans engagement.",
+      "70+ assureurs, 5 000+ offres comparées en 2 minutes avec Arthur. Économisez jusqu'à 280€/an. Devis gratuit, sans engagement.",
     twitterTitle: "Économisez jusqu'à 280€/an | Devis assurance 2 min",
     twitterDescription:
-      "Avec Arthur, comparez 50+ assureurs (auto, santé, habitation) en 2 min et économisez jusqu'à 280€/an.",
+      "Avec Arthur, comparez 70+ assureurs et 5 000+ offres (auto, santé, habitation) en 2 min et économisez jusqu'à 280€/an.",
   },
 } as const;
 
