@@ -149,36 +149,13 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
             <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
 
             <div className="relative p-6 md:p-8">
-              {status === "success" ? (
-                <div className="text-center py-4">
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 mb-3">
-                    <CheckCircle2 className="w-8 h-8 text-primary" aria-hidden="true" />
-                  </div>
-                  <h3 id="exit-intent-title" className="text-lg font-bold text-foreground mb-2">
-                    Merci ! Ton guide est prêt.
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Clique ci-dessous pour télécharger ton PDF.
-                  </p>
-                  <a
-                    href={PDF_URL}
-                    download="7-erreurs-assurance.pdf"
-                    target="_blank"
-                    rel="noopener"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-colors shadow-lg"
-                  >
-                    <Download className="w-4 h-4" aria-hidden="true" />
-                    Télécharger mon guide (PDF)
-                  </a>
+              <>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/20 border border-accent/40 mb-4">
+                  <BookOpen className="w-4 h-4 text-primary" aria-hidden="true" />
+                  <span className="text-xs font-bold text-primary uppercase tracking-wide">
+                    Avant de partir…
+                  </span>
                 </div>
-              ) : (
-                <>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/20 border border-accent/40 mb-4">
-                    <BookOpen className="w-4 h-4 text-primary" aria-hidden="true" />
-                    <span className="text-xs font-bold text-primary uppercase tracking-wide">
-                      Avant de partir…
-                    </span>
-                  </div>
                   <h3 id="exit-intent-title" className="text-2xl md:text-3xl font-black text-foreground leading-tight mb-3">
                     Garde nos <span className="text-primary">7 astuces</span> pour payer moins cher.
                   </h3>
