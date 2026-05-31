@@ -20,7 +20,7 @@ import { useFieldTracking } from '@/hooks/useFieldTracking';
 import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from '@/data/vehicleBrands';
 import FlipPriceCard from './FlipPriceCard';
 import { useLanguage } from '@/contexts/LanguageContext';
-import ExitIntentLeadMagnet from './ExitIntentLeadMagnet';
+// ExitIntentLeadMagnet est monté globalement dans App.tsx (GlobalExitIntent)
 
 // Mascot imports
 import arthurCar from '@/assets/mascotte/arthur-car.webp';
@@ -699,15 +699,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       </div>
 
 
-      {/* Exit-intent / abandon rattrapage — propose le guide PDF si le
-          visiteur quitte ou reste inactif avant la soumission. */}
-      <ExitIntentLeadMagnet
-        disabled={isSuccess}
-        insuranceType={formData.insuranceType || insuranceType}
-      />
-    </div>
-  );
-};
+      {/* Exit-intent monté globalement dans App.tsx via <GlobalExitIntent /> */}
 
 // ─── Card Select Step ────────────────────────────────────────────────────────
 function CardSelectStep({ options, selected, onSelect, microLoading }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void; microLoading?: boolean }) {
