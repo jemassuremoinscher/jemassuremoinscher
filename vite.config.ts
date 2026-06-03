@@ -28,27 +28,24 @@ const discoverHtmlEntries = (rootDir: string): Record<string, string> => {
   };
 
   const walk = (dir: string) => {
-    let children: string[] = [];
-    try {
-      children = readdirSync(dir);
-    } catch {
-      return;
+    // Register this dir's own index.html if present
+    const indexHtml = path.join(dir, "index.html");
+    if (existsSync(indexHtml)) {
+      const rel = path.relative(rootDir, dir).replace(/\\/g, "/");
+      if (rel) {
+        const key = rel.replace(/[^a-zA-Z0-9]+/g, "_");
+        entries[key] = indexHtml;
+      }
     }
+    // Recurse into subdirectories
+    let children: string[] = [];
+    try { children = readdirSync(dir); } catch { return; }
     for (const name of children) {
       if (name.startsWith(".")) continue;
       const full = path.join(dir, name);
       let st;
       try { st = statSync(full); } catch { continue; }
-      if (!st.isDirectory()) continue;
-
-      const indexHtml = path.join(full, "index.html");
-      if (existsSync(indexHtml)) {
-        const rel = path.relative(rootDir, full).replace(/\\/g, "/");
-        // Rollup entry key — must be unique, safe chars only
-        const key = rel.replace(/[^a-zA-Z0-9]+/g, "_");
-        entries[key] = indexHtml;
-      }
-      walk(full);
+      if (st.isDirectory()) walk(full);
     }
   };
 
