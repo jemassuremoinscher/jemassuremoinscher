@@ -1,0 +1,434 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/assurance-animaux",
+      "destination": "/assurance-animaux/index.html"
+    },
+    {
+      "source": "/assurance-auto",
+      "destination": "/assurance-auto/index.html"
+    },
+    {
+      "source": "/assurance-gli",
+      "destination": "/assurance-gli/index.html"
+    },
+    {
+      "source": "/assurance-habitation",
+      "destination": "/assurance-habitation/index.html"
+    },
+    {
+      "source": "/assurance-moto",
+      "destination": "/assurance-moto/index.html"
+    },
+    {
+      "source": "/assurance-mrp",
+      "destination": "/assurance-mrp/index.html"
+    },
+    {
+      "source": "/assurance-pno",
+      "destination": "/assurance-pno/index.html"
+    },
+    {
+      "source": "/assurance-pret",
+      "destination": "/assurance-pret/index.html"
+    },
+    {
+      "source": "/assurance-prevoyance",
+      "destination": "/assurance-prevoyance/index.html"
+    },
+    {
+      "source": "/assurance-rc-pro",
+      "destination": "/assurance-rc-pro/index.html"
+    },
+    {
+      "source": "/assurance-sante",
+      "destination": "/assurance-sante/index.html"
+    },
+    {
+      "source": "/assurance-vie",
+      "destination": "/assurance-vie/index.html"
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet",
+      "destination": "/blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet/index.html"
+    },
+    {
+      "source": "/blog/5-arnaques-assurance-courantes-2026",
+      "destination": "/blog/5-arnaques-assurance-courantes-2026/index.html"
+    },
+    {
+      "source": "/blog/accident-seul-sans-tiers-declarer-reparer",
+      "destination": "/blog/accident-seul-sans-tiers-declarer-reparer/index.html"
+    },
+    {
+      "source": "/blog/assurance-airbnb-location-saisonniere",
+      "destination": "/blog/assurance-airbnb-location-saisonniere/index.html"
+    },
+    {
+      "source": "/blog/assurance-auto-apres-retrait-permis",
+      "destination": "/blog/assurance-auto-apres-retrait-permis/index.html"
+    },
+    {
+      "source": "/blog/assurance-auto-au-kilometre-vaut-le-coup-2026",
+      "destination": "/blog/assurance-auto-au-kilometre-vaut-le-coup-2026/index.html"
+    },
+    {
+      "source": "/blog/assurance-auto-expatries-france",
+      "destination": "/blog/assurance-auto-expatries-france/index.html"
+    },
+    {
+      "source": "/blog/assurance-auto-jeunes-conducteurs-france",
+      "destination": "/blog/assurance-auto-jeunes-conducteurs-france/index.html"
+    },
+    {
+      "source": "/blog/assurance-auto-la-moins-chere-pour-voiture-d-occasion-france-2026-definition-garanties-et-conseils-2026",
+      "destination": "/blog/assurance-auto-la-moins-chere-pour-voiture-d-occasion-france-2026-definition-garanties-et-conseils-2026/index.html"
+    },
+    {
+      "source": "/blog/assurance-auto-la-moins-chere-voiture-occasion-plus-de-8-ans-france-2026-definition-garanties-et-conseils-2026",
+      "destination": "/blog/assurance-auto-la-moins-chere-voiture-occasion-plus-de-8-ans-france-2026-definition-garanties-et-conseils-2026/index.html"
+    },
+    {
+      "source": "/blog/assurance-auto-malus-eleve-crm",
+      "destination": "/blog/assurance-auto-malus-eleve-crm/index.html"
+    },
+    {
+      "source": "/blog/assurance-auto-occasion-neuve-comparaison",
+      "destination": "/blog/assurance-auto-occasion-neuve-comparaison/index.html"
+    },
+    {
+      "source": "/blog/assurance-auto-teletravail-peu-kilometrage",
+      "destination": "/blog/assurance-auto-teletravail-peu-kilometrage/index.html"
+    },
+    {
+      "source": "/blog/assurance-auto-vintage-collection",
+      "destination": "/blog/assurance-auto-vintage-collection/index.html"
+    },
+    {
+      "source": "/blog/assurance-cadres-expatries-mutation",
+      "destination": "/blog/assurance-cadres-expatries-mutation/index.html"
+    },
+    {
+      "source": "/blog/assurance-colocation-contrat-unique-ou-individuel",
+      "destination": "/blog/assurance-colocation-contrat-unique-ou-individuel/index.html"
+    },
+    {
+      "source": "/blog/assurance-colocation-etudiante",
+      "destination": "/blog/assurance-colocation-etudiante/index.html"
+    },
+    {
+      "source": "/blog/assurance-couples-mixtes-france",
+      "destination": "/blog/assurance-couples-mixtes-france/index.html"
+    },
+    {
+      "source": "/blog/assurance-emprunteur-definition-complete-et-decryptage-pour-2026",
+      "destination": "/blog/assurance-emprunteur-definition-complete-et-decryptage-pour-2026/index.html"
+    },
+    {
+      "source": "/blog/assurance-emprunteur-substitution-banque-refuse",
+      "destination": "/blog/assurance-emprunteur-substitution-banque-refuse/index.html"
+    },
+    {
+      "source": "/blog/assurance-etudiant-etranger-france",
+      "destination": "/blog/assurance-etudiant-etranger-france/index.html"
+    },
+    {
+      "source": "/blog/assurance-expat-france-vs-origine",
+      "destination": "/blog/assurance-expat-france-vs-origine/index.html"
+    },
+    {
+      "source": "/blog/assurance-frontalier-france",
+      "destination": "/blog/assurance-frontalier-france/index.html"
+    },
+    {
+      "source": "/blog/assurance-glossaire-termes-essentiels-decider",
+      "destination": "/blog/assurance-glossaire-termes-essentiels-decider/index.html"
+    },
+    {
+      "source": "/blog/assurance-habitation-apres-sinistre-majeur",
+      "destination": "/blog/assurance-habitation-apres-sinistre-majeur/index.html"
+    },
+    {
+      "source": "/blog/assurance-habitation-et-borne-de-recharge-protegez-votre-investissement-en-2026",
+      "destination": "/blog/assurance-habitation-et-borne-de-recharge-protegez-votre-investissement-en-2026/index.html"
+    },
+    {
+      "source": "/blog/assurance-habitation-expatries",
+      "destination": "/blog/assurance-habitation-expatries/index.html"
+    },
+    {
+      "source": "/blog/assurance-habitation-zone-inondable-sinistre",
+      "destination": "/blog/assurance-habitation-zone-inondable-sinistre/index.html"
+    },
+    {
+      "source": "/blog/assurance-jeune-conducteur-2026-moins-cher",
+      "destination": "/blog/assurance-jeune-conducteur-2026-moins-cher/index.html"
+    },
+    {
+      "source": "/blog/assurance-jeune-conducteur-sans-experience",
+      "destination": "/blog/assurance-jeune-conducteur-sans-experience/index.html"
+    },
+    {
+      "source": "/blog/assurance-logement-non-conventionnel",
+      "destination": "/blog/assurance-logement-non-conventionnel/index.html"
+    },
+    {
+      "source": "/blog/assurance-malus-eleve-compagnies-2026",
+      "destination": "/blog/assurance-malus-eleve-compagnies-2026/index.html"
+    },
+    {
+      "source": "/blog/assurance-pno-comparateur-decryptez-les-meilleures-offres-2026-pour-proprietaires-non-occupants",
+      "destination": "/blog/assurance-pno-comparateur-decryptez-les-meilleures-offres-2026-pour-proprietaires-non-occupants/index.html"
+    },
+    {
+      "source": "/blog/assurance-pno-louer-airbnb-courte-duree-2026",
+      "destination": "/blog/assurance-pno-louer-airbnb-courte-duree-2026/index.html"
+    },
+    {
+      "source": "/blog/assurance-pno-obligatoire-louer-bien",
+      "destination": "/blog/assurance-pno-obligatoire-louer-bien/index.html"
+    },
+    {
+      "source": "/blog/assurance-retraite-expatrie-france",
+      "destination": "/blog/assurance-retraite-expatrie-france/index.html"
+    },
+    {
+      "source": "/blog/assurance-tech-workers-expatries",
+      "destination": "/blog/assurance-tech-workers-expatries/index.html"
+    },
+    {
+      "source": "/blog/assurance-trottinette-electrique-obligatoire-en-france-des-2026-le-guide-complet",
+      "destination": "/blog/assurance-trottinette-electrique-obligatoire-en-france-des-2026-le-guide-complet/index.html"
+    },
+    {
+      "source": "/blog/changer-assurance-expatrie",
+      "destination": "/blog/changer-assurance-expatrie/index.html"
+    },
+    {
+      "source": "/blog/comment-trouver-une-assurance-pas-cher-en-2026-le-guide-ultime-pour-economiser-sans-sacrifier-la-qualite",
+      "destination": "/blog/comment-trouver-une-assurance-pas-cher-en-2026-le-guide-ultime-pour-economiser-sans-sacrifier-la-qualite/index.html"
+    },
+    {
+      "source": "/blog/comparatif-assurance-auto-profils-2026",
+      "destination": "/blog/comparatif-assurance-auto-profils-2026/index.html"
+    },
+    {
+      "source": "/blog/comparatif-habitation-2026",
+      "destination": "/blog/comparatif-habitation-2026/index.html"
+    },
+    {
+      "source": "/blog/cotisations-sociales-assurance-expatrie",
+      "destination": "/blog/cotisations-sociales-assurance-expatrie/index.html"
+    },
+    {
+      "source": "/blog/definition-franchise-assurance-exemples",
+      "destination": "/blog/definition-franchise-assurance-exemples/index.html"
+    },
+    {
+      "source": "/blog/degat-des-eaux-voisins-constat-amiable-2026",
+      "destination": "/blog/degat-des-eaux-voisins-constat-amiable-2026/index.html"
+    },
+    {
+      "source": "/blog/droits-des-assures-2026",
+      "destination": "/blog/droits-des-assures-2026/index.html"
+    },
+    {
+      "source": "/blog/economiser-assurance-habitation-2026-astuces",
+      "destination": "/blog/economiser-assurance-habitation-2026-astuces/index.html"
+    },
+    {
+      "source": "/blog/faq-assurance-emprunteur-changement-2026",
+      "destination": "/blog/faq-assurance-emprunteur-changement-2026/index.html"
+    },
+    {
+      "source": "/blog/faq-resiliation-assurance-lois-hamon-lemoine",
+      "destination": "/blog/faq-resiliation-assurance-lois-hamon-lemoine/index.html"
+    },
+    {
+      "source": "/blog/fausse-declaration-assurance-risques-reels",
+      "destination": "/blog/fausse-declaration-assurance-risques-reels/index.html"
+    },
+    {
+      "source": "/blog/guide-choisir-assurance-auto-2026",
+      "destination": "/blog/guide-choisir-assurance-auto-2026/index.html"
+    },
+    {
+      "source": "/blog/guide-choisir-mutuelle-sante-selon-besoins",
+      "destination": "/blog/guide-choisir-mutuelle-sante-selon-besoins/index.html"
+    },
+    {
+      "source": "/blog/loi-hamon-2026-resilier-assurance-3-clics",
+      "destination": "/blog/loi-hamon-2026-resilier-assurance-3-clics/index.html"
+    },
+    {
+      "source": "/blog/loi-lemoine-2026",
+      "destination": "/blog/loi-lemoine-2026/index.html"
+    },
+    {
+      "source": "/blog/loi-lemoine-assurance-emprunteur-2026",
+      "destination": "/blog/loi-lemoine-assurance-emprunteur-2026/index.html"
+    },
+    {
+      "source": "/blog/meilleure-assurance-auto-2026",
+      "destination": "/blog/meilleure-assurance-auto-2026/index.html"
+    },
+    {
+      "source": "/blog/meilleure-assurance-auto-2026-comparatif",
+      "destination": "/blog/meilleure-assurance-auto-2026-comparatif/index.html"
+    },
+    {
+      "source": "/blog/meilleure-assurance-auto-2026-definition-garanties-et-conseils-2026",
+      "destination": "/blog/meilleure-assurance-auto-2026-definition-garanties-et-conseils-2026/index.html"
+    },
+    {
+      "source": "/blog/meilleure-assurance-moto-125-2026",
+      "destination": "/blog/meilleure-assurance-moto-125-2026/index.html"
+    },
+    {
+      "source": "/blog/mutuelle-sante-expatries-france",
+      "destination": "/blog/mutuelle-sante-expatries-france/index.html"
+    },
+    {
+      "source": "/blog/mutuelle-sante-reduire-frais-medicaux-2026",
+      "destination": "/blog/mutuelle-sante-reduire-frais-medicaux-2026/index.html"
+    },
+    {
+      "source": "/blog/non-lieu-assurance-aucun-assureur-role-bct",
+      "destination": "/blog/non-lieu-assurance-aucun-assureur-role-bct/index.html"
+    },
+    {
+      "source": "/blog/nouvelle-reglementation-assurance-2026",
+      "destination": "/blog/nouvelle-reglementation-assurance-2026/index.html"
+    },
+    {
+      "source": "/blog/preuves-expertise-courtier-assurance-independant",
+      "destination": "/blog/preuves-expertise-courtier-assurance-independant/index.html"
+    },
+    {
+      "source": "/blog/rapatriement-assurance-expatries",
+      "destination": "/blog/rapatriement-assurance-expatries/index.html"
+    },
+    {
+      "source": "/blog/regrouper-assurance-auto-et-habitation-en-2026-le-guide-ultime-pour-le-meilleur-choix-en-france",
+      "destination": "/blog/regrouper-assurance-auto-et-habitation-en-2026-le-guide-ultime-pour-le-meilleur-choix-en-france/index.html"
+    },
+    {
+      "source": "/blog/resiliation-assurance-droits-2026",
+      "destination": "/blog/resiliation-assurance-droits-2026/index.html"
+    },
+    {
+      "source": "/blog/temoignages-expatries-assurance",
+      "destination": "/blog/temoignages-expatries-assurance/index.html"
+    },
+    {
+      "source": "/blog/top-10-meilleures-mutuelles-sante-2026",
+      "destination": "/blog/top-10-meilleures-mutuelles-sante-2026/index.html"
+    },
+    {
+      "source": "/blog/top-mutuelles-sante-2026",
+      "destination": "/blog/top-mutuelles-sante-2026/index.html"
+    },
+    {
+      "source": "/blog/visa-long-sejour-assurance-france",
+      "destination": "/blog/visa-long-sejour-assurance-france/index.html"
+    },
+    {
+      "source": "/blog/voiture-immobilisee-garage-arreter-assurer",
+      "destination": "/blog/voiture-immobilisee-garage-arreter-assurer/index.html"
+    },
+    {
+      "source": "/cgu",
+      "destination": "/cgu/index.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact/index.html"
+    },
+    {
+      "source": "/glossaire",
+      "destination": "/glossaire/index.html"
+    },
+    {
+      "source": "/glossaire/bonus-malus",
+      "destination": "/glossaire/bonus-malus/index.html"
+    },
+    {
+      "source": "/glossaire/mutuelle-sante",
+      "destination": "/glossaire/mutuelle-sante/index.html"
+    },
+    {
+      "source": "/glossaire/prevoyance",
+      "destination": "/glossaire/prevoyance/index.html"
+    },
+    {
+      "source": "/glossaire/prime-assurance",
+      "destination": "/glossaire/prime-assurance/index.html"
+    },
+    {
+      "source": "/glossaire/rc-pro",
+      "destination": "/glossaire/rc-pro/index.html"
+    },
+    {
+      "source": "/glossaire/responsabilite-civile",
+      "destination": "/glossaire/responsabilite-civile/index.html"
+    },
+    {
+      "source": "/glossaire/sinistre",
+      "destination": "/glossaire/sinistre/index.html"
+    },
+    {
+      "source": "/glossaire/ticket-moderateur",
+      "destination": "/glossaire/ticket-moderateur/index.html"
+    },
+    {
+      "source": "/glossaire/tiers",
+      "destination": "/glossaire/tiers/index.html"
+    },
+    {
+      "source": "/glossaire/tous-risques",
+      "destination": "/glossaire/tous-risques/index.html"
+    },
+    {
+      "source": "/glossaire/vetuste",
+      "destination": "/glossaire/vetuste/index.html"
+    },
+    {
+      "source": "/landing/vie",
+      "destination": "/landing/vie/index.html"
+    },
+    {
+      "source": "/mentions-legales",
+      "destination": "/mentions-legales/index.html"
+    },
+    {
+      "source": "/nos-partenaires",
+      "destination": "/nos-partenaires/index.html"
+    },
+    {
+      "source": "/outils/calculateur-bonus-malus",
+      "destination": "/outils/calculateur-bonus-malus/index.html"
+    },
+    {
+      "source": "/plan-du-site",
+      "destination": "/plan-du-site/index.html"
+    },
+    {
+      "source": "/politique-confidentialite",
+      "destination": "/politique-confidentialite/index.html"
+    },
+    {
+      "source": "/politique-cookies",
+      "destination": "/politique-cookies/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
