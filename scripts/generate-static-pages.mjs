@@ -189,6 +189,18 @@ const syncHostingRouteConfig = async () => {
     "utf8",
   );
 
+  const htaccessPath = path.join(rootDir, "public", ".htaccess");
+  const htaccessOriginal = await readFile(htaccessPath, "utf8").catch(() => "");
+  const apacheRewrites = routes
+    .map((route) => `  RewriteRule ^${route.slice(1).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$ ${route}/index.html [L]`)
+    .join("\n");
+  const htaccessUpdated = stripManagedBlock(htaccessOriginal, "STATIC HTML ROUTES")
+    .replace(
+      /\n\s*# SPA fallback:/,
+      `\n\n${managedBlock("STATIC HTML ROUTES", apacheRewrites)}\n\n  # SPA fallback:`,
+    );
+  await writeFile(htaccessPath, `${htaccessUpdated.trimEnd()}\n`, "utf8");
+
   const vercelConfig = {
     cleanUrls: true,
     trailingSlash: false,
