@@ -395,3 +395,5 @@ const generateBlogArticles = async () => {
 await generateBlogArticles();
 
 await syncExistingHtmlPages();
+
+await syncHostingRouteConfig();
