@@ -162,6 +162,44 @@ const patchHtmlSeo = (html, relativePath) => {
   return updated;
 };
 
+const managedBlock = (name, body) => `# BEGIN JMMC ${name}\n${body.trim()}\n# END JMMC ${name}`;
+const stripManagedBlock = (content, name) => content.replace(new RegExp(`\\n?# BEGIN JMMC ${name}[\\s\\S]*?# END JMMC ${name}\\n?`, "g"), "\n").trimEnd();
+
+const collectStaticHtmlRoutes = async () => {
+  const allFiles = await readDirRecursive(rootDir);
+  return allFiles
+    .map((file) => path.relative(rootDir, file).replace(/\\/g, "/"))
+    .filter((relativePath) => relativePath.endsWith("/index.html"))
+    .filter((relativePath) => !relativePath.startsWith("public/") && !relativePath.startsWith("src/"))
+    .map((relativePath) => buildRouteFromFile(relativePath))
+    .filter((route) => route !== "/")
+    .sort((a, b) => a.localeCompare(b, "fr"));
+};
+
+const syncHostingRouteConfig = async () => {
+  const routes = await collectStaticHtmlRoutes();
+
+  const redirectsPath = path.join(rootDir, "public", "_redirects");
+  const redirectsOriginal = await readFile(redirectsPath, "utf8").catch(() => "");
+  const exactRewrites = routes.map((route) => `${route}   ${route}/index.html   200!`).join("\n");
+  const redirectsFallback = "/*   /index.html   200";
+  await writeFile(
+    redirectsPath,
+    `${stripManagedBlock(redirectsOriginal, "STATIC HTML ROUTES")}\n\n${managedBlock("STATIC HTML ROUTES", `${exactRewrites}\n${redirectsFallback}`)}\n`,
+    "utf8",
+  );
+
+  const vercelConfig = {
+    cleanUrls: true,
+    trailingSlash: false,
+    rewrites: [
+      ...routes.map((route) => ({ source: route, destination: `${route}/index.html` })),
+      { source: "/(.*)", destination: "/index.html" },
+    ],
+  };
+  await writeFile(path.join(rootDir, "vercel.json"), `${JSON.stringify(vercelConfig, null, 2)}\n`, "utf8");
+};
+
 const syncRootIndex = async () => {
   const indexPath = path.join(rootDir, "index.html");
   const trust = geoContent.trust;
