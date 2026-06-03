@@ -406,6 +406,52 @@ const generateBlogArticles = async () => {
 
 await generateBlogArticles();
 
+// ============ Glossary terms prerender ============
+const generateGlossaryTerms = async () => {
+  try {
+    const filePath = path.join(rootDir, "src/data/glossaryTerms.ts");
+    const src = await readFile(filePath, "utf8");
+    // Extract objects { id, term, slug, definition, category, ... }
+    const regex = /\{\s*id:\s*"[^"]+",\s*term:\s*"([^"]+)",\s*slug:\s*"([^"]+)",\s*definition:\s*"([^"]+)"/g;
+    let m;
+    let count = 0;
+    while ((m = regex.exec(src)) !== null) {
+      const [, term, slug, definition] = m;
+      const title = `${term} : définition assurance | ${geoContent.brandName}`;
+      const description = definition.length > 155 ? `${definition.slice(0, 152)}...` : definition;
+      const canonical = `${baseUrl}/glossaire/${slug}`;
+      const page = {
+        route: `/glossaire/${slug}`,
+        title,
+        description,
+        h1: term,
+        intro: definition,
+        sections: [
+          { title: "Définition complète", body: definition },
+          { title: "Voir aussi", list: [
+            { href: "/glossaire", label: "Tous les termes du glossaire" },
+            { href: "/comparateur", label: "Comparer les assurances" },
+          ]},
+        ],
+        ctaHref: "/comparateur",
+        ctaLabel: "Comparer les assurances",
+      };
+      const outputPath = path.join(rootDir, "glossaire", slug, "index.html");
+      await mkdir(path.dirname(outputPath), { recursive: true });
+      await writeFile(outputPath, renderPage(page), "utf8");
+      count += 1;
+    }
+    console.log(`[generate-static-pages] Prerendered ${count} glossary terms.`);
+  } catch (err) {
+    console.warn("[generate-static-pages] Skipping glossary prerender:", err?.message || err);
+  }
+};
+
+await generateGlossaryTerms();
+
 await syncExistingHtmlPages();
 
-await syncHostingRouteConfig();
+// NOTE: hosting route config sync removed.
+// Vercel handles directory-index resolution natively with cleanUrls.
+// vercel.json now contains a minimal SPA fallback only.
+// await syncHostingRouteConfig();
