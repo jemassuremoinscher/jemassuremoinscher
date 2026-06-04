@@ -19,14 +19,10 @@ const GlobalSchemas = () => {
   const { pathname } = useLocation();
 
   const schemas = useMemo(() => {
-    const trust = geoContent.trust;
-    const ratingValue = parseFloat(String(trust.ratingValueLabel).replace(",", "."));
-    const reviewCount = parseInt(String(trust.reviewCountLabel).replace(/\D/g, ""), 10);
-
-    const organization = addOrganizationSchema(
-      Number.isFinite(ratingValue) ? ratingValue : undefined,
-      Number.isFinite(reviewCount) ? reviewCount : undefined,
-    );
+    // AggregateRating is now injected dynamically by <AvisGoogle /> from the live
+    // Google Reviews API. We deliberately do NOT inject a static rating here, to
+    // avoid Schema.org rich-result violations when the real data is unavailable.
+    const organization = addOrganizationSchema();
 
     const website = {
       "@context": "https://schema.org",
