@@ -48,8 +48,8 @@ export const FormStep1ABTest: React.FC<{ onNextStep: () => void }> = ({ onNextSt
       </h2>
       <p>
         {variant === "A"
-          ? "Nous comparerons 50+ offres pour vous."
-          : "Nous comparerons 50+ offres d'assurance auto, habitation, santé et plus."}
+          ? "Nous comparerons 70+ offres pour vous."
+          : "Nous comparerons 70+ offres d'assurance auto, habitation, santé et plus."}
       </p>
 
       <button
