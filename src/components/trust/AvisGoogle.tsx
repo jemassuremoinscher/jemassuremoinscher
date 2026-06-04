@@ -59,7 +59,7 @@ const AvisGoogle = ({ injectJsonLd = true, title = "Avis Google vérifiés" }: P
       })
       .then((d: GoogleReviewsData) => {
         if (cancelled) return;
-        if (!d || d.error || !d.rating || !d.total) {
+        if (!d || (d as any).error || !d.rating || !d.total) {
           setError(true);
           return;
         }
