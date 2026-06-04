@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "name_for_human": "jemassuremoinscher.fr",
   "name_for_model": "jemassuremoinscher",
-  "description_for_human": "Comparateur d'assurances gratuit en France. Comparez 50+ assureurs et obtenez un devis en moins de 2 minutes.",
+  "description_for_human": "Comparateur d'assurances gratuit en France. Comparez 70+ assureurs et obtenez un devis en moins de 2 minutes.",
   "description_for_model": "jemassuremoinscher.fr is a free French insurance comparison service. It compares offers from 70+ insurance partners (AXA, Allianz, MAIF, Generali, MMA, Matmut, Groupama, etc.) across all insurance types: auto, health, home, motorcycle, pet, life, loan, professional liability (RC Pro), multi-risk professional (MRP), landlord (PNO), and rent guarantee (GLI). Users can get a free quote in under 2 minutes, with a dedicated advisor callback within 2 hours. Average savings: €280/year. The service is 100% free, with no commitment. Licensed insurance broker registered with ORIAS.",
   "auth": {
     "type": "none"

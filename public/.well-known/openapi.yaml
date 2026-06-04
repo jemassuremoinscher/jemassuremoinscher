@@ -18,7 +18,7 @@ paths:
       operationId: getAssuranceAuto
       summary: Page assurance auto moins chère
       description: >
-        Comparateur d'assurance auto. Comparez les offres de 50+ assureurs
+        Comparateur d'assurance auto. Comparez les offres de 70+ assureurs
         partenaires pour trouver l'assurance auto la moins chère.
         Formules : tous risques, tiers étendu, au tiers. Dès 25€/mois.
       responses:
@@ -29,7 +29,7 @@ paths:
       operationId: getAssuranceSante
       summary: Comparateur mutuelle santé
       description: >
-        Comparez les mutuelles santé de 50+ assureurs. Couverture hospitalisation,
+        Comparez les mutuelles santé de 70+ assureurs. Couverture hospitalisation,
         optique, dentaire, médecine douce. Dès 20€/mois.
       responses:
         "200":
