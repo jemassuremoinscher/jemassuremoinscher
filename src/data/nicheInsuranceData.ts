@@ -44,14 +44,14 @@ export const nicheProfiles: NicheData[] = [
     metaDescription: "Résilié pour non-paiement ? Retrouvez un contrat auto adapté. Nos courtiers spécialisés négocient des tarifs jusqu'à 30% moins chers que le marché.",
     keyword: "assurance auto résilié non-paiement",
     heroTitle: "Assurance Auto après Résiliation pour Non-Paiement : Retrouvez un contrat aujourd'hui",
-    heroSubtitle: "Une résiliation ne signifie pas la fin. 87% de nos clients résiliés retrouvent une couverture sous 48h grâce à nos partenaires spécialisés.",
+    heroSubtitle: "Une résiliation ne signifie pas la fin. 87% de nos clients résiliés retrouvent une couverture sous 10 minutes grâce à nos partenaires spécialisés.",
     quickCheckQuestions: [
       { id: "dette", label: "Votre dette auprès de l'ancien assureur est-elle soldée ?", yesText: "Soldée", noText: "En cours" },
       { id: "coupure", label: "Moins de 2 mois sans assurance ?", yesText: "Oui", noText: "Non" },
       { id: "permis", label: "Votre permis est-il valide ?", yesText: "Valide", noText: "Suspendu" },
     ],
-    eligibleMessage: "Profil éligible à nos solutions partenaires. Tarif estimé sous 48h.",
-    notEligibleMessage: "Votre profil nécessite une étude personnalisée. Un courtier vous rappelle sous 24h.",
+    eligibleMessage: "Profil éligible à nos solutions partenaires. Tarif estimé sous 10 minutes.",
+    notEligibleMessage: "Votre profil nécessite une étude personnalisée. Un courtier vous rappelle sous 5 minutes.",
     expertiseBlocks: [
       {
         title: "Le saviez-vous ? Le fichier AGIRA",
@@ -95,7 +95,7 @@ export const nicheProfiles: NicheData[] = [
       { id: "ethylotest", label: "Disposez-vous d'un éthylotest anti-démarrage (EAD) si imposé ?", yesText: "Oui / Non requis", noText: "Non" },
     ],
     eligibleMessage: "Profil éligible. Nous travaillons avec 8 assureurs spécialisés dans les risques aggravés.",
-    notEligibleMessage: "Votre situation nécessite une analyse approfondie. Un courtier spécialisé vous contacte sous 24h.",
+    notEligibleMessage: "Votre situation nécessite une analyse approfondie. Un courtier spécialisé vous contacte sous 10 minutes.",
     expertiseBlocks: [
       {
         title: "Suspension vs. Annulation : ce que l'assureur voit vraiment",
@@ -137,7 +137,7 @@ export const nicheProfiles: NicheData[] = [
       { id: "responsabilite", label: "Étiez-vous responsable à plus de 50% dans la majorité des cas ?", yesText: "Oui", noText: "Non" },
       { id: "resilie", label: "Avez-vous été résilié par votre assureur pour sinistralité ?", yesText: "Oui", noText: "Non" },
     ],
-    eligibleMessage: "Nous avons des solutions adaptées à votre profil. Devis personnalisé sous 48h.",
+    eligibleMessage: "Nous avons des solutions adaptées à votre profil. Devis personnalisé sous 10 minutes.",
     notEligibleMessage: "Votre profil est complexe mais pas impossible. Un expert vous contacte pour une étude approfondie.",
     expertiseBlocks: [
       {
@@ -181,7 +181,7 @@ export const nicheProfiles: NicheData[] = [
       { id: "conducteur", label: "Serez-vous le conducteur principal ?", yesText: "Oui", noText: "Non" },
     ],
     eligibleMessage: "Profil standard primo-assuré. Tarifs compétitifs disponibles chez nos partenaires.",
-    notEligibleMessage: "Votre profil nécessite une étude spécifique. Un courtier vous propose un devis adapté sous 48h.",
+    notEligibleMessage: "Votre profil nécessite une étude spécifique. Un courtier vous propose un devis adapté sous 10 minutes.",
     expertiseBlocks: [
       {
         title: "Le saviez-vous ? CRM neutre ≠ CRM pénalisant",
@@ -224,7 +224,7 @@ export const nicheProfiles: NicheData[] = [
       { id: "conduite", label: "Avez-vous fait la conduite accompagnée ?", yesText: "AAC", noText: "Classique" },
     ],
     eligibleMessage: "Des solutions existent pour votre profil. Nos partenaires spécialisés proposent des tarifs négociés.",
-    notEligibleMessage: "Profil sensible — un courtier analyse votre dossier et vous rappelle sous 24h avec une proposition ferme.",
+    notEligibleMessage: "Profil sensible — un courtier analyse votre dossier et vous rappelle sous 5 minutes avec une proposition ferme.",
     expertiseBlocks: [
       {
         title: "Le saviez-vous ? La puissance fiscale n'est pas la puissance réelle",
@@ -252,6 +252,268 @@ export const nicheProfiles: NicheData[] = [
       { question: "À partir de combien de CV un véhicule est considéré comme puissant ?", answer: "Pour les assureurs, le seuil se situe généralement à 7 CV fiscaux. Au-delà de 10 CV, la plupart des assureurs classiques refusent les jeunes conducteurs. Mais le groupe SRA du véhicule compte autant que la puissance : une berline de 9 CV avec un faible taux de vol sera plus facile à assurer qu'un coupé de 7 CV très volé." },
       { question: "Peut-on être conducteur secondaire sur le contrat de ses parents pour payer moins cher ?", answer: "Oui, c'est légal et courant. Mais attention : si vous êtes le conducteur principal effectif (celui qui utilise le véhicule plus de 50% du temps), c'est une fausse déclaration. En cas de sinistre, l'assureur peut refuser l'indemnisation. Si vous vivez au domicile parental et partagez réellement le véhicule, c'est pertinent." },
       { question: "Le boîtier télématique est-il obligatoire pour assurer une voiture puissante en tant que jeune ?", answer: "Non, il n'est pas obligatoire. Mais il est fortement recommandé : il réduit la prime de 15 à 25% après 6 mois de bonne conduite et il peut être le facteur décisif pour qu'un assureur accepte votre dossier. Considérez-le comme un investissement, pas une contrainte." },
+    ]
+  },
+  {
+    slug: "fausse-declaration",
+    title: "Assurance Auto Résilié pour Fausse Déclaration — Solutions 2026",
+    metaDescription: "Résilié pour fausse déclaration ? Nos courtiers spécialisés trouvent une assurance même fichage AGIRA. Tarif sous 10 minutes.",
+    keyword: "assurance auto fausse déclaration",
+    heroTitle: "Résilié pour Fausse Déclaration : retrouvez une assurance auto",
+    heroSubtitle: "Une fausse déclaration n'est pas une fin de parcours. Nos partenaires risque aggravé acceptent ces profils sous conditions.",
+    quickCheckQuestions: [
+      { id: "intentionnelle", label: "La fausse déclaration était-elle non-intentionnelle ?", yesText: "Non-intentionnelle", noText: "Intentionnelle" },
+      { id: "ancien", label: "Plus de 6 mois depuis la résiliation ?", yesText: "Oui", noText: "Non" },
+      { id: "permis", label: "Permis valide aujourd'hui ?", yesText: "Valide", noText: "Suspendu" },
+    ],
+    eligibleMessage: "Profil étudié sous 10 minutes par nos partenaires risque aggravé.",
+    notEligibleMessage: "Étude personnalisée requise. Un courtier vous rappelle sous 5 minutes.",
+    expertiseBlocks: [
+      { title: "Fichage AGIRA et conséquences", content: "La résiliation pour fausse déclaration est inscrite 5 ans au fichier AGIRA. Tous les assureurs y ont accès. Mais la majoration appliquée dépend de la nature : omission (oubli) vs mensonge intentionnel. Les courtiers spécialisés savent argumenter votre dossier." },
+    ],
+    solutions: [
+      { formule: "Tiers risque aggravé", couverture: "RC + DR", franchise: "Aucune", prixIndicatif: "90-150€/mois", ideal: "Fausse déclaration légère" },
+      { formule: "Tiers + Vol", couverture: "RC + Vol/Incendie", franchise: "500€", prixIndicatif: "130-200€/mois", ideal: "Profil stable" },
+    ],
+    surchargeCoefficient: 1.8,
+    surchargeLabel: "Surprime fausse déclaration",
+    surchargeExplanation: "La majoration moyenne est de +80% pendant 2-3 ans. Elle se réduit progressivement avec un historique propre.",
+    expertContent: "",
+    faqs: [
+      { question: "Combien de temps suis-je fiché ?", answer: "5 ans au fichier AGIRA, mais une nouvelle assurance peut être trouvée immédiatement via les partenaires risque aggravé." },
+    ]
+  },
+  {
+    slug: "malus-eleve",
+    title: "Assurance Auto Malus Élevé (>1,5) — Comparateur 2026",
+    metaDescription: "Malus supérieur à 1,5 ? Nos courtiers négocient des tarifs adaptés aux profils malusés. Devis en 48h.",
+    keyword: "assurance auto malus élevé",
+    heroTitle: "Conducteur Malusé : assurance auto adaptée à votre coefficient",
+    heroSubtitle: "Avec un coef > 1,5, les assureurs classiques refusent. Nos partenaires acceptent jusqu'à 3,5 de malus.",
+    quickCheckQuestions: [
+      { id: "coef", label: "Votre malus est-il < 2,5 ?", yesText: "Oui", noText: "Non" },
+      { id: "sinistres", label: "Moins de 3 sinistres responsables sur 24 mois ?", yesText: "Oui", noText: "Non" },
+      { id: "permis", label: "Permis valide ?", yesText: "Valide", noText: "Suspendu" },
+    ],
+    eligibleMessage: "Plusieurs assureurs partenaires acceptent votre profil. Devis sous 10 minutes.",
+    notEligibleMessage: "Profil complexe — étude approfondie en 24h.",
+    expertiseBlocks: [
+      { title: "Le coefficient bonus-malus", content: "Le coef se réduit de 5% par an sans sinistre, mais augmente de 25% par sinistre responsable. Au-delà de 1,5, vous entrez dans le risque aggravé. À 3,5, c'est le BCT qui prend le relais." },
+    ],
+    solutions: [
+      { formule: "Tiers malus", couverture: "RC obligatoire", franchise: "Aucune", prixIndicatif: "100-200€/mois", ideal: "Malus 1,5-2,5" },
+      { formule: "Tiers + boîtier télématique", couverture: "RC + suivi conduite", franchise: "300€", prixIndicatif: "80-160€/mois", ideal: "Volonté de baisser le malus" },
+    ],
+    surchargeCoefficient: 2.0,
+    surchargeLabel: "Majoration malus",
+    surchargeExplanation: "La surprime suit le coefficient officiel. Un boîtier télématique permet de récupérer 15-25% en 6 mois.",
+    expertContent: "",
+    faqs: [
+      { question: "Quand mon malus disparaît-il ?", answer: "Après 2 ans sans sinistre responsable, le malus est ramené à 1,00 (article A.121-1)." },
+    ]
+  },
+  {
+    slug: "permis-etranger",
+    title: "Assurance Auto Permis Étranger / Expatrié de Retour — 2026",
+    metaDescription: "Permis étranger ou retour d'expatriation ? Nos partenaires assurent dès le 1er jour, sans bonus français requis.",
+    keyword: "assurance auto permis étranger",
+    heroTitle: "Permis Étranger : votre assurance auto en France dès aujourd'hui",
+    heroSubtitle: "Pas d'historique français ? Pas de problème. Nos partenaires reconnaissent votre passé d'assurance à l'étranger.",
+    quickCheckQuestions: [
+      { id: "permis", label: "Votre permis est-il reconnu en France (UE/accord bilatéral) ?", yesText: "Oui", noText: "Non" },
+      { id: "releve", label: "Avez-vous un relevé d'information étranger ?", yesText: "Oui", noText: "Non" },
+      { id: "residence", label: "Résidence française établie ?", yesText: "Oui", noText: "Non" },
+    ],
+    eligibleMessage: "Profil éligible. Tarif personnalisé sous 10 minutes.",
+    notEligibleMessage: "Étude de cas — un courtier vous appelle sous 10 minutes.",
+    expertiseBlocks: [
+      { title: "Reconnaissance du bonus étranger", content: "Si vous venez de l'UE/EEE, votre relevé d'information est reconnu (directive 2009/103/CE). Hors UE, certains accords bilatéraux s'appliquent (Suisse, Maroc, Tunisie). Sinon, vous repartez à coef 1,00 — mais pas en risque aggravé." },
+    ],
+    solutions: [
+      { formule: "Tiers expatrié", couverture: "RC + DR", franchise: "Aucune", prixIndicatif: "60-120€/mois", ideal: "Retour récent" },
+      { formule: "Tous risques avec relevé", couverture: "Complète", franchise: "500€", prixIndicatif: "90-180€/mois", ideal: "Bonus étranger valide" },
+    ],
+    surchargeCoefficient: 1.0,
+    surchargeLabel: "Pas de surprime si relevé reconnu",
+    surchargeExplanation: "Aucune surprime si votre relevé d'information étranger est reconnu. Sinon, démarrage à coef 1,00.",
+    expertContent: "",
+    faqs: [
+      { question: "Mon permis canadien est-il valide en France ?", answer: "Oui pendant 1 an de résidence, puis échange obligatoire (accord bilatéral pour la plupart des provinces)." },
+    ]
+  },
+  {
+    slug: "senior-75-plus",
+    title: "Assurance Auto Senior 75+ — Comparateur 2026",
+    metaDescription: "Conducteur senior 75 ans et plus ? Nos partenaires proposent des assurances auto adaptées sans surprime abusive.",
+    keyword: "assurance auto senior 75 ans",
+    heroTitle: "Conducteur Senior 75+ : assurance auto adaptée à votre profil",
+    heroSubtitle: "L'âge n'est pas un facteur de refus. Nos partenaires valorisent votre expérience et votre faible kilométrage.",
+    quickCheckQuestions: [
+      { id: "permis", label: "Permis valide et visite médicale OK ?", yesText: "OK", noText: "À renouveler" },
+      { id: "km", label: "Moins de 10 000 km/an ?", yesText: "Oui", noText: "Non" },
+      { id: "sinistres", label: "0 sinistre responsable depuis 3 ans ?", yesText: "Oui", noText: "Non" },
+    ],
+    eligibleMessage: "Profil senior valorisé. Tarif optimisé sous 10 minutes.",
+    notEligibleMessage: "Étude personnalisée selon votre situation.",
+    expertiseBlocks: [
+      { title: "Visite médicale après 75 ans", content: "Pas obligatoire en France pour le permis B (sauf si suspension médicale). Mais certains assureurs la demandent à partir de 75 ou 80 ans. Anticiper la visite peut vous faire gagner 10-15% sur la prime." },
+    ],
+    solutions: [
+      { formule: "Tiers senior petit rouleur", couverture: "RC + DR", franchise: "Aucune", prixIndicatif: "30-60€/mois", ideal: "< 8 000 km/an" },
+      { formule: "Tous risques senior", couverture: "Complète", franchise: "300€", prixIndicatif: "60-110€/mois", ideal: "Véhicule récent" },
+    ],
+    surchargeCoefficient: 1.1,
+    surchargeLabel: "Légère majoration au-delà de 80 ans",
+    surchargeExplanation: "Surprime moyenne de +10% à partir de 80 ans, +20% à partir de 85 ans. Compensée par les forfaits petit rouleur.",
+    expertContent: "",
+    faqs: [
+      { question: "Vais-je payer plus cher après 75 ans ?", answer: "Pas nécessairement. Si vous roulez peu et sans sinistre, certains assureurs vous proposent même un meilleur tarif qu'à 50 ans." },
+    ]
+  },
+  {
+    slug: "voiture-collection",
+    title: "Assurance Voiture de Collection / Youngtimer — 2026",
+    metaDescription: "Voiture de collection ou youngtimer ? Assurances dédiées avec valeur agréée et tarifs préférentiels.",
+    keyword: "assurance voiture de collection",
+    heroTitle: "Voiture de Collection : assurance avec valeur agréée",
+    heroSubtitle: "Votre véhicule passion mérite une assurance dédiée. Valeur agréée, kilométrage limité, tarifs réduits.",
+    quickCheckQuestions: [
+      { id: "age", label: "Véhicule de plus de 25 ans ?", yesText: "Oui", noText: "Non (youngtimer 15-25 ans)" },
+      { id: "secondaire", label: "Véhicule secondaire (autre voiture en daily) ?", yesText: "Oui", noText: "Non" },
+      { id: "garage", label: "Garage fermé pour le stationnement ?", yesText: "Oui", noText: "Non" },
+    ],
+    eligibleMessage: "Profil collection éligible. Valeur agréée possible sous expertise.",
+    notEligibleMessage: "Étude au cas par cas selon le véhicule et l'usage.",
+    expertiseBlocks: [
+      { title: "Valeur agréée vs valeur vénale", content: "L'assurance collection vous garantit une indemnisation à hauteur d'une valeur expertisée (valeur agréée), contrairement à la valeur vénale (cote Argus). En cas de perte totale, vous récupérez la vraie valeur de votre véhicule." },
+    ],
+    solutions: [
+      { formule: "Collection valeur agréée", couverture: "Tous risques + valeur agréée", franchise: "0-500€", prixIndicatif: "20-60€/mois", ideal: "Véhicule rare" },
+      { formule: "Youngtimer", couverture: "RC + Vol + Incendie", franchise: "300€", prixIndicatif: "15-40€/mois", ideal: "Véhicule 15-25 ans" },
+    ],
+    surchargeCoefficient: 0.7,
+    surchargeLabel: "Tarif préférentiel collection",
+    surchargeExplanation: "Les assureurs collection appliquent des tarifs jusqu'à 30-50% inférieurs à une assurance classique, grâce au faible kilométrage et à l'usage occasionnel.",
+    expertContent: "",
+    faqs: [
+      { question: "Carte grise collection obligatoire ?", answer: "Recommandée mais pas obligatoire. Sans elle, certains assureurs collection acceptent quand même via expertise." },
+    ]
+  },
+  {
+    slug: "vehicule-importe",
+    title: "Assurance Véhicule Importé / Non Homologué FR — 2026",
+    metaDescription: "Véhicule importé hors UE ou non homologué France ? Nos partenaires assurent en attendant l'homologation.",
+    keyword: "assurance véhicule importé",
+    heroTitle: "Véhicule Importé : assurance même sans carte grise française",
+    heroSubtitle: "Votre import US, japonais ou suisse en attente d'homologation ? Nos partenaires couvrent dès l'arrivée sur le sol français.",
+    quickCheckQuestions: [
+      { id: "documents", label: "Avez-vous le titre étranger + facture ?", yesText: "Oui", noText: "Non" },
+      { id: "wp", label: "Plaques W ou WW ou homologation en cours ?", yesText: "Oui", noText: "Non" },
+      { id: "controle", label: "Contrôle technique français à jour ?", yesText: "Oui", noText: "À faire" },
+    ],
+    eligibleMessage: "Couverture provisoire possible sous 10 minutes.",
+    notEligibleMessage: "Étude technique requise — courtier vous appelle.",
+    expertiseBlocks: [
+      { title: "Plaques W garage et assurance temporaire", content: "Avant l'homologation, vous pouvez circuler avec des plaques W (professionnel) ou WW (provisoire 4 mois). Dans les deux cas, une assurance RC est obligatoire. Nos partenaires délivrent des contrats temporaires renouvelables." },
+    ],
+    solutions: [
+      { formule: "Temporaire 1-12 mois", couverture: "RC + DR", franchise: "Aucune", prixIndicatif: "60-120€/mois", ideal: "Le temps de l'homologation" },
+      { formule: "Annuel post-homologation", couverture: "Complète", franchise: "500€", prixIndicatif: "70-180€/mois", ideal: "Une fois CG française" },
+    ],
+    surchargeCoefficient: 1.3,
+    surchargeLabel: "Majoration import",
+    surchargeExplanation: "Surprime de +30% en moyenne tant que le véhicule n'a pas d'homologation française (pièces détachées rares, cote Argus inexistante).",
+    expertContent: "",
+    faqs: [
+      { question: "Combien de temps pour homologuer ?", answer: "2 à 6 mois selon le véhicule et la DREAL. Pendant cette période, l'assurance temporaire est indispensable." },
+    ]
+  },
+  {
+    slug: "chauffeur-vtc-taxi",
+    title: "Assurance Auto Chauffeur VTC / Taxi / Livreur — 2026",
+    metaDescription: "Chauffeur VTC, taxi ou livreur ? Assurance professionnelle adaptée à l'usage transport de personnes ou de marchandises.",
+    keyword: "assurance VTC taxi livreur",
+    heroTitle: "Chauffeur Pro : VTC, Taxi, Livreur — assurance dédiée",
+    heroSubtitle: "Une assurance auto classique ne couvre pas l'usage professionnel. Sans assurance pro, en cas de sinistre = déchéance totale.",
+    quickCheckQuestions: [
+      { id: "carte", label: "Carte VTC / Taxi / KBIS valide ?", yesText: "Oui", noText: "Non" },
+      { id: "usage", label: "Plus de 30 000 km/an ?", yesText: "Oui", noText: "Non" },
+      { id: "sinistres", label: "0 sinistre responsable sur 12 mois ?", yesText: "Oui", noText: "Non" },
+    ],
+    eligibleMessage: "Profil pro éligible. Tarif sous 10 minutes avec garantie marchandises possible.",
+    notEligibleMessage: "Étude pro complète sous 10 minutes.",
+    expertiseBlocks: [
+      { title: "Usage privé vs usage professionnel", content: "Si vous déclarez 'usage privé' alors que vous faites du VTC, l'assureur peut refuser toute indemnisation. L'assurance pro coûte +30 à +60% mais elle couvre vraiment votre activité, vos passagers et votre revenu." },
+    ],
+    solutions: [
+      { formule: "VTC tiers étendu", couverture: "RC + DR + passagers", franchise: "500€", prixIndicatif: "150-280€/mois", ideal: "Démarrage activité" },
+      { formule: "VTC tous risques + perte exploitation", couverture: "Complète + revenus", franchise: "800€", prixIndicatif: "220-400€/mois", ideal: "Activité confirmée" },
+      { formule: "Livreur 2-roues / utilitaire", couverture: "RC + marchandises", franchise: "300€", prixIndicatif: "80-180€/mois", ideal: "Coursier, dernier km" },
+    ],
+    surchargeCoefficient: 1.5,
+    surchargeLabel: "Majoration usage professionnel",
+    surchargeExplanation: "Surprime +30 à +60% liée au kilométrage élevé et à la fréquence d'exposition. Compensée par les garanties spécifiques (passagers, marchandises, perte d'exploitation).",
+    expertContent: "",
+    faqs: [
+      { question: "Puis-je faire du VTC avec mon assurance perso ?", answer: "Non. C'est une fausse déclaration. En cas d'accident, l'assureur refusera l'indemnisation et résiliera le contrat." },
+    ]
+  },
+  {
+    slug: "alcoolemie-stupefiants",
+    title: "Assurance Auto après Alcoolémie / Stupéfiants — 2026",
+    metaDescription: "Résilié après alcoolémie ou stupéfiants ? Solutions risque aggravé pour récupérer une assurance auto.",
+    keyword: "assurance auto alcoolémie",
+    heroTitle: "Résilié après Alcoolémie / Stupéfiants : retrouver une assurance",
+    heroSubtitle: "Une condamnation n'est pas définitive en matière d'assurance. Nos partenaires risque très aggravé acceptent ces profils.",
+    quickCheckQuestions: [
+      { id: "permis", label: "Permis récupéré et valide ?", yesText: "Oui", noText: "Non" },
+      { id: "delai", label: "Plus de 6 mois depuis la condamnation ?", yesText: "Oui", noText: "Non" },
+      { id: "stage", label: "Stage de sensibilisation effectué ?", yesText: "Oui", noText: "Non" },
+    ],
+    eligibleMessage: "Profil étudiable par nos partenaires risque très aggravé.",
+    notEligibleMessage: "Délai d'attente nécessaire — un courtier vous accompagne.",
+    expertiseBlocks: [
+      { title: "Durée du fichage AGIRA", content: "Une résiliation après alcoolémie est inscrite 5 ans à l'AGIRA. La surprime est élevée mais une assurance reste accessible via les partenaires spécialisés. Le passage devant le BCT (Bureau Central de Tarification) reste un dernier recours." },
+    ],
+    solutions: [
+      { formule: "Tiers risque très aggravé", couverture: "RC obligatoire", franchise: "Aucune", prixIndicatif: "150-300€/mois", ideal: "1ère récidive" },
+      { formule: "BCT (recours obligatoire)", couverture: "RC légale minimum", franchise: "Variable", prixIndicatif: "Tarif fixé par BCT", ideal: "Si tous refus" },
+    ],
+    surchargeCoefficient: 2.5,
+    surchargeLabel: "Surprime alcoolémie/stupéfiants",
+    surchargeExplanation: "Surprime moyenne +150% pendant 3 ans, dégressive ensuite avec un historique propre.",
+    expertContent: "",
+    faqs: [
+      { question: "Le BCT, c'est quoi ?", answer: "Bureau Central de Tarification : organisme qui peut imposer à un assureur de vous couvrir si vous avez essuyé plusieurs refus. Couverture minimale RC uniquement." },
+    ]
+  },
+  {
+    slug: "delit-de-fuite",
+    title: "Assurance Auto après Délit de Fuite — 2026",
+    metaDescription: "Résilié pour délit de fuite ? Nos partenaires risque aggravé étudient votre dossier sous 10 minutes.",
+    keyword: "assurance auto délit de fuite",
+    heroTitle: "Délit de Fuite : retrouver une assurance auto",
+    heroSubtitle: "Le délit de fuite entraîne souvent une résiliation. Nos partenaires acceptent ces profils sous conditions.",
+    quickCheckQuestions: [
+      { id: "permis", label: "Permis valide aujourd'hui ?", yesText: "Valide", noText: "Suspendu" },
+      { id: "condamnation", label: "Condamnation < 3 ans ?", yesText: "Oui", noText: "Non" },
+      { id: "indemnisation", label: "Tiers indemnisé ?", yesText: "Oui", noText: "En cours" },
+    ],
+    eligibleMessage: "Étude possible par nos partenaires risque aggravé.",
+    notEligibleMessage: "Recours BCT envisageable — un courtier vous oriente.",
+    expertiseBlocks: [
+      { title: "Délit de fuite et fichage", content: "Inscription AGIRA pendant 5 ans. La surprime est forte mais dégressive : -20% par an sans nouveau sinistre. L'enjeu est de retrouver une assurance pour reconstruire un historique propre." },
+    ],
+    solutions: [
+      { formule: "Tiers risque très aggravé", couverture: "RC", franchise: "Aucune", prixIndicatif: "140-280€/mois", ideal: "Dossier propre depuis" },
+      { formule: "BCT (dernier recours)", couverture: "RC légale", franchise: "Variable", prixIndicatif: "Fixé par BCT", ideal: "Si refus généralisé" },
+    ],
+    surchargeCoefficient: 2.3,
+    surchargeLabel: "Surprime délit de fuite",
+    surchargeExplanation: "Surprime moyenne +130% pendant 3 ans. Dégressive avec un historique sans sinistre.",
+    expertContent: "",
+    faqs: [
+      { question: "Combien de temps avant de retrouver un tarif normal ?", answer: "5 à 7 ans en moyenne, avec un historique propre et un coefficient qui redescend progressivement." },
     ]
   }
 ];

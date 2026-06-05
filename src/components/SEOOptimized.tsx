@@ -53,7 +53,7 @@ const resolveDynamicTokens = (text: string): string => {
  * ```tsx
  * <SEOOptimized
  *   title="Assurance Auto Moins Chère"
- *   description="Comparez 50+ assureurs auto. Devis gratuit en 2 min."
+ *   description="Comparez 70+ assureurs auto. Devis gratuit en 2 min."
  *   keyword="assurance auto pas chère"
  * />
  * ```
@@ -89,6 +89,20 @@ const SEOOptimized = ({
   const resolvedOgDescription = resolveDynamicTokens(override?.og_description || ogDescription || resolvedDescription);
 
   useEffect(() => {
+    // Remove pre-rendered canonical/description/title duplicates from static HTML
+    // (SSG injects them in <head>; Helmet adds its own with data-rh="true",
+    // resulting in duplicates that confuse Google.)
+    const removeStatic = (selector: string) => {
+      document.head.querySelectorAll(selector).forEach((el) => {
+        if (!el.hasAttribute("data-rh")) el.parentNode?.removeChild(el);
+      });
+    };
+    removeStatic('link[rel="canonical"]');
+    removeStatic('meta[name="description"]');
+    removeStatic('meta[property^="og:"]');
+    removeStatic('meta[name^="twitter:"]');
+    removeStatic('link[rel="alternate"][hreflang]');
+
     let isActive = true;
 
     const loadOverride = async () => {

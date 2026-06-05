@@ -36,6 +36,22 @@ All colors MUST be HSL.
     --input: 220 13% 91%;
     --ring: 271 81% 56%;
 
+    /* MD3 Expressive extended tokens */
+    --tertiary: 271 91% 65%;
+    --tertiary-foreground: 0 0% 100%;
+    --error: 0 84% 60%;
+    --error-foreground: 0 0% 100%;
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+    --outline: 220 13% 91%;
+    --surface: 0 0% 100%;
+
+    /* MD3 Elevation system */
+    --elevation-1: 0 1px 3px rgba(0,0,0,0.12);
+    --elevation-2: 0 3px 6px rgba(0,0,0,0.16);
+    --elevation-3: 0 5px 12px rgba(0,0,0,0.20);
+    --elevation-4: 0 15px 25px rgba(0,0,0,0.25);
+
     --radius: 1.5rem;
 
     /* Fintech soft shadows */
@@ -105,6 +121,11 @@ All colors MUST be HSL.
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Reserve space for mobile bottom bar (3 cols x ~64px + padding) */
+    padding-bottom: 76px;
+  }
+  @media (min-width: 1024px) {
+    body { padding-bottom: 0; }
   }
 
   button,
@@ -123,9 +144,41 @@ All colors MUST be HSL.
     min-width: 44px;
   }
 
-  /* Focus visible styles for keyboard navigation */
+  /* Focus visible styles — MD3 Expressive + WCAG (3px outline + 2px offset) */
   *:focus-visible {
-    @apply outline-none ring-2 ring-primary ring-offset-2 rounded;
+    outline: 3px solid hsl(var(--primary));
+    outline-offset: 2px;
+    transition: outline-color 150ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  /* Inputs: border → primary on focus + inset 2px shadow, MD3 timing */
+  input,
+  textarea,
+  select {
+    transition: border-color 150ms ease-in-out,
+                box-shadow 150ms ease-in-out,
+                background-color 150ms ease-in-out;
+  }
+  input:focus,
+  input:focus-visible,
+  textarea:focus,
+  textarea:focus-visible,
+  select:focus,
+  select:focus-visible {
+    outline: none;
+    border-color: hsl(var(--primary));
+    box-shadow: inset 0 0 0 2px hsl(var(--primary));
+  }
+
+  /* Links: primary color, underline on hover */
+  a:not([class*="btn"]):not([class*="nav"]):not([class*="Button"]):not([class*="Card"]) {
+    transition: color 150ms ease-in-out, text-decoration-color 150ms ease-in-out;
+  }
+  a:not([class*="btn"]):not([class*="nav"]):not([class*="Button"]):not([class*="Card"]):hover {
+    color: hsl(var(--primary));
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
   }
 
   /* Skip to main content link for accessibility */
@@ -148,6 +201,112 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
+  /* MD3 Elevation utilities */
+  .elevation-1 { box-shadow: var(--elevation-1); }
+  .elevation-2 { box-shadow: var(--elevation-2); }
+  .elevation-3 { box-shadow: var(--elevation-3); }
+  .elevation-4 { box-shadow: var(--elevation-4); }
+
+  /* MD3 Expressive button — elevation lift on hover */
+  .md-btn {
+    transition: box-shadow var(--md-duration-short, 200ms) cubic-bezier(0.4, 0, 0.2, 1),
+                transform var(--md-duration-short, 200ms) cubic-bezier(0.4, 0, 0.2, 1),
+                background-color var(--md-duration-short, 200ms) cubic-bezier(0.4, 0, 0.2, 1),
+                filter var(--md-duration-short, 200ms) cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--elevation-1);
+  }
+  .md-btn:hover {
+    box-shadow: var(--elevation-3);
+    filter: brightness(1.05);
+  }
+  .md-btn:active { transform: scale(0.97); box-shadow: var(--elevation-2); }
+
+  /* MD3 Card hover — translateY -2px + elevation up */
+  .md-card {
+    transition: box-shadow var(--md-duration-medium, 400ms) cubic-bezier(0.2, 0, 0, 1),
+                transform var(--md-duration-short, 200ms) cubic-bezier(0.2, 0, 0, 1);
+    box-shadow: var(--elevation-2);
+  }
+  .md-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-3);
+  }
+
+  /* MD3 Dropdown — slide + fade in 250ms */
+  @keyframes md-dropdown-in {
+    from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .md-dropdown {
+    animation: md-dropdown-in 250ms cubic-bezier(0.05, 0.7, 0.1, 1) both;
+    box-shadow: var(--elevation-4);
+  }
+
+  /* MD3 Expressive — global defaults applied across the site */
+  button:not([data-no-md]),
+  [role="button"]:not([data-no-md]) {
+    transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                color 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                filter 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  button:not([data-no-md]):not(:disabled),
+  [role="button"]:not([data-no-md]) {
+    box-shadow: var(--elevation-2);
+  }
+  button:not([data-no-md]):not(:disabled):hover,
+  [role="button"]:not([data-no-md]):hover {
+    box-shadow: var(--elevation-3);
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+  }
+  button:not([data-no-md]):active,
+  [role="button"]:not([data-no-md]):active {
+    transform: scale(0.97);
+  }
+  /* Ghost/link buttons should not carry elevation */
+  button.bg-transparent:not([data-no-md]),
+  button[class*="ghost"]:not([data-no-md]),
+  button[class*="link"]:not([data-no-md]) {
+    box-shadow: none;
+  }
+
+  [data-slot="card"],
+  .md-auto-card {
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--elevation-2);
+  }
+  [data-slot="card"]:hover,
+  .md-auto-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-3);
+  }
+
+  [data-radix-popper-content-wrapper] > * {
+    box-shadow: var(--elevation-4) !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    button:not([data-no-md]),
+    [role="button"]:not([data-no-md]),
+    [data-slot="card"],
+    .md-auto-card {
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+
+  /* Semantic color utilities */
+  .text-error { color: hsl(var(--error)); }
+  .bg-error { background-color: hsl(var(--error)); }
+  .text-success { color: hsl(var(--success)); }
+  .bg-success { background-color: hsl(var(--success)); }
+  .text-tertiary { color: hsl(var(--tertiary)); }
+  .bg-tertiary { background-color: hsl(var(--tertiary)); }
+  .border-outline { border-color: hsl(var(--outline)); }
+
   .text-gradient {
     @apply bg-clip-text text-transparent;
     background-image: var(--accent-gradient);
@@ -398,5 +557,153 @@ All colors MUST be HSL.
     background: linear-gradient(90deg, hsl(var(--primary) / 0.15) 0%, hsl(var(--primary) / 0.4) 50%, hsl(var(--primary) / 0.15) 100%);
     background-size: 200% 100%;
     animation: step-shimmer 1.5s ease-in-out infinite;
+  }
+
+  /* ============================================
+     MD3 EXPRESSIVE MOTION SYSTEM
+     Inspired by Material Design 3 Expressive
+     Easing tokens + reveal-on-scroll utilities
+  ============================================ */
+  :root {
+    /* MD3 Expressive easing tokens */
+    --md-emphasized: cubic-bezier(0.2, 0, 0, 1);
+    --md-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+    --md-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+    --md-spring-fast: cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* MD3 durations */
+    --md-duration-short: 200ms;
+    --md-duration-medium: 400ms;
+    --md-duration-long: 550ms;
+  }
+
+  @keyframes md-reveal-up {
+    from { opacity: 0; transform: translate3d(0, 28px, 0) scale(0.985); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  }
+  @keyframes md-reveal-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes md-reveal-scale {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* Base: hidden until in view (uses :where for low specificity) */
+  .md-reveal {
+    opacity: 0;
+    will-change: opacity, transform;
+  }
+  .md-reveal.is-visible {
+    animation: md-reveal-up var(--md-duration-long) var(--md-emphasized-decelerate) both;
+  }
+  .md-reveal-fade.is-visible {
+    animation: md-reveal-fade var(--md-duration-medium) var(--md-emphasized) both;
+  }
+  .md-reveal-scale.is-visible {
+    animation: md-reveal-scale var(--md-duration-long) var(--md-spring-fast) both;
+  }
+
+  /* Stagger children when parent has .md-stagger */
+  .md-stagger.is-visible > * {
+    animation: md-reveal-up var(--md-duration-long) var(--md-emphasized-decelerate) both;
+  }
+  .md-stagger.is-visible > *:nth-child(1) { animation-delay: 0ms; }
+  .md-stagger.is-visible > *:nth-child(2) { animation-delay: 70ms; }
+  .md-stagger.is-visible > *:nth-child(3) { animation-delay: 140ms; }
+  .md-stagger.is-visible > *:nth-child(4) { animation-delay: 210ms; }
+  .md-stagger.is-visible > *:nth-child(5) { animation-delay: 280ms; }
+  .md-stagger.is-visible > *:nth-child(6) { animation-delay: 350ms; }
+  .md-stagger.is-visible > *:nth-child(n+7) { animation-delay: 420ms; }
+
+  /* Expressive interactive transitions (Google-like state layers) */
+  .md-interactive {
+    transition: transform var(--md-duration-short) var(--md-emphasized),
+                box-shadow var(--md-duration-medium) var(--md-emphasized),
+                background-color var(--md-duration-short) var(--md-emphasized);
+  }
+  .md-interactive:hover {
+    transform: translateY(-2px);
+  }
+  .md-interactive:active {
+    transform: translateY(0) scale(0.98);
+    transition-duration: var(--md-duration-short);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .md-reveal,
+    .md-reveal-fade,
+    .md-reveal-scale,
+    .md-stagger > * {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .md-interactive { transition: none !important; }
+    .md-interactive:hover,
+    .md-interactive:active { transform: none !important; }
+  }
+}
+
+/* ============================================================
+   MD3 Expressive — global elevation, hover, focus, animations
+   Uses design-system HSL tokens (--primary, --elevation-*, --md-easing-*)
+   ============================================================ */
+@layer components {
+  /* CARDS — Elevation 2 → 3 on hover */
+  .card,
+  .form-card,
+  .trust-element,
+  .product-card {
+    box-shadow: var(--elevation-2);
+    transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .card:hover,
+  .form-card:hover,
+  .trust-element:hover,
+  .product-card:hover {
+    box-shadow: var(--elevation-3);
+    transform: translateY(-2px);
+  }
+
+  /* TIMER — urgency styling */
+  .timer,
+  [data-timer] {
+    font-size: 28px;
+    font-weight: 700;
+    color: hsl(var(--destructive));
+    animation: md-timer-pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes md-timer-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  /* DROPDOWN / LISTBOX entrance */
+  @keyframes md-slide-in-down {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  [role="listbox"],
+  .dropdown-menu {
+    animation: md-slide-in-down 250ms ease-out;
+    box-shadow: var(--elevation-3);
+  }
+
+  /* Reduced-motion safety */
+  @media (prefers-reduced-motion: reduce) {
+    .card:hover,
+    .form-card:hover,
+    .trust-element:hover,
+    .product-card:hover {
+      transform: none;
+    }
+    .timer,
+    [data-timer],
+    [role="listbox"],
+    .dropdown-menu {
+      animation: none;
+    }
   }
 }

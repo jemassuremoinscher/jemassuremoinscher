@@ -21,12 +21,26 @@ export class ErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('Error caught by boundary:', error, errorInfo);
-    
+
+    // Stale chunk after a new deploy → auto-reload once
+    const msg = error?.message || '';
+    const isChunkError =
+      /Failed to fetch dynamically imported module/i.test(msg) ||
+      /Loading chunk [\d]+ failed/i.test(msg) ||
+      /Importing a module script failed/i.test(msg);
+
+    if (isChunkError && !sessionStorage.getItem('chunk-reload-attempted')) {
+      sessionStorage.setItem('chunk-reload-attempted', '1');
+      window.location.reload();
+      return;
+    }
+
     toast.error('Erreur de chargement', {
       description: 'Une erreur est survenue lors du chargement de la page. Veuillez rafraîchir ou réessayer plus tard.',
       duration: 5000,
     });
   }
+
 
   render() {
     if (this.state.hasError) {

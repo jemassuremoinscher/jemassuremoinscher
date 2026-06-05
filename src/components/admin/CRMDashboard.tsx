@@ -52,7 +52,75 @@ interface Lead {
   signed_before_hot?: boolean;
   type: 'quote' | 'callback';
   agent_name?: string;
+  quote_data?: any;
+  message?: string;
+  preferred_time?: string;
 }
+
+const FIELD_LABELS: Record<string, string> = {
+  postalCode: 'Code postal',
+  city: 'Ville',
+  address: 'Adresse',
+  birthDate: 'Date de naissance',
+  age: 'Âge',
+  profession: 'Profession',
+  maritalStatus: 'Situation familiale',
+  currentInsurer: 'Assureur actuel',
+  contractEndDate: 'Échéance du contrat',
+  desiredStartDate: 'Date de début souhaitée',
+  monthlyBudget: 'Budget mensuel',
+  // Auto / moto
+  vehicleBrand: 'Marque',
+  vehicleModel: 'Modèle',
+  vehicleYear: 'Année',
+  vehicleVersion: 'Version',
+  fuelType: 'Carburant',
+  registrationDate: 'Mise en circulation',
+  licensePlate: 'Immatriculation',
+  vehicleUsage: 'Usage du véhicule',
+  annualKm: 'Km/an',
+  parkingType: 'Stationnement',
+  licenseDate: "Date d'obtention du permis",
+  bonusMalus: 'Bonus-Malus',
+  claimsLast3Years: 'Sinistres (3 ans)',
+  coverageType: 'Formule souhaitée',
+  // Habitation / PNO
+  housingType: 'Type de logement',
+  surface: 'Surface (m²)',
+  rooms: 'Nombre de pièces',
+  occupancyType: 'Statut occupant',
+  constructionYear: 'Année de construction',
+  // Santé / prévoyance
+  beneficiaries: 'Bénéficiaires',
+  smokingStatus: 'Fumeur',
+  coverageLevel: 'Niveau de couverture',
+  // Pro
+  companyName: 'Entreprise',
+  legalStatus: 'Statut juridique',
+  siret: 'SIRET',
+  turnover: "Chiffre d'affaires",
+  activity: 'Activité',
+  employees: 'Effectif',
+  // Tracking
+  source: 'Source',
+  utm_data: 'UTM',
+};
+
+const formatFieldValue = (value: any): string => {
+  if (value === null || value === undefined || value === '') return '—';
+  if (typeof value === 'boolean') return value ? 'Oui' : 'Non';
+  if (Array.isArray(value)) return value.join(', ');
+  if (typeof value === 'object') return JSON.stringify(value, null, 2);
+  return String(value);
+};
+
+const humanizeKey = (key: string): string =>
+  FIELD_LABELS[key] ||
+  key
+    .replace(/_/g, ' ')
+    .replace(/([A-Z])/g, ' $1')
+    .replace(/^./, (s) => s.toUpperCase())
+    .trim();
 
 const getScoreColor = (score: number) => {
   if (score >= 80) return 'text-green-600 bg-green-50 dark:bg-green-900/20';
@@ -309,6 +377,58 @@ export const CRMDashboard = () => {
           Sauvegarder les notes
         </Button>
       </div>
+
+      {lead.type === 'callback' && (lead.message || lead.preferred_time) && (
+        <div className="rounded-lg border bg-muted/30 p-4 space-y-2">
+          <p className="text-sm font-semibold">Demande de rappel</p>
+          {lead.preferred_time && (
+            <div className="text-sm">
+              <span className="text-muted-foreground">Créneau préféré : </span>
+              {lead.preferred_time}
+            </div>
+          )}
+          {lead.message && (
+            <div className="text-sm whitespace-pre-wrap">
+              <span className="text-muted-foreground">Message : </span>
+              {lead.message}
+            </div>
+          )}
+        </div>
+      )}
+
+      {lead.type === 'quote' && lead.quote_data && Object.keys(lead.quote_data).length > 0 && (
+        <div className="rounded-lg border bg-muted/30 p-4">
+          <p className="text-sm font-semibold mb-3">
+            Informations du formulaire ({Object.keys(lead.quote_data).length} champs)
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-sm">
+            {Object.entries(lead.quote_data).map(([key, value]) => {
+              if (key === 'utm_data' || value === null || value === undefined || value === '') return null;
+              const formatted = formatFieldValue(value);
+              const isLong = formatted.length > 60 || formatted.includes('\n');
+              return (
+                <div
+                  key={key}
+                  className={`flex flex-col gap-0.5 ${isLong ? 'md:col-span-2' : ''}`}
+                >
+                  <span className="text-xs text-muted-foreground">{humanizeKey(key)}</span>
+                  <span className="font-medium break-words whitespace-pre-wrap">{formatted}</span>
+                </div>
+              );
+            })}
+          </div>
+          {lead.quote_data.utm_data && (
+            <details className="mt-3">
+              <summary className="text-xs text-muted-foreground cursor-pointer hover:text-foreground">
+                Données de tracking (UTM)
+              </summary>
+              <pre className="mt-2 text-xs bg-background p-2 rounded overflow-x-auto">
+                {JSON.stringify(lead.quote_data.utm_data, null, 2)}
+              </pre>
+            </details>
+          )}
+        </div>
+      )}
 
       {lead.last_contacted_at && (
         <div className="text-sm text-muted-foreground">

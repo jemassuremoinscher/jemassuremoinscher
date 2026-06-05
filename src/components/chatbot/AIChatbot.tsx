@@ -29,6 +29,11 @@ export const AIChatbot = () => {
 
   useEffect(() => { scrollToBottom(); }, [messages]);
   useEffect(() => { checkBusinessHours(); const interval = setInterval(checkBusinessHours, 60000); return () => clearInterval(interval); }, []);
+  useEffect(() => {
+    const open = () => setIsOpen(true);
+    window.addEventListener('open-chatbot', open);
+    return () => window.removeEventListener('open-chatbot', open);
+  }, []);
 
   const sendMessage = async () => {
     if (!inputMessage.trim() || isLoading) return;
@@ -53,7 +58,7 @@ export const AIChatbot = () => {
   return (
     <>
       {!isOpen && (
-        <Button onClick={() => setIsOpen(true)} className="fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-elegant hover:shadow-glow z-50 bg-gradient-primary hover:scale-110 transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 animate-pulse-subtle" aria-label={t('chatbot.openLabel')}>
+        <Button onClick={() => setIsOpen(true)} className="hidden lg:flex fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-elegant hover:shadow-glow z-50 bg-gradient-primary hover:scale-110 transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 animate-pulse-subtle" aria-label={t('chatbot.openLabel')}>
           <MessageCircle className="h-6 w-6" aria-hidden="true" />
         </Button>
       )}
@@ -81,7 +86,7 @@ export const AIChatbot = () => {
                 </div>
               </div>
             ))}
-            {isLoading && (<div className="flex gap-3"><img src={arthurThumbsUp} alt="Arthur réfléchit" className="flex-shrink-0 w-8 h-8 object-contain animate-pulse" width={32} height={32} /><div className="bg-card border rounded-lg p-3"><Loader2 className="h-4 w-4 animate-spin" /></div></div>)}
+            {isLoading && (<div className="flex gap-3"><img src={arthurThumbsUp} alt={t("a11y.chatbot.mascotAlt")} className="flex-shrink-0 w-8 h-8 object-contain animate-pulse" width={32} height={32} /><div className="bg-card border rounded-lg p-3"><Loader2 className="h-4 w-4 animate-spin" /></div></div>)}
             <div ref={messagesEndRef} />
           </div>
           <div className="border-t p-4 bg-background space-y-3">

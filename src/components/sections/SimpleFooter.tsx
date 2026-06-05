@@ -13,7 +13,7 @@ const SimpleFooter = () => {
     { label: "Mutuelle Santé", href: "/assurance-sante" },
     { label: "Assurance Animaux", href: "/assurance-animaux" },
     { label: "Assurance Vie", href: "/assurance-vie" },
-    { label: "Assurance Prêt", href: "/assurance-pret" },
+    { label: "Assurance Emprunteur", href: "/assurance-pret" },
     { label: "Prévoyance", href: "/assurance-prevoyance" },
     { label: "RC Professionnelle", href: "/assurance-rc-pro" },
     { label: "Assurance MRP", href: "/assurance-mrp" },
@@ -78,7 +78,7 @@ const SimpleFooter = () => {
           </nav>
 
           {/* Col 3: À propos */}
-          <nav aria-label="À propos">
+          <nav aria-label={t("a11y.simpleFooter.about")}>
             <h4 className="font-bold text-accent mb-4 text-xs uppercase tracking-wider">
               À propos
             </h4>
@@ -100,7 +100,7 @@ const SimpleFooter = () => {
             </h4>
             <div className="space-y-3">
               <p className="text-[11px] text-primary-foreground/50 leading-relaxed">
-                Jemassuremoinscher.fr est un comparateur d'assurances indépendant, immatriculé à l'ORIAS sous le N° 24 XXX XXX en qualité de courtier en assurances. Nous sommes rémunérés par nos partenaires assureurs lors de la mise en relation.
+                Jemassuremoinscher.fr est un comparateur d'assurances indépendant, en qualité de courtier en assurances (immatriculation ORIAS en cours). Nous sommes rémunérés par nos partenaires assureurs lors de la mise en relation.
               </p>
               <p className="text-[11px] text-primary-foreground/50 leading-relaxed">
                 Conformément à la réglementation, nous vous rappelons que l'utilisation de notre comparateur est gratuite et sans engagement. Les tarifs affichés sont indicatifs.
@@ -114,20 +114,20 @@ const SimpleFooter = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <Link to="/" aria-label="Accueil jemassuremoinscher.fr">
-                <img alt="Arthur - mascotte jemassuremoinscher.fr assurance moins chère" className="h-10 w-auto" src={arthurThumbsUp} loading="lazy" width={40} height={40} />
+                <img alt={t("a11y.simpleFooter.mascotAlt")} className="h-10 w-auto" src={arthurThumbsUp} loading="lazy" width={40} height={40} />
               </Link>
               <p className="text-primary-foreground/50 text-[11px] max-w-xs leading-relaxed">
                 {t('footer.description')}
               </p>
             </div>
-            <nav aria-label="Réseaux sociaux" className="flex items-center gap-3">
-              <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Instagram" className="text-primary-foreground/50 hover:text-accent transition-colors">
+            <nav aria-label={t("a11y.common.socials")} className="flex items-center gap-3">
+              <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label={t("a11y.social.instagram")} className="text-primary-foreground/50 hover:text-accent transition-colors">
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur LinkedIn" className="text-primary-foreground/50 hover:text-accent transition-colors">
+              <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label={t("a11y.social.linkedin")} className="text-primary-foreground/50 hover:text-accent transition-colors">
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Suivez-nous sur Facebook" className="text-primary-foreground/50 hover:text-accent transition-colors">
+              <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label={t("a11y.social.facebook")} className="text-primary-foreground/50 hover:text-accent transition-colors">
                 <Facebook className="w-4 h-4" />
               </a>
             </nav>

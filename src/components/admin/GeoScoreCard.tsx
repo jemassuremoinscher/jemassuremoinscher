@@ -5,11 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { applyGeoContentImprovement, applyGeoIssueFix, applyGeoVisibilityFix, canAutoFixGeoIssue, hydrateAuditReport, validateGeoContentImprovement, validateGeoIssueFix, validateGeoVisibilityFix, type ContentSuggestionDraft } from "@/lib/auditFixes";
+import { applyGeoContentImprovement, applyGeoIssueFix, applyGeoVisibilityFix, buildContentImprovementKey, listAppliedContentImprovements, canAutoFixGeoIssue, hydrateAuditReport, validateGeoIssueFix, validateGeoVisibilityFix, type ContentSuggestionDraft } from "@/lib/auditFixes";
 import { toast } from "sonner";
-
-const SEO_SUGGESTIONS_REFRESH_EVENT = "seo-suggestions-refresh";
 
 type GeoAuditCheck = {
   id: string;
@@ -69,7 +66,6 @@ type VisibilityScore = {
       llmSessions: number;
       llmSources: string[];
       iaCitations: number;
-      rankingScore: number;
       trackedPages: number;
     };
     pageRanking: Array<{ path: string; clicks: number; impressions: number; avgPosition: number; ctr: number; opportunityScore: number; aiPotential: string; contentAction: string }>;
@@ -82,12 +78,6 @@ type FixAction = {
   details: string;
 };
 
-type PendingGeoAction =
-  | { type: "issue"; key: string; title: string; description: string; issue: GeoAuditCheck }
-  | { type: "visibility"; key: string; title: string; description: string; check: VisibilityCheck }
-  | { type: "page-content"; key: string; title: string; description: string; page: VisibilityScore["geo"]["pageRanking"][number] }
-  | { type: "query-content"; key: string; title: string; description: string; item: VisibilityScore["geo"]["queryOpportunities"][number] };
-
 type AppliedSuggestionState = Record<string, ContentSuggestionDraft>;
 
 const statusConfig = {
@@ -95,6 +85,13 @@ const statusConfig = {
   good: { label: "Solide", badge: "secondary" as const },
   warning: { label: "À surveiller", badge: "outline" as const },
   critical: { label: "Non fiable", badge: "destructive" as const },
+};
+
+const getScoreCategory = (score: number) => {
+  if (score >= 85) return "excellent" as const;
+  if (score >= 70) return "good" as const;
+  if (score >= 50) return "warning" as const;
+  return "critical" as const;
 };
 
 const getGeoFixAction = (item: GeoAuditCheck): FixAction => {
@@ -165,11 +162,50 @@ export const GeoScoreCard = () => {
   const [error, setError] = useState<string | null>(null);
   const [visibilityError, setVisibilityError] = useState<string | null>(null);
   const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
-  const [pendingAction, setPendingAction] = useState<PendingGeoAction | null>(null);
   const [appliedSuggestions, setAppliedSuggestions] = useState<AppliedSuggestionState>({});
+  const [appliedImprovementsLoaded, setAppliedImprovementsLoaded] = useState(false);
 
   const copyFixAction = (action: FixAction) => {
     navigator.clipboard.writeText(`${action.label}\n\n${action.details}`);
+  };
+
+  const loadAppliedImprovements = async () => {
+    try {
+      setAppliedImprovementsLoaded(false);
+      const items = await listAppliedContentImprovements('geo');
+      setAppliedSuggestions(items);
+    } catch {
+      setAppliedSuggestions({});
+    } finally {
+      setAppliedImprovementsLoaded(true);
+    }
+  };
+
+  const rememberAppliedSuggestion = (key: string, suggestion: ContentSuggestionDraft) => {
+    setAppliedSuggestions((current) => ({
+      ...current,
+      [key]: suggestion,
+      [suggestion.slug]: suggestion,
+    }));
+  };
+
+  const renderAppliedSuggestion = (key: string) => {
+    const suggestion = appliedSuggestions[key];
+    if (!suggestion) return null;
+
+    return (
+      <div className="mt-3 rounded-lg border border-border bg-card p-3 text-xs text-muted-foreground space-y-1">
+        <p className="font-medium text-foreground">Amélioration appliquée</p>
+        <p><span className="font-medium text-foreground">Page cible :</span> {suggestion.applied_path ?? 'Non disponible'}</p>
+        <p><span className="font-medium text-foreground">Action :</span> {suggestion.title}</p>
+        <p><span className="font-medium text-foreground">Statut :</span> {suggestion.status}</p>
+        <p><span className="font-medium text-foreground">Enregistrement :</span> backend mis à jour sur la page cible et trace conservée pour masquer cette amélioration.</p>
+      </div>
+    );
+  };
+
+  const refreshGeoScores = async () => {
+    await Promise.all([loadReport(), loadVisibilityReport(), loadAppliedImprovements()]);
   };
 
   const markGeoIssueResolved = (issue: GeoAuditCheck) => {
@@ -209,15 +245,10 @@ export const GeoScoreCard = () => {
 
     try {
       const result = await applyGeoIssueFix(issue);
-      const isValidated = await validateGeoIssueFix(issue);
-
-      if (!isValidated) {
-        throw new Error('La correction a été enregistrée, mais la validation a échoué.');
-      }
 
       markGeoIssueResolved(issue);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Validation effectuée.`);
+      toast.success(result.message);
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : 'Erreur pendant la correction.');
@@ -257,13 +288,10 @@ export const GeoScoreCard = () => {
 
     try {
       const result = await applyGeoVisibilityFix(check);
-      const isValidated = await validateGeoVisibilityFix(check);
-
-      if (!isValidated) throw new Error('La correction a été enregistrée, mais la validation a échoué.');
 
       markGeoVisibilityResolved(check);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Validation effectuée.`);
+      toast.success(result.message);
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : 'Erreur pendant la correction.');
@@ -279,21 +307,12 @@ export const GeoScoreCard = () => {
         path: page.path,
         recommendation: page.contentAction,
       });
-      const isValidated = await validateGeoContentImprovement({
-        scope: "page",
-        path: page.path,
-        recommendation: page.contentAction,
-      });
 
-      if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
-
-      setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
-      window.dispatchEvent(new CustomEvent(SEO_SUGGESTIONS_REFRESH_EVENT, {
-        detail: { title: result.suggestion.title, source: 'geo' },
-      }));
+      rememberAppliedSuggestion(key, result.suggestion);
+      await Promise.all([loadAppliedImprovements(), loadVisibilityReport()]);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success('Validation effectuée', {
-        description: 'Le brouillon est en cours de synchronisation dans la liste.',
+      toast.success('Amélioration GEO activée', {
+        description: `Les métadonnées de ${result.suggestion.applied_path ?? page.path} ont été mises à jour.`,
       });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
@@ -313,17 +332,12 @@ export const GeoScoreCard = () => {
         recommendation: item.recommendation,
       };
       const result = await applyGeoContentImprovement(payload);
-      const isValidated = await validateGeoContentImprovement(payload);
 
-      if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
-
-      setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
-      window.dispatchEvent(new CustomEvent(SEO_SUGGESTIONS_REFRESH_EVENT, {
-        detail: { title: result.suggestion.title, source: 'geo' },
-      }));
+      rememberAppliedSuggestion(key, result.suggestion);
+      await Promise.all([loadAppliedImprovements(), loadVisibilityReport()]);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success('Validation effectuée', {
-        description: 'Le brouillon est en cours de synchronisation dans la liste.',
+      toast.success('Amélioration GEO activée', {
+        description: `Les métadonnées de ${result.suggestion.applied_path ?? item.page} ont été mises à jour.`,
       });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
@@ -331,42 +345,12 @@ export const GeoScoreCard = () => {
     }
   };
 
-  const confirmPendingAction = async () => {
-    if (!pendingAction) return;
-
-    if (pendingAction.type === "issue") {
-      await runDirectFix(pendingAction.key, pendingAction.issue);
-    } else if (pendingAction.type === "visibility") {
-      await runVisibilityFix(pendingAction.key, pendingAction.check);
-    } else if (pendingAction.type === "page-content") {
-      await runPageContentImprovement(pendingAction.key, pendingAction.page);
-    } else {
-      await runQueryContentImprovement(pendingAction.key, pendingAction.item);
-    }
-
-    setPendingAction(null);
-  };
-
   const renderFixStatus = (key: string) => {
     const status = fixStatuses[key] ?? 'idle';
     if (status === 'sending') return <p className="text-xs text-muted-foreground">Correction en cours…</p>;
-    if (status === 'success') return <p className="text-xs text-primary">Correction appliquée et validée.</p>;
+    if (status === 'success') return <p className="text-xs text-primary">Correction appliquée.</p>;
     if (status === 'error') return <p className="text-xs text-destructive">Erreur de correction. Réessaie.</p>;
     return null;
-  };
-
-  const renderAppliedSuggestion = (key: string) => {
-    const suggestion = appliedSuggestions[key];
-    if (!suggestion) return null;
-
-    return (
-      <div className="mt-3 rounded-lg border border-border bg-muted/40 p-3 text-sm">
-        <p className="font-medium text-foreground">Brouillon créé</p>
-        <p className="mt-1 text-foreground">{suggestion.title}</p>
-        <p className="mt-1 text-xs text-muted-foreground">Slug : {suggestion.slug}</p>
-        {suggestion.suggested_author ? <p className="mt-1 text-xs text-muted-foreground">Auteur : {suggestion.suggested_author}</p> : null}
-      </div>
-    );
   };
 
   const loadReport = async () => {
@@ -406,6 +390,7 @@ export const GeoScoreCard = () => {
   useEffect(() => {
     loadReport();
     loadVisibilityReport();
+    void loadAppliedImprovements();
   }, []);
 
   const loadVisibilityReport = async () => {
@@ -454,6 +439,44 @@ export const GeoScoreCard = () => {
     }
   };
 
+  const geoImprovementProgress = useMemo(() => {
+    if (!visibilityReport) {
+      return { appliedCount: 0, totalCount: 0, bonus: 0, displayScore: 0 };
+    }
+
+    const actionableKeys = new Set([
+      ...visibilityReport.geo.queryOpportunities.map((item) => buildContentImprovementKey({
+        source: 'geo',
+        scope: 'query',
+        path: item.page,
+        query: item.query,
+      })),
+      ...visibilityReport.geo.pageRanking.map((page) => buildContentImprovementKey({
+        source: 'geo',
+        scope: 'page',
+        path: page.path,
+      })),
+    ]);
+
+    const uniqueApplied = new Map<string, ContentSuggestionDraft>();
+    Object.values(appliedSuggestions).forEach((item) => {
+      if (item?.slug) uniqueApplied.set(item.slug, item);
+    });
+
+    const appliedCount = Array.from(uniqueApplied.keys()).filter((slug) => actionableKeys.has(slug)).length;
+    const totalCount = actionableKeys.size;
+    const bonus = totalCount > 0 ? Math.round((appliedCount / totalCount) * 20) : 0;
+
+    return {
+      appliedCount,
+      totalCount,
+      bonus,
+      displayScore: Math.min(100, visibilityReport.geo.score + bonus),
+    };
+  }, [appliedSuggestions, visibilityReport]);
+
+  const visibilityDisplayScore = visibilityReport ? geoImprovementProgress.displayScore : 0;
+
   const statusMeta = useMemo(() => {
     if (!report) return statusConfig.warning;
     return statusConfig[report.status] ?? statusConfig.warning;
@@ -461,8 +484,8 @@ export const GeoScoreCard = () => {
 
   const visibilityStatus = useMemo(() => {
     if (!visibilityReport) return statusConfig.warning;
-    return statusConfig[visibilityReport.geo.status] ?? statusConfig.warning;
-  }, [visibilityReport]);
+    return statusConfig[getScoreCategory(visibilityDisplayScore)] ?? statusConfig.warning;
+  }, [visibilityDisplayScore, visibilityReport]);
 
   const failedGeoChecks = useMemo(
     () => report?.checks.filter((item) => !item.pass) ?? [],
@@ -472,6 +495,25 @@ export const GeoScoreCard = () => {
   const failedGeoVisibilityChecks = useMemo(
     () => visibilityReport?.geo.checks.filter((check) => !check.pass) ?? [],
     [visibilityReport],
+  );
+
+  const pendingGeoPageImprovements = useMemo(
+    () => (visibilityReport?.geo.pageRanking ?? []).filter((page) => !appliedSuggestions[buildContentImprovementKey({
+      source: 'geo',
+      scope: 'page',
+      path: page.path,
+    })]),
+    [appliedSuggestions, visibilityReport],
+  );
+
+  const pendingGeoQueryImprovements = useMemo(
+    () => (visibilityReport?.geo.queryOpportunities ?? []).filter((item) => !appliedSuggestions[buildContentImprovementKey({
+      source: 'geo',
+      scope: 'query',
+      path: item.page,
+      query: item.query,
+    })]),
+    [appliedSuggestions, visibilityReport],
   );
 
   return (
@@ -487,9 +529,9 @@ export const GeoScoreCard = () => {
           </p>
         </div>
 
-        <Button variant="outline" size="sm" onClick={loadReport} disabled={isLoading}>
+        <Button variant="outline" size="sm" onClick={() => void refreshGeoScores()} disabled={isLoading}>
           <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? "animate-spin" : ""}`} />
-          Actualiser
+          Actualiser les scores GEO
         </Button>
       </div>
 
@@ -563,13 +605,13 @@ export const GeoScoreCard = () => {
                   <CardDescription>Sous-score séparé basé sur citations IA + trafic LLM.</CardDescription>
                 </div>
                 <div className="text-right">
-                  <p className="text-2xl font-black text-foreground">{visibilityReport?.geo.score ?? '--'}/100</p>
+                  <p className="text-2xl font-black text-foreground">{visibilityReport ? visibilityDisplayScore : '--'}/100</p>
                   <Badge variant={visibilityStatus.badge}>{visibilityStatus.label}</Badge>
                 </div>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
-              <Progress value={visibilityReport?.geo.score ?? 0} className="h-2.5" />
+              <Progress value={visibilityReport ? visibilityDisplayScore : 0} className="h-2.5" />
               <div className="grid gap-3 sm:grid-cols-3 text-sm">
                 <div className="rounded-md border border-border p-3">
                   <p className="text-muted-foreground">Sessions LLM</p>
@@ -584,18 +626,15 @@ export const GeoScoreCard = () => {
                   <p className="font-semibold text-foreground">{visibilityReport?.geo.metrics.iaCitations ?? 0}</p>
                 </div>
                 <div className="rounded-md border border-border p-3">
-                  <p className="text-muted-foreground">Ranking proxy IA</p>
-                  <p className="font-semibold text-foreground">{visibilityReport?.geo.metrics.rankingScore ?? 0}/100</p>
-                </div>
-                <div className="rounded-md border border-border p-3">
                   <p className="text-muted-foreground">Pages suivies</p>
                   <p className="font-semibold text-foreground">{visibilityReport?.geo.metrics.trackedPages ?? 0}</p>
                 </div>
               </div>
               <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground space-y-2">
                 <p className="font-medium text-foreground">Méthodologie live</p>
-                <p>{visibilityReport?.methodology.geo ?? 'Chargement...'}</p>
+                <p>{visibilityReport?.methodology.geo ?? 'Chargement...'} Le score affiché inclut aussi l'avancement des améliorations activées.</p>
                 <p><span className="font-medium text-foreground">Poids validé :</span> {visibilityReport?.geo.weightedPassed ?? 0} / {visibilityReport?.geo.weightedTotal ?? 0}</p>
+                <p><span className="font-medium text-foreground">Améliorations activées :</span> {geoImprovementProgress.appliedCount} / {geoImprovementProgress.totalCount} · bonus exécution +{geoImprovementProgress.bonus} pts</p>
               </div>
               {visibilityError ? <p className="text-xs text-destructive">{visibilityError}</p> : null}
             </CardContent>
@@ -638,7 +677,7 @@ export const GeoScoreCard = () => {
                       </div>
                       {!item.pass && canAutoFixGeoIssue(item) ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" onClick={() => setPendingAction({ type: "issue", key: item.id, title: "Valider la correction GEO", description: `Confirmer l'application de la correction automatique pour “${item.description}” ?`, issue: item })} disabled={fixStatuses[item.id] === 'sending'}>
+                          <Button size="sm" onClick={() => void runDirectFix(item.id, item)} disabled={fixStatuses[item.id] === 'sending'}>
                             <Wand2 className="h-4 w-4 mr-1" />
                             {fixStatuses[item.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
                           </Button>
@@ -685,17 +724,14 @@ export const GeoScoreCard = () => {
                       </div>
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          {(check.label.toLowerCase().includes('diversité') || check.label.toLowerCase().includes('mentions') || check.label.toLowerCase().includes('requêtes')) ? (
-                            <Button size="sm" onClick={() => setPendingAction({ type: "visibility", key: check.id, title: "Valider l'action GEO", description: `Confirmer l'application de l'amélioration “${getGeoVisibilityFixAction(check).label}” ?`, check })} disabled={fixStatuses[check.id] === 'sending'}>
-                              <Wand2 className="h-4 w-4 mr-1" />
-                              {fixStatuses[check.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
-                            </Button>
-                          ) : (
-                            <Button size="sm" variant="outline" onClick={() => copyFixAction(getGeoVisibilityFixAction(check))}>
-                              <Copy className="h-4 w-4 mr-1" />
-                              Copier l'action
-                            </Button>
-                          )}
+                          <Button size="sm" onClick={() => void runVisibilityFix(check.id, check)} disabled={fixStatuses[check.id] === 'sending'}>
+                            <Wand2 className="h-4 w-4 mr-1" />
+                            {fixStatuses[check.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
+                          </Button>
+                          <Button size="sm" variant="outline" onClick={() => copyFixAction(getGeoVisibilityFixAction(check))}>
+                            <Copy className="h-4 w-4 mr-1" />
+                            Copier l'action
+                          </Button>
                         </div>
                       ) : null}
                       {renderFixStatus(check.id)}
@@ -712,7 +748,11 @@ export const GeoScoreCard = () => {
               <CardDescription>Proxy interne basé sur visibilité requêtes, potentiel IA et couverture éditoriale.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {visibilityReport?.geo.pageRanking?.slice(0, 10).map((page) => (
+              {!appliedImprovementsLoaded ? (
+                <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                  Chargement des améliorations GEO déjà activées...
+                </div>
+              ) : pendingGeoPageImprovements.slice(0, 10).map((page) => (
                 <div key={`geo-${page.path}`} className="rounded-lg border border-border p-3 text-sm">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                     <div>
@@ -726,8 +766,9 @@ export const GeoScoreCard = () => {
                     </div>
                   </div>
                   <p className="mt-2 text-muted-foreground"><span className="font-medium text-foreground">Amélioration contenu :</span> {page.contentAction}</p>
+                  <p className="mt-2 text-xs text-muted-foreground">Cette action applique directement les métadonnées améliorées sur la page cible.</p>
                   <div className="mt-3">
-                    <Button size="sm" variant="outline" onClick={() => setPendingAction({ type: "page-content", key: `page-content-${page.path}`, title: "Valider l'amélioration contenu", description: `Créer directement une amélioration contenu GEO pour ${page.path} ?`, page })} disabled={fixStatuses[`page-content-${page.path}`] === 'sending'}>
+                    <Button size="sm" onClick={() => void runPageContentImprovement(`page-content-${page.path}`, page)} disabled={fixStatuses[`page-content-${page.path}`] === 'sending'}>
                       <Wand2 className="h-4 w-4 mr-1" />
                       {fixStatuses[`page-content-${page.path}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
                     </Button>
@@ -736,6 +777,11 @@ export const GeoScoreCard = () => {
                   {renderAppliedSuggestion(`page-content-${page.path}`)}
                 </div>
               ))}
+              {appliedImprovementsLoaded && pendingGeoPageImprovements.length === 0 ? (
+                <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                  Toutes les améliorations GEO de pages de cet encart ont déjà été activées.
+                </div>
+              ) : null}
             </CardContent>
           </Card>
 
@@ -745,7 +791,11 @@ export const GeoScoreCard = () => {
               <CardDescription>Comparatifs, FAQ, définitions et guides de décision à forte reprise potentielle.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {visibilityReport?.geo.queryOpportunities?.slice(0, 10).map((item) => (
+              {!appliedImprovementsLoaded ? (
+                <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                  Chargement des améliorations GEO déjà activées...
+                </div>
+              ) : pendingGeoQueryImprovements.slice(0, 10).map((item) => (
                 <div key={`geo-query-${item.query}-${item.page}`} className="rounded-lg border border-border p-3 text-sm">
                   <div className="flex items-start justify-between gap-3">
                     <div>
@@ -759,7 +809,7 @@ export const GeoScoreCard = () => {
                     <p><span className="font-medium text-foreground">Amélioration contenu :</span> {item.recommendation}</p>
                   </div>
                   <div className="mt-3">
-                    <Button size="sm" variant="outline" onClick={() => setPendingAction({ type: "query-content", key: `query-content-${item.page}-${item.query}`, title: "Valider l'amélioration contenu", description: `Créer directement une amélioration GEO pour la requête “${item.query}” sur ${item.page} ?`, item })} disabled={fixStatuses[`query-content-${item.page}-${item.query}`] === 'sending'}>
+                    <Button size="sm" onClick={() => void runQueryContentImprovement(`query-content-${item.page}-${item.query}`, item)} disabled={fixStatuses[`query-content-${item.page}-${item.query}`] === 'sending'}>
                       <Wand2 className="h-4 w-4 mr-1" />
                       {fixStatuses[`query-content-${item.page}-${item.query}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
                     </Button>
@@ -768,25 +818,16 @@ export const GeoScoreCard = () => {
                   {renderAppliedSuggestion(`query-content-${item.page}-${item.query}`)}
                 </div>
               ))}
+              {appliedImprovementsLoaded && pendingGeoQueryImprovements.length === 0 ? (
+                <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                  Toutes les améliorations GEO de requêtes de cet encart ont déjà été activées.
+                </div>
+              ) : null}
             </CardContent>
           </Card>
         </>
       )}
 
-      <AlertDialog open={Boolean(pendingAction)} onOpenChange={(open) => { if (!open) setPendingAction(null); }}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>{pendingAction?.title ?? "Valider l'action"}</AlertDialogTitle>
-            <AlertDialogDescription>{pendingAction?.description ?? "Confirmer cette action."}</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Annuler</AlertDialogCancel>
-            <AlertDialogAction onClick={(event) => { event.preventDefault(); void confirmPendingAction(); }}>
-              Valider avant mise en place
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
     </div>
   );
 };

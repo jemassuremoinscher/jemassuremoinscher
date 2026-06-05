@@ -2,8 +2,8 @@
   "brandName": "jemassuremoinscher.fr",
   "baseUrl": "https://www.jemassuremoinscher.fr",
   "trust": {
-    "partnerCount": 50,
-    "partnerCountLabel": "50+",
+    "partnerCount": 70,
+    "partnerCountLabel": "70+",
     "ratingValue": 4.9,
     "ratingValueLabel": "4.9",
     "reviewCount": 247,
@@ -22,7 +22,7 @@
       "route": "/contact",
       "outputDir": "contact",
       "title": "Contact | jemassuremoinscher.fr",
-      "description": "Contactez jemassuremoinscher.fr par email ou formulaire. Réponse sous 30 minutes, service 100% en ligne.",
+      "description": "Contactez jemassuremoinscher.fr par email ou formulaire. Réponse sous 10 minutes, service 100% en ligne.",
       "h1": "Contact jemassuremoinscher.fr",
       "intro": "Besoin d'aide pour comparer vos assurances ou finaliser votre demande ? Notre équipe vous répond rapidement, avec un accompagnement 100% en ligne.",
       "sections": [
@@ -32,7 +32,7 @@
         },
         {
           "title": "Délais de réponse",
-          "body": "Page Contact : réponse sous 30 minutes pendant les horaires d'ouverture, avec suivi par un conseiller expert."
+          "body": "Page Contact : réponse sous 10 minutes pendant les horaires d'ouverture, avec suivi par un conseiller expert."
         },
         {
           "title": "Notre siège",
@@ -53,17 +53,35 @@
         {
           "title": "Guides pratiques",
           "list": [
-            { "label": "Guide choisir assurance auto 2026", "href": "/blog/guide-choisir-assurance-auto-2026" },
-            { "label": "Comparatif assurance habitation 2026", "href": "/blog/comparatif-habitation-2026" },
-            { "label": "Top mutuelles santé 2026", "href": "/blog/top-mutuelles-sante-2026" }
+            {
+              "label": "Guide choisir assurance auto 2026",
+              "href": "/blog/guide-choisir-assurance-auto-2026"
+            },
+            {
+              "label": "Comparatif assurance habitation 2026",
+              "href": "/blog/comparatif-habitation-2026"
+            },
+            {
+              "label": "Top mutuelles santé 2026",
+              "href": "/blog/top-mutuelles-sante-2026"
+            }
           ]
         },
         {
           "title": "Articles populaires",
           "list": [
-            { "label": "Loi Hamon 2026 : résilier en 3 clics", "href": "/blog/loi-hamon-2026-resilier-assurance-3-clics" },
-            { "label": "Loi Lemoine 2026", "href": "/blog/loi-lemoine-2026" },
-            { "label": "Meilleure assurance auto 2026", "href": "/blog/meilleure-assurance-auto-2026" }
+            {
+              "label": "Loi Hamon 2026 : résilier en 3 clics",
+              "href": "/blog/loi-hamon-2026-resilier-assurance-3-clics"
+            },
+            {
+              "label": "Loi Lemoine 2026",
+              "href": "/blog/loi-lemoine-2026"
+            },
+            {
+              "label": "Meilleure assurance auto 2026",
+              "href": "/blog/meilleure-assurance-auto-2026"
+            }
           ]
         },
         {
@@ -85,17 +103,366 @@
         {
           "title": "Termes à connaître",
           "list": [
-            { "label": "Responsabilité civile", "href": "/glossaire/responsabilite-civile" },
-            { "label": "Sinistre", "href": "/glossaire/sinistre" },
-            { "label": "Ticket modérateur", "href": "/glossaire/ticket-moderateur" },
-            { "label": "Tiers", "href": "/glossaire/tiers" },
-            { "label": "Tous risques", "href": "/glossaire/tous-risques" },
-            { "label": "Vétusté", "href": "/glossaire/vetuste" }
+            {
+              "label": "Responsabilité civile",
+              "href": "/glossaire/responsabilite-civile"
+            },
+            {
+              "label": "Sinistre",
+              "href": "/glossaire/sinistre"
+            },
+            {
+              "label": "Ticket modérateur",
+              "href": "/glossaire/ticket-moderateur"
+            },
+            {
+              "label": "Tiers",
+              "href": "/glossaire/tiers"
+            },
+            {
+              "label": "Tous risques",
+              "href": "/glossaire/tous-risques"
+            },
+            {
+              "label": "Vétusté",
+              "href": "/glossaire/vetuste"
+            }
           ]
         },
         {
           "title": "Pourquoi utiliser ce glossaire ?",
           "body": "Avant de demander un devis, comprendre les notions essentielles aide à choisir une couverture adaptée et à éviter les mauvaises surprises en cas de sinistre."
+        }
+      ],
+      "ctaLabel": "Comparer les assurances",
+      "ctaHref": "/comparateur"
+    },
+    {
+      "route": "/cgu",
+      "outputDir": "cgu",
+      "title": "CGU | jemassuremoinscher.fr",
+      "description": "Conditions générales d'utilisation de jemassuremoinscher.fr : fonctionnement du service, responsabilités et accès au comparateur.",
+      "h1": "Conditions générales d'utilisation",
+      "intro": "Cette page présente les règles d'utilisation du service jemassuremoinscher.fr et les conditions d'accès à nos outils de comparaison.",
+      "sections": [
+        {
+          "title": "Objet du service",
+          "body": "jemassuremoinscher.fr accompagne les particuliers et professionnels dans la comparaison d'assurances et la demande de rappel."
+        },
+        {
+          "title": "Utilisation du site",
+          "body": "Les informations saisies doivent être exactes afin de permettre une mise en relation pertinente avec un conseiller."
+        },
+        {
+          "title": "Responsabilités",
+          "body": "Les contenus publiés sont informatifs et ne remplacent pas l'analyse personnalisée d'un contrat par un professionnel."
+        }
+      ],
+      "ctaLabel": "Comparer les assurances",
+      "ctaHref": "/comparateur"
+    },
+    {
+      "route": "/mentions-legales",
+      "outputDir": "mentions-legales",
+      "title": "Mentions légales | jemassuremoinscher.fr",
+      "description": "Mentions légales de jemassuremoinscher.fr : éditeur, hébergement, propriété intellectuelle et contact.",
+      "h1": "Mentions légales",
+      "intro": "Retrouvez les informations légales relatives à l'édition et à l'utilisation du site jemassuremoinscher.fr.",
+      "sections": [
+        {
+          "title": "Éditeur",
+          "body": "jemassuremoinscher.fr est un service de comparaison et d'accompagnement en assurance."
+        },
+        {
+          "title": "Contact",
+          "body": "Pour toute demande légale ou éditoriale, contactez notre équipe via la page contact du site."
+        },
+        {
+          "title": "Propriété intellectuelle",
+          "body": "Les textes, marques, visuels et contenus du site sont protégés et ne peuvent pas être reproduits sans autorisation."
+        }
+      ],
+      "ctaLabel": "Nous contacter",
+      "ctaHref": "/contact"
+    },
+    {
+      "route": "/politique-confidentialite",
+      "outputDir": "politique-confidentialite",
+      "title": "Politique de confidentialité | jemassuremoinscher.fr",
+      "description": "Politique de confidentialité : données collectées, finalités, durée de conservation et droits des utilisateurs.",
+      "h1": "Politique de confidentialité",
+      "intro": "Nous expliquons comment les données transmises sur jemassuremoinscher.fr sont utilisées pour traiter les demandes de comparaison et de rappel.",
+      "sections": [
+        {
+          "title": "Données collectées",
+          "body": "Les formulaires peuvent collecter les coordonnées, le type d'assurance recherché et les informations nécessaires à l'étude de la demande."
+        },
+        {
+          "title": "Finalités",
+          "body": "Les données servent à répondre aux demandes, établir un devis, assurer le suivi commercial et améliorer le service."
+        },
+        {
+          "title": "Vos droits",
+          "body": "Vous pouvez demander l'accès, la rectification ou la suppression de vos données via la page contact."
+        }
+      ],
+      "ctaLabel": "Gérer ma demande",
+      "ctaHref": "/contact"
+    },
+    {
+      "route": "/politique-cookies",
+      "outputDir": "politique-cookies",
+      "title": "Politique cookies | jemassuremoinscher.fr",
+      "description": "Politique cookies de jemassuremoinscher.fr : mesure d'audience, préférences, publicité et gestion du consentement.",
+      "h1": "Politique cookies",
+      "intro": "Cette page décrit les cookies et traceurs pouvant être utilisés sur jemassuremoinscher.fr.",
+      "sections": [
+        {
+          "title": "Cookies nécessaires",
+          "body": "Ils permettent le fonctionnement du site, des formulaires et des préférences de navigation."
+        },
+        {
+          "title": "Mesure d'audience",
+          "body": "Des outils statistiques peuvent nous aider à comprendre les parcours et améliorer les pages importantes."
+        },
+        {
+          "title": "Gestion du consentement",
+          "body": "Vous pouvez modifier vos choix depuis le bandeau cookies ou les paramètres de votre navigateur."
+        }
+      ],
+      "ctaLabel": "Retour au comparateur",
+      "ctaHref": "/comparateur"
+    },
+    {
+      "route": "/plan-du-site",
+      "outputDir": "plan-du-site",
+      "title": "Plan du site | jemassuremoinscher.fr",
+      "description": "Plan du site jemassuremoinscher.fr : accès rapide aux assurances, guides, glossaire, outils et pages légales.",
+      "h1": "Plan du site",
+      "intro": "Accédez rapidement aux principales rubriques du site : assurances, blog, glossaire, outils et informations légales.",
+      "sections": [
+        {
+          "title": "Assurances",
+          "list": [
+            {
+              "label": "Assurance auto",
+              "href": "/assurance-auto"
+            },
+            {
+              "label": "Assurance habitation",
+              "href": "/assurance-habitation"
+            },
+            {
+              "label": "Assurance santé",
+              "href": "/assurance-sante"
+            },
+            {
+              "label": "Assurance vie",
+              "href": "/assurance-vie"
+            }
+          ]
+        },
+        {
+          "title": "Ressources",
+          "list": [
+            {
+              "label": "Blog assurance",
+              "href": "/blog"
+            },
+            {
+              "label": "Glossaire assurance",
+              "href": "/glossaire"
+            },
+            {
+              "label": "Calculateur bonus-malus",
+              "href": "/outils/calculateur-bonus-malus"
+            }
+          ]
+        }
+      ],
+      "ctaLabel": "Comparer maintenant",
+      "ctaHref": "/comparateur"
+    },
+    {
+      "route": "/landing/vie",
+      "outputDir": "landing/vie",
+      "title": "Assurance vie moins chère | Comparer en 2026",
+      "description": "Comparez les solutions d'assurance vie et d'épargne adaptées à votre profil. Accompagnement gratuit et rappel rapide.",
+      "h1": "Assurance vie moins chère",
+      "intro": "Comparez les contrats d'assurance vie selon vos objectifs : épargne, transmission, fiscalité et préparation de projets.",
+      "sections": [
+        {
+          "title": "Pourquoi comparer ?",
+          "body": "Les frais, supports, options de gestion et performances varient fortement d'un contrat à l'autre."
+        },
+        {
+          "title": "Accompagnement",
+          "body": "Un conseiller vous aide à identifier les solutions cohérentes avec votre horizon de placement et votre profil."
+        }
+      ],
+      "ctaLabel": "Demander un rappel",
+      "ctaHref": "/contact"
+    },
+    {
+      "route": "/glossaire/bonus-malus",
+      "outputDir": "glossaire/bonus-malus",
+      "title": "Bonus-malus assurance auto | Calcul 2026",
+      "description": "Comprendre le bonus-malus auto : coefficient, calcul, impact sur la prime et conseils pour payer moins cher.",
+      "h1": "Bonus-malus",
+      "intro": "Bonus-malus : une définition claire pour comprendre vos garanties et comparer les contrats d'assurance avec plus de précision.",
+      "sections": [
+        {
+          "title": "Définition",
+          "body": "Comprendre le bonus-malus auto : coefficient, calcul, impact sur la prime et conseils pour payer moins cher."
+        },
+        {
+          "title": "À retenir",
+          "body": "Comprendre ce terme permet d'éviter les mauvaises surprises lors d'un devis, d'une souscription ou d'un sinistre."
+        },
+        {
+          "title": "Ressources liées",
+          "list": [
+            {
+              "label": "Glossaire assurance",
+              "href": "/glossaire"
+            },
+            {
+              "label": "Comparateur assurance",
+              "href": "/comparateur"
+            }
+          ]
+        }
+      ],
+      "ctaLabel": "Comparer les assurances",
+      "ctaHref": "/comparateur"
+    },
+    {
+      "route": "/glossaire/mutuelle-sante",
+      "outputDir": "glossaire/mutuelle-sante",
+      "title": "Mutuelle santé | Définition assurance",
+      "description": "Définition de la mutuelle santé : remboursements, garanties, ticket modérateur et choix du contrat.",
+      "h1": "Mutuelle santé",
+      "intro": "Mutuelle santé : une définition claire pour comprendre vos garanties et comparer les contrats d'assurance avec plus de précision.",
+      "sections": [
+        {
+          "title": "Définition",
+          "body": "Définition de la mutuelle santé : remboursements, garanties, ticket modérateur et choix du contrat."
+        },
+        {
+          "title": "À retenir",
+          "body": "Comprendre ce terme permet d'éviter les mauvaises surprises lors d'un devis, d'une souscription ou d'un sinistre."
+        },
+        {
+          "title": "Ressources liées",
+          "list": [
+            {
+              "label": "Glossaire assurance",
+              "href": "/glossaire"
+            },
+            {
+              "label": "Comparateur assurance",
+              "href": "/comparateur"
+            }
+          ]
+        }
+      ],
+      "ctaLabel": "Comparer les assurances",
+      "ctaHref": "/comparateur"
+    },
+    {
+      "route": "/glossaire/prevoyance",
+      "outputDir": "glossaire/prevoyance",
+      "title": "Prévoyance | Définition assurance",
+      "description": "Définition de la prévoyance : décès, invalidité, incapacité, maintien de revenus et protection de la famille.",
+      "h1": "Prévoyance",
+      "intro": "Prévoyance : une définition claire pour comprendre vos garanties et comparer les contrats d'assurance avec plus de précision.",
+      "sections": [
+        {
+          "title": "Définition",
+          "body": "Définition de la prévoyance : décès, invalidité, incapacité, maintien de revenus et protection de la famille."
+        },
+        {
+          "title": "À retenir",
+          "body": "Comprendre ce terme permet d'éviter les mauvaises surprises lors d'un devis, d'une souscription ou d'un sinistre."
+        },
+        {
+          "title": "Ressources liées",
+          "list": [
+            {
+              "label": "Glossaire assurance",
+              "href": "/glossaire"
+            },
+            {
+              "label": "Comparateur assurance",
+              "href": "/comparateur"
+            }
+          ]
+        }
+      ],
+      "ctaLabel": "Comparer les assurances",
+      "ctaHref": "/comparateur"
+    },
+    {
+      "route": "/glossaire/prime-assurance",
+      "outputDir": "glossaire/prime-assurance",
+      "title": "Prime d'assurance | Définition et calcul",
+      "description": "Comprendre la prime d'assurance : cotisation, critères de calcul, garanties, franchise et économies possibles.",
+      "h1": "Prime d'assurance",
+      "intro": "Prime d'assurance : une définition claire pour comprendre vos garanties et comparer les contrats d'assurance avec plus de précision.",
+      "sections": [
+        {
+          "title": "Définition",
+          "body": "Comprendre la prime d'assurance : cotisation, critères de calcul, garanties, franchise et économies possibles."
+        },
+        {
+          "title": "À retenir",
+          "body": "Comprendre ce terme permet d'éviter les mauvaises surprises lors d'un devis, d'une souscription ou d'un sinistre."
+        },
+        {
+          "title": "Ressources liées",
+          "list": [
+            {
+              "label": "Glossaire assurance",
+              "href": "/glossaire"
+            },
+            {
+              "label": "Comparateur assurance",
+              "href": "/comparateur"
+            }
+          ]
+        }
+      ],
+      "ctaLabel": "Comparer les assurances",
+      "ctaHref": "/comparateur"
+    },
+    {
+      "route": "/glossaire/rc-pro",
+      "outputDir": "glossaire/rc-pro",
+      "title": "RC Pro | Définition assurance professionnelle",
+      "description": "Définition de la RC Pro : responsabilité civile professionnelle, garanties, obligations et risques couverts.",
+      "h1": "RC Pro",
+      "intro": "RC Pro : une définition claire pour comprendre vos garanties et comparer les contrats d'assurance avec plus de précision.",
+      "sections": [
+        {
+          "title": "Définition",
+          "body": "Définition de la RC Pro : responsabilité civile professionnelle, garanties, obligations et risques couverts."
+        },
+        {
+          "title": "À retenir",
+          "body": "Comprendre ce terme permet d'éviter les mauvaises surprises lors d'un devis, d'une souscription ou d'un sinistre."
+        },
+        {
+          "title": "Ressources liées",
+          "list": [
+            {
+              "label": "Glossaire assurance",
+              "href": "/glossaire"
+            },
+            {
+              "label": "Comparateur assurance",
+              "href": "/comparateur"
+            }
+          ]
         }
       ],
       "ctaLabel": "Comparer les assurances",

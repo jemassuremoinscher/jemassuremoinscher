@@ -7,8 +7,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOOptimized from "@/components/SEOOptimized";
 import { ShieldCheck, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const NicheProfilePage = () => {
+  const { t } = useLanguage();
   const { slug } = useParams<{ slug: string }>();
 
   // Index page: list all niches
@@ -16,8 +18,8 @@ const NicheProfilePage = () => {
     return (
       <div className="min-h-screen bg-background">
         <SEOOptimized
-          title="Profils spéciaux assurance auto | Solutions dédiées"
-          description="Solutions d'assurance auto pour profils atypiques : résilié, retrait de permis, multi-sinistré, primo-assuré, jeune conducteur puissant."
+          title={t("seo.nicheProfile.title")}
+          description={t("seo.nicheProfile.description")}
           keyword="assurance auto profil spécial"
           canonical="https://jemassuremoinscher.fr/profil"
         />

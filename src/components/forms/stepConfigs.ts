@@ -1,4 +1,5 @@
-import { Shield, ShieldCheck, ShieldPlus, Heart, HeartPulse, Activity, Home, Building, Castle, Car, Bike, PawPrint, Briefcase, FileText, Wallet, Landmark, Baby, Users, User, Stethoscope, Pill, Eye, Search, Lock, Scale, Umbrella, ChevronRight, TreePine, Mountain, PartyPopper, HardHat, Award, AlertTriangle, Calendar, Building2, Sparkles } from 'lucide-react';
+import { Shield, ShieldCheck, ShieldPlus, Heart, HeartPulse, Activity, Home, Building, Castle, Car, Bike, PawPrint, Briefcase, FileText, Wallet, Landmark, Baby, Users, User, Stethoscope, Pill, Eye, Search, Lock, Scale, Umbrella, ChevronRight, TreePine, Mountain, PartyPopper, HardHat, Award, AlertTriangle, Calendar, Building2, Sparkles, KeyRound, Zap, Truck, Hammer, Clock, Globe, Database } from 'lucide-react';
+import mascotBike from '@/assets/mascotte/arthur-bike.png';
 import mascotCar from '@/assets/mascotte/arthur-car.webp';
 import mascotMoto from '@/assets/mascotte/arthur-moto.webp';
 import mascotHouse from '@/assets/mascotte/arthur-house.webp';
@@ -16,6 +17,8 @@ export interface StepOption {
   label: string;
   description?: string;
   icon: any;
+  /** Optional mascot image rendered in place of the flat icon */
+  iconImage?: string;
 }
 
 export interface FormStep {
@@ -34,7 +37,7 @@ export interface FormStep {
   vehicleField?: 'brand' | 'model' | 'year';
 }
 
-export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur' | 'metiers_atypiques' | 'gestion_locative';
+export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur' | 'metiers_atypiques' | 'gestion_locative' | 'velo' | 'camping_car' | 'sans_permis' | 'auto_temporaire' | 'flotte' | 'cyber' | 'decennale' | 'protection_juridique' | 'mutuelle_entreprise';
 
 export const mascotMap: Record<InsuranceType, string> = {
   auto: mascotCar,
@@ -52,546 +55,685 @@ export const mascotMap: Record<InsuranceType, string> = {
   comparateur: mascotThumbsUp,
   metiers_atypiques: mascotBusiness,
   gestion_locative: mascotHouse,
+  velo: mascotBike,
+  camping_car: mascotCar,
+  sans_permis: mascotCar,
+  auto_temporaire: mascotCar,
+  flotte: mascotBusiness,
+  cyber: mascotDetective,
+  decennale: mascotBusiness,
+  protection_juridique: mascotIdea,
+  mutuelle_entreprise: mascotBusiness,
 };
 
-const searchingStep: FormStep = {
-  id: 'searching',
-  type: 'searching',
-  title: 'Recherche en cours…',
-  subtitle: 'Nous comparons les offres de 50+ assureurs partenaires pour vous trouver le meilleur tarif.',
+
+type TFn = (key: string, vars?: Record<string, string | number>) => string;
+
+// Helper to build option from i18n keys
+const opt = (t: TFn, it: string, sid: string, value: string, icon: any, iconImage?: string): StepOption => {
+  const base = `step.${it}.${sid}.opt.${value}`;
+  const descKey = `${base}.description`;
+  const desc = t(descKey);
+  return {
+    value,
+    label: t(`${base}.label`),
+    description: desc === descKey ? undefined : desc,
+    icon,
+    iconImage,
+  };
 };
 
-const contactStep: FormStep = {
-  id: 'contact',
-  type: 'contact',
-  title: 'Recevez votre devis personnalisé',
-  subtitle: 'Un conseiller vous rappelle sous 30 minutes avec les meilleures offres.',
+const tt = (t: TFn, it: string, sid: string, prop: string): string | undefined => {
+  const k = `step.${it}.${sid}.${prop}`;
+  const v = t(k);
+  return v === k ? undefined : v;
 };
 
-const postalCodeStep: FormStep = {
-  id: 'postalCode',
-  type: 'input',
-  title: 'Quel est votre code postal ?',
-  subtitle: 'Les tarifs varient selon votre lieu de résidence.',
-  field: 'postalCode',
-  inputType: 'text',
-  placeholder: '75001',
-  maxLength: 5,
-  validation: /^\d{5}$/,
-  validationMessage: 'Code postal invalide (5 chiffres)',
+export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
+  const searchingStep: FormStep = {
+    id: 'searching',
+    type: 'searching',
+    title: t('step.shared.searching.title'),
+    subtitle: t('step.shared.searching.subtitle'),
+  };
+
+  const contactStep: FormStep = {
+    id: 'contact',
+    type: 'contact',
+    title: t('step.shared.contact.title'),
+    subtitle: t('step.shared.contact.subtitle'),
+  };
+
+  const postalCodeStep: FormStep = {
+    id: 'postalCode',
+    type: 'input',
+    title: t('step.shared.postalCode.title'),
+    subtitle: t('step.shared.postalCode.subtitle'),
+    field: 'postalCode',
+    inputType: 'text',
+    placeholder: t('step.shared.postalCode.placeholder'),
+    maxLength: 5,
+    validation: /^\d{5}$/,
+    validationMessage: t('step.shared.postalCode.validation'),
+  };
+
+  const ageStep: FormStep = {
+    id: 'age',
+    type: 'input',
+    title: t('step.shared.age.title'),
+    subtitle: t('step.shared.age.subtitle'),
+    field: 'age',
+    inputType: 'number',
+    placeholder: t('step.shared.age.placeholder'),
+    validation: /^(1[89]|[2-9]\d)$/,
+    validationMessage: t('step.shared.age.validation'),
+  };
+
+  const vehicleBrandStepAuto: FormStep = {
+    id: 'vehicleBrand',
+    type: 'vehicle-select',
+    title: t('step.shared.vehicleBrandAuto.title'),
+    subtitle: t('step.shared.vehicleBrandAuto.subtitle'),
+    field: 'vehicleBrand',
+    vehicleType: 'auto',
+    vehicleField: 'brand',
+  };
+
+  const vehicleModelStepAuto: FormStep = {
+    id: 'vehicleModel',
+    type: 'vehicle-select',
+    title: t('step.shared.vehicleModel.title'),
+    subtitle: t('step.shared.vehicleModel.subtitle'),
+    field: 'vehicleModel',
+    vehicleType: 'auto',
+    vehicleField: 'model',
+  };
+
+  const vehicleYearStep: FormStep = {
+    id: 'vehicleYear',
+    type: 'input',
+    title: t('step.shared.vehicleYear.title'),
+    subtitle: t('step.shared.vehicleYear.subtitle'),
+    field: 'vehicleYear',
+    inputType: 'number',
+    placeholder: t('step.shared.vehicleYear.placeholder'),
+    validation: /^(19[89]\d|20[0-2]\d|203[0-6])$/,
+    validationMessage: t('step.shared.vehicleYear.validation'),
+  };
+
+  const vehicleBrandStepMoto: FormStep = {
+    id: 'vehicleBrand',
+    type: 'vehicle-select',
+    title: t('step.shared.vehicleBrandMoto.title'),
+    subtitle: t('step.shared.vehicleBrandMoto.subtitle'),
+    field: 'vehicleBrand',
+    vehicleType: 'moto',
+    vehicleField: 'brand',
+  };
+
+  const vehicleModelStepMoto: FormStep = {
+    id: 'vehicleModel',
+    type: 'vehicle-select',
+    title: t('step.shared.vehicleModel.title'),
+    subtitle: t('step.shared.vehicleModel.subtitle'),
+    field: 'vehicleModel',
+    vehicleType: 'moto',
+    vehicleField: 'model',
+  };
+
+  const cs = (it: InsuranceType, sid: string, field: string, opts: StepOption[]): FormStep => ({
+    id: sid,
+    type: 'card-select',
+    title: t(`step.${it}.${sid}.title`),
+    subtitle: tt(t, it, sid, 'subtitle'),
+    field,
+    options: opts,
+  });
+
+  return {
+    auto: [
+      cs('auto', 'formule', 'coverageLevel', [
+        opt(t, 'auto', 'formule', 'tiers', Shield),
+        opt(t, 'auto', 'formule', 'tiers_plus', ShieldCheck),
+        opt(t, 'auto', 'formule', 'tous_risques', ShieldPlus),
+      ]),
+      vehicleBrandStepAuto,
+      vehicleModelStepAuto,
+      vehicleYearStep,
+      cs('auto', 'usage_auto', 'vehicleUse', [
+        opt(t, 'auto', 'usage_auto', 'prive', User),
+        opt(t, 'auto', 'usage_auto', 'trajet_travail', Briefcase),
+        opt(t, 'auto', 'usage_auto', 'pro', Building2),
+      ]),
+      cs('auto', 'bonus_malus_auto', 'bonusMalus', [
+        opt(t, 'auto', 'bonus_malus_auto', 'bonus_050', Award),
+        opt(t, 'auto', 'bonus_malus_auto', 'standard', ShieldCheck),
+        opt(t, 'auto', 'bonus_malus_auto', 'malus', AlertTriangle),
+      ]),
+      ageStep, postalCodeStep, searchingStep, contactStep,
+    ],
+    moto: [
+      cs('moto', 'formule', 'coverageLevel', [
+        opt(t, 'moto', 'formule', 'tiers', Shield),
+        opt(t, 'moto', 'formule', 'tiers_plus', ShieldCheck),
+        opt(t, 'moto', 'formule', 'tous_risques', ShieldPlus),
+      ]),
+      vehicleBrandStepMoto,
+      vehicleModelStepMoto,
+      vehicleYearStep,
+      cs('moto', 'cylindree_moto', 'engineSize', [
+        opt(t, 'moto', 'cylindree_moto', '125', Bike),
+        opt(t, 'moto', 'cylindree_moto', 'medium', Bike),
+        opt(t, 'moto', 'cylindree_moto', 'large', AlertTriangle),
+      ]),
+      cs('moto', 'stationnement_moto', 'parkingType', [
+        opt(t, 'moto', 'stationnement_moto', 'garage', Lock),
+        opt(t, 'moto', 'stationnement_moto', 'parking', Building),
+        opt(t, 'moto', 'stationnement_moto', 'rue', AlertTriangle),
+      ]),
+      ageStep, postalCodeStep, searchingStep, contactStep,
+    ],
+    habitation: [
+      cs('habitation', 'logement', 'housingType', [
+        opt(t, 'habitation', 'logement', 'appartement', Building),
+        opt(t, 'habitation', 'logement', 'maison', Home),
+        opt(t, 'habitation', 'logement', 'villa', Castle),
+      ]),
+      cs('habitation', 'formule', 'coverageLevel', [
+        opt(t, 'habitation', 'formule', 'essentielle', Shield),
+        opt(t, 'habitation', 'formule', 'confort', ShieldCheck),
+        opt(t, 'habitation', 'formule', 'premium', ShieldPlus),
+      ]),
+      cs('habitation', 'surface_logement', 'housingSurface', [
+        opt(t, 'habitation', 'surface_logement', 'sub_40', Home),
+        opt(t, 'habitation', 'surface_logement', '40_90', Building),
+        opt(t, 'habitation', 'surface_logement', 'sup_90', Castle),
+      ]),
+      cs('habitation', 'statut_occupant', 'occupancyStatus', [
+        opt(t, 'habitation', 'statut_occupant', 'locataire', KeyRound),
+        opt(t, 'habitation', 'statut_occupant', 'proprietaire', Home),
+        opt(t, 'habitation', 'statut_occupant', 'coproprietaire', Building2),
+      ]),
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    sante: [
+      cs('sante', 'situation', 'situation', [
+        opt(t, 'sante', 'situation', 'seul', User),
+        opt(t, 'sante', 'situation', 'couple', Users),
+        opt(t, 'sante', 'situation', 'famille', Baby),
+      ]),
+      cs('sante', 'besoins', 'coverageLevel', [
+        opt(t, 'sante', 'besoins', 'economique', Stethoscope),
+        opt(t, 'sante', 'besoins', 'equilibre', Eye),
+        opt(t, 'sante', 'besoins', 'integrale', HeartPulse),
+      ]),
+      cs('sante', 'hospitalisation_sante', 'hospitalCoverage', [
+        opt(t, 'sante', 'hospitalisation_sante', 'standard', Stethoscope),
+        opt(t, 'sante', 'hospitalisation_sante', 'renforce', ShieldCheck),
+        opt(t, 'sante', 'hospitalisation_sante', 'premium', HeartPulse),
+      ]),
+      cs('sante', 'optique_dentaire', 'opticalDentalNeeds', [
+        opt(t, 'sante', 'optique_dentaire', 'faibles', Eye),
+        opt(t, 'sante', 'optique_dentaire', 'reguliers', Pill),
+        opt(t, 'sante', 'optique_dentaire', 'forts', HeartPulse),
+      ]),
+      ageStep, postalCodeStep, searchingStep, contactStep,
+    ],
+    pret: [
+      cs('pret', 'garanties', 'coverageLevel', [
+        opt(t, 'pret', 'garanties', 'deces', Shield),
+        opt(t, 'pret', 'garanties', 'deces_ipt', ShieldCheck),
+        opt(t, 'pret', 'garanties', 'deces_ipt_itt', ShieldPlus),
+      ]),
+      cs('pret', 'montant_pret', 'loanAmount', [
+        opt(t, 'pret', 'montant_pret', 'sub_150k', Wallet),
+        opt(t, 'pret', 'montant_pret', '150_300k', Landmark),
+        opt(t, 'pret', 'montant_pret', 'sup_300k', Building2),
+      ]),
+      cs('pret', 'fumeur_pret', 'smokerStatus', [
+        opt(t, 'pret', 'fumeur_pret', 'non', ShieldCheck),
+        opt(t, 'pret', 'fumeur_pret', 'ex', Activity),
+        opt(t, 'pret', 'fumeur_pret', 'oui', AlertTriangle),
+      ]),
+      ageStep, postalCodeStep, searchingStep, contactStep,
+    ],
+    animaux: [
+      cs('animaux', 'animal', 'animalType', [
+        opt(t, 'animaux', 'animal', 'chien', PawPrint),
+        opt(t, 'animaux', 'animal', 'chat', PawPrint),
+        opt(t, 'animaux', 'animal', 'nac', PawPrint),
+      ]),
+      cs('animaux', 'formule', 'coverageLevel', [
+        opt(t, 'animaux', 'formule', 'accident', Activity),
+        opt(t, 'animaux', 'formule', 'maladie_accident', HeartPulse),
+        opt(t, 'animaux', 'formule', 'integrale', Heart),
+      ]),
+      cs('animaux', 'age_animal', 'petAge', [
+        opt(t, 'animaux', 'age_animal', 'junior', PawPrint),
+        opt(t, 'animaux', 'age_animal', 'adult', PawPrint),
+        opt(t, 'animaux', 'age_animal', 'senior', HeartPulse),
+      ]),
+      cs('animaux', 'race_animal', 'petRisk', [
+        opt(t, 'animaux', 'race_animal', 'standard', ShieldCheck),
+        opt(t, 'animaux', 'race_animal', 'race_sensible', AlertTriangle),
+        opt(t, 'animaux', 'race_animal', 'antecedents', Stethoscope),
+      ]),
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    vie: [
+      cs('vie', 'objectif', 'coverageLevel', [
+        opt(t, 'vie', 'objectif', 'epargne', Wallet),
+        opt(t, 'vie', 'objectif', 'protection', Umbrella),
+        opt(t, 'vie', 'objectif', 'mixte', Landmark),
+      ]),
+      cs('vie', 'versement_initial', 'initialPayment', [
+        opt(t, 'vie', 'versement_initial', 'sub_5k', Wallet),
+        opt(t, 'vie', 'versement_initial', '5_50k', Landmark),
+        opt(t, 'vie', 'versement_initial', 'sup_50k', Award),
+      ]),
+      cs('vie', 'horizon_vie', 'investmentHorizon', [
+        opt(t, 'vie', 'horizon_vie', 'sub_4', Calendar),
+        opt(t, 'vie', 'horizon_vie', '4_8', ShieldCheck),
+        opt(t, 'vie', 'horizon_vie', 'sup_8', Sparkles),
+      ]),
+      ageStep, postalCodeStep, searchingStep, contactStep,
+    ],
+    prevoyance: [
+      cs('prevoyance', 'formule', 'coverageLevel', [
+        opt(t, 'prevoyance', 'formule', 'essentielle', Shield),
+        opt(t, 'prevoyance', 'formule', 'confort', ShieldCheck),
+        opt(t, 'prevoyance', 'formule', 'integrale', ShieldPlus),
+      ]),
+      cs('prevoyance', 'statut_prevoyance', 'professionalStatus', [
+        opt(t, 'prevoyance', 'statut_prevoyance', 'salarie', Briefcase),
+        opt(t, 'prevoyance', 'statut_prevoyance', 'tns', User),
+        opt(t, 'prevoyance', 'statut_prevoyance', 'dirigeant', Building2),
+      ]),
+      cs('prevoyance', 'revenu_prevoyance', 'incomeToProtect', [
+        opt(t, 'prevoyance', 'revenu_prevoyance', 'sub_2k', Wallet),
+        opt(t, 'prevoyance', 'revenu_prevoyance', '2_4k', ShieldCheck),
+        opt(t, 'prevoyance', 'revenu_prevoyance', 'sup_4k', Award),
+      ]),
+      ageStep, postalCodeStep, searchingStep, contactStep,
+    ],
+    rc_pro: [
+      cs('rc_pro', 'activite', 'activityType', [
+        opt(t, 'rc_pro', 'activite', 'liberal', Briefcase),
+        opt(t, 'rc_pro', 'activite', 'commerce', Scale),
+        opt(t, 'rc_pro', 'activite', 'tech', FileText),
+      ]),
+      cs('rc_pro', 'formule', 'coverageLevel', [
+        opt(t, 'rc_pro', 'formule', 'basique', Shield),
+        opt(t, 'rc_pro', 'formule', 'standard', ShieldCheck),
+        opt(t, 'rc_pro', 'formule', 'premium', ShieldPlus),
+      ]),
+      cs('rc_pro', 'ca_rcpro', 'revenue', [
+        opt(t, 'rc_pro', 'ca_rcpro', 'sub_50k', Wallet),
+        opt(t, 'rc_pro', 'ca_rcpro', '50_250k', Briefcase),
+        opt(t, 'rc_pro', 'ca_rcpro', 'sup_250k', Building2),
+      ]),
+      cs('rc_pro', 'clients_rcpro', 'clientType', [
+        opt(t, 'rc_pro', 'clients_rcpro', 'particuliers', Users),
+        opt(t, 'rc_pro', 'clients_rcpro', 'entreprises', Building2),
+        opt(t, 'rc_pro', 'clients_rcpro', 'mixte', Scale),
+      ]),
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    mrp: [
+      cs('mrp', 'formule', 'coverageLevel', [
+        opt(t, 'mrp', 'formule', 'essentielle', Shield),
+        opt(t, 'mrp', 'formule', 'confort', ShieldCheck),
+        opt(t, 'mrp', 'formule', 'premium', ShieldPlus),
+      ]),
+      cs('mrp', 'local_mrp', 'businessPremises', [
+        opt(t, 'mrp', 'local_mrp', 'bureau', Building),
+        opt(t, 'mrp', 'local_mrp', 'commerce', Briefcase),
+        opt(t, 'mrp', 'local_mrp', 'atelier', HardHat),
+      ]),
+      cs('mrp', 'stock_mrp', 'equipmentValue', [
+        opt(t, 'mrp', 'stock_mrp', 'sub_10k', Shield),
+        opt(t, 'mrp', 'stock_mrp', '10_50k', ShieldCheck),
+        opt(t, 'mrp', 'stock_mrp', 'sup_50k', ShieldPlus),
+      ]),
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    gli: [
+      cs('gli', 'formule', 'coverageLevel', [
+        opt(t, 'gli', 'formule', 'basique', Shield),
+        opt(t, 'gli', 'formule', 'standard', ShieldCheck),
+        opt(t, 'gli', 'formule', 'premium', ShieldPlus),
+      ]),
+      cs('gli', 'loyer_gli', 'monthlyRent', [
+        opt(t, 'gli', 'loyer_gli', 'sub_700', Wallet),
+        opt(t, 'gli', 'loyer_gli', '700_1500', Home),
+        opt(t, 'gli', 'loyer_gli', 'sup_1500', Building2),
+      ]),
+      cs('gli', 'locataire_gli', 'tenantStatus', [
+        opt(t, 'gli', 'locataire_gli', 'nouveau', Search),
+        opt(t, 'gli', 'locataire_gli', 'en_place_ok', ShieldCheck),
+        opt(t, 'gli', 'locataire_gli', 'incident', AlertTriangle),
+      ]),
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    pno: [
+      cs('pno', 'formule', 'coverageLevel', [
+        opt(t, 'pno', 'formule', 'essentielle', Shield),
+        opt(t, 'pno', 'formule', 'confort', ShieldCheck),
+        opt(t, 'pno', 'formule', 'premium', ShieldPlus),
+      ]),
+      cs('pno', 'occupation_pno', 'propertyOccupancy', [
+        opt(t, 'pno', 'occupation_pno', 'loue', KeyRound),
+        opt(t, 'pno', 'occupation_pno', 'vacant', Home),
+        opt(t, 'pno', 'occupation_pno', 'travaux', HardHat),
+      ]),
+      cs('pno', 'type_bien_pno', 'propertyType', [
+        opt(t, 'pno', 'type_bien_pno', 'appartement', Building),
+        opt(t, 'pno', 'type_bien_pno', 'maison', Home),
+        opt(t, 'pno', 'type_bien_pno', 'immeuble', Building2),
+      ]),
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    gestion_locative: [
+      cs('gestion_locative', 'propertyCount', 'propertyCount', [
+        opt(t, 'gestion_locative', 'propertyCount', '1', Home),
+        opt(t, 'gestion_locative', 'propertyCount', '2-5', Building),
+        opt(t, 'gestion_locative', 'propertyCount', '5+', Building2),
+      ]),
+      cs('gestion_locative', 'managementType', 'managementType', [
+        opt(t, 'gestion_locative', 'managementType', 'full', ShieldPlus),
+        opt(t, 'gestion_locative', 'managementType', 'partial', ShieldCheck),
+        opt(t, 'gestion_locative', 'managementType', 'declaration', FileText),
+      ]),
+      cs('gestion_locative', 'rentCollection', 'rentCollection', [
+        opt(t, 'gestion_locative', 'rentCollection', 'oui', Wallet),
+        opt(t, 'gestion_locative', 'rentCollection', 'non', User),
+        opt(t, 'gestion_locative', 'rentCollection', 'a_decider', Search),
+      ]),
+      cs('gestion_locative', 'gli_included', 'includeGLI', [
+        opt(t, 'gestion_locative', 'gli_included', 'oui', Lock),
+        opt(t, 'gestion_locative', 'gli_included', 'non', FileText),
+        opt(t, 'gestion_locative', 'gli_included', 'comparer', Scale),
+      ]),
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    comparateur: [
+      cs('comparateur', 'type', 'insuranceType', [
+        opt(t, 'comparateur', 'type', 'auto', Car, mascotCar),
+        opt(t, 'comparateur', 'type', 'moto', Bike, mascotMoto),
+        opt(t, 'comparateur', 'type', 'habitation', Home, mascotHouse),
+        opt(t, 'comparateur', 'type', 'sante', Heart, mascotSick),
+        opt(t, 'comparateur', 'type', 'pno', Building, mascotHouse),
+        opt(t, 'comparateur', 'type', 'gli', Lock, mascotDetective),
+        opt(t, 'comparateur', 'type', 'vie', Landmark, mascotIdea),
+        opt(t, 'comparateur', 'type', 'rc_pro', Briefcase, mascotBusiness),
+        opt(t, 'comparateur', 'type', 'prevoyance', Umbrella, mascotInjured),
+        opt(t, 'comparateur', 'type', 'pret', FileText, mascotThinking),
+        opt(t, 'comparateur', 'type', 'mrp', Building2, mascotBusiness),
+        opt(t, 'comparateur', 'type', 'gestion_locative', KeyRound, mascotHouse),
+      ]),
+      cs('comparateur', 'formule', 'coverageLevel', [
+        opt(t, 'comparateur', 'formule', 'essentielle', Shield),
+        opt(t, 'comparateur', 'formule', 'confort', ShieldCheck),
+        opt(t, 'comparateur', 'formule', 'premium', ShieldPlus),
+      ]),
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    metiers_atypiques: [
+      cs('metiers_atypiques', 'famille_activite', 'activityFamily', [
+        opt(t, 'metiers_atypiques', 'famille_activite', 'parc_aventure', TreePine),
+        opt(t, 'metiers_atypiques', 'famille_activite', 'sport_outdoor', Mountain),
+        opt(t, 'metiers_atypiques', 'famille_activite', 'evenementiel', PartyPopper),
+        opt(t, 'metiers_atypiques', 'famille_activite', 'btp_specialise', HardHat),
+        opt(t, 'metiers_atypiques', 'famille_activite', 'autre', Sparkles),
+      ]),
+      {
+        id: 'description_activite',
+        type: 'input',
+        title: t('step.metiers_atypiques.description_activite.title'),
+        subtitle: t('step.metiers_atypiques.description_activite.subtitle'),
+        field: 'activityDescription',
+        inputType: 'text',
+        placeholder: t('step.metiers_atypiques.description_activite.placeholder'),
+        maxLength: 120,
+        validation: /^.{10,120}$/,
+        validationMessage: t('step.metiers_atypiques.description_activite.validation'),
+      },
+      cs('metiers_atypiques', 'statut', 'legalStatus', [
+        opt(t, 'metiers_atypiques', 'statut', 'micro', User),
+        opt(t, 'metiers_atypiques', 'statut', 'sasu_eurl', Briefcase),
+        opt(t, 'metiers_atypiques', 'statut', 'sas_sarl', Building2),
+        opt(t, 'metiers_atypiques', 'statut', 'asso', Users),
+      ]),
+      cs('metiers_atypiques', 'public_encadre', 'publicExposure', [
+        opt(t, 'metiers_atypiques', 'public_encadre', 'aucun', Lock),
+        opt(t, 'metiers_atypiques', 'public_encadre', 'adultes', User),
+        opt(t, 'metiers_atypiques', 'public_encadre', 'mixte', Users),
+        opt(t, 'metiers_atypiques', 'public_encadre', 'mineurs', Baby),
+      ]),
+      cs('metiers_atypiques', 'frequentation', 'attendance', [
+        opt(t, 'metiers_atypiques', 'frequentation', 'sub_500', Calendar),
+        opt(t, 'metiers_atypiques', 'frequentation', '500_5k', Users),
+        opt(t, 'metiers_atypiques', 'frequentation', '5k_50k', Users),
+        opt(t, 'metiers_atypiques', 'frequentation', 'sup_50k', PartyPopper),
+      ]),
+      cs('metiers_atypiques', 'salaries', 'staffSize', [
+        opt(t, 'metiers_atypiques', 'salaries', 'solo', User),
+        opt(t, 'metiers_atypiques', 'salaries', '2_5', Users),
+        opt(t, 'metiers_atypiques', 'salaries', '6_20', Users),
+        opt(t, 'metiers_atypiques', 'salaries', 'sup_20', Building2),
+      ]),
+      cs('metiers_atypiques', 'ca', 'revenue', [
+        opt(t, 'metiers_atypiques', 'ca', 'sub_50k', Wallet),
+        opt(t, 'metiers_atypiques', 'ca', '50_200k', Wallet),
+        opt(t, 'metiers_atypiques', 'ca', '200k_1m', Wallet),
+        opt(t, 'metiers_atypiques', 'ca', 'sup_1m', Wallet),
+      ]),
+      cs('metiers_atypiques', 'certifications', 'certifications', [
+        opt(t, 'metiers_atypiques', 'certifications', 'oui_majeures', Award),
+        opt(t, 'metiers_atypiques', 'certifications', 'oui_partielles', ShieldCheck),
+        opt(t, 'metiers_atypiques', 'certifications', 'non', AlertTriangle),
+        opt(t, 'metiers_atypiques', 'certifications', 'en_cours', Activity),
+      ]),
+      cs('metiers_atypiques', 'sinistres', 'claimsHistory', [
+        opt(t, 'metiers_atypiques', 'sinistres', 'aucun', ShieldCheck),
+        opt(t, 'metiers_atypiques', 'sinistres', '1_2', Shield),
+        opt(t, 'metiers_atypiques', 'sinistres', '3_5', AlertTriangle),
+        opt(t, 'metiers_atypiques', 'sinistres', 'sup_5', AlertTriangle),
+      ]),
+      postalCodeStep,
+      {
+        id: 'callback',
+        type: 'callback',
+        title: t('step.metiers_atypiques.callback.title'),
+        subtitle: t('step.metiers_atypiques.callback.subtitle'),
+      },
+    ],
+    // ============ NICHES (inline FR, no i18n keys) ============
+    velo: [
+      { id: 'velo_type', type: 'card-select', title: 'Quel type de vélo souhaitez-vous assurer ?', field: 'bikeType', options: [
+        { value: 'musculaire', label: 'Vélo musculaire', description: 'Ville, route, VTT classique', icon: Bike },
+        { value: 'vae', label: 'Vélo à assistance électrique (VAE)', description: 'Pédalage assisté ≤ 25 km/h', icon: Zap },
+        { value: 'cargo', label: 'Vélo cargo / pliant / speed-bike', description: 'Usage spécifique ou > 25 km/h', icon: Truck },
+      ]},
+      { id: 'velo_valeur', type: 'card-select', title: 'Quelle est la valeur de votre vélo ?', field: 'bikeValue', options: [
+        { value: 'sub_800', label: 'Moins de 800 €', icon: Wallet },
+        { value: '800_2500', label: 'Entre 800 € et 2 500 €', icon: Shield },
+        { value: 'sup_2500', label: 'Plus de 2 500 €', icon: ShieldPlus },
+      ]},
+      { id: 'velo_formule', type: 'card-select', title: 'Quelles garanties recherchez-vous ?', field: 'coverageLevel', options: [
+        { value: 'vol', label: 'Vol uniquement', description: 'Protection antivol agréé', icon: Lock },
+        { value: 'vol_casse', label: 'Vol + Casse', description: 'Couverture étendue', icon: ShieldCheck },
+        { value: 'tous_risques', label: 'Tous risques + Assistance', description: 'Protection maximale', icon: ShieldPlus },
+      ]},
+      { id: 'velo_stationnement', type: 'card-select', title: 'Où stationnez-vous votre vélo ?', field: 'parkingType', options: [
+        { value: 'garage', label: 'Garage / local fermé', icon: Lock },
+        { value: 'local_velo', label: 'Local vélo / cave', icon: Building },
+        { value: 'exterieur', label: 'Rue / extérieur', icon: AlertTriangle },
+      ]},
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    camping_car: [
+      { id: 'cc_type', type: 'card-select', title: 'Quel type de camping-car possédez-vous ?', field: 'vehicleSubtype', options: [
+        { value: 'capucine', label: 'Capucine / Profilé', icon: Truck },
+        { value: 'integral', label: 'Intégral', icon: Castle },
+        { value: 'fourgon', label: 'Van / Fourgon aménagé', icon: Car },
+      ]},
+      { id: 'cc_formule', type: 'card-select', title: 'Quelle formule souhaitez-vous ?', field: 'coverageLevel', options: [
+        { value: 'tiers', label: 'Au tiers', icon: Shield },
+        { value: 'tiers_plus', label: 'Tiers étendu (vol/incendie)', icon: ShieldCheck },
+        { value: 'tous_risques', label: 'Tous risques', icon: ShieldPlus },
+      ]},
+      { id: 'cc_usage', type: 'card-select', title: 'Quel est votre usage annuel ?', field: 'vehicleUse', options: [
+        { value: 'occasionnel', label: 'Occasionnel (< 5 000 km/an)', icon: Calendar },
+        { value: 'regulier', label: 'Régulier (5 000 - 15 000 km)', icon: Activity },
+        { value: 'intensif', label: 'Intensif (> 15 000 km)', icon: Award },
+      ]},
+      vehicleYearStep, ageStep, postalCodeStep, searchingStep, contactStep,
+    ],
+    sans_permis: [
+      { id: 'sp_type', type: 'card-select', title: 'Quel type de véhicule sans permis ?', field: 'vehicleSubtype', options: [
+        { value: 'voiturette', label: 'Voiturette (quadricycle léger)', icon: Car },
+        { value: 'scooter', label: 'Scooter 50cm³', icon: Bike },
+        { value: 'autre', label: 'Autre (quad, etc.)', icon: Activity },
+      ]},
+      { id: 'sp_formule', type: 'card-select', title: 'Quelle formule recherchez-vous ?', field: 'coverageLevel', options: [
+        { value: 'tiers', label: 'Au tiers (obligatoire)', icon: Shield },
+        { value: 'tiers_plus', label: 'Tiers + vol / incendie', icon: ShieldCheck },
+        { value: 'tous_risques', label: 'Tous risques', icon: ShieldPlus },
+      ]},
+      { id: 'sp_conducteur', type: 'card-select', title: 'Qui sera le conducteur principal ?', field: 'driverProfile', options: [
+        { value: 'jeune', label: 'Jeune (14-18 ans, sans permis B)', icon: User },
+        { value: 'adulte', label: 'Adulte sans permis B', icon: User },
+        { value: 'senior', label: 'Senior (suspension/perte permis)', icon: User },
+      ]},
+      ageStep, postalCodeStep, searchingStep, contactStep,
+    ],
+    auto_temporaire: [
+      { id: 'at_duree', type: 'card-select', title: 'Quelle durée souhaitez-vous assurer ?', field: 'duration', options: [
+        { value: '1_3j', label: '1 à 3 jours', icon: Clock },
+        { value: '4_15j', label: '4 à 15 jours', icon: Calendar },
+        { value: '16_90j', label: '16 à 90 jours', icon: Calendar },
+      ]},
+      { id: 'at_motif', type: 'card-select', title: 'Pour quelle utilisation ?', field: 'usage', options: [
+        { value: 'voyage', label: 'Voyage / vacances', icon: Globe },
+        { value: 'achat_vente', label: 'Achat / vente d\'un véhicule', icon: Car },
+        { value: 'pret_emprunt', label: 'Prêt ou emprunt ponctuel', icon: KeyRound },
+      ]},
+      { id: 'at_formule', type: 'card-select', title: 'Quelle formule ?', field: 'coverageLevel', options: [
+        { value: 'tiers', label: 'Au tiers', icon: Shield },
+        { value: 'tiers_plus', label: 'Tiers étendu', icon: ShieldCheck },
+        { value: 'tous_risques', label: 'Tous risques', icon: ShieldPlus },
+      ]},
+      ageStep, postalCodeStep, searchingStep, contactStep,
+    ],
+    flotte: [
+      { id: 'fl_taille', type: 'card-select', title: 'Combien de véhicules à assurer ?', field: 'fleetSize', options: [
+        { value: '3_5', label: '3 à 5 véhicules', icon: Car },
+        { value: '6_20', label: '6 à 20 véhicules', icon: Truck },
+        { value: 'sup_20', label: 'Plus de 20 véhicules', icon: Building2 },
+      ]},
+      { id: 'fl_compo', type: 'card-select', title: 'Composition de votre flotte ?', field: 'fleetComposition', options: [
+        { value: 'vp', label: 'Véhicules particuliers', icon: Car },
+        { value: 'utilitaires', label: 'Utilitaires / fourgons', icon: Truck },
+        { value: 'mixte', label: 'Mixte (VP + utilitaires)', icon: Briefcase },
+      ]},
+      { id: 'fl_usage', type: 'card-select', title: 'Usage principal ?', field: 'vehicleUse', options: [
+        { value: 'tournee', label: 'Tournées / livraisons', icon: Truck },
+        { value: 'commercial', label: 'Déplacements commerciaux', icon: Briefcase },
+        { value: 'mixte', label: 'Mixte', icon: Scale },
+      ]},
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    cyber: [
+      { id: 'cy_taille', type: 'card-select', title: 'Quelle est la taille de votre entreprise ?', field: 'companySize', options: [
+        { value: 'tpe', label: 'TPE (< 10 salariés)', icon: User },
+        { value: 'pme', label: 'PME (10 - 250 salariés)', icon: Users },
+        { value: 'eti', label: 'ETI / Grand groupe', icon: Building2 },
+      ]},
+      { id: 'cy_donnees', type: 'card-select', title: 'Manipulez-vous des données sensibles ?', field: 'dataSensitivity', options: [
+        { value: 'oui_clients', label: 'Oui (données clients RGPD)', icon: Database },
+        { value: 'oui_sante_fin', label: 'Oui (santé / financier)', icon: HeartPulse },
+        { value: 'non', label: 'Peu / pas de données sensibles', icon: Shield },
+      ]},
+      { id: 'cy_ca', type: 'card-select', title: 'Quel est votre chiffre d\'affaires annuel ?', field: 'revenue', options: [
+        { value: 'sub_500k', label: 'Moins de 500 k€', icon: Wallet },
+        { value: '500k_5m', label: '500 k€ - 5 M€', icon: Landmark },
+        { value: 'sup_5m', label: 'Plus de 5 M€', icon: Building2 },
+      ]},
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    decennale: [
+      { id: 'dc_metier', type: 'card-select', title: 'Quel est votre métier du bâtiment ?', field: 'activityType', options: [
+        { value: 'gros_oeuvre', label: 'Gros œuvre (maçon, charpentier)', icon: HardHat },
+        { value: 'second_oeuvre', label: 'Second œuvre (électricien, plombier)', icon: Hammer },
+        { value: 'finition', label: 'Finition (peintre, carreleur)', icon: Sparkles },
+        { value: 'autre', label: 'Autre / multi-activités', icon: Building },
+      ]},
+      { id: 'dc_statut', type: 'card-select', title: 'Quel est votre statut juridique ?', field: 'legalStatus', options: [
+        { value: 'micro', label: 'Auto-entrepreneur / micro', icon: User },
+        { value: 'sasu_eurl', label: 'SASU / EURL', icon: Briefcase },
+        { value: 'sas_sarl', label: 'SAS / SARL', icon: Building2 },
+      ]},
+      { id: 'dc_ca', type: 'card-select', title: 'Chiffre d\'affaires annuel ?', field: 'revenue', options: [
+        { value: 'sub_70k', label: 'Moins de 70 k€', icon: Wallet },
+        { value: '70_250k', label: '70 - 250 k€', icon: Briefcase },
+        { value: 'sup_250k', label: 'Plus de 250 k€', icon: Building2 },
+      ]},
+      { id: 'dc_anciennete', type: 'card-select', title: 'Depuis combien de temps exercez-vous ?', field: 'experience', options: [
+        { value: 'creation', label: 'Création / < 1 an', icon: Sparkles },
+        { value: '1_5', label: '1 à 5 ans', icon: Activity },
+        { value: 'sup_5', label: 'Plus de 5 ans', icon: Award },
+      ]},
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    protection_juridique: [
+      { id: 'pj_profil', type: 'card-select', title: 'Pour qui souhaitez-vous une protection juridique ?', field: 'profile', options: [
+        { value: 'particulier', label: 'Particulier / famille', icon: User },
+        { value: 'pro', label: 'Professionnel / indépendant', icon: Briefcase },
+        { value: 'entreprise', label: 'Entreprise / société', icon: Building2 },
+      ]},
+      { id: 'pj_domaines', type: 'card-select', title: 'Quels litiges souhaitez-vous couvrir en priorité ?', field: 'coverageScope', options: [
+        { value: 'conso_habitat', label: 'Consommation / habitation', icon: Home },
+        { value: 'travail', label: 'Travail / contrat', icon: FileText },
+        { value: 'tous', label: 'Tous domaines (vie privée + pro)', icon: Scale },
+      ]},
+      { id: 'pj_formule', type: 'card-select', title: 'Quel niveau de couverture ?', field: 'coverageLevel', options: [
+        { value: 'essentielle', label: 'Essentielle', icon: Shield },
+        { value: 'confort', label: 'Confort', icon: ShieldCheck },
+        { value: 'premium', label: 'Premium (avocat libre choix)', icon: ShieldPlus },
+      ]},
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    mutuelle_entreprise: [
+      { id: 'me_effectif', type: 'card-select', title: 'Combien de salariés à couvrir ?', field: 'staffSize', options: [
+        { value: '1_5', label: '1 à 5 salariés', icon: User },
+        { value: '6_20', label: '6 à 20 salariés', icon: Users },
+        { value: '21_100', label: '21 à 100 salariés', icon: Building },
+        { value: 'sup_100', label: 'Plus de 100 salariés', icon: Building2 },
+      ]},
+      { id: 'me_convention', type: 'card-select', title: 'Avez-vous une convention collective imposant un socle ?', field: 'collectiveAgreement', options: [
+        { value: 'oui_connue', label: 'Oui, je connais le socle', icon: ShieldCheck },
+        { value: 'oui_a_verifier', label: 'Oui, mais à vérifier', icon: Search },
+        { value: 'non', label: 'Non / je ne sais pas', icon: AlertTriangle },
+      ]},
+      { id: 'me_niveau', type: 'card-select', title: 'Quel niveau de garanties souhaitez-vous ?', field: 'coverageLevel', options: [
+        { value: 'socle_anim', label: 'Socle ANI (minimum légal)', icon: Shield },
+        { value: 'intermediaire', label: 'Intermédiaire (confort)', icon: ShieldCheck },
+        { value: 'premium', label: 'Premium (optique/dentaire renforcés)', icon: ShieldPlus },
+      ]},
+      postalCodeStep, searchingStep, contactStep,
+    ],
+  };
+
 };
 
-const ageStep: FormStep = {
-  id: 'age',
-  type: 'input',
-  title: 'Quel est votre âge ?',
-  subtitle: 'Votre âge influence directement le tarif de votre assurance.',
-  field: 'age',
-  inputType: 'number',
-  placeholder: '30',
-  validation: /^(1[89]|[2-9]\d)$/,
-  validationMessage: 'Âge invalide (18-99)',
-};
-
-const vehicleBrandStepAuto: FormStep = {
-  id: 'vehicleBrand',
-  type: 'vehicle-select',
-  title: 'Quelle est la marque de votre véhicule ?',
-  subtitle: 'Sélectionnez la marque pour affiner votre tarif.',
-  field: 'vehicleBrand',
-  vehicleType: 'auto',
-  vehicleField: 'brand',
-};
-
-const vehicleModelStepAuto: FormStep = {
-  id: 'vehicleModel',
-  type: 'vehicle-select',
-  title: 'Quel est le modèle ?',
-  subtitle: 'Le modèle influence directement le tarif.',
-  field: 'vehicleModel',
-  vehicleType: 'auto',
-  vehicleField: 'model',
-};
-
-const vehicleYearStep: FormStep = {
-  id: 'vehicleYear',
-  type: 'input',
-  title: 'Quelle est l\'année de mise en circulation ?',
-  subtitle: 'Plus le véhicule est récent, plus la prime peut varier.',
-  field: 'vehicleYear',
-  inputType: 'number',
-  placeholder: '2020',
-  validation: /^(19[89]\d|20[0-2]\d|203[0-6])$/,
-  validationMessage: 'Année invalide (1980-2026)',
-};
-
-const vehicleBrandStepMoto: FormStep = {
-  id: 'vehicleBrand',
-  type: 'vehicle-select',
-  title: 'Quelle est la marque de votre moto ?',
-  subtitle: 'Sélectionnez la marque pour affiner votre tarif.',
-  field: 'vehicleBrand',
-  vehicleType: 'moto',
-  vehicleField: 'brand',
-};
-
-const vehicleModelStepMoto: FormStep = {
-  id: 'vehicleModel',
-  type: 'vehicle-select',
-  title: 'Quel est le modèle ?',
-  subtitle: 'Le modèle influence directement le tarif.',
-  field: 'vehicleModel',
-  vehicleType: 'moto',
-  vehicleField: 'model',
-};
-
-export const stepConfigsByType: Record<InsuranceType, FormStep[]> = {
-  auto: [
-    {
-      id: 'formule',
-      type: 'card-select',
-      title: 'Quelle formule recherchez-vous ?',
-      subtitle: 'Choisissez le niveau de protection adapté à vos besoins.',
-      field: 'coverageLevel',
-      options: [
-        { value: 'tiers', label: 'Tiers', description: 'Protection de base au meilleur prix', icon: Shield },
-        { value: 'tiers_plus', label: 'Tiers +', description: 'Bris de glace, vol et incendie inclus', icon: ShieldCheck },
-        { value: 'tous_risques', label: 'Tous Risques', description: 'Protection maximale tous dommages', icon: ShieldPlus },
-      ],
-    },
-    vehicleBrandStepAuto,
-    vehicleModelStepAuto,
-    vehicleYearStep,
-    ageStep,
-    postalCodeStep,
-    searchingStep,
-    contactStep,
-  ],
-  moto: [
-    {
-      id: 'formule',
-      type: 'card-select',
-      title: 'Quelle formule moto souhaitez-vous ?',
-      subtitle: 'Protégez votre 2 roues selon votre usage.',
-      field: 'coverageLevel',
-      options: [
-        { value: 'tiers', label: 'Tiers', description: 'Responsabilité civile obligatoire', icon: Shield },
-        { value: 'tiers_plus', label: 'Tiers +', description: 'Vol, incendie et équipement pilote', icon: ShieldCheck },
-        { value: 'tous_risques', label: 'Tous Risques', description: 'Protection complète pilote et moto', icon: ShieldPlus },
-      ],
-    },
-    vehicleBrandStepMoto,
-    vehicleModelStepMoto,
-    vehicleYearStep,
-    ageStep,
-    postalCodeStep,
-    searchingStep,
-    contactStep,
-  ],
-  habitation: [
-    {
-      id: 'logement',
-      type: 'card-select',
-      title: 'Quel type de logement assurez-vous ?',
-      subtitle: 'Nous adapterons les garanties à votre logement.',
-      field: 'housingType',
-      options: [
-        { value: 'appartement', label: 'Appartement', description: 'En copropriété', icon: Building },
-        { value: 'maison', label: 'Maison', description: 'Individuelle ou mitoyenne', icon: Home },
-        { value: 'villa', label: 'Villa / Prestige', description: 'Grande surface ou villa', icon: Castle },
-      ],
-    },
-    {
-      id: 'formule',
-      type: 'card-select',
-      title: 'Quel niveau de couverture ?',
-      field: 'coverageLevel',
-      options: [
-        { value: 'essentielle', label: 'Essentielle', description: 'Les garanties indispensables', icon: Shield },
-        { value: 'confort', label: 'Confort', description: 'Rééquipement à neuf, vol inclus', icon: ShieldCheck },
-        { value: 'premium', label: 'Premium', description: 'Couverture maximale et objets de valeur', icon: ShieldPlus },
-      ],
-    },
-    postalCodeStep,
-    searchingStep,
-    contactStep,
-  ],
-  sante: [
-    {
-      id: 'situation',
-      type: 'card-select',
-      title: 'Quelle est votre situation ?',
-      subtitle: 'Les besoins en santé varient selon votre profil.',
-      field: 'situation',
-      options: [
-        { value: 'seul', label: 'Seul(e)', description: 'Couverture individuelle', icon: User },
-        { value: 'couple', label: 'En couple', description: 'Couverture pour 2 personnes', icon: Users },
-        { value: 'famille', label: 'Famille', description: 'Avec enfants à charge', icon: Baby },
-      ],
-    },
-    {
-      id: 'besoins',
-      type: 'card-select',
-      title: 'Quels sont vos besoins prioritaires ?',
-      field: 'coverageLevel',
-      options: [
-        { value: 'economique', label: 'Économique', description: 'Soins courants remboursés', icon: Stethoscope },
-        { value: 'equilibre', label: 'Équilibre', description: 'Dentaire et optique renforcés', icon: Eye },
-        { value: 'integrale', label: 'Intégrale', description: 'Médecines douces et hospitalisation premium', icon: HeartPulse },
-      ],
-    },
-    ageStep,
-    postalCodeStep,
-    searchingStep,
-    contactStep,
-  ],
-  pret: [
-    {
-      id: 'garanties',
-      type: 'card-select',
-      title: 'Quelles garanties souhaitez-vous ?',
-      subtitle: 'Protégez votre emprunt et vos proches.',
-      field: 'coverageLevel',
-      options: [
-        { value: 'deces', label: 'Décès', description: 'Garantie décès de base', icon: Shield },
-        { value: 'deces_ipt', label: 'Décès + IPT', description: 'Invalidité permanente totale incluse', icon: ShieldCheck },
-        { value: 'deces_ipt_itt', label: 'Décès + IPT + ITT', description: 'Incapacité temporaire incluse', icon: ShieldPlus },
-      ],
-    },
-    ageStep,
-    postalCodeStep,
-    searchingStep,
-    contactStep,
-  ],
-  animaux: [
-    {
-      id: 'animal',
-      type: 'card-select',
-      title: 'Quel animal souhaitez-vous assurer ?',
-      subtitle: 'Protégez votre compagnon à 4 pattes.',
-      field: 'animalType',
-      options: [
-        { value: 'chien', label: 'Chien', description: 'Toutes races', icon: PawPrint },
-        { value: 'chat', label: 'Chat', description: 'Intérieur ou extérieur', icon: PawPrint },
-        { value: 'nac', label: 'NAC', description: 'Lapin, furet, reptile…', icon: PawPrint },
-      ],
-    },
-    {
-      id: 'formule',
-      type: 'card-select',
-      title: 'Quel niveau de protection ?',
-      field: 'coverageLevel',
-      options: [
-        { value: 'accident', label: 'Accidents', description: 'Chirurgie et urgences', icon: Activity },
-        { value: 'maladie_accident', label: 'Maladie + Accident', description: 'Consultations et soins inclus', icon: HeartPulse },
-        { value: 'integrale', label: 'Intégrale', description: 'Prévention, vaccins et stérilisation', icon: Heart },
-      ],
-    },
-    postalCodeStep,
-    searchingStep,
-    contactStep,
-  ],
-  vie: [
-    {
-      id: 'objectif',
-      type: 'card-select',
-      title: 'Quel est votre objectif principal ?',
-      subtitle: 'Nous adapterons nos recommandations.',
-      field: 'coverageLevel',
-      options: [
-        { value: 'epargne', label: 'Épargne', description: 'Fructifier votre capital', icon: Wallet },
-        { value: 'protection', label: 'Protection', description: 'Protéger vos proches', icon: Umbrella },
-        { value: 'mixte', label: 'Mixte', description: 'Épargne + protection décès', icon: Landmark },
-      ],
-    },
-    ageStep,
-    postalCodeStep,
-    searchingStep,
-    contactStep,
-  ],
-  prevoyance: [
-    {
-      id: 'formule',
-      type: 'card-select',
-      title: 'Quel niveau de prévoyance ?',
-      subtitle: 'Anticipez les imprévus de la vie.',
-      field: 'coverageLevel',
-      options: [
-        { value: 'essentielle', label: 'Essentielle', description: 'Décès et invalidité', icon: Shield },
-        { value: 'confort', label: 'Confort', description: '+ Incapacité temporaire', icon: ShieldCheck },
-        { value: 'integrale', label: 'Intégrale', description: '+ Dépendance et hospitalisation', icon: ShieldPlus },
-      ],
-    },
-    ageStep,
-    postalCodeStep,
-    searchingStep,
-    contactStep,
-  ],
-  rc_pro: [
-    {
-      id: 'activite',
-      type: 'card-select',
-      title: 'Quel est votre type d\'activité ?',
-      subtitle: 'Les garanties dépendent de votre métier.',
-      field: 'activityType',
-      options: [
-        { value: 'liberal', label: 'Libéral', description: 'Profession libérale ou indépendante', icon: Briefcase },
-        { value: 'commerce', label: 'Commerce', description: 'Vente de biens ou services', icon: Scale },
-        { value: 'tech', label: 'Tech / Conseil', description: 'IT, conseil, formation', icon: FileText },
-      ],
-    },
-    {
-      id: 'formule',
-      type: 'card-select',
-      title: 'Quel niveau de couverture RC Pro ?',
-      field: 'coverageLevel',
-      options: [
-        { value: 'basique', label: 'Basique', description: 'RC Pro obligatoire', icon: Shield },
-        { value: 'standard', label: 'Standard', description: '+ Protection juridique', icon: ShieldCheck },
-        { value: 'premium', label: 'Premium', description: '+ Cyber-risques et perte d\'exploitation', icon: ShieldPlus },
-      ],
-    },
-    postalCodeStep,
-    searchingStep,
-    contactStep,
-  ],
-  mrp: [
-    {
-      id: 'formule',
-      type: 'card-select',
-      title: 'Quel niveau de couverture MRP ?',
-      subtitle: 'Protégez vos locaux professionnels.',
-      field: 'coverageLevel',
-      options: [
-        { value: 'essentielle', label: 'Essentielle', description: 'Incendie, dégâts des eaux', icon: Shield },
-        { value: 'confort', label: 'Confort', description: '+ Vol et bris de machines', icon: ShieldCheck },
-        { value: 'premium', label: 'Premium', description: '+ Perte d\'exploitation', icon: ShieldPlus },
-      ],
-    },
-    postalCodeStep,
-    searchingStep,
-    contactStep,
-  ],
-  gli: [
-    {
-      id: 'formule',
-      type: 'card-select',
-      title: 'Quel niveau de GLI souhaitez-vous ?',
-      subtitle: 'Garantie loyers impayés pour propriétaires bailleurs.',
-      field: 'coverageLevel',
-      options: [
-        { value: 'basique', label: 'Basique', description: 'Loyers impayés uniquement', icon: Shield },
-        { value: 'standard', label: 'Standard', description: '+ Détériorations immobilières', icon: ShieldCheck },
-        { value: 'premium', label: 'Premium', description: '+ Protection juridique et vacance locative', icon: ShieldPlus },
-      ],
-    },
-    postalCodeStep,
-    searchingStep,
-    contactStep,
-  ],
-  pno: [
-    {
-      id: 'formule',
-      type: 'card-select',
-      title: 'Quel niveau de couverture PNO ?',
-      subtitle: 'Protégez votre bien non occupé.',
-      field: 'coverageLevel',
-      options: [
-        { value: 'essentielle', label: 'Essentielle', description: 'Responsabilité civile propriétaire', icon: Shield },
-        { value: 'confort', label: 'Confort', description: '+ Dégâts des eaux, incendie', icon: ShieldCheck },
-        { value: 'premium', label: 'Premium', description: '+ Vol et recours des locataires', icon: ShieldPlus },
-      ],
-    },
-    postalCodeStep,
-    searchingStep,
-    contactStep,
-  ],
-  gestion_locative: [
-    {
-      id: 'propertyCount',
-      type: 'card-select',
-      title: 'Combien de biens à gérer ?',
-      subtitle: 'Plus vous avez de biens, plus les honoraires sont dégressifs.',
-      field: 'propertyCount',
-      options: [
-        { value: '1', label: '1 bien', description: 'Un seul logement', icon: Home },
-        { value: '2-5', label: '2 à 5 biens', description: 'Petit portefeuille', icon: Building },
-        { value: '5+', label: 'Plus de 5', description: 'Patrimoine important', icon: Building2 },
-      ],
-    },
-    {
-      id: 'managementType',
-      type: 'card-select',
-      title: 'Quel type de gestion ?',
-      subtitle: 'Du suivi déclaratif à la gestion clé en main.',
-      field: 'managementType',
-      options: [
-        { value: 'full', label: 'Gestion complète', description: 'Tout délégué : recherche, baux, loyers, travaux', icon: ShieldPlus },
-        { value: 'partial', label: 'Gestion partielle', description: 'Quelques tâches déléguées', icon: ShieldCheck },
-        { value: 'declaration', label: 'Gestion déclarative', description: 'Suivi administratif & fiscal', icon: FileText },
-      ],
-    },
-    postalCodeStep,
-    searchingStep,
-    contactStep,
-  ],
-  comparateur: [
-    {
-      id: 'type',
-      type: 'card-select',
-      title: 'Que souhaitez-vous assurer ?',
-      subtitle: 'Nous comparerons 50+ offres pour vous.',
-      field: 'insuranceType',
-      options: [
-        { value: 'auto', label: 'Auto', description: 'Voiture et utilitaire', icon: Car },
-        { value: 'moto', label: 'Moto', description: '2 roues et scooter', icon: Bike },
-        { value: 'habitation', label: 'Habitation', description: 'Maison ou appartement', icon: Home },
-        { value: 'sante', label: 'Santé', description: 'Mutuelle et complémentaire', icon: Heart },
-        { value: 'pno', label: 'PNO', description: 'Propriétaire non occupant', icon: Building },
-        { value: 'gli', label: 'GLI', description: 'Garantie loyers impayés', icon: Lock },
-        { value: 'vie', label: 'Assurance Vie', description: 'Épargne et succession', icon: Landmark },
-        { value: 'pret', label: 'Prêt immobilier', description: 'Assurance emprunteur', icon: FileText },
-      ],
-    },
-    {
-      id: 'formule',
-      type: 'card-select',
-      title: 'Quel niveau de couverture ?',
-      field: 'coverageLevel',
-      options: [
-        { value: 'essentielle', label: 'Essentielle', description: 'Le strict nécessaire, prix mini', icon: Shield },
-        { value: 'confort', label: 'Confort', description: 'Le meilleur rapport qualité-prix', icon: ShieldCheck },
-        { value: 'premium', label: 'Premium', description: 'La couverture maximale', icon: ShieldPlus },
-      ],
-    },
-    postalCodeStep,
-    searchingStep,
-    contactStep,
-  ],
-  metiers_atypiques: [
-    {
-      id: 'famille_activite',
-      type: 'card-select',
-      title: 'Quelle famille d\'activité exercez-vous ?',
-      subtitle: 'Cela nous oriente vers les bons assureurs spécialisés.',
-      field: 'activityFamily',
-      options: [
-        { value: 'parc_aventure', label: 'Parc accrobranche & aventure', description: 'Tyroliennes, parcours, via ferrata', icon: TreePine },
-        { value: 'sport_outdoor', label: 'Sport outdoor & encadrement', description: 'Escalade, kayak, parapente, VTT', icon: Mountain },
-        { value: 'evenementiel', label: 'Événementiel & festivals', description: 'Concerts, courses, salons', icon: PartyPopper },
-        { value: 'btp_specialise', label: 'BTP spécialisé / hauteur', description: 'Cordistes, élagueurs, désamiantage', icon: HardHat },
-        { value: 'autre', label: 'Autre métier atypique', description: 'Drone, food truck, plongée, équestre…', icon: Sparkles },
-      ],
-    },
-    {
-      id: 'description_activite',
-      type: 'input',
-      title: 'Décrivez votre activité en quelques mots',
-      subtitle: 'Plus c\'est précis, plus le devis sera juste (ex : « Exploitation parcours acrobatique 8 ateliers »).',
-      field: 'activityDescription',
-      inputType: 'text',
-      placeholder: 'Mon activité principale est…',
-      maxLength: 120,
-      validation: /^.{10,120}$/,
-      validationMessage: '10 caractères minimum, 120 max',
-    },
-    {
-      id: 'statut',
-      type: 'card-select',
-      title: 'Quel est votre statut juridique ?',
-      subtitle: 'Auto-entrepreneur, société, association — chaque cas a son contrat.',
-      field: 'legalStatus',
-      options: [
-        { value: 'micro', label: 'Micro / Auto-ent.', description: 'Indépendant', icon: User },
-        { value: 'sasu_eurl', label: 'SASU / EURL', description: 'Société unipersonnelle', icon: Briefcase },
-        { value: 'sas_sarl', label: 'SAS / SARL', description: 'Société pluripersonnelle', icon: Building2 },
-        { value: 'asso', label: 'Association', description: 'Loi 1901', icon: Users },
-      ],
-    },
-    {
-      id: 'public_encadre',
-      type: 'card-select',
-      title: 'Encadrez-vous du public ?',
-      subtitle: 'Le risque corporel des participants est central pour la tarification.',
-      field: 'publicExposure',
-      options: [
-        { value: 'aucun', label: 'Aucun public', description: 'B2B / chantier uniquement', icon: Lock },
-        { value: 'adultes', label: 'Adultes uniquement', description: '+18 ans', icon: User },
-        { value: 'mixte', label: 'Adultes + enfants', description: 'Familles, scolaires', icon: Users },
-        { value: 'mineurs', label: 'Mineurs majoritaires', description: 'Colos, scolaires, clubs', icon: Baby },
-      ],
-    },
-    {
-      id: 'frequentation',
-      type: 'card-select',
-      title: 'Quelle fréquentation annuelle ?',
-      subtitle: 'Nombre cumulé de participants/visiteurs sur 12 mois.',
-      field: 'attendance',
-      options: [
-        { value: 'sub_500', label: 'Moins de 500', description: 'Activité ponctuelle', icon: Calendar },
-        { value: '500_5k', label: '500 — 5 000', description: 'Petite structure', icon: Users },
-        { value: '5k_50k', label: '5 000 — 50 000', description: 'Structure établie', icon: Users },
-        { value: 'sup_50k', label: '+ de 50 000', description: 'Gros événement / parc', icon: PartyPopper },
-      ],
-    },
-    {
-      id: 'salaries',
-      type: 'card-select',
-      title: 'Combien de personnes interviennent ?',
-      subtitle: 'Salariés + indépendants + bénévoles encadrants.',
-      field: 'staffSize',
-      options: [
-        { value: 'solo', label: 'Solo', description: 'Juste moi', icon: User },
-        { value: '2_5', label: '2 à 5', description: 'Petite équipe', icon: Users },
-        { value: '6_20', label: '6 à 20', description: 'Équipe structurée', icon: Users },
-        { value: 'sup_20', label: '+ de 20', description: 'Grosse structure', icon: Building2 },
-      ],
-    },
-    {
-      id: 'ca',
-      type: 'card-select',
-      title: 'Quel chiffre d\'affaires annuel ?',
-      subtitle: 'CA HT du dernier exercice (ou prévisionnel pour une création).',
-      field: 'revenue',
-      options: [
-        { value: 'sub_50k', label: 'Moins de 50 k€', description: 'Démarrage', icon: Wallet },
-        { value: '50_200k', label: '50 — 200 k€', description: 'Croissance', icon: Wallet },
-        { value: '200k_1m', label: '200 k€ — 1 M€', description: 'Établi', icon: Wallet },
-        { value: 'sup_1m', label: '+ de 1 M€', description: 'Grosse structure', icon: Wallet },
-      ],
-    },
-    {
-      id: 'certifications',
-      type: 'card-select',
-      title: 'Avez-vous des certifications professionnelles ?',
-      subtitle: 'Elles divisent souvent la prime par 2. Cochez le plus représentatif.',
-      field: 'certifications',
-      options: [
-        { value: 'oui_majeures', label: 'Oui (IRATA, BPJEPS, ECP…)', description: 'Certifs sectorielles à jour', icon: Award },
-        { value: 'oui_partielles', label: 'Partielles', description: 'Quelques diplômes / formations', icon: ShieldCheck },
-        { value: 'non', label: 'Aucune formelle', description: 'Expérience uniquement', icon: AlertTriangle },
-        { value: 'en_cours', label: 'En cours d\'obtention', description: 'Formation active', icon: Activity },
-      ],
-    },
-    {
-      id: 'sinistres',
-      type: 'card-select',
-      title: 'Sinistres déclarés sur les 5 dernières années ?',
-      subtitle: 'L\'honnêteté joue en votre faveur — nous le savons valoriser.',
-      field: 'claimsHistory',
-      options: [
-        { value: 'aucun', label: 'Aucun sinistre', description: 'Historique vierge', icon: ShieldCheck },
-        { value: '1_2', label: '1 à 2 sinistres', description: 'Faible sinistralité', icon: Shield },
-        { value: '3_5', label: '3 à 5 sinistres', description: 'À expliquer', icon: AlertTriangle },
-        { value: 'sup_5', label: '+ de 5 ou refus', description: 'On défend votre dossier', icon: AlertTriangle },
-      ],
-    },
-    postalCodeStep,
-    {
-      id: 'callback',
-      type: 'callback',
-      title: 'Votre dossier mérite une étude personnalisée',
-      subtitle: 'Pour les métiers atypiques, aucune grille standard ne donne de prix juste. Un courtier expert vous rappelle sous 30 minutes avec une estimation argumentée et 2 à 3 propositions de nos 20 assureurs de niche.',
-    },
-  ],
-};
+// Backward-compatible export — fallback returns French text by reading raw keys via no-op t.
+// Components should prefer buildStepConfigs(t) for proper i18n.
+import frFallback from '@/i18n/fr';
+export const stepConfigsByType: Record<InsuranceType, FormStep[]> = buildStepConfigs(
+  (key, vars) => {
+    let raw = (frFallback as Record<string, string>)[key] || key;
+    if (vars) for (const [k, v] of Object.entries(vars)) raw = raw.replace(new RegExp(`\\{${k}\\}`, 'g'), String(v));
+    return raw;
+  }
+);

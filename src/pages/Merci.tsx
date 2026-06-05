@@ -5,8 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Helmet } from "react-helmet-async";
 import arthurStanding from "@/assets/mascotte/arthur-standing.webp";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Merci = () => {
+  const { t } = useLanguage();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -21,7 +23,7 @@ const Merci = () => {
         <Card className="p-12 text-center max-w-2xl mx-auto">
           <img
             src={arthurStanding}
-            alt="Arthur debout - confirmation demande devis assurance moins chère"
+            alt={t("a11y.merci.mascotAlt")}
             className="w-28 h-auto mx-auto mb-6"
             width={112}
             height={140}

@@ -1,8 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Shield, Users, Clock, Mountain, TreePine, PartyPopper, HardHat, Sparkles, ArrowRight } from "lucide-react";
+import { Shield, Users, Clock, Mountain, TreePine, PartyPopper, HardHat, Sparkles, ArrowRight, Search, FileCheck } from "lucide-react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import SEOOptimized from "@/components/SEOOptimized";
@@ -13,12 +12,15 @@ import arthurBtp from "@/assets/mascotte/arthur-btp.webp";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
+import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const AssuranceMetiersAtypiques = () => {
+  const { t } = useLanguage();
   const formRef = useRef<HTMLDivElement>(null);
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -46,12 +48,12 @@ const AssuranceMetiersAtypiques = () => {
     {
       question: "Combien coûte une RC pro pour un métier atypique ?",
       answer:
-        "Aucun prix instantané n'est fiable : la prime dépend du chiffre d'affaires, du nombre d'encadrants, des certifications et de l'historique sinistre. C'est pourquoi nous vous rappelons sous 30 minutes avec une estimation argumentée. À titre indicatif 2026 : exploitant accrobranche 2 800–6 500 €/an, moniteur escalade indépendant 280–1 100 €/an, organisateur festival 5 000 personnes 1 800–4 200 € pour l'événement, cordiste 1 200–2 800 €/an. Notre intervention divise généralement la facture par 2 versus une souscription en direct.",
+        "Aucun prix instantané n'est fiable : la prime dépend du chiffre d'affaires, du nombre d'encadrants, des certifications et de l'historique sinistre. C'est pourquoi nous vous rappelons sous 10 minutes avec une estimation argumentée. À titre indicatif 2026 : exploitant accrobranche 2 800–6 500 €/an, moniteur escalade indépendant 280–1 100 €/an, organisateur festival 5 000 personnes 1 800–4 200 € pour l'événement, cordiste 1 200–2 800 €/an. Notre intervention divise généralement la facture par 2 versus une souscription en direct.",
     },
     {
       question: "Quel est le délai pour obtenir une attestation ?",
       answer:
-        "Rappel sous 30 minutes après votre demande, puis attestation 48 à 72 h après réception du dossier complet (Kbis, dernier bilan, descriptif d'activité, sinistralité 5 ans). Pour un événement ponctuel avec date imminente, nous activons une procédure express sous 24 h.",
+        "Rappel sous 10 minutes après votre demande, puis attestation 48 à 72 h après réception du dossier complet (Kbis, dernier bilan, descriptif d'activité, sinistralité 5 ans). Pour un événement ponctuel avec date imminente, nous activons une procédure express sous 10 minutes.",
     },
     {
       question: "Le BCT peut-il m'imposer un assureur ?",
@@ -85,7 +87,7 @@ const AssuranceMetiersAtypiques = () => {
   const insuranceProductSchema = addInsuranceProductSchema({
     name: "Assurance Métiers Atypiques",
     description:
-      "Courtier spécialisé activités à risques aggravés : accrobranche, sports outdoor, événementiel, BTP spécialisé. Mise en concurrence de 20 assureurs de niche. Rappel sous 30 minutes.",
+      "Courtier spécialisé activités à risques aggravés : accrobranche, sports outdoor, événementiel, BTP spécialisé. Mise en concurrence de 20 assureurs de niche. Rappel sous 10 minutes.",
     category: "RC Pro spécialisée — Métiers atypiques",
     url: "https://www.jemassuremoinscher.fr/assurance-metiers-atypiques",
   });
@@ -98,8 +100,8 @@ const AssuranceMetiersAtypiques = () => {
     },
     {
       icon: Clock,
-      title: "Rappel & devis sous 30 min",
-      description: "Un courtier dédié vous rappelle sous 30 minutes avec une étude personnalisée et 2 à 3 propositions argumentées.",
+      title: "Rappel & devis sous 10 minutes",
+      description: "Un courtier dédié vous rappelle sous 5 minutes avec une étude personnalisée et 2 à 3 propositions argumentées.",
     },
     {
       icon: Shield,
@@ -157,8 +159,8 @@ const AssuranceMetiersAtypiques = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance métiers atypiques | RC Pro sur mesure 2026"
-        description="Courtier spécialisé activités atypiques : accrobranche, sports outdoor, événementiel, BTP spécialisé. 20 assureurs de niche. Rappel & devis sous 30 minutes."
+        title={t("seo.metiersAtypiques.title")}
+        description={t("seo.metiersAtypiques.description")}
         keyword="assurance métiers atypiques"
         keywords="assurance activité à risque, RC pro spécialisée, assurance accrobranche, assurance moniteur sport, assurance organisateur événement, assurance cordiste"
         canonical="https://www.jemassuremoinscher.fr/assurance-metiers-atypiques"
@@ -167,28 +169,22 @@ const AssuranceMetiersAtypiques = () => {
       <Header />
       <Breadcrumbs items={[{ label: "Métiers Atypiques" }]} />
       <main id="main-content">
-        <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
+        <section className="relative pt-6 pb-10 md:pt-8 md:pb-14">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center relative">
+            <div className="max-w-6xl mx-auto">
               <ArthurHero
                 imageSrc={arthurClimbing}
                 imageAlt="Arthur grimpeur — expert en assurances de métiers atypiques"
-                speechText="Refusé ailleurs ? On a la solution. 20 assureurs de niche, 0 refus, rappel sous 30 minutes."
+                title="Assurance Métiers Atypiques : couvrir l'inassurable, c'est notre métier"
+                subtitle="Accrobranche, sports outdoor, événementiel, cordistes, métiers à risques aggravés… Nos courtiers négocient avec les 20 assureurs spécialisés du marché français pour vous trouver une couverture sur-mesure."
+                savingsHighlight="Rappel sous 10 minutes, 0 refus"
+                ctaLabel="Obtenir mon devis sur-mesure"
+                onCtaClick={scrollToForm}
+                savingsValue="20+"
+                savingsLabel="Assureurs de niche"
+                reviewsValue="0 refus"
+                reviewsLabel="Courtier dédié"
               />
-              <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">
-                Assurance Métiers Atypiques : couvrir l'inassurable, c'est notre métier
-              </h1>
-              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Accrobranche, sports outdoor, événementiel, cordistes, métiers à risques aggravés… Nos courtiers négocient avec les 20 assureurs spécialisés du marché français pour vous trouver une couverture sur-mesure, sans surprime injustifiée.
-              </p>
-              <div className="flex flex-wrap justify-center gap-3 mb-8 text-sm">
-                <span className="px-4 py-2 rounded-full bg-card/80 backdrop-blur border border-border/50 font-semibold text-foreground">20 assureurs de niche</span>
-                <span className="px-4 py-2 rounded-full bg-card/80 backdrop-blur border border-border/50 font-semibold text-foreground">Rappel sous 30 min</span>
-                <span className="px-4 py-2 rounded-full bg-card/80 backdrop-blur border border-border/50 font-semibold text-foreground">0 refus = courtier dédié</span>
-              </div>
-              <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Obtenir un devis assurance métier atypique">
-                Obtenir mon devis sur-mesure
-              </Button>
             </div>
           </div>
         </section>
@@ -294,7 +290,7 @@ const AssuranceMetiersAtypiques = () => {
               {[
                 { step: "1", title: "Questionnaire détaillé activité", desc: "9 questions ciblées sur votre activité, vos certifications, votre fréquentation et votre sinistralité — pour un dossier solide dès le départ." },
                 { step: "2", title: "Mise en concurrence 20 assureurs", desc: "Nous sollicitons uniquement les assureurs spécialisés ayant un appétit pour votre secteur — pas de refus inutiles." },
-                { step: "3", title: "Rappel & propositions sous 30 min", desc: "Un courtier dédié vous rappelle sous 30 minutes avec 2 à 3 propositions argumentées. Souscription et attestation immédiate à la signature." },
+                { step: "3", title: "Rappel & propositions sous 10 minutes", desc: "Un courtier dédié vous rappelle sous 5 minutes avec 2 à 3 propositions argumentées. Souscription et attestation immédiate à la signature." },
               ].map((s) => (
                 <Card key={s.step} className="p-6">
                   <div className="text-5xl font-bold text-primary/20 mb-3">{s.step}</div>
@@ -310,18 +306,30 @@ const AssuranceMetiersAtypiques = () => {
             <MultiStepQuoteForm insuranceType="metiers_atypiques" />
           </div>
 
+          <CourtierValueCards product="metiers-atypiques" />
+
           {/* SEO Tabs (FAQ + Garanties) */}
-          <InsuranceSEOTabs faqTitle="Questions fréquentes — Métiers atypiques" faqs={faqs} />
+          <InsuranceSEOTabs faqTitle="Questions fréquentes — Métiers atypiques" faqs={faqs} showGuarantees={false} />
 
           {/* Bloc SEO 400+ mots */}
           <section className="max-w-3xl mx-auto mb-16 prose prose-sm md:prose-base text-muted-foreground leading-relaxed [&_strong]:text-foreground [&_h2]:text-foreground [&_h3]:text-foreground">
-            <h2 className="text-2xl font-bold mb-4">Pourquoi un courtier spécialisé pour les métiers atypiques ?</h2>
-            <p>
-              Les assureurs généralistes — <strong>AXA, MAIF, Allianz, Groupama, MMA classique</strong> — refusent ou surfacturent systématiquement les activités classées « risques aggravés » par leurs grilles internes : exploitation de tyroliennes, encadrement sportif outdoor, chapiteaux événementiels, travaux en hauteur sur cordes, désamiantage. Pourtant, <strong>20 assureurs spécialisés</strong> du marché français — <strong>Hiscox, Albingia, CFDP, MMA Pro Sport, Generali Évolution Pro, Circles Group, Verspieren, Gras Savoye Événement, Beazley, Markel, Liberty Specialty, Chubb, AIG, Tokio Marine HCC, QBE, Wakam, Helvetia Pro, Société Générale Insurance, Zurich Pro et Allianz Global Specialty</strong> — disposent de produits dédiés. Encore faut-il y accéder, savoir présenter le dossier, et négocier les conditions.
-            </p>
-            <p>
-              C'est notre métier depuis 2018. Chez <strong>jemassuremoinscher.fr</strong>, notre cellule Métiers Atypiques traite chaque année plus de 1 800 dossiers refusés ailleurs : moniteurs de canyoning des gorges du Verdon, exploitants accrobranche en Ardèche, organisateurs de trails dans les Pyrénées, cordistes parisiens intervenant sur la Tour Eiffel, élagueurs de la Côte d'Azur. Notre taux de placement dépasse <strong>92 %</strong>, contre 35 % en souscription directe.
-            </p>
+            <h2 className="text-2xl font-bold mb-6">Pourquoi un courtier spécialisé pour les métiers atypiques ?</h2>
+            <div className="grid md:grid-cols-2 gap-5 not-prose mb-8">
+              {[
+                { icon: Search, title: "Accès aux assureurs de niche", desc: "Hiscox, Albingia, CFDP, MMA Pro Sport, Generali Évolution Pro, Beazley ou Markel disposent de produits dédiés, mais demandent un dossier technique bien présenté." },
+                { icon: FileCheck, title: "Dossier défendu", desc: "Nous valorisons vos certifications, procédures, contrôles, fréquentation et sinistralité pour éviter les refus automatiques et les surprimes injustifiées." },
+                { icon: Shield, title: "Couverture structurée", desc: "RC exploitation, individuelle accident, matériel, annulation, protection juridique ou perte d'exploitation : chaque garantie est calibrée selon votre activité réelle." },
+                { icon: Users, title: "Expérience terrain", desc: "Depuis 2018, notre cellule Métiers Atypiques accompagne des moniteurs outdoor, exploitants accrobranche, organisateurs d'événements et cordistes." },
+              ].map((item) => (
+                <Card key={item.title} className="p-6 h-full border-2 border-border/60">
+                  <div className="p-3 rounded-2xl bg-primary/10 w-fit mb-4">
+                    <item.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="font-bold text-foreground mb-2">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                </Card>
+              ))}
+            </div>
             <h3 className="text-xl font-bold mt-6 mb-3">Notre méthode en 3 piliers</h3>
             <ul>
               <li><strong>Audit de risque sectoriel</strong> — Nous cartographions vos expositions réelles : corporel (chutes, blessures clients/salariés), matériel (EPI, scènes, chapiteaux), juridique (mise en cause après accident), financier (annulation, perte exploitation).</li>
@@ -374,8 +382,8 @@ const AssuranceMetiersAtypiques = () => {
           <InsuranceBottomHub
             currentPage="rcpro"
             ctaTitle="Votre activité mérite une couverture sur-mesure"
-            ctaDescription="Demande de rappel gratuite et sans engagement. Un courtier dédié vous rappelle sous 48 h avec une étude personnalisée et 2 à 3 propositions argumentées."
-            ctaButtonLabel="Demander mon rappel sous 48 h"
+            ctaDescription="Demande de rappel gratuite et sans engagement. Un courtier dédié vous rappelle sous 5 minutes avec une étude personnalisée et 2 à 3 propositions argumentées."
+            ctaButtonLabel="Demander mon rappel sous 10 minutes"
             ctaMascotSrc={arthurBtp}
             ctaMascotAlt="Arthur — Métiers Atypiques"
             onCtaClick={scrollToForm}

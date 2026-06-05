@@ -1,11 +1,12 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, Share2 } from "lucide-react";
-import { blogArticles } from "@/data/blogArticles";
+import { blogArticles, blogArticleDrafts } from "@/data/blogArticles";
+import { usePublishedDraftSlugs } from "@/hooks/usePublishedDrafts";
 import SEOOptimized from "@/components/SEOOptimized";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
@@ -19,23 +20,82 @@ import type { FAQItem } from "@/components/SemanticFAQ";
 import { addArticleSchema, addBreadcrumbSchema, addFAQSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import SuggestedKeywords from "@/components/blog/SuggestedKeywords"
+import SuggestedKeywords from "@/components/blog/SuggestedKeywords";
 import PopularArticles from "@/components/blog/PopularArticles";
 import RelatedProductLinks from "@/components/blog/RelatedProductLinks";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 import SmartConversionWidget, { detectCategory } from "@/components/blog/SmartConversionWidget";
+import { supabase } from "@/integrations/supabase/client";
+
+const formatFrenchDate = (value?: string | null) => {
+  if (!value) return new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+  return new Date(value).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+};
 
 const BlogArticle = () => {
   const { t } = useLanguage();
   const { slug } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const isPreview = location.pathname.startsWith("/blog-preview/");
 
-  const article = blogArticles.find(a => a.slug === slug);
+  const publishedDraftSlugs = usePublishedDraftSlugs();
+  const [dynamicArticle, setDynamicArticle] = useState<(typeof blogArticles)[number] | null>(null);
+  const [dynamicLoaded, setDynamicLoaded] = useState(false);
+  const staticArticle = isPreview
+    ? blogArticleDrafts.find((a) => a.slug === slug)
+    : blogArticles.find((a) => a.slug === slug)
+      || blogArticleDrafts.find((a) => a.slug === slug && publishedDraftSlugs.has(a.slug));
+
+  useEffect(() => {
+    let mounted = true;
+    if (!slug || staticArticle) {
+      setDynamicLoaded(true);
+      return;
+    }
+
+    supabase
+      .from("seo_article_suggestions")
+      .select(
+        "title, slug, suggested_meta_description, suggested_content, target_keyword, published_at, created_at, suggested_author, image_url",
+      )
+      .eq("slug", slug)
+      .eq("status", "approved")
+      .lte("published_at", new Date().toISOString())
+      .maybeSingle()
+      .then(({ data }) => {
+        if (!mounted) return;
+        if (data) {
+          setDynamicArticle({
+            id: `dynamic-${data.slug}`,
+            title: data.title,
+            slug: data.slug,
+            description: data.suggested_meta_description || data.title,
+            category: "Conseils Experts",
+            date: formatFrenchDate(data.published_at || data.created_at),
+            readTime: `${Math.max(5, Math.ceil((data.suggested_content || "").split(/\s+/).length / 220))} min`,
+            author: data.suggested_author || "L'équipe d'experts Jemassuremoinscher",
+            image: data.image_url || undefined,
+            tags: [data.target_keyword, "assurance", "conseils"].filter(Boolean),
+            content: data.suggested_content,
+          });
+        }
+        setDynamicLoaded(true);
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [slug, staticArticle]);
+
+  const article = staticArticle || dynamicArticle;
+
+  if (!article && !dynamicLoaded) return null;
 
   if (!article) {
-    toast.error(t('blogArticlePage.articleNotFound'), {
-      description: t('blogArticlePage.articleNotFoundDesc'),
+    toast.error(t("blogArticlePage.articleNotFound"), {
+      description: t("blogArticlePage.articleNotFoundDesc"),
     });
     setTimeout(() => navigate("/blog"), 2000);
     return null;
@@ -54,26 +114,35 @@ const BlogArticle = () => {
       }
     } else {
       navigator.clipboard.writeText(window.location.href);
-      toast.success(t('blogArticlePage.linkCopied'), {
-        description: t('blogArticlePage.linkCopiedDesc'),
+      toast.success(t("blogArticlePage.linkCopied"), {
+        description: t("blogArticlePage.linkCopiedDesc"),
       });
     }
   };
 
   const convertToISO = (frenchDate: string): string => {
     const months: Record<string, string> = {
-      'janvier': '01', 'février': '02', 'mars': '03', 'avril': '04',
-      'mai': '05', 'juin': '06', 'juillet': '07', 'août': '08',
-      'septembre': '09', 'octobre': '10', 'novembre': '11', 'décembre': '12'
+      janvier: "01",
+      février: "02",
+      mars: "03",
+      avril: "04",
+      mai: "05",
+      juin: "06",
+      juillet: "07",
+      août: "08",
+      septembre: "09",
+      octobre: "10",
+      novembre: "11",
+      décembre: "12",
     };
-    const parts = frenchDate.split(' ');
+    const parts = frenchDate.split(" ");
     if (parts.length === 3) {
-      const day = parts[0].padStart(2, '0');
-      const month = months[parts[1].toLowerCase()] || '01';
+      const day = parts[0].padStart(2, "0");
+      const month = months[parts[1].toLowerCase()] || "01";
       const year = parts[2];
       return `${year}-${month}-${day}`;
     }
-    return new Date().toISOString().split('T')[0];
+    return new Date().toISOString().split("T")[0];
   };
 
   const generateTocItems = (content: string): TocItem[] => {
@@ -92,22 +161,23 @@ const BlogArticle = () => {
 
   const tocItems = generateTocItems(article.content);
 
-  const essentielSummary = article.description.split(' ').slice(0, 40).join(' ') + (article.description.split(' ').length > 40 ? '...' : '');
+  const essentielSummary =
+    article.description.split(" ").slice(0, 40).join(" ") + (article.description.split(" ").length > 40 ? "..." : "");
 
   const breadcrumbSchema = addBreadcrumbSchema([
-    { name: t('breadcrumb.home'), url: "https://www.jemassuremoinscher.fr/" },
+    { name: t("breadcrumb.home"), url: "https://www.jemassuremoinscher.fr/" },
     { name: "Blog", url: "https://www.jemassuremoinscher.fr/blog" },
-    { name: article.title, url: `https://www.jemassuremoinscher.fr/blog/${article.slug}` }
+    { name: article.title, url: `https://www.jemassuremoinscher.fr/blog/${article.slug}` },
   ]);
 
   const blogFaqItems: FAQItem[] = [
-    { question: t('blogArticlePage.faq1Q'), answer: t('blogArticlePage.faq1A') },
-    { question: t('blogArticlePage.faq2Q'), answer: t('blogArticlePage.faq2A') },
-    { question: t('blogArticlePage.faq3Q'), answer: t('blogArticlePage.faq3A') },
-    { question: t('blogArticlePage.faq4Q'), answer: t('blogArticlePage.faq4A') },
+    { question: t("blogArticlePage.faq1Q"), answer: t("blogArticlePage.faq1A") },
+    { question: t("blogArticlePage.faq2Q"), answer: t("blogArticlePage.faq2A") },
+    { question: t("blogArticlePage.faq3Q"), answer: t("blogArticlePage.faq3A") },
+    { question: t("blogArticlePage.faq4Q"), answer: t("blogArticlePage.faq4A") },
   ];
 
-  const blogFaqSchema = addFAQSchema(blogFaqItems.map(f => ({ question: f.question, answer: f.answer })));
+  const blogFaqSchema = addFAQSchema(blogFaqItems.map((f) => ({ question: f.question, answer: f.answer })));
 
   const authorProfile = getAuthor(article.author);
   const authorJsonLd = getAuthorJsonLd(authorProfile);
@@ -117,7 +187,7 @@ const BlogArticle = () => {
     description: article.description,
     author: article.author,
     datePublished: convertToISO(article.date),
-    image: "https://www.jemassuremoinscher.fr/opengraph-image.png"
+    image: "https://www.jemassuremoinscher.fr/opengraph-image.png",
   });
 
   let headingIndex = 0;
@@ -126,43 +196,47 @@ const BlogArticle = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOOptimized 
+      <SEOOptimized
         title={`${article.title.substring(0, 60)}`}
         description={article.description.substring(0, 160)}
         keywords={article.tags.join(", ")}
         canonical={`https://www.jemassuremoinscher.fr/blog/${article.slug}`}
+        ogType="article"
         ogTitle={article.title}
         ogDescription={article.description.substring(0, 200)}
         twitterDescription={article.description.substring(0, 200)}
-        ogType="article"
         articlePublishedTime={convertToISO(article.date)}
         articleModifiedTime={convertToISO(article.date)}
         jsonLd={[breadcrumbSchema, articleSchema, blogFaqSchema, authorJsonLd]}
-        noindex={article.noindex}
+        noindex={article.noindex || isPreview}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: article.title }]} />
-      
+
       <main>
         {/* Hero Header */}
         <section className="bg-gradient-to-br from-primary via-primary/90 to-primary/80">
           <div className="container mx-auto px-4 py-10 md:py-16">
             <div className="max-w-4xl mx-auto">
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 onClick={() => navigate("/blog")}
                 className="mb-4 text-white/80 hover:text-white hover:bg-white/10 rounded-full"
-                aria-label={t('blogArticlePage.backToBlogAria')}
+                aria-label={t("blogArticlePage.backToBlogAria")}
               >
-                ← {t('blogArticlePage.backToBlog')}
+                ← {t("blogArticlePage.backToBlog")}
               </Button>
               <Badge className="mb-4 bg-white/20 text-white border-white/30 rounded-full">{article.category}</Badge>
-              
+
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight flex items-center gap-3 md:gap-4">
-                <BlogArticleArthur category={article.category} slug={article.slug} className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20" />
+                <BlogArticleArthur
+                  category={article.category}
+                  slug={article.slug}
+                  className="h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20"
+                />
                 <span className="flex-1">{article.title}</span>
               </h1>
-              
+
               <div className="flex flex-wrap items-center gap-4 text-sm text-white/80">
                 <div className="flex items-center gap-2">
                   <User className="h-4 w-4" aria-hidden="true" />
@@ -170,21 +244,23 @@ const BlogArticle = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" aria-hidden="true" />
-                  <time dateTime={convertToISO(article.date)}>{t('blogArticlePage.lastUpdated')} {article.date}</time>
+                  <time dateTime={convertToISO(article.date)}>
+                    {t("blogArticlePage.lastUpdated")} {article.date}
+                  </time>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4" aria-hidden="true" />
                   <span>{article.readTime}</span>
                 </div>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={handleShare} 
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleShare}
                   className="text-white/80 hover:text-white hover:bg-white/10 rounded-full gap-2"
-                  aria-label={t('blogArticlePage.shareAria')}
+                  aria-label={t("blogArticlePage.shareAria")}
                 >
                   <Share2 className="h-4 w-4" aria-hidden="true" />
-                  {t('blogArticlePage.share')}
+                  {t("blogArticlePage.share")}
                 </Button>
               </div>
             </div>
@@ -196,80 +272,94 @@ const BlogArticle = () => {
           <div className="flex gap-8 max-w-6xl mx-auto">
             {/* Article */}
             <article className="flex-1 min-w-0">
-              
-              {/* Author E-E-A-T */}
-              <div className="mb-8">
-                <AuthorExpertise authorName={article.author} />
-              </div>
-
               {/* ToC — mobile only (desktop in sidebar) */}
               {tocItems.length > 0 && (
-                <div className="mb-8 lg:hidden">
+                <div className="mb-6 lg:hidden">
                   <TableOfContents items={tocItems} />
                 </div>
               )}
 
               {/* L'Essentiel */}
-              <div className="mb-10">
+              <div className="mb-8">
                 <EssentielBox summary={essentielSummary} />
               </div>
 
               {/* Article Content */}
-              <div className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground">
+              <div className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-p:my-4 prose-ul:my-4 prose-ol:my-4">
                 <ReactMarkdown
                   components={{
-                    h1: ({node, ...props}) => <h2 className="text-3xl font-bold mt-12 mb-6 text-foreground" {...props} />,
-                    h2: ({node, children, ...props}) => {
+                    h1: ({ node, ...props }) => (
+                      <h2 className="text-3xl font-bold mt-10 mb-5 text-foreground" {...props} />
+                    ),
+                    h2: ({ node, children, ...props }) => {
                       const id = `section-${headingIndex++}`;
                       return (
-                        <h2 
-                          id={id} 
-                          className="text-2xl font-bold mt-14 mb-5 pt-6 text-foreground scroll-mt-24 border-t border-border/40" 
+                        <h2
+                          id={id}
+                          className="text-2xl font-bold mt-11 mb-4 pt-5 text-foreground scroll-mt-24 border-t border-border/30"
                           {...props}
                         >
                           {children}
                         </h2>
                       );
                     },
-                    h3: ({node, ...props}) => <h3 className="text-xl font-semibold mt-8 mb-3 text-foreground" {...props} />,
-                    p: ({node, ...props}) => {
+                    h3: ({ node, ...props }) => (
+                      <h3 className="text-xl font-semibold mt-8 mb-3 text-foreground" {...props} />
+                    ),
+                    p: ({ node, ...props }) => {
                       paragraphIndex++;
-                      const showWidget = paragraphIndex === 2 || paragraphIndex === 5;
+                      const showWidget = paragraphIndex === 4;
                       return (
                         <>
-                          <p className="mb-6 leading-relaxed text-muted-foreground text-base md:text-[1.0625rem]" {...props} />
+                          <p
+                            className="mb-4 leading-relaxed text-muted-foreground text-base md:text-[1.0625rem]"
+                            {...props}
+                          />
                           {showWidget && <SmartConversionWidget category={widgetCategory} />}
                         </>
                       );
                     },
-                    ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-6 space-y-2.5" {...props} />,
-                    ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-6 space-y-2.5" {...props} />,
-                    li: ({node, ...props}) => <li className="text-muted-foreground leading-relaxed" {...props} />,
-                    strong: ({node, ...props}) => <strong className="font-semibold text-foreground" {...props} />,
-                    blockquote: ({node, ...props}) => (
+                    ul: ({ node, ...props }) => <ul className="list-disc pl-6 mb-6 space-y-2.5" {...props} />,
+                    ol: ({ node, ...props }) => <ol className="list-decimal pl-6 mb-6 space-y-2.5" {...props} />,
+                    li: ({ node, ...props }) => <li className="text-muted-foreground leading-relaxed" {...props} />,
+                    strong: ({ node, ...props }) => <strong className="font-semibold text-foreground" {...props} />,
+                    blockquote: ({ node, ...props }) => (
                       <aside className="border-l-4 border-primary/40 bg-primary/5 pl-5 pr-4 py-4 my-8 rounded-r-xl">
                         <blockquote className="text-foreground italic leading-relaxed not-italic" {...props} />
                       </aside>
                     ),
-                    code: ({node, ...props}) => (
-                      <code className="bg-muted px-2 py-1 rounded text-sm" {...props} />
-                    ),
-                    table: ({node, ...props}) => (
+                    code: ({ node, ...props }) => <code className="bg-muted px-2 py-1 rounded text-sm" {...props} />,
+                    table: ({ node, ...props }) => (
                       <div className="overflow-x-auto my-8 rounded-xl border border-border shadow-sm">
                         <table className="w-full border-collapse text-sm" {...props} />
                       </div>
                     ),
-                    thead: ({node, ...props}) => (
-                      <thead className="bg-primary/10" {...props} />
+                    thead: ({ node, ...props }) => <thead className="bg-primary/10" {...props} />,
+                    th: ({ node, ...props }) => (
+                      <th
+                        className="px-4 py-3 text-left font-semibold text-foreground text-sm border-b border-border"
+                        {...props}
+                      />
                     ),
-                    th: ({node, ...props}) => (
-                      <th className="px-4 py-3 text-left font-semibold text-foreground text-sm border-b border-border" {...props} />
-                    ),
-                    tr: ({node, ...props}) => (
+                    tr: ({ node, ...props }) => (
                       <tr className="even:bg-muted/30 hover:bg-muted/50 transition-colors" {...props} />
                     ),
-                    td: ({node, ...props}) => (
+                    td: ({ node, ...props }) => (
                       <td className="px-4 py-3 text-muted-foreground border-b border-border/50" {...props} />
+                    ),
+                    img: ({ node, alt, ...props }) => (
+                      <span className="block my-6 aspect-video w-full overflow-hidden rounded-xl bg-muted">
+                        {/* eslint-disable-next-line jsx-a11y/alt-text */}
+                        <img
+                          {...props}
+                          alt={alt || ""}
+                          loading="lazy"
+                          decoding="async"
+                          width={1200}
+                          height={675}
+                          className="w-full h-full object-cover"
+                        />
+                      </span>
                     ),
                   }}
                 >
@@ -277,13 +367,18 @@ const BlogArticle = () => {
                 </ReactMarkdown>
               </div>
 
+              {/* Author E-E-A-T */}
+              <div className="mt-12">
+                <AuthorExpertise authorName={article.author} />
+              </div>
+
               {/* CTA */}
               <div className="mt-12">
-                <ArticleCTA 
+                <ArticleCTA
                   variant="subtle"
-                  title={t('blogArticlePage.fairPrice')}
-                  description={t('blogArticlePage.fairPriceDesc')}
-                  buttonText={t('blogArticlePage.compareOffers')}
+                  title={t("blogArticlePage.fairPrice")}
+                  description={t("blogArticlePage.fairPriceDesc")}
+                  buttonText={t("blogArticlePage.compareOffers")}
                 />
               </div>
 
@@ -291,24 +386,26 @@ const BlogArticle = () => {
               <div className="mt-14">
                 <SemanticFAQ
                   items={blogFaqItems}
-                  title={t('blogArticlePage.faqTitle')}
-                  subtitle={t('blogArticlePage.faqSubtitle')}
+                  title={t("blogArticlePage.faqTitle")}
+                  subtitle={t("blogArticlePage.faqSubtitle")}
                 />
               </div>
 
               {/* Related product links */}
               <RelatedProductLinks category={article.category} tags={article.tags} />
 
+              {/* Popular articles — mobile only (desktop in sidebar) */}
+              <div className="mt-8 lg:hidden">
+                <PopularArticles currentSlug={article.slug} />
+              </div>
+
               {/* Keywords */}
               <SuggestedKeywords tags={article.tags} />
-
             </article>
 
             {/* Sidebar — desktop */}
             <aside className="hidden lg:flex flex-col w-72 flex-shrink-0 gap-6 mt-8 sticky top-24 self-start">
-              {tocItems.length > 0 && (
-                <TableOfContents items={tocItems} />
-              )}
+              {tocItems.length > 0 && <TableOfContents items={tocItems} />}
               <PopularArticles currentSlug={article.slug} />
             </aside>
           </div>

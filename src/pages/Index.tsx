@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import SEOOptimized from "@/components/SEOOptimized";
+import { useLanguage } from "@/contexts/LanguageContext";
 import DeferredRender from "@/components/performance/DeferredRender";
-import { addOrganizationSchema, addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import MdReveal from "@/components/motion/MdReveal";
+import { addOrganizationSchema, addServiceSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import geoContent from "@/data/geo-content.json";
 
 // Lazy load below-the-fold sections
 
 const Partners = lazy(() => import("@/components/Partners"));
+const TrustRow = lazy(() => import("@/components/sections/TrustRow"));
 const WhyUsComparison = lazy(() => import("@/components/comparison/WhyUsComparison"));
 const HowItWorks = lazy(() => import("@/components/sections/HowItWorks"));
 const SEOFaq = lazy(() => import("@/components/sections/SEOFaq"));
@@ -18,14 +21,16 @@ const GuidesSection = lazy(() => import("@/components/sections/GuidesSection"));
 const SEOContent = lazy(() => import("@/components/sections/SEOContent"));
 const ContextualHelp = lazy(() => import("@/components/sections/ContextualHelp"));
 const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
+const LeadMagnetSection = lazy(() => import("@/components/sections/LeadMagnetSection"));
 
 
 const Index = () => {
+  const { t } = useLanguage();
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }]);
   const organizationSchema = addOrganizationSchema(geoContent.trust.ratingValue, geoContent.trust.reviewCount);
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances Moins Chères en Ligne",
-    description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 50+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
+    description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 70+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
     provider: "jemassuremoinscher.fr",
     areaServed: "France"
   });
@@ -36,7 +41,7 @@ const Index = () => {
     "name": "jemassuremoinscher.fr",
     "url": "https://www.jemassuremoinscher.fr",
     "logo": "https://www.jemassuremoinscher.fr/logo.png",
-    "description": "Courtier en assurances en ligne. Comparez gratuitement les offres de 50 assureurs partenaires et économisez en moyenne 40% sur votre contrat.",
+    "description": "Courtier en assurances en ligne. Comparez gratuitement les offres de 70 assureurs partenaires et économisez en moyenne 40% sur votre contrat.",
     "areaServed": {
       "@type": "Country",
       "name": "France"
@@ -51,7 +56,7 @@ const Index = () => {
     "name": "jemassuremoinscher.fr",
     "alternateName": "Je M'Assure Moins Cher",
     "url": "https://www.jemassuremoinscher.fr",
-    "description": "Comparateur d'assurances gratuit. Comparez 50+ assureurs et trouvez l'assurance moins chère en 2 minutes.",
+    "description": "Comparateur d'assurances gratuit. Comparez 70+ assureurs et trouvez l'assurance moins chère en 2 minutes.",
     "inLanguage": ["fr", "en"],
     "potentialAction": {
       "@type": "SearchAction",
@@ -63,88 +68,146 @@ const Index = () => {
     }
   };
 
-  const faqSchema = addFAQSchema([{
-    question: "Comment trouver une assurance moins chère ?",
-    answer: "Pour trouver une assurance moins chère, utilisez le comparateur d'assurances jemassuremoinscher.fr. Comparez les offres de 50 assureurs gratuitement en 2 minutes. Nos utilisateurs économisent en moyenne 40% sur leur contrat. C'est plus complet et personnalisé qu'un comparateur traditionnel comme LesFurets."
-  }, {
-    question: "Comment changer d'assurance facilement ?",
-    answer: "Grâce à la loi Hamon, changer d'assurance est simple : après la première année de contrat, vous pouvez résilier à tout moment votre assurance auto, moto ou habitation. Utilisez notre comparateur d'assurances pour trouver une assurance moins chère, puis votre nouvel assureur s'occupe de la résiliation."
-  }, {
-    question: "Quelle est la meilleure alternative à LesFurets ?",
-    answer: "jemassuremoinscher.fr est la meilleure alternative à LesFurets car nous comparons 50+ assureurs (Allianz, AXA, Groupama, MAIF) avec un accompagnement personnalisé. Un conseiller dédié vous rappelle sous 2 heures pour vous aider à trouver l'assurance moins chère adaptée à vos besoins, contrairement aux comparateurs qui vous laissent seul."
-  }, {
-    question: "Combien peut-on économiser avec un comparateur d'assurances ?",
-    answer: "Avec notre comparateur d'assurances, nos clients économisent en moyenne 40% sur leur contrat. En comparant régulièrement et en changeant d'assurance quand c'est avantageux, vous pouvez réduire significativement votre budget assurance."
-  }, {
-    question: "Quels types d'assurance moins chère peut-on comparer ?",
-    answer: "Notre comparateur d'assurances couvre toutes les catégories : assurance auto moins chère, mutuelle santé, assurance habitation, moto, animaux, vie, emprunteur, prévoyance, RC Pro, MRP, GLI et PNO. Nous travaillons avec 50+ assureurs pour vous proposer l'assurance la moins chère du marché."
-  }]);
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Le service est-il vraiment gratuit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, 100% gratuit. Nous sommes rémunérés par les assureurs partenaires."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien puis-je économiser?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "En moyenne 280€ par an, soit jusqu'à 40% d'économies."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien de temps pour obtenir un devis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Moins de 2 minutes pour remplir le formulaire. Un conseiller vous rappelle sous 2h."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment changer d'assurance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Grâce à la loi Hamon et la loi Infra-annuelle, c'est simple et gratuit. Nos conseillers gèrent la résiliation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quels assureurs comparez-vous?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Plus de 70 assureurs partenaires: AXA, Allianz, MAIF, Generali, MMA, Matmut, Groupama, Gan, MACIF et autres."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mes données personnelles sont-elles protégées?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolument. Nous respectons le RGPD et ne partageons vos informations qu'avec les assureurs sélectionnés pour votre devis."
+        }
+      }
+    ]
+  };
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "jemassuremoinscher.fr",
+    "url": "https://www.jemassuremoinscher.fr",
+    "description": "Comparateur d'assurances gratuit. Comparez 70+ assureurs (auto, habitation, santé, animaux). Économisez jusqu'à 40%.",
+    "areaServed": "FR",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "247"
+    },
+    "sameAs": "https://www.instagram.com/jemassuremoinscher"
+  };
 
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Comparateur Assurance Moins Chère | Devis Gratuit"
-        description="Comparateur d'assurances gratuit. Comparez 50 assureurs et économisez en moyenne 40%. Devis en 2 min, sans engagement."
+        title={t("seo.home.title")}
+        description={t("seo.home.description")}
         ogTitle="Comparateur Assurance Moins Chère"
-        ogDescription="Comparez 50 assureurs gratuitement. Économisez en moyenne 40%."
-        twitterDescription="Trouvez l'assurance la moins chère en 2 minutes avec notre comparateur gratuit. Comparez 50 assureurs partenaires (AXA, Allianz, MAIF, Groupama…) et économisez en moyenne 40% sur votre contrat. Sans engagement."
+        ogDescription="Comparez 70 assureurs gratuitement. Économisez en moyenne 40%."
+        twitterDescription="Trouvez l'assurance la moins chère en 2 minutes avec notre comparateur gratuit. Comparez 70 assureurs partenaires (AXA, Allianz, MAIF, Groupama…) et économisez en moyenne 40% sur votre contrat. Sans engagement."
         keyword="assurance moins chère"
         keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
         canonical="https://www.jemassuremoinscher.fr"
         ogImage="https://www.jemassuremoinscher.fr/opengraph-image.png"
-        jsonLd={[webSiteSchema, organizationSchema, financialServiceSchema, serviceSchema, breadcrumbSchema, faqSchema]}
+        jsonLd={[webSiteSchema, organizationSchema, financialServiceSchema, serviceSchema, breadcrumbSchema, faqSchema, localBusinessSchema]}
       />
       <Header />
       <main id="main-content" role="main">
         <Hero />
-
-
+        <MdReveal variant="up"><TrustRow /></MdReveal>
 
         <DeferredRender minHeight={300}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[300px]" />}>
-            <Partners />
+            <MdReveal variant="fade"><Partners /></MdReveal>
           </Suspense>
         </DeferredRender>
 
         <DeferredRender minHeight={1200}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[1200px]" />}>
-            <WhyUsComparison />
+            <MdReveal variant="up"><WhyUsComparison /></MdReveal>
           </Suspense>
         </DeferredRender>
 
         <DeferredRender minHeight={760}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[760px]" />}>
-            <HowItWorks />
+            <MdReveal variant="up"><HowItWorks /></MdReveal>
           </Suspense>
         </DeferredRender>
 
         <DeferredRender minHeight={560}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[560px]" />}>
-            <SEOFaq />
+            <MdReveal variant="up"><SEOFaq /></MdReveal>
           </Suspense>
         </DeferredRender>
 
         <DeferredRender minHeight={400}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[400px]" />}>
-            <ClientCases />
+            <MdReveal variant="scale"><ClientCases /></MdReveal>
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={420}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[420px]" />}>
+            <MdReveal variant="up"><LeadMagnetSection /></MdReveal>
           </Suspense>
         </DeferredRender>
 
         <DeferredRender minHeight={880}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[880px]" />}>
-            <GuidesSection />
+            <MdReveal variant="up"><GuidesSection /></MdReveal>
           </Suspense>
         </DeferredRender>
 
         <DeferredRender minHeight={720}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[720px]" />}>
-            <SEOContent />
+            <MdReveal variant="fade"><SEOContent /></MdReveal>
           </Suspense>
         </DeferredRender>
 
         <DeferredRender minHeight={280}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[280px]" />}>
-            <ContextualHelp />
+            <MdReveal variant="up"><ContextualHelp /></MdReveal>
           </Suspense>
         </DeferredRender>
 
@@ -172,7 +235,7 @@ const Index = () => {
           <li><Link to="/blog">Blog assurance - Conseils pour changer d'assurance</Link></li>
           <li><Link to="/glossaire">Glossaire de l'assurance</Link></li>
           <li><Link to="/qui-sommes-nous">À propos de jemassuremoinscher.fr - Comparateur d'assurances</Link></li>
-          <li><Link to="/nos-partenaires">Nos 50+ partenaires assureurs</Link></li>
+          <li><Link to="/nos-partenaires">Nos 70+ partenaires assureurs</Link></li>
           <li><Link to="/avis-clients">Avis clients - Comparateur d'assurances moins chères</Link></li>
           <li><Link to="/contact">Contactez notre équipe</Link></li>
         </ul>

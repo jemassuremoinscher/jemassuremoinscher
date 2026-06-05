@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface RelatedProductLinksProps {
   category: string;
@@ -99,11 +100,6 @@ const categoryToProducts: Record<string, ProductLink[]> = {
     { to: "/assurance-sante", label: "Mutuelle santé" },
     { to: "/comparateur", label: "Comparateur multi-assurances" },
   ],
-  "Assurance Prêt": [
-    { to: "/assurance-pret", label: "Comparer les assurances prêt" },
-    { to: "/assurance-emprunteur", label: "Assurance emprunteur" },
-    { to: "/comparateur", label: "Comparateur multi-assurances" },
-  ],
 };
 
 // Fallback for unknown categories
@@ -141,6 +137,7 @@ const tagToLink: Record<string, ProductLink> = {
 };
 
 const RelatedProductLinks = ({ category, tags }: RelatedProductLinksProps) => {
+  const { t } = useLanguage();
   const products = categoryToProducts[category] || defaultProducts;
 
   // Add tag-based links (deduplicated)
@@ -160,7 +157,7 @@ const RelatedProductLinks = ({ category, tags }: RelatedProductLinksProps) => {
   const allLinks = [...products, ...tagLinks.slice(0, 3)];
 
   return (
-    <nav aria-label="Pages liées" className="mt-10 p-5 rounded-xl border border-primary/20 bg-primary/5">
+    <nav aria-label={t("a11y.blog.relatedPages")} className="mt-10 p-5 rounded-xl border border-primary/20 bg-primary/5">
       <h3 className="font-bold text-foreground mb-3 text-base">
         📌 Pages utiles en rapport avec cet article
       </h3>

@@ -1,6 +1,9 @@
 import { type ReactNode } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import RelatedInsuranceLinks from "@/components/insurance/RelatedInsuranceLinks";
+import { useLanguage } from "@/contexts/LanguageContext";
+
 
 interface InsuranceBottomHubProps {
   currentPage: string;
@@ -32,20 +35,21 @@ const InsuranceBottomHub = ({
   onCtaClick,
   expertiseSection,
 }: InsuranceBottomHubProps) => {
+  const { t } = useLanguage();
   return (
     <div className="max-w-5xl mx-auto">
-      {/* Expertise (E-E-A-T) — compact */}
       {expertiseSection}
-
-      {/* Internal links hub */}
       <RelatedInsuranceLinks currentPage={currentPage} />
 
-      {/* EnBref — GEO summary at bottom */}
-      {enBref && (
-        <div className="mb-10">
-          {enBref}
-        </div>
-      )}
+      {enBref && <div className="mb-10">{enBref}</div>}
+
+      <p className="-mt-4 mb-10 text-center text-xs text-muted-foreground">
+        {t("bottomHub.calculatedPrefix")}{" "}
+        <Link to="/sources-et-methodologie" className="font-medium text-primary hover:underline underline-offset-4">
+          {t("bottomHub.methodologyLink")}
+        </Link>
+        .
+      </p>
 
       {/* CTA final */}
       <section className="max-w-2xl mx-auto text-center mb-16">

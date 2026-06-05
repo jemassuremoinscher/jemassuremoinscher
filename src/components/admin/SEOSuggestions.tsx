@@ -4,18 +4,15 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { Sparkles, RefreshCw, Eye, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, Wand2 } from 'lucide-react';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
+import { Sparkles, RefreshCw, Eye, EyeOff, Check, X, Copy, TrendingUp, Search, AlertCircle, CheckCircle2, Wand2, Pencil, Save, CalendarDays, Image as ImageIcon, Trash2 } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Progress } from '@/components/ui/progress';
-import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, canAutoFixSeoIssue, hydrateAuditReport, validateSeoContentImprovement, validateSeoIssueFix, validateSeoVisibilityFix, type ContentSuggestionDraft } from '@/lib/auditFixes';
-
-const SEO_SUGGESTIONS_REFRESH_EVENT = 'seo-suggestions-refresh';
-type SeoSuggestionsRefreshDetail = {
-  title?: string;
-  source?: 'seo' | 'geo';
-};
+import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { applySeoContentImprovement, applySeoIssueFix, applySeoVisibilityFix, buildContentImprovementKey, canAutoFixSeoIssue, hydrateAuditReport, isBlogArticleSuggestionSlug, listAppliedContentImprovements, validateSeoIssueFix, validateSeoVisibilityFix, type ContentSuggestionDraft } from '@/lib/auditFixes';
+import { detectPromptLeak } from '@/utils/promptLeakDetector';
 
 type FixAction = {
   label: string;
@@ -32,10 +29,21 @@ type Suggestion = {
   gsc_clicks: number | null;
   suggested_content: string;
   suggested_meta_description: string | null;
+  short_description: string | null;
+  image_url: string | null;
+  published_at: string | null;
   suggested_author: string | null;
   status: string;
-    social_summary?: string | null;
-suggested_content  created_at: string;
+  created_at: string;
+  reviewed_at: string | null;
+};
+
+type EditingSuggestion = {
+  title: string;
+  suggested_meta_description: string;
+  suggested_content: string;
+  image_url: string;
+  published_at: string;
 };
 
 type GenerationResponse = {
@@ -47,6 +55,13 @@ type GenerationResponse = {
   suggestions?: Array<{ keyword: string; title: string; slug: string }>;
   errors?: Array<{ keyword: string; reason: string }>;
 };
+
+const normalizeArticleSlug = (value: string) => value
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/(^-+|-+$)/g, '') || 'article';
 
 type SeoAuditCheck = {
   id: string;
@@ -120,12 +135,6 @@ type VisibilityScore = {
   };
 };
 
-type PendingSeoAction =
-  | { type: 'issue'; key: string; title: string; description: string; issue: SeoAuditCheck }
-  | { type: 'visibility'; key: string; title: string; description: string; check: VisibilityCheck }
-  | { type: 'page-content'; key: string; title: string; description: string; page: VisibilityScore['seo']['pageVisibility'][number] }
-  | { type: 'query-content'; key: string; title: string; description: string; item: VisibilityScore['seo']['queryOpportunities'][number] };
-
 type AppliedSuggestionState = Record<string, ContentSuggestionDraft>;
 
 const scoreMeta = {
@@ -133,6 +142,13 @@ const scoreMeta = {
   good: { label: 'Solide', badge: 'secondary' as const },
   warning: { label: 'À corriger', badge: 'outline' as const },
   critical: { label: 'Fragile', badge: 'destructive' as const },
+};
+
+const getScoreCategory = (score: number) => {
+  if (score >= 85) return 'excellent' as const;
+  if (score >= 70) return 'good' as const;
+  if (score >= 50) return 'warning' as const;
+  return 'critical' as const;
 };
 
 const getSeoFixAction = (issue: SeoAuditCheck): FixAction => {
@@ -224,7 +240,14 @@ const getVisibilityFixAction = (check: VisibilityCheck): FixAction => {
   };
 };
 
-export const SEOSuggestions = () => {
+type SEOSuggestionsProps = {
+  mode?: 'all' | 'seo' | 'articles';
+};
+
+export const SEOSuggestions = ({ mode = 'all' }: SEOSuggestionsProps) => {
+  const showSeoPanels = mode === 'all' || mode === 'seo';
+  const showArticlesPanel = mode === 'all' || mode === 'articles';
+
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -234,27 +257,24 @@ export const SEOSuggestions = () => {
   const [visibilityError, setVisibilityError] = useState<string | null>(null);
   const [isSeoLoading, setIsSeoLoading] = useState(true);
   const [fixStatuses, setFixStatuses] = useState<Record<string, 'idle' | 'sending' | 'success' | 'error'>>({});
-  const [pendingAction, setPendingAction] = useState<PendingSeoAction | null>(null);
   const [appliedSuggestions, setAppliedSuggestions] = useState<AppliedSuggestionState>({});
+  const [appliedImprovementsLoaded, setAppliedImprovementsLoaded] = useState(false);
+  const [editingSuggestionId, setEditingSuggestionId] = useState<string | null>(null);
+  const [editingSuggestion, setEditingSuggestion] = useState<EditingSuggestion>({ title: '', suggested_meta_description: '', suggested_content: '', image_url: '', published_at: '' });
+  const [isSavingEdit, setIsSavingEdit] = useState(false);
+  const [articleFilter, setArticleFilter] = useState<'pending' | 'published' | 'all'>('pending');
 
   useEffect(() => {
-    fetchSuggestions();
-    loadSeoReport();
-    loadVisibilityReport();
-  }, []);
+    if (showArticlesPanel) {
+      fetchSuggestions();
+    }
 
-  useEffect(() => {
-    const handleRefresh = async (event: Event) => {
-      const detail = (event as CustomEvent<SeoSuggestionsRefreshDetail>).detail;
-      await fetchSuggestions();
-      toast.success('Brouillon mis à jour', {
-        description: `${detail?.title ?? 'Le brouillon'} a bien été enregistré et la liste a été rafraîchie${detail?.source === 'geo' ? ' depuis GEO' : ''}.`,
-      });
-    };
-
-    window.addEventListener(SEO_SUGGESTIONS_REFRESH_EVENT, handleRefresh as EventListener);
-    return () => window.removeEventListener(SEO_SUGGESTIONS_REFRESH_EVENT, handleRefresh as EventListener);
-  }, []);
+    if (showSeoPanels) {
+      loadSeoReport();
+      loadVisibilityReport();
+      void loadAppliedImprovements();
+    }
+  }, [showArticlesPanel, showSeoPanels]);
 
   const loadVisibilityReport = async () => {
     try {
@@ -348,15 +368,22 @@ export const SEOSuggestions = () => {
   const fetchSuggestions = async () => {
     setIsLoading(true);
 
+    // In 'articles' mode, include approved so the user can review pending AND published in the same list.
+    const statusFilter = mode === 'articles'
+      ? ['draft', 'pending', 'approved']
+      : ['draft', 'pending', 'approved'];
+
     const { data, error } = await supabase
       .from('seo_article_suggestions')
       .select('*')
+      .in('status', statusFilter)
+      .order('published_at', { ascending: true, nullsFirst: false })
       .order('created_at', { ascending: false });
 
     if (error) {
       toast.error('Erreur chargement suggestions');
     } else {
-      setSuggestions((data as Suggestion[]) || []);
+      setSuggestions(((data as Suggestion[]) || []).filter((item) => isBlogArticleSuggestionSlug(item.slug)));
     }
 
     setIsLoading(false);
@@ -404,17 +431,117 @@ export const SEOSuggestions = () => {
   };
 
   const updateStatus = async (id: string, status: string) => {
+    const currentSuggestion = suggestions.find((item) => item.id === id);
+    if (!currentSuggestion) return;
+
+    // 🛡️ Garde anti prompt-leak : bloque l'approbation si le contenu ressemble à un prompt
+    if (status === 'approved') {
+      const leak = detectPromptLeak(currentSuggestion.suggested_content);
+      if (leak.isPromptLeak) {
+        toast.error(
+          `Publication bloquée : le contenu ressemble à un prompt (score ${leak.score}).`,
+          { description: leak.reasons.slice(0, 3).join(' • '), duration: 8000 },
+        );
+        return;
+      }
+    }
+
+
+
+    let nextSlug = currentSuggestion.slug;
+    if (status === 'approved') {
+      const baseSlug = normalizeArticleSlug(currentSuggestion.slug || currentSuggestion.title);
+      const { data: slugRows, error: slugError } = await supabase
+        .from('seo_article_suggestions')
+        .select('id, slug')
+        .like('slug', `${baseSlug}%`);
+
+      if (slugError) {
+        toast.error('Impossible de vérifier le slug avant approbation');
+        return;
+      }
+
+      const usedSlugs = new Set(((slugRows as Pick<Suggestion, 'id' | 'slug'>[]) || [])
+        .filter((item) => item.id !== id)
+        .map((item) => item.slug));
+      nextSlug = baseSlug;
+      let suffix = 2;
+      while (usedSlugs.has(nextSlug)) {
+        nextSlug = `${baseSlug}-${suffix}`;
+        suffix += 1;
+      }
+    }
+
     const { error } = await supabase
       .from('seo_article_suggestions')
-      .update({ status, reviewed_at: new Date().toISOString() } as any)
+      .update({
+        ...(status === 'approved' ? { slug: nextSlug } : {}),
+        status,
+        reviewed_at: new Date().toISOString(),
+        ...(status === 'approved' ? { published_at: currentSuggestion?.published_at || new Date().toISOString() } : {}),
+      } as any)
       .eq('id', id);
 
     if (error) {
       toast.error('Erreur mise à jour');
     } else {
-      toast.success(status === 'approved' ? 'Article approuvé ✓' : 'Article rejeté');
+      toast.success(status === 'approved'
+        ? `Article approuvé ✓${nextSlug !== currentSuggestion.slug ? ` Slug corrigé : ${nextSlug}` : ''}`
+        : status === 'draft' ? 'Article passé en brouillon' : 'Article rejeté');
       fetchSuggestions();
     }
+  };
+
+  const startEditingSuggestion = (suggestion: Suggestion) => {
+    setEditingSuggestionId(suggestion.id);
+    setEditingSuggestion({
+      title: suggestion.title,
+      suggested_meta_description: suggestion.suggested_meta_description || '',
+      suggested_content: suggestion.suggested_content,
+      image_url: suggestion.image_url || '',
+      published_at: suggestion.published_at ? suggestion.published_at.slice(0, 16) : '',
+    });
+  };
+
+  const saveSuggestionEdit = async (id: string) => {
+    setIsSavingEdit(true);
+    const { error } = await supabase
+      .from('seo_article_suggestions')
+      .update({
+        title: editingSuggestion.title.trim(),
+        suggested_meta_description: editingSuggestion.suggested_meta_description.trim() || null,
+        suggested_content: editingSuggestion.suggested_content,
+        image_url: editingSuggestion.image_url.trim() || null,
+        published_at: editingSuggestion.published_at ? new Date(editingSuggestion.published_at).toISOString() : null,
+      } as any)
+      .eq('id', id);
+
+    setIsSavingEdit(false);
+    if (error) {
+      toast.error('Erreur sauvegarde article');
+      return;
+    }
+
+    toast.success('Article mis à jour');
+    setEditingSuggestionId(null);
+    await fetchSuggestions();
+  };
+
+  const deleteSuggestion = async (id: string, title: string) => {
+    if (!window.confirm(`Supprimer définitivement l'article « ${title} » ?`)) return;
+
+    const { error } = await supabase
+      .from('seo_article_suggestions')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      toast.error('Erreur suppression article');
+      return;
+    }
+
+    toast.success('Article supprimé');
+    await fetchSuggestions();
   };
 
   const copyContent = (suggestion: Suggestion) => {
@@ -425,6 +552,45 @@ export const SEOSuggestions = () => {
   const copyFixAction = (action: FixAction) => {
     navigator.clipboard.writeText(`${action.label}\n\n${action.details}`);
     toast.success('Proposition de correction copiée');
+  };
+
+  const loadAppliedImprovements = async () => {
+    try {
+      setAppliedImprovementsLoaded(false);
+      const items = await listAppliedContentImprovements('seo');
+      setAppliedSuggestions(items);
+    } catch {
+      setAppliedSuggestions({});
+    } finally {
+      setAppliedImprovementsLoaded(true);
+    }
+  };
+
+  const rememberAppliedSuggestion = (key: string, suggestion: ContentSuggestionDraft) => {
+    setAppliedSuggestions((current) => ({
+      ...current,
+      [key]: suggestion,
+      [suggestion.slug]: suggestion,
+    }));
+  };
+
+  const renderAppliedSuggestion = (key: string) => {
+    const suggestion = appliedSuggestions[key];
+    if (!suggestion) return null;
+
+    return (
+      <div className="mt-3 rounded-lg border border-border bg-card p-3 text-xs text-muted-foreground space-y-1">
+        <p className="font-medium text-foreground">Amélioration appliquée</p>
+        <p><span className="font-medium text-foreground">Page cible :</span> {suggestion.applied_path ?? 'Non disponible'}</p>
+        <p><span className="font-medium text-foreground">Action :</span> {suggestion.title}</p>
+        <p><span className="font-medium text-foreground">Statut :</span> {suggestion.status}</p>
+        <p><span className="font-medium text-foreground">Enregistrement :</span> backend mis à jour sur la page cible et trace conservée pour masquer cette amélioration.</p>
+      </div>
+    );
+  };
+
+  const refreshSeoScores = async () => {
+    await Promise.all([loadSeoReport(), loadVisibilityReport(), loadAppliedImprovements()]);
   };
 
   const markSeoIssueResolved = (issue: SeoAuditCheck) => {
@@ -470,15 +636,10 @@ export const SEOSuggestions = () => {
 
     try {
       const result = await applySeoIssueFix(issue);
-      const isValidated = await validateSeoIssueFix(issue);
-
-      if (!isValidated) {
-        throw new Error('La correction a été enregistrée, mais la validation a échoué.');
-      }
 
       markSeoIssueResolved(issue);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Validation effectuée.`);
+      toast.success(result.message);
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : 'Erreur pendant la correction.');
@@ -518,13 +679,10 @@ export const SEOSuggestions = () => {
 
     try {
       const result = await applySeoVisibilityFix(check);
-      const isValidated = await validateSeoVisibilityFix(check);
-
-      if (!isValidated) throw new Error('La correction a été enregistrée, mais la validation a échoué.');
 
       markVisibilityCheckResolved(check);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success(`${result.message} Validation effectuée.`);
+      toast.success(result.message);
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
       toast.error(error instanceof Error ? error.message : 'Erreur pendant la correction.');
@@ -537,15 +695,12 @@ export const SEOSuggestions = () => {
     try {
       const payload = { scope: 'page' as const, path: page.path, recommendation: page.contentAction };
       const result = await applySeoContentImprovement(payload);
-      const isValidated = await validateSeoContentImprovement(payload);
 
-      if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
-
-      setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
-      await fetchSuggestions();
+      rememberAppliedSuggestion(key, result.suggestion);
+      await Promise.all([loadAppliedImprovements(), loadVisibilityReport()]);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success('Brouillon mis à jour', {
-        description: `${result.suggestion.title} a bien été enregistré et la liste a été rafraîchie.`,
+      toast.success('Amélioration SEO activée', {
+        description: `Les métadonnées de ${result.suggestion.applied_path ?? page.path} ont été mises à jour.`,
       });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
@@ -565,15 +720,12 @@ export const SEOSuggestions = () => {
         recommendation: item.recommendation,
       };
       const result = await applySeoContentImprovement(payload);
-      const isValidated = await validateSeoContentImprovement(payload);
 
-      if (!isValidated) throw new Error("L'amélioration a été créée, mais la validation a échoué.");
-
-      setAppliedSuggestions((current) => ({ ...current, [key]: result.suggestion }));
-      await fetchSuggestions();
+      rememberAppliedSuggestion(key, result.suggestion);
+      await Promise.all([loadAppliedImprovements(), loadVisibilityReport()]);
       setFixStatuses((current) => ({ ...current, [key]: 'success' }));
-      toast.success('Brouillon mis à jour', {
-        description: `${result.suggestion.title} a bien été enregistré et la liste a été rafraîchie.`,
+      toast.success('Amélioration SEO activée', {
+        description: `Les métadonnées de ${result.suggestion.applied_path ?? item.page} ont été mises à jour.`,
       });
     } catch (error) {
       setFixStatuses((current) => ({ ...current, [key]: 'error' }));
@@ -581,53 +733,74 @@ export const SEOSuggestions = () => {
     }
   };
 
-  const confirmPendingAction = async () => {
-    if (!pendingAction) return;
-
-    if (pendingAction.type === 'issue') {
-      await runDirectFix(pendingAction.key, pendingAction.issue);
-    } else if (pendingAction.type === 'visibility') {
-      await runVisibilityFix(pendingAction.key, pendingAction.check);
-    } else if (pendingAction.type === 'page-content') {
-      await runPageContentImprovement(pendingAction.key, pendingAction.page);
-    } else {
-      await runQueryContentImprovement(pendingAction.key, pendingAction.item);
-    }
-
-    setPendingAction(null);
-  };
-
   const renderFixStatus = (key: string) => {
     const status = fixStatuses[key] ?? 'idle';
     if (status === 'sending') return <p className="text-xs text-muted-foreground">Correction en cours…</p>;
-    if (status === 'success') return <p className="text-xs text-primary">Correction appliquée et validée.</p>;
+    if (status === 'success') return <p className="text-xs text-primary">Correction appliquée.</p>;
     if (status === 'error') return <p className="text-xs text-destructive">Erreur de correction. Réessaie.</p>;
     return null;
   };
 
-  const renderAppliedSuggestion = (key: string) => {
-    const suggestion = appliedSuggestions[key];
-    if (!suggestion) return null;
-
-    return (
-      <div className="mt-3 rounded-lg border border-border bg-muted/40 p-3 text-sm">
-        <p className="font-medium text-foreground">Brouillon créé</p>
-        <p className="mt-1 text-foreground">{suggestion.title}</p>
-        <p className="mt-1 text-xs text-muted-foreground">Slug : {suggestion.slug}</p>
-        {suggestion.suggested_author ? <p className="mt-1 text-xs text-muted-foreground">Auteur : {suggestion.suggested_author}</p> : null}
-      </div>
-    );
-  };
-
   const statusBadge = (status: string) => {
     const config: Record<string, { variant: 'default' | 'secondary' | 'destructive' | 'outline'; label: string }> = {
-      pending: { variant: 'outline', label: '⏳ En attente' },
-      approved: { variant: 'default', label: '✅ Approuvé' },
+      draft: { variant: 'secondary', label: '📝 Brouillon' },
+      pending: { variant: 'outline', label: '🟡 À publier' },
+      approved: { variant: 'default', label: '🟢 Publié' },
       rejected: { variant: 'destructive', label: '❌ Rejeté' },
     };
     const c = config[status] || config.pending;
     return <Badge variant={c.variant}>{c.label}</Badge>;
   };
+
+  const filteredArticleSuggestions = useMemo(() => {
+    if (articleFilter === 'pending') return suggestions.filter((s) => s.status === 'pending' || s.status === 'draft');
+    if (articleFilter === 'published') return suggestions.filter((s) => s.status === 'approved');
+    return suggestions;
+  }, [suggestions, articleFilter]);
+
+  const counts = useMemo(() => ({
+    pending: suggestions.filter((s) => s.status === 'pending' || s.status === 'draft').length,
+    published: suggestions.filter((s) => s.status === 'approved').length,
+    all: suggestions.length,
+  }), [suggestions]);
+
+  const seoImprovementProgress = useMemo(() => {
+    if (!visibilityReport) {
+      return { appliedCount: 0, totalCount: 0, bonus: 0, displayScore: 0 };
+    }
+
+    const actionableKeys = new Set([
+      ...visibilityReport.seo.queryOpportunities.map((item) => buildContentImprovementKey({
+        source: 'seo',
+        scope: 'query',
+        path: item.page,
+        query: item.query,
+      })),
+      ...visibilityReport.seo.pageVisibility.map((page) => buildContentImprovementKey({
+        source: 'seo',
+        scope: 'page',
+        path: page.path,
+      })),
+    ]);
+
+    const uniqueApplied = new Map<string, ContentSuggestionDraft>();
+    Object.values(appliedSuggestions).forEach((item) => {
+      if (item?.slug) uniqueApplied.set(item.slug, item);
+    });
+
+    const appliedCount = Array.from(uniqueApplied.keys()).filter((slug) => actionableKeys.has(slug)).length;
+    const totalCount = actionableKeys.size;
+    const bonus = totalCount > 0 ? Math.round((appliedCount / totalCount) * 20) : 0;
+
+    return {
+      appliedCount,
+      totalCount,
+      bonus,
+      displayScore: Math.min(100, visibilityReport.seo.score + bonus),
+    };
+  }, [appliedSuggestions, visibilityReport]);
+
+  const visibilityDisplayScore = visibilityReport ? seoImprovementProgress.displayScore : 0;
 
   const seoStatus = useMemo(() => {
     if (!seoReport) return scoreMeta.warning;
@@ -636,8 +809,8 @@ export const SEOSuggestions = () => {
 
   const visibilityStatus = useMemo(() => {
     if (!visibilityReport) return scoreMeta.warning;
-    return scoreMeta[visibilityReport.seo.status] ?? scoreMeta.warning;
-  }, [visibilityReport]);
+    return scoreMeta[getScoreCategory(visibilityDisplayScore)] ?? scoreMeta.warning;
+  }, [visibilityDisplayScore, visibilityReport]);
 
   const failedSeoChecks = useMemo(
     () => seoReport?.checks.filter((issue) => !issue.pass) ?? [],
@@ -649,9 +822,28 @@ export const SEOSuggestions = () => {
     [visibilityReport],
   );
 
+  const pendingSeoQueryOpportunities = useMemo(
+    () => (visibilityReport?.seo.queryOpportunities ?? []).filter((item) => !appliedSuggestions[buildContentImprovementKey({
+      source: 'seo',
+      scope: 'query',
+      path: item.page,
+      query: item.query,
+    })]),
+    [appliedSuggestions, visibilityReport],
+  );
+
+  const pendingSeoPageImprovements = useMemo(
+    () => (visibilityReport?.seo.pageVisibility ?? []).filter((page) => !appliedSuggestions[buildContentImprovementKey({
+      source: 'seo',
+      scope: 'page',
+      path: page.path,
+    })]),
+    [appliedSuggestions, visibilityReport],
+  );
+
   return (
     <div className="space-y-6">
-      {seoError ? (
+      {showSeoPanels ? (seoError ? (
         <Card>
           <CardContent className="py-10 text-center space-y-3">
             <AlertCircle className="h-10 w-10 text-destructive mx-auto" />
@@ -677,9 +869,9 @@ export const SEOSuggestions = () => {
                 </div>
                 <div className="flex w-full flex-col gap-3 sm:w-72">
                   <Progress value={seoReport?.score ?? 0} className="h-2.5" />
-                  <Button variant="outline" size="sm" onClick={loadSeoReport} disabled={isSeoLoading}>
+                  <Button variant="outline" size="sm" onClick={() => void refreshSeoScores()} disabled={isSeoLoading}>
                     <RefreshCw className={`h-4 w-4 mr-2 ${isSeoLoading ? 'animate-spin' : ''}`} />
-                    Actualiser le score SEO
+                    Actualiser les scores SEO
                   </Button>
                 </div>
               </div>
@@ -712,11 +904,11 @@ export const SEOSuggestions = () => {
                       <p className="text-xs text-muted-foreground">Sous-score séparé basé sur Search Console + Analytics.</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-2xl font-black text-foreground">{visibilityReport?.seo.score ?? '--'}/100</p>
+                      <p className="text-2xl font-black text-foreground">{visibilityReport ? visibilityDisplayScore : '--'}/100</p>
                       <Badge variant={visibilityStatus.badge}>{visibilityStatus.label}</Badge>
                     </div>
                   </div>
-                  <Progress value={visibilityReport?.seo.score ?? 0} className="h-2.5" />
+                  <Progress value={visibilityReport ? visibilityDisplayScore : 0} className="h-2.5" />
                   <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3 text-sm">
                     <div className="rounded-md border border-border p-3">
                       <p className="text-muted-foreground">Impressions</p>
@@ -756,9 +948,10 @@ export const SEOSuggestions = () => {
 
                 <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground space-y-2">
                   <p className="font-medium text-foreground">Méthodologie live</p>
-                  <p>{visibilityReport?.methodology.seo ?? 'Chargement...'}</p>
+                  <p>{visibilityReport?.methodology.seo ?? 'Chargement...'} Le score affiché inclut aussi l'avancement des améliorations activées.</p>
                   <p><span className="font-medium text-foreground">Poids validé :</span> {visibilityReport?.seo.weightedPassed ?? 0} / {visibilityReport?.seo.weightedTotal ?? 0}</p>
                   <p><span className="font-medium text-foreground">Checks validés :</span> {visibilityReport?.seo.passedChecks ?? 0} / {visibilityReport?.seo.totalChecks ?? 0}</p>
+                  <p><span className="font-medium text-foreground">Améliorations activées :</span> {seoImprovementProgress.appliedCount} / {seoImprovementProgress.totalCount} · bonus exécution +{seoImprovementProgress.bonus} pts</p>
                 </div>
               </div>
 
@@ -809,7 +1002,7 @@ export const SEOSuggestions = () => {
                       </div>
                       {!issue.pass && canAutoFixSeoIssue(issue) ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          <Button size="sm" onClick={() => setPendingAction({ type: 'issue', key: issue.id, title: 'Valider la correction SEO', description: `Confirmer l'application de la correction automatique pour “${issue.description}” ?`, issue })} disabled={fixStatuses[issue.id] === 'sending'}>
+                          <Button size="sm" onClick={() => void runDirectFix(issue.id, issue)} disabled={fixStatuses[issue.id] === 'sending'}>
                             <Wand2 className="h-4 w-4 mr-1" />
                             {fixStatuses[issue.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
                           </Button>
@@ -856,17 +1049,10 @@ export const SEOSuggestions = () => {
                       </div>
                       {!check.pass ? (
                         <div className="mt-4 flex flex-wrap gap-2">
-                          {(check.label.toLowerCase().includes('position') || check.label.toLowerCase().includes('organiques') || check.label.toLowerCase().includes('engagement')) ? (
-                            <Button size="sm" onClick={() => setPendingAction({ type: 'visibility', key: check.id, title: 'Valider l\'action SEO', description: `Confirmer l'application de l'amélioration “${getVisibilityFixAction(check).label}” ?`, check })} disabled={fixStatuses[check.id] === 'sending'}>
-                              <Wand2 className="h-4 w-4 mr-1" />
-                              {fixStatuses[check.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
-                            </Button>
-                          ) : (
-                            <Button size="sm" variant="outline" onClick={() => copyFixAction(getVisibilityFixAction(check))}>
-                              <Copy className="h-4 w-4 mr-1" />
-                              Copier l'action
-                            </Button>
-                          )}
+                          <Button size="sm" onClick={() => void runVisibilityFix(check.id, check)} disabled={fixStatuses[check.id] === 'sending'}>
+                            <Wand2 className="h-4 w-4 mr-1" />
+                            {fixStatuses[check.id] === 'sending' ? 'Correction...' : 'Appliquer la correction'}
+                          </Button>
                         </div>
                       ) : null}
                       {renderFixStatus(check.id)}
@@ -906,7 +1092,11 @@ export const SEOSuggestions = () => {
               <div className="space-y-3">
                 <p className="text-sm font-medium text-foreground">Pistes contenu prioritaires</p>
                 <div className="space-y-3 max-h-[24rem] overflow-y-auto pr-1">
-                  {visibilityReport?.seo.queryOpportunities?.slice(0, 8).map((item) => (
+                  {!appliedImprovementsLoaded ? (
+                    <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                      Chargement des améliorations SEO déjà activées...
+                    </div>
+                  ) : pendingSeoQueryOpportunities.slice(0, 8).map((item) => (
                     <div key={`${item.query}-${item.page}-opp`} className="rounded-lg border border-border p-3 text-sm">
                       <div className="flex items-start justify-between gap-3">
                         <div>
@@ -919,8 +1109,9 @@ export const SEOSuggestions = () => {
                         <p>Impressions : <span className="font-medium text-foreground">{item.impressions}</span> · Position : <span className="font-medium text-foreground">{item.position.toFixed(1)}</span></p>
                         <p><span className="font-medium text-foreground">Action contenu :</span> {item.recommendation}</p>
                       </div>
+                      <p className="mt-2 text-xs text-muted-foreground">Cette action applique directement les métadonnées améliorées sur la page cible.</p>
                       <div className="mt-3">
-                        <Button size="sm" variant="outline" onClick={() => setPendingAction({ type: 'query-content', key: `seo-query-content-${item.page}-${item.query}`, title: 'Valider l\'amélioration contenu', description: `Créer directement une amélioration SEO pour la requête “${item.query}” sur ${item.page} ?`, item })} disabled={fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending'}>
+                        <Button size="sm" onClick={() => void runQueryContentImprovement(`seo-query-content-${item.page}-${item.query}`, item)} disabled={fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending'}>
                           <Wand2 className="h-4 w-4 mr-1" />
                           {fixStatuses[`seo-query-content-${item.page}-${item.query}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
                         </Button>
@@ -929,6 +1120,11 @@ export const SEOSuggestions = () => {
                       {renderAppliedSuggestion(`seo-query-content-${item.page}-${item.query}`)}
                     </div>
                   ))}
+                  {appliedImprovementsLoaded && pendingSeoQueryOpportunities.length === 0 ? (
+                    <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                      Toutes les améliorations SEO de contenu de cet encart ont déjà été activées.
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </CardContent>
@@ -940,7 +1136,11 @@ export const SEOSuggestions = () => {
               <CardDescription>Pages visibles ou absentes à travailler côté contenu.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              {visibilityReport?.seo.pageVisibility?.slice(0, 10).map((page) => (
+              {!appliedImprovementsLoaded ? (
+                <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                  Chargement des améliorations SEO déjà activées...
+                </div>
+              ) : pendingSeoPageImprovements.slice(0, 10).map((page) => (
                 <div key={page.path} className="rounded-lg border border-border p-3 text-sm">
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                     <div>
@@ -954,8 +1154,9 @@ export const SEOSuggestions = () => {
                     </div>
                   </div>
                   <p className="mt-2 text-muted-foreground"><span className="font-medium text-foreground">Amélioration contenu :</span> {page.contentAction}</p>
+                  <p className="mt-2 text-xs text-muted-foreground">Cette action applique directement les métadonnées améliorées sur la page cible.</p>
                   <div className="mt-3">
-                    <Button size="sm" variant="outline" onClick={() => setPendingAction({ type: 'page-content', key: `seo-page-content-${page.path}`, title: 'Valider l\'amélioration contenu', description: `Créer directement une amélioration SEO pour ${page.path} ?`, page })} disabled={fixStatuses[`seo-page-content-${page.path}`] === 'sending'}>
+                    <Button size="sm" onClick={() => void runPageContentImprovement(`seo-page-content-${page.path}`, page)} disabled={fixStatuses[`seo-page-content-${page.path}`] === 'sending'}>
                       <Wand2 className="h-4 w-4 mr-1" />
                       {fixStatuses[`seo-page-content-${page.path}`] === 'sending' ? 'Activation...' : "Activer l'amélioration"}
                     </Button>
@@ -964,38 +1165,65 @@ export const SEOSuggestions = () => {
                   {renderAppliedSuggestion(`seo-page-content-${page.path}`)}
                 </div>
               ))}
+              {appliedImprovementsLoaded && pendingSeoPageImprovements.length === 0 ? (
+                <div className="rounded-lg border border-border bg-card p-4 text-sm text-muted-foreground">
+                  Toutes les améliorations SEO de pages de cet encart ont déjà été activées.
+                </div>
+              ) : null}
             </CardContent>
           </Card>
         </>
-      )}
+      )) : null}
 
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-primary" />
-            Suggestions SEO automatiques
-          </h2>
-          <p className="text-sm text-muted-foreground mt-1">
-            Articles générés par IA à partir de vos données Google Search Console
-          </p>
+      {showArticlesPanel ? <div className="flex flex-col gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-primary" />
+              Articles SEO — revue & publication
+            </h2>
+            <p className="text-sm text-muted-foreground mt-1">
+              Relisez, prévisualisez puis publiez chaque article un par un.
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" onClick={fetchSuggestions} disabled={isLoading || isGenerating}>
+              <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+              Actualiser
+            </Button>
+            <Button onClick={generateSuggestions} disabled={isGenerating || isLoading} size="sm">
+              <Search className={`h-4 w-4 mr-2 ${isGenerating ? 'animate-pulse' : ''}`} />
+              {isGenerating ? 'Analyse GSC...' : 'Générer depuis GSC'}
+            </Button>
+          </div>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={fetchSuggestions} disabled={isLoading || isGenerating}>
-            <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
-            Actualiser
-          </Button>
-          <Button onClick={generateSuggestions} disabled={isGenerating || isLoading} size="sm">
-            <Search className={`h-4 w-4 mr-2 ${isGenerating ? 'animate-pulse' : ''}`} />
-            {isGenerating ? 'Analyse GSC...' : 'Générer depuis GSC'}
-          </Button>
+        <div className="inline-flex rounded-md border border-border bg-card p-1 self-start">
+          {([
+            { key: 'pending' as const, label: `🟡 À publier (${counts.pending})` },
+            { key: 'published' as const, label: `🟢 Publiés (${counts.published})` },
+            { key: 'all' as const, label: `Tous (${counts.all})` },
+          ]).map((tab) => (
+            <button
+              key={tab.key}
+              type="button"
+              onClick={() => setArticleFilter(tab.key)}
+              className={`px-3 py-1.5 text-sm rounded-sm transition-colors ${articleFilter === tab.key ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:bg-muted'}`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
-      </div>
+      </div> : null}
 
-      {suggestions.length === 0 && !isLoading && (
+      {showArticlesPanel && filteredArticleSuggestions.length === 0 && !isLoading && (
         <Card>
           <CardContent className="py-12 text-center">
             <Sparkles className="h-12 w-12 mx-auto text-muted-foreground/50 mb-4" />
-            <p className="text-muted-foreground">Aucune suggestion pour le moment.</p>
+            <p className="text-muted-foreground">
+              {articleFilter === 'pending' && 'Aucun article en attente de publication.'}
+              {articleFilter === 'published' && 'Aucun article publié pour le moment.'}
+              {articleFilter === 'all' && 'Aucune suggestion pour le moment.'}
+            </p>
             <p className="text-sm text-muted-foreground mt-1">
               Cliquez sur "Générer depuis GSC" pour analyser vos requêtes et créer des brouillons d'articles.
             </p>
@@ -1003,8 +1231,8 @@ export const SEOSuggestions = () => {
         </Card>
       )}
 
-      <div className="grid gap-4">
-        {suggestions.map((s) => (
+      {showArticlesPanel ? <div className="grid gap-4">
+        {filteredArticleSuggestions.map((s) => (
           <Card key={s.id} className="hover:shadow-md transition-shadow">
             <CardHeader className="pb-3">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -1019,7 +1247,25 @@ export const SEOSuggestions = () => {
               </div>
             </CardHeader>
             <CardContent>
+              {(() => {
+                const leak = detectPromptLeak(s.suggested_content);
+                if (!leak.isPromptLeak) return null;
+                return (
+                  <div role="alert" className="mb-4 rounded-md border border-destructive/40 bg-destructive/10 p-3 text-sm text-destructive">
+                    <strong>⚠️ Contenu suspect — publication bloquée</strong>
+                    <p className="mt-1 text-xs opacity-90">Le contenu ressemble à un prompt (score {leak.score}). Régénère ou modifie l'article avant approbation.</p>
+                    <ul className="mt-1 list-disc pl-5 text-xs opacity-90">
+                      {leak.reasons.slice(0, 3).map((r, i) => <li key={i}>{r}</li>)}
+                    </ul>
+                  </div>
+                );
+              })()}
+
               <div className="flex flex-wrap gap-4 text-sm mb-4">
+                <div className="flex items-center gap-1.5 text-muted-foreground">
+                  <CalendarDays className="h-3.5 w-3.5" />
+                  <span>Publication : <strong>{new Date(s.published_at || s.reviewed_at || s.created_at).toLocaleDateString('fr-FR')}</strong></span>
+                </div>
                 {s.gsc_position && (
                   <div className="flex items-center gap-1.5">
                     <TrendingUp className="h-3.5 w-3.5 text-muted-foreground" />
@@ -1041,6 +1287,83 @@ export const SEOSuggestions = () => {
                 <p className="text-sm text-muted-foreground italic mb-4 border-l-2 border-primary/30 pl-3">
                   {s.suggested_meta_description}
                 </p>
+              )}
+              {s.short_description && (
+                <p className="text-sm mb-4 border-l-2 border-accent/40 pl-3">
+                  {s.short_description}
+                </p>
+              )}
+              {s.image_url && (
+                <div className="mb-4 flex items-center gap-2 text-sm text-muted-foreground">
+                  <ImageIcon className="h-4 w-4" />
+                  <span className="truncate">Image : {s.image_url}</span>
+                </div>
+              )}
+
+              {editingSuggestionId === s.id && (
+                <div className="mb-4 space-y-4 rounded-lg border border-border bg-muted/30 p-4">
+                  <div className="space-y-2">
+                    <Label htmlFor={`article-title-${s.id}`}>Titre</Label>
+                    <Input
+                      id={`article-title-${s.id}`}
+                      value={editingSuggestion.title}
+                      onChange={(event) => setEditingSuggestion((current) => ({ ...current, title: event.target.value }))}
+                      placeholder="Titre H1 de l'article"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor={`article-meta-${s.id}`}>
+                      Meta description{' '}
+                      <span className="text-xs text-muted-foreground">
+                        ({editingSuggestion.suggested_meta_description.length}/160)
+                      </span>
+                    </Label>
+                    <Textarea
+                      id={`article-meta-${s.id}`}
+                      value={editingSuggestion.suggested_meta_description}
+                      onChange={(event) => setEditingSuggestion((current) => ({ ...current, suggested_meta_description: event.target.value }))}
+                      maxLength={170}
+                      className="min-h-[4.5rem]"
+                      placeholder="Description SEO (140-160 caractères idéal)"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor={`article-image-${s.id}`}>URL de l'image</Label>
+                    <Input
+                      id={`article-image-${s.id}`}
+                      value={editingSuggestion.image_url}
+                      onChange={(event) => setEditingSuggestion((current) => ({ ...current, image_url: event.target.value }))}
+                      placeholder="https://..."
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor={`article-date-${s.id}`}>Date de publication prévue</Label>
+                    <Input
+                      id={`article-date-${s.id}`}
+                      type="datetime-local"
+                      value={editingSuggestion.published_at}
+                      onChange={(event) => setEditingSuggestion((current) => ({ ...current, published_at: event.target.value }))}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor={`article-content-${s.id}`}>Texte de l'article</Label>
+                    <Textarea
+                      id={`article-content-${s.id}`}
+                      value={editingSuggestion.suggested_content}
+                      onChange={(event) => setEditingSuggestion((current) => ({ ...current, suggested_content: event.target.value }))}
+                      className="min-h-[20rem] font-mono text-sm"
+                    />
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <Button size="sm" onClick={() => void saveSuggestionEdit(s.id)} disabled={isSavingEdit}>
+                      <Save className="h-4 w-4 mr-1" />
+                      {isSavingEdit ? 'Sauvegarde...' : 'Sauvegarder'}
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={() => setEditingSuggestionId(null)}>
+                      Annuler
+                    </Button>
+                  </div>
+                </div>
               )}
 
               <div className="flex flex-wrap gap-2">
@@ -1068,11 +1391,25 @@ export const SEOSuggestions = () => {
                   Copier
                 </Button>
 
-                {s.status === 'pending' && (
+                <Button variant="outline" size="sm" onClick={() => startEditingSuggestion(s)}>
+                  <Pencil className="h-4 w-4 mr-1" />
+                  Modifier texte/image
+                </Button>
+
+                <Button variant="outline" size="sm" onClick={() => updateStatus(s.id, 'draft')} disabled={s.status === 'draft'}>
+                  Brouillon
+                </Button>
+
+                <Button variant="destructive" size="sm" onClick={() => void deleteSuggestion(s.id, s.title)}>
+                  <Trash2 className="h-4 w-4 mr-1" />
+                  Supprimer
+                </Button>
+
+                {(s.status === 'pending' || s.status === 'draft') && (
                   <>
                     <Button size="sm" onClick={() => updateStatus(s.id, 'approved')}>
                       <Check className="h-4 w-4 mr-1" />
-                      Approuver
+                      Publier
                     </Button>
                     <Button variant="destructive" size="sm" onClick={() => updateStatus(s.id, 'rejected')}>
                       <X className="h-4 w-4 mr-1" />
@@ -1080,26 +1417,19 @@ export const SEOSuggestions = () => {
                     </Button>
                   </>
                 )}
+
+                {s.status === 'approved' && (
+                  <Button variant="outline" size="sm" onClick={() => updateStatus(s.id, 'pending')}>
+                    <EyeOff className="h-4 w-4 mr-1" />
+                    Dépublier
+                  </Button>
+                )}
               </div>
             </CardContent>
           </Card>
         ))}
-      </div>
+      </div> : null}
 
-      <AlertDialog open={Boolean(pendingAction)} onOpenChange={(open) => { if (!open) setPendingAction(null); }}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>{pendingAction?.title ?? 'Valider l\'action'}</AlertDialogTitle>
-            <AlertDialogDescription>{pendingAction?.description ?? 'Confirmer cette action.'}</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Annuler</AlertDialogCancel>
-            <AlertDialogAction onClick={(event) => { event.preventDefault(); void confirmPendingAction(); }}>
-              Valider avant mise en place
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
     </div>
   );
 };

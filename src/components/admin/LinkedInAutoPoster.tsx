@@ -6,17 +6,25 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { toast } from 'sonner';
-import { Linkedin, Send, Settings, History, Plus, Loader2, Trash2, RefreshCw } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Send, Settings, Plus, Loader2, Trash2, RefreshCw, Share2, Eye, CheckCircle2, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { blogArticles } from '@/data/blogArticles';
 import { blogArticles2026 } from '@/data/blogArticles2026';
+import { blogDrafts2026 } from '@/data/blogDrafts2026';
 
-const allArticles = [...blogArticles, ...blogArticles2026];
+const allArticles = [...blogArticles, ...blogArticles2026, ...blogDrafts2026];
+type Channel = 'linkedin' | 'facebook' | 'instagram';
+
+const buildShortDescription = (title: string, content?: string | null) => {
+  const base = (content || title).replace(/\s+/g, ' ').trim();
+  return `🛡️ ${base.length > 210 ? `${base.slice(0, 207).trim()}...` : base}`;
+};
 
 export const LinkedInAutoPoster = () => {
-  const [webhookUrl, setWebhookUrl] = useState('');
+  const [webhookUrl, setWebhookUrl] = useState('https://hook.eu1.make.com/swhr61xm1p2alnmmfrlif7af4ofd71o7');
   const [isActive, setIsActive] = useState(true);
   const [postDay, setPostDay] = useState('monday');
   const [postHour, setPostHour] = useState(9);
@@ -25,11 +33,89 @@ export const LinkedInAutoPoster = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [posting, setPosting] = useState<string | null>(null);
+  const [syncingImages, setSyncingImages] = useState(false);
 
   // New post form
   const [selectedSlug, setSelectedSlug] = useState('');
   const [customContent, setCustomContent] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
+
+  // Dismissed drafts + draft social overrides (persisted locally until queued)
+  const DISMISSED_KEY = 'lap.dismissedDrafts.v1';
+  const DRAFT_OVERRIDES_KEY = 'lap.draftChannelOverrides.v1';
+  const [dismissedDrafts, setDismissedDrafts] = useState<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem(DISMISSED_KEY) || '[]'); } catch { return []; }
+  });
+  const [draftChannelOverrides, setDraftChannelOverrides] = useState<Record<string, Partial<Record<Channel, string>>>>(() => {
+    try { return JSON.parse(localStorage.getItem(DRAFT_OVERRIDES_KEY) || '{}'); } catch { return {}; }
+  });
+  const dismissDraft = (slug: string, title: string) => {
+    if (!confirm(`Supprimer le brouillon « ${title} » de cette liste ?`)) return;
+    const next = Array.from(new Set([...dismissedDrafts, slug]));
+    setDismissedDrafts(next);
+    localStorage.setItem(DISMISSED_KEY, JSON.stringify(next));
+    toast.success('Brouillon retiré de la liste');
+  };
+  const persistDraftOverrides = (next: Record<string, Partial<Record<Channel, string>>>) => {
+    setDraftChannelOverrides(next);
+    localStorage.setItem(DRAFT_OVERRIDES_KEY, JSON.stringify(next));
+  };
+
+  const resolveArticleImage = (img: any): string | null => {
+    if (!img) return null;
+    const SITE = 'https://www.jemassuremoinscher.fr';
+    if (typeof img !== 'string') return null;
+    if (img.startsWith('http')) return img;
+    try {
+      return new URL(img, typeof window !== 'undefined' ? window.location.origin : SITE).href;
+    } catch {
+      return `${SITE}${img.startsWith('/') ? '' : '/'}${img}`;
+    }
+  };
+
+  // Editing per-channel descriptions
+  const [editing, setEditing] = useState<Record<string, string>>({}); // key = `${postId}:${channel}`
+  const [savingEdit, setSavingEdit] = useState<string | null>(null);
+  const editKey = (id: string, ch: Channel) => `${id}:${ch}`;
+  const saveChannelOverride = async (post: any, ch: Channel, value: string) => {
+    const key = editKey(post.id, ch);
+    setSavingEdit(key);
+    const next = { ...(post.channel_overrides || {}), [ch]: value };
+    const { error } = await supabase
+      .from('linkedin_auto_posts')
+      .update({ channel_overrides: next } as any)
+      .eq('id', post.id);
+    setSavingEdit(null);
+    if (error) { toast.error('Erreur: ' + error.message); return; }
+    toast.success(`Description ${ch} mise à jour ✅`);
+    setEditing((e) => { const n = { ...e }; delete n[key]; return n; });
+    fetchData();
+  };
+  const saveDraftChannelOverride = (slug: string, ch: Channel, value: string) => {
+    const key = editKey(`draft-${slug}`, ch);
+    const next = { ...draftChannelOverrides, [slug]: { ...(draftChannelOverrides[slug] || {}), [ch]: value } };
+    persistDraftOverrides(next);
+    setEditing((e) => { const n = { ...e }; delete n[key]; return n; });
+    toast.success(`Description ${ch} du brouillon mise à jour ✅`);
+  };
+  const resetChannelOverride = async (post: any, ch: Channel) => {
+    const next = { ...(post.channel_overrides || {}) };
+    delete next[ch];
+    const { error } = await supabase
+      .from('linkedin_auto_posts')
+      .update({ channel_overrides: next } as any)
+      .eq('id', post.id);
+    if (error) { toast.error('Erreur: ' + error.message); return; }
+    toast.success(`Description ${ch} réinitialisée`);
+    fetchData();
+  };
+  const resetDraftChannelOverride = (slug: string, ch: Channel) => {
+    const next = { ...draftChannelOverrides, [slug]: { ...(draftChannelOverrides[slug] || {}) } };
+    delete next[slug]?.[ch];
+    if (next[slug] && Object.keys(next[slug]).length === 0) delete next[slug];
+    persistDraftOverrides(next);
+    toast.success(`Description ${ch} du brouillon réinitialisée`);
+  };
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -40,7 +126,7 @@ export const LinkedInAutoPoster = () => {
 
     if (configRes.data) {
       setConfigId(configRes.data.id);
-      setWebhookUrl(configRes.data.webhook_url);
+      setWebhookUrl(configRes.data.webhook_url || 'https://hook.eu1.make.com/swhr61xm1p2alnmmfrlif7af4ofd71o7');
       setIsActive(configRes.data.is_active);
       setPostDay(configRes.data.post_day);
       setPostHour(configRes.data.post_hour);
@@ -53,11 +139,11 @@ export const LinkedInAutoPoster = () => {
 
   const saveConfig = async () => {
     if (!webhookUrl.trim()) {
-      toast.error('Veuillez entrer l\'URL du webhook Zapier');
+      toast.error('Veuillez entrer l\'URL du webhook Make.com');
       return;
     }
     setSaving(true);
-    const configData = { webhook_url: webhookUrl, is_active: isActive, post_day: postDay, post_hour: postHour };
+    const configData = { webhook_url: webhookUrl, is_active: isActive, post_day: postDay, post_hour: postHour, provider: 'make', linkedin_enabled: true, facebook_enabled: true } as any;
 
     if (configId) {
       const { error } = await supabase.from('linkedin_config').update(configData).eq('id', configId);
@@ -79,15 +165,28 @@ export const LinkedInAutoPoster = () => {
     const existing = posts.find(p => p.article_slug === selectedSlug && p.status === 'pending');
     if (existing) { toast.error('Cet article est déjà en file d\'attente'); return; }
 
-    const siteUrl = 'https://jemassuremoinscher.fr';
+    const siteUrl = 'https://www.jemassuremoinscher.fr';
+    const articleUrl = `${siteUrl}/blog/${article.slug}`;
+    const imageUrl = resolveArticleImage(article.image);
     const defaultContent = `📰 Nouvel article sur jemassuremoinscher.fr !\n\n${article.title}\n\n👉 Lire l'article complet : ${siteUrl}/blog/${article.slug}\n\n#assurance #comparateur #économies #jemassuremoinscher`;
-
-    const { error } = await supabase.from('linkedin_auto_posts').insert({
+    const articleSummary = (article as any).excerpt || (article as any).description || null;
+    const shortDescription = buildShortDescription(article.title, customContent || articleSummary);
+    const savedOverrides = draftChannelOverrides[article.slug] || {};
+    const payload: any = {
       article_slug: article.slug,
       article_title: article.title,
+      article_url: articleUrl,
+      image_url: imageUrl,
+      short_description: shortDescription,
       post_content: customContent.trim() || defaultContent,
+      provider: 'make',
       status: 'pending',
-    });
+      linkedin_status: 'pending',
+      facebook_status: 'pending',
+    };
+    if (Object.keys(savedOverrides).length > 0) payload.channel_overrides = savedOverrides;
+
+    const { error } = await supabase.from('linkedin_auto_posts').insert(payload);
 
     if (error) toast.error('Erreur: ' + error.message);
     else {
@@ -95,7 +194,64 @@ export const LinkedInAutoPoster = () => {
       setSelectedSlug('');
       setCustomContent('');
       setShowAddForm(false);
+      if (draftChannelOverrides[article.slug]) {
+        const next = { ...draftChannelOverrides };
+        delete next[article.slug];
+        persistDraftOverrides(next);
+      }
       fetchData();
+    }
+  };
+
+  const queueAndPostDraftNow = async (slug: string) => {
+    if (!configId) { toast.error('Configurez d\'abord le webhook'); return; }
+    const article = allArticles.find(a => a.slug === slug);
+    if (!article) return;
+    setPosting(slug);
+    try {
+      // 1. Queue if not already
+      const existing = posts.find(p => p.article_slug === slug);
+      if (!existing) {
+        const siteUrl = 'https://www.jemassuremoinscher.fr';
+        const articleUrl = `${siteUrl}/blog/${article.slug}`;
+        const imageUrl = resolveArticleImage(article.image);
+        const articleSummary = (article as any).excerpt || (article as any).description || null;
+        const shortDescription = buildShortDescription(article.title, articleSummary);
+        const savedOverrides = draftChannelOverrides[article.slug] || {};
+        const payload: any = {
+          article_slug: article.slug,
+          article_title: article.title,
+          article_url: articleUrl,
+          image_url: imageUrl,
+          short_description: shortDescription,
+          provider: 'make',
+          status: 'pending',
+          linkedin_status: 'pending',
+          facebook_status: 'pending',
+        };
+        if (Object.keys(savedOverrides).length > 0) payload.channel_overrides = savedOverrides;
+        const { error: insertErr } = await supabase.from('linkedin_auto_posts').insert(payload);
+        if (insertErr) { toast.error('Erreur file : ' + insertErr.message); setPosting(null); return; }
+        if (draftChannelOverrides[article.slug]) {
+          const next = { ...draftChannelOverrides };
+          delete next[article.slug];
+          persistDraftOverrides(next);
+        }
+      }
+      // 2. Trigger immediately
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) { toast.error('Non authentifié'); setPosting(null); return; }
+      const res = await supabase.functions.invoke('post-to-linkedin', {
+        body: { slug },
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      });
+      if (res.error) toast.error('Erreur: ' + res.error.message);
+      else toast.success(res.data?.message || `"${article.title}" envoyé à Make.com 🎉`);
+      fetchData();
+    } catch (e: any) {
+      toast.error(e.message || 'Erreur d\'envoi');
+    } finally {
+      setPosting(null);
     }
   };
 
@@ -112,7 +268,7 @@ export const LinkedInAutoPoster = () => {
       });
 
       if (res.error) toast.error('Erreur: ' + res.error.message);
-      else toast.success(res.data?.message || 'Article envoyé à LinkedIn ! 🎉');
+      else toast.success(res.data?.message || 'Article envoyé à Make.com pour LinkedIn et Facebook ! 🎉');
       fetchData();
     } catch (e: any) {
       toast.error(e.message || 'Erreur d\'envoi');
@@ -127,12 +283,31 @@ export const LinkedInAutoPoster = () => {
     else { toast.success('Supprimé'); fetchData(); }
   };
 
+  const syncImagesForQueue = async () => {
+    setSyncingImages(true);
+    let updated = 0; let skipped = 0;
+    for (const post of posts) {
+      if (post.image_url) { skipped++; continue; }
+      const article = allArticles.find((a) => a.slug === post.article_slug);
+      const url = resolveArticleImage(article?.image);
+      if (!url) continue;
+      const { error } = await supabase.from('linkedin_auto_posts').update({ image_url: url }).eq('id', post.id);
+      if (!error) updated++;
+    }
+    setSyncingImages(false);
+    toast.success(`${updated} image(s) synchronisée(s) · ${skipped} déjà OK`);
+    fetchData();
+  };
+
+  const queuedSlugs = new Set(posts.map((p) => p.article_slug));
+  const unqueuedDrafts = blogDrafts2026.filter((d) => !queuedSlugs.has(d.slug) && !dismissedDrafts.includes(d.slug));
+
   const postedSlugs = new Set(posts.filter(p => p.status === 'posted').map(p => p.article_slug));
   const availableArticles = allArticles.filter(a => !postedSlugs.has(a.slug));
 
   const statusBadge = (status: string) => {
     switch (status) {
-      case 'posted': return <Badge className="bg-primary text-primary-foreground">Publié</Badge>;
+      case 'posted': return <Badge className="bg-primary text-primary-foreground">Envoyé</Badge>;
       case 'pending': return <Badge variant="outline" className="border-accent text-accent-foreground">En attente</Badge>;
       case 'failed': return <Badge variant="destructive">Échoué</Badge>;
       default: return <Badge variant="secondary">{status}</Badge>;
@@ -144,26 +319,26 @@ export const LinkedInAutoPoster = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <Linkedin className="h-6 w-6 text-[#0A66C2]" />
-        <h2 className="text-2xl font-bold">Publication LinkedIn automatique</h2>
+        <Share2 className="h-6 w-6 text-primary" />
+        <h2 className="text-2xl font-bold">Publications sociales automatiques</h2>
       </div>
 
       {/* Config */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2"><Settings className="h-5 w-5" /> Configuration</CardTitle>
-          <CardDescription>Connectez votre Zap LinkedIn via le webhook Zapier</CardDescription>
+          <CardTitle className="flex items-center gap-2"><Settings className="h-5 w-5" /> Configuration Make.com</CardTitle>
+          <CardDescription>Envoi automatique vers Make.com pour publier ou monitorer LinkedIn et Facebook.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <label className="text-sm font-medium mb-1 block">URL Webhook Zapier</label>
+            <label className="text-sm font-medium mb-1 block">URL Webhook Make.com</label>
             <Input
               value={webhookUrl}
               onChange={e => setWebhookUrl(e.target.value)}
-              placeholder="https://hooks.zapier.com/hooks/catch/..."
+              placeholder="https://hook.eu1.make.com/..."
               type="url"
             />
-            <p className="text-xs text-muted-foreground mt-1">Créez un Zap avec un déclencheur Webhook → action LinkedIn "Create Share Update"</p>
+            <p className="text-xs text-muted-foreground mt-1">Payload envoyé : titre, description courte, URL de l'article, URL d'image si disponible, slug et canaux LinkedIn/Facebook.</p>
           </div>
           <div className="flex flex-wrap items-center gap-6">
             <div className="flex items-center gap-2">
@@ -236,69 +411,6 @@ export const LinkedInAutoPoster = () => {
             </Button>
           </CardContent>
         )}
-      </Card>
-
-      {/* History */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span className="flex items-center gap-2"><History className="h-5 w-5" /> Historique des publications</span>
-            <Button variant="ghost" size="icon" onClick={fetchData}><RefreshCw className="h-4 w-4" /></Button>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          {posts.length === 0 ? (
-            <p className="text-muted-foreground text-center py-8">Aucune publication planifiée</p>
-          ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Article</TableHead>
-                  <TableHead>Statut</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead className="text-right">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {posts.map(post => (
-                  <TableRow key={post.id}>
-                    <TableCell className="font-medium max-w-xs truncate">{post.article_title}</TableCell>
-                    <TableCell>
-                      {statusBadge(post.status)}
-                      {post.error_message && <p className="text-xs text-destructive mt-1">{post.error_message}</p>}
-                    </TableCell>
-                    <TableCell className="text-sm text-muted-foreground">
-                      {post.posted_at
-                        ? new Date(post.posted_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-                        : new Date(post.created_at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }) + ' (planifié)'}
-                    </TableCell>
-                    <TableCell className="text-right space-x-2">
-                      {post.status === 'pending' && (
-                        <Button
-                          size="sm"
-                          variant="default"
-                          onClick={() => triggerNow(post.article_slug)}
-                          disabled={posting === post.article_slug}
-                        >
-                          {posting === post.article_slug ? <Loader2 className="h-3 w-3 animate-spin mr-1" /> : <Send className="h-3 w-3 mr-1" />}
-                          Publier
-                        </Button>
-                      )}
-                      {post.status === 'failed' && (
-                        <Button size="sm" variant="outline" onClick={() => triggerNow(post.article_slug)} disabled={posting === post.article_slug}>
-                          <RefreshCw className="h-3 w-3 mr-1" /> Réessayer
-                        </Button>
-                      )}
-                      <Button size="sm" variant="ghost" onClick={() => deletePost(post.id)}>
-                        <Trash2 className="h-3 w-3" />
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          )}
-        </CardContent>
       </Card>
     </div>
   );

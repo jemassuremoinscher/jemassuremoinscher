@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, Trophy, UserCog, TrendingUp, Menu, Sparkles, Search, Bell, BellOff, Linkedin, ShieldCheck } from 'lucide-react';
+import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, UserCog, TrendingUp, Sparkles, Search, Bell, BellOff, Share2, ShieldCheck, FileText, Settings, ChevronDown, Wallet } from 'lucide-react';
 import { ManualLeadForm } from '@/components/admin/ManualLeadForm';
 import arthurWaving from '@/assets/mascotte/arthur-waving.png';
 import { supabase } from '@/integrations/supabase/client';
@@ -25,14 +25,22 @@ import { RedistributionLog } from '@/components/admin/RedistributionLog';
 import { RedistributionButton } from '@/components/admin/RedistributionButton';
 import { RedistributionHistory } from '@/components/admin/RedistributionHistory';
 import { GoogleAnalyticsDashboard } from '@/components/admin/GoogleAnalyticsDashboard';
+import FunnelAnalytics from '@/components/admin/FunnelAnalytics';
+import MicrosoftClarityWidget from '@/components/admin/MicrosoftClarityWidget';
 import { SEOSuggestions } from '@/components/admin/SEOSuggestions';
 import SERPPreview from '@/components/admin/SERPPreview';
 import { GeoScoreCard } from '@/components/admin/GeoScoreCard';
 import { LinkedInAutoPoster } from '@/components/admin/LinkedInAutoPoster';
+import { DraftArticlesPublisher } from '@/components/admin/DraftArticlesPublisher';
+
+import { FinancePanel } from '@/components/admin/FinancePanel';
+
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useLeadNotifications } from '@/hooks/useLeadNotifications';
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Admin = () => {
+  const { t } = useLanguage();
   const { user, isAdmin, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const [quotes, setQuotes] = useState<any[]>([]);
@@ -209,19 +217,13 @@ const Admin = () => {
 
   const categories = [
     {
-      label: 'Dashboard',
-      tabs: [
-        { value: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-      ],
-    },
-    {
       label: 'Marketing',
       tabs: [
         { value: 'analytics', label: 'Analytics', icon: TrendingUp },
         { value: 'seo', label: 'SEO', icon: Sparkles },
         { value: 'geo', label: 'GEO', icon: ShieldCheck },
+        { value: 'articles', label: 'Contenu', icon: FileText },
         { value: 'serp', label: 'SERP', icon: Search },
-        { value: 'linkedin', label: 'LinkedIn', icon: Linkedin },
       ],
     },
     {
@@ -231,6 +233,12 @@ const Admin = () => {
         { value: 'supervision', label: 'Supervision', icon: UserCog },
         { value: 'agents', label: 'Commerciaux', icon: Users },
         { value: 'trash', label: 'Corbeille', icon: Trash2 },
+      ],
+    },
+    {
+      label: 'Finance',
+      tabs: [
+        { value: 'finance', label: 'Finance', icon: Wallet },
       ],
     },
   ];
@@ -245,19 +253,24 @@ const Admin = () => {
       </Helmet>
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-card sticky top-0 z-50 shadow-sm">
+      <header className="border-b border-primary/30 bg-primary text-primary-foreground sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
           <div className="flex flex-col gap-3 sm:gap-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+              <button
+                type="button"
+                onClick={() => setActiveTab('dashboard')}
+                className="flex items-center gap-2 sm:gap-3 min-w-0 text-left rounded-md hover:bg-primary-foreground/10 -mx-1 px-1 py-0.5 transition-colors"
+                aria-label="Retour au dashboard"
+              >
                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden shrink-0 bg-primary ring-1 ring-primary/40 flex items-center justify-center shadow-sm">
                   <img src={arthurWaving} alt="Arthur mascotte" className="w-full h-full object-contain p-0.5" width={40} height={40} loading="lazy" decoding="async" />
                 </div>
                 <div className="min-w-0">
                   <h1 className="text-lg sm:text-2xl font-bold truncate">Dashboard Admin</h1>
-                  <p className="text-xs sm:text-sm text-muted-foreground truncate">{user?.email}</p>
+                  <p className="text-xs sm:text-sm text-primary-foreground/80 truncate">{user?.email}</p>
                 </div>
-              </div>
+              </button>
               
               <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                 <Button
@@ -266,7 +279,7 @@ const Admin = () => {
                   onClick={toggleNotifications}
                   aria-label={notificationsEnabled ? "Désactiver les notifications" : "Activer les notifications"}
                   title={notificationsEnabled ? "Notifications activées" : "Activer les notifications"}
-                  className={notificationsEnabled ? "bg-green-600 hover:bg-green-700 text-white" : ""}
+                  className={notificationsEnabled ? "bg-accent text-accent-foreground hover:bg-accent/90" : "border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground"}
                 >
                   {notificationsEnabled ? <Bell className="h-4 w-4" /> : <BellOff className="h-4 w-4" />}
                 </Button>
@@ -275,7 +288,7 @@ const Admin = () => {
                   size="sm"
                   onClick={fetchData}
                   disabled={isRefreshing}
-                  className="hidden sm:flex"
+                  className="hidden sm:flex border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground"
                 >
                   <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
                   Actualiser
@@ -285,8 +298,8 @@ const Admin = () => {
                   size="icon"
                   onClick={fetchData}
                   disabled={isRefreshing}
-                  className="sm:hidden"
-                  aria-label="Actualiser les données"
+                  className="sm:hidden border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground"
+                  aria-label={t("a11y.common.refreshData")}
                 >
                   <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
                 </Button>
@@ -294,7 +307,7 @@ const Admin = () => {
                   variant="ghost"
                   size="sm"
                   onClick={() => navigate('/')}
-                  className="hidden md:flex"
+                  className="hidden md:flex text-primary-foreground hover:bg-primary-foreground/15 hover:text-primary-foreground"
                 >
                   Voir le site
                 </Button>
@@ -312,7 +325,7 @@ const Admin = () => {
                   size="icon"
                   onClick={handleSignOut}
                   className="sm:hidden"
-                  aria-label="Déconnexion"
+                  aria-label={t("a11y.common.signOut")}
                 >
                   <LogOut className="h-4 w-4" />
                 </Button>
@@ -333,23 +346,23 @@ const Admin = () => {
       {/* Main Content */}
       <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          {/* Tabs - single row with category separators */}
-          <TabsList className="flex w-full overflow-x-auto no-scrollbar gap-1 p-1.5 mb-6 bg-primary/10 border border-primary/20 rounded-lg">
-            {categories.map((cat, ci) => (
-              <div key={cat.label} className="flex items-center shrink-0">
-                {ci > 0 && <div className="w-px h-6 bg-primary/30 mx-1.5 shrink-0" />}
-                <span className="text-[10px] font-semibold text-primary/60 uppercase tracking-wider px-2 shrink-0 hidden sm:inline">{cat.label}</span>
-                {cat.tabs.map(tab => (
-                  <TabsTrigger
-                    key={tab.value}
-                    value={tab.value}
-                    className="flex items-center gap-1.5 shrink-0 text-xs sm:text-sm px-3 py-2 text-primary/70 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md hover:bg-primary/20 transition-colors rounded-md"
-                  >
-                    <tab.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                    <span className="hidden sm:inline">{tab.label}</span>
-                    <span className="sm:hidden">{tab.label.length > 6 ? tab.label.slice(0, 6) + '.' : tab.label}</span>
-                  </TabsTrigger>
-                ))}
+          {/* Tabs - responsive groups for mobile and tablet */}
+          <TabsList className="grid h-auto w-full grid-cols-1 items-stretch gap-2 p-2 mb-6 bg-primary/10 border border-primary/20 rounded-lg sm:grid-cols-2 xl:grid-cols-3">
+            {categories.map((cat) => (
+              <div key={cat.label} className="min-w-0 rounded-md border border-primary/10 bg-background/70 p-1.5">
+                <span className="block px-2 pb-1 text-[10px] font-semibold text-primary/70 uppercase tracking-wider">{cat.label}</span>
+                <div className="grid grid-cols-2 gap-1 sm:grid-cols-3 lg:grid-cols-2 2xl:grid-cols-4">
+                  {cat.tabs.map(tab => (
+                    <TabsTrigger
+                      key={tab.value}
+                      value={tab.value}
+                      className="min-w-0 flex items-center gap-1.5 text-xs sm:text-sm px-2 py-2 text-primary/75 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md hover:bg-primary/20 transition-colors rounded-md"
+                    >
+                      <tab.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
+                      <span className="truncate">{tab.label}</span>
+                    </TabsTrigger>
+                  ))}
+                </div>
               </div>
             ))}
           </TabsList>
@@ -379,12 +392,32 @@ const Admin = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="analytics">
+          <TabsContent value="analytics" className="space-y-6">
+            <FunnelAnalytics />
             <GoogleAnalyticsDashboard />
+            <MicrosoftClarityWidget />
           </TabsContent>
 
           <TabsContent value="seo">
-            <SEOSuggestions />
+            <SEOSuggestions mode="seo" />
+          </TabsContent>
+
+          <TabsContent value="articles" className="space-y-6">
+            <SEOSuggestions mode="articles" />
+            <DraftArticlesPublisher />
+            
+            <details className="rounded-lg border border-border bg-card group">
+              <summary className="cursor-pointer list-none flex items-center justify-between gap-2 p-4 hover:bg-muted/50 transition-colors">
+                <span className="flex items-center gap-2 font-semibold">
+                  <Settings className="h-4 w-4 text-primary" />
+                  Réglages diffusion (Make.com, file d'attente avancée)
+                </span>
+                <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+              </summary>
+              <div className="border-t border-border p-4">
+                <LinkedInAutoPoster />
+              </div>
+            </details>
           </TabsContent>
 
           <TabsContent value="geo">
@@ -393,10 +426,6 @@ const Admin = () => {
 
           <TabsContent value="serp">
             <SERPPreview />
-          </TabsContent>
-
-          <TabsContent value="linkedin">
-            <LinkedInAutoPoster />
           </TabsContent>
 
           <TabsContent value="supervision">
@@ -430,6 +459,10 @@ const Admin = () => {
 
           <TabsContent value="trash">
             <TrashBin />
+          </TabsContent>
+
+          <TabsContent value="finance">
+            <FinancePanel />
           </TabsContent>
         </Tabs>
       </main>

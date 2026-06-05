@@ -15,6 +15,7 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { useHoneypot } from "@/hooks/useHoneypot";
 import { trackGoogleAdsConversion } from "@/utils/googleAdsTracking";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 const callbackSchema = z.object({
   fullName: z.string().trim().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
@@ -47,10 +48,8 @@ export const CallbackForm = () => {
         preferred_time: data.preferredTime, message: data.message || null, status: "pending",
       });
       if (error) throw error;
-      await supabase.functions.invoke('send-quote-email', {
-        body: { name: data.fullName, email: data.email, phone: data.phone, type: 'Demande de rappel',
-          details: { source: 'callback_form', preferredTime: data.preferredTime, message: data.message || '' }, estimatedPrice: 0 },
-      }).catch(err => console.error('Email notification error:', err));
+      await invokeSendQuoteEmail({ name: data.fullName, email: data.email, phone: data.phone, type: 'Demande de rappel',
+          details: { source: 'callback_form', preferredTime: data.preferredTime, message: data.message || '' }, estimatedPrice: 0 },).catch(err => console.error('Email notification error:', err));
       setIsSuccess(true);
       toast.success(t('callbackForm.successTitle'), { description: t('callbackForm.successDesc') });
       trackConversion('callback_request');
@@ -115,7 +114,7 @@ export const CallbackForm = () => {
                   <Textarea placeholder={t('callbackForm.messagePlaceholder')} className="min-h-[100px]" {...field} />
                 </FormControl><FormMessage /></FormItem>
               )} />
-              <Button type="submit" className="w-full" size="lg" disabled={isSubmitting} aria-label="Demander un rappel téléphonique gratuit">
+              <Button type="submit" className="w-full" size="lg" disabled={isSubmitting} aria-label={t("a11y.callback.submit")}>
                 {isSubmitting ? (<><Loader2 className="mr-2 h-5 w-5 animate-spin" />{t('callbackForm.sending')}</>) : (<><Phone className="mr-2 h-5 w-5" />{t('callbackForm.submit')}</>)}
               </Button>
               <p className="text-xs text-muted-foreground text-center">{t('callbackForm.required')}</p>

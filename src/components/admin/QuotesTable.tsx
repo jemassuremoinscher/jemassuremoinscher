@@ -6,13 +6,45 @@ import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Checkbox } from '@/components/ui/checkbox';
-import { FileText, Mail, Phone, MapPin, Calendar, CheckCircle, XCircle, Download, Trash2, UserCheck } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { FileText, Mail, Phone, MapPin, Calendar, CheckCircle, XCircle, Download, Trash2, UserCheck, Eye } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { exportToCSV, formatQuotesForExport } from '@/utils/exportCSV';
 import { INSURANCE_TYPE_LABELS, normalizeInsuranceType } from '@/utils/insuranceTypeNormalizer';
+
+const FIELD_LABELS: Record<string, string> = {
+  postalCode: 'Code postal', city: 'Ville', address: 'Adresse',
+  birthDate: 'Date de naissance', age: 'Âge', profession: 'Profession',
+  maritalStatus: 'Situation familiale', currentInsurer: 'Assureur actuel',
+  contractEndDate: 'Échéance du contrat', desiredStartDate: 'Date de début souhaitée',
+  monthlyBudget: 'Budget mensuel',
+  vehicleBrand: 'Marque', vehicleModel: 'Modèle', vehicleYear: 'Année',
+  vehicleVersion: 'Version', fuelType: 'Carburant', registrationDate: 'Mise en circulation',
+  licensePlate: 'Immatriculation', vehicleUsage: 'Usage du véhicule', annualKm: 'Km/an',
+  parkingType: 'Stationnement', licenseDate: "Date d'obtention du permis",
+  bonusMalus: 'Bonus-Malus', claimsLast3Years: 'Sinistres (3 ans)', coverageType: 'Formule',
+  housingType: 'Type de logement', surface: 'Surface (m²)', rooms: 'Nombre de pièces',
+  occupancyType: 'Statut occupant', constructionYear: 'Année de construction',
+  beneficiaries: 'Bénéficiaires', smokingStatus: 'Fumeur', coverageLevel: 'Niveau de couverture',
+  companyName: 'Entreprise', legalStatus: 'Statut juridique', siret: 'SIRET',
+  turnover: "Chiffre d'affaires", activity: 'Activité', employees: 'Effectif',
+  source: 'Source',
+};
+
+const formatFieldValue = (value: any): string => {
+  if (value === null || value === undefined || value === '') return '—';
+  if (typeof value === 'boolean') return value ? 'Oui' : 'Non';
+  if (Array.isArray(value)) return value.join(', ');
+  if (typeof value === 'object') return JSON.stringify(value, null, 2);
+  return String(value);
+};
+
+const humanizeKey = (key: string): string =>
+  FIELD_LABELS[key] ||
+  key.replace(/_/g, ' ').replace(/([A-Z])/g, ' $1').replace(/^./, (s) => s.toUpperCase()).trim();
 
 interface Quote {
   id: string;
@@ -35,6 +67,7 @@ interface QuotesTableProps {
 export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProps) => {
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [selectedQuote, setSelectedQuote] = useState<Quote | null>(null);
 
   const { data: agents } = useQuery({
     queryKey: ['sales-agents-list'],
@@ -363,6 +396,15 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                       <Button
                         size="sm"
                         variant="ghost"
+                        onClick={() => setSelectedQuote(quote)}
+                        title="Voir les détails"
+                        className="h-8 w-8 p-0"
+                      >
+                        <Eye className="h-3.5 w-3.5" />
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="ghost"
                         onClick={() => deleteQuote(quote.id, quote.full_name)}
                         title="Supprimer"
                         className="h-8 w-8 p-0"
@@ -377,6 +419,68 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
           </TableBody>
         </Table>
       </div>
+
+      <Dialog open={!!selectedQuote} onOpenChange={(open) => !open && setSelectedQuote(null)}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>
+              {selectedQuote?.full_name} — {selectedQuote && getInsuranceTypeLabel(selectedQuote.insurance_type)}
+            </DialogTitle>
+          </DialogHeader>
+          {selectedQuote && (
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                <div className="flex items-center gap-2">
+                  <Mail className="h-4 w-4 text-muted-foreground" />
+                  <a href={`mailto:${selectedQuote.email}`} className="hover:underline">{selectedQuote.email}</a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-muted-foreground" />
+                  <a href={`tel:${selectedQuote.phone}`} className="hover:underline">{selectedQuote.phone}</a>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-muted-foreground" />
+                  {format(new Date(selectedQuote.created_at), 'dd MMM yyyy à HH:mm', { locale: fr })}
+                </div>
+                <div>{getStatusBadge(selectedQuote.status)}</div>
+              </div>
+
+              {selectedQuote.quote_data && Object.keys(selectedQuote.quote_data).length > 0 ? (
+                <div className="rounded-lg border bg-muted/30 p-4">
+                  <p className="text-sm font-semibold mb-3">
+                    Informations du formulaire ({Object.keys(selectedQuote.quote_data).filter(k => k !== 'utm_data').length} champs)
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 text-sm">
+                    {Object.entries(selectedQuote.quote_data).map(([key, value]) => {
+                      if (key === 'utm_data' || value === null || value === undefined || value === '') return null;
+                      const formatted = formatFieldValue(value);
+                      const isLong = formatted.length > 60 || formatted.includes('\n');
+                      return (
+                        <div key={key} className={`flex flex-col gap-0.5 ${isLong ? 'md:col-span-2' : ''}`}>
+                          <span className="text-xs text-muted-foreground">{humanizeKey(key)}</span>
+                          <span className="font-medium break-words whitespace-pre-wrap">{formatted}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  {selectedQuote.quote_data.utm_data && (
+                    <details className="mt-3">
+                      <summary className="text-xs text-muted-foreground cursor-pointer hover:text-foreground">
+                        Données de tracking (UTM)
+                      </summary>
+                      <pre className="mt-2 text-xs bg-background p-2 rounded overflow-x-auto">
+                        {JSON.stringify(selectedQuote.quote_data.utm_data, null, 2)}
+                      </pre>
+                    </details>
+                  )}
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground italic">Aucune information additionnelle.</p>
+              )}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 };

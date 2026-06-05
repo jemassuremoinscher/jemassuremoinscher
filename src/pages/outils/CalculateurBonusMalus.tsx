@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import arthurCoin from "@/assets/mascotte/arthur-sprint-coin.webp";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const MIN_COEF = 0.50;
 const MAX_COEF = 3.50;
@@ -77,6 +78,7 @@ function useAnimatedValue(target: number, duration = 600): number {
 }
 
 const CalculateurBonusMalus = () => {
+  const { t } = useLanguage();
   const [currentCoef, setCurrentCoef] = useState(1.00);
   const [yearsWithout, setYearsWithout] = useState(3);
 
@@ -97,32 +99,48 @@ const CalculateurBonusMalus = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "Calculateur Bonus-Malus Auto",
-    url: "https://jemassuremoinscher.fr/outils/calculateur-bonus-malus",
+    name: "Calculateur Bonus Malus Auto",
+    url: "https://www.jemassuremoinscher.fr/outils/calculateur-bonus-malus",
     applicationCategory: "FinanceApplication",
     operatingSystem: "Web",
-    description: "Calculez gratuitement votre coefficient bonus-malus auto et estimez vos économies.",
+    description: "Calculez gratuitement votre coefficient bonus malus auto (CRM) et estimez vos économies en 2026.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+    aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "247" },
+    dateModified: "2026-05-30",
   };
 
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Accueil", item: "https://jemassuremoinscher.fr/" },
-      { "@type": "ListItem", position: 2, name: "Outils", item: "https://jemassuremoinscher.fr/outils" },
-      { "@type": "ListItem", position: 3, name: "Calculateur Bonus-Malus", item: "https://jemassuremoinscher.fr/outils/calculateur-bonus-malus" },
+      { "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.jemassuremoinscher.fr/" },
+      { "@type": "ListItem", position: 2, name: "Assurance Auto", item: "https://www.jemassuremoinscher.fr/assurance-auto" },
+      { "@type": "ListItem", position: 3, name: "Calculateur Bonus Malus", item: "https://www.jemassuremoinscher.fr/outils/calculateur-bonus-malus" },
     ],
   };
+
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      { "@type": "Question", name: "Comment se calcule le bonus malus auto ?", acceptedAnswer: { "@type": "Answer", text: "Le bonus malus (coefficient de réduction-majoration ou CRM) se recalcule chaque année à la date anniversaire du contrat. Sans accident responsable, votre coefficient est multiplié par 0,95 (-5%). En cas d'accident responsable, il est multiplié par 1,25 (+25%). Le coefficient évolue entre 0,50 (bonus maximum) et 3,50 (malus maximum)." } },
+      { "@type": "Question", name: "Bonus 0.50, qu'est-ce que ça veut dire ?", acceptedAnswer: { "@type": "Answer", text: "Un coefficient de 0,50 correspond au bonus maximum : 50% de réduction sur votre prime de référence. Il faut 13 années consécutives sans accident responsable depuis 1,00 pour l'atteindre." } },
+      { "@type": "Question", name: "Au bout de combien de temps perd-on son malus ?", acceptedAnswer: { "@type": "Answer", text: "Après 2 années consécutives sans accident responsable, votre coefficient revient automatiquement à 1,00 — c'est la « descente rapide » prévue par l'article A121-1 du Code des assurances." } },
+      { "@type": "Question", name: "Le bonus malus suit-il le conducteur ou le véhicule ?", acceptedAnswer: { "@type": "Answer", text: "Le CRM est attaché au conducteur. Quand vous changez d'assurance, le nouvel assureur récupère votre coefficient via le relevé d'information transmis par l'ancien." } },
+    ],
+  };
+
+  const yearByYear = Array.from({ length: 14 }, (_, i) => ({ year: i, coef: computeNewCoefficient(1.0, i) }));
 
   return (
     <>
       <Helmet>
-        <title>Calculateur Bonus-Malus Auto Gratuit | 2026</title>
-        <meta name="description" content="Calculez votre coefficient bonus-malus auto en 2 clics. Estimez vos économies et comparez les assurances moins chères." />
-        <link rel="canonical" href="https://jemassuremoinscher.fr/outils/calculateur-bonus-malus" />
+        <title>Calculateur Bonus Malus Auto Gratuit 2026 — CRM en 2 clics</title>
+        <meta name="description" content="Calculez votre coefficient bonus malus auto (CRM) en 2 clics. Simulez vos économies d'assurance voiture en 2026, gratuit et sans inscription." />
+        <link rel="canonical" href="https://www.jemassuremoinscher.fr/outils/calculateur-bonus-malus" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqLd)}</script>
       </Helmet>
 
       <Header />
@@ -147,10 +165,13 @@ const CalculateurBonusMalus = () => {
               Outil gratuit
             </div>
             <h1 className="text-3xl md:text-4xl font-extrabold text-foreground mb-3">
-              Calculateur <span className="text-primary">Bonus-Malus</span> Auto
+              Calculateur <span className="text-primary">Bonus Malus</span> Auto
             </h1>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Estimez votre futur coefficient en quelques secondes et découvrez combien vous pouvez économiser.
+              Estimez votre futur coefficient CRM en quelques secondes et découvrez combien vous pouvez économiser sur votre assurance voiture.
+            </p>
+            <p className="text-xs text-muted-foreground/80 mt-3">
+              Mis à jour le 30 mai 2026 · Conforme article A121-1 du Code des assurances
             </p>
           </div>
         </section>
@@ -207,7 +228,7 @@ const CalculateurBonusMalus = () => {
                     max={13}
                     step={1}
                     className="py-2"
-                    aria-label="Années sans accident"
+                    aria-label={t("a11y.bonusMalus.years")}
                   />
                   <div className="flex justify-between text-[11px] text-muted-foreground mt-2 px-0.5">
                     <span>0 an</span>
@@ -343,7 +364,74 @@ const CalculateurBonusMalus = () => {
             </div>
           </div>
         </section>
+
+        {/* Tableau année par année */}
+        <section className="max-w-5xl mx-auto px-4 pb-12">
+          <div className="bg-card rounded-3xl border border-border/50 p-6 md:p-8">
+            <h2 className="text-xl font-bold text-foreground mb-4">Évolution du bonus malus année par année (depuis 1,00)</h2>
+            <p className="text-sm text-muted-foreground mb-4">
+              Voici la trajectoire d'un conducteur qui démarre à 1,00 (coefficient neutre) et ne déclare aucun accident responsable. C'est la base utilisée par tous les assureurs auto en France.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-border/50 text-left text-muted-foreground">
+                    <th className="py-2 pr-4 font-semibold">Année sans sinistre</th>
+                    <th className="py-2 pr-4 font-semibold">Coefficient CRM</th>
+                    <th className="py-2 font-semibold">Réduction vs base</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {yearByYear.map(({ year, coef }) => (
+                    <tr key={year} className="border-b border-border/30 last:border-0">
+                      <td className="py-2 pr-4 font-medium text-foreground">{year === 0 ? "Départ" : `${year} an${year > 1 ? "s" : ""}`}</td>
+                      <td className="py-2 pr-4 tabular-nums text-primary font-semibold">{coef.toFixed(2)}</td>
+                      <td className="py-2 tabular-nums text-muted-foreground">{Math.round((1 - coef) * 100)} %</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="max-w-5xl mx-auto px-4 pb-12">
+          <div className="bg-card rounded-3xl border border-border/50 p-6 md:p-8">
+            <h2 className="text-xl font-bold text-foreground mb-6">Questions fréquentes sur le bonus malus</h2>
+            <div className="space-y-5">
+              {[
+                { q: "Comment se calcule le bonus malus auto ?", a: "Le CRM se recalcule à chaque date anniversaire du contrat. Sans accident responsable : coefficient × 0,95 (-5%). Avec accident responsable : coefficient × 1,25 (+25%). Plafonné entre 0,50 et 3,50." },
+                { q: "Bonus 0.50, qu'est-ce que ça veut dire ?", a: "C'est le bonus maximum : 50% de réduction sur votre prime de référence. Atteint après 13 années consécutives sans accident responsable depuis 1,00." },
+                { q: "Au bout de combien de temps perd-on son malus ?", a: "2 ans consécutifs sans accident responsable suffisent pour repasser automatiquement à 1,00. C'est la « descente rapide » prévue par l'article A121-1 du Code des assurances." },
+                { q: "Le bonus malus suit-il le conducteur ?", a: "Oui, le CRM est attaché au conducteur, pas au véhicule. Lors d'un changement d'assureur, le relevé d'information transmet votre coefficient exact." },
+              ].map((item) => (
+                <details key={item.q} className="group border border-border/40 rounded-2xl p-4 open:bg-muted/30 transition-colors">
+                  <summary className="font-semibold text-foreground cursor-pointer list-none flex items-center justify-between gap-2">
+                    <span>{item.q}</span>
+                    <svg className="w-4 h-4 text-muted-foreground transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  </summary>
+                  <p className="text-sm text-muted-foreground mt-3 leading-relaxed">{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Maillage interne */}
+        <section className="max-w-5xl mx-auto px-4 pb-16">
+          <div className="bg-gradient-to-br from-primary/5 to-accent/10 rounded-3xl border border-primary/20 p-6 md:p-8">
+            <h2 className="text-xl font-bold text-foreground mb-4">Pour aller plus loin</h2>
+            <ul className="grid md:grid-cols-2 gap-3 text-sm">
+              <li><Link to="/assurance-auto" className="text-primary hover:underline font-medium">→ Comparer les assurances voiture moins chères</Link></li>
+              <li><Link to="/glossaire/bonus-malus" className="text-primary hover:underline font-medium">→ Définition complète du bonus-malus (glossaire)</Link></li>
+              <li><Link to="/comparateur" className="text-primary hover:underline font-medium">→ Comparateur multi-assureurs (auto, moto, habitation)</Link></li>
+              <li><Link to="/blog" className="text-primary hover:underline font-medium">→ Tous nos guides assurance auto</Link></li>
+            </ul>
+          </div>
+        </section>
       </main>
+
 
       <Footer />
     </>

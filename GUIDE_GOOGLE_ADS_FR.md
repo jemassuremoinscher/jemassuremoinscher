@@ -26,7 +26,7 @@ https://www.jemassuremoinscher.fr/landing/moto
 Assurance Animaux
 https://www.jemassuremoinscher.fr/landing/animaux
 
-Assurance Prêt
+Assurance Emprunteur
 https://www.jemassuremoinscher.fr/landing/pret
 
 Assurance Vie
@@ -76,7 +76,7 @@ https://www.jemassuremoinscher.fr/landing/sante?utm_source=google&utm_medium=cpc
 
 ### 2. Optimisations Landing Pages
 - ✅ Formulaire ultra-simplifié (3 champs : nom, email, téléphone)
-- ✅ Preuves sociales (15 000+ clients, note 4.8/5)
+- ✅ Preuves sociales (15 000+ clients, note 4.9/5)
 - ✅ Barre d'urgence en haut de page
 - ✅ Témoignages clients
 - ✅ Badges de confiance (SSL, RGPD, Service Premium)
@@ -136,7 +136,7 @@ Titre 3 : Économisez jusqu'à 600€/an
 
 Description 1 : Comparez 30+ assureurs. Expert dédié vous rappelle sous 2h. Sans engagement. 100% gratuit.
 
-Description 2 : ✓ Gratuit ✓ Rapide ✓ 15 000 clients satisfaits ✓ Note 4.8/5 ⭐ Offre limitée -40% !
+Description 2 : ✓ Gratuit ✓ Rapide ✓ 15 000 clients satisfaits ✓ Note 4.9/5 ⭐ Offre limitée -40% !
 
 URL finale : https://www.jemassuremoinscher.fr/landing/auto?utm_source=google&utm_medium=cpc&utm_campaign=auto_2025
 

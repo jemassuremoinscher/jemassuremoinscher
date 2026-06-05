@@ -16,16 +16,25 @@ serve(async (req) => {
     const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Check if this is a manual trigger (with auth) or cron trigger
+    // Require auth: either CRON_SECRET (scheduled) or admin JWT (manual)
     const authHeader = req.headers.get("Authorization");
+    const cronSecret = Deno.env.get("CRON_SECRET");
     let isManual = false;
     let manualSlug: string | null = null;
 
-    if (authHeader && !authHeader.includes(Deno.env.get("SUPABASE_ANON_KEY")!)) {
+    if (!authHeader) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    const token = authHeader.replace("Bearer ", "");
+    const isCron = !!cronSecret && token === cronSecret;
+
+    if (!isCron) {
       // Manual trigger from admin - verify admin role
-      const { data: { user }, error: authError } = await supabase.auth.getUser(
-        authHeader.replace("Bearer ", "")
-      );
+      const { data: { user }, error: authError } = await supabase.auth.getUser(token);
       if (authError || !user) {
         return new Response(JSON.stringify({ error: "Non autorisé" }), {
           status: 401,
@@ -46,6 +55,8 @@ serve(async (req) => {
       try {
         const body = await req.json();
         manualSlug = body?.slug || null;
+        (globalThis as any).__manualHeadlines = body?.headlines || null;
+        (globalThis as any).__manualChannels = body?.channels || null;
       } catch {
         // No body = post next unposted article
       }
@@ -85,7 +96,29 @@ serve(async (req) => {
     let targetSlug = manualSlug;
     let targetTitle = "";
     let targetDescription = "";
+    let targetShortDescription = "";
     let targetCategory = "";
+    let targetArticleUrl = "";
+    let targetImageUrl: string | null = null;
+
+    if (targetSlug) {
+      const { data: queuedPost } = await supabase
+        .from("linkedin_auto_posts")
+        .select("*")
+        .eq("article_slug", targetSlug)
+        .in("status", ["pending", "failed"])
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+
+      if (queuedPost) {
+        targetTitle = queuedPost.article_title || "";
+        targetDescription = queuedPost.post_content || "";
+        targetShortDescription = queuedPost.short_description || "";
+        targetArticleUrl = queuedPost.article_url || "";
+        targetImageUrl = queuedPost.image_url || null;
+      }
+    }
 
     if (!targetSlug) {
       // Get articles list from the blog data - we need to call the app
@@ -95,13 +128,16 @@ serve(async (req) => {
       
       // For cron jobs, we'll use a different approach:
       // The admin UI will queue articles for posting
-      const { data: pendingPosts } = await supabase
+      const { data: pendingRows } = await supabase
         .from("linkedin_auto_posts")
         .select("*")
         .eq("status", "pending")
+        .not("article_slug", "ilike", "%test%")
         .order("created_at", { ascending: true })
-        .limit(1)
-        .maybeSingle();
+        .limit(10);
+
+      const nowIso = new Date().toISOString();
+      const pendingPosts = (pendingRows || []).find((post: any) => !post.scheduled_at || post.scheduled_at <= nowIso) || null;
 
       if (!pendingPosts) {
         return new Response(
@@ -112,48 +148,81 @@ serve(async (req) => {
 
       targetSlug = pendingPosts.article_slug;
       targetTitle = pendingPosts.article_title;
+      targetArticleUrl = pendingPosts.article_url || "";
+      targetImageUrl = pendingPosts.image_url || null;
+      targetShortDescription = pendingPosts.short_description || "";
       // Use stored content or generate default
       targetDescription = pendingPosts.post_content || "";
     }
 
-    // Build LinkedIn post content
+    const buildPunchyShortDescription = (title: string, fallback: string) => {
+      const base = (title || fallback || "votre assurance")
+        .replace(/^#+\s*/, "")
+        .replace(/\s*[:|–-]\s*(guide|comparatif|définition|conseils).*$/i, "")
+        .trim()
+        .slice(0, 95);
+      return `🚨 Et si ${base.toLowerCase() || "votre assurance"} vous coûtait plus cher que prévu ? La réponse ici ⬇️`;
+    };
+
+    const normalizeShortDescription = (raw: string, title: string, fallback: string) => {
+      const cleaned = raw.replace(/["“”]/g, "").replace(/\s+/g, " ").trim();
+      const sentenceCount = cleaned.split(/[.!?…]+\s+/).filter(Boolean).length;
+      const startsPunchy = /^[🚨⚡️🔥💥🛑]/.test(cleaned);
+      const hasCta = /(ici|erreur|réponse|découvrez|cliquez|⬇️)/i.test(cleaned);
+      if (!startsPunchy || !hasCta || sentenceCount > 2) return buildPunchyShortDescription(title, fallback);
+      return cleaned.slice(0, 220);
+    };
+
+    // Build social post content for Make.com (LinkedIn + Facebook)
     const siteUrl = "https://jemassuremoinscher.fr";
-    const articleUrl = `${siteUrl}/blog/${targetSlug}`;
+    const articleUrl = targetArticleUrl || `${siteUrl}/blog/${targetSlug}`;
     
     const postContent = targetDescription || 
       `📰 Nouvel article sur jemassuremoinscher.fr !\n\n` +
       `${targetTitle}\n\n` +
       `👉 Lire l'article complet : ${articleUrl}\n\n` +
       `#assurance #comparateur #économies #jemassuremoinscher`;
+    const shortDescription = normalizeShortDescription(targetShortDescription, targetTitle, targetDescription);
 
-    // Send to Zapier webhook
+    // Send to Make.com webhook
+    const manualHeadlines = (globalThis as any).__manualHeadlines || null;
+    const manualChannels = (globalThis as any).__manualChannels || ["linkedin", "facebook"];
     try {
-      const zapierResponse = await fetch(config.webhook_url, {
+      const makeResponse = await fetch(config.webhook_url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          event: "article_inserted",
           title: targetTitle,
+          short_description: shortDescription,
           content: postContent,
           url: articleUrl,
+          article_url: articleUrl,
+          image_url: targetImageUrl,
           slug: targetSlug,
+          channels: manualChannels,
+          headlines: manualHeadlines, // { linkedin, facebook, instagram }
+          provider: "make",
           posted_at: new Date().toISOString(),
         }),
       });
 
-      if (!zapierResponse.ok) {
-        const errorText = await zapierResponse.text();
+      if (!makeResponse.ok) {
+        const errorText = await makeResponse.text();
         // Update status to failed
         await supabase
           .from("linkedin_auto_posts")
           .update({
             status: "failed",
-            error_message: `Zapier error ${zapierResponse.status}: ${errorText}`,
+            linkedin_status: "failed",
+            facebook_status: "failed",
+            error_message: `Make.com error ${makeResponse.status}: ${errorText}`,
           })
           .eq("article_slug", targetSlug)
           .eq("status", "pending");
 
         return new Response(
-          JSON.stringify({ error: `Échec Zapier: ${zapierResponse.status}` }),
+          JSON.stringify({ error: `Échec Make.com: ${makeResponse.status}` }),
           { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
@@ -163,13 +232,16 @@ serve(async (req) => {
         .from("linkedin_auto_posts")
         .update({
           status: "posted",
+          linkedin_status: "posted",
+          facebook_status: "posted",
           posted_at: new Date().toISOString(),
+          short_description: shortDescription,
         })
         .eq("article_slug", targetSlug)
         .eq("status", "pending");
 
       return new Response(
-        JSON.stringify({ success: true, slug: targetSlug, message: `Article "${targetTitle}" envoyé à LinkedIn` }),
+        JSON.stringify({ success: true, slug: targetSlug, message: `Article "${targetTitle}" envoyé à Make.com pour LinkedIn et Facebook` }),
         { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     } catch (fetchError) {
@@ -178,6 +250,8 @@ serve(async (req) => {
         .from("linkedin_auto_posts")
         .update({
           status: "failed",
+            linkedin_status: "failed",
+            facebook_status: "failed",
           error_message: errorMsg,
         })
         .eq("article_slug", targetSlug)

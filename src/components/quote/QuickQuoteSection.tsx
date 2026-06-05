@@ -14,6 +14,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-idea.webp";
 import { trackMetaLead } from "@/utils/metaPixelTracking";
 import { normalizeInsuranceTypeStrict } from "@/utils/insuranceTypeNormalizer";
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 type InsuranceType = "auto" | "moto" | "habitation" | "sante" | "pret" | "animaux" | "vie" | "prevoyance" | "rc_pro" | "mrp" | "gli" | "pno" | "";
 
@@ -227,10 +228,8 @@ const QuickQuoteSection = () => {
         status: 'pending',
       });
       if (error) throw error;
-      await supabase.functions.invoke('send-quote-email', {
-        body: { name: 'Prospect Devis Rapide', email: quoteData.email, phone: quoteData.phone, type: quoteData.insuranceType,
-          details: { source: 'quick_quote', profileOption: quoteData.profileOption, coverageLevel: quoteData.coverageLevel } },
-      }).catch(err => console.error('Email error:', err));
+      await invokeSendQuoteEmail({ name: 'Prospect Devis Rapide', email: quoteData.email, phone: quoteData.phone, type: quoteData.insuranceType,
+          details: { source: 'quick_quote', profileOption: quoteData.profileOption, coverageLevel: quoteData.coverageLevel } },).catch(err => console.error('Email error:', err));
       trackConversion('quick_quote', 150);
       trackEvent('quote_request', { category: 'quick_quote', label: `${quoteData.insuranceType}_${quoteData.profileOption}_${quoteData.coverageLevel}`, insurance_type: quoteData.insuranceType, value: 150 });
       trackMetaLead({
@@ -346,7 +345,7 @@ const QuickQuoteSection = () => {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
               <div className="flex items-center justify-center gap-4 mb-4">
-                <motion.img src={arthurThinking} alt="Arthur réfléchit - devis assurance rapide et moins cher" className="w-16 h-auto md:w-20" width={80} height={100} loading="lazy" animate={{ rotate: [0, -5, 5, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
+                <motion.img src={arthurThinking} alt={t("a11y.quick.mascotAlt")} className="w-16 h-auto md:w-20" width={80} height={100} loading="lazy" animate={{ rotate: [0, -5, 5, 0] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} />
                 <div className="text-left">
                   <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-1">{t('quickQuote.title')}</h3>
                   <p className="text-muted-foreground">{t('quickQuote.subtitle')}</p>
@@ -496,17 +495,17 @@ const QuickQuoteSection = () => {
           </AnimatePresence>
 
           <div className="flex items-center justify-between mt-8 pt-6 border-t border-border/50">
-            <Button variant="ghost" onClick={handlePrev} disabled={currentStep === 1} className="gap-2" aria-label="Retour à l'étape précédente">
+            <Button variant="ghost" onClick={handlePrev} disabled={currentStep === 1} className="gap-2" aria-label={t("a11y.quick.back")}>
               <ChevronLeft className="w-4 h-4" aria-hidden="true" />
               <span>{t('common.back')}</span>
             </Button>
             {currentStep < totalSteps ? (
-              <Button onClick={handleNext} disabled={!canProceed()} className="gap-2 bg-primary hover:bg-primary/90" aria-label="Passer à l'étape suivante">
+              <Button onClick={handleNext} disabled={!canProceed()} className="gap-2 bg-primary hover:bg-primary/90" aria-label={t("a11y.quick.next")}>
                 <span>{t('common.continue')}</span>
                 <ChevronRight className="w-4 h-4" aria-hidden="true" />
               </Button>
             ) : (
-              <Button onClick={handleSubmit} disabled={!canProceed() || isSubmitting} className="gap-2 bg-gradient-to-r from-primary to-accent text-primary-foreground font-bold" aria-label="Envoyer ma demande de devis rapide">
+              <Button onClick={handleSubmit} disabled={!canProceed() || isSubmitting} className="gap-2 bg-gradient-to-r from-primary to-accent text-primary-foreground font-bold" aria-label={t("a11y.quick.submit")}>
                 {isSubmitting ? <><Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /><span>{t('quickQuote.sending')}</span></> : <><span>{t('quickQuote.submit')}</span><ChevronRight className="w-4 h-4" aria-hidden="true" /></>}
               </Button>
             )}

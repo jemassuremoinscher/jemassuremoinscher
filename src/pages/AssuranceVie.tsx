@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
@@ -9,6 +8,7 @@ import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProduc
 import arthurIdea from "@/assets/mascotte/arthur-idea.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
+import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import EnBref from "@/components/seo/EnBref";
 import BrandName from "@/components/BrandName";
@@ -21,65 +21,144 @@ import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 const AssuranceVie = () => {
   const { t } = useLanguage();
   const formRef = useRef<HTMLDivElement>(null);
-  const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
-  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Vie", url: "https://www.jemassuremoinscher.fr/assurance-vie" }]);
-  const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Vie", description: "Comparez les contrats d'assurance vie pour l'épargne et la protection.", provider: "jemassuremoinscher.fr", areaServed: "France" });
-  
-  const faqSchema = addFAQSchema([{ question: t('viePage.faq1.q'), answer: t('viePage.faq1.a') }, { question: t('viePage.faq2.q'), answer: t('viePage.faq2.a') }]);
-  const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Vie", description: "Comparateur d'assurance vie. Fonds euros, unités de compte, PER : comparez les meilleurs rendements 2026.", category: "Assurance Vie", url: "https://www.jemassuremoinscher.fr/assurance-vie", ratingValue: 4.6, reviewCount: 1124 });
+  const breadcrumbSchema = addBreadcrumbSchema([
+    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+    { name: "Assurance Vie", url: "https://www.jemassuremoinscher.fr/assurance-vie" },
+  ]);
+  const serviceSchema = addServiceSchema({
+    name: "Comparateur Assurance Vie",
+    description:
+      "Comparez les contrats d'assurance vie pour l'épargne et la protection, avec 0% de frais d'entrée et frais d'arbitrage offerts sur nos contrats partenaires.",
+    provider: "jemassuremoinscher.fr",
+    areaServed: "France",
+  });
+
+  const faqSchema = addFAQSchema([
+    { question: t("viePage.faq1.q"), answer: t("viePage.faq1.a") },
+    { question: t("viePage.faq2.q"), answer: t("viePage.faq2.a") },
+    {
+      question: "Les frais d'entrée et d'arbitrage sont-ils offerts ?",
+      answer:
+        "Oui, sur nos contrats partenaires sélectionnés, les frais d'entrée sont à 0% et les frais d'arbitrage sont offerts, sous réserve des conditions du contrat choisi.",
+    },
+  ]);
+  const insuranceProductSchema = addInsuranceProductSchema({
+    name: "Assurance Vie",
+    description:
+      "Comparateur d'assurance vie. Fonds euros, unités de compte, PER : comparez les meilleurs rendements 2026 avec 0% de frais d'entrée et frais d'arbitrage offerts sur nos contrats partenaires.",
+    category: "Assurance Vie",
+    url: "https://www.jemassuremoinscher.fr/assurance-vie",
+    ratingValue: 4.9,
+    reviewCount: 1124,
+  });
   const advantages = [
-    { icon: Euro, title: t('viePage.adv1.title'), description: t('viePage.adv1.desc') },
-    { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
-    { icon: Shield, title: t('viePage.adv2.title'), description: t('viePage.adv2.desc') }
+    {
+      icon: Euro,
+      title: "0% de frais d'entrée",
+      description: "Frais d'entrée offerts sur nos contrats partenaires sélectionnés.",
+    },
+    { icon: Clock, title: t("insPage.quoteIn2min"), description: t("insPage.quoteIn2minDesc") },
+    {
+      icon: Shield,
+      title: "Frais d'arbitrage offerts",
+      description: "Ajustez votre allocation plus librement selon les conditions du contrat.",
+    },
   ];
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Assurance Vie [Month] : Meilleurs Rendements" description="Fonds euros, unités de compte, PER : comparez les meilleures assurances vie. Fiscalité avantageuse après 8 ans. Devis gratuit." keyword="assurance vie meilleur rendement" keywords="assurance vie 2026, épargne, placement, transmission patrimoine, PER" canonical="https://www.jemassuremoinscher.fr/assurance-vie" ogTitle="Assurance Vie [Month] : Meilleurs Rendements & Fiscalité Avantageuse" ogDescription="Comparez les meilleures assurances vie : fonds euros, unités de compte, PER. Fiscalité avantageuse après 8 ans. Devis gratuit et conseil personnalisé." twitterDescription="Trouvez la meilleure assurance vie parmi 50+ offres. Fonds euros, UC, PER. Fiscalité avantageuse après 8 ans. Devis gratuit." jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized
+        title={t("seo.vie.title")}
+        description={t("seo.vie.description")}
+        keyword="assurance vie frais entrée offerts"
+        keywords="assurance vie 2026, 0% frais entrée, frais arbitrage offerts, épargne, placement, transmission patrimoine, PER"
+        canonical="https://www.jemassuremoinscher.fr/assurance-vie"
+        ogTitle="Assurance Vie en 2025 : 0% de frais d'entrée, comparez les meilleures offres"
+        ogDescription="Comparez les meilleures assurances vie : fonds euros sécurisés et unités de compte. 0% de frais d'entrée. Fiscalité avantageuse après 8 ans."
+        twitterDescription="Assurance vie 0% frais d'entrée. Comparez fonds euros et UC. Fiscalité avantageuse après 8 ans."
+        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
+      />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Vie" }]} />
       <main id="main-content">
-      <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
-        <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
-          <ArthurHero imageSrc={arthurIdea} imageAlt="Arthur réfléchit - assurance vie" speechText={t('viePage.subtitle')} />
-          <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('viePage.title')}</h1>
-          <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Comparer les assurances vie maintenant">{t('insPage.compareNow')}</Button>
-        </div></div>
-      </section>
-      <div className="container mx-auto px-4 py-12">
-        <DynamicUpdateDate />
+        <section className="relative pt-6 pb-10 md:pt-8 md:pb-14">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <ArthurHero
+                imageSrc={arthurIdea}
+                imageAlt="Arthur réfléchit - assurance vie"
+                title={t("viePage.title")}
+                subtitle={t("viePage.subtitle")}
+                ctaLabel={t("insPage.compareNow")}
+                onCtaClick={scrollToForm}
+              />
+            </div>
+          </div>
+        </section>
+        <div className="container mx-auto px-4 py-12">
+          <DynamicUpdateDate />
 
-        <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
-        <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="vie" /></div>
+          <section className="max-w-4xl mx-auto mb-12">
+            <div className="grid md:grid-cols-3 gap-6">
+              {advantages.map((item, index) => (
+                <Card key={index} className="p-6 text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 rounded-full bg-primary/10">
+                      <item.icon className="h-8 w-8 text-primary" />
+                    </div>
+                  </div>
+                  <h2 className="font-bold text-lg mb-2">{item.title}</h2>
+                  <p className="text-muted-foreground text-sm">{item.description}</p>
+                </Card>
+              ))}
+            </div>
+          </section>
+          <div ref={formRef} className="mb-16 min-h-[480px]">
+            <MultiStepQuoteForm insuranceType="vie" />
+          </div>
+          <CourtierValueCards product="vie" />
 
-        <InsuranceSEOTabs
-          faqTitle={t('insPage.faqTitle')}
-          faqs={[
-            { question: t('viePage.faq1.q'), answer: t('viePage.faq1.a') },
-            { question: t('viePage.faq2.q'), answer: t('viePage.faq2.a') },
-            { question: t('viePage.faq3.q'), answer: t('viePage.faq3.a') },
-          ]}
-        />
+          <InsuranceSEOTabs
+            showGuarantees={false}
+            faqTitle={t("insPage.faqTitle")}
+            faqs={[
+              { question: t("viePage.faq1.q"), answer: t("viePage.faq1.a") },
+              { question: t("viePage.faq2.q"), answer: t("viePage.faq2.a") },
+              { question: t("viePage.faq3.q"), answer: t("viePage.faq3.a") },
+              {
+                question: "Quels frais sont offerts sur l'assurance vie ?",
+                answer:
+                  "Les contrats partenaires mis en avant peuvent proposer 0% de frais d'entrée et des frais d'arbitrage offerts, pour réduire le coût d'accès et de gestion de votre épargne.",
+              },
+            ]}
+          />
 
-        <InsuranceBottomHub
-          currentPage="vie"
-          enBref={
-            <EnBref facts={[
-              <><BrandName /> compare les contrats d'assurance vie des meilleurs assureurs.</>,
-              "Fonds euros, unités de compte, PER : toutes les options comparées.",
-              "Fiscalité avantageuse après 8 ans de détention.",
-              "Devis gratuit et personnalisé, sans engagement.",
-            ]} />
-          }
-          ctaTitle={t('viePage.ctaTitle')}
-          ctaDescription={t('viePage.ctaDesc')}
-          ctaButtonLabel={t('insPage.compareNowBtn')}
-          ctaMascotSrc={arthurFlying}
-          ctaMascotAlt="Arthur - assurance vie"
-          onCtaClick={scrollToForm}
-        />
-      </div>
+          <InsuranceBottomHub
+            currentPage="vie"
+            enBref={
+              <EnBref
+                facts={[
+                  <>
+                    <BrandName /> compare les contrats d'assurance vie des meilleurs assureurs.
+                  </>,
+                  "0% de frais d'entrée et frais d'arbitrage offerts sur nos contrats partenaires sélectionnés.",
+                  "Fonds euros, unités de compte, PER : toutes les options comparées.",
+                  "Fiscalité avantageuse après 8 ans de détention.",
+                ]}
+              />
+            }
+            ctaTitle={t("viePage.ctaTitle")}
+            ctaDescription={t("viePage.ctaDesc")}
+            ctaButtonLabel={t("insPage.compareNowBtn")}
+            ctaMascotSrc={arthurFlying}
+            ctaMascotAlt="Arthur - assurance vie"
+            onCtaClick={scrollToForm}
+          />
+        </div>
       </main>
       <Footer />
     </div>

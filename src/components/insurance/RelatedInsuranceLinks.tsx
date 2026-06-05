@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, Calculator, MessageSquare, ShieldAlert } from "lucide-react";
+import { ArrowRight, BookOpen, Calculator, ShieldAlert } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface RelatedLink {
   to: string;
@@ -18,7 +19,7 @@ const allProducts: Record<string, RelatedLink> = {
   sante: { to: "/assurance-sante", label: "Mutuelle Santé", description: "Remboursements optimaux, cotisation maîtrisée" },
   animaux: { to: "/assurance-animaux", label: "Assurance Animaux", description: "Frais vétérinaires couverts jusqu'à 100%" },
   vie: { to: "/assurance-vie", label: "Assurance Vie", description: "Protégez vos proches et faites fructifier votre épargne" },
-  pret: { to: "/assurance-pret", label: "Assurance Prêt", description: "Économisez sur votre assurance emprunteur" },
+  pret: { to: "/assurance-pret", label: "Assurance Emprunteur", description: "Économisez sur votre assurance emprunteur" },
   prevoyance: { to: "/assurance-prevoyance", label: "Prévoyance", description: "Anticipez les aléas de la vie" },
   rcpro: { to: "/assurance-rc-pro", label: "RC Professionnelle", description: "Protégez votre activité professionnelle" },
   mrp: { to: "/assurance-mrp", label: "Assurance MRP", description: "Multirisque pour vos locaux professionnels" },
@@ -130,7 +131,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   pret: {
     products: ["emprunteur", "vie", "habitation"],
     articles: [
-      { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine : changer d'assurance prêt" },
+      { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine : changer d'assurance emprunteur" },
       { to: "/blog/resiliation-assurance-droits-2026", label: "Vos droits de résiliation" },
     ],
     tools: [
@@ -205,6 +206,8 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
 };
 
 const RelatedInsuranceLinks = ({ currentPage }: RelatedInsuranceLinksProps) => {
+  const { t } = useLanguage();
+  const has = (k: string) => t(k) !== k;
   const related = relatedMap[currentPage];
   if (!related) return null;
 
@@ -217,7 +220,7 @@ const RelatedInsuranceLinks = ({ currentPage }: RelatedInsuranceLinksProps) => {
   return (
     <section className="max-w-4xl mx-auto mb-16">
       <h2 className="text-2xl font-bold text-foreground mb-8 text-center">
-        Nos clients consultent aussi
+        {t("bottomHub.alsoConsulted")}
       </h2>
 
       {/* Related products */}
@@ -229,10 +232,10 @@ const RelatedInsuranceLinks = ({ currentPage }: RelatedInsuranceLinksProps) => {
             className="group block p-5 rounded-xl border border-border/50 bg-muted/20 hover:border-primary/40 hover:bg-primary/5 transition-all"
           >
             <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-1 flex items-center gap-2">
-              {product.label}
+              {has(`relatedProduct.${product.to}.label`) ? t(`relatedProduct.${product.to}.label`) : product.label}
               <ArrowRight className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
             </h3>
-            <p className="text-sm text-muted-foreground">{product.description}</p>
+            <p className="text-sm text-muted-foreground">{has(`relatedProduct.${product.to}.desc`) ? t(`relatedProduct.${product.to}.desc`) : product.description}</p>
           </Link>
         ))}
       </div>
@@ -243,7 +246,7 @@ const RelatedInsuranceLinks = ({ currentPage }: RelatedInsuranceLinksProps) => {
           <div className="flex items-center gap-2 mb-3">
             <ShieldAlert className="h-4 w-4 text-amber-600 dark:text-amber-400" />
             <h3 className="font-semibold text-foreground text-sm uppercase tracking-wide">
-              Profils spéciaux — Solutions dédiées
+              {t("bottomHub.specialProfiles")}
             </h3>
           </div>
           <div className="grid sm:grid-cols-2 gap-2">
@@ -267,7 +270,7 @@ const RelatedInsuranceLinks = ({ currentPage }: RelatedInsuranceLinksProps) => {
           <div className="flex items-center gap-2 mb-3">
             <BookOpen className="h-4 w-4 text-primary" />
             <h3 className="font-semibold text-foreground text-sm uppercase tracking-wide">
-              Articles conseils
+              {t("bottomHub.articles")}
             </h3>
           </div>
           <ul className="space-y-2">
@@ -289,7 +292,7 @@ const RelatedInsuranceLinks = ({ currentPage }: RelatedInsuranceLinksProps) => {
           <div className="flex items-center gap-2 mb-3">
             <Calculator className="h-4 w-4 text-primary" />
             <h3 className="font-semibold text-foreground text-sm uppercase tracking-wide">
-              Outils & Ressources
+              {t("bottomHub.toolsResources")}
             </h3>
           </div>
           <ul className="space-y-2">

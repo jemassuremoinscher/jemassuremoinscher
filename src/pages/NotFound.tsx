@@ -34,7 +34,9 @@ const NotFound = () => {
           {/* Arthur malade au-dessus du 404 */}
           <img
             src={arthurInjured}
-            alt="Arthur en béquilles"
+            alt={t("a11y.notFound.mascotAlt")}
+            width={144}
+            height={180}
             className="mx-auto mb-4 w-28 md:w-36 drop-shadow-md" />
           
 

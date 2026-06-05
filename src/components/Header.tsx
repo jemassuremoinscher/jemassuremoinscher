@@ -1,4 +1,4 @@
-import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, ArrowLeft, MoreHorizontal, Share2, BookmarkPlus, Printer, BookOpen, Calculator, MessageSquare, Star, Search, Instagram, Linkedin, Facebook } from "lucide-react";
+import { ChevronDown, Menu, X, Car, Bike, Home, Heart, PiggyBank, Users, Building2, FileText, ArrowLeft, MoreHorizontal, Share2, BookmarkPlus, Printer, BookOpen, Calculator, MessageSquare, Star, Search, Instagram, Linkedin, Facebook, Mail, Globe } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageToggle from "@/components/LanguageToggle";
+import { useChatTeaser } from "@/hooks/useChatTeaser";
 
 // Use public/ path to avoid bundling this image in JS
 const arthurThumbsUp = "/arthur-thumbs-up.webp";
@@ -14,6 +15,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openPopover, setOpenPopover] = useState<string | null>(null);
   const [actionsOpen, setActionsOpen] = useState(false);
+  const chatTeaser = useChatTeaser();
   const { trackEvent } = useAnalytics();
   const { t } = useLanguage();
   const location = useLocation();
@@ -63,19 +65,29 @@ const Header = () => {
     { to: "/assurance-moto", label: t('insurance.moto'), icon: Bike },
     { to: "/assurance-habitation", label: t('insurance.home'), icon: Home },
     { to: "/assurance-sante", label: t('insurance.health'), icon: Heart },
-    { to: "/assurance-animaux", label: t('insurance.pets'), icon: Heart }
+    { to: "/assurance-animaux", label: t('insurance.pets'), icon: Heart },
+    { to: "/assurance-sans-permis", label: "Voiture sans permis", icon: Car },
+    { to: "/assurance-camping-car", label: "Camping-car & van", icon: Car },
+    { to: "/assurance-velo", label: "Vélo & VAE", icon: Bike },
+    { to: "/assurance-auto-temporaire", label: "Auto temporaire", icon: Car },
+    { to: "/assurance-protection-juridique", label: "Protection juridique", icon: FileText }
   ];
 
   const assurancesPro = [
     { to: "/assurance-rc-pro", label: t('insurance.rcPro'), icon: Building2 },
     { to: "/assurance-mrp", label: t('insurance.mrp'), icon: Building2 },
-    { to: "/assurance-metiers-atypiques", label: "Métiers Atypiques", icon: Building2 }
+    { to: "/assurance-metiers-atypiques", label: "Métiers Atypiques", icon: Building2 },
+    { to: "/assurance-decennale", label: "Garantie décennale", icon: Building2 },
+    { to: "/assurance-flotte-auto", label: "Flotte auto", icon: Car },
+    { to: "/assurance-mutuelle-entreprise", label: "Mutuelle entreprise", icon: Heart },
+    { to: "/assurance-cyber", label: "Cyber-risques", icon: Building2 }
   ];
 
   const assurancesVieEpargne = [
     { to: "/assurance-vie", label: t('insurance.life'), icon: PiggyBank },
     { to: "/assurance-pret", label: t('insurance.loan'), icon: FileText },
-    { to: "/assurance-prevoyance", label: t('insurance.provident'), icon: Users }
+    { to: "/assurance-prevoyance", label: t('insurance.provident'), icon: Users },
+    { to: "/assurance-expatries", label: "Expatriés", icon: Globe }
   ];
 
   const assurancesImmobilier = [
@@ -112,14 +124,14 @@ const Header = () => {
               <Link 
                 to="/" 
                 className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-full p-1" 
-                aria-label="Retour à la page d'accueil - jemassuremoinscher.fr"
+                aria-label={t("a11y.header.home")}
               >
                 <img 
                   src={arthurThumbsUp} 
-                  alt="Arthur, la mascotte" 
+                  alt={t("a11y.header.mascotAlt")} 
                   className="h-9 w-9 sm:h-10 sm:w-10 object-contain shrink-0"
-                  width={40}
-                  height={40}
+                  width={176}
+                  height={220}
                   loading="eager"
                   decoding="async"
                 />
@@ -133,7 +145,7 @@ const Header = () => {
 
             {/* Right: Actions + Language + Mobile Toggle */}
             <div className="flex items-center gap-1 shrink-0">
-              <nav aria-label="Réseaux sociaux" className="hidden md:flex items-center gap-1 mr-1">
+              <nav aria-label={t("a11y.common.socials")} className="hidden md:flex items-center gap-1 mr-1">
                 <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full text-white/70 hover:bg-muted/80 hover:text-white transition-colors">
                   <Instagram className="h-4 w-4" />
                 </a>
@@ -346,22 +358,11 @@ const Header = () => {
           id="mobile-menu" 
           className="fixed top-[64px] left-0 right-0 bottom-0 bg-card/98 backdrop-blur-xl z-50 overflow-y-auto lg:hidden"
           role="dialog" 
-          aria-label="Menu de navigation mobile"
+          aria-label={t("a11y.header.mobileMenu")}
         >
           <nav className="p-4 space-y-6" role="navigation" aria-label="Navigation mobile principale">
             {/* Language Toggle - Mobile */}
-            <div className="flex items-center justify-between gap-3 mb-2 px-4">
-              <nav aria-label="Réseaux sociaux" className="flex items-center gap-2">
-                <a href="https://www.instagram.com/jemassuremoinscher/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
-                  <Instagram className="h-4 w-4" />
-                </a>
-                <a href="https://www.linkedin.com/company/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
-                  <Linkedin className="h-4 w-4" />
-                </a>
-                <a href="https://www.facebook.com/jemassuremoinscher" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
-                  <Facebook className="h-4 w-4" />
-                </a>
-              </nav>
+            <div className="flex items-center justify-end gap-3 mb-2 px-4">
               <LanguageToggle />
             </div>
             
@@ -464,6 +465,40 @@ const Header = () => {
               </Link>
             </div>
 
+            {/* Social icons */}
+            <div className="px-4 pt-2">
+              <h3 className="px-0 py-2 text-xs font-bold text-muted-foreground uppercase tracking-wider">Suivez-nous</h3>
+              <div className="flex items-center gap-2 mt-1">
+                <a
+                  href="https://www.instagram.com/jemassuremoinscher/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-muted text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                >
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/jemassuremoinscher"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-muted text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.facebook.com/jemassuremoinscher"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-muted text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+                >
+                  <Facebook className="h-5 w-5" />
+                </a>
+              </div>
+            </div>
+
             {/* CTA Footer */}
             <div className="px-4 pt-2 pb-6">
               <Link
@@ -480,6 +515,52 @@ const Header = () => {
           </nav>
         </div>
       )}
+
+      {/* Mobile Bottom Bar - 2026 Conversion CTAs (no phone — we don't operate by phone) */}
+      <nav
+        aria-label="Actions rapides"
+        className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-card/95 backdrop-blur-xl border-t border-border shadow-[0_-4px_20px_rgba(0,0,0,0.08)] pb-[env(safe-area-inset-bottom)]"
+      >
+        <div className="grid grid-cols-3 gap-1 px-2 py-2">
+          <button
+            type="button"
+            onClick={() => {
+              trackEvent('insurance_type_click', { category: 'mobile_bottom_bar', label: 'chat', insurance_type: 'all' });
+              window.dispatchEvent(new CustomEvent('open-chatbot'));
+            }}
+            className="relative flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl text-foreground hover:bg-muted active:scale-95 transition"
+            aria-label={chatTeaser ? "Nouveau message — ouvrir le chat" : "Ouvrir le chat"}
+          >
+            <span className="relative">
+              <MessageSquare className={`h-5 w-5 ${chatTeaser ? 'text-primary animate-pulse' : 'text-primary'}`} aria-hidden="true" />
+              {chatTeaser && (
+                <span className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-secondary ring-2 ring-card animate-pulse" aria-hidden="true" />
+              )}
+            </span>
+            <span className={`text-[11px] font-semibold ${chatTeaser ? 'text-primary' : ''}`}>
+              {chatTeaser ? 'Nouveau message' : 'Chat'}
+            </span>
+          </button>
+          <Link
+            to="/comparateur"
+            onClick={() => trackEvent('insurance_type_click', { category: 'mobile_bottom_bar', label: 'compare', insurance_type: 'all' })}
+            className="flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl bg-gradient-to-br from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] text-foreground font-bold shadow-md active:scale-95 transition"
+            aria-label={t("a11y.header.compare")}
+          >
+            <Search className="h-5 w-5" aria-hidden="true" />
+            <span className="text-[11px]">Comparer</span>
+          </Link>
+          <Link
+            to="/contact"
+            onClick={() => trackEvent('insurance_type_click', { category: 'mobile_bottom_bar', label: 'contact', insurance_type: 'all' })}
+            className="flex flex-col items-center justify-center gap-0.5 py-2 rounded-2xl text-foreground hover:bg-muted active:scale-95 transition"
+            aria-label={t("a11y.header.contact")}
+          >
+            <Mail className="h-5 w-5 text-primary" aria-hidden="true" />
+            <span className="text-[11px] font-semibold">Nous contacter</span>
+          </Link>
+        </div>
+      </nav>
     </>
   );
 };

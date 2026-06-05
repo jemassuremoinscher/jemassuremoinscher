@@ -50,6 +50,20 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        tertiary: {
+          DEFAULT: "hsl(var(--tertiary))",
+          foreground: "hsl(var(--tertiary-foreground))",
+        },
+        error: {
+          DEFAULT: "hsl(var(--error))",
+          foreground: "hsl(var(--error-foreground))",
+        },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        outline: "hsl(var(--outline))",
+        surface: "hsl(var(--surface))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -68,20 +82,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0", opacity: "0" },
+          to: { height: "var(--radix-accordion-content-height)", opacity: "1" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)", opacity: "1" },
+          to: { height: "0", opacity: "0" },
         },
         "slide-in-left": {
           "0%": {
@@ -108,10 +114,21 @@ export default {
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        "accordion-down": "accordion-down 320ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "accordion-up": "accordion-up 260ms cubic-bezier(0.4, 0, 0.2, 1)",
         "slide-in-left": "slide-in-left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
         "slide-out-left": "slide-out-left 0.3s ease-in-out",
+      },
+      boxShadow: {
+        "elevation-1": "0 1px 3px rgba(0,0,0,0.12)",
+        "elevation-2": "0 3px 6px rgba(0,0,0,0.16)",
+        "elevation-3": "0 5px 12px rgba(0,0,0,0.20)",
+        "elevation-4": "0 15px 25px rgba(0,0,0,0.25)",
+      },
+      transitionTimingFunction: {
+        "md-emphasized": "cubic-bezier(0.2, 0, 0, 1)",
+        "md-decelerate": "cubic-bezier(0.05, 0.7, 0.1, 1)",
+        "md-standard": "cubic-bezier(0.4, 0, 0.2, 1)",
       },
     },
   },

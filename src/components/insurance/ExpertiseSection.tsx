@@ -1,6 +1,7 @@
 import { Shield, Award, Users, BookOpen, CheckCircle } from "lucide-react";
 import teamExperts from "@/assets/team-experts.png";
 import geoContent from "@/data/geo-content.json";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ExpertiseSectionProps {
   /** Insurance type name for contextual content */
@@ -24,6 +25,7 @@ const ExpertiseSection = ({
   partnerCount = 50,
   expertisePoints,
 }: ExpertiseSectionProps) => {
+  const { t } = useLanguage();
   const defaultPoints = [
     `Courtiers certifiés ORIAS spécialisés en ${insuranceType}`,
     `${partnerCount}+ compagnies d'assurance partenaires comparées`,
@@ -109,7 +111,7 @@ const ExpertiseSection = ({
               <div className="flex items-center gap-3 mb-6">
                 <img 
                   src={teamExperts} 
-                  alt="Équipe d'experts courtiers jemassuremoinscher.fr" 
+                  alt={t("a11y.expertise.teamAlt")} 
                   className="w-16 h-16 rounded-full object-cover border-2 border-primary/20"
                   loading="lazy"
                   width={64}

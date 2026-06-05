@@ -11,8 +11,8 @@ const Comparateur = () => {
   return (
     <>
        <SEOOptimized
-        title="Comparateur d'Assurances — Comparez 50+ Assureurs"
-        description="Comparez gratuitement plus de 50 assureurs auto, moto, habitation et santé. Économisez jusqu'à 40% sur votre assurance en 2 minutes."
+        title={t("seo.comparateur.title")}
+        description={t("seo.comparateur.description")}
         keyword="comparateur d'assurances"
         keywords="assurance moins chère, changer d'assurance, comparaison assurance gratuit"
         jsonLd={{
@@ -33,7 +33,7 @@ const Comparateur = () => {
         <Breadcrumbs items={[{ label: t('comparatorPage.breadcrumb') }]} />
         <main className="flex-1">
           <div className="container mx-auto px-4 py-10">
-            <h1 className="sr-only">Comparateur d'assurances en ligne — Comparez 50+ assureurs gratuitement</h1>
+            <h1 className="sr-only">Comparateur d'assurances en ligne — Comparez 70+ assureurs gratuitement</h1>
             <div className="min-h-[480px]">
               <MultiStepQuoteForm insuranceType="comparateur" />
             </div>

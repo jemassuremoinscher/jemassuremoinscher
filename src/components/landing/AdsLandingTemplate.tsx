@@ -1,5 +1,5 @@
 import { type LucideIcon, CheckCircle2, Star, Shield, Award } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import SEOOptimized from "@/components/SEOOptimized";
@@ -10,6 +10,7 @@ import ArthurHero from "@/components/insurance/ArthurHero";
 import { SimplifiedLeadForm } from "@/components/landing/SimplifiedLeadForm";
 import { addOrganizationSchema, addServiceSchema, addFAQSchema, addBreadcrumbSchema, optimizeLandingFaqAnswer, optimizeLandingReassuranceDescription } from "@/utils/seoUtils";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface LandingAdvantage {
   icon: LucideIcon;
@@ -65,32 +66,27 @@ export interface AdsLandingProps {
   bottomCtaDescription: string;
 }
 
-const AdsLandingTemplate = ({
-  slug,
-  trackingTitle,
-  seoTitle,
-  seoDescription,
-  seoKeyword,
-  seoKeywords,
-  noindex = false,
-  topBarText,
-  badgeText,
-  heroTitle,
-  heroHighlight,
-  heroSubtitle,
-  mascotSrc,
-  mascotAlt,
-  speechText,
-  insuranceType,
-  insuranceLabel,
-  stats,
-  advantages,
-  testimonials,
-  faqs,
-  bottomCtaTitle,
-  bottomCtaDescription,
-}: AdsLandingProps) => {
+/** Localized variant: pass { fr, en } and the right one is picked from context. */
+export type LocalizedAdsLandingProps = { fr: AdsLandingProps; en: AdsLandingProps };
+
+const isLocalized = (p: AdsLandingProps | LocalizedAdsLandingProps): p is LocalizedAdsLandingProps =>
+  (p as LocalizedAdsLandingProps).fr !== undefined && (p as LocalizedAdsLandingProps).en !== undefined;
+
+const AdsLandingTemplate = (props: AdsLandingProps | LocalizedAdsLandingProps) => {
   const { trackPageView } = useAnalytics();
+  const { language, t } = useLanguage();
+
+  const config = useMemo<AdsLandingProps>(
+    () => (isLocalized(props) ? props[language] : props),
+    [props, language]
+  );
+
+  const {
+    slug, trackingTitle, seoTitle, seoDescription, seoKeyword, seoKeywords,
+    noindex = false, topBarText, badgeText, heroTitle, heroHighlight, heroSubtitle,
+    mascotSrc, mascotAlt, speechText, insuranceType, insuranceLabel,
+    stats, advantages, testimonials, faqs, bottomCtaTitle, bottomCtaDescription,
+  } = config;
 
   const optimizedAdvantages = advantages.map((item) => ({
     ...item,
@@ -109,7 +105,7 @@ const AdsLandingTemplate = ({
   const canonical = `https://www.jemassuremoinscher.fr/landing/${slug}`;
 
   const jsonLd = [
-    addOrganizationSchema(4.8, 2847),
+    addOrganizationSchema(4.9, 2847),
     addServiceSchema({
       name: seoTitle,
       description: seoDescription,
@@ -118,7 +114,7 @@ const AdsLandingTemplate = ({
     }),
     addFAQSchema(optimizedFaqs),
     addBreadcrumbSchema([
-      { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
+      { name: language === "en" ? "Home" : "Accueil", url: "https://www.jemassuremoinscher.fr/" },
       { name: insuranceLabel, url: canonical },
     ]),
   ];
@@ -137,7 +133,7 @@ const AdsLandingTemplate = ({
 
       <Header />
 
-      {/* Top urgency bar */}
+      {/* Top info bar (factual, no fabricated promo) */}
       <div className="bg-accent text-accent-foreground py-2 px-4 text-center font-semibold text-sm md:text-base">
         {topBarText}
       </div>
@@ -162,14 +158,17 @@ const AdsLandingTemplate = ({
                 </h1>
                 <p className="text-lg md:text-xl text-muted-foreground mb-2">{heroSubtitle}</p>
                 <p className="text-sm text-muted-foreground">
-                  Service proposé par <BrandName variant="purple" /> — courtier indépendant ORIAS.
+                  {t("landingTpl.serviceBy")} <BrandName variant="purple" /> — {t("landingTpl.broker")}
                 </p>
               </div>
 
-              {/* Stats */}
+              {/* Stats — glassmorphism cards */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {stats.map((stat, i) => (
-                  <div key={i} className="text-center p-4 bg-card rounded-lg border hover-scale">
+                  <div
+                    key={i}
+                    className="text-center p-4 rounded-2xl backdrop-blur-md bg-card/70 border border-border/60 shadow-sm hover:shadow-md hover-scale transition-all"
+                  >
                     <stat.icon className="h-8 w-8 mx-auto mb-2 text-primary" />
                     <div className="font-bold text-2xl">{stat.value}</div>
                     <div className="text-xs text-muted-foreground">{stat.label}</div>
@@ -178,10 +177,10 @@ const AdsLandingTemplate = ({
               </div>
 
               {/* Advantages */}
-              <Card className="p-6 bg-gradient-to-br from-primary/5 to-accent/5 border-2 border-primary/20">
+              <Card className="p-6 rounded-3xl backdrop-blur-md bg-gradient-to-br from-primary/5 to-accent/5 border-2 border-primary/20">
                 <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5 text-primary" />
-                  Pourquoi choisir <BrandName variant="purple" /> ?
+                  {t("landingTpl.whyChoose")} <BrandName variant="purple" /> ?
                 </h2>
                 <ul className="space-y-3">
                  {optimizedAdvantages.map((a, i) => (
@@ -199,13 +198,13 @@ const AdsLandingTemplate = ({
               {/* Trust */}
               <div className="flex items-center justify-center gap-4 py-2 flex-wrap">
                 <Badge variant="outline" className="gap-2">
-                  <Shield className="h-4 w-4" /> SSL / RGPD
+                  <Shield className="h-4 w-4" /> {t("landingTpl.trust.ssl")}
                 </Badge>
                 <Badge variant="outline" className="gap-2">
-                  <CheckCircle2 className="h-4 w-4" /> ORIAS vérifié
+                  <CheckCircle2 className="h-4 w-4" /> {t("landingTpl.trust.orias")}
                 </Badge>
                 <Badge variant="outline" className="gap-2">
-                  <Star className="h-4 w-4 fill-current" /> 4,8/5 — 2847 avis
+                  <Star className="h-4 w-4 fill-current" /> {t("landingTpl.trust.reviews")}
                 </Badge>
               </div>
             </div>
@@ -222,24 +221,24 @@ const AdsLandingTemplate = ({
           <section className="bg-muted/30 py-12 md:py-16">
             <div className="container mx-auto px-4 max-w-6xl">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
-                Ils nous ont fait confiance
+                {t("landingTpl.testimonials.title")}
               </h2>
               <div className="grid md:grid-cols-3 gap-6">
-                {testimonials.map((t, i) => (
-                  <Card key={i} className="p-6 hover-scale bg-card">
+                {testimonials.map((tm, i) => (
+                  <Card key={i} className="p-6 rounded-3xl backdrop-blur-md bg-card/80 border border-border/60 hover-scale">
                     <div className="flex gap-0.5 mb-3">
                       {Array.from({ length: 5 }).map((_, j) => (
                         <Star key={j} className="h-4 w-4 fill-accent text-accent" />
                       ))}
                     </div>
-                    <p className="text-sm text-muted-foreground italic mb-4">"{t.text}"</p>
+                    <p className="text-sm text-muted-foreground italic mb-4">"{tm.text}"</p>
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-semibold">
-                        {t.name.charAt(0)}
+                        {tm.name.charAt(0)}
                       </div>
                       <div>
-                        <p className="font-semibold text-sm">{t.name}</p>
-                        <p className="text-xs text-muted-foreground">{t.location}</p>
+                        <p className="font-semibold text-sm">{tm.name}</p>
+                        <p className="text-xs text-muted-foreground">{tm.location}</p>
                       </div>
                     </div>
                   </Card>
@@ -253,11 +252,11 @@ const AdsLandingTemplate = ({
         {faqs.length > 0 && (
           <section className="container mx-auto px-4 py-12 md:py-16 max-w-4xl">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
-              Questions fréquentes
+              {t("landingTpl.faq.title")}
             </h2>
             <div className="space-y-4">
                  {optimizedFaqs.map((f, i) => (
-                <Card key={i} className="p-6">
+                <Card key={i} className="p-6 rounded-2xl backdrop-blur-md bg-card/80 border border-border/60">
                   <h3 className="font-bold text-base mb-2 text-foreground">{f.question}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{f.answer}</p>
                 </Card>
@@ -279,7 +278,7 @@ const AdsLandingTemplate = ({
               }}
               className="inline-block bg-accent text-accent-foreground px-8 py-4 rounded-lg font-bold text-lg hover:opacity-90 transition-opacity"
             >
-              👉 Recevoir mon devis gratuit
+              👉 {t("landingTpl.bottomCta.button")}
             </a>
           </div>
         </section>

@@ -42,7 +42,7 @@ https://www.jemassuremoinscher.fr/landing/assurance?utm_source=google&utm_medium
 
 ### 2. Preuves sociales visibles
 - ✅ 15 000+ clients satisfaits
-- ✅ Note 4.8/5 sur 2 847 avis
+- ✅ Note 4.9/5 sur 2 847 avis
 - ✅ Économie moyenne 947€
 - ✅ Temps de devis 2 min
 

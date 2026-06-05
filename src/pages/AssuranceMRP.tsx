@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
@@ -9,6 +8,8 @@ import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProduc
 import arthurBusiness from "@/assets/mascotte/arthur-business.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
+import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
+import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import arthurFlying from "@/assets/mascotte/arthur-pointing-right.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -33,22 +34,33 @@ const AssuranceMRP = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Multirisque Pro (MRP) [Month] dès 20€/mois" description="Locaux, stock, matériel : protégez votre entreprise avec une MRP adaptée. 50+ assureurs comparés. Devis gratuit en 2 min." keyword="assurance multirisque professionnelle" keywords="MRP, assurance entreprise, assurance local professionnel, multirisque commerce" canonical="https://www.jemassuremoinscher.fr/assurance-mrp" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title={t("seo.mrp.title")} description={t("seo.mrp.description")} keyword="assurance multirisque professionnelle" keywords="MRP, assurance entreprise, assurance local professionnel, multirisque commerce" canonical="https://www.jemassuremoinscher.fr/assurance-mrp" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance MRP" }]} />
       <main id="main-content">
-      <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
-        <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
-          <ArthurHero imageSrc={arthurBusiness} imageAlt="Arthur en costume - MRP" speechText={t('mrpPage.subtitle')} />
-          <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('mrpPage.title')}</h1>
-          <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Comparer les assurances multirisque pro maintenant">{t('insPage.compareNow')}</Button>
-        </div></div>
+      <section className="relative pt-6 pb-10 md:pt-8 md:pb-14">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <ArthurHero
+              imageSrc={arthurBusiness}
+              imageAlt="Arthur en costume - MRP"
+              title={t('mrpPage.title')}
+              subtitle={t('mrpPage.subtitle')}
+              ctaLabel={t('insPage.compareNow')}
+              onCtaClick={scrollToForm}
+            />
+          </div>
+        </div>
       </section>
       <div className="container mx-auto px-4 py-12">
         <DynamicUpdateDate />
 
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="mrp" /></div>
+
+        <ProductGuaranteeTable product="mrp" />
+
+        <CourtierValueCards product="mrp" />
 
         <InsuranceSEOTabs
           faqTitle={t('insPage.faqTitle')}

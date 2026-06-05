@@ -13,12 +13,14 @@ import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { Mail, Trash2, CheckCircle2 } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const formSchema = z.object({
   email: z.string().email('Email invalide'),
 });
 
 const NewsletterGestion = () => {
+  const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -31,16 +33,11 @@ const NewsletterGestion = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
-    
-    try {
-      // Use Edge Function for secure unsubscription (service role handles DB access)
-      const { data, error } = await supabase.functions.invoke('newsletter-subscribe', {
-        body: { email: values.email.trim().toLowerCase() },
-        headers: { 'Content-Type': 'application/json' },
-        method: 'POST',
-      });
 
-      // Parse query params for action - need to call with action=unsubscribe
+    try {
+      // Request an unsubscribe confirmation email. The edge function always
+      // returns success (to avoid leaking subscriber existence) and emails
+      // a one-time token link that completes the unsubscription.
       const response = await fetch(
         `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/newsletter-subscribe?action=unsubscribe`,
         {
@@ -55,11 +52,11 @@ const NewsletterGestion = () => {
 
       const result = await response.json();
 
-      if (!response.ok || !result.success) {
-        toast.error(result.message || 'Aucun abonnement trouvé avec cet email ou déjà désinscrit');
+      if (!response.ok) {
+        toast.error(result.message || 'Erreur lors de la demande');
       } else {
         setIsSuccess(true);
-        toast.success('Vous avez été désinscrit(e) avec succès de notre newsletter');
+        toast.success("Si cet email est abonné, un lien de confirmation vient d'être envoyé.");
       }
     } catch (error) {
       console.error('Error:', error);
@@ -69,11 +66,12 @@ const NewsletterGestion = () => {
     }
   };
 
+
   return (
     <>
       <SEOOptimized 
-        title="Gestion Newsletter - jemassuremoinscher.fr"
-        description="Gérez votre abonnement à la newsletter de jemassuremoinscher.fr."
+        title={t("seo.newsletter.title")}
+        description={t("seo.newsletter.description")}
         noindex
       />
       
@@ -96,14 +94,14 @@ const NewsletterGestion = () => {
               <Card>
                 <CardContent className="py-12 text-center">
                   <CheckCircle2 className="h-16 w-16 text-green-600 mx-auto mb-4" />
-                  <h2 className="text-2xl font-bold mb-2">Désinscription confirmée</h2>
+                  <h2 className="text-2xl font-bold mb-2">Vérifiez votre boîte mail</h2>
                   <p className="text-muted-foreground mb-6">
-                    Vous avez été désinscrit(e) avec succès de notre newsletter.
+                    Si cette adresse est abonnée, un email vient de vous être envoyé avec un lien pour confirmer votre désinscription.
                   </p>
                   <p className="text-sm text-muted-foreground mb-6">
-                    Vous ne recevrez plus d'emails promotionnels de notre part. 
-                    Nous conservons votre adresse uniquement pour respecter votre choix.
+                    Cette étape de confirmation protège votre abonnement contre toute désinscription non sollicitée.
                   </p>
+
                   <Button onClick={() => setIsSuccess(false)} variant="outline">
                     Faire une nouvelle demande
                   </Button>

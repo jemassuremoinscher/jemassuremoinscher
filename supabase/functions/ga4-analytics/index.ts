@@ -112,7 +112,20 @@ serve(async (req) => {
       'Content-Type': 'application/json',
     };
 
-    const [overviewRes, pagesRes, sourcesRes, dailyRes] = await Promise.all([
+    // Global exclusion filter: drop Lovable preview/sandbox hosts and /admin pages.
+    // Applied to ALL reports so overview cards, daily charts and tables match.
+    const exclusionFilter = {
+      notExpression: {
+        orGroup: {
+          expressions: [
+            { filter: { fieldName: 'hostName', stringFilter: { matchType: 'CONTAINS', value: 'lovable', caseSensitive: false } } },
+            { filter: { fieldName: 'pagePath', stringFilter: { matchType: 'BEGINS_WITH', value: '/admin', caseSensitive: false } } },
+          ],
+        },
+      },
+    };
+
+    const [overviewRes, pagesRes, sourcesRes, dailyRes, eventsRes, pricingRes] = await Promise.all([
       // Overview metrics
       fetch(baseUrl, {
         method: 'POST',
@@ -127,6 +140,7 @@ serve(async (req) => {
             { name: 'bounceRate' },
             { name: 'newUsers' },
           ],
+          dimensionFilter: exclusionFilter,
         }),
       }),
       // Top pages
@@ -143,6 +157,7 @@ serve(async (req) => {
           ],
           orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
           limit: 15,
+          dimensionFilter: exclusionFilter,
         }),
       }),
       // Traffic sources
@@ -159,6 +174,7 @@ serve(async (req) => {
           ],
           orderBys: [{ metric: { metricName: 'sessions' }, desc: true }],
           limit: 10,
+          dimensionFilter: exclusionFilter,
         }),
       }),
       // Daily visitors
@@ -174,17 +190,70 @@ serve(async (req) => {
             { name: 'screenPageViews' },
           ],
           orderBys: [{ dimension: { dimensionName: 'date' }, desc: false }],
+          dimensionFilter: exclusionFilter,
+        }),
+      }),
+      // Top custom events (engagement)
+      fetch(baseUrl, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          dateRanges: [{ startDate, endDate }],
+          dimensions: [{ name: 'eventName' }],
+          metrics: [
+            { name: 'eventCount' },
+            { name: 'totalUsers' },
+          ],
+          orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
+          limit: 25,
+          dimensionFilter: exclusionFilter,
+        }),
+      }),
+      // Pricing card flip breakdown by insurance_type + formula_name (custom params).
+      fetch(baseUrl, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          dateRanges: [{ startDate, endDate }],
+          dimensions: [
+            { name: 'eventName' },
+            { name: 'customEvent:insurance_type' },
+            { name: 'customEvent:formula_name' },
+          ],
+          metrics: [
+            { name: 'eventCount' },
+            { name: 'totalUsers' },
+          ],
+          dimensionFilter: {
+            andGroup: {
+              expressions: [
+                exclusionFilter,
+                {
+                  filter: {
+                    fieldName: 'eventName',
+                    inListFilter: {
+                      values: ['pricing_card_flip', 'pricing_card_view_details'],
+                    },
+                  },
+                },
+              ],
+            },
+          },
+          orderBys: [{ metric: { metricName: 'eventCount' }, desc: true }],
+          limit: 50,
         }),
       }),
     ]);
 
-    console.log('GA4 API response statuses:', overviewRes.status, pagesRes.status, sourcesRes.status, dailyRes.status);
-    
-    const [overview, pages, sources, daily] = await Promise.all([
+    console.log('GA4 API response statuses:', overviewRes.status, pagesRes.status, sourcesRes.status, dailyRes.status, eventsRes.status, pricingRes.status);
+
+    const [overview, pages, sources, daily, events, pricing] = await Promise.all([
       overviewRes.json(),
       pagesRes.json(),
       sourcesRes.json(),
       dailyRes.json(),
+      eventsRes.json(),
+      pricingRes.json(),
     ]);
 
     console.log('Overview response:', JSON.stringify(overview).slice(0, 500));
@@ -232,11 +301,29 @@ serve(async (req) => {
       };
     });
 
+    // Parse top events
+    const parsedEvents = (events.rows || []).map((row: any) => ({
+      eventName: row.dimensionValues[0].value,
+      count: parseInt(row.metricValues[0].value),
+      users: parseInt(row.metricValues[1].value),
+    }));
+
+    // Parse pricing card breakdown (eventName + insurance_type + formula_name)
+    const parsedPricing = (pricing.rows || []).map((row: any) => ({
+      eventName: row.dimensionValues[0].value,
+      insuranceType: row.dimensionValues[1]?.value || '(non défini)',
+      formulaName: row.dimensionValues[2]?.value || '(non défini)',
+      count: parseInt(row.metricValues[0].value),
+      users: parseInt(row.metricValues[1].value),
+    }));
+
     return new Response(JSON.stringify({
       overview: parsedOverview,
       pages: parsedPages,
       sources: parsedSources,
       daily: parsedDaily,
+      events: parsedEvents,
+      pricing: parsedPricing,
     }), {
       status: 200,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

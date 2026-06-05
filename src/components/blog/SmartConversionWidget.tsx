@@ -36,7 +36,7 @@ const widgetConfigs: Record<string, WidgetConfig> = {
   },
   "jeune-conducteur": {
     title: "Économiser sur l'assurance permis probatoire",
-    subtitle: "Jeune conducteur ? On compare 50+ assureurs pour vous trouver le meilleur prix.",
+    subtitle: "Jeune conducteur ? On compare 70+ assureurs pour vous trouver le meilleur prix.",
     buttonText: "Comparer les prix jeune conducteur →",
     deepLink: "/comparateur?step=1&profile=jeune-conducteur",
     miniQuestion: {
@@ -76,7 +76,7 @@ const widgetConfigs: Record<string, WidgetConfig> = {
 // Default fallback
 const defaultConfig: WidgetConfig = {
   title: "Comparez et économisez sur votre assurance",
-  subtitle: "50+ assureurs comparés gratuitement. Trouvez le meilleur prix en 2 minutes.",
+  subtitle: "70+ assureurs comparés gratuitement. Trouvez le meilleur prix en 2 minutes.",
   buttonText: "Comparer maintenant →",
   deepLink: "/comparateur",
   accentColor: "bg-accent/10 border-accent/30",

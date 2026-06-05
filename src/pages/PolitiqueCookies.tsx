@@ -18,8 +18,8 @@ const PolitiqueCookies = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEOOptimized
-        title="Politique de Cookies | jemassuremoinscher.fr"
-        description="Politique de cookies RGPD : types, gestion, préférences. Contrôlez vos données."
+        title={t("seo.cookies.title")}
+        description={t("seo.cookies.description")}
         canonical="https://www.jemassuremoinscher.fr/politique-cookies"
         jsonLd={breadcrumbSchema}
         noindex

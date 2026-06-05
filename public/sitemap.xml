@@ -3,20 +3,20 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <!-- Main Pages -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/comparateur</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -53,31 +53,31 @@
   <!-- Insurance Product Pages -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-auto</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-moto</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-habitation</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-sante</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-vie</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -88,15 +88,22 @@
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-animaux</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-pno</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
   </url>
+  <url><loc>https://www.jemassuremoinscher.fr/assurance-decennale</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/assurance-flotte-auto</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/assurance-mutuelle-entreprise</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/assurance-cyber</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/assurance-sans-permis</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/assurance-camping-car</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/assurance-velo</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/assurance-protection-juridique</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/assurance-auto-temporaire</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-gli</loc>
     <changefreq>weekly</changefreq>
@@ -119,26 +126,26 @@
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-metiers-atypiques</loc>
-    <lastmod>2026-04-22</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <!-- Blog — Métiers Atypiques piliers -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-parc-accrobranche-obligations-2026</loc>
-    <lastmod>2026-04-22</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-moniteur-sports-outdoor-2026</loc>
-    <lastmod>2026-04-22</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-organisateur-evenement-festival-2026</loc>
-    <lastmod>2026-04-22</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -163,7 +170,23 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/comparatif/amv-vs-maaf</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <!-- Landing Pages -->
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/landing/assurance</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/landing/accrobranche</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/landing/auto</loc>
     <changefreq>weekly</changefreq>
@@ -227,243 +250,538 @@
   <!-- Blog Articles - Legacy -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-jeune-conducteur-astuces</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/loi-hamon-resiliation-assurance</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-habitation-garanties-indispensables</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/10-conseils-economiser-assurances</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <!-- Blog Articles - 2026 -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-resiliation-non-paiement-guide</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/jeune-conducteur-voiture-puissante-110-chevaux</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-malus-eleve-compagnies-2026</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/seniors-75-ans-assurance-auto-prime-basse</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/permis-conduire-etranger-assurance-auto-france</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-resilie-alcool-stupefiants</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/conducteur-secondaire-assurance-auto-bonne-idee</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/top-10-voitures-occasion-moins-cheres-assurer-2026</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-au-kilometre-pay-as-you-drive-rentable</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/supprimer-options-inutiles-contrat-habitation</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/franchise-elevee-prime-basse-simulateur-choix</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/regrouper-contrats-auto-maison-reduction-reelle</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-connectee-boitiers-intelligents-prix</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/hausse-tarifs-assurance-2026-comment-contrer</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/demenagement-prevenir-assureur-couverture</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-colocation-contrat-unique-ou-individuel</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/teletravail-assurance-habitation-materiel-pro-couvert</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/sous-location-airbnb-risques-caches-assurance</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-panneaux-photovoltaiques-installation</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/degat-des-eaux-voisins-constat-amiable-2026</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-pno-obligatoire-louer-bien</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-voiture-electrique-bonus-ecologiques-2026</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/trottinettes-electriques-edpm-assurance-obligatoire</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/velos-cargos-vae-protection-vol-urbain</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/recharge-domicile-assurance-borne-recharge</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/covoiturage-regulier-extension-garantie-passagers</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/vente-vehicule-suspendre-assurance-jour-j</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/certificat-assurance-dematerialise-fin-vignette-verte</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.jemassuremoinscher.fr/blog/voiture-immobilisee-garage-arreter-assurance</loc>
-    <lastmod>2026-04-21</lastmod>
+    <loc>https://www.jemassuremoinscher.fr/blog/voiture-immobilisee-garage-arreter-assurer</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/heritage-vehicule-assurer-voiture-deces</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/reste-a-charge-zero-100-sante-lunettes-dents-2026</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/mutuelle-etudiante-contrat-parents-ou-individuel</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/auto-entrepreneur-mutuelle-protection-optimale</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-emprunteur-changer-assurance-pret-immobilier</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/medecines-douces-mutuelles-osteopathie-hypnose</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Blog Articles - DB Published -->
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-pno-comparateur-decryptez-les-meilleures-offres-2026-pour-proprietaires-non-occupants</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-habitation-et-borne-de-recharge-protegez-votre-investissement-en-2026</loc>
+    <lastmod>2026-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/comment-trouver-une-assurance-pas-cher-en-2026-le-guide-ultime-pour-economiser-sans-sacrifier-la-qualite</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-emprunteur-definition-complete-et-decryptage-pour-2026</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-trottinette-electrique-obligatoire-en-france-des-2026-le-guide-complet</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/regrouper-assurance-auto-et-habitation-en-2026-le-guide-ultime-pour-le-meilleur-choix-en-france</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-la-moins-chere-pour-voiture-d-occasion-france-2026-definition-garanties-et-conseils-2026</loc>
+    <lastmod>2026-01-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-la-moins-chere-voiture-occasion-plus-de-8-ans-france-2026-definition-garanties-et-conseils-2026</loc>
+    <lastmod>2026-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/meilleure-assurance-auto-2026-definition-garanties-et-conseils-2026</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-expatries-france</loc>
+    <lastmod>2026-02-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-habitation-expatries</loc>
+    <lastmod>2026-02-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/mutuelle-sante-expatries-france</loc>
+    <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/changer-assurance-expatrie</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-couples-mixtes-france</loc>
+    <lastmod>2026-02-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-etudiant-etranger-france</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/cotisations-sociales-assurance-expatrie</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-malus-eleve-crm</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/rapatriement-assurance-expatries</loc>
+    <lastmod>2026-02-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-jeune-conducteur-sans-experience</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-vintage-collection</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-teletravail-peu-kilometrage</loc>
+    <lastmod>2026-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-apres-retrait-permis</loc>
+    <lastmod>2026-03-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/temoignages-expatries-assurance</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-habitation-zone-inondable-sinistre</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-au-kilometre-vaut-le-coup-2026</loc>
+    <lastmod>2026-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/guide-choisir-mutuelle-sante-selon-besoins</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/definition-franchise-assurance-exemples</loc>
+    <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/preuves-expertise-courtier-assurance-independant</loc>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/faq-assurance-emprunteur-changement-2026</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-glossaire-termes-essentiels-decider</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/faq-resiliation-assurance-lois-hamon-lemoine</loc>
+    <lastmod>2026-04-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/comparatif-assurance-auto-profils-2026</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/economiser-assurance-habitation-2026-astuces</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-emprunteur-substitution-banque-refuse</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/meilleure-assurance-moto-125-2026</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-pno-louer-airbnb-courte-duree-2026</loc>
+    <lastmod>2026-04-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-colocation-etudiante</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-expat-france-vs-origine</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-airbnb-location-saisonniere</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-logement-non-conventionnel</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-habitation-apres-sinistre-majeur</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/visa-long-sejour-assurance-france</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-tech-workers-expatries</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-cadres-expatries-mutation</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-retraite-expatrie-france</loc>
+    <lastmod>2026-05-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-jeunes-conducteurs-france</loc>
+    <lastmod>2026-05-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-frontalier-france</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-occasion-neuve-comparaison</loc>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <!-- Outils -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/outils/calculateur-bonus-malus</loc>
-    <lastmod>2026-03-08</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -621,8 +939,44 @@
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/meilleure-assurance-auto-2026-comparatif</loc>
-    <lastmod>2026-04-21</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- Profils Spéciaux -->
+  <url><loc>https://www.jemassuremoinscher.fr/profil</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/profil/resilie-non-paiement</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/profil/retrait-permis</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/profil/frequence-sinistres</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/profil/sans-antecedents</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/profil/jeune-conducteur-voiture-puissante</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/profil/fausse-declaration</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/profil/malus-eleve</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/profil/permis-etranger</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/profil/senior-75-plus</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/profil/voiture-collection</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/profil/vehicule-importe</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/profil/chauffeur-vtc-taxi</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/profil/alcoolemie-stupefiants</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/profil/delit-de-fuite</loc><lastmod>2026-05-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/landing/decennale</loc><lastmod>2026-05-17</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/landing/flotte-auto</loc><lastmod>2026-05-17</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/landing/mutuelle-entreprise</loc><lastmod>2026-05-17</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/landing/cyber</loc><lastmod>2026-05-17</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/landing/sans-permis</loc><lastmod>2026-05-17</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/landing/camping-car</loc><lastmod>2026-05-17</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/landing/velo</loc><lastmod>2026-05-17</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/landing/protection-juridique</loc><lastmod>2026-05-17</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/landing/auto-temporaire</loc><lastmod>2026-05-17</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/blog/garantie-decennale-2026-guide-complet-artisans-btp</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/blog/rc-pro-decennale-differences-artisans-btp</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/blog/decennale-auto-entrepreneur-btp-2026</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/blog/assurance-flotte-auto-2026-guide-entreprise</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/blog/boitiers-connectes-flotte-auto-entreprise-2026</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/blog/reduire-cout-flotte-auto-entreprise-2026</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/blog/mutuelle-entreprise-2026-guide-complementaire-sante-collective</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/blog/mutuelle-tns-vs-mutuelle-entreprise-2026</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/blog/surcomplementaire-sante-entreprise-2026</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/landing/moniteur-sport</loc><lastmod>2026-05-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.jemassuremoinscher.fr/landing/evenementiel</loc><lastmod>2026-05-30</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>

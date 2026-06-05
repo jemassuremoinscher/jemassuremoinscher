@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,13 +10,17 @@ import { ArrowLeft, ArrowRight, Loader2, CheckCircle2, Lock, Phone, Mail, User, 
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { useFunnelTracker } from '@/hooks/useFunnelTracker';
 import { useHoneypot } from '@/hooks/useHoneypot';
 import { trackGoogleAdsConversionWithParams } from '@/utils/googleAdsTracking';
 import { trackMetaLead } from '@/utils/metaPixelTracking';
 import { normalizeInsuranceTypeStrict } from '@/utils/insuranceTypeNormalizer';
-import { stepConfigsByType, type InsuranceType, type FormStep, type StepOption } from './stepConfigs';
+import { buildStepConfigs, type InsuranceType, type FormStep, type StepOption } from './stepConfigs';
 import { useFieldTracking } from '@/hooks/useFieldTracking';
 import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from '@/data/vehicleBrands';
+import FlipPriceCard from './FlipPriceCard';
+import { useLanguage } from '@/contexts/LanguageContext';
+// ExitIntentLeadMagnet est monté globalement dans App.tsx (GlobalExitIntent)
 
 // Mascot imports
 import arthurCar from '@/assets/mascotte/arthur-car.webp';
@@ -33,6 +37,7 @@ import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.webp';
 import arthurExcited from '@/assets/mascotte/arthur-excited.webp';
 import arthurRunningCoin from '@/assets/mascotte/arthur-running-coin.webp';
 import arthurClimbing from '@/assets/mascotte/arthur-climbing.webp';
+import arthurBike from '@/assets/mascotte/arthur-bike.png';
 
 // Logo imports for teaser prices
 import logoDirectAssurance from '@/assets/logos/direct-assurance-new.webp';
@@ -49,6 +54,36 @@ import logoGenerali from '@/assets/logos/generali-new.png';
 import logoAcheel from '@/assets/logos/acheel.webp';
 import logoSwisslife from '@/assets/logos/swisslife.webp';
 import logoAon from '@/assets/logos/aon.webp';
+import logoMacif from '@/assets/logos/macif-new.webp';
+import logoMatmut from '@/assets/logos/matmut-new.webp';
+import logoMaaf from '@/assets/logos/maaf.webp';
+import logoMma from '@/assets/logos/mma-new.webp';
+import logoGmf from '@/assets/logos/gmf-new.webp';
+import logoAbeille from '@/assets/logos/abeille.webp';
+import logoLeocare from '@/assets/logos/leocare.webp';
+import logoLolivier from '@/assets/logos/lolivier.webp';
+import logoLuko from '@/assets/logos/luko.png';
+import logoMalakoff from '@/assets/logos/malakoff-humanis.png';
+import logoMutuelleGenerale from '@/assets/logos/mutuelle-generale.png';
+import logoMgen from '@/assets/logos/mgen.png';
+import logoAg2r from '@/assets/logos/ag2r.png';
+import logoAprilMoto from '@/assets/logos/april-moto.png';
+import logoAmv from '@/assets/logos/amv.webp';
+import logoSollyAzar from '@/assets/logos/solly-azar.png';
+import logoAssu2000 from '@/assets/logos/assu-2000.png';
+import logoWilov from '@/assets/logos/wilov.webp';
+import logoOrnikar from '@/assets/logos/ornikar.webp';
+import logoGoodflair from '@/assets/logos/goodflair.png';
+import logoLcl from '@/assets/logos/lcl.png';
+import logoMetlife from '@/assets/logos/metlife.png';
+import logoBulleBleue from '@/assets/logos/bulle-bleue.png';
+import logoSantevet from '@/assets/logos/santevet.png';
+import logoFidanimo from '@/assets/logos/fidanimo.png';
+import logoAnimauxSante from '@/assets/logos/animaux-sante.png';
+import logoNeo from '@/assets/logos/neo.webp';
+import logoMpa from '@/assets/logos/mpa.webp';
+import logoAComme from '@/assets/logos/a-comme-assure.png';
+import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
 const mascotImages: Record<InsuranceType, string> = {
   auto: arthurCar,
@@ -66,6 +101,15 @@ const mascotImages: Record<InsuranceType, string> = {
   comparateur: arthurThumbsUp,
   metiers_atypiques: arthurClimbing,
   gestion_locative: arthurHouse,
+  velo: arthurBike,
+  camping_car: arthurCar,
+  sans_permis: arthurCar,
+  auto_temporaire: arthurCar,
+  flotte: arthurBusiness,
+  cyber: arthurDetective,
+  decennale: arthurBusiness,
+  protection_juridique: arthurIdea,
+  mutuelle_entreprise: arthurBusiness,
 };
 
 const mascotSearching = arthurRunningCoin;
@@ -89,6 +133,10 @@ interface MultiStepQuoteFormProps {
   insuranceType: InsuranceType;
   onComplete?: () => void;
   className?: string;
+  /** Constrain card to fixed height with internal scroll (Hero usage) */
+  fixedHeight?: boolean;
+  /** Step IDs to exclude (e.g. ['postalCode'] for expat abroad) */
+  excludeStepIds?: string[];
 }
 
 const slideVariants = {
@@ -109,35 +157,50 @@ const slideVariants = {
   }),
 };
 
-export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }: MultiStepQuoteFormProps) => {
+export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', fixedHeight = false, excludeStepIds }: MultiStepQuoteFormProps) => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { trackEvent, trackConversion } = useAnalytics();
+  const { track: trackFunnel } = useFunnelTracker();
+  const { t } = useLanguage();
   const { honeypotRef, isBot } = useHoneypot();
+
+  // Prefill from URL: ?type=auto&age=35&zipcode=75001
+  const prefillType = searchParams.get('type');
+  const prefillAge = searchParams.get('age') || '';
+  const prefillZip = searchParams.get('zipcode') || searchParams.get('postalCode') || '';
+  const stepConfigsByType = useMemo(() => buildStepConfigs(t), [t]);
+  const initialFormData: Record<string, string> = {};
+  if (insuranceType === 'comparateur' && prefillType && prefillType in stepConfigsByType) {
+    initialFormData.insuranceType = prefillType;
+  }
+  if (prefillAge) initialFormData.age = prefillAge;
+  if (prefillZip && /^\d{5}$/.test(prefillZip)) initialFormData.postalCode = prefillZip;
 
   const [currentStep, setCurrentStep] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [formData, setFormData] = useState<Record<string, string>>({});
+  const [formData, setFormData] = useState<Record<string, string>>(initialFormData);
   const [contactData, setContactData] = useState({ fullName: '', email: '', phone: '', acceptTerms: false as boolean });
 
-  // For comparateur, dynamically inject vehicle + age steps when auto/moto is selected
+  // For comparateur, dynamically inject the full product-specific path after type selection
   const steps = useMemo(() => {
     const baseSteps = stepConfigsByType[insuranceType] || stepConfigsByType.comparateur;
-    if (insuranceType !== 'comparateur') return baseSteps;
-    
-    const selectedType = formData.insuranceType;
-    if (selectedType === 'auto' || selectedType === 'moto') {
-      const specificSteps = stepConfigsByType[selectedType as InsuranceType];
-      // Grab vehicle-select, vehicleYear, and age steps from the specific config
-      const extraSteps = specificSteps.filter(s => 
-        s.type === 'vehicle-select' || s.id === 'vehicleYear' || s.id === 'age'
-      );
-      const typeStep = baseSteps[0];
-      const formuleStep = baseSteps[1];
-      const remaining = baseSteps.slice(2); // postalCode, searching, contact
-      return [typeStep, formuleStep, ...extraSteps, ...remaining];
+    let computed = baseSteps;
+    if (insuranceType === 'comparateur') {
+      const selectedType = formData.insuranceType;
+      if (selectedType && selectedType in stepConfigsByType) {
+        const specificSteps = stepConfigsByType[selectedType as InsuranceType];
+        const typeStep = baseSteps[0];
+        const productSteps = specificSteps.filter(s => s.type !== 'searching' && s.type !== 'contact' && s.type !== 'callback');
+        const finalSteps = baseSteps.filter(s => s.type === 'searching' || s.type === 'contact');
+        computed = [typeStep, ...productSteps, ...finalSteps];
+      }
     }
-    return baseSteps;
-  }, [insuranceType, formData.insuranceType]);
+    if (excludeStepIds && excludeStepIds.length > 0) {
+      computed = computed.filter((s) => !excludeStepIds.includes(s.id));
+    }
+    return computed;
+  }, [insuranceType, formData.insuranceType, stepConfigsByType, excludeStepIds]);
   const [contactErrors, setContactErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -151,13 +214,57 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
   const totalSteps = steps.length;
   const progressPercent = ((currentStep + 1) / totalSteps) * 100;
 
+  // Funnel tracking — emit step_view on each step change
+  const reachedSubmitRef = useRef(false);
+  const effectiveType = formData.insuranceType || insuranceType;
+  useEffect(() => {
+    if (!step) return;
+    trackFunnel('step_view', {
+      stepIndex: currentStep,
+      stepId: step.id,
+      insuranceType: effectiveType,
+      metadata: { totalSteps, type: step.type },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentStep, steps.length]);
+
+  // Track form_view once on mount, abandon on unload if not submitted
+  useEffect(() => {
+    trackFunnel('form_view', { stepIndex: 0, stepId: steps[0]?.id, insuranceType: effectiveType });
+    const onLeave = () => {
+      if (!reachedSubmitRef.current) {
+        trackFunnel('abandon', {
+          stepIndex: currentStep,
+          stepId: steps[currentStep]?.id,
+          insuranceType: formData.insuranceType || insuranceType,
+          metadata: { totalSteps: steps.length },
+        });
+      }
+    };
+    window.addEventListener('pagehide', onLeave);
+    return () => {
+      window.removeEventListener('pagehide', onLeave);
+      onLeave();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Auto-advance past steps already pre-filled from URL params (hero form, deep links).
+  useEffect(() => {
+    if (!step || step.type === 'searching' || step.type === 'contact' || step.type === 'callback') return;
+    if (step.field && formData[step.field]) {
+      setCurrentStep((s) => Math.min(s + 1, steps.length - 1));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentStep, steps.length]);
+
   // Contextual transition messages
   const transitionMessages = [
-    'Recherche des meilleurs tarifs en cours…',
-    'Vérification de votre éligibilité aux bonus…',
-    'Analyse de votre profil…',
-    'Comparaison des garanties disponibles…',
-    'Optimisation de votre tarif…',
+    t('form.transition.1'),
+    t('form.transition.2'),
+    t('form.transition.3'),
+    t('form.transition.4'),
+    t('form.transition.5'),
   ];
 
   // Step time estimate
@@ -211,6 +318,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
 
   const goBack = () => {
     if (currentStep > 0) {
+      trackFunnel('step_back', { stepIndex: currentStep, stepId: steps[currentStep]?.id, insuranceType: effectiveType });
       setDirection(-1);
       setCurrentStep(prev => prev - 1);
     }
@@ -218,6 +326,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
 
   const handleCardSelect = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+    trackFunnel('step_complete', {
+      stepIndex: currentStep,
+      stepId: steps[currentStep]?.id,
+      insuranceType: effectiveType,
+      metadata: { field, value },
+    });
     // Show transition screen with contextual message
     const msg = transitionMessages[currentStep % transitionMessages.length];
     setTransitionScreen(msg);
@@ -235,6 +349,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
       return;
     }
     setFormData(prev => ({ ...prev, [field]: value }));
+    trackFunnel('step_complete', {
+      stepIndex: currentStep,
+      stepId: steps[currentStep]?.id,
+      insuranceType: effectiveType,
+      metadata: { field },
+    });
     goNext();
   };
 
@@ -261,7 +381,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
       const rawType = insType === 'comparateur' ? (formData.insuranceType || 'auto') : insType;
       const canonicalType = normalizeInsuranceTypeStrict(rawType);
       if (!canonicalType) {
-        toast.error(`Type d'assurance invalide: ${rawType}`);
+        toast.error(`${t('form.toast.invalidType')}: ${rawType}`);
         setIsSubmitting(false);
         return;
       }
@@ -281,19 +401,24 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
       if (error) throw error;
 
       // Send email
-      await supabase.functions.invoke('send-quote-email', {
-        body: {
+      await invokeSendQuoteEmail({
           name: contactData.fullName,
           email: contactData.email,
           phone: contactData.phone,
           type: insType,
           details: formData,
           estimatedPrice: 35,
-        },
-      }).catch(console.error);
+        },).catch(console.error);
 
       setIsSuccess(true);
-      toast.success('Demande envoyée !', { description: 'Un conseiller vous contacte très vite.' });
+      reachedSubmitRef.current = true;
+      trackFunnel('submit_success', {
+        stepIndex: currentStep,
+        stepId: steps[currentStep]?.id,
+        insuranceType: insType,
+        metadata: { leadId: insertedQuote?.id },
+      });
+      toast.success(t('form.toast.successTitle'), { description: t('form.toast.successDescription') });
 
       trackConversion('quote_request', 100);
       trackEvent('quote_request', {
@@ -332,7 +457,13 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
       }, 2000);
     } catch (error) {
       console.error('Error submitting quote:', error);
-      toast.error('Erreur', { description: 'Veuillez réessayer.' });
+      trackFunnel('submit_error', {
+        stepIndex: currentStep,
+        stepId: steps[currentStep]?.id,
+        insuranceType: formData.insuranceType || insuranceType,
+        metadata: { message: (error as Error)?.message?.slice(0, 200) },
+      });
+      toast.error(t('form.toast.errorTitle'), { description: t('form.toast.errorRetry') });
     } finally {
       setIsSubmitting(false);
     }
@@ -341,26 +472,33 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
   return (
     <div className={`w-full max-w-2xl mx-auto ${className}`} id="quote-form">
       {/* Glass container */}
-      <div className="relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50 shadow-[var(--shadow-lg)] overflow-hidden">
+      <div className={`relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50 shadow-[var(--shadow-lg)] overflow-hidden ${fixedHeight ? 'flex flex-col h-[640px]' : ''}`}>
 
         {/* Step banner — urgency + progress */}
         {step.type !== 'searching' && step.type !== 'callback' && !transitionScreen && (
-          <div className="bg-primary px-4 py-2 flex items-center justify-between text-[11px] md:text-xs">
+          <div className="bg-primary px-4 py-2.5 flex items-center justify-between gap-3 text-[11px] md:text-xs">
             <span className="font-semibold text-primary-foreground/90">
-              Étape {currentStep + 1}/{totalSteps}
+              {t("form.stepOf", { current: currentStep + 1, total: totalSteps })}
             </span>
-            <span className="text-primary-foreground/70">
-              Plus que <span className="text-accent font-bold">{secondsEstimate}s</span> pour voir vos prix
+            <span className="text-primary-foreground/85 flex items-baseline gap-1.5">
+              {t("form.timeLeftPrefix")}{' '}
+              <span className="text-[22px] md:text-[26px] font-bold leading-none text-[#fcd34d] tabular-nums tracking-tight animate-[pulse_2.4s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(252,211,77,0.45)]">
+                {secondsEstimate}s
+              </span>{' '}
+              {t("form.timeLeftSuffix")}
             </span>
           </div>
         )}
         {step.type === 'callback' && !transitionScreen && (
-          <div className="bg-primary px-4 py-2 flex items-center justify-between text-[11px] md:text-xs">
+          <div className="bg-primary px-4 py-2.5 flex items-center justify-between gap-3 text-[11px] md:text-xs">
             <span className="font-semibold text-primary-foreground/90">
-              Dernière étape — finalisez votre demande
+              {t("form.lastStep")}
             </span>
-            <span className="text-primary-foreground/70">
-              Rappel sous <span className="text-accent font-bold">30 min</span>
+            <span className="text-primary-foreground/85 flex items-baseline gap-1.5">
+              {t("form.callbackPrefix")}{' '}
+              <span className="text-[22px] md:text-[26px] font-bold leading-none text-[#fcd34d] tabular-nums tracking-tight animate-[pulse_2.4s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(252,211,77,0.45)]">
+                30 min
+              </span>
             </span>
           </div>
         )}
@@ -380,15 +518,18 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
 
         {/* Step indicator */}
         <div className="flex items-center justify-between px-6 pt-4 pb-2">
-          <button
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
             onClick={goBack}
             disabled={currentStep === 0 || step.type === 'searching' || !!transitionScreen}
-            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors disabled:opacity-0 disabled:pointer-events-none"
-            aria-label="Étape précédente"
+            className="rounded-full px-4 h-10 gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted disabled:opacity-0 disabled:pointer-events-none relative z-10"
+            aria-label={t("form.previousStep")}
           >
             <ArrowLeft className="h-4 w-4" />
-            Retour
-          </button>
+            {t("common.back")}
+          </Button>
           <span className="text-xs font-medium text-muted-foreground tracking-wide">
             {step.type !== 'searching' && !transitionScreen && `${currentStep + 1} / ${totalSteps}`}
           </span>
@@ -398,7 +539,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
         <input ref={honeypotRef} type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0 }} />
 
         {/* Content area */}
-        <div className="px-6 pb-8 min-h-[420px] flex flex-col">
+        <div className={`px-6 pb-8 flex flex-col ${fixedHeight ? 'flex-1 overflow-y-auto min-h-0' : 'min-h-[420px]'}`}>
           <AnimatePresence mode="wait" custom={direction}>
             {transitionScreen ? (
               <motion.div
@@ -425,22 +566,31 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
                 transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="flex-1 flex flex-col"
               >
-                {/* Arthur mascot */}
+                {/* Arthur mascot + speech bubble (mobile only) */}
                 <div className="flex justify-center mb-4">
-                  <motion.img
-                    src={mascotSrc}
-                    alt="Arthur"
-                    className="h-20 md:h-24 object-contain drop-shadow-lg"
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1, y: [0, -6, 0] }}
-                    transition={{
-                      scale: { duration: 0.4 },
-                      opacity: { duration: 0.4 },
-                      y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
-                    }}
-                    width={96}
-                    height={120}
-                  />
+                  <div className="relative inline-flex items-end gap-2 md:block">
+                    <motion.img
+                      src={mascotSrc}
+                      alt="Arthur"
+                      className="h-20 md:h-24 object-contain drop-shadow-lg"
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1, y: [0, -6, 0] }}
+                      transition={{
+                        scale: { duration: 0.4 },
+                        opacity: { duration: 0.4 },
+                        y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
+                      }}
+                      width={96}
+                      height={120}
+                    />
+                    {/* Bulle mobile uniquement, vient d'Arthur */}
+                    <div className="md:hidden relative bg-white border border-border rounded-2xl px-3 py-2 shadow-md mb-2 max-w-[180px]">
+                      <p className="text-primary font-bold text-xs leading-tight">
+                        Hello, moi c'est Arthur 👋
+                      </p>
+                      <div className="absolute bottom-3 -left-1.5 w-3 h-3 bg-white border-l border-b border-border transform rotate-45" />
+                    </div>
+                  </div>
                 </div>
 
                 {/* Title */}
@@ -519,7 +669,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
                     isSuccess={isSuccess}
                     onChange={setContactData}
                     onSubmit={handleContactSubmit}
-                    insuranceType={insuranceType}
+                    insuranceType={formData.insuranceType || insuranceType}
                   />
                 )}
 
@@ -540,44 +690,43 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '' }
 
         {/* Trust badges at bottom */}
         <div className="border-t border-border/30 px-6 py-3 flex items-center justify-center gap-4 text-xs text-muted-foreground">
-          <span className="flex items-center gap-1"><Lock className="h-3 w-3" /> Données sécurisées</span>
+          <span className="flex items-center gap-1"><Lock className="h-3 w-3" /> {t("form.trust.secured")}</span>
           <span className="hidden sm:inline">•</span>
-          <span className="hidden sm:flex items-center gap-1">100% gratuit</span>
+          <span className="hidden sm:flex items-center gap-1">{t("form.trust.free")}</span>
           <span className="hidden sm:inline">•</span>
-          <span className="hidden sm:flex items-center gap-1">Sans engagement</span>
+          <span className="hidden sm:flex items-center gap-1">{t("form.trust.noCommit")}</span>
         </div>
       </div>
 
-      {/* Trust block — Google Review + social proof */}
-      <div className="mt-5 rounded-2xl border border-border/50 bg-muted/50 px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-        {/* Google review */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-0.5 text-accent" aria-label="Note 4.8 sur 5">
-            {[1, 2, 3, 4, 5].map(i => (
-              <svg key={i} className="w-4 h-4" viewBox="0 0 20 20" fill={i <= 4 ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5">
-                <path d="M10 1l2.39 4.84 5.34.78-3.87 3.77.91 5.32L10 13.27l-4.77 2.51.91-5.32L2.27 6.62l5.34-.78L10 1z" />
-              </svg>
-            ))}
-          </div>
-          <span className="text-sm text-foreground">
-            <span className="font-bold text-base">4,8</span>/5 — Google Reviews
-          </span>
-        </div>
-        {/* Social proof */}
-        <p className="text-sm text-muted-foreground">
-          Déjà plus de <span className="font-bold text-foreground">250</span> Français assurés via notre comparateur
-        </p>
-      </div>
+
+      {/* Exit-intent monté globalement dans App.tsx via <GlobalExitIntent /> */}
     </div>
   );
 };
 
+
 // ─── Card Select Step ────────────────────────────────────────────────────────
 function CardSelectStep({ options, selected, onSelect, microLoading }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void; microLoading?: boolean }) {
+  const { t } = useLanguage();
+  // Si la liste d'options est longue (typiquement l'étape "type d'assurance"
+  // du comparateur avec 12 options), on n'affiche que les 4 principales et on
+  // propose un toggle "Voir plus" pour révéler le reste. 80% des leads viennent
+  // des 4 premières catégories (Auto, Moto, Habitation, Santé).
+  const COLLAPSE_THRESHOLD = 8;
+  const PRIMARY_COUNT = 4;
+  const collapsible = options.length >= COLLAPSE_THRESHOLD;
+  const [expanded, setExpanded] = useState(false);
+  // Toujours montrer la sélection courante même si elle est dans la zone repliée
+  const selectedHidden = collapsible && !expanded && selected
+    ? options.findIndex((o) => o.value === selected) >= PRIMARY_COUNT
+    : false;
+  const visibleOptions = collapsible && !expanded && !selectedHidden
+    ? options.slice(0, PRIMARY_COUNT)
+    : options;
   return (
     <div className="relative">
-      <div className={`grid gap-3 ${options.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : options.length <= 4 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}`}>
-        {options.map((option, idx) => {
+      <div className={`grid gap-3 ${visibleOptions.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : visibleOptions.length <= 4 ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}`}>
+        {visibleOptions.map((option, idx) => {
           const Icon = option.icon;
           const isSelected = selected === option.value;
           return (
@@ -611,15 +760,30 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
               }}
               aria-label={option.label}
             >
-              <div className={`
-                h-14 w-14 md:h-16 md:w-16 rounded-2xl flex items-center justify-center mb-3 transition-all duration-200
-                ${isSelected
-                  ? 'bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]'
-                  : 'bg-muted/60 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
-                }
-              `}>
-                <Icon className="h-7 w-7 md:h-8 md:w-8" />
-              </div>
+              {option.iconImage ? (
+                <div className="h-16 w-16 md:h-20 md:w-20 flex items-center justify-center mb-2">
+                  <img
+                    src={option.iconImage}
+                    alt=""
+                    aria-hidden="true"
+                    width={64}
+                    height={64}
+                    className="h-full w-full object-contain drop-shadow-md"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ) : (
+                <div className={`
+                  h-14 w-14 md:h-16 md:w-16 rounded-2xl flex items-center justify-center mb-3 transition-all duration-200
+                  ${isSelected
+                    ? 'bg-primary text-primary-foreground shadow-[var(--shadow-elegant)]'
+                    : 'bg-muted/60 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary'
+                  }
+                `}>
+                  <Icon className="h-7 w-7 md:h-8 md:w-8" />
+                </div>
+              )}
               <span className="font-semibold text-foreground text-sm md:text-base">{option.label}</span>
               {option.description && (
                 <span className="text-xs text-muted-foreground mt-1 leading-tight">{option.description}</span>
@@ -636,6 +800,49 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
           );
         })}
       </div>
+      {collapsible && (
+        <div className="mt-5 flex justify-center">
+          <motion.button
+            type="button"
+            onClick={() => setExpanded((v) => !v)}
+            whileTap={{ scale: 0.96 }}
+            aria-expanded={expanded}
+            className={`
+              group relative inline-flex items-center gap-2 pl-5 pr-6 py-3 rounded-full
+              font-semibold text-sm
+              bg-primary/10 text-primary
+              border border-primary/20
+              shadow-[0_1px_2px_rgba(0,0,0,0.04)]
+              hover:bg-primary/15 hover:shadow-[0_6px_18px_-8px_hsl(var(--primary)/0.45)]
+              hover:border-primary/40
+              focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/30
+              transition-all duration-300 ease-out
+              ${expanded ? 'bg-primary/15 border-primary/40' : ''}
+            `}
+          >
+            <motion.span
+              animate={{ rotate: expanded ? 180 : 0 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 22 }}
+              className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary text-primary-foreground shadow-sm"
+              aria-hidden="true"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </motion.span>
+            <span>
+              {expanded
+                ? "Voir moins d'assurances"
+                : `Voir plus d'assurances`}
+            </span>
+            {!expanded && (
+              <span className="inline-flex items-center justify-center min-w-[26px] h-6 px-2 rounded-full bg-primary text-primary-foreground text-[11px] font-bold tabular-nums">
+                +{options.length - PRIMARY_COUNT}
+              </span>
+            )}
+          </motion.button>
+        </div>
+      )}
       {/* Micro-loading feedback */}
       {microLoading && (
         <motion.div
@@ -644,7 +851,7 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
           className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground"
         >
           <Loader2 className="h-3.5 w-3.5 animate-spin text-primary" />
-          <span>Calcul de précision…</span>
+          <span>{t('form.precisionCalc')}</span>
         </motion.div>
       )}
     </div>
@@ -656,11 +863,12 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
   step: FormStep; value: string; onChange: (v: string) => void; onSubmit: (v: string) => void;
   activeHint?: string | null; onFocus?: () => void; onBlur?: () => void; onDismissHint?: () => void;
 }) {
+  const { t } = useLanguage();
   const [error, setError] = useState('');
 
   const handleSubmit = () => {
     if (step.validation && !step.validation.test(value)) {
-      setError(step.validationMessage || 'Valeur invalide');
+      setError(step.validationMessage || t('form.invalidValue'));
       return;
     }
     setError('');
@@ -702,7 +910,7 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
               <div className="flex items-start gap-2">
                 <span className="text-primary text-sm flex-shrink-0">💡</span>
                 <span>{activeHint}</span>
-                <button onClick={onDismissHint} className="text-muted-foreground/60 hover:text-foreground ml-auto flex-shrink-0" aria-label="Fermer">✕</button>
+                <button onClick={onDismissHint} className="text-muted-foreground/60 hover:text-foreground ml-auto flex-shrink-0" aria-label={t('form.closeAria')}>✕</button>
               </div>
             </div>
           </motion.div>
@@ -713,7 +921,7 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
         size="lg"
         className="btn-glow w-full rounded-full font-bold text-base h-12 bg-primary hover:bg-primary/90 active:scale-[0.96] active:brightness-90 transition-all duration-75"
       >
-        Continuer
+        {t('form.continue')}
         <ArrowRight className="ml-2 h-4 w-4" />
       </Button>
     </div>
@@ -727,6 +935,7 @@ function VehicleSelectStep({ step, formData, onSelect }: {
   formData: Record<string, string>;
   onSelect: (field: string, value: string) => void;
 }) {
+  const { t } = useLanguage();
   const [search, setSearch] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -761,13 +970,13 @@ function VehicleSelectStep({ step, formData, onSelect }: {
           ref={inputRef}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Rechercher…"
+          placeholder={t('form.search.placeholder')}
           className="h-12 pl-10 rounded-2xl border-2 border-border/50 focus:border-primary bg-background/50"
         />
       </div>
       <div className="w-full max-h-[260px] overflow-y-auto rounded-xl border border-border/30 bg-background/50">
         {filtered.length === 0 ? (
-          <p className="text-sm text-muted-foreground text-center py-6">Aucun résultat</p>
+          <p className="text-sm text-muted-foreground text-center py-6">{t('form.search.noResults')}</p>
         ) : (
           filtered.map((item, idx) => (
             <motion.button
@@ -789,6 +998,7 @@ function VehicleSelectStep({ step, formData, onSelect }: {
 
 // ─── Searching Step ──────────────────────────────────────────────────────────
 function SearchingStep({ progress, currentPartner }: { progress: number; currentPartner: string }) {
+  const { t } = useLanguage();
   return (
     <div className="flex flex-col items-center gap-6 py-4">
       {/* Spinning loader */}
@@ -819,7 +1029,7 @@ function SearchingStep({ progress, currentPartner }: { progress: number; current
           transition={{ duration: 0.15 }}
           className="text-sm text-muted-foreground font-medium"
         >
-          Analyse de <span className="text-foreground font-semibold">{currentPartner}</span>…
+          {t('form.searching.analysing')} <span className="text-foreground font-semibold">{currentPartner}</span>…
         </motion.div>
       </AnimatePresence>
 
@@ -832,72 +1042,125 @@ function SearchingStep({ progress, currentPartner }: { progress: number; current
         />
       </div>
 
-      <p className="text-xs text-muted-foreground">50+ assureurs comparés en temps réel</p>
+      <p className="text-xs text-muted-foreground">{t('form.searching.realtime')}</p>
     </div>
   );
 }
 
-// ─── Teaser Prices by insurance type with insurer logos ──────────────────────
-const teaserPrices: Record<string, { label: string; prices: { name: string; price: string; badge?: string; logo: string }[] }> = {
+// ─── Teaser Prices by insurance type ─────────────────────────────────────────
+// Note: `logoPool` is rotated per session in ContactStep so two consecutive
+// devis don't show the same insurers. Prices reflect realistic FR market 2026.
+type TeaserTier = { name: string; price: string; badge?: string; logoPool: string[]; features: string[] };
+const teaserPrices: Record<string, { label: string; prices: TeaserTier[] }> = {
   auto: { label: 'Assurance Auto', prices: [
-    { name: 'Tiers', price: '11€', badge: 'Dès', logo: logoDirectAssurance },
-    { name: 'Tiers+', price: '18€', badge: 'Dès', logo: logoAllianz },
-    { name: 'Tous risques', price: '29€', badge: 'Dès', logo: logoAxa },
+    { name: 'Tiers', price: '19€', badge: 'Dès', logoPool: [logoDirectAssurance, logoLolivier, logoLeocare, logoOrnikar, logoAssu2000, logoAmaguiz], features: ['Responsabilité civile obligatoire', 'Défense pénale et recours', 'Assistance 50 km du domicile'] },
+    { name: 'Tiers+', price: '32€', badge: 'Dès', logoPool: [logoAllianz, logoMaif, logoMacif, logoMatmut, logoMaaf, logoMma, logoAbeille], features: ['Tout du Tiers', 'Vol et incendie', 'Bris de glace', 'Catastrophes naturelles'] },
+    { name: 'Tous risques', price: '49€', badge: 'Dès', logoPool: [logoAxa, logoGroupama, logoGenerali, logoGmf, logoAllianz, logoLuko], features: ['Tous dommages au véhicule', 'Vol, incendie, vandalisme', 'Bris de glace 0€ franchise', 'Véhicule de prêt'] },
   ]},
   moto: { label: 'Assurance Moto', prices: [
-    { name: 'Tiers', price: '9€', badge: 'Dès', logo: logoAmaguiz },
-    { name: 'Intermédiaire', price: '15€', badge: 'Dès', logo: logoAllianz },
-    { name: 'Tous risques', price: '24€', badge: 'Dès', logo: logoAxa },
+    { name: 'Tiers', price: '14€', badge: 'Dès', logoPool: [logoAmaguiz, logoAprilMoto, logoAmv, logoSollyAzar, logoAssu2000], features: ['Responsabilité civile', 'Défense pénale', 'Assistance dépannage'] },
+    { name: 'Intermédiaire', price: '26€', badge: 'Dès', logoPool: [logoAllianz, logoMaif, logoMacif, logoMma, logoAbeille], features: ['Tout du Tiers', 'Vol et incendie', 'Équipement pilote 500€'] },
+    { name: 'Tous risques', price: '45€', badge: 'Dès', logoPool: [logoAxa, logoGroupama, logoGenerali, logoGmf, logoMaaf], features: ['Tous dommages moto', 'Vol et incendie', 'Équipement 1500€', 'Assistance 0 km'] },
   ]},
   habitation: { label: 'Assurance Habitation', prices: [
-    { name: 'Essentielle', price: '5€', badge: 'Dès', logo: logoDirectAssurance },
-    { name: 'Confort', price: '12€', badge: 'Dès', logo: logoMaif },
-    { name: 'Premium', price: '19€', badge: 'Dès', logo: logoGroupama },
+    { name: 'Essentielle', price: '8€', badge: 'Dès', logoPool: [logoDirectAssurance, logoLuko, logoLolivier, logoLeocare, logoAcheel], features: ['Responsabilité civile vie privée', 'Incendie et explosion', 'Dégâts des eaux'] },
+    { name: 'Confort', price: '15€', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoMatmut, logoMma, logoAbeille], features: ['Tout de l\'Essentielle', 'Vol et vandalisme', 'Bris de glace', 'Catastrophes naturelles'] },
+    { name: 'Premium', price: '25€', badge: 'Dès', logoPool: [logoGroupama, logoAxa, logoAllianz, logoGenerali, logoMaaf, logoGmf], features: ['Couverture tous risques', 'Objets de valeur protégés', 'Protection juridique', 'Relogement inclus'] },
   ]},
   sante: { label: 'Mutuelle Santé', prices: [
-    { name: 'Essentielle', price: '14€', badge: 'Dès', logo: logoAlanNew },
-    { name: 'Confort', price: '29€', badge: 'Dès', logo: logoHarmonie },
-    { name: 'Premium', price: '49€', badge: 'Dès', logo: logoAxa },
+    { name: 'Essentielle', price: '19€', badge: 'Dès', logoPool: [logoAlanNew, logoAcheel, logoMgen, logoMutuelleGenerale], features: ['Hospitalisation 100% BR', 'Soins courants 100%', 'Optique simple'] },
+    { name: 'Confort', price: '35€', badge: 'Dès', logoPool: [logoHarmonie, logoMalakoff, logoAg2r, logoApril, logoSwisslife], features: ['Hospitalisation 200% BR', 'Dentaire 200%', 'Optique 200€/an', 'Médecines douces'] },
+    { name: 'Premium', price: '59€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoMetlife, logoMaaf], features: ['Hospitalisation 300% BR', 'Dentaire 400%', 'Optique 500€/an', 'Chambre particulière'] },
   ]},
-  pret: { label: 'Assurance Prêt', prices: [
-    { name: 'Décès', price: '8€', badge: 'Dès', logo: logoApril },
-    { name: 'Décès + PTIA', price: '14€', badge: 'Dès', logo: logoCardif },
-    { name: 'Complète', price: '22€', badge: 'Dès', logo: logoGenerali },
+  pret: { label: 'Assurance Emprunteur', prices: [
+    { name: 'Décès', price: '9€', badge: 'Dès', logoPool: [logoApril, logoCardif, logoMetlife, logoLcl], features: ['Garantie décès toutes causes', 'Capital remboursé à la banque', 'Couverture jusqu\'à 75 ans'] },
+    { name: 'Décès + PTIA', price: '16€', badge: 'Dès', logoPool: [logoCardif, logoSwisslife, logoGenerali, logoApril], features: ['Décès', 'PTIA (perte totale d\'autonomie)', 'Délégation loi Lemoine'] },
+    { name: 'Complète', price: '25€', badge: 'Dès', logoPool: [logoGenerali, logoAxa, logoAllianz, logoMetlife], features: ['Décès et PTIA', 'Invalidité (IPT, IPP)', 'Incapacité de travail (ITT)', 'Perte d\'emploi en option'] },
   ]},
   animaux: { label: 'Assurance Animaux', prices: [
-    { name: 'Accident', price: '7€', badge: 'Dès', logo: logoAcheel },
-    { name: 'Confort', price: '19€', badge: 'Dès', logo: logoAllianz },
-    { name: 'Intégrale', price: '34€', badge: 'Dès', logo: logoAxa },
+    { name: 'Accident', price: '9€', badge: 'Dès', logoPool: [logoAcheel, logoSantevet, logoFidanimo, logoBulleBleue, logoAnimauxSante], features: ['Frais vétérinaires accident', 'Chirurgie d\'urgence', 'Hospitalisation'] },
+    { name: 'Confort', price: '22€', badge: 'Dès', logoPool: [logoAllianz, logoSantevet, logoFidanimo, logoBulleBleue, logoAcheel], features: ['Accidents et maladies', 'Remboursement 70%', 'Plafond 1500€/an', 'Vaccins inclus'] },
+    { name: 'Intégrale', price: '38€', badge: 'Dès', logoPool: [logoAxa, logoSantevet, logoBulleBleue, logoAnimauxSante, logoGenerali], features: ['Accidents et maladies', 'Remboursement 100%', 'Plafond 2500€/an', 'Prévention et stérilisation'] },
   ]},
   vie: { label: 'Assurance Vie', prices: [
-    { name: 'Essentielle', price: '20€', badge: 'Dès', logo: logoSwisslife },
-    { name: 'Confort', price: '45€', badge: 'Dès', logo: logoGenerali },
-    { name: 'Premium', price: '80€', badge: 'Dès', logo: logoAxa },
+    { name: 'Essentielle', price: '0€ frais', badge: 'Dès', logoPool: [logoSwisslife, logoCardif, logoLcl, logoApril], features: ['Fonds euros sécurisé', 'Versements libres', 'Frais d\'entrée 0%'] },
+    { name: 'Confort', price: '0,6%', badge: 'Frais', logoPool: [logoGenerali, logoSwisslife, logoAllianz, logoCardif], features: ['Fonds euros + unités de compte', 'Gestion pilotée', 'Arbitrages gratuits', 'Avance sur épargne'] },
+    { name: 'Premium', price: '0,9%', badge: 'Frais', logoPool: [logoAxa, logoGenerali, logoMetlife, logoAllianz], features: ['Multi-supports premium', 'Gestion sous mandat', 'SCPI accessibles', 'Conseiller dédié'] },
   ]},
   prevoyance: { label: 'Prévoyance', prices: [
-    { name: 'Essentielle', price: '12€', badge: 'Dès', logo: logoApril },
-    { name: 'Confort', price: '25€', badge: 'Dès', logo: logoAllianz },
-    { name: 'Intégrale', price: '42€', badge: 'Dès', logo: logoAxa },
+    { name: 'Essentielle', price: '14€', badge: 'Dès', logoPool: [logoApril, logoMalakoff, logoAg2r, logoMutuelleGenerale], features: ['Capital décès', 'Rente éducation enfants', 'Frais d\'obsèques'] },
+    { name: 'Confort', price: '28€', badge: 'Dès', logoPool: [logoAllianz, logoSwisslife, logoHarmonie, logoApril], features: ['Capital décès', 'Invalidité permanente', 'Indemnités journalières', 'Rente conjoint'] },
+    { name: 'Intégrale', price: '49€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoMetlife, logoCardif], features: ['Toutes garanties Confort', 'IJ majorées', 'Rente éducation', 'Assistance famille'] },
   ]},
   rc_pro: { label: 'RC Pro', prices: [
-    { name: 'Basique', price: '15€', badge: 'Dès', logo: logoAon },
-    { name: 'Standard', price: '29€', badge: 'Dès', logo: logoAllianz },
-    { name: 'Premium', price: '49€', badge: 'Dès', logo: logoAxa },
+    { name: 'Basique', price: '19€', badge: 'Dès', logoPool: [logoAon, logoApril, logoAComme, logoSollyAzar], features: ['RC exploitation', 'RC professionnelle', 'Plafond 1M€'] },
+    { name: 'Standard', price: '35€', badge: 'Dès', logoPool: [logoAllianz, logoMma, logoMaaf, logoGenerali], features: ['RC exploitation et pro', 'Défense recours', 'Plafond 3M€', 'Faute inexcusable'] },
+    { name: 'Premium', price: '59€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: ['Toutes garanties Standard', 'Cyber-risques inclus', 'Plafond 8M€', 'Protection juridique étendue'] },
   ]},
   mrp: { label: 'Multirisque Pro', prices: [
-    { name: 'Essentielle', price: '25€', badge: 'Dès', logo: logoGenerali },
-    { name: 'Confort', price: '45€', badge: 'Dès', logo: logoAllianz },
-    { name: 'Premium', price: '75€', badge: 'Dès', logo: logoAxa },
+    { name: 'Essentielle', price: '35€', badge: 'Dès', logoPool: [logoGenerali, logoMma, logoMaaf, logoAbeille], features: ['Locaux et matériel', 'Incendie, dégâts des eaux', 'RC exploitation'] },
+    { name: 'Confort', price: '59€', badge: 'Dès', logoPool: [logoAllianz, logoGroupama, logoMaif, logoMacif], features: ['Tout de l\'Essentielle', 'Vol et vandalisme', 'Bris de machines', 'Perte d\'exploitation'] },
+    { name: 'Premium', price: '95€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoAllianz, logoAbeille], features: ['Couverture tous risques', 'Cyber-risques', 'Marchandises transportées', 'Protection juridique pro'] },
   ]},
   gli: { label: 'GLI', prices: [
-    { name: 'Basique', price: '2,5%', badge: 'Dès', logo: logoAllianz },
-    { name: 'Standard', price: '3%', badge: 'Dès', logo: logoGenerali },
-    { name: 'Premium', price: '3,5%', badge: 'Dès', logo: logoAxa },
+    { name: 'Basique', price: '2,5%', badge: 'Dès', logoPool: [logoAllianz, logoMma, logoMaaf], features: ['Loyers impayés couverts', 'Plafond 50 000€', 'Carence 3 mois'] },
+    { name: 'Standard', price: '3%', badge: 'Dès', logoPool: [logoGenerali, logoGroupama, logoAbeille], features: ['Loyers impayés', 'Détériorations immobilières', 'Frais de procédure', 'Carence 2 mois'] },
+    { name: 'Premium', price: '3,5%', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali], features: ['Toutes garanties Standard', 'Vacance locative', 'Plafond 90 000€', 'Sans carence'] },
   ]},
   pno: { label: 'PNO', prices: [
-    { name: 'Essentielle', price: '6€', badge: 'Dès', logo: logoDirectAssurance },
-    { name: 'Confort', price: '11€', badge: 'Dès', logo: logoMaif },
-    { name: 'Premium', price: '18€', badge: 'Dès', logo: logoGroupama },
+    { name: 'Essentielle', price: '8€', badge: 'Dès', logoPool: [logoDirectAssurance, logoLuko, logoLolivier, logoAcheel], features: ['Responsabilité civile propriétaire', 'Incendie et dégâts des eaux', 'Recours des locataires'] },
+    { name: 'Confort', price: '14€', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoMatmut, logoAbeille], features: ['Tout de l\'Essentielle', 'Vol entre locataires', 'Bris de glace', 'Vacance locative 3 mois'] },
+    { name: 'Premium', price: '22€', badge: 'Dès', logoPool: [logoGroupama, logoAxa, logoAllianz, logoGenerali], features: ['Couverture tous risques', 'Vacance locative 6 mois', 'Protection juridique', 'Détériorations immobilières'] },
+  ]},
+  gestion_locative: { label: 'Gestion Locative', prices: [
+    { name: 'Essentielle', price: '5%', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoAbeille], features: ['Encaissement loyers', 'Quittancement', 'Révision annuelle'] },
+    { name: 'Confort', price: '7%', badge: 'Dès', logoPool: [logoAllianz, logoMma, logoGenerali], features: ['Tout de l\'Essentielle', 'GLI incluse', 'Gestion technique', 'Visites annuelles'] },
+    { name: 'Premium', price: '9%', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGroupama], features: ['Gestion complète', 'GLI + vacance', 'Travaux supervisés', 'Reporting détaillé'] },
+  ]},
+  velo: { label: 'Assurance Vélo', prices: [
+    { name: 'Essentielle', price: '4€', badge: 'Dès', logoPool: [logoAcheel, logoLuko, logoLeocare, logoNeo], features: ['Vol avec effraction', 'Casse accidentelle', 'Assistance dépannage'] },
+    { name: 'Confort', price: '9€', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoAllianz, logoMaaf], features: ['Vol partout en France', 'Casse + chute', 'Accessoires inclus', 'Responsabilité civile'] },
+    { name: 'Premium', price: '15€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoGroupama, logoAbeille], features: ['Vol en tous lieux Europe', 'Tous dommages', 'Vélo de prêt', 'Assistance 0 km'] },
+  ]},
+  camping_car: { label: 'Camping-car', prices: [
+    { name: 'Tiers', price: '28€', badge: 'Dès', logoPool: [logoMacif, logoMaif, logoMaaf, logoMma], features: ['Responsabilité civile', 'Défense recours', 'Assistance Europe'] },
+    { name: 'Confort', price: '45€', badge: 'Dès', logoPool: [logoAllianz, logoGroupama, logoMatmut, logoAbeille], features: ['Vol et incendie', 'Bris de glace', 'Contenu 3 000€', 'Hivernage inclus'] },
+    { name: 'Tous risques', price: '72€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoGmf, logoAllianz], features: ['Tous dommages', 'Auvent et accessoires', 'Contenu 8 000€', 'Assistance 0 km Europe'] },
+  ]},
+  sans_permis: { label: 'Voiture sans permis', prices: [
+    { name: 'Tiers', price: '22€', badge: 'Dès', logoPool: [logoSollyAzar, logoAssu2000, logoAComme, logoAmaguiz], features: ['Responsabilité civile', 'Défense recours', 'Assistance 25 km'] },
+    { name: 'Tiers+', price: '34€', badge: 'Dès', logoPool: [logoMma, logoMaaf, logoMacif, logoAbeille], features: ['Vol et incendie', 'Bris de glace', 'Catastrophes naturelles'] },
+    { name: 'Tous risques', price: '52€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGroupama, logoGenerali], features: ['Tous dommages', 'Vol et incendie', 'Véhicule de prêt'] },
+  ]},
+  auto_temporaire: { label: 'Auto temporaire', prices: [
+    { name: '1 jour', price: '8€', badge: 'Dès', logoPool: [logoWilov, logoOrnikar, logoLeocare, logoGoodflair], features: ['RC obligatoire', 'Défense recours', 'Couverture immédiate'] },
+    { name: '7 jours', price: '35€', badge: 'Dès', logoPool: [logoLeocare, logoOrnikar, logoWilov, logoLolivier], features: ['Tiers + vol/incendie', 'Bris de glace', 'Activation en ligne'] },
+    { name: '30 jours', price: '89€', badge: 'Dès', logoPool: [logoAllianz, logoAxa, logoMacif, logoLeocare], features: ['Tous risques', 'Assistance 0 km', 'Modulable jour par jour'] },
+  ]},
+  flotte: { label: 'Flotte Auto', prices: [
+    { name: 'Essentielle', price: '38€', badge: '/véh.', logoPool: [logoMacif, logoMaaf, logoMma, logoMatmut], features: ['Tiers étendu flotte', 'Gestion centralisée', 'Conducteurs interchangeables'] },
+    { name: 'Confort', price: '65€', badge: '/véh.', logoPool: [logoAllianz, logoGroupama, logoGenerali, logoAbeille], features: ['Tiers + vol/incendie', 'Bris de glace', 'Assistance Europe'] },
+    { name: 'Premium', price: '105€', badge: '/véh.', logoPool: [logoAxa, logoAllianz, logoGenerali, logoMaaf], features: ['Tous risques flotte', 'Bonus mutualisé', 'Véhicule de prêt'] },
+  ]},
+  cyber: { label: 'Cyber-risques', prices: [
+    { name: 'TPE', price: '39€', badge: 'Dès', logoPool: [logoAon, logoApril, logoSollyAzar, logoMma], features: ['Cyber-extorsion', 'Restauration données', 'Plafond 100 K€'] },
+    { name: 'PME', price: '89€', badge: 'Dès', logoPool: [logoAllianz, logoMma, logoMaaf, logoGenerali], features: ['Atteintes aux données', 'Frais juridiques RGPD', 'Plafond 500 K€'] },
+    { name: 'ETI', price: '159€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: ['Couverture étendue', 'Cellule de crise 24/7', 'Plafond 2 M€'] },
+  ]},
+  decennale: { label: 'Décennale', prices: [
+    { name: 'Artisan', price: '89€', badge: 'Dès', logoPool: [logoSollyAzar, logoMaaf, logoAssu2000, logoMma], features: ['Couverture 10 ans', 'Activités principales', 'Attestation immédiate'] },
+    { name: 'Entreprise', price: '149€', badge: 'Dès', logoPool: [logoMma, logoMaaf, logoGenerali, logoAllianz], features: ['Multi-activités', 'Sous-traitance incluse', 'RC pro associée'] },
+    { name: 'Premium', price: '229€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: ['Tous métiers BTP', 'Dommages avant réception', 'Protection juridique'] },
+  ]},
+  protection_juridique: { label: 'Protection juridique', prices: [
+    { name: 'Vie privée', price: '9€', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoMatmut, logoMaaf], features: ['Litiges consommation', 'Voisinage', 'Conseils juridiques'] },
+    { name: 'Étendue', price: '16€', badge: 'Dès', logoPool: [logoAllianz, logoGroupama, logoMma, logoAbeille], features: ['Vie privée + travail', 'Frais d\'avocat', 'Médiation incluse'] },
+    { name: 'Premium', price: '25€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoAllianz, logoMaaf], features: ['Tous domaines', 'Plafond 30 000€', 'Avocat libre choix'] },
+  ]},
+  mutuelle_entreprise: { label: 'Mutuelle entreprise', prices: [
+    { name: 'ANI', price: '22€', badge: '/salarié', logoPool: [logoAlanNew, logoMutuelleGenerale, logoMgen, logoAcheel], features: ['Socle ANI obligatoire', 'Hospitalisation 100% BR', 'Dentaire 125%'] },
+    { name: 'Confort', price: '39€', badge: '/salarié', logoPool: [logoHarmonie, logoMalakoff, logoAg2r, logoApril], features: ['Socle ANI + renforts', 'Optique 200€/an', 'Médecines douces'] },
+    { name: 'Premium', price: '65€', badge: '/salarié', logoPool: [logoAxa, logoAllianz, logoGenerali, logoMetlife], features: ['Couverture étendue', 'Dentaire 400%', 'Chambre particulière'] },
   ]},
 };
 
@@ -913,6 +1176,7 @@ function ContactStep({
   onSubmit: () => void;
   insuranceType?: string;
 }) {
+  const { t } = useLanguage();
   if (isSuccess) {
     return (
       <motion.div
@@ -923,15 +1187,25 @@ function ContactStep({
         <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
           <CheckCircle2 className="h-10 w-10 text-primary" />
         </div>
-        <h3 className="text-xl font-bold text-foreground">Demande envoyée !</h3>
+        <h3 className="text-xl font-bold text-foreground">{t('form.successTitle')}</h3>
         <p className="text-sm text-muted-foreground text-center max-w-sm">
-          Un expert vous rappelle sous 30 minutes avec les meilleures offres personnalisées.
+          {t('form.successDescription')}
         </p>
       </motion.div>
     );
   }
 
-  const prices = teaserPrices[insuranceType || 'auto']?.prices || teaserPrices.auto.prices;
+  const rawPrices = teaserPrices[insuranceType || 'auto']?.prices || teaserPrices.auto.prices;
+  // Session-stable rotation so a returning visitor sees different insurers
+  const rotationSeed = useMemo(() => Math.floor(Math.random() * 997), []);
+  const prices = useMemo(
+    () => rawPrices.map((p, i) => {
+      const pool = (p.logoPool || []).filter(Boolean);
+      const logo = pool.length ? pool[(rotationSeed + i * 7) % pool.length] : '';
+      return { ...p, logo };
+    }),
+    [rawPrices, rotationSeed]
+  );
 
   return (
     <div className="space-y-5 max-w-md mx-auto w-full">
@@ -942,9 +1216,12 @@ function ContactStep({
         transition={{ duration: 0.4 }}
         className="space-y-3"
       >
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center">
-          Tarifs trouvés pour votre profil
-        </p>
+        <div className="flex flex-col items-center gap-1">
+          <p className="text-sm font-semibold text-primary text-center">
+            {t('form.scrollToContinue')}
+          </p>
+          <span className="text-xl text-primary animate-bounce" aria-hidden="true">↓</span>
+        </div>
         <div className="grid grid-cols-3 gap-2">
           {prices.map((p, i) => (
             <motion.div
@@ -952,35 +1229,22 @@ function ContactStep({
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.1, duration: 0.3 }}
-              className={`relative rounded-xl border-2 p-3 text-center transition-all ${
-                i === 0
-                  ? 'border-primary bg-primary/5 shadow-[var(--shadow-card)]'
-                  : 'border-border/40 bg-background/50'
-              }`}
             >
-              {i === 0 && (
-                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
-                  Meilleur prix
-                </span>
-              )}
-              {/* Insurer logo */}
-              <div className="flex justify-center mb-1.5 mt-1">
-                <img
-                  src={p.logo}
-                  alt={p.name}
-                  className="h-6 max-w-[60px] object-contain"
-                  loading="lazy"
-                />
-              </div>
-              <span className="text-[10px] text-muted-foreground font-medium uppercase">{p.badge}</span>
-              <div className="text-xl md:text-2xl font-extrabold text-accent mt-0.5">{p.price}</div>
-              <span className="text-[11px] text-muted-foreground">/mois</span>
-              <p className="text-xs font-medium text-foreground mt-1">{p.name}</p>
+              <FlipPriceCard
+                name={p.name}
+                price={p.price}
+                badge={p.badge}
+                logo={p.logo}
+                features={p.features}
+                highlight={i === 0}
+                insuranceType={insuranceType || 'auto'}
+                position={i}
+              />
             </motion.div>
           ))}
         </div>
         <p className="text-[11px] text-muted-foreground text-center italic">
-          * Tarifs indicatifs. Recevez votre devis exact en 30 min.
+          {t("form.clickCardToReveal")}
         </p>
       </motion.div>
 
@@ -988,13 +1252,13 @@ function ContactStep({
       {/* Full name */}
       <div className="space-y-1.5">
         <Label htmlFor="msf-name" className="text-sm font-medium flex items-center gap-1.5">
-          <User className="h-3.5 w-3.5 text-muted-foreground" /> Nom complet
+          <User className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.fullName')}
         </Label>
         <Input
           id="msf-name"
           value={data.fullName}
           onChange={(e) => onChange({ ...data, fullName: e.target.value })}
-          placeholder="Jean Dupont"
+          placeholder={t('form.fullNamePlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1004,14 +1268,14 @@ function ContactStep({
       {/* Email */}
       <div className="space-y-1.5">
         <Label htmlFor="msf-email" className="text-sm font-medium flex items-center gap-1.5">
-          <Mail className="h-3.5 w-3.5 text-muted-foreground" /> Email
+          <Mail className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.email')}
         </Label>
         <Input
           id="msf-email"
           type="email"
           value={data.email}
           onChange={(e) => onChange({ ...data, email: e.target.value })}
-          placeholder="jean.dupont@email.com"
+          placeholder={t('form.emailPlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1021,14 +1285,14 @@ function ContactStep({
       {/* Phone */}
       <div className="space-y-1.5">
         <Label htmlFor="msf-phone" className="text-sm font-medium flex items-center gap-1.5">
-          <Phone className="h-3.5 w-3.5 text-muted-foreground" /> Téléphone
+          <Phone className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.phone')}
         </Label>
         <Input
           id="msf-phone"
           type="tel"
           value={data.phone}
           onChange={(e) => onChange({ ...data, phone: e.target.value })}
-          placeholder="06 12 34 56 78"
+          placeholder={t('form.phonePlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1044,7 +1308,7 @@ function ContactStep({
           disabled={isSubmitting}
         />
         <Label htmlFor="msf-terms" className="text-xs text-muted-foreground leading-tight cursor-pointer">
-          J'accepte les conditions d'utilisation et la politique de confidentialité. Mes données sont utilisées uniquement pour me recontacter.
+          {t('form.acceptTerms')}
         </Label>
       </div>
       {errors.acceptTerms && <p className="text-xs text-destructive">{errors.acceptTerms}</p>}
@@ -1057,14 +1321,14 @@ function ContactStep({
         className="btn-glow w-full rounded-full font-bold text-base h-13 bg-secondary hover:bg-secondary/90 text-secondary-foreground active:scale-[0.97] transition-transform"
       >
         {isSubmitting ? (
-          <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Envoi en cours…</>
+          <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> {t('form.submitting')}</>
         ) : (
-          <>Recevoir mon devis gratuit</>
+          <>{t('form.submit')}</>
         )}
       </Button>
 
       <p className="text-[11px] text-muted-foreground text-center">
-        🔒 Vos données sont protégées et ne seront jamais vendues.
+        {t('form.dataProtected')}
       </p>
     </div>
   );
@@ -1081,6 +1345,7 @@ function CallbackStep({
   onChange: (d: typeof data) => void;
   onSubmit: () => void;
 }) {
+  const { t } = useLanguage();
   if (isSuccess) {
     return (
       <motion.div
@@ -1091,9 +1356,9 @@ function CallbackStep({
         <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
           <CheckCircle2 className="h-10 w-10 text-primary" />
         </div>
-        <h3 className="text-xl font-bold text-foreground">Demande reçue !</h3>
+        <h3 className="text-xl font-bold text-foreground">{t('form.callbackSuccessTitle')}</h3>
         <p className="text-sm text-muted-foreground text-center max-w-sm">
-          Un courtier expert métiers atypiques vous rappelle sous 30 minutes avec une étude personnalisée et 2 à 3 propositions chiffrées.
+          {t('form.callbackSuccessDescription')}
         </p>
       </motion.div>
     );
@@ -1109,33 +1374,28 @@ function CallbackStep({
         className="rounded-2xl bg-primary/5 border border-primary/20 p-4 space-y-2"
       >
         <p className="text-sm font-semibold text-foreground flex items-center gap-2">
-          <CheckCircle2 className="h-4 w-4 text-primary" /> Pourquoi pas de prix immédiat ?
+          <CheckCircle2 className="h-4 w-4 text-primary" /> {t('form.callback.whyNoPrice')}
         </p>
         <p className="text-xs text-muted-foreground leading-relaxed">
-          Chiffrer un métier atypique demande une analyse fine : votre process, vos certifications,
-          votre sinistralité et les spécificités de votre activité influencent fortement la prime.
-          C'est pourquoi nos courtiers étudient votre dossier en profondeur et le présentent à nos
-          <span className="font-semibold text-foreground"> 20 assureurs de niche</span> les mieux positionnés
-          pour votre secteur, avant de vous transmettre une estimation fiable —
-          souvent <span className="font-semibold text-foreground">2 fois moins chère</span> qu'un devis en direct.
+          {t('form.callback.explanation')}
         </p>
         <ul className="text-xs text-muted-foreground space-y-1 pt-1">
-          <li className="flex items-center gap-2"><span className="text-primary">✓</span> Rappel sous 30 minutes</li>
-          <li className="flex items-center gap-2"><span className="text-primary">✓</span> 2 à 3 propositions argumentées</li>
-          <li className="flex items-center gap-2"><span className="text-primary">✓</span> Sans engagement</li>
+          <li className="flex items-center gap-2"><span className="text-primary">✓</span> {t('form.callback.list1')}</li>
+          <li className="flex items-center gap-2"><span className="text-primary">✓</span> {t('form.callback.list2')}</li>
+          <li className="flex items-center gap-2"><span className="text-primary">✓</span> {t('form.callback.list3')}</li>
         </ul>
       </motion.div>
 
       {/* Full name */}
       <div className="space-y-1.5">
         <Label htmlFor="cb-name" className="text-sm font-medium flex items-center gap-1.5">
-          <User className="h-3.5 w-3.5 text-muted-foreground" /> Nom complet
+          <User className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.fullName')}
         </Label>
         <Input
           id="cb-name"
           value={data.fullName}
           onChange={(e) => onChange({ ...data, fullName: e.target.value })}
-          placeholder="Jean Dupont"
+          placeholder={t('form.fullNamePlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1145,14 +1405,14 @@ function CallbackStep({
       {/* Email */}
       <div className="space-y-1.5">
         <Label htmlFor="cb-email" className="text-sm font-medium flex items-center gap-1.5">
-          <Mail className="h-3.5 w-3.5 text-muted-foreground" /> Email professionnel
+          <Mail className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.businessEmail')}
         </Label>
         <Input
           id="cb-email"
           type="email"
           value={data.email}
           onChange={(e) => onChange({ ...data, email: e.target.value })}
-          placeholder="contact@monentreprise.fr"
+          placeholder={t('form.businessEmailPlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1162,14 +1422,14 @@ function CallbackStep({
       {/* Phone */}
       <div className="space-y-1.5">
         <Label htmlFor="cb-phone" className="text-sm font-medium flex items-center gap-1.5">
-          <Phone className="h-3.5 w-3.5 text-muted-foreground" /> Téléphone (pour le rappel)
+          <Phone className="h-3.5 w-3.5 text-muted-foreground" /> {t('form.phoneCallback')}
         </Label>
         <Input
           id="cb-phone"
           type="tel"
           value={data.phone}
           onChange={(e) => onChange({ ...data, phone: e.target.value })}
-          placeholder="06 12 34 56 78"
+          placeholder={t('form.phonePlaceholder')}
           className="h-12 rounded-xl border-2 border-border/50 focus:border-primary"
           disabled={isSubmitting}
         />
@@ -1185,7 +1445,7 @@ function CallbackStep({
           disabled={isSubmitting}
         />
         <Label htmlFor="cb-terms" className="text-xs text-muted-foreground leading-tight cursor-pointer">
-          J'accepte les conditions d'utilisation. Mes données servent uniquement à étudier mon dossier et à me rappeler.
+          {t('form.callbackAcceptTerms')}
         </Label>
       </div>
       {errors.acceptTerms && <p className="text-xs text-destructive">{errors.acceptTerms}</p>}
@@ -1198,14 +1458,14 @@ function CallbackStep({
         className="btn-glow w-full rounded-full font-bold text-base h-13 bg-secondary hover:bg-secondary/90 text-secondary-foreground active:scale-[0.97] transition-transform"
       >
         {isSubmitting ? (
-          <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> Envoi en cours…</>
+          <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> {t('form.submitting')}</>
         ) : (
-          <>Demander mon rappel sous 30 min</>
+          <>{t('form.submitCallback')}</>
         )}
       </Button>
 
       <p className="text-[11px] text-muted-foreground text-center">
-        🔒 Vos données sont protégées et ne seront jamais vendues.
+        {t('form.dataProtected')}
       </p>
     </div>
   );

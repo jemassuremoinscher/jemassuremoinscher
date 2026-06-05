@@ -3,12 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Comparateur assurance moins chère | Devis gratuit</title>
-    <meta name="description" content="Comparez 50+ assureurs et trouvez une assurance moins chère en 2 minutes. Devis gratuit pour l'auto, la santé, l'habitation et plus.">
+    <title>Comparez votre assurance avec Arthur | Devis 2 min</title>
+    <meta name="description" content="Comparez votre assurance avec Arthur et payez moins cher, sans compromis. 70+ assureurs et 5 000+ offres comparés en 2 minutes. Gratuit et sans engagement.">
     <meta name="keywords" content="assurance moins chère, comparateur d'assurances, comparateur assurance, changer d'assurance, assurance moins chère, comparaison assurance en ligne, assurance auto, mutuelle, devis assurance gratuit" />
     <meta name="author" content="jemassuremoinscher.fr" />
+    <meta name="format-detection" content="telephone=no" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="https://www.jemassuremoinscher.fr" />
+
+    <!-- Dark mode bootstrap: apply 'dark' class before paint, based on saved preference or OS setting -->
+    <script>
+    (function(){
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = saved ? saved === 'dark' : prefersDark;
+        if (isDark) document.documentElement.classList.add('dark');
+        // Live-update when OS preference changes (only if user hasn't chosen explicitly)
+        if (window.matchMedia) {
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
+            if (!localStorage.getItem('theme')) {
+              document.documentElement.classList.toggle('dark', e.matches);
+            }
+          });
+        }
+      } catch(e){}
+    })();
+    </script>
 
     <!-- SEO Bootstrap: set page-specific meta BEFORE React hydration so crawlers see correct data -->
     <script>
@@ -16,12 +37,12 @@
       var B='https://www.jemassuremoinscher.fr';
       var p=location.pathname.replace(/\/+$/,'') || '/';
       var R={
-        '/assurance-auto':{t:'Assurance Auto Moins Chère dès 25€/mois | Comparateur Gratuit',d:'Comparez 50+ assureurs auto et économisez jusqu\'à 40%. Devis gratuit en 2 min, sans engagement.'},
+        '/assurance-auto':{t:'Assurance Auto Moins Chère dès 25€/mois | Comparateur Gratuit',d:'Comparez 70+ assureurs auto et économisez jusqu\'à 40%. Devis gratuit en 2 min, sans engagement.'},
         '/assurance-moto':{t:'Assurance Moto Moins Chère dès 15€/mois | Comparateur',d:'Trouvez une assurance moto au meilleur prix. Comparaison gratuite et sans engagement en 2 minutes.'},
-        '/assurance-habitation':{t:'Assurance Habitation dès 3€/mois | Comparateur Gratuit',d:'Comparez les assurances habitation de 50+ assureurs. Devis gratuit en 2 min.'},
+        '/assurance-habitation':{t:'Assurance Habitation dès 3€/mois | Comparateur Gratuit',d:'Comparez les assurances habitation de 70+ assureurs. Devis gratuit en 2 min.'},
         '/assurance-sante':{t:'Mutuelle Santé Moins Chère | Comparateur Gratuit 2026',d:'Comparez les mutuelles santé et économisez jusqu\'à 300€/an. Devis gratuit en 2 min.'},
         '/assurance-animaux':{t:'Assurance Animaux dès 8€/mois | Comparateur Gratuit',d:'Comparez les assurances chien et chat. Remboursement jusqu\'à 100% des frais vétérinaires.'},
-        '/assurance-pret':{t:'Assurance Prêt Immobilier | Économisez jusqu\'à 15 000€',d:'Comparez les assurances emprunteur grâce à la loi Lemoine. Devis gratuit, sans engagement.'},
+        '/assurance-pret':{t:'Assurance Emprunteur | Économisez jusqu\'à 15 000€',d:'Comparez les assurances emprunteur grâce à la loi Lemoine. Devis gratuit, sans engagement.'},
         '/assurance-vie':{t:'Assurance Vie | Comparateur Gratuit 2026',d:'Comparez les contrats d\'assurance vie. Trouvez la solution d\'épargne adaptée à vos objectifs.'},
         '/assurance-prevoyance':{t:'Assurance Prévoyance | Comparatif Gratuit 2026',d:'Protégez vos revenus avec une assurance prévoyance adaptée. Comparatif gratuit.'},
         '/assurance-rc-pro':{t:'RC Professionnelle | Comparateur Gratuit 2026',d:'Comparez les assurances RC Pro pour protéger votre activité professionnelle.'},
@@ -29,11 +50,11 @@
         '/assurance-pno':{t:'Assurance PNO | Comparateur Gratuit 2026',d:'Comparez les assurances propriétaire non occupant. Devis gratuit en 2 min.'},
         '/assurance-gli':{t:'Garantie Loyers Impayés | Comparateur GLI Gratuit',d:'Comparez les assurances GLI et sécurisez vos revenus locatifs. Devis gratuit.'},
         '/mutuelle-tns':{t:'Mutuelle TNS | Comparateur Gratuit pour Indépendants',d:'Comparez les mutuelles TNS Madelin. Déduction fiscale et couverture optimale.'},
-        '/comparateur':{t:'Comparateur d\'Assurances Gratuit | Devis en 2 min',d:'Comparez 50+ assureurs et trouvez le meilleur prix. 100% gratuit, sans engagement.'},
+        '/comparateur':{t:'Comparateur d\'Assurances Gratuit | Devis en 2 min',d:'Comparez 70+ assureurs et trouvez le meilleur prix. 100% gratuit, sans engagement.'},
         '/blog':{t:'Blog Assurance | Guides, Conseils et Actualités 2026',d:'Retrouvez nos guides pratiques, conseils d\'experts et actualités sur l\'assurance en France.'},
         '/glossaire':{t:'Glossaire Assurance | Termes Expliqués Simplement',d:'Tous les termes de l\'assurance expliqués simplement. Franchise, sinistre, bonus-malus…'},
         '/qui-sommes-nous':{t:'Qui Sommes-Nous | jemassuremoinscher.fr',d:'Découvrez l\'équipe d\'experts derrière jemassuremoinscher.fr. Courtier indépendant, immatriculé ORIAS.'},
-        '/nos-partenaires':{t:'Nos Partenaires Assureurs | 50+ Compagnies',d:'Découvrez nos partenaires : AXA, Allianz, MAIF, Generali, MMA et 50+ assureurs.'},
+        '/nos-partenaires':{t:'Nos Partenaires Assureurs | 70+ Compagnies',d:'Découvrez nos partenaires : AXA, Allianz, MAIF, Generali, MMA et 70+ assureurs.'},
         '/contact':{t:'Contact | jemassuremoinscher.fr',d:'Contactez nos conseillers experts. Rappel gratuit sous 2h.'},
         '/avis-clients':{t:'Avis Clients | 4.9/5 sur 247+ avis vérifiés',d:'Lisez les avis de nos clients. Note moyenne 4.9/5 sur plus de 247 avis vérifiés.'},
       };
@@ -94,20 +115,27 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@jmassuremoinscher" />
+    <meta name="twitter:creator" content="@jmassuremoinscher" />
     <meta name="twitter:url" content="https://www.jemassuremoinscher.fr" />
     
     
     <meta name="twitter:image" content="https://storage.googleapis.com/gpt-engineer-file-uploads/c6FFug4XpoS8CIrGzPTUfHwiq8x2/social-images/social-1776000190684-1000081472.webp">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#7c3aed" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#7c3aed" />
+    <meta name="msapplication-TileColor" content="#7c3aed" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <link rel="apple-touch-icon" href="/arthur-wink-thumbsup.webp" />
+
 
     <!-- Inter font — self-hosted for faster FCP (no external roundtrip) -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
@@ -124,20 +152,20 @@
     <!-- Static JSON-LD structured data — available without JavaScript -->
     <script type="application/ld+json">
     {"@context":"https://schema.org","@graph":[
-      {"@type":"WebSite","@id":"https://www.jemassuremoinscher.fr/#website","url":"https://www.jemassuremoinscher.fr/","name":"jemassuremoinscher.fr","description":"Comparateur d'assurances gratuit — Comparez 50+ assureurs et économisez jusqu'à 40%","inLanguage":"fr-FR","potentialAction":{"@type":"SearchAction","target":"https://www.jemassuremoinscher.fr/comparateur?q={search_term_string}","query-input":"required name=search_term_string"}},
-      {"@type":"Organization","@id":"https://www.jemassuremoinscher.fr/#organization","name":"jemassuremoinscher.fr","url":"https://www.jemassuremoinscher.fr/","logo":"https://www.jemassuremoinscher.fr/logo.png","description":"Courtier indépendant en assurances, immatriculé ORIAS. Comparaison gratuite de plus de 50 assureurs partenaires.","foundingDate":"2024","areaServed":"FR","contactPoint":{"@type":"ContactPoint","contactType":"customer service","availableLanguage":"French","url":"https://www.jemassuremoinscher.fr/contact"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"247","bestRating":"5","worstRating":"1"},"sameAs":["https://twitter.com/jmassuremoinscher"]},
+      {"@type":"WebSite","@id":"https://www.jemassuremoinscher.fr/#website","url":"https://www.jemassuremoinscher.fr/","name":"jemassuremoinscher.fr","description":"Comparateur d'assurances gratuit — Comparez 70+ assureurs et économisez jusqu'à 40%","inLanguage":"fr-FR","potentialAction":{"@type":"SearchAction","target":"https://www.jemassuremoinscher.fr/comparateur?q={search_term_string}","query-input":"required name=search_term_string"}},
+      {"@type":"Organization","@id":"https://www.jemassuremoinscher.fr/#organization","name":"jemassuremoinscher.fr","url":"https://www.jemassuremoinscher.fr/","logo":"https://www.jemassuremoinscher.fr/logo.png","description":"Courtier indépendant en assurances, immatriculé ORIAS. Comparaison gratuite de plus de 70 assureurs partenaires.","foundingDate":"2024","areaServed":"FR","contactPoint":{"@type":"ContactPoint","contactType":"customer service","availableLanguage":"French","url":"https://www.jemassuremoinscher.fr/contact"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"247","bestRating":"5","worstRating":"1"},"sameAs":["https://twitter.com/jmassuremoinscher"]},
       {"@type":"FinancialService","@id":"https://www.jemassuremoinscher.fr/#service","name":"Comparateur d'assurances jemassuremoinscher.fr","serviceType":"Comparaison d'assurances","provider":{"@id":"https://www.jemassuremoinscher.fr/#organization"},"areaServed":"FR","hasOfferCatalog":{"@type":"OfferCatalog","name":"Assurances disponibles","itemListElement":[
         {"@type":"Offer","itemOffered":{"@type":"Service","name":"Assurance Auto","url":"https://www.jemassuremoinscher.fr/assurance-auto"}},
         {"@type":"Offer","itemOffered":{"@type":"Service","name":"Mutuelle Santé","url":"https://www.jemassuremoinscher.fr/assurance-sante"}},
         {"@type":"Offer","itemOffered":{"@type":"Service","name":"Assurance Habitation","url":"https://www.jemassuremoinscher.fr/assurance-habitation"}},
         {"@type":"Offer","itemOffered":{"@type":"Service","name":"Assurance Moto","url":"https://www.jemassuremoinscher.fr/assurance-moto"}},
         {"@type":"Offer","itemOffered":{"@type":"Service","name":"Assurance Animaux","url":"https://www.jemassuremoinscher.fr/assurance-animaux"}},
-        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Assurance Prêt Immobilier","url":"https://www.jemassuremoinscher.fr/assurance-pret"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"Assurance Emprunteur","url":"https://www.jemassuremoinscher.fr/assurance-pret"}},
         {"@type":"Offer","itemOffered":{"@type":"Service","name":"Assurance Vie","url":"https://www.jemassuremoinscher.fr/assurance-vie"}},
         {"@type":"Offer","itemOffered":{"@type":"Service","name":"Assurance Prévoyance","url":"https://www.jemassuremoinscher.fr/assurance-prevoyance"}}
       ]}},
-      {"@type":"InsuranceAgency","@id":"https://www.jemassuremoinscher.fr/#agency","name":"jemassuremoinscher.fr","url":"https://www.jemassuremoinscher.fr/","description":"Courtier en assurances indépendant immatriculé ORIAS. Compare gratuitement 50+ assureurs partenaires pour trouver l'assurance la moins chère en France.","areaServed":{"@type":"Country","name":"France"},"priceRange":"Gratuit","currenciesAccepted":"EUR","paymentAccepted":"Prélèvement SEPA, Carte bancaire","openingHours":"Mo-Fr 09:00-19:00","address":{"@type":"PostalAddress","addressCountry":"FR","addressLocality":"France"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"247","bestRating":"5"}},
-      {"@type":"FinancialProduct","@id":"https://www.jemassuremoinscher.fr/#product-auto","name":"Assurance Auto Moins Chère","url":"https://www.jemassuremoinscher.fr/assurance-auto","description":"Comparez les assurances auto de 50+ assureurs. Formules tous risques, tiers étendu et au tiers. Couverture dommages collision, vol, incendie, bris de glace.","category":"Assurance Automobile","provider":{"@id":"https://www.jemassuremoinscher.fr/#agency"},"feesAndCommissionsSpecification":"Service de comparaison 100% gratuit. Aucun frais de courtage pour le client.","annualPercentageRate":0,"offers":{"@type":"AggregateOffer","lowPrice":"25","highPrice":"150","priceCurrency":"EUR","offerCount":"50+"}},
+      {"@type":"InsuranceAgency","@id":"https://www.jemassuremoinscher.fr/#agency","name":"jemassuremoinscher.fr","url":"https://www.jemassuremoinscher.fr/","description":"Courtier en assurances indépendant immatriculé ORIAS. Compare gratuitement 70+ assureurs partenaires pour trouver l'assurance la moins chère en France.","areaServed":{"@type":"Country","name":"France"},"priceRange":"Gratuit","currenciesAccepted":"EUR","paymentAccepted":"Prélèvement SEPA, Carte bancaire","openingHours":"Mo-Fr 09:00-19:00","address":{"@type":"PostalAddress","addressCountry":"FR","addressLocality":"France"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"247","bestRating":"5"}},
+      {"@type":"FinancialProduct","@id":"https://www.jemassuremoinscher.fr/#product-auto","name":"Assurance Auto Moins Chère","url":"https://www.jemassuremoinscher.fr/assurance-auto","description":"Comparez les assurances auto de 70+ assureurs. Formules tous risques, tiers étendu et au tiers. Couverture dommages collision, vol, incendie, bris de glace.","category":"Assurance Automobile","provider":{"@id":"https://www.jemassuremoinscher.fr/#agency"},"feesAndCommissionsSpecification":"Service de comparaison 100% gratuit. Aucun frais de courtage pour le client.","annualPercentageRate":0,"offers":{"@type":"AggregateOffer","lowPrice":"25","highPrice":"150","priceCurrency":"EUR","offerCount":"50+"}},
       {"@type":"FinancialProduct","@id":"https://www.jemassuremoinscher.fr/#product-sante","name":"Mutuelle Santé Moins Chère","url":"https://www.jemassuremoinscher.fr/assurance-sante","description":"Comparateur de mutuelles santé. Couverture hospitalisation, optique, dentaire, médecine douce. Remboursements au-delà de la Sécurité sociale.","category":"Complémentaire Santé","provider":{"@id":"https://www.jemassuremoinscher.fr/#agency"},"feesAndCommissionsSpecification":"Comparaison gratuite et sans engagement.","annualPercentageRate":0,"offers":{"@type":"AggregateOffer","lowPrice":"20","highPrice":"200","priceCurrency":"EUR","offerCount":"50+"}},
       {"@type":"FinancialProduct","@id":"https://www.jemassuremoinscher.fr/#product-habitation","name":"Assurance Habitation Moins Chère","url":"https://www.jemassuremoinscher.fr/assurance-habitation","description":"Comparez les assurances habitation multirisque. Couverture incendie, dégât des eaux, vol, responsabilité civile locative, catastrophes naturelles.","category":"Assurance Habitation","provider":{"@id":"https://www.jemassuremoinscher.fr/#agency"},"feesAndCommissionsSpecification":"Service gratuit, sans engagement.","annualPercentageRate":0,"offers":{"@type":"AggregateOffer","lowPrice":"3","highPrice":"80","priceCurrency":"EUR","offerCount":"50+"}}
     ]}
@@ -194,10 +222,10 @@
       noscript .noscript-content ul { padding-left: 1.5rem; }
       noscript .noscript-content li { margin-bottom: 0.3rem; }
     </style>
-    <meta property="og:title" content="Comparateur assurance moins chère | Devis gratuit">
-  <meta name="twitter:title" content="Comparateur assurance moins chère | Devis gratuit">
-  <meta property="og:description" content="Comparez 50+ assureurs et trouvez une assurance moins chère en 2 minutes. Devis gratuit pour l'auto, la santé, l'habitation et plus.">
-  <meta name="twitter:description" content="Comparez 50+ assureurs et trouvez une assurance moins chère en 2 minutes. Devis gratuit pour l'auto, la santé, l'habitation et plus.">
+    <meta property="og:title" content="Comparez votre assurance avec Arthur | Je m'assure moins cher">
+  <meta name="twitter:title" content="Comparez votre assurance avec Arthur | Devis gratuit 2 min">
+  <meta property="og:description" content="Avec Arthur, comparez 70+ assureurs en 2 min et payez moins cher, sans compromis.">
+  <meta name="twitter:description" content="Avec Arthur, comparez 70+ assureurs (auto, santé, habitation) en 2 min. Économisez jusqu'à 40%, sans compromis.">
 </head>
 
   <body>
@@ -205,7 +233,7 @@
       <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2130973847755698&ev=PageView&noscript=1" />
       <div class="noscript-content">
         <h2>jemassuremoinscher.fr — Comparateur d'Assurances Gratuit</h2>
-        <p>Comparez plus de 50 assureurs et trouvez l'assurance la moins chère en France. Devis gratuit en moins de 2 minutes. Économisez jusqu'à 40% sur vos contrats d'assurance grâce à notre comparateur indépendant, courtier immatriculé ORIAS. En moyenne, nos clients économisent 280€ par an.</p>
+        <p>Comparez plus de 70 assureurs et trouvez l'assurance la moins chère en France. Devis gratuit en moins de 2 minutes. Économisez jusqu'à 40% sur vos contrats d'assurance grâce à notre comparateur indépendant, courtier immatriculé ORIAS. En moyenne, nos clients économisent 280€ par an.</p>
 
         <h2>Nos assurances</h2>
         <ul>
@@ -214,7 +242,7 @@
           <li><a href="/assurance-habitation">Assurance Habitation</a> — Protégez votre logement dès 3€/mois</li>
           <li><a href="/assurance-sante">Mutuelle Santé</a> — Comparez les mutuelles dès 20€/mois</li>
           <li><a href="/assurance-animaux">Assurance Animaux</a> — Protégez vos compagnons dès 8€/mois</li>
-          <li><a href="/assurance-pret">Assurance Prêt Immobilier</a> — Économisez jusqu'à 15 000€</li>
+          <li><a href="/assurance-pret">Assurance Emprunteur</a> — Économisez jusqu'à 15 000€</li>
           <li><a href="/assurance-vie">Assurance Vie</a> — Préparez votre avenir financier</li>
           <li><a href="/assurance-prevoyance">Assurance Prévoyance</a> — Sécurisez vos revenus</li>
           <li><a href="/assurance-rc-pro">RC Professionnelle</a> — Protégez votre activité</li>
@@ -226,7 +254,7 @@
         <h2>Pourquoi choisir jemassuremoinscher.fr ?</h2>
         <ul>
           <li><strong>100% gratuit</strong> et sans engagement</li>
-          <li><strong>50+ assureurs</strong> partenaires comparés dont AXA, Allianz, MAIF, Generali</li>
+          <li><strong>70+ assureurs</strong> partenaires comparés dont AXA, Allianz, MAIF, Generali</li>
           <li><strong>Jusqu'à 40% d'économies</strong> — environ 280€/an en moyenne</li>
           <li><strong>Courtier indépendant</strong> immatriculé ORIAS</li>
           <li><strong>4.9/5</strong> — Plus de 247 avis clients vérifiés</li>
@@ -236,7 +264,7 @@
         <h2>Comment ça marche ?</h2>
         <ol>
           <li>Remplissez un formulaire en moins de 2 minutes</li>
-          <li>Nous comparons les offres de 50+ assureurs partenaires</li>
+          <li>Nous comparons les offres de 70+ assureurs partenaires</li>
           <li>Un conseiller vous rappelle sous 2h avec les meilleures propositions</li>
           <li>Souscrivez au meilleur prix — nous gérons la résiliation de l'ancien contrat</li>
         </ol>
@@ -265,7 +293,7 @@
         <div class="app-shell-header"><div class="shell-brand">jemassure<strong>moinscher</strong>.fr</div></div>
         <div class="app-shell-hero">
             <img class="shell-mascot" src="/arthur-wink-thumbsup.webp" alt="Arthur mascotte jemassuremoinscher.fr" width="176" height="220" fetchpriority="high" decoding="async" />
-          <p class="shell-kicker">Comparez 50+ assureurs gratuitement</p>
+          <p class="shell-kicker">Comparez 70+ assureurs gratuitement</p>
             <h1 class="shell-title">Comparez les assurances <span class="accent">moins chères</span></h1>
             <p class="shell-subtitle">Trouvez <strong>le meilleur prix</strong> en 2 minutes.<br>Économisez jusqu'à 40% sur vos contrats.</p>
             <span class="shell-cta">Voir mon prix en 2 min</span>
@@ -295,7 +323,7 @@
       </header>
       <main>
         <h2>Assurance Moins Chère : Comparateur d'Assurances Gratuit en France</h2>
-        <p>jemassuremoinscher.fr est un courtier en assurances indépendant, immatriculé à l'ORIAS, qui compare gratuitement les offres de plus de 50 assureurs partenaires. Notre mission : vous aider à trouver l'assurance la moins chère en moins de 2 minutes, sans engagement. En moyenne, nos utilisateurs économisent 280€ par an sur leurs contrats d'assurance.</p>
+        <p>jemassuremoinscher.fr est un courtier en assurances indépendant, immatriculé à l'ORIAS, qui compare gratuitement les offres de plus de 70 assureurs partenaires. Notre mission : vous aider à trouver l'assurance la moins chère en moins de 2 minutes, sans engagement. En moyenne, nos utilisateurs économisent 280€ par an sur leurs contrats d'assurance.</p>
 
         <h2>Nos assurances — Particuliers et Professionnels</h2>
         <p>Nous couvrons l'ensemble des besoins en assurance des particuliers et des professionnels en France :</p>
@@ -305,7 +333,7 @@
           <li><a href="/assurance-habitation">Assurance Habitation</a> — Protégez votre logement dès 3€/mois. Locataire, propriétaire, colocation.</li>
           <li><a href="/assurance-sante">Mutuelle Santé</a> — Comparez les mutuelles dès 20€/mois. Optique, dentaire, hospitalisation, médecines douces.</li>
           <li><a href="/assurance-animaux">Assurance Animaux</a> — Protégez votre chien ou chat dès 8€/mois. Frais vétérinaires, chirurgie, prévention.</li>
-          <li><a href="/assurance-pret">Assurance Prêt Immobilier</a> — Économisez jusqu'à 15 000€ sur votre crédit grâce à la loi Lemoine.</li>
+          <li><a href="/assurance-pret">Assurance Emprunteur</a> — Économisez jusqu'à 15 000€ sur votre crédit grâce à la loi Lemoine.</li>
           <li><a href="/assurance-vie">Assurance Vie</a> — Préparez votre avenir financier avec les meilleurs contrats du marché.</li>
           <li><a href="/assurance-prevoyance">Assurance Prévoyance</a> — Sécurisez vos revenus en cas d'accident, maladie ou décès.</li>
           <li><a href="/assurance-rc-pro">RC Professionnelle</a> — Protégez votre activité contre les risques professionnels.</li>
@@ -318,7 +346,7 @@
         <p>Obtenir un devis avec jemassuremoinscher.fr est simple, rapide et entièrement gratuit :</p>
         <ol>
           <li><strong>Remplissez le formulaire</strong> — En moins de 2 minutes, indiquez votre type d'assurance, votre profil et vos coordonnées.</li>
-          <li><strong>Nous comparons pour vous</strong> — Nos algorithmes analysent en temps réel les offres de plus de 50 assureurs partenaires (AXA, Allianz, MAIF, Generali, MMA, Matmut, Groupama…).</li>
+          <li><strong>Nous comparons pour vous</strong> — Nos algorithmes analysent en temps réel les offres de plus de 70 assureurs partenaires (AXA, Allianz, MAIF, Generali, MMA, Matmut, Groupama…).</li>
           <li><strong>Recevez les meilleures offres</strong> — Un conseiller expert vous rappelle sous 2 heures avec des propositions personnalisées adaptées à votre budget.</li>
           <li><strong>Souscrivez au meilleur prix</strong> — Vous choisissez librement et sans pression. Notre service est 100% gratuit car nous sommes rémunérés par les assureurs.</li>
         </ol>
@@ -326,7 +354,7 @@
         <h2>Pourquoi comparer avec jemassuremoinscher.fr ?</h2>
         <ul>
           <li><strong>100% gratuit et sans engagement</strong> — Aucun frais caché, aucune obligation de souscription.</li>
-          <li><strong>50+ assureurs partenaires</strong> — Un large panel pour garantir les meilleurs tarifs du marché.</li>
+          <li><strong>70+ assureurs partenaires</strong> — Un large panel pour garantir les meilleurs tarifs du marché.</li>
           <li><strong>Jusqu'à 40% d'économies</strong> — Nos utilisateurs économisent en moyenne 280€ par an.</li>
           <li><strong>Courtier indépendant ORIAS</strong> — Conseils objectifs, aucun assureur privilégié.</li>
           <li><strong>4.9/5 — Plus de 247 avis clients vérifiés</strong> — La confiance de milliers de Français.</li>
@@ -354,7 +382,7 @@
           <dd>Grâce à la loi Hamon (pour l'auto et l'habitation après 1 an) et la loi Infra-annuelle (pour la santé à tout moment), changer d'assurance est simple. Nos conseillers gèrent la résiliation de votre ancien contrat gratuitement.</dd>
 
           <dt>Quels assureurs comparez-vous ?</dt>
-          <dd>Nous comparons les offres de plus de 50 assureurs partenaires, dont AXA, Allianz, MAIF, Generali, MMA, Matmut, Groupama, Gan, MACIF, et bien d'autres. Notre indépendance garantit des conseils objectifs.</dd>
+          <dd>Nous comparons les offres de plus de 70 assureurs partenaires, dont AXA, Allianz, MAIF, Generali, MMA, Matmut, Groupama, Gan, MACIF, et bien d'autres. Notre indépendance garantit des conseils objectifs.</dd>
 
           <dt>Mes données personnelles sont-elles protégées ?</dt>
           <dd>Absolument. Nous respectons le RGPD et ne partageons vos informations qu'avec les assureurs sélectionnés pour votre devis. Consultez notre politique de confidentialité pour plus de détails.</dd>
@@ -365,7 +393,7 @@
           <li><a href="/blog">Blog</a> — Guides pratiques, actualités légales et conseils d'experts certifiés ORIAS.</li>
           <li><a href="/glossaire">Glossaire de l'assurance</a> — Plus de 25 termes expliqués simplement : franchise, sinistre, tiers, vétusté…</li>
           <li><a href="/outils/calculateur-bonus-malus">Calculateur bonus-malus</a> — Estimez votre coefficient CRM en ligne.</li>
-          <li><a href="/nos-partenaires">Nos partenaires assureurs</a> — Découvrez les 50+ compagnies avec lesquelles nous travaillons.</li>
+          <li><a href="/nos-partenaires">Nos partenaires assureurs</a> — Découvrez les 70+ compagnies avec lesquelles nous travaillons.</li>
           <li><a href="/avis-clients">Avis clients vérifiés</a> — Consultez les retours de plus de 2 500 utilisateurs satisfaits.</li>
           <li><a href="/qui-sommes-nous">Qui sommes-nous</a> — Notre équipe, notre mission, nos valeurs.</li>
           <li><a href="/contact">Contact</a> — Demandez un rappel gratuit ou écrivez-nous.</li>

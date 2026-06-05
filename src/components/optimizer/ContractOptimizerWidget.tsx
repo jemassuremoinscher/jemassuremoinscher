@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import arthurCar from "@/assets/mascotte/arthur-car.webp";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type Step = "closed" | "form" | "result" | "email" | "done";
 
@@ -24,6 +25,7 @@ const avgByProfile: Record<string, number> = {
 };
 
 export default function ContractOptimizerWidget() {
+  const { t } = useLanguage();
   const [step, setStep] = useState<Step>("closed");
   const [dismissed, setDismissed] = useState(false);
   const [price, setPrice] = useState("");
@@ -97,8 +99,10 @@ export default function ContractOptimizerWidget() {
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-56 h-56 pointer-events-none select-none z-0">
               <img
                 src={arthurCar}
-                alt="Arthur en voiture pour l'optimiseur d'assurance auto"
+                alt={t("a11y.optimizer.mascotAlt")}
                 aria-hidden="true"
+                width={400}
+                height={400}
                 className="w-full h-full object-contain opacity-[0.18]"
                 loading="lazy"
               />
@@ -276,7 +280,7 @@ export default function ContractOptimizerWidget() {
                   </div>
                   <p className="text-base font-bold text-foreground">C'est envoyé !</p>
                   <p className="text-sm text-muted-foreground">
-                    Un conseiller auto vous contactera sous 24h avec votre analyse personnalisée.
+                    Un conseiller auto vous contactera sous 10 minutes avec votre analyse personnalisée.
                   </p>
                   <a
                     href="/comparateur?step=1&profile=auto"
@@ -300,7 +304,7 @@ export default function ContractOptimizerWidget() {
           whileTap={{ scale: 0.95 }}
           onClick={() => setStep("form")}
           className="flex items-center gap-2 rounded-full bg-card border border-border shadow-[var(--shadow-hover)] px-4 py-2.5 text-sm font-medium text-foreground hover:shadow-[var(--shadow-lg)] transition-shadow"
-          aria-label="Vérifiez votre assurance auto"
+          aria-label={t("a11y.optimizer.check")}
         >
           <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary">

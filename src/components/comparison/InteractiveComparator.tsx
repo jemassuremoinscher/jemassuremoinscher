@@ -31,7 +31,7 @@ interface InsuranceOffer {
 
 const offersByType: Record<string, Omit<InsuranceOffer, 'price' | 'originalPrice'>[]> = {
   auto: [
-    { id: '1', insurer: 'AXA', rating: 4.8, coverage: 'Premium', benefits: ['Assistance 24/7', 'Franchise 0€', 'Véhicule de remplacement', 'Protection juridique'], popular: true },
+    { id: '1', insurer: 'AXA', rating: 4.9, coverage: 'Premium', benefits: ['Assistance 24/7', 'Franchise 0€', 'Véhicule de remplacement', 'Protection juridique'], popular: true },
     { id: '2', insurer: 'MAIF', rating: 4.7, coverage: 'Tous risques', benefits: ['Bris de glace inclus', 'Protection conducteur', 'Assistance 0 km'] },
     { id: '3', insurer: 'Allianz', rating: 4.6, coverage: 'Confort', benefits: ['Garantie valeur à neuf', 'Prêt de véhicule', 'Assistance Europe'] },
     { id: '4', insurer: 'Groupama', rating: 4.5, coverage: 'Optimal', benefits: ['Catastrophes naturelles', 'Protection famille', 'Garage agréé'] },
@@ -39,7 +39,7 @@ const offersByType: Record<string, Omit<InsuranceOffer, 'price' | 'originalPrice
     { id: '6', insurer: 'Direct Assurance', rating: 4.2, coverage: 'Éco', benefits: ['Responsabilité civile', 'Assistance de base'] },
   ],
   moto: [
-    { id: '1', insurer: 'AXA', rating: 4.8, coverage: 'Premium', benefits: ['Assistance 24/7', 'Équipement pilote couvert', 'Vol et incendie', 'Protection juridique'], popular: true },
+    { id: '1', insurer: 'AXA', rating: 4.9, coverage: 'Premium', benefits: ['Assistance 24/7', 'Équipement pilote couvert', 'Vol et incendie', 'Protection juridique'], popular: true },
     { id: '2', insurer: 'MAIF', rating: 4.7, coverage: 'Tous risques', benefits: ['Casque et gants couverts', 'Protection conducteur', 'Assistance 0 km'] },
     { id: '3', insurer: 'Allianz', rating: 4.6, coverage: 'Confort', benefits: ['Valeur à neuf 2 ans', 'Accessoires couverts', 'Assistance Europe'] },
     { id: '4', insurer: 'Groupama', rating: 4.5, coverage: 'Optimal', benefits: ['Catastrophes naturelles', 'Prêt de 2 roues', 'Garage agréé'] },
@@ -47,7 +47,7 @@ const offersByType: Record<string, Omit<InsuranceOffer, 'price' | 'originalPrice
     { id: '6', insurer: 'Direct Assurance', rating: 4.2, coverage: 'Éco', benefits: ['Responsabilité civile', 'Assistance de base'] },
   ],
   habitation: [
-    { id: '1', insurer: 'AXA', rating: 4.8, coverage: 'Premium', benefits: ['Dégâts des eaux', 'Vol et vandalisme', 'Rééquipement à neuf', 'Protection juridique'], popular: true },
+    { id: '1', insurer: 'AXA', rating: 4.9, coverage: 'Premium', benefits: ['Dégâts des eaux', 'Vol et vandalisme', 'Rééquipement à neuf', 'Protection juridique'], popular: true },
     { id: '2', insurer: 'MAIF', rating: 4.7, coverage: 'Tous risques', benefits: ['Incendie et explosion', 'Bris de glace', 'Catastrophes naturelles'] },
     { id: '3', insurer: 'Allianz', rating: 4.6, coverage: 'Confort', benefits: ['Responsabilité civile vie privée', 'Objets de valeur', 'Jardin et piscine'] },
     { id: '4', insurer: 'Groupama', rating: 4.5, coverage: 'Optimal', benefits: ['Dommages électriques', 'Assistance serrurerie', 'Relogement temporaire'] },
@@ -55,7 +55,7 @@ const offersByType: Record<string, Omit<InsuranceOffer, 'price' | 'originalPrice
     { id: '6', insurer: 'Direct Assurance', rating: 4.2, coverage: 'Éco', benefits: ['Responsabilité civile', 'Incendie de base'] },
   ],
   sante: [
-    { id: '1', insurer: 'AXA', rating: 4.8, coverage: 'Premium', benefits: ['Hospitalisation 100%', 'Dentaire 300%', 'Optique 400€/an', 'Médecines douces'], popular: true },
+    { id: '1', insurer: 'AXA', rating: 4.9, coverage: 'Premium', benefits: ['Hospitalisation 100%', 'Dentaire 300%', 'Optique 400€/an', 'Médecines douces'], popular: true },
     { id: '2', insurer: 'Harmonie Mutuelle', rating: 4.7, coverage: 'Intégrale', benefits: ['Hospitalisation chambre seule', 'Orthodontie adulte', 'Cure thermale'] },
     { id: '3', insurer: 'Allianz', rating: 4.6, coverage: 'Confort', benefits: ['Consultation spécialistes 100%', 'Optique 300€/an', 'Prothèses dentaires'] },
     { id: '4', insurer: 'Groupama', rating: 4.5, coverage: 'Optimal', benefits: ['Hospitalisation 150%', 'Pharmacie remboursée', 'Téléconsultation incluse'] },
@@ -168,7 +168,7 @@ export const InteractiveComparator = () => {
               {t('comparator.heroSubtitle')}
             </p>
           </div>
-          <img src={arthurThumbsUp} alt="Arthur mascotte comparateur assurance moins chère" className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none" width={224} height={280} loading="lazy" />
+          <img src={arthurThumbsUp} alt={t("a11y.compare.mascotAlt")} className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-48 lg:h-56 object-contain opacity-90 pointer-events-none select-none" width={224} height={280} loading="lazy" />
         </div>
       </section>
 
@@ -240,7 +240,7 @@ export const InteractiveComparator = () => {
                 role="button"
                 onClick={() => setHasCompared(true)}
                 className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-10 rounded-full text-lg"
-                aria-label="Lancer la comparaison des tarifs d'assurance"
+                aria-label={t("a11y.compare.launch")}
               >
                 Comparer maintenant
               </Button>
@@ -256,7 +256,7 @@ export const InteractiveComparator = () => {
             <h2 className="text-xl md:text-2xl font-bold text-foreground">
               {filteredOffers.length} {t('comparator.offersAvailable')}
             </h2>
-            <Button variant="ghost" size="sm" onClick={handleShare} className="gap-2 text-muted-foreground hover:text-foreground" aria-label="Partager les résultats de comparaison">
+            <Button variant="ghost" size="sm" onClick={handleShare} className="gap-2 text-muted-foreground hover:text-foreground" aria-label={t("a11y.compare.share")}>
               <Share2 className="h-4 w-4" aria-hidden="true" />
               {t('comparator.share')}
             </Button>

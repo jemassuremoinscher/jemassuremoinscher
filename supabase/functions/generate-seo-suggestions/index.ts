@@ -8,16 +8,50 @@ const corsHeaders = {
 type ParsedArticle = {
   title: string;
   meta_description: string;
+  short_description: string;
   author: string;
   content: string;
-    social_summary: string;
 };
 
 type FailureDetail = {
   keyword: string;
-    social_summary: string;
   reason: string;
 };
+
+// ============================================================
+// Détecteur de prompt-leak (dupliqué côté Deno, voir src/utils/promptLeakDetector.ts)
+// Bloque l'insertion d'articles dont le "contenu" est en réalité le prompt LLM.
+// ============================================================
+const PROMPT_LEAK_PATTERNS: { regex: RegExp; weight: number; label: string }[] = [
+  { regex: /^\s*(tu es|vous êtes|you are|act as|agis comme)/i, weight: 5, label: "Ouverture type prompt" },
+  { regex: /\b(rédige|écris|génère|generate|write)\s+(un|une|a|an)\s+(article|texte|post)/i, weight: 4, label: "Instruction de génération" },
+  { regex: /\{(keyword|topic|sujet|mot[_-]?cl[eé]|title|titre|slug|insert|placeholder)\}/i, weight: 4, label: "Placeholders non remplacés" },
+  { regex: /\[(INSERT|INSÉRER|TODO|PLACEHOLDER|YOUR\s+\w+)/i, weight: 4, label: "Marqueurs [INSERT]" },
+  { regex: /\b(format de sortie|output format|réponds en|return json|return only)/i, weight: 4, label: "Spécification de format" },
+  { regex: /\b(longueur|length)\s*:?\s*\d+\s*(mots|words|caractères|characters)/i, weight: 3, label: "Contrainte de longueur" },
+  { regex: /```json[\s\S]{0,80}\{[\s\S]*"(title|slug|content|meta_description)"/i, weight: 5, label: "Bloc JSON brut" },
+  { regex: /^[\s\S]{0,200}\{\s*"(title|slug|suggested_content|content|meta_description)"\s*:/i, weight: 5, label: "Sortie JSON brute" },
+  { regex: /\b(voici (le|un) prompt|here is the prompt|system prompt)/i, weight: 5, label: "Mention du prompt" },
+  { regex: /\b(role|rôle)\s*:\s*(system|user|assistant)\b/i, weight: 4, label: "Structure messages OpenAI" },
+];
+const HTML_INDICATORS_RX = /<(h1|h2|h3|p|ul|ol|li|article|section)\b[^>]*>/i;
+const MD_HEADING_RX = /^#{1,3}\s+\S/m;
+
+function detectPromptLeak(content: string | null | undefined): { isPromptLeak: boolean; reasons: string[]; score: number } {
+  const reasons: string[] = [];
+  let score = 0;
+  if (!content || typeof content !== "string") return { isPromptLeak: true, reasons: ["Contenu vide"], score: 99 };
+  const trimmed = content.trim();
+  if (trimmed.length < 600) { reasons.push(`Contenu très court (${trimmed.length} caractères)`); score += 3; }
+  if (!HTML_INDICATORS_RX.test(trimmed) && !MD_HEADING_RX.test(trimmed) && trimmed.length < 2000) {
+    reasons.push("Aucune structure HTML/Markdown"); score += 3;
+  }
+  for (const { regex, weight, label } of PROMPT_LEAK_PATTERNS) {
+    if (regex.test(trimmed)) { reasons.push(label); score += weight; }
+  }
+  return { isPromptLeak: score >= 5, reasons, score };
+}
+
 
 async function getGoogleAccessToken(serviceAccount: any, scope: string): Promise<string> {
   const now = Math.floor(Date.now() / 1000);
@@ -108,7 +142,28 @@ function slugify(text: string): string {
     .toLowerCase()
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+    .replace(/(^-|-$)/g, "") || "article";
+}
+
+async function buildUniqueSlug(supabase: any, baseSlug: string): Promise<string> {
+  const normalizedBase = slugify(baseSlug);
+  const { data, error } = await supabase
+    .from("seo_article_suggestions")
+    .select("slug")
+    .like("slug", `${normalizedBase}%`);
+
+  if (error) throw new Error(`Vérification slug impossible: ${error.message}`);
+
+  const usedSlugs = new Set((data || []).map((item: { slug: string }) => item.slug));
+  let candidate = normalizedBase;
+  let suffix = 2;
+
+  while (usedSlugs.has(candidate)) {
+    candidate = `${normalizedBase}-${suffix}`;
+    suffix += 1;
+  }
+
+  return candidate;
 }
 
 function stripCodeFences(raw: string): string {
@@ -209,6 +264,9 @@ function normalizeArticle(article: Partial<ParsedArticle>): ParsedArticle {
   const metaDescriptionSource = typeof article.meta_description === "string"
     ? article.meta_description
     : "";
+  const shortDescriptionSource = typeof article.short_description === "string" && article.short_description.trim().length > 0
+    ? article.short_description.trim()
+    : buildPunchyShortDescription(title);
   const rawAuthor = typeof article.author === "string" && article.author.trim().length > 0
     ? article.author.trim()
     : "L'équipe d'experts Jemassuremoinscher";
@@ -224,17 +282,47 @@ function normalizeArticle(article: Partial<ParsedArticle>): ParsedArticle {
     content,
     author,
     meta_description: metaDescriptionSource.trim().slice(0, 150),
-      social_summary: (typeof article.social_summary === "string" ? article.social_summary.trim().slice(0, 255) : ""),
+    short_description: normalizeShortDescription(shortDescriptionSource, title),
   };
+}
+
+function buildPunchyShortDescription(title: string): string {
+  const topic = title
+    .replace(/^#+\s*/, "")
+    .replace(/\s*[:|–-]\s*(guide|comparatif|définition|conseils).*$/i, "")
+    .trim()
+    .slice(0, 95);
+  return `🚨 Et si ${topic.toLowerCase() || "votre assurance"} vous coûtait plus cher que prévu ? La réponse ici ⬇️`;
+}
+
+function normalizeShortDescription(raw: string, title: string): string {
+  const cleaned = raw.replace(/["“”]/g, "").replace(/\s+/g, " ").trim();
+  const sentenceCount = cleaned.split(/[.!?…]+\s+/).filter(Boolean).length;
+  const startsPunchy = /^[🚨⚡️🔥💥🛑]/.test(cleaned);
+  const hasCta = /(ici|erreur|réponse|découvrez|cliquez|⬇️)/i.test(cleaned);
+  if (!startsPunchy || !hasCta || sentenceCount > 2) return buildPunchyShortDescription(title);
+  return cleaned.slice(0, 220);
+}
+
+function getPlannedPublishDate(index: number): string {
+  const slots = [2, 4, 6];
+  const now = new Date();
+  const targetDay = slots[index % slots.length];
+  const weekOffset = Math.floor(index / slots.length) * 7;
+  const currentDay = now.getUTCDay();
+  let daysUntil = (targetDay - currentDay + 7) % 7;
+  if (daysUntil === 0 && now.getUTCHours() >= 8) daysUntil = 7;
+  const planned = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + daysUntil + weekOffset, 8, 30, 0));
+  return planned.toISOString();
 }
 
 function parseAiArticle(raw: string): ParsedArticle {
   const taggedArticle = {
     title: extractTaggedSection(raw, "TITLE") || "",
     meta_description: extractTaggedSection(raw, "META_DESCRIPTION") || "",
+    short_description: extractTaggedSection(raw, "SHORT_DESCRIPTION") || "",
     author: extractTaggedSection(raw, "AUTHOR") || "",
     content: extractTaggedSection(raw, "CONTENT") || "",
-        social_summary: extractTaggedSection(raw, "SOCIAL_SUMMARY") || "",
   };
 
   if (taggedArticle.title && taggedArticle.content) {
@@ -247,6 +335,70 @@ function parseAiArticle(raw: string): ParsedArticle {
   }
 
   throw new Error("Impossible d'extraire un format exploitable depuis la réponse IA");
+}
+
+function buildFallbackArticle(keyword: string, currentPage: string, opp: any): ParsedArticle {
+  const normalizedKeyword = keyword.trim() || "définition assurance";
+  const title = `${normalizedKeyword.charAt(0).toUpperCase()}${normalizedKeyword.slice(1)} : définition, garanties et conseils 2026`;
+  const meta = `${normalizedKeyword} : définition claire, exemples, démarches et conseils pour mieux comprendre votre assurance en 2026.`;
+
+  return normalizeArticle({
+    title,
+    meta_description: meta,
+    author: "L'équipe d'experts Jemassuremoinscher",
+    short_description: buildPunchyShortDescription(title),
+    content: `# ${title}
+
+## En bref
+
+Le sujet **${normalizedKeyword}** mérite une explication simple, fiable et directement exploitable pour comparer un contrat d'assurance. Cette fiche sert de base éditoriale : elle peut être enrichie manuellement avant publication avec les exemples, chiffres et liens internes les plus pertinents.
+
+## Définition
+
+En assurance, un sinistre désigne généralement un événement prévu au contrat qui déclenche potentiellement l'intervention de l'assureur : accident, dégât des eaux, vol, incendie, dommage corporel ou autre événement garanti selon le type de couverture souscrite.
+
+## Pourquoi c'est important
+
+Comprendre cette notion aide à vérifier si une situation est couverte, quelles démarches effectuer et quels justificatifs transmettre. C'est aussi un point clé pour comparer les exclusions, franchises, plafonds d'indemnisation et délais de déclaration.
+
+## Démarches à prévoir
+
+| Étape | Action recommandée | Point de vigilance |
+|---|---|---|
+| 1 | Relire les garanties du contrat | Vérifier exclusions et franchises |
+| 2 | Déclarer l'événement rapidement | Respecter les délais contractuels |
+| 3 | Réunir les preuves | Photos, factures, constat, témoignages |
+| 4 | Suivre l'indemnisation | Contrôler les plafonds et vétusté appliquée |
+
+## Conseils pour comparer
+
+- Comparez le niveau de garantie réel, pas seulement le prix.
+- Vérifiez les franchises applicables à chaque type de sinistre.
+- Contrôlez les délais de déclaration et les documents demandés.
+- Regardez les plafonds d'indemnisation et les exclusions.
+
+## Maillage interne utile
+
+Selon votre besoin, consultez aussi nos pages dédiées : [assurance auto](/assurance-auto), [assurance habitation](/assurance-habitation), [mutuelle santé](/assurance-sante), [assurance moto](/assurance-moto) et [glossaire assurance](/glossaire).
+
+## FAQ
+
+### Que faire après un sinistre ?
+
+Prévenez votre assureur dans les délais prévus, rassemblez les justificatifs et conservez une trace écrite de vos échanges.
+
+### Un sinistre est-il toujours indemnisé ?
+
+Non. L'indemnisation dépend des garanties souscrites, des exclusions, des franchises et des plafonds prévus au contrat.
+
+### Comment réduire le risque de mauvaise surprise ?
+
+Comparez les contrats avant de signer et demandez une explication claire des exclusions, franchises et limites d'indemnisation.
+
+---
+
+Note backoffice : brouillon de secours créé automatiquement après indisponibilité temporaire de l'IA pour la requête "${normalizedKeyword}". Page GSC associée : ${currentPage || "non disponible"}. Position observée : ${Math.round(Number(opp?.position || 0) * 10) / 10}, impressions : ${Number(opp?.impressions || 0)}.`,
+  });
 }
 
 serve(async (req) => {
@@ -290,10 +442,12 @@ serve(async (req) => {
     }
 
     const token = authHeader.replace("Bearer ", "");
-    const invocationMode = token === anonKey ? "cron" : "admin";
+    const cronSecret = Deno.env.get("CRON_SECRET");
+    const isCron = !!cronSecret && token === cronSecret;
+    const invocationMode = isCron ? "cron" : "admin";
     console.log(`Invocation mode: ${invocationMode}`);
 
-    if (token !== anonKey) {
+    if (!isCron) {
       const supabaseUser = createClient(supabaseUrl, anonKey, {
         global: { headers: { Authorization: authHeader } },
       });
@@ -352,7 +506,7 @@ serve(async (req) => {
     const skippedKeywords: string[] = [];
     const failures: FailureDetail[] = [];
 
-    for (const opp of topOpportunities) {
+    for (const [opportunityIndex, opp] of topOpportunities.entries()) {
       const keyword = opp.keys[0];
       const currentPage = opp.keys[1];
 
@@ -377,6 +531,9 @@ Contraintes:
 - 1500+ mots minimum
 - Titre H1 optimisé contenant le mot-clé exact
 - Meta description de 150 caractères max
+- Short description réseaux sociaux en 2 phrases maximum, sans guillemets
+- Commencer par un emoji punchy puis une question forte ou un constat surprenant lié au sujet pour stopper le scroll
+- Terminer par un appel à l'action court et mystérieux, par exemple: La réponse ici ⬇️ ou Ne faites pas cette erreur...
 - Structure avec H2/H3 logiques
 - Inclure un tableau de données chiffrées
 - Inclure une FAQ de 3-4 questions
@@ -386,7 +543,6 @@ Contraintes:
 - Mentionner "jemassuremoinscher.fr" naturellement 2-3 fois
 - Suggérer un auteur expert crédible avec titre/spécialité
 - Ne jamais utiliser les balises [[TITLE]], [[META_DESCRIPTION]], [[AUTHOR]], [[CONTENT]] à l'intérieur du contenu
-- Résumé social de 2 LIGNES MAX, punchy et accrocheur pour LinkedIn/Facebook (contenu percutant, pas tronqué)
 
 Réponds STRICTEMENT avec ce format, sans JSON, sans bloc de code et sans texte avant/après:
 [[TITLE]]
@@ -395,12 +551,12 @@ Titre de l'article
 [[META_DESCRIPTION]]
 Meta description
 [[/META_DESCRIPTION]]
+[[SHORT_DESCRIPTION]]
+🚨 Question forte ou constat surprenant lié au sujet ? Appel à l'action court et mystérieux ⬇️
+[[/SHORT_DESCRIPTION]]
 [[AUTHOR]]
 Prénom Nom – Titre
 [[/AUTHOR]]
-[[SOCIAL_SUMMARY]]
-Résumé social de 2 lignes max
-[[/SOCIAL_SUMMARY]]
 [[CONTENT]]
 Article complet en markdown
 [[/CONTENT]]`;
@@ -417,55 +573,70 @@ Article complet en markdown
             messages: [
               {
                 role: "system",
-                content: "Tu es un expert SEO français spécialisé en assurance. Respecte exactement le format demandé avec les balises [[TITLE]], [[META_DESCRIPTION]], [[AUTHOR]] et [[CONTENT]].",
+                content: "Tu es un expert SEO français spécialisé en assurance. Respecte exactement le format demandé avec les balises [[TITLE]], [[META_DESCRIPTION]], [[SHORT_DESCRIPTION]], [[AUTHOR]] et [[CONTENT]].",
               },
               { role: "user", content: prompt },
             ],
           }),
         });
 
+        let article: ParsedArticle;
+
         if (!aiRes.ok) {
           const errText = await aiRes.text();
           console.error(`AI error for \"${keyword}\": ${aiRes.status} ${errText}`);
-          failures.push({ keyword, reason: `Erreur IA ${aiRes.status}` });
-          if (aiRes.status === 429) {
-            console.log("Rate limited, stopping generation");
-            break;
+          if (aiRes.status === 401 || aiRes.status === 402) {
+            article = buildFallbackArticle(keyword, currentPage, opp);
+          } else {
+            failures.push({ keyword, reason: `Erreur IA ${aiRes.status}` });
+            if (aiRes.status === 429) {
+              console.log("Rate limited, stopping generation");
+              break;
+            }
+            continue;
           }
-          continue;
+        } else {
+          const aiData = await aiRes.json();
+          const rawContent = aiData.choices?.[0]?.message?.content;
+
+          if (!rawContent || typeof rawContent !== "string") {
+            failures.push({ keyword, reason: "Réponse IA vide" });
+            continue;
+          }
+
+          try {
+            article = parseAiArticle(rawContent);
+          } catch (parseErr) {
+            const reason = parseErr instanceof Error ? parseErr.message : "Erreur de parsing inconnue";
+            console.error(`Parse failed for \"${keyword}\": ${reason}. Raw start: ${rawContent.substring(0, 200)}`);
+            failures.push({ keyword, reason });
+            continue;
+          }
         }
 
-        const aiData = await aiRes.json();
-        const rawContent = aiData.choices?.[0]?.message?.content;
-
-        if (!rawContent || typeof rawContent !== "string") {
-          failures.push({ keyword, reason: "Réponse IA vide" });
-          continue;
-        }
-
-        let article: ParsedArticle;
-        try {
-          article = parseAiArticle(rawContent);
-        } catch (parseErr) {
-          const reason = parseErr instanceof Error ? parseErr.message : "Erreur de parsing inconnue";
-          console.error(`Parse failed for \"${keyword}\": ${reason}. Raw start: ${rawContent.substring(0, 200)}`);
+        // 🛡️ Garde anti prompt-leak avant insertion
+        const leak = detectPromptLeak(article.content);
+        if (leak.isPromptLeak) {
+          const reason = `Prompt-leak détecté (score ${leak.score}) : ${leak.reasons.slice(0, 2).join(" • ")}`;
+          console.warn(`Skipping "${keyword}" — ${reason}`);
           failures.push({ keyword, reason });
           continue;
         }
 
-        const slug = slugify(article.title || keyword);
+        const slug = await buildUniqueSlug(supabase, article.title || keyword);
         const { error: insertError } = await supabase.from("seo_article_suggestions").insert({
           title: article.title,
           slug,
           target_keyword: keyword,
           gsc_position: Math.round(opp.position * 10) / 10,
-          gsc_impressions: opp.impressions,
           gsc_clicks: opp.clicks,
+
           suggested_content: article.content,
           suggested_meta_description: article.meta_description,
+          short_description: article.short_description,
+          published_at: getPlannedPublishDate(opportunityIndex),
           suggested_author: article.author,
-          status: "pending",
-              social_summary: article.social_summary,
+          status: "draft",
         });
 
         if (insertError) {

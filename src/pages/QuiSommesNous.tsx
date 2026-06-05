@@ -2,7 +2,23 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOOptimized from "@/components/SEOOptimized";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Shield, Award, Users, Heart, Zap, Search, BarChart3, Handshake, CheckCircle, Lock, BadgeCheck, Scale, Star, Eye, Banknote } from "lucide-react";
+import {
+  Shield,
+  Award,
+  Users,
+  Heart,
+  Zap,
+  Search,
+  BarChart3,
+  Handshake,
+  CheckCircle,
+  Lock,
+  BadgeCheck,
+  Scale,
+  Star,
+  Eye,
+  Banknote,
+} from "lucide-react";
 import { addOrganizationSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import { authors, getAuthorJsonLd } from "@/data/authors";
 import { motion } from "framer-motion";
@@ -16,6 +32,7 @@ import alexandrePhoto from "@/assets/team/alexandre.jpg";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
+import ArthurHero from "@/components/insurance/ArthurHero";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -41,40 +58,40 @@ const QuiSommesNous = () => {
   ];
 
   const stats = [
-    { value: t('aboutPage.stat1Value'), label: t('aboutPage.stat1Label') },
-    { value: t('aboutPage.stat2Value'), label: t('aboutPage.stat2Label') },
-    { value: t('aboutPage.stat3Value'), label: t('aboutPage.stat3Label') },
-    { value: t('aboutPage.stat4Value'), label: t('aboutPage.stat4Label') },
+    { value: t("aboutPage.stat1Value"), label: t("aboutPage.stat1Label") },
+    { value: t("aboutPage.stat2Value"), label: t("aboutPage.stat2Label") },
+    { value: t("aboutPage.stat3Value"), label: t("aboutPage.stat3Label") },
+    { value: t("aboutPage.stat4Value"), label: t("aboutPage.stat4Label") },
   ];
 
   const team = [
-    { name: "Alexandre", role: t('aboutPage.cofounder'), initials: "A", color: "bg-accent", photo: alexandrePhoto },
-    { name: "Paul", role: t('aboutPage.cofounder'), initials: "P", color: "bg-primary", photo: paulPhoto },
+    { name: "Alexandre", role: t("aboutPage.cofounder"), initials: "A", color: "bg-accent", photo: alexandrePhoto },
+    { name: "Paul", role: t("aboutPage.cofounder"), initials: "P", color: "bg-primary", photo: paulPhoto },
   ];
 
   const methodology = [
-    { step: 1, icon: Search, title: t('aboutPage.step1Title'), desc: t('aboutPage.step1Desc') },
-    { step: 2, icon: BarChart3, title: t('aboutPage.step2Title'), desc: t('aboutPage.step2Desc') },
-    { step: 3, icon: Scale, title: t('aboutPage.step3Title'), desc: t('aboutPage.step3Desc') },
-    { step: 4, icon: Handshake, title: t('aboutPage.step4Title'), desc: t('aboutPage.step4Desc') },
+    { step: 1, icon: Search, title: t("aboutPage.step1Title"), desc: t("aboutPage.step1Desc") },
+    { step: 2, icon: BarChart3, title: t("aboutPage.step2Title"), desc: t("aboutPage.step2Desc") },
+    { step: 3, icon: Scale, title: t("aboutPage.step3Title"), desc: t("aboutPage.step3Desc") },
+    { step: 4, icon: Handshake, title: t("aboutPage.step4Title"), desc: t("aboutPage.step4Desc") },
   ];
 
   const values = [
-    { icon: Shield, title: t('aboutPage.independence'), desc: t('aboutPage.independenceDesc') },
-    { icon: Heart, title: t('aboutPage.transparency'), desc: t('aboutPage.transparencyDesc') },
-    { icon: Zap, title: t('aboutPage.simplicity'), desc: t('aboutPage.simplicityDesc') },
-    { icon: Users, title: t('aboutPage.support'), desc: t('aboutPage.supportDesc') },
+    { icon: Shield, title: t("aboutPage.independence"), desc: t("aboutPage.independenceDesc") },
+    { icon: Heart, title: t("aboutPage.transparency"), desc: t("aboutPage.transparencyDesc") },
+    { icon: Zap, title: t("aboutPage.simplicity"), desc: t("aboutPage.simplicityDesc") },
+    { icon: Users, title: t("aboutPage.support"), desc: t("aboutPage.supportDesc") },
   ];
 
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized
-        title="Qui sommes-nous | jemassuremoinscher.fr"
-        description="Découvrez l'équipe derrière jemassuremoinscher.fr : un courtier en assurances indépendant, enregistré ORIAS, gratuit et transparent."
+        title={t("seo.about.title")}
+        description={t("seo.about.description")}
         canonical={`${baseUrl}/qui-sommes-nous`}
-        ogTitle="Qui sommes-nous ? Courtier Indépendant ORIAS | jemassuremoinscher.fr"
-        ogDescription="Découvrez l'équipe de courtiers certifiés ORIAS derrière jemassuremoinscher.fr. Conseil 100% impartial, aucun frais caché, 50+ assureurs partenaires comparés."
-        twitterDescription="Courtier indépendant ORIAS. 50+ assureurs partenaires, conseil 100% impartial. Découvrez notre mission : vous faire payer moins cher."
+        ogTitle="Qui sommes-nous ? | jemassuremoinscher.fr — Courtier indépendant enregistré ORIAS"
+        ogDescription="Découvrez l'équipe derrière jemassuremoinscher.fr : courtier en assurances indépendant, enregistré ORIAS, gratuit et 100% transparent."
+        twitterDescription="Courtier en assurances indépendant, enregistré ORIAS. Comparez 70+ assureurs gratuitement sur jemassuremoinscher.fr."
         jsonLd={jsonLd}
       />
 
@@ -82,38 +99,24 @@ const QuiSommesNous = () => {
 
       <main id="main-content">
         <div className="container mx-auto px-4 pt-4">
-          <Breadcrumbs items={[{ label: t('aboutPage.title') }]} />
+          <Breadcrumbs items={[{ label: t("aboutPage.title") }]} />
         </div>
 
         {/* ─── Hero ─── */}
-        <section className="relative bg-gradient-to-br from-primary via-primary/90 to-primary/80 overflow-hidden">
-          <div className="container mx-auto px-4 py-16 md:py-24">
-            <div className="max-w-[65%] sm:max-w-[70%] md:max-w-3xl relative z-10">
-              <motion.h1
-                className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-5"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                {t('aboutPage.heroTitle')}
-              </motion.h1>
-              <motion.p
-                className="text-base md:text-lg text-white/85 leading-relaxed max-w-2xl"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.15 }}
-              >
-                {t('aboutPage.heroDesc')}
-              </motion.p>
+        <section className="relative pt-6 pb-10 md:pt-8 md:pb-14">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <ArthurHero
+                imageSrc={arthurThumbsUp}
+                imageAlt="Arthur mascotte jemassuremoinscher.fr"
+                title={t("aboutPage.heroTitle")}
+                subtitle={t("aboutPage.heroDesc")}
+                ctaLabel={t("aboutPage.ctaBtn")}
+                onCtaClick={() => {
+                  window.location.href = "/comparateur";
+                }}
+              />
             </div>
-            <img
-              src={arthurThumbsUp}
-              alt="Arthur mascotte jemassuremoinscher.fr"
-              className="absolute right-4 md:right-12 bottom-0 h-24 sm:h-32 md:h-56 lg:h-64 object-contain opacity-90 pointer-events-none select-none"
-              width={256}
-              height={320}
-              loading="eager"
-            />
           </div>
         </section>
 
@@ -131,9 +134,7 @@ const QuiSommesNous = () => {
                   viewport={{ once: true }}
                   variants={fadeUp}
                 >
-                  <div className="text-2xl md:text-4xl font-extrabold text-primary mb-1">
-                    {stat.value}
-                  </div>
+                  <div className="text-2xl md:text-4xl font-extrabold text-primary mb-1">{stat.value}</div>
                   <div className="text-xs md:text-sm text-muted-foreground">{stat.label}</div>
                 </motion.div>
               ))}
@@ -154,11 +155,11 @@ const QuiSommesNous = () => {
                 <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                   <Heart className="h-6 w-6 text-primary" />
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground">{t('aboutPage.missionTitle')}</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground">{t("aboutPage.missionTitle")}</h2>
               </div>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p dangerouslySetInnerHTML={{ __html: t('aboutPage.missionP1') }} />
-                <p dangerouslySetInnerHTML={{ __html: t('aboutPage.missionP2') }} />
+                <p dangerouslySetInnerHTML={{ __html: t("aboutPage.missionP1") }} />
+                <p dangerouslySetInnerHTML={{ __html: t("aboutPage.missionP2") }} />
               </div>
             </motion.div>
 
@@ -197,10 +198,8 @@ const QuiSommesNous = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">{t('aboutPage.teamTitle')}</h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">
-                {t('aboutPage.teamDesc')}
-              </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">{t("aboutPage.teamTitle")}</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">{t("aboutPage.teamDesc")}</p>
             </motion.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-lg mx-auto">
@@ -243,17 +242,16 @@ const QuiSommesNous = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                {t('aboutPage.methodTitle')}
-              </h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">
-                {t('aboutPage.methodDesc')}
-              </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">{t("aboutPage.methodTitle")}</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">{t("aboutPage.methodDesc")}</p>
             </motion.div>
 
             {/* Vertical timeline */}
             <div className="relative">
-              <div className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" aria-hidden="true" />
+              <div
+                className="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px"
+                aria-hidden="true"
+              />
 
               <div className="space-y-8 md:space-y-12">
                 {methodology.map(({ step, icon: Icon, title, desc }, i) => {
@@ -274,7 +272,9 @@ const QuiSommesNous = () => {
                         </div>
                       </div>
 
-                      <div className={`flex-1 md:w-[calc(50%-2.5rem)] ${isLeft ? 'md:mr-auto md:pr-10' : 'md:ml-auto md:pl-10'}`}>
+                      <div
+                        className={`flex-1 md:w-[calc(50%-2.5rem)] ${isLeft ? "md:mr-auto md:pr-10" : "md:ml-auto md:pl-10"}`}
+                      >
                         <div className="bg-card rounded-xl border border-border/40 p-5 shadow-sm">
                           <div className="flex items-center gap-2 mb-2">
                             <Icon className="h-5 w-5 text-primary" />
@@ -301,21 +301,24 @@ const QuiSommesNous = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                {t('aboutPage.certTitle')}
-              </h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">
-                {t('aboutPage.certDesc')}
-              </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">{t("aboutPage.certTitle")}</h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">{t("aboutPage.certDesc")}</p>
             </motion.div>
 
             <div className="relative">
               <div className="flex flex-wrap items-stretch justify-center gap-4">
                 <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
-                  <img src={oriasLogo} alt="Logo ORIAS" className="h-10 w-auto object-contain" width={80} height={40} loading="lazy" />
+                  <img
+                    src={oriasLogo}
+                    alt="Logo ORIAS"
+                    className="h-10 w-auto object-contain"
+                    width={80}
+                    height={40}
+                    loading="lazy"
+                  />
                   <div className="text-left">
-                    <p className="text-xs font-bold text-foreground">{t('aboutPage.oriasLabel')}</p>
-                    <p className="text-xs text-muted-foreground">{t('aboutPage.oriasNumber')}</p>
+                    <p className="text-xs font-bold text-foreground">{t("aboutPage.oriasLabel")}</p>
+                    <p className="text-xs text-muted-foreground">{t("aboutPage.oriasNumber")}</p>
                   </div>
                 </div>
 
@@ -326,8 +329,8 @@ const QuiSommesNous = () => {
                     ))}
                   </div>
                   <div className="text-left">
-                    <p className="text-xs font-bold text-foreground">{t('aboutPage.googleReviews')}</p>
-                    <p className="text-xs text-muted-foreground">{t('aboutPage.googleReviewsCount')}</p>
+                    <p className="text-xs font-bold text-foreground">{t("aboutPage.googleReviews")}</p>
+                    <p className="text-xs text-muted-foreground">{t("aboutPage.googleReviewsCount")}</p>
                   </div>
                 </div>
 
@@ -336,8 +339,8 @@ const QuiSommesNous = () => {
                     <Shield className="h-5 w-5 text-primary" />
                   </div>
                   <div className="text-left">
-                    <p className="text-xs font-bold text-foreground">{t('aboutPage.financialGuarantee')}</p>
-                    <p className="text-xs text-muted-foreground">{t('aboutPage.financialGuaranteeDesc')}</p>
+                    <p className="text-xs font-bold text-foreground">{t("aboutPage.financialGuarantee")}</p>
+                    <p className="text-xs text-muted-foreground">{t("aboutPage.financialGuaranteeDesc")}</p>
                   </div>
                 </div>
 
@@ -346,23 +349,30 @@ const QuiSommesNous = () => {
                     <Lock className="h-5 w-5 text-primary" />
                   </div>
                   <div className="text-left">
-                    <p className="text-xs font-bold text-foreground">{t('aboutPage.securePayment')}</p>
-                    <p className="text-xs text-muted-foreground">{t('aboutPage.securePaymentDesc')}</p>
+                    <p className="text-xs font-bold text-foreground">{t("aboutPage.securePayment")}</p>
+                    <p className="text-xs text-muted-foreground">{t("aboutPage.securePaymentDesc")}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
-                  <img src={cscaLogo} alt="Logo CSCA - Chambre Syndicale des Courtiers d'Assurances" className="h-10 w-auto object-contain" width={40} height={40} loading="lazy" />
+                  <img
+                    src={cscaLogo}
+                    alt={t("a11y.about.cscaAlt")}
+                    className="h-10 w-auto object-contain"
+                    width={40}
+                    height={40}
+                    loading="lazy"
+                  />
                   <div className="text-left">
-                    <p className="text-xs font-bold text-foreground">{t('aboutPage.cscaMember')}</p>
-                    <p className="text-xs text-muted-foreground">{t('aboutPage.cscaDesc')}</p>
+                    <p className="text-xs font-bold text-foreground">{t("aboutPage.cscaMember")}</p>
+                    <p className="text-xs text-muted-foreground">{t("aboutPage.cscaDesc")}</p>
                   </div>
                 </div>
               </div>
 
               <img
                 src={arthurPointing}
-                alt="Arthur présente les certifications de jemassuremoinscher.fr"
+                alt={t("a11y.about.certifAlt")}
                 className="hidden lg:block absolute -right-8 -bottom-12 h-36 object-contain opacity-80 pointer-events-none select-none"
                 width={144}
                 height={180}
@@ -389,7 +399,8 @@ const QuiSommesNous = () => {
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground">Notre politique de transparence</h2>
               </div>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Chez jemassuremoinscher.fr, nous croyons qu'un courtier digne de confiance doit être transparent sur son fonctionnement.
+                Chez jemassuremoinscher.fr, nous croyons qu'un courtier digne de confiance doit être transparent sur son
+                fonctionnement.
               </p>
             </motion.div>
 
@@ -443,23 +454,19 @@ const QuiSommesNous = () => {
           <div className="container mx-auto px-4">
             <div className="relative bg-gradient-to-r from-primary to-primary/80 rounded-2xl p-8 md:p-12 text-center max-w-4xl mx-auto overflow-visible">
               <div className="relative z-10">
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  {t('aboutPage.ctaTitle')}
-                </h2>
-                <p className="text-white/80 mb-6 max-w-xl mx-auto">
-                  {t('aboutPage.ctaDesc')}
-                </p>
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">{t("aboutPage.ctaTitle")}</h2>
+                <p className="text-white/80 mb-6 max-w-xl mx-auto">{t("aboutPage.ctaDesc")}</p>
                 <a
                   href="/comparateur"
-                  aria-label={t('aboutPage.ctaBtn')}
+                  aria-label={t("aboutPage.ctaBtn")}
                   className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-8 py-4 rounded-full text-lg transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
-                  {t('aboutPage.ctaBtn')}
+                  {t("aboutPage.ctaBtn")}
                 </a>
               </div>
               <img
                 src={arthurFlying}
-                alt="Arthur en vol"
+                alt={t("a11y.about.flyAlt")}
                 className="absolute -top-8 sm:-top-12 right-2 md:right-12 h-16 sm:h-24 md:h-36 object-contain pointer-events-none select-none"
                 width={144}
                 height={144}

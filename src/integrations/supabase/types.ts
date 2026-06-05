@@ -542,31 +542,58 @@ export type Database = {
         Row: {
           article_slug: string
           article_title: string
+          article_url: string | null
+          channel_overrides: Json
           created_at: string
           error_message: string | null
+          facebook_status: string
           id: string
+          image_url: string | null
+          linkedin_status: string
           post_content: string | null
           posted_at: string | null
+          provider: string
+          response_payload: Json | null
+          scheduled_at: string | null
+          short_description: string | null
           status: string
         }
         Insert: {
           article_slug: string
           article_title: string
+          article_url?: string | null
+          channel_overrides?: Json
           created_at?: string
           error_message?: string | null
+          facebook_status?: string
           id?: string
+          image_url?: string | null
+          linkedin_status?: string
           post_content?: string | null
           posted_at?: string | null
+          provider?: string
+          response_payload?: Json | null
+          scheduled_at?: string | null
+          short_description?: string | null
           status?: string
         }
         Update: {
           article_slug?: string
           article_title?: string
+          article_url?: string | null
+          channel_overrides?: Json
           created_at?: string
           error_message?: string | null
+          facebook_status?: string
           id?: string
+          image_url?: string | null
+          linkedin_status?: string
           post_content?: string | null
           posted_at?: string | null
+          provider?: string
+          response_payload?: Json | null
+          scheduled_at?: string | null
+          short_description?: string | null
           status?: string
         }
         Relationships: []
@@ -574,28 +601,37 @@ export type Database = {
       linkedin_config: {
         Row: {
           created_at: string
+          facebook_enabled: boolean
           id: string
           is_active: boolean
+          linkedin_enabled: boolean
           post_day: string
           post_hour: number
+          provider: string
           updated_at: string
           webhook_url: string
         }
         Insert: {
           created_at?: string
+          facebook_enabled?: boolean
           id?: string
           is_active?: boolean
+          linkedin_enabled?: boolean
           post_day?: string
           post_hour?: number
+          provider?: string
           updated_at?: string
           webhook_url: string
         }
         Update: {
           created_at?: string
+          facebook_enabled?: boolean
           id?: string
           is_active?: boolean
+          linkedin_enabled?: boolean
           post_day?: string
           post_hour?: number
+          provider?: string
           updated_at?: string
           webhook_url?: string
         }
@@ -720,6 +756,27 @@ export type Database = {
         }
         Relationships: []
       }
+      published_drafts: {
+        Row: {
+          published_at: string
+          published_by: string | null
+          short_description: string | null
+          slug: string
+        }
+        Insert: {
+          published_at?: string
+          published_by?: string | null
+          short_description?: string | null
+          slug: string
+        }
+        Update: {
+          published_at?: string
+          published_by?: string | null
+          short_description?: string | null
+          slug?: string
+        }
+        Relationships: []
+      }
       quiz_leads: {
         Row: {
           answers: Json
@@ -747,6 +804,39 @@ export type Database = {
           id?: string
           recommendations?: string | null
           updated_at?: string
+        }
+        Relationships: []
+      }
+      quote_funnel_events: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          insurance_type: string | null
+          metadata: Json | null
+          session_id: string
+          step_id: string | null
+          step_index: number
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          insurance_type?: string | null
+          metadata?: Json | null
+          session_id: string
+          step_id?: string | null
+          step_index: number
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          insurance_type?: string | null
+          metadata?: Json | null
+          session_id?: string
+          step_id?: string | null
+          step_index?: number
         }
         Relationships: []
       }
@@ -796,8 +886,11 @@ export type Database = {
           gsc_impressions: number | null
           gsc_position: number | null
           id: string
+          image_url: string | null
+          published_at: string | null
           reviewed_at: string | null
           reviewed_by: string | null
+          short_description: string | null
           slug: string
           status: string
           suggested_author: string | null
@@ -812,8 +905,11 @@ export type Database = {
           gsc_impressions?: number | null
           gsc_position?: number | null
           id?: string
+          image_url?: string | null
+          published_at?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
+          short_description?: string | null
           slug: string
           status?: string
           suggested_author?: string | null
@@ -828,8 +924,11 @@ export type Database = {
           gsc_impressions?: number | null
           gsc_position?: number | null
           id?: string
+          image_url?: string | null
+          published_at?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
+          short_description?: string | null
           slug?: string
           status?: string
           suggested_author?: string | null
@@ -837,6 +936,45 @@ export type Database = {
           suggested_meta_description?: string | null
           target_keyword?: string
           title?: string
+        }
+        Relationships: []
+      }
+      sitemap_submission_log: {
+        Row: {
+          created_at: string
+          duration_ms: number | null
+          error_message: string | null
+          http_status: number | null
+          id: string
+          response_body: string | null
+          site_url: string
+          sitemap_url: string
+          status: string
+          trigger_source: string
+        }
+        Insert: {
+          created_at?: string
+          duration_ms?: number | null
+          error_message?: string | null
+          http_status?: number | null
+          id?: string
+          response_body?: string | null
+          site_url: string
+          sitemap_url: string
+          status: string
+          trigger_source: string
+        }
+        Update: {
+          created_at?: string
+          duration_ms?: number | null
+          error_message?: string | null
+          http_status?: number | null
+          id?: string
+          response_body?: string | null
+          site_url?: string
+          sitemap_url?: string
+          status?: string
+          trigger_source?: string
         }
         Relationships: []
       }
@@ -895,6 +1033,10 @@ export type Database = {
       }
     }
     Functions: {
+      build_social_short_description: {
+        Args: { _content?: string; _meta?: string; _title: string }
+        Returns: string
+      }
       calculate_assignment_score: {
         Args: {
           p_agent_id: string
@@ -917,6 +1059,10 @@ export type Database = {
         }[]
       }
       cleanup_old_deleted_items: { Args: never; Returns: undefined }
+      generate_unique_seo_article_slug: {
+        Args: { _base_slug: string; _exclude_id?: string }
+        Returns: string
+      }
       get_agent_current_load: { Args: { p_agent_id: string }; Returns: number }
       has_role: {
         Args: {
@@ -930,7 +1076,7 @@ export type Database = {
       reassign_pending_leads: { Args: never; Returns: number }
     }
     Enums: {
-      app_role: "admin" | "moderator" | "user"
+      app_role: "admin" | "moderator" | "user" | "owner"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1058,7 +1204,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "moderator", "user"],
+      app_role: ["admin", "moderator", "user", "owner"],
     },
   },
 } as const

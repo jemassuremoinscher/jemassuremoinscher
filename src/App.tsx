@@ -1,25 +1,29 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import React, { lazy, Suspense } from "react";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import CookieBanner from "@/components/CookieBanner";
+import GlobalSchemas from "@/components/seo/GlobalSchemas";
 
 // Lazy load non-critical global components
 const AIChatbot = lazy(() => import("@/components/chatbot/AIChatbot").then(m => ({ default: m.AIChatbot })));
 const ReadingProgressBar = lazy(() => import("@/components/ReadingProgressBar"));
 const ContractOptimizerWidget = lazy(() => import("@/components/optimizer/ContractOptimizerWidget"));
-const CookieBanner = lazy(() => import("@/components/CookieBanner"));
 const SkipToMain = lazy(() => import("@/components/SkipToMain"));
 const RouteTracker = lazy(() => import("@/components/RouteTracker"));
 const StickyCTA = lazy(() => import("@/components/StickyCTA"));
+const GlobalMdReveal = lazy(() => import("@/components/motion/GlobalMdReveal"));
+const GlobalExitIntent = lazy(() => import("@/components/forms/GlobalExitIntent"));
 
 // Auth-protected routes wrapper — lazy loaded to avoid Supabase init on public pages
 const AuthProvider = lazy(() => import("@/contexts/AuthContext").then(m => ({ default: m.AuthProvider })));
 
 // Lazy load pages for better performance
 const Index = lazy(() => import("./pages/Index"));
+const MerciGuide = lazy(() => import("./pages/MerciGuide"));
 const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Commercial = lazy(() => import("./pages/Commercial"));
@@ -40,6 +44,34 @@ const LandingAccrobranche = lazy(() => import("./pages/landing/LandingAccrobranc
 const LandingMoniteurSport = lazy(() => import("./pages/landing/LandingMoniteurSport"));
 const LandingEvenementiel = lazy(() => import("./pages/landing/LandingEvenementiel"));
 const LandingCordisteBTP = lazy(() => import("./pages/landing/LandingCordisteBTP"));
+const LandingVtc = lazy(() => import("./pages/landing/LandingVtc"));
+const LandingAutoEntrepreneur = lazy(() => import("./pages/landing/LandingAutoEntrepreneur"));
+const LandingSenior = lazy(() => import("./pages/landing/LandingSenior"));
+const LandingScooter = lazy(() => import("./pages/landing/LandingScooter"));
+const LandingRcProMicroEntreprise = lazy(() => import("./pages/landing/LandingRcProMicroEntreprise"));
+const LandingRestaurant = lazy(() => import("./pages/landing/LandingRestaurant"));
+const LandingCoachSportif = lazy(() => import("./pages/landing/LandingCoachSportif"));
+const LandingPhotographe = lazy(() => import("./pages/landing/LandingPhotographe"));
+const LandingInfluenceur = lazy(() => import("./pages/landing/LandingInfluenceur"));
+const LandingDrone = lazy(() => import("./pages/landing/LandingDrone"));
+const LandingDecennale = lazy(() => import("./pages/landing/LandingDecennale"));
+const LandingFlotteAuto = lazy(() => import("./pages/landing/LandingFlotteAuto"));
+const LandingMutuelleEntreprise = lazy(() => import("./pages/landing/LandingMutuelleEntreprise"));
+const LandingCyber = lazy(() => import("./pages/landing/LandingCyber"));
+const LandingSansPermis = lazy(() => import("./pages/landing/LandingSansPermis"));
+const LandingCampingCar = lazy(() => import("./pages/landing/LandingCampingCar"));
+const LandingVelo = lazy(() => import("./pages/landing/LandingVelo"));
+const LandingProtectionJuridique = lazy(() => import("./pages/landing/LandingProtectionJuridique"));
+const LandingAutoTemporaire = lazy(() => import("./pages/landing/LandingAutoTemporaire"));
+const AssuranceDecennale = lazy(() => import("./pages/AssuranceDecennale"));
+const AssuranceFlotteAuto = lazy(() => import("./pages/AssuranceFlotteAuto"));
+const AssuranceMutuelleEntreprise = lazy(() => import("./pages/AssuranceMutuelleEntreprise"));
+const AssuranceCyber = lazy(() => import("./pages/AssuranceCyber"));
+const AssuranceSansPermis = lazy(() => import("./pages/AssuranceSansPermis"));
+const AssuranceCampingCar = lazy(() => import("./pages/AssuranceCampingCar"));
+const AssuranceVelo = lazy(() => import("./pages/AssuranceVelo"));
+const AssuranceProtectionJuridique = lazy(() => import("./pages/AssuranceProtectionJuridique"));
+const AssuranceAutoTemporaire = lazy(() => import("./pages/AssuranceAutoTemporaire"));
 const AssuranceAutoMalusse = lazy(() => import("./pages/seo/AssuranceAutoMalusse"));
 const AssuranceJeuneConducteur = lazy(() => import("./pages/seo/AssuranceJeuneConducteur"));
 const MutuelleTNS = lazy(() => import("./pages/seo/MutuelleTNS"));
@@ -59,6 +91,7 @@ const AssuranceVie = lazy(() => import("./pages/AssuranceVie"));
 const AssurancePrevoyance = lazy(() => import("./pages/AssurancePrevoyance"));
 const AssuranceMRP = lazy(() => import("./pages/AssuranceMRP"));
 const AssuranceRCPro = lazy(() => import("./pages/AssuranceRCPro"));
+const AssuranceExpatries = lazy(() => import("./pages/AssuranceExpatries"));
 const AssuranceMetiersAtypiques = lazy(() => import("./pages/AssuranceMetiersAtypiques"));
 const AssuranceGLI = lazy(() => import("./pages/AssuranceGLI"));
 const AssurancePNO = lazy(() => import("./pages/AssurancePNO"));
@@ -68,6 +101,7 @@ const NosPartenaires = lazy(() => import("./pages/NosPartenaires"));
 const AvisClients = lazy(() => import("./pages/AvisClients"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogArticle = lazy(() => import("./pages/BlogArticle"));
+const BlogPreview = lazy(() => import("./pages/BlogPreview"));
 const Glossaire = lazy(() => import("./pages/Glossaire"));
 const GlossaireTerme = lazy(() => import("./pages/GlossaireTerme"));
 const PolitiqueCookies = lazy(() => import("./pages/PolitiqueCookies"));
@@ -75,8 +109,10 @@ const MentionsLegales = lazy(() => import("./pages/MentionsLegales"));
 const CGU = lazy(() => import("./pages/CGU"));
 const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentialite"));
 const Contact = lazy(() => import("./pages/Contact"));
+const FAQ = lazy(() => import("./pages/FAQ"));
 const NewsletterGestion = lazy(() => import("./pages/NewsletterGestion"));
 const PlanDuSite = lazy(() => import("./pages/PlanDuSite"));
+const SourcesEtMethodologie = lazy(() => import("./pages/SourcesEtMethodologie"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Merci = lazy(() => import("./pages/Merci"));
 const LlmsTxt = lazy(() => import("./pages/LlmsTxt"));
@@ -125,7 +161,7 @@ const App = () => {
     if (typeof idleWindow.requestIdleCallback === "function") {
       idleId = idleWindow.requestIdleCallback(mountWidgets, { timeout: 2500 });
     } else {
-      timeoutId = setTimeout(mountWidgets, 1200);
+      timeoutId = window.setTimeout(mountWidgets, 1200);
     }
 
     return () => {
@@ -143,8 +179,12 @@ const App = () => {
       <LanguageProvider>
         <TooltipProvider>
           <Toaster />
+          <GlobalSchemas />
           <Suspense fallback={null}>
             <RouteTracker />
+          </Suspense>
+          <Suspense fallback={null}>
+            <GlobalMdReveal />
           </Suspense>
           <Suspense fallback={null}>
             <ReadingProgressBar />
@@ -161,6 +201,7 @@ const App = () => {
             }>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/merci-guide" element={<MerciGuide />} />
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
                 <Route path="/admin" element={<AuthRoute><Admin /></AuthRoute>} />
                 <Route path="/commercial" element={<AuthRoute><Commercial /></AuthRoute>} />
@@ -181,6 +222,25 @@ const App = () => {
                 <Route path="/landing/moniteur-sport" element={<LandingMoniteurSport />} />
                 <Route path="/landing/evenementiel" element={<LandingEvenementiel />} />
                 <Route path="/landing/cordiste-btp" element={<LandingCordisteBTP />} />
+                <Route path="/landing/vtc" element={<LandingVtc />} />
+                <Route path="/landing/auto-entrepreneur" element={<LandingAutoEntrepreneur />} />
+                <Route path="/landing/senior" element={<LandingSenior />} />
+                <Route path="/landing/scooter" element={<LandingScooter />} />
+                <Route path="/landing/rc-pro-micro-entreprise" element={<LandingRcProMicroEntreprise />} />
+                <Route path="/landing/restaurant" element={<LandingRestaurant />} />
+                <Route path="/landing/coach-sportif" element={<LandingCoachSportif />} />
+                <Route path="/landing/photographe" element={<LandingPhotographe />} />
+                <Route path="/landing/influenceur" element={<LandingInfluenceur />} />
+                <Route path="/landing/drone" element={<LandingDrone />} />
+                <Route path="/landing/decennale" element={<LandingDecennale />} />
+                <Route path="/landing/flotte-auto" element={<LandingFlotteAuto />} />
+                <Route path="/landing/mutuelle-entreprise" element={<LandingMutuelleEntreprise />} />
+                <Route path="/landing/cyber" element={<LandingCyber />} />
+                <Route path="/landing/sans-permis" element={<LandingSansPermis />} />
+                <Route path="/landing/camping-car" element={<LandingCampingCar />} />
+                <Route path="/landing/velo" element={<LandingVelo />} />
+                <Route path="/landing/protection-juridique" element={<LandingProtectionJuridique />} />
+                <Route path="/landing/auto-temporaire" element={<LandingAutoTemporaire />} />
                 <Route path="/comparateur" element={<Comparateur />} />
                 <Route path="/assurance-auto-malusse" element={<AssuranceAutoMalusse />} />
                 <Route path="/assurance-auto-jeune-conducteur" element={<AssuranceJeuneConducteur />} />
@@ -198,17 +258,29 @@ const App = () => {
                 <Route path="/assurance-prevoyance" element={<AssurancePrevoyance />} />
                 <Route path="/assurance-animaux" element={<AssuranceAnimaux />} />
                 <Route path="/assurance-vie" element={<AssuranceVie />} />
+                <Route path="/assurance-expatries" element={<AssuranceExpatries />} />
                 <Route path="/assurance-mrp" element={<AssuranceMRP />} />
                 <Route path="/assurance-rc-pro" element={<AssuranceRCPro />} />
                 <Route path="/assurance-metiers-atypiques" element={<AssuranceMetiersAtypiques />} />
                 <Route path="/assurance-gli" element={<AssuranceGLI />} />
                 <Route path="/assurance-pno" element={<AssurancePNO />} />
+                <Route path="/assurance-decennale" element={<AssuranceDecennale />} />
+                <Route path="/assurance-flotte-auto" element={<AssuranceFlotteAuto />} />
+                <Route path="/assurance-mutuelle-entreprise" element={<AssuranceMutuelleEntreprise />} />
+                <Route path="/assurance-cyber" element={<AssuranceCyber />} />
+                <Route path="/assurance-sans-permis" element={<AssuranceSansPermis />} />
+                <Route path="/assurance-camping-car" element={<AssuranceCampingCar />} />
+                <Route path="/assurance-velo" element={<AssuranceVelo />} />
+                <Route path="/assurance-protection-juridique" element={<AssuranceProtectionJuridique />} />
+                <Route path="/assurance-auto-temporaire" element={<AssuranceAutoTemporaire />} />
                 <Route path="/gestion-locative" element={<GestionLocative />} />
                 <Route path="/qui-sommes-nous" element={<QuiSommesNous />} />
                 <Route path="/nos-partenaires" element={<NosPartenaires />} />
                 <Route path="/avis-clients" element={<AvisClients />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogArticle />} />
+                <Route path="/blog-preview" element={<BlogPreview />} />
+                <Route path="/blog-preview/:slug" element={<BlogArticle />} />
                 <Route path="/glossaire" element={<Glossaire />} />
                 <Route path="/glossaire/:slug" element={<GlossaireTerme />} />
                 <Route path="/politique-cookies" element={<PolitiqueCookies />} />
@@ -216,8 +288,10 @@ const App = () => {
                 <Route path="/cgu" element={<CGU />} />
                 <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/faq" element={<FAQ />} />
                 <Route path="/newsletter-gestion" element={<NewsletterGestion />} />
                 <Route path="/plan-du-site" element={<PlanDuSite />} />
+                <Route path="/sources-et-methodologie" element={<SourcesEtMethodologie />} />
                 <Route path="/merci" element={<Merci />} />
                 <Route path="/outils/calculateur-bonus-malus" element={<CalculateurBonusMalus />} />
                 <Route path="/comparatif/:slug" element={<DuelPage />} />
@@ -225,6 +299,29 @@ const App = () => {
                 <Route path="/profil/:slug" element={<NicheProfilePage />} />
                 <Route path="/profil" element={<NicheProfilePage />} />
                 <Route path="/llms.txt" element={<LlmsTxt />} />
+
+                {/* Legacy slug redirects (mirrors public/.htaccess for Lovable hosting) */}
+                <Route path="/landing" element={<Navigate to="/comparateur" replace />} />
+                <Route path="/blog/guide-choisir-assurance-auto-2024" element={<Navigate to="/blog/guide-choisir-assurance-auto-2026" replace />} />
+                <Route path="/blog/loi-lemoine-assurance-emprunteur-2024" element={<Navigate to="/blog/loi-lemoine-assurance-emprunteur-2026" replace />} />
+                <Route path="/blog/resiliation-assurance-droits-2024" element={<Navigate to="/blog/resiliation-assurance-droits-2026" replace />} />
+                <Route path="/blog/mutuelle-sante-reduire-frais-medicaux-2024" element={<Navigate to="/blog/mutuelle-sante-reduire-frais-medicaux-2026" replace />} />
+                <Route path="/blog/assurance-jeune-conducteur-2025-moins-cher" element={<Navigate to="/blog/assurance-jeune-conducteur-2026-moins-cher" replace />} />
+                <Route path="/blog/comparatif-habitation-2025" element={<Navigate to="/blog/comparatif-habitation-2026" replace />} />
+                <Route path="/blog/droits-des-assures-2025" element={<Navigate to="/blog/droits-des-assures-2026" replace />} />
+                <Route path="/blog/loi-lemoine-2025" element={<Navigate to="/blog/loi-lemoine-2026" replace />} />
+                <Route path="/blog/meilleure-assurance-auto-2025" element={<Navigate to="/blog/meilleure-assurance-auto-2026" replace />} />
+                <Route path="/blog/meilleure-assurance-auto-2025-comparatif" element={<Navigate to="/blog/meilleure-assurance-auto-2026-comparatif" replace />} />
+                <Route path="/blog/nouvelle-reglementation-assurance-2025" element={<Navigate to="/blog/nouvelle-reglementation-assurance-2026" replace />} />
+                <Route path="/blog/top-10-meilleures-mutuelles-sante-2025" element={<Navigate to="/blog/top-10-meilleures-mutuelles-sante-2026" replace />} />
+                <Route path="/blog/top-mutuelles-sante-2025" element={<Navigate to="/blog/top-mutuelles-sante-2026" replace />} />
+                <Route path="/blog/accident-seul-sans-tiers-declarer-ou-reparer" element={<Navigate to="/blog/accident-seul-sans-tiers-declarer-reparer" replace />} />
+                <Route path="/blog/arnaques-assurance-courantes-2026" element={<Navigate to="/blog/5-arnaques-assurance-courantes-2026" replace />} />
+                <Route path="/blog/fausse-declaration-assurance-risques-sanctions" element={<Navigate to="/blog/fausse-declaration-assurance-risques-reels" replace />} />
+                <Route path="/blog/loi-hamon-2026-resilier-3-clics-apres-un-an" element={<Navigate to="/blog/loi-hamon-2026-resilier-assurance-3-clics" replace />} />
+                <Route path="/blog/non-lieu-assurance-aucun-assureur-bct" element={<Navigate to="/blog/non-lieu-assurance-aucun-assureur-role-bct" replace />} />
+                <Route path="/blog/voiture-immobilisee-garage-arreter-assurance" element={<Navigate to="/blog/voiture-immobilisee-garage-arreter-assurer" replace />} />
+
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
@@ -235,6 +332,11 @@ const App = () => {
           <Suspense fallback={null}>
             <StickyCTA />
           </Suspense>
+          {showDeferredWidgets && (
+            <Suspense fallback={null}>
+              <GlobalExitIntent />
+            </Suspense>
+          )}
           {showDeferredWidgets && (
             <>
               <Suspense fallback={null}>

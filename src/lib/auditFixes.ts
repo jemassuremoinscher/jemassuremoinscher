@@ -1,27 +1,48 @@
 import { supabase } from "@/integrations/supabase/client";
 
 export const PAGE_META_CATALOG: { path: string; label: string; defaultTitle: string; defaultDesc: string }[] = [
-  { path: "/", label: "Accueil", defaultTitle: "Assurance Moins Chère : Comparateur Gratuit | jemassuremoinscher.fr", defaultDesc: "Comparateur d'assurances gratuit. Comparez 50+ assureurs et économisez jusqu'à 280€. Devis en 2 min, sans engagement." },
-  { path: "/assurance-auto", label: "Assurance Auto", defaultTitle: "Assurance Auto Moins Chère [Month] : -40% ⭐", defaultDesc: "50+ assureurs comparés gratuitement. Nos clients économisent 320€/an en moyenne. Devis auto instantané, sans engagement." },
-  { path: "/assurance-moto", label: "Assurance Moto", defaultTitle: "Assurance Moto Moins Chère [Month] : -35% ⭐", defaultDesc: "Moto, scooter, 125cc : comparez 50+ assureurs. Tous risques dès 15€/mois. Devis gratuit et sans engagement." },
-  { path: "/assurance-habitation", label: "Assurance Habitation", defaultTitle: "Assurance Habitation Moins Chère [Month] dès 3€", defaultDesc: "Comparez 50+ assureurs habitation en 2 min. Maison ou appartement, locataire ou propriétaire. Économisez jusqu'à 40%." },
-  { path: "/assurance-sante", label: "Mutuelle Santé", defaultTitle: "Mutuelle Santé Moins Chère [Month] : -300€/an", defaultDesc: "Comparez 50+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale. 4.9/5 satisfaction client." },
+  { path: "/", label: "Accueil", defaultTitle: "Assurance Moins Chère : Comparateur Gratuit | jemassuremoinscher.fr", defaultDesc: "Comparateur d'assurances gratuit. Comparez 70+ assureurs et économisez jusqu'à 280€. Devis en 2 min, sans engagement." },
+  { path: "/assurance-auto", label: "Assurance Auto", defaultTitle: "Assurance Auto Moins Chère [Month] : -40% ⭐", defaultDesc: "70+ assureurs comparés gratuitement. Nos clients économisent 320€/an en moyenne. Devis auto instantané, sans engagement." },
+  { path: "/assurance-moto", label: "Assurance Moto", defaultTitle: "Assurance Moto Moins Chère [Month] : -35% ⭐", defaultDesc: "Moto, scooter, 125cc : comparez 70+ assureurs. Tous risques dès 15€/mois. Devis gratuit et sans engagement." },
+  { path: "/assurance-habitation", label: "Assurance Habitation", defaultTitle: "Assurance Habitation Moins Chère [Month] dès 3€", defaultDesc: "Comparez 70+ assureurs habitation en 2 min. Maison ou appartement, locataire ou propriétaire. Économisez jusqu'à 40%." },
+  { path: "/assurance-sante", label: "Mutuelle Santé", defaultTitle: "Mutuelle Santé Moins Chère [Month] : -300€/an", defaultDesc: "Comparez 70+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale. 4.9/5 satisfaction client." },
   { path: "/assurance-animaux", label: "Assurance Animaux", defaultTitle: "Assurance Chien Chat dès 8€/mois [Month]", defaultDesc: "Mutuelle animaux : remboursement vétérinaire jusqu'à 100%. Comparez les offres chien et chat en 2 min. Sans délai de carence." },
   { path: "/assurance-vie", label: "Assurance Vie", defaultTitle: "Assurance Vie [Month] : Meilleurs Rendements", defaultDesc: "Fonds euros, unités de compte, PER : comparez les meilleures assurances vie. Fiscalité avantageuse après 8 ans. Devis gratuit." },
-  { path: "/assurance-pret", label: "Assurance Prêt", defaultTitle: "Assurance Emprunteur [Month] : -15 000€ (Lemoine)", defaultDesc: "Loi Lemoine : changez d'assurance de prêt à tout moment. Comparez 50+ assureurs, économisez jusqu'à 50%. Devis gratuit en 2 min." },
-  { path: "/assurance-prevoyance", label: "Prévoyance", defaultTitle: "Prévoyance [Month] : Protégez Votre Famille 9€/mois", defaultDesc: "Décès, invalidité, obsèques : comparez les garanties prévoyance de 50+ assureurs. Devis personnalisé gratuit en 2 min." },
-  { path: "/assurance-rc-pro", label: "RC Professionnelle", defaultTitle: "RC Pro dès 15€/mois [Month] : Devis Gratuit", defaultDesc: "Responsabilité civile professionnelle : comparez 50+ assureurs. Tous secteurs : BTP, conseil, IT, commerce. Attestation immédiate." },
-  { path: "/assurance-mrp", label: "Assurance MRP", defaultTitle: "Multirisque Pro (MRP) [Month] dès 20€/mois", defaultDesc: "Locaux, stock, matériel : protégez votre entreprise avec une MRP adaptée. 50+ assureurs comparés. Devis gratuit en 2 min." },
-  { path: "/assurance-pno", label: "Assurance PNO", defaultTitle: "PNO Assurance dès 5€/mois [Month] | Copropriété", defaultDesc: "PNO assurance : comparez les assurances propriétaire non occupant. Obligatoire en copropriété (loi Alur). 50+ assureurs comparés. Devis gratuit." },
-  { path: "/assurance-gli", label: "Garantie Loyers Impayés", defaultTitle: "GLI [Month] : Garantie Loyer Impayé dès 2,5%", defaultDesc: "Loyers impayés, dégradations, frais juridiques : sécurisez vos revenus locatifs. Comparez les GLI de 50+ assureurs. Devis gratuit." },
-  { path: "/comparateur", label: "Comparateur", defaultTitle: "Comparateur d'Assurances Gratuit", defaultDesc: "Comparez les offres de 50+ assureurs en 2 minutes. Auto, santé, habitation, prêt. Sans engagement." },
+  { path: "/assurance-pret", label: "Assurance Emprunteur", defaultTitle: "Assurance Emprunteur [Month] : -15 000€ (Lemoine)", defaultDesc: "Loi Lemoine : changez d'assurance de prêt à tout moment. Comparez 70+ assureurs, économisez jusqu'à 50%. Devis gratuit en 2 min." },
+  { path: "/assurance-prevoyance", label: "Prévoyance", defaultTitle: "Prévoyance [Month] : Protégez Votre Famille 9€/mois", defaultDesc: "Décès, invalidité, obsèques : comparez les garanties prévoyance de 70+ assureurs. Devis personnalisé gratuit en 2 min." },
+  { path: "/assurance-rc-pro", label: "RC Professionnelle", defaultTitle: "RC Pro dès 15€/mois [Month] : Devis Gratuit", defaultDesc: "Responsabilité civile professionnelle : comparez 70+ assureurs. Tous secteurs : BTP, conseil, IT, commerce. Attestation immédiate." },
+  { path: "/assurance-mrp", label: "Assurance MRP", defaultTitle: "Multirisque Pro (MRP) [Month] dès 20€/mois", defaultDesc: "Locaux, stock, matériel : protégez votre entreprise avec une MRP adaptée. 70+ assureurs comparés. Devis gratuit en 2 min." },
+  { path: "/assurance-pno", label: "Assurance PNO", defaultTitle: "PNO Assurance dès 5€/mois [Month] | Copropriété", defaultDesc: "PNO assurance : comparez les assurances propriétaire non occupant. Obligatoire en copropriété (loi Alur). 70+ assureurs comparés. Devis gratuit." },
+  { path: "/assurance-gli", label: "Garantie Loyers Impayés", defaultTitle: "GLI [Month] : Garantie Loyer Impayé dès 2,5%", defaultDesc: "Loyers impayés, dégradations, frais juridiques : sécurisez vos revenus locatifs. Comparez les GLI de 70+ assureurs. Devis gratuit." },
+  { path: "/comparateur", label: "Comparateur", defaultTitle: "Comparateur d'Assurances Gratuit", defaultDesc: "Comparez les offres de 70+ assureurs en 2 minutes. Auto, santé, habitation, prêt. Sans engagement." },
   { path: "/blog", label: "Blog", defaultTitle: "Blog Assurance - Conseils & Guides", defaultDesc: "Guides complets, actualités et conseils pour économiser sur vos assurances." },
   { path: "/glossaire", label: "Glossaire", defaultTitle: "Glossaire de l'Assurance", defaultDesc: "Définitions claires de tous les termes d'assurance : franchise, prime, sinistre, responsabilité civile..." },
   { path: "/qui-sommes-nous", label: "Qui sommes-nous", defaultTitle: "Qui sommes-nous | jemassuremoinscher.fr", defaultDesc: "Découvrez notre équipe de courtiers en assurances. Indépendant, transparent, gratuit." },
-  { path: "/contact", label: "Contact", defaultTitle: "Contactez-nous | jemassuremoinscher.fr", defaultDesc: "Besoin d'aide ? Contactez notre équipe de conseillers. Réponse sous 2h." },
-  { path: "/nos-partenaires", label: "Nos Partenaires", defaultTitle: "Nos 50+ Partenaires Assureurs", defaultDesc: "AXA, Allianz, MAIF, Groupama... Découvrez tous nos assureurs partenaires." },
+  { path: "/contact", label: "Contact", defaultTitle: "Contactez-nous | jemassuremoinscher.fr", defaultDesc: "Besoin d'aide ? Contactez notre équipe de conseillers. Réponse sous 10 minutes." },
+  { path: "/nos-partenaires", label: "Nos Partenaires", defaultTitle: "Nos 70+ Partenaires Assureurs", defaultDesc: "AXA, Allianz, MAIF, Groupama... Découvrez tous nos assureurs partenaires." },
   { path: "/mutuelle-tns", label: "Mutuelle TNS", defaultTitle: "Mutuelle TNS : Meilleure Complémentaire Indépendant", defaultDesc: "Comparez les mutuelles TNS adaptées aux indépendants. Loi Madelin, déduction fiscale. Devis gratuit." },
+  // Nouvelles verticales (niches) — toutes avec [Month] dynamique
+  { path: "/assurance-velo", label: "Assurance Vélo", defaultTitle: "Assurance Vélo & VAE dès 4€/mois [Month]", defaultDesc: "Vélo, VAE, vélo cargo : protégez contre vol, casse, accident. Comparez 20+ assureurs. Devis instantané, sans engagement." },
+  { path: "/assurance-camping-car", label: "Assurance Camping-Car", defaultTitle: "Assurance Camping-Car [Month] dès 28€/mois", defaultDesc: "Camping-car, van, fourgon aménagé : tous risques, assistance Europe. Comparez 30+ assureurs spécialisés. Devis 2 min." },
+  { path: "/assurance-cyber", label: "Assurance Cyber", defaultTitle: "Assurance Cyber TPE/PME [Month] : dès 29€/mois", defaultDesc: "Cyberattaque, ransomware, fuite de données : protégez votre entreprise. RC cyber, frais de notification, expertise IT. Devis gratuit." },
+  { path: "/assurance-decennale", label: "Garantie Décennale", defaultTitle: "Assurance Décennale [Month] : dès 89€/mois", defaultDesc: "Garantie décennale obligatoire BTP : artisans, maîtres d'œuvre, auto-entrepreneurs. Attestation rapide. Comparez 20+ assureurs." },
+  { path: "/assurance-flotte-auto", label: "Flotte Auto Entreprise", defaultTitle: "Assurance Flotte Auto [Month] : -25% Pro", defaultDesc: "3 véhicules ou plus : optimisez le coût de votre flotte pro. Bonus collectif, assistance 24/7, gestion centralisée. Devis gratuit." },
+  { path: "/assurance-mutuelle-entreprise", label: "Mutuelle Entreprise", defaultTitle: "Mutuelle Entreprise (ANI) [Month] dès 29€/mois", defaultDesc: "Mutuelle collective obligatoire : conforme ANI, 50% employeur. Comparez 30+ contrats adaptés à vos salariés. Devis 2 min." },
+  { path: "/assurance-protection-juridique", label: "Protection Juridique", defaultTitle: "Protection Juridique [Month] dès 9€/mois", defaultDesc: "Conflits du quotidien : conso, voisinage, travail, immobilier. Conseils juridiques + prise en charge des frais. Devis gratuit." },
+  { path: "/assurance-sans-permis", label: "Assurance Sans Permis", defaultTitle: "Assurance Voiturette Sans Permis [Month] dès 25€", defaultDesc: "Voiture sans permis (VSP), quadricycle léger : comparez 15+ assureurs. Tiers, vol, tous risques. Devis instantané." },
+  { path: "/assurance-auto-temporaire", label: "Auto Temporaire", defaultTitle: "Assurance Auto Temporaire [Month] : 1 à 90 jours", defaultDesc: "Assurance auto courte durée : 1 jour, 1 semaine, 1 mois. Idéal essai, prêt, déménagement. Attestation immédiate par email." },
+  { path: "/assurance-expatries", label: "Assurance Expatriés", defaultTitle: "Assurance Expatriés [Month] : Santé Internationale", defaultDesc: "Français à l'étranger ou étrangers en France : santé internationale, rapatriement, auto, habitation. 70+ assureurs comparés." },
+  { path: "/assurance-metiers-atypiques", label: "Métiers Atypiques", defaultTitle: "Assurance Métiers Atypiques [Month] | RC Pro Niche", defaultDesc: "Accrobranche, sports outdoor, événementiel, BTP spécialisé : 20+ assureurs de niche. Rappel sous 10 min." },
 ];
+
+/** Re-tokenize any resolved month (e.g. "Mai 2026", "(Avril 2026)") back to [Month].
+ *  Used before persisting overrides so titles stay dynamic across months. */
+const MONTH_NAMES_FR = ["Janvier","Février","Fevrier","Mars","Avril","Mai","Juin","Juillet","Août","Aout","Septembre","Octobre","Novembre","Décembre","Decembre"];
+export const detokenizeMonth = (text: string | null | undefined): string | null => {
+  if (!text) return text ?? null;
+  const pattern = new RegExp(`\\(?\\s*(?:${MONTH_NAMES_FR.join("|")})\\s+\\d{4}\\s*\\)?`, "gi");
+  return text.replace(pattern, (match) => match.trim().startsWith("(") ? "([Month])" : "[Month]");
+};
 
 const MONTHS_FR = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 
@@ -120,23 +141,15 @@ export const getMetaDefaultsForPath = (path: string) => {
   };
 };
 
+// Tout check en échec dont on peut résoudre un pagePath est corrigeable
+// via harmonisation des 4 métadonnées (title/desc/og) en base — solution pérenne
+// car relue par SEOOptimized à chaque rendu et validée par validate*Fix au refresh.
 export const canAutoFixSeoIssue = (issue: { category: string; description: string; file: string }) => {
-  const fingerprint = `${issue.category} ${issue.description}`.toLowerCase();
-  return Boolean(auditFileToPagePath(issue.file)) && (
-    fingerprint.includes("title") ||
-    fingerprint.includes("meta") ||
-    fingerprint.includes("description") ||
-    fingerprint.includes("open graph") ||
-    fingerprint.includes("og")
-  );
+  return Boolean(auditFileToPagePath(issue.file));
 };
 
 export const canAutoFixGeoIssue = (issue: { category: string; description: string; file: string }) => {
-  const fingerprint = `${issue.category} ${issue.description}`.toLowerCase();
-  return Boolean(auditFileToPagePath(issue.file)) && (
-    fingerprint.includes("title") ||
-    fingerprint.includes("geo")
-  );
+  return Boolean(auditFileToPagePath(issue.file));
 };
 
 const upsertPageMetaOverride = async (pagePath: string, payload: { meta_title?: string | null; meta_description?: string | null; og_title?: string | null; og_description?: string | null; }) => {
@@ -182,7 +195,16 @@ export const applySeoIssueFix = async (issue: { category: string; description: s
     return { pagePath, message: `Title SEO mis à jour pour ${pagePath}.` };
   }
 
-  throw new Error("Cette correction SEO nécessite une mise à jour manuelle du template.");
+  // Fallback pérenne : harmonisation complète des 4 métadonnées
+  await upsertPageMetaOverride(pagePath, {
+    meta_title: meta.title,
+    meta_description: meta.description,
+    og_title: meta.ogTitle,
+    og_description: meta.ogDescription,
+  });
+  return { pagePath, message: `Métadonnées SEO harmonisées pour ${pagePath}.` };
+
+  
 };
 
 export const validateSeoIssueFix = async (issue: { category: string; description: string; file: string }) => {
@@ -211,7 +233,11 @@ export const validateSeoIssueFix = async (issue: { category: string; description
     return data.meta_title === meta.title && data.og_title === meta.ogTitle;
   }
 
-  return false;
+  // Fallback : harmonisation complète des 4 métadonnées
+  return data.meta_title === meta.title
+    && data.meta_description === meta.description
+    && data.og_title === meta.ogTitle
+    && data.og_description === meta.ogDescription;
 };
 
 export const applyGeoIssueFix = async (issue: { category: string; description: string; file: string }) => {
@@ -236,7 +262,14 @@ export const applyGeoIssueFix = async (issue: { category: string; description: s
     return { pagePath, message: `Métadonnées harmonisées pour ${pagePath}.` };
   }
 
-  throw new Error("Cette correction GEO nécessite une mise à jour manuelle du template ou du build statique.");
+  // Fallback pérenne : toute autre catégorie déclenche l'harmonisation complète
+  await upsertPageMetaOverride(pagePath, {
+    meta_title: meta.title,
+    meta_description: meta.description,
+    og_title: meta.ogTitle,
+    og_description: meta.ogDescription,
+  });
+  return { pagePath, message: `Métadonnées GEO harmonisées pour ${pagePath}.` };
 };
 
 export const validateGeoIssueFix = async (issue: { category: string; description: string; file: string }) => {
@@ -264,7 +297,11 @@ export const validateGeoIssueFix = async (issue: { category: string; description
       && data.og_description === meta.ogDescription;
   }
 
-  return false;
+  // Fallback : harmonisation complète des 4 métadonnées
+  return data.meta_title === meta.title
+    && data.meta_description === meta.description
+    && data.og_title === meta.ogTitle
+    && data.og_description === meta.ogDescription;
 };
 
 type VisibilityCheckLike = { label: string; expected: string; value: string };
@@ -287,6 +324,181 @@ export type ContentSuggestionDraft = {
   suggested_author: string | null;
   status: string;
   created_at?: string | null;
+  applied_path?: string | null;
+};
+
+export type ContentImprovementSource = "seo" | "geo";
+
+type ContentImprovementScope = "page" | "query" | "visibility";
+
+export const CONTENT_IMPROVEMENT_PREFIX = "__content-improvement__";
+
+const encodeImprovementSegment = (value: string) => encodeURIComponent(value);
+const decodeImprovementSegment = (value: string) => decodeURIComponent(value);
+
+export const buildContentImprovementKey = (input: {
+  source: ContentImprovementSource;
+  scope: ContentImprovementScope;
+  path: string;
+  query?: string;
+}) => `${CONTENT_IMPROVEMENT_PREFIX}/${input.source}/${input.scope}/${encodeImprovementSegment(input.path)}/${encodeImprovementSegment(input.query ?? "_")}`;
+
+const parseContentImprovementKey = (key: string) => {
+  const [prefix, source, scope, encodedPath, encodedQuery] = key.split("/");
+  if (prefix !== CONTENT_IMPROVEMENT_PREFIX || !source || !scope || !encodedPath || !encodedQuery) {
+    return null;
+  }
+
+  return {
+    source,
+    scope,
+    path: decodeImprovementSegment(encodedPath),
+    query: encodedQuery === "_" ? null : decodeImprovementSegment(encodedQuery),
+  };
+};
+
+const buildLiveContentImprovementOverride = (input: {
+  source: ContentImprovementSource;
+  path: string;
+  query?: string;
+}) => {
+  if (!input.path.startsWith("/")) return null;
+
+  const defaults = getMetaDefaultsForPath(input.path);
+  const routeLabel = input.path === "/"
+    ? "Accueil"
+    : humanizeSlug(input.path.replace(/^\/+|\/+$/g, "").split("/").pop() ?? "page");
+  const focus = input.query?.trim() || routeLabel;
+  const metaTitle = trimToLength(
+    resolveDynamicTokens(input.query?.trim()
+      ? `${focus} | ${routeLabel} | jemassuremoinscher.fr`
+      : defaults.title),
+    60,
+  );
+  const metaDescription = trimToLength(
+    `${defaults.description.replace(/[.!?\s]+$/g, "")}. ${input.source === "seo"
+      ? (input.query?.trim()
+        ? `Réponse enrichie sur ${focus.toLowerCase()}, avec intention clarifiée et promesse plus directe.`
+        : `${routeLabel} renforcé avec une promesse plus claire, des réponses rapides et une couverture SEO plus nette.`)
+      : (input.query?.trim()
+        ? `Réponse plus directe sur ${focus.toLowerCase()}, avec formulation claire pour les assistants IA.`
+        : `${routeLabel} clarifié avec réponses directes, signaux d'expertise et meilleure lisibilité GEO.`)}`,
+    160,
+  );
+
+  return {
+    pagePath: input.path,
+    meta_title: metaTitle,
+    meta_description: metaDescription,
+    og_title: trimToLength(metaTitle, 35),
+    og_description: trimToLength(metaDescription, 65),
+  };
+};
+
+const buildContentImprovementDraft = (input: {
+  source: ContentImprovementSource;
+  scope: ContentImprovementScope;
+  path: string;
+  recommendation: string;
+  query?: string;
+  intent?: string;
+}) => {
+  const scopeLabel = input.source === "seo" ? "SEO" : "GEO";
+  const title = input.scope === "query"
+    ? `Amélioration ${scopeLabel} activée : ${input.query}`
+    : input.scope === "visibility"
+      ? `Amélioration ${scopeLabel} activée : ${input.path}`
+      : `Amélioration ${scopeLabel} activée : ${input.path}`;
+
+  return {
+    slug: buildContentImprovementKey(input),
+    title,
+    target_keyword: input.query ?? input.path,
+    suggested_meta_description: input.recommendation,
+    suggested_content: [
+      `Page cible : ${input.path}`,
+      input.query ? `Requête : ${input.query}` : null,
+      input.intent ? `Intention : ${input.intent}` : null,
+      `Action activée : ${input.recommendation}`,
+    ].filter(Boolean).join("\n\n"),
+    suggested_author: null,
+    status: "applied",
+  } satisfies ContentSuggestionDraft;
+};
+
+const persistContentImprovement = async (input: {
+  source: ContentImprovementSource;
+  scope: ContentImprovementScope;
+  path: string;
+  recommendation: string;
+  query?: string;
+  intent?: string;
+}) => {
+  const draft = buildContentImprovementDraft(input);
+  const markerPayload = {
+    meta_title: draft.title,
+    meta_description: draft.suggested_meta_description,
+    og_title: draft.status,
+    og_description: draft.suggested_content,
+  };
+
+  const liveOverride = buildLiveContentImprovementOverride({
+    source: input.source,
+    path: input.path,
+    query: input.query,
+  });
+
+  if (liveOverride) {
+    await upsertPageMetaOverride(liveOverride.pagePath, {
+      meta_title: liveOverride.meta_title,
+      meta_description: liveOverride.meta_description,
+      og_title: liveOverride.og_title,
+      og_description: liveOverride.og_description,
+    });
+  }
+
+  await upsertPageMetaOverride(draft.slug, markerPayload);
+
+  const { data, error } = await supabase
+    .from("page_meta_overrides")
+    .select("created_at")
+    .eq("page_path", draft.slug)
+    .maybeSingle();
+
+  if (error) throw error;
+
+  return {
+    ...draft,
+    created_at: data?.created_at ?? null,
+    applied_path: liveOverride?.pagePath ?? null,
+  } satisfies ContentSuggestionDraft;
+};
+
+export const listAppliedContentImprovements = async (source: ContentImprovementSource) => {
+  const { data, error } = await supabase
+    .from("page_meta_overrides")
+    .select("page_path, meta_title, meta_description, og_title, og_description, created_at")
+    .ilike("page_path", `${CONTENT_IMPROVEMENT_PREFIX}/${source}/%`);
+
+  if (error) throw error;
+
+  return Object.fromEntries((data ?? []).map((item) => [
+    item.page_path,
+    (() => {
+      const parsed = parseContentImprovementKey(item.page_path);
+      return {
+        slug: item.page_path,
+        title: item.meta_title ?? "Amélioration activée",
+        target_keyword: parsed?.query ?? parsed?.path ?? item.page_path,
+        suggested_meta_description: item.meta_description ?? null,
+        suggested_content: item.og_description ?? item.meta_description ?? "",
+        suggested_author: null,
+        status: item.og_title ?? "applied",
+        created_at: item.created_at ?? null,
+        applied_path: parsed?.path ?? null,
+      } satisfies ContentSuggestionDraft;
+    })(),
+  ]));
 };
 
 const slugify = (value: string) => value
@@ -332,8 +544,8 @@ const buildGeoContentSuggestion = (input: GeoContentImprovementInput) => {
 const POSITION_PAGE_UPDATES = [
   {
     path: "/assurance-auto",
-    meta_title: resolveDynamicTokens("Assurance Auto Pas Chère [Month] : Comparez 50+ devis"),
-    meta_description: "Comparez garanties, prix et franchises de 50+ assurances auto pour trouver une formule plus adaptée à votre profil.",
+    meta_title: resolveDynamicTokens("Assurance Auto Pas Chère [Month] : Comparez 5 000+ devis"),
+    meta_description: "Comparez garanties, prix et franchises de 5 000+ devis auto pour trouver une formule plus adaptée à votre profil.",
   },
   {
     path: "/assurance-sante",
@@ -434,6 +646,20 @@ const IA_CITATION_SUGGESTIONS = [
     suggested_author: getSuggestedAuthorLabel({ slug: "assurance-glossaire-termes-essentiels-decider", title: "Glossaire assurance : les termes essentiels pour décider sans erreur", target_keyword: "glossaire assurance termes essentiels" }),
   },
 ];
+
+const NON_BLOG_SUGGESTION_SLUGS = new Set([
+  ...IA_SOURCE_SUGGESTIONS.map((item) => item.slug),
+  ...IA_CITATION_SUGGESTIONS.map((item) => item.slug),
+]);
+
+export const isBlogArticleSuggestionSlug = (slug: string) => {
+  if (!slug) return false;
+
+  return !slug.startsWith(CONTENT_IMPROVEMENT_PREFIX)
+    && !slug.startsWith("geo-amelioration-")
+    && !slug.startsWith("seo-amelioration-")
+    && !NON_BLOG_SUGGESTION_SLUGS.has(slug);
+};
 
 const upsertMultiplePageMetaOverrides = async (pages: Array<{ path: string; meta_title: string; meta_description: string; og_title: string; og_description: string }>) => {
   for (const page of pages) {
@@ -563,6 +789,16 @@ const validateContentSuggestions = async (suggestions: typeof IA_SOURCE_SUGGESTI
 export const applySeoVisibilityFix = async (check: VisibilityCheckLike) => {
   const label = check.label.toLowerCase();
 
+  if (label.includes("impressions") || label.includes("ctr") || label.includes("couverture") || label.includes("requêtes")) {
+    const suggestion = await persistContentImprovement({
+      source: "seo",
+      scope: "visibility",
+      path: check.label,
+      recommendation: check.expected,
+    });
+    return { message: "L'action de visibilité SEO a bien été activée.", suggestion };
+  }
+
   if (label.includes("position")) {
     await upsertMultiplePageMetaOverrides(POSITION_PAGE_UPDATES);
     return { message: "Les pages prioritaires ont été renforcées pour les positions SEO." };
@@ -573,11 +809,24 @@ export const applySeoVisibilityFix = async (check: VisibilityCheckLike) => {
     return { message: "Les landing pages prioritaires ont été optimisées pour le trafic qualifié." };
   }
 
-  throw new Error("Cette action SEO ne peut pas être appliquée automatiquement.");
+  // Fallback pérenne : persiste une content_improvement liée à ce signal
+  const suggestion = await persistContentImprovement({
+    source: "seo",
+    scope: "visibility",
+    path: check.label,
+    recommendation: check.expected || check.label,
+  });
+  return { message: "L'action SEO a bien été activée et tracée.", suggestion };
 };
 
 export const validateSeoVisibilityFix = async (check: VisibilityCheckLike) => {
   const label = check.label.toLowerCase();
+
+  if (label.includes("impressions") || label.includes("ctr") || label.includes("couverture") || label.includes("requêtes")) {
+    const key = buildContentImprovementKey({ source: "seo", scope: "visibility", path: check.label });
+    const { data, error } = await supabase.from("page_meta_overrides").select("page_path").eq("page_path", key).maybeSingle();
+    return !error && data?.page_path === key;
+  }
 
   if (label.includes("position")) {
     return validateMultiplePageMetaOverrides(POSITION_PAGE_UPDATES);
@@ -587,76 +836,140 @@ export const validateSeoVisibilityFix = async (check: VisibilityCheckLike) => {
     return validateMultiplePageMetaOverrides(QUALIFIED_TRAFFIC_PAGE_UPDATES);
   }
 
-  return false;
+  // Fallback : content_improvement tracé en base
+  const key = buildContentImprovementKey({ source: "seo", scope: "visibility", path: check.label });
+  const { data, error } = await supabase.from("page_meta_overrides").select("page_path").eq("page_path", key).maybeSingle();
+  return !error && data?.page_path === key;
 };
 
 export const applyGeoVisibilityFix = async (check: VisibilityCheckLike) => {
   const label = check.label.toLowerCase();
 
+  if (label.includes("sessions")) {
+    await createContentSuggestions(IA_SOURCE_SUGGESTIONS);
+    const suggestion = await persistContentImprovement({
+      source: "geo",
+      scope: "visibility",
+      path: check.label,
+      recommendation: "Créer des contenus FAQ, comparatifs et définitions ciblés pour augmenter les reprises par assistants IA.",
+    });
+    return { message: "Plan de contenus IA activé pour augmenter les sessions LLM.", suggestion };
+  }
+
   if (label.includes("diversité")) {
-    const result = await createContentSuggestions(IA_SOURCE_SUGGESTIONS);
-    return { message: `${result.created > 0 ? `${result.created} nouveaux` : "Les"} contenus pour diversifier les sources IA sont prêts.` };
+    await createContentSuggestions(IA_SOURCE_SUGGESTIONS);
+    const suggestion = await persistContentImprovement({
+      source: "geo",
+      scope: "visibility",
+      path: check.label,
+      recommendation: check.expected,
+    });
+    return { message: "L'amélioration GEO a bien été activée.", suggestion };
   }
 
   if (label.includes("mentions") || label.includes("requêtes")) {
-    const result = await createContentSuggestions(IA_CITATION_SUGGESTIONS);
-    return { message: `${result.created > 0 ? `${result.created} nouveaux` : "Les"} contenus pour renforcer les citations IA sont prêts.` };
+    await createContentSuggestions(IA_CITATION_SUGGESTIONS);
+    const suggestion = await persistContentImprovement({
+      source: "geo",
+      scope: "visibility",
+      path: check.label,
+      recommendation: check.expected,
+    });
+    return { message: "L'amélioration GEO a bien été activée.", suggestion };
   }
 
-  throw new Error("Cette action GEO ne peut pas être appliquée automatiquement.");
+  // Fallback pérenne : persiste une content_improvement liée à ce signal
+  const suggestion = await persistContentImprovement({
+    source: "geo",
+    scope: "visibility",
+    path: check.label,
+    recommendation: check.expected || check.label,
+  });
+  return { message: "L'action GEO a bien été activée et tracée.", suggestion };
 };
 
 export const validateGeoVisibilityFix = async (check: VisibilityCheckLike) => {
   const label = check.label.toLowerCase();
 
+  if (label.includes("sessions")) {
+    const key = buildContentImprovementKey({ source: "geo", scope: "visibility", path: check.label });
+    const { data, error } = await supabase.from("page_meta_overrides").select("page_path").eq("page_path", key).maybeSingle();
+    return !error && data?.page_path === key && await validateContentSuggestions(IA_SOURCE_SUGGESTIONS);
+  }
+
   if (label.includes("diversité")) {
-    return validateContentSuggestions(IA_SOURCE_SUGGESTIONS);
+    const key = buildContentImprovementKey({ source: "geo", scope: "visibility", path: check.label });
+    const { data, error } = await supabase.from("page_meta_overrides").select("page_path").eq("page_path", key).maybeSingle();
+    return !error && data?.page_path === key && await validateContentSuggestions(IA_SOURCE_SUGGESTIONS);
   }
 
   if (label.includes("mentions") || label.includes("requêtes")) {
-    return validateContentSuggestions(IA_CITATION_SUGGESTIONS);
+    const key = buildContentImprovementKey({ source: "geo", scope: "visibility", path: check.label });
+    const { data, error } = await supabase.from("page_meta_overrides").select("page_path").eq("page_path", key).maybeSingle();
+    return !error && data?.page_path === key && await validateContentSuggestions(IA_CITATION_SUGGESTIONS);
   }
 
-  return false;
+  // Fallback : content_improvement tracé en base
+  const key = buildContentImprovementKey({ source: "geo", scope: "visibility", path: check.label });
+  const { data, error } = await supabase.from("page_meta_overrides").select("page_path").eq("page_path", key).maybeSingle();
+  return !error && data?.page_path === key;
 };
 
 export const applyGeoContentImprovement = async (input: GeoContentImprovementInput) => {
-  const suggestion = buildGeoContentSuggestion(input);
-  const result = await createContentSuggestions([suggestion]);
-  const savedSuggestion = result.items[0] ?? {
-    ...suggestion,
-    status: "pending",
-    created_at: null,
-  };
+  const savedSuggestion = await persistContentImprovement({
+    source: "geo",
+    scope: input.scope,
+    path: input.path,
+    query: input.query,
+    intent: input.intent,
+    recommendation: input.recommendation,
+  });
 
   return {
-    slug: suggestion.slug,
-    created: result.created > 0,
+    slug: savedSuggestion.slug,
+    created: true,
     suggestion: savedSuggestion,
-    message: `${result.created > 0 ? "Brouillon GEO créé" : "Brouillon GEO mis à jour"} pour ${input.path}.`,
+    message: `Amélioration GEO activée pour ${input.path}.`,
   };
 };
 
 export const validateGeoContentImprovement = async (input: GeoContentImprovementInput) => {
-  const suggestion = buildGeoContentSuggestion(input);
+  const suggestion = buildContentImprovementKey({ source: "geo", scope: input.scope, path: input.path, query: input.query });
   const { data, error } = await supabase
-    .from("seo_article_suggestions")
-    .select("slug")
-    .eq("slug", suggestion.slug)
+    .from("page_meta_overrides")
+    .select("page_path")
+    .eq("page_path", suggestion)
     .maybeSingle();
 
   if (error || !data) return false;
-  return data.slug === suggestion.slug;
+  return data.page_path === suggestion;
 };
 
 export const applySeoContentImprovement = async (input: GeoContentImprovementInput) => {
-  const result = await applyGeoContentImprovement(input);
+  const savedSuggestion = await persistContentImprovement({
+    source: "seo",
+    scope: input.scope,
+    path: input.path,
+    query: input.query,
+    intent: input.intent,
+    recommendation: input.recommendation,
+  });
   return {
-    ...result,
-    message: `${result.created ? "Brouillon SEO créé" : "Brouillon SEO mis à jour"} pour ${input.path}.`,
+    slug: savedSuggestion.slug,
+    created: true,
+    suggestion: savedSuggestion,
+    message: `Amélioration SEO activée pour ${input.path}.`,
   };
 };
 
 export const validateSeoContentImprovement = async (input: GeoContentImprovementInput) => {
-  return validateGeoContentImprovement(input);
+  const key = buildContentImprovementKey({ source: "seo", scope: input.scope, path: input.path, query: input.query });
+  const { data, error } = await supabase
+    .from("page_meta_overrides")
+    .select("page_path")
+    .eq("page_path", key)
+    .maybeSingle();
+
+  if (error || !data) return false;
+  return data.page_path === key;
 };

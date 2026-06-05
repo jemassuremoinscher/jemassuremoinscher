@@ -15,7 +15,7 @@ interface ArticleCTAProps {
  */
 const ArticleCTA = ({
   title = "Vérifiez si vous payez trop cher",
-  description = "Comparez gratuitement les offres de 50+ assureurs et découvrez combien vous pourriez économiser.",
+  description = "Comparez gratuitement les offres de 70+ assureurs et découvrez combien vous pourriez économiser.",
   buttonText = "Comparer gratuitement en 2 minutes",
   href = "/comparateur",
   variant = "primary",

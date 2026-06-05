@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Shield, Heart, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
@@ -9,6 +8,8 @@ import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProduc
 import arthurInjured from "@/assets/mascotte/arthur-injured.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
+import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
+import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import EnBref from "@/components/seo/EnBref";
 import BrandName from "@/components/BrandName";
@@ -35,22 +36,33 @@ const AssurancePrevoyance = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title="Prévoyance [Month] : Protégez Votre Famille 9€/mois" description="Décès, invalidité, obsèques : comparez les garanties prévoyance de 50+ assureurs. Devis personnalisé gratuit en 2 min." keyword="assurance prévoyance" keywords="assurance décès, assurance obsèques, dépendance, prévoyance TNS" canonical="https://www.jemassuremoinscher.fr/assurance-prevoyance" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title={t("seo.prevoyance.title")} description={t("seo.prevoyance.description")} keyword="assurance prévoyance" keywords="assurance décès, assurance obsèques, dépendance, prévoyance TNS" canonical="https://www.jemassuremoinscher.fr/assurance-prevoyance" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Prévoyance" }]} />
       <main id="main-content">
-      <section className="bg-gradient-to-br from-primary/5 to-primary/10 py-16 relative overflow-hidden">
-        <div className="container mx-auto px-4"><div className="max-w-4xl mx-auto text-center relative">
-          <ArthurHero imageSrc={arthurInjured} imageAlt="Arthur blessé - prévoyance" speechText={t('prevoyancePage.subtitle')} />
-          <h1 className="text-4xl md:text-5xl font-bold text-accent mb-6">{t('prevoyancePage.title')}</h1>
-          <Button size="lg" onClick={scrollToForm} className="text-lg px-8 py-6" aria-label="Comparer les assurances prévoyance maintenant">{t('insPage.compareNow')}</Button>
-        </div></div>
+      <section className="relative pt-6 pb-10 md:pt-8 md:pb-14">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <ArthurHero
+              imageSrc={arthurInjured}
+              imageAlt="Arthur blessé - prévoyance"
+              title={t('prevoyancePage.title')}
+              subtitle={t('prevoyancePage.subtitle')}
+              ctaLabel={t('insPage.compareNow')}
+              onCtaClick={scrollToForm}
+            />
+          </div>
+        </div>
       </section>
       <div className="container mx-auto px-4 py-12">
         <DynamicUpdateDate />
 
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="prevoyance" /></div>
+
+        <ProductGuaranteeTable product="prevoyance" />
+
+        <CourtierValueCards product="prevoyance" />
 
         <InsuranceSEOTabs
           faqTitle={t('insPage.faqTitle')}

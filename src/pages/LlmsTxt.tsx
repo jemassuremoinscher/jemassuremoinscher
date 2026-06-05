@@ -1,5 +1,6 @@
 import SEOOptimized from "@/components/SEOOptimized";
 import geoContent from "@/data/geo-content.json";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const LLMS_TXT = `# jemassuremoinscher.fr
 
@@ -48,7 +49,7 @@ const LLMS_TXT = `# jemassuremoinscher.fr
 ## Avantages concurrentiels
 
 - **Indépendance totale** : aucun assureur privilégié, conseils 100% objectifs
-- **Accompagnement humain** : un conseiller dédié rappelle sous 2 heures
+- **Accompagnement humain** : un conseiller dédié rappelle sous 5 minutes
 - **Transparence** : aucune commission cachée, modèle économique expliqué clairement
 - **Technologie** : algorithmes mis à jour en temps réel pour détecter les meilleures offres
 - **Mascotte** : Arthur, le super-héros de l'assurance pas chère, guide les utilisateurs
@@ -70,11 +71,12 @@ const LLMS_TXT = `# jemassuremoinscher.fr
 - URL : /blog
 `;
 const LlmsTxt = () => {
+  const { t } = useLanguage();
   return (
     <>
       <SEOOptimized
-        title="llms.txt | jemassuremoinscher.fr"
-        description="Fichier llms.txt de jemassuremoinscher.fr pour documenter nos services d'assurance et ressources accessibles aux agents IA."
+        title={t("seo.llmsTxt.title")}
+        description={t("seo.llmsTxt.description")}
         canonical="https://www.jemassuremoinscher.fr/llms.txt"
       />
       <main>

@@ -1,90 +1,86 @@
+## Objectif
 
+Quand le visiteur passe en EN, **plus aucun texte FR ne doit apparaître** sur la homepage, les pages assurance (Vie, Auto, Habitation, Santé, Moto, Animaux, Pret, Prevoyance, RC Pro, MRP, GLI, PNO) ni dans les briques transverses (Header, Footer, formulaire multi-step, chatbot, sticky CTA).
 
-# Plan de traduction complete du site en anglais
+## Périmètre identifié (audit)
 
-## Contexte
-La homepage et les composants partages (Header, Footer, Hero, HowItWorks, WhyUs, SEOFaq, QuickQuote, Guides, StickyCTA, PartnersSlider) sont deja traduits via le systeme `useLanguage()` / `t()`. Tout le reste du site contient du texte francais en dur.
+Composants 100% FR hard-codé (zéro `t()`):
 
-## Scope -- fichiers a traduire
+- `src/components/insurance/CourtierValueCards.tsx` — "Pourquoi passer par un courtier spécialisé…", 4 cartes (Comparaison ciblée, Garanties vérifiées, Dossier défendu, Conseil indépendant)
+- `src/components/insurance/InsuranceSEOTabs.tsx` — labels onglets, titres internes
+- `src/components/insurance/InsuranceBottomHub.tsx` — "Nos clients consultent aussi", "Articles conseils", "Outils & Ressources", labels CTA
+- `src/components/seo/EnBref.tsx` — libellé "En bref"
+- `src/components/DynamicUpdateDate.tsx` — "Données mises à jour en temps réel le …"
 
-### Phase 1 : Composants partages restants (utilises sur toutes les pages produit)
-1. **Testimonials.tsx** -- titres, stats, et textes des temoignages
-2. **SavingsCalculator.tsx** -- labels, boutons, resultats
-3. **QuoteRequestForm.tsx** -- labels de formulaire, messages de succes
-4. **InsuranceComparison.tsx** -- titres, badges, boutons
-5. **InsuranceFAQ.tsx** -- titre par defaut
-6. **CookieBanner.tsx** -- tous les textes du bandeau cookies
-7. **InteractiveComparator.tsx** -- filtres, labels, cartes d'offres
-8. **SubscriptionModal.tsx** -- formulaire de rappel
-9. **TrustBadges.tsx** -- badges de confiance
+Pages avec strings FR hard-codées dans le code page (en plus des `t()`):
 
-### Phase 2 : Pages d'assurance Particuliers
-10. **AssuranceAuto.tsx** -- hero, formulaire, avantages, FAQ, CTA
-11. **AssuranceSante.tsx** -- idem
-12. **AssuranceHabitation.tsx** -- idem
-13. **AssuranceMoto.tsx** -- idem
-14. **AssuranceAnimaux.tsx** -- idem
+- `src/pages/AssuranceVie.tsx` — "0% de frais d'entrée", "Frais d'arbitrage offerts", FAQ extra, EnBref facts, breadcrumb "Accueil"
+- Idem (à vérifier/aligner) pour: AssuranceAuto, AssuranceHabitation, AssuranceSante, AssuranceMoto, AssuranceAnimaux, AssurancePret, AssuranceVie, AssurancePrevoyance, AssuranceRCPro, AssuranceMRP, AssuranceGLI, AssurancePNO
 
-### Phase 3 : Pages d'assurance Pro / Vie / Immobilier
-15. **AssuranceVie.tsx**
-16. **AssurancePret.tsx**
-17. **AssurancePrevoyance.tsx**
-18. **AssuranceRCPro.tsx**
-19. **AssuranceMRP.tsx**
-20. **AssuranceGLI.tsx**
-21. **AssurancePNO.tsx**
-22. **GestionLocative.tsx**
+Composants partiellement traduits à compléter:
 
-### Phase 4 : Pages secondaires
-23. **Contact.tsx** -- formulaire, cartes, CTA
-24. **QuiSommesNous.tsx** -- mission, valeurs, stats
-25. **AvisClients.tsx** -- temoignages, resume, CTA
-26. **NosPartenaires.tsx** -- criteres, engagement, CTA
-27. **Blog.tsx** -- filtres, recherche, categories
-28. **BlogArticle.tsx** -- navigation, commentaires
-29. **Comparateur.tsx** -- titre SEO
+- `src/components/Footer.tsx` (seulement 9 `t()` pour ~30 libellés visibles: "Nos Assurances", "Ressources", "À propos", "Informations légales", listes de produits, badges légaux, disclaimer, copyright)
+- `src/components/forms/MultiStepQuoteForm.tsx` — "Étape 1/5", "Plus que 60s pour voir vos prix", chips "Données sécurisées / 100% gratuit / Sans engagement", labels métier des choix d'assurance et tuiles (visibles dans les screenshots)
+- Header/menu (sous-menus "Vie & Épargne", "Immobilier" → vérifier que tous les items sont traduits)
+- ArthurHero (alt-text + label CTA résiduels)
 
-### Phase 5 : Pages legales et utilitaires
-30. **CGU.tsx**
-31. **MentionsLegales.tsx**
-32. **PolitiqueConfidentialite.tsx**
-33. **PolitiqueCookies.tsx**
-34. **PlanDuSite.tsx**
-35. **NotFound.tsx**
-36. **Glossaire.tsx / GlossaireTerme.tsx**
+## Stratégie d'implémentation
 
-### Phase 6 : Landing pages (12 pages)
-37-48. **LandingAuto, LandingSante, LandingHabitation, LandingMoto, LandingAnimaux, LandingVie, LandingPret, LandingPrevoyance, LandingRCPro, LandingMRP, LandingGLI, LandingPNO**
+1. **Créer un script d'audit** `scripts/audit-i18n-coverage.ts` qui parcourt les `.tsx` et liste les chaînes JSX françaises (mots-clés: `Que souhaitez|votre|assurance|gratuit|sans engagement|comparez|conseiller|économ|découvr|cher`) **hors** appels `t(...)`. Servira de checklist exhaustive.
+2. **Refactorer les composants 0-`t()`** en y branchant `useLanguage` + clés `componentName.*`. Toujours conserver les valeurs FR existantes comme défaut dans `fr.ts`, créer la traduction EN parallèle.
+3. **Compléter Footer** + **MultiStepQuoteForm** (zone à plus fort impact visuel sur toutes les pages).
+4. **Pages assurance**: extraire chaque string FR locale vers une clé `<page>.*` (ex. `viePage.adv.zeroFees.title`). Mutualiser les libellés communs (breadcrumb "Home", "0% entry fees", "Free arbitration fees") sous un namespace `insPage.*`.
+5. **Étendre `src/i18n/fr.ts` et `src/i18n/en.ts`** avec toutes les nouvelles clés. Re-vérifier la parité via le script existant `scripts/diff-i18n.ts`.
+6. **Vérification visuelle** route par route: `/`, `/assurance-vie`, `/assurance-auto`, `/assurance-habitation`, `/assurance-sante`, `/assurance-moto`, `/assurance-animaux`, `/assurance-pret`, `/contact`, `/blog`, `/glossaire`. (Routes blog/glossaire restent FR par nature SEO — confirmer ce point.)
 
-### Phase 7 : Composants restants
-49. **CallbackForm.tsx**
-50. **QuickHelpSection.tsx**
-51. **SimplifiedLeadForm.tsx**
-52. **InsuranceQuiz.tsx**
-53. **AIChatbot.tsx / TransferDialog.tsx**
-54. **NewsletterSection.tsx**
-55. **BlogHighlights.tsx / CommentsSection.tsx**
-56. **FAQ.tsx, Features.tsx, Partners.tsx**
+## Périmètre exclu (à confirmer par toi)
 
----
+- **Articles de blog & glossaire**: contenu éditorial FR, optimisé SEO français — ne sont **pas** traduits. La langue de l'article reste FR même en mode EN (canonical FR uniquement). À confirmer.
+- **Meta tags par page** (title/description/OG): aujourd'hui en FR; le site cible la France (hreflang fr/en pointe la même URL FR). Si tu veux des meta EN dynamiques, dis-le et j'ajouterai un namespace `seo.<page>.title/description` consommé par `SEOOptimized` quand `language === 'en'`.
+- **Schemas JSON-LD**: descriptions FR conservées (référencement FR).
+- **Données métier** (noms d'assureurs, produits, mentions ORIAS, RGPD): non traduites.
 
-## Approche technique
+## Détails techniques
 
-Pour chaque fichier :
-1. Ajouter les cles FR + EN dans le dictionnaire `LanguageContext.tsx`
-2. Importer `useLanguage` dans le composant
-3. Remplacer chaque texte en dur par `t('cle.correspondante')`
+Contrats de nommage des clés:
 
-Le dictionnaire `LanguageContext.tsx` va considérablement grossir (~2000+ cles). Pour garder le fichier lisible, les cles seront organisees par prefixe de page (ex: `autoPage.hero.title`, `contactPage.title`, etc.).
+```
+courtierValue.title / .subtitle
+courtierValue.card1.title / .desc  (… card1..card4)
+seoTabs.tabFAQ / .tabGuide / .tabBenefits
+bottomHub.alsoConsulted / .articles / .toolsResources / .ctaReady
+enBref.title  (= "En bref" / "In brief")
+updateDate.label  (= "Data updated in real time on {date}")
+form.stepOf  (= "Step {n}/{total}" / "Étape {n}/{total}")
+form.timeLeft  (= "Only {n}s left to see your prices")
+form.trust.secured / .free / .noCommit
+footer.nosAssurances / .resources / .about / .legal / .copyright
+```
 
-## Estimation
+Pour les chaînes interpolées (ex. date, n° d'étape), `t()` retourne un template avec `{x}` puis `String.replace` côté composant (pattern existant dans le projet).
 
-- ~55+ fichiers a modifier
-- ~2000+ cles de traduction a ajouter
-- Le travail sera fait en plusieurs passes successives pour eviter les erreurs
+Livraisons:
 
-## Important
-- Les textes SEO (meta title/description) resteront en francais car le site cible le marche francais -- les balises SEO ne changent pas avec le toggle
-- Les schemas JSON-LD restent en francais pour le meme raison
-- Les messages de validation Zod restent en francais (technique, peu visible)
+```
+src/i18n/fr.ts          (+ ~120 clés)
+src/i18n/en.ts          (+ ~120 clés, parité 1:1)
+src/components/insurance/CourtierValueCards.tsx
+src/components/insurance/InsuranceSEOTabs.tsx
+src/components/insurance/InsuranceBottomHub.tsx
+src/components/seo/EnBref.tsx
+src/components/DynamicUpdateDate.tsx
+src/components/Footer.tsx                          (compléments)
+src/components/forms/MultiStepQuoteForm.tsx        (compléments)
+src/pages/Assurance{Vie,Auto,Habitation,Sante,Moto,Animaux,Pret,Prevoyance,RCPro,MRP,GLI,PNO}.tsx
+scripts/audit-i18n-coverage.ts                     (nouveau)
+```
 
+## Questions pour toi avant d'attaquer
+
+1. **Blog & glossaire**: on laisse en FR uniquement (recommandé pour le SEO FR), ou tu veux qu'on traduise aussi les coquilles (titres de section, dates, "Lire la suite", "Auteur")?
+2. **Meta SEO par page en EN**: on les bascule aussi (title/description/OG) quand `language === 'en'`, ou on garde tout en FR puisque hreflang pointe la même URL?
+3. **Ordre de priorité** si tu veux découper en plusieurs livraisons:  
+   a) Pages assurance + composants insurance (le plus visible pour un visiteur EN)  
+   b) Footer + MultiStepQuoteForm (transverses, présentes partout)  
+   c) Header/menus + chatbot + StickyCTA  
+   d) Blog/glossaire (si retenu)

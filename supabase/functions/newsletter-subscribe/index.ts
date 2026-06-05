@@ -167,12 +167,52 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Handle unsubscribe
+    // Handle unsubscribe — REQUIRES a one-time token (sent by email).
+    //   1. POST { email }            -> issue an unsubscribe token + email a confirm link
+    //   2. GET/POST ?token=<plain>   -> verify token and actually unsubscribe
     if (action === "unsubscribe") {
-      const { email }: UnsubscribeRequest = await req.json();
-      
-      // Validate email before processing
-      const unsubValidation = validateEmail(email);
+      let unsubToken = url.searchParams.get("token") || "";
+      let unsubEmailFromBody: string | undefined;
+
+      if (!unsubToken && req.method !== "GET") {
+        try {
+          const body = await req.json();
+          unsubToken = body?.token || "";
+          unsubEmailFromBody = body?.email;
+        } catch {
+          // ignore – validated below
+        }
+      }
+
+      if (unsubToken) {
+        const hashedToken = await hashToken(unsubToken);
+        const { data: updated, error } = await supabase
+          .from("newsletter_subscribers")
+          .update({
+            status: "unsubscribed",
+            unsubscribed_at: new Date().toISOString(),
+            confirmation_token: null,
+          })
+          .eq("confirmation_token", hashedToken)
+          .select()
+          .single();
+
+        if (error || !updated) {
+          return new Response(
+            JSON.stringify({ success: false, message: "Lien invalide ou expiré" }),
+            { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+          );
+        }
+
+        return new Response(
+          JSON.stringify({ success: true, message: "Désinscription confirmée" }),
+          { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
+        );
+      }
+
+      // Request flow — generate a token and email the confirmation link.
+      // Always respond success to avoid leaking which addresses are subscribed.
+      const unsubValidation = validateEmail(unsubEmailFromBody || "");
       if (!unsubValidation.valid) {
         return new Response(
           JSON.stringify({ success: false, message: "Email invalide" }),
@@ -180,39 +220,48 @@ const handler = async (req: Request): Promise<Response> => {
         );
       }
 
-      const { error } = await supabase
+      const normalized = (unsubEmailFromBody as string).trim().toLowerCase();
+      const { data: existing } = await supabase
         .from("newsletter_subscribers")
-        .update({
-          status: "unsubscribed",
-          unsubscribed_at: new Date().toISOString(),
-        })
-        .eq("email", email.trim().toLowerCase());
+        .select("id, status")
+        .eq("email", normalized)
+        .maybeSingle();
 
-      if (error) {
-        console.error("Error unsubscribing:", error);
-        return new Response(
-          JSON.stringify({ 
-            success: false, 
-            message: "Erreur lors de la désinscription" 
-          }),
-          {
-            status: 500,
-            headers: { "Content-Type": "application/json", ...corsHeaders },
-          }
-        );
+      if (existing && existing.status !== "unsubscribed") {
+        const plaintext = crypto.randomUUID();
+        const hashed = await hashToken(plaintext);
+        await supabase
+          .from("newsletter_subscribers")
+          .update({ confirmation_token: hashed })
+          .eq("id", existing.id);
+
+        const unsubUrl = `${Deno.env.get("SUPABASE_URL")}/functions/v1/newsletter-subscribe?action=unsubscribe&token=${plaintext}`;
+        await resend.emails.send({
+          from: "jemassuremoinscher.fr <onboarding@resend.dev>",
+          to: [normalized],
+          subject: "Confirmez votre désinscription",
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+              <h1 style="color:#6b46c1;">Confirmez votre désinscription</h1>
+              <p>Pour vous désinscrire définitivement de notre newsletter, cliquez sur le bouton ci-dessous :</p>
+              <div style="text-align:center;margin:30px 0;">
+                <a href="${unsubUrl}" style="background:#6b46c1;color:#fff;padding:14px 28px;text-decoration:none;border-radius:8px;font-weight:bold;display:inline-block;">Confirmer la désinscription</a>
+              </div>
+              <p style="font-size:12px;color:#999;">Si vous n'êtes pas à l'origine de cette demande, ignorez cet email.</p>
+            </div>
+          `,
+        });
       }
 
       return new Response(
-        JSON.stringify({ 
-          success: true, 
-          message: "Désinscription réussie" 
+        JSON.stringify({
+          success: true,
+          message: "Si cet email est abonné, un lien de désinscription vient d'être envoyé.",
         }),
-        {
-          status: 200,
-          headers: { "Content-Type": "application/json", ...corsHeaders },
-        }
+        { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
     }
+
 
     // Handle new subscription (default action)
     const { email }: SubscribeRequest = await req.json();
