@@ -32,7 +32,7 @@ const ArthurHero = ({
   savingsValue = "280€/an",
   savingsLabel = "Économie moyenne",
   reviewsValue = "4.9/5",
-  reviewsLabel = "247 avis vérifiés",
+  reviewsLabel = "avis vérifiés",
 }: ArthurHeroProps) => {
   // Legacy fallback (landing templates) — keep simple speech bubble layout
   if (!title) {
