@@ -2728,7 +2728,7 @@ const fr: Record<string, string> = {
   "seo.sante.title": "Mutuelle Santé Moins Chère [Month] : -300€/an",
   "seo.sante.description": "Comparez 70+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale.",
   "seo.reviews.title": "Avis Clients | jemassuremoinscher.fr",
-  "seo.reviews.description": "Avis clients sur notre comparateur d'assurance. Note 4.9/5 sur 247 avis vérifiés.",
+  "seo.reviews.description": "Avis clients sur notre comparateur d'assurance.",
   "seo.animaux.title": "Assurance Chien Chat dès 8€/mois [Month]",
   "seo.animaux.description": "Mutuelle animaux : remboursement vétérinaire jusqu'à 100%. Comparez les offres chien et chat en 2 min. Sans délai de carence.",
   "seo.expatries.title": "Assurance Expatriés — Français à l'étranger & Étrangers en France",
