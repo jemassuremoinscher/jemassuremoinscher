@@ -218,7 +218,7 @@ const fr: Record<string, string> = {
   'whyUs.oriasNumber': 'Immatriculation ORIAS en cours',
   'whyUs.verifyOrias': 'Vérifier sur orias.fr →',
   'trustRow.sectionLabel': 'Pourquoi nous faire confiance',
-  'trustRow.googleReviewsSuffix': 'sur Google Reviews • {count} avis vérifiés',
+  'trustRow.googleReviewsSuffix': 'sur Google Reviews',
   'trustRow.independent': 'Courtier indépendant',
   'trustRow.independentDesc': 'Aucun lien capitalistique avec les assureurs. Conseil 100% impartial.',
   'trustRow.transparency': 'Transparence totale',
