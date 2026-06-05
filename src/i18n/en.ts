@@ -2733,7 +2733,7 @@ const en: Record<string, string> = {
   "seo.sante.title": "Cheaper Health Insurance [Month]: -€300/year",
   "seo.sante.description": "Compare 70+ health plans in 2 min. Optical, dental, hospital: find the ideal cover.",
   "seo.reviews.title": "Customer Reviews | jemassuremoinscher.fr",
-  "seo.reviews.description": "Customer reviews of our insurance comparator. Rating 4.9/5 across 247 verified reviews.",
+  "seo.reviews.description": "Customer reviews of our insurance comparator.",
   "seo.animaux.title": "Pet Insurance from €8/month [Month]",
   "seo.animaux.description": "Pet health plan: up to 100% vet reimbursement. Compare dog and cat offers in 2 min. No waiting period.",
   "seo.expatries.title": "Expat Insurance — French Abroad & Foreigners in France",
