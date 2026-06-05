@@ -1171,7 +1171,7 @@ const fr: Record<string, string> = {
   'aboutPage.oriasLabel': 'Courtier enregistré ORIAS',
   'aboutPage.oriasNumber': 'Immatriculation ORIAS en cours',
   'aboutPage.googleReviews': '4.9/5 sur Google',
-  'aboutPage.googleReviewsCount': '247 avis vérifiés',
+  'aboutPage.googleReviewsCount': 'avis vérifiés',
   'aboutPage.financialGuarantee': 'Garantie Financière',
   'aboutPage.financialGuaranteeDesc': 'RC Pro & garantie conforme',
   'aboutPage.securePayment': 'Paiement sécurisé',
