@@ -33,8 +33,8 @@ export default defineConfig(({ mode }) => {
     // Utility pages
     nosPartenaires: path.resolve(__dirname, "nos-partenaires/index.html"),
     calculateurBonusMalus: path.resolve(__dirname, "outils/calculateur-bonus-malus/index.html"),
-    // mutuelle-tns static shell removed — handled by SPA route to avoid duplicate FAQPage JSON-LD
-    // Blog articles — static HTML shells for SEO crawlers
+    // mutuelle-tns static shell removed â handled by SPA route to avoid duplicate FAQPage JSON-LD
+    // Blog articles â static HTML shells for SEO crawlers
     blogAccident: path.resolve(__dirname, "blog/accident-seul-sans-tiers-declarer-reparer/index.html"),
     blogArnaques: path.resolve(__dirname, "blog/5-arnaques-assurance-courantes-2026/index.html"),
     blogFausseDeclaration: path.resolve(__dirname, "blog/fausse-declaration-assurance-risques-reels/index.html"),
@@ -58,6 +58,42 @@ export default defineConfig(({ mode }) => {
     blogPnoObligatoire: path.resolve(__dirname, "blog/assurance-pno-obligatoire-louer-bien/index.html"),
     blogColocation: path.resolve(__dirname, "blog/assurance-colocation-contrat-unique-ou-individuel/index.html"),
     blogMalusEleve: path.resolve(__dirname, "blog/assurance-malus-eleve-compagnies-2026/index.html"),
+    blogAssuranceAutoResiliationNonPaiementGuide: path.resolve(__dirname, "blog/assurance-auto-resiliation-non-paiement-guide/index.html"),
+    blogJeuneConducreurVoiturePuissante110Chevaux: path.resolve(__dirname, "blog/jeune-conducteur-voiture-puissante-110-chevaux/index.html"),
+    blogSeniors75AnsAssuranceAutoPrimeBasse: path.resolve(__dirname, "blog/seniors-75-ans-assurance-auto-prime-basse/index.html"),
+    blogPermisConduireEtrangerAssuranceAutoFrance: path.resolve(__dirname, "blog/permis-conduire-etranger-assurance-auto-france/index.html"),
+    blogAssuranceAutoResilieAlcoolStupefiants: path.resolve(__dirname, "blog/assurance-auto-resilie-alcool-stupefiants/index.html"),
+    blogConducteurSecondaireAssuranceAutoBonneIdee: path.resolve(__dirname, "blog/conducteur-secondaire-assurance-auto-bonne-idee/index.html"),
+    blogTop10VoituresOccasionMoinsCheresAssurer2026: path.resolve(__dirname, "blog/top-10-voitures-occasion-moins-cheres-assurer-2026/index.html"),
+    blogAssuranceAuKilometrePayAsYouDriveRentable: path.resolve(__dirname, "blog/assurance-au-kilometre-pay-as-you-drive-rentable/index.html"),
+    blogSupprimerOptionsInutilesContratHabitation: path.resolve(__dirname, "blog/supprimer-options-inutiles-contrat-habitation/index.html"),
+    blogFranchiseEleveePrimeBassSimulateurChoix: path.resolve(__dirname, "blog/franchise-elevee-prime-basse-simulateur-choix/index.html"),
+    blogRegrouperContratsAutoMaisonReductionReelle: path.resolve(__dirname, "blog/regrouper-contrats-auto-maison-reduction-reelle/index.html"),
+    blogAssuranceAutoConnecteeBoitiersIntelligentsPrix: path.resolve(__dirname, "blog/assurance-auto-connectee-boitiers-intelligents-prix/index.html"),
+    blogHausseTarifsAssurance2026CommentContrer: path.resolve(__dirname, "blog/hausse-tarifs-assurance-2026-comment-contrer/index.html"),
+    blogDemenagementPrevenirAssureurCouverture: path.resolve(__dirname, "blog/demenagement-prevenir-assureur-couverture/index.html"),
+    blogTeletravailAssuranceHabitationMaterielProCouvert: path.resolve(__dirname, "blog/teletravail-assurance-habitation-materiel-pro-couvert/index.html"),
+    blogSousLocationAirbnbRisquesCachesAssurance: path.resolve(__dirname, "blog/sous-location-airbnb-risques-caches-assurance/index.html"),
+    blogAssurancePanneauxPhotovoltaiquesInstallation: path.resolve(__dirname, "blog/assurance-panneaux-photovoltaiques-installation/index.html"),
+    blogAssuranceVoitureElectriqueBonus2026: path.resolve(__dirname, "blog/assurance-voiture-electrique-bonus-ecologiques-2026/index.html"),
+    blogTrottinettesElectriquesEdpmAssurance: path.resolve(__dirname, "blog/trottinettes-electriques-edpm-assurance-obligatoire/index.html"),
+    blogVelosCargosVaeProtectionVolUrbain: path.resolve(__dirname, "blog/velos-cargos-vae-protection-vol-urbain/index.html"),
+    blogRechargeDomicileAssuranceBorneRecharge: path.resolve(__dirname, "blog/recharge-domicile-assurance-borne-recharge/index.html"),
+    blogHeritageVehiculeAssurerVoitureDeces: path.resolve(__dirname, "blog/heritage-vehicule-assurer-voiture-deces/index.html"),
+    blogVenteVehiculeSuspendreAssuranceJourJ: path.resolve(__dirname, "blog/vente-vehicule-suspendre-assurance-jour-j/index.html"),
+    blogCertificatAssuranceDematerialise: path.resolve(__dirname, "blog/certificat-assurance-dematerialise-fin-vignette-verte/index.html"),
+    blogCovoiturageRegulierExtensionGarantie: path.resolve(__dirname, "blog/covoiturage-regulier-extension-garantie-passagers/index.html"),
+    blogDevisAssuranceAutoJeuneConducreur2026: path.resolve(__dirname, "blog/devis-assurance-auto-jeune-conducteur-2026/index.html"),
+    blogAssuranceEmprunteurChangerGagner: path.resolve(__dirname, "blog/assurance-emprunteur-changer-gagner-milliers-euros/index.html"),
+    blogResteAChargeZero100Sante2026: path.resolve(__dirname, "blog/reste-a-charge-zero-100-sante-lunettes-dents-2026/index.html"),
+    blogHypnoseRemboursementMutuelle2026: path.resolve(__dirname, "blog/hypnose-remboursement-mutuelle-2026/index.html"),
+    blogMedecinesDoucesMutuelles: path.resolve(__dirname, "blog/medecines-douces-mutuelles-osteopathie-hypnose/index.html"),
+    blogMutuelleEtudianteContratParentsOuIndividuel: path.resolve(__dirname, "blog/mutuelle-etudiante-contrat-parents-ou-individuel/index.html"),
+    blogAutoEntrepreneurMutuelleProtection: path.resolve(__dirname, "blog/auto-entrepreneur-mutuelle-protection-optimale/index.html"),
+    blogAssuranceOrganisateurEvenement2026: path.resolve(__dirname, "blog/assurance-organisateur-evenement-festival-2026/index.html"),
+    blogAssuranceMoniteurSportsOutdoor2026: path.resolve(__dirname, "blog/assurance-moniteur-sports-outdoor-2026/index.html"),
+    blogAssuranceParcAccrobranche2026: path.resolve(__dirname, "blog/assurance-parc-accrobranche-obligations-2026/index.html"),
+    blogAssurancePnoPasChere2026: path.resolve(__dirname, "blog/assurance-pno-pas-chere-comparatif-2026/index.html"),
   };
 
   return {
