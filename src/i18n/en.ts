@@ -1176,7 +1176,7 @@ const en: Record<string, string> = {
   'aboutPage.oriasLabel': 'ORIAS registered broker',
   'aboutPage.oriasNumber': 'No. 24 XXX XXX',
   'aboutPage.googleReviews': '4.9/5 on Google',
-  'aboutPage.googleReviewsCount': '247 verified reviews',
+  'aboutPage.googleReviewsCount': 'verified reviews',
   'aboutPage.financialGuarantee': 'Financial Guarantee',
   'aboutPage.financialGuaranteeDesc': 'Professional liability & compliant guarantee',
   'aboutPage.securePayment': 'Secure payment',
