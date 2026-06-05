@@ -50,7 +50,7 @@ const SourcesEtMethodologie = () => {
       items: [
         { label: "Collecte", desc: "Formulaire envoyé par e-mail 30 jours après la souscription" },
         { label: "Vérification", desc: "Email obligatoire, modération anti-fraude, publication intégrale (positive ou négative)" },
-        { label: "Note actuelle", desc: "4.9/5 sur 247 avis vérifiés (mis à jour mensuellement)" },
+        { label: "Note actuelle", desc: "Note Google Reviews mise à jour mensuellement" },
       ],
     },
     {

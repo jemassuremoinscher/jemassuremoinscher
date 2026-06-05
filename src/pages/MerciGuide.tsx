@@ -152,7 +152,7 @@ const MerciGuide = () => {
 
               {/* Trust line */}
               <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] text-muted-foreground pt-2 border-t border-border">
-                <span>★ 4.9/5 · 247 avis Google</span>
+                <span>★ sur Google Reviews</span>
                 <span>·</span>
                 <span>70+ assureurs comparés</span>
                 <span>·</span>
