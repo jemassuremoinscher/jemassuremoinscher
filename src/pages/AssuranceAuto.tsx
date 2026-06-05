@@ -144,7 +144,7 @@ const AssuranceAuto = () => {
               <li>✓ Adapter ses garanties à l'usage réel et à l'âge du véhicule</li>
             </ul>
             <p className="text-xs text-muted-foreground/80 mt-4">
-              Note clients <strong className="text-foreground">4,9/5</strong> sur 247 avis Google vérifiés — Service 100% en ligne basé à Nice (06000).
+              Service 100% en ligne basé à Nice (06000).
             </p>
           </section>
 
