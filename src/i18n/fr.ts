@@ -209,7 +209,7 @@ const fr: Record<string, string> = {
   'whyUs.9outOf10': '9 clients sur 10',
   'whyUs.save': 'économisent',
   'whyUs.perYear': 'par an',
-  'whyUs.googleReviews': 'sur Google Reviews • 247 avis vérifiés',
+  'whyUs.googleReviews': 'sur Google Reviews',
   'whyUs.service100': 'Service 100%',
   'whyUs.freeService': 'Gratuit',
   'whyUs.data': 'Données',
