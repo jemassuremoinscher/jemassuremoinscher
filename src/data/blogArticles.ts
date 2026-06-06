@@ -4779,6 +4779,34 @@ import { blogArticlesVerticals2026Lot2 } from "./blogArticlesVerticals2026Lot2";
 const _now = new Date();
 _now.setHours(23, 59, 59, 999);
 
+// Overrides de dates pour étaler les publications d'avril → juin 2026
+// (évite un "trou" éditorial après mi-mai et entretient une cadence régulière).
+const lateDateOverrides: Record<string, string> = {
+  "vert-decennale-pilier": "15 avril 2026",
+  "draft-pno-2026": "17 avril 2026",
+  "vert-flotte-pilier": "20 avril 2026",
+  "vert-mutuelle-ent-pilier": "22 avril 2026",
+  "vert-cyber-pilier": "24 avril 2026",
+  "draft-voiture-occasion-2026": "27 avril 2026",
+  "vert-sanspermis-pilier": "29 avril 2026",
+  "vert-campingcar-pilier": "1 mai 2026",
+  "vert-decennale-sat1": "4 mai 2026",
+  "vert-flotte-sat1": "6 mai 2026",
+  "vert-mutuelle-ent-sat1": "8 mai 2026",
+  "vert-cyber-sat1": "11 mai 2026",
+  "vert-sanspermis-sat1": "13 mai 2026",
+  "vert-campingcar-sat1": "15 mai 2026",
+  "draft-loi-lemoine-emprunteur-2026": "18 mai 2026",
+  "vert-decennale-sat2": "20 mai 2026",
+  "vert-flotte-sat2": "22 mai 2026",
+  "vert-mutuelle-ent-sat2": "25 mai 2026",
+  "vert-cyber-sat2": "27 mai 2026",
+  "vert-sanspermis-sat2": "29 mai 2026",
+  "vert-campingcar-sat2": "1 juin 2026",
+  "draft-colocation-etudiant-2026": "3 juin 2026",
+  "draft-constat-amiable-2026": "5 juin 2026",
+};
+
 export const blogArticles: BlogArticle[] = [
   ...existingWithDates,
   ...articles2026WithDates,
@@ -4786,6 +4814,7 @@ export const blogArticles: BlogArticle[] = [
   ...blogArticlesVerticals2026,
   ...blogArticlesVerticals2026Lot2,
 ]
+  .map((a) => (lateDateOverrides[a.id] ? { ...a, date: lateDateOverrides[a.id] } : a))
   .filter((a) => a.published !== false) // Hide drafts (published: false) from listings, sitemap, and routing
   .filter((a) => parseFrenchDate(a.date).getTime() <= _now.getTime()) // Auto-publication par date
   .sort((a, b) => parseFrenchDate(b.date).getTime() - parseFrenchDate(a.date).getTime());
