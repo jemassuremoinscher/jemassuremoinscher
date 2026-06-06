@@ -4768,6 +4768,19 @@ function parseFrenchDate(d: string): Date {
   return new Date();
 }
 
+// Convention: tout article dont la date est absente, vide ou égale à "auto"
+// reçoit automatiquement la date du jour (format FR). Ainsi chaque nouvel
+// article publié est daté "récent" sans intervention manuelle.
+const FR_MONTHS_LIST = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+function todayFrench(): string {
+  const t = new Date();
+  return `${t.getDate()} ${FR_MONTHS_LIST[t.getMonth()]} ${t.getFullYear()}`;
+}
+function resolveDate(d?: string): string {
+  if (!d || !d.trim() || d.trim().toLowerCase() === 'auto') return todayFrench();
+  return d;
+}
+
 import { blogDrafts2026 } from "./blogDrafts2026";
 import { blogArticlesVerticals2026 } from "./blogArticlesVerticals2026";
 import { blogArticlesVerticals2026Lot2 } from "./blogArticlesVerticals2026Lot2";
