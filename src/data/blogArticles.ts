@@ -4827,7 +4827,10 @@ export const blogArticles: BlogArticle[] = [
   ...blogArticlesVerticals2026,
   ...blogArticlesVerticals2026Lot2,
 ]
-  .map((a) => (lateDateOverrides[a.id] ? { ...a, date: lateDateOverrides[a.id] } : a))
+  .map((a) => {
+    const overridden = lateDateOverrides[a.id] ? { ...a, date: lateDateOverrides[a.id] } : a;
+    return { ...overridden, date: resolveDate(overridden.date) };
+  })
   .filter((a) => a.published !== false) // Hide drafts (published: false) from listings, sitemap, and routing
   .filter((a) => parseFrenchDate(a.date).getTime() <= _now.getTime()) // Auto-publication par date
   .sort((a, b) => parseFrenchDate(b.date).getTime() - parseFrenchDate(a.date).getTime());
