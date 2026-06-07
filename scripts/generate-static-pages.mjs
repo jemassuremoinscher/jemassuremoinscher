@@ -1,4 +1,4 @@
-import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
 
@@ -405,6 +405,80 @@ const generateBlogArticles = async () => {
 };
 
 await generateBlogArticles();
+
+// ============ Local blog articles prerender (src/data/blogArticles*.ts) ============
+// Mirrors the Supabase prerender but sources articles from the in-repo TS files that
+// the SPA itself renders. Only fills slugs that don't already have a page (Supabase wins).
+const FR_MONTHS = { janvier: 0, "février": 1, fevrier: 1, mars: 2, avril: 3, mai: 4, juin: 5, juillet: 6, "août": 7, aout: 7, septembre: 8, octobre: 9, novembre: 10, "décembre": 11, decembre: 11 };
+const parseFrenchDate = (d = "") => {
+  const parts = String(d).trim().replace(/^1er/, "1").split(/\s+/);
+  if (parts.length >= 3) {
+    const day = parseInt(parts[0], 10);
+    const month = FR_MONTHS[parts[1].toLowerCase()];
+    const year = parseInt(parts[2], 10);
+    if (!Number.isNaN(day) && month !== undefined && !Number.isNaN(year)) return new Date(Date.UTC(year, month, day, 12));
+  }
+  const fb = new Date(d);
+  return Number.isNaN(fb.getTime()) ? new Date() : fb;
+};
+
+const generateLocalBlogArticles = async () => {
+  let vite;
+  try {
+    const { createServer } = await import("vite");
+    const stubAssets = {
+      name: "stub-assets",
+      enforce: "pre",
+      resolveId(id) { if (/\.(jpg|jpeg|png|webp|svg|gif|avif)(\?.*)?$/.test(id)) return "\0stub:" + id; },
+      load(id) { if (id.startsWith("\0stub:")) return `export default ${JSON.stringify(id.slice(6))};`; },
+    };
+    vite = await createServer({
+      configFile: false,
+      root: rootDir,
+      resolve: { alias: { "@": path.join(rootDir, "src") } },
+      plugins: [stubAssets],
+      server: { middlewareMode: true },
+      optimizeDeps: { noDiscovery: true, include: [] },
+      logLevel: "silent",
+    });
+    const mod = await vite.ssrLoadModule(path.join(rootDir, "src/data/blogArticles.ts"));
+    const articles = mod.blogArticles || [];
+    let created = 0;
+    let skipped = 0;
+    for (const a of articles) {
+      if (!a?.slug || a.noindex) continue;
+      const outputPath = path.join(rootDir, "blog", a.slug, "index.html");
+      try {
+        await access(outputPath);
+        skipped += 1;
+        continue;
+      } catch {
+        // no existing file -> generate
+      }
+      const mapped = {
+        slug: a.slug,
+        title: a.title,
+        suggested_meta_description: a.description,
+        short_description: a.description,
+        suggested_content: a.content,
+        suggested_author: a.author,
+        published_at: parseFrenchDate(a.date).toISOString(),
+        image_url: a.image || undefined,
+      };
+      await mkdir(path.dirname(outputPath), { recursive: true });
+      await writeFile(outputPath, renderArticle(mapped), "utf8");
+      created += 1;
+    }
+    console.log(`[generate-static-pages] Local blog articles: ${created} created, ${skipped} already present.`);
+  } catch (err) {
+    console.warn("[generate-static-pages] Skipping local blog prerender:", err?.message || err);
+  } finally {
+    if (vite) await vite.close().catch(() => {});
+  }
+};
+
+await generateLocalBlogArticles();
+
 
 // ============ Glossary terms prerender ============
 const generateGlossaryTerms = async () => {
