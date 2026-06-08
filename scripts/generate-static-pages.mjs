@@ -529,3 +529,78 @@ await syncExistingHtmlPages();
 // Vercel handles directory-index resolution natively with cleanUrls.
 // vercel.json now contains a minimal SPA fallback only.
 // await syncHostingRouteConfig();
+
+
+// ============ Blog sitemap sync ============
+// Régénère la section <url> /blog/ de public/sitemap.xml à partir des articles
+// réellement pré-rendus sur le disque (Supabase + src/data/blogArticles*.ts).
+// Retire les URLs blog sans page (fantômes), ajoute les pages orphelines,
+// exclut les pages noindex, et laisse TOUTES les autres sections intactes.
+const syncBlogSitemap = async () => {
+  try {
+    const sitemapPath = path.join(rootDir, "public", "sitemap.xml");
+    let xml;
+    try {
+      xml = await readFile(sitemapPath, "utf8");
+    } catch {
+      console.warn("[sitemap] public/sitemap.xml introuvable — skip blog sync.");
+      return;
+    }
+
+    const blogDir = path.join(rootDir, "blog");
+    let entries;
+    try {
+      entries = await readdir(blogDir, { withFileTypes: true });
+    } catch {
+      console.warn("[sitemap] répertoire blog/ introuvable — skip blog sync.");
+      return;
+    }
+
+    const slugs = [];
+    for (const entry of entries) {
+      if (!entry.isDirectory()) continue;
+      let html;
+      try {
+        html = await readFile(path.join(blogDir, entry.name, "index.html"), "utf8");
+      } catch {
+        continue; // pas de page rendue -> ignorer
+      }
+      // Ne jamais lister une page noindex dans le sitemap
+      const robotsTag = html.match(/<meta[^>]+name=["']robots["'][^>]*>/i)?.[0] || "";
+      if (/noindex/i.test(robotsTag)) continue;
+      slugs.push(entry.name);
+    }
+
+    if (!slugs.length) {
+      console.warn("[sitemap] aucun article blog indexable — skip blog sync.");
+      return;
+    }
+    slugs.sort();
+
+    const today = new Date().toISOString().slice(0, 10);
+    const blogBlocks = slugs
+      .map(
+        (slug) =>
+          `  <url>\n    <loc>${baseUrl}/blog/${slug}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>`
+      )
+      .join("\n");
+
+    const withoutBlog = xml.replace(
+      /[ \t]*<url>\s*<loc>[^<]*\/blog\/[^<]*<\/loc>[\s\S]*?<\/url>\s*\n?/g,
+      ""
+    );
+    const updated = withoutBlog.replace(/<\/urlset>/, `${blogBlocks}\n</urlset>\n`);
+
+    if (updated !== xml) {
+      await writeFile(sitemapPath, updated, "utf8");
+      const total = (updated.match(/<url>/g) || []).length;
+      console.log(`[sitemap] Section blog régénérée: ${slugs.length} URLs blog (total sitemap ${total}).`);
+    } else {
+      console.log(`[sitemap] Section blog déjà alignée (${slugs.length} URLs).`);
+    }
+  } catch (err) {
+    console.warn("[sitemap] Skipping blog sitemap sync:", err?.message || err);
+  }
+};
+
+await syncBlogSitemap();
