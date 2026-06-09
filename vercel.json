@@ -2,6 +2,9 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/assurance-auto-malusse", "destination": "/assurance-auto-malus", "permanent": true }
+  ],
   "rewrites": [
     {
       "source": "/((?!api/|assets/|.*\\.).*)",

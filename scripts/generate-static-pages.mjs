@@ -523,6 +523,108 @@ const generateGlossaryTerms = async () => {
 
 await generateGlossaryTerms();
 
+const generateLandingAndProfilePages = async () => {
+  let vite;
+  try {
+    const { createServer } = await import("vite");
+    const stubAssets = {
+      name: "stub-assets",
+      enforce: "pre",
+      resolveId(id) { if (/\.(jpg|jpeg|png|webp|svg|gif|avif)(\?.*)?$/.test(id)) return "\0stub:" + id; },
+      load(id) { if (id.startsWith("\0stub:")) return `export default ${JSON.stringify(id.slice(6))};`; },
+    };
+    vite = await createServer({
+      configFile: false,
+      root: rootDir,
+      resolve: { alias: { "@": path.join(rootDir, "src") } },
+      plugins: [stubAssets],
+      server: { middlewareMode: true },
+      optimizeDeps: { noDiscovery: true, include: [] },
+      logLevel: "silent",
+    });
+
+    const relatedList = {
+      title: "Voir aussi",
+      list: [
+        { href: "/comparateur", label: "Comparateur d'assurances gratuit" },
+        { href: "/assurance-auto", label: "Assurance auto" },
+        { href: "/assurance-sante", label: "Mutuelle santé" },
+        { href: "/assurance-habitation", label: "Assurance habitation" },
+      ],
+    };
+
+    // ---- Landing pages (src/data/landingConfigs.tsx) ----
+    let lCreated = 0, lSkipped = 0;
+    try {
+      const landingMod = await vite.ssrLoadModule(path.join(rootDir, "src/data/landingConfigs.tsx"));
+      const configs = landingMod.landingConfigs || {};
+      for (const [key, raw] of Object.entries(configs)) {
+        const cfg = raw && raw.fr ? raw.fr : raw;
+        if (!cfg || !cfg.seoTitle || !cfg.seoDescription) continue;
+        const outputPath = path.join(rootDir, "landing", key, "index.html");
+        try { await access(outputPath); lSkipped += 1; continue; } catch {}
+        const h1 = [cfg.heroTitle, cfg.heroHighlight].filter(Boolean).join(" ").replace(/\s+/g, " ").trim() || cfg.seoTitle;
+        const page = {
+          route: `/landing/${key}`,
+          title: cfg.seoTitle,
+          description: cfg.seoDescription,
+          h1,
+          intro: cfg.seoDescription,
+          sections: [
+            { title: "Pourquoi comparer avec jemassuremoinscher.fr ?", body: "Courtier indépendant immatriculé ORIAS. Comparez plus de 70 assureurs partenaires en 2 minutes, gratuitement et sans engagement." },
+            relatedList,
+          ],
+          ctaHref: "/comparateur",
+          ctaLabel: "Comparer gratuitement",
+        };
+        await mkdir(path.dirname(outputPath), { recursive: true });
+        await writeFile(outputPath, renderPage(page), "utf8");
+        lCreated += 1;
+      }
+      console.log(`[generate-static-pages] Landing pages: ${lCreated} created, ${lSkipped} already present.`);
+    } catch (err) {
+      console.warn("[generate-static-pages] Skipping landing prerender:", err?.message || err);
+    }
+
+    // ---- Profil pages (src/data/nicheInsuranceData.ts) ----
+    let pCreated = 0, pSkipped = 0;
+    try {
+      const profilMod = await vite.ssrLoadModule(path.join(rootDir, "src/data/nicheInsuranceData.ts"));
+      const profiles = profilMod.nicheProfiles || [];
+      for (const prof of profiles) {
+        if (!prof?.slug || !prof.title || !prof.metaDescription) continue;
+        const outputPath = path.join(rootDir, "profil", prof.slug, "index.html");
+        try { await access(outputPath); pSkipped += 1; continue; } catch {}
+        const page = {
+          route: `/profil/${prof.slug}`,
+          title: prof.title,
+          description: prof.metaDescription,
+          h1: prof.title,
+          intro: prof.metaDescription,
+          sections: [
+            { title: "Un accompagnement adapté à votre profil", body: "Nos courtiers partenaires sont spécialisés dans les profils spécifiques et négocient des solutions auprès d'assureurs adaptés. Comparaison gratuite, sans engagement." },
+            relatedList,
+          ],
+          ctaHref: "/comparateur",
+          ctaLabel: "Trouver mon assurance",
+        };
+        await mkdir(path.dirname(outputPath), { recursive: true });
+        await writeFile(outputPath, renderPage(page), "utf8");
+        pCreated += 1;
+      }
+      console.log(`[generate-static-pages] Profil pages: ${pCreated} created, ${pSkipped} already present.`);
+    } catch (err) {
+      console.warn("[generate-static-pages] Skipping profil prerender:", err?.message || err);
+    }
+  } catch (err) {
+    console.warn("[generate-static-pages] Skipping landing/profil prerender:", err?.message || err);
+  } finally {
+    if (vite) await vite.close().catch(() => {});
+  }
+};
+
+await generateLandingAndProfilePages();
+
 await syncExistingHtmlPages();
 
 // NOTE: hosting route config sync removed.
@@ -604,3 +706,46 @@ const syncBlogSitemap = async () => {
 };
 
 await syncBlogSitemap();
+
+
+// ============ Landing & Profil sitemap sync ============
+const syncLandingProfileSitemap = async () => {
+  try {
+    const sitemapPath = path.join(rootDir, "public", "sitemap.xml");
+    let xml;
+    try { xml = await readFile(sitemapPath, "utf8"); } catch { return; }
+    const today = new Date().toISOString().slice(0, 10);
+    let blocks = "";
+    for (const [dir, prefix, priority] of [["landing", "/landing/", "0.8"], ["profil", "/profil/", "0.7"]]) {
+      let entries;
+      try { entries = await readdir(path.join(rootDir, dir), { withFileTypes: true }); } catch { continue; }
+      const slugs = [];
+      for (const e of entries) {
+        if (!e.isDirectory()) continue;
+        let html;
+        try { html = await readFile(path.join(rootDir, dir, e.name, "index.html"), "utf8"); } catch { continue; }
+        const robots = html.match(/<meta[^>]+name=["']robots["'][^>]*>/i)?.[0] || "";
+        if (/noindex/i.test(robots)) continue;
+        slugs.push(e.name);
+      }
+      slugs.sort();
+      const re = new RegExp(`[ \\t]*<url>\\s*<loc>[^<]*${prefix.replace(/\//g, "\\/")}[^<]*<\\/loc>[\\s\\S]*?<\\/url>\\s*\\n?`, "g");
+      xml = xml.replace(re, "");
+      if (slugs.length) {
+        blocks += slugs.map((s) => `  <url>\n    <loc>${baseUrl}${prefix}${s}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>${priority}</priority>\n  </url>`).join("\n") + "\n";
+      }
+    }
+    if (blocks) {
+      const updated = xml.replace(/<\/urlset>/, `${blocks}</urlset>\n`);
+      if (updated !== xml) {
+        await writeFile(sitemapPath, updated, "utf8");
+        const total = (updated.match(/<url>/g) || []).length;
+        console.log(`[sitemap] Sections landing/profil régénérées (total sitemap ${total}).`);
+      }
+    }
+  } catch (err) {
+    console.warn("[sitemap] Skipping landing/profil sitemap sync:", err?.message || err);
+  }
+};
+
+await syncLandingProfileSitemap();

@@ -151,7 +151,7 @@
   </url>
   <!-- SEO Pages -->
   <url>
-    <loc>https://www.jemassuremoinscher.fr/assurance-auto-malusse</loc>
+    <loc>https://www.jemassuremoinscher.fr/assurance-auto-malus</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -247,7 +247,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <!-- Blog Articles - Legacy -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-jeune-conducteur-astuces</loc>
     <lastmod>2026-05-10</lastmod>
@@ -272,7 +271,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <!-- Blog Articles - 2026 -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-auto-resiliation-non-paiement-guide</loc>
     <lastmod>2026-05-10</lastmod>
@@ -483,7 +481,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Blog Articles - DB Published -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-pno-comparateur-decryptez-les-meilleures-offres-2026-pour-proprietaires-non-occupants</loc>
     <lastmod>2026-01-05</lastmod>
