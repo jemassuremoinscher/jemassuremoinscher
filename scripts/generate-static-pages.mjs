@@ -169,6 +169,27 @@ const patchHtmlSeo = (html, relativePath) => {
     updated = injectBeforeHeadEnd(updated, buildWebPageJsonLd({ title, description, canonical, heading }));
   }
 
+  // BreadcrumbList (idempotent) — niveaux selon la route
+  if (!/BreadcrumbList/.test(updated)) {
+    const route = buildRouteFromFile(relativePath);
+    let items = null;
+    if (route.startsWith("/blog/")) {
+      items = [{ name: "Accueil", url: `${baseUrl}/` }, { name: "Blog", url: `${baseUrl}/blog` }, { name: title, url: canonical }];
+    } else if (route !== "/" && route !== "/blog") {
+      items = [{ name: "Accueil", url: `${baseUrl}/` }, { name: heading || title, url: canonical }];
+    }
+    if (items) {
+      const bc = `    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[${items.map((it, i) => `{"@type":"ListItem","position":${i + 1},"name":"${escapeJson(it.name)}","item":"${escapeJson(it.url)}"}`).join(",")}]}</script>`;
+      updated = injectBeforeHeadEnd(updated, bc);
+    }
+  }
+
+  // Liens piliers dans le fallback statique des articles (idempotent)
+  if (buildRouteFromFile(relativePath).startsWith("/blog/") && !updated.includes("jmmc-pillars")) {
+    const pillars = `\n        <p class="jmmc-pillars"><a href="/comparateur">Comparer les assurances gratuitement</a> &middot; <a href="/blog">Tous nos articles</a></p>\n      `;
+    updated = updated.replace("</main>\n    </div>", `${pillars}</main>\n    </div>`);
+  }
+
   return updated;
 };
 
@@ -306,7 +327,7 @@ const renderArticle = (article, related = []) => {
     (related && related.length)
       ? `\n        <nav aria-label="Articles sur le même thème">\n          <h2>Sur le même thème</h2>\n          <ul>\n            ${related.map((r) => `<li><a href="${escapeAttribute(`/blog/${r.slug}`)}">${escapeHtml(r.title)}</a></li>`).join("")}\n          </ul>\n        </nav>`
       : "";
-  const pillarHtml = `\n        <p class="meta"><a href="/comparateur">Comparer les assurances gratuitement</a> &middot; <a href="/blog">Tous nos articles</a></p>`;
+  const pillarHtml = `\n        <p class="meta jmmc-pillars"><a href="/comparateur">Comparer les assurances gratuitement</a> &middot; <a href="/blog">Tous nos articles</a></p>`;
 
   const articleJsonLd = {
     "@context": "https://schema.org",
