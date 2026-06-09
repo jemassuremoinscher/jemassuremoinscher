@@ -198,7 +198,7 @@ const SEOLandingPage = ({
                   <CheckCircle2 className="h-4 w-4" /> ORIAS vérifié
                 </Badge>
                 <Badge variant="outline" className="gap-2">
-                  <Star className="h-4 w-4 fill-current" /> 4,9/5 — 2847 avis
+                  <Star className="h-4 w-4 fill-current" /> 5/5
                 </Badge>
               </div>
             </div>

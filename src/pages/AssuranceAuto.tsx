@@ -80,8 +80,6 @@ const AssuranceAuto = () => {
     description: "Comparateur d'assurance auto. Comparez les offres de 25+ assureurs et économisez jusqu'à 320€/an.",
     category: "Assurance Automobile",
     url: "https://www.jemassuremoinscher.fr/assurance-auto",
-    ratingValue: 4.7,
-    reviewCount: 1853,
   });
 
   const advantages = [

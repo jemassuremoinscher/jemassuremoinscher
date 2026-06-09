@@ -105,7 +105,7 @@ const AdsLandingTemplate = (props: AdsLandingProps | LocalizedAdsLandingProps) =
   const canonical = `https://www.jemassuremoinscher.fr/landing/${slug}`;
 
   const jsonLd = [
-    addOrganizationSchema(4.9, 2847),
+    addOrganizationSchema(),
     addServiceSchema({
       name: seoTitle,
       description: seoDescription,

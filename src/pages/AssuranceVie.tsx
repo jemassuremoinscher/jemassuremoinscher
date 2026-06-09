@@ -52,8 +52,6 @@ const AssuranceVie = () => {
       "Comparateur d'assurance vie. Fonds euros, unités de compte, PER : comparez les meilleurs rendements 2026 avec 0% de frais d'entrée et frais d'arbitrage offerts sur nos contrats partenaires.",
     category: "Assurance Vie",
     url: "https://www.jemassuremoinscher.fr/assurance-vie",
-    ratingValue: 4.9,
-    reviewCount: 1124,
   });
   const advantages = [
     {

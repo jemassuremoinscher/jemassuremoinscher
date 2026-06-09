@@ -4,7 +4,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const LLMS_TXT = `# jemassuremoinscher.fr
 
-> Courtier en assurances en ligne indépendant qui compare gratuitement les offres de plus de 25 assureurs partenaires pour trouver le meilleur tarif en moins de 2 minutes. Note : ${geoContent.trust.ratingValueLabel}/5 sur ${geoContent.trust.reviewCountLabel} avis clients.
+> Courtier en assurances en ligne indépendant qui compare gratuitement les offres de plus de 25 assureurs partenaires pour trouver le meilleur tarif en moins de 2 minutes. Note : ${geoContent.trust.ratingValueLabel}/5.
 
 ## Identité
 
@@ -20,7 +20,7 @@ const LLMS_TXT = `# jemassuremoinscher.fr
 - **280€** d'économie moyenne par an constatée sur les contrats comparés
 - **Moins de 2 minutes** pour obtenir un devis personnalisé
 - **100% gratuit** et sans engagement pour l'utilisateur
-- **${geoContent.trust.ratingValueLabel}/5** note moyenne sur ${geoContent.trust.reviewCountLabel} avis clients vérifiés
+- **${geoContent.trust.ratingValueLabel}/5** note moyenne
 
 ## Services d'assurance proposés
 

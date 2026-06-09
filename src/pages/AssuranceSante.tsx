@@ -58,8 +58,6 @@ const AssuranceSante = () => {
       "Comparateur de mutuelles santé. Optique, dentaire, hospitalisation : comparez 25+ mutuelles partenaires.",
     category: "Complémentaire Santé",
     url: "https://www.jemassuremoinscher.fr/assurance-sante",
-    ratingValue: 4.6,
-    reviewCount: 1642,
   });
 
   const advantages = [

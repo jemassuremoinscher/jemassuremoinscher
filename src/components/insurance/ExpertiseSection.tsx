@@ -31,7 +31,7 @@ const ExpertiseSection = ({
     `${partnerCount}+ compagnies d'assurance partenaires comparées`,
     `${yearsExperience} ans d'expérience dans le courtage d'assurance`,
     "Accompagnement personnalisé par un conseiller dédié",
-    `Avis vérifiés : ${geoContent.trust.ratingValueLabel}/5 sur la base de ${geoContent.trust.reviewCountLabel} avis clients`,
+    `Avis vérifiés : ${geoContent.trust.ratingValueLabel}/5`,
   ];
 
   const points = expertisePoints || defaultPoints;

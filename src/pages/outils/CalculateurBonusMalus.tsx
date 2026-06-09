@@ -105,7 +105,6 @@ const CalculateurBonusMalus = () => {
     operatingSystem: "Web",
     description: "Calculez gratuitement votre coefficient bonus malus auto (CRM) et estimez vos économies en 2026.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
-    aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "247" },
     dateModified: "2026-05-30",
   };
 

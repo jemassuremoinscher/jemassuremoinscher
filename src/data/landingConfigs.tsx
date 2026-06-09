@@ -25,11 +25,11 @@ import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import arthurBike from "@/assets/mascotte/arthur-bike.png";
 import geoContent from "@/data/geo-content.json";
 
-const trustReviewStat = { icon: Star, value: `${geoContent.trust.ratingValueLabel}/5`, label: `${geoContent.trust.reviewCountLabel} avis` };
+const trustReviewStat = { icon: Star, value: `${geoContent.trust.ratingValueLabel}/5`, label: "Avis vérifiés" };
 
 const baseStats = [
-  { icon: Users, value: "120k+", label: "Clients accompagnés" },
-  { icon: Star, value: "4.9/5", label: "247 avis" },
+  { icon: Users, value: "6k", label: "Clients accompagnés" },
+  { icon: Star, value: "5/5", label: "Avis vérifiés" },
   { icon: TrendingDown, value: "Jusqu'à -40%", label: "Économies moy." },
   { icon: Clock, value: "2 min", label: "Pour le devis" },
 ];
@@ -107,7 +107,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       stats: [
         { icon: Car, value: "50+", label: "Insurers compared" },
         { icon: Users, value: "2,500", label: "Local agencies" },
-        { icon: Star, value: "4.9/5", label: "Verified reviews" },
+        { icon: Star, value: "5/5", label: "Verified reviews" },
         { icon: Clock, value: "2 min", label: "For your quote" },
       ],
       advantages: [
