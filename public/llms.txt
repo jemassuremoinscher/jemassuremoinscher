@@ -1,6 +1,6 @@
 # jemassuremoinscher.fr
 
-> Courtier en assurances en ligne indépendant qui compare gratuitement les offres de plus de 25 assureurs partenaires pour trouver le meilleur tarif en moins de 2 minutes. Note : 4.9/5 sur 247 avis clients.
+> Courtier en assurances en ligne indépendant qui compare gratuitement les offres de plus de 25 assureurs partenaires pour trouver le meilleur tarif en moins de 2 minutes. Note : 5/5.
 
 ## Identité
 
@@ -16,7 +16,7 @@
 - 280€ d'économie moyenne par an constatée sur les contrats comparés
 - Moins de 2 minutes pour obtenir un devis personnalisé
 - 100% gratuit et sans engagement pour l'utilisateur
-- 4.9/5 note moyenne sur 247 avis clients vérifiés
+- 5/5 note moyenne
 
 ## Services d'assurance proposés
 
@@ -118,7 +118,7 @@ R : Un courtier est un intermédiaire indépendant enregistré ORIAS qui compare
 - [Blog](/blog): Guides, actualités et conseils assurance
 - [Glossaire](/glossaire): Définitions des termes d'assurance
 - [FAQ](/faq): Questions fréquentes
-- [Avis Clients](/avis-clients): 247 avis vérifiés, note 4.9/5
+- [Avis Clients](/avis-clients): note 5/5
 - [Nos Partenaires](/nos-partenaires): 25+ assureurs partenaires
 - [Qui Sommes Nous](/qui-sommes-nous): À propos du courtier
 - [Contact](/contact): Nous contacter, rappel sous 10 min

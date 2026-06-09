@@ -13,14 +13,14 @@ interface Stat {
 const stats: Stat[] = [
   {
     icon: Users,
-    value: 52847,
+    value: 6000,
     suffix: "+",
     label: "Clients satisfaits",
     color: "text-primary",
   },
   {
     icon: Star,
-    value: 4.9,
+    value: 5,
     suffix: "/5",
     label: "Note moyenne",
     color: "text-accent",

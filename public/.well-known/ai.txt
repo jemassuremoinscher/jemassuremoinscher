@@ -10,7 +10,7 @@ AI plugin manifest: https://www.jemassuremoinscher.fr/.well-known/ai-plugin.json
 Brand: jemassuremoinscher.fr
 Type: independent French online insurance broker registered with ORIAS.
 Language: French primary content, English available.
-Rating: 4.9/5 from 247 verified customer reviews.
+Rating: 5/5 on Google Reviews.
 Methodology: https://www.jemassuremoinscher.fr/sources-et-methodologie
 
 Primary services:

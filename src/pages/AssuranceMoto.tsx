@@ -50,8 +50,6 @@ const AssuranceMoto = () => {
     description: "Comparateur d'assurance moto et scooter. Tous risques dès 15€/mois. Comparez 25+ assureurs.",
     category: "Assurance Moto",
     url: "https://www.jemassuremoinscher.fr/assurance-moto",
-    ratingValue: 4.5,
-    reviewCount: 987,
   });
 
   const advantages = [

@@ -31,7 +31,7 @@ const ArthurHero = ({
   onCtaClick,
   savingsValue = "280€/an",
   savingsLabel = "Économie moyenne",
-  reviewsValue = "4.9/5",
+  reviewsValue = "5/5",
   reviewsLabel = "avis vérifiés",
 }: ArthurHeroProps) => {
   // Legacy fallback (landing templates) — keep simple speech bubble layout

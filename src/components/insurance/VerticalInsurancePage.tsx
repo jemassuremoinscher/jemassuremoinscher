@@ -76,8 +76,8 @@ const VerticalInsurancePage = (props: VerticalPageProps) => {
     description: props.serviceDescription,
     category: props.productCategory,
     url: props.canonical,
-    ratingValue: props.ratingValue ?? 4.8,
-    reviewCount: props.reviewCount ?? 247,
+    ratingValue: props.ratingValue,
+    reviewCount: props.reviewCount,
   });
 
   const advantages = props.advantages ?? [

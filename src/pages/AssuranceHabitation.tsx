@@ -50,8 +50,6 @@ const AssuranceHabitation = () => {
       "Comparateur d'assurance habitation. Maison ou appartement, locataire ou propriétaire, trouvez la meilleure couverture.",
     category: "Assurance Habitation",
     url: "https://www.jemassuremoinscher.fr/assurance-habitation",
-    ratingValue: 4.7,
-    reviewCount: 1435,
   });
 
   const advantages = [

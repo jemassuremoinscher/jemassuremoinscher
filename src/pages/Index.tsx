@@ -27,7 +27,7 @@ const LeadMagnetSection = lazy(() => import("@/components/sections/LeadMagnetSec
 const Index = () => {
   const { t } = useLanguage();
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }]);
-  const organizationSchema = addOrganizationSchema(geoContent.trust.ratingValue, geoContent.trust.reviewCount);
+  const organizationSchema = addOrganizationSchema();
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances Moins Chères en Ligne",
     description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 70+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
@@ -130,11 +130,6 @@ const Index = () => {
     "url": "https://www.jemassuremoinscher.fr",
     "description": "Comparateur d'assurances gratuit. Comparez 70+ assureurs (auto, habitation, santé, animaux). Économisez jusqu'à 40%.",
     "areaServed": "FR",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "247"
-    },
     "sameAs": "https://www.instagram.com/jemassuremoinscher"
   };
 

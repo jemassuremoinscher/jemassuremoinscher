@@ -716,7 +716,7 @@ Tu l'as compris, la loi Lemoine assurance emprunteur n'est pas un gadget. C'est 
 
 Ne fais plus partie de cette majorité silencieuse qui paie trop cher. La résiliation à tout moment, la fin du questionnaire de santé sous conditions et un droit à l'oubli renforcé sont des droits que le législateur t'a donnés. Saisis-les. Le processus est simple, rapide et entièrement sécurisé. Tu n'as rien à perdre, et potentiellement jusqu'à 15 000 € à gagner.
 
-N'attends plus un jour de plus. Chaque mois qui passe est une mensualité trop élevée que tu ne récupéreras jamais. Fais le premier pas dès aujourd'hui. Utilise notre [comparateur](/comparateur) en ligne pour obtenir en moins de deux minutes une estimation précise de tes économies. C'est **gratuit, sans engagement** et plébiscité par nos clients qui nous accordent la note de **4.9/5 sur 247 avis**. Prends la meilleure décision pour ton portefeuille et ton avenir.
+N'attends plus un jour de plus. Chaque mois qui passe est une mensualité trop élevée que tu ne récupéreras jamais. Fais le premier pas dès aujourd'hui. Utilise notre [comparateur](/comparateur) en ligne pour obtenir en moins de deux minutes une estimation précise de tes économies. C'est **gratuit, sans engagement** et plébiscité par nos clients qui nous accordent la note de **5/5**. Prends la meilleure décision pour ton portefeuille et ton avenir.
     `
   },
   {
