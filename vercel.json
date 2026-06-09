@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/assurance-auto-malusse", "destination": "/assurance-auto-malus", "permanent": true }
+    { "source": "/assurance-auto-malusse", "destination": "/assurance-auto-malus", "statusCode": 301 }
   ],
   "rewrites": [
     {
