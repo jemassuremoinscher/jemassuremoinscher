@@ -63,7 +63,7 @@ const AssuranceAutoMalusse = () => {
       metaDescription="Trouvez une assurance auto malgré un malus. Courtier spécialisé, tarifs négociés auprès de 30+ assureurs. Devis gratuit en 2 min."
       keyword="assurance auto malussé"
       keywords="assurance malus, conducteur malussé, assurance auto après résiliation, courtier malus auto"
-      canonical="https://www.jemassuremoinscher.fr/assurance-auto-malusse"
+      canonical="https://www.jemassuremoinscher.fr/assurance-auto-malus"
       heroIcon={Car}
       heroTitle="Assurance Auto Malussé : Trouvez Votre Couverture"
       heroSubtitle="Même avec un malus, nos courtiers négocient pour vous les meilleurs tarifs auprès de 30+ assureurs partenaires. Devis gratuit et sans engagement."
@@ -77,7 +77,7 @@ const AssuranceAutoMalusse = () => {
       breadcrumbs={[
         { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
         { name: "Assurance Auto", url: "https://www.jemassuremoinscher.fr/assurance-auto" },
-        { name: "Assurance Auto Malussé", url: "https://www.jemassuremoinscher.fr/assurance-auto-malusse" },
+        { name: "Assurance Auto Malussé", url: "https://www.jemassuremoinscher.fr/assurance-auto-malus" },
       ]}
       bottomCtaTitle="Prêt à trouver votre assurance auto malussé ?"
       bottomCtaDescription="Nos courtiers spécialisés sont à votre disposition pour analyser votre dossier et vous proposer la meilleure offre."

@@ -242,7 +242,7 @@ const App = () => {
                 <Route path="/landing/protection-juridique" element={<LandingProtectionJuridique />} />
                 <Route path="/landing/auto-temporaire" element={<LandingAutoTemporaire />} />
                 <Route path="/comparateur" element={<Comparateur />} />
-                <Route path="/assurance-auto-malusse" element={<AssuranceAutoMalusse />} />
+                <Route path="/assurance-auto-malus" element={<AssuranceAutoMalusse />} />
                 <Route path="/assurance-auto-jeune-conducteur" element={<AssuranceJeuneConducteur />} />
                 <Route path="/mutuelle-tns" element={<MutuelleTNS />} />
                 <Route path="/assurance-auto-comparatif" element={<CategorieAutoSEO />} />

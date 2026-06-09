@@ -167,7 +167,7 @@ const SEOContent = () => {
                 <h4 className="text-sm font-semibold text-foreground">Pages Spécialisées</h4>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                <Link to="/assurance-auto-malusse" className="inline-block text-xs font-medium px-3 py-1.5 rounded-full bg-background border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-colors">Assurance auto malussé</Link>
+                <Link to="/assurance-auto-malus" className="inline-block text-xs font-medium px-3 py-1.5 rounded-full bg-background border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-colors">Assurance auto malussé</Link>
                 <Link to="/assurance-auto-jeune-conducteur" className="inline-block text-xs font-medium px-3 py-1.5 rounded-full bg-background border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-colors">Jeune conducteur</Link>
                 <Link to="/assurance-trottinette-electrique" className="inline-block text-xs font-medium px-3 py-1.5 rounded-full bg-background border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-colors">Trottinette électrique</Link>
                 <Link to="/assurance-auto-permis-etranger" className="inline-block text-xs font-medium px-3 py-1.5 rounded-full bg-background border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-colors">Permis étranger</Link>
