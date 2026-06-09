@@ -55,6 +55,15 @@ const buildWebPageJsonLd = ({ title, description, canonical, heading }) => `
     }
     </script>`;
 
+const buildBreadcrumbJsonLd = (items) => `
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [${items.map((it, i) => `{ "@type": "ListItem", "position": ${i + 1}, "name": "${escapeJson(it.name)}", "item": "${escapeJson(it.url)}" }`).join(", ")}]
+    }
+    </script>`;
+
 const renderPage = (page) => {
   const canonical = `${baseUrl}${page.route}`;
   return `<!doctype html>
@@ -75,6 +84,7 @@ const renderPage = (page) => {
     <meta name="twitter:title" content="${escapeAttribute(page.title)}" />
     <meta name="twitter:description" content="${escapeAttribute(page.description)}" />
 ${buildWebPageJsonLd({ title: page.title, description: page.description, canonical, heading: page.h1 })}
+${buildBreadcrumbJsonLd(page.breadcrumb || [{ name: "Accueil", url: `${baseUrl}/` }, { name: page.h1, url: canonical }])}
     <style>
       body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #111827; background: #ffffff; }
       .seo-shell { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; line-height: 1.65; }
@@ -157,6 +167,27 @@ const patchHtmlSeo = (html, relativePath) => {
 
   if (!/<script[^>]+type=["']application\/ld\+json["']/i.test(updated)) {
     updated = injectBeforeHeadEnd(updated, buildWebPageJsonLd({ title, description, canonical, heading }));
+  }
+
+  // BreadcrumbList (idempotent) — niveaux selon la route
+  if (!/BreadcrumbList/.test(updated)) {
+    const route = buildRouteFromFile(relativePath);
+    let items = null;
+    if (route.startsWith("/blog/")) {
+      items = [{ name: "Accueil", url: `${baseUrl}/` }, { name: "Blog", url: `${baseUrl}/blog` }, { name: title, url: canonical }];
+    } else if (route !== "/" && route !== "/blog") {
+      items = [{ name: "Accueil", url: `${baseUrl}/` }, { name: heading || title, url: canonical }];
+    }
+    if (items) {
+      const bc = `    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[${items.map((it, i) => `{"@type":"ListItem","position":${i + 1},"name":"${escapeJson(it.name)}","item":"${escapeJson(it.url)}"}`).join(",")}]}</script>`;
+      updated = injectBeforeHeadEnd(updated, bc);
+    }
+  }
+
+  // Liens piliers dans le fallback statique des articles (idempotent)
+  if (buildRouteFromFile(relativePath).startsWith("/blog/") && !updated.includes("jmmc-pillars")) {
+    const pillars = `\n        <p class="jmmc-pillars"><a href="/comparateur">Comparer les assurances gratuitement</a> &middot; <a href="/blog">Tous nos articles</a></p>\n      `;
+    updated = updated.replace("</main>\n    </div>", `${pillars}</main>\n    </div>`);
   }
 
   return updated;
@@ -284,7 +315,7 @@ const markdownToHtml = (md = "") => {
   return out.join("\n        ");
 };
 
-const renderArticle = (article) => {
+const renderArticle = (article, related = []) => {
   const canonical = `${baseUrl}/blog/${article.slug}`;
   const title = article.title || "Article";
   const description = article.suggested_meta_description || article.short_description || article.title || "";
@@ -292,6 +323,11 @@ const renderArticle = (article) => {
   const publishedAt = article.published_at || article.created_at || new Date().toISOString();
   const image = article.image_url || `${baseUrl}/opengraph-image.png`;
   const bodyHtml = markdownToHtml(article.suggested_content || "");
+  const relatedHtml =
+    (related && related.length)
+      ? `\n        <nav aria-label="Articles sur le même thème">\n          <h2>Sur le même thème</h2>\n          <ul>\n            ${related.map((r) => `<li><a href="${escapeAttribute(`/blog/${r.slug}`)}">${escapeHtml(r.title)}</a></li>`).join("")}\n          </ul>\n        </nav>`
+      : "";
+  const pillarHtml = `\n        <p class="meta jmmc-pillars"><a href="/comparateur">Comparer les assurances gratuitement</a> &middot; <a href="/blog">Tous nos articles</a></p>`;
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -334,6 +370,7 @@ const renderArticle = (article) => {
     <meta name="twitter:description" content="${escapeAttribute(description)}" />
     <meta name="twitter:image" content="${escapeAttribute(image)}" />
     <script type="application/ld+json">${JSON.stringify(articleJsonLd)}</script>
+    ${buildBreadcrumbJsonLd([{ name: "Accueil", url: `${baseUrl}/` }, { name: "Blog", url: `${baseUrl}/blog` }, { name: title, url: canonical }])}
     <style>
       body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #111827; background: #ffffff; }
       .seo-shell { max-width: 820px; margin: 0 auto; padding: 2rem 1rem; line-height: 1.7; }
@@ -351,7 +388,7 @@ const renderArticle = (article) => {
       <main class="seo-shell">
         <h2>${escapeHtml(title)}</h2>
         <p class="meta">Par ${escapeHtml(author)} — ${escapeHtml(new Date(publishedAt).toLocaleDateString("fr-FR"))}</p>
-        ${bodyHtml}
+        ${bodyHtml}${relatedHtml}${pillarHtml}
       </main>
     </noscript>
 
@@ -359,7 +396,7 @@ const renderArticle = (article) => {
       <main class="seo-shell">
         <h1>${escapeHtml(title)}</h1>
         <p class="meta">Par ${escapeHtml(author)} — ${escapeHtml(new Date(publishedAt).toLocaleDateString("fr-FR"))}</p>
-        ${bodyHtml}
+        ${bodyHtml}${relatedHtml}${pillarHtml}
       </main>
     </div>
 
@@ -443,6 +480,11 @@ const generateLocalBlogArticles = async () => {
     });
     const mod = await vite.ssrLoadModule(path.join(rootDir, "src/data/blogArticles.ts"));
     const articles = mod.blogArticles || [];
+    const byCat = {};
+    for (const a of articles) {
+      if (!a?.slug || a.noindex) continue;
+      (byCat[a.category] = byCat[a.category] || []).push({ slug: a.slug, title: a.title });
+    }
     let created = 0;
     let skipped = 0;
     for (const a of articles) {
@@ -465,8 +507,9 @@ const generateLocalBlogArticles = async () => {
         published_at: parseFrenchDate(a.date).toISOString(),
         image_url: a.image || undefined,
       };
+      const related = (byCat[a.category] || []).filter((r) => r.slug !== a.slug).slice(0, 3);
       await mkdir(path.dirname(outputPath), { recursive: true });
-      await writeFile(outputPath, renderArticle(mapped), "utf8");
+      await writeFile(outputPath, renderArticle(mapped, related), "utf8");
       created += 1;
     }
     console.log(`[generate-static-pages] Local blog articles: ${created} created, ${skipped} already present.`);
@@ -680,12 +723,18 @@ const syncBlogSitemap = async () => {
     slugs.sort();
 
     const today = new Date().toISOString().slice(0, 10);
-    const blogBlocks = slugs
-      .map(
-        (slug) =>
-          `  <url>\n    <loc>${baseUrl}/blog/${slug}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>`
-      )
-      .join("\n");
+    const blogBlockArr = [];
+    for (const slug of slugs) {
+      let img = "";
+      try {
+        const h = await readFile(path.join(blogDir, slug, "index.html"), "utf8");
+        img = h.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i)?.[1] || "";
+      } catch {}
+      if (img.startsWith("/")) img = `${baseUrl}${img}`;
+      const imageTag = img ? `\n    <image:image>\n      <image:loc>${img}</image:loc>\n    </image:image>` : "";
+      blogBlockArr.push(`  <url>\n    <loc>${baseUrl}/blog/${slug}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>${imageTag}\n  </url>`);
+    }
+    const blogBlocks = blogBlockArr.join("\n");
 
     const withoutBlog = xml.replace(
       /[ \t]*<url>\s*<loc>[^<]*\/blog\/[^<]*<\/loc>[\s\S]*?<\/url>\s*\n?/g,
