@@ -6,9 +6,6 @@
     { "source": "/assurance-auto-malusse", "destination": "/assurance-auto-malus", "statusCode": 301 }
   ],
   "rewrites": [
-    {
-      "source": "/((?!api/|assets/|.*\\.).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
