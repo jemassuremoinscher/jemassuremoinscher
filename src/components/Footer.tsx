@@ -12,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import arthurRunning from "@/assets/mascotte/arthur-running.webp";
+import CrossSiteLinks from '@/components/CrossSiteLinks';
 
 type ModalType = "mentions" | "cgu" | "confidentialite" | null;
 
@@ -170,6 +171,7 @@ const Footer = () => {
           </div>
         </div>
 
+                <CrossSiteLinks />
         {/* Zone 3: Trust bar — paiement sécurisé + SSL */}
         <div className="container mx-auto px-4 py-5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -220,6 +222,7 @@ const Footer = () => {
                 <ul className="list-disc pl-5 space-y-1">
                   <li><strong>Raison sociale :</strong> Jemassuremoinscher.fr</li>
                   <li><strong>Forme juridique :</strong> SAS au capital de 10 000€</li>
+                          <CrossSiteLinks />
                   <li><strong>Siège social :</strong> 2, rue d'Angleterre 06000 Nice</li>
                   <li><strong>Email :</strong> contact@jemassuremoinscher.fr</li>
                 </ul>
