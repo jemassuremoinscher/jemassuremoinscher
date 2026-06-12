@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Instagram, Linkedin, Facebook, Lock, ShieldCheck, Shield, BadgeCheck } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-sprint-coin.webp";
+import CrossSiteLinks from '@/components/CrossSiteLinks';
 
 const SimpleFooter = () => {
   const { t } = useLanguage();
@@ -158,7 +159,7 @@ const SimpleFooter = () => {
             </div>
 
           </div>
-
+          <CrossSiteLinks />
           {/* Copyright */}
           <p className="text-[10px] text-primary-foreground/30 text-center mt-4">
             © {new Date().getFullYear()} Jemassuremoinscher.fr — Tous droits réservés
