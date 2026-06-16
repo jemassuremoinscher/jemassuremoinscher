@@ -242,6 +242,7 @@ const syncHostingRouteConfig = async () => {
     cleanUrls: true,
     trailingSlash: false,
     rewrites: [
+      { source: "/rss.xml", destination: "/api/rss" },
       ...routes.map((route) => ({ source: route, destination: `${route}/index.html` })),
       { source: "/(.*)", destination: "/index.html" },
     ],
