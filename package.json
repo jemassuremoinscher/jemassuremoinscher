@@ -9,7 +9,8 @@
     "sitemap:refresh": "node scripts/refresh-sitemap-lastmod.mjs",
     "prebuild": "node scripts/refresh-sitemap-lastmod.mjs && node scripts/generate-static-pages.mjs && node scripts/run-geo-audit.mjs && node scripts/run-seo-audit.mjs",
     "dev": "vite",
-"build": "vite build && node scripts/generate-rss.mjs",
+    "build": "vite build && node scripts/generate-rss.mjs",
+    "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
   },
