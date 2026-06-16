@@ -9,7 +9,7 @@
     "sitemap:refresh": "node scripts/refresh-sitemap-lastmod.mjs",
     "prebuild": "node scripts/refresh-sitemap-lastmod.mjs && node scripts/generate-static-pages.mjs && node scripts/run-geo-audit.mjs && node scripts/run-seo-audit.mjs",
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && tsx scripts/generate-rss.ts",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -92,6 +92,7 @@
     "lovable-tagger": "^1.1.11",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.22.4",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
     "vite": "^5.4.19",
