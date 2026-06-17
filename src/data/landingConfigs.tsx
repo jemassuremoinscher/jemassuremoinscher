@@ -57,7 +57,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       heroHighlight: "comparée en 2 minutes",
       heroSubtitle: <>Arthur compare <strong className="text-primary">70+ assureurs partenaires</strong> et te trouve le meilleur tarif, sans compromis sur les garanties.</>,
       mascotSrc: arthurCar,
-      mascotAlt: "Arthur au volant — comparateur assurance auto jemassuremoinscher.fr",
+      mascotAlt: "Arthur au volant — Comparateur assurance auto jemassuremoinscher.fr",
       speechText: "Salut ! Je compare 70+ assureurs auto pour toi en 2 minutes.",
       insuranceType: "auto",
       insuranceLabel: "Assurance Auto",

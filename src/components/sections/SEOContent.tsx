@@ -192,7 +192,7 @@ const SEOContent = () => {
                 <Link to="/avis-clients" className="inline-block text-xs font-medium px-3 py-1.5 rounded-full bg-background border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-colors">Avis clients</Link>
                 <Link to="/nos-partenaires" className="inline-block text-xs font-medium px-3 py-1.5 rounded-full bg-background border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-colors">Nos partenaires</Link>
                 <Link to="/contact" className="inline-block text-xs font-medium px-3 py-1.5 rounded-full bg-background border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-colors">Contact</Link>
-                <Link to="/qui-sommes-nous" className="inline-block text-xs font-medium px-3 py-1.5 rounded-full bg-background border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-colors">Qui sommes-nous</Link>
+                <Link to="/qui-sommes-nous" className="inline-block text-xs font-medium px-3 py-1.5 rounded-full bg-background border border-border/60 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/5 transition-colors">Qui sommes-nous ?</Link>
               </div>
             </div>
           </div>
