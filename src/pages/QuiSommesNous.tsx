@@ -52,7 +52,7 @@ const QuiSommesNous = () => {
     addOrganizationSchema(),
     addBreadcrumbSchema([
       { name: "Accueil", url: baseUrl },
-      { name: "Qui sommes-nous", url: `${baseUrl}/qui-sommes-nous` },
+      { name: "Qui sommes-nous ?", url: `${baseUrl}/qui-sommes-nous` },
     ]),
     ...authorSchemas,
   ];

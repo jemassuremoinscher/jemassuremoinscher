@@ -94,7 +94,7 @@ const AssuranceAuto = () => {
         title={t("seo.auto.title")}
         description={t("seo.auto.description")}
         keyword="assurance auto moins chère"
-        keywords="assurance auto moins cher, comparateur assurance auto, devis assurance voiture, changer assurance auto"
+        keywords="assurance auto moins cher, Comparateur assurance auto, devis assurance voiture, changer assurance auto"
         canonical="https://www.jemassuremoinscher.fr/assurance-auto"
         ogTitle="Assurance Auto Moins Chère en 2025 : Comparez 70+ assureurs, économisez jusqu'à 40%"
         ogDescription="Comparez 70+ assureurs auto en 2 minutes. Devis gratuit et personnalisé. Nos clients économisent 320€/an. Tiers, Tiers+, Tous Risques dès 25€/mois."
