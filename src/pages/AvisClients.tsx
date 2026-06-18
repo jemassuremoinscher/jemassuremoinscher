@@ -10,10 +10,7 @@ import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
-import { GOOGLE_REVIEWS_PUBLIC_URL } from "@/config/site";
-
-// URL spéciale d'écriture (g.page/r/.../review)
-const GOOGLE_REVIEW_WRITE_URL = "https://g.page/r/CQ4Z3ah_s8jLEBE/review";
+import { GOOGLE_REVIEWS_PUBLIC_URL, GOOGLE_REVIEW_WRITE_URL } from "@/config/site";
 
 const AvisClients = () => {
   const { t } = useLanguage();

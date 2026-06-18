@@ -544,8 +544,8 @@ const buildGeoContentSuggestion = (input: GeoContentImprovementInput) => {
 const POSITION_PAGE_UPDATES = [
   {
     path: "/assurance-auto",
-    meta_title: resolveDynamicTokens("Assurance Auto Pas Chère [Month] : Comparez 5 000+ devis"),
-    meta_description: "Comparez garanties, prix et franchises de 5 000+ devis auto pour trouver une formule plus adaptée à votre profil.",
+    meta_title: resolveDynamicTokens("Assurance Auto Pas Chère [Month] : 70+ assureurs comparés"),
+    meta_description: "Comparez garanties, prix et franchises auprès de 70+ assureurs et 2 500+ agences locales pour trouver la formule adaptée à votre profil.",
   },
   {
     path: "/assurance-sante",

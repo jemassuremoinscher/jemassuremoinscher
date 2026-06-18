@@ -2,6 +2,7 @@ import { Star, Scale, BadgeCheck, TrendingUp } from "lucide-react";
 import { motion, useReducedMotion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useGoogleReviews } from "@/hooks/useGoogleReviews";
 
 import oriasLogo from "@/assets/logos/orias.jpg";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
@@ -33,6 +34,9 @@ const arthurVariants = {
 const TrustRow = () => {
   const { t } = useLanguage();
   const prefersReducedMotion = useReducedMotion();
+  const liveReviews = useGoogleReviews();
+  const ratingLabel = liveReviews ? liveReviews.rating.toFixed(1).replace(".", ",") : geoContent.trust.ratingValueLabel;
+  const reviewCountLabel = liveReviews ? liveReviews.total.toLocaleString("fr-FR") : geoContent.trust.reviewCountLabel;
 
   const arthurReveal = prefersReducedMotion
     ? { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.2 } } }
@@ -93,9 +97,9 @@ const TrustRow = () => {
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4"
         >
           {/* Google Reviews */}
-          <motion.div variants={itemVariants} role="group" aria-label={`Note Google Reviews ${geoContent.trust.ratingValueLabel} sur 5`} className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
-            <svg viewBox="0 0 24 24" className="w-8 h-8 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={`Logo Google Reviews avec note ${geoContent.trust.ratingValueLabel} étoiles`}>
-              <title>{`Logo Google Reviews avec note ${geoContent.trust.ratingValueLabel} étoiles`}</title>
+          <motion.div variants={itemVariants} role="group" aria-label={`Note Google Reviews ${ratingLabel} sur 5`} className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
+            <svg viewBox="0 0 24 24" className="w-8 h-8 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={`Logo Google Reviews avec note ${ratingLabel} étoiles`}>
+              <title>{`Logo Google Reviews avec note ${ratingLabel} étoiles`}</title>
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
               <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
               <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
@@ -106,8 +110,8 @@ const TrustRow = () => {
                 <Star key={star} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
               ))}
             </div>
-            <p className="text-3xl font-black text-foreground">{geoContent.trust.ratingValueLabel}<span className="text-lg text-muted-foreground">/5</span></p>
-            <p className="text-xs text-muted-foreground">{t('trustRow.googleReviewsSuffix', { count: geoContent.trust.reviewCountLabel })}</p>
+            <p className="text-3xl font-black text-foreground">{ratingLabel}<span className="text-lg text-muted-foreground">/5</span></p>
+            <p className="text-xs text-muted-foreground">{t('trustRow.googleReviewsSuffix', { count: reviewCountLabel })}</p>
           </motion.div>
 
           {/* ORIAS */}
