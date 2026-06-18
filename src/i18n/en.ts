@@ -220,7 +220,7 @@ const en: Record<string, string> = {
   'whyUs.oriasNumber': 'ORIAS registration pending',
   'whyUs.verifyOrias': 'Verify on orias.fr →',
   'trustRow.sectionLabel': 'Why trust us',
-  'trustRow.googleReviewsSuffix': 'on Google Reviews',
+  'trustRow.googleReviewsSuffix': 'on {count} Google reviews',
   'trustRow.independent': 'Independent broker',
   'trustRow.independentDesc': 'No capital ties with insurers. 100% impartial advice.',
   'trustRow.transparency': 'Full transparency',
