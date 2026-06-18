@@ -140,9 +140,9 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
               type="button"
               onClick={close}
               aria-label="Fermer"
-              className="absolute top-3 right-3 z-10 p-2 rounded-full text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+              className="absolute top-3 right-3 z-10 inline-flex items-center justify-center w-9 h-9 rounded-full text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5" aria-hidden="true" />
             </button>
 
             <div className="absolute -top-12 -right-12 w-40 h-40 bg-accent/30 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
