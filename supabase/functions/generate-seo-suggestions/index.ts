@@ -52,6 +52,57 @@ function detectPromptLeak(content: string | null | undefined): { isPromptLeak: b
   return { isPromptLeak: score >= 5, reasons, score };
 }
 
+// ============================================================
+// Score qualité éditorial (0-100). Seuil auto-publication: 75.
+// ============================================================
+function computeQualityScore(article: ParsedArticle): { score: number; details: string[] } {
+  const details: string[] = [];
+  let score = 0;
+  const content = article.content || "";
+  const wordCount = content.split(/\s+/).filter(Boolean).length;
+
+  // Longueur (max 30)
+  if (wordCount >= 1500) { score += 30; details.push(`mots:${wordCount}(+30)`); }
+  else if (wordCount >= 1000) { score += 20; details.push(`mots:${wordCount}(+20)`); }
+  else if (wordCount >= 600) { score += 10; details.push(`mots:${wordCount}(+10)`); }
+  else { details.push(`mots:${wordCount}(+0)`); }
+
+  // Structure H2/H3 (max 15)
+  const h2Count = (content.match(/^##\s+/gm) || []).length + (content.match(/<h2\b/gi) || []).length;
+  const h3Count = (content.match(/^###\s+/gm) || []).length + (content.match(/<h3\b/gi) || []).length;
+  if (h2Count >= 3) score += 10;
+  else if (h2Count >= 2) score += 5;
+  if (h3Count >= 2) score += 5;
+  details.push(`h2:${h2Count} h3:${h3Count}`);
+
+  // Tableau (max 10)
+  if (/\|.*\|.*\|/.test(content) || /<table\b/i.test(content)) { score += 10; details.push("table(+10)"); }
+
+  // FAQ (max 10)
+  if (/faq|questions?\s+fréquentes|###\s+.+\?/i.test(content)) { score += 10; details.push("faq(+10)"); }
+
+  // Maillage interne (max 15)
+  const internalLinks = (content.match(/\]\(\/[a-z0-9-/]+\)/gi) || []).length
+    + (content.match(/href=["']\/[a-z0-9-/]+["']/gi) || []).length;
+  if (internalLinks >= 4) score += 15;
+  else if (internalLinks >= 2) score += 8;
+  details.push(`liens:${internalLinks}`);
+
+  // Meta description (max 10)
+  const metaLen = (article.meta_description || "").length;
+  if (metaLen >= 120 && metaLen <= 160) score += 10;
+  else if (metaLen >= 80) score += 5;
+  details.push(`meta:${metaLen}`);
+
+  // Mention marque (max 5)
+  if (/jemassuremoinscher/i.test(content)) { score += 5; details.push("marque(+5)"); }
+
+  // Titre contient ≤ 70 chars (max 5)
+  if (article.title.length > 0 && article.title.length <= 70) { score += 5; details.push(`titre:${article.title.length}`); }
+
+  return { score: Math.min(100, score), details };
+}
+
 
 async function getGoogleAccessToken(serviceAccount: any, scope: string): Promise<string> {
   const now = Math.floor(Date.now() / 1000);
@@ -633,6 +684,10 @@ Article complet en markdown
           continue;
         }
 
+        const quality = computeQualityScore(article);
+        const autoApprove = quality.score >= 75;
+        console.log(`Quality "${keyword}" = ${quality.score}/100 [${quality.details.join(" ")}] → ${autoApprove ? "approved" : "draft"}`);
+
         const slug = await buildUniqueSlug(supabase, article.title || keyword);
         const { error: insertError } = await supabase.from("seo_article_suggestions").insert({
           title: article.title,
@@ -646,7 +701,7 @@ Article complet en markdown
           short_description: article.short_description,
           published_at: getPlannedPublishDate(opportunityIndex),
           suggested_author: article.author,
-          status: "draft",
+          status: autoApprove ? "approved" : "draft",
         });
 
         if (insertError) {
