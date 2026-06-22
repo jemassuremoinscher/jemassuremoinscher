@@ -684,6 +684,10 @@ Article complet en markdown
           continue;
         }
 
+        const quality = computeQualityScore(article);
+        const autoApprove = quality.score >= 75;
+        console.log(`Quality "${keyword}" = ${quality.score}/100 [${quality.details.join(" ")}] → ${autoApprove ? "approved" : "draft"}`);
+
         const slug = await buildUniqueSlug(supabase, article.title || keyword);
         const { error: insertError } = await supabase.from("seo_article_suggestions").insert({
           title: article.title,
@@ -697,7 +701,7 @@ Article complet en markdown
           short_description: article.short_description,
           published_at: getPlannedPublishDate(opportunityIndex),
           suggested_author: article.author,
-          status: "draft",
+          status: autoApprove ? "approved" : "draft",
         });
 
         if (insertError) {
