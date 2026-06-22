@@ -442,10 +442,20 @@ serve(async (req) => {
     }
 
     const token = authHeader.replace("Bearer ", "");
-    const cronSecret = Deno.env.get("CRON_SECRET");
+    // Cron secret: prefer DB-stored value (single source of truth), fall back to env var
+    let cronSecret = Deno.env.get("CRON_SECRET") || "";
+    try {
+      const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
+      const { data: cfg } = await supabaseAdmin
+        .from("cron_config")
+        .select("value")
+        .eq("key", "cron_secret")
+        .maybeSingle();
+      if (cfg?.value) cronSecret = cfg.value;
+    } catch (_) { /* ignore */ }
     const isCron = !!cronSecret && token === cronSecret;
     const invocationMode = isCron ? "cron" : "admin";
-    console.log(`Invocation mode: ${invocationMode}`);
+    console.log(`Invocation mode: ${invocationMode} (cronSecretConfigured=${!!cronSecret})`);
 
     if (!isCron) {
       const supabaseUser = createClient(supabaseUrl, anonKey, {
