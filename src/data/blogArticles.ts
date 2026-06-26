@@ -126,7 +126,7 @@ Si vous êtes TNS ou dirigeant :
 **Économie :** 300-800€/an
 
 ### 5. Optimisez la franchise
-Accepter 100€ de franchise peut réduire la cotisation de 15-20%.
+Accepter 100€ de [franchise](/glossaire/franchise) peut réduire la cotisation de 15-20%.
 
 **À faire si :** Vous consultez rarement
 
@@ -159,7 +159,7 @@ Depuis 2015, tous les contrats doivent être **"responsables"** pour être défi
 
 ✅ **Testez le réseau de soins**
 - Y a-t-il des centres agréés près de chez vous ?
-- Proposent-ils le tiers payant ?
+- Proposent-ils le [[tiers](/glossaire/tiers) payant](/glossaire/tiers-payant) ?
 
 ✅ **Lisez les exclusions**
 - Médecines alternatives couvertes ?
@@ -235,13 +235,13 @@ Permis en poche ? La réalité : votre assurance auto coûtera **2 à 3 fois plu
 - 18-24 ans = 25 % des accidents graves
 - 21 % des tués sur la route
 - Seulement 10 % du parc de conducteurs
-- Coût moyen d'un sinistre jeune conducteur : **4 200 €** (vs 2 800 € tous profils)
+- Coût moyen d'un [sinistre](/glossaire/sinistre) jeune conducteur : **4 200 €** (vs 2 800 € tous profils)
 
 ## 🚫 L'idée reçue à oublier
 
 **« Se mettre conducteur secondaire sur le contrat des parents, c'est la meilleure astuce. »**
 
-C'est faux dans 30 % des cas — et dangereux dans 100 %. Si votre assureur découvre que vous êtes le conducteur principal réel (et il le découvrira via le kilométrage, les horaires de sinistre, le lieu de garage), c'est la **nullité du contrat**. Zéro indemnisation. Même en cas d'accident corporel grave.
+C'est faux dans 30 % des cas — et dangereux dans 100 %. Si votre assureur découvre que vous êtes le conducteur principal réel (et il le découvrira via le kilométrage, les horaires de sinistre, le lieu de garage), c'est la **nullité du contrat**. Zéro [indemnisation](/glossaire/indemnisation). Même en cas d'accident corporel grave.
 
 **Ce qui marche vraiment** : être conducteur secondaire **réel** — c'est-à-dire utiliser la voiture occasionnellement, pas quotidiennement. Et uniquement si vous habitez à la même adresse.
 
@@ -267,12 +267,12 @@ C'est faux dans 30 % des cas — et dangereux dans 100 %. Si votre assureur déc
 ### 3. La formule au tiers — L'arbitrage rationnel
 
 C'est un arbitrage, pas un dogme :
-- **Voiture < 3 000 €** → Au tiers. Si elle est détruite, l'indemnisation tous risques ne dépasserait pas sa valeur Argus (souvent < 2 000 €). Vous payez 1 000 €/an de plus pour protéger 2 000 € de valeur. Pas rationnel.
+- **Voiture < 3 000 €** → Au [tiers](/glossaire/tiers). Si elle est détruite, l'indemnisation [tous risques](/glossaire/tous-risques) ne dépasserait pas sa valeur Argus (souvent < 2 000 €). Vous payez 1 000 €/an de plus pour protéger 2 000 € de valeur. Pas rationnel.
 - **Voiture > 8 000 €** → Tous risques ou au minimum tiers étendu (vol + incendie + bris de glace).
 
 ### 4. La franchise haute — Le calcul de l'épargne
 
-Passer de 300 € à 800 € de franchise = **-15 à -20 %** sur la prime.
+Passer de 300 € à 800 € de [franchise](/glossaire/franchise) = **-15 à -20 %** sur la prime.
 
 > **💡 Le conseil du courtier**
 > Mettez la différence de prime sur un compte épargne. En 2 ans sans sinistre, vous aurez accumulé 300–400 € de « franchise perso ». Si un sinistre survient, vous payez avec. Sinon, c'est de l'argent gagné.
@@ -390,7 +390,7 @@ L'assureur **doit vous informer** de la date limite de résiliation au moins 15 
 - Lettre recommandée avec AR
 - Motif : Pas obligatoire
 
-**Option 2 : Loi Hamon (après 1 an)**
+**Option 2 : [Loi Hamon](/glossaire/loi-hamon) (après 1 an)**
 - À tout moment après 12 mois
 - Le nouvel assureur s'en charge
 - Délai : 30 jours
@@ -432,7 +432,7 @@ Vous pouvez résilier immédiatement, même en cours d'année, si :
 
 ### Assurance Emprunteur
 
-**Depuis la loi Lemoine :**
+**Depuis la [loi Lemoine](/glossaire/loi-lemoine) :**
 - Résiliation libre à tout moment
 - Sans frais ni pénalité
 - L'assureur traite la demande en 10 jours ouvrés
@@ -547,7 +547,7 @@ Si votre assureur augmente ses tarifs sans modification de votre situation :
 - Sans pénalité
 
 ### Sinistre total
-En cas de sinistre total (véhicule détruit, habitation inhabitable) :
+En cas de [sinistre](/glossaire/sinistre) total (véhicule détruit, habitation inhabitable) :
 - Résiliation automatique possible
 - Dans les 3 mois suivant le sinistre
 - Remboursement du trop-perçu
@@ -629,13 +629,13 @@ Vous payez 600€/an, résiliation le 15 avril :
     content: `
 # Loi Lemoine Assurance Emprunteur 2026 : Économise Jusqu'à 15 000 € Sur Ton Prêt
 
-Ton prêt immobilier est le projet d'une vie, mais son assurance est souvent le poste de dépense que tu subis sans le comprendre. Savais-tu que l'assurance emprunteur peut représenter jusqu'à un tiers du coût total de ton crédit ? C'est énorme. Heureusement, la **loi Lemoine** a radicalement changé les règles du jeu, te redonnant le pouvoir et la possibilité de réaliser des milliers d'euros d'économies. En 2026, ignorer cette loi, c'est comme laisser de l'argent sur la table. Beaucoup d'emprunteurs pensent que changer d'assurance est un parcours du combattant réservé aux experts. Faux ! C'est devenu plus simple que jamais. La banque ne peut plus t'imposer son contrat groupe, souvent 65 % plus cher que les offres alternatives. Tu as le droit, à tout moment, de choisir une assurance qui te couvre aussi bien (voire mieux) pour beaucoup moins cher. Dans cet article, tu découvriras comment fonctionne cette révolution, quels sont les assureurs les moins chers du marché et comment tu peux, dès aujourd'hui, diviser par deux le coût de ton assurance de prêt. Prêt à reprendre le contrôle ? Commence par simuler tes économies potentielles sur notre [comparateur](/comparateur) en moins de 2 minutes.
+Ton prêt immobilier est le projet d'une vie, mais son assurance est souvent le poste de dépense que tu subis sans le comprendre. Savais-tu que l'[assurance emprunteur](/glossaire/assurance-emprunteur) peut représenter jusqu'à un [tiers](/glossaire/tiers) du coût total de ton crédit ? C'est énorme. Heureusement, la **[loi Lemoine](/glossaire/loi-lemoine)** a radicalement changé les règles du jeu, te redonnant le pouvoir et la possibilité de réaliser des milliers d'euros d'économies. En 2026, ignorer cette loi, c'est comme laisser de l'argent sur la table. Beaucoup d'emprunteurs pensent que changer d'assurance est un parcours du combattant réservé aux experts. Faux ! C'est devenu plus simple que jamais. La banque ne peut plus t'imposer son contrat groupe, souvent 65 % plus cher que les offres alternatives. Tu as le droit, à tout moment, de choisir une assurance qui te couvre aussi bien (voire mieux) pour beaucoup moins cher. Dans cet article, tu découvriras comment fonctionne cette révolution, quels sont les assureurs les moins chers du marché et comment tu peux, dès aujourd'hui, diviser par deux le coût de ton assurance de prêt. Prêt à reprendre le contrôle ? Commence par simuler tes économies potentielles sur notre [comparateur](/comparateur) en moins de 2 minutes.
 
 ## Pourquoi la Loi Lemoine Change Tout en 2026
 
 La loi Lemoine, en vigueur depuis 2022, est bien plus qu'une simple mise à jour législative. C'est une véritable révolution pour les 7 millions de foyers français détenant un prêt immobilier. Si tu as souscrit ton crédit il y a quelques années, tu es probablement encore prisonnier du contrat d'assurance de ta banque, payant le prix fort sans même le savoir. En 2026, la pleine mesure de cette loi se fait sentir et il est crucial que tu en comprennes les trois piliers pour en tirer profit.
 
-Le premier changement majeur est la **résiliation à tout moment**. Avant, il fallait jongler avec des dates d'anniversaire complexes (loi Bourquin) ou n'agir que la première année (loi Hamon). Désormais, c'est terminé. Dès le lendemain de la signature de ton offre de prêt, tu peux changer d'assureur quand tu le souhaites, sans frais ni pénalité. Ta banque a l'obligation de traiter ta demande de substitution sous 10 jours ouvrés. Si elle refuse sans motif valable (c'est-à-dire une non-équivalence des garanties), elle s'expose à une amende de 3 000 €. C'est une liberté totale qui te permet de faire jouer la concurrence chaque année.
+Le premier changement majeur est la **résiliation à tout moment**. Avant, il fallait jongler avec des dates d'anniversaire complexes (loi Bourquin) ou n'agir que la première année ([loi Hamon](/glossaire/loi-hamon)). Désormais, c'est terminé. Dès le lendemain de la signature de ton offre de prêt, tu peux changer d'assureur quand tu le souhaites, sans frais ni pénalité. Ta banque a l'obligation de traiter ta demande de substitution sous 10 jours ouvrés. Si elle refuse sans motif valable (c'est-à-dire une non-équivalence des garanties), elle s'expose à une amende de 3 000 €. C'est une liberté totale qui te permet de faire jouer la concurrence chaque année.
 
 Le deuxième pilier, et non des moindres, est la **suppression du questionnaire de santé** sous conditions. C'est une avancée sociale majeure. Si tu empruntes moins de 200 000 € (et que le montant total assuré ne dépasse pas 400 000 € pour un couple) et que ton prêt se termine avant ton 60ème anniversaire, aucun assureur ne peut plus te poser de questions sur ton état de santé. Fini le stress des surprimes ou des exclusions liées à un ancien pépin de santé. Cela ouvre l'accès à la propriété et à une assurance à tarif standard pour des millions de personnes.
 
@@ -663,7 +663,7 @@ Pour t'aider à y voir plus clair, voici un tableau comparatif des principaux ac
 
 **Attention :** le prix ne fait pas tout ! Le critère le plus important pour que ta banque accepte la substitution est **l'équivalence des garanties**. Ton nouveau contrat doit couvrir au minimum les mêmes risques que celui de la banque. La banque te fournit une Fiche Standardisée d'Information (FSI) qui liste 18 critères de garanties. Ton nouveau contrat doit cocher au moins 11 de ces critères pour être accepté.
 
-> **Le conseil du courtier :** "Le diable se cache dans les détails. Deux contrats peuvent sembler identiques en surface, mais différer sur des points cruciaux comme la couverture des affections disco-vertébrales ('mal de dos'), les maladies psychiatriques, ou les délais de franchise. Notre rôle chez jemassuremoinscher.fr est de décortiquer ces lignes pour toi et de garantir que le contrat choisi est non seulement moins cher, mais surtout parfaitement adapté à ta situation et 100% accepté par ta banque."
+> **Le conseil du courtier :** "Le diable se cache dans les détails. Deux contrats peuvent sembler identiques en surface, mais différer sur des points cruciaux comme la couverture des affections disco-vertébrales ('mal de dos'), les maladies psychiatriques, ou les délais de [franchise](/glossaire/franchise). Notre rôle chez jemassuremoinscher.fr est de décortiquer ces lignes pour toi et de garantir que le contrat choisi est non seulement moins cher, mais surtout parfaitement adapté à ta situation et 100% accepté par ta banque."
 
 Il est donc essentiel de comparer les offres en profondeur. Ne te contente pas du TAEA. Analyse les conditions générales, les exclusions et les services associés. C'est la clé pour une [assurance de prêt](/assurance-pret) optimisée et sereine.
 
@@ -732,7 +732,7 @@ N'attends plus un jour de plus. Chaque mois qui passe est une mensualité trop �
     content: `
 # Loi Hamon : Comment Nos Clients Économisent 350 €/an en Changeant d'Assurance
 
-Depuis 2015, la **loi Hamon** vous donne le droit de résilier votre assurance auto, moto ou habitation **à tout moment après 1 an**, sans frais ni justification. En 2026, nous constatons que les assurés qui utilisent ce droit économisent en moyenne **350 €/an** — et pourtant, 65 % des Français ne l'ont jamais fait.
+Depuis 2015, la **[loi Hamon](/glossaire/loi-hamon)** vous donne le droit de résilier votre assurance auto, moto ou habitation **à tout moment après 1 an**, sans frais ni justification. En 2026, nous constatons que les assurés qui utilisent ce droit économisent en moyenne **350 €/an** — et pourtant, 65 % des Français ne l'ont jamais fait.
 
 ## Ce que la loi Hamon couvre (et ne couvre pas)
 
@@ -742,15 +742,15 @@ Depuis 2015, la **loi Hamon** vous donne le droit de résilier votre assurance a
 | Assurance moto | ✅ Oui, après 1 an | — |
 | Assurance habitation | ✅ Oui, après 1 an | — |
 | Mutuelle santé | ❌ Non | Loi Chatel (échéance annuelle) |
-| Assurance emprunteur | ❌ Non | Loi Lemoine (à tout moment) |
-| Assurance vie | ❌ Non | Résiliation libre (épargne) |
+| [Assurance emprunteur](/glossaire/assurance-emprunteur) | ❌ Non | [Loi Lemoine](/glossaire/loi-lemoine) (à tout moment) |
+| [Assurance vie](/glossaire/assurance-vie) | ❌ Non | Résiliation libre (épargne) |
 
 ## Le mécanisme en pratique
 
 **Après 12 mois d'engagement**, vous envoyez une demande de résiliation (ou mieux : votre nouvel assureur le fait pour vous). Votre ancien contrat prend fin **30 jours** après réception. Le trop-perçu de cotisation vous est remboursé au prorata.
 
 > **💡 Retour terrain — Le cas de Rachid, 34 ans**
-> Rachid payait 980 €/an chez son assureur auto historique (MMA, tous risques, Clio IV). En utilisant la loi Hamon, il est passé chez Direct Assurance à 620 €/an avec des garanties équivalentes — même franchise, même assistance 0 km. Économie : **360 €/an**. Sa seule action : remplir un formulaire en ligne chez le nouvel assureur, qui a géré toute la résiliation.
+> Rachid payait 980 €/an chez son assureur auto historique (MMA, [tous risques](/glossaire/tous-risques), Clio IV). En utilisant la loi Hamon, il est passé chez Direct Assurance à 620 €/an avec des garanties équivalentes — même franchise, même assistance 0 km. Économie : **360 €/an**. Sa seule action : remplir un formulaire en ligne chez le nouvel assureur, qui a géré toute la résiliation.
 
 ## Économies constatées par type d'assurance (2026)
 
@@ -855,7 +855,7 @@ Choisir son assurance auto est une décision importante qui impacte votre budget
 - Vous payez vos propres réparations
 
 ### 2. Assurance tiers plus (intermédiaire)
-**C'est quoi ?** Assurance au tiers + garanties supplémentaires (vol, incendie, bris de glace).
+**C'est quoi ?** Assurance au [tiers](/glossaire/tiers) + garanties supplémentaires (vol, incendie, bris de glace).
 
 **Prix moyen :** 45-60€/mois
 
@@ -865,7 +865,7 @@ Choisir son assurance auto est une décision importante qui impacte votre budget
 - Besoin de protection contre le vol
 
 **Garanties incluses :**
-- Responsabilité civile
+- [Responsabilité civile](/glossaire/responsabilite-civile)
 - Vol et tentative de vol
 - Incendie
 - Bris de glace
@@ -927,7 +927,7 @@ Choisir son assurance auto est une décision importante qui impacte votre budget
 
 ### Valeur à neuf
 **Prix :** +10-20€/mois (pendant 2 ans)
-**Utilité :** Remboursement à la valeur d'achat en cas de sinistre total
+**Utilité :** Remboursement à la valeur d'achat en cas de [sinistre](/glossaire/sinistre) total
 **Recommandé ?** ✅ Pour un véhicule neuf
 
 ## Comment économiser sur son assurance auto
@@ -938,7 +938,7 @@ Ne restez pas chez le même assureur par habitude. Les prix évoluent !
 **Économie potentielle :** 200-500€/an
 
 ### 2. Augmentez votre franchise
-Passer de 200€ à 400€ de franchise peut réduire la prime de 10-15%.
+Passer de 200€ à 400€ de [franchise](/glossaire/franchise) peut réduire la prime de 10-15%.
 
 **Économie potentielle :** 50-100€/an
 
@@ -980,7 +980,7 @@ Auto + habitation chez le même assureur = réduction multi-contrats.
 - Franchise bris de glace
 
 ✅ **Lisez les conditions générales**
-- Plafonds d'indemnisation
+- Plafonds d'[indemnisation](/glossaire/indemnisation)
 - Délais de carence
 - Procédure de déclaration de sinistre
 
@@ -1055,8 +1055,8 @@ Votre logement est votre bien le plus précieux. Mais **40 % des sinistres habit
 **Obligatoire** pour les locataires, incluse dans tous les contrats.
 
 **Couvre quoi ?**
-- Dommages causés aux voisins (dégât des eaux, incendie)
-- Accidents causés à des tiers chez vous
+- Dommages causés aux voisins ([dégât des eaux](/glossaire/degat-des-eaux), incendie)
+- Accidents causés à des [tiers](/glossaire/tiers) chez vous
 - Dommages causés par vos enfants ou animaux
 
 **Exemple :** Votre machine à laver fuit et inonde l'appartement du dessous. La RC prend en charge les dégâts chez votre voisin.
@@ -1068,7 +1068,7 @@ Votre logement est votre bien le plus précieux. Mais **40 % des sinistres habit
 - Foudre
 - Implosion
 
-**Indemnisation :** Reconstruction ou réparation du logement + remplacement des biens endommagés
+**[Indemnisation](/glossaire/indemnisation) :** Reconstruction ou réparation du logement + remplacement des biens endommagés
 
 ### 3. Dégâts des Eaux
 **La garantie la plus sollicitée** (40% des sinistres).
@@ -1093,7 +1093,7 @@ Votre logement est votre bien le plus précieux. Mais **40 % des sinistres habit
 - Tremblements de terre
 - Avalanches
 
-**Franchise légale :** 380€ pour les catastrophes naturelles
+**[Franchise](/glossaire/franchise) légale :** 380€ pour les catastrophes naturelles
 
 ### 5. Vol et Cambriolage
 **Fortement recommandée**, surtout en zone urbaine.
@@ -1218,7 +1218,7 @@ Listez et estimez la valeur de :
 ### Étape 3 : Comparez les plafonds
 
 Ne vous fiez pas qu'au prix ! Vérifiez :
-- **Plafond d'indemnisation** par sinistre
+- **Plafond d'indemnisation** par [sinistre](/glossaire/sinistre)
 - **Plafond par catégorie** (électronique, mobilier...)
 - **Franchise** applicable
 
@@ -1336,7 +1336,7 @@ Souscrire plusieurs assurances chez le même assureur donne droit à des réduct
 ## 3. Adaptez vos franchises
 
 **Comment ça marche :**
-Plus votre franchise est élevée, moins votre prime est chère.
+Plus votre [franchise](/glossaire/franchise) est élevée, moins votre prime est chère.
 
 **Exemple concret :**
 - Franchise 200€ → Prime : 65€/mois
@@ -1400,7 +1400,7 @@ Le paiement mensuel coûte plus cher à cause des frais de fractionnement (5-8% 
 
 ## 7. Améliorez votre bonus-malus
 
-**Le système bonus-malus :**
+**Le système [bonus-malus](/glossaire/bonus-malus) :**
 - Pas d'accident responsable → -5% par an (jusqu'à -50%)
 - Un accident responsable → +25%
 
@@ -1414,7 +1414,7 @@ Le paiement mensuel coûte plus cher à cause des frais de fractionnement (5-8% 
    - Respectez scrupuleusement le code
 
 3. **Choisir le bon moment**
-   - Si vous avez un sinistre, attendez 2 ans avant de comparer (le malus pèse lourd)
+   - Si vous avez un [sinistre](/glossaire/sinistre), attendez 2 ans avant de comparer (le malus pèse lourd)
 
 **Économie potentielle : 200-600€/an** (en protégeant votre bonus 0,50)
 
@@ -1430,7 +1430,7 @@ Résiliez à tout moment et économisez gros.
 
 **Action :** Faites une simulation tous les 6 mois.
 
-**Économie potentielle : 500-1500€/an** (surtout sur l'assurance emprunteur)
+**Économie potentielle : 500-1500€/an** (surtout sur l'[assurance emprunteur](/glossaire/assurance-emprunteur))
 
 ## 9. Négociez avec votre assureur actuel
 
@@ -1518,7 +1518,7 @@ Déménagement, nouveau véhicule... informez toujours votre assureur.
 Ne vous retrouvez jamais sans assurance, c'est illégal pour l'auto et risqué pour l'habitation.
 
 ❌ **Mentir sur son profil**
-En cas de sinistre, l'assureur peut refuser l'indemnisation.
+En cas de sinistre, l'assureur peut refuser l'[indemnisation](/glossaire/indemnisation).
 
 ## Conclusion
 
@@ -1648,7 +1648,7 @@ Complète le remboursement de la Sécu, souvent exprimé en % de la BR.
 
 ### Nos recommandations par profil
 
-**Jeune actif (20-35 ans)** → **Alan** ou **April** : budget maîtrisé, digital, sans délai de carence
+**Jeune actif (20-35 ans)** → **Alan** ou **April** : budget maîtrisé, digital, sans [délai de carence](/glossaire/delai-de-carence)
 **Famille avec enfants** → **Harmonie Mutuelle** : orthodontie (500-1000 €/enfant), réseau de soins étendu
 **Senior (60+ ans)** → **Swiss Life** ou **Harmonie** : hospitalisation renforcée, audioprothèses, cures
 **TNS / Indépendant** → **Malakoff Humanis** : déduction Madelin, garanties modulables
@@ -1691,7 +1691,7 @@ Trouver la **meilleure assurance auto en 2026** nécessite de comparer les tarif
 ### 1. Direct Assurance - Le Meilleur Rapport Qualité/Prix
 **Note : 9.2/10**
 
-**Prix moyen :** 35€/mois en formule tiers
+**Prix moyen :** 35€/mois en formule [tiers](/glossaire/tiers)
 
 **Points forts :**
 - Tarifs très compétitifs
@@ -1708,17 +1708,17 @@ Trouver la **meilleure assurance auto en 2026** nécessite de comparer les tarif
 ### 2. Allianz - L'Excellence du Service
 **Note : 9.0/10**
 
-**Prix moyen :** 52€/mois en formule tous risques
+**Prix moyen :** 52€/mois en formule [tous risques](/glossaire/tous-risques)
 
 **Points forts :**
 - Réseau d'agences étendu
 - Garanties très complètes
-- Service sinistre réactif
+- Service [sinistre](/glossaire/sinistre) réactif
 - Options personnalisables
 
 **Points faibles :**
 - Prix plus élevé
-- Franchise importante
+- [Franchise](/glossaire/franchise) importante
 
 **Pour qui ?** Conducteurs exigeants sur le service
 
@@ -1934,7 +1934,7 @@ Nous avons noté chaque assureur sur 5 critères :
 ### ❌ Erreurs à éviter
 
 - Choisir uniquement sur le prix
-- Ne pas vérifier les plafonds d\'indemnisation
+- Ne pas vérifier les plafonds d\'[indemnisation](/glossaire/indemnisation)
 - Oublier de déclarer tous les conducteurs
 - Négliger l\'assistance 0 km
 - Ne pas relire son contrat annuellement
@@ -2003,7 +2003,7 @@ Choisir la **meilleure mutuelle santé en 2026** peut vous faire économiser jus
 **Points forts :**
 - Application ultra-intuitive
 - Remboursement en 24h
-- Tiers-payant généralisé
+- [Tiers](/glossaire/tiers)-payant généralisé
 - Service client réactif (chat direct)
 - Transparence totale des tarifs
 
@@ -2310,8 +2310,8 @@ Vous venez d\'obtenir votre permis ? La **surprime jeune conducteur** peut doubl
 ### Tarifs moyens 2026
 
 **Jeune conducteur (18-25 ans) :**
-- Formule tiers : 80-120€/mois
-- Formule tous risques : 130-180€/mois
+- Formule [tiers](/glossaire/tiers) : 80-120€/mois
+- Formule [tous risques](/glossaire/tous-risques) : 130-180€/mois
 
 **Conducteur expérimenté :**
 - Formule tiers : 35-50€/mois
@@ -2421,9 +2421,9 @@ Si vous roulez moins de 10 000 km/an, signalez-le !
 ### 5. Augmenter la Franchise
 **Économie : 10-15%**
 
-Passer de 150€ à 500€ de franchise réduit la prime.
+Passer de 150€ à 500€ de [franchise](/glossaire/franchise) réduit la prime.
 
-**Conseil :** Gardez cette somme de côté en cas de sinistre.
+**Conseil :** Gardez cette somme de côté en cas de [sinistre](/glossaire/sinistre).
 
 ### 6. Payer Annuellement
 **Économie : 5-8%**
@@ -2632,9 +2632,9 @@ Le marché de l'assurance auto évolue constamment. En 2026, les assureurs propo
 - Application mobile très complète
 
 **Prix moyens :**
-- Au tiers : 280€/an
+- Au [tiers](/glossaire/tiers) : 280€/an
 - Intermédiaire : 420€/an
-- Tous risques : 580€/an
+- [Tous risques](/glossaire/tous-risques) : 580€/an
 
 **Pour qui ?**
 Idéal pour les conducteurs connectés qui cherchent le meilleur prix sans sacrifier les garanties.
@@ -2715,7 +2715,7 @@ Parfait pour ceux qui privilégient les valeurs et la qualité de service.
 
 | Assureur | Bris de glace | Assistance 0km | Prêt de véhicule | Valeur à neuf |
 |----------|---------------|----------------|------------------|---------------|
-| Direct Assurance | ✅ Franchise 0€ | ✅ Oui | ✅ 30 jours | ✅ 12 mois |
+| Direct Assurance | ✅ [Franchise](/glossaire/franchise) 0€ | ✅ Oui | ✅ 30 jours | ✅ 12 mois |
 | Allianz | ✅ Franchise 50€ | ✅ Oui | ✅ 45 jours | ✅ 24 mois |
 | Groupama | ✅ Franchise 75€ | ✅ Oui | ✅ 30 jours | ✅ 12 mois |
 | Axa | ✅ Franchise 60€ | ✅ Oui | ✅ 21 jours | ✅ 12 mois |
@@ -2742,7 +2742,7 @@ Les boîtiers connectés deviennent standard :
 Applications mobiles enrichies :
 - E-constat intégré
 - Chat avec conseiller
-- Déclaration sinistre photo
+- Déclaration [sinistre](/glossaire/sinistre) photo
 - Suivi dossier en temps réel
 
 ## Comment choisir en 2026 ?
@@ -2865,7 +2865,7 @@ Parfait pour les jeunes actifs et freelances qui veulent une gestion 100% mobile
 
 **Points forts :**
 - Réseau de soins étendu
-- Tiers payant généralisé
+- [[Tiers](/glossaire/tiers) payant](/glossaire/tiers-payant) généralisé
 - Services prévention santé
 - Application mobile performante
 - Espace santé digital
@@ -2916,7 +2916,7 @@ Parfait pour les indépendants et chefs d'entreprise.
 **Points forts :**
 - Tarifs très compétitifs
 - Garanties ajustables
-- Pas de délai de carence
+- Pas de [délai de carence](/glossaire/delai-de-carence)
 - Services digitaux
 - Réseau de soins avantageux
 
@@ -3139,8 +3139,8 @@ Choisir une assurance habitation peut sembler complexe face aux nombreuses offre
 - Souscription en 2 minutes
 - Application ultra-intuitive
 - Prix très compétitifs
-- Déclaration sinistre photo
-- Indemnisation rapide
+- Déclaration [sinistre](/glossaire/sinistre) photo
+- [Indemnisation](/glossaire/indemnisation) rapide
 
 **Prix moyens :**
 - Studio Paris : 15€/mois
@@ -3153,7 +3153,7 @@ Choisir une assurance habitation peut sembler complexe face aux nombreuses offre
 - Vol avec effraction
 - Bris de glace
 - Catastrophes naturelles
-- Responsabilité civile
+- [Responsabilité civile](/glossaire/responsabilite-civile)
 
 **Pour qui ?**
 Parfait pour les locataires et jeunes propriétaires connectés.
@@ -3165,7 +3165,7 @@ Parfait pour les locataires et jeunes propriétaires connectés.
 **Points forts :**
 - Mutuelle de confiance
 - Service client excellent
-- Pas de franchise 1er sinistre
+- Pas de [franchise](/glossaire/franchise) 1er sinistre
 - Protection juridique incluse
 - Réseau d'agences
 
@@ -3266,7 +3266,7 @@ Pour ceux qui veulent la meilleure couverture.
 ### Obligatoires pour tous
 
 **1. Responsabilité civile**
-Couvre les dommages causés aux tiers.
+Couvre les dommages causés aux [tiers](/glossaire/tiers).
 - Locataire : OBLIGATOIRE
 - Propriétaire : Fortement recommandé
 
@@ -3483,7 +3483,7 @@ Pour les maisons → Groupama
     content: `
 # Loi Lemoine 2026 : La Révolution de l'Assurance Emprunteur Continue
 
-La loi Lemoine, entrée en vigueur en 2022, continue de transformer le marché de l'assurance emprunteur. En 2026, de nouvelles mesures renforcent encore vos droits. Voici tout ce qu'il faut savoir.
+La [loi Lemoine](/glossaire/loi-lemoine), entrée en vigueur en 2022, continue de transformer le marché de l'[assurance emprunteur](/glossaire/assurance-emprunteur). En 2026, de nouvelles mesures renforcent encore vos droits. Voici tout ce qu'il faut savoir.
 
 ## Les 3 piliers de la loi Lemoine
 
@@ -3819,7 +3819,7 @@ Obligation d'assistance dès le 1er kilomètre.
 
 **Nouveaux délais maximaux :**
 - Bris de glace : 5 jours
-- Sinistre simple : 15 jours
+- [Sinistre](/glossaire/sinistre) simple : 15 jours
 - Vol : 30 jours
 - Sinistre complexe : 60 jours
 
@@ -3971,7 +3971,7 @@ Couvre les dommages causés en ligne :
 
 ### RC professionnelle étendue
 
-**Nouveaux métiers concernés :**
+**Nouveaux mé[tiers](/glossaire/tiers) concernés :**
 - Influenceurs
 - Community managers
 - Consultants freelance
@@ -3996,7 +3996,7 @@ Pris en charge par l'assureur.
 ### Délais de recours étendus
 
 **Nouveaux délais :**
-- Refus d'indemnisation : 5 ans (vs 2 ans)
+- Refus d'[indemnisation](/glossaire/indemnisation) : 5 ans (vs 2 ans)
 - Erreur de garantie : 3 ans (vs 2 ans)
 - Vice caché : 10 ans (vs 5 ans)
 
@@ -4144,7 +4144,7 @@ Les manquements graves sont publiés sur :
 - Questionnaire médical allégé
 
 **Septembre**
-- Plateforme unique assurance emprunteur
+- Plateforme unique [assurance emprunteur](/glossaire/assurance-emprunteur)
 - Actions de groupe facilitées
 
 **Décembre**
@@ -4211,10 +4211,10 @@ Nullité des clauses non comprises.
 **Vous pouvez résilier :**
 
 **À tout moment (après 1 an) :**
-- Assurance auto (loi Hamon)
+- Assurance auto ([loi Hamon](/glossaire/loi-hamon))
 - Assurance moto (loi Hamon)
 - Assurance habitation (loi Hamon)
-- Assurance emprunteur (loi Lemoine)
+- [Assurance emprunteur](/glossaire/assurance-emprunteur) ([loi Lemoine](/glossaire/loi-lemoine))
 
 **Sans frais ni pénalité !**
 
@@ -4275,7 +4275,7 @@ Site de la Médiation de l'Assurance.
 - Bris de glace : 5 jours
 
 **Sans expertise nécessaire :**
-- Sinistre < 1 600€ : 7 jours
+- [Sinistre](/glossaire/sinistre) < 1 600€ : 7 jours
 - Photo suffisante : 48h
 
 **Intérêts de retard :**
@@ -4288,7 +4288,7 @@ Site de la Médiation de l'Assurance.
 
 **Délais à respecter :**
 - Vol : 2 jours ouvrés
-- Dégât des eaux : 5 jours
+- [Dégât des eaux](/glossaire/degat-des-eaux) : 5 jours
 - Catastrophe naturelle : 10 jours
 - Autres : 5 jours
 
