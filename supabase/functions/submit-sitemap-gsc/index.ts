@@ -22,22 +22,26 @@ Deno.serve(async (req) => {
     Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
   );
 
-  // Authorization: allow internal DB trigger (header) or authenticated admin JWT
-  const internalTrigger = req.headers.get("x-internal-trigger") === "db-sitemap-submission";
+  // Authorization: require Bearer token — either the CRON_SECRET (DB trigger) or a valid admin JWT
   const authHeader = req.headers.get("Authorization") ?? "";
-  let authorized = internalTrigger;
+  let authorized = false;
 
-  if (!authorized && authHeader.startsWith("Bearer ")) {
+  if (authHeader.startsWith("Bearer ")) {
     const token = authHeader.replace("Bearer ", "");
-    const { data: claimsData } = await supabase.auth.getClaims(token);
-    if (claimsData?.claims?.sub) {
-      const { data: roleRow } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", claimsData.claims.sub)
-        .eq("role", "admin")
-        .maybeSingle();
-      authorized = !!roleRow;
+    const cronSecret = Deno.env.get("CRON_SECRET");
+    if (cronSecret && token === cronSecret) {
+      authorized = true;
+    } else {
+      const { data: claimsData } = await supabase.auth.getClaims(token);
+      if (claimsData?.claims?.sub) {
+        const { data: roleRow } = await supabase
+          .from("user_roles")
+          .select("role")
+          .eq("user_id", claimsData.claims.sub)
+          .eq("role", "admin")
+          .maybeSingle();
+        authorized = !!roleRow;
+      }
     }
   }
 
