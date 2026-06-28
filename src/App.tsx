@@ -63,6 +63,9 @@ const LandingCampingCar = lazy(() => import("./pages/landing/LandingCampingCar")
 const LandingVelo = lazy(() => import("./pages/landing/LandingVelo"));
 const LandingProtectionJuridique = lazy(() => import("./pages/landing/LandingProtectionJuridique"));
 const LandingAutoTemporaire = lazy(() => import("./pages/landing/LandingAutoTemporaire"));
+const LandingTrottinette = lazy(() => import("./pages/landing/LandingTrottinette"));
+const AssuranceTrottinetteLivreur = lazy(() => import("./pages/seo/AssuranceTrottinetteLivreur"));
+
 const AssuranceDecennale = lazy(() => import("./pages/AssuranceDecennale"));
 const AssuranceFlotteAuto = lazy(() => import("./pages/AssuranceFlotteAuto"));
 const AssuranceMutuelleEntreprise = lazy(() => import("./pages/AssuranceMutuelleEntreprise"));
@@ -241,6 +244,9 @@ const App = () => {
                 <Route path="/landing/velo" element={<LandingVelo />} />
                 <Route path="/landing/protection-juridique" element={<LandingProtectionJuridique />} />
                 <Route path="/landing/auto-temporaire" element={<LandingAutoTemporaire />} />
+                <Route path="/landing/trottinette" element={<LandingTrottinette />} />
+                <Route path="/assurance-trottinette-livreur" element={<AssuranceTrottinetteLivreur />} />
+
                 <Route path="/comparateur" element={<Comparateur />} />
                 <Route path="/assurance-auto-malus" element={<AssuranceAutoMalusse />} />
                 <Route path="/assurance-auto-jeune-conducteur" element={<AssuranceJeuneConducteur />} />
