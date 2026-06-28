@@ -104,9 +104,13 @@ const AssuranceTrottinetteLivreur = () => {
         { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
         { name: "Assurance Trottinette Livreur", url: "https://www.jemassuremoinscher.fr/assurance-trottinette-livreur" },
       ]}
-      bottomCtaTitle: undefined as never,
+      bottomCtaTitle="Roulez pro dès aujourd'hui"
+      bottomCtaDescription="Devis assurance livreur EDPM en 2 minutes — attestation immédiate pour votre plateforme."
+      bottomCtaLabel="Obtenir mon devis livreur"
+      bottomCtaLink="/comparateur"
     />
   );
 };
+
 
 export default AssuranceTrottinetteLivreur;
