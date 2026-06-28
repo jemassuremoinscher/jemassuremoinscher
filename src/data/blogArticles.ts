@@ -4784,6 +4784,8 @@ function resolveDate(d?: string): string {
 import { blogDrafts2026 } from "./blogDrafts2026";
 import { blogArticlesVerticals2026 } from "./blogArticlesVerticals2026";
 import { blogArticlesVerticals2026Lot2 } from "./blogArticlesVerticals2026Lot2";
+import { blogArticlesTrottinette2026 } from "./blogArticlesTrottinette2026";
+
 // Note: blogArticlesExpat2026 + blogArticlesNiches2026 ont été migrés en DB
 // (table seo_article_suggestions). Éditables depuis Admin → Contenu.
 
@@ -4826,6 +4828,8 @@ export const blogArticles: BlogArticle[] = [
   ...blogDrafts2026,
   ...blogArticlesVerticals2026,
   ...blogArticlesVerticals2026Lot2,
+  ...blogArticlesTrottinette2026,
+
 ]
   .map((a) => {
     const overridden = lateDateOverrides[a.id] ? { ...a, date: lateDateOverrides[a.id] } : a;

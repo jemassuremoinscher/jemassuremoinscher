@@ -55,7 +55,9 @@ export const routes: RouteConfig[] = [
   { path: "/assurance-auto-jeune-conducteur", changefreq: "weekly", priority: 0.8 },
   { path: "/mutuelle-tns", changefreq: "weekly", priority: 0.8 },
   { path: "/assurance-auto-comparatif", changefreq: "weekly", priority: 0.8 },
-  { path: "/assurance-trottinette-electrique", changefreq: "weekly", priority: 0.8 },
+  { path: "/assurance-trottinette-electrique", changefreq: "weekly", priority: 0.9 },
+  { path: "/assurance-trottinette-livreur", changefreq: "weekly", priority: 0.85 },
+
   { path: "/assurance-auto-permis-etranger", changefreq: "weekly", priority: 0.8 },
   { path: "/assurance-emprunteur", changefreq: "weekly", priority: 0.8 },
 
@@ -186,7 +188,14 @@ export const blogArticles: RouteConfig[] = [
   { path: "/blog/degat-des-eaux-voisins-constat-amiable-2026", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/assurance-pno-obligatoire-louer-bien", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/assurance-voiture-electrique-bonus-ecologiques-2026", changefreq: "monthly", priority: 0.8 },
-  { path: "/blog/trottinettes-electriques-edpm-assurance-obligatoire", changefreq: "monthly", priority: 0.8 },
+  { path: "/blog/trottinettes-electriques-edpm-assurance-obligatoire", changefreq: "monthly", priority: 0.85 },
+  { path: "/blog/assurance-trottinette-vol-garantie-2026", changefreq: "monthly", priority: 0.85 },
+  { path: "/blog/trottinette-electrique-debridage-loi-risques-2026", changefreq: "monthly", priority: 0.85 },
+  { path: "/blog/assurance-trottinette-livreur-uber-eats-deliveroo-2026", changefreq: "monthly", priority: 0.9 },
+  { path: "/blog/trottinette-electrique-accident-sinistre-demarches-2026", changefreq: "monthly", priority: 0.85 },
+  { path: "/blog/assurance-gyroroue-hoverboard-monoroue-edpm-2026", changefreq: "monthly", priority: 0.85 },
+  { path: "/blog/comparatif-assurance-trottinette-electrique-2026", changefreq: "monthly", priority: 0.9 },
+
   { path: "/blog/velos-cargos-vae-protection-vol-urbain", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/recharge-domicile-assurance-borne-recharge", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/covoiturage-regulier-extension-garantie-passagers", changefreq: "monthly", priority: 0.8 },
