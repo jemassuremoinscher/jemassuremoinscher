@@ -67,7 +67,7 @@ const AssuranceTrottinetteElectrique = () => {
     {
       question: "Quelles sont les conséquences si je roule sans assurance en trottinette électrique ?",
       answer:
-        "Rouler sans assurance constitue un délit, pas une simple contravention. En cas de poursuite, vous encourez une amende pouvant aller jusqu'à 3 750 €, l'immobilisation ou la confiscation de votre trottinette, et une inscription au fichier AGIRA pendant 5 ans, qui rend les futures souscriptions d'assurance plus difficiles et plus chères. En cas d'accident, vous restez personnellement responsable de tous les dommages causés aux tiers : l'assureur de la victime peut saisir votre salaire et votre patrimoine, sans plafond, pour rembourser les préjudices. Sans oublier la perte de points, la suspension éventuelle d'autres permis et la difficulté à trouver un assureur par la suite.",
+        "Rouler sans assurance constitue un délit, pas une simple contravention. En cas de poursuite, vous encourez une amende pouvant aller jusqu'à 3 750 €, l'immobilisation ou la confiscation de votre trottinette, et une inscription au fichier AGIRA pendant 5 ans, qui rend les futures souscriptions d'assurance plus difficiles et plus chères. En cas d'accident, vous restez personnellement responsable de tous les dommages causés aux tiers : l'assureur de la victime peut saisir votre salaire et votre patrimoine, sans plafond, pour rembourser les préjudices. Le tribunal peut également prononcer la suspension ou l'annulation du permis de conduire.",
     },
   ];
 
