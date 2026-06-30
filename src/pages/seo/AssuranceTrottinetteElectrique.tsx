@@ -78,6 +78,28 @@ const AssuranceTrottinetteElectrique = () => {
       <li><strong>Inscription au fichier AGIRA</strong> pour 5 ans, rendant toute future souscription d'assurance (auto, habitation) difficile et plus chère.</li>
     </ul>
 
+    <div class="bg-muted/40 border border-border rounded-xl p-5 md:p-6 my-8">
+      <h3 class="text-lg font-bold text-foreground mb-4">Sources et références officielles</h3>
+      <ul class="space-y-3 text-sm text-muted-foreground">
+        <li>
+          <strong>Sécurité routière</strong> — Préfecture de La Réunion, mis à jour le 21/01/2026 :
+          « Circuler sans assurance constitue un délit passible d'une amende pouvant aller jusqu'à 3 750 euros. »
+          <a href="https://www.reunion.gouv.fr/Actions-de-l-Etat/Securite-protection-des-personnes-et-des-biens/Securite-routiere/Trottinettes-electriques-monoroues-gyropodes-hoverboards-L-assurance-des-EDPM-est-obligatoire" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Voir la source</a>
+        </li>
+        <li>
+          <strong>Ministère de la Transition écologique</strong>, mis à jour le 06/02/2026 :
+          « L'assurance est obligatoire pour les utilisateurs des EDP motorisés. »
+          <a href="https://www.ecologie.gouv.fr/politiques-publiques/trottinettes-electriques-edpm-reglementation-vigueur" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Voir la source</a>
+        </li>
+        <li>
+          <strong>Code des assurances, article L211-1</strong> : obligation d'assurance responsabilité civile pour tout véhicule terrestre à moteur.
+        </li>
+        <li>
+          <strong>Décret n° 2019-1082 du 23 octobre 2019</strong> : définition et réglementation des engins de déplacement personnel motorisés (EDPM).
+        </li>
+      </ul>
+    </div>
+
     <h3>Les différentes formules d'assurance trottinette</h3>
     <p>Trois niveaux de couverture existent pour votre trottinette électrique :</p>
     <ul>
