@@ -59,6 +59,16 @@ const AssuranceTrottinetteElectrique = () => {
       answer:
         "Oui, impérativement. La livraison rémunérée est un usage professionnel exclu de 95 % des contrats trottinette grand public. Une RC pro livreur EDPM est obligatoire : voir notre page dédiée /assurance-trottinette-livreur. Sans elle, votre assureur peut refuser tout sinistre survenu en mission.",
     },
+    {
+      question: "Qu'est-ce que l'absence d'assurance pour un EDPM ?",
+      answer:
+        "Vous êtes considéré comme non assuré si aucun contrat en cours ne couvre votre responsabilité civile pour l'usage de votre trottinette électrique ou EDPM. Cela inclut : ne pas avoir souscrit d'assurance EDPM, avoir un contrat résilié pour non-paiement, compter sur une assurance habitation qui n'assure pas les accidents au guidon d'un EDPM (le cas le plus fréquent), ou circuler avec un usage exclu du contrat (livraison rémunérée, location, compétition). L'obligation pèse sur le propriétaire de l'engin, même s'il prête sa trottinette à quelqu'un d'autre.",
+    },
+    {
+      question: "Quelles sont les conséquences si je roule sans assurance en trottinette électrique ?",
+      answer:
+        "Rouler sans assurance constitue un délit, pas une simple contravention. En cas de poursuite, vous encourez une amende pouvant aller jusqu'à 3 750 €, l'immobilisation ou la confiscation de votre trottinette, et une inscription au fichier AGIRA pendant 5 ans, qui rend les futures souscriptions d'assurance plus difficiles et plus chères. En cas d'accident, vous restez personnellement responsable de tous les dommages causés aux tiers : l'assureur de la victime peut saisir votre salaire et votre patrimoine, sans plafond, pour rembourser les préjudices. Le tribunal peut également prononcer la suspension ou l'annulation du permis de conduire.",
+    },
   ];
 
   const contentBody = `
