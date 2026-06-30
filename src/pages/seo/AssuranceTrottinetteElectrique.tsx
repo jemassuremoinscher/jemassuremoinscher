@@ -99,6 +99,8 @@ const AssuranceTrottinetteElectrique = () => {
         </li>
       </ul>
     </div>
+
+    <h3>Les différentes formules d'assurance trottinette</h3>
     <p>Trois niveaux de couverture existent pour votre trottinette électrique :</p>
     <ul>
       <li><strong>Formule Essentielle</strong> (dès 3,50 €/mois) : responsabilité civile obligatoire uniquement. Idéale pour un usage occasionnel ou un engin de faible valeur (&lt; 300 €).</li>
