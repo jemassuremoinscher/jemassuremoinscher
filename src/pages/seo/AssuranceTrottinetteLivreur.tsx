@@ -56,6 +56,8 @@ const AssuranceTrottinetteLivreur = () => {
 
     <p>Chez <strong>jemassuremoinscher.fr</strong>, nos courtiers spécialisés mobilité urbaine professionnelle comparent les 12 assureurs partenaires <strong>livreurs EDPM</strong> pour vous trouver la formule la moins chère et la plus adaptée à votre rythme (temps plein, temps partiel, étudiant complément).</p>
 
+    <p><em>Vous utilisez votre trottinette à titre personnel ? Consultez notre guide complet <a href="/assurance-trottinette-electrique">assurance trottinette électrique</a>.</em></p>
+
     <h3>Pourquoi une assurance pro est obligatoire pour les livreurs en trottinette</h3>
     <p>L'usage professionnel d'un EDPM (Engin de Déplacement Personnel Motorisé) — trottinette, gyroroue, hoverboard — entre dans la catégorie des <strong>activités à risque aggravé</strong> pour les assureurs. Trois raisons :</p>
     <ul>
