@@ -759,5 +759,122 @@ Demander un courtier spécialisé. Si refus systématique, saisir le **BCT EDPM*
 
 **Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette-electrique) · [Assurance trottinette livreur](/assurance-trottinette-livreur) · [Vol de trottinette : la garantie qui rembourse](/blog/assurance-trottinette-vol-garantie-2026) · [Débridage : les risques](/blog/trottinette-electrique-debridage-loi-risques-2026)
     `
+  },
+  {
+    id: "trottinette-sans-assurance-delit-2026",
+    title: "Rouler en trottinette électrique sans assurance : un délit puni jusqu'à 3 750 €",
+    slug: "trottinette-electrique-sans-assurance-delit-amende-2026",
+    description: "Absence d'assurance EDPM : qualification en délit, amende maximale 3 750 €, immobilisation, responsabilité financière illimitée. Le guide officiel 2026.",
+    category: "Réglementation",
+    date: "20 juin 2026",
+    readTime: "8 min",
+    author: "L'équipe d'experts Jemassuremoinscher",
+    tags: ["trottinette électrique", "EDPM", "assurance obligatoire", "délit", "amende", "réglementation"],
+    content: `
+# Rouler en Trottinette Électrique Sans Assurance : un Délit Puni Jusqu'à 3 750 €
+
+Beaucoup d'utilisateurs de trottinettes électriques l'ignorent encore : **circuler sans assurance responsabilité civile sur un EDPM (Engin de Déplacement Personnel Motorisé) constitue un délit**, et non une simple contravention. La sanction peut atteindre **3 750 € d'amende**, assortie de peines complémentaires lourdes. Décryptage complet.
+
+## Pourquoi c'est un délit (et non une contravention)
+
+Depuis le **décret n° 2019-1082 du 23 octobre 2019**, les trottinettes électriques sont assimilées aux véhicules terrestres à moteur (VTM). À ce titre, elles relèvent de l'**article L211-1 du Code des assurances**, qui impose une **assurance de responsabilité civile** pour tout VTM circulant sur la voie publique.
+
+L'**article L324-2 du Code de la route** qualifie le défaut d'assurance d'un VTM de **délit**, et non de simple infraction routière. Concrètement :
+
+- Le contrevenant est inscrit au **fichier des véhicules assurés (FVA / AGIRA)**
+- Le dossier peut être transmis au **procureur de la République**
+- Le casier judiciaire peut être impacté en cas de condamnation
+
+> **À retenir** : un délit n'est pas une simple amende forfaitaire. C'est une infraction pénale relevant du tribunal correctionnel, avec inscription possible au B2 du casier.
+
+## L'amende : 3 750 € maximum
+
+Le plafond légal de l'amende pour défaut d'assurance EDPM est fixé à **3 750 €**. Il s'agit du **montant maximum** prononcé par le juge — il n'existe **pas de tarif forfaitaire** unique : la sanction est appréciée par le tribunal en fonction du contexte (récidive, gravité des faits, situation du contrevenant).
+
+En pratique, les amendes prononcées varient généralement entre **500 € et 3 750 €**, et peuvent être assorties de peines complémentaires.
+
+## Les peines complémentaires possibles
+
+Au-delà de l'amende, le juge peut prononcer :
+
+- **Immobilisation immédiate** de la trottinette par les forces de l'ordre
+- **Confiscation définitive** de l'EDPM
+- **Suspension** du permis de conduire jusqu'à 3 ans (si le contrevenant en possède un)
+- **Annulation** du permis avec interdiction de le repasser pendant un délai
+- **Travail d'intérêt général** (TIG)
+- **Stage de sensibilisation** à la sécurité routière à ses frais
+- **Interdiction de conduire** certains véhicules pendant 5 ans maximum
+
+## Ce qui constitue l'absence d'assurance
+
+Vous êtes considéré comme non assuré si :
+
+1. **Aucun contrat RC EDPM** n'a été souscrit
+2. Le **contrat est résilié** (impayé, déclaration tardive, sinistre)
+3. Votre **assurance habitation (MRH) ne couvre pas** explicitement les EDPM motorisés (la grande majorité des MRH ne couvre **que** les EDP non motorisés)
+4. La trottinette est utilisée **hors du périmètre prévu** : livraison rémunérée, location, compétition, débridage
+5. Vous prêtez la trottinette à un tiers **non déclaré** comme conducteur autorisé
+
+> **Attention** : votre assurance habitation ne suffit presque jamais. Vérifiez la clause « véhicules terrestres à moteur » de votre contrat — elle exclut quasi-systématiquement les EDPM motorisés.
+
+## Le piège financier au-delà de l'amende
+
+L'amende n'est que la première sanction. En cas d'accident **sans assurance** :
+
+- Vous êtes **personnellement responsable** de la totalité des dommages causés aux tiers
+- Pour un blessé grave, la facture peut atteindre **plusieurs centaines de milliers d'euros** (soins, perte de revenus, rente invalidité, préjudice moral)
+- Le **Fonds de Garantie des Assurances Obligatoires (FGAO)** indemnise la victime à votre place, **puis se retourne contre vous** pour récupérer les sommes versées
+- Cette créance est **imprescriptible** : elle peut vous poursuivre toute la vie, y compris par saisie sur salaire ou sur héritage
+
+## Combien coûte une assurance trottinette en règle ?
+
+À partir de **4 à 8 €/mois** pour une formule responsabilité civile seule. Comparé au risque, le calcul est sans appel :
+
+| Situation | Coût |
+|-----------|------|
+| Assurance RC mensuelle | 4 à 8 € |
+| Assurance RC annuelle | 50 à 100 € |
+| Amende max défaut d'assurance | **3 750 €** |
+| Indemnisation blessé grave (à votre charge) | **100 000 € à 1 M€** |
+
+**[→ Comparer les assurances trottinette en 2 minutes](/comparateur)**
+
+## Les contrôles se multiplient en 2026
+
+Les **forces de l'ordre intensifient les contrôles** sur les EDPM. Vous devez pouvoir présenter à tout moment :
+
+- L'**attestation d'assurance** (papier ou numérique sur smartphone)
+- La **vignette d'assurance** apposée sur la trottinette (recommandée)
+- Une **pièce d'identité**
+
+L'absence d'attestation lors d'un contrôle entraîne la **présomption de défaut d'assurance** et l'immobilisation immédiate du véhicule.
+
+## Sources officielles
+
+- **Code des assurances**, article L211-1 — obligation d'assurance RC pour tout véhicule terrestre à moteur
+- **Code de la route**, article L324-2 — qualification du défaut d'assurance en délit
+- **Décret n° 2019-1082 du 23 octobre 2019** — définition réglementaire des EDPM
+- **Sécurité routière** (securite-routiere.gouv.fr) — règles de circulation des EDPM
+- **Ministère de la Transition écologique** — obligation d'assurance EDPM motorisés
+
+## FAQ
+
+**Une simple RC habitation suffit-elle pour ma trottinette ?**
+Non. La quasi-totalité des MRH exclut explicitement les véhicules terrestres à moteur, ce qui inclut les EDPM motorisés. Une assurance trottinette dédiée est obligatoire.
+
+**Mon enfant utilise ma trottinette : suis-je responsable ?**
+Oui. En tant que propriétaire, vous êtes responsable de l'assurance du véhicule. Si l'utilisateur n'est pas déclaré, vous êtes considéré comme non assuré.
+
+**Que se passe-t-il si je suis contrôlé sans assurance ?**
+Vous recevez une convocation au tribunal correctionnel. Le juge fixe l'amende (jusqu'à 3 750 €) et peut prononcer des peines complémentaires (confiscation, suspension de permis, TIG).
+
+**L'amende peut-elle être inférieure à 3 750 € ?**
+Oui. Le plafond légal est de 3 750 €, mais le juge module la sanction selon le contexte. En première infraction, l'amende est souvent comprise entre 500 € et 1 500 €.
+
+**Les trottinettes en libre-service (Lime, Dott) nécessitent-elles ma propre assurance ?**
+La RC est incluse dans le service de location, mais elle couvre uniquement la durée de la course. Vérifiez les CGU : votre responsabilité personnelle peut être engagée en cas d'usage non conforme (débridage, hors zone, mineur).
+
+**Liens utiles** : [Assurance trottinette électrique : le guide complet](/assurance-trottinette-electrique) · [Assurance trottinette livreur](/assurance-trottinette-livreur) · [Vol de trottinette : la garantie qui rembourse](/blog/assurance-trottinette-vol-garantie-2026) · [Débridage : les risques](/blog/trottinette-electrique-debridage-loi-risques-2026)
+    `
   }
 ];
