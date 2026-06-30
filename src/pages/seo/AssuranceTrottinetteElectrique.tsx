@@ -70,9 +70,9 @@ const AssuranceTrottinetteElectrique = () => {
     <p>L'explosion du parc EDPM (plus de 2,5 millions d'engins en circulation en France en 2026) a entraîné une hausse vertigineuse des accidents : <strong>+38 % de tués en EDPM entre 2022 et 2025</strong> selon l'ONISR. Face à ce constat, le législateur a confirmé l'obligation d'assurance pour <strong>protéger les usagers et les tiers</strong>. Un accident impliquant un piéton renversé peut générer des dommages corporels chiffrés à plusieurs centaines de milliers d'euros — sans assurance, c'est votre patrimoine personnel qui est engagé à vie.</p>
 
     <h3>Les sanctions pour défaut d'assurance EDPM en 2026</h3>
+    <p>Circuler sans assurance constitue un <strong>délit</strong>, pas une simple contravention. Seul le tribunal fixe le montant de l'amende en cas de poursuite.</p>
     <ul>
-      <li><strong>Amende forfaitaire</strong> : 500 € (minorée à 400 € si paiement sous 15 jours).</li>
-      <li><strong>Amende maximale</strong> : 3 750 € en cas de procédure judiciaire.</li>
+      <li><strong>Amende maximale</strong> : 3 750 € en cas de poursuite devant le tribunal.</li>
       <li><strong>Immobilisation et confiscation</strong> de l'engin par les forces de l'ordre.</li>
       <li><strong>Responsabilité personnelle illimitée</strong> en cas de dommages causés à un tiers — saisie sur salaire, biens, héritage possibles.</li>
       <li><strong>Inscription au fichier AGIRA</strong> pour 5 ans, rendant toute future souscription d'assurance (auto, habitation) difficile et plus chère.</li>
