@@ -20,6 +20,7 @@ export type AnalyticsEvent =
   | 'newsletter_signup'
   | 'chatbot_message'
   | 'insurance_type_click'
+  | 'hero_trottinette_click'
   | 'partner_click'
   | 'faq_open'
   | 'phone_click'
