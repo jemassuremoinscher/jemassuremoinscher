@@ -23,6 +23,7 @@ import arthurBtp from "@/assets/mascotte/arthur-btp.webp";
 import arthurExcited from "@/assets/mascotte/arthur-excited.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import arthurBike from "@/assets/mascotte/arthur-bike.png";
+import arthurScoot from "@/assets/mascotte/arthur-scoot.png";
 import geoContent from "@/data/geo-content.json";
 
 const trustReviewStat = { icon: Star, value: `${geoContent.trust.ratingValueLabel}/5`, label: "Avis vérifiés" };
@@ -1561,7 +1562,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     heroTitle: "Assurance",
     heroHighlight: "Trottinette électrique",
     heroSubtitle: <><strong>Obligatoire depuis 2019.</strong> RC, vol, casse, individuelle accident. Trottinette, gyroroue, hoverboard, monoroue : tous EDPM couverts dès 3,50€/mois.</>,
-    mascotSrc: arthurBike,
+    mascotSrc: arthurScoot,
     mascotAlt: "Arthur en trottinette électrique — assurance EDPM obligatoire",
     speechText: "Sans assurance, vous risquez 3 750 € d'amende et la confiscation. Je vous trouve la meilleure couverture en 2 minutes.",
     insuranceType: "habitation",
