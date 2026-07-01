@@ -328,7 +328,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
     // External landing pages: immediately redirect without going through the lead form
     if (value === 'trottinette') {
       trackEvent('insurance_type_click', { category: 'hero_form', label: 'trottinette', ref: 'external_landing' });
-      navigate('/assurance-trottinette-electrique');
+      navigate('/assurance-trottinette');
       return;
     }
 
