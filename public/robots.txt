@@ -25,6 +25,8 @@ Disallow: /*?*utm_
 # Pages de confirmation / merci
 Disallow: /merci
 Disallow: /merci/
+Disallow: /merci-guide
+Disallow: /merci-guide/
 Disallow: /confirmation
 Disallow: /confirmation/
 Disallow: /thank-you
