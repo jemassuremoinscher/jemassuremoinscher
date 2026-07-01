@@ -11,7 +11,7 @@ const AssuranceTrottinetteElectrique = () => {
     },
     {
       icon: Euro,
-      title: "Dès 3,50 €/mois",
+      title: "Dès 6 €/mois",
       description:
         "Nos courtiers comparent 30+ assureurs pour trouver les formules trottinette les plus compétitives, avec ou sans vol et casse.",
     },
