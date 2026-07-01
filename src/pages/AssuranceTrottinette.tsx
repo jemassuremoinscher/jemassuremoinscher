@@ -28,7 +28,7 @@ const AssuranceTrottinette = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Trottinette Électrique",
     description:
-      "Comparez les meilleures offres d'assurance trottinette électrique (EDPM) en France. Responsabilité civile obligatoire dès 3,50€/mois. Devis gratuit en 2 minutes.",
+      "Comparez les meilleures offres d'assurance trottinette électrique (EDPM) en France. Responsabilité civile obligatoire dès 6€/mois. Devis gratuit en 2 minutes.",
     provider: "jemassuremoinscher.fr",
     areaServed: "France",
   });
