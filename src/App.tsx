@@ -85,6 +85,7 @@ const AssuranceEmprunteurSEO = lazy(() => import("./pages/seo/AssuranceEmprunteu
 const Comparateur = lazy(() => import("./pages/Comparateur"));
 
 const AssuranceAuto = lazy(() => import("./pages/AssuranceAuto"));
+const AssuranceTrottinette = lazy(() => import("./pages/AssuranceTrottinette"));
 const AssuranceSante = lazy(() => import("./pages/AssuranceSante"));
 const AssuranceAnimaux = lazy(() => import("./pages/AssuranceAnimaux"));
 const AssuranceHabitation = lazy(() => import("./pages/AssuranceHabitation"));
