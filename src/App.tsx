@@ -258,6 +258,7 @@ const App = () => {
                 <Route path="/assurance-emprunteur" element={<AssuranceEmprunteurSEO />} />
                 <Route path="/assurance-auto/:department" element={<RegionalInsurancePage />} />
                 <Route path="/assurance-auto" element={<AssuranceAuto />} />
+                <Route path="/assurance-trottinette" element={<AssuranceTrottinette />} />
                 <Route path="/assurance-sante" element={<AssuranceSante />} />
                 <Route path="/assurance-moto" element={<AssuranceMoto />} />
                 <Route path="/assurance-habitation" element={<AssuranceHabitation />} />
