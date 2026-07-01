@@ -1,5 +1,6 @@
 import { Shield, ShieldCheck, ShieldPlus, Heart, HeartPulse, Activity, Home, Building, Castle, Car, Bike, PawPrint, Briefcase, FileText, Wallet, Landmark, Baby, Users, User, Stethoscope, Pill, Eye, Search, Lock, Scale, Umbrella, ChevronRight, TreePine, Mountain, PartyPopper, HardHat, Award, AlertTriangle, Calendar, Building2, Sparkles, KeyRound, Zap, Truck, Hammer, Clock, Globe, Database } from 'lucide-react';
 import mascotBike from '@/assets/mascotte/arthur-bike.png';
+import mascotScoot from '@/assets/mascotte/arthur-scoot.png';
 import mascotCar from '@/assets/mascotte/arthur-car.webp';
 import mascotMoto from '@/assets/mascotte/arthur-moto.webp';
 import mascotHouse from '@/assets/mascotte/arthur-house.webp';
@@ -56,7 +57,7 @@ export const mascotMap: Record<InsuranceType, string> = {
   metiers_atypiques: mascotBusiness,
   gestion_locative: mascotHouse,
   velo: mascotBike,
-  trottinette: mascotBike,
+  trottinette: mascotScoot,
   camping_car: mascotCar,
   sans_permis: mascotCar,
   auto_temporaire: mascotCar,
@@ -462,7 +463,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'comparateur', 'type', 'auto', Car, mascotCar),
         opt(t, 'comparateur', 'type', 'moto', Bike, mascotMoto),
         opt(t, 'comparateur', 'type', 'habitation', Home, mascotHouse),
-        opt(t, 'comparateur', 'type', 'trottinette', Zap, mascotBike),
+        opt(t, 'comparateur', 'type', 'trottinette', Zap, mascotScoot),
         opt(t, 'comparateur', 'type', 'sante', Heart, mascotSick),
         opt(t, 'comparateur', 'type', 'pno', Building, mascotHouse),
         opt(t, 'comparateur', 'type', 'gli', Lock, mascotDetective),
