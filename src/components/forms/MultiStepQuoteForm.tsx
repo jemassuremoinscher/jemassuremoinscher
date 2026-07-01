@@ -102,6 +102,7 @@ const mascotImages: Record<InsuranceType, string> = {
   metiers_atypiques: arthurClimbing,
   gestion_locative: arthurHouse,
   velo: arthurBike,
+  trottinette: arthurBike,
   camping_car: arthurCar,
   sans_permis: arthurCar,
   auto_temporaire: arthurCar,
@@ -327,7 +328,13 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   const handleCardSelect = (field: string, value: string) => {
     // External landing pages: immediately redirect without going through the lead form
     if (value === 'trottinette') {
-      trackEvent('insurance_type_click', { category: 'hero_form', label: 'trottinette', ref: 'external_landing' });
+      trackEvent('hero_trottinette_click', {
+        category: 'hero_form',
+        label: 'trottinette_electrique',
+        destination: '/assurance-trottinette',
+        source_type: insuranceType,
+        ref: 'external_landing',
+      });
       navigate('/assurance-trottinette');
       return;
     }

@@ -37,7 +37,7 @@ export interface FormStep {
   vehicleField?: 'brand' | 'model' | 'year';
 }
 
-export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur' | 'metiers_atypiques' | 'gestion_locative' | 'velo' | 'camping_car' | 'sans_permis' | 'auto_temporaire' | 'flotte' | 'cyber' | 'decennale' | 'protection_juridique' | 'mutuelle_entreprise';
+export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur' | 'metiers_atypiques' | 'gestion_locative' | 'velo' | 'trottinette' | 'camping_car' | 'sans_permis' | 'auto_temporaire' | 'flotte' | 'cyber' | 'decennale' | 'protection_juridique' | 'mutuelle_entreprise';
 
 export const mascotMap: Record<InsuranceType, string> = {
   auto: mascotCar,
@@ -56,6 +56,7 @@ export const mascotMap: Record<InsuranceType, string> = {
   metiers_atypiques: mascotBusiness,
   gestion_locative: mascotHouse,
   velo: mascotBike,
+  trottinette: mascotBike,
   camping_car: mascotCar,
   sans_permis: mascotCar,
   auto_temporaire: mascotCar,
@@ -569,6 +570,29 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
       { id: 'velo_stationnement', type: 'card-select', title: 'Où stationnez-vous votre vélo ?', field: 'parkingType', options: [
         { value: 'garage', label: 'Garage / local fermé', icon: Lock },
         { value: 'local_velo', label: 'Local vélo / cave', icon: Building },
+        { value: 'exterieur', label: 'Rue / extérieur', icon: AlertTriangle },
+      ]},
+      postalCodeStep, searchingStep, contactStep,
+    ],
+    trottinette: [
+      { id: 'trot_usage', type: 'card-select', title: 'Quel est l\'usage de votre trottinette électrique ?', field: 'vehicleUse', options: [
+        { value: 'perso', label: 'Usage personnel / loisirs', description: 'Trajets domicile-travail, balades', icon: Zap },
+        { value: 'quotidien', label: 'Trajets quotidiens intensifs', description: '> 5 000 km/an, usage pro non commercial', icon: Activity },
+        { value: 'livreur', label: 'Livraison (Uber Eats, Deliveroo…)', description: 'Usage commercial : formule pro requise', icon: Truck },
+      ]},
+      { id: 'trot_valeur', type: 'card-select', title: 'Quelle est la valeur de votre trottinette ?', field: 'bikeValue', options: [
+        { value: 'sub_500', label: 'Moins de 500 €', icon: Wallet },
+        { value: '500_1500', label: 'Entre 500 € et 1 500 €', icon: Shield },
+        { value: 'sup_1500', label: 'Plus de 1 500 €', icon: ShieldPlus },
+      ]},
+      { id: 'trot_formule', type: 'card-select', title: 'Quelles garanties recherchez-vous ?', field: 'coverageLevel', options: [
+        { value: 'rc', label: 'Responsabilité civile seule', description: 'Minimum légal obligatoire', icon: Shield },
+        { value: 'rc_vol', label: 'RC + Vol', description: 'Avec antivol homologué', icon: ShieldCheck },
+        { value: 'tous_risques', label: 'Tous risques + Assistance', description: 'RC, vol, casse, dépannage', icon: ShieldPlus },
+      ]},
+      { id: 'trot_stationnement', type: 'card-select', title: 'Où stationnez-vous votre trottinette ?', field: 'parkingType', options: [
+        { value: 'garage', label: 'Garage / local fermé', icon: Lock },
+        { value: 'appartement', label: 'Domicile (appartement/maison)', icon: Building },
         { value: 'exterieur', label: 'Rue / extérieur', icon: AlertTriangle },
       ]},
       postalCodeStep, searchingStep, contactStep,
