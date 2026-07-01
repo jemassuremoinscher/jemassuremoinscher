@@ -117,7 +117,7 @@ const AssuranceTrottinette = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <ArthurHero
-                imageSrc={arthurBike}
+                imageSrc={arthurScoot}
                 imageAlt="Arthur mascotte jemassuremoinscher sur trottinette électrique assurée"
                 title="Assurance trottinette électrique"
                 subtitle="RC obligatoire, vol, casse, assistance. Comparez 10+ assureurs EDPM et souscrivez en ligne dès 2,90€/mois."
