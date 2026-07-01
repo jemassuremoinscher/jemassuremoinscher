@@ -11,7 +11,7 @@ const AssuranceTrottinetteElectrique = () => {
     },
     {
       icon: Euro,
-      title: "Dès 6 €/mois",
+      title: "Dès 2,90 €/mois",
       description:
         "Nos courtiers comparent 30+ assureurs pour trouver les formules trottinette les plus compétitives, avec ou sans vol et casse.",
     },
@@ -32,7 +32,7 @@ const AssuranceTrottinetteElectrique = () => {
     {
       question: "Combien coûte une assurance trottinette électrique ?",
       answer:
-        "Le prix d'une assurance trottinette électrique varie de 6 € à 18 €/mois selon la formule choisie. Une formule de base (responsabilité civile seule) coûte entre 6 et 9 €/mois. Une formule intermédiaire avec protection corporelle du conducteur revient à 9-12 €/mois. Les formules tous risques incluant vol et dommages matériels se situent entre 12 et 18 €/mois (jusqu'à 25 €/mois pour un usage livraison). Un courtier compare ces offres gratuitement pour vous.",
+        "Le prix d'une assurance trottinette électrique varie de 2,90 € à 20 €/mois selon la formule choisie. Une formule de base (responsabilité civile seule) démarre à 2,90 €/mois (33 €/an). Une formule intermédiaire avec protection corporelle du conducteur revient à 5-7 €/mois. Les formules tous risques incluant vol et dommages matériels se situent entre 8 et 12 €/mois (jusqu'à 20 €/mois pour un usage livraison). Un courtier compare ces offres gratuitement pour vous.",
     },
     {
       question: "Que couvre l'assurance responsabilité civile pour une trottinette ?",
@@ -113,9 +113,9 @@ const AssuranceTrottinetteElectrique = () => {
     <h3>Les différentes formules d'assurance trottinette</h3>
     <p>Trois niveaux de couverture existent pour votre trottinette électrique :</p>
     <ul>
-      <li><strong>Formule Essentielle</strong> (6 à 9 €/mois) : responsabilité civile obligatoire uniquement. Idéale pour un usage occasionnel ou un engin de faible valeur (&lt; 500 €).</li>
-      <li><strong>Formule Confort</strong> (9 à 12 €/mois) : RC + individuelle conducteur (vos blessures) + assistance dépannage 24/7. Recommandée pour les trajets quotidiens domicile-travail.</li>
-      <li><strong>Formule Tous Risques</strong> (12 à 18 €/mois) : couverture complète incluant vol, casse, dommages matériels, bris d'équipement et protection juridique. Conseillée pour les trottinettes haut de gamme (Dualtron, Speedway, Apollo > 800 €).</li>
+      <li><strong>Formule Essentielle</strong> (dès 2,90 €/mois — 33 €/an) : responsabilité civile obligatoire uniquement. Idéale pour un usage occasionnel ou un engin de faible valeur (&lt; 500 €).</li>
+      <li><strong>Formule Confort</strong> (5 à 7 €/mois) : RC + individuelle conducteur (vos blessures) + assistance dépannage 24/7. Recommandée pour les trajets quotidiens domicile-travail.</li>
+      <li><strong>Formule Tous Risques</strong> (8 à 12 €/mois) : couverture complète incluant vol, casse, dommages matériels, bris d'équipement et protection juridique. Conseillée pour les trottinettes haut de gamme (Dualtron, Speedway, Apollo > 800 €).</li>
     </ul>
 
     <h3>Les garanties à examiner à la loupe</h3>
@@ -142,12 +142,12 @@ const AssuranceTrottinetteElectrique = () => {
   return (
     <SEOLandingPage
       title="Assurance Trottinette Électrique Obligatoire 2026 | Devis"
-      metaDescription="Assurance trottinette électrique obligatoire en France 2026. Comparez dès 6€/mois. 30+ assureurs. Devis gratuit en 2 min."
+      metaDescription="Assurance trottinette électrique obligatoire en France 2026. Comparez dès 2,90€/mois. 30+ assureurs. Devis gratuit en 2 min."
       keyword="assurance trottinette électrique"
       keywords="assurance obligatoire trottinette électrique france 2026, assurance EDPM, assurance gyroroue, trottinette electrique assurance"
       canonical="https://www.jemassuremoinscher.fr/assurance-trottinette-electrique"
       heroIcon={Zap}
-      heroTitle="Assurance Trottinette Électrique : Obligatoire dès 6 €/mois"
+      heroTitle="Assurance Trottinette Électrique : Obligatoire dès 2,90 €/mois"
       heroSubtitle="L'assurance EDPM est obligatoire en France depuis 2024. Nos courtiers comparent 30+ assureurs pour trouver votre couverture au meilleur prix."
       ctaLabel="Comparer les offres gratuitement"
       ctaLink="/comparateur"
