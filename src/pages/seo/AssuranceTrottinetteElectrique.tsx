@@ -32,7 +32,7 @@ const AssuranceTrottinetteElectrique = () => {
     {
       question: "Combien coûte une assurance trottinette électrique ?",
       answer:
-        "Le prix d'une assurance trottinette électrique varie de 3,50 € à 15 €/mois selon la formule choisie. Une formule de base (responsabilité civile seule) coûte environ 3,50 à 5 €/mois. Une formule intermédiaire avec protection corporelle du conducteur revient à 6-8 €/mois. Les formules tous risques incluant vol et dommages matériels se situent entre 10 et 15 €/mois. Un courtier compare ces offres gratuitement pour vous.",
+        "Le prix d'une assurance trottinette électrique varie de 6 € à 18 €/mois selon la formule choisie. Une formule de base (responsabilité civile seule) coûte entre 6 et 9 €/mois. Une formule intermédiaire avec protection corporelle du conducteur revient à 9-12 €/mois. Les formules tous risques incluant vol et dommages matériels se situent entre 12 et 18 €/mois (jusqu'à 25 €/mois pour un usage livraison). Un courtier compare ces offres gratuitement pour vous.",
     },
     {
       question: "Que couvre l'assurance responsabilité civile pour une trottinette ?",
