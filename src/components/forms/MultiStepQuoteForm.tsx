@@ -325,6 +325,13 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   };
 
   const handleCardSelect = (field: string, value: string) => {
+    // External landing pages: immediately redirect without going through the lead form
+    if (value === 'trottinette') {
+      trackEvent('insurance_type_click', { category: 'hero_form', label: 'trottinette', ref: 'external_landing' });
+      navigate('/assurance-trottinette-electrique');
+      return;
+    }
+
     setFormData(prev => ({ ...prev, [field]: value }));
     trackFunnel('step_complete', {
       stepIndex: currentStep,
