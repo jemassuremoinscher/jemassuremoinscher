@@ -128,6 +128,7 @@ const fr: Record<string, string> = {
   'footer.mrpInsurance': 'Multirisque Pro',
   'footer.gliInsurance': 'Garantie Loyers Impayés',
   'footer.pnoInsurance': 'Assurance PNO',
+  'footer.trottinetteInsurance': 'Assurance Trottinette',
   'footer.resources': 'Ressources',
   'footer.comparator': 'Comparateur',
   'footer.glossary': 'Glossaire Assurance',
