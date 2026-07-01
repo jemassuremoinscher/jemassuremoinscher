@@ -22,7 +22,7 @@ const ReadingProgressBar = () => {
       aria-valuenow={Math.round(progress)}
       aria-valuemin={0}
       aria-valuemax={100}
-      aria-label={t("a11y.reading.progress")}
+      aria-label="Progression de lecture"
     />
   );
 };
