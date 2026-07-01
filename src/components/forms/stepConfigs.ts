@@ -57,7 +57,7 @@ export const mascotMap: Record<InsuranceType, string> = {
   metiers_atypiques: mascotBusiness,
   gestion_locative: mascotHouse,
   velo: mascotBike,
-  trottinette: mascotBike,
+  trottinette: mascotScoot,
   camping_car: mascotCar,
   sans_permis: mascotCar,
   auto_temporaire: mascotCar,
