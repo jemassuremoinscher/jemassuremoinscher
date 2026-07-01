@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useLanguage } from "@/contexts/LanguageContext";
 
 const ReadingProgressBar = () => {
-  const { t } = useLanguage();
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
