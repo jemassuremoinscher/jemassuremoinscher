@@ -170,6 +170,63 @@ const AssuranceTrottinette = () => {
             </div>
           </section>
 
+          {/* Paliers de prix — cohérence page hub / SEO */}
+          <section className="max-w-5xl mx-auto mb-14" aria-labelledby="trottinette-pricing">
+            <h2 id="trottinette-pricing" className="text-2xl md:text-3xl font-bold text-foreground mb-2 text-center">
+              Tarifs assurance trottinette électrique 2026
+            </h2>
+            <p className="text-center text-sm text-muted-foreground mb-8">
+              Prix constatés en France, mis à jour janvier 2026.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4">
+              <Card className="p-6 flex flex-col border-2 border-primary/40 shadow-[0_0_20px_hsl(var(--primary)/0.15)]">
+                <div className="text-xs font-semibold uppercase tracking-wider text-primary mb-1">Essentielle</div>
+                <div className="flex items-baseline gap-1 mb-1">
+                  <span className="text-3xl font-bold text-foreground">2,90€</span>
+                  <span className="text-sm text-muted-foreground">/mois</span>
+                </div>
+                <div className="text-xs text-muted-foreground mb-4">soit 33€/an — prix de base</div>
+                <ul className="text-sm text-muted-foreground space-y-1.5 flex-1">
+                  <li>✓ Responsabilité civile obligatoire</li>
+                  <li>✓ Dommages aux tiers (piétons, véhicules)</li>
+                  <li>✓ Attestation immédiate</li>
+                  <li className="text-muted-foreground/60">— Vol non couvert</li>
+                  <li className="text-muted-foreground/60">— Casse non couverte</li>
+                </ul>
+              </Card>
+              <Card className="p-6 flex flex-col">
+                <div className="text-xs font-semibold uppercase tracking-wider text-primary mb-1">Confort</div>
+                <div className="flex items-baseline gap-1 mb-1">
+                  <span className="text-3xl font-bold text-foreground">5 – 7€</span>
+                  <span className="text-sm text-muted-foreground">/mois</span>
+                </div>
+                <div className="text-xs text-muted-foreground mb-4">soit 60 à 84€/an</div>
+                <ul className="text-sm text-muted-foreground space-y-1.5 flex-1">
+                  <li>✓ Tout l'Essentielle</li>
+                  <li>✓ Individuelle conducteur</li>
+                  <li>✓ Assistance dépannage 24/7</li>
+                  <li>✓ Protection juridique</li>
+                  <li className="text-muted-foreground/60">— Vol non couvert</li>
+                </ul>
+              </Card>
+              <Card className="p-6 flex flex-col">
+                <div className="text-xs font-semibold uppercase tracking-wider text-primary mb-1">Tous risques</div>
+                <div className="flex items-baseline gap-1 mb-1">
+                  <span className="text-3xl font-bold text-foreground">8 – 12€</span>
+                  <span className="text-sm text-muted-foreground">/mois</span>
+                </div>
+                <div className="text-xs text-muted-foreground mb-4">soit 96 à 144€/an — jusqu'à 20€ pour livreurs</div>
+                <ul className="text-sm text-muted-foreground space-y-1.5 flex-1">
+                  <li>✓ Tout le Confort</li>
+                  <li>✓ Vol (antivol homologué)</li>
+                  <li>✓ Casse accidentelle</li>
+                  <li>✓ Vandalisme & bris</li>
+                  <li>✓ Couverture Europe</li>
+                </ul>
+              </Card>
+            </div>
+          </section>
+
           <div ref={formRef} className="mb-16 min-h-[480px]">
             <MultiStepQuoteForm insuranceType="trottinette" />
           </div>
