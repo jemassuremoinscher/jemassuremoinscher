@@ -2548,6 +2548,8 @@ const fr: Record<string, string> = {
   "step.comparateur.type.opt.habitation.description": "Maison ou appartement",
   "step.comparateur.type.opt.sante.label": "Santé",
   "step.comparateur.type.opt.sante.description": "Mutuelle et complémentaire",
+  "step.comparateur.type.opt.trottinette.label": "Trottinette Électrique",
+  "step.comparateur.type.opt.trottinette.description": "EDPM et gyroroue",
   "step.comparateur.type.opt.pno.label": "PNO",
   "step.comparateur.type.opt.pno.description": "Propriétaire non occupant",
   "step.comparateur.type.opt.gli.label": "GLI",
