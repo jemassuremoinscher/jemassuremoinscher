@@ -38,6 +38,7 @@ import arthurExcited from '@/assets/mascotte/arthur-excited.webp';
 import arthurRunningCoin from '@/assets/mascotte/arthur-running-coin.webp';
 import arthurClimbing from '@/assets/mascotte/arthur-climbing.webp';
 import arthurBike from '@/assets/mascotte/arthur-bike.png';
+import arthurScoot from '@/assets/mascotte/arthur-scoot.png';
 
 // Logo imports for teaser prices
 import logoDirectAssurance from '@/assets/logos/direct-assurance-new.webp';
