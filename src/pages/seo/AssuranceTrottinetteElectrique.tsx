@@ -113,9 +113,9 @@ const AssuranceTrottinetteElectrique = () => {
     <h3>Les différentes formules d'assurance trottinette</h3>
     <p>Trois niveaux de couverture existent pour votre trottinette électrique :</p>
     <ul>
-      <li><strong>Formule Essentielle</strong> (6 à 9 €/mois) : responsabilité civile obligatoire uniquement. Idéale pour un usage occasionnel ou un engin de faible valeur (&lt; 500 €).</li>
-      <li><strong>Formule Confort</strong> (9 à 12 €/mois) : RC + individuelle conducteur (vos blessures) + assistance dépannage 24/7. Recommandée pour les trajets quotidiens domicile-travail.</li>
-      <li><strong>Formule Tous Risques</strong> (12 à 18 €/mois) : couverture complète incluant vol, casse, dommages matériels, bris d'équipement et protection juridique. Conseillée pour les trottinettes haut de gamme (Dualtron, Speedway, Apollo > 800 €).</li>
+      <li><strong>Formule Essentielle</strong> (dès 2,90 €/mois — 33 €/an) : responsabilité civile obligatoire uniquement. Idéale pour un usage occasionnel ou un engin de faible valeur (&lt; 500 €).</li>
+      <li><strong>Formule Confort</strong> (5 à 7 €/mois) : RC + individuelle conducteur (vos blessures) + assistance dépannage 24/7. Recommandée pour les trajets quotidiens domicile-travail.</li>
+      <li><strong>Formule Tous Risques</strong> (8 à 12 €/mois) : couverture complète incluant vol, casse, dommages matériels, bris d'équipement et protection juridique. Conseillée pour les trottinettes haut de gamme (Dualtron, Speedway, Apollo > 800 €).</li>
     </ul>
 
     <h3>Les garanties à examiner à la loupe</h3>
