@@ -28,7 +28,7 @@ const AssuranceTrottinette = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Trottinette Électrique",
     description:
-      "Comparez les meilleures offres d'assurance trottinette électrique (EDPM) en France. Responsabilité civile obligatoire dès 6€/mois. Devis gratuit en 2 minutes.",
+      "Comparez les meilleures offres d'assurance trottinette électrique (EDPM) en France. Responsabilité civile obligatoire dès 2,90€/mois. Devis gratuit en 2 minutes.",
     provider: "jemassuremoinscher.fr",
     areaServed: "France",
   });
@@ -84,13 +84,13 @@ const AssuranceTrottinette = () => {
 
   const insuranceProductSchema = addInsuranceProductSchema({
     name: "Assurance Trottinette Électrique",
-    description: "Comparateur d'assurance trottinette électrique (EDPM). RC obligatoire dès 6€/mois, vol, casse, assistance jusqu'à 18€/mois.",
+    description: "Comparateur d'assurance trottinette électrique (EDPM). RC obligatoire dès 2,90€/mois, vol, casse, assistance jusqu'à 18€/mois.",
     category: "Assurance Mobilité",
     url: "https://www.jemassuremoinscher.fr/assurance-trottinette",
   });
 
   const advantages = [
-    { icon: Euro, title: "Dès 6€/mois", description: "Responsabilité civile obligatoire à partir de 6€/mois." },
+    { icon: Euro, title: "Dès 2,90€/mois", description: "Responsabilité civile obligatoire à partir de 2,90€/mois (33€/an)." },
     { icon: Clock, title: "Devis en 2 minutes", description: "Comparez et souscrivez en ligne, sans engagement." },
     { icon: Shield, title: "10+ assureurs EDPM", description: "Les spécialistes de la trottinette électrique comparés." },
   ];
@@ -98,14 +98,14 @@ const AssuranceTrottinette = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance Trottinette Électrique 2026 : Comparateur EDPM dès 6€/mois"
+        title="Assurance Trottinette Électrique 2026 : Comparateur EDPM dès 2,90€/mois"
         description="Comparez les meilleures assurances trottinette électrique (EDPM). Responsabilité civile obligatoire, vol, casse, assistance. Devis gratuit en 2 minutes."
         keyword="assurance trottinette électrique"
         keywords="assurance trottinette électrique, assurance EDPM, RC trottinette, vol trottinette, comparateur assurance trottinette"
         canonical="https://www.jemassuremoinscher.fr/assurance-trottinette"
         ogTitle="Assurance Trottinette Électrique 2026 : Comparez 10+ assureurs EDPM"
-        ogDescription="RC obligatoire dès 6€/mois. Vol, casse, assistance jusqu'à 18€/mois. Devis gratuit en 2 minutes."
-        twitterDescription="Comparez les assurances trottinette électrique en 2 minutes. RC dès 6€/mois. Gratuit et sans engagement."
+        ogDescription="RC obligatoire dès 2,90€/mois. Vol, casse, assistance jusqu'à 18€/mois. Devis gratuit en 2 minutes."
+        twitterDescription="Comparez les assurances trottinette électrique en 2 minutes. RC dès 2,90€/mois. Gratuit et sans engagement."
         jsonLd={[serviceSchema, howToSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
@@ -120,7 +120,7 @@ const AssuranceTrottinette = () => {
                 imageSrc={arthurBike}
                 imageAlt="Arthur mascotte jemassuremoinscher sur trottinette électrique assurée"
                 title="Assurance trottinette électrique"
-                subtitle="RC obligatoire, vol, casse, assistance. Comparez 10+ assureurs EDPM et souscrivez en ligne dès 6€/mois."
+                subtitle="RC obligatoire, vol, casse, assistance. Comparez 10+ assureurs EDPM et souscrivez en ligne dès 2,90€/mois."
                 ctaLabel="Comparer maintenant"
                 onCtaClick={scrollToForm}
               />
@@ -130,7 +130,7 @@ const AssuranceTrottinette = () => {
 
         <div
           className="container mx-auto px-4 py-12"
-          data-ai-description="Comparateur d'assurance trottinette électrique — jemassuremoinscher.fr compare 10+ assureurs EDPM, RC obligatoire dès 6€/mois, devis gratuit en moins de 2 minutes"
+          data-ai-description="Comparateur d'assurance trottinette électrique — jemassuremoinscher.fr compare 10+ assureurs EDPM, RC obligatoire dès 2,90€/mois, devis gratuit en moins de 2 minutes"
         >
           <DynamicUpdateDate />
 

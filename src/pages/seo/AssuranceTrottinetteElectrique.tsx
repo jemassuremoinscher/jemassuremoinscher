@@ -11,7 +11,7 @@ const AssuranceTrottinetteElectrique = () => {
     },
     {
       icon: Euro,
-      title: "Dès 6 €/mois",
+      title: "Dès 2,90 €/mois",
       description:
         "Nos courtiers comparent 30+ assureurs pour trouver les formules trottinette les plus compétitives, avec ou sans vol et casse.",
     },
@@ -142,12 +142,12 @@ const AssuranceTrottinetteElectrique = () => {
   return (
     <SEOLandingPage
       title="Assurance Trottinette Électrique Obligatoire 2026 | Devis"
-      metaDescription="Assurance trottinette électrique obligatoire en France 2026. Comparez dès 6€/mois. 30+ assureurs. Devis gratuit en 2 min."
+      metaDescription="Assurance trottinette électrique obligatoire en France 2026. Comparez dès 2,90€/mois. 30+ assureurs. Devis gratuit en 2 min."
       keyword="assurance trottinette électrique"
       keywords="assurance obligatoire trottinette électrique france 2026, assurance EDPM, assurance gyroroue, trottinette electrique assurance"
       canonical="https://www.jemassuremoinscher.fr/assurance-trottinette-electrique"
       heroIcon={Zap}
-      heroTitle="Assurance Trottinette Électrique : Obligatoire dès 6 €/mois"
+      heroTitle="Assurance Trottinette Électrique : Obligatoire dès 2,90 €/mois"
       heroSubtitle="L'assurance EDPM est obligatoire en France depuis 2024. Nos courtiers comparent 30+ assureurs pour trouver votre couverture au meilleur prix."
       ctaLabel="Comparer les offres gratuitement"
       ctaLink="/comparateur"
