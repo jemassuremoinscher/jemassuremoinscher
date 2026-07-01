@@ -102,6 +102,7 @@ const mascotImages: Record<InsuranceType, string> = {
   metiers_atypiques: arthurClimbing,
   gestion_locative: arthurHouse,
   velo: arthurBike,
+  trottinette: arthurBike,
   camping_car: arthurCar,
   sans_permis: arthurCar,
   auto_temporaire: arthurCar,
