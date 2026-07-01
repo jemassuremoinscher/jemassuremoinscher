@@ -66,7 +66,7 @@ const AssuranceTrottinette = () => {
     {
       question: "Combien coûte une assurance trottinette électrique ?",
       answer:
-        "À partir de 3,50€/mois pour une responsabilité civile seule, et entre 8€ et 20€/mois pour une formule complète avec vol, dommages et assistance. Le prix dépend de la valeur de la trottinette et de la zone d'usage.",
+        "Entre 6€ et 9€/mois pour une responsabilité civile seule, et entre 12€ et 18€/mois pour une formule complète avec vol, dommages et assistance (jusqu'à 25€/mois pour un usage livraison). Le prix dépend de la valeur de la trottinette, de la zone d'usage et du niveau de garanties.",
     },
     {
       question: "Que couvre une assurance trottinette électrique ?",
@@ -84,7 +84,7 @@ const AssuranceTrottinette = () => {
 
   const insuranceProductSchema = addInsuranceProductSchema({
     name: "Assurance Trottinette Électrique",
-    description: "Comparateur d'assurance trottinette électrique (EDPM). RC obligatoire, vol, casse, assistance dès 3,50€/mois.",
+    description: "Comparateur d'assurance trottinette électrique (EDPM). RC obligatoire dès 6€/mois, vol, casse, assistance jusqu'à 18€/mois.",
     category: "Assurance Mobilité",
     url: "https://www.jemassuremoinscher.fr/assurance-trottinette",
   });
