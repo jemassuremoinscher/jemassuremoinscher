@@ -69,6 +69,7 @@ const Header = () => {
     { to: "/assurance-sans-permis", label: "Voiture sans permis", icon: Car },
     { to: "/assurance-camping-car", label: "Camping-car & van", icon: Car },
     { to: "/assurance-velo", label: "Vélo & VAE", icon: Bike },
+    { to: "/assurance-trottinette", label: "Trottinette électrique", icon: Bike },
     { to: "/assurance-auto-temporaire", label: "Auto temporaire", icon: Car },
     { to: "/assurance-protection-juridique", label: "Protection juridique", icon: FileText }
   ];
