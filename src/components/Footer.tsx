@@ -23,6 +23,7 @@ const Footer = () => {
   const insuranceLinks = [
     { to: "/assurance-auto", label: t('footer.autoInsurance') },
     { to: "/assurance-moto", label: t('footer.motoInsurance') },
+    { to: "/assurance-trottinette", label: t('footer.trottinetteInsurance') },
     { to: "/assurance-habitation", label: t('footer.homeInsurance') },
     { to: "/assurance-sante", label: t('footer.healthInsurance') },
     { to: "/assurance-animaux", label: t('footer.petInsurance') },

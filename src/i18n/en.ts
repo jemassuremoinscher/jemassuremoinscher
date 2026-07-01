@@ -128,6 +128,7 @@ const en: Record<string, string> = {
   'footer.mrpInsurance': 'Business Multi-Risk',
   'footer.gliInsurance': 'Rent Guarantee',
   'footer.pnoInsurance': 'Non-Occupant Owner',
+  'footer.trottinetteInsurance': 'Scooter Insurance',
   'footer.resources': 'Resources',
   'footer.comparator': 'Comparator',
   'footer.glossary': 'Insurance Glossary',
