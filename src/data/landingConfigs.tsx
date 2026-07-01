@@ -1561,7 +1561,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     heroTitle: "Assurance",
     heroHighlight: "Trottinette électrique",
     heroSubtitle: <><strong>Obligatoire depuis 2019.</strong> RC, vol, casse, individuelle accident. Trottinette, gyroroue, hoverboard, monoroue : tous EDPM couverts dès 3,50€/mois.</>,
-    mascotSrc: arthurBike,
+    mascotSrc: arthurScoot,
     mascotAlt: "Arthur en trottinette électrique — assurance EDPM obligatoire",
     speechText: "Sans assurance, vous risquez 3 750 € d'amende et la confiscation. Je vous trouve la meilleure couverture en 2 minutes.",
     insuranceType: "habitation",
