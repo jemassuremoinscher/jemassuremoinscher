@@ -90,7 +90,7 @@ const AssuranceTrottinette = () => {
   });
 
   const advantages = [
-    { icon: Euro, title: "Dès 3,50€/mois", description: "Responsabilité civile obligatoire au meilleur prix." },
+    { icon: Euro, title: "Dès 6€/mois", description: "Responsabilité civile obligatoire à partir de 6€/mois." },
     { icon: Clock, title: "Devis en 2 minutes", description: "Comparez et souscrivez en ligne, sans engagement." },
     { icon: Shield, title: "10+ assureurs EDPM", description: "Les spécialistes de la trottinette électrique comparés." },
   ];
