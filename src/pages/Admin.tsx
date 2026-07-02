@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, UserCog, TrendingUp, Sparkles, Search, Bell, BellOff, Share2, ShieldCheck, FileText, Settings, ChevronDown, Wallet } from 'lucide-react';
+import { LogOut, RefreshCw, LayoutDashboard, Trash2, Target, Users, UserCog, TrendingUp, Sparkles, Search, Bell, BellOff, Share2, ShieldCheck, FileText, Settings, ChevronDown, Wallet, Mail } from 'lucide-react';
+import { SubscribersTable } from '@/components/admin/SubscribersTable';
 import { ManualLeadForm } from '@/components/admin/ManualLeadForm';
 import arthurWaving from '@/assets/mascotte/arthur-waving.png';
 import { supabase } from '@/integrations/supabase/client';
@@ -220,6 +221,7 @@ const Admin = () => {
       label: 'Marketing',
       tabs: [
         { value: 'analytics', label: 'Analytics', icon: TrendingUp },
+        { value: 'subscribers', label: 'Abonnés', icon: Mail },
         { value: 'seo', label: 'SEO', icon: Sparkles },
         { value: 'geo', label: 'GEO', icon: ShieldCheck },
         { value: 'articles', label: 'Contenu', icon: FileText },
@@ -396,6 +398,10 @@ const Admin = () => {
             <FunnelAnalytics />
             <GoogleAnalyticsDashboard />
             <MicrosoftClarityWidget />
+          </TabsContent>
+
+          <TabsContent value="subscribers">
+            <SubscribersTable />
           </TabsContent>
 
           <TabsContent value="seo">

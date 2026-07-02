@@ -77,7 +77,8 @@ serve(async (req) => {
       const { error } = await supabase.from("newsletter_subscribers").insert({
         email: normalized,
         status: "pending",
-      });
+        source: cleanSource || "lead_magnet_guide",
+      } as any);
       if (error) {
         console.error("lead-magnet insert error", error);
       }
