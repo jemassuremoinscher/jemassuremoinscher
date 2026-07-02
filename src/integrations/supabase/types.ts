@@ -712,6 +712,7 @@ export type Database = {
           created_at: string | null
           email: string
           id: string
+          source: string
           status: string
           subscribed_at: string | null
           unsubscribed_at: string | null
@@ -723,6 +724,7 @@ export type Database = {
           created_at?: string | null
           email: string
           id?: string
+          source?: string
           status?: string
           subscribed_at?: string | null
           unsubscribed_at?: string | null
@@ -734,6 +736,7 @@ export type Database = {
           created_at?: string | null
           email?: string
           id?: string
+          source?: string
           status?: string
           subscribed_at?: string | null
           unsubscribed_at?: string | null
