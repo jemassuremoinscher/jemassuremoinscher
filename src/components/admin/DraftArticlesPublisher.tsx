@@ -474,11 +474,18 @@ export const DraftArticlesPublisher = () => {
                           )
                         )}
                         {article.source === "seo" && (
-                          <Button asChild variant="outline" size="sm">
-                            <Link to={`/blog/${article.slug}`} target="_blank" rel="noopener">
-                              <Globe className="h-3 w-3 mr-1" /> Voir en ligne
-                            </Link>
-                          </Button>
+                          isSeoDraft ? (
+                            <Button size="sm" onClick={() => approveSeoDraft(article)} disabled={isBusy}>
+                              {isBusy ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <CheckCircle2 className="h-3 w-3 mr-1" />}
+                              Approuver & publier
+                            </Button>
+                          ) : (
+                            <Button asChild variant="outline" size="sm">
+                              <Link to={`/blog/${article.slug}`} target="_blank" rel="noopener">
+                                <Globe className="h-3 w-3 mr-1" /> Voir en ligne
+                              </Link>
+                            </Button>
+                          )
                         )}
                         <Button
                           size="sm"
