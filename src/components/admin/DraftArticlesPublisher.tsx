@@ -325,7 +325,8 @@ export const DraftArticlesPublisher = () => {
         ) : (
           (() => {
             const renderCard = (article: CombinedArticle) => {
-              const isPublishedSite = article.source === "seo" ? true : publishedSlugSet.has(article.slug);
+              const isSeoDraft = article.source === "seo" && article.seoStatus !== "approved";
+              const isPublishedSite = article.source === "seo" ? !isSeoDraft : publishedSlugSet.has(article.slug);
               const isBusy = busy === article.slug;
               const post = postBySlug.get(article.slug);
               const isPublishedSocial = post?.status === "posted";
