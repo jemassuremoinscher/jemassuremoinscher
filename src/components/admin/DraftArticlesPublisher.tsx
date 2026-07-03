@@ -172,6 +172,20 @@ export const DraftArticlesPublisher = () => {
     setBusy(null);
   };
 
+  // Approve a SEO draft (AI-generated) → publish it live
+  const approveSeoDraft = async (article: CombinedArticle) => {
+    if (!article.seoId) return;
+    setBusy(article.slug);
+    const { error } = await supabase
+      .from("seo_article_suggestions")
+      .update({ status: "approved", published_at: new Date().toISOString() } as any)
+      .eq("id", article.seoId);
+    if (error) toast.error("Erreur : " + error.message);
+    else toast.success(`"${article.title}" est en ligne 🎉`);
+    await fetchAll();
+    setBusy(null);
+  };
+
   // ----- Global short description -----
   const startEditGlobal = (article: CombinedArticle) => {
     const current = article.source === "seo"
