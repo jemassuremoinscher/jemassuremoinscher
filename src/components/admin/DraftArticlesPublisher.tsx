@@ -82,7 +82,7 @@ export const DraftArticlesPublisher = () => {
       supabase
         .from("seo_article_suggestions")
         .select("*")
-        .eq("status", "approved")
+        .in("status", ["approved", "draft", "pending"])
         .order("published_at", { ascending: false, nullsFirst: false }),
       supabase.from("linkedin_auto_posts").select("*"),
     ]);
