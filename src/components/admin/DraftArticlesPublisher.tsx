@@ -41,6 +41,7 @@ type CombinedArticle = {
   defaultShort: string;
   seoId?: string;
   seoShort?: string | null;
+  seoStatus?: "draft" | "pending" | "approved";
 };
 
 const buildShortFromTitle = (title: string) => {
@@ -81,7 +82,7 @@ export const DraftArticlesPublisher = () => {
       supabase
         .from("seo_article_suggestions")
         .select("*")
-        .eq("status", "approved")
+        .in("status", ["approved", "draft", "pending"])
         .order("published_at", { ascending: false, nullsFirst: false }),
       supabase.from("linkedin_auto_posts").select("*"),
     ]);
@@ -139,12 +140,13 @@ export const DraftArticlesPublisher = () => {
         slug: s.slug,
         title: s.title,
         description: s.suggested_meta_description || undefined,
-        category: "SEO",
+        category: s.status === "approved" ? "SEO" : "SEO — Brouillon IA",
         author: s.suggested_author || undefined,
         image: s.image_url || null,
         defaultShort: s.short_description || buildShortFromTitle(s.title),
         seoId: s.id,
         seoShort: s.short_description,
+        seoStatus: s.status,
       })),
     [seoApproved],
   );
@@ -166,6 +168,20 @@ export const DraftArticlesPublisher = () => {
     const { error } = await supabase.from("published_drafts").delete().eq("slug", slug);
     if (error) toast.error("Erreur : " + error.message);
     else toast.info(`"${title}" est repassé en brouillon`);
+    await fetchAll();
+    setBusy(null);
+  };
+
+  // Approve a SEO draft (AI-generated) → publish it live
+  const approveSeoDraft = async (article: CombinedArticle) => {
+    if (!article.seoId) return;
+    setBusy(article.slug);
+    const { error } = await supabase
+      .from("seo_article_suggestions")
+      .update({ status: "approved", published_at: new Date().toISOString() } as any)
+      .eq("id", article.seoId);
+    if (error) toast.error("Erreur : " + error.message);
+    else toast.success(`"${article.title}" est en ligne 🎉`);
     await fetchAll();
     setBusy(null);
   };
@@ -323,7 +339,8 @@ export const DraftArticlesPublisher = () => {
         ) : (
           (() => {
             const renderCard = (article: CombinedArticle) => {
-              const isPublishedSite = article.source === "seo" ? true : publishedSlugSet.has(article.slug);
+              const isSeoDraft = article.source === "seo" && article.seoStatus !== "approved";
+              const isPublishedSite = article.source === "seo" ? !isSeoDraft : publishedSlugSet.has(article.slug);
               const isBusy = busy === article.slug;
               const post = postBySlug.get(article.slug);
               const isPublishedSocial = post?.status === "posted";
@@ -457,11 +474,18 @@ export const DraftArticlesPublisher = () => {
                           )
                         )}
                         {article.source === "seo" && (
-                          <Button asChild variant="outline" size="sm">
-                            <Link to={`/blog/${article.slug}`} target="_blank" rel="noopener">
-                              <Globe className="h-3 w-3 mr-1" /> Voir en ligne
-                            </Link>
-                          </Button>
+                          isSeoDraft ? (
+                            <Button size="sm" onClick={() => approveSeoDraft(article)} disabled={isBusy}>
+                              {isBusy ? <Loader2 className="h-3 w-3 mr-1 animate-spin" /> : <CheckCircle2 className="h-3 w-3 mr-1" />}
+                              Approuver & publier
+                            </Button>
+                          ) : (
+                            <Button asChild variant="outline" size="sm">
+                              <Link to={`/blog/${article.slug}`} target="_blank" rel="noopener">
+                                <Globe className="h-3 w-3 mr-1" /> Voir en ligne
+                              </Link>
+                            </Button>
+                          )
                         )}
                         <Button
                           size="sm"
