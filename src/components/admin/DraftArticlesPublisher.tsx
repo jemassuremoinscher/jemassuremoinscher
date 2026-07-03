@@ -41,6 +41,7 @@ type CombinedArticle = {
   defaultShort: string;
   seoId?: string;
   seoShort?: string | null;
+  seoStatus?: "draft" | "pending" | "approved";
 };
 
 const buildShortFromTitle = (title: string) => {
