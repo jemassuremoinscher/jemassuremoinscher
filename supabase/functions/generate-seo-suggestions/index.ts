@@ -685,7 +685,7 @@ Article complet en markdown
         }
 
         const quality = computeQualityScore(article);
-        const autoApprove = quality.score >= 75;
+        const autoApprove = quality.score >= 60;
         console.log(`Quality "${keyword}" = ${quality.score}/100 [${quality.details.join(" ")}] → ${autoApprove ? "approved" : "draft"}`);
 
         const slug = await buildUniqueSlug(supabase, article.title || keyword);
@@ -699,7 +699,8 @@ Article complet en markdown
           suggested_content: article.content,
           suggested_meta_description: article.meta_description,
           short_description: article.short_description,
-          published_at: getPlannedPublishDate(opportunityIndex),
+          // Auto-approved → published immediately; drafts → planned slot for later manual review
+          published_at: autoApprove ? new Date().toISOString() : getPlannedPublishDate(opportunityIndex),
           suggested_author: article.author,
           status: autoApprove ? "approved" : "draft",
         });
