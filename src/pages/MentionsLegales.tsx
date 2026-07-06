@@ -39,6 +39,26 @@ const MentionsLegales = () => {
                 </CardContent>
               </Card>
 
+              <Card>
+                <CardHeader>
+                  <CardTitle>{t('mentionsLegales.directeur')}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <p><strong>{t('mentionsLegales.directeur')}</strong> {t('mentionsLegales.directeurNom')}</p>
+                  <p><strong>{t('mentionsLegales.directeurFonction')}</strong></p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>{t('mentionsLegales.hebergeur')}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                  <p><strong>{t('mentionsLegales.hebergeur')}</strong> {t('mentionsLegales.hebergeurVal')}</p>
+                  <p><strong>{t('mentionsLegales.hebergeurAdresse')}</strong> {t('mentionsLegales.hebergeurAdresseVal')}</p>
+                </CardContent>
+              </Card>
+
 
               <Card>
                 <CardHeader>
