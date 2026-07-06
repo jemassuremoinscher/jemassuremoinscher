@@ -221,12 +221,15 @@ const Footer = () => {
               <div>
                 <h3 className="font-bold text-foreground text-lg mb-2">Éditeur du site</h3>
                 <ul className="list-disc pl-5 space-y-1">
-                  <li><strong>Raison sociale :</strong> Jemassuremoinscher.fr</li>
-                  <li><strong>Forme juridique :</strong> SAS au capital de 10 000€</li>
-                          <CrossSiteLinks />
+                  <li><strong>Raison sociale :</strong> ARPV (jemassuremoinscher.fr)</li>
+                  <li><strong>Forme juridique :</strong> SAS au capital de 10 000 €</li>
                   <li><strong>Siège social :</strong> 2, rue d'Angleterre 06000 Nice</li>
+                  <li><strong>SIRET :</strong> 105 387 278 00010</li>
+                  <li><strong>RCS :</strong> RCS Nice 105 387 278</li>
+                  <li><strong>TVA intracommunautaire :</strong> FR46105387278</li>
                   <li><strong>Email :</strong> contact@jemassuremoinscher.fr</li>
                 </ul>
+                <CrossSiteLinks />
               </div>
               <div>
                 <h3 className="font-bold text-foreground text-lg mb-2">Propriété intellectuelle</h3>

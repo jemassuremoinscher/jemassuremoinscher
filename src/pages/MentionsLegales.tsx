@@ -27,12 +27,13 @@ const MentionsLegales = () => {
                   <CardTitle>{t('mentionsLegales.editeur')}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <p><strong>{t('mentionsLegales.raisonSociale')}</strong> jemassuremoinscher.fr</p>
+                  <p><strong>{t('mentionsLegales.raisonSociale')}</strong> ARPV (jemassuremoinscher.fr)</p>
                   <p><strong>{t('mentionsLegales.formeJuridique')}</strong> {t('mentionsLegales.formeJuridiqueVal')}</p>
                   <p><strong>{t('mentionsLegales.capital')}</strong> 10 000 €</p>
                   <p><strong>{t('mentionsLegales.siege')}</strong> 2, rue d'Angleterre 06000 Nice</p>
                   <p><strong>{t('mentionsLegales.rcs')}</strong> {t('mentionsLegales.rcsVal')}</p>
                   <p><strong>{t('mentionsLegales.siret')}</strong> {t('mentionsLegales.siretVal')}</p>
+                  <p><strong>{t('mentionsLegales.tva')}</strong> {t('mentionsLegales.tvaVal')}</p>
                   <p><strong>{t('mentionsLegales.email')}</strong> contact@jemassuremoinscher.fr</p>
                   <p><strong>{t('mentionsLegales.telephone')}</strong> 04 93 88 16 84</p>
                 </CardContent>
