@@ -5,10 +5,20 @@ export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "jemassuremoinscher.fr",
+    "legalName": "ARPV",
     "url": "https://www.jemassuremoinscher.fr",
     "logo": "https://www.jemassuremoinscher.fr/logo.png",
     "description": "Comparateur d'assurances pas chères en ligne. Trouvez une assurance pas chère, comparez 70 assureurs, changez d'assurance facilement. Alternative à LesFurets.",
-    "alternateName": ["jemassuremoinscher.fr", "je m'assure moins cher", "comparateur assurance pas chère"],
+    "alternateName": ["jemassuremoinscher.fr", "je m'assure moins cher", "comparateur assurance pas chère", "ARPV"],
+    "taxID": "10538727800010",
+    "vatID": "FR46105387278",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "2, rue d'Angleterre",
+      "postalCode": "06000",
+      "addressLocality": "Nice",
+      "addressCountry": "FR"
+    },
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+33-6-86-12-28-20",
