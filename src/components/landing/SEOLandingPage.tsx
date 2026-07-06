@@ -130,6 +130,7 @@ const SEOLandingPage = ({
         keyword={keyword}
         keywords={keywords}
         canonical={canonical}
+        noindex        
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />
