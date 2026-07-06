@@ -158,7 +158,7 @@ const patchHtmlSeo = (html, relativePath) => {
 
   if (!title || !description || !heading) return html;
 
-  let updated = html.replace(/<noscript>([\s\S]*?)<\/noscript>/i, (match) => match.replace(/<h1>([^<]+)<\/h1>/i, "<h2>$1</h2>"));
+let updated = html.replace(/<noscript>[\s\S]*?<\/noscript>/i, "")
   updated = updated.replace(/(<div id="root">[\s\S]*?<main class="seo-shell">\s*)<h2>([^<]+)<\/h2>/i, "$1<h1>$2</h1>");
 
   if (!/<meta[^>]+property=["']og:title["']/i.test(updated)) {
