@@ -56,12 +56,23 @@
 
 <style>
   @font-face{ font-family:'Inter'; src:url('https://www.jemassuremoinscher.fr/fonts/inter-latin.woff2') format('woff2'); font-weight:100 900; font-display:swap; }
-  :root{ --violet:#9234EA; --violet2:#7a1fd0; --bg:#F9FAFB; --texte:#252B37; --muted:#5A6674; --bord:#E5E7EB; --radius:24px; --shadow:0 3px 6px rgba(0,0,0,.16); }
+  :root{
+    --violet:#9234EA; --violet2:#7a1fd0; --bg:#F9FAFB; --texte:#252B37; --muted:#5A6674; --bord:#E5E7EB;
+    --radius:2rem; --radius-sm:1rem;
+    --elevation-1:0 1px 3px rgba(0,0,0,.12);
+    --elevation-2:0 3px 6px rgba(0,0,0,.16);
+    --elevation-3:0 5px 12px rgba(0,0,0,.20);
+    --md-emphasized:cubic-bezier(0.2,0,0,1);
+    --md-duration:250ms;
+  }
   *{ box-sizing:border-box; }
-  body{ font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; color:var(--texte); line-height:1.65; margin:0; background:var(--bg); }
+  body{ font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif; color:var(--texte); line-height:1.65; margin:0; background:var(--bg); -webkit-font-smoothing:antialiased; }
   .wrap{ max-width:820px; margin:0 auto; padding:32px 20px 64px; }
-  header.hero{ background:linear-gradient(to bottom right,var(--violet),rgba(146,52,234,.92)); color:#fff; padding:52px 20px; }
-  header.hero .inner{ max-width:820px; margin:0 auto; }
+  header.hero{ background:linear-gradient(135deg,var(--violet),var(--violet2)); color:#fff; padding:56px 20px; border-radius:0 0 var(--radius) var(--radius); }
+  header.hero .inner{ max-width:820px; margin:0 auto; display:flex; align-items:center; gap:28px; }
+  header.hero .text{ flex:1; min-width:0; }
+  header.hero .mascot{ flex:0 0 auto; width:120px; height:120px; border-radius:50%; background:rgba(255,255,255,.15); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; box-shadow:var(--elevation-3); border:2px solid rgba(255,255,255,.25); }
+  header.hero .mascot img{ width:104px; height:104px; object-fit:contain; display:block; }
   .kicker{ text-transform:uppercase; letter-spacing:.08em; font-size:.78rem; font-weight:700; opacity:.9; margin:0 0 12px; }
   h1{ font-family:'Inter',sans-serif; font-weight:900; font-size:2.1rem; line-height:1.15; margin:0 0 14px; letter-spacing:-.01em; }
   .lede{ font-size:1.08rem; opacity:.96; margin:0; max-width:680px; }
@@ -71,29 +82,45 @@
   p{ margin:12px 0; }
   sup a{ color:var(--violet); text-decoration:none; font-weight:700; }
   .kpis{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:28px 0; }
-  .kpi{ background:#fff; border:1px solid var(--bord); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow); }
+  .kpi{ background:#fff; border:1px solid var(--bord); border-radius:var(--radius); padding:22px; box-shadow:var(--elevation-2); transition:box-shadow var(--md-duration) var(--md-emphasized), transform var(--md-duration) var(--md-emphasized); }
+  .kpi:hover{ transform:translateY(-2px); box-shadow:var(--elevation-3); }
   .kpi .n{ font-weight:900; font-size:1.8rem; color:var(--violet); line-height:1.1; }
   .kpi .l{ font-size:.82rem; color:var(--muted); margin-top:6px; }
   .kpi .d{ font-size:.78rem; margin-top:8px; }
   .up{ color:#c0392b; font-weight:700; } .down{ color:#1e8449; font-weight:700; }
-  table{ width:100%; border-collapse:collapse; margin:18px 0; font-size:.92rem; background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
+  table{ width:100%; border-collapse:collapse; margin:18px 0; font-size:.92rem; background:#fff; border-radius:var(--radius); overflow:hidden; box-shadow:var(--elevation-2); }
   th,td{ text-align:left; padding:12px 14px; border-bottom:1px solid var(--bord); }
   th{ background:#faf5ff; color:var(--violet); font-weight:700; }
-  .method{ background:#fff; border-left:4px solid var(--violet); border-radius:12px; padding:16px 18px; font-size:.9rem; color:var(--muted); margin:22px 0; box-shadow:var(--shadow); }
+  .method{ background:#fff; border-left:4px solid var(--violet); border-radius:var(--radius-sm); padding:16px 18px; font-size:.9rem; color:var(--muted); margin:22px 0; box-shadow:var(--elevation-1); }
   .sources{ font-size:.86rem; color:var(--muted); }
   .sources li{ margin:8px 0; }
   .sources a{ color:var(--violet); word-break:break-word; }
   .note{ font-size:.8rem; color:var(--muted); font-style:italic; }
-  @media(max-width:640px){ .kpis{grid-template-columns:1fr;} h1{font-size:1.6rem;} }
+  @media(max-width:640px){
+    .kpis{grid-template-columns:1fr;}
+    h1{font-size:1.6rem;}
+    header.hero .inner{ flex-direction:column-reverse; align-items:flex-start; gap:20px; }
+    header.hero .mascot{ width:88px; height:88px; }
+    header.hero .mascot img{ width:76px; height:76px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .kpi{ transition:none; }
+    .kpi:hover{ transform:none; }
+  }
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="inner">
-    <p class="kicker">Baromètre trimestriel · Édition 2026</p>
-    <h1>Combien coûte vraiment de se protéger en France ?</h1>
-    <p class="lede">Santé, auto, habitation : le baromètre trimestriel jemassuremoinscher.fr compile les données publiques les plus récentes pour mesurer, poste par poste, le coût réel de la protection des ménages français — et là où il augmente le plus vite.</p>
+    <div class="text">
+      <p class="kicker">Baromètre trimestriel · Édition 2026</p>
+      <h1>Combien coûte vraiment de se protéger en France ?</h1>
+      <p class="lede">Santé, auto, habitation : le baromètre trimestriel jemassuremoinscher.fr compile les données publiques les plus récentes pour mesurer, poste par poste, le coût réel de la protection des ménages français — et là où il augmente le plus vite.</p>
+    </div>
+    <div class="mascot" aria-hidden="true">
+      <img src="/arthur-idea.webp" alt="" width="104" height="104" loading="eager" decoding="async">
+    </div>
   </div>
 </header>
 
