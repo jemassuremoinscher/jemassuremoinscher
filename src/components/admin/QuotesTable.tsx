@@ -335,8 +335,8 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-2 -mt-2 mb-4 flex-nowrap md:flex-wrap">
-      </div>
+
+
 
       <div className="overflow-x-auto">
         <Table>
