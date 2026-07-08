@@ -279,6 +279,7 @@ export const CRMDashboard = () => {
     pending: filteredLeads.filter((l) => l.status === 'pending'),
     contacted: filteredLeads.filter((l) => l.status === 'contacted'),
     no_answer: filteredLeads.filter((l) => l.status === 'no_answer'),
+    pending_documents: filteredLeads.filter((l) => l.status === 'pending_documents'),
     qualified: filteredLeads.filter((l) => l.status === 'qualified'),
     converted: filteredLeads.filter((l) => l.status === 'converted'),
     rejected: filteredLeads.filter((l) => l.status === 'rejected'),
@@ -338,6 +339,7 @@ export const CRMDashboard = () => {
             <SelectItem value="pending">En attente</SelectItem>
             <SelectItem value="contacted">Contacté</SelectItem>
             <SelectItem value="no_answer">Ne répond pas</SelectItem>
+            <SelectItem value="pending_documents">En attente de documents</SelectItem>
             <SelectItem value="qualified">Qualifié</SelectItem>
             <SelectItem value="converted">Converti</SelectItem>
             <SelectItem value="rejected">Rejeté</SelectItem>
@@ -540,6 +542,7 @@ export const CRMDashboard = () => {
               <SelectItem value="pending">En attente</SelectItem>
               <SelectItem value="contacted">Contacté</SelectItem>
               <SelectItem value="no_answer">Ne répond pas</SelectItem>
+              <SelectItem value="pending_documents">En attente de documents</SelectItem>
               <SelectItem value="qualified">Qualifié</SelectItem>
               <SelectItem value="converted">Converti</SelectItem>
               <SelectItem value="rejected">Rejeté</SelectItem>
@@ -591,6 +594,7 @@ export const CRMDashboard = () => {
                   {status === 'pending' && '🔔 En attente'}
                   {status === 'contacted' && '📞 Contactés'}
                   {status === 'no_answer' && '🚫 Ne répond pas'}
+                  {status === 'pending_documents' && '📄 En attente de documents'}
                   {status === 'qualified' && '✅ Qualifiés'}
                   {status === 'converted' && '🎉 Convertis'}
                   {status === 'rejected' && '❌ Rejetés'}
