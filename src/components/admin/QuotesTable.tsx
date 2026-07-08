@@ -506,6 +506,25 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                 <div>{getStatusBadge(selectedQuote.status)}</div>
               </div>
 
+              <div className="rounded-lg border bg-muted/30 p-4 flex items-center gap-3">
+                <UserCheck className="h-4 w-4 text-muted-foreground shrink-0" />
+                <span className="text-sm font-medium shrink-0">Attribuer à :</span>
+                <Select
+                  value={agents?.find(a => a.id === selectedQuote.assigned_to)?.id || 'unassigned'}
+                  onValueChange={(value) => assignQuote(selectedQuote.id, value === 'unassigned' ? null : value)}
+                >
+                  <SelectTrigger className="w-full max-w-xs">
+                    <SelectValue placeholder="Non attribué" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="unassigned">— Non attribué</SelectItem>
+                    {agents?.map((agent) => (
+                      <SelectItem key={agent.id} value={agent.id}>{agent.full_name}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
               {selectedQuote.quote_data && Object.keys(selectedQuote.quote_data).length > 0 ? (
                 <div className="rounded-lg border bg-muted/30 p-4">
                   <p className="text-sm font-semibold mb-3">
