@@ -274,11 +274,46 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                 disabled={filteredQuotes.length === 0}
               >
                 <Download className="h-4 w-4 mr-2" />
-                Export CSV
+                Export CSV ({filteredQuotes.length})
               </Button>
+              <Select value={filterType} onValueChange={setFilterType}>
+                <SelectTrigger className="w-44">
+                  <SelectValue placeholder="Type d'assurance" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Tous les types</SelectItem>
+                  {CANONICAL_INSURANCE_TYPES.map((type) => (
+                    <SelectItem key={type} value={type}>
+                      {(INSURANCE_TYPE_LABELS as Record<string, string>)[type]?.replace(/^Assurance\s+/, '') || type}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" size="sm" className="w-32 justify-start font-normal">
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {dateFrom ? format(dateFrom, 'dd/MM/yy', { locale: fr }) : 'Du'}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <CalendarPicker mode="single" selected={dateFrom} onSelect={setDateFrom} initialFocus locale={fr} />
+                </PopoverContent>
+              </Popover>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" size="sm" className="w-32 justify-start font-normal">
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {dateTo ? format(dateTo, 'dd/MM/yy', { locale: fr }) : 'Au'}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <CalendarPicker mode="single" selected={dateTo} onSelect={setDateTo} initialFocus locale={fr} />
+                </PopoverContent>
+              </Popover>
               <Select value={filterStatus} onValueChange={setFilterStatus}>
-                <SelectTrigger className="w-48">
-                  <SelectValue placeholder="Filtrer par statut" />
+                <SelectTrigger className="w-40">
+                  <SelectValue placeholder="Statut" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">Tous les statuts</SelectItem>
@@ -290,9 +325,17 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                   <SelectItem value="rejected">❌ Rejeté</SelectItem>
                 </SelectContent>
               </Select>
+              {(filterType !== 'all' || filterStatus !== 'all' || dateFrom || dateTo) && (
+                <Button variant="ghost" size="sm" onClick={() => { setFilterType('all'); setFilterStatus('all'); setDateFrom(undefined); setDateTo(undefined); }}>
+                  Réinitialiser
+                </Button>
+              )}
             </>
           )}
         </div>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2 -mt-2 mb-4 flex-nowrap md:flex-wrap">
       </div>
 
       <div className="overflow-x-auto">
