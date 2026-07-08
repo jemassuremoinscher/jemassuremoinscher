@@ -7,13 +7,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { FileText, Mail, Phone, MapPin, Calendar, CheckCircle, XCircle, Download, Trash2, UserCheck, Eye } from 'lucide-react';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Calendar as CalendarPicker } from '@/components/ui/calendar';
+import { FileText, Mail, Phone, MapPin, Calendar, CheckCircle, XCircle, Download, Trash2, UserCheck, Eye, CalendarIcon } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { exportToCSV, formatQuotesForExport } from '@/utils/exportCSV';
-import { INSURANCE_TYPE_LABELS, normalizeInsuranceType } from '@/utils/insuranceTypeNormalizer';
+import { INSURANCE_TYPE_LABELS, normalizeInsuranceType, CANONICAL_INSURANCE_TYPES } from '@/utils/insuranceTypeNormalizer';
 
 const FIELD_LABELS: Record<string, string> = {
   postalCode: 'Code postal', city: 'Ville', address: 'Adresse',
@@ -66,6 +68,9 @@ interface QuotesTableProps {
 
 export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProps) => {
   const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [filterType, setFilterType] = useState<string>('all');
+  const [dateFrom, setDateFrom] = useState<Date | undefined>();
+  const [dateTo, setDateTo] = useState<Date | undefined>();
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [selectedQuote, setSelectedQuote] = useState<Quote | null>(null);
 
@@ -95,13 +100,26 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
     } else {
       const agentName = agent?.full_name || 'Non attribué';
       toast.success(`Lead attribué à ${agentName}`);
+      setSelectedQuote(prev => prev && prev.id === quoteId ? { ...prev, assigned_to: agentId } : prev);
       onUpdate();
     }
   };
 
-  const filteredQuotes = filterStatus === 'all'
-    ? quotes 
-    : quotes.filter(q => q.status === filterStatus);
+  const filteredQuotes = quotes.filter((q) => {
+    if (filterStatus !== 'all' && q.status !== filterStatus) return false;
+    if (filterType !== 'all' && normalizeInsuranceType(q.insurance_type) !== filterType) return false;
+    if (dateFrom) {
+      const d = new Date(q.created_at);
+      const from = new Date(dateFrom); from.setHours(0, 0, 0, 0);
+      if (d < from) return false;
+    }
+    if (dateTo) {
+      const d = new Date(q.created_at);
+      const to = new Date(dateTo); to.setHours(23, 59, 59, 999);
+      if (d > to) return false;
+    }
+    return true;
+  });
 
   const updateQuoteStatus = async (id: string, newStatus: string) => {
     const { error } = await supabase
@@ -256,11 +274,46 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                 disabled={filteredQuotes.length === 0}
               >
                 <Download className="h-4 w-4 mr-2" />
-                Export CSV
+                Export CSV ({filteredQuotes.length})
               </Button>
+              <Select value={filterType} onValueChange={setFilterType}>
+                <SelectTrigger className="w-44">
+                  <SelectValue placeholder="Type d'assurance" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Tous les types</SelectItem>
+                  {CANONICAL_INSURANCE_TYPES.map((type) => (
+                    <SelectItem key={type} value={type}>
+                      {(INSURANCE_TYPE_LABELS as Record<string, string>)[type]?.replace(/^Assurance\s+/, '') || type}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" size="sm" className="w-32 justify-start font-normal">
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {dateFrom ? format(dateFrom, 'dd/MM/yy', { locale: fr }) : 'Du'}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <CalendarPicker mode="single" selected={dateFrom} onSelect={setDateFrom} initialFocus locale={fr} />
+                </PopoverContent>
+              </Popover>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" size="sm" className="w-32 justify-start font-normal">
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {dateTo ? format(dateTo, 'dd/MM/yy', { locale: fr }) : 'Au'}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <CalendarPicker mode="single" selected={dateTo} onSelect={setDateTo} initialFocus locale={fr} />
+                </PopoverContent>
+              </Popover>
               <Select value={filterStatus} onValueChange={setFilterStatus}>
-                <SelectTrigger className="w-48">
-                  <SelectValue placeholder="Filtrer par statut" />
+                <SelectTrigger className="w-40">
+                  <SelectValue placeholder="Statut" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">Tous les statuts</SelectItem>
@@ -272,10 +325,18 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                   <SelectItem value="rejected">❌ Rejeté</SelectItem>
                 </SelectContent>
               </Select>
+              {(filterType !== 'all' || filterStatus !== 'all' || dateFrom || dateTo) && (
+                <Button variant="ghost" size="sm" onClick={() => { setFilterType('all'); setFilterStatus('all'); setDateFrom(undefined); setDateTo(undefined); }}>
+                  Réinitialiser
+                </Button>
+              )}
             </>
           )}
         </div>
       </div>
+
+
+
 
       <div className="overflow-x-auto">
         <Table>
@@ -443,6 +504,25 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                   {format(new Date(selectedQuote.created_at), 'dd MMM yyyy à HH:mm', { locale: fr })}
                 </div>
                 <div>{getStatusBadge(selectedQuote.status)}</div>
+              </div>
+
+              <div className="rounded-lg border bg-muted/30 p-4 flex items-center gap-3">
+                <UserCheck className="h-4 w-4 text-muted-foreground shrink-0" />
+                <span className="text-sm font-medium shrink-0">Attribuer à :</span>
+                <Select
+                  value={agents?.find(a => a.id === selectedQuote.assigned_to)?.id || 'unassigned'}
+                  onValueChange={(value) => assignQuote(selectedQuote.id, value === 'unassigned' ? null : value)}
+                >
+                  <SelectTrigger className="w-full max-w-xs">
+                    <SelectValue placeholder="Non attribué" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="unassigned">— Non attribué</SelectItem>
+                    {agents?.map((agent) => (
+                      <SelectItem key={agent.id} value={agent.id}>{agent.full_name}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
 
               {selectedQuote.quote_data && Object.keys(selectedQuote.quote_data).length > 0 ? (
