@@ -162,6 +162,8 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
         return <Badge variant="outline" className="bg-blue-50">📞 Contacté</Badge>;
       case 'no_answer':
         return <Badge variant="outline" className="bg-yellow-50">🚫 Ne répond pas</Badge>;
+      case 'pending_documents':
+          return <Badge variant="outline" className="bg-purple-50">📄 En attente de documents</Badge>;
       case 'qualified':
         return <Badge variant="outline" className="bg-emerald-50">✅ Qualifié</Badge>;
       case 'converted':
@@ -320,7 +322,8 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                   <SelectItem value="pending">⏳ En attente</SelectItem>
                   <SelectItem value="contacted">📞 Contacté</SelectItem>
                   <SelectItem value="no_answer">🚫 Ne répond pas</SelectItem>
-                  <SelectItem value="qualified">✅ Qualifié</SelectItem>
+                  <SelectItem value="pending_documents">📄 En attente de documents</SelectItem>
+            <SelectItem value="qualified">✅ Qualifié</SelectItem>
                   <SelectItem value="converted">🎉 Converti</SelectItem>
                   <SelectItem value="rejected">❌ Rejeté</SelectItem>
                 </SelectContent>
@@ -449,6 +452,7 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
                           <SelectItem value="pending">⏳ En attente</SelectItem>
                           <SelectItem value="contacted">📞 Contacté</SelectItem>
                           <SelectItem value="no_answer">🚫 Ne répond pas</SelectItem>
+                          <SelectItem value="pending_documents">📄 En attente de documents</SelectItem>
                           <SelectItem value="qualified">✅ Qualifié</SelectItem>
                           <SelectItem value="converted">🎉 Converti</SelectItem>
                           <SelectItem value="rejected">❌ Rejeté</SelectItem>
