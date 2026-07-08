@@ -68,6 +68,9 @@ interface QuotesTableProps {
 
 export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProps) => {
   const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [filterType, setFilterType] = useState<string>('all');
+  const [dateFrom, setDateFrom] = useState<Date | undefined>();
+  const [dateTo, setDateTo] = useState<Date | undefined>();
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [selectedQuote, setSelectedQuote] = useState<Quote | null>(null);
 
@@ -97,13 +100,26 @@ export const QuotesTable = ({ quotes, onUpdate, highlightedId }: QuotesTableProp
     } else {
       const agentName = agent?.full_name || 'Non attribué';
       toast.success(`Lead attribué à ${agentName}`);
+      setSelectedQuote(prev => prev && prev.id === quoteId ? { ...prev, assigned_to: agentId } : prev);
       onUpdate();
     }
   };
 
-  const filteredQuotes = filterStatus === 'all'
-    ? quotes 
-    : quotes.filter(q => q.status === filterStatus);
+  const filteredQuotes = quotes.filter((q) => {
+    if (filterStatus !== 'all' && q.status !== filterStatus) return false;
+    if (filterType !== 'all' && normalizeInsuranceType(q.insurance_type) !== filterType) return false;
+    if (dateFrom) {
+      const d = new Date(q.created_at);
+      const from = new Date(dateFrom); from.setHours(0, 0, 0, 0);
+      if (d < from) return false;
+    }
+    if (dateTo) {
+      const d = new Date(q.created_at);
+      const to = new Date(dateTo); to.setHours(23, 59, 59, 999);
+      if (d > to) return false;
+    }
+    return true;
+  });
 
   const updateQuoteStatus = async (id: string, newStatus: string) => {
     const { error } = await supabase
