@@ -562,12 +562,14 @@ serve(async (req) => {
 
     console.log(`Found ${opportunities.length} opportunities`);
 
-    const topOpportunities = opportunities.slice(0, 3);
+    const MAX_PER_RUN = 3;
+    const MAX_SCAN = 30;
     const suggestions: Array<{ keyword: string; title: string; slug: string }> = [];
     const skippedKeywords: string[] = [];
     const failures: FailureDetail[] = [];
 
-    for (const [opportunityIndex, opp] of topOpportunities.entries()) {
+    for (const [opportunityIndex, opp] of opportunities.slice(0, MAX_SCAN).entries()) {
+      if (suggestions.length >= MAX_PER_RUN) break;
       const keyword = opp.keys[0];
       const currentPage = opp.keys[1];
 
