@@ -772,7 +772,7 @@ Article complet en markdown
         : failedCount > 0
           ? "La génération a échoué"
           : "Aucune nouvelle suggestion à créer",
-      opportunities: opportunities.length,
+      opportunities: scanPool.length,
       generated: generatedCount,
       skipped: skippedCount,
       failed: failedCount,
