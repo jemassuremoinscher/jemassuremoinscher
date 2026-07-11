@@ -185,7 +185,38 @@ function findOpportunities(rows: any[]): any[] {
   return rows
     .filter((row: any) => row.position >= 10 && row.position <= 60 && row.impressions >= 5)
     .sort((a: any, b: any) => b.impressions - a.impressions)
-    .slice(0, 10);
+    .slice(0, 80);
+}
+
+// Sujets de secours si GSC ne renvoie que des mots-clés déjà couverts.
+// Ordre = priorité éditoriale. Le format imite la sortie GSC (keys=[keyword, page]).
+const FALLBACK_TOPICS: string[] = [
+  "assurance trottinette électrique livreur",
+  "assurance auto malusée résiliée",
+  "mutuelle santé senior 2026",
+  "assurance emprunteur substitution loi lemoine",
+  "assurance habitation étudiant pas cher",
+  "assurance moto 125 jeune conducteur",
+  "assurance auto temporaire 1 jour",
+  "assurance PNO location saisonnière airbnb",
+  "assurance responsabilité civile professionnelle auto-entrepreneur",
+  "assurance vie fiscalité succession 2026",
+  "assurance chien chat comparatif",
+  "assurance décennale artisan bâtiment",
+  "assurance camping-car annuelle",
+  "assurance flotte automobile PME",
+  "assurance prévoyance TNS indépendant",
+  "assurance scooter 50cc pas cher",
+  "assurance cyber PME 2026",
+  "mutuelle entreprise obligatoire dirigeant",
+  "assurance drone professionnel",
+  "assurance protection juridique famille",
+];
+
+function buildFallbackOpportunities(existing: Set<string>): any[] {
+  return FALLBACK_TOPICS
+    .filter((kw) => !existing.has(kw))
+    .map((kw) => ({ keys: [kw, "https://www.jemassuremoinscher.fr/blog"], position: 30, impressions: 0, __fallback: true }));
 }
 
 function slugify(text: string): string {
