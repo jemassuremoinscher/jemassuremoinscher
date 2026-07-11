@@ -185,7 +185,38 @@ function findOpportunities(rows: any[]): any[] {
   return rows
     .filter((row: any) => row.position >= 10 && row.position <= 60 && row.impressions >= 5)
     .sort((a: any, b: any) => b.impressions - a.impressions)
-    .slice(0, 10);
+    .slice(0, 80);
+}
+
+// Sujets de secours si GSC ne renvoie que des mots-clés déjà couverts.
+// Ordre = priorité éditoriale. Le format imite la sortie GSC (keys=[keyword, page]).
+const FALLBACK_TOPICS: string[] = [
+  "assurance trottinette électrique livreur",
+  "assurance auto malusée résiliée",
+  "mutuelle santé senior 2026",
+  "assurance emprunteur substitution loi lemoine",
+  "assurance habitation étudiant pas cher",
+  "assurance moto 125 jeune conducteur",
+  "assurance auto temporaire 1 jour",
+  "assurance PNO location saisonnière airbnb",
+  "assurance responsabilité civile professionnelle auto-entrepreneur",
+  "assurance vie fiscalité succession 2026",
+  "assurance chien chat comparatif",
+  "assurance décennale artisan bâtiment",
+  "assurance camping-car annuelle",
+  "assurance flotte automobile PME",
+  "assurance prévoyance TNS indépendant",
+  "assurance scooter 50cc pas cher",
+  "assurance cyber PME 2026",
+  "mutuelle entreprise obligatoire dirigeant",
+  "assurance drone professionnel",
+  "assurance protection juridique famille",
+];
+
+function buildFallbackOpportunities(existing: Set<string>): any[] {
+  return FALLBACK_TOPICS
+    .filter((kw) => !existing.has(kw))
+    .map((kw) => ({ keys: [kw, "https://www.jemassuremoinscher.fr/blog"], position: 30, impressions: 0, __fallback: true }));
 }
 
 function slugify(text: string): string {
@@ -546,7 +577,18 @@ serve(async (req) => {
     console.log(`Got ${gscRows.length} GSC rows`);
 
     const opportunities = findOpportunities(gscRows);
-    if (opportunities.length === 0) {
+    console.log(`Found ${opportunities.length} GSC opportunities`);
+
+    // Charge la liste des mots-clés déjà utilisés pour construire un pool de secours propre.
+    const { data: existingRows } = await supabase
+      .from("seo_article_suggestions")
+      .select("target_keyword");
+    const existingKeywords = new Set<string>((existingRows || []).map((r: any) => r.target_keyword));
+
+    const fallback = buildFallbackOpportunities(existingKeywords);
+    const scanPool = [...opportunities, ...fallback];
+
+    if (scanPool.length === 0) {
       return new Response(JSON.stringify({
         message: "Aucune opportunité détectée",
         opportunities: 0,
@@ -560,15 +602,13 @@ serve(async (req) => {
       });
     }
 
-    console.log(`Found ${opportunities.length} opportunities`);
-
     const MAX_PER_RUN = 3;
-    const MAX_SCAN = 30;
+    const MAX_SCAN = 60;
     const suggestions: Array<{ keyword: string; title: string; slug: string }> = [];
     const skippedKeywords: string[] = [];
     const failures: FailureDetail[] = [];
 
-    for (const [opportunityIndex, opp] of opportunities.slice(0, MAX_SCAN).entries()) {
+    for (const [opportunityIndex, opp] of scanPool.slice(0, MAX_SCAN).entries()) {
       if (suggestions.length >= MAX_PER_RUN) break;
       const keyword = opp.keys[0];
       const currentPage = opp.keys[1];
@@ -732,7 +772,7 @@ Article complet en markdown
         : failedCount > 0
           ? "La génération a échoué"
           : "Aucune nouvelle suggestion à créer",
-      opportunities: opportunities.length,
+      opportunities: scanPool.length,
       generated: generatedCount,
       skipped: skippedCount,
       failed: failedCount,
