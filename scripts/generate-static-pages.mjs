@@ -615,12 +615,11 @@ const generateLandingAndProfilePages = async () => {
         const h1 = [cfg.heroTitle, cfg.heroHighlight].filter(Boolean).join(" ").replace(/\s+/g, " ").trim() || cfg.seoTitle;
         const page = {
           route: `/landing/${key}`,
-          title: cfg.seoTitle,
           description: cfg.seoDescription,
           h1,
           intro: cfg.seoDescription,
           sections: [
-            { title: "Pourquoi comparer avec jemassuremoinscher.fr ?", body: "Courtier indépendant immatriculé ORIAS. Comparez plus de 70 assureurs partenaires en 2 minutes, gratuitement et sans engagement." },
+            { title: "Pourquoi comparer avec jemassuremoinscher.fr ?", body: "Courtier indépendant, immatriculation ORIAS en cours. Comparez plus de 70 assureurs partenaires en 2 minutes, gratuitement et sans engagement." },
             relatedList,
           ],
           ctaHref: "/comparateur",
