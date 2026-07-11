@@ -25,21 +25,24 @@ export const useCookieConsent = () => {
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    const storedConsent = localStorage.getItem(COOKIE_CONSENT_KEY);
-    if (storedConsent) {
-      try {
-        const parsedConsent = JSON.parse(storedConsent) as CookieConsent;
-        setConsent(parsedConsent);
-        setShowBanner(false);
-      } catch (error) {
-        console.error('Error parsing cookie consent:', error);
-        setShowBanner(true);
-      }
-    } else {
-      setShowBanner(true);
-    }
+        const storedConsent = localStorage.getItem(COOKIE_CONSENT_KEY);
+        if (storedConsent) {
+                try {
+                          const parsedConsent = JSON.parse(storedConsent) as CookieConsent;
+                          setConsent(parsedConsent);
+                          setShowBanner(false);
+                } catch (error) {
+                          console.error('Error parsing cookie consent:', error);
+                          // Delay so the banner never competes with the hero's LCP paint
+                          const timer = setTimeout(() => setShowBanner(true), 1200);
+                          return () => clearTimeout(timer);
+                }
+        } else {
+                // Delay so the banner never competes with the hero's LCP paint
+                const timer = setTimeout(() => setShowBanner(true), 1200);
+                return () => clearTimeout(timer);
+        }
   }, []);
-
   const saveConsent = (preferences: CookiePreferences) => {
     const newConsent: CookieConsent = {
       hasConsented: true,
