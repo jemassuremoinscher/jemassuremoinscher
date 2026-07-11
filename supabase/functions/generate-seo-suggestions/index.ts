@@ -577,7 +577,18 @@ serve(async (req) => {
     console.log(`Got ${gscRows.length} GSC rows`);
 
     const opportunities = findOpportunities(gscRows);
-    if (opportunities.length === 0) {
+    console.log(`Found ${opportunities.length} GSC opportunities`);
+
+    // Charge la liste des mots-clés déjà utilisés pour construire un pool de secours propre.
+    const { data: existingRows } = await supabase
+      .from("seo_article_suggestions")
+      .select("target_keyword");
+    const existingKeywords = new Set<string>((existingRows || []).map((r: any) => r.target_keyword));
+
+    const fallback = buildFallbackOpportunities(existingKeywords);
+    const scanPool = [...opportunities, ...fallback];
+
+    if (scanPool.length === 0) {
       return new Response(JSON.stringify({
         message: "Aucune opportunité détectée",
         opportunities: 0,
@@ -591,15 +602,13 @@ serve(async (req) => {
       });
     }
 
-    console.log(`Found ${opportunities.length} opportunities`);
-
     const MAX_PER_RUN = 3;
-    const MAX_SCAN = 30;
+    const MAX_SCAN = 60;
     const suggestions: Array<{ keyword: string; title: string; slug: string }> = [];
     const skippedKeywords: string[] = [];
     const failures: FailureDetail[] = [];
 
-    for (const [opportunityIndex, opp] of opportunities.slice(0, MAX_SCAN).entries()) {
+    for (const [opportunityIndex, opp] of scanPool.slice(0, MAX_SCAN).entries()) {
       if (suggestions.length >= MAX_PER_RUN) break;
       const keyword = opp.keys[0];
       const currentPage = opp.keys[1];
