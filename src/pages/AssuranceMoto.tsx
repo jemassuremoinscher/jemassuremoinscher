@@ -5,7 +5,7 @@ import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import { addServiceSchema, addFAQSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
-import arthurMoto from "@/assets/mascotte/arthur-moto.webp";
+import arthurMoto from "@/assets/mascotte/arthur-moto.webp?w=480&format=webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbsup-coin.webp";
 import arthurThinking from "@/assets/mascotte/arthur-detective.webp";
-import oriasLogo from "@/assets/logos/orias.jpg";
+import oriasLogo from "@/assets/logos/orias.jpg?w=480&format=webp";
 import geoContent from "@/data/geo-content.json";
 
 const WhyUsComparison = () => {

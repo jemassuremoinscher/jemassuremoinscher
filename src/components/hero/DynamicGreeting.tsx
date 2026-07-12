@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import arthurThumbsUp from "@/assets/mascotte/arthur-wink-thumbsup.webp";
-import arthurCar from "@/assets/mascotte/arthur-car.webp";
-import arthurHouse from "@/assets/mascotte/arthur-house.webp";
+import arthurCar from "@/assets/mascotte/arthur-car.webp?w=480&format=webp";
+import arthurHouse from "@/assets/mascotte/arthur-house.webp?w=480&format=webp";
 import arthurSick from "@/assets/mascotte/arthur-sick.webp";
 import arthurAnimals from "@/assets/mascotte/arthur-animals.webp";
-import arthurMoto from "@/assets/mascotte/arthur-moto.webp";
+import arthurMoto from "@/assets/mascotte/arthur-moto.webp?w=480&format=webp";
 import arthurBusiness from "@/assets/mascotte/arthur-business.webp";
 
 interface DynamicGreetingConfig {

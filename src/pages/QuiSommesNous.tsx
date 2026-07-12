@@ -25,7 +25,7 @@ import { motion } from "framer-motion";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import arthurPointing from "@/assets/mascotte/arthur-pointing.webp";
-import oriasLogo from "@/assets/logos/orias.jpg";
+import oriasLogo from "@/assets/logos/orias.jpg?w=480&format=webp";
 import cscaLogo from "@/assets/logos/csca.png";
 import paulPhoto from "@/assets/team/paul.jpg";
 import alexandrePhoto from "@/assets/team/alexandre.jpg";

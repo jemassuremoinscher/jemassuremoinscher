@@ -23,9 +23,9 @@ import { useLanguage } from '@/contexts/LanguageContext';
 // ExitIntentLeadMagnet est monté globalement dans App.tsx (GlobalExitIntent)
 
 // Mascot imports
-import arthurCar from '@/assets/mascotte/arthur-car.webp';
-import arthurMoto from '@/assets/mascotte/arthur-moto.webp';
-import arthurHouse from '@/assets/mascotte/arthur-house.webp';
+import arthurCar from '@/assets/mascotte/arthur-car.webp?w=480&format=webp';
+import arthurMoto from '@/assets/mascotte/arthur-moto.webp?w=480&format=webp';
+import arthurHouse from '@/assets/mascotte/arthur-house.webp?w=480&format=webp';
 import arthurSick from '@/assets/mascotte/arthur-sick.webp';
 import arthurThinking from '@/assets/mascotte/arthur-thinking.webp';
 import arthurAnimals from '@/assets/mascotte/arthur-animals.webp';
@@ -38,7 +38,7 @@ import arthurExcited from '@/assets/mascotte/arthur-excited.webp';
 import arthurRunningCoin from '@/assets/mascotte/arthur-running-coin.webp';
 import arthurClimbing from '@/assets/mascotte/arthur-climbing.webp';
 import arthurBike from '@/assets/mascotte/arthur-bike.png';
-import arthurScoot from '@/assets/mascotte/arthur-scoot.png';
+import arthurScoot from '@/assets/mascotte/arthur-scoot.png?w=480&format=webp';
 
 // Logo imports for teaser prices
 import logoDirectAssurance from '@/assets/logos/direct-assurance-new.webp';

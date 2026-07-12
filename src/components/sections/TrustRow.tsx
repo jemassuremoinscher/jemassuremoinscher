@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useGoogleReviews } from "@/hooks/useGoogleReviews";
 
-import oriasLogo from "@/assets/logos/orias.jpg";
+import oriasLogo from "@/assets/logos/orias.jpg?w=480&format=webp";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import geoContent from "@/data/geo-content.json";
 
