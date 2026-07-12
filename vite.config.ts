@@ -4,6 +4,7 @@ import path from "path";
 import { readdirSync, statSync, existsSync } from "node:fs";
 import { componentTagger } from "lovable-tagger";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
+import { imagetools } from "vite-imagetools";
 
 // Auto-discover every <root>/<...>/index.html so vite emits dist/<route>/index.html
 // for each pre-rendered route. The root index.html is always included.
