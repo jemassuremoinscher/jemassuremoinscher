@@ -74,6 +74,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       mode === "development" && componentTagger(),
+      imagetools(),
       ViteImageOptimizer({
         png: { quality: 70 },
         jpeg: { quality: 70 },
