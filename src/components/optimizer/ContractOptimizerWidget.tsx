@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
-import arthurCar from "@/assets/mascotte/arthur-car.webp";
+import arthurCar from "@/assets/mascotte/arthur-car.webp?w=480&format=webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 type Step = "closed" | "form" | "result" | "email" | "done";

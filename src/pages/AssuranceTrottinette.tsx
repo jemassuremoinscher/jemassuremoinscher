@@ -6,7 +6,7 @@ import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import { addServiceSchema, addFAQSchema, addHowToSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
-import arthurScoot from "@/assets/mascotte/arthur-scoot.png";
+import arthurScoot from "@/assets/mascotte/arthur-scoot.png?w=480&format=webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";

@@ -5,7 +5,7 @@ import { Building2, Clock, Shield } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
-import arthurHouse from "@/assets/mascotte/arthur-house.webp";
+import arthurHouse from "@/assets/mascotte/arthur-house.webp?w=480&format=webp";
 import arthurFlying from "@/assets/mascotte/arthur-welcome.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";

@@ -1,6 +1,6 @@
 import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage";
 import BrandName from "@/components/BrandName";
-import arthurCar from "@/assets/mascotte/arthur-car.webp";
+import arthurCar from "@/assets/mascotte/arthur-car.webp?w=480&format=webp";
 
 const AssuranceFlotteAuto = () => (
   <VerticalInsurancePage
