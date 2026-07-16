@@ -23,6 +23,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import SuggestedKeywords from "@/components/blog/SuggestedKeywords";
 import PopularArticles from "@/components/blog/PopularArticles";
 import RelatedProductLinks from "@/components/blog/RelatedProductLinks";
+import RelatedArticles from "@/components/blog/RelatedArticles";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 import SmartConversionWidget, { detectCategory } from "@/components/blog/SmartConversionWidget";
