@@ -281,43 +281,48 @@ const Blog = () => {
             {filteredArticles.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredArticles.map((article) => (
-                  <Card
+                  <Link
                     key={article.id}
-                    className="glass-card rounded-[2rem] hover:shadow-[var(--shadow-hover)] cursor-pointer group transition-all duration-300"
-                    onClick={() => navigate(`/blog/${article.slug}`)}
+                    to={`/blog/${article.slug}`}
+                    className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-[2rem]"
+                    aria-label={article.title}
                   >
-                    <CardHeader>
-                      <Badge className="mb-3 w-fit rounded-full">{article.category}</Badge>
-                      <CardTitle className="text-lg group-hover:text-primary transition-colors flex items-start gap-2">
-                        <BlogArticleArthur category={article.category} slug={article.slug} />
-                        <span className="flex-1">{article.title}</span>
-                      </CardTitle>
-                      <CardDescription className="text-muted-foreground line-clamp-3">
-                        {article.description}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          <time dateTime={convertToISO(article.date)}>
-                            {t("blogPage.updatedOn")} {article.date}
-                          </time>
+                    <Card
+                      className="glass-card rounded-[2rem] hover:shadow-[var(--shadow-hover)] cursor-pointer group transition-all duration-300 h-full"
+                    >
+                      <CardHeader>
+                        <Badge className="mb-3 w-fit rounded-full">{article.category}</Badge>
+                        <CardTitle className="text-lg group-hover:text-primary transition-colors flex items-start gap-2">
+                          <BlogArticleArthur category={article.category} slug={article.slug} />
+                          <span className="flex-1">{article.title}</span>
+                        </CardTitle>
+                        <CardDescription className="text-muted-foreground line-clamp-3">
+                          {article.description}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-4 h-4" />
+                            <time dateTime={convertToISO(article.date)}>
+                              {t("blogPage.updatedOn")} {article.date}
+                            </time>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Clock className="w-4 h-4" />
+                            <span>{article.readTime}</span>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Clock className="w-4 h-4" />
-                          <span>{article.readTime}</span>
+                        <div className="flex flex-wrap gap-1">
+                          {article.tags.slice(0, 3).map((tag, idx) => (
+                            <Badge key={idx} variant="outline" className="text-xs rounded-full">
+                              {tag}
+                            </Badge>
+                          ))}
                         </div>
-                      </div>
-                      <div className="flex flex-wrap gap-1">
-                        {article.tags.slice(0, 3).map((tag, idx) => (
-                          <Badge key={idx} variant="outline" className="text-xs rounded-full">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 ))}
               </div>
             ) : (
