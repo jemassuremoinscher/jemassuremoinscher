@@ -153,6 +153,11 @@ const AssuranceMoto = () => {
             ctaMascotAlt="Arthur en vol - économisez sur votre assurance moto"
             onCtaClick={scrollToForm}
           />
+          <RelatedArticles
+            keywords={["moto", "scooter", "deux-roues", "2-roues"]}
+            limit={3}
+            title="À lire aussi sur l'assurance moto"
+          />
         </div>
       </main>
       <Footer />
