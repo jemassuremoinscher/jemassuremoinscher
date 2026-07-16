@@ -141,6 +141,11 @@ const AssurancePret = () => {
             ctaMascotAlt="Arthur - assurance emprunteur"
             onCtaClick={scrollToForm}
           />
+          <RelatedArticles
+            keywords={["emprunteur", "prêt", "pret", "lemoine", "immobilier"]}
+            limit={3}
+            title="À lire aussi sur l'assurance emprunteur"
+          />
         </div>
       </main>
       <Footer />
