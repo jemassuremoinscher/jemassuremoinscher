@@ -23,6 +23,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import SuggestedKeywords from "@/components/blog/SuggestedKeywords";
 import PopularArticles from "@/components/blog/PopularArticles";
 import RelatedProductLinks from "@/components/blog/RelatedProductLinks";
+import RelatedArticles from "@/components/blog/RelatedArticles";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 import SmartConversionWidget, { detectCategory } from "@/components/blog/SmartConversionWidget";
@@ -393,6 +394,14 @@ const BlogArticle = () => {
 
               {/* Related product links */}
               <RelatedProductLinks category={article.category} tags={article.tags} />
+
+              {/* Related articles for internal linking */}
+              <RelatedArticles
+                currentSlug={article.slug}
+                category={article.category}
+                tags={article.tags}
+                limit={4}
+              />
 
               {/* Popular articles — mobile only (desktop in sidebar) */}
               <div className="mt-8 lg:hidden">

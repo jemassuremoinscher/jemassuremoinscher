@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-07-12T05:34:38.689Z",
-  "score": 89,
+  "generatedAt": "2026-07-16T15:30:19.149Z",
+  "score": 90,
   "status": "good",
   "methodology": "Score GEO pondéré sur toutes les pages HTML du site plus les sources React/marketing critiques : dérive des métriques partagées, cohérence du shell statique et absence de stale copy.",
   "summary": {
-    "totalChecks": 304,
-    "passedChecks": 285,
+    "totalChecks": 310,
+    "passedChecks": 291,
     "failedChecks": 19,
-    "auditedFiles": 260,
-    "auditedPages": 252,
-    "staticRoutes": 252,
-    "weightedPassed": 1590,
-    "weightedTotal": 1780
+    "auditedFiles": 266,
+    "auditedPages": 258,
+    "staticRoutes": 258,
+    "weightedPassed": 1620,
+    "weightedTotal": 1810
   },
   "mismatches": [
     {
@@ -461,6 +461,18 @@
       "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
     },
     {
+      "id": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
       "id": "blog/assurance-au-kilometre-pay-as-you-drive-rentable/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-au-kilometre-pay-as-you-drive-rentable/index.html",
@@ -665,9 +677,33 @@
       "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
     },
     {
+      "id": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
       "id": "blog/assurance-auto-vintage-collection/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-auto-vintage-collection/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html",
       "description": "La page statique ne contient pas d'anciennes métriques de confiance",
       "pass": true,
       "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
@@ -1172,6 +1208,30 @@
       "id": "blog/assurance-trottinette-vol-garantie-2026/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-trottinette-vol-garantie-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html",
       "description": "La page statique ne contient pas d'anciennes métriques de confiance",
       "pass": true,
       "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
@@ -1796,6 +1856,18 @@
       "id": "blog/mutuelle-sante-reduire-frais-medicaux-2026/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/mutuelle-sante-reduire-frais-medicaux-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html",
       "description": "La page statique ne contient pas d'anciennes métriques de confiance",
       "pass": true,
       "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",

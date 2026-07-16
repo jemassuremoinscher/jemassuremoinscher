@@ -20,6 +20,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 import geoContent from "@/data/geo-content.json";
+import RelatedArticles from "@/components/blog/RelatedArticles";
 
 const AssuranceSante = () => {
   const { t } = useLanguage();
@@ -159,6 +160,11 @@ const AssuranceSante = () => {
             ctaMascotSrc={arthurFlying}
             ctaMascotAlt="Arthur en vol - économisez sur votre mutuelle santé"
             onCtaClick={scrollToForm}
+          />
+          <RelatedArticles
+            keywords={["santé", "sante", "mutuelle", "remboursement", "tns"]}
+            limit={3}
+            title="À lire aussi sur la mutuelle santé"
           />
         </div>
       </main>

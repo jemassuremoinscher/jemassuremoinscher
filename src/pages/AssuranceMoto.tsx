@@ -18,6 +18,7 @@ import arthurFlying from "@/assets/mascotte/arthur-excited.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
+import RelatedArticles from "@/components/blog/RelatedArticles";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 
 const AssuranceMoto = () => {
@@ -151,6 +152,11 @@ const AssuranceMoto = () => {
             ctaMascotSrc={arthurFlying}
             ctaMascotAlt="Arthur en vol - économisez sur votre assurance moto"
             onCtaClick={scrollToForm}
+          />
+          <RelatedArticles
+            keywords={["moto", "scooter", "deux-roues", "2-roues"]}
+            limit={3}
+            title="À lire aussi sur l'assurance moto"
           />
         </div>
       </main>
