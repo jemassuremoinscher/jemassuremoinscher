@@ -161,6 +161,11 @@ const AssuranceSante = () => {
             ctaMascotAlt="Arthur en vol - économisez sur votre mutuelle santé"
             onCtaClick={scrollToForm}
           />
+          <RelatedArticles
+            keywords={["santé", "sante", "mutuelle", "remboursement", "tns"]}
+            limit={3}
+            title="À lire aussi sur la mutuelle santé"
+          />
         </div>
       </main>
       <Footer />
