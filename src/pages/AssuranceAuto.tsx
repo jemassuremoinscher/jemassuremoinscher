@@ -207,6 +207,13 @@ const AssuranceAuto = () => {
             ctaMascotAlt="Arthur en vol - économisez sur votre assurance auto"
             onCtaClick={scrollToForm}
           />
+          <div className="container mx-auto px-4">
+            <RelatedArticles
+              keywords={["auto", "voiture", "conducteur", "bonus-malus", "hamon"]}
+              limit={3}
+              title="À lire aussi sur l'assurance auto"
+            />
+          </div>
         </div>
       </main>
       <Footer />
