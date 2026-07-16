@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-07-12T05:34:38.863Z",
+  "generatedAt": "2026-07-16T15:30:19.373Z",
   "score": 88,
   "status": "good",
   "methodology": "Score on-page pondéré sur toutes les pages HTML du site : title, meta description, canonical, robots, viewport, lang, H1 principal, Open Graph, JSON-LD et maillage interne.",
   "summary": {
-    "auditedPages": 252,
-    "totalChecks": 2520,
-    "passedChecks": 2305,
-    "failedChecks": 215,
-    "weightedPassed": 22220,
-    "weightedTotal": 25200,
-    "strongPages": 211
+    "auditedPages": 258,
+    "totalChecks": 2580,
+    "passedChecks": 2359,
+    "failedChecks": 221,
+    "weightedPassed": 22730,
+    "weightedTotal": 25800,
+    "strongPages": 217
   },
   "pageScores": [
     {
@@ -104,6 +104,11 @@
       "issues": 1
     },
     {
+      "file": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html",
+      "score": 85,
+      "issues": 1
+    },
+    {
       "file": "blog/assurance-au-kilometre-pay-as-you-drive-rentable/index.html",
       "score": 85,
       "issues": 1
@@ -189,7 +194,17 @@
       "issues": 1
     },
     {
+      "file": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html",
+      "score": 85,
+      "issues": 1
+    },
+    {
       "file": "blog/assurance-auto-vintage-collection/index.html",
+      "score": 85,
+      "issues": 1
+    },
+    {
+      "file": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html",
       "score": 85,
       "issues": 1
     },
@@ -400,6 +415,16 @@
     },
     {
       "file": "blog/assurance-trottinette-vol-garantie-2026/index.html",
+      "score": 85,
+      "issues": 1
+    },
+    {
+      "file": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html",
+      "score": 85,
+      "issues": 1
+    },
+    {
+      "file": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html",
       "score": 85,
       "issues": 1
     },
@@ -662,6 +687,11 @@
       "file": "blog/mutuelle-sante-reduire-frais-medicaux-2026/index.html",
       "score": 100,
       "issues": 0
+    },
+    {
+      "file": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html",
+      "score": 85,
+      "issues": 1
     },
     {
       "file": "blog/mutuelle-tns-vs-mutuelle-entreprise-2026/index.html",
@@ -1456,6 +1486,18 @@
       "reason": "Échec : 99 caractères observé, attendu title de 30 à 60 caractères."
     },
     {
+      "id": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html-title-length",
+      "file": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "73 caractères",
+      "reason": "Échec : 73 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
       "id": "blog/assurance-au-kilometre-pay-as-you-drive-rentable/index.html-title-length",
       "file": "blog/assurance-au-kilometre-pay-as-you-drive-rentable/index.html",
       "category": "title",
@@ -1624,6 +1666,18 @@
       "reason": "Échec : 72 caractères observé, attendu title de 30 à 60 caractères."
     },
     {
+      "id": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html-title-length",
+      "file": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "81 caractères",
+      "reason": "Échec : 81 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
       "id": "blog/assurance-auto-vintage-collection/index.html-title-length",
       "file": "blog/assurance-auto-vintage-collection/index.html",
       "category": "title",
@@ -1634,6 +1688,18 @@
       "expected": "title de 30 à 60 caractères",
       "actual": "63 caractères",
       "reason": "Échec : 63 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html-title-length",
+      "file": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "91 caractères",
+      "reason": "Échec : 91 caractères observé, attendu title de 30 à 60 caractères."
     },
     {
       "id": "blog/assurance-camping-car-2026-guide-complet/index.html-title-length",
@@ -2056,6 +2122,30 @@
       "reason": "Échec : 74 caractères observé, attendu title de 30 à 60 caractères."
     },
     {
+      "id": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html-title-length",
+      "file": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "92 caractères",
+      "reason": "Échec : 92 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html-title-length",
+      "file": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "81 caractères",
+      "reason": "Échec : 81 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
       "id": "blog/assurance-voiture-electrique-bonus-ecologiques-2026/index.html-title-length",
       "file": "blog/assurance-voiture-electrique-bonus-ecologiques-2026/index.html",
       "category": "title",
@@ -2462,6 +2552,18 @@
       "expected": "title de 30 à 60 caractères",
       "actual": "61 caractères",
       "reason": "Échec : 61 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html-title-length",
+      "file": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "84 caractères",
+      "reason": "Échec : 84 caractères observé, attendu title de 30 à 60 caractères."
     },
     {
       "id": "blog/mutuelle-tns-vs-mutuelle-entreprise-2026/index.html-title-length",
@@ -6018,6 +6120,126 @@
       "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
     },
     {
+      "id": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html-title-length",
+      "file": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "73 caractères",
+      "reason": "Échec : 73 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html-meta-description",
+      "file": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "150 caractères",
+      "reason": "Passe : 150 caractères observé, conforme à meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html-canonical",
+      "file": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026 observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html-robots",
+      "file": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html-viewport",
+      "file": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html-lang",
+      "file": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html-single-h1",
+      "file": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html-social-tags",
+      "file": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html-jsonld",
+      "file": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html-internal-links",
+      "file": "blog/assurance-animaux-le-guide-ultime-pour-proteger-votre-compagnon-en-2026/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "2 lien(s)",
+      "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
       "id": "blog/assurance-au-kilometre-pay-as-you-drive-rentable/index.html-title-length",
       "file": "blog/assurance-au-kilometre-pay-as-you-drive-rentable/index.html",
       "category": "title",
@@ -8058,6 +8280,126 @@
       "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
     },
     {
+      "id": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html-title-length",
+      "file": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "81 caractères",
+      "reason": "Échec : 81 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html-meta-description",
+      "file": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "150 caractères",
+      "reason": "Passe : 150 caractères observé, conforme à meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html-canonical",
+      "file": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html-robots",
+      "file": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html-viewport",
+      "file": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html-lang",
+      "file": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html-single-h1",
+      "file": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html-social-tags",
+      "file": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html-jsonld",
+      "file": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html-internal-links",
+      "file": "blog/assurance-auto-temporaire-1-jour-le-guide-complet-pour-rouler-en-toute-serenite/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "2 lien(s)",
+      "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
       "id": "blog/assurance-auto-vintage-collection/index.html-title-length",
       "file": "blog/assurance-auto-vintage-collection/index.html",
       "category": "title",
@@ -8168,6 +8510,126 @@
     {
       "id": "blog/assurance-auto-vintage-collection/index.html-internal-links",
       "file": "blog/assurance-auto-vintage-collection/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "2 lien(s)",
+      "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
+      "id": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html-title-length",
+      "file": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "91 caractères",
+      "reason": "Échec : 91 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html-meta-description",
+      "file": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "137 caractères",
+      "reason": "Passe : 137 caractères observé, conforme à meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html-canonical",
+      "file": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html-robots",
+      "file": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html-viewport",
+      "file": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html-lang",
+      "file": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html-single-h1",
+      "file": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html-social-tags",
+      "file": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html-jsonld",
+      "file": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html-internal-links",
+      "file": "blog/assurance-bateau-le-guide-ultime-2026-pour-naviguer-en-toute-serenite-et-au-meilleur-prix/index.html",
       "category": "internal-linking",
       "description": "La page contient des liens internes crawlables",
       "pass": true,
@@ -13208,6 +13670,246 @@
     {
       "id": "blog/assurance-trottinette-vol-garantie-2026/index.html-internal-links",
       "file": "blog/assurance-trottinette-vol-garantie-2026/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "2 lien(s)",
+      "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
+      "id": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html-title-length",
+      "file": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "92 caractères",
+      "reason": "Échec : 92 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html-meta-description",
+      "file": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "150 caractères",
+      "reason": "Passe : 150 caractères observé, conforme à meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html-canonical",
+      "file": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026 observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html-robots",
+      "file": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html-viewport",
+      "file": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html-lang",
+      "file": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html-single-h1",
+      "file": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html-social-tags",
+      "file": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html-jsonld",
+      "file": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html-internal-links",
+      "file": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "2 lien(s)",
+      "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
+      "id": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html-title-length",
+      "file": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "81 caractères",
+      "reason": "Échec : 81 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html-meta-description",
+      "file": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "150 caractères",
+      "reason": "Passe : 150 caractères observé, conforme à meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html-canonical",
+      "file": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html-robots",
+      "file": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html-viewport",
+      "file": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html-lang",
+      "file": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html-single-h1",
+      "file": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html-social-tags",
+      "file": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html-jsonld",
+      "file": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html-internal-links",
+      "file": "blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces/index.html",
       "category": "internal-linking",
       "description": "La page contient des liens internes crawlables",
       "pass": true,
@@ -19448,6 +20150,126 @@
     {
       "id": "blog/mutuelle-sante-reduire-frais-medicaux-2026/index.html-internal-links",
       "file": "blog/mutuelle-sante-reduire-frais-medicaux-2026/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "2 lien(s)",
+      "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
+      "id": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html-title-length",
+      "file": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "84 caractères",
+      "reason": "Échec : 84 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html-meta-description",
+      "file": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "150 caractères",
+      "reason": "Passe : 150 caractères observé, conforme à meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html-canonical",
+      "file": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html-robots",
+      "file": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html-viewport",
+      "file": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html-lang",
+      "file": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html-single-h1",
+      "file": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html-social-tags",
+      "file": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html-jsonld",
+      "file": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html-internal-links",
+      "file": "blog/mutuelle-sante-senior-2026-optimisez-vos-remboursements-avec-les-bonnes-strategies/index.html",
       "category": "internal-linking",
       "description": "La page contient des liens internes crawlables",
       "pass": true,
