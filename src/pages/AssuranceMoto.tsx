@@ -18,6 +18,7 @@ import arthurFlying from "@/assets/mascotte/arthur-excited.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
+import RelatedArticles from "@/components/blog/RelatedArticles";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 
 const AssuranceMoto = () => {
