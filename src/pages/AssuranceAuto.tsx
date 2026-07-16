@@ -20,6 +20,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
+import RelatedArticles from "@/components/blog/RelatedArticles";
 
 const AssuranceAuto = () => {
   const { t } = useLanguage();
