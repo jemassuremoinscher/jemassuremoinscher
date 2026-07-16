@@ -233,13 +233,12 @@ const Blog = () => {
                   <ul className="space-y-2">
                     {section.links.map((link: any) => (
                       <li key={(link.slug || link.to) + link.label}>
-                        <button
-                          type="button"
-                          onClick={() => navigate(link.to || `/blog/${link.slug}`)}
-                          className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline bg-transparent border-0 p-0 text-sm"
+                        <Link
+                          to={link.to || `/blog/${link.slug}`}
+                          className="text-muted-foreground hover:text-primary transition-colors text-left w-full cursor-pointer hover:underline text-sm block"
                         >
                           • {link.label}
-                        </button>
+                        </Link>
                       </li>
                     ))}
                   </ul>
