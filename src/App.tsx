@@ -190,9 +190,11 @@ const App = () => {
           <Suspense fallback={null}>
             <GlobalMdReveal />
           </Suspense>
-          <Suspense fallback={null}>
-            <ReadingProgressBar />
-          </Suspense>
+          {showDeferredWidgets && (
+            <Suspense fallback={null}>
+              <ReadingProgressBar />
+            </Suspense>
+          )}
           <Suspense fallback={null}>
             <SkipToMain />
           </Suspense>
