@@ -52,20 +52,30 @@ const AvisGoogle = ({ injectJsonLd = true, title = "Avis Google vérifiés" }: P
 
   useEffect(() => {
     let cancelled = false;
+    const FAIL_KEY = "google_reviews_failed_v1";
+    const FAIL_TTL_MS = 60 * 60 * 1000;
+    try {
+      const raw = sessionStorage.getItem(FAIL_KEY);
+      if (raw && Date.now() - Number(raw) < FAIL_TTL_MS) {
+        setError(true);
+        return;
+      }
+    } catch { /* ignore */ }
+    const markFail = () => {
+      try { sessionStorage.setItem(FAIL_KEY, String(Date.now())); } catch { /* ignore */ }
+      if (!cancelled) setError(true);
+    };
     fetch("/api/google-reviews")
-      .then((r) => {
-        if (!r.ok) throw new Error("api_error");
-        return r.json();
-      })
-      .then((d: GoogleReviewsData) => {
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error("api_error"))))
+      .then((d: GoogleReviewsData & { fallback?: boolean }) => {
         if (cancelled) return;
-        if (!d || (d as any).error || !d.rating || !d.total) {
-          setError(true);
+        if (!d || (d as any).fallback || (d as any).error || !d.rating || !d.total) {
+          markFail();
           return;
         }
         setData(d);
       })
-      .catch(() => !cancelled && setError(true));
+      .catch(markFail);
     return () => {
       cancelled = true;
     };
