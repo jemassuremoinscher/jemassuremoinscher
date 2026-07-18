@@ -24,26 +24,67 @@ const Hero = () => {
 
   return (
     <section
-      className="relative overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/90 py-10 md:py-14"
+      className="relative overflow-hidden bg-gradient-to-br from-[hsl(265,85%,20%)] via-primary to-[hsl(265,85%,35%)] py-10 md:py-14"
       aria-label={t("a11y.hero.section")}
     >
-      <div className="absolute inset-0 opacity-10 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-white rounded-full blur-3xl" />
-        <div className="absolute bottom-32 right-10 w-48 h-48 bg-accent rounded-full blur-3xl" />
+      {/* MD3 Expressive organic background shapes */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+        <div className="absolute -top-24 -right-24 h-[28rem] w-[28rem] rounded-full bg-primary opacity-30 blur-3xl" />
+        <div className="absolute top-1/3 -left-32 h-80 w-80 rounded-full bg-accent opacity-20 blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">
-        {/* Top row: Arthur (md+) à gauche du H1 */}
-        <div className="flex flex-col md:flex-row md:items-center md:gap-6 lg:gap-10 mb-10 md:mb-12">
-          {/* Arthur + bulle — desktop & tablet uniquement */}
-          <div className="hidden md:flex shrink-0 justify-center items-center animate-fade-in">
+        {/* Top row: content + Arthur */}
+        <div className="flex flex-col md:flex-row md:items-center md:gap-8 lg:gap-12 mb-10 md:mb-12">
+          <div className="flex-1 min-w-0 text-center md:text-left">
+            {/* Trust badges */}
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 md:gap-3 mb-5 md:mb-6 animate-fade-in">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur-sm px-3 py-1.5 text-xs md:text-sm font-medium text-white ring-1 ring-white/20">
+                <svg className="h-4 w-4 text-accent" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                4,9/5 · 247 avis Google
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur-sm px-3 py-1.5 text-xs md:text-sm font-medium text-white ring-1 ring-white/20">
+                70+ assureurs comparés
+              </span>
+              <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur-sm px-3 py-1.5 text-xs md:text-sm font-medium text-white ring-1 ring-white/20">
+                Sans engagement
+              </span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-white leading-[1.05] font-[Inter] animate-fade-in-up">
+              {slogan.line1.replace(/280€\/an/, "")}
+              <span className="text-accent"> 280€/an</span>
+              <br className="hidden sm:block" />
+              <span className="text-white/90 font-bold">
+                {" "}{slogan.line2Prefix}
+                <span>{slogan.line2Highlight}</span>
+                {slogan.line2Suffix}
+              </span>
+            </h1>
+
+            <p className="mt-5 md:mt-6 animate-fade-in-up-delay">
+              <span className="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-base md:text-lg font-bold text-primary shadow-[0_10px_30px_-8px_hsl(var(--accent)/0.6)]">
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
+                </svg>
+                {slogan.line3}
+              </span>
+            </p>
+          </div>
+
+          {/* Arthur — desktop & tablet */}
+          <div className="hidden md:flex shrink-0 justify-center items-center animate-fade-in-delay">
             <div className="relative inline-block">
+              <div aria-hidden="true" className="absolute inset-0 -m-8 rounded-full bg-gradient-to-tr from-accent/40 via-white/10 to-transparent blur-2xl" />
               <img
                 src={arthurMascot}
                 alt={arthurImageAlt}
-                className="w-32 lg:w-48 h-auto drop-shadow-2xl animate-hero-float"
-                width={192}
-                height={240}
+                className="relative w-36 lg:w-52 h-auto drop-shadow-2xl animate-hero-float"
+                width={208}
+                height={260}
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"
@@ -56,26 +97,6 @@ const Hero = () => {
               </div>
             </div>
           </div>
-
-          <h1 className="flex-1 min-w-0 text-2xl sm:text-3xl md:text-[1.75rem] lg:text-5xl xl:text-[3.5rem] font-black text-white text-center md:text-left leading-tight font-[Inter] animate-fade-in-up">
-            {slogan.line1}
-            <br />
-            {slogan.line2Prefix}
-            <span>{slogan.line2Highlight}</span>
-            {slogan.line2Suffix}
-            <br />
-            <span className="relative inline-block">
-              <span className="relative z-10" style={{ color: "#f5b80a" }}>{slogan.line3}</span>
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 200 14"
-                preserveAspectRatio="none"
-                className="absolute left-0 right-0 -bottom-1 md:-bottom-2 w-full h-3 md:h-4"
-              >
-                <path d="M3 8 L 197 6" stroke="#f5b80a" strokeWidth="9" strokeLinecap="round" fill="none" opacity="0.9" />
-              </svg>
-            </span>
-          </h1>
         </div>
 
         {/* Form — élargi et centré sur md+ */}
