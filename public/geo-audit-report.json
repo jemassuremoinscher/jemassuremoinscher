@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-07-17T03:29:08.216Z",
+  "generatedAt": "2026-07-18T06:40:43.421Z",
   "score": 90,
   "status": "good",
   "methodology": "Score GEO pondéré sur toutes les pages HTML du site plus les sources React/marketing critiques : dérive des métriques partagées, cohérence du shell statique et absence de stale copy.",
   "summary": {
-    "totalChecks": 310,
-    "passedChecks": 291,
+    "totalChecks": 319,
+    "passedChecks": 300,
     "failedChecks": 19,
-    "auditedFiles": 266,
-    "auditedPages": 258,
-    "staticRoutes": 258,
-    "weightedPassed": 1620,
-    "weightedTotal": 1810
+    "auditedFiles": 275,
+    "auditedPages": 267,
+    "staticRoutes": 267,
+    "weightedPassed": 1665,
+    "weightedTotal": 1855
   },
   "mismatches": [
     {
@@ -401,6 +401,18 @@
       "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
     },
     {
+      "id": "blog/100-pour-cent-sante-2026-reste-a-charge/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/100-pour-cent-sante-2026-reste-a-charge/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
       "id": "blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet/index.html",
@@ -476,6 +488,18 @@
       "id": "blog/assurance-au-kilometre-pay-as-you-drive-rentable/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-au-kilometre-pay-as-you-drive-rentable/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-auto-alcoolemie-quels-delais-agira-et-impacts-en-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-auto-alcoolemie-quels-delais-agira-et-impacts-en-2026/index.html",
       "description": "La page statique ne contient pas d'anciennes métriques de confiance",
       "pass": true,
       "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
@@ -608,6 +632,30 @@
       "id": "blog/assurance-auto-malus-eleve-crm/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-auto-malus-eleve-crm/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-auto-malusee-resiliee-votre-guide-ultime-pour-2026-meme-cas-difficiles/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-auto-malusee-resiliee-votre-guide-ultime-pour-2026-meme-cas-difficiles/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-auto-malusse-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-auto-malusse-2026/index.html",
       "description": "La page statique ne contient pas d'anciennes métriques de confiance",
       "pass": true,
       "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
@@ -1157,6 +1205,30 @@
       "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
     },
     {
+      "id": "blog/assurance-pret-immobilier-en-2026-le-guide-ultime-pour-economiser-gros/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-pret-immobilier-en-2026-le-guide-ultime-pour-economiser-gros/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-pro-nice-le-guide-complet-pour-proteger-votre-activite-en-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-pro-nice-le-guide-complet-pour-proteger-votre-activite-en-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
       "id": "blog/assurance-retraite-expatrie-france/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-retraite-expatrie-france/index.html",
@@ -1169,9 +1241,33 @@
       "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
     },
     {
+      "id": "blog/assurance-sante-votre-guide-complet-pour-2026-et-au-dela/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-sante-votre-guide-complet-pour-2026-et-au-dela/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
       "id": "blog/assurance-tech-workers-expatries/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-tech-workers-expatries/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-trottinette-electrique-livreur-2026-le-guide-indispensable/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-trottinette-electrique-livreur-2026-le-guide-indispensable/index.html",
       "description": "La page statique ne contient pas d'anciennes métriques de confiance",
       "pass": true,
       "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
@@ -1808,6 +1904,18 @@
       "id": "blog/meilleure-assurance-moto-125-2026/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/meilleure-assurance-moto-125-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/motos-a2-125-moins-cheres-assurer-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/motos-a2-125-moins-cheres-assurer-2026/index.html",
       "description": "La page statique ne contient pas d'anciennes métriques de confiance",
       "pass": true,
       "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
