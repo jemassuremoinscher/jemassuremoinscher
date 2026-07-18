@@ -55,7 +55,7 @@ const fr: Record<string, string> = {
   'hero.line3': 'On s\'occupe de tout.',
   'hero.ctaSubtext': 'Gratuit, sans engagement et conforme Loi Hamon',
   'hero.slogan.line1': 'Comparez votre assurance',
-  'hero.slogan.line2Prefix': 'avec ',
+  'hero.slogan.line2Prefix': 'grâce à ',
   'hero.slogan.line2Highlight': 'Arthur',
   'hero.slogan.line2Suffix': ', et payez moins cher,',
   'hero.slogan.line3': 'sans compromis.',

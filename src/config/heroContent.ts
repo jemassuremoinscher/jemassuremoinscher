@@ -13,7 +13,7 @@ export const heroContent = {
   /** Slogan principal — affiché dans le <h1> du Hero (3 lignes) */
   slogan: {
     line1: "Économisez jusqu'à 280€/an",
-    line2Prefix: "sur votre assurance avec ",
+    line2Prefix: "sur votre assurance grâce à ",
     line2Highlight: "Arthur",
     line2Suffix: ".",
     line3: "Devis gratuit en 2 minutes.", // mis en jaune + ondulation
