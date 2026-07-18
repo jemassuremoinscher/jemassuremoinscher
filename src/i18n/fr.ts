@@ -58,7 +58,7 @@ const fr: Record<string, string> = {
   'hero.slogan.line2Prefix': 'grâce à ',
   'hero.slogan.line2Highlight': 'Arthur',
   'hero.slogan.line2Suffix': ', et payez moins cher,',
-  'hero.slogan.line3': 'sans compromis.'
+  'hero.slogan.line3': 'sans compromis.',
   'hero.arthurBubble': "Hello, moi c'est Arthur 👋",
   'hero.arthurImageAlt': "Arthur mascotte jemassuremoinscher, guide pour comparer assurance auto, habitation et santé",
 
