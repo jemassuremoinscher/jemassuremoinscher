@@ -1036,9 +1036,9 @@ Changement d'adresse, de garage, etc.
   },
   {
     id: "4",
-    title: "Assurance habitation : Les garanties indispensables",
+    title: "Assurance habitation 2026 : les 6 garanties indispensables (et 3 options inutiles)",
     slug: "assurance-habitation-garanties-indispensables",
-    description: "Incendie, dégât des eaux, vol... Quelles garanties sont vraiment nécessaires pour votre logement ? Notre expert vous guide dans votre choix.",
+    description: "Quelles garanties d'assurance habitation sont vraiment indispensables en 2026 ? L'essentiel à couvrir et les options à éviter pour ne pas surpayer.",
     category: "Guides Pratiques",
     date: "8 janvier 2026",
     readTime: "7 min",
