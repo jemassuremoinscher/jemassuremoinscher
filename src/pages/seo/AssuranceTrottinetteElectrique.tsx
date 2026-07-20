@@ -136,19 +136,21 @@ const AssuranceTrottinetteElectrique = () => {
     <p>Trois profils nécessitent une couverture spécifique : les <strong>livreurs Uber Eats / Deliveroo</strong> (RC pro obligatoire, voir notre page <a href="/assurance-trottinette-livreur">assurance trottinette livreur</a>), les <strong>étudiants</strong> (formules courtes ou suspendables pendant les vacances), et les <strong>mineurs de 14 à 17 ans</strong> (la souscription doit être faite par le représentant légal, avec mention de l'âge du conducteur principal).</p>
 
     <p>Ne prenez pas le risque de rouler sans assurance. <strong>Comparez gratuitement les offres</strong> et trouvez la couverture adaptée à votre trottinette électrique en quelques clics.</p>
+
+    <p><em>Pour comprendre en détail la réglementation EDPM, les sanctions et l'amende de 3 750 € prévue par la loi, consultez notre article dédié : <a href="/blog/trottinettes-electriques-edpm-assurance-obligatoire">Trottinettes électriques et EDPM : loi, sanctions et amendes 2026</a>.</em></p>
   `;
 
 
   return (
     <SEOLandingPage
-      title="Assurance Trottinette Électrique Obligatoire 2026 | Devis"
-      metaDescription="Assurance trottinette électrique obligatoire en France 2026. Comparez dès 2,90€/mois. 30+ assureurs. Devis gratuit en 2 min."
-      keyword="assurance trottinette électrique"
-      keywords="assurance obligatoire trottinette électrique france 2026, assurance EDPM, assurance gyroroue, trottinette electrique assurance"
+      title="Assurance Trottinette Électrique 2026 : Devis dès 2,90€/mois"
+      metaDescription="Comparez 30+ assureurs et obtenez votre devis d'assurance trottinette électrique en 2 min. Formules dès 2,90 €/mois, RC, vol et casse."
+      keyword="assurance trottinette électrique devis"
+      keywords="devis assurance trottinette électrique, comparateur assurance EDPM, prix assurance trottinette, assurance gyroroue pas cher"
       canonical="https://www.jemassuremoinscher.fr/assurance-trottinette-electrique"
       heroIcon={Zap}
-      heroTitle="Assurance Trottinette Électrique : Obligatoire dès 2,90 €/mois"
-      heroSubtitle="L'assurance EDPM est obligatoire en France depuis 2024. Nos courtiers comparent 30+ assureurs pour trouver votre couverture au meilleur prix."
+      heroTitle="Assurance Trottinette Électrique : Comparez & Économisez dès 2,90 €/mois"
+      heroSubtitle="Obtenez votre devis en 2 minutes. Nos courtiers comparent 30+ assureurs pour dénicher la meilleure formule EDPM adaptée à votre usage."
       ctaLabel="Comparer les offres gratuitement"
       ctaLink="/comparateur"
       contentTitle="Tout savoir sur l'assurance trottinette électrique obligatoire"
