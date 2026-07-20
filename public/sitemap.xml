@@ -1996,12 +1996,8 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/profil/jeune-conducteur-voiture-puissante</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <!-- /profil/jeune-conducteur-voiture-puissante: 301 → /blog/jeune-conducteur-voiture-puissante-110-chevaux -->
+
   <url>
     <loc>https://www.jemassuremoinscher.fr/profil/malus-eleve</loc>
     <lastmod>2026-07-18</lastmod>
