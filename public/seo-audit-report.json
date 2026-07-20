@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-07-20T03:47:14.386Z",
+  "generatedAt": "2026-07-20T09:33:54.735Z",
   "score": 88,
   "status": "good",
   "methodology": "Score on-page pondéré sur toutes les pages HTML du site : title, meta description, canonical, robots, viewport, lang, H1 principal, Open Graph, JSON-LD et maillage interne.",
   "summary": {
-    "auditedPages": 267,
-    "totalChecks": 2670,
-    "passedChecks": 2436,
-    "failedChecks": 234,
-    "weightedPassed": 23435,
-    "weightedTotal": 26700,
-    "strongPages": 222
+    "auditedPages": 270,
+    "totalChecks": 2700,
+    "passedChecks": 2463,
+    "failedChecks": 237,
+    "weightedPassed": 23690,
+    "weightedTotal": 27000,
+    "strongPages": 225
   },
   "pageScores": [
     {
@@ -264,6 +264,11 @@
       "issues": 2
     },
     {
+      "file": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html",
+      "score": 85,
+      "issues": 1
+    },
+    {
       "file": "blog/assurance-emprunteur-changer-gagner-milliers-euros/index.html",
       "score": 85,
       "issues": 1
@@ -275,6 +280,11 @@
     },
     {
       "file": "blog/assurance-emprunteur-substitution-banque-refuse/index.html",
+      "score": 85,
+      "issues": 1
+    },
+    {
+      "file": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html",
       "score": 85,
       "issues": 1
     },
@@ -435,6 +445,11 @@
     },
     {
       "file": "blog/assurance-tech-workers-expatries/index.html",
+      "score": 85,
+      "issues": 1
+    },
+    {
+      "file": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html",
       "score": 85,
       "issues": 1
     },
@@ -1891,6 +1906,18 @@
       "reason": "Échec : 162 caractères observé, attendu meta description de 70 à 160 caractères."
     },
     {
+      "id": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html-title-length",
+      "file": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "74 caractères",
+      "reason": "Échec : 74 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
       "id": "blog/assurance-emprunteur-changer-gagner-milliers-euros/index.html-title-length",
       "file": "blog/assurance-emprunteur-changer-gagner-milliers-euros/index.html",
       "category": "title",
@@ -1925,6 +1952,18 @@
       "expected": "title de 30 à 60 caractères",
       "actual": "67 caractères",
       "reason": "Échec : 67 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html-title-length",
+      "file": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "91 caractères",
+      "reason": "Échec : 91 caractères observé, attendu title de 30 à 60 caractères."
     },
     {
       "id": "blog/assurance-expat-france-vs-origine/index.html-title-length",
@@ -2225,6 +2264,18 @@
       "expected": "title de 30 à 60 caractères",
       "actual": "61 caractères",
       "reason": "Échec : 61 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html-title-length",
+      "file": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "62 caractères",
+      "reason": "Échec : 62 caractères observé, attendu title de 30 à 60 caractères."
     },
     {
       "id": "blog/assurance-trottinette-electrique-livreur-2026-le-guide-indispensable/index.html-title-length",
@@ -10161,6 +10212,126 @@
       "reason": "Passe : 5 lien(s) observé, conforme à au moins 1 lien interne relatif."
     },
     {
+      "id": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html-title-length",
+      "file": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "74 caractères",
+      "reason": "Échec : 74 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html-meta-description",
+      "file": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "150 caractères",
+      "reason": "Passe : 150 caractères observé, conforme à meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html-canonical",
+      "file": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026 observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html-robots",
+      "file": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html-viewport",
+      "file": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html-lang",
+      "file": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html-single-h1",
+      "file": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html-social-tags",
+      "file": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html-jsonld",
+      "file": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html-internal-links",
+      "file": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "2 lien(s)",
+      "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
       "id": "blog/assurance-emprunteur-changer-gagner-milliers-euros/index.html-title-length",
       "file": "blog/assurance-emprunteur-changer-gagner-milliers-euros/index.html",
       "category": "title",
@@ -10511,6 +10682,126 @@
     {
       "id": "blog/assurance-emprunteur-substitution-banque-refuse/index.html-internal-links",
       "file": "blog/assurance-emprunteur-substitution-banque-refuse/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "2 lien(s)",
+      "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
+      "id": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html-title-length",
+      "file": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "91 caractères",
+      "reason": "Échec : 91 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html-meta-description",
+      "file": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "150 caractères",
+      "reason": "Passe : 150 caractères observé, conforme à meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html-canonical",
+      "file": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026 observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html-robots",
+      "file": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html-viewport",
+      "file": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html-lang",
+      "file": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html-single-h1",
+      "file": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html-social-tags",
+      "file": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html-jsonld",
+      "file": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html-internal-links",
+      "file": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html",
       "category": "internal-linking",
       "description": "La page contient des liens internes crawlables",
       "pass": true,
@@ -14351,6 +14642,126 @@
     {
       "id": "blog/assurance-tech-workers-expatries/index.html-internal-links",
       "file": "blog/assurance-tech-workers-expatries/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "2 lien(s)",
+      "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
+      "id": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html-title-length",
+      "file": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "62 caractères",
+      "reason": "Échec : 62 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html-meta-description",
+      "file": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "145 caractères",
+      "reason": "Passe : 145 caractères observé, conforme à meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html-canonical",
+      "file": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/assurance-tous-risques-definition-mythes-et-realite-en-2026",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/assurance-tous-risques-definition-mythes-et-realite-en-2026 observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html-robots",
+      "file": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html-viewport",
+      "file": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html-lang",
+      "file": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html-single-h1",
+      "file": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html-social-tags",
+      "file": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html-jsonld",
+      "file": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html-internal-links",
+      "file": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html",
       "category": "internal-linking",
       "description": "La page contient des liens internes crawlables",
       "pass": true,
