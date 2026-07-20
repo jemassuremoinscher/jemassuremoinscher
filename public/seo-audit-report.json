@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T06:44:07.480Z",
+  "generatedAt": "2026-07-20T03:47:14.386Z",
   "score": 88,
   "status": "good",
   "methodology": "Score on-page pondéré sur toutes les pages HTML du site : title, meta description, canonical, robots, viewport, lang, H1 principal, Open Graph, JSON-LD et maillage interne.",
@@ -2991,8 +2991,8 @@
       "weight": 15,
       "impact": 15,
       "expected": "title de 30 à 60 caractères",
-      "actual": "75 caractères",
-      "reason": "Échec : 75 caractères observé, attendu title de 30 à 60 caractères."
+      "actual": "77 caractères",
+      "reason": "Échec : 77 caractères observé, attendu title de 30 à 60 caractères."
     },
     {
       "id": "blog/velos-cargos-vae-protection-vol-urbain/index.html-title-length",
@@ -24809,8 +24809,8 @@
       "weight": 15,
       "impact": 15,
       "expected": "title de 30 à 60 caractères",
-      "actual": "75 caractères",
-      "reason": "Échec : 75 caractères observé, attendu title de 30 à 60 caractères."
+      "actual": "77 caractères",
+      "reason": "Échec : 77 caractères observé, attendu title de 30 à 60 caractères."
     },
     {
       "id": "blog/trottinettes-electriques-edpm-assurance-obligatoire/index.html-meta-description",
@@ -24821,8 +24821,8 @@
       "weight": 15,
       "impact": 15,
       "expected": "meta description de 70 à 160 caractères",
-      "actual": "105 caractères",
-      "reason": "Passe : 105 caractères observé, conforme à meta description de 70 à 160 caractères."
+      "actual": "135 caractères",
+      "reason": "Passe : 135 caractères observé, conforme à meta description de 70 à 160 caractères."
     },
     {
       "id": "blog/trottinettes-electriques-edpm-assurance-obligatoire/index.html-canonical",
@@ -24917,8 +24917,8 @@
       "weight": 10,
       "impact": 10,
       "expected": "au moins 1 lien interne relatif",
-      "actual": "5 lien(s)",
-      "reason": "Passe : 5 lien(s) observé, conforme à au moins 1 lien interne relatif."
+      "actual": "6 lien(s)",
+      "reason": "Passe : 6 lien(s) observé, conforme à au moins 1 lien interne relatif."
     },
     {
       "id": "blog/van-amenage-assurance-2026/index.html-title-length",
