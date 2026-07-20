@@ -10,7 +10,7 @@ interface BarometreOptinProps {
   source?: string;
 }
 
-const BAROMETRE_URL = "/barometre-cout-assurance-2026.html";
+const BAROMETRE_URL = "/barometre-cout-assurance-2026.pdf";
 
 /**
  * Permanent email capture magnet — offers the "Baromètre du coût de
