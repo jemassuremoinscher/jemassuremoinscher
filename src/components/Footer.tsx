@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import arthurRunning from "@/assets/mascotte/arthur-running.webp";
 import CrossSiteLinks from '@/components/CrossSiteLinks';
+import BarometreOptin from '@/components/BarometreOptin';
 
 type ModalType = "mentions" | "cgu" | "confidentialite" | null;
 
