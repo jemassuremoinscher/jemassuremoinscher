@@ -75,7 +75,7 @@ export const BlogHighlights = () => {
                 <li><button type="button" onClick={() => navigate('/profil/resilie-non-paiement')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Résilié non-paiement</button></li>
                 <li><button type="button" onClick={() => navigate('/profil/retrait-permis')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Retrait de permis</button></li>
                 <li><button type="button" onClick={() => navigate('/profil/frequence-sinistres')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Multi-sinistré (3+)</button></li>
-                <li><button type="button" onClick={() => navigate('/profil/jeune-conducteur-voiture-puissante')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Jeune + voiture puissante</button></li>
+                <li><button type="button" onClick={() => navigate('/blog/jeune-conducteur-voiture-puissante-110-chevaux')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Jeune + voiture puissante</button></li>
                 <li><button type="button" onClick={() => navigate('/profil/sans-antecedents')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Primo-assuré</button></li>
               </ul>
             </div>

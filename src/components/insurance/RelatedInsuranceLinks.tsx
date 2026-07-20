@@ -37,7 +37,7 @@ const nicheLinks = [
   { to: "/profil/retrait-permis", label: "Retrait de permis" },
   { to: "/profil/frequence-sinistres", label: "Multi-sinistré (3+ sinistres)" },
   { to: "/profil/sans-antecedents", label: "Sans antécédents / Primo-assuré" },
-  { to: "/profil/jeune-conducteur-voiture-puissante", label: "Jeune conducteur + voiture puissante" },
+  { to: "/blog/jeune-conducteur-voiture-puissante-110-chevaux", label: "Jeune conducteur + voiture puissante" },
 ];
 
 const duelLinks = [
@@ -63,7 +63,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     niches: [
       { to: "/profil/resilie-non-paiement", label: "Résilié pour non-paiement ?" },
       { to: "/profil/retrait-permis", label: "Retrait de permis ?" },
-      { to: "/profil/jeune-conducteur-voiture-puissante", label: "Jeune conducteur + voiture puissante ?" },
+      { to: "/blog/jeune-conducteur-voiture-puissante-110-chevaux", label: "Jeune conducteur + voiture puissante ?" },
       { to: "/profil/frequence-sinistres", label: "Multi-sinistré ?" },
       { to: "/profil/sans-antecedents", label: "Primo-assuré sans antécédents ?" },
     ],
@@ -80,7 +80,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
       { to: "/comparatif/maif-vs-macif", label: "Duel : MAIF vs Macif" },
     ],
     niches: [
-      { to: "/profil/jeune-conducteur-voiture-puissante", label: "Jeune conducteur + 2-roues puissant ?" },
+      { to: "/blog/jeune-conducteur-voiture-puissante-110-chevaux", label: "Jeune conducteur + 2-roues puissant ?" },
       { to: "/profil/resilie-non-paiement", label: "Résilié pour non-paiement ?" },
     ],
   },
