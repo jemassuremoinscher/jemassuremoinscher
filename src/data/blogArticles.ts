@@ -1673,9 +1673,9 @@ Certaines garanties diminuent ou s'arrêtent après 65 ans. Vérifiez le contrat
   },
   {
     id: "11",
-    title: "Meilleure Assurance Auto 2026 : Notre Top 10 Comparatif",
+    title: "Meilleure assurance auto 2026 : comparatif prix, garanties et avis",
     slug: "meilleure-assurance-auto-2026-comparatif",
-    description: "Découvrez notre classement exclusif des meilleures assurances auto en 2026 : tarifs, garanties, avis clients. Trouvez l'assurance la moins chère adaptée à votre profil.",
+    description: "Quelle est la meilleure assurance auto en 2026 ? Comparatif des prix, garanties et avis pour choisir au meilleur rapport qualité-prix.",
     category: "Assurance Auto",
     date: "2 janvier 2026",
     readTime: "12 min",
