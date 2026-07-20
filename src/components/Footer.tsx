@@ -124,12 +124,12 @@ const Footer = () => {
                 </ul>
               </nav>
 
-              {/* Col 4: Informations Légales */}
+              {/* Col 4: Informations Légales + Baromètre optin */}
               <div>
                 <h3 className="text-sm font-bold text-accent uppercase tracking-wide mb-4">
                   {t('footer.colLegal')}
                 </h3>
-                <div className="space-y-3">
+                <div className="space-y-3 mb-5">
                   <p className="text-xs text-primary-foreground/50 leading-relaxed">
                     {t('footer.legalMandatoryNotice')}
                   </p>
@@ -137,6 +137,7 @@ const Footer = () => {
                     {t('footer.legalRatesNotice')}
                   </p>
                 </div>
+                <BarometreOptin variant="compact" source="footer" />
               </div>
             </div>
           </div>
