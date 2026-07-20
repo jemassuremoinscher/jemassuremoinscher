@@ -338,15 +338,8 @@
       <image:loc>https://www.jemassuremoinscher.fr/opengraph-image.png</image:loc>
     </image:image>
   </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet</loc>
-    <lastmod>2026-07-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://www.jemassuremoinscher.fr/opengraph-image.png</image:loc>
-    </image:image>
-  </url>
+  <!-- /blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet: 301 → /blog/jeune-conducteur-voiture-puissante-110-chevaux -->
+
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/5-arnaques-assurance-courantes-2026</loc>
     <lastmod>2026-07-18</lastmod>
