@@ -67,7 +67,7 @@ export const routes: RouteConfig[] = [
   { path: "/profil/retrait-permis", changefreq: "weekly", priority: 0.8 },
   { path: "/profil/frequence-sinistres", changefreq: "weekly", priority: 0.8 },
   { path: "/profil/sans-antecedents", changefreq: "weekly", priority: 0.8 },
-  { path: "/profil/jeune-conducteur-voiture-puissante", changefreq: "weekly", priority: 0.8 },
+  // /profil/jeune-conducteur-voiture-puissante: 301 → /blog/jeune-conducteur-voiture-puissante-110-chevaux (consolidated to avoid cannibalization)
   { path: "/profil/fausse-declaration", changefreq: "weekly", priority: 0.8 },
   { path: "/profil/malus-eleve", changefreq: "weekly", priority: 0.8 },
   { path: "/profil/permis-etranger", changefreq: "weekly", priority: 0.8 },

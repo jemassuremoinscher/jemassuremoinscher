@@ -4,7 +4,9 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/assurance-auto-malusse", "destination": "/assurance-auto-malus", "statusCode": 301 },
-        { "source": "/assurance-creche", "destination": "/assurance-rc-pro", "statusCode": 301 }
+    { "source": "/assurance-creche", "destination": "/assurance-rc-pro", "statusCode": 301 },
+    { "source": "/blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet", "destination": "/blog/jeune-conducteur-voiture-puissante-110-chevaux", "statusCode": 301 },
+    { "source": "/profil/jeune-conducteur-voiture-puissante", "destination": "/blog/jeune-conducteur-voiture-puissante-110-chevaux", "statusCode": 301 }
   ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
