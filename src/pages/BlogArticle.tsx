@@ -393,6 +393,9 @@ const BlogArticle = () => {
                 />
               </div>
 
+              {/* Baromètre lead magnet — permanent email capture */}
+              <BarometreOptin source={`blog_article:${article.slug}`} />
+
               {/* Related product links */}
               <RelatedProductLinks category={article.category} tags={article.tags} />
 
