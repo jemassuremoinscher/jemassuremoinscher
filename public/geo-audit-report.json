@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-07-20T03:47:14.210Z",
+  "generatedAt": "2026-07-20T09:33:54.483Z",
   "score": 90,
   "status": "good",
   "methodology": "Score GEO pondéré sur toutes les pages HTML du site plus les sources React/marketing critiques : dérive des métriques partagées, cohérence du shell statique et absence de stale copy.",
   "summary": {
-    "totalChecks": 319,
-    "passedChecks": 300,
+    "totalChecks": 322,
+    "passedChecks": 303,
     "failedChecks": 19,
-    "auditedFiles": 275,
-    "auditedPages": 267,
-    "staticRoutes": 267,
-    "weightedPassed": 1665,
-    "weightedTotal": 1855
+    "auditedFiles": 278,
+    "auditedPages": 270,
+    "staticRoutes": 270,
+    "weightedPassed": 1680,
+    "weightedTotal": 1870
   },
   "mismatches": [
     {
@@ -845,6 +845,18 @@
       "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
     },
     {
+      "id": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-edpm-guide-complet-pour-choisir-la-meilleure-protection-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
       "id": "blog/assurance-emprunteur-changer-gagner-milliers-euros/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-emprunteur-changer-gagner-milliers-euros/index.html",
@@ -872,6 +884,18 @@
       "id": "blog/assurance-emprunteur-substitution-banque-refuse/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-emprunteur-substitution-banque-refuse/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026/index.html",
       "description": "La page statique ne contient pas d'anciennes métriques de confiance",
       "pass": true,
       "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
@@ -1256,6 +1280,18 @@
       "id": "blog/assurance-tech-workers-expatries/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-tech-workers-expatries/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-tous-risques-definition-mythes-et-realite-en-2026/index.html",
       "description": "La page statique ne contient pas d'anciennes métriques de confiance",
       "pass": true,
       "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",

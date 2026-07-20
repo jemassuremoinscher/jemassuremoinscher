@@ -28,6 +28,7 @@ import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 import SmartConversionWidget, { detectCategory } from "@/components/blog/SmartConversionWidget";
 import { supabase } from "@/integrations/supabase/client";
+import BarometreOptin from "@/components/BarometreOptin";
 
 const formatFrenchDate = (value?: string | null) => {
   if (!value) return new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
@@ -391,6 +392,9 @@ const BlogArticle = () => {
                   subtitle={t("blogArticlePage.faqSubtitle")}
                 />
               </div>
+
+              {/* Baromètre lead magnet — permanent email capture */}
+              <BarometreOptin source={`blog_article:${article.slug}`} />
 
               {/* Related product links */}
               <RelatedProductLinks category={article.category} tags={article.tags} />
