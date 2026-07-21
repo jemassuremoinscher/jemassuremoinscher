@@ -133,6 +133,21 @@
   <!-- Blog — Métiers Atypiques piliers -->
 <!-- SEO Pages -->
   <url>
+    <loc>https://www.jemassuremoinscher.fr/assurance-trottinette-electrique</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/assurance-auto-permis-etranger</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/assurance-trottinette-livreur</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-auto-malus</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
