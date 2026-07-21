@@ -71,7 +71,7 @@ const AssuranceEmprunteurSEO = () => {
       metaDescription="Assurance emprunteur : définition, garanties et loi Lemoine 2026. Changez à tout moment et économisez jusqu'à 15 000€. Devis gratuit."
       keyword="assurance emprunteur"
       keywords="assurance emprunteur définition, assurance de prêt immobilier, délégation assurance emprunteur, loi Lemoine assurance emprunteur, changer assurance emprunteur"
-      canonical="https://www.jemassuremoinscher.fr/assurance-emprunteur"
+      canonical="https://www.jemassuremoinscher.fr/assurance-pret"
       heroIcon={Landmark}
       heroTitle="Assurance Emprunteur : Économisez jusqu'à 15 000 € sur Votre Prêt"
       heroSubtitle="Grâce à la loi Lemoine, changez d'assurance emprunteur à tout moment. Nos courtiers comparent 30+ assureurs pour réduire votre prime."
