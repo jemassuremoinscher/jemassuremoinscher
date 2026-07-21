@@ -20,7 +20,7 @@ export default function RegionalInsurancePage() {
   const title = `Assurance Auto ${dept.name} (${dept.code}) — Comparateur & Prix 2026`;
   const description = `Comparez les prix de l'assurance auto en ${dept.name}. Prix moyen : ${dept.avgPriceAuto}€/an. Trouvez l'assureur le moins cher dans le ${dept.code} avec notre comparateur gratuit.`;
 
-  const faqItems = [
+  const genericFaq = [
     {
       question: `Quel est le prix moyen de l'assurance auto en ${dept.name} ?`,
       answer: `Le prix moyen de l'assurance auto en ${dept.name} (${dept.code}) est de ${dept.avgPriceAuto}€ par an en 2026. Ce tarif varie selon votre profil, votre véhicule et vos garanties.`,
@@ -34,6 +34,8 @@ export default function RegionalInsurancePage() {
       answer: `Pour réduire votre prime en ${dept.name}, comparez les offres de plusieurs assureurs, optez pour un paiement annuel, augmentez votre franchise et profitez des réductions en ligne.`,
     },
   ];
+
+  const faqItems = dept.localFaq && dept.localFaq.length > 0 ? dept.localFaq : genericFaq;
 
   return (
     <>
