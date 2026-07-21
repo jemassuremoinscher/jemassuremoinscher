@@ -40,7 +40,7 @@ export default function RegionalInsurancePage() {
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href={`https://jemassuremoinscher.fr/assurance-auto/${dept.slug}`} />
+        <link rel="canonical" href={`https://www.jemassuremoinscher.fr/assurance-auto/${dept.slug}`} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta name="robots" content="index, follow" />
