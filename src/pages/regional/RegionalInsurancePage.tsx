@@ -82,6 +82,13 @@ export default function RegionalInsurancePage() {
             initialDepartment={dept.slug}
           />
 
+          {dept.uniqueContent && (
+            <section
+              className="prose prose-lg max-w-none mt-12 prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground"
+              dangerouslySetInnerHTML={{ __html: dept.uniqueContent }}
+            />
+          )}
+
           <div className="mt-12">
             <ArthurCTABubble />
           </div>
