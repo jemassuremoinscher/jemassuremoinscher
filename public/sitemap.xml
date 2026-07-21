@@ -7,6 +7,25 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+  <!-- Pages locales -->
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/assurance-auto/alpes-maritimes</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/assurance-auto/bouches-du-rhone</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/assurance-auto/var</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <!-- Main Pages -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/comparateur</loc>
@@ -2104,6 +2123,8 @@
     <priority>0.7</priority>
   </url>
 </urlset>
+
+
 
 
 
