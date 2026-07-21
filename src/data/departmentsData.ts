@@ -6,6 +6,8 @@ export interface DepartmentData {
   avgPriceSante: number;
   avgPriceHabitation: number;
   topInsurers: { name: string; price: number; logo: string }[];
+  uniqueContent?: string;
+  localFaq?: { question: string; answer: string }[];
 }
 
 // Moyenne nationale de référence
