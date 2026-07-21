@@ -26,6 +26,7 @@ const allProducts: Record<string, RelatedLink> = {
   pno: { to: "/assurance-pno", label: "Assurance PNO", description: "Propriétaire non occupant : protégez votre bien" },
   gli: { to: "/assurance-gli", label: "Garantie Loyers Impayés", description: "Sécurisez vos revenus locatifs" },
   trottinette: { to: "/assurance-trottinette", label: "Assurance Trottinette", description: "EDPM : assurance obligatoire dès 2,90€/mois" },
+  trottinetteElectrique: { to: "/assurance-trottinette-electrique", label: "Assurance Trottinette Électrique", description: "EDPM : couverture obligatoire dès 2,90€/mois" },
   permisEtranger: { to: "/assurance-auto-permis-etranger", label: "Permis Étranger", description: "Assurance auto avec permis étranger accepté" },
   emprunteur: { to: "/assurance-emprunteur", label: "Assurance Emprunteur", description: "Changez à tout moment, économisez jusqu'à 15 000€" },
   metiersAtypiques: { to: "/assurance-metiers-atypiques", label: "Métiers Atypiques", description: "Activités à risques : devis sur-mesure auprès de 12 assureurs spé." },
@@ -55,6 +56,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
       { to: "/blog/meilleure-assurance-auto-2026", label: "Meilleure assurance auto 2026" },
       { to: "/blog/assurance-auto-jeune-conducteur-astuces", label: "Astuces jeune conducteur" },
       { to: "/blog/permis-conduire-etranger-assurance-auto-france", label: "Assurance auto avec permis étranger" },
+      { to: "/blog/heritage-vehicule-assurer-voiture-deces", label: "Assurer une voiture après un décès" },
     ],
     tools: [
       { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
@@ -70,7 +72,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   moto: {
-    products: ["auto", "trottinette", "habitation", "jeuneConducteur"],
+    products: ["auto", "trottinette", "trottinetteElectrique", "habitation", "jeuneConducteur"],
     articles: [
       { to: "/blog/meilleure-assurance-auto-2026", label: "Guide assurance véhicule 2026" },
       { to: "/blog/resiliation-assurance-droits-2026", label: "Résilier son assurance facilement" },
@@ -130,7 +132,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   pret: {
-    products: ["emprunteur", "vie", "habitation"],
+    products: ["vie", "habitation"],
     articles: [
       { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine : changer d'assurance emprunteur" },
       { to: "/blog/resiliation-assurance-droits-2026", label: "Vos droits de résiliation" },
