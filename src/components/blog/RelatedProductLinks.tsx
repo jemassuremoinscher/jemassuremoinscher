@@ -19,6 +19,7 @@ const categoryToProducts: Record<string, ProductLink[]> = {
     { to: "/assurance-moto", label: "Assurance moto" },
     { to: "/comparatif/maif-vs-macif", label: "Duel MAIF vs Macif" },
     { to: "/profil/resilie-non-paiement", label: "Résilié pour non-paiement ?" },
+    { to: "/assurance-auto-jeune-conducteur", label: "Assurance jeune conducteur" },
   ],
   "Assurance Auto": [
     { to: "/assurance-auto", label: "Comparer les assurances auto" },
@@ -26,6 +27,7 @@ const categoryToProducts: Record<string, ProductLink[]> = {
     { to: "/comparatif/axa-vs-allianz", label: "Duel AXA vs Allianz" },
     { to: "/profil/retrait-permis", label: "Retrait de permis : solutions" },
     { to: "/profil/frequence-sinistres", label: "Multi-sinistré (3+ sinistres)" },
+    { to: "/assurance-auto-jeune-conducteur", label: "Assurance jeune conducteur" },
   ],
   "Santé": [
     { to: "/assurance-sante", label: "Comparer les mutuelles santé" },
@@ -60,6 +62,8 @@ const categoryToProducts: Record<string, ProductLink[]> = {
     { to: "/comparateur", label: "Comparateur multi-assurances" },
     { to: "/profil", label: "Solutions profils spéciaux" },
     { to: "/comparatif", label: "Duels assureurs face à face" },
+    { to: "/assurance-mrp", label: "Assurance MRP" },
+    { to: "/glossaire", label: "Glossaire de l'assurance" },
   ],
   "Conseils Experts": [
     { to: "/comparateur", label: "Comparer toutes les assurances" },
@@ -89,6 +93,7 @@ const categoryToProducts: Record<string, ProductLink[]> = {
     { to: "/assurance-emprunteur", label: "Assurance emprunteur" },
     { to: "/assurance-pret", label: "Assurance prêt" },
     { to: "/comparateur", label: "Comparateur multi-assurances" },
+    { to: "/assurance-prevoyance", label: "Assurance prévoyance" },
   ],
   "Droits & Litiges": [
     { to: "/comparateur", label: "Comparateur multi-assurances" },
@@ -98,6 +103,17 @@ const categoryToProducts: Record<string, ProductLink[]> = {
   "Assurance Animaux": [
     { to: "/assurance-animaux", label: "Comparer les assurances animaux" },
     { to: "/assurance-sante", label: "Mutuelle santé" },
+    { to: "/comparateur", label: "Comparateur multi-assurances" },
+  ],
+  "Métiers Atypiques": [
+    { to: "/assurance-metiers-atypiques", label: "Assurance métiers atypiques" },
+    { to: "/assurance-mrp", label: "Assurance MRP" },
+    { to: "/assurance-rc-pro", label: "RC Professionnelle" },
+    { to: "/glossaire", label: "Glossaire de l'assurance" },
+  ],
+  "Réglementation": [
+    { to: "/assurance-trottinette-electrique", label: "Assurance trottinette électrique" },
+    { to: "/glossaire", label: "Glossaire de l'assurance" },
     { to: "/comparateur", label: "Comparateur multi-assurances" },
   ],
 };
@@ -134,6 +150,10 @@ const tagToLink: Record<string, ProductLink> = {
   "sans antécédent": { to: "/profil/sans-antecedents", label: "Sans antécédents : solutions" },
   "trottinette": { to: "/assurance-trottinette-electrique", label: "Assurance trottinette électrique" },
   "emprunteur": { to: "/assurance-emprunteur", label: "Assurance emprunteur" },
+  "métiers atypiques": { to: "/assurance-metiers-atypiques", label: "Assurance métiers atypiques" },
+  "permis probatoire": { to: "/assurance-auto-jeune-conducteur", label: "Assurance jeune conducteur" },
+  "décès": { to: "/assurance-prevoyance", label: "Assurance prévoyance" },
+  "multirisque professionnelle": { to: "/assurance-mrp", label: "Assurance MRP" },
 };
 
 const RelatedProductLinks = ({ category, tags }: RelatedProductLinksProps) => {

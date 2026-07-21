@@ -30,6 +30,7 @@ const allProducts: Record<string, RelatedLink> = {
   emprunteur: { to: "/assurance-emprunteur", label: "Assurance Emprunteur", description: "Changez à tout moment, économisez jusqu'à 15 000€" },
   metiersAtypiques: { to: "/assurance-metiers-atypiques", label: "Métiers Atypiques", description: "Activités à risques : devis sur-mesure auprès de 12 assureurs spé." },
   gestionLocative: { to: "/gestion-locative", label: "Gestion Locative", description: "Confiez vos biens à un pro : honoraires dès 5%" },
+  jeuneConducteur: { to: "/assurance-auto-jeune-conducteur", label: "Assurance Jeune Conducteur", description: "L'offre dédiée aux conducteurs novices et primo-assurés" },
 };
 
 const nicheLinks = [
@@ -49,7 +50,7 @@ const duelLinks = [
 
 const relatedMap: Record<string, { products: string[]; articles: { to: string; label: string }[]; tools: { to: string; label: string }[]; niches?: { to: string; label: string }[] }> = {
   auto: {
-    products: ["moto", "habitation", "permisEtranger"],
+    products: ["moto", "habitation", "permisEtranger", "jeuneConducteur"],
     articles: [
       { to: "/blog/meilleure-assurance-auto-2026", label: "Meilleure assurance auto 2026" },
       { to: "/blog/assurance-auto-jeune-conducteur-astuces", label: "Astuces jeune conducteur" },
@@ -69,7 +70,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   moto: {
-    products: ["auto", "trottinette", "habitation"],
+    products: ["auto", "trottinette", "habitation", "jeuneConducteur"],
     articles: [
       { to: "/blog/meilleure-assurance-auto-2026", label: "Guide assurance véhicule 2026" },
       { to: "/blog/resiliation-assurance-droits-2026", label: "Résilier son assurance facilement" },
