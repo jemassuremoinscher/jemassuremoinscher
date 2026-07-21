@@ -91,6 +91,7 @@ const categoryToProducts: Record<string, ProductLink[]> = {
   ],
   "Mobilité Verte": [
     { to: "/assurance-trottinette-electrique", label: "Assurance trottinette électrique" },
+    { to: "/assurance-trottinette-livreur", label: "Assurance trottinette livreur" },
     { to: "/assurance-auto", label: "Assurance auto" },
     { to: "/comparateur", label: "Comparateur multi-assurances" },
   ],
@@ -118,6 +119,7 @@ const categoryToProducts: Record<string, ProductLink[]> = {
   ],
   "Réglementation": [
     { to: "/assurance-trottinette-electrique", label: "Assurance trottinette électrique" },
+    { to: "/assurance-trottinette-livreur", label: "Assurance trottinette livreur" },
     { to: "/glossaire", label: "Glossaire de l'assurance" },
     { to: "/comparateur", label: "Comparateur multi-assurances" },
   ],
@@ -154,6 +156,10 @@ const tagToLink: Record<string, ProductLink> = {
   "primo": { to: "/profil/sans-antecedents", label: "Primo-assuré : comment s'assurer" },
   "sans antécédent": { to: "/profil/sans-antecedents", label: "Sans antécédents : solutions" },
   "trottinette": { to: "/assurance-trottinette-electrique", label: "Assurance trottinette électrique" },
+  "trottinette électrique": { to: "/assurance-trottinette-electrique", label: "Assurance trottinette électrique" },
+  "trottinette livreur": { to: "/assurance-trottinette-livreur", label: "Assurance trottinette livreur" },
+  "livreur": { to: "/assurance-trottinette-livreur", label: "Assurance trottinette livreur" },
+  "permis étranger": { to: "/assurance-auto-permis-etranger", label: "Assurance auto permis étranger" },
   "emprunteur": { to: "/assurance-emprunteur", label: "Assurance emprunteur" },
   "métiers atypiques": { to: "/assurance-metiers-atypiques", label: "Assurance métiers atypiques" },
   "permis probatoire": { to: "/assurance-auto-jeune-conducteur", label: "Assurance jeune conducteur" },
