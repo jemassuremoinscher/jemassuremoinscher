@@ -56,6 +56,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
       { to: "/blog/meilleure-assurance-auto-2026", label: "Meilleure assurance auto 2026" },
       { to: "/blog/assurance-auto-jeune-conducteur-astuces", label: "Astuces jeune conducteur" },
       { to: "/blog/permis-conduire-etranger-assurance-auto-france", label: "Assurance auto avec permis étranger" },
+      { to: "/blog/heritage-vehicule-assurer-voiture-deces", label: "Assurer une voiture après un décès" },
     ],
     tools: [
       { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
@@ -71,7 +72,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   moto: {
-    products: ["auto", "trottinette", "habitation", "jeuneConducteur"],
+    products: ["auto", "trottinette", "trottinetteElectrique", "habitation", "jeuneConducteur"],
     articles: [
       { to: "/blog/meilleure-assurance-auto-2026", label: "Guide assurance véhicule 2026" },
       { to: "/blog/resiliation-assurance-droits-2026", label: "Résilier son assurance facilement" },
@@ -131,7 +132,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   pret: {
-    products: ["emprunteur", "vie", "habitation"],
+    products: ["vie", "habitation"],
     articles: [
       { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine : changer d'assurance emprunteur" },
       { to: "/blog/resiliation-assurance-droits-2026", label: "Vos droits de résiliation" },
