@@ -17,6 +17,9 @@ const categoryToProducts: Record<string, ProductLink[]> = {
     { to: "/assurance-auto", label: "Comparer les assurances auto" },
     { to: "/outils/calculateur-bonus-malus", label: "Calculer mon bonus-malus" },
     { to: "/assurance-moto", label: "Assurance moto" },
+    { to: "/assurance-trottinette-electrique", label: "Assurance trottinette électrique" },
+    { to: "/assurance-auto-permis-etranger", label: "Assurance auto permis étranger" },
+    { to: "/assurance-trottinette-livreur", label: "Assurance trottinette livreur" },
     { to: "/comparatif/maif-vs-macif", label: "Duel MAIF vs Macif" },
     { to: "/profil/resilie-non-paiement", label: "Résilié pour non-paiement ?" },
     { to: "/assurance-auto-jeune-conducteur", label: "Assurance jeune conducteur" },
@@ -24,6 +27,8 @@ const categoryToProducts: Record<string, ProductLink[]> = {
   "Assurance Auto": [
     { to: "/assurance-auto", label: "Comparer les assurances auto" },
     { to: "/outils/calculateur-bonus-malus", label: "Calculer mon bonus-malus" },
+    { to: "/assurance-trottinette-electrique", label: "Assurance trottinette électrique" },
+    { to: "/assurance-auto-permis-etranger", label: "Assurance auto permis étranger" },
     { to: "/comparatif/axa-vs-allianz", label: "Duel AXA vs Allianz" },
     { to: "/profil/retrait-permis", label: "Retrait de permis : solutions" },
     { to: "/profil/frequence-sinistres", label: "Multi-sinistré (3+ sinistres)" },
