@@ -26,6 +26,24 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/assurance-auto/ville/marseille</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/assurance-auto/ville/nice</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.jemassuremoinscher.fr/assurance-auto/ville/aix-en-provence</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <!-- Main Pages -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/comparateur</loc>
