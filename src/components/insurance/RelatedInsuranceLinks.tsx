@@ -132,7 +132,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   pret: {
-    products: ["vie", "habitation"],
+    products: ["vie", "habitation", "auto"],
     articles: [
       { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine : changer d'assurance emprunteur" },
       { to: "/blog/resiliation-assurance-droits-2026", label: "Vos droits de résiliation" },
@@ -204,6 +204,17 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
       { to: "/contact", label: "Contactez un conseiller" },
+    ],
+  },
+  trottinette: {
+    products: ["auto", "moto", "trottinetteElectrique"],
+    articles: [
+      { to: "/blog/comparatif-assurance-trottinette-electrique-2026", label: "Comparatif assurance trottinette 2026" },
+      { to: "/blog/assurance-trottinette-vol-garantie-2026", label: "Garantie vol trottinette" },
+    ],
+    tools: [
+      { to: "/comparateur", label: "Comparateur multi-assurances" },
+      { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
     ],
   },
 };
