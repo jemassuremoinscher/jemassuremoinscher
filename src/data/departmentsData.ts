@@ -119,7 +119,7 @@ export const departments: DepartmentData[] = rawDepartments.map(([code, name]) =
 });
 
 // Contenus locaux uniques (anti-thin) par département
-const localOverrides: Record<string, { uniqueContent: string; localFaq: { question: string; answer: string }[] }> = {
+const localOverrides: Record<string, { uniqueContent: string; localFaq: { question: string; answer: string }[]; stats: { label: string; value: string }[]; source: string }> = {
   "alpes-maritimes": {
     uniqueContent: "<p>Assurer sa voiture dans les Alpes-Maritimes coûte plus cher que la moyenne française, et ce n'est pas un hasard : le département figure <strong>parmi les plus chers de France</strong> pour l'assurance auto. Densité urbaine sur le littoral, parc automobile haut de gamme et aléas climatiques méditerranéens se cumulent.</p><h3>Un parc automobile parmi les plus chers de France</h3><p>De Cannes à Menton en passant par Nice et Antibes, la concentration de véhicules haut de gamme est bien supérieure à la moyenne nationale. Résultat : des primes tous risques élevées et un vol davantage ciblé sur le littoral. Sur un véhicule de valeur, la garantie vol et la valeur à neuf méritent une attention particulière.</p><h3>Le cas des frontaliers Monaco et Italie</h3><p>Beaucoup de résidents du 06 travaillent à Monaco ou franchissent la frontière italienne. Cet usage transfrontalier doit être déclaré : vérifiez la couverture des trajets hors de France, la franchise à l'étranger et l'assistance au-delà de la frontière.</p><h3>Arrière-pays et climat</h3><p>Les routes de montagne de la Vésubie et de la Roya imposent des conditions de conduite hivernales : une assistance 0 km est utile. Enfin, la tempête Alex d'octobre 2020 a rappelé la vulnérabilité du département : la garantie catastrophes naturelles n'est pas théorique ici.</p>",
     localFaq: [
@@ -127,6 +127,12 @@ const localOverrides: Record<string, { uniqueContent: string; localFaq: { questi
       { question: "Dois-je déclarer un usage frontalier vers Monaco ?", answer: "Oui. Un trajet quotidien vers Monaco est un usage à déclarer, sans quoi l'assureur pourrait réduire ou refuser sa prise en charge en cas de sinistre." },
       { question: "Comment payer moins cher dans le 06 ?", answer: "Comparer plusieurs assureurs, adapter la formule à l'âge réel du véhicule et déclarer un stationnement sécurisé sont les leviers les plus efficaces." },
     ],
+    stats: [
+      { label: "Prime moyenne", value: "parmi les + élevées de France" },
+      { label: "Nice", value: "~1 000 €/an" },
+      { label: "Antibes", value: "~858 €/an" },
+    ],
+    source: "Sources : baromètres assurance auto 2026 ; France Assureurs.",
   },
   "bouches-du-rhone": {
     uniqueContent: "<p>Les Bouches-du-Rhône sont <strong>le département le plus cher de France pour l'assurance auto</strong>, avec une prime moyenne d'environ 880 €/an. Le département détient aussi un triste record : il concentre à lui seul près de <strong>7,6 % de l'ensemble des vols de voitures du pays</strong> (source : France Assureurs). Comprendre ces facteurs permet de ne pas subir sa prime.</p><h3>L'effet Marseille</h3><p>Deuxième ville de France, Marseille concentre une sinistralité (vol, vandalisme, accidents) qui pèse sur toute la moyenne départementale. Même à Aix, Arles ou dans le pays d'Aubagne, vous subissez indirectement cette pression — d'où l'intérêt de comparer, car les assureurs ne pondèrent pas tous ce risque de la même façon.</p><h3>Des écarts de prix considérables selon la commune</h3><p>Pour un même profil, la prime varie fortement entre le centre de Marseille, une commune résidentielle d'Aix et un village de Camargue. Ici, le code postal est l'un des critères les plus déterminants du tarif.</p><h3>Zones industrielles et mistral</h3><p>Autour de l'étang de Berre et de Fos, les trajets pendulaires augmentent le kilométrage et l'exposition au risque routier. Le mistral, lui, provoque chutes d'objets et grêle : les garanties tempête et catastrophes naturelles ne sont pas accessoires.</p>",
@@ -134,6 +140,12 @@ const localOverrides: Record<string, { uniqueContent: string; localFaq: { questi
       { question: "Le 13 est-il vraiment le département le plus cher pour l'assurance auto ?", answer: "Oui. Les baromètres 2026 le placent en tête des départements français, avec une prime moyenne autour de 880 €/an, tiré notamment par la sinistralité marseillaise et un taux de vol record (7,6 % des vols nationaux)." },
       { question: "Pourquoi de tels écarts de prix dans les Bouches-du-Rhône ?", answer: "Parce que le risque varie énormément d'une commune à l'autre : votre adresse exacte pèse fortement sur la prime, davantage que dans la plupart des départements." },
     ],
+    stats: [
+      { label: "Prime moyenne", value: "~884 €/an" },
+      { label: "Classement", value: "n°1 département le + cher" },
+      { label: "Vols de voitures", value: "7,6 % du total France" },
+    ],
+    source: "Sources : baromètres assurance auto 2026 ; France Assureurs (vols).",
   },
   "var": {
     uniqueContent: "<p>Le Var figure <strong>parmi les départements les plus chers de France</strong> pour l'assurance auto. Le territoire a deux visages : un littoral touristique saturé l'été et un intérieur exposé aux inondations. Deux réalités qui doivent guider le choix des garanties.</p><h3>Le sur-risque estival</h3><p>De juin à septembre, la population et le trafic explosent sur la côte (Toulon, Hyères, Saint-Tropez). Cette densification saisonnière augmente accrochages, sinistres de stationnement et vols.</p><h3>Les inondations : un risque récurrent</h3><p>Le Var a connu des épisodes marquants (catastrophe de la Dracénie en 2010, inondations de 2019-2020). Un véhicule peut être déclaré irréparable après une simple immersion : vérifiez la garantie catastrophes naturelles et le véhicule de remplacement, surtout en zone basse.</p><h3>Véhicules de loisir</h3><p>Le Var compte une forte proportion de camping-cars et de vans aménagés, qui relèvent de contrats spécifiques.</p>",
@@ -141,6 +153,12 @@ const localOverrides: Record<string, { uniqueContent: string; localFaq: { questi
       { question: "L'assurance auto augmente-t-elle l'été dans le Var ?", answer: "Le tarif d'un contrat annuel ne change pas d'un mois à l'autre, mais le sur-risque estival est déjà intégré dans les primes des zones touristiques, ce qui contribue à faire du Var l'un des départements les plus chers." },
       { question: "Suis-je couvert si ma voiture est inondée dans le Var ?", answer: "Uniquement avec la garantie catastrophes naturelles (déclenchée par arrêté) ou une garantie dommages adaptée. À vérifier absolument dans ce département." },
     ],
+    stats: [
+      { label: "Classement national", value: "parmi les 6 dépts les + chers" },
+      { label: "Moyenne nationale", value: "~663 €/an (référence)" },
+      { label: "Risques", value: "sur-risque estival + inondations" },
+    ],
+    source: "Sources : baromètres assurance auto 2026 ; France Assureurs.",
   },
 };
 
@@ -149,6 +167,8 @@ departments.forEach(d => {
   if (o) {
     d.uniqueContent = o.uniqueContent;
     d.localFaq = o.localFaq;
+    d.stats = o.stats;
+    d.source = o.source;
   }
 });
 
