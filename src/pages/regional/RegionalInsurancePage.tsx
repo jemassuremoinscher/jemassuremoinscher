@@ -89,6 +89,22 @@ export default function RegionalInsurancePage() {
             />
           )}
 
+          {dept.stats && dept.stats.length > 0 && (
+            <section className="mt-8" aria-label="Statistiques locales">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {dept.stats.map((s, i) => (
+                  <div key={i} className="rounded-xl border border-border bg-card p-4 shadow-sm">
+                    <div className="text-xs uppercase tracking-wide text-muted-foreground">{s.label}</div>
+                    <div className="mt-1 text-lg font-semibold text-foreground">{s.value}</div>
+                  </div>
+                ))}
+              </div>
+              {dept.source && (
+                <p className="mt-3 text-xs text-muted-foreground italic">{dept.source}</p>
+              )}
+            </section>
+          )}
+
           <div className="mt-12">
             <ArthurCTABubble />
           </div>
