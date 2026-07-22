@@ -8,6 +8,8 @@ export interface DepartmentData {
   topInsurers: { name: string; price: number; logo: string }[];
   uniqueContent?: string;
   localFaq?: { question: string; answer: string }[];
+  stats?: { label: string; value: string }[];
+  source?: string;
 }
 
 // Moyenne nationale de référence
