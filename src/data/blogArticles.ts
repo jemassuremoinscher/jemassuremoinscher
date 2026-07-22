@@ -4647,6 +4647,76 @@ Connaître vos droits, c'est pouvoir les faire valoir !
 
 **Faites valoir vos droits en toute confiance !**
     `
+  },
+  {
+    id: "110ch-jc",
+    title: "Voiture 110 chevaux et jeune conducteur : est-ce assurable (et à quel prix) ?",
+    slug: "110-chevaux-jeune-conducteur-assurance",
+    description: "110 ch pour un jeune conducteur : est-ce trop puissant pour être assuré ? On vous explique les règles réelles des assureurs, le rapport poids-puissance qui compte vraiment, et comment faire baisser la prime.",
+    category: "Assurance Auto",
+    date: "22 juillet 2026",
+    readTime: "7 min",
+    author: "Alexandre Petit",
+    tags: ["jeune conducteur", "puissance", "110 chevaux", "assurance auto", "permis probatoire"],
+    content: `
+# Voiture 110 chevaux et jeune conducteur : est-ce assurable, et à quel prix ?
+
+Vous venez d'obtenir votre permis, vous avez repéré une voiture de **110 chevaux** et une question vous bloque : **un jeune conducteur peut-il assurer une voiture de 110 ch ?** Bonne nouvelle : oui, dans la quasi-totalité des cas. Mais le tarif, lui, dépend de facteurs que peu de gens connaissent. Voici ce qu'il faut vraiment savoir avant de signer.
+
+## Y a-t-il une limite légale de puissance pour un jeune conducteur ?
+
+**Non, il n'existe aucune loi en France qui interdit à un jeune conducteur de conduire une voiture de 110 ch.** Contrairement à une idée reçue tenace, le permis B ne comporte pas de plafond de puissance pour les voitures (la limitation existe pour les motos, pas pour les autos).
+
+Ce qui existe en revanche, ce sont les **règles internes de chaque assureur**. Certains assureurs refusent d'assurer un conducteur novice au-delà d'un certain seuil de puissance ; d'autres acceptent, mais avec une surprime. C'est pour ça que **comparer plusieurs assureurs est décisif** quand on est jeune conducteur avec une voiture un peu puissante.
+
+## 110 ch, ce n'est pas si puissant : le vrai critère, c'est le rapport poids-puissance
+
+Beaucoup de jeunes conducteurs surestiment le « danger » des 110 ch. Dans les faits, **110 chevaux, c'est une puissance moyenne** : c'est le niveau d'une Peugeot 208, d'une Renault Clio TCe, d'une Volkswagen Golf 1.5 ou d'une Citroën C4 en motorisation courante. Rien à voir avec une sportive.
+
+Ce que regardent réellement les assureurs, ce n'est pas la puissance seule, mais le **rapport poids-puissance** (le nombre de chevaux rapporté au poids du véhicule). Une citadine de 110 ch reste modérée. C'est une petite voiture légère avec 110 ch turbo qui commence à faire tiquer certains assureurs.
+
+### Repères concrets
+
+- **110 ch sur une berline compacte (Golf, Mégane, 308)** : profil très courant, assurable sans difficulté.
+- **110 ch sur une citadine légère (208, Clio, Corsa)** : assurable, tarif jeune conducteur standard.
+- **110 ch sur une petite sportive ou une préparation** : là, certains assureurs se montrent plus réticents.
+
+## Pourquoi la prime grimpe quand on est jeune conducteur
+
+Si votre devis vous semble élevé, ce n'est pas (seulement) à cause des 110 ch. C'est surtout la **surprime jeune conducteur** qui joue. Pendant les 3 premières années de permis (ou 2 ans avec la conduite accompagnée), l'assureur applique une majoration légale, car les conducteurs novices ont statistiquement plus de sinistres.
+
+Cette surprime **diminue automatiquement chaque année sans accident**, jusqu'à disparaître. La puissance du véhicule vient s'ajouter à cette base, mais elle n'en est pas la cause principale.
+
+## Comment faire baisser le prix (même avec 110 ch)
+
+Voici les leviers les plus efficaces, par ordre d'impact :
+
+1. **Comparer plusieurs assureurs.** C'est de loin le plus rentable : sur un profil jeune conducteur avec 110 ch, les écarts de prix entre assureurs peuvent dépasser 40 %, parce qu'ils ne pondèrent pas tous la puissance de la même façon.
+2. **La conduite accompagnée (AAC).** Si vous en avez bénéficié, votre période probatoire passe de 3 à 2 ans et la surprime de départ est réduite.
+3. **Choisir la bonne formule.** Sur une voiture d'occasion de quelques années, une formule au tiers ou tiers + peut suffire et coûte bien moins qu'un tous risques.
+4. **Se déclarer conducteur secondaire** sur le contrat d'un parent au début, puis basculer conducteur principal (attention : la fausse déclaration de conducteur principal est un motif de nullité du contrat, à ne jamais faire).
+5. **Déclarer un stationnement sécurisé** (garage, parking fermé) : ça réduit le risque de vol et donc la prime.
+
+## En résumé
+
+Une voiture de **110 ch est parfaitement assurable pour un jeune conducteur** : aucune interdiction légale, et cette puissance reste modérée. Le prix dépend surtout de votre statut de conducteur novice et de l'assureur choisi — pas des 110 ch en eux-mêmes. Le réflexe qui change tout : **faire jouer la concurrence.**
+
+> **Prêt à comparer ?** Obtenez en 2 minutes plusieurs devis adaptés à votre profil de jeune conducteur, y compris pour une voiture de 110 ch, avec notre [comparateur d'assurance auto jeune conducteur](/assurance-auto-jeune-conducteur). C'est gratuit et sans engagement.
+
+## Questions fréquentes
+
+**Un jeune conducteur peut-il conduire une voiture de 110 ch ?**
+Oui. Aucune loi française ne limite la puissance d'une voiture pour un titulaire du permis B, même en période probatoire. Seules les règles internes des assureurs peuvent varier selon la puissance.
+
+**110 ch, est-ce beaucoup pour un jeune conducteur ?**
+Non, c'est une puissance moyenne, équivalente à celle d'une 208, d'une Clio ou d'une Golf. Le critère qui compte pour les assureurs est le rapport poids-puissance, pas la puissance seule.
+
+**Pourquoi mon assurance est-elle si chère avec 110 ch ?**
+Le prix élevé vient surtout de la surprime jeune conducteur (appliquée les 2 à 3 premières années), pas de la puissance. Cette surprime baisse chaque année sans accident.
+
+**Comment payer moins cher son assurance jeune conducteur avec 110 ch ?**
+Comparez plusieurs assureurs (écarts fréquents de plus de 40 %), privilégiez la conduite accompagnée, adaptez la formule à l'âge du véhicule et déclarez un stationnement sécurisé.
+`,
   }
 ];
 
