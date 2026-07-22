@@ -18,7 +18,7 @@ export default function RegionalInsurancePage() {
   if (!dept) return <Navigate to="/assurance-auto" replace />;
 
   const title = `Assurance Auto ${dept.name} (${dept.code}) — Comparateur & Prix 2026`;
-  const description = `Comparez les prix de l'assurance auto en ${dept.name}. Prix moyen : ${dept.avgPriceAuto}€/an. Trouvez l'assureur le moins cher dans le ${dept.code} avec notre comparateur gratuit.`;
+  const description = `Comparez les prix de l'assurance auto ${dept.code} en ${dept.name}. Prix moyen : ${dept.avgPriceAuto}€/an. Trouvez l'assureur le moins cher (assurance auto ${dept.code}) avec notre comparateur gratuit.`;
 
   const genericFaq = [
     {
