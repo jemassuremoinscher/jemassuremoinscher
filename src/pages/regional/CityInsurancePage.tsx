@@ -4,45 +4,30 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import RegionalDataWidget from "@/components/regional/RegionalDataWidget";
-import { getDepartmentBySlug } from "@/data/departmentsData";
+import { getCityBySlug } from "@/data/citiesData";
 import ArthurCTABubble from "@/components/ArthurCTABubble";
 import { lazy, Suspense } from "react";
 
 const RelatedInsuranceLinks = lazy(() => import("@/components/insurance/RelatedInsuranceLinks"));
 const SemanticFAQ = lazy(() => import("@/components/SemanticFAQ"));
 
-export default function RegionalInsurancePage() {
-  const { department } = useParams<{ department: string }>();
-  const dept = department ? getDepartmentBySlug(department) : undefined;
+export default function CityInsurancePage() {
+  const { slug } = useParams<{ slug: string }>();
+  const city = slug ? getCityBySlug(slug) : undefined;
 
-  if (!dept) return <Navigate to="/assurance-auto" replace />;
+  if (!city) return <Navigate to="/assurance-auto" replace />;
 
-  const title = `Assurance Auto ${dept.name} (${dept.code}) — Comparateur & Prix 2026`;
-  const description = `Comparez les prix de l'assurance auto ${dept.code} en ${dept.name}. Prix moyen : ${dept.avgPriceAuto}€/an. Trouvez l'assureur le moins cher (assurance auto ${dept.code}) avec notre comparateur gratuit.`;
+  const title = `Assurance Auto ${city.name} — Comparateur & Prix 2026`;
+  const description = `Comparez les prix de l'assurance auto ${city.name}. Prix moyen : ${city.avgPriceAuto}€/an. Trouvez l'assureur le moins cher à ${city.name} avec notre comparateur gratuit.`;
 
-  const genericFaq = [
-    {
-      question: `Quel est le prix moyen de l'assurance auto en ${dept.name} ?`,
-      answer: `Le prix moyen de l'assurance auto en ${dept.name} (${dept.code}) est de ${dept.avgPriceAuto}€ par an en 2026. Ce tarif varie selon votre profil, votre véhicule et vos garanties.`,
-    },
-    {
-      question: `Quel est l'assureur le moins cher en ${dept.name} ?`,
-      answer: `En ${dept.name}, l'assureur le moins cher ce mois-ci est ${dept.topInsurers[0]?.name} avec un tarif à partir de ${dept.topInsurers[0]?.price}€/an. Comparez gratuitement pour trouver la meilleure offre.`,
-    },
-    {
-      question: `Comment réduire le prix de son assurance auto dans le ${dept.code} ?`,
-      answer: `Pour réduire votre prime en ${dept.name}, comparez les offres de plusieurs assureurs, optez pour un paiement annuel, augmentez votre franchise et profitez des réductions en ligne.`,
-    },
-  ];
-
-  const faqItems = dept.localFaq && dept.localFaq.length > 0 ? dept.localFaq : genericFaq;
+  const faqItems = city.localFaq;
 
   return (
     <>
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href={`https://www.jemassuremoinscher.fr/assurance-auto/${dept.slug}`} />
+        <link rel="canonical" href={`https://www.jemassuremoinscher.fr/assurance-auto/ville/${city.slug}`} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta name="robots" content="index, follow" />
@@ -66,41 +51,38 @@ export default function RegionalInsurancePage() {
             items={[
               { label: "Accueil", href: "/" },
               { label: "Assurance Auto", href: "/assurance-auto" },
-              { label: dept.name },
+              { label: city.name },
             ]}
           />
 
           <h1 className="text-2xl md:text-3xl font-extrabold text-foreground mt-6 mb-2">
-            Assurance Auto en {dept.name} ({dept.code})
+            Assurance Auto à {city.name}
           </h1>
           <p className="text-muted-foreground mb-8 max-w-2xl">
-            Trouvez l'assurance auto la moins chère en {dept.name}. Comparez les tarifs de {dept.topInsurers.length}+ assureurs et économisez jusqu'à 40% sur votre prime.
+            Trouvez l'assurance auto la moins chère à {city.name}. Comparez les tarifs de plusieurs assureurs et économisez sur votre prime.
           </p>
 
-          <RegionalDataWidget
-            insuranceType="auto"
-            initialDepartment={dept.slug}
-          />
-
-          {dept.uniqueContent && (
-            <section
-              className="prose prose-lg max-w-none mt-12 prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground"
-              dangerouslySetInnerHTML={{ __html: dept.uniqueContent }}
-            />
+          {city.departmentSlug && (
+            <RegionalDataWidget insuranceType="auto" initialDepartment={city.departmentSlug} />
           )}
 
-          {dept.stats && dept.stats.length > 0 && (
+          <section
+            className="prose prose-lg max-w-none mt-12 prose-headings:text-foreground prose-p:text-muted-foreground prose-strong:text-foreground"
+            dangerouslySetInnerHTML={{ __html: city.uniqueContent }}
+          />
+
+          {city.stats && city.stats.length > 0 && (
             <section className="mt-8" aria-label="Statistiques locales">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {dept.stats.map((s, i) => (
+                {city.stats.map((s, i) => (
                   <div key={i} className="rounded-xl border border-border bg-card p-4 shadow-sm">
                     <div className="text-xs uppercase tracking-wide text-muted-foreground">{s.label}</div>
                     <div className="mt-1 text-lg font-semibold text-foreground">{s.value}</div>
                   </div>
                 ))}
               </div>
-              {dept.source && (
-                <p className="mt-3 text-xs text-muted-foreground italic">{dept.source}</p>
+              {city.source && (
+                <p className="mt-3 text-xs text-muted-foreground italic">{city.source}</p>
               )}
             </section>
           )}

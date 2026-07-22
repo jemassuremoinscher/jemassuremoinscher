@@ -122,6 +122,7 @@ const Merci = lazy(() => import("./pages/Merci"));
 const LlmsTxt = lazy(() => import("./pages/LlmsTxt"));
 const CalculateurBonusMalus = lazy(() => import("./pages/outils/CalculateurBonusMalus"));
 const RegionalInsurancePage = lazy(() => import("./pages/regional/RegionalInsurancePage"));
+const CityInsurancePage = lazy(() => import("./pages/regional/CityInsurancePage"));
 const DuelPage = lazy(() => import("./pages/comparatif/DuelPage"));
 const NicheProfilePage = lazy(() => import("./pages/profil/NicheProfilePage"));
 
@@ -258,6 +259,7 @@ const App = () => {
                 <Route path="/assurance-trottinette-electrique" element={<AssuranceTrottinetteElectrique />} />
                 <Route path="/assurance-auto-permis-etranger" element={<AssuranceAutoPermisEtranger />} />
                 <Route path="/assurance-emprunteur" element={<AssuranceEmprunteurSEO />} />
+                <Route path="/assurance-auto/ville/:slug" element={<CityInsurancePage />} />
                 <Route path="/assurance-auto/:department" element={<RegionalInsurancePage />} />
                 <Route path="/assurance-auto" element={<AssuranceAuto />} />
                 <Route path="/assurance-trottinette" element={<AssuranceTrottinette />} />
