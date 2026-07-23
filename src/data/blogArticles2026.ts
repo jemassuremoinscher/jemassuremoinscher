@@ -1028,9 +1028,9 @@ Oui, mais les primes sont 30 à 50 % plus élevées. Rarement recommandé.
   },
   {
     id: "31",
-    title: "Regrouper ses contrats Auto + Maison : Quel pourcentage réel de réduction ?",
+    title: "Regrouper Auto + Habitation : quelle économie réelle ?",
     slug: "regrouper-contrats-auto-maison-reduction-reelle",
-    description: "Regrouper auto et habitation chez le même assureur : économie réelle ou argument commercial ? Les chiffres 2026.",
+    description: "Regrouper assurance auto et habitation fait-il vraiment baisser la facture ? Économies réelles, pièges et calcul 2026. Comparez gratuitement.",
     category: "Guides Pratiques",
     date: "23 février 2026",
     readTime: "7 min",
