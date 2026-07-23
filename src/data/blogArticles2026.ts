@@ -1877,9 +1877,9 @@ Oui, la prime PNO est déductible des revenus fonciers en régime réel.
   },
   {
     id: "41",
-    title: "Assurance Voiture Électrique : Les bonus écologiques des assureurs existent-ils encore ?",
+    title: "Voiture Électrique 2026 : les bonus à ne pas rater",
     slug: "assurance-voiture-electrique-bonus-ecologiques-2026",
-    description: "Assurance voiture électrique en 2026 : les bonus écologiques persistent-ils ? Comparatif des offres et réductions.",
+    description: "Assurance et bonus voiture électrique 2026 : aides, bonus écologique et tarifs. Tout pour économiser. Comparez gratuitement.",
     category: "Assurance Auto",
     date: "13 février 2026",
     readTime: "8 min",
