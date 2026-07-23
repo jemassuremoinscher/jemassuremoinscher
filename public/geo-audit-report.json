@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-07-22T07:04:06.907Z",
+  "generatedAt": "2026-07-23T04:32:49.220Z",
   "score": 90,
   "status": "good",
   "methodology": "Score GEO pondéré sur toutes les pages HTML du site plus les sources React/marketing critiques : dérive des métriques partagées, cohérence du shell statique et absence de stale copy.",
   "summary": {
-    "totalChecks": 322,
-    "passedChecks": 303,
+    "totalChecks": 331,
+    "passedChecks": 312,
     "failedChecks": 19,
-    "auditedFiles": 278,
-    "auditedPages": 270,
-    "staticRoutes": 270,
-    "weightedPassed": 1680,
-    "weightedTotal": 1870
+    "auditedFiles": 287,
+    "auditedPages": 279,
+    "staticRoutes": 279,
+    "weightedPassed": 1725,
+    "weightedTotal": 1915
   },
   "mismatches": [
     {
@@ -413,6 +413,18 @@
       "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
     },
     {
+      "id": "blog/110-chevaux-jeune-conducteur-assurance/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/110-chevaux-jeune-conducteur-assurance/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
       "id": "blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet/index.html",
@@ -452,6 +464,18 @@
       "id": "blog/assurance-airbnb-location-saisonniere/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-airbnb-location-saisonniere/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-alpes-maritimes-guide/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-alpes-maritimes-guide/index.html",
       "description": "La page statique ne contient pas d'anciennes métriques de confiance",
       "pass": true,
       "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
@@ -797,6 +821,18 @@
       "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
     },
     {
+      "id": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
       "id": "blog/assurance-colocation-contrat-unique-ou-individuel/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-colocation-contrat-unique-ou-individuel/index.html",
@@ -1097,6 +1133,18 @@
       "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
     },
     {
+      "id": "blog/assurance-location-saisonniere-airbnb/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-location-saisonniere-airbnb/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
       "id": "blog/assurance-logement-non-conventionnel/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-logement-non-conventionnel/index.html",
@@ -1253,6 +1301,18 @@
       "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
     },
     {
+      "id": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
       "id": "blog/assurance-retraite-expatrie-france/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-retraite-expatrie-france/index.html",
@@ -1340,6 +1400,18 @@
       "id": "blog/assurance-trottinette-vol-garantie-2026/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/assurance-trottinette-vol-garantie-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html",
       "description": "La page statique ne contient pas d'anciennes métriques de confiance",
       "pass": true,
       "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
@@ -1637,6 +1709,18 @@
       "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
     },
     {
+      "id": "blog/delai-carence-assurance-auto/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/delai-carence-assurance-auto/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
       "id": "blog/demenagement-prevenir-assureur-couverture/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/demenagement-prevenir-assureur-couverture/index.html",
@@ -1652,6 +1736,18 @@
       "id": "blog/devis-assurance-auto-jeune-conducteur-2026/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/devis-assurance-auto-jeune-conducteur-2026/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/disability-insurance-france-expats/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/disability-insurance-france-expats/index.html",
       "description": "La page statique ne contient pas d'anciennes métriques de confiance",
       "pass": true,
       "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
@@ -1772,6 +1868,18 @@
       "id": "blog/hausse-tarifs-assurance-2026-comment-contrer/index.html-shared-trust-clean",
       "category": "stale-copy",
       "file": "blog/hausse-tarifs-assurance-2026-comment-contrer/index.html",
+      "description": "La page statique ne contient pas d'anciennes métriques de confiance",
+      "pass": true,
+      "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
+      "weight": 5,
+      "impact": 5,
+      "actual": null,
+      "reason": "Passe : conforme à Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale."
+    },
+    {
+      "id": "blog/health-insurance-nice-expats/index.html-shared-trust-clean",
+      "category": "stale-copy",
+      "file": "blog/health-insurance-nice-expats/index.html",
       "description": "La page statique ne contient pas d'anciennes métriques de confiance",
       "pass": true,
       "expected": "Aucune ancienne métrique, utiliser 5/5 et 6 avis si la page expose une preuve sociale",
