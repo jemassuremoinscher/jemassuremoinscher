@@ -158,7 +158,7 @@ export const blogArticles: RouteConfig[] = [
   { path: "/blog/meilleure-assurance-auto-2026-comparatif", changefreq: "monthly", priority: 0.9 },
   { path: "/blog/top-10-meilleures-mutuelles-sante-2026", changefreq: "monthly", priority: 0.9 },
   { path: "/blog/assurance-jeune-conducteur-2026-moins-cher", changefreq: "monthly", priority: 0.9 },
-  { path: "/blog/meilleure-assurance-auto-2026", changefreq: "monthly", priority: 0.8 },
+  
   { path: "/blog/top-mutuelles-sante-2026", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/comparatif-habitation-2026", changefreq: "monthly", priority: 0.8 },
   { path: "/blog/loi-lemoine-2026", changefreq: "monthly", priority: 0.8 },

@@ -1036,9 +1036,9 @@ Changement d'adresse, de garage, etc.
   },
   {
     id: "4",
-    title: "Assurance habitation 2026 : les 6 garanties indispensables (et 3 options inutiles)",
+    title: "Assurance Habitation : 7 garanties indispensables 2026",
     slug: "assurance-habitation-garanties-indispensables",
-    description: "Quelles garanties d'assurance habitation sont vraiment indispensables en 2026 ? L'essentiel à couvrir et les options à éviter pour ne pas surpayer.",
+    description: "Quelles garanties sont vraiment indispensables en assurance habitation ? Le guide 2026 pour ne pas payer d'options inutiles. Devis gratuit.",
     category: "Guides Pratiques",
     date: "8 janvier 2026",
     readTime: "7 min",
@@ -1673,9 +1673,9 @@ Certaines garanties diminuent ou s'arrêtent après 65 ans. Vérifiez le contrat
   },
   {
     id: "11",
-    title: "Meilleure assurance auto 2026 : comparatif prix, garanties et avis",
+    title: "Meilleure Assurance Auto 2026 : comparatif dès 25€/mois",
     slug: "meilleure-assurance-auto-2026-comparatif",
-    description: "Quelle est la meilleure assurance auto en 2026 ? Comparatif des prix, garanties et avis pour choisir au meilleur rapport qualité-prix.",
+    description: "Quelle est la meilleure assurance auto en 2026 ? Comparatif, prix dès 25€/mois et critères de choix. 70+ assureurs comparés gratuitement.",
     category: "Assurance Auto",
     date: "2 janvier 2026",
     readTime: "12 min",
