@@ -324,6 +324,8 @@ const App = () => {
                 <Route path="/blog/loi-lemoine-2025" element={<Navigate to="/blog/loi-lemoine-2026" replace />} />
                 <Route path="/blog/meilleure-assurance-auto-2025" element={<Navigate to="/blog/meilleure-assurance-auto-2026" replace />} />
                 <Route path="/blog/meilleure-assurance-auto-2025-comparatif" element={<Navigate to="/blog/meilleure-assurance-auto-2026-comparatif" replace />} />
+                <Route path="/blog/meilleure-assurance-auto-2026" element={<Navigate to="/blog/meilleure-assurance-auto-2026-comparatif" replace />} />
+                <Route path="/blog/meilleure-assurance-auto-2026-definition-garanties-et-conseils-2026" element={<Navigate to="/blog/meilleure-assurance-auto-2026-comparatif" replace />} />
                 <Route path="/blog/nouvelle-reglementation-assurance-2025" element={<Navigate to="/blog/nouvelle-reglementation-assurance-2026" replace />} />
                 <Route path="/blog/top-10-meilleures-mutuelles-sante-2025" element={<Navigate to="/blog/top-10-meilleures-mutuelles-sante-2026" replace />} />
                 <Route path="/blog/top-mutuelles-sante-2025" element={<Navigate to="/blog/top-mutuelles-sante-2026" replace />} />
