@@ -199,9 +199,9 @@ Absolument. Toute modification doit être déclarée sous peine de nullité du c
   },
   {
     id: "22",
-    title: "Malus élevé : quelles compagnies acceptent de vous assurer en 2026 ?",
+    title: "Malus élevé : les assureurs qui vous acceptent en 2026",
     slug: "assurance-malus-eleve-compagnies-2026",
-    description: "Malus élevé ou résilié ? Les compagnies d'assurance auto qui acceptent encore votre profil en 2026, et comment faire baisser votre prime.",
+    description: "Malus élevé ou résilié ? Les compagnies qui assurent les profils malussés en 2026 et comment payer moins cher. Comparaison gratuite.",
     category: "Assurance Auto",
     date: "4 mars 2026",
     readTime: "10 min",
