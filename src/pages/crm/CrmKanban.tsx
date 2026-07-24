@@ -50,20 +50,8 @@ export default function CrmKanban() {
   };
 
   useEffect(() => {
-    (async () => {
-      const { data, error } = await supabase
-        .from("deals")
-        .select(
-          "id,contact_id,assigned_to,insurance_type,stage,lead_score,estimated_commission,source_type,source_id,notes,created_at,updated_at,contacts(id,full_name,email,phone,source,tags)"
-        )
-        .is("deleted_at", null)
-        .order("lead_score", { ascending: false, nullsFirst: false })
-        .order("created_at", { ascending: false })
-        .limit(500);
-      if (error) toast.error("Erreur de chargement des deals");
-      setDeals((data ?? []) as unknown as DealRow[]);
-      setLoading(false);
-    })();
+    load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filtered = useMemo(() => {
