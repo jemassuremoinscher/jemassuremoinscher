@@ -139,13 +139,19 @@ export default function CrmKanban() {
         </Button>
       </div>
 
-      <div className="flex-1 overflow-x-auto">
+      <div className="relative flex-1 overflow-x-auto">
+        <img
+          src="/src/assets/arthur-thumbs-up.webp"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-4 right-6 h-64 w-auto select-none opacity-[0.06] mix-blend-multiply"
+        />
         <DndContext
           sensors={sensors}
           onDragStart={onDragStart}
           onDragEnd={onDragEnd}
         >
-          <div className="flex min-w-max gap-4 px-6 pb-8">
+          <div className="relative flex min-w-max gap-4 px-6 pb-8">
             {STAGES.map((stage) => (
               <KanbanColumn
                 key={stage.id}
