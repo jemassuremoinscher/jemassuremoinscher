@@ -65,10 +65,21 @@ export default function CrmKanban() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const sources = useMemo(
+    () => Array.from(new Set(deals.map((d) => d.contacts?.source ?? "inconnu"))).sort(),
+    [deals]
+  );
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return deals;
     return deals.filter((d) => {
+      if (agentFilter !== "all") {
+        const userId = agents.find((a) => a.id === agentFilter)?.user_id;
+        if (d.assigned_to !== userId && d.assigned_to !== agentFilter) return false;
+      }
+      if (sourceFilter !== "all" && (d.contacts?.source ?? "inconnu") !== sourceFilter) return false;
+      if (stageFilter !== "all" && d.stage !== stageFilter) return false;
+      if (!q) return true;
       const c = d.contacts;
       return (
         c?.full_name?.toLowerCase().includes(q) ||
@@ -77,7 +88,7 @@ export default function CrmKanban() {
         d.insurance_type.toLowerCase().includes(q)
       );
     });
-  }, [deals, query]);
+  }, [deals, query, agentFilter, sourceFilter, stageFilter, agents]);
 
   const byStage = useMemo(() => {
     const map = new Map<StageId, DealRow[]>();
