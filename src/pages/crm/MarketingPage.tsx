@@ -29,7 +29,17 @@ function Kpi({ icon: Icon, label, value, hint, to }: any) {
 
 const PIE = ["#7C3AED", "#4F46E5", "#0891B2", "#D97706", "#16A34A", "#DC2626", "#64748B", "#A78BFA"];
 
-type Tab = "overview" | "ga4" | "ads" | "content";
+type Tab = "overview" | "ga4" | "ads" | "content" | "serp";
+
+const SERP_KEY = "crm.marketing.serp.v1";
+const DEFAULT_SERP = [
+  "assurance auto",
+  "assurance moto",
+  "assurance habitation",
+  "mutuelle santé",
+  "assurance emprunteur",
+  "assurance trottinette électrique",
+];
 
 export default function MarketingPage() {
   const [tab, setTab] = useState<Tab>("overview");
