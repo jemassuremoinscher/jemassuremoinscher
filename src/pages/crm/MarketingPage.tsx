@@ -2,71 +2,37 @@ import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
 import {
-  Mail, Newspaper, TrendingUp, Users, BarChart3, Search,
-  Linkedin, Facebook, FileText, ExternalLink,
+  Mail, Newspaper, Users, FileText, Linkedin, Facebook, BarChart3,
 } from "lucide-react";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, Legend,
 } from "recharts";
+import { GoogleAnalyticsDashboard } from "@/components/admin/GoogleAnalyticsDashboard";
+import { GoogleAdsDashboard } from "@/components/admin/GoogleAdsDashboard";
 
-function Kpi({ icon: Icon, label, value, hint }: any) {
-  return (
-    <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
+function Kpi({ icon: Icon, label, value, hint, to }: any) {
+  const body = (
+    <div className="group h-full rounded-3xl border border-[#E9D5FF] bg-white p-5 transition hover:border-[#C4B5FD] hover:shadow-md">
       <div className="flex items-center gap-3">
         <div className="rounded-2xl bg-[#F5F3FF] p-2.5">
           <Icon className="h-5 w-5 text-[#7C3AED]" />
         </div>
-        <div className="text-xs uppercase tracking-wide text-slate-500">
-          {label}
-        </div>
+        <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
       </div>
       <div className="mt-3 text-2xl font-semibold text-slate-900">{value}</div>
       {hint && <div className="mt-1 text-xs text-slate-500">{hint}</div>}
     </div>
   );
-}
-
-function ChannelCard({
-  icon: Icon,
-  title,
-  desc,
-  href,
-  external,
-  stats,
-  color,
-}: {
-  icon: any;
-  title: string;
-  desc: string;
-  href: string;
-  external?: boolean;
-  stats?: string;
-  color: string;
-}) {
-  const inner = (
-    <div className="group h-full rounded-3xl border border-[#E9D5FF] bg-white p-5 transition hover:border-[#7C3AED] hover:shadow-md">
-      <div className="flex items-center justify-between">
-        <div className={`grid h-10 w-10 place-items-center rounded-2xl ${color}`}>
-          <Icon className="h-5 w-5 text-white" />
-        </div>
-        <ExternalLink className="h-4 w-4 text-slate-400 opacity-0 transition group-hover:opacity-100" />
-      </div>
-      <div className="mt-3 text-sm font-semibold text-slate-900">{title}</div>
-      <div className="mt-1 text-xs text-slate-500">{desc}</div>
-      {stats && <div className="mt-2 text-xs font-medium text-[#7C3AED]">{stats}</div>}
-    </div>
-  );
-  return external ? (
-    <a href={href} target="_blank" rel="noopener noreferrer">{inner}</a>
-  ) : (
-    <Link to={href}>{inner}</Link>
-  );
+  return to ? <Link to={to}>{body}</Link> : body;
 }
 
 const PIE = ["#7C3AED", "#4F46E5", "#0891B2", "#D97706", "#16A34A", "#DC2626", "#64748B", "#A78BFA"];
 
+type Tab = "overview" | "ga4" | "ads" | "content";
+
 export default function MarketingPage() {
+  const [tab, setTab] = useState<Tab>("overview");
   const [contacts, setContacts] = useState<any[]>([]);
   const [subs, setSubs] = useState<any[]>([]);
   const [posts, setPosts] = useState<any[]>([]);
@@ -101,9 +67,7 @@ export default function MarketingPage() {
       const s = c.source ?? "inconnu";
       map.set(s, (map.get(s) ?? 0) + 1);
     });
-    return Array.from(map, ([name, value]) => ({ name, value })).sort(
-      (a, b) => b.value - a.value
-    );
+    return Array.from(map, ([name, value]) => ({ name, value })).sort((a, b) => b.value - a.value);
   }, [contacts]);
 
   const perMonth = useMemo(() => {
@@ -112,9 +76,7 @@ export default function MarketingPage() {
       const m = new Date(c.created_at).toISOString().slice(0, 7);
       map.set(m, (map.get(m) ?? 0) + 1);
     });
-    return Array.from(map, ([month, leads]) => ({ month, leads })).sort((a, b) =>
-      a.month.localeCompare(b.month)
-    );
+    return Array.from(map, ([month, leads]) => ({ month, leads })).sort((a, b) => a.month.localeCompare(b.month));
   }, [contacts]);
 
   const subStats = useMemo(() => {
@@ -135,192 +97,179 @@ export default function MarketingPage() {
     const approved = articles.filter((a) => a.status === "approved").length;
     const drafts = articles.filter((a) => a.status === "draft").length;
     const avgScore = articles.length
-      ? Math.round(
-          articles.reduce((s, a) => s + (a.quality_score || 0), 0) / articles.length
-        )
+      ? Math.round(articles.reduce((s, a) => s + (a.quality_score || 0), 0) / articles.length)
       : 0;
     return { total: articles.length, approved, drafts, avgScore };
   }, [articles]);
 
-  const lastPosts = posts.slice(0, 5);
-  const lastArticles = articles.filter((a) => a.status === "approved").slice(0, 5);
+  const lastPosts = posts.slice(0, 8);
+  const lastArticles = articles.filter((a) => a.status === "approved").slice(0, 8);
+
+  const TABS: { id: Tab; label: string }[] = [
+    { id: "overview", label: "Vue d'ensemble" },
+    { id: "ga4", label: "Google Analytics" },
+    { id: "ads", label: "Google Ads" },
+    { id: "content", label: "Contenu & Social" },
+  ];
 
   return (
     <div className="flex flex-1 flex-col overflow-y-auto px-6 py-6">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
-          Marketing & Acquisition
-        </h1>
-        <p className="mt-1 text-sm text-slate-500">
-          {loading ? "Chargement…" : `${contacts.length} leads · ${subs.length} abonnés · ${articleStats.approved} articles publiés`}
-        </p>
-      </div>
-
-      {/* Canaux externes */}
-      <div className="mt-6">
-        <h2 className="text-sm font-semibold text-slate-800">Canaux & Analytics</h2>
-        <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          <ChannelCard
-            icon={BarChart3}
-            title="Google Analytics 4"
-            desc="Trafic, conversions, funnels"
-            href="https://analytics.google.com/"
-            external
-            color="bg-orange-500"
-            stats="Voir GA4 →"
-          />
-          <ChannelCard
-            icon={Search}
-            title="Search Console"
-            desc="Positions Google, indexation"
-            href="https://search.google.com/search-console"
-            external
-            color="bg-blue-600"
-            stats="Voir GSC →"
-          />
-          <ChannelCard
-            icon={Facebook}
-            title="Meta Ads"
-            desc="Facebook · Instagram"
-            href="https://business.facebook.com/"
-            external
-            color="bg-[#1877F2]"
-            stats="Meta Business →"
-          />
-          <ChannelCard
-            icon={Linkedin}
-            title="LinkedIn"
-            desc={`${postStats.linkedin} posts publiés`}
-            href="https://www.linkedin.com/company/jemassuremoinscher"
-            external
-            color="bg-[#0A66C2]"
-            stats={postStats.failed ? `${postStats.failed} échec(s)` : "Automatisé"}
-          />
-          <ChannelCard
-            icon={TrendingUp}
-            title="Ancien dashboard"
-            desc="Google Ads · GA4 détaillé"
-            href="/admin/legacy"
-            color="bg-[#7C3AED]"
-            stats="Ouvrir →"
-          />
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">Marketing & Acquisition</h1>
+          <p className="mt-1 text-sm text-slate-500">
+            {loading ? "Chargement…" : `${contacts.length} leads · ${subs.length} abonnés · ${articleStats.approved} articles publiés`}
+          </p>
+        </div>
+        <div className="flex gap-2 text-xs">
+          <Link to="/admin" className="rounded-full border border-[#E9D5FF] bg-white px-3 py-1.5 text-[#7C3AED] hover:bg-[#F5F3FF]">
+            → Pipeline
+          </Link>
+          <Link to="/admin/dashboard" className="rounded-full border border-[#E9D5FF] bg-white px-3 py-1.5 text-[#7C3AED] hover:bg-[#F5F3FF]">
+            → Dashboard
+          </Link>
         </div>
       </div>
 
-      {/* KPIs */}
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Kpi icon={Users} label="Total leads" value={String(contacts.length)} />
-        <Kpi
-          icon={Mail}
-          label="Newsletter confirmés"
-          value={String(subStats.confirmed)}
-          hint={`${subStats.pending} en attente`}
-        />
-        <Kpi
-          icon={Newspaper}
-          label="Posts sociaux"
-          value={String(postStats.posted)}
-          hint={`LinkedIn ${postStats.linkedin} · Facebook ${postStats.facebook}`}
-        />
-        <Kpi
-          icon={FileText}
-          label="Articles SEO"
-          value={String(articleStats.approved)}
-          hint={`${articleStats.drafts} brouillons · qualité moy. ${articleStats.avgScore}`}
-        />
+      {/* Tabs */}
+      <div className="mt-5 flex gap-1 rounded-full border border-[#E9D5FF] bg-white p-1 self-start">
+        {TABS.map((t) => (
+          <button
+            key={t.id}
+            onClick={() => setTab(t.id)}
+            className={`rounded-full px-4 py-1.5 text-xs font-medium transition ${
+              tab === t.id ? "bg-[#7C3AED] text-white" : "text-slate-600 hover:bg-[#F5F3FF]"
+            }`}
+          >
+            {t.label}
+          </button>
+        ))}
       </div>
 
-      {/* Charts */}
-      <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-          <h3 className="text-sm font-semibold text-slate-800">Répartition des sources</h3>
-          <div className="mt-4 h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie data={bySource} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80}>
-                  {bySource.map((_, i) => (
-                    <Cell key={i} fill={PIE[i % PIE.length]} />
-                  ))}
-                </Pie>
-                <Tooltip />
-                <Legend wrapperStyle={{ fontSize: 11 }} />
-              </PieChart>
-            </ResponsiveContainer>
+      {tab === "overview" && (
+        <>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <Kpi icon={Users} label="Total leads" value={String(contacts.length)} to="/admin/contacts" />
+            <Kpi icon={Mail} label="Newsletter confirmés" value={String(subStats.confirmed)} hint={`${subStats.pending} en attente`} />
+            <Kpi icon={Newspaper} label="Posts sociaux" value={String(postStats.posted)} hint={`LinkedIn ${postStats.linkedin} · Facebook ${postStats.facebook}`} />
+            <Kpi icon={FileText} label="Articles SEO" value={String(articleStats.approved)} hint={`${articleStats.drafts} brouillons · qualité moy. ${articleStats.avgScore}`} />
+          </div>
+
+          <div className="mt-6 grid gap-4 lg:grid-cols-2">
+            <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-semibold text-slate-800">Répartition des sources</h3>
+                <Link to="/admin" className="text-xs text-[#7C3AED] hover:underline">Voir dans le pipeline →</Link>
+              </div>
+              <div className="mt-4 h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie data={bySource} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80}>
+                      {bySource.map((_, i) => <Cell key={i} fill={PIE[i % PIE.length]} />)}
+                    </Pie>
+                    <Tooltip />
+                    <Legend wrapperStyle={{ fontSize: 11 }} />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
+              <h3 className="text-sm font-semibold text-slate-800">Leads par mois</h3>
+              <div className="mt-4 h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={perMonth}>
+                    <XAxis dataKey="month" tick={{ fontSize: 11 }} />
+                    <YAxis tick={{ fontSize: 11 }} />
+                    <Tooltip />
+                    <Bar dataKey="leads" fill="#7C3AED" radius={[8, 8, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 rounded-3xl border border-[#E9D5FF] bg-gradient-to-br from-white to-[#F5F3FF] p-5">
+            <div className="flex items-center gap-2">
+              <BarChart3 className="h-4 w-4 text-[#7C3AED]" />
+              <span className="text-sm font-medium text-slate-700">
+                Passe sur les onglets pour voir en direct <strong>Google Analytics</strong> et <strong>Google Ads</strong>, ou l'onglet <strong>Contenu &amp; Social</strong> pour les articles SEO et les posts LinkedIn/Facebook.
+              </span>
+            </div>
+          </div>
+        </>
+      )}
+
+      {tab === "ga4" && (
+        <div className="mt-6">
+          <GoogleAnalyticsDashboard />
+        </div>
+      )}
+
+      {tab === "ads" && (
+        <div className="mt-6">
+          <GoogleAdsDashboard />
+        </div>
+      )}
+
+      {tab === "content" && (
+        <div className="mt-6 grid gap-4 lg:grid-cols-2">
+          <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-semibold text-slate-800">Derniers articles SEO/GEO</h3>
+              <a href="/blog" target="_blank" rel="noopener noreferrer" className="text-xs text-[#7C3AED] hover:underline">
+                Voir le blog →
+              </a>
+            </div>
+            <ul className="mt-3 divide-y divide-slate-100">
+              {lastArticles.map((a) => (
+                <li key={a.slug} className="flex items-center justify-between py-2 text-sm">
+                  <a
+                    href={`/blog/${a.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="line-clamp-1 flex-1 pr-2 text-slate-800 hover:text-[#7C3AED]"
+                  >
+                    {a.title}
+                  </a>
+                  <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700">
+                    {a.quality_score ?? "-"}/100
+                  </span>
+                </li>
+              ))}
+              {lastArticles.length === 0 && (
+                <li className="py-4 text-center text-xs text-slate-500">Aucun article publié</li>
+              )}
+            </ul>
+          </div>
+
+          <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
+            <h3 className="text-sm font-semibold text-slate-800">Derniers posts sociaux</h3>
+            <ul className="mt-3 divide-y divide-slate-100">
+              {lastPosts.map((p, i) => (
+                <li key={i} className="flex items-center justify-between py-2 text-sm">
+                  <a
+                    href={p.article_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="line-clamp-1 flex-1 pr-2 text-slate-800 hover:text-[#7C3AED]"
+                  >
+                    {p.article_title}
+                  </a>
+                  <div className="flex items-center gap-1">
+                    {p.linkedin_status === "posted" && <Linkedin className="h-3.5 w-3.5 text-[#0A66C2]" />}
+                    {p.facebook_status === "posted" && <Facebook className="h-3.5 w-3.5 text-[#1877F2]" />}
+                    {p.status === "failed" && <span className="text-xs text-red-600">échec</span>}
+                  </div>
+                </li>
+              ))}
+              {lastPosts.length === 0 && (
+                <li className="py-4 text-center text-xs text-slate-500">Aucun post</li>
+              )}
+            </ul>
           </div>
         </div>
-
-        <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-          <h3 className="text-sm font-semibold text-slate-800">Leads par mois</h3>
-          <div className="mt-4 h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={perMonth}>
-                <XAxis dataKey="month" tick={{ fontSize: 11 }} />
-                <YAxis tick={{ fontSize: 11 }} />
-                <Tooltip />
-                <Bar dataKey="leads" fill="#7C3AED" radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-      </div>
-
-      {/* Contenu SEO + Social */}
-      <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-          <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-slate-800">Derniers articles SEO/GEO</h3>
-            <a href="/blog" target="_blank" rel="noopener noreferrer" className="text-xs text-[#7C3AED] hover:underline">
-              Voir le blog →
-            </a>
-          </div>
-          <ul className="mt-3 divide-y divide-slate-100">
-            {lastArticles.map((a) => (
-              <li key={a.slug} className="flex items-center justify-between py-2 text-sm">
-                <a
-                  href={`/blog/${a.slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="line-clamp-1 flex-1 pr-2 text-slate-800 hover:text-[#7C3AED]"
-                >
-                  {a.title}
-                </a>
-                <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700">
-                  {a.quality_score ?? "-"}/100
-                </span>
-              </li>
-            ))}
-            {lastArticles.length === 0 && (
-              <li className="py-4 text-center text-xs text-slate-500">Aucun article publié</li>
-            )}
-          </ul>
-        </div>
-
-        <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-          <h3 className="text-sm font-semibold text-slate-800">Derniers posts sociaux</h3>
-          <ul className="mt-3 divide-y divide-slate-100">
-            {lastPosts.map((p, i) => (
-              <li key={i} className="flex items-center justify-between py-2 text-sm">
-                <a
-                  href={p.article_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="line-clamp-1 flex-1 pr-2 text-slate-800 hover:text-[#7C3AED]"
-                >
-                  {p.article_title}
-                </a>
-                <div className="flex gap-1">
-                  {p.linkedin_status === "posted" && <Linkedin className="h-3.5 w-3.5 text-[#0A66C2]" />}
-                  {p.facebook_status === "posted" && <Facebook className="h-3.5 w-3.5 text-[#1877F2]" />}
-                  {p.status === "failed" && <span className="text-xs text-red-600">échec</span>}
-                </div>
-              </li>
-            ))}
-            {lastPosts.length === 0 && (
-              <li className="py-4 text-center text-xs text-slate-500">Aucun post</li>
-            )}
-          </ul>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

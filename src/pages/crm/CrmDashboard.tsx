@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import { STAGES, type StageId } from "./types";
 import {
   BarChart,
@@ -13,7 +15,7 @@ import {
   Cell,
   Legend,
 } from "recharts";
-import { TrendingUp, Users, Target, Euro, CheckSquare, Phone, Clock, Save, Trash2 } from "lucide-react";
+import { TrendingUp, Users, Target, Euro, CheckSquare, Phone, Clock, Save, Trash2, ArrowRight } from "lucide-react";
 
 type DealMini = {
   id: string;
@@ -29,19 +31,23 @@ type DealMini = {
 
 type Agent = { id: string; user_id: string | null; full_name: string };
 
-function Kpi({ icon: Icon, label, value, hint }: any) {
-  return (
-    <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-      <div className="flex items-center gap-3">
-        <div className="rounded-2xl bg-[#F5F3FF] p-2.5">
-          <Icon className="h-5 w-5 text-[#7C3AED]" />
+function Kpi({ icon: Icon, label, value, hint, href }: any) {
+  const body = (
+    <div className="group rounded-3xl border border-[#E9D5FF] bg-white p-5 transition hover:border-[#C4B5FD] hover:shadow-md">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="rounded-2xl bg-[#F5F3FF] p-2.5">
+            <Icon className="h-5 w-5 text-[#7C3AED]" />
+          </div>
+          <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
         </div>
-        <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
+        {href && <ArrowRight className="h-4 w-4 text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-[#7C3AED]" />}
       </div>
       <div className="mt-3 text-2xl font-semibold text-slate-900">{value}</div>
       {hint && <div className="mt-1 text-xs text-slate-500">{hint}</div>}
     </div>
   );
+  return href ? <Link to={href}>{body}</Link> : body;
 }
 
 const fmtEur = (n: number) =>
@@ -273,59 +279,108 @@ export default function CrmDashboard() {
       </div>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Kpi icon={Users} label="Deals actifs" value={String(stats.active)} hint={`${stats.total} au total`} />
+        <Kpi
+          icon={Users}
+          label="Deals actifs"
+          value={String(stats.active)}
+          hint={`${stats.total} au total · voir le pipeline`}
+          href={`/admin${agentFilter !== "all" ? `?agent=${agentFilter}` : ""}`}
+        />
         <Kpi
           icon={Target}
           label="Taux de conversion"
           value={`${stats.conversionRate.toFixed(1)}%`}
           hint={`${stats.won} gagnés · ${stats.lost} perdus`}
+          href="/admin?stage=won"
         />
-        <Kpi icon={TrendingUp} label="Pipeline (est.)" value={fmtEur(stats.pipelineCa)} />
-        <Kpi icon={Euro} label="CA signé" value={fmtEur(stats.wonCa)} />
+        <Kpi
+          icon={TrendingUp}
+          label="Pipeline (est.)"
+          value={fmtEur(stats.pipelineCa)}
+          href="/admin?stage=quote_sent"
+        />
+        <Kpi
+          icon={Euro}
+          label="CA signé"
+          value={fmtEur(stats.wonCa)}
+          href="/admin/finance"
+        />
       </div>
 
       {/* Tâches du jour */}
       <div className="mt-6 rounded-3xl border border-[#E9D5FF] bg-white p-5">
-        <div className="flex items-center gap-2">
-          <CheckSquare className="h-5 w-5 text-[#7C3AED]" />
-          <h2 className="text-sm font-semibold text-slate-800">
-            Tâches du jour {agentFilter === "all" ? "(équipe)" : ""}
-          </h2>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <CheckSquare className="h-5 w-5 text-[#7C3AED]" />
+            <h2 className="text-sm font-semibold text-slate-800">
+              Tâches du jour {agentFilter === "all" ? "(équipe)" : ""}
+            </h2>
+          </div>
+          <Link to="/admin" className="text-xs font-medium text-[#7C3AED] hover:underline">
+            Ouvrir le pipeline →
+          </Link>
         </div>
         <div className="mt-4 grid gap-3 md:grid-cols-2">
-          {dailyTasks.map((task) => (
-            <div
-              key={task.id}
-              className="rounded-2xl border border-slate-100 bg-[#FAFAFF] p-4"
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className={`rounded-xl p-1.5 ${task.color}`}>
-                    <task.icon className="h-4 w-4" />
-                  </div>
-                  <div className="text-sm font-medium text-slate-800">{task.title}</div>
+          {dailyTasks.map((task) => {
+            const stageLink =
+              task.id === "new" ? "/admin?stage=lead"
+              : task.id === "follow" ? "/admin?stage=qualified"
+              : task.id === "incomplete" ? "/admin?stage=incomplete"
+              : "/admin?stage=subscription";
+            return (
+              <div key={task.id} className="rounded-2xl border border-slate-100 bg-[#FAFAFF] p-4">
+                <div className="flex items-center justify-between">
+                  <Link to={stageLink} className="flex items-center gap-2 hover:opacity-80">
+                    <div className={`rounded-xl p-1.5 ${task.color}`}>
+                      <task.icon className="h-4 w-4" />
+                    </div>
+                    <div className="text-sm font-medium text-slate-800">{task.title}</div>
+                  </Link>
+                  <span className="rounded-full bg-white px-2 py-0.5 text-xs font-semibold text-slate-700 shadow-sm">
+                    {task.items.length}
+                  </span>
                 </div>
-                <span className="rounded-full bg-white px-2 py-0.5 text-xs font-semibold text-slate-700 shadow-sm">
-                  {task.items.length}
-                </span>
+                <p className="mt-2 text-xs text-slate-500">{task.hint}</p>
+                {task.items.length > 0 && (
+                  <ul className="mt-2 space-y-1.5">
+                    {task.items.slice(0, 3).map((d) => (
+                      <li key={d.id} className="flex items-center gap-2 text-xs text-slate-600">
+                        <Link to={stageLink} className="flex-1 truncate hover:text-[#7C3AED]">
+                          • {d.contacts?.full_name || d.contacts?.email} — {d.insurance_type}
+                        </Link>
+                        <select
+                          value={d.assigned_to ?? ""}
+                          onChange={async (e) => {
+                            const val = e.target.value || null;
+                            const { error } = await supabase
+                              .from("deals")
+                              .update({ assigned_to: val })
+                              .eq("id", d.id);
+                            if (error) return toast.error("Assignation impossible");
+                            setDeals((ds) => ds.map((x) => (x.id === d.id ? { ...x, assigned_to: val } : x)));
+                            toast.success(val ? "Deal assigné" : "Assignation retirée");
+                          }}
+                          className="max-w-[110px] shrink-0 truncate rounded-full border border-[#E9D5FF] bg-white px-2 py-0.5 text-[10px] text-slate-600 focus:outline-none focus:ring-1 focus:ring-[#7C3AED]"
+                        >
+                          <option value="">Assigner…</option>
+                          {agents.map((a) => (
+                            <option key={a.id} value={a.user_id ?? a.id}>{a.full_name}</option>
+                          ))}
+                        </select>
+                      </li>
+                    ))}
+                    {task.items.length > 3 && (
+                      <li className="pt-0.5">
+                        <Link to={stageLink} className="text-xs text-[#7C3AED] hover:underline">
+                          +{task.items.length - 3} de plus →
+                        </Link>
+                      </li>
+                    )}
+                  </ul>
+                )}
               </div>
-              <p className="mt-2 text-xs text-slate-500">{task.hint}</p>
-              {task.items.length > 0 && (
-                <ul className="mt-2 space-y-1">
-                  {task.items.slice(0, 3).map((d) => (
-                    <li key={d.id} className="truncate text-xs text-slate-600">
-                      • {d.contacts?.full_name || d.contacts?.email} — {d.insurance_type}
-                    </li>
-                  ))}
-                  {task.items.length > 3 && (
-                    <li className="text-xs text-slate-400">
-                      +{task.items.length - 3} de plus
-                    </li>
-                  )}
-                </ul>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

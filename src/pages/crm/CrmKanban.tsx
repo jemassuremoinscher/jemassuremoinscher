@@ -10,7 +10,7 @@ import {
 } from "@dnd-kit/core";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useSearchParams } from "react-router-dom";
 import { STAGES, type DealRow, type StageId } from "./types";
 import { KanbanColumn } from "./KanbanColumn";
 import { DealCard } from "./DealCard";
@@ -25,6 +25,7 @@ type Ctx = { query: string };
 
 export default function CrmKanban() {
   const { query } = useOutletContext<Ctx>();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [deals, setDeals] = useState<DealRow[]>([]);
   const [agents, setAgents] = useState<{ id: string; user_id: string | null; full_name: string }[]>([]);
   const [loading, setLoading] = useState(true);
@@ -33,11 +34,23 @@ export default function CrmKanban() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [newOpen, setNewOpen] = useState(false);
 
-  // Global filters
-  const [agentFilter, setAgentFilter] = useState<string>("all");
-  const [sourceFilter, setSourceFilter] = useState<string>("all");
-  const [stageFilter, setStageFilter] = useState<string>("all");
-  const [dateFilter, setDateFilter] = useState<string>("all"); // all | 7d | 30d | 90d
+  // Global filters (seed from URL so dashboard links can preselect)
+  const [agentFilter, setAgentFilter] = useState<string>(searchParams.get("agent") ?? "all");
+  const [sourceFilter, setSourceFilter] = useState<string>(searchParams.get("source") ?? "all");
+  const [stageFilter, setStageFilter] = useState<string>(searchParams.get("stage") ?? "all");
+  const [dateFilter, setDateFilter] = useState<string>(searchParams.get("date") ?? "all");
+
+  // keep URL in sync
+  useEffect(() => {
+    const next = new URLSearchParams(searchParams);
+    const setOrDel = (k: string, v: string) => (v !== "all" ? next.set(k, v) : next.delete(k));
+    setOrDel("agent", agentFilter);
+    setOrDel("source", sourceFilter);
+    setOrDel("stage", stageFilter);
+    setOrDel("date", dateFilter);
+    setSearchParams(next, { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [agentFilter, sourceFilter, stageFilter, dateFilter]);
 
 
 
@@ -215,6 +228,8 @@ export default function CrmKanban() {
                 stage={stage}
                 deals={byStage.get(stage.id) ?? []}
                 onOpen={openDrawer}
+                agents={agents}
+                onAssigned={load}
               />
             ))}
           </div>
