@@ -15,8 +15,11 @@ export function CrmHeader({
   const { user, signOut, isAdmin } = useAuth();
   const navigate = useNavigate();
   const [enabled, setEnabled] = useState<boolean>(() => {
-    if (typeof window === "undefined") return false;
-    return localStorage.getItem("crm.notifications.enabled") === "1";
+    if (typeof window === "undefined" || !("Notification" in window)) return false;
+    const stored = localStorage.getItem("crm.notifications.enabled");
+    // Auto-activate si permission déjà accordée (sauf refus explicite précédent)
+    if (stored === null && Notification.permission === "granted") return true;
+    return stored === "1" && Notification.permission === "granted";
   });
   const [permission, setPermission] = useState<NotificationPermission>(
     typeof window !== "undefined" && "Notification" in window ? Notification.permission : "default"
@@ -27,6 +30,31 @@ export function CrmHeader({
   useEffect(() => {
     localStorage.setItem("crm.notifications.enabled", enabled ? "1" : "0");
   }, [enabled]);
+
+  // Réactive automatiquement si l'utilisateur autorise dans les paramètres Chrome pendant la session
+  useEffect(() => {
+    if (!("Notification" in window)) return;
+    const check = () => {
+      const p = Notification.permission;
+      setPermission(p);
+      if (p === "granted" && !enabled && localStorage.getItem("crm.notifications.enabled") !== "0") {
+        setEnabled(true);
+      }
+      if (p !== "granted" && enabled) {
+        setEnabled(false);
+      }
+    };
+    const onVis = () => document.visibilityState === "visible" && check();
+    document.addEventListener("visibilitychange", onVis);
+    window.addEventListener("focus", check);
+    const iv = setInterval(check, 5000);
+    return () => {
+      document.removeEventListener("visibilitychange", onVis);
+      window.removeEventListener("focus", check);
+      clearInterval(iv);
+    };
+  }, [enabled]);
+
 
   const toggle = async () => {
     if (!("Notification" in window)) {
