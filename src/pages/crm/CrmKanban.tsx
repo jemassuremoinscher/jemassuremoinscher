@@ -28,10 +28,26 @@ export default function CrmKanban() {
   const [activeDeal, setActiveDeal] = useState<DealRow | null>(null);
   const [openDeal, setOpenDeal] = useState<DealRow | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [newOpen, setNewOpen] = useState(false);
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } })
   );
+
+  const load = async () => {
+    const { data, error } = await supabase
+      .from("deals")
+      .select(
+        "id,contact_id,assigned_to,insurance_type,stage,lead_score,estimated_commission,source_type,source_id,notes,created_at,updated_at,contacts(id,full_name,email,phone,source,tags)"
+      )
+      .is("deleted_at", null)
+      .order("lead_score", { ascending: false, nullsFirst: false })
+      .order("created_at", { ascending: false })
+      .limit(500);
+    if (error) toast.error("Erreur de chargement des deals");
+    setDeals((data ?? []) as unknown as DealRow[]);
+    setLoading(false);
+  };
 
   useEffect(() => {
     (async () => {
