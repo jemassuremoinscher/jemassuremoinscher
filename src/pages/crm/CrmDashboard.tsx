@@ -62,7 +62,7 @@ export default function CrmDashboard() {
   const [agents, setAgents] = useState<Agent[]>([]);
   const [loading, setLoading] = useState(true);
   const [agentFilter, setAgentFilter] = useState<string>("all");
-  const [range, setRange] = useState<(typeof RANGES)[number]["id"]>("30d");
+  const [range, setRange] = useState<(typeof RANGES)[number]["id"]>("all");
 
   useEffect(() => {
     (async () => {
