@@ -42,6 +42,35 @@ export function DealDrawer({
   const [docs, setDocs] = useState<Doc[]>([]);
   const [activities, setActivities] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [pendingName, setPendingName] = useState<string | null>(null);
+
+  const refresh = async () => {
+    if (!deal) return;
+    setLoading(true);
+    const [d, a] = await Promise.all([
+      supabase.from("documents").select("id,name,status,file_path").eq("deal_id", deal.id),
+      supabase
+        .from("activities")
+        .select("id,action_type,description,created_at")
+        .eq("deal_id", deal.id)
+        .order("created_at", { ascending: false })
+        .limit(20),
+    ]);
+    const dbDocs = (d.data ?? []) as Doc[];
+    const key = deal.insurance_type.toLowerCase();
+    const expected = CHECKLISTS[key] ?? [];
+    const merged: Doc[] = [
+      ...dbDocs,
+      ...expected
+        .filter((n) => !dbDocs.some((x) => x.name === n))
+        .map((n) => ({ id: `virt-${n}`, name: n, status: "manquant" as const, virtual: true })),
+    ];
+    setDocs(merged);
+    setActivities((a.data ?? []) as Activity[]);
+    setLoading(false);
+  };
 
   useEffect(() => {
     if (!deal || !open) return;
