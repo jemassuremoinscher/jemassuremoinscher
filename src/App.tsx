@@ -218,7 +218,7 @@ const App = () => {
                   <Route index element={<CrmKanban />} />
                   <Route path="contacts" element={<CrmPlaceholder title="Contacts" />} />
                   <Route path="documents" element={<CrmPlaceholder title="GED — Documents" />} />
-                  <Route path="dashboard" element={<CrmPlaceholder title="Dashboard KPIs" />} />
+                  <Route path="dashboard" element={<CrmDashboard />} />
                   <Route path="finance" element={<CrmPlaceholder title="Finance & Commissions" />} />
                   <Route path="marketing" element={<CrmPlaceholder title="Marketing & SEO" />} />
                   <Route path="rgpd" element={<CrmPlaceholder title="RGPD & Audit" />} />
