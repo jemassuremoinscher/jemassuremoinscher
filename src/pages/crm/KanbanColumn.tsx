@@ -2,16 +2,20 @@ import { useDroppable } from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import type { DealRow } from "./types";
 import { STAGES } from "./types";
-import { DealCard } from "./DealCard";
+import { DealCard, type AgentOption } from "./DealCard";
 
 export function KanbanColumn({
   stage,
   deals,
   onOpen,
+  agents,
+  onAssigned,
 }: {
   stage: (typeof STAGES)[number];
   deals: DealRow[];
   onOpen: (d: DealRow) => void;
+  agents?: AgentOption[];
+  onAssigned?: () => void;
 }) {
   const { setNodeRef, isOver } = useDroppable({ id: stage.id });
   const total = deals.reduce((s, d) => s + (d.estimated_commission ?? 0), 0);
