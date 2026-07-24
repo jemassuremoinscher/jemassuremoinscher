@@ -175,7 +175,10 @@ export function DealDrawer({
   };
 
   const removeDoc = async (doc: Doc) => {
-    if (doc.virtual) return;
+    if (doc.virtual) {
+      setDocs((prev) => prev.filter((x) => x.id !== doc.id));
+      return;
+    }
     const { error } = await supabase.from("documents").delete().eq("id", doc.id);
     if (error) return toast.error("Suppression impossible");
     await refresh();
