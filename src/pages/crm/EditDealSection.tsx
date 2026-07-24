@@ -101,8 +101,8 @@ export function EditDealSection({ deal, onSaved }: { deal: DealRow; onSaved: () 
               <select value={form.assigned_to} onChange={(e) => setForm({ ...form, assigned_to: e.target.value })}
                 className="h-9 rounded-md border border-input bg-background px-2 text-sm">
                 <option value="">— Non assigné —</option>
-                {agents.map(a => (
-                  <option key={a.id} value={a.user_id ?? a.id}>{a.full_name}</option>
+                {agents.filter(a => a.user_id).map(a => (
+                  <option key={a.id} value={a.user_id!}>{a.full_name}</option>
                 ))}
               </select>
             </div>

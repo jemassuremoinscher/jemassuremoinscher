@@ -29,7 +29,17 @@ function Kpi({ icon: Icon, label, value, hint, to }: any) {
 
 const PIE = ["#7C3AED", "#4F46E5", "#0891B2", "#D97706", "#16A34A", "#DC2626", "#64748B", "#A78BFA"];
 
-type Tab = "overview" | "ga4" | "ads" | "content";
+type Tab = "overview" | "ga4" | "ads" | "content" | "serp";
+
+const SERP_KEY = "crm.marketing.serp.v1";
+const DEFAULT_SERP = [
+  "assurance auto",
+  "assurance moto",
+  "assurance habitation",
+  "mutuelle santé",
+  "assurance emprunteur",
+  "assurance trottinette électrique",
+];
 
 export default function MarketingPage() {
   const [tab, setTab] = useState<Tab>("overview");
@@ -105,10 +115,23 @@ export default function MarketingPage() {
   const lastPosts = posts.slice(0, 8);
   const lastArticles = articles.filter((a) => a.status === "approved").slice(0, 8);
 
+  const [serpKeywords, setSerpKeywords] = useState<string[]>(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem(SERP_KEY) || "null");
+      return Array.isArray(stored) && stored.length ? stored : DEFAULT_SERP;
+    } catch { return DEFAULT_SERP; }
+  });
+  const [serpInput, setSerpInput] = useState("");
+  const saveSerp = (next: string[]) => {
+    setSerpKeywords(next);
+    localStorage.setItem(SERP_KEY, JSON.stringify(next));
+  };
+
   const TABS: { id: Tab; label: string }[] = [
     { id: "overview", label: "Vue d'ensemble" },
     { id: "ga4", label: "Google Analytics" },
     { id: "ads", label: "Google Ads" },
+    { id: "serp", label: "SERP" },
     { id: "content", label: "Contenu & Social" },
   ];
 
@@ -209,6 +232,99 @@ export default function MarketingPage() {
       {tab === "ads" && (
         <div className="mt-6">
           <GoogleAdsDashboard />
+        </div>
+      )}
+
+      {tab === "serp" && (
+        <div className="mt-6 space-y-4">
+          <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h3 className="text-sm font-semibold text-slate-800">SERP tracker</h3>
+                <p className="mt-1 text-xs text-slate-500">
+                  Mots-clés suivis pour surveiller vos positions Google et la concurrence. Ouvre la SERP live ou l'analyse Semrush en un clic.
+                </p>
+              </div>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const k = serpInput.trim().toLowerCase();
+                  if (!k || serpKeywords.includes(k)) return;
+                  saveSerp([...serpKeywords, k]);
+                  setSerpInput("");
+                }}
+                className="flex items-center gap-2"
+              >
+                <input
+                  value={serpInput}
+                  onChange={(e) => setSerpInput(e.target.value)}
+                  placeholder="Ajouter un mot-clé…"
+                  className="h-9 w-64 rounded-full border border-[#E9D5FF] bg-white px-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#7C3AED]"
+                />
+                <button className="h-9 rounded-full bg-[#7C3AED] px-3 text-xs font-medium text-white hover:bg-[#6D28D9]">
+                  Ajouter
+                </button>
+              </form>
+            </div>
+            <div className="mt-4 overflow-hidden rounded-2xl border border-slate-100">
+              <table className="w-full text-sm">
+                <thead className="bg-[#FAFAFF] text-xs uppercase tracking-wide text-slate-500">
+                  <tr>
+                    <th className="py-2 px-3 text-left font-medium">Mot-clé</th>
+                    <th className="py-2 px-3 text-left font-medium">Actions</th>
+                    <th className="py-2 px-3 text-right font-medium">Retirer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {serpKeywords.map((kw) => {
+                    const q = encodeURIComponent(kw);
+                    return (
+                      <tr key={kw} className="border-t border-slate-100 hover:bg-[#FAFAFF]">
+                        <td className="py-2 px-3 font-medium text-slate-800">{kw}</td>
+                        <td className="py-2 px-3">
+                          <div className="flex flex-wrap gap-2 text-xs">
+                            <a
+                              href={`https://www.google.fr/search?q=${q}&gl=fr&hl=fr`}
+                              target="_blank" rel="noopener noreferrer"
+                              className="rounded-full border border-[#E9D5FF] px-3 py-1 text-[#7C3AED] hover:bg-[#F5F3FF]"
+                            >Google SERP ↗</a>
+                            <a
+                              href={`https://www.semrush.com/analytics/keywordoverview/?q=${q}&db=fr`}
+                              target="_blank" rel="noopener noreferrer"
+                              className="rounded-full border border-[#E9D5FF] px-3 py-1 text-[#7C3AED] hover:bg-[#F5F3FF]"
+                            >Semrush ↗</a>
+                            <a
+                              href={`https://search.google.com/search-console/performance/search-analytics?resource_id=sc-domain%3Ajemassuremoinscher.fr&query=${q}`}
+                              target="_blank" rel="noopener noreferrer"
+                              className="rounded-full border border-[#E9D5FF] px-3 py-1 text-[#7C3AED] hover:bg-[#F5F3FF]"
+                            >Search Console ↗</a>
+                          </div>
+                        </td>
+                        <td className="py-2 px-3 text-right">
+                          <button
+                            onClick={() => saveSerp(serpKeywords.filter((k) => k !== kw))}
+                            className="rounded-full p-1 text-slate-400 hover:bg-red-50 hover:text-red-600"
+                            title="Retirer"
+                          >✕</button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                  {serpKeywords.length === 0 && (
+                    <tr><td colSpan={3} className="py-6 text-center text-xs text-slate-500">Aucun mot-clé suivi.</td></tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-[#E9D5FF] bg-gradient-to-br from-[#F5F3FF] to-white p-5 text-sm text-slate-700">
+            <p className="font-medium text-slate-800">Positions Google en temps réel dans le CRM ?</p>
+            <p className="mt-1 text-xs text-slate-600">
+              Semrush (service SEO intégré à la plateforme) peut brancher les positions, la difficulté et les concurrents directement dans cette page —
+              tracking quotidien, alertes, historique long, données paid-search. Dis-le-moi si tu veux qu'on connecte ton compte Semrush pour l'activer.
+            </p>
+          </div>
         </div>
       )}
 
