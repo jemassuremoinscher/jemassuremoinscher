@@ -115,10 +115,23 @@ export default function MarketingPage() {
   const lastPosts = posts.slice(0, 8);
   const lastArticles = articles.filter((a) => a.status === "approved").slice(0, 8);
 
+  const [serpKeywords, setSerpKeywords] = useState<string[]>(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem(SERP_KEY) || "null");
+      return Array.isArray(stored) && stored.length ? stored : DEFAULT_SERP;
+    } catch { return DEFAULT_SERP; }
+  });
+  const [serpInput, setSerpInput] = useState("");
+  const saveSerp = (next: string[]) => {
+    setSerpKeywords(next);
+    localStorage.setItem(SERP_KEY, JSON.stringify(next));
+  };
+
   const TABS: { id: Tab; label: string }[] = [
     { id: "overview", label: "Vue d'ensemble" },
     { id: "ga4", label: "Google Analytics" },
     { id: "ads", label: "Google Ads" },
+    { id: "serp", label: "SERP" },
     { id: "content", label: "Contenu & Social" },
   ];
 
