@@ -31,19 +31,23 @@ type DealMini = {
 
 type Agent = { id: string; user_id: string | null; full_name: string };
 
-function Kpi({ icon: Icon, label, value, hint }: any) {
-  return (
-    <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-      <div className="flex items-center gap-3">
-        <div className="rounded-2xl bg-[#F5F3FF] p-2.5">
-          <Icon className="h-5 w-5 text-[#7C3AED]" />
+function Kpi({ icon: Icon, label, value, hint, href }: any) {
+  const body = (
+    <div className="group rounded-3xl border border-[#E9D5FF] bg-white p-5 transition hover:border-[#C4B5FD] hover:shadow-md">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="rounded-2xl bg-[#F5F3FF] p-2.5">
+            <Icon className="h-5 w-5 text-[#7C3AED]" />
+          </div>
+          <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
         </div>
-        <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
+        {href && <ArrowRight className="h-4 w-4 text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-[#7C3AED]" />}
       </div>
       <div className="mt-3 text-2xl font-semibold text-slate-900">{value}</div>
       {hint && <div className="mt-1 text-xs text-slate-500">{hint}</div>}
     </div>
   );
+  return href ? <Link to={href}>{body}</Link> : body;
 }
 
 const fmtEur = (n: number) =>
