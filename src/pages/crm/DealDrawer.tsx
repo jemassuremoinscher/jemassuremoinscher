@@ -281,7 +281,7 @@ export function DealDrawer({
               />
             </div>
 
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-4 space-y-3">
               {loading && (
                 <li className="text-xs text-slate-400">Chargement…</li>
               )}
@@ -290,61 +290,117 @@ export function DealDrawer({
                   Aucun document requis à ce stade.
                 </li>
               )}
-              {docs.map((d) => (
-                <li
-                  key={d.id}
-                  className="flex items-center justify-between rounded-2xl bg-[#FAF5FF]/60 px-3 py-2 text-sm"
-                >
-                  <span className="flex items-center gap-2 text-slate-700 min-w-0">
-                    {statusIcon(d.status)}
-                    <span className="truncate">{d.name}</span>
-                  </span>
-                  <span className="flex items-center gap-1">
-                    {d.file_path && (
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="h-7 px-2"
-                        onClick={() => downloadDoc(d)}
-                        aria-label="Télécharger"
-                      >
-                        <Download className="h-3.5 w-3.5" />
-                      </Button>
-                    )}
-                    {d.status !== "valide" && (
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="h-7 px-2 text-[#7C3AED]"
-                        onClick={() => onPickFile(d.name)}
-                        disabled={uploading === d.name}
-                        aria-label="Uploader"
-                      >
-                        <Upload className="h-3.5 w-3.5" />
-                      </Button>
-                    )}
-                    {d.status === "attente" && !d.virtual && (
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="h-7 px-2 text-green-600"
-                        onClick={() => validateDoc(d)}
-                        aria-label="Valider"
-                      >
-                        <CheckCircle2 className="h-3.5 w-3.5" />
-                      </Button>
-                    )}
-                  </span>
-                </li>
-              ))}
+              {docs.map((d) => {
+                const thumb = d.drive_url ? driveThumbUrl(d.drive_url) : null;
+                const preview = d.drive_url ? drivePreviewUrl(d.drive_url) : null;
+                return (
+                  <li
+                    key={d.id}
+                    className="rounded-2xl border border-[#EEE6FF] bg-[#FAF5FF]/60 p-3"
+                  >
+                    <div className="flex items-start gap-3">
+                      <Checkbox
+                        checked={d.status === "valide"}
+                        onCheckedChange={(c) => toggleValidated(d, !!c)}
+                        className="mt-1"
+                        aria-label={`Valider ${d.name}`}
+                      />
+                      {thumb ? (
+                        <button
+                          type="button"
+                          onClick={() => preview && setPreviewUrl(preview)}
+                          className="h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-[#E9D5FF] bg-white"
+                          title="Aperçu"
+                        >
+                          <img
+                            src={thumb}
+                            alt=""
+                            className="h-full w-full object-cover"
+                            referrerPolicy="no-referrer"
+                            onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
+                          />
+                        </button>
+                      ) : (
+                        <div className="grid h-14 w-14 shrink-0 place-items-center rounded-lg border border-dashed border-[#E9D5FF] bg-white text-slate-300">
+                          <FileText className="h-5 w-5" />
+                        </div>
+                      )}
+                      <div className="flex-1 min-w-0 space-y-2">
+                        <Input
+                          defaultValue={d.name}
+                          onBlur={(e) => renameDoc(d, e.target.value)}
+                          className="h-8 text-sm font-medium"
+                          placeholder="Nom du document"
+                        />
+                        <div className="flex items-center gap-2">
+                          <Input
+                            defaultValue={d.drive_url ?? ""}
+                            onBlur={(e) => {
+                              if ((e.target.value || "") !== (d.drive_url ?? "")) {
+                                saveDriveUrl(d, e.target.value);
+                              }
+                            }}
+                            className="h-8 text-xs"
+                            placeholder="Coller un lien Google Drive…"
+                          />
+                          {d.drive_url && (
+                            <a
+                              href={d.drive_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-[#7C3AED] hover:bg-[#F3E8FF]"
+                              aria-label="Ouvrir dans Google Drive"
+                              title="Ouvrir dans Google Drive"
+                            >
+                              <ExternalLink className="h-4 w-4" />
+                            </a>
+                          )}
+                          {!d.virtual && (
+                            <button
+                              type="button"
+                              onClick={() => removeDoc(d)}
+                              className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-slate-400 hover:bg-red-50 hover:text-red-600"
+                              aria-label="Supprimer"
+                              title="Supprimer"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
-            <input
-              ref={fileInputRef}
-              type="file"
-              className="hidden"
-              onChange={onFileChange}
-              accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
-            />
+
+            {/* Ajout d'un document personnalisé */}
+            <div className="mt-4 rounded-2xl border border-dashed border-[#E9D5FF] p-3">
+              <p className="mb-2 text-xs font-medium text-slate-600">Ajouter un document</p>
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <Input
+                  value={newName}
+                  onChange={(e) => setNewName(e.target.value)}
+                  placeholder="Nom (ex. Devis signé)"
+                  className="h-8 text-sm"
+                />
+                <Input
+                  value={newUrl}
+                  onChange={(e) => setNewUrl(e.target.value)}
+                  placeholder="Lien Google Drive (facultatif)"
+                  className="h-8 text-sm"
+                />
+                <Button
+                  size="sm"
+                  onClick={addCustomDoc}
+                  disabled={!newName.trim()}
+                  className="h-8 rounded-full bg-[#7C3AED] hover:bg-[#6D28D9]"
+                >
+                  <Plus className="mr-1 h-3.5 w-3.5" /> Ajouter
+                </Button>
+              </div>
+            </div>
+
 
             <div className="mt-4 flex gap-2">
               <Button
