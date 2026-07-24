@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
 import {
   KanbanSquare, Users, FileText, BarChart3, Wallet, Megaphone,
-  Shield, Trash2, Settings, Sparkles, Upload,
+  Shield, Trash2, Settings, Upload,
 } from "lucide-react";
+import arthurLogo from "@/assets/mascotte/arthur-thumbs-up.webp";
 
 interface Item {
   to: string;
@@ -28,13 +29,19 @@ export function CrmSidebar({ isAdmin }: { isAdmin: boolean }) {
   const visible = items.filter((i) => !i.adminOnly || isAdmin);
   return (
     <aside className="hidden md:flex w-64 shrink-0 flex-col gap-1 border-r border-[#E9D5FF] bg-white px-3 py-4">
-      <div className="flex items-center gap-2 px-3 pb-4">
-        <div className="grid h-9 w-9 place-items-center rounded-2xl bg-[#7C3AED] text-white">
-          <Sparkles className="h-4 w-4" />
+      <div className="flex items-center gap-2.5 px-3 pb-4">
+        <div className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-full bg-[#7C3AED] ring-2 ring-[#F3E8FF]">
+          <img
+            src={arthurLogo}
+            alt="Arthur"
+            className="h-10 w-10 object-cover object-top"
+          />
         </div>
         <div className="leading-tight">
-          <div className="text-sm font-semibold text-slate-900">CRM Assurance</div>
-          <div className="text-[11px] text-slate-500">jemassuremoinscher.fr</div>
+          <div className="text-sm font-semibold text-[#5B21B6]">
+            jemassuremoinscher.fr
+          </div>
+          <div className="text-[11px] text-slate-500">CRM Assurance</div>
         </div>
       </div>
 

@@ -13,7 +13,7 @@ import {
   Cell,
   Legend,
 } from "recharts";
-import { TrendingUp, Users, Target, Euro, CheckSquare, Phone, Clock } from "lucide-react";
+import { TrendingUp, Users, Target, Euro, CheckSquare, Phone, Clock, Save, Trash2 } from "lucide-react";
 
 type DealMini = {
   id: string;
@@ -57,12 +57,42 @@ const RANGES = [
   { id: "all", label: "Tout", days: 3650 },
 ] as const;
 
+type SavedView = { id: string; name: string; agentFilter: string; range: string };
+const VIEWS_KEY = "crm.dashboard.views.v1";
+
 export default function CrmDashboard() {
   const [deals, setDeals] = useState<DealMini[]>([]);
   const [agents, setAgents] = useState<Agent[]>([]);
   const [loading, setLoading] = useState(true);
   const [agentFilter, setAgentFilter] = useState<string>("all");
-  const [range, setRange] = useState<(typeof RANGES)[number]["id"]>("30d");
+  const [range, setRange] = useState<(typeof RANGES)[number]["id"]>("all");
+  const [views, setViews] = useState<SavedView[]>(() => {
+    try { return JSON.parse(localStorage.getItem(VIEWS_KEY) || "[]"); } catch { return []; }
+  });
+  const [activeViewId, setActiveViewId] = useState<string>("");
+
+  const persistViews = (next: SavedView[]) => {
+    setViews(next);
+    localStorage.setItem(VIEWS_KEY, JSON.stringify(next));
+  };
+  const saveCurrentView = () => {
+    const name = prompt("Nom de la vue ?");
+    if (!name) return;
+    const v: SavedView = { id: crypto.randomUUID(), name, agentFilter, range };
+    persistViews([...views, v]);
+    setActiveViewId(v.id);
+  };
+  const applyView = (id: string) => {
+    const v = views.find((x) => x.id === id);
+    if (!v) return;
+    setAgentFilter(v.agentFilter);
+    setRange(v.range as any);
+    setActiveViewId(id);
+  };
+  const deleteView = (id: string) => {
+    persistViews(views.filter((v) => v.id !== id));
+    if (activeViewId === id) setActiveViewId("");
+  };
 
   useEffect(() => {
     (async () => {
@@ -184,7 +214,36 @@ export default function CrmDashboard() {
             {loading ? "Chargement…" : `${stats.total} deals sur la période`}
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
+          {views.length > 0 && (
+            <div className="flex items-center gap-1 rounded-full border border-[#E9D5FF] bg-white pl-2">
+              <select
+                value={activeViewId}
+                onChange={(e) => applyView(e.target.value)}
+                className="h-9 rounded-full bg-transparent px-2 text-sm"
+              >
+                <option value="">Vue sauvegardée…</option>
+                {views.map((v) => (
+                  <option key={v.id} value={v.id}>{v.name}</option>
+                ))}
+              </select>
+              {activeViewId && (
+                <button
+                  onClick={() => deleteView(activeViewId)}
+                  className="mr-1 rounded-full p-1.5 hover:bg-red-50"
+                  title="Supprimer cette vue"
+                >
+                  <Trash2 className="h-3.5 w-3.5 text-red-600" />
+                </button>
+              )}
+            </div>
+          )}
+          <button
+            onClick={saveCurrentView}
+            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-[#E9D5FF] bg-white px-3 text-sm text-[#7C3AED] hover:bg-[#F5F3FF]"
+          >
+            <Save className="h-3.5 w-3.5" /> Sauvegarder la vue
+          </button>
           <select
             value={agentFilter}
             onChange={(e) => setAgentFilter(e.target.value)}

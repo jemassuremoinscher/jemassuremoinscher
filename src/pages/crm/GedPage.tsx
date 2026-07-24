@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useOutletContext } from "react-router-dom";
 import { toast } from "sonner";
-import { FileText, Download, Check, Clock, AlertCircle } from "lucide-react";
+import { FileText, Download, Check, Clock, AlertCircle, Trash2 } from "lucide-react";
 
 type Ctx = { query: string };
 
@@ -23,6 +23,7 @@ export default function GedPage() {
   const { query } = useOutletContext<Ctx>();
   const [docs, setDocs] = useState<DocRow[]>([]);
   const [status, setStatus] = useState<string>("all");
+  const [clientFilter, setClientFilter] = useState<string>("all");
   const [loading, setLoading] = useState(true);
 
   const load = async () => {
@@ -41,10 +42,24 @@ export default function GedPage() {
     load();
   }, []);
 
+  const clients = useMemo(() => {
+    const map = new Map<string, string>();
+    docs.forEach((d) => {
+      const email = d.deals?.contacts?.email;
+      if (!email) return;
+      const label = d.deals?.contacts?.full_name || email;
+      map.set(email, label);
+    });
+    return Array.from(map, ([email, label]) => ({ email, label })).sort((a, b) =>
+      a.label.localeCompare(b.label)
+    );
+  }, [docs]);
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return docs.filter((d) => {
       if (status !== "all" && d.status !== status) return false;
+      if (clientFilter !== "all" && d.deals?.contacts?.email !== clientFilter) return false;
       if (!q) return true;
       return (
         d.name.toLowerCase().includes(q) ||
@@ -52,7 +67,7 @@ export default function GedPage() {
         d.deals?.contacts?.full_name?.toLowerCase().includes(q)
       );
     });
-  }, [docs, query, status]);
+  }, [docs, query, status, clientFilter]);
 
   const download = async (d: DocRow) => {
     if (!d.file_path) return;
@@ -70,6 +85,17 @@ export default function GedPage() {
       .eq("id", d.id);
     if (error) return toast.error("Erreur");
     toast.success("Validé");
+    load();
+  };
+
+  const remove = async (d: DocRow) => {
+    if (!confirm(`Supprimer définitivement « ${d.name} » ?`)) return;
+    if (d.file_path) {
+      await supabase.storage.from("crm-documents").remove([d.file_path]);
+    }
+    const { error } = await supabase.from("documents").delete().eq("id", d.id);
+    if (error) return toast.error("Erreur suppression");
+    toast.success("Document supprimé");
     load();
   };
 
@@ -104,16 +130,30 @@ export default function GedPage() {
             {loading ? "Chargement…" : `${filtered.length} documents`}
           </p>
         </div>
-        <select
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-          className="h-9 rounded-full border border-[#E9D5FF] bg-white px-3 text-sm"
-        >
-          <option value="all">Tous statuts</option>
-          <option value="attente">En attente</option>
-          <option value="valide">Validés</option>
-          <option value="manquant">Manquants</option>
-        </select>
+        <div className="flex flex-wrap gap-2">
+          <select
+            value={clientFilter}
+            onChange={(e) => setClientFilter(e.target.value)}
+            className="h-9 rounded-full border border-[#E9D5FF] bg-white px-3 text-sm"
+          >
+            <option value="all">Tous clients</option>
+            {clients.map((c) => (
+              <option key={c.email} value={c.email}>
+                {c.label}
+              </option>
+            ))}
+          </select>
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className="h-9 rounded-full border border-[#E9D5FF] bg-white px-3 text-sm"
+          >
+            <option value="all">Tous statuts</option>
+            <option value="attente">En attente</option>
+            <option value="valide">Validés</option>
+            <option value="manquant">Manquants</option>
+          </select>
+        </div>
       </div>
 
       <div className="mt-6 overflow-hidden rounded-3xl border border-[#E9D5FF] bg-white">
@@ -168,6 +208,13 @@ export default function GedPage() {
                         Valider
                       </button>
                     )}
+                    <button
+                      onClick={() => remove(d)}
+                      className="rounded-full p-1.5 hover:bg-red-50"
+                      title="Supprimer"
+                    >
+                      <Trash2 className="h-4 w-4 text-red-600" />
+                    </button>
                   </div>
                 </td>
               </tr>

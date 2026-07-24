@@ -18,7 +18,8 @@ import { DealDrawer } from "./DealDrawer";
 import { NewDealDialog } from "./NewDealDialog";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
-import arthurWatermark from "@/assets/mascotte-arthur.png";
+
+
 
 type Ctx = { query: string };
 
@@ -36,6 +37,9 @@ export default function CrmKanban() {
   const [agentFilter, setAgentFilter] = useState<string>("all");
   const [sourceFilter, setSourceFilter] = useState<string>("all");
   const [stageFilter, setStageFilter] = useState<string>("all");
+  const [dateFilter, setDateFilter] = useState<string>("all"); // all | 7d | 30d | 90d
+
+
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } })
@@ -72,6 +76,8 @@ export default function CrmKanban() {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
+    const days = dateFilter === "7d" ? 7 : dateFilter === "30d" ? 30 : dateFilter === "90d" ? 90 : null;
+    const cutoff = days ? Date.now() - days * 86400_000 : 0;
     return deals.filter((d) => {
       if (agentFilter !== "all") {
         const userId = agents.find((a) => a.id === agentFilter)?.user_id;
@@ -79,6 +85,7 @@ export default function CrmKanban() {
       }
       if (sourceFilter !== "all" && (d.contacts?.source ?? "inconnu") !== sourceFilter) return false;
       if (stageFilter !== "all" && d.stage !== stageFilter) return false;
+      if (cutoff && new Date(d.created_at).getTime() < cutoff) return false;
       if (!q) return true;
       const c = d.contacts;
       return (
@@ -88,7 +95,7 @@ export default function CrmKanban() {
         d.insurance_type.toLowerCase().includes(q)
       );
     });
-  }, [deals, query, agentFilter, sourceFilter, stageFilter, agents]);
+  }, [deals, query, agentFilter, sourceFilter, stageFilter, dateFilter, agents]);
 
   const byStage = useMemo(() => {
     const map = new Map<StageId, DealRow[]>();
@@ -178,9 +185,16 @@ export default function CrmKanban() {
           <option value="all">Toutes étapes</option>
           {STAGES.map((s) => <option key={s.id} value={s.id}>{s.label}</option>)}
         </select>
-        {(agentFilter !== "all" || sourceFilter !== "all" || stageFilter !== "all") && (
+        <select value={dateFilter} onChange={(e) => setDateFilter(e.target.value)}
+          className="h-8 rounded-full border border-[#E9D5FF] bg-white px-3 text-xs">
+          <option value="all">Toutes dates</option>
+          <option value="7d">7 derniers jours</option>
+          <option value="30d">30 derniers jours</option>
+          <option value="90d">90 derniers jours</option>
+        </select>
+        {(agentFilter !== "all" || sourceFilter !== "all" || stageFilter !== "all" || dateFilter !== "all") && (
           <button
-            onClick={() => { setAgentFilter("all"); setSourceFilter("all"); setStageFilter("all"); }}
+            onClick={() => { setAgentFilter("all"); setSourceFilter("all"); setStageFilter("all"); setDateFilter("all"); }}
             className="text-xs text-[#7C3AED] hover:underline"
           >
             Réinitialiser
@@ -189,15 +203,6 @@ export default function CrmKanban() {
       </div>
 
       <div className="relative flex-1 overflow-x-auto">
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <img
-            src={arthurWatermark}
-            alt=""
-            aria-hidden="true"
-            className="h-full max-h-[85vh] w-auto select-none opacity-[0.05] mix-blend-multiply"
-            style={{ WebkitMaskImage: "linear-gradient(#000, #000)" }}
-          />
-        </div>
         <DndContext
           sensors={sensors}
           onDragStart={onDragStart}
