@@ -98,8 +98,8 @@ export function DealCard({
             title={currentAgent ?? "Non assigné"}
           >
             <option value="">Non assigné</option>
-            {agents.map((a) => (
-              <option key={a.id} value={a.user_id ?? a.id}>
+            {agents.filter((a) => a.user_id).map((a) => (
+              <option key={a.id} value={a.user_id!}>
                 {a.full_name}
               </option>
             ))}
