@@ -8,6 +8,7 @@ import { Mail, Phone, Send, CheckCircle2, XCircle, Clock, FileText, Upload, Down
 import type { DealRow } from "./types";
 import { STAGES } from "./types";
 import { AuditTimeline } from "./AuditTimeline";
+import { EditDealSection } from "./EditDealSection";
 
 const CHECKLISTS: Record<string, string[]> = {
   auto: ["Carte Grise", "Permis de conduire", "Relevé d'Information", "RIB"],
@@ -227,6 +228,8 @@ export function DealDrawer({
               </a>
             )}
           </section>
+
+          <EditDealSection deal={deal} onSaved={refresh} />
 
           {/* GED */}
           <section className="rounded-3xl border border-[#E9D5FF] bg-white p-5">

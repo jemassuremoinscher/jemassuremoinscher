@@ -141,12 +141,15 @@ export default function CrmKanban() {
       </div>
 
       <div className="relative flex-1 overflow-x-auto">
-        <img
-          src={arthurWatermark}
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute bottom-4 right-6 h-64 w-auto select-none opacity-[0.06] mix-blend-multiply"
-        />
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <img
+            src={arthurWatermark}
+            alt=""
+            aria-hidden="true"
+            className="h-full max-h-[85vh] w-auto select-none opacity-[0.05] mix-blend-multiply"
+            style={{ WebkitMaskImage: "linear-gradient(#000, #000)" }}
+          />
+        </div>
         <DndContext
           sensors={sensors}
           onDragStart={onDragStart}
