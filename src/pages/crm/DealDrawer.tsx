@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Mail, Phone, Send, CheckCircle2, XCircle, Clock, FileText, Upload, Download } from "lucide-react";
+import { Mail, Phone, Send, FileText, ExternalLink, Plus, Trash2 } from "lucide-react";
 import type { DealRow } from "./types";
 import { STAGES } from "./types";
 import { AuditTimeline } from "./AuditTimeline";
@@ -18,11 +20,43 @@ const CHECKLISTS: Record<string, string[]> = {
   mutuelle: ["Attestation Vitale", "RIB", "Mandat SEPA"],
 };
 
+// Extrait l'ID Google Drive depuis les formats d'URL courants
+const extractDriveId = (url: string): string | null => {
+  if (!url) return null;
+  const patterns = [
+    /\/file\/d\/([a-zA-Z0-9_-]+)/,
+    /[?&]id=([a-zA-Z0-9_-]+)/,
+    /\/folders\/([a-zA-Z0-9_-]+)/,
+    /\/document\/d\/([a-zA-Z0-9_-]+)/,
+    /\/spreadsheets\/d\/([a-zA-Z0-9_-]+)/,
+    /\/presentation\/d\/([a-zA-Z0-9_-]+)/,
+  ];
+  for (const p of patterns) {
+    const m = url.match(p);
+    if (m) return m[1];
+  }
+  return null;
+};
+
+const drivePreviewUrl = (url: string): string | null => {
+  const id = extractDriveId(url);
+  if (!id) return null;
+  if (/\/folders\//.test(url)) return null;
+  return `https://drive.google.com/file/d/${id}/preview`;
+};
+
+const driveThumbUrl = (url: string): string | null => {
+  const id = extractDriveId(url);
+  if (!id) return null;
+  return `https://drive.google.com/thumbnail?id=${id}&sz=w200`;
+};
+
 interface Doc {
   id: string;
   name: string;
   status: "manquant" | "attente" | "valide";
   file_path?: string | null;
+  drive_url?: string | null;
   virtual?: boolean;
 }
 interface Activity {
@@ -44,15 +78,18 @@ export function DealDrawer({
   const [docs, setDocs] = useState<Doc[]>([]);
   const [activities, setActivities] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(false);
-  const [uploading, setUploading] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [pendingName, setPendingName] = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [newName, setNewName] = useState("");
+  const [newUrl, setNewUrl] = useState("");
 
   const refresh = async () => {
     if (!deal) return;
     setLoading(true);
     const [d, a] = await Promise.all([
-      supabase.from("documents").select("id,name,status,file_path").eq("deal_id", deal.id),
+      supabase
+        .from("documents")
+        .select("id,name,status,file_path,drive_url")
+        .eq("deal_id", deal.id),
       supabase
         .from("activities")
         .select("id,action_type,description,created_at")
@@ -80,80 +117,83 @@ export function DealDrawer({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deal, open]);
 
-  const onPickFile = (docName: string) => {
-    setPendingName(docName);
-    fileInputRef.current?.click();
-  };
-
-  const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    e.target.value = "";
-    if (!file || !deal || !pendingName) return;
-    if (file.size > 15 * 1024 * 1024) {
-      toast.error("Fichier trop volumineux (max 15 Mo)");
-      return;
-    }
-    setUploading(pendingName);
-    try {
-      const ext = file.name.split(".").pop() ?? "bin";
-      const path = `${deal.id}/${Date.now()}-${pendingName.replace(/\W+/g, "_")}.${ext}`;
-      const { error: upErr } = await supabase.storage
-        .from("crm-documents")
-        .upload(path, file, { upsert: false, contentType: file.type });
-      if (upErr) throw upErr;
-
-      // Update existing row or insert
-      const existing = docs.find((d) => d.name === pendingName && !d.virtual);
-      if (existing) {
-        await supabase
-          .from("documents")
-          .update({ file_path: path, status: "attente", uploaded_at: new Date().toISOString() })
-          .eq("id", existing.id);
-      } else {
-        await supabase.from("documents").insert({
-          deal_id: deal.id,
-          name: pendingName,
-          status: "attente",
-          file_path: path,
-          uploaded_at: new Date().toISOString(),
-        });
-      }
-      await supabase.from("activities").insert({
+  const upsertDoc = async (doc: Doc, patch: Partial<Doc>) => {
+    if (!deal) return;
+    if (doc.virtual) {
+      const { error } = await supabase.from("documents").insert({
         deal_id: deal.id,
-        action_type: "document_uploaded",
-        description: pendingName,
+        name: patch.name ?? doc.name,
+        status: patch.status ?? "attente",
+        drive_url: patch.drive_url ?? null,
       });
-      toast.success("Document envoyé");
-      await refresh();
-    } catch (err: any) {
-      toast.error("Échec de l'upload");
-      console.error(err);
-    } finally {
-      setUploading(null);
-      setPendingName(null);
+      if (error) return toast.error("Erreur d'enregistrement");
+    } else {
+      const { error } = await supabase
+        .from("documents")
+        .update({
+          ...(patch.name !== undefined ? { name: patch.name } : {}),
+          ...(patch.status !== undefined ? { status: patch.status } : {}),
+          ...(patch.drive_url !== undefined ? { drive_url: patch.drive_url } : {}),
+        })
+        .eq("id", doc.id);
+      if (error) return toast.error("Erreur d'enregistrement");
     }
-  };
-
-  const validateDoc = async (doc: Doc) => {
-    if (doc.virtual) return;
-    await supabase.from("documents").update({ status: "valide" }).eq("id", doc.id);
-    await supabase.from("activities").insert({
-      deal_id: deal!.id,
-      action_type: "document_validated",
-      description: doc.name,
-    });
     await refresh();
   };
 
-  const downloadDoc = async (doc: Doc) => {
-    if (!doc.file_path) return;
-    const { data, error } = await supabase.storage
-      .from("crm-documents")
-      .createSignedUrl(doc.file_path, 60);
-    if (error || !data) return toast.error("Lien indisponible");
-    window.open(data.signedUrl, "_blank");
+  const toggleValidated = async (doc: Doc, checked: boolean) => {
+    await upsertDoc(doc, { status: checked ? "valide" : "attente" });
+    if (checked) {
+      await supabase.from("activities").insert({
+        deal_id: deal!.id,
+        action_type: "document_validated",
+        description: doc.name,
+      });
+    }
   };
 
+  const saveDriveUrl = async (doc: Doc, url: string) => {
+    const clean = url.trim();
+    if (clean && !extractDriveId(clean) && !/^https?:\/\//.test(clean)) {
+      return toast.error("URL invalide (colle un lien Google Drive)");
+    }
+    await upsertDoc(doc, { drive_url: clean || null });
+    if (clean) {
+      await supabase.from("activities").insert({
+        deal_id: deal!.id,
+        action_type: "document_linked",
+        description: `${doc.name} — Drive`,
+      });
+      toast.success("Lien Drive enregistré");
+    }
+  };
+
+  const renameDoc = async (doc: Doc, name: string) => {
+    const clean = name.trim();
+    if (!clean || clean === doc.name) return;
+    await upsertDoc(doc, { name: clean });
+  };
+
+  const removeDoc = async (doc: Doc) => {
+    if (doc.virtual) return;
+    const { error } = await supabase.from("documents").delete().eq("id", doc.id);
+    if (error) return toast.error("Suppression impossible");
+    await refresh();
+  };
+
+  const addCustomDoc = async () => {
+    if (!deal || !newName.trim()) return;
+    const { error } = await supabase.from("documents").insert({
+      deal_id: deal.id,
+      name: newName.trim(),
+      status: newUrl.trim() ? "attente" : "manquant",
+      drive_url: newUrl.trim() || null,
+    });
+    if (error) return toast.error("Ajout impossible");
+    setNewName("");
+    setNewUrl("");
+    await refresh();
+  };
 
   if (!deal) return null;
   const contact = deal.contacts;
@@ -163,14 +203,6 @@ export function DealDrawer({
   const total = Math.max(docs.length, 1);
   const completion = Math.round((validated / total) * 100);
 
-  const statusIcon = (s: Doc["status"]) =>
-    s === "valide" ? (
-      <CheckCircle2 className="h-4 w-4 text-green-600" />
-    ) : s === "attente" ? (
-      <Clock className="h-4 w-4 text-amber-600" />
-    ) : (
-      <XCircle className="h-4 w-4 text-red-500" />
-    );
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
