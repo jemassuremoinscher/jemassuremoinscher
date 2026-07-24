@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useOutletContext } from "react-router-dom";
 import { toast } from "sonner";
-import { FileText, Download, Check, Clock, AlertCircle, Trash2 } from "lucide-react";
+import { FileText, Download, Trash2 } from "lucide-react";
 
 type Ctx = { query: string };
 
