@@ -478,6 +478,7 @@ export type Database = {
         Row: {
           created_at: string
           deal_id: string
+          drive_url: string | null
           file_path: string | null
           id: string
           name: string
@@ -489,6 +490,7 @@ export type Database = {
         Insert: {
           created_at?: string
           deal_id: string
+          drive_url?: string | null
           file_path?: string | null
           id?: string
           name: string
@@ -500,6 +502,7 @@ export type Database = {
         Update: {
           created_at?: string
           deal_id?: string
+          drive_url?: string | null
           file_path?: string | null
           id?: string
           name?: string
