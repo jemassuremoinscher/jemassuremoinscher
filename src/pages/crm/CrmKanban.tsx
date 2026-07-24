@@ -130,6 +130,13 @@ export default function CrmKanban() {
             {loading ? "Chargement…" : `${filtered.length} deals actifs`}
           </p>
         </div>
+        <Button
+          onClick={() => setNewOpen(true)}
+          className="rounded-full bg-[#7C3AED] hover:bg-[#6D28D9]"
+        >
+          <Plus className="mr-1.5 h-4 w-4" />
+          Nouveau deal
+        </Button>
       </div>
 
       <div className="flex-1 overflow-x-auto">
