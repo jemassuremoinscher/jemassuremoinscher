@@ -142,7 +142,7 @@ export default function CrmKanban() {
 
       <div className="relative flex-1 overflow-x-auto">
         <img
-          src="/src/assets/arthur-thumbs-up.webp"
+          src={arthurWatermark}
           alt=""
           aria-hidden="true"
           className="pointer-events-none absolute bottom-4 right-6 h-64 w-auto select-none opacity-[0.06] mix-blend-multiply"
