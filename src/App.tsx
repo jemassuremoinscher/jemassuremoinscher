@@ -30,6 +30,12 @@ const CrmLayout = lazy(() => import("./pages/crm/CrmLayout"));
 const CrmKanban = lazy(() => import("./pages/crm/CrmKanban"));
 const CrmDashboard = lazy(() => import("./pages/crm/CrmDashboard"));
 const CrmPlaceholder = lazy(() => import("./pages/crm/CrmPlaceholder"));
+const ContactsPage = lazy(() => import("./pages/crm/ContactsPage"));
+const GedPage = lazy(() => import("./pages/crm/GedPage"));
+const FinancePage = lazy(() => import("./pages/crm/FinancePage"));
+const MarketingPage = lazy(() => import("./pages/crm/MarketingPage"));
+const RgpdPage = lazy(() => import("./pages/crm/RgpdPage"));
+const TrashPage = lazy(() => import("./pages/crm/TrashPage"));
 const Commercial = lazy(() => import("./pages/Commercial"));
 const LandingAds = lazy(() => import("./pages/LandingAds"));
 const LandingAuto = lazy(() => import("./pages/landing/LandingAuto"));
@@ -216,13 +222,13 @@ const App = () => {
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
                 <Route path="/admin" element={<AuthRoute><CrmLayout /></AuthRoute>}>
                   <Route index element={<CrmKanban />} />
-                  <Route path="contacts" element={<CrmPlaceholder title="Contacts" />} />
-                  <Route path="documents" element={<CrmPlaceholder title="GED — Documents" />} />
+                  <Route path="contacts" element={<ContactsPage />} />
+                  <Route path="documents" element={<GedPage />} />
                   <Route path="dashboard" element={<CrmDashboard />} />
-                  <Route path="finance" element={<CrmPlaceholder title="Finance & Commissions" />} />
-                  <Route path="marketing" element={<CrmPlaceholder title="Marketing & SEO" />} />
-                  <Route path="rgpd" element={<CrmPlaceholder title="RGPD & Audit" />} />
-                  <Route path="trash" element={<CrmPlaceholder title="Corbeille" />} />
+                  <Route path="finance" element={<FinancePage />} />
+                  <Route path="marketing" element={<MarketingPage />} />
+                  <Route path="rgpd" element={<RgpdPage />} />
+                  <Route path="trash" element={<TrashPage />} />
                 </Route>
                 <Route path="/admin/legacy" element={<AuthRoute><Admin /></AuthRoute>} />
                 <Route path="/commercial" element={<AuthRoute><Commercial /></AuthRoute>} />
