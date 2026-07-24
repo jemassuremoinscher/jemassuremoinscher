@@ -25,28 +25,38 @@ type Ctx = { query: string };
 export default function CrmKanban() {
   const { query } = useOutletContext<Ctx>();
   const [deals, setDeals] = useState<DealRow[]>([]);
+  const [agents, setAgents] = useState<{ id: string; user_id: string | null; full_name: string }[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeDeal, setActiveDeal] = useState<DealRow | null>(null);
   const [openDeal, setOpenDeal] = useState<DealRow | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [newOpen, setNewOpen] = useState(false);
 
+  // Global filters
+  const [agentFilter, setAgentFilter] = useState<string>("all");
+  const [sourceFilter, setSourceFilter] = useState<string>("all");
+  const [stageFilter, setStageFilter] = useState<string>("all");
+
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } })
   );
 
   const load = async () => {
-    const { data, error } = await supabase
-      .from("deals")
-      .select(
-        "id,contact_id,assigned_to,insurance_type,stage,lead_score,estimated_commission,source_type,source_id,notes,created_at,updated_at,contacts(id,full_name,email,phone,source,tags)"
-      )
-      .is("deleted_at", null)
-      .order("lead_score", { ascending: false, nullsFirst: false })
-      .order("created_at", { ascending: false })
-      .limit(500);
-    if (error) toast.error("Erreur de chargement des deals");
-    setDeals((data ?? []) as unknown as DealRow[]);
+    const [d, a] = await Promise.all([
+      supabase
+        .from("deals")
+        .select(
+          "id,contact_id,assigned_to,insurance_type,stage,lead_score,estimated_commission,source_type,source_id,notes,created_at,updated_at,contacts(id,full_name,email,phone,source,tags)"
+        )
+        .is("deleted_at", null)
+        .order("lead_score", { ascending: false, nullsFirst: false })
+        .order("created_at", { ascending: false })
+        .limit(500),
+      supabase.from("sales_agents").select("id,user_id,full_name").eq("is_active", true),
+    ]);
+    if (d.error) toast.error("Erreur de chargement des deals");
+    setDeals((d.data ?? []) as unknown as DealRow[]);
+    setAgents((a.data ?? []) as any);
     setLoading(false);
   };
 
