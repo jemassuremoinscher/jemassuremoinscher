@@ -25,28 +25,38 @@ type Ctx = { query: string };
 export default function CrmKanban() {
   const { query } = useOutletContext<Ctx>();
   const [deals, setDeals] = useState<DealRow[]>([]);
+  const [agents, setAgents] = useState<{ id: string; user_id: string | null; full_name: string }[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeDeal, setActiveDeal] = useState<DealRow | null>(null);
   const [openDeal, setOpenDeal] = useState<DealRow | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [newOpen, setNewOpen] = useState(false);
 
+  // Global filters
+  const [agentFilter, setAgentFilter] = useState<string>("all");
+  const [sourceFilter, setSourceFilter] = useState<string>("all");
+  const [stageFilter, setStageFilter] = useState<string>("all");
+
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } })
   );
 
   const load = async () => {
-    const { data, error } = await supabase
-      .from("deals")
-      .select(
-        "id,contact_id,assigned_to,insurance_type,stage,lead_score,estimated_commission,source_type,source_id,notes,created_at,updated_at,contacts(id,full_name,email,phone,source,tags)"
-      )
-      .is("deleted_at", null)
-      .order("lead_score", { ascending: false, nullsFirst: false })
-      .order("created_at", { ascending: false })
-      .limit(500);
-    if (error) toast.error("Erreur de chargement des deals");
-    setDeals((data ?? []) as unknown as DealRow[]);
+    const [d, a] = await Promise.all([
+      supabase
+        .from("deals")
+        .select(
+          "id,contact_id,assigned_to,insurance_type,stage,lead_score,estimated_commission,source_type,source_id,notes,created_at,updated_at,contacts(id,full_name,email,phone,source,tags)"
+        )
+        .is("deleted_at", null)
+        .order("lead_score", { ascending: false, nullsFirst: false })
+        .order("created_at", { ascending: false })
+        .limit(500),
+      supabase.from("sales_agents").select("id,user_id,full_name").eq("is_active", true),
+    ]);
+    if (d.error) toast.error("Erreur de chargement des deals");
+    setDeals((d.data ?? []) as unknown as DealRow[]);
+    setAgents((a.data ?? []) as any);
     setLoading(false);
   };
 
@@ -55,10 +65,21 @@ export default function CrmKanban() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const sources = useMemo(
+    () => Array.from(new Set(deals.map((d) => d.contacts?.source ?? "inconnu"))).sort(),
+    [deals]
+  );
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return deals;
     return deals.filter((d) => {
+      if (agentFilter !== "all") {
+        const userId = agents.find((a) => a.id === agentFilter)?.user_id;
+        if (d.assigned_to !== userId && d.assigned_to !== agentFilter) return false;
+      }
+      if (sourceFilter !== "all" && (d.contacts?.source ?? "inconnu") !== sourceFilter) return false;
+      if (stageFilter !== "all" && d.stage !== stageFilter) return false;
+      if (!q) return true;
       const c = d.contacts;
       return (
         c?.full_name?.toLowerCase().includes(q) ||
@@ -67,7 +88,7 @@ export default function CrmKanban() {
         d.insurance_type.toLowerCase().includes(q)
       );
     });
-  }, [deals, query]);
+  }, [deals, query, agentFilter, sourceFilter, stageFilter, agents]);
 
   const byStage = useMemo(() => {
     const map = new Map<StageId, DealRow[]>();
@@ -140,13 +161,43 @@ export default function CrmKanban() {
         </Button>
       </div>
 
+      <div className="flex flex-wrap items-center gap-2 border-b border-[#E9D5FF] bg-[#FAFAFF] px-6 py-3">
+        <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Filtres :</span>
+        <select value={agentFilter} onChange={(e) => setAgentFilter(e.target.value)}
+          className="h-8 rounded-full border border-[#E9D5FF] bg-white px-3 text-xs">
+          <option value="all">Tous commerciaux</option>
+          {agents.map((a) => <option key={a.id} value={a.id}>{a.full_name}</option>)}
+        </select>
+        <select value={sourceFilter} onChange={(e) => setSourceFilter(e.target.value)}
+          className="h-8 rounded-full border border-[#E9D5FF] bg-white px-3 text-xs">
+          <option value="all">Toutes sources</option>
+          {sources.map((s) => <option key={s} value={s}>{s}</option>)}
+        </select>
+        <select value={stageFilter} onChange={(e) => setStageFilter(e.target.value)}
+          className="h-8 rounded-full border border-[#E9D5FF] bg-white px-3 text-xs">
+          <option value="all">Toutes étapes</option>
+          {STAGES.map((s) => <option key={s.id} value={s.id}>{s.label}</option>)}
+        </select>
+        {(agentFilter !== "all" || sourceFilter !== "all" || stageFilter !== "all") && (
+          <button
+            onClick={() => { setAgentFilter("all"); setSourceFilter("all"); setStageFilter("all"); }}
+            className="text-xs text-[#7C3AED] hover:underline"
+          >
+            Réinitialiser
+          </button>
+        )}
+      </div>
+
       <div className="relative flex-1 overflow-x-auto">
-        <img
-          src={arthurWatermark}
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute bottom-4 right-6 h-64 w-auto select-none opacity-[0.06] mix-blend-multiply"
-        />
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <img
+            src={arthurWatermark}
+            alt=""
+            aria-hidden="true"
+            className="h-full max-h-[85vh] w-auto select-none opacity-[0.05] mix-blend-multiply"
+            style={{ WebkitMaskImage: "linear-gradient(#000, #000)" }}
+          />
+        </div>
         <DndContext
           sensors={sensors}
           onDragStart={onDragStart}

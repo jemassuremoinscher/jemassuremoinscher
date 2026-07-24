@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useOutletContext } from "react-router-dom";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Mail, Phone, Tag } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Mail, Phone, Tag, Pencil } from "lucide-react";
+import { EditContactDialog } from "./EditContactDialog";
 
 type Ctx = { query: string };
 
@@ -23,21 +24,21 @@ export default function ContactsPage() {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [source, setSource] = useState<string>("all");
   const [loading, setLoading] = useState(true);
+  const [editing, setEditing] = useState<Contact | null>(null);
+
+  const load = async () => {
+    const { data } = await supabase
+      .from("contacts")
+      .select("id,email,full_name,phone,source,tags,created_at,deals(id)")
+      .order("created_at", { ascending: false })
+      .limit(1000);
+    const rows = (data ?? []).map((c: any) => ({ ...c, deal_count: c.deals?.length ?? 0 }));
+    setContacts(rows);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    (async () => {
-      const { data } = await supabase
-        .from("contacts")
-        .select("id,email,full_name,phone,source,tags,created_at,deals(id)")
-        .order("created_at", { ascending: false })
-        .limit(1000);
-      const rows = (data ?? []).map((c: any) => ({
-        ...c,
-        deal_count: c.deals?.length ?? 0,
-      }));
-      setContacts(rows);
-      setLoading(false);
-    })();
+    load();
   }, []);
 
   const sources = useMemo(
@@ -96,6 +97,7 @@ export default function ContactsPage() {
               <th className="px-4 py-3">Tags</th>
               <th className="px-4 py-3 text-right">Deals</th>
               <th className="px-4 py-3">Créé</th>
+              <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -148,11 +150,16 @@ export default function ContactsPage() {
                 <td className="px-4 py-3 text-xs text-slate-500">
                   {new Date(c.created_at).toLocaleDateString("fr-FR")}
                 </td>
+                <td className="px-4 py-3 text-right">
+                  <Button size="sm" variant="ghost" onClick={() => setEditing(c)} className="text-[#7C3AED]">
+                    <Pencil className="h-3.5 w-3.5" />
+                  </Button>
+                </td>
               </tr>
             ))}
             {!loading && filtered.length === 0 && (
               <tr>
-                <td colSpan={6} className="px-4 py-10 text-center text-slate-500">
+                <td colSpan={7} className="px-4 py-10 text-center text-slate-500">
                   Aucun contact
                 </td>
               </tr>
@@ -160,6 +167,13 @@ export default function ContactsPage() {
           </tbody>
         </table>
       </div>
+
+      <EditContactDialog
+        contact={editing}
+        open={!!editing}
+        onOpenChange={(v) => !v && setEditing(null)}
+        onSaved={load}
+      />
     </div>
   );
 }
