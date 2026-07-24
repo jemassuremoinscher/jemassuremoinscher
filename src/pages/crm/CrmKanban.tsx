@@ -18,6 +18,7 @@ import { DealDrawer } from "./DealDrawer";
 import { NewDealDialog } from "./NewDealDialog";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+import arthurWatermark from "@/assets/arthur-thumbs-up.webp";
 
 type Ctx = { query: string };
 
