@@ -464,7 +464,34 @@ export function DealDrawer({
             </section>
           )}
         </div>
+
+        {previewUrl && (
+          <div
+            className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4"
+            onClick={() => setPreviewUrl(null)}
+          >
+            <div
+              className="relative h-[80vh] w-full max-w-4xl overflow-hidden rounded-2xl bg-white"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setPreviewUrl(null)}
+                className="absolute right-3 top-3 z-10 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-slate-700 shadow hover:bg-white"
+              >
+                Fermer ✕
+              </button>
+              <iframe
+                src={previewUrl}
+                title="Aperçu Google Drive"
+                className="h-full w-full"
+                allow="autoplay"
+              />
+            </div>
+          </div>
+        )}
       </SheetContent>
     </Sheet>
   );
 }
+
