@@ -74,31 +74,84 @@ export function DealDrawer({
 
   useEffect(() => {
     if (!deal || !open) return;
-    setLoading(true);
-    Promise.all([
-      supabase.from("documents").select("id,name,status").eq("deal_id", deal.id),
-      supabase
-        .from("activities")
-        .select("id,action_type,description,created_at")
-        .eq("deal_id", deal.id)
-        .order("created_at", { ascending: false })
-        .limit(20),
-    ]).then(([d, a]) => {
-      const dbDocs = (d.data ?? []) as Doc[];
-      // Merge with expected checklist if the deal is at 'subscription'
-      const key = deal.insurance_type.toLowerCase();
-      const expected = CHECKLISTS[key] ?? [];
-      const merged: Doc[] = [
-        ...dbDocs,
-        ...expected
-          .filter((n) => !dbDocs.some((x) => x.name === n))
-          .map((n) => ({ id: `virt-${n}`, name: n, status: "manquant" as const })),
-      ];
-      setDocs(merged);
-      setActivities((a.data ?? []) as Activity[]);
-      setLoading(false);
-    });
+    refresh();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deal, open]);
+
+  const onPickFile = (docName: string) => {
+    setPendingName(docName);
+    fileInputRef.current?.click();
+  };
+
+  const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file || !deal || !pendingName) return;
+    if (file.size > 15 * 1024 * 1024) {
+      toast.error("Fichier trop volumineux (max 15 Mo)");
+      return;
+    }
+    setUploading(pendingName);
+    try {
+      const ext = file.name.split(".").pop() ?? "bin";
+      const path = `${deal.id}/${Date.now()}-${pendingName.replace(/\W+/g, "_")}.${ext}`;
+      const { error: upErr } = await supabase.storage
+        .from("crm-documents")
+        .upload(path, file, { upsert: false, contentType: file.type });
+      if (upErr) throw upErr;
+
+      // Update existing row or insert
+      const existing = docs.find((d) => d.name === pendingName && !d.virtual);
+      if (existing) {
+        await supabase
+          .from("documents")
+          .update({ file_path: path, status: "attente", uploaded_at: new Date().toISOString() })
+          .eq("id", existing.id);
+      } else {
+        await supabase.from("documents").insert({
+          deal_id: deal.id,
+          name: pendingName,
+          status: "attente",
+          file_path: path,
+          uploaded_at: new Date().toISOString(),
+        });
+      }
+      await supabase.from("activities").insert({
+        deal_id: deal.id,
+        action_type: "document_uploaded",
+        description: pendingName,
+      });
+      toast.success("Document envoyé");
+      await refresh();
+    } catch (err: any) {
+      toast.error("Échec de l'upload");
+      console.error(err);
+    } finally {
+      setUploading(null);
+      setPendingName(null);
+    }
+  };
+
+  const validateDoc = async (doc: Doc) => {
+    if (doc.virtual) return;
+    await supabase.from("documents").update({ status: "valide" }).eq("id", doc.id);
+    await supabase.from("activities").insert({
+      deal_id: deal!.id,
+      action_type: "document_validated",
+      description: doc.name,
+    });
+    await refresh();
+  };
+
+  const downloadDoc = async (doc: Doc) => {
+    if (!doc.file_path) return;
+    const { data, error } = await supabase.storage
+      .from("crm-documents")
+      .createSignedUrl(doc.file_path, 60);
+    if (error || !data) return toast.error("Lien indisponible");
+    window.open(data.signedUrl, "_blank");
+  };
+
 
   if (!deal) return null;
   const contact = deal.contacts;
