@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { GoogleAnalyticsDashboard } from "@/components/admin/GoogleAnalyticsDashboard";
 import { GoogleAdsDashboard } from "@/components/admin/GoogleAdsDashboard";
+import SERPPreview from "@/components/admin/SERPPreview";
 
 function Kpi({ icon: Icon, label, value, hint, to }: any) {
   const body = (
