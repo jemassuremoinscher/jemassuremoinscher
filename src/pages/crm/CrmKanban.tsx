@@ -161,6 +161,33 @@ export default function CrmKanban() {
         </Button>
       </div>
 
+      <div className="flex flex-wrap items-center gap-2 border-b border-[#E9D5FF] bg-[#FAFAFF] px-6 py-3">
+        <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Filtres :</span>
+        <select value={agentFilter} onChange={(e) => setAgentFilter(e.target.value)}
+          className="h-8 rounded-full border border-[#E9D5FF] bg-white px-3 text-xs">
+          <option value="all">Tous commerciaux</option>
+          {agents.map((a) => <option key={a.id} value={a.id}>{a.full_name}</option>)}
+        </select>
+        <select value={sourceFilter} onChange={(e) => setSourceFilter(e.target.value)}
+          className="h-8 rounded-full border border-[#E9D5FF] bg-white px-3 text-xs">
+          <option value="all">Toutes sources</option>
+          {sources.map((s) => <option key={s} value={s}>{s}</option>)}
+        </select>
+        <select value={stageFilter} onChange={(e) => setStageFilter(e.target.value)}
+          className="h-8 rounded-full border border-[#E9D5FF] bg-white px-3 text-xs">
+          <option value="all">Toutes étapes</option>
+          {STAGES.map((s) => <option key={s.id} value={s.id}>{s.label}</option>)}
+        </select>
+        {(agentFilter !== "all" || sourceFilter !== "all" || stageFilter !== "all") && (
+          <button
+            onClick={() => { setAgentFilter("all"); setSourceFilter("all"); setStageFilter("all"); }}
+            className="text-xs text-[#7C3AED] hover:underline"
+          >
+            Réinitialiser
+          </button>
+        )}
+      </div>
+
       <div className="relative flex-1 overflow-x-auto">
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <img
