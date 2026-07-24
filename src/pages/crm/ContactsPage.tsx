@@ -97,6 +97,7 @@ export default function ContactsPage() {
               <th className="px-4 py-3">Tags</th>
               <th className="px-4 py-3 text-right">Deals</th>
               <th className="px-4 py-3">Créé</th>
+              <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -149,11 +150,16 @@ export default function ContactsPage() {
                 <td className="px-4 py-3 text-xs text-slate-500">
                   {new Date(c.created_at).toLocaleDateString("fr-FR")}
                 </td>
+                <td className="px-4 py-3 text-right">
+                  <Button size="sm" variant="ghost" onClick={() => setEditing(c)} className="text-[#7C3AED]">
+                    <Pencil className="h-3.5 w-3.5" />
+                  </Button>
+                </td>
               </tr>
             ))}
             {!loading && filtered.length === 0 && (
               <tr>
-                <td colSpan={6} className="px-4 py-10 text-center text-slate-500">
+                <td colSpan={7} className="px-4 py-10 text-center text-slate-500">
                   Aucun contact
                 </td>
               </tr>
@@ -161,6 +167,13 @@ export default function ContactsPage() {
           </tbody>
         </table>
       </div>
+
+      <EditContactDialog
+        contact={editing}
+        open={!!editing}
+        onOpenChange={(v) => !v && setEditing(null)}
+        onSaved={load}
+      />
     </div>
   );
 }
