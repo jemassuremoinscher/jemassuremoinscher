@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useOutletContext } from "react-router-dom";
 import { toast } from "sonner";
-import { FileText, Download, Trash2 } from "lucide-react";
+import { FileText, Download, Trash2, ExternalLink } from "lucide-react";
 
 type Ctx = { query: string };
 
@@ -22,7 +22,6 @@ type DocRow = {
 export default function GedPage() {
   const { query } = useOutletContext<Ctx>();
   const [docs, setDocs] = useState<DocRow[]>([]);
-  const [status, setStatus] = useState<string>("all");
   const [clientFilter, setClientFilter] = useState<string>("all");
   const [loading, setLoading] = useState(true);
 
@@ -30,7 +29,7 @@ export default function GedPage() {
     const { data } = await supabase
       .from("documents")
       .select(
-        "id,name,status,file_path,uploaded_at,deal_id,deals(insurance_type,contacts(full_name,email))"
+        "id,name,file_path,drive_url,uploaded_at,deal_id,deals(insurance_type,contacts(full_name,email))"
       )
       .order("uploaded_at", { ascending: false, nullsFirst: false })
       .limit(1000);
@@ -58,7 +57,6 @@ export default function GedPage() {
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return docs.filter((d) => {
-      if (status !== "all" && d.status !== status) return false;
       if (clientFilter !== "all" && d.deals?.contacts?.email !== clientFilter) return false;
       if (!q) return true;
       return (
@@ -67,7 +65,7 @@ export default function GedPage() {
         d.deals?.contacts?.full_name?.toLowerCase().includes(q)
       );
     });
-  }, [docs, query, status, clientFilter]);
+  }, [docs, query, clientFilter]);
 
   const download = async (d: DocRow) => {
     if (!d.file_path) return;
@@ -76,16 +74,6 @@ export default function GedPage() {
       .createSignedUrl(d.file_path, 300);
     if (error) return toast.error("Erreur téléchargement");
     window.open(data.signedUrl, "_blank");
-  };
-
-  const validate = async (d: DocRow) => {
-    const { error } = await supabase
-      .from("documents")
-      .update({ status: "valide" })
-      .eq("id", d.id);
-    if (error) return toast.error("Erreur");
-    toast.success("Validé");
-    load();
   };
 
   const remove = async (d: DocRow) => {
@@ -97,26 +85,6 @@ export default function GedPage() {
     if (error) return toast.error("Erreur suppression");
     toast.success("Document supprimé");
     load();
-  };
-
-  const statusPill = (s: DocRow["status"]) => {
-    if (s === "valide")
-      return (
-        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-xs text-emerald-700">
-          <Check className="h-3 w-3" /> Validé
-        </span>
-      );
-    if (s === "attente")
-      return (
-        <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-xs text-amber-700">
-          <Clock className="h-3 w-3" /> En attente
-        </span>
-      );
-    return (
-      <span className="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-0.5 text-xs text-red-700">
-        <AlertCircle className="h-3 w-3" /> Manquant
-      </span>
-    );
   };
 
   return (
@@ -143,16 +111,6 @@ export default function GedPage() {
               </option>
             ))}
           </select>
-          <select
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            className="h-9 rounded-full border border-[#E9D5FF] bg-white px-3 text-sm"
-          >
-            <option value="all">Tous statuts</option>
-            <option value="attente">En attente</option>
-            <option value="valide">Validés</option>
-            <option value="manquant">Manquants</option>
-          </select>
         </div>
       </div>
 
@@ -163,8 +121,7 @@ export default function GedPage() {
               <th className="px-4 py-3">Document</th>
               <th className="px-4 py-3">Client</th>
               <th className="px-4 py-3">Produit</th>
-              <th className="px-4 py-3">Statut</th>
-              <th className="px-4 py-3">Uploadé</th>
+              <th className="px-4 py-3">Ajouté</th>
               <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
@@ -183,7 +140,6 @@ export default function GedPage() {
                 <td className="px-4 py-3 text-slate-600">
                   {d.deals?.insurance_type ?? "—"}
                 </td>
-                <td className="px-4 py-3">{statusPill(d.status)}</td>
                 <td className="px-4 py-3 text-xs text-slate-500">
                   {d.uploaded_at
                     ? new Date(d.uploaded_at).toLocaleDateString("fr-FR")
@@ -191,6 +147,17 @@ export default function GedPage() {
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex justify-end gap-1">
+                    {d.drive_url && (
+                      <a
+                        href={d.drive_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-full p-1.5 hover:bg-[#F5F3FF]"
+                        title="Ouvrir dans Google Drive"
+                      >
+                        <ExternalLink className="h-4 w-4 text-[#7C3AED]" />
+                      </a>
+                    )}
                     {d.file_path && (
                       <button
                         onClick={() => download(d)}
@@ -198,14 +165,6 @@ export default function GedPage() {
                         title="Télécharger"
                       >
                         <Download className="h-4 w-4 text-[#7C3AED]" />
-                      </button>
-                    )}
-                    {d.status === "attente" && (
-                      <button
-                        onClick={() => validate(d)}
-                        className="rounded-full bg-emerald-600 px-3 py-1 text-xs font-medium text-white hover:bg-emerald-700"
-                      >
-                        Valider
                       </button>
                     )}
                     <button
@@ -221,7 +180,7 @@ export default function GedPage() {
             ))}
             {!loading && filtered.length === 0 && (
               <tr>
-                <td colSpan={6} className="px-4 py-10 text-center text-slate-500">
+                <td colSpan={5} className="px-4 py-10 text-center text-slate-500">
                   Aucun document
                 </td>
               </tr>
