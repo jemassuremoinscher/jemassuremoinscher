@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Mail, Phone, Send, CheckCircle2, XCircle, Clock, FileText, Upload, Download } from "lucide-react";
+import { Mail, Phone, Send, FileText, ExternalLink, Plus, Trash2 } from "lucide-react";
 import type { DealRow } from "./types";
 import { STAGES } from "./types";
 import { AuditTimeline } from "./AuditTimeline";
@@ -18,11 +20,43 @@ const CHECKLISTS: Record<string, string[]> = {
   mutuelle: ["Attestation Vitale", "RIB", "Mandat SEPA"],
 };
 
+// Extrait l'ID Google Drive depuis les formats d'URL courants
+const extractDriveId = (url: string): string | null => {
+  if (!url) return null;
+  const patterns = [
+    /\/file\/d\/([a-zA-Z0-9_-]+)/,
+    /[?&]id=([a-zA-Z0-9_-]+)/,
+    /\/folders\/([a-zA-Z0-9_-]+)/,
+    /\/document\/d\/([a-zA-Z0-9_-]+)/,
+    /\/spreadsheets\/d\/([a-zA-Z0-9_-]+)/,
+    /\/presentation\/d\/([a-zA-Z0-9_-]+)/,
+  ];
+  for (const p of patterns) {
+    const m = url.match(p);
+    if (m) return m[1];
+  }
+  return null;
+};
+
+const drivePreviewUrl = (url: string): string | null => {
+  const id = extractDriveId(url);
+  if (!id) return null;
+  if (/\/folders\//.test(url)) return null;
+  return `https://drive.google.com/file/d/${id}/preview`;
+};
+
+const driveThumbUrl = (url: string): string | null => {
+  const id = extractDriveId(url);
+  if (!id) return null;
+  return `https://drive.google.com/thumbnail?id=${id}&sz=w200`;
+};
+
 interface Doc {
   id: string;
   name: string;
   status: "manquant" | "attente" | "valide";
   file_path?: string | null;
+  drive_url?: string | null;
   virtual?: boolean;
 }
 interface Activity {
@@ -44,15 +78,18 @@ export function DealDrawer({
   const [docs, setDocs] = useState<Doc[]>([]);
   const [activities, setActivities] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(false);
-  const [uploading, setUploading] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [pendingName, setPendingName] = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [newName, setNewName] = useState("");
+  const [newUrl, setNewUrl] = useState("");
 
   const refresh = async () => {
     if (!deal) return;
     setLoading(true);
     const [d, a] = await Promise.all([
-      supabase.from("documents").select("id,name,status,file_path").eq("deal_id", deal.id),
+      supabase
+        .from("documents")
+        .select("id,name,status,file_path,drive_url")
+        .eq("deal_id", deal.id),
       supabase
         .from("activities")
         .select("id,action_type,description,created_at")
@@ -80,80 +117,83 @@ export function DealDrawer({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deal, open]);
 
-  const onPickFile = (docName: string) => {
-    setPendingName(docName);
-    fileInputRef.current?.click();
-  };
-
-  const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    e.target.value = "";
-    if (!file || !deal || !pendingName) return;
-    if (file.size > 15 * 1024 * 1024) {
-      toast.error("Fichier trop volumineux (max 15 Mo)");
-      return;
-    }
-    setUploading(pendingName);
-    try {
-      const ext = file.name.split(".").pop() ?? "bin";
-      const path = `${deal.id}/${Date.now()}-${pendingName.replace(/\W+/g, "_")}.${ext}`;
-      const { error: upErr } = await supabase.storage
-        .from("crm-documents")
-        .upload(path, file, { upsert: false, contentType: file.type });
-      if (upErr) throw upErr;
-
-      // Update existing row or insert
-      const existing = docs.find((d) => d.name === pendingName && !d.virtual);
-      if (existing) {
-        await supabase
-          .from("documents")
-          .update({ file_path: path, status: "attente", uploaded_at: new Date().toISOString() })
-          .eq("id", existing.id);
-      } else {
-        await supabase.from("documents").insert({
-          deal_id: deal.id,
-          name: pendingName,
-          status: "attente",
-          file_path: path,
-          uploaded_at: new Date().toISOString(),
-        });
-      }
-      await supabase.from("activities").insert({
+  const upsertDoc = async (doc: Doc, patch: Partial<Doc>) => {
+    if (!deal) return;
+    if (doc.virtual) {
+      const { error } = await supabase.from("documents").insert({
         deal_id: deal.id,
-        action_type: "document_uploaded",
-        description: pendingName,
+        name: patch.name ?? doc.name,
+        status: patch.status ?? "attente",
+        drive_url: patch.drive_url ?? null,
       });
-      toast.success("Document envoyé");
-      await refresh();
-    } catch (err: any) {
-      toast.error("Échec de l'upload");
-      console.error(err);
-    } finally {
-      setUploading(null);
-      setPendingName(null);
+      if (error) return toast.error("Erreur d'enregistrement");
+    } else {
+      const { error } = await supabase
+        .from("documents")
+        .update({
+          ...(patch.name !== undefined ? { name: patch.name } : {}),
+          ...(patch.status !== undefined ? { status: patch.status } : {}),
+          ...(patch.drive_url !== undefined ? { drive_url: patch.drive_url } : {}),
+        })
+        .eq("id", doc.id);
+      if (error) return toast.error("Erreur d'enregistrement");
     }
-  };
-
-  const validateDoc = async (doc: Doc) => {
-    if (doc.virtual) return;
-    await supabase.from("documents").update({ status: "valide" }).eq("id", doc.id);
-    await supabase.from("activities").insert({
-      deal_id: deal!.id,
-      action_type: "document_validated",
-      description: doc.name,
-    });
     await refresh();
   };
 
-  const downloadDoc = async (doc: Doc) => {
-    if (!doc.file_path) return;
-    const { data, error } = await supabase.storage
-      .from("crm-documents")
-      .createSignedUrl(doc.file_path, 60);
-    if (error || !data) return toast.error("Lien indisponible");
-    window.open(data.signedUrl, "_blank");
+  const toggleValidated = async (doc: Doc, checked: boolean) => {
+    await upsertDoc(doc, { status: checked ? "valide" : "attente" });
+    if (checked) {
+      await supabase.from("activities").insert({
+        deal_id: deal!.id,
+        action_type: "document_validated",
+        description: doc.name,
+      });
+    }
   };
 
+  const saveDriveUrl = async (doc: Doc, url: string) => {
+    const clean = url.trim();
+    if (clean && !extractDriveId(clean) && !/^https?:\/\//.test(clean)) {
+      return toast.error("URL invalide (colle un lien Google Drive)");
+    }
+    await upsertDoc(doc, { drive_url: clean || null });
+    if (clean) {
+      await supabase.from("activities").insert({
+        deal_id: deal!.id,
+        action_type: "document_linked",
+        description: `${doc.name} — Drive`,
+      });
+      toast.success("Lien Drive enregistré");
+    }
+  };
+
+  const renameDoc = async (doc: Doc, name: string) => {
+    const clean = name.trim();
+    if (!clean || clean === doc.name) return;
+    await upsertDoc(doc, { name: clean });
+  };
+
+  const removeDoc = async (doc: Doc) => {
+    if (doc.virtual) return;
+    const { error } = await supabase.from("documents").delete().eq("id", doc.id);
+    if (error) return toast.error("Suppression impossible");
+    await refresh();
+  };
+
+  const addCustomDoc = async () => {
+    if (!deal || !newName.trim()) return;
+    const { error } = await supabase.from("documents").insert({
+      deal_id: deal.id,
+      name: newName.trim(),
+      status: newUrl.trim() ? "attente" : "manquant",
+      drive_url: newUrl.trim() || null,
+    });
+    if (error) return toast.error("Ajout impossible");
+    setNewName("");
+    setNewUrl("");
+    await refresh();
+  };
 
   if (!deal) return null;
   const contact = deal.contacts;
@@ -163,14 +203,6 @@ export function DealDrawer({
   const total = Math.max(docs.length, 1);
   const completion = Math.round((validated / total) * 100);
 
-  const statusIcon = (s: Doc["status"]) =>
-    s === "valide" ? (
-      <CheckCircle2 className="h-4 w-4 text-green-600" />
-    ) : s === "attente" ? (
-      <Clock className="h-4 w-4 text-amber-600" />
-    ) : (
-      <XCircle className="h-4 w-4 text-red-500" />
-    );
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -249,7 +281,7 @@ export function DealDrawer({
               />
             </div>
 
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-4 space-y-3">
               {loading && (
                 <li className="text-xs text-slate-400">Chargement…</li>
               )}
@@ -258,61 +290,117 @@ export function DealDrawer({
                   Aucun document requis à ce stade.
                 </li>
               )}
-              {docs.map((d) => (
-                <li
-                  key={d.id}
-                  className="flex items-center justify-between rounded-2xl bg-[#FAF5FF]/60 px-3 py-2 text-sm"
-                >
-                  <span className="flex items-center gap-2 text-slate-700 min-w-0">
-                    {statusIcon(d.status)}
-                    <span className="truncate">{d.name}</span>
-                  </span>
-                  <span className="flex items-center gap-1">
-                    {d.file_path && (
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="h-7 px-2"
-                        onClick={() => downloadDoc(d)}
-                        aria-label="Télécharger"
-                      >
-                        <Download className="h-3.5 w-3.5" />
-                      </Button>
-                    )}
-                    {d.status !== "valide" && (
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="h-7 px-2 text-[#7C3AED]"
-                        onClick={() => onPickFile(d.name)}
-                        disabled={uploading === d.name}
-                        aria-label="Uploader"
-                      >
-                        <Upload className="h-3.5 w-3.5" />
-                      </Button>
-                    )}
-                    {d.status === "attente" && !d.virtual && (
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="h-7 px-2 text-green-600"
-                        onClick={() => validateDoc(d)}
-                        aria-label="Valider"
-                      >
-                        <CheckCircle2 className="h-3.5 w-3.5" />
-                      </Button>
-                    )}
-                  </span>
-                </li>
-              ))}
+              {docs.map((d) => {
+                const thumb = d.drive_url ? driveThumbUrl(d.drive_url) : null;
+                const preview = d.drive_url ? drivePreviewUrl(d.drive_url) : null;
+                return (
+                  <li
+                    key={d.id}
+                    className="rounded-2xl border border-[#EEE6FF] bg-[#FAF5FF]/60 p-3"
+                  >
+                    <div className="flex items-start gap-3">
+                      <Checkbox
+                        checked={d.status === "valide"}
+                        onCheckedChange={(c) => toggleValidated(d, !!c)}
+                        className="mt-1"
+                        aria-label={`Valider ${d.name}`}
+                      />
+                      {thumb ? (
+                        <button
+                          type="button"
+                          onClick={() => preview && setPreviewUrl(preview)}
+                          className="h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-[#E9D5FF] bg-white"
+                          title="Aperçu"
+                        >
+                          <img
+                            src={thumb}
+                            alt=""
+                            className="h-full w-full object-cover"
+                            referrerPolicy="no-referrer"
+                            onError={(e) => ((e.target as HTMLImageElement).style.display = "none")}
+                          />
+                        </button>
+                      ) : (
+                        <div className="grid h-14 w-14 shrink-0 place-items-center rounded-lg border border-dashed border-[#E9D5FF] bg-white text-slate-300">
+                          <FileText className="h-5 w-5" />
+                        </div>
+                      )}
+                      <div className="flex-1 min-w-0 space-y-2">
+                        <Input
+                          defaultValue={d.name}
+                          onBlur={(e) => renameDoc(d, e.target.value)}
+                          className="h-8 text-sm font-medium"
+                          placeholder="Nom du document"
+                        />
+                        <div className="flex items-center gap-2">
+                          <Input
+                            defaultValue={d.drive_url ?? ""}
+                            onBlur={(e) => {
+                              if ((e.target.value || "") !== (d.drive_url ?? "")) {
+                                saveDriveUrl(d, e.target.value);
+                              }
+                            }}
+                            className="h-8 text-xs"
+                            placeholder="Coller un lien Google Drive…"
+                          />
+                          {d.drive_url && (
+                            <a
+                              href={d.drive_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-[#7C3AED] hover:bg-[#F3E8FF]"
+                              aria-label="Ouvrir dans Google Drive"
+                              title="Ouvrir dans Google Drive"
+                            >
+                              <ExternalLink className="h-4 w-4" />
+                            </a>
+                          )}
+                          {!d.virtual && (
+                            <button
+                              type="button"
+                              onClick={() => removeDoc(d)}
+                              className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-slate-400 hover:bg-red-50 hover:text-red-600"
+                              aria-label="Supprimer"
+                              title="Supprimer"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
-            <input
-              ref={fileInputRef}
-              type="file"
-              className="hidden"
-              onChange={onFileChange}
-              accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
-            />
+
+            {/* Ajout d'un document personnalisé */}
+            <div className="mt-4 rounded-2xl border border-dashed border-[#E9D5FF] p-3">
+              <p className="mb-2 text-xs font-medium text-slate-600">Ajouter un document</p>
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <Input
+                  value={newName}
+                  onChange={(e) => setNewName(e.target.value)}
+                  placeholder="Nom (ex. Devis signé)"
+                  className="h-8 text-sm"
+                />
+                <Input
+                  value={newUrl}
+                  onChange={(e) => setNewUrl(e.target.value)}
+                  placeholder="Lien Google Drive (facultatif)"
+                  className="h-8 text-sm"
+                />
+                <Button
+                  size="sm"
+                  onClick={addCustomDoc}
+                  disabled={!newName.trim()}
+                  className="h-8 rounded-full bg-[#7C3AED] hover:bg-[#6D28D9]"
+                >
+                  <Plus className="mr-1 h-3.5 w-3.5" /> Ajouter
+                </Button>
+              </div>
+            </div>
+
 
             <div className="mt-4 flex gap-2">
               <Button
@@ -376,7 +464,34 @@ export function DealDrawer({
             </section>
           )}
         </div>
+
+        {previewUrl && (
+          <div
+            className="fixed inset-0 z-50 grid place-items-center bg-black/60 p-4"
+            onClick={() => setPreviewUrl(null)}
+          >
+            <div
+              className="relative h-[80vh] w-full max-w-4xl overflow-hidden rounded-2xl bg-white"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setPreviewUrl(null)}
+                className="absolute right-3 top-3 z-10 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-slate-700 shadow hover:bg-white"
+              >
+                Fermer ✕
+              </button>
+              <iframe
+                src={previewUrl}
+                title="Aperçu Google Drive"
+                className="h-full w-full"
+                allow="autoplay"
+              />
+            </div>
+          </div>
+        )}
       </SheetContent>
     </Sheet>
   );
 }
+
