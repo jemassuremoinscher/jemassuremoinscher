@@ -384,6 +384,81 @@ export default function CrmDashboard() {
         </div>
       </div>
 
+      {/* Supervision commerciale */}
+      <div className="mt-6 rounded-3xl border border-[#E9D5FF] bg-white p-5">
+        <div className="flex items-center justify-between">
+          <h2 className="text-sm font-semibold text-slate-800">Supervision commerciale</h2>
+          <span className="text-xs text-slate-500">Performance par commercial sur la période</span>
+        </div>
+        <div className="mt-4 overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-slate-100 text-left text-xs uppercase tracking-wide text-slate-500">
+                <th className="py-2 pr-3 font-medium">Commercial</th>
+                <th className="py-2 px-3 font-medium">Deals</th>
+                <th className="py-2 px-3 font-medium">Actifs</th>
+                <th className="py-2 px-3 font-medium">Gagnés</th>
+                <th className="py-2 px-3 font-medium">Perdus</th>
+                <th className="py-2 px-3 font-medium">Conv.</th>
+                <th className="py-2 px-3 font-medium">Pipeline</th>
+                <th className="py-2 pl-3 font-medium text-right">CA signé</th>
+              </tr>
+            </thead>
+            <tbody>
+              {agents.map((a) => {
+                const key = a.user_id ?? a.id;
+                const rows = deals.filter((d) => d.assigned_to === key);
+                const won = rows.filter((r) => r.stage === "won").length;
+                const lost = rows.filter((r) => r.stage === "lost").length;
+                const active = rows.length - won - lost;
+                const conv = rows.length ? (won / rows.length) * 100 : 0;
+                const pipe = rows.filter((r) => !["won","lost"].includes(r.stage))
+                  .reduce((s, r) => s + Number(r.estimated_commission || 0), 0);
+                const ca = rows.filter((r) => r.stage === "won")
+                  .reduce((s, r) => s + Number(r.actual_commission || r.estimated_commission || 0), 0);
+                const linkable = !!a.user_id;
+                return (
+                  <tr key={a.id} className="border-b border-slate-50 last:border-0 hover:bg-[#FAFAFF]">
+                    <td className="py-2 pr-3">
+                      {linkable ? (
+                        <Link to={`/admin?agent=${a.id}`} className="font-medium text-slate-800 hover:text-[#7C3AED]">
+                          {a.full_name}
+                        </Link>
+                      ) : (
+                        <span className="font-medium text-slate-400" title="Pas de compte lié — assignation impossible">
+                          {a.full_name} <span className="text-[10px] uppercase">(non lié)</span>
+                        </span>
+                      )}
+                    </td>
+                    <td className="py-2 px-3 tabular-nums">{rows.length}</td>
+                    <td className="py-2 px-3 tabular-nums">{active}</td>
+                    <td className="py-2 px-3 tabular-nums text-emerald-700">{won}</td>
+                    <td className="py-2 px-3 tabular-nums text-slate-500">{lost}</td>
+                    <td className="py-2 px-3 tabular-nums">{conv.toFixed(0)}%</td>
+                    <td className="py-2 px-3 tabular-nums">{fmtEur(pipe)}</td>
+                    <td className="py-2 pl-3 text-right font-semibold text-[#5B21B6] tabular-nums">{fmtEur(ca)}</td>
+                  </tr>
+                );
+              })}
+              {(() => {
+                const orphans = deals.filter((d) => !d.assigned_to);
+                if (orphans.length === 0) return null;
+                return (
+                  <tr className="bg-amber-50/50">
+                    <td className="py-2 pr-3">
+                      <Link to="/admin?agent=unassigned" className="font-medium text-amber-800 hover:underline">
+                        ⚠️ Non assignés
+                      </Link>
+                    </td>
+                    <td className="py-2 px-3 tabular-nums" colSpan={7}>{orphans.length} deal(s) à répartir</td>
+                  </tr>
+                );
+              })()}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
         <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
           <h3 className="text-sm font-semibold text-slate-800">Deals par étape</h3>
