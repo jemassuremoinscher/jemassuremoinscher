@@ -15,6 +15,9 @@ import { STAGES, type DealRow, type StageId } from "./types";
 import { KanbanColumn } from "./KanbanColumn";
 import { DealCard } from "./DealCard";
 import { DealDrawer } from "./DealDrawer";
+import { NewDealDialog } from "./NewDealDialog";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 type Ctx = { query: string };
 
@@ -25,26 +28,30 @@ export default function CrmKanban() {
   const [activeDeal, setActiveDeal] = useState<DealRow | null>(null);
   const [openDeal, setOpenDeal] = useState<DealRow | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [newOpen, setNewOpen] = useState(false);
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } })
   );
 
+  const load = async () => {
+    const { data, error } = await supabase
+      .from("deals")
+      .select(
+        "id,contact_id,assigned_to,insurance_type,stage,lead_score,estimated_commission,source_type,source_id,notes,created_at,updated_at,contacts(id,full_name,email,phone,source,tags)"
+      )
+      .is("deleted_at", null)
+      .order("lead_score", { ascending: false, nullsFirst: false })
+      .order("created_at", { ascending: false })
+      .limit(500);
+    if (error) toast.error("Erreur de chargement des deals");
+    setDeals((data ?? []) as unknown as DealRow[]);
+    setLoading(false);
+  };
+
   useEffect(() => {
-    (async () => {
-      const { data, error } = await supabase
-        .from("deals")
-        .select(
-          "id,contact_id,assigned_to,insurance_type,stage,lead_score,estimated_commission,source_type,source_id,notes,created_at,updated_at,contacts(id,full_name,email,phone,source,tags)"
-        )
-        .is("deleted_at", null)
-        .order("lead_score", { ascending: false, nullsFirst: false })
-        .order("created_at", { ascending: false })
-        .limit(500);
-      if (error) toast.error("Erreur de chargement des deals");
-      setDeals((data ?? []) as unknown as DealRow[]);
-      setLoading(false);
-    })();
+    load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filtered = useMemo(() => {
@@ -123,6 +130,13 @@ export default function CrmKanban() {
             {loading ? "Chargement…" : `${filtered.length} deals actifs`}
           </p>
         </div>
+        <Button
+          onClick={() => setNewOpen(true)}
+          className="rounded-full bg-[#7C3AED] hover:bg-[#6D28D9]"
+        >
+          <Plus className="mr-1.5 h-4 w-4" />
+          Nouveau deal
+        </Button>
       </div>
 
       <div className="flex-1 overflow-x-auto">
@@ -152,6 +166,7 @@ export default function CrmKanban() {
       </div>
 
       <DealDrawer deal={openDeal} open={drawerOpen} onOpenChange={setDrawerOpen} />
+      <NewDealDialog open={newOpen} onOpenChange={setNewOpen} onCreated={load} />
     </div>
   );
 }

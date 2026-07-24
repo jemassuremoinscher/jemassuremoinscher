@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
-import { Mail, Phone, Send, CheckCircle2, XCircle, Clock, FileText } from "lucide-react";
+import { toast } from "sonner";
+import { Mail, Phone, Send, CheckCircle2, XCircle, Clock, FileText, Upload, Download } from "lucide-react";
 import type { DealRow } from "./types";
 import { STAGES } from "./types";
 
@@ -19,6 +20,8 @@ interface Doc {
   id: string;
   name: string;
   status: "manquant" | "attente" | "valide";
+  file_path?: string | null;
+  virtual?: boolean;
 }
 interface Activity {
   id: string;
@@ -39,34 +42,116 @@ export function DealDrawer({
   const [docs, setDocs] = useState<Doc[]>([]);
   const [activities, setActivities] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [pendingName, setPendingName] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (!deal || !open) return;
+  const refresh = async () => {
+    if (!deal) return;
     setLoading(true);
-    Promise.all([
-      supabase.from("documents").select("id,name,status").eq("deal_id", deal.id),
+    const [d, a] = await Promise.all([
+      supabase.from("documents").select("id,name,status,file_path").eq("deal_id", deal.id),
       supabase
         .from("activities")
         .select("id,action_type,description,created_at")
         .eq("deal_id", deal.id)
         .order("created_at", { ascending: false })
         .limit(20),
-    ]).then(([d, a]) => {
-      const dbDocs = (d.data ?? []) as Doc[];
-      // Merge with expected checklist if the deal is at 'subscription'
-      const key = deal.insurance_type.toLowerCase();
-      const expected = CHECKLISTS[key] ?? [];
-      const merged: Doc[] = [
-        ...dbDocs,
-        ...expected
-          .filter((n) => !dbDocs.some((x) => x.name === n))
-          .map((n) => ({ id: `virt-${n}`, name: n, status: "manquant" as const })),
-      ];
-      setDocs(merged);
-      setActivities((a.data ?? []) as Activity[]);
-      setLoading(false);
-    });
+    ]);
+    const dbDocs = (d.data ?? []) as Doc[];
+    const key = deal.insurance_type.toLowerCase();
+    const expected = CHECKLISTS[key] ?? [];
+    const merged: Doc[] = [
+      ...dbDocs,
+      ...expected
+        .filter((n) => !dbDocs.some((x) => x.name === n))
+        .map((n) => ({ id: `virt-${n}`, name: n, status: "manquant" as const, virtual: true })),
+    ];
+    setDocs(merged);
+    setActivities((a.data ?? []) as Activity[]);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    if (!deal || !open) return;
+    refresh();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deal, open]);
+
+  const onPickFile = (docName: string) => {
+    setPendingName(docName);
+    fileInputRef.current?.click();
+  };
+
+  const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file || !deal || !pendingName) return;
+    if (file.size > 15 * 1024 * 1024) {
+      toast.error("Fichier trop volumineux (max 15 Mo)");
+      return;
+    }
+    setUploading(pendingName);
+    try {
+      const ext = file.name.split(".").pop() ?? "bin";
+      const path = `${deal.id}/${Date.now()}-${pendingName.replace(/\W+/g, "_")}.${ext}`;
+      const { error: upErr } = await supabase.storage
+        .from("crm-documents")
+        .upload(path, file, { upsert: false, contentType: file.type });
+      if (upErr) throw upErr;
+
+      // Update existing row or insert
+      const existing = docs.find((d) => d.name === pendingName && !d.virtual);
+      if (existing) {
+        await supabase
+          .from("documents")
+          .update({ file_path: path, status: "attente", uploaded_at: new Date().toISOString() })
+          .eq("id", existing.id);
+      } else {
+        await supabase.from("documents").insert({
+          deal_id: deal.id,
+          name: pendingName,
+          status: "attente",
+          file_path: path,
+          uploaded_at: new Date().toISOString(),
+        });
+      }
+      await supabase.from("activities").insert({
+        deal_id: deal.id,
+        action_type: "document_uploaded",
+        description: pendingName,
+      });
+      toast.success("Document envoyé");
+      await refresh();
+    } catch (err: any) {
+      toast.error("Échec de l'upload");
+      console.error(err);
+    } finally {
+      setUploading(null);
+      setPendingName(null);
+    }
+  };
+
+  const validateDoc = async (doc: Doc) => {
+    if (doc.virtual) return;
+    await supabase.from("documents").update({ status: "valide" }).eq("id", doc.id);
+    await supabase.from("activities").insert({
+      deal_id: deal!.id,
+      action_type: "document_validated",
+      description: doc.name,
+    });
+    await refresh();
+  };
+
+  const downloadDoc = async (doc: Doc) => {
+    if (!doc.file_path) return;
+    const { data, error } = await supabase.storage
+      .from("crm-documents")
+      .createSignedUrl(doc.file_path, 60);
+    if (error || !data) return toast.error("Lien indisponible");
+    window.open(data.signedUrl, "_blank");
+  };
+
 
   if (!deal) return null;
   const contact = deal.contacts;
@@ -174,16 +259,56 @@ export function DealDrawer({
                   key={d.id}
                   className="flex items-center justify-between rounded-2xl bg-[#FAF5FF]/60 px-3 py-2 text-sm"
                 >
-                  <span className="flex items-center gap-2 text-slate-700">
+                  <span className="flex items-center gap-2 text-slate-700 min-w-0">
                     {statusIcon(d.status)}
-                    {d.name}
+                    <span className="truncate">{d.name}</span>
                   </span>
-                  <span className="text-[11px] uppercase tracking-wide text-slate-400">
-                    {d.status}
+                  <span className="flex items-center gap-1">
+                    {d.file_path && (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="h-7 px-2"
+                        onClick={() => downloadDoc(d)}
+                        aria-label="Télécharger"
+                      >
+                        <Download className="h-3.5 w-3.5" />
+                      </Button>
+                    )}
+                    {d.status !== "valide" && (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="h-7 px-2 text-[#7C3AED]"
+                        onClick={() => onPickFile(d.name)}
+                        disabled={uploading === d.name}
+                        aria-label="Uploader"
+                      >
+                        <Upload className="h-3.5 w-3.5" />
+                      </Button>
+                    )}
+                    {d.status === "attente" && !d.virtual && (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="h-7 px-2 text-green-600"
+                        onClick={() => validateDoc(d)}
+                        aria-label="Valider"
+                      >
+                        <CheckCircle2 className="h-3.5 w-3.5" />
+                      </Button>
+                    )}
                   </span>
                 </li>
               ))}
             </ul>
+            <input
+              ref={fileInputRef}
+              type="file"
+              className="hidden"
+              onChange={onFileChange}
+              accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+            />
 
             <div className="mt-4 flex gap-2">
               <Button
