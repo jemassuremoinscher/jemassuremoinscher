@@ -166,6 +166,7 @@ export default function CrmKanban() {
       </div>
 
       <DealDrawer deal={openDeal} open={drawerOpen} onOpenChange={setDrawerOpen} />
+      <NewDealDialog open={newOpen} onOpenChange={setNewOpen} onCreated={load} />
     </div>
   );
 }
