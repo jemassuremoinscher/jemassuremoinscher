@@ -15,6 +15,9 @@ import { STAGES, type DealRow, type StageId } from "./types";
 import { KanbanColumn } from "./KanbanColumn";
 import { DealCard } from "./DealCard";
 import { DealDrawer } from "./DealDrawer";
+import { NewDealDialog } from "./NewDealDialog";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 type Ctx = { query: string };
 
