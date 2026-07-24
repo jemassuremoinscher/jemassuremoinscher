@@ -53,7 +53,7 @@ export function KanbanColumn({
           strategy={verticalListSortingStrategy}
         >
           {deals.map((d) => (
-            <DealCard key={d.id} deal={d} onOpen={onOpen} />
+            <DealCard key={d.id} deal={d} onOpen={onOpen} agents={agents} onAssigned={onAssigned} />
           ))}
         </SortableContext>
         {deals.length === 0 && (
