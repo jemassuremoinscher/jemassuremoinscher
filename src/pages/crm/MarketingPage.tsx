@@ -316,7 +316,16 @@ export default function MarketingPage() {
                   )}
                 </tbody>
               </table>
-            </div>
+          </div>
+
+          <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
+            <h3 className="text-sm font-semibold text-slate-800 mb-1">Titres & meta descriptions par page</h3>
+            <p className="text-xs text-slate-500 mb-4">
+              Édite les balises SEO (title, description, Open Graph) de chaque page et visualise l'aperçu Google en direct.
+            </p>
+            <SERPPreview />
+          </div>
+
           </div>
 
           <div className="rounded-3xl border border-[#E9D5FF] bg-gradient-to-br from-[#F5F3FF] to-white p-5 text-sm text-slate-700">
