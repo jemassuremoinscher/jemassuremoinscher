@@ -9,8 +9,8 @@ type Ctx = { query: string };
 type DocRow = {
   id: string;
   name: string;
-  status: "manquant" | "attente" | "valide";
   file_path: string | null;
+  drive_url: string | null;
   uploaded_at: string | null;
   deal_id: string;
   deals?: {
