@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import {
   KanbanSquare, Users, FileText, BarChart3, Wallet, Megaphone,
-  Shield, Trash2, Settings, Sparkles,
+  Shield, Trash2, Settings, Sparkles, Upload,
 } from "lucide-react";
 
 interface Item {
@@ -16,6 +16,7 @@ const items: Item[] = [
   { to: "/admin", label: "Pipeline", icon: KanbanSquare, end: true },
   { to: "/admin/contacts", label: "Contacts", icon: Users },
   { to: "/admin/documents", label: "GED", icon: FileText },
+  { to: "/admin/import", label: "Import CSV", icon: Upload, adminOnly: true },
   { to: "/admin/dashboard", label: "Dashboard", icon: BarChart3, adminOnly: true },
   { to: "/admin/finance", label: "Finance", icon: Wallet, adminOnly: true },
   { to: "/admin/marketing", label: "Marketing", icon: Megaphone, adminOnly: true },
