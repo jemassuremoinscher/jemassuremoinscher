@@ -368,6 +368,53 @@ export type Database = {
         }
         Relationships: []
       }
+      deal_audit_log: {
+        Row: {
+          action: string
+          actor_email: string | null
+          actor_id: string | null
+          created_at: string
+          deal_id: string
+          field_name: string | null
+          id: string
+          metadata: Json | null
+          new_value: string | null
+          old_value: string | null
+        }
+        Insert: {
+          action: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          deal_id: string
+          field_name?: string | null
+          id?: string
+          metadata?: Json | null
+          new_value?: string | null
+          old_value?: string | null
+        }
+        Update: {
+          action?: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          deal_id?: string
+          field_name?: string | null
+          id?: string
+          metadata?: Json | null
+          new_value?: string | null
+          old_value?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "deal_audit_log_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       deals: {
         Row: {
           actual_commission: number | null

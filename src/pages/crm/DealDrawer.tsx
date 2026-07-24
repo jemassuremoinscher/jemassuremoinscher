@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { Mail, Phone, Send, CheckCircle2, XCircle, Clock, FileText, Upload, Download } from "lucide-react";
 import type { DealRow } from "./types";
 import { STAGES } from "./types";
+import { AuditTimeline } from "./AuditTimeline";
 
 const CHECKLISTS: Record<string, string[]> = {
   auto: ["Carte Grise", "Permis de conduire", "Relevé d'Information", "RIB"],
@@ -360,6 +361,8 @@ export function DealDrawer({
               ))}
             </ol>
           </section>
+
+          <AuditTimeline dealId={deal.id} />
 
           {deal.notes && (
             <section className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
