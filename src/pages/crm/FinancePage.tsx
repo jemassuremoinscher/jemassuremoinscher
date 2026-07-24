@@ -130,6 +130,14 @@ export default function FinancePage() {
         <p className="mt-1 text-sm text-slate-500">
           {loading ? "Chargement…" : `${deals.length} deals analysés`}
         </p>
+        <div className="mt-3 max-w-3xl rounded-2xl border border-[#E9D5FF] bg-[#FAF5FF] p-3 text-xs text-slate-600">
+          <strong className="text-[#5B21B6]">Automatisation :</strong> les
+          commissions sont calculées automatiquement à partir des deals
+          <em> passés en étape « Validé »</em>. Le CA signé = somme des{" "}
+          <code>actual_commission</code> (sinon <code>estimated_commission</code>).
+          Renseignez la commission sur chaque deal dans le drawer pour
+          alimenter les KPIs et graphiques ci-dessous.
+        </div>
       </div>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
