@@ -259,16 +259,56 @@ export function DealDrawer({
                   key={d.id}
                   className="flex items-center justify-between rounded-2xl bg-[#FAF5FF]/60 px-3 py-2 text-sm"
                 >
-                  <span className="flex items-center gap-2 text-slate-700">
+                  <span className="flex items-center gap-2 text-slate-700 min-w-0">
                     {statusIcon(d.status)}
-                    {d.name}
+                    <span className="truncate">{d.name}</span>
                   </span>
-                  <span className="text-[11px] uppercase tracking-wide text-slate-400">
-                    {d.status}
+                  <span className="flex items-center gap-1">
+                    {d.file_path && (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="h-7 px-2"
+                        onClick={() => downloadDoc(d)}
+                        aria-label="Télécharger"
+                      >
+                        <Download className="h-3.5 w-3.5" />
+                      </Button>
+                    )}
+                    {d.status !== "valide" && (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="h-7 px-2 text-[#7C3AED]"
+                        onClick={() => onPickFile(d.name)}
+                        disabled={uploading === d.name}
+                        aria-label="Uploader"
+                      >
+                        <Upload className="h-3.5 w-3.5" />
+                      </Button>
+                    )}
+                    {d.status === "attente" && !d.virtual && (
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="h-7 px-2 text-green-600"
+                        onClick={() => validateDoc(d)}
+                        aria-label="Valider"
+                      >
+                        <CheckCircle2 className="h-3.5 w-3.5" />
+                      </Button>
+                    )}
                   </span>
                 </li>
               ))}
             </ul>
+            <input
+              ref={fileInputRef}
+              type="file"
+              className="hidden"
+              onChange={onFileChange}
+              accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+            />
 
             <div className="mt-4 flex gap-2">
               <Button
