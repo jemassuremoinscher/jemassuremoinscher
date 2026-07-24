@@ -228,6 +228,8 @@ export default function CrmKanban() {
                 stage={stage}
                 deals={byStage.get(stage.id) ?? []}
                 onOpen={openDrawer}
+                agents={agents}
+                onAssigned={load}
               />
             ))}
           </div>
