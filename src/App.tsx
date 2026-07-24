@@ -213,7 +213,17 @@ const App = () => {
                 <Route path="/" element={<Index />} />
                 <Route path="/merci-guide" element={<MerciGuide />} />
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
-                <Route path="/admin" element={<AuthRoute><Admin /></AuthRoute>} />
+                <Route path="/admin" element={<AuthRoute><CrmLayout /></AuthRoute>}>
+                  <Route index element={<CrmKanban />} />
+                  <Route path="contacts" element={<CrmPlaceholder title="Contacts" />} />
+                  <Route path="documents" element={<CrmPlaceholder title="GED — Documents" />} />
+                  <Route path="dashboard" element={<CrmPlaceholder title="Dashboard KPIs" />} />
+                  <Route path="finance" element={<CrmPlaceholder title="Finance & Commissions" />} />
+                  <Route path="marketing" element={<CrmPlaceholder title="Marketing & SEO" />} />
+                  <Route path="rgpd" element={<CrmPlaceholder title="RGPD & Audit" />} />
+                  <Route path="trash" element={<CrmPlaceholder title="Corbeille" />} />
+                </Route>
+                <Route path="/admin/legacy" element={<AuthRoute><Admin /></AuthRoute>} />
                 <Route path="/commercial" element={<AuthRoute><Commercial /></AuthRoute>} />
                 <Route path="/landing/assurance" element={<LandingAds />} />
                 <Route path="/landing/auto" element={<LandingAuto />} />
