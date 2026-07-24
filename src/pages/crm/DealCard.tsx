@@ -1,14 +1,22 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Phone, Mail, Flame } from "lucide-react";
+import { Phone, Mail, Flame, UserCircle2 } from "lucide-react";
 import type { DealRow } from "./types";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+
+export type AgentOption = { id: string; user_id: string | null; full_name: string };
 
 export function DealCard({
   deal,
   onOpen,
+  agents = [],
+  onAssigned,
 }: {
   deal: DealRow;
   onOpen: (d: DealRow) => void;
+  agents?: AgentOption[];
+  onAssigned?: () => void;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: deal.id, data: { deal } });
@@ -21,6 +29,19 @@ export function DealCard({
 
   const contact = deal.contacts;
   const hot = (deal.lead_score ?? 0) >= 80;
+
+  const currentAgent =
+    agents.find((a) => (a.user_id ?? a.id) === deal.assigned_to)?.full_name ?? null;
+
+  const handleAssign = async (value: string) => {
+    const { error } = await supabase
+      .from("deals")
+      .update({ assigned_to: value || null })
+      .eq("id", deal.id);
+    if (error) return toast.error("Assignation impossible : " + error.message);
+    toast.success(value ? "Deal assigné" : "Assignation retirée");
+    onAssigned?.();
+  };
 
   return (
     <div
@@ -62,6 +83,29 @@ export function DealCard({
           </div>
         )}
       </div>
+
+      {agents.length > 0 && (
+        <div
+          className="mt-3 flex items-center gap-1.5"
+          onPointerDown={(e) => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <UserCircle2 className="h-3.5 w-3.5 text-slate-400" />
+          <select
+            value={deal.assigned_to ?? ""}
+            onChange={(e) => handleAssign(e.target.value)}
+            className="w-full truncate rounded-full border border-[#E9D5FF] bg-white px-2 py-0.5 text-[11px] text-slate-600 hover:border-[#C4B5FD] focus:outline-none focus:ring-1 focus:ring-[#7C3AED]"
+            title={currentAgent ?? "Non assigné"}
+          >
+            <option value="">Non assigné</option>
+            {agents.map((a) => (
+              <option key={a.id} value={a.user_id ?? a.id}>
+                {a.full_name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
 
       <div className="mt-3 flex items-center justify-between text-[11px] text-slate-400">
         <span>{new Date(deal.created_at).toLocaleDateString("fr-FR")}</span>
