@@ -1,0 +1,157 @@
+import { useEffect, useMemo, useState } from "react";
+import {
+  DndContext,
+  DragOverlay,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+  type DragStartEvent,
+} from "@dnd-kit/core";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
+import { useOutletContext } from "react-router-dom";
+import { STAGES, type DealRow, type StageId } from "./types";
+import { KanbanColumn } from "./KanbanColumn";
+import { DealCard } from "./DealCard";
+import { DealDrawer } from "./DealDrawer";
+
+type Ctx = { query: string };
+
+export default function CrmKanban() {
+  const { query } = useOutletContext<Ctx>();
+  const [deals, setDeals] = useState<DealRow[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [activeDeal, setActiveDeal] = useState<DealRow | null>(null);
+  const [openDeal, setOpenDeal] = useState<DealRow | null>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } })
+  );
+
+  useEffect(() => {
+    (async () => {
+      const { data, error } = await supabase
+        .from("deals")
+        .select(
+          "id,contact_id,assigned_to,insurance_type,stage,lead_score,estimated_commission,source_type,source_id,notes,created_at,updated_at,contacts(id,full_name,email,phone,source,tags)"
+        )
+        .is("deleted_at", null)
+        .order("lead_score", { ascending: false, nullsFirst: false })
+        .order("created_at", { ascending: false })
+        .limit(500);
+      if (error) toast.error("Erreur de chargement des deals");
+      setDeals((data ?? []) as unknown as DealRow[]);
+      setLoading(false);
+    })();
+  }, []);
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return deals;
+    return deals.filter((d) => {
+      const c = d.contacts;
+      return (
+        c?.full_name?.toLowerCase().includes(q) ||
+        c?.email?.toLowerCase().includes(q) ||
+        c?.phone?.toLowerCase().includes(q) ||
+        d.insurance_type.toLowerCase().includes(q)
+      );
+    });
+  }, [deals, query]);
+
+  const byStage = useMemo(() => {
+    const map = new Map<StageId, DealRow[]>();
+    STAGES.forEach((s) => map.set(s.id, []));
+    filtered.forEach((d) => map.get(d.stage)?.push(d));
+    return map;
+  }, [filtered]);
+
+  const onDragStart = (e: DragStartEvent) => {
+    const d = deals.find((x) => x.id === e.active.id);
+    if (d) setActiveDeal(d);
+  };
+
+  const onDragEnd = async (e: DragEndEvent) => {
+    setActiveDeal(null);
+    const { active, over } = e;
+    if (!over) return;
+    const dealId = String(active.id);
+    const overId = String(over.id);
+    const current = deals.find((d) => d.id === dealId);
+    if (!current) return;
+    // Determine target stage: over another card or the column itself
+    let target: StageId | null = null;
+    if (STAGES.some((s) => s.id === overId)) target = overId as StageId;
+    else {
+      const overDeal = deals.find((d) => d.id === overId);
+      target = overDeal?.stage ?? null;
+    }
+    if (!target || target === current.stage) return;
+
+    const prev = deals;
+    setDeals((ds) =>
+      ds.map((d) => (d.id === dealId ? { ...d, stage: target! } : d))
+    );
+
+    const { error } = await supabase
+      .from("deals")
+      .update({ stage: target })
+      .eq("id", dealId);
+    if (error) {
+      setDeals(prev);
+      toast.error("Impossible de déplacer ce deal");
+      return;
+    }
+    toast.success(`Deplacé vers ${STAGES.find((s) => s.id === target)?.label}`);
+  };
+
+  const openDrawer = (d: DealRow) => {
+    setOpenDeal(d);
+    setDrawerOpen(true);
+  };
+
+  return (
+    <div className="flex flex-1 flex-col overflow-hidden">
+      <div className="flex items-center justify-between px-6 pt-6 pb-4">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+            Pipeline commercial
+          </h1>
+          <p className="mt-1 text-sm text-slate-500">
+            {loading ? "Chargement…" : `${filtered.length} deals actifs`}
+          </p>
+        </div>
+      </div>
+
+      <div className="flex-1 overflow-x-auto">
+        <DndContext
+          sensors={sensors}
+          onDragStart={onDragStart}
+          onDragEnd={onDragEnd}
+        >
+          <div className="flex min-w-max gap-4 px-6 pb-8">
+            {STAGES.map((stage) => (
+              <KanbanColumn
+                key={stage.id}
+                stage={stage}
+                deals={byStage.get(stage.id) ?? []}
+                onOpen={openDrawer}
+              />
+            ))}
+          </div>
+          <DragOverlay>
+            {activeDeal && (
+              <div className="w-72">
+                <DealCard deal={activeDeal} onOpen={() => {}} />
+              </div>
+            )}
+          </DragOverlay>
+        </DndContext>
+      </div>
+
+      <DealDrawer deal={openDeal} open={drawerOpen} onOpenChange={setDrawerOpen} />
+    </div>
+  );
+}
