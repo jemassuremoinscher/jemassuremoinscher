@@ -20,6 +20,8 @@ interface Doc {
   id: string;
   name: string;
   status: "manquant" | "attente" | "valide";
+  file_path?: string | null;
+  virtual?: boolean;
 }
 interface Activity {
   id: string;
