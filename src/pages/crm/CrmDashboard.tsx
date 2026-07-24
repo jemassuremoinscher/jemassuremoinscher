@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import { STAGES, type StageId } from "./types";
 import {
   BarChart,
@@ -13,7 +15,7 @@ import {
   Cell,
   Legend,
 } from "recharts";
-import { TrendingUp, Users, Target, Euro, CheckSquare, Phone, Clock, Save, Trash2 } from "lucide-react";
+import { TrendingUp, Users, Target, Euro, CheckSquare, Phone, Clock, Save, Trash2, ArrowRight } from "lucide-react";
 
 type DealMini = {
   id: string;
