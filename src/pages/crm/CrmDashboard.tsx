@@ -363,8 +363,8 @@ export default function CrmDashboard() {
                           className="max-w-[110px] shrink-0 truncate rounded-full border border-[#E9D5FF] bg-white px-2 py-0.5 text-[10px] text-slate-600 focus:outline-none focus:ring-1 focus:ring-[#7C3AED]"
                         >
                           <option value="">Assigner…</option>
-                          {agents.map((a) => (
-                            <option key={a.id} value={a.user_id ?? a.id}>{a.full_name}</option>
+                          {agents.filter((a) => a.user_id).map((a) => (
+                            <option key={a.id} value={a.user_id!}>{a.full_name}</option>
                           ))}
                         </select>
                       </li>
