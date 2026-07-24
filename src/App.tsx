@@ -222,13 +222,13 @@ const App = () => {
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
                 <Route path="/admin" element={<AuthRoute><CrmLayout /></AuthRoute>}>
                   <Route index element={<CrmKanban />} />
-                  <Route path="contacts" element={<CrmPlaceholder title="Contacts" />} />
-                  <Route path="documents" element={<CrmPlaceholder title="GED — Documents" />} />
+                  <Route path="contacts" element={<ContactsPage />} />
+                  <Route path="documents" element={<GedPage />} />
                   <Route path="dashboard" element={<CrmDashboard />} />
-                  <Route path="finance" element={<CrmPlaceholder title="Finance & Commissions" />} />
-                  <Route path="marketing" element={<CrmPlaceholder title="Marketing & SEO" />} />
-                  <Route path="rgpd" element={<CrmPlaceholder title="RGPD & Audit" />} />
-                  <Route path="trash" element={<CrmPlaceholder title="Corbeille" />} />
+                  <Route path="finance" element={<FinancePage />} />
+                  <Route path="marketing" element={<MarketingPage />} />
+                  <Route path="rgpd" element={<RgpdPage />} />
+                  <Route path="trash" element={<TrashPage />} />
                 </Route>
                 <Route path="/admin/legacy" element={<AuthRoute><Admin /></AuthRoute>} />
                 <Route path="/commercial" element={<AuthRoute><Commercial /></AuthRoute>} />
