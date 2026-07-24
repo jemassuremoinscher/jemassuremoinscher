@@ -10,7 +10,7 @@ import {
 } from "@dnd-kit/core";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useSearchParams } from "react-router-dom";
 import { STAGES, type DealRow, type StageId } from "./types";
 import { KanbanColumn } from "./KanbanColumn";
 import { DealCard } from "./DealCard";
