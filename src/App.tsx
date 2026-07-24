@@ -28,6 +28,7 @@ const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
 const CrmLayout = lazy(() => import("./pages/crm/CrmLayout"));
 const CrmKanban = lazy(() => import("./pages/crm/CrmKanban"));
+const CrmDashboard = lazy(() => import("./pages/crm/CrmDashboard"));
 const CrmPlaceholder = lazy(() => import("./pages/crm/CrmPlaceholder"));
 const Commercial = lazy(() => import("./pages/Commercial"));
 const LandingAds = lazy(() => import("./pages/LandingAds"));
