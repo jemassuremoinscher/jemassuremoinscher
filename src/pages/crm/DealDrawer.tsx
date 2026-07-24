@@ -175,7 +175,10 @@ export function DealDrawer({
   };
 
   const removeDoc = async (doc: Doc) => {
-    if (doc.virtual) return;
+    if (doc.virtual) {
+      setDocs((prev) => prev.filter((x) => x.id !== doc.id));
+      return;
+    }
     const { error } = await supabase.from("documents").delete().eq("id", doc.id);
     if (error) return toast.error("Suppression impossible");
     await refresh();
@@ -355,17 +358,15 @@ export function DealDrawer({
                               <ExternalLink className="h-4 w-4" />
                             </a>
                           )}
-                          {!d.virtual && (
-                            <button
-                              type="button"
-                              onClick={() => removeDoc(d)}
-                              className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-slate-400 hover:bg-red-50 hover:text-red-600"
-                              aria-label="Supprimer"
-                              title="Supprimer"
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </button>
-                          )}
+                          <button
+                            type="button"
+                            onClick={() => removeDoc(d)}
+                            className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-slate-400 hover:bg-red-50 hover:text-red-600"
+                            aria-label="Supprimer"
+                            title="Supprimer cette ligne"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </button>
                         </div>
                       </div>
                     </div>
