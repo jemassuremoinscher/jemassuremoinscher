@@ -104,6 +104,8 @@ Non, mais elle constitue un argument fort auprès des assureurs spécialisés.
     date: "5 mars 2026",
     readTime: "9 min",
     author: "L'équipe d'experts Jemassuremoinscher",
+    // Doublon SEO de /blog/110-chevaux-jeune-conducteur-assurance — désactivé, redirigé en 301 (vercel.json).
+    published: false,
     tags: ["jeune conducteur", "voiture puissante", "assurance auto", "chevaux fiscaux", "permis"],
     content: `
 # Jeune Conducteur et Voiture Puissante : Comment Assurer Plus de 110 Chevaux Sans Se Ruiner ?
@@ -1552,6 +1554,8 @@ Oui, la plupart des contrats habitation français ne couvrent que le domicile d�
     date: "17 février 2026",
     readTime: "7 min",
     author: "L'équipe d'experts Jemassuremoinscher",
+    // Doublon SEO de /blog/assurance-location-saisonniere-airbnb — désactivé, redirigé en 301 (vercel.json).
+    published: false,
     tags: ["Airbnb", "sous-location", "assurance habitation", "risques", "location courte durée"],
     content: `
 # Sous-Location Airbnb : Les Risques Cachés Si Vous N'Avez Pas l'Option Spécifique

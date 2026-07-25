@@ -5,12 +5,14 @@
   "redirects": [
     { "source": "/assurance-auto-malusse", "destination": "/assurance-auto-malus", "statusCode": 301 },
     { "source": "/assurance-creche", "destination": "/assurance-rc-pro", "statusCode": 301 },
-    { "source": "/blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet", "destination": "/blog/jeune-conducteur-voiture-puissante-110-chevaux", "statusCode": 301 },
-    { "source": "/profil/jeune-conducteur-voiture-puissante", "destination": "/blog/jeune-conducteur-voiture-puissante-110-chevaux", "statusCode": 301 },
-    { "source": "/blog/assurance-jeune-conducteur-voiture-puissante-le-guide-2026-pour-ne-pas-se-ruiner", "destination": "/blog/jeune-conducteur-voiture-puissante-110-chevaux", "statusCode": 301 },
-    { "source": "/blog/assurance-auto-jeune-conducteur-voiture-puissante-definition-garanties-et-conseils-2026", "destination": "/blog/jeune-conducteur-voiture-puissante-110-chevaux", "statusCode": 301 },
+    { "source": "/blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet", "destination": "/blog/110-chevaux-jeune-conducteur-assurance", "statusCode": 301 },
+    { "source": "/profil/jeune-conducteur-voiture-puissante", "destination": "/blog/110-chevaux-jeune-conducteur-assurance", "statusCode": 301 },
+    { "source": "/blog/assurance-jeune-conducteur-voiture-puissante-le-guide-2026-pour-ne-pas-se-ruiner", "destination": "/blog/110-chevaux-jeune-conducteur-assurance", "statusCode": 301 },
+    { "source": "/blog/assurance-auto-jeune-conducteur-voiture-puissante-definition-garanties-et-conseils-2026", "destination": "/blog/110-chevaux-jeune-conducteur-assurance", "statusCode": 301 },
     { "source": "/blog/meilleure-assurance-auto-2026", "destination": "/blog/meilleure-assurance-auto-2026-comparatif", "statusCode": 301 },
-    { "source": "/blog/meilleure-assurance-auto-2026-definition-garanties-et-conseils-2026", "destination": "/blog/meilleure-assurance-auto-2026-comparatif", "statusCode": 301 }
+    { "source": "/blog/meilleure-assurance-auto-2026-definition-garanties-et-conseils-2026", "destination": "/blog/meilleure-assurance-auto-2026-comparatif", "statusCode": 301 },
+    { "source": "/blog/jeune-conducteur-voiture-puissante-110-chevaux", "destination": "/blog/110-chevaux-jeune-conducteur-assurance", "statusCode": 301 },
+    { "source": "/blog/sous-location-airbnb-risques-caches-assurance", "destination": "/blog/assurance-location-saisonniere-airbnb", "statusCode": 301 }
   ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }

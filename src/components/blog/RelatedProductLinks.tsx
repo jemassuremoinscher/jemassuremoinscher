@@ -135,7 +135,7 @@ const defaultProducts: ProductLink[] = [
 
 // Tag-based extra links
 const tagToLink: Record<string, ProductLink> = {
-  "jeune conducteur": { to: "/blog/jeune-conducteur-voiture-puissante-110-chevaux", label: "Jeune conducteur + voiture puissante" },
+  "jeune conducteur": { to: "/blog/110-chevaux-jeune-conducteur-assurance", label: "Jeune conducteur + voiture puissante" },
   "bonus malus": { to: "/outils/calculateur-bonus-malus", label: "Calculateur bonus-malus" },
   "malus": { to: "/profil/frequence-sinistres", label: "Solutions multi-sinistré" },
   "résiliation": { to: "/profil/resilie-non-paiement", label: "Résilié pour non-paiement : solutions" },

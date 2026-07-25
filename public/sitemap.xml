@@ -372,9 +372,13 @@
   </url>
 <!-- Profils Spéciaux -->
   <url><loc>https://www.jemassuremoinscher.fr/profil</loc><lastmod>2026-07-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-<!-- /blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet: 301 → /blog/jeune-conducteur-voiture-puissante-110-chevaux -->
+<!-- /blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet: 301 → /blog/110-chevaux-jeune-conducteur-assurance -->
 
-<!-- /profil/jeune-conducteur-voiture-puissante: 301 → /blog/jeune-conducteur-voiture-puissante-110-chevaux -->
+<!-- /profil/jeune-conducteur-voiture-puissante: 301 → /blog/110-chevaux-jeune-conducteur-assurance -->
+
+<!-- /blog/jeune-conducteur-voiture-puissante-110-chevaux: doublon SEO, published:false, 301 → /blog/110-chevaux-jeune-conducteur-assurance -->
+
+<!-- /blog/sous-location-airbnb-risques-caches-assurance: doublon SEO, published:false, 301 → /blog/assurance-location-saisonniere-airbnb -->
 
 <url>
     <loc>https://www.jemassuremoinscher.fr/blog/10-conseils-economiser-assurances</loc>
@@ -2222,6 +2226,12 @@
     <priority>0.7</priority>
   </url>
 </urlset>
+
+
+
+
+
+
 
 
 
