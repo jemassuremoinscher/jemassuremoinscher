@@ -50,6 +50,44 @@ export type Database = {
         }
         Relationships: []
       }
+      activities: {
+        Row: {
+          action_type: string
+          author_id: string | null
+          created_at: string
+          deal_id: string
+          description: string | null
+          id: string
+          metadata: Json
+        }
+        Insert: {
+          action_type: string
+          author_id?: string | null
+          created_at?: string
+          deal_id: string
+          description?: string | null
+          id?: string
+          metadata?: Json
+        }
+        Update: {
+          action_type?: string
+          author_id?: string | null
+          created_at?: string
+          deal_id?: string
+          description?: string | null
+          id?: string
+          metadata?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activities_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       agent_badges: {
         Row: {
           agent_id: string
@@ -267,6 +305,51 @@ export type Database = {
           },
         ]
       }
+      contacts: {
+        Row: {
+          created_at: string
+          email: string | null
+          first_name: string | null
+          full_name: string | null
+          id: string
+          last_name: string | null
+          phone: string | null
+          rgpd_consent: boolean
+          rgpd_consent_at: string | null
+          source: string | null
+          tags: string[]
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          first_name?: string | null
+          full_name?: string | null
+          id?: string
+          last_name?: string | null
+          phone?: string | null
+          rgpd_consent?: boolean
+          rgpd_consent_at?: string | null
+          source?: string | null
+          tags?: string[]
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          first_name?: string | null
+          full_name?: string | null
+          id?: string
+          last_name?: string | null
+          phone?: string | null
+          rgpd_consent?: boolean
+          rgpd_consent_at?: string | null
+          source?: string | null
+          tags?: string[]
+          updated_at?: string
+        }
+        Relationships: []
+      }
       cron_config: {
         Row: {
           key: string
@@ -284,6 +367,159 @@ export type Database = {
           value?: string
         }
         Relationships: []
+      }
+      deal_audit_log: {
+        Row: {
+          action: string
+          actor_email: string | null
+          actor_id: string | null
+          created_at: string
+          deal_id: string
+          field_name: string | null
+          id: string
+          metadata: Json | null
+          new_value: string | null
+          old_value: string | null
+        }
+        Insert: {
+          action: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          deal_id: string
+          field_name?: string | null
+          id?: string
+          metadata?: Json | null
+          new_value?: string | null
+          old_value?: string | null
+        }
+        Update: {
+          action?: string
+          actor_email?: string | null
+          actor_id?: string | null
+          created_at?: string
+          deal_id?: string
+          field_name?: string | null
+          id?: string
+          metadata?: Json | null
+          new_value?: string | null
+          old_value?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "deal_audit_log_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      deals: {
+        Row: {
+          actual_commission: number | null
+          assigned_to: string | null
+          contact_id: string | null
+          created_at: string
+          deleted_at: string | null
+          estimated_commission: number | null
+          id: string
+          insurance_type: string
+          lead_score: number | null
+          notes: string | null
+          source_id: string | null
+          source_type: string | null
+          stage: Database["public"]["Enums"]["deal_stage"]
+          updated_at: string
+        }
+        Insert: {
+          actual_commission?: number | null
+          assigned_to?: string | null
+          contact_id?: string | null
+          created_at?: string
+          deleted_at?: string | null
+          estimated_commission?: number | null
+          id?: string
+          insurance_type: string
+          lead_score?: number | null
+          notes?: string | null
+          source_id?: string | null
+          source_type?: string | null
+          stage?: Database["public"]["Enums"]["deal_stage"]
+          updated_at?: string
+        }
+        Update: {
+          actual_commission?: number | null
+          assigned_to?: string | null
+          contact_id?: string | null
+          created_at?: string
+          deleted_at?: string | null
+          estimated_commission?: number | null
+          id?: string
+          insurance_type?: string
+          lead_score?: number | null
+          notes?: string | null
+          source_id?: string | null
+          source_type?: string | null
+          stage?: Database["public"]["Enums"]["deal_stage"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "deals_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      documents: {
+        Row: {
+          created_at: string
+          deal_id: string
+          drive_url: string | null
+          file_path: string | null
+          id: string
+          name: string
+          notes: string | null
+          status: Database["public"]["Enums"]["doc_status"]
+          updated_at: string
+          uploaded_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          deal_id: string
+          drive_url?: string | null
+          file_path?: string | null
+          id?: string
+          name: string
+          notes?: string | null
+          status?: Database["public"]["Enums"]["doc_status"]
+          updated_at?: string
+          uploaded_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          deal_id?: string
+          drive_url?: string | null
+          file_path?: string | null
+          id?: string
+          name?: string
+          notes?: string | null
+          status?: Database["public"]["Enums"]["doc_status"]
+          updated_at?: string
+          uploaded_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "documents_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       email_tracking: {
         Row: {
@@ -777,6 +1013,33 @@ export type Database = {
         }
         Relationships: []
       }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          is_active: boolean
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          is_active?: boolean
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          is_active?: boolean
+          updated_at?: string
+        }
+        Relationships: []
+      }
       published_drafts: {
         Row: {
           published_at: string
@@ -1093,11 +1356,24 @@ export type Database = {
         Returns: boolean
       }
       is_valid_email: { Args: { _email: string }; Returns: boolean }
+      map_status_to_stage: {
+        Args: { _status: string }
+        Returns: Database["public"]["Enums"]["deal_stage"]
+      }
       normalize_insurance_type: { Args: { _input: string }; Returns: string }
       reassign_pending_leads: { Args: never; Returns: number }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user" | "owner"
+      deal_stage:
+        | "lead"
+        | "qualified"
+        | "quote_sent"
+        | "subscription"
+        | "incomplete"
+        | "won"
+        | "lost"
+      doc_status: "manquant" | "attente" | "valide"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1226,6 +1502,16 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "moderator", "user", "owner"],
+      deal_stage: [
+        "lead",
+        "qualified",
+        "quote_sent",
+        "subscription",
+        "incomplete",
+        "won",
+        "lost",
+      ],
+      doc_status: ["manquant", "attente", "valide"],
     },
   },
 } as const

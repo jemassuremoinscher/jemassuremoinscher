@@ -1036,9 +1036,9 @@ Changement d'adresse, de garage, etc.
   },
   {
     id: "4",
-    title: "Assurance habitation 2026 : les 6 garanties indispensables (et 3 options inutiles)",
+    title: "Assurance Habitation : 7 garanties indispensables 2026",
     slug: "assurance-habitation-garanties-indispensables",
-    description: "Quelles garanties d'assurance habitation sont vraiment indispensables en 2026 ? L'essentiel à couvrir et les options à éviter pour ne pas surpayer.",
+    description: "Quelles garanties sont vraiment indispensables en assurance habitation ? Le guide 2026 pour ne pas payer d'options inutiles. Devis gratuit.",
     category: "Guides Pratiques",
     date: "8 janvier 2026",
     readTime: "7 min",
@@ -1673,9 +1673,9 @@ Certaines garanties diminuent ou s'arrêtent après 65 ans. Vérifiez le contrat
   },
   {
     id: "11",
-    title: "Meilleure assurance auto 2026 : comparatif prix, garanties et avis",
+    title: "Meilleure Assurance Auto 2026 : comparatif dès 25€/mois",
     slug: "meilleure-assurance-auto-2026-comparatif",
-    description: "Quelle est la meilleure assurance auto en 2026 ? Comparatif des prix, garanties et avis pour choisir au meilleur rapport qualité-prix.",
+    description: "Quelle est la meilleure assurance auto en 2026 ? Comparatif, prix dès 25€/mois et critères de choix. 70+ assureurs comparés gratuitement.",
     category: "Assurance Auto",
     date: "2 janvier 2026",
     readTime: "12 min",
@@ -4647,6 +4647,388 @@ Connaître vos droits, c'est pouvoir les faire valoir !
 
 **Faites valoir vos droits en toute confiance !**
     `
+  },
+  {
+    id: "110ch-jc",
+    title: "Voiture 110 chevaux et jeune conducteur : est-ce assurable (et à quel prix) ?",
+    slug: "110-chevaux-jeune-conducteur-assurance",
+    description: "110 ch pour un jeune conducteur : est-ce trop puissant pour être assuré ? On vous explique les règles réelles des assureurs, le rapport poids-puissance qui compte vraiment, et comment faire baisser la prime.",
+    category: "Assurance Auto",
+    date: "22 juillet 2026",
+    readTime: "7 min",
+    author: "Alexandre Petit",
+    tags: ["jeune conducteur", "puissance", "110 chevaux", "assurance auto", "permis probatoire"],
+    content: `
+# Voiture 110 chevaux et jeune conducteur : est-ce assurable, et à quel prix ?
+
+Vous venez d'obtenir votre permis, vous avez repéré une voiture de **110 chevaux** et une question vous bloque : **un jeune conducteur peut-il assurer une voiture de 110 ch ?** Bonne nouvelle : oui, dans la quasi-totalité des cas. Mais le tarif, lui, dépend de facteurs que peu de gens connaissent. Voici ce qu'il faut vraiment savoir avant de signer.
+
+## Y a-t-il une limite légale de puissance pour un jeune conducteur ?
+
+**Non, il n'existe aucune loi en France qui interdit à un jeune conducteur de conduire une voiture de 110 ch.** Contrairement à une idée reçue tenace, le permis B ne comporte pas de plafond de puissance pour les voitures (la limitation existe pour les motos, pas pour les autos).
+
+Ce qui existe en revanche, ce sont les **règles internes de chaque assureur**. Certains assureurs refusent d'assurer un conducteur novice au-delà d'un certain seuil de puissance ; d'autres acceptent, mais avec une surprime. C'est pour ça que **comparer plusieurs assureurs est décisif** quand on est jeune conducteur avec une voiture un peu puissante.
+
+## 110 ch, ce n'est pas si puissant : le vrai critère, c'est le rapport poids-puissance
+
+Beaucoup de jeunes conducteurs surestiment le « danger » des 110 ch. Dans les faits, **110 chevaux, c'est une puissance moyenne** : c'est le niveau d'une Peugeot 208, d'une Renault Clio TCe, d'une Volkswagen Golf 1.5 ou d'une Citroën C4 en motorisation courante. Rien à voir avec une sportive.
+
+Ce que regardent réellement les assureurs, ce n'est pas la puissance seule, mais le **rapport poids-puissance** (le nombre de chevaux rapporté au poids du véhicule). Une citadine de 110 ch reste modérée. C'est une petite voiture légère avec 110 ch turbo qui commence à faire tiquer certains assureurs.
+
+### Repères concrets
+
+- **110 ch sur une berline compacte (Golf, Mégane, 308)** : profil très courant, assurable sans difficulté.
+- **110 ch sur une citadine légère (208, Clio, Corsa)** : assurable, tarif jeune conducteur standard.
+- **110 ch sur une petite sportive ou une préparation** : là, certains assureurs se montrent plus réticents.
+
+## Pourquoi la prime grimpe quand on est jeune conducteur
+
+Si votre devis vous semble élevé, ce n'est pas (seulement) à cause des 110 ch. C'est surtout la **surprime jeune conducteur** qui joue. Pendant les 3 premières années de permis (ou 2 ans avec la conduite accompagnée), l'assureur applique une majoration légale, car les conducteurs novices ont statistiquement plus de sinistres.
+
+Cette surprime **diminue automatiquement chaque année sans accident**, jusqu'à disparaître. La puissance du véhicule vient s'ajouter à cette base, mais elle n'en est pas la cause principale.
+
+## Comment faire baisser le prix (même avec 110 ch)
+
+Voici les leviers les plus efficaces, par ordre d'impact :
+
+1. **Comparer plusieurs assureurs.** C'est de loin le plus rentable : sur un profil jeune conducteur avec 110 ch, les écarts de prix entre assureurs peuvent dépasser 40 %, parce qu'ils ne pondèrent pas tous la puissance de la même façon.
+2. **La conduite accompagnée (AAC).** Si vous en avez bénéficié, votre période probatoire passe de 3 à 2 ans et la surprime de départ est réduite.
+3. **Choisir la bonne formule.** Sur une voiture d'occasion de quelques années, une formule au tiers ou tiers + peut suffire et coûte bien moins qu'un tous risques.
+4. **Se déclarer conducteur secondaire** sur le contrat d'un parent au début, puis basculer conducteur principal (attention : la fausse déclaration de conducteur principal est un motif de nullité du contrat, à ne jamais faire).
+5. **Déclarer un stationnement sécurisé** (garage, parking fermé) : ça réduit le risque de vol et donc la prime.
+
+## En résumé
+
+Une voiture de **110 ch est parfaitement assurable pour un jeune conducteur** : aucune interdiction légale, et cette puissance reste modérée. Le prix dépend surtout de votre statut de conducteur novice et de l'assureur choisi — pas des 110 ch en eux-mêmes. Le réflexe qui change tout : **faire jouer la concurrence.**
+
+> **Prêt à comparer ?** Obtenez en 2 minutes plusieurs devis adaptés à votre profil de jeune conducteur, y compris pour une voiture de 110 ch, avec notre [comparateur d'assurance auto jeune conducteur](/assurance-auto-jeune-conducteur). C'est gratuit et sans engagement.
+
+## Questions fréquentes
+
+**Un jeune conducteur peut-il conduire une voiture de 110 ch ?**
+Oui. Aucune loi française ne limite la puissance d'une voiture pour un titulaire du permis B, même en période probatoire. Seules les règles internes des assureurs peuvent varier selon la puissance.
+
+**110 ch, est-ce beaucoup pour un jeune conducteur ?**
+Non, c'est une puissance moyenne, équivalente à celle d'une 208, d'une Clio ou d'une Golf. Le critère qui compte pour les assureurs est le rapport poids-puissance, pas la puissance seule.
+
+**Pourquoi mon assurance est-elle si chère avec 110 ch ?**
+Le prix élevé vient surtout de la surprime jeune conducteur (appliquée les 2 à 3 premières années), pas de la puissance. Cette surprime baisse chaque année sans accident.
+
+**Comment payer moins cher son assurance jeune conducteur avec 110 ch ?**
+Comparez plusieurs assureurs (écarts fréquents de plus de 40 %), privilégiez la conduite accompagnée, adaptez la formule à l'âge du véhicule et déclarez un stationnement sécurisé.
+`,
+  },
+  {
+    id: "am-guide",
+    title: "Assurance dans les Alpes-Maritimes (06) : pourquoi c'est plus cher et comment payer moins",
+    slug: "assurance-alpes-maritimes-guide",
+    description: "Assurance auto, habitation, santé dans les Alpes-Maritimes : le 06 est l'un des départements les plus chers de France. On vous explique pourquoi et comment faire baisser vos primes à Nice, Cannes, Antibes.",
+    category: "Assurance Auto",
+    date: "22 juillet 2026",
+    readTime: "8 min",
+    author: "Alexandre Petit",
+    tags: ["alpes-maritimes", "nice", "assurance auto", "assurance locale", "06"],
+    content: `
+# Assurance dans les Alpes-Maritimes (06) : pourquoi c'est plus cher, et comment payer moins
+
+Si vous habitez les Alpes-Maritimes, vous l'avez sans doute constaté : **assurer sa voiture, son logement ou sa santé coûte plus cher ici qu'ailleurs en France.** Ce n'est pas une impression. Le 06 figure parmi les départements les plus chers du pays pour l'assurance. Voici pourquoi — et surtout, comment reprendre la main sur vos primes.
+
+## Pourquoi le 06 est-il l'un des départements les plus chers ?
+
+Trois facteurs se cumulent dans les Alpes-Maritimes :
+
+### Une densité urbaine forte sur le littoral
+De Cannes à Menton en passant par Nice et Antibes, la concentration de population et de véhicules sur une bande côtière étroite augmente mécaniquement les accrochages, les sinistres de stationnement et les vols.
+
+### Un parc automobile haut de gamme
+Le 06 concentre une proportion de véhicules de valeur bien supérieure à la moyenne nationale. Résultat : des primes tous risques élevées et un vol davantage ciblé sur le littoral.
+
+### Une exposition climatique réelle
+La tempête Alex d'octobre 2020 a rappelé la vulnérabilité du département aux événements extrêmes. Dans l'arrière-pays (Vésubie, Roya), les routes de montagne imposent des conditions hivernales. La garantie catastrophes naturelles n'est pas théorique ici.
+
+## Le cas particulier des frontaliers Monaco et Italie
+
+Beaucoup de résidents du 06 travaillent à Monaco ou franchissent quotidiennement la frontière italienne. **Cet usage transfrontalier doit être déclaré à votre assureur.** Vérifiez trois points : la couverture des trajets hors de France, la franchise applicable à l'étranger, et l'assistance au-delà de la frontière. Une omission peut entraîner une réduction, voire un refus de prise en charge en cas de sinistre.
+
+## Comment payer moins cher dans les Alpes-Maritimes
+
+Le tarif est élevé, mais loin d'être une fatalité. Les leviers les plus efficaces :
+
+1. **Comparer plusieurs assureurs.** C'est de loin le plus rentable : tous ne pondèrent pas le "risque 06" de la même façon, et les écarts peuvent être importants pour un même profil.
+2. **Déclarer un stationnement sécurisé** (garage, parking fermé). Sur un département exposé au vol, c'est un vrai levier de baisse.
+3. **Adapter la formule à l'âge réel du véhicule.** Sur une voiture de quelques années, un tiers étendu peut suffire et coûte bien moins qu'un tous risques.
+4. **Vérifier votre code postal exact.** Dans le 06, le tarif varie fortement d'une commune à l'autre : ce qui est cher à Nice centre peut l'être moins dans une commune de l'arrière-pays.
+
+## Nice, Cannes, Antibes : des réalités différentes
+
+- **Nice** : forte densité, stationnement contraint, primes auto parmi les plus élevées du département.
+- **Cannes / Antibes** : parc automobile de valeur, saisonnalité touristique qui accentue le risque l'été.
+- **Arrière-pays (Grasse, Vence, vallées)** : profil souvent plus favorable, mais attention au risque climatique et aux routes de montagne.
+
+## En résumé
+
+Les Alpes-Maritimes cumulent densité, valeur du parc automobile et exposition climatique, ce qui en fait l'un des départements les plus chers de France pour l'assurance. Mais entre deux assureurs, l'écart de prix pour un même profil peut être significatif. **Le réflexe qui paie : comparer.**
+
+> **Comparez en 2 minutes** les offres de 70+ assureurs adaptées à votre commune dans le 06 avec notre [comparateur d'assurance auto](/assurance-auto). Gratuit et sans engagement.
+
+## Questions fréquentes
+
+**Pourquoi l'assurance est-elle plus chère dans les Alpes-Maritimes ?**
+Densité urbaine sur le littoral, valeur élevée du parc automobile, taux de vol supérieur à la moyenne et exposition climatique tirent les tarifs vers le haut. Le 06 figure parmi les départements les plus chers de France.
+
+**Dois-je déclarer un trajet quotidien vers Monaco ?**
+Oui. Un usage frontalier régulier est à déclarer, sans quoi l'assureur pourrait réduire ou refuser sa prise en charge en cas de sinistre survenu à l'étranger.
+
+**Comment payer moins cher son assurance auto à Nice ?**
+Comparer plusieurs assureurs, déclarer un stationnement sécurisé et adapter la formule à l'âge du véhicule sont les leviers les plus efficaces.
+`,
+  },
+  {
+    id: "airbnb-loc",
+    title: "Assurance location saisonnière et Airbnb : êtes-vous vraiment couvert ?",
+    slug: "assurance-location-saisonniere-airbnb",
+    description: "Louer son logement sur Airbnb sans la bonne assurance peut coûter cher. Découvrez ce que couvre (et ne couvre pas) votre contrat, et comment protéger votre bien en location saisonnière.",
+    category: "Assurance Habitation",
+    date: "22 juillet 2026",
+    readTime: "7 min",
+    author: "Sophie Martin",
+    tags: ["location saisonnière", "airbnb", "assurance habitation", "propriétaire", "PNO"],
+    content: `
+# Assurance location saisonnière et Airbnb : êtes-vous vraiment couvert ?
+
+Louer votre logement sur Airbnb ou en location saisonnière peut rapporter gros — mais **un sinistre causé par un voyageur mal couvert peut effacer plusieurs mois de revenus.** Avant de publier votre annonce, voici ce qu'il faut vraiment vérifier côté assurance.
+
+## Votre assurance habitation classique ne suffit (presque) jamais
+
+C'est le piège le plus courant. **Un contrat multirisque habitation standard ne couvre pas l'activité de location saisonnière**, surtout si elle est régulière. En cas de sinistre pendant une location non déclarée, l'assureur peut réduire son indemnisation, voire refuser de couvrir.
+
+La location courte durée est considérée comme un **usage différent** du logement : il faut donc en informer votre assureur, même si vous ne louez que quelques semaines par an.
+
+## Les 3 protections qui comptent vraiment
+
+### 1. La responsabilité civile "villégiature" ou locative
+Elle couvre les dommages qu'un voyageur pourrait causer (dégât des eaux qui touche le voisin, incendie…) ou subir dans votre logement. C'est la base incontournable.
+
+### 2. La garantie des biens et du mobilier
+Vol, casse, dégradations volontaires par un locataire : votre mobilier, votre électroménager et vos équipements doivent être couverts pendant la location. Vérifiez les plafonds et les exclusions.
+
+### 3. La garantie "perte de loyers"
+Si un sinistre rend le logement inhabitable, elle compense les revenus locatifs que vous ne pourrez plus percevoir le temps des réparations.
+
+## La "garantie Airbnb" (AirCover) ne remplace pas votre assurance
+
+Airbnb propose sa propre protection (AirCover pour les hôtes). C'est un filet utile, mais **avec des plafonds, des exclusions et des délais de traitement** : elle ne doit jamais être votre seule protection. Beaucoup de sinistres restent à votre charge si vous comptez uniquement dessus. Considérez-la comme un complément, pas comme votre assurance principale.
+
+## Résidence principale ou bien dédié : deux cas différents
+
+- **Vous louez votre résidence principale ponctuellement** : une extension "location occasionnelle" sur votre contrat habitation peut suffire.
+- **Vous avez un bien dédié à la location** (appartement, studio que vous ne occupez pas) : vous relevez plutôt d'une **assurance propriétaire non occupant (PNO)**, adaptée à cet usage et souvent obligatoire en copropriété.
+
+## En résumé
+
+Louer sur Airbnb sans adapter son assurance, c'est prendre le risque de payer soi-même un sinistre coûteux. La bonne approche : **déclarer l'activité à votre assureur**, vérifier la responsabilité civile, la couverture du mobilier et la perte de loyers, et ne pas compter uniquement sur AirCover.
+
+> **Vous louez un bien que vous n'occupez pas ?** Comparez les offres d'[assurance propriétaire non occupant (PNO)](/assurance-pno) adaptées à la location saisonnière. Devis gratuit en 2 minutes.
+
+## Questions fréquentes
+
+**Mon assurance habitation couvre-t-elle Airbnb ?**
+Rarement sans déclaration. Un contrat multirisque habitation standard ne prévoit pas l'activité de location saisonnière. Il faut informer votre assureur et, souvent, souscrire une extension ou un contrat adapté.
+
+**AirCover d'Airbnb suffit-il ?**
+Non. AirCover est un complément utile mais comporte des plafonds et des exclusions. Il ne remplace pas une véritable assurance couvrant la responsabilité civile et vos biens.
+
+**Quelle assurance pour un logement dédié à la location saisonnière ?**
+Une assurance propriétaire non occupant (PNO), qui couvre les risques spécifiques d'un bien loué que vous n'habitez pas, avec une responsabilité civile adaptée.
+`,
+  },
+  {
+    id: "carence-auto",
+    title: "Délai de carence en assurance auto : ce qu'il faut savoir avant de signer",
+    slug: "delai-carence-assurance-auto",
+    description: "Le délai de carence en assurance auto peut vous laisser sans couverture au pire moment. Comprenez ce qu'est ce délai, quand il s'applique et comment l'éviter.",
+    category: "Assurance Auto",
+    date: "22 juillet 2026",
+    readTime: "6 min",
+    author: "Alexandre Petit",
+    tags: ["délai de carence", "assurance auto", "garanties", "franchise", "glossaire"],
+    content: `
+# Délai de carence en assurance auto : ce qu'il faut savoir avant de signer
+
+Vous venez de souscrire une assurance auto et vous vous demandez si vous êtes couvert **immédiatement** ? La réponse dépend d'une notion souvent méconnue : le **délai de carence**. Bien comprise, elle vous évite de mauvaises surprises au pire moment.
+
+## Qu'est-ce qu'un délai de carence ?
+
+Le délai de carence est la **période, au début du contrat, pendant laquelle certaines garanties ne s'appliquent pas encore**, même si vous payez déjà votre cotisation. Concrètement : vous êtes assuré, mais une partie des protections n'est pas active immédiatement.
+
+À ne pas confondre avec le **délai de rétractation** (le temps dont vous disposez pour annuler) ni avec la **franchise** (la somme qui reste à votre charge après un sinistre).
+
+## La garantie responsabilité civile, elle, est immédiate
+
+Bonne nouvelle : la **responsabilité civile** (l'assurance au tiers, obligatoire) prend effet dès la date indiquée sur votre contrat, sans délai de carence. Vous pouvez donc rouler légalement dès la souscription.
+
+Le délai de carence concerne surtout des **garanties complémentaires** : selon les contrats, il peut s'appliquer à certaines options (assistance, garanties spécifiques). Lisez attentivement vos conditions particulières.
+
+## Pourquoi les assureurs appliquent-ils un délai de carence ?
+
+C'est un mécanisme **anti-fraude et anti-anti-sélection**. Sans lui, une personne pourrait souscrire une assurance juste après un sinistre déjà survenu, ou en anticipation immédiate d'un risque. Le délai de carence protège l'équilibre du système et donc, indirectement, les tarifs de tous les assurés.
+
+## Comment éviter (ou réduire) un délai de carence
+
+1. **Souscrivez sans interruption de couverture.** Si vous changez d'assureur sans laisser de "trou" entre deux contrats, le délai de carence est souvent supprimé sur présentation de votre relevé d'information.
+2. **Fournissez votre relevé d'information (RI).** Ce document, remis par votre ancien assureur, prouve votre historique et votre bonus-malus. Il permet souvent d'activer les garanties sans carence.
+3. **Comparez les conditions.** Tous les contrats n'appliquent pas les mêmes délais : c'est un critère à regarder avant de signer, au même titre que le prix.
+
+## En résumé
+
+Le délai de carence est une période initiale où certaines garanties ne sont pas encore actives. La responsabilité civile, elle, est immédiate. Pour l'éviter : souscrivez sans coupure de couverture, présentez votre relevé d'information, et comparez les conditions des contrats — pas seulement le tarif.
+
+> **Vous changez d'assurance auto ?** Comparez les garanties et les délais de 70+ assureurs avec notre [comparateur d'assurance auto](/assurance-auto). Devis gratuit en 2 minutes.
+
+## Questions fréquentes
+
+**Suis-je couvert immédiatement après avoir souscrit une assurance auto ?**
+La responsabilité civile (au tiers) est active dès la date d'effet du contrat. En revanche, certaines garanties complémentaires peuvent être soumises à un délai de carence selon les contrats.
+
+**Comment supprimer le délai de carence ?**
+En souscrivant sans interruption de couverture et en présentant votre relevé d'information, la plupart des assureurs activent les garanties sans carence.
+
+**Délai de carence et franchise, est-ce la même chose ?**
+Non. Le délai de carence est une période sans garantie en début de contrat. La franchise est la somme qui reste à votre charge après un sinistre couvert.
+`,
+  },
+  {
+    id: "disability-fr",
+    title: "Disability Insurance in France: A Guide for Expats",
+    slug: "disability-insurance-france-expats",
+    description: "Living in France as an expat? Understand how disability insurance (prévoyance) works, what public coverage you get, and why a private plan often matters. Compare and get a free quote.",
+    category: "Assurance Emprunteur",
+    date: "22 juillet 2026",
+    readTime: "7 min",
+    author: "Sophie Martin",
+    tags: ["disability insurance", "expats", "prévoyance", "france", "english"],
+    content: `
+# Disability Insurance in France: A Guide for Expats
+
+If you live and work in France as an expat, one question deserves a clear answer: **what happens to your income if you can no longer work because of an illness or accident?** In France, this protection is called *prévoyance* — and understanding how it works can save you from a serious financial gap.
+
+## What "disability insurance" means in France
+
+In France, the term covers two different situations:
+
+- **Incapacité (temporary disability):** you cannot work for a limited period. You receive daily allowances (*indemnités journalières*) to partially replace your income.
+- **Invalidité (permanent disability):** your capacity to work is durably reduced. You may receive a pension based on your level of invalidity.
+
+Both are handled first by the **French social security system**, then — crucially — often topped up by a private *prévoyance* contract.
+
+## What the public system covers (and its limits)
+
+If you contribute to the French social security system (as an employee or self-employed worker), you're entitled to basic coverage. But there are real limits:
+
+- Daily allowances replace only **part** of your income, capped at a ceiling.
+- There is usually a **waiting period** before payments start.
+- Self-employed workers and certain statuses have **lower** or more complex coverage.
+
+For most expats — especially higher earners, freelancers, or entrepreneurs — public coverage alone leaves a significant income gap.
+
+## Why a private prévoyance plan matters for expats
+
+A private disability plan bridges the gap between your real income and what the public system pays. It becomes especially important if you:
+
+- Are **self-employed** or run your own business (*TNS*), where public coverage is thinner.
+- Have a **mortgage or family** depending on your income.
+- Earn above the social security ceiling and would face a steep drop in income.
+
+A good plan can guarantee a defined replacement income, cover permanent invalidity, and sometimes include death benefits for your family.
+
+## What to check before choosing a plan
+
+1. **The income replacement level** — what percentage of your salary is actually covered.
+2. **The waiting period** before benefits start.
+3. **The definition of disability** used by the insurer (occupation-specific vs. any occupation) — this changes everything.
+4. **Exclusions**, especially for pre-existing conditions.
+5. **Portability** if you leave France or change status.
+
+## In short
+
+As an expat in France, public disability coverage is a foundation — not a full safety net. A private *prévoyance* plan protects your real income if illness or accident stops you from working. The key is to match the plan to your status (employee vs. self-employed) and your income level.
+
+> **Want to protect your income?** Compare *prévoyance* and disability plans suited to expats in France with our [prévoyance comparison tool](/assurance-prevoyance). Free quote in 2 minutes.
+
+## Frequently asked questions
+
+**Does French social security cover disability for expats?**
+Yes, if you contribute to the system. But it only replaces part of your income, with a ceiling and a waiting period — which is why many expats add a private plan.
+
+**Do self-employed expats need private disability insurance?**
+Often yes. Self-employed statuses (*TNS*) generally have thinner public coverage, so a private *prévoyance* plan is especially valuable.
+
+**What is prévoyance in France?**
+*Prévoyance* is the French term for personal protection insurance covering disability, incapacity, and death — designed to protect your income and your family beyond basic social security.
+`,
+  },
+  {
+    id: "health-nice",
+    title: "Health Insurance in Nice: A Practical Guide for Expats on the French Riviera",
+    slug: "health-insurance-nice-expats",
+    description: "Moving to Nice or the French Riviera? Understand how health insurance works in France, what a mutuelle is, and how expats can get properly covered. Compare and get a free quote.",
+    category: "Mutuelle Santé",
+    date: "22 juillet 2026",
+    readTime: "7 min",
+    author: "Sophie Martin",
+    tags: ["health insurance", "nice", "expats", "mutuelle", "french riviera"],
+    content: `
+# Health Insurance in Nice: A Practical Guide for Expats on the French Riviera
+
+Nice and the French Riviera attract a large international community — and one of the first practical questions every newcomer faces is: **how does health insurance actually work in France, and how do I get properly covered?** Here's a clear guide.
+
+## How the French health system works
+
+France has one of the best-regarded healthcare systems in the world, but it works differently from many countries. It relies on **two layers**:
+
+1. **Assurance Maladie (public health insurance):** once you're affiliated (through work or residency), the state reimburses a large part of your medical costs — but **not everything**. A typical doctor's visit is reimbursed around 70% of a reference rate.
+2. **Mutuelle (top-up health insurance):** a private complementary insurance that covers the remaining part — the *ticket modérateur* — plus extras like dental, optical, and specialist fees.
+
+**The key point for expats:** the public system alone almost never covers 100% of your costs. The *mutuelle* is what brings you close to full coverage.
+
+## What a "mutuelle" actually covers
+
+A good *mutuelle* fills the gaps the public system leaves:
+
+- The remaining share on consultations and prescriptions.
+- **Dental and optical care**, which are poorly reimbursed by the public system.
+- **Specialist fees** and possible extra charges (*dépassements d'honoraires*), common on the Riviera.
+- Hospitalisation comfort (private room, etc.).
+
+Levels of cover range from basic (economical) to premium (full dental, optical, alternative medicine).
+
+## Specific points for expats in Nice
+
+- **Private practitioners and extra fees:** on the Riviera, many specialists charge above the reference rate. A *mutuelle* with good "dépassements d'honoraires" cover is valuable here.
+- **English-speaking doctors:** widely available in Nice, Cannes and Monaco area — but this doesn't change how reimbursement works.
+- **Status matters:** employees, self-employed, retirees and early-stage residents don't all access the system the same way. Your affiliation route affects your coverage.
+
+## Before you are affiliated: don't stay uncovered
+
+There's often a gap between arriving in France and being fully affiliated to the public system. During this period, **private health insurance (or international coverage) is essential** to avoid paying full price for any medical need.
+
+## In short
+
+In France, public health insurance is the foundation, but a *mutuelle* is what gives you near-complete coverage — especially for dental, optical and specialist fees that are common on the Riviera. For expats in Nice, choosing the right *mutuelle* (and staying covered before affiliation) is the key to peace of mind.
+
+> **New to Nice or the Riviera?** Compare *mutuelle* and health plans suited to expats with our [health insurance comparison tool](/assurance-sante). Free quote in 2 minutes.
+
+## Frequently asked questions
+
+**Is public health insurance enough in France?**
+Rarely on its own. Assurance Maladie reimburses a large share but not all of your costs. A *mutuelle* (top-up insurance) is needed for near-full coverage, especially dental and optical.
+
+**What is a mutuelle?**
+A *mutuelle* is a complementary private health insurance that covers the part the French public system doesn't reimburse, plus extras like dental, optical and specialist fees.
+
+**Do expats in Nice need private health insurance?**
+Yes — both a *mutuelle* to top up public coverage, and, before being affiliated to the French system, private or international insurance to avoid gaps.
+`,
   }
 ];
 

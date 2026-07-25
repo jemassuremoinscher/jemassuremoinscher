@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-07-21T10:12:55.518Z",
-  "score": 88,
+  "generatedAt": "2026-07-24T03:50:40.341Z",
+  "score": 87,
   "status": "good",
   "methodology": "Score on-page pondéré sur toutes les pages HTML du site : title, meta description, canonical, robots, viewport, lang, H1 principal, Open Graph, JSON-LD et maillage interne.",
   "summary": {
-    "auditedPages": 270,
-    "totalChecks": 2700,
-    "passedChecks": 2463,
-    "failedChecks": 237,
-    "weightedPassed": 23690,
-    "weightedTotal": 27000,
-    "strongPages": 225
+    "auditedPages": 279,
+    "totalChecks": 2790,
+    "passedChecks": 2540,
+    "failedChecks": 250,
+    "weightedPassed": 24395,
+    "weightedTotal": 27900,
+    "strongPages": 230
   },
   "pageScores": [
     {
@@ -84,6 +84,11 @@
       "issues": 2
     },
     {
+      "file": "blog/110-chevaux-jeune-conducteur-assurance/index.html",
+      "score": 70,
+      "issues": 2
+    },
+    {
       "file": "blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet/index.html",
       "score": 85,
       "issues": 1
@@ -102,6 +107,11 @@
       "file": "blog/assurance-airbnb-location-saisonniere/index.html",
       "score": 85,
       "issues": 1
+    },
+    {
+      "file": "blog/assurance-alpes-maritimes-guide/index.html",
+      "score": 70,
+      "issues": 2
     },
     {
       "file": "blog/assurance-alpes-maritimes-votre-guide-ultime-pour-des-garanties-optimisees-et-economiques-en-2026/index.html",
@@ -244,6 +254,11 @@
       "issues": 1
     },
     {
+      "file": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html",
+      "score": 85,
+      "issues": 1
+    },
+    {
       "file": "blog/assurance-colocation-contrat-unique-ou-individuel/index.html",
       "score": 100,
       "issues": 0
@@ -369,6 +384,11 @@
       "issues": 1
     },
     {
+      "file": "blog/assurance-location-saisonniere-airbnb/index.html",
+      "score": 70,
+      "issues": 2
+    },
+    {
       "file": "blog/assurance-logement-non-conventionnel/index.html",
       "score": 85,
       "issues": 1
@@ -434,6 +454,11 @@
       "issues": 1
     },
     {
+      "file": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html",
+      "score": 85,
+      "issues": 1
+    },
+    {
       "file": "blog/assurance-retraite-expatrie-france/index.html",
       "score": 85,
       "issues": 1
@@ -470,6 +495,11 @@
     },
     {
       "file": "blog/assurance-trottinette-vol-garantie-2026/index.html",
+      "score": 85,
+      "issues": 1
+    },
+    {
+      "file": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html",
       "score": 85,
       "issues": 1
     },
@@ -594,12 +624,22 @@
       "issues": 0
     },
     {
+      "file": "blog/delai-carence-assurance-auto/index.html",
+      "score": 85,
+      "issues": 1
+    },
+    {
       "file": "blog/demenagement-prevenir-assureur-couverture/index.html",
       "score": 85,
       "issues": 1
     },
     {
       "file": "blog/devis-assurance-auto-jeune-conducteur-2026/index.html",
+      "score": 85,
+      "issues": 1
+    },
+    {
+      "file": "blog/disability-insurance-france-expats/index.html",
       "score": 85,
       "issues": 1
     },
@@ -652,6 +692,11 @@
       "file": "blog/hausse-tarifs-assurance-2026-comment-contrer/index.html",
       "score": 85,
       "issues": 1
+    },
+    {
+      "file": "blog/health-insurance-nice-expats/index.html",
+      "score": 70,
+      "issues": 2
     },
     {
       "file": "blog/heritage-vehicule-assurer-voiture-deces/index.html",
@@ -1534,6 +1579,30 @@
       "reason": "Échec : 192 caractères observé, attendu meta description de 70 à 160 caractères."
     },
     {
+      "id": "blog/110-chevaux-jeune-conducteur-assurance/index.html-title-length",
+      "file": "blog/110-chevaux-jeune-conducteur-assurance/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "77 caractères",
+      "reason": "Échec : 77 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/110-chevaux-jeune-conducteur-assurance/index.html-meta-description",
+      "file": "blog/110-chevaux-jeune-conducteur-assurance/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "207 caractères",
+      "reason": "Échec : 207 caractères observé, attendu meta description de 70 à 160 caractères."
+    },
+    {
       "id": "blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet/index.html-title-length",
       "file": "blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet/index.html",
       "category": "title",
@@ -1556,6 +1625,30 @@
       "expected": "title de 30 à 60 caractères",
       "actual": "66 caractères",
       "reason": "Échec : 66 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-alpes-maritimes-guide/index.html-title-length",
+      "file": "blog/assurance-alpes-maritimes-guide/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "89 caractères",
+      "reason": "Échec : 89 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-alpes-maritimes-guide/index.html-meta-description",
+      "file": "blog/assurance-alpes-maritimes-guide/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "205 caractères",
+      "reason": "Échec : 205 caractères observé, attendu meta description de 70 à 160 caractères."
     },
     {
       "id": "blog/assurance-alpes-maritimes-votre-guide-ultime-pour-des-garanties-optimisees-et-economiques-en-2026/index.html-title-length",
@@ -1858,6 +1951,18 @@
       "reason": "Échec : 75 caractères observé, attendu title de 30 à 60 caractères."
     },
     {
+      "id": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html-title-length",
+      "file": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "78 caractères",
+      "reason": "Échec : 78 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
       "id": "blog/assurance-colocation-etudiante/index.html-title-length",
       "file": "blog/assurance-colocation-etudiante/index.html",
       "category": "title",
@@ -2110,6 +2215,30 @@
       "reason": "Échec : 87 caractères observé, attendu title de 30 à 60 caractères."
     },
     {
+      "id": "blog/assurance-location-saisonniere-airbnb/index.html-title-length",
+      "file": "blog/assurance-location-saisonniere-airbnb/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "71 caractères",
+      "reason": "Échec : 71 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-location-saisonniere-airbnb/index.html-meta-description",
+      "file": "blog/assurance-location-saisonniere-airbnb/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "185 caractères",
+      "reason": "Échec : 185 caractères observé, attendu meta description de 70 à 160 caractères."
+    },
+    {
       "id": "blog/assurance-logement-non-conventionnel/index.html-title-length",
       "file": "blog/assurance-logement-non-conventionnel/index.html",
       "category": "title",
@@ -2242,6 +2371,18 @@
       "reason": "Échec : 74 caractères observé, attendu title de 30 à 60 caractères."
     },
     {
+      "id": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html-title-length",
+      "file": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "89 caractères",
+      "reason": "Échec : 89 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
       "id": "blog/assurance-retraite-expatrie-france/index.html-title-length",
       "file": "blog/assurance-retraite-expatrie-france/index.html",
       "category": "title",
@@ -2324,6 +2465,18 @@
       "expected": "title de 30 à 60 caractères",
       "actual": "74 caractères",
       "reason": "Échec : 74 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html-title-length",
+      "file": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "95 caractères",
+      "reason": "Échec : 95 caractères observé, attendu title de 30 à 60 caractères."
     },
     {
       "id": "blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026/index.html-title-length",
@@ -2530,6 +2683,18 @@
       "reason": "Échec : 65 caractères observé, attendu title de 30 à 60 caractères."
     },
     {
+      "id": "blog/delai-carence-assurance-auto/index.html-title-length",
+      "file": "blog/delai-carence-assurance-auto/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "73 caractères",
+      "reason": "Échec : 73 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
       "id": "blog/demenagement-prevenir-assureur-couverture/index.html-title-length",
       "file": "blog/demenagement-prevenir-assureur-couverture/index.html",
       "category": "title",
@@ -2552,6 +2717,18 @@
       "expected": "title de 30 à 60 caractères",
       "actual": "74 caractères",
       "reason": "Échec : 74 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/disability-insurance-france-expats/index.html-meta-description",
+      "file": "blog/disability-insurance-france-expats/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "183 caractères",
+      "reason": "Échec : 183 caractères observé, attendu meta description de 70 à 160 caractères."
     },
     {
       "id": "blog/faq-assurance-emprunteur-changement-2026/index.html-title-length",
@@ -2612,6 +2789,30 @@
       "expected": "title de 30 à 60 caractères",
       "actual": "80 caractères",
       "reason": "Échec : 80 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/health-insurance-nice-expats/index.html-title-length",
+      "file": "blog/health-insurance-nice-expats/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "76 caractères",
+      "reason": "Échec : 76 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/health-insurance-nice-expats/index.html-meta-description",
+      "file": "blog/health-insurance-nice-expats/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "177 caractères",
+      "reason": "Échec : 177 caractères observé, attendu meta description de 70 à 160 caractères."
     },
     {
       "id": "blog/heritage-vehicule-assurer-voiture-deces/index.html-title-length",
@@ -5892,6 +6093,126 @@
       "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
     },
     {
+      "id": "blog/110-chevaux-jeune-conducteur-assurance/index.html-title-length",
+      "file": "blog/110-chevaux-jeune-conducteur-assurance/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "77 caractères",
+      "reason": "Échec : 77 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/110-chevaux-jeune-conducteur-assurance/index.html-meta-description",
+      "file": "blog/110-chevaux-jeune-conducteur-assurance/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "207 caractères",
+      "reason": "Échec : 207 caractères observé, attendu meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/110-chevaux-jeune-conducteur-assurance/index.html-canonical",
+      "file": "blog/110-chevaux-jeune-conducteur-assurance/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/110-chevaux-jeune-conducteur-assurance",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/110-chevaux-jeune-conducteur-assurance observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/110-chevaux-jeune-conducteur-assurance/index.html-robots",
+      "file": "blog/110-chevaux-jeune-conducteur-assurance/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/110-chevaux-jeune-conducteur-assurance/index.html-viewport",
+      "file": "blog/110-chevaux-jeune-conducteur-assurance/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/110-chevaux-jeune-conducteur-assurance/index.html-lang",
+      "file": "blog/110-chevaux-jeune-conducteur-assurance/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/110-chevaux-jeune-conducteur-assurance/index.html-single-h1",
+      "file": "blog/110-chevaux-jeune-conducteur-assurance/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/110-chevaux-jeune-conducteur-assurance/index.html-social-tags",
+      "file": "blog/110-chevaux-jeune-conducteur-assurance/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/110-chevaux-jeune-conducteur-assurance/index.html-jsonld",
+      "file": "blog/110-chevaux-jeune-conducteur-assurance/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/110-chevaux-jeune-conducteur-assurance/index.html-internal-links",
+      "file": "blog/110-chevaux-jeune-conducteur-assurance/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "5 lien(s)",
+      "reason": "Passe : 5 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
       "id": "blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet/index.html-title-length",
       "file": "blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet/index.html",
       "category": "title",
@@ -6370,6 +6691,126 @@
       "expected": "au moins 1 lien interne relatif",
       "actual": "2 lien(s)",
       "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
+      "id": "blog/assurance-alpes-maritimes-guide/index.html-title-length",
+      "file": "blog/assurance-alpes-maritimes-guide/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "89 caractères",
+      "reason": "Échec : 89 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-alpes-maritimes-guide/index.html-meta-description",
+      "file": "blog/assurance-alpes-maritimes-guide/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "205 caractères",
+      "reason": "Échec : 205 caractères observé, attendu meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/assurance-alpes-maritimes-guide/index.html-canonical",
+      "file": "blog/assurance-alpes-maritimes-guide/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/assurance-alpes-maritimes-guide",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/assurance-alpes-maritimes-guide observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/assurance-alpes-maritimes-guide/index.html-robots",
+      "file": "blog/assurance-alpes-maritimes-guide/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/assurance-alpes-maritimes-guide/index.html-viewport",
+      "file": "blog/assurance-alpes-maritimes-guide/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/assurance-alpes-maritimes-guide/index.html-lang",
+      "file": "blog/assurance-alpes-maritimes-guide/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/assurance-alpes-maritimes-guide/index.html-single-h1",
+      "file": "blog/assurance-alpes-maritimes-guide/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/assurance-alpes-maritimes-guide/index.html-social-tags",
+      "file": "blog/assurance-alpes-maritimes-guide/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/assurance-alpes-maritimes-guide/index.html-jsonld",
+      "file": "blog/assurance-alpes-maritimes-guide/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/assurance-alpes-maritimes-guide/index.html-internal-links",
+      "file": "blog/assurance-alpes-maritimes-guide/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "5 lien(s)",
+      "reason": "Passe : 5 lien(s) observé, conforme à au moins 1 lien interne relatif."
     },
     {
       "id": "blog/assurance-alpes-maritimes-votre-guide-ultime-pour-des-garanties-optimisees-et-economiques-en-2026/index.html-title-length",
@@ -9732,6 +10173,126 @@
       "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
     },
     {
+      "id": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html-title-length",
+      "file": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "78 caractères",
+      "reason": "Échec : 78 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html-meta-description",
+      "file": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "150 caractères",
+      "reason": "Passe : 150 caractères observé, conforme à meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html-canonical",
+      "file": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html-robots",
+      "file": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html-viewport",
+      "file": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html-lang",
+      "file": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html-single-h1",
+      "file": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html-social-tags",
+      "file": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html-jsonld",
+      "file": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html-internal-links",
+      "file": "blog/assurance-chien-chat-le-comparatif-2026-ultime-pour-proteger-votre-compagnon/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "2 lien(s)",
+      "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
       "id": "blog/assurance-colocation-contrat-unique-ou-individuel/index.html-title-length",
       "file": "blog/assurance-colocation-contrat-unique-ou-individuel/index.html",
       "category": "title",
@@ -12732,6 +13293,126 @@
       "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
     },
     {
+      "id": "blog/assurance-location-saisonniere-airbnb/index.html-title-length",
+      "file": "blog/assurance-location-saisonniere-airbnb/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "71 caractères",
+      "reason": "Échec : 71 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-location-saisonniere-airbnb/index.html-meta-description",
+      "file": "blog/assurance-location-saisonniere-airbnb/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "185 caractères",
+      "reason": "Échec : 185 caractères observé, attendu meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/assurance-location-saisonniere-airbnb/index.html-canonical",
+      "file": "blog/assurance-location-saisonniere-airbnb/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/assurance-location-saisonniere-airbnb",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/assurance-location-saisonniere-airbnb observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/assurance-location-saisonniere-airbnb/index.html-robots",
+      "file": "blog/assurance-location-saisonniere-airbnb/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/assurance-location-saisonniere-airbnb/index.html-viewport",
+      "file": "blog/assurance-location-saisonniere-airbnb/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/assurance-location-saisonniere-airbnb/index.html-lang",
+      "file": "blog/assurance-location-saisonniere-airbnb/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/assurance-location-saisonniere-airbnb/index.html-single-h1",
+      "file": "blog/assurance-location-saisonniere-airbnb/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/assurance-location-saisonniere-airbnb/index.html-social-tags",
+      "file": "blog/assurance-location-saisonniere-airbnb/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/assurance-location-saisonniere-airbnb/index.html-jsonld",
+      "file": "blog/assurance-location-saisonniere-airbnb/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/assurance-location-saisonniere-airbnb/index.html-internal-links",
+      "file": "blog/assurance-location-saisonniere-airbnb/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "5 lien(s)",
+      "reason": "Passe : 5 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
       "id": "blog/assurance-logement-non-conventionnel/index.html-title-length",
       "file": "blog/assurance-logement-non-conventionnel/index.html",
       "category": "title",
@@ -14292,6 +14973,126 @@
       "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
     },
     {
+      "id": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html-title-length",
+      "file": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "89 caractères",
+      "reason": "Échec : 89 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html-meta-description",
+      "file": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "150 caractères",
+      "reason": "Passe : 150 caractères observé, conforme à meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html-canonical",
+      "file": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026 observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html-robots",
+      "file": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html-viewport",
+      "file": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html-lang",
+      "file": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html-single-h1",
+      "file": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html-social-tags",
+      "file": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html-jsonld",
+      "file": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html-internal-links",
+      "file": "blog/assurance-responsabilite-civile-professionnelle-auto-entrepreneur-le-guide-complet-2026/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "2 lien(s)",
+      "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
       "id": "blog/assurance-retraite-expatrie-france/index.html-title-length",
       "file": "blog/assurance-retraite-expatrie-france/index.html",
       "category": "title",
@@ -15242,6 +16043,126 @@
     {
       "id": "blog/assurance-trottinette-vol-garantie-2026/index.html-internal-links",
       "file": "blog/assurance-trottinette-vol-garantie-2026/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "2 lien(s)",
+      "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
+      "id": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html-title-length",
+      "file": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "95 caractères",
+      "reason": "Échec : 95 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html-meta-description",
+      "file": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "150 caractères",
+      "reason": "Passe : 150 caractères observé, conforme à meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html-canonical",
+      "file": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html-robots",
+      "file": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html-viewport",
+      "file": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html-lang",
+      "file": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html-single-h1",
+      "file": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html-social-tags",
+      "file": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html-jsonld",
+      "file": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html-internal-links",
+      "file": "blog/assurance-vie-fiscalite-succession-2026-le-guide-ultime-pour-optimiser-votre-patrimoine/index.html",
       "category": "internal-linking",
       "description": "La page contient des liens internes crawlables",
       "pass": true,
@@ -18132,6 +19053,126 @@
       "reason": "Passe : 2 lien(s) observé, conforme à au moins 1 lien interne relatif."
     },
     {
+      "id": "blog/delai-carence-assurance-auto/index.html-title-length",
+      "file": "blog/delai-carence-assurance-auto/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "73 caractères",
+      "reason": "Échec : 73 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/delai-carence-assurance-auto/index.html-meta-description",
+      "file": "blog/delai-carence-assurance-auto/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "158 caractères",
+      "reason": "Passe : 158 caractères observé, conforme à meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/delai-carence-assurance-auto/index.html-canonical",
+      "file": "blog/delai-carence-assurance-auto/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/delai-carence-assurance-auto",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/delai-carence-assurance-auto observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/delai-carence-assurance-auto/index.html-robots",
+      "file": "blog/delai-carence-assurance-auto/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/delai-carence-assurance-auto/index.html-viewport",
+      "file": "blog/delai-carence-assurance-auto/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/delai-carence-assurance-auto/index.html-lang",
+      "file": "blog/delai-carence-assurance-auto/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/delai-carence-assurance-auto/index.html-single-h1",
+      "file": "blog/delai-carence-assurance-auto/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/delai-carence-assurance-auto/index.html-social-tags",
+      "file": "blog/delai-carence-assurance-auto/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/delai-carence-assurance-auto/index.html-jsonld",
+      "file": "blog/delai-carence-assurance-auto/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/delai-carence-assurance-auto/index.html-internal-links",
+      "file": "blog/delai-carence-assurance-auto/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "5 lien(s)",
+      "reason": "Passe : 5 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
       "id": "blog/demenagement-prevenir-assureur-couverture/index.html-title-length",
       "file": "blog/demenagement-prevenir-assureur-couverture/index.html",
       "category": "title",
@@ -18370,6 +19411,126 @@
       "expected": "au moins 1 lien interne relatif",
       "actual": "5 lien(s)",
       "reason": "Passe : 5 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
+      "id": "blog/disability-insurance-france-expats/index.html-title-length",
+      "file": "blog/disability-insurance-france-expats/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "50 caractères",
+      "reason": "Passe : 50 caractères observé, conforme à title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/disability-insurance-france-expats/index.html-meta-description",
+      "file": "blog/disability-insurance-france-expats/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "183 caractères",
+      "reason": "Échec : 183 caractères observé, attendu meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/disability-insurance-france-expats/index.html-canonical",
+      "file": "blog/disability-insurance-france-expats/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/disability-insurance-france-expats",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/disability-insurance-france-expats observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/disability-insurance-france-expats/index.html-robots",
+      "file": "blog/disability-insurance-france-expats/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/disability-insurance-france-expats/index.html-viewport",
+      "file": "blog/disability-insurance-france-expats/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/disability-insurance-france-expats/index.html-lang",
+      "file": "blog/disability-insurance-france-expats/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/disability-insurance-france-expats/index.html-single-h1",
+      "file": "blog/disability-insurance-france-expats/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/disability-insurance-france-expats/index.html-social-tags",
+      "file": "blog/disability-insurance-france-expats/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/disability-insurance-france-expats/index.html-jsonld",
+      "file": "blog/disability-insurance-france-expats/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/disability-insurance-france-expats/index.html-internal-links",
+      "file": "blog/disability-insurance-france-expats/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "3 lien(s)",
+      "reason": "Passe : 3 lien(s) observé, conforme à au moins 1 lien interne relatif."
     },
     {
       "id": "blog/droits-des-assures-2026/index.html-title-length",
@@ -19562,6 +20723,126 @@
     {
       "id": "blog/hausse-tarifs-assurance-2026-comment-contrer/index.html-internal-links",
       "file": "blog/hausse-tarifs-assurance-2026-comment-contrer/index.html",
+      "category": "internal-linking",
+      "description": "La page contient des liens internes crawlables",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 lien interne relatif",
+      "actual": "5 lien(s)",
+      "reason": "Passe : 5 lien(s) observé, conforme à au moins 1 lien interne relatif."
+    },
+    {
+      "id": "blog/health-insurance-nice-expats/index.html-title-length",
+      "file": "blog/health-insurance-nice-expats/index.html",
+      "category": "title",
+      "description": "Le title est présent et dans une plage SEO reconnue (30-60 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "title de 30 à 60 caractères",
+      "actual": "76 caractères",
+      "reason": "Échec : 76 caractères observé, attendu title de 30 à 60 caractères."
+    },
+    {
+      "id": "blog/health-insurance-nice-expats/index.html-meta-description",
+      "file": "blog/health-insurance-nice-expats/index.html",
+      "category": "meta-description",
+      "description": "La meta description est présente et concise (70-160 caractères)",
+      "pass": false,
+      "weight": 15,
+      "impact": 15,
+      "expected": "meta description de 70 à 160 caractères",
+      "actual": "177 caractères",
+      "reason": "Échec : 177 caractères observé, attendu meta description de 70 à 160 caractères."
+    },
+    {
+      "id": "blog/health-insurance-nice-expats/index.html-canonical",
+      "file": "blog/health-insurance-nice-expats/index.html",
+      "category": "canonical",
+      "description": "Une canonical absolue est présente",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "canonical absolue commençant par https://www.jemassuremoinscher.fr",
+      "actual": "https://www.jemassuremoinscher.fr/blog/health-insurance-nice-expats",
+      "reason": "Passe : https://www.jemassuremoinscher.fr/blog/health-insurance-nice-expats observé, conforme à canonical absolue commençant par https://www.jemassuremoinscher.fr."
+    },
+    {
+      "id": "blog/health-insurance-nice-expats/index.html-robots",
+      "file": "blog/health-insurance-nice-expats/index.html",
+      "category": "robots",
+      "description": "La meta robots autorise bien l'indexation",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta robots contenant index, follow",
+      "actual": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+      "reason": "Passe : index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1 observé, conforme à meta robots contenant index, follow."
+    },
+    {
+      "id": "blog/health-insurance-nice-expats/index.html-viewport",
+      "file": "blog/health-insurance-nice-expats/index.html",
+      "category": "mobile",
+      "description": "La viewport mobile est déclarée",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "meta viewport avec width=device-width",
+      "actual": "width=device-width, initial-scale=1.0",
+      "reason": "Passe : width=device-width, initial-scale=1.0 observé, conforme à meta viewport avec width=device-width."
+    },
+    {
+      "id": "blog/health-insurance-nice-expats/index.html-lang",
+      "file": "blog/health-insurance-nice-expats/index.html",
+      "category": "language",
+      "description": "La langue du document est définie",
+      "pass": true,
+      "weight": 5,
+      "impact": 5,
+      "expected": "attribut lang sur <html>",
+      "actual": "fr",
+      "reason": "Passe : fr observé, conforme à attribut lang sur <html>."
+    },
+    {
+      "id": "blog/health-insurance-nice-expats/index.html-single-h1",
+      "file": "blog/health-insurance-nice-expats/index.html",
+      "category": "headings",
+      "description": "La page contient exactement un H1 dans le shell principal",
+      "pass": true,
+      "weight": 15,
+      "impact": 15,
+      "expected": "1 H1 dans #root",
+      "actual": "1 H1",
+      "reason": "Passe : 1 H1 observé, conforme à 1 H1 dans #root."
+    },
+    {
+      "id": "blog/health-insurance-nice-expats/index.html-social-tags",
+      "file": "blog/health-insurance-nice-expats/index.html",
+      "category": "social",
+      "description": "Les balises Open Graph principales sont présentes",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "og:title et og:description",
+      "actual": "og:title=true, og:description=true",
+      "reason": "Passe : og:title=true, og:description=true observé, conforme à og:title et og:description."
+    },
+    {
+      "id": "blog/health-insurance-nice-expats/index.html-jsonld",
+      "file": "blog/health-insurance-nice-expats/index.html",
+      "category": "structured-data",
+      "description": "La page expose au moins un bloc JSON-LD",
+      "pass": true,
+      "weight": 10,
+      "impact": 10,
+      "expected": "au moins 1 script application/ld+json",
+      "actual": "2 bloc(s)",
+      "reason": "Passe : 2 bloc(s) observé, conforme à au moins 1 script application/ld+json."
+    },
+    {
+      "id": "blog/health-insurance-nice-expats/index.html-internal-links",
+      "file": "blog/health-insurance-nice-expats/index.html",
       "category": "internal-linking",
       "description": "La page contient des liens internes crawlables",
       "pass": true,

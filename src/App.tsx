@@ -26,6 +26,17 @@ const Index = lazy(() => import("./pages/Index"));
 const MerciGuide = lazy(() => import("./pages/MerciGuide"));
 const Auth = lazy(() => import("./pages/Auth"));
 const Admin = lazy(() => import("./pages/Admin"));
+const CrmLayout = lazy(() => import("./pages/crm/CrmLayout"));
+const CrmKanban = lazy(() => import("./pages/crm/CrmKanban"));
+const CrmDashboard = lazy(() => import("./pages/crm/CrmDashboard"));
+const CrmPlaceholder = lazy(() => import("./pages/crm/CrmPlaceholder"));
+const ContactsPage = lazy(() => import("./pages/crm/ContactsPage"));
+const GedPage = lazy(() => import("./pages/crm/GedPage"));
+const FinancePage = lazy(() => import("./pages/crm/FinancePage"));
+const MarketingPage = lazy(() => import("./pages/crm/MarketingPage"));
+const RgpdPage = lazy(() => import("./pages/crm/RgpdPage"));
+const TrashPage = lazy(() => import("./pages/crm/TrashPage"));
+const ImportPage = lazy(() => import("./pages/crm/ImportPage"));
 const Commercial = lazy(() => import("./pages/Commercial"));
 const LandingAds = lazy(() => import("./pages/LandingAds"));
 const LandingAuto = lazy(() => import("./pages/landing/LandingAuto"));
@@ -122,6 +133,7 @@ const Merci = lazy(() => import("./pages/Merci"));
 const LlmsTxt = lazy(() => import("./pages/LlmsTxt"));
 const CalculateurBonusMalus = lazy(() => import("./pages/outils/CalculateurBonusMalus"));
 const RegionalInsurancePage = lazy(() => import("./pages/regional/RegionalInsurancePage"));
+const CityInsurancePage = lazy(() => import("./pages/regional/CityInsurancePage"));
 const DuelPage = lazy(() => import("./pages/comparatif/DuelPage"));
 const NicheProfilePage = lazy(() => import("./pages/profil/NicheProfilePage"));
 
@@ -209,7 +221,18 @@ const App = () => {
                 <Route path="/" element={<Index />} />
                 <Route path="/merci-guide" element={<MerciGuide />} />
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
-                <Route path="/admin" element={<AuthRoute><Admin /></AuthRoute>} />
+                <Route path="/admin" element={<AuthRoute><CrmLayout /></AuthRoute>}>
+                  <Route index element={<CrmKanban />} />
+                  <Route path="contacts" element={<ContactsPage />} />
+                  <Route path="documents" element={<GedPage />} />
+                  <Route path="dashboard" element={<CrmDashboard />} />
+                  <Route path="finance" element={<FinancePage />} />
+                  <Route path="marketing" element={<MarketingPage />} />
+                  <Route path="rgpd" element={<RgpdPage />} />
+                  <Route path="trash" element={<TrashPage />} />
+                  <Route path="import" element={<ImportPage />} />
+                </Route>
+                <Route path="/admin/legacy" element={<AuthRoute><Admin /></AuthRoute>} />
                 <Route path="/commercial" element={<AuthRoute><Commercial /></AuthRoute>} />
                 <Route path="/landing/assurance" element={<LandingAds />} />
                 <Route path="/landing/auto" element={<LandingAuto />} />
@@ -258,6 +281,7 @@ const App = () => {
                 <Route path="/assurance-trottinette-electrique" element={<AssuranceTrottinetteElectrique />} />
                 <Route path="/assurance-auto-permis-etranger" element={<AssuranceAutoPermisEtranger />} />
                 <Route path="/assurance-emprunteur" element={<AssuranceEmprunteurSEO />} />
+                <Route path="/assurance-auto/ville/:slug" element={<CityInsurancePage />} />
                 <Route path="/assurance-auto/:department" element={<RegionalInsurancePage />} />
                 <Route path="/assurance-auto" element={<AssuranceAuto />} />
                 <Route path="/assurance-trottinette" element={<AssuranceTrottinette />} />
@@ -322,6 +346,8 @@ const App = () => {
                 <Route path="/blog/loi-lemoine-2025" element={<Navigate to="/blog/loi-lemoine-2026" replace />} />
                 <Route path="/blog/meilleure-assurance-auto-2025" element={<Navigate to="/blog/meilleure-assurance-auto-2026" replace />} />
                 <Route path="/blog/meilleure-assurance-auto-2025-comparatif" element={<Navigate to="/blog/meilleure-assurance-auto-2026-comparatif" replace />} />
+                <Route path="/blog/meilleure-assurance-auto-2026" element={<Navigate to="/blog/meilleure-assurance-auto-2026-comparatif" replace />} />
+                <Route path="/blog/meilleure-assurance-auto-2026-definition-garanties-et-conseils-2026" element={<Navigate to="/blog/meilleure-assurance-auto-2026-comparatif" replace />} />
                 <Route path="/blog/nouvelle-reglementation-assurance-2025" element={<Navigate to="/blog/nouvelle-reglementation-assurance-2026" replace />} />
                 <Route path="/blog/top-10-meilleures-mutuelles-sante-2025" element={<Navigate to="/blog/top-10-meilleures-mutuelles-sante-2026" replace />} />
                 <Route path="/blog/top-mutuelles-sante-2025" element={<Navigate to="/blog/top-mutuelles-sante-2026" replace />} />
