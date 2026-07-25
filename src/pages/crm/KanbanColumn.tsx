@@ -10,12 +10,14 @@ export function KanbanColumn({
   onOpen,
   agents,
   onAssigned,
+  overdueDealIds,
 }: {
   stage: (typeof STAGES)[number];
   deals: DealRow[];
   onOpen: (d: DealRow) => void;
   agents?: AgentOption[];
   onAssigned?: () => void;
+  overdueDealIds?: Set<string>;
 }) {
   const { setNodeRef, isOver } = useDroppable({ id: stage.id });
   const total = deals.reduce((s, d) => s + (d.estimated_commission ?? 0), 0);
@@ -53,7 +55,14 @@ export function KanbanColumn({
           strategy={verticalListSortingStrategy}
         >
           {deals.map((d) => (
-            <DealCard key={d.id} deal={d} onOpen={onOpen} agents={agents} onAssigned={onAssigned} />
+            <DealCard
+              key={d.id}
+              deal={d}
+              onOpen={onOpen}
+              agents={agents}
+              onAssigned={onAssigned}
+              overdue={overdueDealIds?.has(d.id)}
+            />
           ))}
         </SortableContext>
         {deals.length === 0 && (

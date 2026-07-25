@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import {
   DndContext,
   DragOverlay,
@@ -16,6 +17,8 @@ import { KanbanColumn } from "./KanbanColumn";
 import { DealCard } from "./DealCard";
 import { DealDrawer } from "./DealDrawer";
 import { NewDealDialog } from "./NewDealDialog";
+import { TasksWidget } from "@/components/admin/crm/TasksWidget";
+import { fetchOverdueDealIds } from "@/lib/crmApi";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 
@@ -33,6 +36,13 @@ export default function CrmKanban() {
   const [openDeal, setOpenDeal] = useState<DealRow | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [newOpen, setNewOpen] = useState(false);
+
+  // Une seule requête agrégée pour tous les deals affichés (jamais une requête par carte).
+  const { data: overdueDealIds } = useQuery({
+    queryKey: ["deal-tasks-overdue"],
+    queryFn: fetchOverdueDealIds,
+    refetchInterval: 60000,
+  });
 
   // Global filters (seed from URL so dashboard links can preselect)
   const [agentFilter, setAgentFilter] = useState<string>(searchParams.get("agent") ?? "all");
@@ -161,6 +171,12 @@ export default function CrmKanban() {
     setDrawerOpen(true);
   };
 
+  const navigateToDeal = (dealId: string) => {
+    const target = deals.find((d) => d.id === dealId);
+    if (target) openDrawer(target);
+    else toast.error("Ce deal n'est plus disponible (déplacé ou supprimé)");
+  };
+
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
       <div className="flex items-center justify-between px-6 pt-6 pb-4">
@@ -215,6 +231,10 @@ export default function CrmKanban() {
         )}
       </div>
 
+      <div className="px-6 pt-4">
+        <TasksWidget onNavigateToDeal={navigateToDeal} />
+      </div>
+
       <div className="relative flex-1 overflow-x-auto">
         <DndContext
           sensors={sensors}
@@ -230,6 +250,7 @@ export default function CrmKanban() {
                 onOpen={openDrawer}
                 agents={agents}
                 onAssigned={load}
+                overdueDealIds={overdueDealIds}
               />
             ))}
           </div>

@@ -1,26 +1,8 @@
-// Types pour lead_activities et lead_tasks.
-// Ces deux tables existent déjà en base mais ne sont pas encore présentes dans
-// src/integrations/supabase/types.ts (auto-généré). Voir src/lib/crmApi.ts pour
-// le point de contact unique avec Supabase.
-
-export type LeadType = 'quote' | 'callback';
-
-export type ActivityType =
-  | 'note'
-  | 'call'
-  | 'email'
-  | 'sms'
-  | 'meeting'
-  | 'status_change'
-  | 'assignment'
-  | 'task_completed'
-  | 'system';
-
-// Activités posées automatiquement par un trigger base de données — jamais par le front.
-export const AUTOMATIC_ACTIVITY_TYPES: ReadonlySet<ActivityType> = new Set([
-  'status_change',
-  'assignment',
-]);
+// Types pour `activities` et `deal_tasks`.
+// Ces deux tables existent en base mais sont absentes de
+// src/integrations/supabase/types.ts (généré et périmé — ne pas s'y fier pour
+// savoir ce qui existe réellement). Voir src/lib/crmApi.ts pour le point de
+// contact unique avec Supabase pour ces tables.
 
 export type CallOutcome = 'answered' | 'no_answer' | 'callback_requested';
 
@@ -34,41 +16,43 @@ export interface AdviceActivityMetadata {
   recommendation: string;
 }
 
-export type LeadActivityMetadata =
+export type ActivityMetadata =
   | CallActivityMetadata
   | AdviceActivityMetadata
   | Record<string, unknown>
   | null;
 
-export interface LeadActivity {
+// action_type n'est pas une colonne enum côté base (texte libre) : le code existant
+// (ex. la GED dans DealDrawer.tsx) y écrit déjà des valeurs comme
+// "document_validated" / "document_linked" en dehors de celles composées ici.
+export interface Activity {
   id: string;
-  lead_type: LeadType;
-  lead_id: string;
-  activity_type: ActivityType;
-  content: string | null;
-  metadata: LeadActivityMetadata;
-  created_by: string | null;
-  author_name: string | null;
+  deal_id: string;
+  author_id: string | null;
+  action_type: string;
+  description: string | null;
+  metadata: ActivityMetadata;
   created_at: string;
 }
 
-export interface LeadActivityInsert {
-  lead_type: LeadType;
-  lead_id: string;
-  activity_type: ActivityType;
-  content?: string | null;
-  metadata?: LeadActivityMetadata;
-  created_by?: string | null;
-  author_name?: string | null;
+// Types d'activité composables depuis ActivityComposer (note/call/email → tel quel,
+// "Conseil délivré" → meeting avec metadata.kind = 'advice').
+export type ComposableActionType = 'note' | 'call' | 'email' | 'meeting';
+
+export interface ActivityInsert {
+  deal_id: string;
+  action_type: string;
+  description?: string | null;
+  metadata?: ActivityMetadata;
+  author_id?: string | null;
 }
 
 export type TaskPriority = 'low' | 'normal' | 'high' | 'urgent';
 export type TaskStatus = 'open' | 'done' | 'cancelled';
 
-export interface LeadTask {
+export interface DealTask {
   id: string;
-  lead_type: LeadType;
-  lead_id: string;
+  deal_id: string;
   title: string;
   description: string | null;
   due_at: string | null;
@@ -81,9 +65,8 @@ export interface LeadTask {
   updated_at: string;
 }
 
-export interface LeadTaskInsert {
-  lead_type: LeadType;
-  lead_id: string;
+export interface DealTaskInsert {
+  deal_id: string;
   title: string;
   description?: string | null;
   due_at?: string | null;
@@ -91,10 +74,4 @@ export interface LeadTaskInsert {
   status?: TaskStatus;
   assigned_to?: string | null;
   created_by?: string | null;
-}
-
-// Identité minimale nécessaire pour relier une tâche/activité à sa fiche lead.
-export interface LeadRef {
-  leadType: LeadType;
-  leadId: string;
 }

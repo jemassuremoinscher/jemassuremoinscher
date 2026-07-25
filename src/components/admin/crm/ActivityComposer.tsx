@@ -1,17 +1,16 @@
 import { useState } from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { StickyNote, Phone, Mail, GraduationCap, Send } from 'lucide-react';
 import { toast } from 'sonner';
-import { createLeadActivity, resolveCurrentAgent } from '@/lib/crmApi';
-import type { ActivityType, CallOutcome, LeadType } from '@/types/crm';
+import { createActivity, resolveCurrentAgentRef } from '@/lib/crmApi';
+import type { CallOutcome, ComposableActionType } from '@/types/crm';
 
 interface ActivityComposerProps {
-  leadType: LeadType;
-  leadId: string;
+  dealId: string;
   onCreated: () => void;
 }
 
@@ -30,20 +29,12 @@ const CALL_OUTCOME_OPTIONS: { value: CallOutcome; label: string }[] = [
   { value: 'callback_requested', label: 'Rappel demandé' },
 ];
 
-export const ActivityComposer = ({ leadType, leadId, onCreated }: ActivityComposerProps) => {
+export const ActivityComposer = ({ dealId, onCreated }: ActivityComposerProps) => {
   const [action, setAction] = useState<QuickAction>('note');
   const [content, setContent] = useState('');
   const [callOutcome, setCallOutcome] = useState<CallOutcome>('answered');
   const [adviceNeed, setAdviceNeed] = useState('');
   const [adviceRecommendation, setAdviceRecommendation] = useState('');
-
-  // Récupérée une seule fois par session (staleTime: Infinity) puis réutilisée pour
-  // toutes les activités ajoutées depuis ce poste : created_by / author_name.
-  const { data: agent } = useQuery({
-    queryKey: ['current-agent'],
-    queryFn: resolveCurrentAgent,
-    staleTime: Infinity,
-  });
 
   const resetForm = () => {
     setContent('');
@@ -54,35 +45,33 @@ export const ActivityComposer = ({ leadType, leadId, onCreated }: ActivityCompos
 
   const mutation = useMutation({
     mutationFn: async () => {
-      const base = {
-        lead_type: leadType,
-        lead_id: leadId,
-        created_by: agent?.userId ?? null,
-        author_name: agent?.fullName ?? null,
-      };
+      const agent = await resolveCurrentAgentRef();
+      if (!agent) throw new Error('Utilisateur non authentifié');
+
+      const base = { deal_id: dealId, author_id: agent.userId };
 
       if (action === 'call') {
-        return createLeadActivity({
+        return createActivity({
           ...base,
-          activity_type: 'call' as ActivityType,
-          content: content || null,
+          action_type: 'call' satisfies ComposableActionType,
+          description: content || null,
           metadata: { outcome: callOutcome },
         });
       }
 
       if (action === 'advice') {
-        return createLeadActivity({
+        return createActivity({
           ...base,
-          activity_type: 'meeting' as ActivityType,
-          content: null,
+          action_type: 'meeting' satisfies ComposableActionType,
+          description: null,
           metadata: { kind: 'advice', need: adviceNeed, recommendation: adviceRecommendation },
         });
       }
 
-      return createLeadActivity({
+      return createActivity({
         ...base,
-        activity_type: action as ActivityType, // 'note' | 'email'
-        content: content || null,
+        action_type: action satisfies ComposableActionType, // 'note' | 'email'
+        description: content || null,
       });
     },
     onSuccess: () => {

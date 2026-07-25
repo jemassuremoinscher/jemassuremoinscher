@@ -9,12 +9,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { CalendarClock } from 'lucide-react';
-import { createLeadTask, resolveCurrentAgent } from '@/lib/crmApi';
-import type { LeadType, TaskPriority } from '@/types/crm';
+import { createDealTask, resolveCurrentAgentRef } from '@/lib/crmApi';
+import type { TaskPriority } from '@/types/crm';
 
 interface ScheduleTaskDialogProps {
-  leadType: LeadType;
-  leadId: string;
+  dealId: string;
   onCreated: () => void;
 }
 
@@ -27,7 +26,7 @@ const PRIORITY_OPTIONS: { value: TaskPriority; label: string }[] = [
   { value: 'urgent', label: 'Urgente' },
 ];
 
-export const ScheduleTaskDialog = ({ leadType, leadId, onCreated }: ScheduleTaskDialogProps) => {
+export const ScheduleTaskDialog = ({ dealId, onCreated }: ScheduleTaskDialogProps) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('Rappeler le client');
   const [dueAt, setDueAt] = useState(defaultDueAt());
@@ -63,10 +62,9 @@ export const ScheduleTaskDialog = ({ leadType, leadId, onCreated }: ScheduleTask
 
     setSubmitting(true);
     try {
-      const agent = await resolveCurrentAgent();
-      await createLeadTask({
-        lead_type: leadType,
-        lead_id: leadId,
+      const agent = await resolveCurrentAgentRef();
+      await createDealTask({
+        deal_id: dealId,
         title: title.trim(),
         due_at: dueAt ? new Date(dueAt).toISOString() : null,
         priority,

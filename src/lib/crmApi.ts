@@ -1,97 +1,105 @@
 import { supabase } from '@/integrations/supabase/client';
 import type {
-  LeadActivity,
-  LeadActivityInsert,
-  LeadTask,
-  LeadTaskInsert,
-  LeadRef,
-  LeadType,
+  Activity,
+  ActivityInsert,
+  DealTask,
+  DealTaskInsert,
 } from '@/types/crm';
 
-// lead_activities et lead_tasks existent déjà en base (voir migrations Supabase)
-// mais ne figurent pas dans src/integrations/supabase/types.ts, qui est régénéré
-// automatiquement depuis le schéma et ne doit pas être édité à la main.
-// `crmFrom` est le seul endroit du projet où l'on sort du typage généré : chaque
-// fonction exportée ci-dessous retype explicitement ce qu'elle renvoie, donc ce
-// `any` reste confiné à cette ligne et ne se propage jamais vers les composants.
+// `activities` et `deal_tasks` existent déjà en base mais ne figurent pas dans
+// src/integrations/supabase/types.ts, qui est régénéré automatiquement depuis le
+// schéma et ne doit pas être édité à la main (et n'est pas fiable pour savoir ce
+// qui existe réellement — cf. `profiles`, aussi absente et pourtant bien réelle).
+// `crmFrom` est le seul endroit du projet où l'on sort du typage généré pour ces
+// deux tables : chaque fonction exportée ci-dessous retype explicitement ce
+// qu'elle renvoie, donc ce `any` reste confiné à cette ligne.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const crmFrom = (table: 'lead_activities' | 'lead_tasks'): any => supabase.from(table as any);
+const crmFrom = (table: 'activities' | 'deal_tasks'): any => supabase.from(table as any);
 
-export const leadKey = (leadType: LeadType, leadId: string) => `${leadType}:${leadId}`;
+// Même confinement pour `profiles` (id, email, full_name, is_active, created_at,
+// updated_at) : réelle en base, absente du schéma généré.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const profilesFrom = (): any => supabase.from('profiles' as any);
 
 // ---------------------------------------------------------------------------
 // Activités (registre de preuve DDA — lecture seule une fois créées)
 // ---------------------------------------------------------------------------
 
-export async function fetchLeadActivities(leadType: LeadType, leadId: string): Promise<LeadActivity[]> {
-  const { data, error } = await crmFrom('lead_activities')
+export async function fetchDealActivities(dealId: string): Promise<Activity[]> {
+  const { data, error } = await crmFrom('activities')
     .select('*')
-    .eq('lead_type', leadType)
-    .eq('lead_id', leadId)
+    .eq('deal_id', dealId)
     .order('created_at', { ascending: false });
 
   if (error) throw error;
-  return (data ?? []) as LeadActivity[];
+  return (data ?? []) as Activity[];
 }
 
-export async function createLeadActivity(payload: LeadActivityInsert): Promise<LeadActivity> {
-  const { data, error } = await crmFrom('lead_activities')
+export async function createActivity(payload: ActivityInsert): Promise<Activity> {
+  const { data, error } = await crmFrom('activities')
     .insert(payload)
     .select('*')
     .single();
 
   if (error) throw error;
-  return data as LeadActivity;
+  return data as Activity;
+}
+
+// Résout un lot d'author_id (auth.uid()) en noms affichables, en une requête par
+// table plutôt qu'une par activité : d'abord sales_agents.full_name (via
+// user_id), puis profiles.full_name/email pour ce qui reste non résolu.
+export async function resolveAuthorNames(authorIds: string[]): Promise<Map<string, string>> {
+  const uniqueIds = Array.from(new Set(authorIds));
+  const names = new Map<string, string>();
+  if (uniqueIds.length === 0) return names;
+
+  const { data: agentRows, error: agentError } = await supabase
+    .from('sales_agents')
+    .select('user_id, full_name')
+    .in('user_id', uniqueIds);
+
+  if (agentError) throw agentError;
+  (agentRows ?? []).forEach((row) => {
+    if (row.user_id) names.set(row.user_id, row.full_name);
+  });
+
+  const stillUnresolved = uniqueIds.filter((id) => !names.has(id));
+  if (stillUnresolved.length > 0) {
+    const { data: profileRows, error: profileError } = await profilesFrom()
+      .select('id, full_name, email')
+      .in('id', stillUnresolved);
+
+    if (profileError) throw profileError;
+    (profileRows ?? []).forEach((row: { id: string; full_name: string | null; email: string | null }) => {
+      names.set(row.id, row.full_name || row.email || 'Utilisateur');
+    });
+  }
+
+  return names;
 }
 
 // ---------------------------------------------------------------------------
-// Identité de l'agent courant (pour created_by / author_name)
+// Identité de l'agent courant (pour author_id / created_by / filtrage "mes tâches")
 // ---------------------------------------------------------------------------
 
-export interface CurrentAgent {
-  id: string;
-  fullName: string;
+export interface CurrentAgentRef {
   userId: string;
+  agentId: string | null; // sales_agents.id, si une fiche existe pour cet utilisateur
 }
 
-// `profiles` existe en base (id, email, full_name, is_active, created_at, updated_at)
-// mais, comme lead_activities/lead_tasks, n'est pas dans le schéma auto-généré :
-// même point de confinement que crmFrom, aucun `any` ne sort de cette fonction.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const profilesFrom = (): any => supabase.from('profiles' as any);
-
-// Ordre de résolution du nom affiché comme auteur : fiche commerciale d'abord
-// (nom métier), puis profil utilisateur, puis email en dernier recours.
-export async function resolveCurrentAgent(): Promise<CurrentAgent | null> {
+export async function resolveCurrentAgentRef(): Promise<CurrentAgentRef | null> {
   const { data: userData, error: userError } = await supabase.auth.getUser();
   if (userError || !userData.user) return null;
 
   const { data: agent, error: agentError } = await supabase
     .from('sales_agents')
-    .select('id, full_name, user_id')
+    .select('id')
     .eq('user_id', userData.user.id)
     .maybeSingle();
 
   if (agentError) throw agentError;
 
-  let fullName = agent?.full_name || null;
-
-  if (!fullName) {
-    const { data: profile, error: profileError } = await profilesFrom()
-      .select('full_name, email')
-      .eq('id', userData.user.id)
-      .maybeSingle();
-
-    if (profileError) throw profileError;
-
-    fullName = (profile?.full_name as string | undefined) || (profile?.email as string | undefined) || null;
-  }
-
-  return {
-    id: agent?.id ?? userData.user.id,
-    fullName: fullName || userData.user.email || 'Utilisateur',
-    userId: userData.user.id,
-  };
+  return { userId: userData.user.id, agentId: agent?.id ?? null };
 }
 
 // ---------------------------------------------------------------------------
@@ -100,11 +108,11 @@ export async function resolveCurrentAgent(): Promise<CurrentAgent | null> {
 
 interface FetchOpenTasksParams {
   scope: 'mine' | 'team';
-  agentId?: string;
+  agentId?: string | null;
 }
 
-export async function fetchOpenLeadTasks({ scope, agentId }: FetchOpenTasksParams): Promise<LeadTask[]> {
-  let query = crmFrom('lead_tasks').select('*').eq('status', 'open').order('due_at', { ascending: true });
+export async function fetchOpenDealTasks({ scope, agentId }: FetchOpenTasksParams): Promise<DealTask[]> {
+  let query = crmFrom('deal_tasks').select('*').eq('status', 'open').order('due_at', { ascending: true });
 
   if (scope === 'mine') {
     if (!agentId) return [];
@@ -113,82 +121,77 @@ export async function fetchOpenLeadTasks({ scope, agentId }: FetchOpenTasksParam
 
   const { data, error } = await query;
   if (error) throw error;
-  return (data ?? []) as LeadTask[];
+  return (data ?? []) as DealTask[];
 }
 
-export async function createLeadTask(payload: LeadTaskInsert): Promise<LeadTask> {
-  const { data, error } = await crmFrom('lead_tasks')
+export async function createDealTask(payload: DealTaskInsert): Promise<DealTask> {
+  const { data, error } = await crmFrom('deal_tasks')
     .insert(payload)
     .select('*')
     .single();
 
   if (error) throw error;
-  return data as LeadTask;
+  return data as DealTask;
 }
 
-// Marque la tâche comme terminée et journalise l'action sur la timeline du lead.
-export async function completeLeadTask(task: LeadTask, agent: CurrentAgent | null): Promise<void> {
+// Marque la tâche comme terminée et journalise l'action sur la timeline du deal.
+export async function completeDealTask(task: DealTask, authorId: string | null): Promise<void> {
   const completedAt = new Date().toISOString();
 
-  const { error: updateError } = await crmFrom('lead_tasks')
+  const { error: updateError } = await crmFrom('deal_tasks')
     .update({ status: 'done', completed_at: completedAt })
     .eq('id', task.id);
 
   if (updateError) throw updateError;
 
-  await createLeadActivity({
-    lead_type: task.lead_type,
-    lead_id: task.lead_id,
-    activity_type: 'task_completed',
-    content: task.title,
-    created_by: agent?.userId ?? null,
-    author_name: agent?.fullName ?? null,
+  await createActivity({
+    deal_id: task.deal_id,
+    action_type: 'task_completed',
+    description: task.title,
+    author_id: authorId,
   });
 }
 
-// Une seule requête agrégée pour signaler les leads ayant une tâche ouverte en retard,
-// à réutiliser pour tous les leads affichés (jamais une requête par carte).
-export async function fetchOverdueLeadKeys(): Promise<Set<string>> {
-  const { data, error } = await crmFrom('lead_tasks')
-    .select('lead_type, lead_id')
+// Une seule requête agrégée pour signaler les deals ayant une tâche ouverte en
+// retard, à réutiliser pour toutes les cartes du Kanban (jamais une requête par carte).
+export async function fetchOverdueDealIds(): Promise<Set<string>> {
+  const { data, error } = await crmFrom('deal_tasks')
+    .select('deal_id')
     .eq('status', 'open')
     .lt('due_at', new Date().toISOString());
 
   if (error) throw error;
 
-  const keys = new Set<string>();
-  (data ?? []).forEach((row: { lead_type: LeadType; lead_id: string }) => {
-    keys.add(leadKey(row.lead_type, row.lead_id));
-  });
-  return keys;
+  return new Set((data ?? []).map((row: { deal_id: string }) => row.deal_id));
 }
 
 // ---------------------------------------------------------------------------
-// Résolution des noms de leads pour l'affichage des tâches (batch, pas de N+1)
+// Libellés des deals pour l'affichage des tâches (batch, pas de N+1)
 // ---------------------------------------------------------------------------
 
-export async function fetchLeadNames(refs: LeadRef[]): Promise<Map<string, string>> {
-  const quoteIds = refs.filter((r) => r.leadType === 'quote').map((r) => r.leadId);
-  const callbackIds = refs.filter((r) => r.leadType === 'callback').map((r) => r.leadId);
+interface DealLabelRow {
+  id: string;
+  contacts: { full_name: string | null; email: string | null } | { full_name: string | null; email: string | null }[] | null;
+}
 
-  const [quotesResult, callbacksResult] = await Promise.all([
-    quoteIds.length
-      ? supabase.from('insurance_quotes').select('id, full_name').in('id', quoteIds)
-      : Promise.resolve({ data: [], error: null }),
-    callbackIds.length
-      ? supabase.from('contact_callbacks').select('id, full_name').in('id', callbackIds)
-      : Promise.resolve({ data: [], error: null }),
-  ]);
+export async function fetchDealLabels(dealIds: string[]): Promise<Map<string, string>> {
+  const uniqueIds = Array.from(new Set(dealIds));
+  const labels = new Map<string, string>();
+  if (uniqueIds.length === 0) return labels;
 
-  if (quotesResult.error) throw quotesResult.error;
-  if (callbacksResult.error) throw callbacksResult.error;
+  const { data, error } = await supabase
+    .from('deals')
+    .select('id, contacts(full_name, email)')
+    .in('id', uniqueIds);
 
-  const names = new Map<string, string>();
-  (quotesResult.data ?? []).forEach((row: { id: string; full_name: string }) => {
-    names.set(leadKey('quote', row.id), row.full_name);
+  if (error) throw error;
+
+  // Le join `contacts(...)` est typé par Supabase-js comme un tableau potentiel
+  // même en 1:1 ; on normalise ici (même pattern que CrmKanban.tsx / DealDrawer.tsx).
+  (data as unknown as DealLabelRow[] | null ?? []).forEach((row) => {
+    const contact = Array.isArray(row.contacts) ? row.contacts[0] : row.contacts;
+    labels.set(row.id, contact?.full_name || contact?.email || 'Deal');
   });
-  (callbacksResult.data ?? []).forEach((row: { id: string; full_name: string }) => {
-    names.set(leadKey('callback', row.id), row.full_name);
-  });
-  return names;
+
+  return labels;
 }

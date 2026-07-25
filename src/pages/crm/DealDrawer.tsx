@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,6 +12,9 @@ import type { DealRow } from "./types";
 import { STAGES } from "./types";
 import { AuditTimeline } from "./AuditTimeline";
 import { EditDealSection } from "./EditDealSection";
+import { LeadTimeline } from "@/components/admin/crm/LeadTimeline";
+import { ActivityComposer } from "@/components/admin/crm/ActivityComposer";
+import { ScheduleTaskDialog } from "@/components/admin/crm/ScheduleTaskDialog";
 
 const CHECKLISTS: Record<string, string[]> = {
   auto: ["Carte Grise", "Permis de conduire", "Relevé d'Information", "RIB"],
@@ -59,12 +63,6 @@ interface Doc {
   drive_url?: string | null;
   virtual?: boolean;
 }
-interface Activity {
-  id: string;
-  action_type: string;
-  description: string | null;
-  created_at: string;
-}
 
 export function DealDrawer({
   deal,
@@ -75,29 +73,25 @@ export function DealDrawer({
   open: boolean;
   onOpenChange: (v: boolean) => void;
 }) {
+  const queryClient = useQueryClient();
   const [docs, setDocs] = useState<Doc[]>([]);
-  const [activities, setActivities] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [newName, setNewName] = useState("");
   const [newUrl, setNewUrl] = useState("");
 
+  const invalidateActivities = () => {
+    if (deal) queryClient.invalidateQueries({ queryKey: ["deal-activities", deal.id] });
+  };
+
   const refresh = async () => {
     if (!deal) return;
     setLoading(true);
-    const [d, a] = await Promise.all([
-      supabase
-        .from("documents")
-        .select("id,name,status,file_path,drive_url")
-        .eq("deal_id", deal.id),
-      supabase
-        .from("activities")
-        .select("id,action_type,description,created_at")
-        .eq("deal_id", deal.id)
-        .order("created_at", { ascending: false })
-        .limit(20),
-    ]);
-    const dbDocs = (d.data ?? []) as Doc[];
+    const { data } = await supabase
+      .from("documents")
+      .select("id,name,status,file_path,drive_url")
+      .eq("deal_id", deal.id);
+    const dbDocs = (data ?? []) as Doc[];
     const key = deal.insurance_type.toLowerCase();
     const expected = CHECKLISTS[key] ?? [];
     const merged: Doc[] = [
@@ -107,7 +101,6 @@ export function DealDrawer({
         .map((n) => ({ id: `virt-${n}`, name: n, status: "manquant" as const, virtual: true })),
     ];
     setDocs(merged);
-    setActivities((a.data ?? []) as Activity[]);
     setLoading(false);
   };
 
@@ -149,6 +142,7 @@ export function DealDrawer({
         action_type: "document_validated",
         description: doc.name,
       });
+      invalidateActivities();
     }
   };
 
@@ -164,6 +158,7 @@ export function DealDrawer({
         action_type: "document_linked",
         description: `${doc.name} — Drive`,
       });
+      invalidateActivities();
       toast.success("Lien Drive enregistré");
     }
   };
@@ -425,33 +420,18 @@ export function DealDrawer({
           </section>
 
           {/* Timeline */}
-          <section className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-            <h3 className="text-sm font-semibold text-slate-800">Timeline</h3>
-            <ol className="mt-4 space-y-3">
-              <li className="flex gap-3 text-sm">
-                <span className="mt-1 h-2 w-2 rounded-full bg-[#7C3AED]" />
-                <div>
-                  <div className="text-slate-800">Lead créé</div>
-                  <div className="text-[11px] text-slate-400">
-                    {new Date(deal.created_at).toLocaleString("fr-FR")}
-                  </div>
-                </div>
-              </li>
-              {activities.map((a) => (
-                <li key={a.id} className="flex gap-3 text-sm">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-[#C4B5FD]" />
-                  <div>
-                    <div className="text-slate-800">
-                      {a.action_type}
-                      {a.description ? ` — ${a.description}` : ""}
-                    </div>
-                    <div className="text-[11px] text-slate-400">
-                      {new Date(a.created_at).toLocaleString("fr-FR")}
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ol>
+          <section className="rounded-3xl border border-[#E9D5FF] bg-white p-5 space-y-4">
+            <div className="flex items-center justify-end">
+              <ScheduleTaskDialog
+                dealId={deal.id}
+                onCreated={() => {
+                  queryClient.invalidateQueries({ queryKey: ["deal-tasks-open"] });
+                  queryClient.invalidateQueries({ queryKey: ["deal-tasks-overdue"] });
+                }}
+              />
+            </div>
+            <ActivityComposer dealId={deal.id} onCreated={invalidateActivities} />
+            <LeadTimeline dealId={deal.id} />
           </section>
 
           <AuditTimeline dealId={deal.id} />

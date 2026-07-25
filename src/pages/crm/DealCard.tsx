@@ -1,6 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Phone, Mail, Flame, UserCircle2 } from "lucide-react";
+import { Phone, Mail, Flame, UserCircle2, AlertTriangle } from "lucide-react";
 import type { DealRow } from "./types";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -12,11 +12,13 @@ export function DealCard({
   onOpen,
   agents = [],
   onAssigned,
+  overdue = false,
 }: {
   deal: DealRow;
   onOpen: (d: DealRow) => void;
   agents?: AgentOption[];
   onAssigned?: () => void;
+  overdue?: boolean;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: deal.id, data: { deal } });
@@ -61,12 +63,22 @@ export function DealCard({
             {deal.insurance_type}
           </div>
         </div>
-        {hot && (
-          <span className="flex shrink-0 items-center gap-1 rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-semibold text-red-600">
-            <Flame className="h-3 w-3" />
-            {deal.lead_score}
-          </span>
-        )}
+        <div className="flex shrink-0 items-center gap-1.5">
+          {overdue && (
+            <span
+              className="flex items-center gap-1 rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-semibold text-red-600"
+              title="Tâche en retard"
+            >
+              <AlertTriangle className="h-3 w-3" />
+            </span>
+          )}
+          {hot && (
+            <span className="flex items-center gap-1 rounded-full bg-red-50 px-2 py-0.5 text-[10px] font-semibold text-red-600">
+              <Flame className="h-3 w-3" />
+              {deal.lead_score}
+            </span>
+          )}
+        </div>
       </div>
 
       <div className="mt-3 space-y-1 text-xs text-slate-500">
