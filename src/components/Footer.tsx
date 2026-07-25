@@ -170,6 +170,14 @@ const Footer = () => {
                   <Facebook className="h-4 w-4" />
                 </a>
               </nav>
+              <a
+                href="https://g.page/r/CVVFJisN4h4iEAE/review"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-primary-foreground/60 hover:text-accent transition-colors"
+              >
+                {t('footer.leaveGoogleReview')}
+              </a>
             </div>
           </div>
         </div>

@@ -257,6 +257,7 @@ const en: Record<string, string> = {
   'footer.followLinkedIn': 'Follow us on LinkedIn',
   'footer.followFacebook': 'Follow us on Facebook',
   'footer.socialLabel': 'Social networks',
+  'footer.leaveGoogleReview': '★ Leave us a Google review',
   'footer.mascotAlt': 'Arthur, mascot of jemassuremoinscher.fr',
   'whyUs.independentTitle': 'Independent broker',
   'whyUs.independentDesc': 'No capital ties with insurers. We work for you, not for them.',

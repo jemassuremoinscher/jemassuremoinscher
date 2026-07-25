@@ -255,6 +255,7 @@ const fr: Record<string, string> = {
   'footer.followLinkedIn': 'Suivez-nous sur LinkedIn',
   'footer.followFacebook': 'Suivez-nous sur Facebook',
   'footer.socialLabel': 'Réseaux sociaux',
+  'footer.leaveGoogleReview': '★ Donnez votre avis sur Google',
   'footer.mascotAlt': 'Arthur, mascotte de jemassuremoinscher.fr',
   'whyUs.independentTitle': 'Courtier indépendant',
   'whyUs.independentDesc': 'Aucun lien capitalistique avec les assureurs. Nous travaillons pour vous, pas pour eux.',
