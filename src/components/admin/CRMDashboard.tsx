@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
@@ -10,6 +12,10 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { ManualLeadForm } from '@/components/admin/ManualLeadForm';
+import { LeadTimeline } from '@/components/admin/crm/LeadTimeline';
+import { ActivityComposer } from '@/components/admin/crm/ActivityComposer';
+import { ScheduleTaskDialog } from '@/components/admin/crm/ScheduleTaskDialog';
+import { fetchOverdueLeadKeys, leadKey } from '@/lib/crmApi';
 import {
   TrendingUp,
   TrendingDown,
@@ -23,6 +29,7 @@ import {
   Filter,
   ArrowRight,
   CheckCircle2,
+  AlertTriangle,
   Plus,
 } from 'lucide-react';
 import { format } from 'date-fns';
@@ -145,6 +152,14 @@ export const CRMDashboard = () => {
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [filterAgent, setFilterAgent] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'score' | 'date'>('score');
+  const queryClient = useQueryClient();
+
+  // Une seule requête agrégée pour tous les leads affichés (jamais une requête par carte).
+  const { data: overdueLeadKeys } = useQuery({
+    queryKey: ['lead-tasks-overdue'],
+    queryFn: fetchOverdueLeadKeys,
+    refetchInterval: 60000,
+  });
 
   useEffect(() => {
     fetchLeads();
@@ -294,6 +309,17 @@ export const CRMDashboard = () => {
         </Badge>
       </div>
 
+      <div>
+        <ScheduleTaskDialog
+          leadType={lead.type}
+          leadId={lead.id}
+          onCreated={() => {
+            queryClient.invalidateQueries({ queryKey: ['lead-tasks-overdue'] });
+            queryClient.invalidateQueries({ queryKey: ['lead-tasks-open'] });
+          }}
+        />
+      </div>
+
       <div className="grid grid-cols-2 gap-4">
         <div className="flex items-center gap-2">
           <Mail className="h-4 w-4 text-muted-foreground" />
@@ -437,6 +463,17 @@ export const CRMDashboard = () => {
           Dernier contact: {format(new Date(lead.last_contacted_at), 'dd/MM/yyyy à HH:mm', { locale: fr })}
         </div>
       )}
+
+      <Separator />
+
+      <div className="space-y-4">
+        <ActivityComposer
+          leadType={lead.type}
+          leadId={lead.id}
+          onCreated={() => queryClient.invalidateQueries({ queryKey: ['lead-activities', lead.type, lead.id] })}
+        />
+        <LeadTimeline leadType={lead.type} leadId={lead.id} />
+      </div>
     </div>
   );
 
@@ -615,6 +652,12 @@ export const CRMDashboard = () => {
                                 {lead.lead_score}
                               </Badge>
                             </div>
+                            {overdueLeadKeys?.has(leadKey(lead.type, lead.id)) && (
+                              <Badge variant="outline" className="text-xs bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400 gap-1">
+                                <AlertTriangle className="h-3 w-3" />
+                                Tâche en retard
+                              </Badge>
+                            )}
                             {lead.insurance_type && (
                               <Badge variant="outline" className="text-xs">
                                 {lead.insurance_type}
@@ -681,6 +724,12 @@ export const CRMDashboard = () => {
                   {lead.signed_before_hot && (
                     <Badge variant="outline" className="shrink-0 bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400">
                       ✍️ Converti
+                    </Badge>
+                  )}
+                  {overdueLeadKeys?.has(leadKey(lead.type, lead.id)) && (
+                    <Badge variant="outline" className="shrink-0 bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400 gap-1">
+                      <AlertTriangle className="h-3 w-3" />
+                      Tâche en retard
                     </Badge>
                   )}
                   <Badge {...getScoreBadge(lead.lead_score)} className="shrink-0">

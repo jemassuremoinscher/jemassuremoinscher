@@ -18,6 +18,7 @@ import { GlobalSearch } from '@/components/admin/GlobalSearch';
 import { LeadsFilters, FilterOptions } from '@/components/admin/LeadsFilters';
 import { TrashBin } from '@/components/admin/TrashBin';
 import { CRMDashboard } from '@/components/admin/CRMDashboard';
+import { TasksWidget } from '@/components/admin/crm/TasksWidget';
 import { SalesAgentsManager } from '@/components/admin/SalesAgentsManager';
 import { GoalsManager } from '@/components/admin/GoalsManager';
 import { CommercialSupervision } from '@/components/admin/CommercialSupervision';
@@ -379,6 +380,8 @@ const Admin = () => {
               />
               <ManualLeadForm onLeadCreated={fetchData} />
             </div>
+
+            <TasksWidget onNavigateToLead={handleSearchResultClick} />
 
             <ChartsSection quotes={filteredQuotes} callbacks={filteredCallbacks} />
 
