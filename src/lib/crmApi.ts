@@ -45,9 +45,11 @@ export async function createActivity(payload: ActivityInsert): Promise<Activity>
   return data as Activity;
 }
 
-// Résout un lot d'author_id (auth.uid()) en noms affichables, en une requête par
-// table plutôt qu'une par activité : d'abord sales_agents.full_name (via
-// user_id), puis profiles.full_name/email pour ce qui reste non résolu.
+// Résout un lot d'author_id — DES USER_ID (auth.uid()), pas des sales_agents.id —
+// en noms affichables : d'abord sales_agents.full_name (via sales_agents.user_id),
+// puis profiles.full_name/email pour ce qui reste non résolu.
+// ⚠️ Ne pas utiliser pour résoudre deal_tasks.assigned_to : voir resolveAssigneeNames
+// ci-dessous, qui joint sur un référentiel d'identité différent (sales_agents.id).
 export async function resolveAuthorNames(authorIds: string[]): Promise<Map<string, string>> {
   const uniqueIds = Array.from(new Set(authorIds));
   const names = new Map<string, string>();
@@ -111,10 +113,37 @@ interface FetchOpenTasksParams {
   agentId?: string | null;
 }
 
+// ---------------------------------------------------------------------------
+// ⚠️ Deux référentiels d'identité distincts coexistent dans ce schéma — ne pas
+// les confondre lors d'une résolution de nom, ni réutiliser l'une des deux
+// fonctions ci-dessous pour l'autre colonne :
+//   - deal_tasks.assigned_to → un sales_agents.ID (PK) → resolveAssigneeNames()
+//     (jointure DIRECTE sur sales_agents.id, PAS via user_id)
+//   - deal_tasks.created_by, activities.author_id, deals.assigned_to → un
+//     USER_ID (auth.uid()) → resolveAuthorNames() ci-dessus (jointure sur
+//     sales_agents.user_id, puis fallback profiles)
+// Le "destinataire" d'une tâche (à qui elle est assignée) se résout donc
+// TOUJOURS avec resolveAssigneeNames(), jamais avec resolveAuthorNames().
+// ---------------------------------------------------------------------------
+export async function resolveAssigneeNames(assigneeIds: string[]): Promise<Map<string, string>> {
+  const uniqueIds = Array.from(new Set(assigneeIds));
+  const names = new Map<string, string>();
+  if (uniqueIds.length === 0) return names;
+
+  const { data, error } = await supabase.from('sales_agents').select('id, full_name').in('id', uniqueIds);
+
+  if (error) throw error;
+  (data ?? []).forEach((row) => names.set(row.id, row.full_name));
+
+  return names;
+}
+
 export async function fetchOpenDealTasks({ scope, agentId }: FetchOpenTasksParams): Promise<DealTask[]> {
   let query = crmFrom('deal_tasks').select('*').eq('status', 'open').order('due_at', { ascending: true });
 
   if (scope === 'mine') {
+    // `agentId` doit être un sales_agents.id (cf. CurrentAgentRef, résolu via
+    // user_id = auth.uid()) : assigned_to n'est jamais comparé à auth.uid() directement.
     if (!agentId) return [];
     query = query.eq('assigned_to', agentId);
   }

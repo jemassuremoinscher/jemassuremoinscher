@@ -6,7 +6,13 @@ import { addDays, endOfDay, format, isToday } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
-import { completeDealTask, fetchDealLabels, fetchOpenDealTasks, resolveCurrentAgentRef } from '@/lib/crmApi';
+import {
+  completeDealTask,
+  fetchDealLabels,
+  fetchOpenDealTasks,
+  resolveAssigneeNames,
+  resolveCurrentAgentRef,
+} from '@/lib/crmApi';
 import type { DealTask, TaskPriority } from '@/types/crm';
 
 interface TasksWidgetProps {
@@ -76,6 +82,17 @@ export const TasksWidget = ({ onNavigateToDeal }: TasksWidgetProps) => {
     enabled: dealIds.length > 0,
   });
 
+  // deal_tasks.assigned_to est un sales_agents.id : ne pas résoudre ces noms
+  // avec resolveAuthorNames() (qui attend des user_id) — voir crmApi.ts.
+  const assigneeIds = Array.from(
+    new Set((tasks ?? []).map((t) => t.assigned_to).filter((id): id is string => !!id)),
+  );
+  const { data: assigneeNames } = useQuery({
+    queryKey: ['deal-task-assignees', assigneeIds.join(',')],
+    queryFn: () => resolveAssigneeNames(assigneeIds),
+    enabled: assigneeIds.length > 0,
+  });
+
   const completeMutation = useMutation({
     mutationFn: (task: DealTask) => completeDealTask(task, agent?.userId ?? null),
     onSuccess: () => {
@@ -104,6 +121,7 @@ export const TasksWidget = ({ onNavigateToDeal }: TasksWidgetProps) => {
 
   const renderTask = (task: DealTask) => {
     const label = dealLabels?.get(task.deal_id) || 'Deal';
+    const assigneeName = task.assigned_to ? assigneeNames?.get(task.assigned_to) : null;
     return (
       <div key={task.id} className="flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[#FAF5FF] transition-colors">
         <Checkbox
@@ -127,6 +145,7 @@ export const TasksWidget = ({ onNavigateToDeal }: TasksWidgetProps) => {
           </div>
           <p className="text-xs text-slate-500 mt-0.5">
             {label} · {formatDue(task.due_at)}
+            {assigneeName && <> · Assigné à {assigneeName}</>}
           </p>
         </div>
       </div>
