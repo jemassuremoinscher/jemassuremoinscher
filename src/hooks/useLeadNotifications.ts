@@ -1,5 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { loadPrefs, NotifType } from '@/lib/notificationPrefs';
 
 interface Options {
   enabled: boolean;
@@ -7,24 +8,48 @@ interface Options {
   isSupervisor?: boolean;
 }
 
+interface EmitParams {
+  type: NotifType;
+  title: string;
+  body: string;
+  entityType?: string;
+  entityId?: string;
+  url?: string;
+}
+
 export function useLeadNotifications(optsOrEnabled: boolean | Options) {
   const opts: Options =
-    typeof optsOrEnabled === 'boolean'
-      ? { enabled: optsOrEnabled }
-      : optsOrEnabled;
+    typeof optsOrEnabled === 'boolean' ? { enabled: optsOrEnabled } : optsOrEnabled;
   const { enabled, userId, isSupervisor } = opts;
 
   const permissionRef = useRef<NotificationPermission>('default');
   const initialLoadDone = useRef(false);
   const userIdRef = useRef<string | null | undefined>(userId);
   const supervisorRef = useRef<boolean>(!!isSupervisor);
+  const prefsRef = useRef(loadPrefs(userId || 'anon'));
+
+  // Anti-spam state
+  const dedupMap = useRef<Map<string, number>>(new Map());
+  const burstBuffer = useRef<Map<NotifType, { count: number; firstAt: number; timer: number | null }>>(new Map());
 
   useEffect(() => {
     userIdRef.current = userId;
+    prefsRef.current = loadPrefs(userId || 'anon');
   }, [userId]);
   useEffect(() => {
     supervisorRef.current = !!isSupervisor;
   }, [isSupervisor]);
+
+  // Réagit aux changements de préférences dans la page Réglages
+  useEffect(() => {
+    if (!userId) return;
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.userId === userId) prefsRef.current = loadPrefs(userId);
+    };
+    window.addEventListener('notif-prefs-changed', handler as EventListener);
+    return () => window.removeEventListener('notif-prefs-changed', handler as EventListener);
+  }, [userId]);
 
   const requestPermission = useCallback(async () => {
     if (!('Notification' in window)) return;
@@ -33,31 +58,102 @@ export function useLeadNotifications(optsOrEnabled: boolean | Options) {
     return perm;
   }, []);
 
-  const sendNotification = useCallback((title: string, body: string, tagPrefix = 'crm') => {
+  const showChromeNotification = useCallback((title: string, body: string, tag: string, url?: string) => {
     if (permissionRef.current !== 'granted') return;
     try {
       const audio = new Audio('/notification-sound.mp3');
       audio.volume = 0.5;
       audio.play().catch(() => {});
     } catch {}
-    const notification = new Notification(title, {
+    const n = new Notification(title, {
       body,
       icon: '/favicon.ico',
       badge: '/favicon.ico',
-      tag: `${tagPrefix}-${Date.now()}`,
+      tag,
       requireInteraction: false,
     });
-    notification.onclick = () => {
+    n.onclick = () => {
       window.focus();
-      notification.close();
+      if (url) {
+        try {
+          const target = new URL(url, window.location.origin);
+          if (target.origin === window.location.origin) window.location.assign(target.href);
+        } catch {}
+      }
+      n.close();
     };
   }, []);
 
+  const logToDb = useCallback(
+    async (p: EmitParams) => {
+      const uid = userIdRef.current;
+      if (!uid) return;
+      try {
+        await supabase.from('notification_log').insert({
+          user_id: uid,
+          type: p.type,
+          entity_type: p.entityType ?? null,
+          entity_id: p.entityId ?? null,
+          title: p.title,
+          body: p.body,
+          url: p.url ?? null,
+        });
+        window.dispatchEvent(new CustomEvent('notif-log-changed'));
+      } catch {}
+    },
+    [],
+  );
+
+  const emit = useCallback(
+    (p: EmitParams) => {
+      const prefs = prefsRef.current;
+      if (!prefs.types[p.type]) return;
+
+      // Dédoublonnage par (type + entity_id)
+      const dedupKey = `${p.type}:${p.entityId ?? p.title}`;
+      const now = Date.now();
+      const last = dedupMap.current.get(dedupKey);
+      if (last && now - last < prefs.dedupWindowMs) return;
+      dedupMap.current.set(dedupKey, now);
+
+      // Nettoie la map dédup (évite la fuite mémoire)
+      if (dedupMap.current.size > 500) {
+        for (const [k, t] of dedupMap.current) {
+          if (now - t > prefs.dedupWindowMs) dedupMap.current.delete(k);
+        }
+      }
+
+      // Regroupement anti-burst : plusieurs events du même type <10s
+      const buf = burstBuffer.current.get(p.type) ?? { count: 0, firstAt: now, timer: null };
+      if (now - buf.firstAt > prefs.burstWindowMs) {
+        buf.count = 0;
+        buf.firstAt = now;
+      }
+      buf.count += 1;
+      burstBuffer.current.set(p.type, buf);
+
+      // Log en DB systématiquement (l'historique conserve chaque event)
+      logToDb(p);
+
+      if (buf.count < prefs.burstThreshold) {
+        showChromeNotification(p.title, p.body, `${p.type}-${p.entityId ?? now}`, p.url);
+      } else if (buf.count === prefs.burstThreshold) {
+        // Notification groupée unique
+        showChromeNotification(
+          `🔔 ${buf.count} nouveaux événements`,
+          `Plusieurs "${p.title}" en rafale`,
+          `${p.type}-burst-${buf.firstAt}`,
+          p.url,
+        );
+      }
+      // >threshold : silencieux jusqu'à la fin de la fenêtre burst
+    },
+    [logToDb, showChromeNotification],
+  );
+
   useEffect(() => {
     if (!enabled) return;
-    if ('Notification' in window) {
-      permissionRef.current = Notification.permission;
-    }
+    if ('Notification' in window) permissionRef.current = Notification.permission;
   }, [enabled]);
 
   useEffect(() => {
@@ -67,17 +163,19 @@ export function useLeadNotifications(optsOrEnabled: boolean | Options) {
       initialLoadDone.current = true;
     }, 5000);
 
-    // ---- Nouveaux leads (INSERT) ----
     const quotesChannel = supabase
       .channel('lead-notif-quotes')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'insurance_quotes' }, (payload) => {
         if (!initialLoadDone.current) return;
         const d = payload.new as any;
-        sendNotification(
-          '🔔 Nouveau devis reçu',
-          `${d.full_name || 'Prospect'} — ${d.insurance_type || 'Assurance'}${d.phone ? ' • ' + d.phone : ''}`,
-          'quote-new',
-        );
+        emit({
+          type: 'lead_quote',
+          title: '🔔 Nouveau devis reçu',
+          body: `${d.full_name || 'Prospect'} — ${d.insurance_type || 'Assurance'}${d.phone ? ' • ' + d.phone : ''}`,
+          entityType: 'insurance_quote',
+          entityId: d.id,
+          url: '/admin',
+        });
       })
       .subscribe();
 
@@ -86,11 +184,14 @@ export function useLeadNotifications(optsOrEnabled: boolean | Options) {
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'contact_callbacks' }, (payload) => {
         if (!initialLoadDone.current) return;
         const d = payload.new as any;
-        sendNotification(
-          '📞 Nouvelle demande de rappel',
-          `${d.full_name || 'Prospect'}${d.phone ? ' • ' + d.phone : ''}`,
-          'callback-new',
-        );
+        emit({
+          type: 'lead_callback',
+          title: '📞 Nouvelle demande de rappel',
+          body: `${d.full_name || 'Prospect'}${d.phone ? ' • ' + d.phone : ''}`,
+          entityType: 'contact_callback',
+          entityId: d.id,
+          url: '/admin',
+        });
       })
       .subscribe();
 
@@ -99,15 +200,17 @@ export function useLeadNotifications(optsOrEnabled: boolean | Options) {
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chatbot_transfers' }, (payload) => {
         if (!initialLoadDone.current) return;
         const d = payload.new as any;
-        sendNotification(
-          '💬 Transfert chatbot',
-          `${d.visitor_name || d.visitor_email || 'Visiteur'}`,
-          'transfer-new',
-        );
+        emit({
+          type: 'lead_transfer',
+          title: '💬 Transfert chatbot',
+          body: `${d.visitor_name || d.visitor_email || 'Visiteur'}`,
+          entityType: 'chatbot_transfer',
+          entityId: d.id,
+          url: '/admin',
+        });
       })
       .subscribe();
 
-    // ---- Deals : pipeline (INSERT + UPDATE) ----
     const dealsChannel = supabase
       .channel('lead-notif-deals')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'deals' }, (payload) => {
@@ -116,11 +219,14 @@ export function useLeadNotifications(optsOrEnabled: boolean | Options) {
         const uid = userIdRef.current;
         const mine = d.assigned_to && uid && d.assigned_to === uid;
         if (!mine && !supervisorRef.current) return;
-        sendNotification(
-          mine ? '🎯 Nouveau deal assigné' : '🆕 Nouveau deal créé',
-          `${d.insurance_type || 'Deal'} — étape ${d.stage}`,
-          'deal-new',
-        );
+        emit({
+          type: 'deal_new',
+          title: mine ? '🎯 Nouveau deal assigné' : '🆕 Nouveau deal créé',
+          body: `${d.insurance_type || 'Deal'} — étape ${d.stage}`,
+          entityType: 'deal',
+          entityId: d.id,
+          url: '/admin',
+        });
       })
       .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'deals' }, (payload) => {
         if (!initialLoadDone.current) return;
@@ -130,29 +236,31 @@ export function useLeadNotifications(optsOrEnabled: boolean | Options) {
         const involvesMe = uid && (n.assigned_to === uid || o.assigned_to === uid);
         if (!involvesMe && !supervisorRef.current) return;
 
-        // Réassignation
         if (n.assigned_to !== o.assigned_to) {
           const toMe = uid && n.assigned_to === uid;
-          sendNotification(
-            toMe ? '📥 Deal réassigné vers toi' : '🔄 Deal réassigné',
-            `${n.insurance_type || 'Deal'} — étape ${n.stage}`,
-            'deal-reassign',
-          );
+          emit({
+            type: 'deal_reassign',
+            title: toMe ? '📥 Deal réassigné vers toi' : '🔄 Deal réassigné',
+            body: `${n.insurance_type || 'Deal'} — étape ${n.stage}`,
+            entityType: 'deal',
+            entityId: n.id,
+            url: '/admin',
+          });
           return;
         }
-        // Changement d'étape
         if (n.stage !== o.stage) {
-          sendNotification(
-            '🔀 Étape deal modifiée',
-            `${n.insurance_type || 'Deal'} : ${o.stage} → ${n.stage}`,
-            'deal-stage',
-          );
-          return;
+          emit({
+            type: 'deal_stage',
+            title: '🔀 Étape deal modifiée',
+            body: `${n.insurance_type || 'Deal'} : ${o.stage} → ${n.stage}`,
+            entityType: 'deal',
+            entityId: n.id,
+            url: '/admin',
+          });
         }
       })
       .subscribe();
 
-    // ---- Tâches ----
     const tasksChannel = supabase
       .channel('lead-notif-tasks')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'deal_tasks' }, (payload) => {
@@ -161,11 +269,14 @@ export function useLeadNotifications(optsOrEnabled: boolean | Options) {
         const uid = userIdRef.current;
         const mine = uid && t.assigned_to === uid;
         if (!mine && !supervisorRef.current) return;
-        sendNotification(
-          mine ? '✅ Nouvelle tâche assignée' : '📝 Nouvelle tâche créée',
-          `${t.title || 'Tâche'}${t.priority ? ' • ' + t.priority : ''}`,
-          'task-new',
-        );
+        emit({
+          type: 'task_new',
+          title: mine ? '✅ Nouvelle tâche assignée' : '📝 Nouvelle tâche créée',
+          body: `${t.title || 'Tâche'}${t.priority ? ' • ' + t.priority : ''}`,
+          entityType: 'deal_task',
+          entityId: t.id,
+          url: '/admin/dashboard',
+        });
       })
       .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'deal_tasks' }, (payload) => {
         if (!initialLoadDone.current) return;
@@ -177,24 +288,47 @@ export function useLeadNotifications(optsOrEnabled: boolean | Options) {
 
         if (n.assigned_to !== o.assigned_to) {
           const toMe = uid && n.assigned_to === uid;
-          sendNotification(
-            toMe ? '📬 Tâche réassignée vers toi' : '🔄 Tâche réassignée',
-            n.title || 'Tâche',
-            'task-reassign',
-          );
+          emit({
+            type: 'task_reassign',
+            title: toMe ? '📬 Tâche réassignée vers toi' : '🔄 Tâche réassignée',
+            body: n.title || 'Tâche',
+            entityType: 'deal_task',
+            entityId: n.id,
+            url: '/admin/dashboard',
+          });
           return;
         }
         if (n.status !== o.status) {
           if (n.status === 'done') {
-            sendNotification('✅ Tâche complétée', n.title || 'Tâche', 'task-done');
+            emit({
+              type: 'task_done',
+              title: '✅ Tâche complétée',
+              body: n.title || 'Tâche',
+              entityType: 'deal_task',
+              entityId: n.id,
+              url: '/admin/dashboard',
+            });
           } else {
-            sendNotification('✏️ Tâche modifiée', `${n.title} — ${n.status}`, 'task-update');
+            emit({
+              type: 'task_update',
+              title: '✏️ Tâche modifiée',
+              body: `${n.title} — ${n.status}`,
+              entityType: 'deal_task',
+              entityId: n.id,
+              url: '/admin/dashboard',
+            });
           }
           return;
         }
-        // Autre modif (titre, échéance, priorité)
         if (n.title !== o.title || n.due_at !== o.due_at || n.priority !== o.priority) {
-          sendNotification('✏️ Tâche modifiée', n.title || 'Tâche', 'task-update');
+          emit({
+            type: 'task_update',
+            title: '✏️ Tâche modifiée',
+            body: n.title || 'Tâche',
+            entityType: 'deal_task',
+            entityId: n.id,
+            url: '/admin/dashboard',
+          });
         }
       })
       .subscribe();
@@ -207,7 +341,32 @@ export function useLeadNotifications(optsOrEnabled: boolean | Options) {
       supabase.removeChannel(dealsChannel);
       supabase.removeChannel(tasksChannel);
     };
-  }, [enabled, sendNotification]);
+  }, [enabled, emit]);
 
-  return { requestPermission, permissionStatus: permissionRef.current };
+  // Notification de test (utilisée par le bouton "Tester")
+  const sendTestNotification = useCallback(async () => {
+    if (!('Notification' in window)) return false;
+    if (Notification.permission !== 'granted') {
+      const perm = await Notification.requestPermission();
+      permissionRef.current = perm;
+      if (perm !== 'granted') return false;
+    } else {
+      permissionRef.current = 'granted';
+    }
+    showChromeNotification(
+      '🧪 Test notification',
+      'Les notifications Chrome fonctionnent parfaitement.',
+      `test-${Date.now()}`,
+      '/admin/reglages/notifications',
+    );
+    logToDb({
+      type: 'lead_quote',
+      title: '🧪 Notification de test',
+      body: 'Ping manuel depuis les réglages',
+      entityType: 'test',
+    });
+    return true;
+  }, [showChromeNotification, logToDb]);
+
+  return { requestPermission, permissionStatus: permissionRef.current, sendTestNotification };
 }

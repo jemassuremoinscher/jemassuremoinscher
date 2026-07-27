@@ -231,6 +231,8 @@ const App = () => {
                   <Route path="rgpd" element={<RgpdPage />} />
                   <Route path="trash" element={<TrashPage />} />
                   <Route path="import" element={<ImportPage />} />
+                  <Route path="notifications" element={<NotificationsCenter />} />
+                  <Route path="reglages/notifications" element={<NotificationSettings />} />
                 </Route>
                 <Route path="/admin/legacy" element={<AuthRoute><Admin /></AuthRoute>} />
                 <Route path="/commercial" element={<AuthRoute><Commercial /></AuthRoute>} />
