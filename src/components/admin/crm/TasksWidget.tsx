@@ -227,6 +227,16 @@ export const TasksWidget = ({ onNavigateToDeal }: TasksWidgetProps) => {
             </div>
           )}
 
+          {later.length > 0 && (
+            <div>
+              <h4 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                <CalendarClock className="h-3.5 w-3.5" />
+                Plus tard ({later.length})
+              </h4>
+              <div className="mt-1 divide-y divide-[#F3E8FF]">{later.map(renderTask)}</div>
+            </div>
+          )}
+
           {withoutDueDate.length > 0 && (
             <div>
               <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
