@@ -1,86 +1,41 @@
-## Objectif
+## Chantier "Notifications Chrome — v2"
 
-Quand le visiteur passe en EN, **plus aucun texte FR ne doit apparaître** sur la homepage, les pages assurance (Vie, Auto, Habitation, Santé, Moto, Animaux, Pret, Prevoyance, RC Pro, MRP, GLI, PNO) ni dans les briques transverses (Header, Footer, formulaire multi-step, chatbot, sticky CTA).
+### 1. Table `notification_log` (Cloud DB)
+Nouvelle table pour tracer chaque notification envoyée :
+- `id`, `user_id` (destinataire), `type` (`lead_new`, `task_assigned`, `task_updated`, `task_completed`, `deal_stage_changed`, `deal_reassigned`…), `entity_type`, `entity_id`, `title`, `body`, `url`, `read_at`, `created_at`.
+- RLS : l'utilisateur voit ses propres notifs, admin/owner voient tout.
+- GRANT + policies conformes au standard du projet.
 
-## Périmètre identifié (audit)
+### 2. Anti-spam / dédoublonnage (hook)
+Refonte de `useLeadNotifications` :
+- Clé de dédup `type:entity_id` stockée en mémoire + `localStorage` (TTL 5 min) → pas 2× la même notif.
+- Regroupement en rafale : si ≥3 events du même type en <10s → une seule notif "3 nouveaux leads" au lieu de 3.
+- Chaque notif affichée = 1 insert dans `notification_log`.
 
-Composants 100% FR hard-codé (zéro `t()`):
+### 3. Page Réglages `/admin/reglages/notifications`
+Interface pour activer/désactiver par type :
+- Leads (nouveaux devis, rappels, chatbot)
+- Tâches (assignées, modifiées, complétées, réassignées)
+- Deals (changement d'étape, réassignation)
+- Préférences stockées dans `localStorage` par user (clé `notif-prefs:{userId}`).
+- Le hook lit ces prefs avant d'afficher.
+- Bouton **"Tester la notification"** qui envoie une notif de démo et vérifie la permission Chrome.
 
-- `src/components/insurance/CourtierValueCards.tsx` — "Pourquoi passer par un courtier spécialisé…", 4 cartes (Comparaison ciblée, Garanties vérifiées, Dossier défendu, Conseil indépendant)
-- `src/components/insurance/InsuranceSEOTabs.tsx` — labels onglets, titres internes
-- `src/components/insurance/InsuranceBottomHub.tsx` — "Nos clients consultent aussi", "Articles conseils", "Outils & Ressources", labels CTA
-- `src/components/seo/EnBref.tsx` — libellé "En bref"
-- `src/components/DynamicUpdateDate.tsx` — "Données mises à jour en temps réel le …"
+### 4. Centre de notifications in-app
+Nouvel onglet dans la sidebar CRM (icône cloche + badge non-lus) :
+- Liste paginée depuis `notification_log` (filtre user_id sauf admin).
+- Recherche texte, filtre par type/date.
+- Clic sur une notif → navigation vers l'entité (`url`) + marque comme lue.
+- Bouton "Tout marquer comme lu".
 
-Pages avec strings FR hard-codées dans le code page (en plus des `t()`):
+### 5. Export CSV
+Bouton dans le centre de notifs → CSV `date, type, entité, url, utilisateur, lue_le`.
+Réutilise `src/utils/exportCSV.ts`.
 
-- `src/pages/AssuranceVie.tsx` — "0% de frais d'entrée", "Frais d'arbitrage offerts", FAQ extra, EnBref facts, breadcrumb "Accueil"
-- Idem (à vérifier/aligner) pour: AssuranceAuto, AssuranceHabitation, AssuranceSante, AssuranceMoto, AssuranceAnimaux, AssurancePret, AssuranceVie, AssurancePrevoyance, AssuranceRCPro, AssuranceMRP, AssuranceGLI, AssurancePNO
+### Fichiers touchés
+- **Migration SQL** : `notification_log` + RLS + grants.
+- **Nouveau** : `src/pages/crm/NotificationsCenter.tsx`, `src/pages/crm/NotificationSettings.tsx`.
+- **Modifiés** : `src/hooks/useLeadNotifications.ts` (dédup/prefs/log), `src/pages/crm/CrmSidebar.tsx` (2 entrées menu), `src/pages/crm/CrmLayout.tsx` (routes), `src/pages/crm/CrmHeader.tsx` (bouton Tester + badge).
 
-Composants partiellement traduits à compléter:
-
-- `src/components/Footer.tsx` (seulement 9 `t()` pour ~30 libellés visibles: "Nos Assurances", "Ressources", "À propos", "Informations légales", listes de produits, badges légaux, disclaimer, copyright)
-- `src/components/forms/MultiStepQuoteForm.tsx` — "Étape 1/5", "Plus que 60s pour voir vos prix", chips "Données sécurisées / 100% gratuit / Sans engagement", labels métier des choix d'assurance et tuiles (visibles dans les screenshots)
-- Header/menu (sous-menus "Vie & Épargne", "Immobilier" → vérifier que tous les items sont traduits)
-- ArthurHero (alt-text + label CTA résiduels)
-
-## Stratégie d'implémentation
-
-1. **Créer un script d'audit** `scripts/audit-i18n-coverage.ts` qui parcourt les `.tsx` et liste les chaînes JSX françaises (mots-clés: `Que souhaitez|votre|assurance|gratuit|sans engagement|comparez|conseiller|économ|découvr|cher`) **hors** appels `t(...)`. Servira de checklist exhaustive.
-2. **Refactorer les composants 0-`t()`** en y branchant `useLanguage` + clés `componentName.*`. Toujours conserver les valeurs FR existantes comme défaut dans `fr.ts`, créer la traduction EN parallèle.
-3. **Compléter Footer** + **MultiStepQuoteForm** (zone à plus fort impact visuel sur toutes les pages).
-4. **Pages assurance**: extraire chaque string FR locale vers une clé `<page>.*` (ex. `viePage.adv.zeroFees.title`). Mutualiser les libellés communs (breadcrumb "Home", "0% entry fees", "Free arbitration fees") sous un namespace `insPage.*`.
-5. **Étendre `src/i18n/fr.ts` et `src/i18n/en.ts`** avec toutes les nouvelles clés. Re-vérifier la parité via le script existant `scripts/diff-i18n.ts`.
-6. **Vérification visuelle** route par route: `/`, `/assurance-vie`, `/assurance-auto`, `/assurance-habitation`, `/assurance-sante`, `/assurance-moto`, `/assurance-animaux`, `/assurance-pret`, `/contact`, `/blog`, `/glossaire`. (Routes blog/glossaire restent FR par nature SEO — confirmer ce point.)
-
-## Périmètre exclu (à confirmer par toi)
-
-- **Articles de blog & glossaire**: contenu éditorial FR, optimisé SEO français — ne sont **pas** traduits. La langue de l'article reste FR même en mode EN (canonical FR uniquement). À confirmer.
-- **Meta tags par page** (title/description/OG): aujourd'hui en FR; le site cible la France (hreflang fr/en pointe la même URL FR). Si tu veux des meta EN dynamiques, dis-le et j'ajouterai un namespace `seo.<page>.title/description` consommé par `SEOOptimized` quand `language === 'en'`.
-- **Schemas JSON-LD**: descriptions FR conservées (référencement FR).
-- **Données métier** (noms d'assureurs, produits, mentions ORIAS, RGPD): non traduites.
-
-## Détails techniques
-
-Contrats de nommage des clés:
-
-```
-courtierValue.title / .subtitle
-courtierValue.card1.title / .desc  (… card1..card4)
-seoTabs.tabFAQ / .tabGuide / .tabBenefits
-bottomHub.alsoConsulted / .articles / .toolsResources / .ctaReady
-enBref.title  (= "En bref" / "In brief")
-updateDate.label  (= "Data updated in real time on {date}")
-form.stepOf  (= "Step {n}/{total}" / "Étape {n}/{total}")
-form.timeLeft  (= "Only {n}s left to see your prices")
-form.trust.secured / .free / .noCommit
-footer.nosAssurances / .resources / .about / .legal / .copyright
-```
-
-Pour les chaînes interpolées (ex. date, n° d'étape), `t()` retourne un template avec `{x}` puis `String.replace` côté composant (pattern existant dans le projet).
-
-Livraisons:
-
-```
-src/i18n/fr.ts          (+ ~120 clés)
-src/i18n/en.ts          (+ ~120 clés, parité 1:1)
-src/components/insurance/CourtierValueCards.tsx
-src/components/insurance/InsuranceSEOTabs.tsx
-src/components/insurance/InsuranceBottomHub.tsx
-src/components/seo/EnBref.tsx
-src/components/DynamicUpdateDate.tsx
-src/components/Footer.tsx                          (compléments)
-src/components/forms/MultiStepQuoteForm.tsx        (compléments)
-src/pages/Assurance{Vie,Auto,Habitation,Sante,Moto,Animaux,Pret,Prevoyance,RCPro,MRP,GLI,PNO}.tsx
-scripts/audit-i18n-coverage.ts                     (nouveau)
-```
-
-## Questions pour toi avant d'attaquer
-
-1. **Blog & glossaire**: on laisse en FR uniquement (recommandé pour le SEO FR), ou tu veux qu'on traduise aussi les coquilles (titres de section, dates, "Lire la suite", "Auteur")?
-2. **Meta SEO par page en EN**: on les bascule aussi (title/description/OG) quand `language === 'en'`, ou on garde tout en FR puisque hreflang pointe la même URL?
-3. **Ordre de priorité** si tu veux découper en plusieurs livraisons:  
-   a) Pages assurance + composants insurance (le plus visible pour un visiteur EN)  
-   b) Footer + MultiStepQuoteForm (transverses, présentes partout)  
-   c) Header/menus + chatbot + StickyCTA  
-   d) Blog/glossaire (si retenu)
+### Hors périmètre
+- Pas d'envoi push serveur (Service Worker Push) → on reste sur `Notification API` locale déclenchée par les Realtime channels déjà en place. Sinon dis-le-moi, ça change la stack.

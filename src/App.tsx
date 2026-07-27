@@ -37,6 +37,8 @@ const MarketingPage = lazy(() => import("./pages/crm/MarketingPage"));
 const RgpdPage = lazy(() => import("./pages/crm/RgpdPage"));
 const TrashPage = lazy(() => import("./pages/crm/TrashPage"));
 const ImportPage = lazy(() => import("./pages/crm/ImportPage"));
+const NotificationsCenter = lazy(() => import("./pages/crm/NotificationsCenter"));
+const NotificationSettings = lazy(() => import("./pages/crm/NotificationSettings"));
 const Commercial = lazy(() => import("./pages/Commercial"));
 const LandingAds = lazy(() => import("./pages/LandingAds"));
 const LandingAuto = lazy(() => import("./pages/landing/LandingAuto"));
@@ -231,6 +233,8 @@ const App = () => {
                   <Route path="rgpd" element={<RgpdPage />} />
                   <Route path="trash" element={<TrashPage />} />
                   <Route path="import" element={<ImportPage />} />
+                  <Route path="notifications" element={<NotificationsCenter />} />
+                  <Route path="reglages/notifications" element={<NotificationSettings />} />
                 </Route>
                 <Route path="/admin/legacy" element={<AuthRoute><Admin /></AuthRoute>} />
                 <Route path="/commercial" element={<AuthRoute><Commercial /></AuthRoute>} />

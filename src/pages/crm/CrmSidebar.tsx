@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import {
   KanbanSquare, Users, FileText, BarChart3, Wallet, Megaphone,
-  Shield, Trash2, Settings, Upload,
+  Shield, Trash2, Settings, Upload, Bell,
 } from "lucide-react";
 import arthurLogo from "@/assets/mascotte/arthur-thumbs-up.webp";
 
@@ -17,12 +17,14 @@ const items: Item[] = [
   { to: "/admin", label: "Pipeline", icon: KanbanSquare, end: true },
   { to: "/admin/contacts", label: "Contacts", icon: Users },
   { to: "/admin/documents", label: "GED", icon: FileText },
+  { to: "/admin/notifications", label: "Notifications", icon: Bell },
   { to: "/admin/import", label: "Import CSV", icon: Upload, adminOnly: true },
   { to: "/admin/dashboard", label: "Dashboard", icon: BarChart3, adminOnly: true },
   { to: "/admin/finance", label: "Finance", icon: Wallet, adminOnly: true },
   { to: "/admin/marketing", label: "Marketing", icon: Megaphone, adminOnly: true },
   { to: "/admin/rgpd", label: "RGPD", icon: Shield, adminOnly: true },
   { to: "/admin/trash", label: "Corbeille", icon: Trash2, adminOnly: true },
+  { to: "/admin/reglages/notifications", label: "Réglages notif.", icon: Settings },
 ];
 
 export function CrmSidebar({ isAdmin }: { isAdmin: boolean }) {

@@ -1,8 +1,9 @@
-import { Bell, BellOff, Search, LogOut } from "lucide-react";
+import { Bell, BellOff, Search, LogOut, Inbox } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useLeadNotifications } from "@/hooks/useLeadNotifications";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 export function CrmHeader({
@@ -30,6 +31,35 @@ export function CrmHeader({
     userId: user?.id,
     isSupervisor: isAdmin,
   });
+
+  const [unreadCount, setUnreadCount] = useState<number>(0);
+  const loadUnread = useCallback(async () => {
+    if (!user?.id) {
+      setUnreadCount(0);
+      return;
+    }
+    let q = supabase
+      .from("notification_log")
+      .select("id", { count: "exact", head: true })
+      .is("read_at", null);
+    if (!isAdmin) q = q.eq("user_id", user.id);
+    const { count } = await q;
+    setUnreadCount(count ?? 0);
+  }, [user?.id, isAdmin]);
+
+  useEffect(() => {
+    loadUnread();
+    const onChange = () => loadUnread();
+    window.addEventListener("notif-log-changed", onChange);
+    const channel = supabase
+      .channel("header-notif-count")
+      .on("postgres_changes", { event: "*", schema: "public", table: "notification_log" }, () => loadUnread())
+      .subscribe();
+    return () => {
+      window.removeEventListener("notif-log-changed", onChange);
+      supabase.removeChannel(channel);
+    };
+  }, [loadUnread]);
 
   useEffect(() => {
     localStorage.setItem("crm.notifications.enabled", enabled ? "1" : "0");
@@ -109,6 +139,21 @@ export function CrmHeader({
         {enabled ? <Bell className="h-4 w-4" /> : <BellOff className="h-4 w-4" />}
         {enabled && (
           <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-green-400 ring-2 ring-white" />
+        )}
+      </button>
+
+      <button
+        type="button"
+        onClick={() => navigate("/admin/notifications")}
+        className="relative grid h-10 w-10 place-items-center rounded-full text-slate-500 hover:bg-[#F3E8FF] hover:text-[#5B21B6]"
+        aria-label={`Centre de notifications (${unreadCount} non lues)`}
+        title="Centre de notifications"
+      >
+        <Inbox className="h-4 w-4" />
+        {unreadCount > 0 && (
+          <span className="absolute -top-1 -right-1 grid h-5 min-w-[20px] place-items-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white ring-2 ring-white">
+            {unreadCount > 99 ? "99+" : unreadCount}
+          </span>
         )}
       </button>
 
