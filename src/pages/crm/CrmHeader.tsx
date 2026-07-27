@@ -25,7 +25,11 @@ export function CrmHeader({
     typeof window !== "undefined" && "Notification" in window ? Notification.permission : "default"
   );
 
-  const { requestPermission } = useLeadNotifications(enabled && isAdmin);
+  const { requestPermission } = useLeadNotifications({
+    enabled: enabled && !!user,
+    userId: user?.id,
+    isSupervisor: isAdmin,
+  });
 
   useEffect(() => {
     localStorage.setItem("crm.notifications.enabled", enabled ? "1" : "0");
