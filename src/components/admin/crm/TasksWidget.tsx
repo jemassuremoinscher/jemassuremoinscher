@@ -108,9 +108,7 @@ export const TasksWidget = ({ onNavigateToDeal }: TasksWidgetProps) => {
   const endToday = endOfDay(now);
   const in7Days = addDays(now, 7);
 
-  // Ne garde que ce qui sera effectivement affiché dans une des 4 sections ci-dessous,
-  // pour que le compteur du header reste cohérent avec la liste rendue.
-  const relevantTasks = (tasks ?? []).filter((t) => !t.due_at || new Date(t.due_at) <= in7Days);
+  const relevantTasks = tasks ?? [];
   const withDueDate = relevantTasks.filter((t) => t.due_at);
   const withoutDueDate = relevantTasks.filter((t) => !t.due_at);
   const overdue = withDueDate.filter((t) => new Date(t.due_at as string) < now);
@@ -118,6 +116,7 @@ export const TasksWidget = ({ onNavigateToDeal }: TasksWidgetProps) => {
   const upcoming = withDueDate.filter(
     (t) => new Date(t.due_at as string) > endToday && new Date(t.due_at as string) <= in7Days,
   );
+  const later = withDueDate.filter((t) => new Date(t.due_at as string) > in7Days);
 
   const renderTask = (task: DealTask) => {
     const label = dealLabels?.get(task.deal_id) || 'Deal';
