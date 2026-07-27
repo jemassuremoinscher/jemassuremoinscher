@@ -37,6 +37,8 @@ const MarketingPage = lazy(() => import("./pages/crm/MarketingPage"));
 const RgpdPage = lazy(() => import("./pages/crm/RgpdPage"));
 const TrashPage = lazy(() => import("./pages/crm/TrashPage"));
 const ImportPage = lazy(() => import("./pages/crm/ImportPage"));
+const NotificationsCenter = lazy(() => import("./pages/crm/NotificationsCenter"));
+const NotificationSettings = lazy(() => import("./pages/crm/NotificationSettings"));
 const Commercial = lazy(() => import("./pages/Commercial"));
 const LandingAds = lazy(() => import("./pages/LandingAds"));
 const LandingAuto = lazy(() => import("./pages/landing/LandingAuto"));
