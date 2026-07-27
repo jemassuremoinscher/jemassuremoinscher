@@ -142,6 +142,21 @@ export function CrmHeader({
         )}
       </button>
 
+      <button
+        type="button"
+        onClick={() => navigate("/admin/notifications")}
+        className="relative grid h-10 w-10 place-items-center rounded-full text-slate-500 hover:bg-[#F3E8FF] hover:text-[#5B21B6]"
+        aria-label={`Centre de notifications (${unreadCount} non lues)`}
+        title="Centre de notifications"
+      >
+        <Inbox className="h-4 w-4" />
+        {unreadCount > 0 && (
+          <span className="absolute -top-1 -right-1 grid h-5 min-w-[20px] place-items-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white ring-2 ring-white">
+            {unreadCount > 99 ? "99+" : unreadCount}
+          </span>
+        )}
+      </button>
+
       <div className="flex items-center gap-3">
         <div className="text-right leading-tight">
           <div className="text-xs font-semibold text-slate-800">
