@@ -32,6 +32,35 @@ export function CrmHeader({
     isSupervisor: isAdmin,
   });
 
+  const [unreadCount, setUnreadCount] = useState<number>(0);
+  const loadUnread = useCallback(async () => {
+    if (!user?.id) {
+      setUnreadCount(0);
+      return;
+    }
+    let q = supabase
+      .from("notification_log")
+      .select("id", { count: "exact", head: true })
+      .is("read_at", null);
+    if (!isAdmin) q = q.eq("user_id", user.id);
+    const { count } = await q;
+    setUnreadCount(count ?? 0);
+  }, [user?.id, isAdmin]);
+
+  useEffect(() => {
+    loadUnread();
+    const onChange = () => loadUnread();
+    window.addEventListener("notif-log-changed", onChange);
+    const channel = supabase
+      .channel("header-notif-count")
+      .on("postgres_changes", { event: "*", schema: "public", table: "notification_log" }, () => loadUnread())
+      .subscribe();
+    return () => {
+      window.removeEventListener("notif-log-changed", onChange);
+      supabase.removeChannel(channel);
+    };
+  }, [loadUnread]);
+
   useEffect(() => {
     localStorage.setItem("crm.notifications.enabled", enabled ? "1" : "0");
   }, [enabled]);
