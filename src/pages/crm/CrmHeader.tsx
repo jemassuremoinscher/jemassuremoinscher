@@ -1,8 +1,9 @@
-import { Bell, BellOff, Search, LogOut } from "lucide-react";
+import { Bell, BellOff, Search, LogOut, Inbox } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useLeadNotifications } from "@/hooks/useLeadNotifications";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
 export function CrmHeader({
