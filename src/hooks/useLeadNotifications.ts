@@ -51,38 +51,78 @@ export function useLeadNotifications(optsOrEnabled: boolean | Options) {
     return () => window.removeEventListener('notif-prefs-changed', handler as EventListener);
   }, [userId]);
 
+  const swRegRef = useRef<ServiceWorkerRegistration | null>(null);
+
+  const ensureServiceWorker = useCallback(async () => {
+    if (swRegRef.current) return swRegRef.current;
+    if (!('serviceWorker' in navigator)) return null;
+    try {
+      const existing = await navigator.serviceWorker.getRegistration('/sw.js');
+      const reg = existing ?? (await navigator.serviceWorker.register('/sw.js'));
+      // wait until active so showNotification works reliably
+      if (!reg.active) {
+        await new Promise<void>((resolve) => {
+          const sw = reg.installing || reg.waiting;
+          if (!sw) return resolve();
+          sw.addEventListener('statechange', () => {
+            if (sw.state === 'activated') resolve();
+          });
+          setTimeout(() => resolve(), 3000);
+        });
+      }
+      swRegRef.current = reg;
+      return reg;
+    } catch {
+      return null;
+    }
+  }, []);
+
   const requestPermission = useCallback(async () => {
     if (!('Notification' in window)) return;
     const perm = await Notification.requestPermission();
     permissionRef.current = perm;
+    if (perm === 'granted') await ensureServiceWorker();
     return perm;
-  }, []);
+  }, [ensureServiceWorker]);
 
-  const showChromeNotification = useCallback((title: string, body: string, tag: string, url?: string) => {
+  const showChromeNotification = useCallback(async (title: string, body: string, tag: string, url?: string) => {
     if (permissionRef.current !== 'granted') return;
     try {
       const audio = new Audio('/notification-sound.mp3');
       audio.volume = 0.5;
       audio.play().catch(() => {});
     } catch {}
-    const n = new Notification(title, {
+    const options: NotificationOptions = {
       body,
       icon: '/favicon.ico',
       badge: '/favicon.ico',
       tag,
       requireInteraction: false,
-    });
-    n.onclick = () => {
-      window.focus();
-      if (url) {
-        try {
-          const target = new URL(url, window.location.origin);
-          if (target.origin === window.location.origin) window.location.assign(target.href);
-        } catch {}
-      }
-      n.close();
+      data: { url: url ?? '/admin' },
     };
-  }, []);
+    const reg = await ensureServiceWorker();
+    if (reg && 'showNotification' in reg) {
+      try {
+        await reg.showNotification(title, options);
+        return;
+      } catch {
+        // fall through to legacy path
+      }
+    }
+    try {
+      const n = new Notification(title, options);
+      n.onclick = () => {
+        window.focus();
+        if (url) {
+          try {
+            const target = new URL(url, window.location.origin);
+            if (target.origin === window.location.origin) window.location.assign(target.href);
+          } catch {}
+        }
+        n.close();
+      };
+    } catch {}
+  }, [ensureServiceWorker]);
 
   const logToDb = useCallback(
     async (p: EmitParams) => {
