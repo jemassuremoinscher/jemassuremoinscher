@@ -396,7 +396,8 @@ export function useLeadNotifications(optsOrEnabled: boolean | Options) {
     } else {
       permissionRef.current = 'granted';
     }
-    showChromeNotification(
+    await ensureServiceWorker();
+    await showChromeNotification(
       '🧪 Test notification',
       'Les notifications Chrome fonctionnent parfaitement.',
       `test-${Date.now()}`,
@@ -409,7 +410,39 @@ export function useLeadNotifications(optsOrEnabled: boolean | Options) {
       entityType: 'test',
     });
     return true;
-  }, [showChromeNotification, logToDb]);
+  }, [showChromeNotification, logToDb, ensureServiceWorker]);
 
-  return { requestPermission, permissionStatus: permissionRef.current, sendTestNotification };
+  // Simule un vrai lead entrant (parcours complet via emit + SW)
+  const sendSampleLeadNotification = useCallback(async () => {
+    if (!('Notification' in window)) return false;
+    if (Notification.permission !== 'granted') {
+      const perm = await Notification.requestPermission();
+      permissionRef.current = perm;
+      if (perm !== 'granted') return false;
+    }
+    await ensureServiceWorker();
+    const fakeId = `sample-${Date.now()}`;
+    const samples = [
+      { name: 'Jean Dupont', type: 'Auto', phone: '06 12 34 56 78' },
+      { name: 'Marie Laurent', type: 'Habitation', phone: '07 88 55 22 11' },
+      { name: 'Karim Benali', type: 'Santé', phone: '06 45 78 90 12' },
+    ];
+    const s = samples[Math.floor(Math.random() * samples.length)];
+    emit({
+      type: 'lead_quote',
+      title: '🔔 Nouveau devis reçu (exemple)',
+      body: `${s.name} — ${s.type} • ${s.phone}`,
+      entityType: 'insurance_quote',
+      entityId: fakeId,
+      url: '/admin',
+    });
+    return true;
+  }, [emit, ensureServiceWorker]);
+
+  return {
+    requestPermission,
+    permissionStatus: permissionRef.current,
+    sendTestNotification,
+    sendSampleLeadNotification,
+  };
 }
