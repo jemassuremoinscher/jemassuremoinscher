@@ -8,6 +8,28 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
+// Click on a notification shown by the SW -> focus/open the target URL
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const target = (event.notification.data && event.notification.data.url) || '/admin';
+  event.waitUntil((async () => {
+    const allClients = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    for (const client of allClients) {
+      try {
+        const url = new URL(client.url);
+        if (url.origin === self.location.origin) {
+          await client.focus();
+          if ('navigate' in client) {
+            try { await client.navigate(target); } catch {}
+          }
+          return;
+        }
+      } catch {}
+    }
+    if (self.clients.openWindow) await self.clients.openWindow(target);
+  })());
+});
+
 // Activate: clean old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(

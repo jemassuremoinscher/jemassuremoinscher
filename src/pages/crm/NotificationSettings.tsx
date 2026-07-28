@@ -3,13 +3,13 @@ import { useAuth } from "@/contexts/AuthContext";
 import { NOTIF_TYPES, NotifType, NotifPrefs, loadPrefs, savePrefs, resetPrefs } from "@/lib/notificationPrefs";
 import { useLeadNotifications } from "@/hooks/useLeadNotifications";
 import { toast } from "sonner";
-import { Bell, RotateCcw, Send } from "lucide-react";
+import { Bell, RotateCcw, Send, Sparkles } from "lucide-react";
 
 export default function NotificationSettings() {
   const { user, isAdmin } = useAuth();
   const uid = user?.id ?? "anon";
   const [prefs, setPrefs] = useState<NotifPrefs>(() => loadPrefs(uid));
-  const { sendTestNotification } = useLeadNotifications({
+  const { sendTestNotification, sendSampleLeadNotification } = useLeadNotifications({
     enabled: true,
     userId: user?.id,
     isSupervisor: isAdmin,
@@ -45,6 +45,13 @@ export default function NotificationSettings() {
     else toast.error("Autorise d'abord les notifications dans le navigateur");
   };
 
+  const doSampleLead = async () => {
+    const ok = await sendSampleLeadNotification();
+    setPermission(Notification.permission);
+    if (ok) toast.success("Exemple de lead envoyé — vérifie ta notification Chrome");
+    else toast.error("Autorise d'abord les notifications dans le navigateur");
+  };
+
   return (
     <div className="mx-auto max-w-3xl space-y-6 p-6">
       <div>
@@ -68,13 +75,22 @@ export default function NotificationSettings() {
               </span>
             </p>
           </div>
-          <button
-            type="button"
-            onClick={doTest}
-            className="inline-flex items-center gap-2 rounded-full bg-[#7C3AED] px-4 py-2 text-sm font-medium text-white hover:bg-[#6D28D9]"
-          >
-            <Send className="h-4 w-4" /> Tester la notification
-          </button>
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={doTest}
+              className="inline-flex items-center gap-2 rounded-full border border-[#E9D5FF] bg-white px-4 py-2 text-sm font-medium text-[#5B21B6] hover:bg-[#FAF5FF]"
+            >
+              <Send className="h-4 w-4" /> Tester la notification
+            </button>
+            <button
+              type="button"
+              onClick={doSampleLead}
+              className="inline-flex items-center gap-2 rounded-full bg-[#7C3AED] px-4 py-2 text-sm font-medium text-white hover:bg-[#6D28D9]"
+            >
+              <Sparkles className="h-4 w-4" /> Envoyer un exemple de lead
+            </button>
+          </div>
         </div>
       </div>
 
