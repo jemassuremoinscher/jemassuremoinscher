@@ -75,13 +75,22 @@ export default function NotificationSettings() {
               </span>
             </p>
           </div>
-          <button
-            type="button"
-            onClick={doTest}
-            className="inline-flex items-center gap-2 rounded-full bg-[#7C3AED] px-4 py-2 text-sm font-medium text-white hover:bg-[#6D28D9]"
-          >
-            <Send className="h-4 w-4" /> Tester la notification
-          </button>
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={doTest}
+              className="inline-flex items-center gap-2 rounded-full border border-[#E9D5FF] bg-white px-4 py-2 text-sm font-medium text-[#5B21B6] hover:bg-[#FAF5FF]"
+            >
+              <Send className="h-4 w-4" /> Tester la notification
+            </button>
+            <button
+              type="button"
+              onClick={doSampleLead}
+              className="inline-flex items-center gap-2 rounded-full bg-[#7C3AED] px-4 py-2 text-sm font-medium text-white hover:bg-[#6D28D9]"
+            >
+              <Sparkles className="h-4 w-4" /> Envoyer un exemple de lead
+            </button>
+          </div>
         </div>
       </div>
 
