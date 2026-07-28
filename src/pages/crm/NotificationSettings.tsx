@@ -9,7 +9,7 @@ export default function NotificationSettings() {
   const { user, isAdmin } = useAuth();
   const uid = user?.id ?? "anon";
   const [prefs, setPrefs] = useState<NotifPrefs>(() => loadPrefs(uid));
-  const { sendTestNotification } = useLeadNotifications({
+  const { sendTestNotification, sendSampleLeadNotification } = useLeadNotifications({
     enabled: true,
     userId: user?.id,
     isSupervisor: isAdmin,
