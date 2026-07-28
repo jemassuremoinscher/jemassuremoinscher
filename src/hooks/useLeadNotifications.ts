@@ -193,8 +193,11 @@ export function useLeadNotifications(optsOrEnabled: boolean | Options) {
 
   useEffect(() => {
     if (!enabled) return;
-    if ('Notification' in window) permissionRef.current = Notification.permission;
-  }, [enabled]);
+    if ('Notification' in window) {
+      permissionRef.current = Notification.permission;
+      if (Notification.permission === 'granted') void ensureServiceWorker();
+    }
+  }, [enabled, ensureServiceWorker]);
 
   useEffect(() => {
     if (!enabled) return;
