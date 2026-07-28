@@ -205,12 +205,12 @@ export function DealDrawer({
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent side="right" className="w-full sm:max-w-xl overflow-y-auto p-0">
-        <SheetHeader className="border-b border-[#E9D5FF] bg-[#FAF5FF] px-6 py-5">
+        <SheetHeader className="border-b border-[#E9D5FF] dark:border-[#362B54] bg-[#FAF5FF] dark:bg-[#13111C] px-6 py-5">
           <SheetTitle className="text-left">
-            <div className="text-xs uppercase tracking-wide text-[#7C3AED]">
+            <div className="text-xs uppercase tracking-wide text-[#7C3AED] dark:text-[#C4B5FD]">
               {deal.insurance_type}
             </div>
-            <div className="mt-1 text-xl font-semibold text-slate-900">
+            <div className="mt-1 text-xl font-semibold text-slate-900 dark:text-slate-50">
               {contact?.full_name ?? "Prospect"}
             </div>
           </SheetTitle>
@@ -225,12 +225,12 @@ export function DealDrawer({
               {stage?.label}
             </Badge>
             {deal.lead_score != null && (
-              <Badge variant="outline" className="rounded-full border-[#E9D5FF]">
+              <Badge variant="outline" className="rounded-full border-[#E9D5FF] dark:border-[#362B54]">
                 Score {deal.lead_score}
               </Badge>
             )}
             {contact?.source && (
-              <Badge variant="outline" className="rounded-full border-[#E9D5FF]">
+              <Badge variant="outline" className="rounded-full border-[#E9D5FF] dark:border-[#362B54]">
                 {contact.source}
               </Badge>
             )}
@@ -242,18 +242,18 @@ export function DealDrawer({
             {contact?.email && (
               <a
                 href={`mailto:${contact.email}`}
-                className="flex items-center gap-3 rounded-2xl border border-[#E9D5FF] bg-white px-4 py-3 text-sm text-slate-700 hover:bg-[#FAF5FF]"
+                className="flex items-center gap-3 rounded-2xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-4 py-3 text-sm text-slate-700 dark:text-slate-200 hover:bg-[#FAF5FF] dark:hover:bg-[#262140]"
               >
-                <Mail className="h-4 w-4 text-[#7C3AED]" />
+                <Mail className="h-4 w-4 text-[#7C3AED] dark:text-[#C4B5FD]" />
                 <span className="truncate">{contact.email}</span>
               </a>
             )}
             {contact?.phone && (
               <a
                 href={`tel:${contact.phone}`}
-                className="flex items-center gap-3 rounded-2xl border border-[#E9D5FF] bg-white px-4 py-3 text-sm text-slate-700 hover:bg-[#FAF5FF]"
+                className="flex items-center gap-3 rounded-2xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-4 py-3 text-sm text-slate-700 dark:text-slate-200 hover:bg-[#FAF5FF] dark:hover:bg-[#262140]"
               >
-                <Phone className="h-4 w-4 text-[#7C3AED]" />
+                <Phone className="h-4 w-4 text-[#7C3AED] dark:text-[#C4B5FD]" />
                 {contact.phone}
               </a>
             )}
@@ -262,17 +262,17 @@ export function DealDrawer({
           <EditDealSection deal={deal} onSaved={refresh} />
 
           {/* GED */}
-          <section className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
+          <section className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
             <div className="flex items-center justify-between">
-              <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-800">
-                <FileText className="h-4 w-4 text-[#7C3AED]" />
+              <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-100">
+                <FileText className="h-4 w-4 text-[#7C3AED] dark:text-[#C4B5FD]" />
                 Dossier documentaire
               </h3>
-              <span className="text-xs font-semibold text-[#5B21B6]">
+              <span className="text-xs font-semibold text-[#5B21B6] dark:text-[#D8B4FE]">
                 {completion}%
               </span>
             </div>
-            <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-[#F3E8FF]">
+            <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-[#F3E8FF] dark:bg-[#262140]">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-[#7C3AED] to-[#A78BFA]"
                 style={{ width: `${completion}%` }}
@@ -281,10 +281,10 @@ export function DealDrawer({
 
             <ul className="mt-4 space-y-3">
               {loading && (
-                <li className="text-xs text-slate-400">Chargement…</li>
+                <li className="text-xs text-slate-400 dark:text-slate-500">Chargement…</li>
               )}
               {!loading && docs.length === 0 && (
-                <li className="text-xs text-slate-400">
+                <li className="text-xs text-slate-400 dark:text-slate-500">
                   Aucun document requis à ce stade.
                 </li>
               )}
@@ -294,7 +294,7 @@ export function DealDrawer({
                 return (
                   <li
                     key={d.id}
-                    className="rounded-2xl border border-[#EEE6FF] bg-[#FAF5FF]/60 p-3"
+                    className="rounded-2xl border border-[#EEE6FF] dark:border-[#362B54] bg-[#FAF5FF]/60 dark:bg-[#13111C]/60 p-3"
                   >
                     <div className="flex items-start gap-3">
                       <Checkbox
@@ -307,7 +307,7 @@ export function DealDrawer({
                         <button
                           type="button"
                           onClick={() => preview && setPreviewUrl(preview)}
-                          className="h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-[#E9D5FF] bg-white"
+                          className="h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E]"
                           title="Aperçu"
                         >
                           <img
@@ -319,7 +319,7 @@ export function DealDrawer({
                           />
                         </button>
                       ) : (
-                        <div className="grid h-14 w-14 shrink-0 place-items-center rounded-lg border border-dashed border-[#E9D5FF] bg-white text-slate-300">
+                        <div className="grid h-14 w-14 shrink-0 place-items-center rounded-lg border border-dashed border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] text-slate-300 dark:text-slate-600">
                           <FileText className="h-5 w-5" />
                         </div>
                       )}
@@ -346,7 +346,7 @@ export function DealDrawer({
                               href={d.drive_url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-[#7C3AED] hover:bg-[#F3E8FF]"
+                              className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-[#7C3AED] dark:text-[#C4B5FD] hover:bg-[#F3E8FF] dark:hover:bg-[#262140]"
                               aria-label="Ouvrir dans Google Drive"
                               title="Ouvrir dans Google Drive"
                             >
@@ -356,7 +356,7 @@ export function DealDrawer({
                           <button
                             type="button"
                             onClick={() => removeDoc(d)}
-                            className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-slate-400 hover:bg-red-50 hover:text-red-600"
+                            className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-slate-400 dark:text-slate-500 hover:bg-red-50 dark:hover:bg-red-950/40 hover:text-red-600 dark:hover:text-red-400"
                             aria-label="Supprimer"
                             title="Supprimer cette ligne"
                           >
@@ -371,8 +371,8 @@ export function DealDrawer({
             </ul>
 
             {/* Ajout d'un document personnalisé */}
-            <div className="mt-4 rounded-2xl border border-dashed border-[#E9D5FF] p-3">
-              <p className="mb-2 text-xs font-medium text-slate-600">Ajouter un document</p>
+            <div className="mt-4 rounded-2xl border border-dashed border-[#E9D5FF] dark:border-[#362B54] p-3">
+              <p className="mb-2 text-xs font-medium text-slate-600 dark:text-slate-300">Ajouter un document</p>
               <div className="flex flex-col gap-2 sm:flex-row">
                 <Input
                   value={newName}
@@ -411,7 +411,7 @@ export function DealDrawer({
               <Button
                 size="sm"
                 variant="outline"
-                className="rounded-full border-[#E9D5FF]"
+                className="rounded-full border-[#E9D5FF] dark:border-[#362B54]"
                 disabled
               >
                 Relancer par SMS
@@ -420,7 +420,7 @@ export function DealDrawer({
           </section>
 
           {/* Timeline */}
-          <section className="rounded-3xl border border-[#E9D5FF] bg-white p-5 space-y-4">
+          <section className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5 space-y-4">
             <div className="flex items-center justify-end">
               <ScheduleTaskDialog
                 dealId={deal.id}
@@ -437,9 +437,9 @@ export function DealDrawer({
           <AuditTimeline dealId={deal.id} />
 
           {deal.notes && (
-            <section className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-              <h3 className="text-sm font-semibold text-slate-800">Notes</h3>
-              <p className="mt-2 whitespace-pre-wrap text-sm text-slate-600">
+            <section className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
+              <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">Notes</h3>
+              <p className="mt-2 whitespace-pre-wrap text-sm text-slate-600 dark:text-slate-300">
                 {deal.notes}
               </p>
             </section>
@@ -452,13 +452,13 @@ export function DealDrawer({
             onClick={() => setPreviewUrl(null)}
           >
             <div
-              className="relative h-[80vh] w-full max-w-4xl overflow-hidden rounded-2xl bg-white"
+              className="relative h-[80vh] w-full max-w-4xl overflow-hidden rounded-2xl bg-white dark:bg-[#1E1B2E]"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 type="button"
                 onClick={() => setPreviewUrl(null)}
-                className="absolute right-3 top-3 z-10 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-slate-700 shadow hover:bg-white"
+                className="absolute right-3 top-3 z-10 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-slate-700 dark:text-slate-200 shadow hover:bg-white dark:hover:bg-[#1E1B2E]"
               >
                 Fermer ✕
               </button>

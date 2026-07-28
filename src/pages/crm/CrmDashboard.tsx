@@ -33,18 +33,18 @@ type Agent = { id: string; user_id: string | null; full_name: string };
 
 function Kpi({ icon: Icon, label, value, hint, href }: any) {
   const body = (
-    <div className="group rounded-3xl border border-[#E9D5FF] bg-white p-5 transition hover:border-[#C4B5FD] hover:shadow-md">
+    <div className="group rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5 transition hover:border-[#C4B5FD] hover:shadow-md">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="rounded-2xl bg-[#F5F3FF] p-2.5">
-            <Icon className="h-5 w-5 text-[#7C3AED]" />
+          <div className="rounded-2xl bg-[#F5F3FF] dark:bg-[#262140] p-2.5">
+            <Icon className="h-5 w-5 text-[#7C3AED] dark:text-[#C4B5FD]" />
           </div>
-          <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
+          <div className="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">{label}</div>
         </div>
-        {href && <ArrowRight className="h-4 w-4 text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-[#7C3AED]" />}
+        {href && <ArrowRight className="h-4 w-4 text-slate-300 dark:text-slate-600 transition group-hover:translate-x-0.5 group-hover:text-[#7C3AED] dark:group-hover:text-[#C4B5FD]" />}
       </div>
-      <div className="mt-3 text-2xl font-semibold text-slate-900">{value}</div>
-      {hint && <div className="mt-1 text-xs text-slate-500">{hint}</div>}
+      <div className="mt-3 text-2xl font-semibold text-slate-900 dark:text-slate-50">{value}</div>
+      {hint && <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{hint}</div>}
     </div>
   );
   return href ? <Link to={href}>{body}</Link> : body;
@@ -203,7 +203,7 @@ export default function CrmDashboard() {
       {
         id: "closing",
         icon: Target,
-        color: "text-[#6D28D9] bg-[#F5F3FF]",
+        color: "text-[#6D28D9] dark:text-[#C4B5FD] bg-[#F5F3FF] dark:bg-[#262140]",
         title: "Signatures à finaliser",
         hint: "Deals en souscription active",
         items: closing,
@@ -215,14 +215,14 @@ export default function CrmDashboard() {
     <div className="flex flex-1 flex-col overflow-y-auto px-6 py-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">Dashboard</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">Dashboard</h1>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             {loading ? "Chargement…" : `${stats.total} deals sur la période`}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
           {views.length > 0 && (
-            <div className="flex items-center gap-1 rounded-full border border-[#E9D5FF] bg-white pl-2">
+            <div className="flex items-center gap-1 rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] pl-2">
               <select
                 value={activeViewId}
                 onChange={(e) => applyView(e.target.value)}
@@ -236,7 +236,7 @@ export default function CrmDashboard() {
               {activeViewId && (
                 <button
                   onClick={() => deleteView(activeViewId)}
-                  className="mr-1 rounded-full p-1.5 hover:bg-red-50"
+                  className="mr-1 rounded-full p-1.5 hover:bg-red-50 dark:hover:bg-red-950/40"
                   title="Supprimer cette vue"
                 >
                   <Trash2 className="h-3.5 w-3.5 text-red-600" />
@@ -246,14 +246,14 @@ export default function CrmDashboard() {
           )}
           <button
             onClick={saveCurrentView}
-            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-[#E9D5FF] bg-white px-3 text-sm text-[#7C3AED] hover:bg-[#F5F3FF]"
+            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-3 text-sm text-[#7C3AED] dark:text-[#C4B5FD] hover:bg-[#F5F3FF] dark:hover:bg-[#262140]"
           >
             <Save className="h-3.5 w-3.5" /> Sauvegarder la vue
           </button>
           <select
             value={agentFilter}
             onChange={(e) => setAgentFilter(e.target.value)}
-            className="h-9 rounded-full border border-[#E9D5FF] bg-white px-3 text-sm"
+            className="h-9 rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-3 text-sm"
           >
             <option value="all">Tous commerciaux</option>
             {agents.map((a) => (
@@ -262,13 +262,13 @@ export default function CrmDashboard() {
               </option>
             ))}
           </select>
-          <div className="flex rounded-full border border-[#E9D5FF] bg-white p-0.5">
+          <div className="flex rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-0.5">
             {RANGES.map((r) => (
               <button
                 key={r.id}
                 onClick={() => setRange(r.id)}
                 className={`rounded-full px-3 py-1 text-xs font-medium transition ${
-                  range === r.id ? "bg-[#7C3AED] text-white" : "text-slate-600 hover:bg-[#F5F3FF]"
+                  range === r.id ? "bg-[#7C3AED] text-white" : "text-slate-600 dark:text-slate-300 hover:bg-[#F5F3FF] dark:hover:bg-[#262140]"
                 }`}
               >
                 {r.label}
@@ -308,15 +308,15 @@ export default function CrmDashboard() {
       </div>
 
       {/* Tâches du jour */}
-      <div className="mt-6 rounded-3xl border border-[#E9D5FF] bg-white p-5">
+      <div className="mt-6 rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <CheckSquare className="h-5 w-5 text-[#7C3AED]" />
-            <h2 className="text-sm font-semibold text-slate-800">
+            <CheckSquare className="h-5 w-5 text-[#7C3AED] dark:text-[#C4B5FD]" />
+            <h2 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
               Tâches du jour {agentFilter === "all" ? "(équipe)" : ""}
             </h2>
           </div>
-          <Link to="/admin" className="text-xs font-medium text-[#7C3AED] hover:underline">
+          <Link to="/admin" className="text-xs font-medium text-[#7C3AED] dark:text-[#C4B5FD] hover:underline">
             Ouvrir le pipeline →
           </Link>
         </div>
@@ -328,24 +328,24 @@ export default function CrmDashboard() {
               : task.id === "incomplete" ? "/admin?stage=incomplete"
               : "/admin?stage=subscription";
             return (
-              <div key={task.id} className="rounded-2xl border border-slate-100 bg-[#FAFAFF] p-4">
+              <div key={task.id} className="rounded-2xl border border-slate-100 dark:border-[#362B54] bg-[#FAFAFF] dark:bg-[#13111C] p-4">
                 <div className="flex items-center justify-between">
                   <Link to={stageLink} className="flex items-center gap-2 hover:opacity-80">
                     <div className={`rounded-xl p-1.5 ${task.color}`}>
                       <task.icon className="h-4 w-4" />
                     </div>
-                    <div className="text-sm font-medium text-slate-800">{task.title}</div>
+                    <div className="text-sm font-medium text-slate-800 dark:text-slate-100">{task.title}</div>
                   </Link>
-                  <span className="rounded-full bg-white px-2 py-0.5 text-xs font-semibold text-slate-700 shadow-sm">
+                  <span className="rounded-full bg-white dark:bg-[#1E1B2E] px-2 py-0.5 text-xs font-semibold text-slate-700 dark:text-slate-200 shadow-sm">
                     {task.items.length}
                   </span>
                 </div>
-                <p className="mt-2 text-xs text-slate-500">{task.hint}</p>
+                <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{task.hint}</p>
                 {task.items.length > 0 && (
                   <ul className="mt-2 space-y-1.5">
                     {task.items.slice(0, 3).map((d) => (
-                      <li key={d.id} className="flex items-center gap-2 text-xs text-slate-600">
-                        <Link to={stageLink} className="flex-1 truncate hover:text-[#7C3AED]">
+                      <li key={d.id} className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
+                        <Link to={stageLink} className="flex-1 truncate hover:text-[#7C3AED] dark:hover:text-[#C4B5FD]">
                           • {d.contacts?.full_name || d.contacts?.email} — {d.insurance_type}
                         </Link>
                         <select
@@ -360,7 +360,7 @@ export default function CrmDashboard() {
                             setDeals((ds) => ds.map((x) => (x.id === d.id ? { ...x, assigned_to: val } : x)));
                             toast.success(val ? "Deal assigné" : "Assignation retirée");
                           }}
-                          className="max-w-[110px] shrink-0 truncate rounded-full border border-[#E9D5FF] bg-white px-2 py-0.5 text-[10px] text-slate-600 focus:outline-none focus:ring-1 focus:ring-[#7C3AED]"
+                          className="max-w-[110px] shrink-0 truncate rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-2 py-0.5 text-[10px] text-slate-600 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-[#7C3AED]"
                         >
                           <option value="">Assigner…</option>
                           {agents.filter((a) => a.user_id).map((a) => (
@@ -371,7 +371,7 @@ export default function CrmDashboard() {
                     ))}
                     {task.items.length > 3 && (
                       <li className="pt-0.5">
-                        <Link to={stageLink} className="text-xs text-[#7C3AED] hover:underline">
+                        <Link to={stageLink} className="text-xs text-[#7C3AED] dark:text-[#C4B5FD] hover:underline">
                           +{task.items.length - 3} de plus →
                         </Link>
                       </li>
@@ -385,15 +385,15 @@ export default function CrmDashboard() {
       </div>
 
       {/* Supervision commerciale */}
-      <div className="mt-6 rounded-3xl border border-[#E9D5FF] bg-white p-5">
+      <div className="mt-6 rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-slate-800">Supervision commerciale</h2>
-          <span className="text-xs text-slate-500">Performance par commercial sur la période</span>
+          <h2 className="text-sm font-semibold text-slate-800 dark:text-slate-100">Supervision commerciale</h2>
+          <span className="text-xs text-slate-500 dark:text-slate-400">Performance par commercial sur la période</span>
         </div>
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-100 text-left text-xs uppercase tracking-wide text-slate-500">
+              <tr className="border-b border-slate-100 dark:border-[#362B54] text-left text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 <th className="py-2 pr-3 font-medium">Commercial</th>
                 <th className="py-2 px-3 font-medium">Deals</th>
                 <th className="py-2 px-3 font-medium">Actifs</th>
@@ -418,14 +418,14 @@ export default function CrmDashboard() {
                   .reduce((s, r) => s + Number(r.actual_commission || r.estimated_commission || 0), 0);
                 const linkable = !!a.user_id;
                 return (
-                  <tr key={a.id} className="border-b border-slate-50 last:border-0 hover:bg-[#FAFAFF]">
+                  <tr key={a.id} className="border-b border-slate-50 dark:border-[#362B54] last:border-0 hover:bg-[#FAFAFF] dark:hover:bg-[#262140]">
                     <td className="py-2 pr-3">
                       {linkable ? (
-                        <Link to={`/admin?agent=${a.id}`} className="font-medium text-slate-800 hover:text-[#7C3AED]">
+                        <Link to={`/admin?agent=${a.id}`} className="font-medium text-slate-800 dark:text-slate-100 hover:text-[#7C3AED] dark:hover:text-[#C4B5FD]">
                           {a.full_name}
                         </Link>
                       ) : (
-                        <span className="font-medium text-slate-400" title="Pas de compte lié — assignation impossible">
+                        <span className="font-medium text-slate-400 dark:text-slate-500" title="Pas de compte lié — assignation impossible">
                           {a.full_name} <span className="text-[10px] uppercase">(non lié)</span>
                         </span>
                       )}
@@ -433,10 +433,10 @@ export default function CrmDashboard() {
                     <td className="py-2 px-3 tabular-nums">{rows.length}</td>
                     <td className="py-2 px-3 tabular-nums">{active}</td>
                     <td className="py-2 px-3 tabular-nums text-emerald-700">{won}</td>
-                    <td className="py-2 px-3 tabular-nums text-slate-500">{lost}</td>
+                    <td className="py-2 px-3 tabular-nums text-slate-500 dark:text-slate-400">{lost}</td>
                     <td className="py-2 px-3 tabular-nums">{conv.toFixed(0)}%</td>
                     <td className="py-2 px-3 tabular-nums">{fmtEur(pipe)}</td>
-                    <td className="py-2 pl-3 text-right font-semibold text-[#5B21B6] tabular-nums">{fmtEur(ca)}</td>
+                    <td className="py-2 pl-3 text-right font-semibold text-[#5B21B6] dark:text-[#D8B4FE] tabular-nums">{fmtEur(ca)}</td>
                   </tr>
                 );
               })}
@@ -460,8 +460,8 @@ export default function CrmDashboard() {
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-          <h3 className="text-sm font-semibold text-slate-800">Deals par étape</h3>
+        <div className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
+          <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">Deals par étape</h3>
           <div className="mt-4 h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={byStage}>
@@ -478,8 +478,8 @@ export default function CrmDashboard() {
           </div>
         </div>
 
-        <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-          <h3 className="text-sm font-semibold text-slate-800">Leads par source</h3>
+        <div className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
+          <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">Leads par source</h3>
           <div className="mt-4 h-64">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>

@@ -64,10 +64,10 @@ export default function ContactsPage() {
     <div className="flex flex-1 flex-col overflow-y-auto px-6 py-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
             Contacts
           </h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             {loading ? "Chargement…" : `${filtered.length} contacts`}
           </p>
         </div>
@@ -75,7 +75,7 @@ export default function ContactsPage() {
           <select
             value={source}
             onChange={(e) => setSource(e.target.value)}
-            className="h-9 rounded-full border border-[#E9D5FF] bg-white px-3 text-sm"
+            className="h-9 rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-3 text-sm"
           >
             <option value="all">Toutes sources</option>
             {sources.map((s) => (
@@ -87,9 +87,9 @@ export default function ContactsPage() {
         </div>
       </div>
 
-      <div className="mt-6 overflow-hidden rounded-3xl border border-[#E9D5FF] bg-white">
+      <div className="mt-6 overflow-hidden rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E]">
         <table className="w-full text-sm">
-          <thead className="bg-[#FAF5FF] text-left text-xs uppercase tracking-wide text-slate-500">
+          <thead className="bg-[#FAF5FF] dark:bg-[#13111C] text-left text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
             <tr>
               <th className="px-4 py-3">Nom</th>
               <th className="px-4 py-3">Contact</th>
@@ -100,17 +100,17 @@ export default function ContactsPage() {
               <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-slate-100 dark:divide-[#362B54]">
             {filtered.map((c) => (
-              <tr key={c.id} className="hover:bg-[#FAF5FF]/60">
-                <td className="px-4 py-3 font-medium text-slate-900">
+              <tr key={c.id} className="hover:bg-[#FAF5FF]/60 dark:hover:bg-[#262140]/60">
+                <td className="px-4 py-3 font-medium text-slate-900 dark:text-slate-50">
                   {c.full_name || "—"}
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex flex-col gap-0.5">
                     <a
                       href={`mailto:${c.email}`}
-                      className="flex items-center gap-1.5 text-[#7C3AED] hover:underline"
+                      className="flex items-center gap-1.5 text-[#7C3AED] dark:text-[#C4B5FD] hover:underline"
                     >
                       <Mail className="h-3 w-3" />
                       {c.email}
@@ -118,7 +118,7 @@ export default function ContactsPage() {
                     {c.phone && (
                       <a
                         href={`tel:${c.phone}`}
-                        className="flex items-center gap-1.5 text-slate-600"
+                        className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300"
                       >
                         <Phone className="h-3 w-3" />
                         {c.phone}
@@ -136,7 +136,7 @@ export default function ContactsPage() {
                     {(c.tags ?? []).slice(0, 3).map((t) => (
                       <span
                         key={t}
-                        className="inline-flex items-center gap-1 rounded-full bg-[#F5F3FF] px-2 py-0.5 text-xs text-[#6D28D9]"
+                        className="inline-flex items-center gap-1 rounded-full bg-[#F5F3FF] dark:bg-[#262140] px-2 py-0.5 text-xs text-[#6D28D9] dark:text-[#C4B5FD]"
                       >
                         <Tag className="h-2.5 w-2.5" />
                         {t}
@@ -144,14 +144,14 @@ export default function ContactsPage() {
                     ))}
                   </div>
                 </td>
-                <td className="px-4 py-3 text-right font-semibold text-slate-900">
+                <td className="px-4 py-3 text-right font-semibold text-slate-900 dark:text-slate-50">
                   {c.deal_count}
                 </td>
-                <td className="px-4 py-3 text-xs text-slate-500">
+                <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400">
                   {new Date(c.created_at).toLocaleDateString("fr-FR")}
                 </td>
                 <td className="px-4 py-3 text-right">
-                  <Button size="sm" variant="ghost" onClick={() => setEditing(c)} className="text-[#7C3AED]">
+                  <Button size="sm" variant="ghost" onClick={() => setEditing(c)} className="text-[#7C3AED] dark:text-[#C4B5FD]">
                     <Pencil className="h-3.5 w-3.5" />
                   </Button>
                 </td>
@@ -159,7 +159,7 @@ export default function ContactsPage() {
             ))}
             {!loading && filtered.length === 0 && (
               <tr>
-                <td colSpan={7} className="px-4 py-10 text-center text-slate-500">
+                <td colSpan={7} className="px-4 py-10 text-center text-slate-500 dark:text-slate-400">
                   Aucun contact
                 </td>
               </tr>

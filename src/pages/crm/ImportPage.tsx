@@ -212,41 +212,41 @@ export default function ImportPage() {
   return (
     <div className="flex-1 overflow-y-auto p-6">
       <header className="mb-6">
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
           Import de deals
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
           Importez des prospects depuis un fichier CSV. Les contacts existants (email) sont réutilisés.
         </p>
       </header>
 
-      <section className="mb-6 grid gap-4 rounded-3xl border border-[#E9D5FF] bg-white p-6 md:grid-cols-[1fr_auto] md:items-center">
+      <section className="mb-6 grid gap-4 rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-6 md:grid-cols-[1fr_auto] md:items-center">
         <div>
-          <h2 className="text-sm font-semibold text-slate-800">1. Préparer votre fichier</h2>
-          <p className="mt-1 text-xs text-slate-500">
-            Colonnes requises : <code className="rounded bg-slate-100 px-1">full_name</code>,{" "}
-            <code className="rounded bg-slate-100 px-1">email</code>,{" "}
-            <code className="rounded bg-slate-100 px-1">phone</code>,{" "}
-            <code className="rounded bg-slate-100 px-1">insurance_type</code>.
-            Optionnelles : <code className="rounded bg-slate-100 px-1">stage</code>,{" "}
-            <code className="rounded bg-slate-100 px-1">lead_score</code>,{" "}
-            <code className="rounded bg-slate-100 px-1">notes</code>,{" "}
-            <code className="rounded bg-slate-100 px-1">source</code>.
+          <h2 className="text-sm font-semibold text-slate-800 dark:text-slate-100">1. Préparer votre fichier</h2>
+          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+            Colonnes requises : <code className="rounded bg-slate-100 dark:bg-[#262140] px-1">full_name</code>,{" "}
+            <code className="rounded bg-slate-100 dark:bg-[#262140] px-1">email</code>,{" "}
+            <code className="rounded bg-slate-100 dark:bg-[#262140] px-1">phone</code>,{" "}
+            <code className="rounded bg-slate-100 dark:bg-[#262140] px-1">insurance_type</code>.
+            Optionnelles : <code className="rounded bg-slate-100 dark:bg-[#262140] px-1">stage</code>,{" "}
+            <code className="rounded bg-slate-100 dark:bg-[#262140] px-1">lead_score</code>,{" "}
+            <code className="rounded bg-slate-100 dark:bg-[#262140] px-1">notes</code>,{" "}
+            <code className="rounded bg-slate-100 dark:bg-[#262140] px-1">source</code>.
           </p>
         </div>
-        <Button variant="outline" onClick={downloadSample} className="rounded-full border-[#E9D5FF]">
+        <Button variant="outline" onClick={downloadSample} className="rounded-full border-[#E9D5FF] dark:border-[#362B54]">
           <Download className="mr-1.5 h-4 w-4" />
           Modèle CSV
         </Button>
       </section>
 
-      <section className="mb-6 rounded-3xl border border-[#E9D5FF] bg-white p-6">
-        <h2 className="text-sm font-semibold text-slate-800">2. Sélectionner un fichier</h2>
-        <label className="mt-3 flex cursor-pointer items-center gap-3 rounded-2xl border-2 border-dashed border-[#E9D5FF] bg-[#FAF5FF] px-6 py-8 text-sm text-slate-600 hover:bg-[#F3E8FF]">
-          <Upload className="h-5 w-5 text-[#7C3AED]" />
+      <section className="mb-6 rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-6">
+        <h2 className="text-sm font-semibold text-slate-800 dark:text-slate-100">2. Sélectionner un fichier</h2>
+        <label className="mt-3 flex cursor-pointer items-center gap-3 rounded-2xl border-2 border-dashed border-[#E9D5FF] dark:border-[#362B54] bg-[#FAF5FF] dark:bg-[#13111C] px-6 py-8 text-sm text-slate-600 dark:text-slate-300 hover:bg-[#F3E8FF] dark:hover:bg-[#262140]">
+          <Upload className="h-5 w-5 text-[#7C3AED] dark:text-[#C4B5FD]" />
           <span>
             {fileName ? (
-              <><strong className="text-slate-800">{fileName}</strong> — cliquez pour changer</>
+              <><strong className="text-slate-800 dark:text-slate-100">{fileName}</strong> — cliquez pour changer</>
             ) : (
               "Cliquez pour choisir un fichier CSV (max 5 Mo)"
             )}
@@ -261,12 +261,12 @@ export default function ImportPage() {
       </section>
 
       {rows.length > 0 && (
-        <section className="rounded-3xl border border-[#E9D5FF] bg-white p-6">
+        <section className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-6">
           <div className="flex items-center justify-between gap-3 flex-wrap">
             <div>
-              <h2 className="text-sm font-semibold text-slate-800">3. Aperçu et validation</h2>
-              <p className="mt-1 text-xs text-slate-500">
-                <span className="font-medium text-green-700">{validRows.length}</span> valides ·{" "}
+              <h2 className="text-sm font-semibold text-slate-800 dark:text-slate-100">3. Aperçu et validation</h2>
+              <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                <span className="font-medium text-green-700 dark:text-green-400">{validRows.length}</span> valides ·{" "}
                 <span className="font-medium text-red-600">{invalidRows.length}</span> à corriger
               </p>
             </div>
@@ -281,7 +281,7 @@ export default function ImportPage() {
           </div>
 
           {result && (
-            <div className="mt-4 flex items-center gap-2 rounded-2xl bg-[#F0FDF4] px-4 py-3 text-sm text-green-800">
+            <div className="mt-4 flex items-center gap-2 rounded-2xl bg-[#F0FDF4] dark:bg-[#122A1B] px-4 py-3 text-sm text-green-800 dark:text-green-300">
               <CheckCircle2 className="h-4 w-4" />
               {result.ok} deals créés{result.failed ? ` — ${result.failed} en échec` : ""}
             </div>
@@ -289,7 +289,7 @@ export default function ImportPage() {
 
           <div className="mt-4 overflow-x-auto">
             <table className="min-w-full text-xs">
-              <thead className="text-left text-slate-500">
+              <thead className="text-left text-slate-500 dark:text-slate-400">
                 <tr>
                   <th className="px-2 py-2">Ligne</th>
                   <th className="px-2 py-2">Nom</th>
@@ -300,10 +300,10 @@ export default function ImportPage() {
                   <th className="px-2 py-2">Statut</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-[#362B54]">
                 {rows.slice(0, 200).map((r) => (
                   <tr key={r.line} className={r.errors.length ? "bg-red-50/50" : ""}>
-                    <td className="px-2 py-2 text-slate-400">{r.line}</td>
+                    <td className="px-2 py-2 text-slate-400 dark:text-slate-500">{r.line}</td>
                     <td className="px-2 py-2">{r.full_name}</td>
                     <td className="px-2 py-2">{r.email}</td>
                     <td className="px-2 py-2">{r.phone}</td>
@@ -313,7 +313,7 @@ export default function ImportPage() {
                       {r.errors.length ? (
                         <span className="text-red-600">{r.errors.join(", ")}</span>
                       ) : (
-                        <span className="text-green-700">OK</span>
+                        <span className="text-green-700 dark:text-green-400">OK</span>
                       )}
                     </td>
                   </tr>
@@ -321,7 +321,7 @@ export default function ImportPage() {
               </tbody>
             </table>
             {rows.length > 200 && (
-              <p className="mt-2 text-[11px] text-slate-400">
+              <p className="mt-2 text-[11px] text-slate-400 dark:text-slate-500">
                 Affichage limité aux 200 premières lignes ({rows.length} au total).
               </p>
             )}

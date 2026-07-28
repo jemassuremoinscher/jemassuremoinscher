@@ -14,15 +14,15 @@ import SERPPreview from "@/components/admin/SERPPreview";
 
 function Kpi({ icon: Icon, label, value, hint, to }: any) {
   const body = (
-    <div className="group h-full rounded-3xl border border-[#E9D5FF] bg-white p-5 transition hover:border-[#C4B5FD] hover:shadow-md">
+    <div className="group h-full rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5 transition hover:border-[#C4B5FD] hover:shadow-md">
       <div className="flex items-center gap-3">
-        <div className="rounded-2xl bg-[#F5F3FF] p-2.5">
-          <Icon className="h-5 w-5 text-[#7C3AED]" />
+        <div className="rounded-2xl bg-[#F5F3FF] dark:bg-[#262140] p-2.5">
+          <Icon className="h-5 w-5 text-[#7C3AED] dark:text-[#C4B5FD]" />
         </div>
-        <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
+        <div className="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">{label}</div>
       </div>
-      <div className="mt-3 text-2xl font-semibold text-slate-900">{value}</div>
-      {hint && <div className="mt-1 text-xs text-slate-500">{hint}</div>}
+      <div className="mt-3 text-2xl font-semibold text-slate-900 dark:text-slate-50">{value}</div>
+      {hint && <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{hint}</div>}
     </div>
   );
   return to ? <Link to={to}>{body}</Link> : body;
@@ -140,29 +140,29 @@ export default function MarketingPage() {
     <div className="flex flex-1 flex-col overflow-y-auto px-6 py-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">Marketing & Acquisition</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">Marketing & Acquisition</h1>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             {loading ? "Chargement…" : `${contacts.length} leads · ${subs.length} abonnés · ${articleStats.approved} articles publiés`}
           </p>
         </div>
         <div className="flex gap-2 text-xs">
-          <Link to="/admin" className="rounded-full border border-[#E9D5FF] bg-white px-3 py-1.5 text-[#7C3AED] hover:bg-[#F5F3FF]">
+          <Link to="/admin" className="rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-3 py-1.5 text-[#7C3AED] dark:text-[#C4B5FD] hover:bg-[#F5F3FF] dark:hover:bg-[#262140]">
             → Pipeline
           </Link>
-          <Link to="/admin/dashboard" className="rounded-full border border-[#E9D5FF] bg-white px-3 py-1.5 text-[#7C3AED] hover:bg-[#F5F3FF]">
+          <Link to="/admin/dashboard" className="rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-3 py-1.5 text-[#7C3AED] dark:text-[#C4B5FD] hover:bg-[#F5F3FF] dark:hover:bg-[#262140]">
             → Dashboard
           </Link>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="mt-5 flex gap-1 rounded-full border border-[#E9D5FF] bg-white p-1 self-start">
+      <div className="mt-5 flex gap-1 rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-1 self-start">
         {TABS.map((t) => (
           <button
             key={t.id}
             onClick={() => setTab(t.id)}
             className={`rounded-full px-4 py-1.5 text-xs font-medium transition ${
-              tab === t.id ? "bg-[#7C3AED] text-white" : "text-slate-600 hover:bg-[#F5F3FF]"
+              tab === t.id ? "bg-[#7C3AED] text-white" : "text-slate-600 dark:text-slate-300 hover:bg-[#F5F3FF] dark:hover:bg-[#262140]"
             }`}
           >
             {t.label}
@@ -180,10 +180,10 @@ export default function MarketingPage() {
           </div>
 
           <div className="mt-6 grid gap-4 lg:grid-cols-2">
-            <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
+            <div className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-semibold text-slate-800">Répartition des sources</h3>
-                <Link to="/admin" className="text-xs text-[#7C3AED] hover:underline">Voir dans le pipeline →</Link>
+                <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">Répartition des sources</h3>
+                <Link to="/admin" className="text-xs text-[#7C3AED] dark:text-[#C4B5FD] hover:underline">Voir dans le pipeline →</Link>
               </div>
               <div className="mt-4 h-64">
                 <ResponsiveContainer width="100%" height="100%">
@@ -198,8 +198,8 @@ export default function MarketingPage() {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-              <h3 className="text-sm font-semibold text-slate-800">Leads par mois</h3>
+            <div className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
+              <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">Leads par mois</h3>
               <div className="mt-4 h-64">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={perMonth}>
@@ -213,10 +213,10 @@ export default function MarketingPage() {
             </div>
           </div>
 
-          <div className="mt-6 rounded-3xl border border-[#E9D5FF] bg-gradient-to-br from-white to-[#F5F3FF] p-5">
+          <div className="mt-6 rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-gradient-to-br from-white dark:from-[#1E1B2E] to-[#F5F3FF] dark:to-[#262140] p-5">
             <div className="flex items-center gap-2">
-              <BarChart3 className="h-4 w-4 text-[#7C3AED]" />
-              <span className="text-sm font-medium text-slate-700">
+              <BarChart3 className="h-4 w-4 text-[#7C3AED] dark:text-[#C4B5FD]" />
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
                 Passe sur les onglets pour voir en direct <strong>Google Analytics</strong> et <strong>Google Ads</strong>, ou l'onglet <strong>Contenu &amp; Social</strong> pour les articles SEO et les posts LinkedIn/Facebook.
               </span>
             </div>
@@ -238,11 +238,11 @@ export default function MarketingPage() {
 
       {tab === "serp" && (
         <div className="mt-6 space-y-4">
-          <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
+          <div className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h3 className="text-sm font-semibold text-slate-800">SERP tracker</h3>
-                <p className="mt-1 text-xs text-slate-500">
+                <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">SERP tracker</h3>
+                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
                   Mots-clés suivis pour surveiller vos positions Google et la concurrence. Ouvre la SERP live ou l'analyse Semrush en un clic.
                 </p>
               </div>
@@ -260,16 +260,16 @@ export default function MarketingPage() {
                   value={serpInput}
                   onChange={(e) => setSerpInput(e.target.value)}
                   placeholder="Ajouter un mot-clé…"
-                  className="h-9 w-64 rounded-full border border-[#E9D5FF] bg-white px-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#7C3AED]"
+                  className="h-9 w-64 rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-3 text-sm focus:outline-none focus:ring-1 focus:ring-[#7C3AED]"
                 />
                 <button className="h-9 rounded-full bg-[#7C3AED] px-3 text-xs font-medium text-white hover:bg-[#6D28D9]">
                   Ajouter
                 </button>
               </form>
             </div>
-            <div className="mt-4 overflow-hidden rounded-2xl border border-slate-100">
+            <div className="mt-4 overflow-hidden rounded-2xl border border-slate-100 dark:border-[#362B54]">
               <table className="w-full text-sm">
-                <thead className="bg-[#FAFAFF] text-xs uppercase tracking-wide text-slate-500">
+                <thead className="bg-[#FAFAFF] dark:bg-[#13111C] text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
                   <tr>
                     <th className="py-2 px-3 text-left font-medium">Mot-clé</th>
                     <th className="py-2 px-3 text-left font-medium">Actions</th>
@@ -280,31 +280,31 @@ export default function MarketingPage() {
                   {serpKeywords.map((kw) => {
                     const q = encodeURIComponent(kw);
                     return (
-                      <tr key={kw} className="border-t border-slate-100 hover:bg-[#FAFAFF]">
-                        <td className="py-2 px-3 font-medium text-slate-800">{kw}</td>
+                      <tr key={kw} className="border-t border-slate-100 dark:border-[#362B54] hover:bg-[#FAFAFF] dark:hover:bg-[#262140]">
+                        <td className="py-2 px-3 font-medium text-slate-800 dark:text-slate-100">{kw}</td>
                         <td className="py-2 px-3">
                           <div className="flex flex-wrap gap-2 text-xs">
                             <a
                               href={`https://www.google.fr/search?q=${q}&gl=fr&hl=fr`}
                               target="_blank" rel="noopener noreferrer"
-                              className="rounded-full border border-[#E9D5FF] px-3 py-1 text-[#7C3AED] hover:bg-[#F5F3FF]"
+                              className="rounded-full border border-[#E9D5FF] dark:border-[#362B54] px-3 py-1 text-[#7C3AED] dark:text-[#C4B5FD] hover:bg-[#F5F3FF] dark:hover:bg-[#262140]"
                             >Google SERP ↗</a>
                             <a
                               href={`https://www.semrush.com/analytics/keywordoverview/?q=${q}&db=fr`}
                               target="_blank" rel="noopener noreferrer"
-                              className="rounded-full border border-[#E9D5FF] px-3 py-1 text-[#7C3AED] hover:bg-[#F5F3FF]"
+                              className="rounded-full border border-[#E9D5FF] dark:border-[#362B54] px-3 py-1 text-[#7C3AED] dark:text-[#C4B5FD] hover:bg-[#F5F3FF] dark:hover:bg-[#262140]"
                             >Semrush ↗</a>
                             <a
                               href={`https://search.google.com/search-console/performance/search-analytics?resource_id=sc-domain%3Ajemassuremoinscher.fr&query=${q}`}
                               target="_blank" rel="noopener noreferrer"
-                              className="rounded-full border border-[#E9D5FF] px-3 py-1 text-[#7C3AED] hover:bg-[#F5F3FF]"
+                              className="rounded-full border border-[#E9D5FF] dark:border-[#362B54] px-3 py-1 text-[#7C3AED] dark:text-[#C4B5FD] hover:bg-[#F5F3FF] dark:hover:bg-[#262140]"
                             >Search Console ↗</a>
                           </div>
                         </td>
                         <td className="py-2 px-3 text-right">
                           <button
                             onClick={() => saveSerp(serpKeywords.filter((k) => k !== kw))}
-                            className="rounded-full p-1 text-slate-400 hover:bg-red-50 hover:text-red-600"
+                            className="rounded-full p-1 text-slate-400 dark:text-slate-500 hover:bg-red-50 dark:hover:bg-red-950/40 hover:text-red-600 dark:hover:text-red-400"
                             title="Retirer"
                           >✕</button>
                         </td>
@@ -312,15 +312,15 @@ export default function MarketingPage() {
                     );
                   })}
                   {serpKeywords.length === 0 && (
-                    <tr><td colSpan={3} className="py-6 text-center text-xs text-slate-500">Aucun mot-clé suivi.</td></tr>
+                    <tr><td colSpan={3} className="py-6 text-center text-xs text-slate-500 dark:text-slate-400">Aucun mot-clé suivi.</td></tr>
                   )}
                 </tbody>
               </table>
           </div>
 
-          <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-            <h3 className="text-sm font-semibold text-slate-800 mb-1">Titres & meta descriptions par page</h3>
-            <p className="text-xs text-slate-500 mb-4">
+          <div className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
+            <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100 mb-1">Titres & meta descriptions par page</h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-4">
               Édite les balises SEO (title, description, Open Graph) de chaque page et visualise l'aperçu Google en direct.
             </p>
             <SERPPreview />
@@ -328,9 +328,9 @@ export default function MarketingPage() {
 
           </div>
 
-          <div className="rounded-3xl border border-[#E9D5FF] bg-gradient-to-br from-[#F5F3FF] to-white p-5 text-sm text-slate-700">
-            <p className="font-medium text-slate-800">Positions Google en temps réel dans le CRM ?</p>
-            <p className="mt-1 text-xs text-slate-600">
+          <div className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-gradient-to-br from-[#F5F3FF] dark:from-[#262140] to-white dark:to-[#1E1B2E] p-5 text-sm text-slate-700 dark:text-slate-200">
+            <p className="font-medium text-slate-800 dark:text-slate-100">Positions Google en temps réel dans le CRM ?</p>
+            <p className="mt-1 text-xs text-slate-600 dark:text-slate-300">
               Semrush (service SEO intégré à la plateforme) peut brancher les positions, la difficulté et les concurrents directement dans cette page —
               tracking quotidien, alertes, historique long, données paid-search. Dis-le-moi si tu veux qu'on connecte ton compte Semrush pour l'activer.
             </p>
@@ -340,21 +340,21 @@ export default function MarketingPage() {
 
       {tab === "content" && (
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
-          <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
+          <div className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-slate-800">Derniers articles SEO/GEO</h3>
-              <a href="/blog" target="_blank" rel="noopener noreferrer" className="text-xs text-[#7C3AED] hover:underline">
+              <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">Derniers articles SEO/GEO</h3>
+              <a href="/blog" target="_blank" rel="noopener noreferrer" className="text-xs text-[#7C3AED] dark:text-[#C4B5FD] hover:underline">
                 Voir le blog →
               </a>
             </div>
-            <ul className="mt-3 divide-y divide-slate-100">
+            <ul className="mt-3 divide-y divide-slate-100 dark:divide-[#362B54]">
               {lastArticles.map((a) => (
                 <li key={a.slug} className="flex items-center justify-between py-2 text-sm">
                   <a
                     href={`/blog/${a.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="line-clamp-1 flex-1 pr-2 text-slate-800 hover:text-[#7C3AED]"
+                    className="line-clamp-1 flex-1 pr-2 text-slate-800 dark:text-slate-100 hover:text-[#7C3AED] dark:hover:text-[#C4B5FD]"
                   >
                     {a.title}
                   </a>
@@ -364,21 +364,21 @@ export default function MarketingPage() {
                 </li>
               ))}
               {lastArticles.length === 0 && (
-                <li className="py-4 text-center text-xs text-slate-500">Aucun article publié</li>
+                <li className="py-4 text-center text-xs text-slate-500 dark:text-slate-400">Aucun article publié</li>
               )}
             </ul>
           </div>
 
-          <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-            <h3 className="text-sm font-semibold text-slate-800">Derniers posts sociaux</h3>
-            <ul className="mt-3 divide-y divide-slate-100">
+          <div className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
+            <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">Derniers posts sociaux</h3>
+            <ul className="mt-3 divide-y divide-slate-100 dark:divide-[#362B54]">
               {lastPosts.map((p, i) => (
                 <li key={i} className="flex items-center justify-between py-2 text-sm">
                   <a
                     href={p.article_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="line-clamp-1 flex-1 pr-2 text-slate-800 hover:text-[#7C3AED]"
+                    className="line-clamp-1 flex-1 pr-2 text-slate-800 dark:text-slate-100 hover:text-[#7C3AED] dark:hover:text-[#C4B5FD]"
                   >
                     {p.article_title}
                   </a>
@@ -390,7 +390,7 @@ export default function MarketingPage() {
                 </li>
               ))}
               {lastPosts.length === 0 && (
-                <li className="py-4 text-center text-xs text-slate-500">Aucun post</li>
+                <li className="py-4 text-center text-xs text-slate-500 dark:text-slate-400">Aucun post</li>
               )}
             </ul>
           </div>

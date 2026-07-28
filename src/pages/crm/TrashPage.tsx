@@ -75,10 +75,10 @@ export default function TrashPage() {
   return (
     <div className="flex flex-1 flex-col overflow-y-auto px-6 py-6">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
           Corbeille
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
           {loading ? "Chargement…" : `${filtered.length} deals supprimés`}
         </p>
         <p className="mt-2 inline-flex rounded-full bg-amber-50 px-3 py-1 text-xs text-amber-800">
@@ -86,9 +86,9 @@ export default function TrashPage() {
         </p>
       </div>
 
-      <div className="mt-6 overflow-hidden rounded-3xl border border-[#E9D5FF] bg-white">
+      <div className="mt-6 overflow-hidden rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E]">
         <table className="w-full text-sm">
-          <thead className="bg-[#FAF5FF] text-left text-xs uppercase tracking-wide text-slate-500">
+          <thead className="bg-[#FAF5FF] dark:bg-[#13111C] text-left text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
             <tr>
               <th className="px-4 py-3">Contact</th>
               <th className="px-4 py-3">Produit</th>
@@ -97,22 +97,22 @@ export default function TrashPage() {
               <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-slate-100 dark:divide-[#362B54]">
             {filtered.map((r) => (
-              <tr key={r.id} className="hover:bg-[#FAF5FF]/60">
+              <tr key={r.id} className="hover:bg-[#FAF5FF]/60 dark:hover:bg-[#262140]/60">
                 <td className="px-4 py-3">
-                  <div className="font-medium text-slate-900">
+                  <div className="font-medium text-slate-900 dark:text-slate-50">
                     {r.contacts?.full_name || "—"}
                   </div>
-                  <div className="text-xs text-slate-500">
+                  <div className="text-xs text-slate-500 dark:text-slate-400">
                     {r.contacts?.email}
                   </div>
                 </td>
-                <td className="px-4 py-3 text-slate-600">{r.insurance_type}</td>
-                <td className="px-4 py-3 text-xs text-slate-500">
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-300">{r.insurance_type}</td>
+                <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400">
                   {r.source_type ?? "—"}
                 </td>
-                <td className="px-4 py-3 text-xs text-slate-500">
+                <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400">
                   {r.deleted_at
                     ? new Date(r.deleted_at).toLocaleDateString("fr-FR")
                     : "—"}
@@ -132,7 +132,7 @@ export default function TrashPage() {
                       size="sm"
                       variant="outline"
                       onClick={() => purge(r.id)}
-                      className="rounded-full border-red-200 text-red-600 hover:bg-red-50"
+                      className="rounded-full border-red-200 text-red-600 hover:bg-red-50 dark:hover:bg-red-950/40"
                     >
                       <Trash2 className="mr-1 h-3.5 w-3.5" />
                       Purger
@@ -143,7 +143,7 @@ export default function TrashPage() {
             ))}
             {!loading && filtered.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-4 py-10 text-center text-slate-500">
+                <td colSpan={5} className="px-4 py-10 text-center text-slate-500 dark:text-slate-400">
                   Corbeille vide
                 </td>
               </tr>

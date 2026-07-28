@@ -35,12 +35,12 @@ const FIELD_LABELS: Record<string, string> = {
 function actionIcon(action: string) {
   const cls = "h-3.5 w-3.5";
   switch (action) {
-    case "created": return <Plus className={cls + " text-green-600"} />;
-    case "stage_changed": return <ArrowRight className={cls + " text-[#7C3AED]"} />;
+    case "created": return <Plus className={cls + " text-green-600 dark:text-green-400"} />;
+    case "stage_changed": return <ArrowRight className={cls + " text-[#7C3AED] dark:text-[#C4B5FD]"} />;
     case "assigned": return <User className={cls + " text-blue-600"} />;
     case "deleted": return <Trash2 className={cls + " text-red-500"} />;
     case "restored": return <RotateCcw className={cls + " text-amber-600"} />;
-    default: return <Pencil className={cls + " text-slate-500"} />;
+    default: return <Pencil className={cls + " text-slate-500 dark:text-slate-400"} />;
   }
 }
 
@@ -87,17 +87,17 @@ export function AuditTimeline({ dealId }: { dealId: string }) {
   }, [dealId]);
 
   return (
-    <section className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-      <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-800">
-        <History className="h-4 w-4 text-[#7C3AED]" />
+    <section className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
+      <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-100">
+        <History className="h-4 w-4 text-[#7C3AED] dark:text-[#C4B5FD]" />
         Historique d'audit
-        <span className="ml-auto text-xs font-normal text-slate-400">
+        <span className="ml-auto text-xs font-normal text-slate-400 dark:text-slate-500">
           {loading ? "…" : `${entries.length} évènement${entries.length > 1 ? "s" : ""}`}
         </span>
       </h3>
 
       {!loading && entries.length === 0 && (
-        <p className="mt-3 text-xs text-slate-400">Aucun historique disponible.</p>
+        <p className="mt-3 text-xs text-slate-400 dark:text-slate-500">Aucun historique disponible.</p>
       )}
 
       <ol className="mt-4 space-y-3">
@@ -108,20 +108,20 @@ export function AuditTimeline({ dealId }: { dealId: string }) {
             e.field_name !== "notes";
           return (
             <li key={e.id} className="flex gap-3 text-sm">
-              <span className="mt-1 grid h-6 w-6 flex-shrink-0 place-items-center rounded-full bg-[#F3E8FF]">
+              <span className="mt-1 grid h-6 w-6 flex-shrink-0 place-items-center rounded-full bg-[#F3E8FF] dark:bg-[#262140]">
                 {actionIcon(e.action)}
               </span>
               <div className="min-w-0 flex-1">
-                <div className="text-slate-800">{describe(e)}</div>
+                <div className="text-slate-800 dark:text-slate-100">{describe(e)}</div>
                 {showDiff && (
-                  <div className="mt-0.5 text-[11px] text-slate-500">
+                  <div className="mt-0.5 text-[11px] text-slate-500 dark:text-slate-400">
                     {formatValue(e.field_name, e.old_value)}{" → "}
-                    <span className="font-medium text-slate-700">
+                    <span className="font-medium text-slate-700 dark:text-slate-200">
                       {formatValue(e.field_name, e.new_value)}
                     </span>
                   </div>
                 )}
-                <div className="mt-0.5 text-[11px] text-slate-400">
+                <div className="mt-0.5 text-[11px] text-slate-400 dark:text-slate-500">
                   {new Date(e.created_at).toLocaleString("fr-FR")}
                   {e.actor_email && <> · par {e.actor_email}</>}
                 </div>

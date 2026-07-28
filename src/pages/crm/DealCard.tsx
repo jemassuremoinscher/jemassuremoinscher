@@ -52,14 +52,14 @@ export function DealCard({
       {...attributes}
       {...listeners}
       onClick={() => onOpen(deal)}
-      className="group cursor-grab rounded-3xl border border-[#E9D5FF] bg-white p-4 shadow-sm hover:border-[#C4B5FD] hover:shadow-md active:cursor-grabbing"
+      className="group cursor-grab rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-4 shadow-sm hover:border-[#C4B5FD] hover:shadow-md active:cursor-grabbing"
     >
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <div className="truncate text-sm font-semibold text-slate-900">
+          <div className="truncate text-sm font-semibold text-slate-900 dark:text-slate-50">
             {contact?.full_name ?? "Prospect"}
           </div>
-          <div className="mt-0.5 text-[11px] uppercase tracking-wide text-[#7C3AED]">
+          <div className="mt-0.5 text-[11px] uppercase tracking-wide text-[#7C3AED] dark:text-[#C4B5FD]">
             {deal.insurance_type}
           </div>
         </div>
@@ -81,7 +81,7 @@ export function DealCard({
         </div>
       </div>
 
-      <div className="mt-3 space-y-1 text-xs text-slate-500">
+      <div className="mt-3 space-y-1 text-xs text-slate-500 dark:text-slate-400">
         {contact?.email && (
           <div className="flex items-center gap-1.5 truncate">
             <Mail className="h-3 w-3 shrink-0" />
@@ -102,11 +102,11 @@ export function DealCard({
           onPointerDown={(e) => e.stopPropagation()}
           onClick={(e) => e.stopPropagation()}
         >
-          <UserCircle2 className="h-3.5 w-3.5 text-slate-400" />
+          <UserCircle2 className="h-3.5 w-3.5 text-slate-400 dark:text-slate-500" />
           <select
             value={deal.assigned_to ?? ""}
             onChange={(e) => handleAssign(e.target.value)}
-            className="w-full truncate rounded-full border border-[#E9D5FF] bg-white px-2 py-0.5 text-[11px] text-slate-600 hover:border-[#C4B5FD] focus:outline-none focus:ring-1 focus:ring-[#7C3AED]"
+            className="w-full truncate rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-2 py-0.5 text-[11px] text-slate-600 dark:text-slate-300 hover:border-[#C4B5FD] focus:outline-none focus:ring-1 focus:ring-[#7C3AED]"
             title={currentAgent ?? "Non assigné"}
           >
             <option value="">Non assigné</option>
@@ -119,10 +119,10 @@ export function DealCard({
         </div>
       )}
 
-      <div className="mt-3 flex items-center justify-between text-[11px] text-slate-400">
+      <div className="mt-3 flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500">
         <span>{new Date(deal.created_at).toLocaleDateString("fr-FR")}</span>
         {deal.estimated_commission != null && (
-          <span className="rounded-full bg-[#F3E8FF] px-2 py-0.5 font-semibold text-[#5B21B6]">
+          <span className="rounded-full bg-[#F3E8FF] dark:bg-[#262140] px-2 py-0.5 font-semibold text-[#5B21B6] dark:text-[#D8B4FE]">
             {deal.estimated_commission.toFixed(0)}€
           </span>
         )}

@@ -22,10 +22,10 @@ interface TasksWidgetProps {
 // Mêmes teintes que les accents d'étape du Kanban (qualified/subscription/incomplete)
 // pour rester dans la palette déjà utilisée par le reste du nouvel admin.
 const PRIORITY_STYLES: Record<TaskPriority, string> = {
-  low: 'bg-slate-100 text-slate-500',
-  normal: 'bg-[#EEF2FF] text-[#4F46E5]',
-  high: 'bg-[#FEF3C7] text-[#D97706]',
-  urgent: 'bg-[#FEE2E2] text-[#DC2626]',
+  low: 'bg-slate-100 dark:bg-[#262140] text-slate-500 dark:text-slate-400',
+  normal: 'bg-[#EEF2FF] dark:bg-[#23253F] text-[#4F46E5] dark:text-[#A5B4FC]',
+  high: 'bg-[#FEF3C7] dark:bg-[#3D2E12] text-[#D97706] dark:text-[#FBBF24]',
+  urgent: 'bg-[#FEE2E2] dark:bg-[#3D1515] text-[#DC2626] dark:text-[#F87171]',
 };
 
 const PRIORITY_LABELS: Record<TaskPriority, string> = {
@@ -122,7 +122,7 @@ export const TasksWidget = ({ onNavigateToDeal }: TasksWidgetProps) => {
     const label = dealLabels?.get(task.deal_id) || 'Deal';
     const assigneeName = task.assigned_to ? assigneeNames?.get(task.assigned_to) : null;
     return (
-      <div key={task.id} className="flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[#FAF5FF] transition-colors">
+      <div key={task.id} className="flex items-start gap-3 rounded-2xl p-2.5 hover:bg-[#FAF5FF] dark:hover:bg-[#262140] transition-colors">
         <Checkbox
           className="mt-0.5"
           checked={false}
@@ -133,7 +133,7 @@ export const TasksWidget = ({ onNavigateToDeal }: TasksWidgetProps) => {
           <div className="flex items-center gap-2 flex-wrap">
             <button
               type="button"
-              className="text-sm font-medium text-slate-800 hover:text-[#7C3AED] text-left"
+              className="text-sm font-medium text-slate-800 dark:text-slate-100 hover:text-[#7C3AED] dark:hover:text-[#C4B5FD] text-left"
               onClick={() => onNavigateToDeal(task.deal_id)}
             >
               {task.title}
@@ -142,7 +142,7 @@ export const TasksWidget = ({ onNavigateToDeal }: TasksWidgetProps) => {
               {PRIORITY_LABELS[task.priority]}
             </span>
           </div>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
             {label} · {formatDue(task.due_at)}
             {assigneeName && <> · Assigné à {assigneeName}</>}
           </p>
@@ -154,24 +154,24 @@ export const TasksWidget = ({ onNavigateToDeal }: TasksWidgetProps) => {
   const totalOpen = relevantTasks.length;
 
   return (
-    <section className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
+    <section className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
       <div className="flex items-center justify-between">
-        <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-800">
-          <ListTodo className="h-4 w-4 text-[#7C3AED]" />
+        <h3 className="flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-100">
+          <ListTodo className="h-4 w-4 text-[#7C3AED] dark:text-[#C4B5FD]" />
           Mes tâches
           {!isLoading && (
-            <span className="rounded-full bg-[#F3E8FF] px-2 py-0.5 text-[11px] font-semibold text-[#5B21B6]">
+            <span className="rounded-full bg-[#F3E8FF] dark:bg-[#262140] px-2 py-0.5 text-[11px] font-semibold text-[#5B21B6] dark:text-[#D8B4FE]">
               {totalOpen}
             </span>
           )}
         </h3>
         {canSeeTeam && (
-          <div className="flex rounded-full border border-[#E9D5FF] bg-white p-0.5">
+          <div className="flex rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-0.5">
             <button
               type="button"
               onClick={() => setTeamScope(false)}
               className={`rounded-full px-3 py-1 text-xs font-medium transition ${
-                !teamScope ? 'bg-[#7C3AED] text-white' : 'text-slate-600 hover:bg-[#F5F3FF]'
+                !teamScope ? 'bg-[#7C3AED] text-white' : 'text-slate-600 dark:text-slate-300 hover:bg-[#F5F3FF] dark:hover:bg-[#262140]'
               }`}
             >
               Moi
@@ -180,7 +180,7 @@ export const TasksWidget = ({ onNavigateToDeal }: TasksWidgetProps) => {
               type="button"
               onClick={() => setTeamScope(true)}
               className={`rounded-full px-3 py-1 text-xs font-medium transition ${
-                teamScope ? 'bg-[#7C3AED] text-white' : 'text-slate-600 hover:bg-[#F5F3FF]'
+                teamScope ? 'bg-[#7C3AED] text-white' : 'text-slate-600 dark:text-slate-300 hover:bg-[#F5F3FF] dark:hover:bg-[#262140]'
               }`}
             >
               Équipe
@@ -190,59 +190,59 @@ export const TasksWidget = ({ onNavigateToDeal }: TasksWidgetProps) => {
       </div>
 
       {isLoading ? (
-        <p className="mt-4 text-xs text-slate-400">Chargement…</p>
+        <p className="mt-4 text-xs text-slate-400 dark:text-slate-500">Chargement…</p>
       ) : totalOpen === 0 ? (
-        <div className="mt-4 grid h-24 place-items-center rounded-2xl border border-dashed border-[#E9D5FF] text-xs text-slate-400">
+        <div className="mt-4 grid h-24 place-items-center rounded-2xl border border-dashed border-[#E9D5FF] dark:border-[#362B54] text-xs text-slate-400 dark:text-slate-500">
           Aucune tâche en cours.
         </div>
       ) : (
         <div className="mt-4 space-y-4">
           {overdue.length > 0 && (
             <div>
-              <h4 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-[#DC2626]">
+              <h4 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-[#DC2626] dark:text-[#F87171]">
                 <AlertTriangle className="h-3.5 w-3.5" />
                 En retard ({overdue.length})
               </h4>
-              <div className="mt-1 divide-y divide-[#F3E8FF]">{overdue.map(renderTask)}</div>
+              <div className="mt-1 divide-y divide-[#F3E8FF] dark:divide-[#362B54]">{overdue.map(renderTask)}</div>
             </div>
           )}
 
           {dueToday.length > 0 && (
             <div>
-              <h4 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500">
+              <h4 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 <CalendarDays className="h-3.5 w-3.5" />
                 Aujourd'hui ({dueToday.length})
               </h4>
-              <div className="mt-1 divide-y divide-[#F3E8FF]">{dueToday.map(renderTask)}</div>
+              <div className="mt-1 divide-y divide-[#F3E8FF] dark:divide-[#362B54]">{dueToday.map(renderTask)}</div>
             </div>
           )}
 
           {upcoming.length > 0 && (
             <div>
-              <h4 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500">
+              <h4 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 <CalendarClock className="h-3.5 w-3.5" />
                 À venir (7 j) ({upcoming.length})
               </h4>
-              <div className="mt-1 divide-y divide-[#F3E8FF]">{upcoming.map(renderTask)}</div>
+              <div className="mt-1 divide-y divide-[#F3E8FF] dark:divide-[#362B54]">{upcoming.map(renderTask)}</div>
             </div>
           )}
 
           {later.length > 0 && (
             <div>
-              <h4 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500">
+              <h4 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 <CalendarClock className="h-3.5 w-3.5" />
                 Plus tard ({later.length})
               </h4>
-              <div className="mt-1 divide-y divide-[#F3E8FF]">{later.map(renderTask)}</div>
+              <div className="mt-1 divide-y divide-[#F3E8FF] dark:divide-[#362B54]">{later.map(renderTask)}</div>
             </div>
           )}
 
           {withoutDueDate.length > 0 && (
             <div>
-              <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
                 Sans échéance ({withoutDueDate.length})
               </h4>
-              <div className="mt-1 divide-y divide-[#F3E8FF]">{withoutDueDate.map(renderTask)}</div>
+              <div className="mt-1 divide-y divide-[#F3E8FF] dark:divide-[#362B54]">{withoutDueDate.map(renderTask)}</div>
             </div>
           )}
         </div>

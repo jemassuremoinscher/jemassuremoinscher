@@ -91,10 +91,10 @@ export default function GedPage() {
     <div className="flex flex-1 flex-col overflow-y-auto px-6 py-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
             GED — Documents
           </h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             {loading ? "Chargement…" : `${filtered.length} documents`}
           </p>
         </div>
@@ -102,7 +102,7 @@ export default function GedPage() {
           <select
             value={clientFilter}
             onChange={(e) => setClientFilter(e.target.value)}
-            className="h-9 rounded-full border border-[#E9D5FF] bg-white px-3 text-sm"
+            className="h-9 rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-3 text-sm"
           >
             <option value="all">Tous clients</option>
             {clients.map((c) => (
@@ -114,9 +114,9 @@ export default function GedPage() {
         </div>
       </div>
 
-      <div className="mt-6 overflow-hidden rounded-3xl border border-[#E9D5FF] bg-white">
+      <div className="mt-6 overflow-hidden rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E]">
         <table className="w-full text-sm">
-          <thead className="bg-[#FAF5FF] text-left text-xs uppercase tracking-wide text-slate-500">
+          <thead className="bg-[#FAF5FF] dark:bg-[#13111C] text-left text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
             <tr>
               <th className="px-4 py-3">Document</th>
               <th className="px-4 py-3">Client</th>
@@ -125,22 +125,22 @@ export default function GedPage() {
               <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-slate-100 dark:divide-[#362B54]">
             {filtered.map((d) => (
-              <tr key={d.id} className="hover:bg-[#FAF5FF]/60">
+              <tr key={d.id} className="hover:bg-[#FAF5FF]/60 dark:hover:bg-[#262140]/60">
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-2">
-                    <FileText className="h-4 w-4 text-[#7C3AED]" />
-                    <span className="font-medium text-slate-900">{d.name}</span>
+                    <FileText className="h-4 w-4 text-[#7C3AED] dark:text-[#C4B5FD]" />
+                    <span className="font-medium text-slate-900 dark:text-slate-50">{d.name}</span>
                   </div>
                 </td>
-                <td className="px-4 py-3 text-slate-700">
+                <td className="px-4 py-3 text-slate-700 dark:text-slate-200">
                   {d.deals?.contacts?.full_name || d.deals?.contacts?.email || "—"}
                 </td>
-                <td className="px-4 py-3 text-slate-600">
+                <td className="px-4 py-3 text-slate-600 dark:text-slate-300">
                   {d.deals?.insurance_type ?? "—"}
                 </td>
-                <td className="px-4 py-3 text-xs text-slate-500">
+                <td className="px-4 py-3 text-xs text-slate-500 dark:text-slate-400">
                   {d.uploaded_at
                     ? new Date(d.uploaded_at).toLocaleDateString("fr-FR")
                     : "—"}
@@ -152,24 +152,24 @@ export default function GedPage() {
                         href={d.drive_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-full p-1.5 hover:bg-[#F5F3FF]"
+                        className="rounded-full p-1.5 hover:bg-[#F5F3FF] dark:hover:bg-[#262140]"
                         title="Ouvrir dans Google Drive"
                       >
-                        <ExternalLink className="h-4 w-4 text-[#7C3AED]" />
+                        <ExternalLink className="h-4 w-4 text-[#7C3AED] dark:text-[#C4B5FD]" />
                       </a>
                     )}
                     {d.file_path && (
                       <button
                         onClick={() => download(d)}
-                        className="rounded-full p-1.5 hover:bg-[#F5F3FF]"
+                        className="rounded-full p-1.5 hover:bg-[#F5F3FF] dark:hover:bg-[#262140]"
                         title="Télécharger"
                       >
-                        <Download className="h-4 w-4 text-[#7C3AED]" />
+                        <Download className="h-4 w-4 text-[#7C3AED] dark:text-[#C4B5FD]" />
                       </button>
                     )}
                     <button
                       onClick={() => remove(d)}
-                      className="rounded-full p-1.5 hover:bg-red-50"
+                      className="rounded-full p-1.5 hover:bg-red-50 dark:hover:bg-red-950/40"
                       title="Supprimer"
                     >
                       <Trash2 className="h-4 w-4 text-red-600" />
@@ -180,7 +180,7 @@ export default function GedPage() {
             ))}
             {!loading && filtered.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-4 py-10 text-center text-slate-500">
+                <td colSpan={5} className="px-4 py-10 text-center text-slate-500 dark:text-slate-400">
                   Aucun document
                 </td>
               </tr>

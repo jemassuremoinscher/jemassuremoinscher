@@ -33,17 +33,17 @@ const fmtEur = (n: number) =>
 
 function Kpi({ icon: Icon, label, value, hint }: any) {
   return (
-    <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
+    <div className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
       <div className="flex items-center gap-3">
-        <div className="rounded-2xl bg-[#F5F3FF] p-2.5">
-          <Icon className="h-5 w-5 text-[#7C3AED]" />
+        <div className="rounded-2xl bg-[#F5F3FF] dark:bg-[#262140] p-2.5">
+          <Icon className="h-5 w-5 text-[#7C3AED] dark:text-[#C4B5FD]" />
         </div>
-        <div className="text-xs uppercase tracking-wide text-slate-500">
+        <div className="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
           {label}
         </div>
       </div>
-      <div className="mt-3 text-2xl font-semibold text-slate-900">{value}</div>
-      {hint && <div className="mt-1 text-xs text-slate-500">{hint}</div>}
+      <div className="mt-3 text-2xl font-semibold text-slate-900 dark:text-slate-50">{value}</div>
+      {hint && <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{hint}</div>}
     </div>
   );
 }
@@ -124,14 +124,14 @@ export default function FinancePage() {
   return (
     <div className="flex flex-1 flex-col overflow-y-auto px-6 py-6">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
           Finance & Commissions
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
           {loading ? "Chargement…" : `${deals.length} deals analysés`}
         </p>
-        <div className="mt-3 max-w-3xl rounded-2xl border border-[#E9D5FF] bg-[#FAF5FF] p-3 text-xs text-slate-600">
-          <strong className="text-[#5B21B6]">Automatisation :</strong> les
+        <div className="mt-3 max-w-3xl rounded-2xl border border-[#E9D5FF] dark:border-[#362B54] bg-[#FAF5FF] dark:bg-[#13111C] p-3 text-xs text-slate-600 dark:text-slate-300">
+          <strong className="text-[#5B21B6] dark:text-[#D8B4FE]">Automatisation :</strong> les
           commissions sont calculées automatiquement à partir des deals
           <em> passés en étape « Validé »</em>. Le CA signé = somme des{" "}
           <code>actual_commission</code> (sinon <code>estimated_commission</code>).
@@ -148,8 +148,8 @@ export default function FinancePage() {
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-          <h3 className="text-sm font-semibold text-slate-800">
+        <div className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
+          <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
             Commissions par commercial
           </h3>
           <div className="mt-4 h-64">
@@ -164,8 +164,8 @@ export default function FinancePage() {
           </div>
         </div>
 
-        <div className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
-          <h3 className="text-sm font-semibold text-slate-800">
+        <div className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
+          <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
             Évolution CA mensuel
           </h3>
           <div className="mt-4 h-64">

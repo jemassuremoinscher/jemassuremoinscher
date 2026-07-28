@@ -61,10 +61,10 @@ export function EditDealSection({ deal, onSaved }: { deal: DealRow; onSaved: () 
   };
 
   return (
-    <section className="rounded-3xl border border-[#E9D5FF] bg-white p-5">
+    <section className="rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-slate-800">Détails du deal</h3>
-        <Button size="sm" variant="ghost" onClick={() => setEditing((v) => !v)} className="text-[#7C3AED]">
+        <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">Détails du deal</h3>
+        <Button size="sm" variant="ghost" onClick={() => setEditing((v) => !v)} className="text-[#7C3AED] dark:text-[#C4B5FD]">
           <Pencil className="mr-1 h-3.5 w-3.5" />
           {editing ? "Fermer" : "Modifier"}
         </Button>
@@ -72,10 +72,10 @@ export function EditDealSection({ deal, onSaved }: { deal: DealRow; onSaved: () 
 
       {!editing ? (
         <dl className="mt-3 grid grid-cols-2 gap-3 text-sm">
-          <div><dt className="text-xs text-slate-500">Étape</dt><dd>{STAGES.find(s => s.id === deal.stage)?.label}</dd></div>
-          <div><dt className="text-xs text-slate-500">Produit</dt><dd>{deal.insurance_type}</dd></div>
-          <div><dt className="text-xs text-slate-500">Commission est.</dt><dd>{deal.estimated_commission ?? 0} €</dd></div>
-          <div><dt className="text-xs text-slate-500">Score</dt><dd>{deal.lead_score ?? 0}</dd></div>
+          <div><dt className="text-xs text-slate-500 dark:text-slate-400">Étape</dt><dd>{STAGES.find(s => s.id === deal.stage)?.label}</dd></div>
+          <div><dt className="text-xs text-slate-500 dark:text-slate-400">Produit</dt><dd>{deal.insurance_type}</dd></div>
+          <div><dt className="text-xs text-slate-500 dark:text-slate-400">Commission est.</dt><dd>{deal.estimated_commission ?? 0} €</dd></div>
+          <div><dt className="text-xs text-slate-500 dark:text-slate-400">Score</dt><dd>{deal.lead_score ?? 0}</dd></div>
         </dl>
       ) : (
         <div className="mt-3 grid gap-3">

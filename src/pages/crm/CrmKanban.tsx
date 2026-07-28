@@ -181,10 +181,10 @@ export default function CrmKanban() {
     <div className="flex flex-1 flex-col overflow-hidden">
       <div className="flex items-center justify-between px-6 pt-6 pb-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
             Pipeline commercial
           </h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
             {loading ? "Chargement…" : `${filtered.length} deals actifs`}
           </p>
         </div>
@@ -197,25 +197,25 @@ export default function CrmKanban() {
         </Button>
       </div>
 
-      <div className="flex flex-wrap items-center gap-2 border-b border-[#E9D5FF] bg-[#FAFAFF] px-6 py-3">
-        <span className="text-xs font-medium uppercase tracking-wide text-slate-500">Filtres :</span>
+      <div className="flex flex-wrap items-center gap-2 border-b border-[#E9D5FF] dark:border-[#362B54] bg-[#FAFAFF] dark:bg-[#13111C] px-6 py-3">
+        <span className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">Filtres :</span>
         <select value={agentFilter} onChange={(e) => setAgentFilter(e.target.value)}
-          className="h-8 rounded-full border border-[#E9D5FF] bg-white px-3 text-xs">
+          className="h-8 rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-3 text-xs">
           <option value="all">Tous commerciaux</option>
           {agents.map((a) => <option key={a.id} value={a.id}>{a.full_name}</option>)}
         </select>
         <select value={sourceFilter} onChange={(e) => setSourceFilter(e.target.value)}
-          className="h-8 rounded-full border border-[#E9D5FF] bg-white px-3 text-xs">
+          className="h-8 rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-3 text-xs">
           <option value="all">Toutes sources</option>
           {sources.map((s) => <option key={s} value={s}>{s}</option>)}
         </select>
         <select value={stageFilter} onChange={(e) => setStageFilter(e.target.value)}
-          className="h-8 rounded-full border border-[#E9D5FF] bg-white px-3 text-xs">
+          className="h-8 rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-3 text-xs">
           <option value="all">Toutes étapes</option>
           {STAGES.map((s) => <option key={s.id} value={s.id}>{s.label}</option>)}
         </select>
         <select value={dateFilter} onChange={(e) => setDateFilter(e.target.value)}
-          className="h-8 rounded-full border border-[#E9D5FF] bg-white px-3 text-xs">
+          className="h-8 rounded-full border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-3 text-xs">
           <option value="all">Toutes dates</option>
           <option value="7d">7 derniers jours</option>
           <option value="30d">30 derniers jours</option>
@@ -224,7 +224,7 @@ export default function CrmKanban() {
         {(agentFilter !== "all" || sourceFilter !== "all" || stageFilter !== "all" || dateFilter !== "all") && (
           <button
             onClick={() => { setAgentFilter("all"); setSourceFilter("all"); setStageFilter("all"); setDateFilter("all"); }}
-            className="text-xs text-[#7C3AED] hover:underline"
+            className="text-xs text-[#7C3AED] dark:text-[#C4B5FD] hover:underline"
           >
             Réinitialiser
           </button>
