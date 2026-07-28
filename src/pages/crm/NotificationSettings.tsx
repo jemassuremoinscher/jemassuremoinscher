@@ -3,7 +3,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { NOTIF_TYPES, NotifType, NotifPrefs, loadPrefs, savePrefs, resetPrefs } from "@/lib/notificationPrefs";
 import { useLeadNotifications } from "@/hooks/useLeadNotifications";
 import { toast } from "sonner";
-import { Bell, RotateCcw, Send } from "lucide-react";
+import { Bell, RotateCcw, Send, Sparkles } from "lucide-react";
 
 export default function NotificationSettings() {
   const { user, isAdmin } = useAuth();
