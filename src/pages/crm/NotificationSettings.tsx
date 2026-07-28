@@ -45,6 +45,13 @@ export default function NotificationSettings() {
     else toast.error("Autorise d'abord les notifications dans le navigateur");
   };
 
+  const doSampleLead = async () => {
+    const ok = await sendSampleLeadNotification();
+    setPermission(Notification.permission);
+    if (ok) toast.success("Exemple de lead envoyé — vérifie ta notification Chrome");
+    else toast.error("Autorise d'abord les notifications dans le navigateur");
+  };
+
   return (
     <div className="mx-auto max-w-3xl space-y-6 p-6">
       <div>
