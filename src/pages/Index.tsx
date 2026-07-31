@@ -8,7 +8,7 @@ import DeferredRender from "@/components/performance/DeferredRender";
 import MdReveal from "@/components/motion/MdReveal";
 import { addOrganizationSchema, addServiceSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import geoContent from "@/data/geo-content.json";
-import { CONTENT_LAST_REVIEWED } from "@/components/sections/ExpertiseEEAT";
+import { CONTENT_LAST_REVIEWED } from "@/config/contentReview";
 
 // Lazy load below-the-fold sections
 
