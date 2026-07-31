@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { BadgeCheck, BookOpen, Users, Scale } from "lucide-react";
+import { CONTENT_LAST_REVIEWED } from "@/config/contentReview";
 
 /**
  * Bloc E-E-A-T : Experience, Expertise, Authoritativeness, Trustworthiness.
  * Rend visibles pour Google et les moteurs génératifs :
  * qui rédige, sur quelles sources, avec quelle méthode, sous quel statut réglementaire.
  */
-export const CONTENT_LAST_REVIEWED = "2026-07-31";
 
 const PILLARS = [
   {
