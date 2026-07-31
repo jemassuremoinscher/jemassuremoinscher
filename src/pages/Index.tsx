@@ -235,7 +235,7 @@ const Index = () => {
         keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
         canonical="https://www.jemassuremoinscher.fr"
         ogImage="https://www.jemassuremoinscher.fr/opengraph-image.png"
-        jsonLd={[webSiteSchema, organizationSchema, financialServiceSchema, serviceSchema, breadcrumbSchema, faqSchema, localBusinessSchema]}
+        jsonLd={[webSiteSchema, webPageSchema, organizationSchema, financialServiceSchema, serviceSchema, howToSchema, breadcrumbSchema, faqSchema, localBusinessSchema]}
       />
       <Header />
       <main id="main-content" role="main">
