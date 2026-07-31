@@ -8,6 +8,7 @@ import DeferredRender from "@/components/performance/DeferredRender";
 import MdReveal from "@/components/motion/MdReveal";
 import { addOrganizationSchema, addServiceSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
 import geoContent from "@/data/geo-content.json";
+import { CONTENT_LAST_REVIEWED } from "@/config/contentReview";
 
 // Lazy load below-the-fold sections
 
@@ -20,6 +21,8 @@ const ClientCases = lazy(() => import("@/components/sections/ClientCases"));
 const GuidesSection = lazy(() => import("@/components/sections/GuidesSection"));
 const SEOContent = lazy(() => import("@/components/sections/SEOContent"));
 const ContextualHelp = lazy(() => import("@/components/sections/ContextualHelp"));
+const DirectAnswers = lazy(() => import("@/components/sections/DirectAnswers"));
+const ExpertiseEEAT = lazy(() => import("@/components/sections/ExpertiseEEAT"));
 const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
 const LeadMagnetSection = lazy(() => import("@/components/sections/LeadMagnetSection"));
 
@@ -119,7 +122,94 @@ const Index = () => {
           "@type": "Answer",
           "text": "Absolument. Nous respectons le RGPD et ne partageons vos informations qu'avec les assureurs sélectionnés pour votre devis."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment payer son assurance moins cher en 2026 ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "En comparant au moins 5 offres avant chaque échéance : à garanties identiques, l'écart de prix entre deux assureurs atteint couramment 30 à 40 % pour un même profil. Ajuster sa franchise, déclarer son kilométrage réel, regrouper auto et habitation chez le même assureur (5 à 15 % de remise) et réévaluer ses garanties sur un véhicule de plus de 8 ans sont les leviers les plus efficaces."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quand peut-on résilier son assurance ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "À tout moment après 12 mois de contrat, sans frais ni justificatif, grâce à la loi Hamon (article L113-15-2 du Code des assurances). La mutuelle santé individuelle est résiliable en infra-annuel après 12 mois, l'assurance emprunteur à tout moment depuis la loi Lemoine. Avant 12 mois, la résiliation se fait à l'échéance avec 2 mois de préavis (loi Chatel)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien coûte une assurance moins chère en 2026 ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tarifs d'entrée constatés sur nos devis 2026 : assurance auto au tiers dès 22 €/mois, tous risques dès 45 €/mois, habitation T2/T3 dès 8 €/mois, mutuelle santé individuelle dès 19 €/mois, moto ou scooter dès 15 €/mois et trottinette électrique dès 2,90 €/mois. Le prix final dépend du profil, de la localisation et des garanties."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qui édite jemassuremoinscher.fr et comment êtes-vous rémunérés ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le site est édité par ARPV, courtier en assurances (immatriculation ORIAS en cours), soumis au Code des assurances et au contrôle de l'ACPR. Nous sommes rémunérés par une commission versée par l'assureur uniquement en cas de souscription : la comparaison reste gratuite et sans engagement pour l'utilisateur."
+        }
       }
+    ]
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Comment trouver une assurance moins chère en 3 étapes",
+    "description": "Méthode en 3 étapes pour comparer plus de 70 assureurs et réduire le prix de son assurance en moins de 2 minutes.",
+    "totalTime": "PT2M",
+    "estimatedCost": { "@type": "MonetaryAmount", "currency": "EUR", "value": "0" },
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Décrivez votre besoin",
+        "text": "Remplissez le formulaire en ligne (type d'assurance, profil, garanties souhaitées) en moins de 2 minutes.",
+        "url": "https://www.jemassuremoinscher.fr/comparateur"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Comparez les offres",
+        "text": "Nous interrogeons plus de 70 assureurs partenaires et 2 500 agences locales à garanties équivalentes pour identifier les écarts de prix réels.",
+        "url": "https://www.jemassuremoinscher.fr/comparateur"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Souscrivez et résiliez sans frais",
+        "text": "Un conseiller vous rappelle sous 2 h ouvrées, valide le contrat retenu et se charge gratuitement de la résiliation de votre ancien contrat (loi Hamon).",
+        "url": "https://www.jemassuremoinscher.fr/contact"
+      }
+    ]
+  };
+
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://www.jemassuremoinscher.fr/#webpage",
+    "url": "https://www.jemassuremoinscher.fr/",
+    "name": "Comparateur d'assurance moins chère",
+    "inLanguage": "fr-FR",
+    "datePublished": "2025-01-15",
+    "dateModified": CONTENT_LAST_REVIEWED,
+    "isPartOf": { "@type": "WebSite", "url": "https://www.jemassuremoinscher.fr" },
+    "about": { "@type": "Thing", "name": "Comparaison d'assurances en France" },
+    "reviewedBy": {
+      "@type": "Organization",
+      "name": "ARPV — jemassuremoinscher.fr",
+      "url": "https://www.jemassuremoinscher.fr/qui-sommes-nous"
+    },
+    "citation": [
+      { "@type": "CreativeWork", "name": "Légifrance — Code des assurances", "url": "https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006073984" },
+      { "@type": "CreativeWork", "name": "ACPR — Autorité de contrôle prudentiel et de résolution", "url": "https://acpr.banque-france.fr/" },
+      { "@type": "CreativeWork", "name": "France Assureurs", "url": "https://www.franceassureurs.fr/" }
     ]
   };
 
@@ -145,7 +235,7 @@ const Index = () => {
         keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
         canonical="https://www.jemassuremoinscher.fr"
         ogImage="https://www.jemassuremoinscher.fr/opengraph-image.png"
-        jsonLd={[webSiteSchema, organizationSchema, financialServiceSchema, serviceSchema, breadcrumbSchema, faqSchema, localBusinessSchema]}
+        jsonLd={[webSiteSchema, webPageSchema, organizationSchema, financialServiceSchema, serviceSchema, howToSchema, breadcrumbSchema, faqSchema, localBusinessSchema]}
       />
       <Header />
       <main id="main-content" role="main">
@@ -167,6 +257,18 @@ const Index = () => {
         <DeferredRender minHeight={760}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[760px]" />}>
             <MdReveal variant="up"><HowItWorks /></MdReveal>
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={900}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[900px]" />}>
+            <MdReveal variant="up"><DirectAnswers /></MdReveal>
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={700}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[700px]" />}>
+            <MdReveal variant="up"><ExpertiseEEAT /></MdReveal>
           </Suspense>
         </DeferredRender>
 

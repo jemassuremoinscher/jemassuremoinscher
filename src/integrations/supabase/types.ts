@@ -418,6 +418,7 @@ export type Database = {
       deal_tasks: {
         Row: {
           assigned_to: string | null
+          category: string
           completed_at: string | null
           created_at: string
           created_by: string | null
@@ -432,6 +433,7 @@ export type Database = {
         }
         Insert: {
           assigned_to?: string | null
+          category?: string
           completed_at?: string | null
           created_at?: string
           created_by?: string | null
@@ -446,6 +448,7 @@ export type Database = {
         }
         Update: {
           assigned_to?: string | null
+          category?: string
           completed_at?: string | null
           created_at?: string
           created_by?: string | null
@@ -1442,6 +1445,17 @@ export type Database = {
         }[]
       }
       cleanup_old_deleted_items: { Args: never; Returns: undefined }
+      create_deal_task_if_missing: {
+        Args: {
+          _category: string
+          _deal_id: string
+          _description: string
+          _due_at: string
+          _priority: string
+          _title: string
+        }
+        Returns: undefined
+      }
       current_actor_name: { Args: never; Returns: string }
       generate_unique_seo_article_slug: {
         Args: { _base_slug: string; _exclude_id?: string }
