@@ -260,6 +260,18 @@ const Index = () => {
           </Suspense>
         </DeferredRender>
 
+        <DeferredRender minHeight={900}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[900px]" />}>
+            <MdReveal variant="up"><DirectAnswers /></MdReveal>
+          </Suspense>
+        </DeferredRender>
+
+        <DeferredRender minHeight={700}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[700px]" />}>
+            <MdReveal variant="up"><ExpertiseEEAT /></MdReveal>
+          </Suspense>
+        </DeferredRender>
+
         <DeferredRender minHeight={560}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[560px]" />}>
             <MdReveal variant="up"><SEOFaq /></MdReveal>
