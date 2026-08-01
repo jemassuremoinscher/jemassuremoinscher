@@ -28,8 +28,6 @@
     { "source": "/blog/recharge-domicile-assurance-borne-recharge", "destination": "/blog/assurance-habitation-et-borne-de-recharge-protegez-votre-investissement-en-2026", "statusCode": 301 },
     { "source": "/blog/assurance-trottinette-electrique-obligatoire-en-france-des-2026-le-guide-complet", "destination": "/blog/comparatif-assurance-trottinette-electrique-2026", "statusCode": 301 },
     { "source": "/blog/100-pour-cent-sante-2026-reste-a-charge", "destination": "/blog/reste-a-charge-zero-100-sante-lunettes-dents-2026", "statusCode": 301 },
-    { "source": "/blog/assurance-auto-la-moins-chere-pour-voiture-d-occasion-france-2026-definition-garanties-et-conseils-2026", "destination": "/blog/assurance-auto-voiture-occasion-2026-guide-economies", "statusCode": 301 },
-    { "source": "/blog/assurance-auto-la-moins-chere-voiture-occasion-plus-de-8-ans-france-2026-definition-garanties-et-conseils-2026", "destination": "/blog/assurance-auto-voiture-occasion-2026-guide-economies", "statusCode": 301 },
     { "source": "/blog/assurance-auto-malus-eleve-crm", "destination": "/blog/assurance-malus-eleve-compagnies-2026", "statusCode": 301 }
   ],
   "rewrites": [

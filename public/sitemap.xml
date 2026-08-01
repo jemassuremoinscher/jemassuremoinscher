@@ -398,13 +398,18 @@
 <!-- /blog/recharge-domicile-assurance-borne-recharge: doublon SEO, published:false, 301 → /blog/assurance-habitation-et-borne-de-recharge-protegez-votre-investissement-en-2026 -->
 <!-- /blog/assurance-trottinette-electrique-obligatoire-en-france-des-2026-le-guide-complet: noindex, 301 → /blog/comparatif-assurance-trottinette-electrique-2026 -->
 <!-- /blog/100-pour-cent-sante-2026-reste-a-charge: noindex, 301 → /blog/reste-a-charge-zero-100-sante-lunettes-dents-2026 -->
-<!-- /blog/assurance-auto-la-moins-chere-pour-voiture-d-occasion-france-2026-definition-garanties-et-conseils-2026: noindex, 301 → /blog/assurance-auto-voiture-occasion-2026-guide-economies -->
-<!-- /blog/assurance-auto-la-moins-chere-voiture-occasion-plus-de-8-ans-france-2026-definition-garanties-et-conseils-2026: noindex, 301 → /blog/assurance-auto-voiture-occasion-2026-guide-economies -->
 <!-- /blog/assurance-auto-malus-eleve-crm: noindex, 301 → /blog/assurance-malus-eleve-compagnies-2026 -->
 
 <!-- Doublon pré-existant, noindex manquant corrigé (2026-08-01) — référence : /blog/meilleure-assurance-auto-2026-comparatif -->
 <!-- /blog/meilleure-assurance-auto-2026: doublon SEO, published:false, 301 → /blog/meilleure-assurance-auto-2026-comparatif -->
 <!-- /blog/meilleure-assurance-auto-2026-definition-garanties-et-conseils-2026: noindex, 301 → /blog/meilleure-assurance-auto-2026-comparatif -->
+
+<!-- Correction (2026-08-01) : les 2 redirections ci-dessous étaient FAUSSES — leur
+     "canonique" (/blog/assurance-auto-voiture-occasion-2026-guide-economies) n'a
+     jamais été publié (brouillon, published:false), donc ces 2 articles source ne
+     cannibalisaient rien. Redirection et noindex retirés, articles réactivés. -->
+<!-- /blog/assurance-auto-la-moins-chere-pour-voiture-d-occasion-france-2026-definition-garanties-et-conseils-2026: réactivé -->
+<!-- /blog/assurance-auto-la-moins-chere-voiture-occasion-plus-de-8-ans-france-2026-definition-garanties-et-conseils-2026: réactivé -->
 
 <url>
     <loc>https://www.jemassuremoinscher.fr/blog/10-conseils-economiser-assurances</loc>
