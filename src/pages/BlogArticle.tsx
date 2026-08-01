@@ -1,5 +1,5 @@
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
+import { useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, User, Share2 } from "lucide-react";
 import { blogArticles, blogArticleDrafts } from "@/data/blogArticles";
 import { usePublishedDraftSlugs } from "@/hooks/usePublishedDrafts";
+import { useSupabaseBlogArticle } from "@/hooks/useSupabaseBlogArticles";
 import SEOOptimized from "@/components/SEOOptimized";
 import ReactMarkdown from "react-markdown";
 import { toast } from "sonner";
@@ -27,13 +28,7 @@ import RelatedArticles from "@/components/blog/RelatedArticles";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 import SmartConversionWidget, { detectCategory } from "@/components/blog/SmartConversionWidget";
-import { supabase } from "@/integrations/supabase/client";
 import BarometreOptin from "@/components/BarometreOptin";
-
-const formatFrenchDate = (value?: string | null) => {
-  if (!value) return new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
-  return new Date(value).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
-};
 
 const BlogArticle = () => {
   const { t } = useLanguage();
@@ -43,53 +38,16 @@ const BlogArticle = () => {
   const isPreview = location.pathname.startsWith("/blog-preview/");
 
   const publishedDraftSlugs = usePublishedDraftSlugs();
-  const [dynamicArticle, setDynamicArticle] = useState<(typeof blogArticles)[number] | null>(null);
-  const [dynamicLoaded, setDynamicLoaded] = useState(false);
   const staticArticle = isPreview
     ? blogArticleDrafts.find((a) => a.slug === slug)
     : blogArticles.find((a) => a.slug === slug)
       || blogArticleDrafts.find((a) => a.slug === slug && publishedDraftSlugs.has(a.slug));
 
-  useEffect(() => {
-    let mounted = true;
-    if (!slug || staticArticle) {
-      setDynamicLoaded(true);
-      return;
-    }
-
-    supabase
-      .from("seo_article_suggestions")
-      .select(
-        "title, slug, suggested_meta_description, suggested_content, target_keyword, published_at, created_at, suggested_author, image_url",
-      )
-      .eq("slug", slug)
-      .eq("status", "approved")
-      .lte("published_at", new Date().toISOString())
-      .maybeSingle()
-      .then(({ data }) => {
-        if (!mounted) return;
-        if (data) {
-          setDynamicArticle({
-            id: `dynamic-${data.slug}`,
-            title: data.title,
-            slug: data.slug,
-            description: data.suggested_meta_description || data.title,
-            category: "Conseils Experts",
-            date: formatFrenchDate(data.published_at || data.created_at),
-            readTime: `${Math.max(5, Math.ceil((data.suggested_content || "").split(/\s+/).length / 220))} min`,
-            author: data.suggested_author || "L'équipe d'experts Jemassuremoinscher",
-            image: data.image_url || undefined,
-            tags: [data.target_keyword, "assurance", "conseils"].filter(Boolean),
-            content: data.suggested_content,
-          });
-        }
-        setDynamicLoaded(true);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, [slug, staticArticle]);
+  const { article: dynamicArticle, isLoading: dynamicLoading } = useSupabaseBlogArticle(
+    slug,
+    !isPreview && !staticArticle,
+  );
+  const dynamicLoaded = !dynamicLoading;
 
   const article = staticArticle || dynamicArticle;
 

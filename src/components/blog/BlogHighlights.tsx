@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Clock, ArrowRight, TrendingUp } from 'lucide-react';
 import { blogArticles } from '@/data/blogArticles';
+import { useSupabaseBlogArticles } from '@/hooks/useSupabaseBlogArticles';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const convertToISO = (frenchDate: string): string => {
@@ -25,7 +26,8 @@ const convertToISO = (frenchDate: string): string => {
 export const BlogHighlights = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const featuredArticles = blogArticles.slice(0, 3);
+  const { articles: dynamicArticles } = useSupabaseBlogArticles();
+  const featuredArticles = [...dynamicArticles, ...blogArticles].slice(0, 3);
 
   return (
     <section className="py-16 bg-background">

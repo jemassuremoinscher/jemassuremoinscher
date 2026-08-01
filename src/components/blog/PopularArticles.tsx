@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import { TrendingUp, Clock } from "lucide-react";
 import { blogArticles } from "@/data/blogArticles";
+import { useSupabaseBlogArticles } from "@/hooks/useSupabaseBlogArticles";
 
 interface PopularArticlesProps {
   currentSlug?: string;
 }
 
 const PopularArticles = ({ currentSlug }: PopularArticlesProps) => {
+  const { articles: dynamicArticles } = useSupabaseBlogArticles();
   // Pick 5 popular articles (first 5 excluding current)
-  const popular = blogArticles
+  const popular = [...dynamicArticles, ...blogArticles]
     .filter((a) => a.slug !== currentSlug)
     .slice(0, 5);
 

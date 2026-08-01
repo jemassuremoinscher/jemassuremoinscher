@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { blogArticles } from "@/data/blogArticles";
+import { useSupabaseBlogArticles } from "@/hooks/useSupabaseBlogArticles";
 
 interface RelatedArticlesProps {
   currentSlug?: string;
@@ -21,7 +22,8 @@ const RelatedArticles = ({
   limit = 4,
   title = "Articles similaires",
 }: RelatedArticlesProps) => {
-  const pool = blogArticles.filter((a) => a.slug !== currentSlug);
+  const { articles: dynamicArticles } = useSupabaseBlogArticles();
+  const pool = [...dynamicArticles, ...blogArticles].filter((a) => a.slug !== currentSlug);
 
   const scored = pool
     .map((a) => {
