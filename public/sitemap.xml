@@ -372,13 +372,35 @@
   </url>
 <!-- Profils Spéciaux -->
   <url><loc>https://www.jemassuremoinscher.fr/profil</loc><lastmod>2026-07-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-<!-- /blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet: 301 → /blog/110-chevaux-jeune-conducteur-assurance -->
+<!-- Grappe "110 chevaux / jeune conducteur" — référence : /blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet -->
+<!-- /profil/jeune-conducteur-voiture-puissante: 301 → /blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet -->
+<!-- /blog/jeune-conducteur-voiture-puissante-110-chevaux: doublon SEO, published:false, 301 → /blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet -->
+<!-- /blog/110-chevaux-jeune-conducteur-assurance: doublon SEO, published:false, 301 → /blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet -->
+<!-- /blog/assurance-jeune-conducteur-voiture-puissante-le-guide-2026-pour-ne-pas-se-ruiner: noindex, 301 → /blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet -->
+<!-- /blog/assurance-auto-jeune-conducteur-voiture-puissante-definition-garanties-et-conseils-2026: noindex, 301 → /blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet -->
 
-<!-- /profil/jeune-conducteur-voiture-puissante: 301 → /blog/110-chevaux-jeune-conducteur-assurance -->
+<!-- Grappe Airbnb / location saisonnière — référence : /blog/assurance-location-airbnb-en-2026-le-guide-complet-pour-proprietaires-et-voyageurs -->
+<!-- /blog/sous-location-airbnb-risques-caches-assurance: doublon SEO, published:false, 301 → /blog/assurance-location-airbnb-en-2026-le-guide-complet-pour-proprietaires-et-voyageurs -->
+<!-- /blog/assurance-airbnb-location-saisonniere: noindex, 301 → /blog/assurance-location-airbnb-en-2026-le-guide-complet-pour-proprietaires-et-voyageurs -->
+<!-- /blog/assurance-location-saisonniere-airbnb-le-guide-ultime-2026-pour-proprietaires-sereins: noindex, 301 → /blog/assurance-location-airbnb-en-2026-le-guide-complet-pour-proprietaires-et-voyageurs -->
+<!-- /blog/assurance-location-saisonniere-airbnb: doublon SEO, published:false, 301 → /blog/assurance-location-airbnb-en-2026-le-guide-complet-pour-proprietaires-et-voyageurs -->
 
-<!-- /blog/jeune-conducteur-voiture-puissante-110-chevaux: doublon SEO, published:false, 301 → /blog/110-chevaux-jeune-conducteur-assurance -->
-
-<!-- /blog/sous-location-airbnb-risques-caches-assurance: doublon SEO, published:false, 301 → /blog/assurance-location-saisonniere-airbnb -->
+<!-- Doublons consolidés Phase 2 (2026-07-29) — noindex/published:false + 301 vers le canonique -->
+<!-- /blog/assurance-camping-car-2026-guide-complet: doublon SEO, published:false, 301 → /blog/assurance-camping-car-moins-chere-en-2026-le-guide-ultime-pour-economiser -->
+<!-- /blog/delai-carence-assurance-auto: doublon SEO, published:false, 301 → /blog/assurance-auto-delai-de-carence-tout-savoir-pour-eviter-les-pieges-en-2026 -->
+<!-- /blog/assurance-pno-2026-comparatif-proprietaire-non-occupant: doublon SEO, published:false, 301 → /blog/assurance-pno-comparateur-decryptez-les-meilleures-offres-2026-pour-proprietaires-non-occupants (pas de blog/ dir) -->
+<!-- /blog/heritage-vehicule-assurer-voiture-deces: doublon SEO, published:false, 301 → /blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026 -->
+<!-- /blog/assurance-voiture-deces-que-se-passe-t-il-pour-le-contrat-auto-apres-un-deces: noindex, 301 → /blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026 -->
+<!-- /blog/assurance-auto-resiliation-non-paiement-guide: doublon SEO, published:false, 301 → /blog/assurance-auto-pour-non-paiement-en-ligne-en-2026-le-guide-ultime-pour-retrouver-une-couverture -->
+<!-- /blog/regrouper-contrats-auto-maison-reduction-reelle: doublon SEO, published:false, 301 → /blog/regrouper-assurance-auto-et-habitation-en-2026-le-guide-ultime-pour-le-meilleur-choix-en-france -->
+<!-- /blog/assurance-au-kilometre-pay-as-you-drive-rentable: doublon SEO, published:false, 301 → /blog/assurance-auto-au-kilometre-vaut-le-coup-2026 -->
+<!-- /blog/assurance-alpes-maritimes-guide: doublon SEO, published:false, 301 → /blog/assurance-alpes-maritimes-votre-guide-ultime-pour-des-garanties-optimisees-et-economiques-en-2026 -->
+<!-- /blog/recharge-domicile-assurance-borne-recharge: doublon SEO, published:false, 301 → /blog/assurance-habitation-et-borne-de-recharge-protegez-votre-investissement-en-2026 -->
+<!-- /blog/assurance-trottinette-electrique-obligatoire-en-france-des-2026-le-guide-complet: noindex, 301 → /blog/comparatif-assurance-trottinette-electrique-2026 -->
+<!-- /blog/100-pour-cent-sante-2026-reste-a-charge: noindex, 301 → /blog/reste-a-charge-zero-100-sante-lunettes-dents-2026 -->
+<!-- /blog/assurance-auto-la-moins-chere-pour-voiture-d-occasion-france-2026-definition-garanties-et-conseils-2026: noindex, 301 → /blog/assurance-auto-voiture-occasion-2026-guide-economies -->
+<!-- /blog/assurance-auto-la-moins-chere-voiture-occasion-plus-de-8-ans-france-2026-definition-garanties-et-conseils-2026: noindex, 301 → /blog/assurance-auto-voiture-occasion-2026-guide-economies -->
+<!-- /blog/assurance-auto-malus-eleve-crm: noindex, 301 → /blog/assurance-malus-eleve-compagnies-2026 -->
 
 <url>
     <loc>https://www.jemassuremoinscher.fr/blog/10-conseils-economiser-assurances</loc>

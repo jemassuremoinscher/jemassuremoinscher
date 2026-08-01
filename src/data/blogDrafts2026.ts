@@ -509,7 +509,9 @@ Oui après 1 an (loi Hamon). Avant = pénalité ou paiement jusqu'à la fin.
   {
     id: "draft-pno-2026",
     title: "Assurance PNO 2026 : comparatif complet pour propriétaires non-occupants",
+    // Doublon SEO consolidé — désactivé, redirigé en 301 vers /blog/assurance-pno-comparateur-decryptez-les-meilleures-offres-2026-pour-proprietaires-non-occupants (vercel.json).
     slug: "assurance-pno-2026-comparatif-proprietaire-non-occupant",
+    published: false,
     description:
       "Tout savoir sur l'assurance PNO en 2026 : tarifs réels, 5 erreurs courantes et comparatif des meilleurs assureurs. Économisez 300 à 500 €/an.",
     category: "Assurance Habitation",

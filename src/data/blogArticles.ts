@@ -4651,7 +4651,9 @@ Connaître vos droits, c'est pouvoir les faire valoir !
   {
     id: "110ch-jc",
     title: "Voiture 110 chevaux et jeune conducteur : est-ce assurable (et à quel prix) ?",
+    // Doublon SEO consolidé — désactivé, redirigé en 301 vers /blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet (vercel.json).
     slug: "110-chevaux-jeune-conducteur-assurance",
+    published: false,
     description: "110 ch pour un jeune conducteur : est-ce trop puissant pour être assuré ? On vous explique les règles réelles des assureurs, le rapport poids-puissance qui compte vraiment, et comment faire baisser la prime.",
     category: "Assurance Auto",
     date: "22 juillet 2026",
@@ -4721,7 +4723,9 @@ Comparez plusieurs assureurs (écarts fréquents de plus de 40 %), privilégiez 
   {
     id: "am-guide",
     title: "Assurance dans les Alpes-Maritimes (06) : pourquoi c'est plus cher et comment payer moins",
+    // Doublon SEO consolidé — désactivé, redirigé en 301 vers /blog/assurance-alpes-maritimes-votre-guide-ultime-pour-des-garanties-optimisees-et-economiques-en-2026 (vercel.json).
     slug: "assurance-alpes-maritimes-guide",
+    published: false,
     description: "Assurance auto, habitation, santé dans les Alpes-Maritimes : le 06 est l'un des départements les plus chers de France. On vous explique pourquoi et comment faire baisser vos primes à Nice, Cannes, Antibes.",
     category: "Assurance Auto",
     date: "22 juillet 2026",
@@ -4786,7 +4790,9 @@ Comparer plusieurs assureurs, déclarer un stationnement sécurisé et adapter l
   {
     id: "airbnb-loc",
     title: "Assurance location saisonnière et Airbnb : êtes-vous vraiment couvert ?",
+    // Doublon SEO consolidé — désactivé, redirigé en 301 vers /blog/assurance-location-airbnb-en-2026-le-guide-complet-pour-proprietaires-et-voyageurs (vercel.json).
     slug: "assurance-location-saisonniere-airbnb",
+    published: false,
     description: "Louer son logement sur Airbnb sans la bonne assurance peut coûter cher. Découvrez ce que couvre (et ne couvre pas) votre contrat, et comment protéger votre bien en location saisonnière.",
     category: "Assurance Habitation",
     date: "22 juillet 2026",
@@ -4845,7 +4851,9 @@ Une assurance propriétaire non occupant (PNO), qui couvre les risques spécifiq
   {
     id: "carence-auto",
     title: "Délai de carence en assurance auto : ce qu'il faut savoir avant de signer",
+    // Doublon SEO consolidé — désactivé, redirigé en 301 vers /blog/assurance-auto-delai-de-carence-tout-savoir-pour-eviter-les-pieges-en-2026 (vercel.json).
     slug: "delai-carence-assurance-auto",
+    published: false,
     description: "Le délai de carence en assurance auto peut vous laisser sans couverture au pire moment. Comprenez ce qu'est ce délai, quand il s'applique et comment l'éviter.",
     category: "Assurance Auto",
     date: "22 juillet 2026",

@@ -4,7 +4,9 @@ export const blogArticles2026: BlogArticle[] = [
   {
     id: "20",
     title: "Assurance auto après résiliation pour non-paiement : Le guide de la dernière chance",
+    // Doublon SEO consolidé — désactivé, redirigé en 301 vers /blog/assurance-auto-pour-non-paiement-en-ligne-en-2026-le-guide-ultime-pour-retrouver-une-couverture (vercel.json).
     slug: "assurance-auto-resiliation-non-paiement-guide",
+    published: false,
     description: "Résilié pour non-paiement ? Découvrez comment retrouver une assurance auto en 2026 malgré l'inscription au fichier AGIRA.",
     category: "Assurance Auto",
     date: "6 mars 2026",
@@ -750,7 +752,9 @@ Légèrement, car les diesels parcourent plus de kilomètres en moyenne.
   {
     id: "28",
     title: "Assurance au kilomètre (Pay as you drive) : Est-ce rentable sous 8000 km ?",
+    // Doublon SEO consolidé — désactivé, redirigé en 301 vers /blog/assurance-auto-au-kilometre-vaut-le-coup-2026 (vercel.json).
     slug: "assurance-au-kilometre-pay-as-you-drive-rentable",
+    published: false,
     description: "L'assurance au kilomètre est-elle rentable si vous roulez moins de 8 000 km/an ? Analyse et comparatif 2026.",
     category: "Assurance Auto",
     date: "26 février 2026",
@@ -1031,7 +1035,9 @@ Oui, mais les primes sont 30 à 50 % plus élevées. Rarement recommandé.
   {
     id: "31",
     title: "Regrouper Auto + Habitation : quelle économie réelle ?",
+    // Doublon SEO consolidé — désactivé, redirigé en 301 vers /blog/regrouper-assurance-auto-et-habitation-en-2026-le-guide-ultime-pour-le-meilleur-choix-en-france (vercel.json).
     slug: "regrouper-contrats-auto-maison-reduction-reelle",
+    published: false,
     description: "Regrouper assurance auto et habitation fait-il vraiment baisser la facture ? Économies réelles, pièges et calcul 2026. Comparez gratuitement.",
     category: "Guides Pratiques",
     date: "23 février 2026",
@@ -2147,7 +2153,9 @@ Oui, mais l'indemnisation sera basée sur la valeur vénale (avec décote).
   {
     id: "44",
     title: "Recharge à domicile : Votre assurance couvre-t-elle votre borne de recharge ?",
+    // Doublon SEO consolidé — désactivé, redirigé en 301 vers /blog/assurance-habitation-et-borne-de-recharge-protegez-votre-investissement-en-2026 (vercel.json).
     slug: "recharge-domicile-assurance-borne-recharge",
+    published: false,
     description: "Borne de recharge à domicile : votre assurance habitation la couvre-t-elle en cas de sinistre ? Réponse 2026.",
     category: "Assurance Habitation",
     date: "10 février 2026",
@@ -2745,7 +2753,9 @@ Oui, la durée de suspension est ajoutée à la fin du contrat.
   {
     id: "51",
     title: "Héritage d'un véhicule : Les démarches pour assurer une voiture suite à un décès",
+    // Doublon SEO consolidé — désactivé, redirigé en 301 vers /blog/assurance-voiture-apres-deces-le-guide-complet-pour-heriter-et-assurer-un-vehicule-en-2026 (vercel.json).
     slug: "heritage-vehicule-assurer-voiture-deces",
+    published: false,
     description: "Vous héritez d'un véhicule ? Voici les démarches d'assurance et de carte grise à effectuer en 2026.",
     category: "Guides Pratiques",
     date: "3 février 2026",

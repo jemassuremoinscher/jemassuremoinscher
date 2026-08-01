@@ -369,7 +369,9 @@ Suspension ne signifie pas isolement : avec une VSP correctement assurée, vous 
   {
     id: "vert-campingcar-pilier",
     title: "Assurance camping-car 2026 : le guide complet pour bien choisir",
+    // Doublon SEO consolidé — désactivé, redirigé en 301 vers /blog/assurance-camping-car-moins-chere-en-2026-le-guide-ultime-pour-economiser (vercel.json).
     slug: "assurance-camping-car-2026-guide-complet",
+    published: false,
     description: "Camping-car, fourgon, van aménagé : guide complet 2026 sur l'assurance, les garanties spécifiques, les prix et les pièges à éviter pour partir sereinement.",
     category: "Conseils Experts",
     date: "8 mai 2026",
