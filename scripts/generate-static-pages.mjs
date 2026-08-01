@@ -434,14 +434,28 @@ const generateBlogArticles = async () => {
     }
 
     let count = 0;
+    let preserved = 0;
     for (const article of data) {
       if (!article.slug) continue;
       const outputPath = path.join(rootDir, "blog", article.slug, "index.html");
+      // Un doublon SEO consolidé (noindex manuel) ne doit jamais être régénéré à
+      // l'identique depuis Supabase : sans ce garde-fou, ce prerender écrase le
+      // noindex à chaque build et le fait réapparaître dans le sitemap.
+      try {
+        const existing = await readFile(outputPath, "utf8");
+        const robotsTag = existing.match(/<meta[^>]+name=["']robots["'][^>]*>/i)?.[0] || "";
+        if (/noindex/i.test(robotsTag)) {
+          preserved += 1;
+          continue;
+        }
+      } catch {
+        // pas de fichier existant -> génération normale ci-dessous
+      }
       await mkdir(path.dirname(outputPath), { recursive: true });
       await writeFile(outputPath, renderArticle(article), "utf8");
       count += 1;
     }
-    console.log(`[generate-static-pages] Prerendered ${count} blog articles.`);
+    console.log(`[generate-static-pages] Prerendered ${count} blog articles (${preserved} noindex préservés).`);
   } catch (err) {
     console.warn("[generate-static-pages] Skipping blog prerender:", err?.message || err);
   }

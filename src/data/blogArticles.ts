@@ -2607,7 +2607,9 @@ Oui, mais la surprime jeune conducteur s\'applique aussi en 2-roues.
   {
     id: "8",
     title: "Meilleure assurance auto 2026 : Notre comparatif complet",
+    // Doublon SEO consolidé — désactivé, redirigé en 301 vers /blog/meilleure-assurance-auto-2026-comparatif (vercel.json).
     slug: "meilleure-assurance-auto-2026",
+    published: false,
     description: "Découvrez notre classement 2026 des meilleures assurances auto. Tarifs, garanties, avis clients : tout pour faire le bon choix.",
     category: "Guides Pratiques",
     date: "3 janvier 2026",
