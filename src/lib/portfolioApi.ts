@@ -8,6 +8,7 @@ import type {
   OpportuniteMultiEquipementRow,
   DealDormantRow,
   TableauBordPortefeuilleRow,
+  AlerteConformiteDdaRow,
 } from '@/types/portfolio';
 
 // `contracts` et `advice_records` existent déjà en base mais ne figurent pas
@@ -18,8 +19,8 @@ import type {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const portfolioFrom = (table: 'contracts' | 'advice_records'): any => supabase.from(table as any);
 
-// Idem pour les 4 vues en lecture seule (client_360, opportunites_multi_equipement,
-// deals_dormants, tableau_bord_portefeuille) : absentes du schéma généré.
+// Idem pour les 5 vues en lecture seule (client_360, opportunites_multi_equipement,
+// deals_dormants, tableau_bord_portefeuille, alertes_conformite_dda) : absentes du schéma généré.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const portfolioViewFrom = (view: string): any => supabase.from(view as any);
 
@@ -96,6 +97,15 @@ export async function fetchDealsDormants(): Promise<DealDormantRow[]> {
 
   if (error) throw error;
   return (data ?? []) as DealDormantRow[];
+}
+
+export async function fetchAlertesConformiteDda(): Promise<AlerteConformiteDdaRow[]> {
+  const { data, error } = await portfolioViewFrom('alertes_conformite_dda')
+    .select('*')
+    .order('jours_sans_conseil', { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []) as AlerteConformiteDdaRow[];
 }
 
 // Pour le badge "aucun document de conseil" dans l'onglet DDA d'un deal —

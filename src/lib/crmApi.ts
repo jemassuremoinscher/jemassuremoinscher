@@ -224,3 +224,23 @@ export async function fetchDealLabels(dealIds: string[]): Promise<Map<string, st
 
   return labels;
 }
+
+// ---------------------------------------------------------------------------
+// Suppression manuelle d'un deal — passe par la fonction Postgres
+// supprimer_deal_manuel (pas de DELETE direct) : elle seule sait refuser les
+// leads venant du site (source_type = 'site'), soft-delete côté base, et
+// journaliser le motif. Absente de types.ts (généré), d'où le cast `as any`.
+// ---------------------------------------------------------------------------
+
+export interface SupprimerDealResult {
+  ok: boolean;
+  motif?: string | null;
+  message?: string | null;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function supprimerDealManuel(dealId: string): Promise<SupprimerDealResult> {
+  const { data, error } = await (supabase.rpc as any)('supprimer_deal_manuel', { p_deal_id: dealId });
+  if (error) throw error;
+  return data as SupprimerDealResult;
+}

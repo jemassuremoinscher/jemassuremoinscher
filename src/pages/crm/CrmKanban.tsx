@@ -35,6 +35,7 @@ export default function CrmKanban() {
   const [activeDeal, setActiveDeal] = useState<DealRow | null>(null);
   const [openDeal, setOpenDeal] = useState<DealRow | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerTab, setDrawerTab] = useState<"overview" | "advice">("overview");
   const [newOpen, setNewOpen] = useState(false);
 
   // Une seule requête agrégée pour tous les deals affichés (jamais une requête par carte).
@@ -166,26 +167,30 @@ export default function CrmKanban() {
     toast.success(`Deplacé vers ${STAGES.find((s) => s.id === target)?.label}`);
   };
 
-  const openDrawer = (d: DealRow) => {
+  const openDrawer = (d: DealRow, tab: "overview" | "advice" = "overview") => {
     setOpenDeal(d);
+    setDrawerTab(tab);
     setDrawerOpen(true);
   };
 
-  const navigateToDeal = (dealId: string) => {
+  const navigateToDeal = (dealId: string, tab: "overview" | "advice" = "overview") => {
     const target = deals.find((d) => d.id === dealId);
-    if (target) openDrawer(target);
+    if (target) openDrawer(target, tab);
     else toast.error("Ce deal n'est plus disponible (déplacé ou supprimé)");
   };
 
-  // Deep-link /admin?deal=<id> (widgets dashboard, notifications) : ouvre le
-  // drawer du deal correspondant une fois les deals chargés, puis nettoie l'URL.
+  // Deep-link /admin?deal=<id>&tab=advice (widgets dashboard, notifications) :
+  // ouvre le drawer du deal correspondant une fois les deals chargés, sur
+  // l'onglet demandé, puis nettoie l'URL.
   useEffect(() => {
     if (loading) return;
     const dealId = searchParams.get("deal");
     if (!dealId) return;
-    navigateToDeal(dealId);
+    const tab = searchParams.get("tab") === "advice" ? "advice" : "overview";
+    navigateToDeal(dealId, tab);
     const next = new URLSearchParams(searchParams);
     next.delete("deal");
+    next.delete("tab");
     setSearchParams(next, { replace: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, searchParams]);
@@ -277,7 +282,13 @@ export default function CrmKanban() {
         </DndContext>
       </div>
 
-      <DealDrawer deal={openDeal} open={drawerOpen} onOpenChange={setDrawerOpen} />
+      <DealDrawer
+        deal={openDeal}
+        open={drawerOpen}
+        onOpenChange={setDrawerOpen}
+        initialTab={drawerTab}
+        onDeleted={load}
+      />
       <NewDealDialog open={newOpen} onOpenChange={setNewOpen} onCreated={load} />
     </div>
   );

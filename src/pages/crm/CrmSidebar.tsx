@@ -14,13 +14,13 @@ interface Item {
 }
 
 const items: Item[] = [
+  { to: "/admin/dashboard", label: "Dashboard", icon: BarChart3, adminOnly: true },
   { to: "/admin", label: "Pipeline", icon: KanbanSquare, end: true },
   { to: "/admin/portefeuille", label: "Portefeuille", icon: Briefcase },
   { to: "/admin/contacts", label: "Contacts", icon: Users },
   { to: "/admin/documents", label: "GED", icon: FileText },
   { to: "/admin/notifications", label: "Notifications", icon: Bell },
   { to: "/admin/import", label: "Import CSV", icon: Upload, adminOnly: true },
-  { to: "/admin/dashboard", label: "Dashboard", icon: BarChart3, adminOnly: true },
   { to: "/admin/finance", label: "Finance", icon: Wallet, adminOnly: true },
   { to: "/admin/marketing", label: "Marketing", icon: Megaphone, adminOnly: true },
   { to: "/admin/rgpd", label: "RGPD", icon: Shield, adminOnly: true },

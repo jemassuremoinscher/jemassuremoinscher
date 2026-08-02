@@ -1,6 +1,6 @@
 // Types pour `contracts`, `advice_records` et les vues du portefeuille
 // (client_360, opportunites_multi_equipement, deals_dormants,
-// tableau_bord_portefeuille). Ces tables/vues existent en base mais ne
+// tableau_bord_portefeuille, alertes_conformite_dda). Ces tables/vues existent en base mais ne
 // figurent pas dans src/integrations/supabase/types.ts (généré, périmé —
 // voir src/lib/crmApi.ts pour le même constat sur activities/deal_tasks).
 // Voir src/lib/portfolioApi.ts pour le point de contact unique avec Supabase.
@@ -159,4 +159,17 @@ export interface TableauBordPortefeuilleRow {
   clients_mono_produit: number;
   clients_sans_conseil_dda: number;
   deals_dormants: number;
+}
+
+// Vue alertes_conformite_dda (lecture seule) — deals sans conseil DDA
+// documenté, une ligne par deal concerné.
+export interface AlerteConformiteDdaRow {
+  deal_id: string;
+  stage: string;
+  insurance_type: string;
+  full_name: string | null;
+  email: string | null;
+  commercial: string | null;
+  depuis: string;
+  jours_sans_conseil: number;
 }

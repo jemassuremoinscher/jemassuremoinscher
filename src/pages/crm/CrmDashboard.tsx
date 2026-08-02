@@ -15,9 +15,12 @@ import {
   Cell,
   Legend,
 } from "recharts";
-import { TrendingUp, Users, Target, Euro, CheckSquare, Phone, Clock, Save, Trash2, ArrowRight } from "lucide-react";
+import { TrendingUp, Users, Target, Euro, CheckSquare, Phone, Clock, Save, Trash2, ArrowRight, Wallet, RefreshCw, AlertTriangle, Moon } from "lucide-react";
 import { OpportunitiesWidget } from "@/components/admin/crm/OpportunitiesWidget";
 import { DormantDealsWidget } from "@/components/admin/crm/DormantDealsWidget";
+import { ComplianceDdaWidget } from "@/components/admin/crm/ComplianceDdaWidget";
+import { fetchTableauBordPortefeuille } from "@/lib/portfolioApi";
+import type { TableauBordPortefeuilleRow } from "@/types/portfolio";
 
 type DealMini = {
   id: string;
@@ -71,6 +74,7 @@ const VIEWS_KEY = "crm.dashboard.views.v1";
 export default function CrmDashboard() {
   const [deals, setDeals] = useState<DealMini[]>([]);
   const [agents, setAgents] = useState<Agent[]>([]);
+  const [board, setBoard] = useState<TableauBordPortefeuilleRow | null>(null);
   const [loading, setLoading] = useState(true);
   const [agentFilter, setAgentFilter] = useState<string>("all");
   const [range, setRange] = useState<(typeof RANGES)[number]["id"]>("all");
@@ -104,7 +108,7 @@ export default function CrmDashboard() {
 
   useEffect(() => {
     (async () => {
-      const [d, a] = await Promise.all([
+      const [d, a, b] = await Promise.all([
         supabase
           .from("deals")
           .select(
@@ -113,9 +117,14 @@ export default function CrmDashboard() {
           .is("deleted_at", null)
           .limit(5000),
         supabase.from("sales_agents").select("id,user_id,full_name").eq("is_active", true),
+        fetchTableauBordPortefeuille().catch((e) => {
+          console.error(e);
+          return null;
+        }),
       ]);
       setDeals((d.data ?? []) as unknown as DealMini[]);
       setAgents((a.data ?? []) as Agent[]);
+      setBoard(b);
       setLoading(false);
     })();
   }, []);
@@ -386,10 +395,33 @@ export default function CrmDashboard() {
         </div>
       </div>
 
-      {/* Portefeuille : opportunités + deals dormants */}
+      {/* Portefeuille : indicateurs clés */}
+      <div className="mt-6 rounded-3xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] p-5">
+        <div className="flex items-center justify-between">
+          <h2 className="text-sm font-semibold text-slate-800 dark:text-slate-100">Portefeuille</h2>
+          <Link to="/admin/portefeuille" className="text-xs font-medium text-[#7C3AED] dark:text-[#C4B5FD] hover:underline">
+            Voir le portefeuille →
+          </Link>
+        </div>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Kpi icon={Wallet} label="Contrats actifs" value={String(board?.contrats_actifs ?? 0)} />
+          <Kpi icon={TrendingUp} label="Primes sous gestion" value={fmtEur(board?.primes_sous_gestion ?? 0)} />
+          <Kpi icon={RefreshCw} label="Commissions récurrentes" value={fmtEur(board?.commissions_recurrentes ?? 0)} hint="par an" />
+          <Kpi icon={AlertTriangle} label="Échéances à 60 j" value={String(board?.echeances_60j ?? 0)} />
+          <Kpi icon={AlertTriangle} label="Résiliations (12 mois)" value={String(board?.resiliations_12m ?? 0)} />
+          <Kpi icon={Users} label="Clients mono-produit" value={String(board?.clients_mono_produit ?? 0)} hint="opportunité multi-équipement" />
+          <Kpi icon={AlertTriangle} label="Sans conseil DDA" value={String(board?.clients_sans_conseil_dda ?? 0)} />
+          <Kpi icon={Moon} label="Deals dormants" value={String(board?.deals_dormants ?? 0)} />
+        </div>
+      </div>
+
+      {/* Portefeuille : opportunités + deals dormants + conformité DDA */}
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
         <OpportunitiesWidget />
         <DormantDealsWidget />
+        <div className="lg:col-span-2">
+          <ComplianceDdaWidget />
+        </div>
       </div>
 
       {/* Supervision commerciale */}

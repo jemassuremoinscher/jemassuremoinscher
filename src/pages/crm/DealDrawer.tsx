@@ -1,6 +1,17 @@
 import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,6 +29,7 @@ import { LeadTimeline } from "@/components/admin/crm/LeadTimeline";
 import { ActivityComposer } from "@/components/admin/crm/ActivityComposer";
 import { ScheduleTaskDialog } from "@/components/admin/crm/ScheduleTaskDialog";
 import { AdviceRecordTab } from "@/components/admin/crm/AdviceRecordTab";
+import { supprimerDealManuel } from "@/lib/crmApi";
 
 const CHECKLISTS: Record<string, string[]> = {
   auto: ["Carte Grise", "Permis de conduire", "Relevé d'Information", "RIB"],
@@ -71,10 +83,14 @@ export function DealDrawer({
   deal,
   open,
   onOpenChange,
+  initialTab = "overview",
+  onDeleted,
 }: {
   deal: DealRow | null;
   open: boolean;
   onOpenChange: (v: boolean) => void;
+  initialTab?: "overview" | "advice";
+  onDeleted?: () => void;
 }) {
   const queryClient = useQueryClient();
   const [docs, setDocs] = useState<Doc[]>([]);
@@ -83,6 +99,26 @@ export function DealDrawer({
   const [newName, setNewName] = useState("");
   const [newUrl, setNewUrl] = useState("");
   const [newContractOpen, setNewContractOpen] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+
+  const handleDelete = async () => {
+    if (!deal) return;
+    setDeleting(true);
+    try {
+      const result = await supprimerDealManuel(deal.id);
+      if (result.ok) {
+        toast.success("Deal supprimé");
+        onOpenChange(false);
+        onDeleted?.();
+      } else {
+        toast.error(result.motif || result.message || "Suppression refusée");
+      }
+    } catch (e: any) {
+      toast.error("Erreur lors de la suppression : " + (e?.message ?? ""));
+    } finally {
+      setDeleting(false);
+    }
+  };
 
   const invalidateActivities = () => {
     if (deal) queryClient.invalidateQueries({ queryKey: ["deal-activities", deal.id] });
@@ -239,8 +275,8 @@ export function DealDrawer({
               </Badge>
             )}
           </div>
-          {deal.stage === "won" && (
-            <div className="mt-3">
+          <div className="mt-3 flex flex-wrap gap-2">
+            {deal.stage === "won" && (
               <Button
                 size="sm"
                 onClick={() => setNewContractOpen(true)}
@@ -249,11 +285,42 @@ export function DealDrawer({
                 <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />
                 Créer le contrat
               </Button>
-            </div>
-          )}
+            )}
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  disabled={deleting}
+                  className="rounded-full border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 dark:border-red-900/50 dark:text-red-400 dark:hover:bg-red-950/40"
+                >
+                  <Trash2 className="mr-1.5 h-3.5 w-3.5" />
+                  Supprimer
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Supprimer ce deal ?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Cette action est irréversible. Le deal de {contact?.full_name ?? "ce prospect"} sera définitivement supprimé.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Annuler</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={handleDelete}
+                    disabled={deleting}
+                    className="bg-red-600 hover:bg-red-700 focus:ring-red-600"
+                  >
+                    Supprimer
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
         </SheetHeader>
 
-        <Tabs defaultValue="overview" className="w-full">
+        <Tabs key={`${deal.id}-${initialTab}`} defaultValue={initialTab} className="w-full">
           <TabsList className="mx-6 mt-4 rounded-full bg-[#F5F3FF] dark:bg-[#262140]">
             <TabsTrigger value="overview" className="rounded-full">Vue d'ensemble</TabsTrigger>
             <TabsTrigger value="advice" className="rounded-full">Conseil DDA</TabsTrigger>
