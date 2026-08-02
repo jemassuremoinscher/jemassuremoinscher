@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import {
   KanbanSquare, Users, FileText, BarChart3, Wallet, Megaphone,
-  Shield, Trash2, Settings, Upload, Bell,
+  Shield, Trash2, Settings, Upload, Bell, Briefcase,
 } from "lucide-react";
 import arthurLogo from "@/assets/mascotte/arthur-thumbs-up.webp";
 
@@ -15,6 +15,7 @@ interface Item {
 
 const items: Item[] = [
   { to: "/admin", label: "Pipeline", icon: KanbanSquare, end: true },
+  { to: "/admin/portefeuille", label: "Portefeuille", icon: Briefcase },
   { to: "/admin/contacts", label: "Contacts", icon: Users },
   { to: "/admin/documents", label: "GED", icon: FileText },
   { to: "/admin/notifications", label: "Notifications", icon: Bell },

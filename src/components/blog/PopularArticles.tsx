@@ -1,18 +1,31 @@
 import { Link } from "react-router-dom";
 import { TrendingUp, Clock } from "lucide-react";
-import { blogArticles } from "@/data/blogArticles";
+import { blogArticles, type BlogArticle } from "@/data/blogArticles";
 import { useSupabaseBlogArticles } from "@/hooks/useSupabaseBlogArticles";
 
 interface PopularArticlesProps {
   currentSlug?: string;
 }
 
+// Alterne les deux provenances (un Supabase, un .ts, etc.) plutôt que de
+// laisser les articles dynamiques (souvent plus nombreux) monopoliser la
+// liste. Une fois une source épuisée, complète avec le reste de l'autre.
+const interleave = (a: BlogArticle[], b: BlogArticle[]): BlogArticle[] => {
+  const result: BlogArticle[] = [];
+  const max = Math.max(a.length, b.length);
+  for (let i = 0; i < max; i++) {
+    if (i < a.length) result.push(a[i]);
+    if (i < b.length) result.push(b[i]);
+  }
+  return result;
+};
+
 const PopularArticles = ({ currentSlug }: PopularArticlesProps) => {
   const { articles: dynamicArticles } = useSupabaseBlogArticles();
-  // Pick 5 popular articles (first 5 excluding current)
-  const popular = [...dynamicArticles, ...blogArticles]
-    .filter((a) => a.slug !== currentSlug)
-    .slice(0, 5);
+  const dynamic = dynamicArticles.filter((a) => a.slug !== currentSlug);
+  const stat = blogArticles.filter((a) => a.slug !== currentSlug);
+  // Pick 5 popular articles, provenance alternée
+  const popular = interleave(dynamic, stat).slice(0, 5);
 
   return (
     <aside className="bg-muted/30 rounded-2xl border border-border/30 p-5">

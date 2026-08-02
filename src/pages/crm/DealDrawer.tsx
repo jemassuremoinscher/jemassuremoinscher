@@ -5,16 +5,19 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Mail, Phone, Send, FileText, ExternalLink, Plus, Trash2 } from "lucide-react";
+import { Mail, Phone, Send, FileText, ExternalLink, Plus, Trash2, ShieldCheck } from "lucide-react";
 import type { DealRow } from "./types";
 import { STAGES } from "./types";
 import { AuditTimeline } from "./AuditTimeline";
 import { EditDealSection } from "./EditDealSection";
+import { NewContractDialog } from "./NewContractDialog";
 import { LeadTimeline } from "@/components/admin/crm/LeadTimeline";
 import { ActivityComposer } from "@/components/admin/crm/ActivityComposer";
 import { ScheduleTaskDialog } from "@/components/admin/crm/ScheduleTaskDialog";
+import { AdviceRecordTab } from "@/components/admin/crm/AdviceRecordTab";
 
 const CHECKLISTS: Record<string, string[]> = {
   auto: ["Carte Grise", "Permis de conduire", "Relevé d'Information", "RIB"],
@@ -79,6 +82,7 @@ export function DealDrawer({
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [newName, setNewName] = useState("");
   const [newUrl, setNewUrl] = useState("");
+  const [newContractOpen, setNewContractOpen] = useState(false);
 
   const invalidateActivities = () => {
     if (deal) queryClient.invalidateQueries({ queryKey: ["deal-activities", deal.id] });
@@ -235,9 +239,27 @@ export function DealDrawer({
               </Badge>
             )}
           </div>
+          {deal.stage === "won" && (
+            <div className="mt-3">
+              <Button
+                size="sm"
+                onClick={() => setNewContractOpen(true)}
+                className="rounded-full bg-[#7C3AED] hover:bg-[#6D28D9]"
+              >
+                <ShieldCheck className="mr-1.5 h-3.5 w-3.5" />
+                Créer le contrat
+              </Button>
+            </div>
+          )}
         </SheetHeader>
 
-        <div className="space-y-6 px-6 py-6">
+        <Tabs defaultValue="overview" className="w-full">
+          <TabsList className="mx-6 mt-4 rounded-full bg-[#F5F3FF] dark:bg-[#262140]">
+            <TabsTrigger value="overview" className="rounded-full">Vue d'ensemble</TabsTrigger>
+            <TabsTrigger value="advice" className="rounded-full">Conseil DDA</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="overview" className="space-y-6 px-6 py-6 mt-0">
           <section className="grid gap-3 sm:grid-cols-2">
             {contact?.email && (
               <a
@@ -444,7 +466,21 @@ export function DealDrawer({
               </p>
             </section>
           )}
-        </div>
+          </TabsContent>
+
+          <TabsContent value="advice" className="px-6 py-6 mt-0">
+            <AdviceRecordTab deal={deal} />
+          </TabsContent>
+        </Tabs>
+
+        <NewContractDialog
+          deal={deal}
+          open={newContractOpen}
+          onOpenChange={setNewContractOpen}
+          onCreated={() => {
+            toast.success("Le contrat apparaît maintenant dans le Portefeuille");
+          }}
+        />
 
         {previewUrl && (
           <div

@@ -177,6 +177,19 @@ export default function CrmKanban() {
     else toast.error("Ce deal n'est plus disponible (déplacé ou supprimé)");
   };
 
+  // Deep-link /admin?deal=<id> (widgets dashboard, notifications) : ouvre le
+  // drawer du deal correspondant une fois les deals chargés, puis nettoie l'URL.
+  useEffect(() => {
+    if (loading) return;
+    const dealId = searchParams.get("deal");
+    if (!dealId) return;
+    navigateToDeal(dealId);
+    const next = new URLSearchParams(searchParams);
+    next.delete("deal");
+    setSearchParams(next, { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, searchParams]);
+
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
       <div className="flex items-center justify-between px-6 pt-6 pb-4">

@@ -16,6 +16,8 @@ import {
   Legend,
 } from "recharts";
 import { TrendingUp, Users, Target, Euro, CheckSquare, Phone, Clock, Save, Trash2, ArrowRight } from "lucide-react";
+import { OpportunitiesWidget } from "@/components/admin/crm/OpportunitiesWidget";
+import { DormantDealsWidget } from "@/components/admin/crm/DormantDealsWidget";
 
 type DealMini = {
   id: string;
@@ -382,6 +384,12 @@ export default function CrmDashboard() {
             );
           })}
         </div>
+      </div>
+
+      {/* Portefeuille : opportunités + deals dormants */}
+      <div className="mt-6 grid gap-4 lg:grid-cols-2">
+        <OpportunitiesWidget />
+        <DormantDealsWidget />
       </div>
 
       {/* Supervision commerciale */}
