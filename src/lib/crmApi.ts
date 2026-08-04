@@ -239,8 +239,14 @@ export interface SupprimerDealResult {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function supprimerDealManuel(dealId: string): Promise<SupprimerDealResult> {
-  const { data, error } = await (supabase.rpc as any)('supprimer_deal_manuel', { p_deal_id: dealId });
+export async function supprimerDealManuel(
+  dealId: string,
+  confirmSite = false,
+): Promise<SupprimerDealResult> {
+  const { data, error } = await (supabase.rpc as any)('supprimer_deal_manuel', {
+    p_deal_id: dealId,
+    p_confirm_site: confirmSite,
+  });
   if (error) throw error;
   return data as SupprimerDealResult;
 }
