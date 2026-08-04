@@ -6,7 +6,7 @@ export const CANONICAL_INSURANCE_TYPES = [
   'auto', 'moto', 'habitation', 'sante', 'pret', 'animaux',
   'vie', 'prevoyance', 'rc_pro', 'mrp', 'gli', 'pno', 'gestion_locative',
   'metiers_atypiques',
-  'velo', 'camping_car', 'sans_permis', 'auto_temporaire', 'flotte',
+  'velo', 'trottinette', 'camping_car', 'sans_permis', 'auto_temporaire', 'flotte',
   'cyber', 'decennale', 'protection_juridique', 'mutuelle_entreprise',
 ] as const;
 
@@ -101,6 +101,14 @@ const ALIAS_MAP: Record<string, CanonicalInsuranceType> = {
   'assurance vélo': 'velo',
   'vae': 'velo',
   'assurance vae': 'velo',
+  // Trottinette / EDPM
+  'trottinette': 'trottinette',
+  'assurance trottinette': 'trottinette',
+  'trottinette electrique': 'trottinette',
+  'trottinette électrique': 'trottinette',
+  'assurance trottinette electrique': 'trottinette',
+  'assurance trottinette électrique': 'trottinette',
+  'edpm': 'trottinette',
   // Camping-car
   'camping_car': 'camping_car',
   'camping car': 'camping_car',
@@ -187,6 +195,7 @@ export const INSURANCE_TYPE_LABELS: Record<CanonicalInsuranceType, string> = {
   gestion_locative: 'Gestion Locative',
   metiers_atypiques: 'Métiers Atypiques',
   velo: 'Assurance Vélo & VAE',
+  trottinette: 'Assurance Trottinette Électrique',
   camping_car: 'Assurance Camping-Car',
   sans_permis: 'Assurance Sans Permis',
   auto_temporaire: 'Assurance Auto Temporaire',
