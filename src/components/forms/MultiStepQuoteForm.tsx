@@ -414,7 +414,11 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         setIsSubmitting(false);
         return;
       }
-      const { data: insertedQuote, error } = await supabase.from('insurance_quotes').insert({
+      const leadId = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+        ? crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      const { error } = await supabase.from('insurance_quotes').insert({
+        id: leadId,
         insurance_type: canonicalType,
         full_name: contactData.fullName,
         email: contactData.email,
@@ -425,7 +429,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
           insuranceType: insType,
         },
         status: 'pending',
-      }).select().single();
+      });
 
       if (error) throw error;
 
@@ -445,7 +449,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         stepIndex: currentStep,
         stepId: steps[currentStep]?.id,
         insuranceType: insType,
-        metadata: { leadId: insertedQuote?.id },
+        metadata: { leadId },
       });
       toast.success(t('form.toast.successTitle'), { description: t('form.toast.successDescription') });
 
@@ -462,7 +466,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         value: 100,
         insuranceType: insType,
         postalCode: formData.postalCode,
-        leadId: insertedQuote?.id,
+        leadId,
       });
 
       trackMetaLead({
@@ -477,7 +481,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
           send_to: 'AW-972332620/QUOTE_SUBMIT',
           value: 100,
           currency: 'EUR',
-          transaction_id: insertedQuote?.id || `${Date.now()}`,
+          transaction_id: leadId,
         });
       }
 
