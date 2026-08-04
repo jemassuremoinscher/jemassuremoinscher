@@ -83,8 +83,126 @@ export type Database = {
             foreignKeyName: "activities_deal_id_fkey"
             columns: ["deal_id"]
             isOneToOne: false
+            referencedRelation: "alertes_conformite_dda"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "activities_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
             referencedRelation: "deals"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "activities_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals_dormants"
+            referencedColumns: ["deal_id"]
+          },
+        ]
+      }
+      advice_records: {
+        Row: {
+          advisor_id: string | null
+          advisor_name: string | null
+          client_decision: string | null
+          client_needs: string
+          client_situation: string | null
+          contact_id: string | null
+          contract_id: string | null
+          created_at: string
+          deal_id: string | null
+          delivered_at: string
+          document_url: string | null
+          id: string
+          recommendation: string
+          recommendation_reason: string
+          solutions_studied: Json
+        }
+        Insert: {
+          advisor_id?: string | null
+          advisor_name?: string | null
+          client_decision?: string | null
+          client_needs: string
+          client_situation?: string | null
+          contact_id?: string | null
+          contract_id?: string | null
+          created_at?: string
+          deal_id?: string | null
+          delivered_at?: string
+          document_url?: string | null
+          id?: string
+          recommendation: string
+          recommendation_reason: string
+          solutions_studied?: Json
+        }
+        Update: {
+          advisor_id?: string | null
+          advisor_name?: string | null
+          client_decision?: string | null
+          client_needs?: string
+          client_situation?: string | null
+          contact_id?: string | null
+          contract_id?: string | null
+          created_at?: string
+          deal_id?: string | null
+          delivered_at?: string
+          document_url?: string | null
+          id?: string
+          recommendation?: string
+          recommendation_reason?: string
+          solutions_studied?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "advice_records_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "client_360"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "advice_records_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "advice_records_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "opportunites_multi_equipement"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "advice_records_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "contracts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "advice_records_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "alertes_conformite_dda"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "advice_records_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "advice_records_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals_dormants"
+            referencedColumns: ["deal_id"]
           },
         ]
       }
@@ -350,6 +468,112 @@ export type Database = {
         }
         Relationships: []
       }
+      contracts: {
+        Row: {
+          assigned_to: string | null
+          cancellation_reason: string | null
+          cancelled_at: string | null
+          commission_recurring: number | null
+          commission_year_one: number | null
+          contact_id: string | null
+          created_at: string
+          deal_id: string | null
+          effective_date: string
+          id: string
+          insurance_type: string
+          insurer_name: string | null
+          notes: string | null
+          policy_number: string | null
+          premium_annual: number | null
+          renewal_date: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          cancellation_reason?: string | null
+          cancelled_at?: string | null
+          commission_recurring?: number | null
+          commission_year_one?: number | null
+          contact_id?: string | null
+          created_at?: string
+          deal_id?: string | null
+          effective_date: string
+          id?: string
+          insurance_type: string
+          insurer_name?: string | null
+          notes?: string | null
+          policy_number?: string | null
+          premium_annual?: number | null
+          renewal_date: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          cancellation_reason?: string | null
+          cancelled_at?: string | null
+          commission_recurring?: number | null
+          commission_year_one?: number | null
+          contact_id?: string | null
+          created_at?: string
+          deal_id?: string | null
+          effective_date?: string
+          id?: string
+          insurance_type?: string
+          insurer_name?: string | null
+          notes?: string | null
+          policy_number?: string | null
+          premium_annual?: number | null
+          renewal_date?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contracts_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "client_360"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "contracts_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "contacts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "contracts_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "opportunites_multi_equipement"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "contracts_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "alertes_conformite_dda"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "contracts_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "contracts_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals_dormants"
+            referencedColumns: ["deal_id"]
+          },
+        ]
+      }
       cron_config: {
         Row: {
           key: string
@@ -410,8 +634,22 @@ export type Database = {
             foreignKeyName: "deal_audit_log_deal_id_fkey"
             columns: ["deal_id"]
             isOneToOne: false
+            referencedRelation: "alertes_conformite_dda"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_audit_log_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
             referencedRelation: "deals"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "deal_audit_log_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals_dormants"
+            referencedColumns: ["deal_id"]
           },
         ]
       }
@@ -473,8 +711,22 @@ export type Database = {
             foreignKeyName: "lead_tasks_deal_id_fkey"
             columns: ["deal_id"]
             isOneToOne: false
+            referencedRelation: "alertes_conformite_dda"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "lead_tasks_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
             referencedRelation: "deals"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_tasks_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals_dormants"
+            referencedColumns: ["deal_id"]
           },
         ]
       }
@@ -532,8 +784,22 @@ export type Database = {
             foreignKeyName: "deals_contact_id_fkey"
             columns: ["contact_id"]
             isOneToOne: false
+            referencedRelation: "client_360"
+            referencedColumns: ["contact_id"]
+          },
+          {
+            foreignKeyName: "deals_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
             referencedRelation: "contacts"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "deals_contact_id_fkey"
+            columns: ["contact_id"]
+            isOneToOne: false
+            referencedRelation: "opportunites_multi_equipement"
+            referencedColumns: ["contact_id"]
           },
         ]
       }
@@ -579,8 +845,22 @@ export type Database = {
             foreignKeyName: "documents_deal_id_fkey"
             columns: ["deal_id"]
             isOneToOne: false
+            referencedRelation: "alertes_conformite_dda"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "documents_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
             referencedRelation: "deals"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "documents_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals_dormants"
+            referencedColumns: ["deal_id"]
           },
         ]
       }
@@ -1267,61 +1547,118 @@ export type Database = {
       }
       seo_article_suggestions: {
         Row: {
+          category: string | null
           created_at: string
           gsc_clicks: number | null
           gsc_impressions: number | null
           gsc_position: number | null
           id: string
           image_url: string | null
+          legacy_id: string | null
+          noindex: boolean
           published_at: string | null
+          read_time: string | null
           reviewed_at: string | null
           reviewed_by: string | null
           short_description: string | null
           slug: string
+          social_headlines: Json | null
+          source: string
           status: string
           suggested_author: string | null
           suggested_content: string
           suggested_meta_description: string | null
-          target_keyword: string
+          tags: string[] | null
+          target_keyword: string | null
           title: string
         }
         Insert: {
+          category?: string | null
           created_at?: string
           gsc_clicks?: number | null
           gsc_impressions?: number | null
           gsc_position?: number | null
           id?: string
           image_url?: string | null
+          legacy_id?: string | null
+          noindex?: boolean
           published_at?: string | null
+          read_time?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
           short_description?: string | null
           slug: string
+          social_headlines?: Json | null
+          source?: string
           status?: string
           suggested_author?: string | null
           suggested_content: string
           suggested_meta_description?: string | null
-          target_keyword: string
+          tags?: string[] | null
+          target_keyword?: string | null
           title: string
         }
         Update: {
+          category?: string | null
           created_at?: string
           gsc_clicks?: number | null
           gsc_impressions?: number | null
           gsc_position?: number | null
           id?: string
           image_url?: string | null
+          legacy_id?: string | null
+          noindex?: boolean
           published_at?: string | null
+          read_time?: string | null
           reviewed_at?: string | null
           reviewed_by?: string | null
           short_description?: string | null
           slug?: string
+          social_headlines?: Json | null
+          source?: string
           status?: string
           suggested_author?: string | null
           suggested_content?: string
           suggested_meta_description?: string | null
-          target_keyword?: string
+          tags?: string[] | null
+          target_keyword?: string | null
           title?: string
+        }
+        Relationships: []
+      }
+      site_error_log: {
+        Row: {
+          context: Json
+          created_at: string
+          error_type: string
+          id: string
+          insurance_type: string | null
+          message: string | null
+          page_path: string
+          resolved_at: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          context?: Json
+          created_at?: string
+          error_type: string
+          id?: string
+          insurance_type?: string | null
+          message?: string | null
+          page_path: string
+          resolved_at?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          context?: Json
+          created_at?: string
+          error_type?: string
+          id?: string
+          insurance_type?: string | null
+          message?: string | null
+          page_path?: string
+          resolved_at?: string | null
+          user_agent?: string | null
         }
         Relationships: []
       }
@@ -1387,6 +1724,19 @@ export type Database = {
       }
     }
     Views: {
+      alertes_conformite_dda: {
+        Row: {
+          commercial: string | null
+          deal_id: string | null
+          depuis: string | null
+          email: string | null
+          full_name: string | null
+          insurance_type: string | null
+          jours_sans_conseil: number | null
+          stage: string | null
+        }
+        Relationships: []
+      }
       blog_comments_public: {
         Row: {
           article_slug: string | null
@@ -1414,6 +1764,67 @@ export type Database = {
           id?: string | null
           status?: string | null
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      client_360: {
+        Row: {
+          a_document_conseil: boolean | null
+          commission_recurrente: number | null
+          contact_id: string | null
+          dernier_contrat_le: string | null
+          email: string | null
+          full_name: string | null
+          mono_produit: boolean | null
+          nb_contrats_actifs: number | null
+          nb_deals: number | null
+          phone: string | null
+          prime_totale: number | null
+          prochaine_echeance: string | null
+          produits_detenus: string[] | null
+        }
+        Relationships: []
+      }
+      deals_dormants: {
+        Row: {
+          commercial: string | null
+          deal_id: string | null
+          derniere_activite: string | null
+          email: string | null
+          full_name: string | null
+          insurance_type: string | null
+          jours_sans_activite: number | null
+          lead_score: number | null
+          phone: string | null
+          stage: string | null
+        }
+        Relationships: []
+      }
+      opportunites_multi_equipement: {
+        Row: {
+          commission_recurrente: number | null
+          contact_id: string | null
+          email: string | null
+          full_name: string | null
+          nb_contrats_actifs: number | null
+          phone: string | null
+          prime_totale: number | null
+          prochaine_echeance: string | null
+          produit_suggere: string | null
+          produits_detenus: string[] | null
+        }
+        Relationships: []
+      }
+      tableau_bord_portefeuille: {
+        Row: {
+          clients_mono_produit: number | null
+          clients_sans_conseil_dda: number | null
+          commissions_recurrentes: number | null
+          contrats_actifs: number | null
+          deals_dormants: number | null
+          echeances_60j: number | null
+          primes_sous_gestion: number | null
+          resiliations_12m: number | null
         }
         Relationships: []
       }
@@ -1461,6 +1872,12 @@ export type Database = {
         Args: { _base_slug: string; _exclude_id?: string }
         Returns: string
       }
+      generer_taches_renouvellement: {
+        Args: never
+        Returns: {
+          taches_creees: number
+        }[]
+      }
       get_agent_current_load: { Args: { p_agent_id: string }; Returns: number }
       has_role: {
         Args: {
@@ -1476,6 +1893,7 @@ export type Database = {
       }
       normalize_insurance_type: { Args: { _input: string }; Returns: string }
       reassign_pending_leads: { Args: never; Returns: number }
+      supprimer_deal_manuel: { Args: { p_deal_id: string }; Returns: Json }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user" | "owner"

@@ -5,6 +5,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Home, Car, Heart, Building, Search, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import arthurInjured from "@/assets/mascotte/arthur-injured.webp";
+import { reportSiteError } from "@/lib/siteErrorLog";
 
 const NotFound = () => {
   const location = useLocation();
@@ -12,6 +13,12 @@ const NotFound = () => {
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+    reportSiteError({
+      type: "route_not_found",
+      message: `404 — page introuvable`,
+      pagePath: location.pathname,
+      context: { referrer: typeof document !== "undefined" ? document.referrer : "" },
+    });
   }, [location.pathname]);
 
   const popularLinks = [

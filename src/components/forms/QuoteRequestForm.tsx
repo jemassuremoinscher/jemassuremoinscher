@@ -11,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { FileText, Loader2, CheckCircle2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { reportSiteError } from "@/lib/siteErrorLog";
 import { toast } from "sonner";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useHoneypot } from "@/hooks/useHoneypot";
@@ -137,6 +138,7 @@ export const QuoteRequestForm = () => {
     if (isBot()) { setIsSuccess(true); return; }
     const canonicalType = normalizeInsuranceTypeStrict(data.insuranceType);
     if (!canonicalType) {
+      reportSiteError({ type: 'form_submit', message: `Type d'assurance non reconnu: ${data.insuranceType}`, insuranceType: String(data.insuranceType) });
       toast.error(`Type d'assurance non reconnu: ${data.insuranceType}`);
       form.setError("insuranceType", { message: "Type d'assurance invalide" });
       return;
@@ -224,6 +226,7 @@ export const QuoteRequestForm = () => {
       navigate('/merci');
     } catch (error) {
       console.error("Error submitting quote:", error);
+      reportSiteError({ type: 'form_submit', message: (error as Error)?.message || 'Echec envoi devis (formulaire simple)' });
       toast.error(t('quoteForm.toastError'), {
         description: t('quoteForm.toastErrorDesc'),
       });
