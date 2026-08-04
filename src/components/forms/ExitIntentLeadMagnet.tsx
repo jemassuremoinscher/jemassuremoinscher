@@ -6,14 +6,12 @@ import { supabase } from "@/integrations/supabase/client";
 
 
 const SESSION_KEY = "exit_intent_lead_magnet_shown";
-const INACTIVITY_MS = 25_000; // 25s sans interaction
 
 /**
  * Exit-intent / abandon rattrapage pour les formulaires multi-step.
  *
  * Déclencheurs :
  *  - Desktop : mouseleave par le haut de la fenêtre (intent de fermer l'onglet)
- *  - Mobile  : 45s sans interaction OU `pagehide` (changement d'onglet)
  *  - Manuel  : non
  *
  * Une seule occurrence par session (sessionStorage). Ne s'affiche pas si
@@ -60,29 +58,10 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
       trigger("desktop_mouseleave");
     };
 
-    let inactivityTimer: number | undefined;
-    const resetInactivity = () => {
-      if (inactivityTimer) window.clearTimeout(inactivityTimer);
-      inactivityTimer = window.setTimeout(() => trigger("inactivity"), INACTIVITY_MS);
-    };
-    const activityEvents: Array<keyof WindowEventMap> = [
-      "scroll",
-      "keydown",
-      "touchstart",
-      "pointerdown",
-    ];
-    activityEvents.forEach((ev) => window.addEventListener(ev, resetInactivity, { passive: true }));
-    resetInactivity();
-
-    const onPageHide = () => trigger("pagehide");
     document.addEventListener("mouseout", onMouseOut);
-    window.addEventListener("pagehide", onPageHide);
 
     return () => {
       document.removeEventListener("mouseout", onMouseOut);
-      window.removeEventListener("pagehide", onPageHide);
-      activityEvents.forEach((ev) => window.removeEventListener(ev, resetInactivity));
-      if (inactivityTimer) window.clearTimeout(inactivityTimer);
     };
   }, [disabled, insuranceType]);
 
