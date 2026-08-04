@@ -82,6 +82,17 @@ export function installGlobalErrorReporter(): void {
       message: msg,
       context: { filename: (event as ErrorEvent).filename, line: (event as ErrorEvent).lineno },
     });
+    // Déploiement plus récent : le bundle en cache est périmé → un seul rechargement.
+    if (isChunk) {
+      try {
+        if (!sessionStorage.getItem("chunk-reload")) {
+          sessionStorage.setItem("chunk-reload", "1");
+          window.location.reload();
+        }
+      } catch {
+        /* storage indisponible */
+      }
+    }
   });
 
   window.addEventListener("unhandledrejection", (event) => {
