@@ -576,28 +576,50 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
       postalCodeStep, searchingStep, contactStep,
     ],
     trottinette: [
-      { id: 'trot_usage', type: 'card-select', title: 'Quel est l\'usage de votre trottinette électrique ?', field: 'vehicleUse', options: [
-        { value: 'perso', label: 'Usage personnel / loisirs', description: 'Trajets domicile-travail, balades', icon: Zap },
-        { value: 'quotidien', label: 'Trajets quotidiens intensifs', description: '> 5 000 km/an, usage pro non commercial', icon: Activity },
+      { id: 'trot_engin', type: 'card-select', title: 'Quel engin souhaitez-vous assurer ?', subtitle: 'Tout EDPM doit être couvert en responsabilité civile depuis 2019.', field: 'vehicleSubtype', options: [
+        { value: 'trottinette', label: 'Trottinette électrique', description: 'Bridée à 25 km/h (EDPM)', icon: Zap, iconImage: mascotScoot },
+        { value: 'trottinette_debridee', label: 'Trottinette > 25 km/h', description: 'Engin non homologué EDPM', icon: AlertTriangle },
+        { value: 'gyroroue', label: 'Gyroroue / hoverboard / monoroue', description: 'Autre EDPM motorisé', icon: Activity },
+      ]},
+      { id: 'trot_usage', type: 'card-select', title: "Quel est l'usage de votre trottinette ?", field: 'vehicleUse', options: [
+        { value: 'perso', label: 'Usage personnel / loisirs', description: 'Balades, trajets occasionnels', icon: Zap },
+        { value: 'domicile_travail', label: 'Trajets domicile-travail', description: 'Usage quotidien urbain', icon: Activity },
         { value: 'livreur', label: 'Livraison (Uber Eats, Deliveroo…)', description: 'Usage commercial : formule pro requise', icon: Truck },
       ]},
-      { id: 'trot_valeur', type: 'card-select', title: 'Quelle est la valeur de votre trottinette ?', field: 'bikeValue', options: [
+      { id: 'trot_valeur', type: 'card-select', title: 'Quelle est la valeur de votre trottinette ?', subtitle: 'Elle détermine le niveau des garanties vol et casse.', field: 'bikeValue', options: [
         { value: 'sub_500', label: 'Moins de 500 €', icon: Wallet },
         { value: '500_1500', label: 'Entre 500 € et 1 500 €', icon: Shield },
         { value: 'sup_1500', label: 'Plus de 1 500 €', icon: ShieldPlus },
       ]},
       { id: 'trot_formule', type: 'card-select', title: 'Quelles garanties recherchez-vous ?', field: 'coverageLevel', options: [
-        { value: 'rc', label: 'Responsabilité civile seule', description: 'Minimum légal obligatoire', icon: Shield },
+        { value: 'rc', label: 'Responsabilité civile seule', description: 'Minimum légal obligatoire — dès 2,90 €/mois', icon: Shield },
         { value: 'rc_vol', label: 'RC + Vol', description: 'Avec antivol homologué', icon: ShieldCheck },
-        { value: 'tous_risques', label: 'Tous risques + Assistance', description: 'RC, vol, casse, dépannage', icon: ShieldPlus },
+        { value: 'tous_risques', label: 'Tous risques + Assistance', description: 'RC, vol, casse, vandalisme, dépannage', icon: ShieldPlus },
+      ]},
+      { id: 'trot_antivol', type: 'card-select', title: 'Utilisez-vous un antivol ?', subtitle: 'Un antivol homologué SRA conditionne la garantie vol.', field: 'antitheftDevice', options: [
+        { value: 'sra', label: 'Oui, antivol homologué SRA', icon: Lock },
+        { value: 'standard', label: 'Oui, antivol standard', icon: ShieldCheck },
+        { value: 'aucun', label: 'Non, pas encore', icon: AlertTriangle },
       ]},
       { id: 'trot_stationnement', type: 'card-select', title: 'Où stationnez-vous votre trottinette ?', field: 'parkingType', options: [
         { value: 'garage', label: 'Garage / local fermé', icon: Lock },
         { value: 'appartement', label: 'Domicile (appartement/maison)', icon: Building },
         { value: 'exterieur', label: 'Rue / extérieur', icon: AlertTriangle },
       ]},
+      { id: 'trot_conducteur', type: 'card-select', title: "Quel est l'âge du conducteur principal ?", subtitle: 'La conduite d\'un EDPM est interdite aux moins de 14 ans.', field: 'driverAge', options: [
+        { value: '14_17', label: '14 à 17 ans', icon: User },
+        { value: '18_25', label: '18 à 25 ans', icon: User },
+        { value: '26_59', label: '26 à 59 ans', icon: Users },
+        { value: 'sup_60', label: '60 ans et plus', icon: Award },
+      ]},
+      { id: 'trot_sinistres', type: 'card-select', title: 'Avez-vous eu un sinistre sur les 24 derniers mois ?', field: 'claimsHistory', options: [
+        { value: 'aucun', label: 'Aucun sinistre', icon: ShieldCheck },
+        { value: 'vol', label: 'Un vol', icon: Lock },
+        { value: 'accident', label: 'Un accident / une casse', icon: AlertTriangle },
+      ]},
       postalCodeStep, searchingStep, contactStep,
     ],
+
     camping_car: [
       { id: 'cc_type', type: 'card-select', title: 'Quel type de camping-car possédez-vous ?', field: 'vehicleSubtype', options: [
         { value: 'capucine', label: 'Capucine / Profilé', icon: Truck },
