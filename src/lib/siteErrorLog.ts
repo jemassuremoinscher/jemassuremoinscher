@@ -42,6 +42,7 @@ function isIgnorableError(message: string): boolean {
  */
 export function reportSiteError({ type, message, insuranceType, context, pagePath }: ReportInput): void {
   try {
+    if (message && isIgnorableError(message)) return;
     const path = pagePath ?? (typeof window !== "undefined" ? window.location.pathname : "unknown");
     const key = `${type}|${path}|${(message ?? "").slice(0, 120)}`;
     const now = Date.now();
