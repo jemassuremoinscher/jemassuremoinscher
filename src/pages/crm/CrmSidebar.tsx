@@ -20,12 +20,12 @@ const items: Item[] = [
   { to: "/admin/contacts", label: "Contacts", icon: Users },
   { to: "/admin/documents", label: "GED", icon: FileText },
   { to: "/admin/notifications", label: "Notifications", icon: Bell },
-  { to: "/admin/alertes", label: "Alertes techniques", icon: AlertTriangle, adminOnly: true },
   { to: "/admin/import", label: "Import CSV", icon: Upload, adminOnly: true },
   { to: "/admin/finance", label: "Finance", icon: Wallet, adminOnly: true },
   { to: "/admin/marketing", label: "Marketing", icon: Megaphone, adminOnly: true },
   { to: "/admin/rgpd", label: "RGPD", icon: Shield, adminOnly: true },
   { to: "/admin/trash", label: "Corbeille", icon: Trash2, adminOnly: true },
+  { to: "/admin/alertes", label: "Alertes techniques", icon: AlertTriangle, adminOnly: true },
   { to: "/admin/reglages/notifications", label: "Réglages notif.", icon: Settings },
 ];
 
