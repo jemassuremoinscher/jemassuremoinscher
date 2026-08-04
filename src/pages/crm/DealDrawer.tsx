@@ -100,14 +100,22 @@ export function DealDrawer({
   const [newUrl, setNewUrl] = useState("");
   const [newContractOpen, setNewContractOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [confirmText, setConfirmText] = useState("");
+
+  const dealSource = (deal as unknown as { source_type?: string | null })?.source_type ?? null;
+  const isSiteLead = !!dealSource && !["crm_manual", "opportunite_multi_equipement"].includes(dealSource);
+  const canConfirmDelete = confirmText.trim().toUpperCase() === "SUPPRIMER";
 
   const handleDelete = async () => {
-    if (!deal) return;
+    if (!deal || !canConfirmDelete) return;
     setDeleting(true);
     try {
-      const result = await supprimerDealManuel(deal.id);
+      const result = await supprimerDealManuel(deal.id, isSiteLead);
       if (result.ok) {
         toast.success("Deal supprimé");
+        setDeleteOpen(false);
+        setConfirmText("");
         onOpenChange(false);
         onDeleted?.();
       } else {
@@ -286,7 +294,13 @@ export function DealDrawer({
                 Créer le contrat
               </Button>
             )}
-            <AlertDialog>
+            <AlertDialog
+              open={deleteOpen}
+              onOpenChange={(v) => {
+                setDeleteOpen(v);
+                if (!v) setConfirmText("");
+              }}
+            >
               <AlertDialogTrigger asChild>
                 <Button
                   size="sm"
@@ -300,19 +314,45 @@ export function DealDrawer({
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>Supprimer ce deal ?</AlertDialogTitle>
+                  <AlertDialogTitle>Supprimer ce lead ?</AlertDialogTitle>
                   <AlertDialogDescription>
-                    Cette action est irréversible. Le deal de {contact?.full_name ?? "ce prospect"} sera définitivement supprimé.
+                    {isSiteLead ? (
+                      <>
+                        Ce lead provient du site ({dealSource}). Sa suppression est réservée aux
+                        administrateurs et sera tracée dans l'historique. Le lead de{" "}
+                        {contact?.full_name ?? "ce prospect"} partira en corbeille (purge après 180 jours).
+                      </>
+                    ) : (
+                      <>
+                        Le lead de {contact?.full_name ?? "ce prospect"} partira en corbeille
+                        (purge après 180 jours).
+                      </>
+                    )}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
+                <div className="space-y-2">
+                  <label htmlFor="confirm-delete-deal" className="text-sm font-medium text-foreground">
+                    Double vérification : tapez <span className="font-mono">SUPPRIMER</span> pour confirmer
+                  </label>
+                  <Input
+                    id="confirm-delete-deal"
+                    value={confirmText}
+                    onChange={(e) => setConfirmText(e.target.value)}
+                    placeholder="SUPPRIMER"
+                    autoComplete="off"
+                  />
+                </div>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Annuler</AlertDialogCancel>
                   <AlertDialogAction
-                    onClick={handleDelete}
-                    disabled={deleting}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      void handleDelete();
+                    }}
+                    disabled={deleting || !canConfirmDelete}
                     className="bg-red-600 hover:bg-red-700 focus:ring-red-600"
                   >
-                    Supprimer
+                    Supprimer définitivement
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>

@@ -20,12 +20,29 @@ interface ReportInput {
 const recent = new Map<string, number>();
 const DEDUPE_MS = 60_000;
 
+// Bruit connu : extensions de navigateur, scripts tiers et faux positifs.
+// Ces messages ne viennent pas de notre code et ne doivent pas créer d'alerte.
+const IGNORED_PATTERNS: RegExp[] = [
+  /extension/i,
+  /talisman/i,
+  /metamask|phantom|coinbase|ethereum|solana|web3|wallet/i,
+  /ResizeObserver loop/i,
+  /chrome-extension:|moz-extension:|safari-extension:/i,
+  /Script error\.?$/i,
+  /Non-Error promise rejection captured/i,
+];
+
+function isIgnorableError(message: string): boolean {
+  return IGNORED_PATTERNS.some((re) => re.test(message));
+}
+
 /**
  * Fire-and-forget error reporting to the back-office alert feed.
  * Never throws and never blocks the UI.
  */
 export function reportSiteError({ type, message, insuranceType, context, pagePath }: ReportInput): void {
   try {
+    if (message && isIgnorableError(message)) return;
     const path = pagePath ?? (typeof window !== "undefined" ? window.location.pathname : "unknown");
     const key = `${type}|${path}|${(message ?? "").slice(0, 120)}`;
     const now = Date.now();
@@ -65,6 +82,17 @@ export function installGlobalErrorReporter(): void {
       message: msg,
       context: { filename: (event as ErrorEvent).filename, line: (event as ErrorEvent).lineno },
     });
+    // Déploiement plus récent : le bundle en cache est périmé → un seul rechargement.
+    if (isChunk) {
+      try {
+        if (!sessionStorage.getItem("chunk-reload")) {
+          sessionStorage.setItem("chunk-reload", "1");
+          window.location.reload();
+        }
+      } catch {
+        /* storage indisponible */
+      }
+    }
   });
 
   window.addEventListener("unhandledrejection", (event) => {
