@@ -520,7 +520,6 @@ Oui après 1 an (loi Hamon). Avant = pénalité ou paiement jusqu'à la fin.
     author: "Thomas Leroy",
     image: coverPNO,
     tags: ["PNO", "propriétaire non-occupant", "assurance habitation", "investissement locatif", "2026"],
-    published: false,
     socialHeadlines: {
       linkedin:
         "76 % des propriétaires-bailleurs paient trop cher leur PNO — souvent parce qu'ils ont pris une assurance habitation classique. Voici la différence (et le coût).",
