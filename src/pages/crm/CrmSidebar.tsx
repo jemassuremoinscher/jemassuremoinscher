@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import {
   KanbanSquare, Users, FileText, BarChart3, Wallet, Megaphone,
-  Shield, Trash2, Settings, Upload, Bell, Briefcase,
+  Shield, Trash2, Settings, Upload, Bell, Briefcase, AlertTriangle,
 } from "lucide-react";
 import arthurLogo from "@/assets/mascotte/arthur-thumbs-up.webp";
 
@@ -20,6 +20,7 @@ const items: Item[] = [
   { to: "/admin/contacts", label: "Contacts", icon: Users },
   { to: "/admin/documents", label: "GED", icon: FileText },
   { to: "/admin/notifications", label: "Notifications", icon: Bell },
+  { to: "/admin/alertes", label: "Alertes techniques", icon: AlertTriangle, adminOnly: true },
   { to: "/admin/import", label: "Import CSV", icon: Upload, adminOnly: true },
   { to: "/admin/finance", label: "Finance", icon: Wallet, adminOnly: true },
   { to: "/admin/marketing", label: "Marketing", icon: Megaphone, adminOnly: true },
