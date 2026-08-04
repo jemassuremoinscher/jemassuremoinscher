@@ -100,14 +100,22 @@ export function DealDrawer({
   const [newUrl, setNewUrl] = useState("");
   const [newContractOpen, setNewContractOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [confirmText, setConfirmText] = useState("");
+
+  const dealSource = (deal as unknown as { source_type?: string | null })?.source_type ?? null;
+  const isSiteLead = !!dealSource && !["crm_manual", "opportunite_multi_equipement"].includes(dealSource);
+  const canConfirmDelete = confirmText.trim().toUpperCase() === "SUPPRIMER";
 
   const handleDelete = async () => {
-    if (!deal) return;
+    if (!deal || !canConfirmDelete) return;
     setDeleting(true);
     try {
-      const result = await supprimerDealManuel(deal.id);
+      const result = await supprimerDealManuel(deal.id, isSiteLead);
       if (result.ok) {
         toast.success("Deal supprimé");
+        setDeleteOpen(false);
+        setConfirmText("");
         onOpenChange(false);
         onDeleted?.();
       } else {
