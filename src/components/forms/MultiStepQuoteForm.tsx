@@ -85,6 +85,7 @@ import logoNeo from '@/assets/logos/neo.webp';
 import logoMpa from '@/assets/logos/mpa.webp';
 import logoAComme from '@/assets/logos/a-comme-assure.png';
 import { invokeSendQuoteEmail } from "@/lib/recaptcha";
+import { reportSiteError } from "@/lib/siteErrorLog";
 
 const mascotImages: Record<InsuranceType, string> = {
   auto: arthurCar,
@@ -396,6 +397,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       const rawType = insType === 'comparateur' ? (formData.insuranceType || 'auto') : insType;
       const canonicalType = normalizeInsuranceTypeStrict(rawType);
       if (!canonicalType) {
+        reportSiteError({
+          type: 'form_submit',
+          message: `Type d'assurance non reconnu: ${rawType}`,
+          insuranceType: String(rawType),
+          context: { step: steps[currentStep]?.id },
+        });
         toast.error(`${t('form.toast.invalidType')}: ${rawType}`);
         setIsSubmitting(false);
         return;
@@ -477,6 +484,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         stepId: steps[currentStep]?.id,
         insuranceType: formData.insuranceType || insuranceType,
         metadata: { message: (error as Error)?.message?.slice(0, 200) },
+      });
+      reportSiteError({
+        type: 'form_submit',
+        message: (error as Error)?.message || 'Echec envoi devis',
+        insuranceType: String(formData.insuranceType || insuranceType),
+        context: { step: steps[currentStep]?.id, stepIndex: currentStep },
       });
       toast.error(t('form.toast.errorTitle'), { description: t('form.toast.errorRetry') });
     } finally {
