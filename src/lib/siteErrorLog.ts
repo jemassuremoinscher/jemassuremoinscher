@@ -20,6 +20,22 @@ interface ReportInput {
 const recent = new Map<string, number>();
 const DEDUPE_MS = 60_000;
 
+// Bruit connu : extensions de navigateur, scripts tiers et faux positifs.
+// Ces messages ne viennent pas de notre code et ne doivent pas créer d'alerte.
+const IGNORED_PATTERNS: RegExp[] = [
+  /extension/i,
+  /talisman/i,
+  /metamask|phantom|coinbase|ethereum|solana|web3|wallet/i,
+  /ResizeObserver loop/i,
+  /chrome-extension:|moz-extension:|safari-extension:/i,
+  /Script error\.?$/i,
+  /Non-Error promise rejection captured/i,
+];
+
+function isIgnorableError(message: string): boolean {
+  return IGNORED_PATTERNS.some((re) => re.test(message));
+}
+
 /**
  * Fire-and-forget error reporting to the back-office alert feed.
  * Never throws and never blocks the UI.
