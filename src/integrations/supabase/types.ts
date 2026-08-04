@@ -1893,7 +1893,10 @@ export type Database = {
       }
       normalize_insurance_type: { Args: { _input: string }; Returns: string }
       reassign_pending_leads: { Args: never; Returns: number }
-      supprimer_deal_manuel: { Args: { p_deal_id: string }; Returns: Json }
+      supprimer_deal_manuel: {
+        Args: { p_confirm_site?: boolean; p_deal_id: string }
+        Returns: Json
+      }
     }
     Enums: {
       app_role: "admin" | "moderator" | "user" | "owner"
