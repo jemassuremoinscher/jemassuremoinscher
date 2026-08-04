@@ -1626,6 +1626,42 @@ export type Database = {
         }
         Relationships: []
       }
+      site_error_log: {
+        Row: {
+          context: Json
+          created_at: string
+          error_type: string
+          id: string
+          insurance_type: string | null
+          message: string | null
+          page_path: string
+          resolved_at: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          context?: Json
+          created_at?: string
+          error_type: string
+          id?: string
+          insurance_type?: string | null
+          message?: string | null
+          page_path: string
+          resolved_at?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          context?: Json
+          created_at?: string
+          error_type?: string
+          id?: string
+          insurance_type?: string | null
+          message?: string | null
+          page_path?: string
+          resolved_at?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       sitemap_submission_log: {
         Row: {
           created_at: string
