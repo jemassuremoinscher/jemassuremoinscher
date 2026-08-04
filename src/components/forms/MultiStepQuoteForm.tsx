@@ -328,8 +328,14 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   };
 
   const handleCardSelect = (field: string, value: string) => {
-    // External landing pages: immediately redirect without going through the lead form
-    if (value === 'trottinette') {
+    // Product picker only (generic/comparateur form): route to the dedicated trottinette funnel.
+    // Never redirect when the user is already inside the trottinette questionnaire.
+    if (
+      value === 'trottinette' &&
+      field === 'type' &&
+      effectiveType !== 'trottinette' &&
+      insuranceType !== 'trottinette'
+    ) {
       trackEvent('hero_trottinette_click', {
         category: 'hero_form',
         label: 'trottinette_electrique',
@@ -340,6 +346,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       navigate('/assurance-trottinette');
       return;
     }
+
 
     setFormData(prev => ({ ...prev, [field]: value }));
     trackFunnel('step_complete', {
