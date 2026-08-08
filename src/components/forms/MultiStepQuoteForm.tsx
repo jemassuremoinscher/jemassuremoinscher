@@ -207,11 +207,11 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       computed = computed.filter((s) => !excludeStepIds.includes(s.id));
     }
     // eslint-disable-next-line no-console
-    console.log('[DEBUG steps useMemo]', {
+    console.log('[DEBUG steps useMemo] ' + JSON.stringify({
       formDataInsuranceType: formData.insuranceType,
       length: computed.length,
       ids: computed.map((s) => s.id),
-    });
+    }));
     return computed;
   }, [insuranceType, formData.insuranceType, stepConfigsByType, excludeStepIds]);
   const [contactErrors, setContactErrors] = useState<Record<string, string>>({});
@@ -227,7 +227,14 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   const totalSteps = steps.length;
   const progressPercent = ((currentStep + 1) / totalSteps) * 100;
   // eslint-disable-next-line no-console
-  console.log('[DEBUG render]', { currentStep, totalSteps, stepId: step?.id, transitionScreen });
+  console.log('[DEBUG render] ' + JSON.stringify({
+    currentStep,
+    totalSteps,
+    stepId: step?.id,
+    stepField: step?.field,
+    stepOptionValues: step?.options?.map((o) => o.value),
+    transitionScreen,
+  }));
 
   // Funnel tracking — emit step_view on each step change
   const reachedSubmitRef = useRef(false);
@@ -300,14 +307,14 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   // affiché de l'écran réellement visible.
   useEffect(() => {
     // eslint-disable-next-line no-console
-    console.log('[DEBUG auto-advance effect]', {
+    console.log('[DEBUG auto-advance effect] ' + JSON.stringify({
       currentStep,
       stepsLength: steps.length,
       stepId: step?.id,
       stepField: step?.field,
       prefilled: step?.field ? prefilledFieldsRef.current.has(step.field) : null,
       formDataValue: step?.field ? formData[step.field] : null,
-    });
+    }));
     if (!step || step.type === 'searching' || step.type === 'contact' || step.type === 'callback') return;
     if (step.field && prefilledFieldsRef.current.has(step.field) && formData[step.field]) {
       // eslint-disable-next-line no-console
@@ -405,7 +412,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
 
     // eslint-disable-next-line no-console
-    console.log('[DEBUG handleCardSelect] click', { field, value, currentStepAtClick: currentStep });
+    console.log('[DEBUG handleCardSelect] click ' + JSON.stringify({ field, value, currentStepAtClick: currentStep }));
     setFormData(prev => ({ ...prev, [field]: value }));
     trackFunnel('step_complete', {
       stepIndex: currentStep,
