@@ -180,6 +180,10 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   if (prefillAge) initialFormData.age = prefillAge;
   if (prefillZip && /^\d{5}$/.test(prefillZip)) initialFormData.postalCode = prefillZip;
 
+  // Snapshot des champs pré-remplis par l'URL au montage — stable ensuite quel
+  // que soit ce que formData devient (cf. l'effet d'auto-avance plus bas).
+  const prefilledFieldsRef = useRef(new Set(Object.keys(initialFormData)));
+
   const [currentStep, setCurrentStep] = useState(0);
   const [direction, setDirection] = useState(1);
   const [formData, setFormData] = useState<Record<string, string>>(initialFormData);
@@ -228,6 +232,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       insuranceType: effectiveType,
       metadata: { totalSteps, type: step.type },
     });
+    trackEvent('funnel_step_view', {
+      category: 'funnel',
+      step_number: currentStep + 1,
+      step_total: totalSteps,
+      insurance_type: effectiveType,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentStep, steps.length]);
 
@@ -252,10 +262,37 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // GA4 funnel_abandoned — via l'API Page Visibility, distinct du suivi Supabase
+  // `abandon` sur pagehide ci-dessus. Ne se déclenche qu'une fois, seulement si
+  // le formulaire n'a pas été soumis avec succès.
+  const abandonedFiredRef = useRef(false);
+  useEffect(() => {
+    const onVisibilityChange = () => {
+      if (document.visibilityState === 'hidden' && !reachedSubmitRef.current && !abandonedFiredRef.current) {
+        abandonedFiredRef.current = true;
+        trackEvent('funnel_abandoned', {
+          category: 'funnel',
+          step_number: currentStep + 1,
+          step_total: totalSteps,
+          insurance_type: effectiveType,
+        });
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', onVisibilityChange);
+  }, [currentStep, totalSteps, effectiveType, trackEvent]);
+
   // Auto-advance past steps already pre-filled from URL params (hero form, deep links).
+  // Gated on prefilledFieldsRef (captured once at mount from the URL) rather than
+  // live formData: sinon un champ tout juste répondu par l'utilisateur (via
+  // handleCardSelect/handleInputSubmit/le sélecteur véhicule, qui avancent déjà
+  // currentStep eux-mêmes, parfois après un délai) redéclenche cet effet dès que
+  // `steps.length` change (ex. formData.insuranceType fait recalculer `steps`) et
+  // fait sauter currentStep une deuxième fois — désynchronisant le compteur
+  // affiché de l'écran réellement visible.
   useEffect(() => {
     if (!step || step.type === 'searching' || step.type === 'contact' || step.type === 'callback') return;
-    if (step.field && formData[step.field]) {
+    if (step.field && prefilledFieldsRef.current.has(step.field) && formData[step.field]) {
       setCurrentStep((s) => Math.min(s + 1, steps.length - 1));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -355,6 +392,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       insuranceType: effectiveType,
       metadata: { field, value },
     });
+    trackEvent('funnel_step_complete', {
+      category: 'funnel',
+      step_number: currentStep + 1,
+      step_total: totalSteps,
+      insurance_type: effectiveType,
+    });
     // Show transition screen with contextual message
     const msg = transitionMessages[currentStep % transitionMessages.length];
     setTransitionScreen(msg);
@@ -377,6 +420,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       stepId: steps[currentStep]?.id,
       insuranceType: effectiveType,
       metadata: { field },
+    });
+    trackEvent('funnel_step_complete', {
+      category: 'funnel',
+      step_number: currentStep + 1,
+      step_total: totalSteps,
+      insurance_type: effectiveType,
     });
     goNext();
   };
@@ -460,6 +509,14 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         coverage_level: formData.coverageLevel,
         source: 'multi_step_form',
         value: 100,
+      });
+      // Nom d'événement standard GA4 — reconnu nativement comme "key event"
+      // sans configuration supplémentaire, contrairement à quote_request ci-dessus.
+      trackEvent('generate_lead', {
+        category: 'lead_generation',
+        insurance_type: insType,
+        value: 100,
+        currency: 'EUR',
       });
 
       trackGoogleAdsConversionWithParams('quote_request', {
@@ -679,6 +736,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
                           delete next.vehicleModel;
                         }
                         return next;
+                      });
+                      trackEvent('funnel_step_complete', {
+                        category: 'funnel',
+                        step_number: currentStep + 1,
+                        step_total: totalSteps,
+                        insurance_type: effectiveType,
                       });
                       const msg = transitionMessages[currentStep % transitionMessages.length];
                       setTransitionScreen(msg);

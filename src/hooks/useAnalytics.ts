@@ -30,7 +30,11 @@ export type AnalyticsEvent =
   | 'quiz_complete'
   | 'cta_click'
   | 'pricing_card_flip'
-  | 'pricing_card_view_details';
+  | 'pricing_card_view_details'
+  | 'funnel_step_view'
+  | 'funnel_step_complete'
+  | 'funnel_abandoned'
+  | 'generate_lead';
 
 interface EventParams {
   category?: string;
