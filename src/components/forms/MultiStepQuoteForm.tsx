@@ -206,12 +206,6 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
     if (excludeStepIds && excludeStepIds.length > 0) {
       computed = computed.filter((s) => !excludeStepIds.includes(s.id));
     }
-    // eslint-disable-next-line no-console
-    console.log('[DEBUG steps useMemo] ' + JSON.stringify({
-      formDataInsuranceType: formData.insuranceType,
-      length: computed.length,
-      ids: computed.map((s) => s.id),
-    }));
     return computed;
   }, [insuranceType, formData.insuranceType, stepConfigsByType, excludeStepIds]);
   const [contactErrors, setContactErrors] = useState<Record<string, string>>({});
@@ -226,15 +220,6 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   const step = steps[currentStep];
   const totalSteps = steps.length;
   const progressPercent = ((currentStep + 1) / totalSteps) * 100;
-  // eslint-disable-next-line no-console
-  console.log('[DEBUG render] ' + JSON.stringify({
-    currentStep,
-    totalSteps,
-    stepId: step?.id,
-    stepField: step?.field,
-    stepOptionValues: step?.options?.map((o) => o.value),
-    transitionScreen,
-  }));
 
   // Funnel tracking — emit step_view on each step change
   const reachedSubmitRef = useRef(false);
@@ -306,19 +291,8 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   // fait sauter currentStep une deuxième fois — désynchronisant le compteur
   // affiché de l'écran réellement visible.
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log('[DEBUG auto-advance effect] ' + JSON.stringify({
-      currentStep,
-      stepsLength: steps.length,
-      stepId: step?.id,
-      stepField: step?.field,
-      prefilled: step?.field ? prefilledFieldsRef.current.has(step.field) : null,
-      formDataValue: step?.field ? formData[step.field] : null,
-    }));
     if (!step || step.type === 'searching' || step.type === 'contact' || step.type === 'callback') return;
     if (step.field && prefilledFieldsRef.current.has(step.field) && formData[step.field]) {
-      // eslint-disable-next-line no-console
-      console.log('[DEBUG auto-advance effect] FIRING setCurrentStep');
       setCurrentStep((s) => Math.min(s + 1, steps.length - 1));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -411,8 +385,6 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
     }
 
 
-    // eslint-disable-next-line no-console
-    console.log('[DEBUG handleCardSelect] click ' + JSON.stringify({ field, value, currentStepAtClick: currentStep }));
     setFormData(prev => ({ ...prev, [field]: value }));
     trackFunnel('step_complete', {
       stepIndex: currentStep,
@@ -431,16 +403,10 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
     setTransitionScreen(msg);
     setMicroLoading(true);
     setTimeout(() => {
-      // eslint-disable-next-line no-console
-      console.log('[DEBUG handleCardSelect] timeout firing, currentStep closure value =', currentStep);
       setMicroLoading(false);
       setTransitionScreen(null);
       setDirection(1);
-      setCurrentStep(prev => {
-        // eslint-disable-next-line no-console
-        console.log('[DEBUG handleCardSelect] setCurrentStep updater, prev =', prev, '-> next =', prev + 1);
-        return prev + 1;
-      });
+      setCurrentStep(prev => prev + 1);
     }, 1000);
   };
 
@@ -671,26 +637,28 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         {/* Content area */}
         {/* `relative` : ancre le spinner de transition (absolute inset-0) ci-dessous. */}
         <div className={`relative px-6 pb-8 flex flex-col ${fixedHeight ? 'flex-1 overflow-y-auto min-h-0' : 'min-h-[420px]'}`}>
-          {/* AnimatePresence dédiée au contenu d'étape uniquement — ne gère plus
-              que les transitions étape→étape (mode="wait" sur key={step.id+currentStep}).
-              Le spinner de transition ci-dessous vit dans sa PROPRE AnimatePresence,
-              totalement indépendante : avant, les deux se disputaient le même
-              AnimatePresence (ternaire content/spinner), et un enchaînement rapide
-              contenu→spinner→contenu pouvait laisser Framer Motion bloqué sur
-              l'ancien enfant — compteur et barre de progression avançaient
-              normalement (hors de cette zone), mais le contenu réel restait figé
-              sur l'étape précédente, avec son ancien handler onClick. */}
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={step.id + currentStep}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="flex-1 flex flex-col"
-            >
+          {/* Pas d'AnimatePresence ici : après deux tentatives de correction côté
+              Framer Motion (isoler le spinner dans sa propre AnimatePresence,
+              retirer le ternaire content/spinner de la même liste animée), le
+              contenu affiché restait parfois figé sur l'ancienne étape alors que
+              React avait déjà le bon `currentStep`/`step` au moment du render
+              (confirmé par des logs : l'état React était correct, seul le DOM ne
+              suivait pas — AnimatePresence n'avait jamais rejoué son cycle
+              exit→enter). On s'appuie donc uniquement sur le remplacement de
+              `key` : React garantit lui-même le démontage/remontage du DOM sur
+              changement de key, indépendamment de tout état interne d'une
+              librairie d'animation tierce. Contrepartie assumée : l'ancien
+              contenu ne glisse plus visiblement vers la sortie (juste retiré),
+              seule l'entrée du nouveau contenu reste animée. */}
+          <motion.div
+            key={step.id + currentStep}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="flex-1 flex flex-col"
+          >
                 {/* Arthur mascot + speech bubble (mobile only) */}
                 <div className="flex justify-center mb-4">
                   <div className="relative inline-flex items-end gap-2 md:block">
@@ -814,12 +782,10 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
                     onSubmit={handleContactSubmit}
                   />
                 )}
-            </motion.div>
-          </AnimatePresence>
+          </motion.div>
 
           {/* Spinner de transition — recouvre le contenu (absolute inset-0),
-              complètement indépendant de l'AnimatePresence ci-dessus : jamais
-              un "enfant" concurrent au contenu réel dans la même liste animée. */}
+              totalement indépendant du contenu d'étape ci-dessus. */}
           <AnimatePresence>
             {transitionScreen && (
               <motion.div
