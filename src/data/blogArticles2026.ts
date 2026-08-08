@@ -4635,5 +4635,63 @@ Non, c'est une exclusion universelle. La garantie annulation couvre uniquement l
 
 **Liens utiles** : [Assurance Métiers Atypiques](/assurance-metiers-atypiques) · [RC Pro standard](/assurance-rc-pro) · [MRP locaux pro](/assurance-mrp) · [Guide accrobranche](/blog/assurance-parc-accrobranche-obligations-2026) · [Guide moniteurs sport](/blog/assurance-moniteur-sports-outdoor-2026)
     `
+  },
+  {
+    id: "barometre-t3-2026",
+    title: "Baromètre des primes d'assurance T3 2026 : ce que révèlent les chiffres du marché",
+    slug: "barometre-assurance-t3-2026",
+    description: "Prime auto à 722 €/an, habitation à 243 €/an, reste à charge santé en hausse : décryptage trimestriel des données du marché de l'assurance par un courtier indépendant.",
+    category: "Guides Pratiques",
+    date: "auto",
+    readTime: "4 min",
+    author: "Alexandre Petit",
+    tags: ["baromètre assurance", "prime auto", "prime habitation", "mutuelle santé", "T3 2026"],
+    content: `
+# Baromètre des primes d'assurance — T3 2026
+
+*Ce que révèlent les données du marché ce trimestre, décrypté par un courtier indépendant.*
+
+---
+
+## Ce qu'il faut retenir en 30 secondes
+
+- **Prime auto moyenne : 722 €/an** (+6,8 % sur un an)
+- **Prime habitation moyenne : 243 €/an** (+7,2 %, la plus forte hausse depuis 2010)
+- **Reste à charge santé : 292 €/habitant** (+16 € sur un an)
+- **VE vs thermique : l'inversion se confirme** — assurer une électrique coûte désormais 65 à 90 € de plus par an qu'une essence équivalente
+- **Écart régional auto : 905 € en PACA contre 681 € dans les Hauts-de-France**, à profil identique
+
+## Auto : la puissance et l'âge du conducteur pèsent plus que la motorisation
+
+Le marché confirme une tendance qu'on documentait déjà en juillet : l'écart entre profils compte plus que l'écart entre carburants.
+
+À véhicule identique :
+- **17-25 ans : ~1 460 €/an**
+- **56-70 ans : ~510 €/an**
+
+Un rapport de 1 à 3. Et entre marques : ~600 €/an pour une citadine accessible (Dacia, Honda), ~1 000 €/an pour un modèle premium (BMW, Tesla).
+
+## Habitation : la surprime catastrophes naturelles change la donne
+
+La hausse de 7,2 % n'est pas un hasard commercial généralisé — elle est en grande partie mécanique. La surprime catastrophes naturelles est passée de 12 à 20 % au 1er janvier 2025, répercutée automatiquement sur tous les contrats. C'est une décision publique, pas un choix d'assureur.
+
+## Santé : le reste à charge continue de grimper
+
+292 € par habitant en 2024, +16 € sur un an. La tendance est constante depuis plusieurs années : la part remboursée par l'Assurance Maladie recule légèrement, celle absorbée par les mutuelles et les ménages progresse.
+
+## Ce que ça change pour vous
+
+Trois réflexes qui restent valables quel que soit le trimestre :
+
+1. **Comparer reste le levier le plus efficace.** À garanties égales, l'écart entre deux assureurs dépasse couramment 30 %.
+2. **Vérifier la ligne "taxes" avant de blâmer son profil.** Une partie des hausses vient de décisions réglementaires (TSCA, surprime CatNat), pas d'un changement de risque personnel.
+3. **Le calendrier compte.** Pour une échéance au 31 décembre, le préavis de résiliation court jusqu'au 31 octobre.
+
+---
+
+*Méthodologie : ce baromètre s'appuie sur les données publiques d'Assurland, France Assureurs, la DREES et l'Observatoire SRA. Il sera enrichi de données propriétaires (issues de notre propre activité de courtage) dès que le volume sera statistiquement significatif — nous nous imposons ce seuil pour ne publier que des chiffres fiables.*
+
+**Sources :** Assurland (baromètres 2026) · France Assureurs · DREES · Observatoire SRA (sinistres de collision 2024)
+    `
   }
 ];
