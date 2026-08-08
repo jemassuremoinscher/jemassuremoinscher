@@ -1,12 +1,12 @@
 export const STAGES = [
   { id: "lead", label: "Lead", tone: "#F5F3FF", accent: "#7C3AED" },
-  { id: "invalid_contact", label: "Coordonnées erronées", tone: "#FFF1F2", accent: "#E11D48" },
   { id: "qualified", label: "Qualifié", tone: "#EEF2FF", accent: "#4F46E5" },
   { id: "quote_sent", label: "Devis envoyé", tone: "#ECFEFF", accent: "#0891B2" },
   { id: "subscription", label: "Souscription", tone: "#FEF3C7", accent: "#D97706" },
   { id: "incomplete", label: "Dossier incomplet", tone: "#FEE2E2", accent: "#DC2626" },
   { id: "won", label: "Validé", tone: "#DCFCE7", accent: "#16A34A" },
   { id: "lost", label: "Perdu", tone: "#F1F5F9", accent: "#64748B" },
+  { id: "invalid_contact", label: "Coordonnées erronées", tone: "#FFF1F2", accent: "#E11D48" },
 ] as const;
 
 export type StageId = (typeof STAGES)[number]["id"];
