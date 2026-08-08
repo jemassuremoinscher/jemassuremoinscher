@@ -192,7 +192,7 @@ let updated = html.replace(/<noscript>[\s\S]*?<\/noscript>/i, "")
 
   // Liens cross-site (réseau) dans le fallback statique — toutes pages (idempotent)
   if (!updated.includes("jmmc-network")) {
-    const network = `\n        <p class="jmmc-network" style="font-size:12px;color:#6b7280;">Nos autres services : <a href="https://mayocreche.fr" rel="noopener">Mayo Crèche — crèche multilingue à Nice</a> &middot; <a href="https://mammouth-ai.com" rel="noopener">Mammouth AI — agents IA pour entrepreneurs</a></p>`;
+    const network = `\n        <p class="jmmc-network" style="font-size:12px;color:#6b7280;">Nos autres services : <a href="https://www.mayocreche.fr" rel="noopener">Mayo Crèche — crèche multilingue à Nice</a> &middot; <a href="https://www.mammouth-ai.com" rel="noopener">Mammouth AI — agents IA pour entrepreneurs</a></p>`;
     updated = updated.replace("</body>", `${network}\n  </body>`);
   }
 
