@@ -206,6 +206,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
     if (excludeStepIds && excludeStepIds.length > 0) {
       computed = computed.filter((s) => !excludeStepIds.includes(s.id));
     }
+    // eslint-disable-next-line no-console
+    console.log('[DEBUG steps useMemo]', {
+      formDataInsuranceType: formData.insuranceType,
+      length: computed.length,
+      ids: computed.map((s) => s.id),
+    });
     return computed;
   }, [insuranceType, formData.insuranceType, stepConfigsByType, excludeStepIds]);
   const [contactErrors, setContactErrors] = useState<Record<string, string>>({});
@@ -220,6 +226,8 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   const step = steps[currentStep];
   const totalSteps = steps.length;
   const progressPercent = ((currentStep + 1) / totalSteps) * 100;
+  // eslint-disable-next-line no-console
+  console.log('[DEBUG render]', { currentStep, totalSteps, stepId: step?.id, transitionScreen });
 
   // Funnel tracking — emit step_view on each step change
   const reachedSubmitRef = useRef(false);
@@ -291,8 +299,19 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   // fait sauter currentStep une deuxième fois — désynchronisant le compteur
   // affiché de l'écran réellement visible.
   useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log('[DEBUG auto-advance effect]', {
+      currentStep,
+      stepsLength: steps.length,
+      stepId: step?.id,
+      stepField: step?.field,
+      prefilled: step?.field ? prefilledFieldsRef.current.has(step.field) : null,
+      formDataValue: step?.field ? formData[step.field] : null,
+    });
     if (!step || step.type === 'searching' || step.type === 'contact' || step.type === 'callback') return;
     if (step.field && prefilledFieldsRef.current.has(step.field) && formData[step.field]) {
+      // eslint-disable-next-line no-console
+      console.log('[DEBUG auto-advance effect] FIRING setCurrentStep');
       setCurrentStep((s) => Math.min(s + 1, steps.length - 1));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -385,6 +404,8 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
     }
 
 
+    // eslint-disable-next-line no-console
+    console.log('[DEBUG handleCardSelect] click', { field, value, currentStepAtClick: currentStep });
     setFormData(prev => ({ ...prev, [field]: value }));
     trackFunnel('step_complete', {
       stepIndex: currentStep,
@@ -403,10 +424,16 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
     setTransitionScreen(msg);
     setMicroLoading(true);
     setTimeout(() => {
+      // eslint-disable-next-line no-console
+      console.log('[DEBUG handleCardSelect] timeout firing, currentStep closure value =', currentStep);
       setMicroLoading(false);
       setTransitionScreen(null);
       setDirection(1);
-      setCurrentStep(prev => prev + 1);
+      setCurrentStep(prev => {
+        // eslint-disable-next-line no-console
+        console.log('[DEBUG handleCardSelect] setCurrentStep updater, prev =', prev, '-> next =', prev + 1);
+        return prev + 1;
+      });
     }, 1000);
   };
 
