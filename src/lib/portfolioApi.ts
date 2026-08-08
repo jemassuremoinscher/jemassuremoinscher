@@ -49,6 +49,16 @@ export async function createContract(payload: ContractInsert): Promise<Contract>
   return data as Contract;
 }
 
+export async function fetchContractById(contractId: string): Promise<Contract | null> {
+  const { data, error } = await portfolioFrom('contracts')
+    .select('*, contacts(full_name, email, phone)')
+    .eq('id', contractId)
+    .maybeSingle();
+
+  if (error) throw error;
+  return (data ?? null) as Contract | null;
+}
+
 // ---------------------------------------------------------------------------
 // Conseil DDA — advice_records est IMMUABLE côté base (un UPDATE lève une
 // exception SQL) : uniquement création et lecture ici, jamais de fonction

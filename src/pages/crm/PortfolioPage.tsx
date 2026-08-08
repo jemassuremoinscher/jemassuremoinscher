@@ -1,18 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { Wallet, TrendingUp, RefreshCw, AlertTriangle, Users, Moon, ArrowUpDown } from "lucide-react";
+import { Wallet, TrendingUp, RefreshCw, AlertTriangle, Users, Moon, ArrowUpDown, FileWarning, Clock, PhoneOff } from "lucide-react";
 import { fetchContracts, fetchTableauBordPortefeuille } from "@/lib/portfolioApi";
+import { CONTRACT_STATUS_META as STATUS_META } from "@/types/portfolio";
 import type { Contract, ContractStatus, TableauBordPortefeuilleRow } from "@/types/portfolio";
-
-const STATUS_META: Record<ContractStatus, { label: string; tone: string; accent: string }> = {
-  active: { label: "Actif", tone: "#DCFCE7", accent: "#16A34A" },
-  pending: { label: "En attente", tone: "#FEF3C7", accent: "#D97706" },
-  lapsed: { label: "Échu", tone: "#F1F5F9", accent: "#64748B" },
-  cancelled_client: { label: "Résilié (client)", tone: "#FEE2E2", accent: "#DC2626" },
-  cancelled_insurer: { label: "Résilié (assureur)", tone: "#FEE2E2", accent: "#DC2626" },
-  transferred: { label: "Transféré", tone: "#EEF2FF", accent: "#4F46E5" },
-};
 
 const fmtEur = (n: number | null) =>
   new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n ?? 0);
@@ -39,6 +31,7 @@ function Kpi({ icon: Icon, label, value, hint }: { icon: any; label: string; val
 }
 
 export default function PortfolioPage() {
+  const navigate = useNavigate();
   const [board, setBoard] = useState<TableauBordPortefeuilleRow | null>(null);
   const [contracts, setContracts] = useState<Contract[]>([]);
   const [loading, setLoading] = useState(true);
@@ -93,6 +86,10 @@ export default function PortfolioPage() {
         <Kpi icon={Users} label="Clients mono-produit" value={String(board?.clients_mono_produit ?? 0)} hint="opportunité multi-équipement" />
         <Kpi icon={AlertTriangle} label="Sans conseil DDA" value={String(board?.clients_sans_conseil_dda ?? 0)} />
         <Kpi icon={Moon} label="Deals dormants" value={String(board?.deals_dormants ?? 0)} />
+        <Kpi icon={AlertTriangle} label="Sinistres en cours" value={String(board?.sinistres_en_cours ?? 0)} />
+        <Kpi icon={Clock} label="Commissions en attente" value={String(board?.commissions_en_attente ?? 0)} />
+        <Kpi icon={FileWarning} label="Documents manquants" value={String(board?.documents_manquants ?? 0)} />
+        <Kpi icon={PhoneOff} label="Coordonnées erronées" value={String(board?.coordonnees_erronees ?? 0)} />
       </div>
 
       <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
@@ -144,9 +141,15 @@ export default function PortfolioPage() {
                 const contact = contactOf(c);
                 const meta = STATUS_META[c.status];
                 return (
-                  <tr key={c.id} className="hover:bg-[#FAF5FF] dark:hover:bg-[#262140]">
+                  <tr
+                    key={c.id}
+                    onClick={() => navigate(`/admin/portefeuille/${c.id}`)}
+                    className="cursor-pointer hover:bg-[#FAF5FF] dark:hover:bg-[#262140]"
+                  >
                     <td className="py-3 px-4 font-medium text-slate-800 dark:text-slate-100">
-                      {contact?.full_name || contact?.email || "—"}
+                      <Link to={`/admin/portefeuille/${c.id}`} className="hover:text-[#7C3AED] dark:hover:text-[#C4B5FD]" onClick={(e) => e.stopPropagation()}>
+                        {contact?.full_name || contact?.email || "—"}
+                      </Link>
                     </td>
                     <td className="py-3 px-4 text-slate-600 dark:text-slate-300">{c.insurance_type}</td>
                     <td className="py-3 px-4 text-slate-600 dark:text-slate-300">{c.insurer_name}</td>

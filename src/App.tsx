@@ -41,6 +41,7 @@ const ImportPage = lazy(() => import("./pages/crm/ImportPage"));
 const NotificationsCenter = lazy(() => import("./pages/crm/NotificationsCenter"));
 const NotificationSettings = lazy(() => import("./pages/crm/NotificationSettings"));
 const PortfolioPage = lazy(() => import("./pages/crm/PortfolioPage"));
+const ContractDetailPage = lazy(() => import("./pages/crm/ContractDetailPage"));
 const Commercial = lazy(() => import("./pages/Commercial"));
 const LandingAds = lazy(() => import("./pages/LandingAds"));
 const LandingAuto = lazy(() => import("./pages/landing/LandingAuto"));
@@ -232,6 +233,7 @@ const App = () => {
                   <Route path="dashboard" element={<CrmDashboard />} />
                   <Route path="finance" element={<FinancePage />} />
                   <Route path="portefeuille" element={<PortfolioPage />} />
+                  <Route path="portefeuille/:contractId" element={<ContractDetailPage />} />
                   <Route path="marketing" element={<MarketingPage />} />
                   <Route path="rgpd" element={<RgpdPage />} />
                   <Route path="trash" element={<TrashPage />} />

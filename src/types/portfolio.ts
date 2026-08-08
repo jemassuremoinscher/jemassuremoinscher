@@ -13,6 +13,17 @@ export type ContractStatus =
   | 'cancelled_insurer'
   | 'transferred';
 
+// Partagé entre PortfolioPage.tsx et ContractDetailPage.tsx pour un rendu de
+// badge de statut identique aux deux endroits.
+export const CONTRACT_STATUS_META: Record<ContractStatus, { label: string; tone: string; accent: string }> = {
+  active: { label: 'Actif', tone: '#DCFCE7', accent: '#16A34A' },
+  pending: { label: 'En attente', tone: '#FEF3C7', accent: '#D97706' },
+  lapsed: { label: 'Échu', tone: '#F1F5F9', accent: '#64748B' },
+  cancelled_client: { label: 'Résilié (client)', tone: '#FEE2E2', accent: '#DC2626' },
+  cancelled_insurer: { label: 'Résilié (assureur)', tone: '#FEE2E2', accent: '#DC2626' },
+  transferred: { label: 'Transféré', tone: '#EEF2FF', accent: '#4F46E5' },
+};
+
 // contracts.assigned_to est un USER_ID (auth.uid()), jamais un sales_agents.id
 // — même référentiel que deals.assigned_to / activities.author_id, distinct
 // de deal_tasks.assigned_to (cf. crmApi.ts).
@@ -159,6 +170,10 @@ export interface TableauBordPortefeuilleRow {
   clients_mono_produit: number;
   clients_sans_conseil_dda: number;
   deals_dormants: number;
+  sinistres_en_cours: number;
+  commissions_en_attente: number;
+  documents_manquants: number;
+  coordonnees_erronees: number;
 }
 
 // Vue alertes_conformite_dda (lecture seule) — deals sans conseil DDA

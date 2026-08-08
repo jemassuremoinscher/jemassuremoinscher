@@ -75,3 +75,15 @@ export interface DealTaskInsert {
   assigned_to?: string | null;
   created_by?: string | null;
 }
+
+// Vue qualite_par_source (lecture seule, une ligne par source_type, mois en cours) —
+// alimente le badge "% erronées" de la colonne Kanban "Coordonnées erronées"
+// (cf. src/pages/crm/types.ts pour le stage invalid_contact, src/pages/crm/KanbanColumn.tsx).
+export interface QualiteParSourceRow {
+  source_type: string;
+  total_leads: number;
+  coordonnees_erronees: number;
+  pct_erronees: number;
+  gagnes: number;
+  pct_conversion: number;
+}

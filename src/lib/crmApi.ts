@@ -4,6 +4,7 @@ import type {
   ActivityInsert,
   DealTask,
   DealTaskInsert,
+  QualiteParSourceRow,
 } from '@/types/crm';
 
 // `activities` et `deal_tasks` existent déjà en base mais ne figurent pas dans
@@ -249,4 +250,16 @@ export async function supprimerDealManuel(
   });
   if (error) throw error;
   return data as SupprimerDealResult;
+}
+
+// ---------------------------------------------------------------------------
+// Vue qualite_par_source (lecture seule) — absente de types.ts (généré),
+// même constat que les autres tables/vues ci-dessus.
+// ---------------------------------------------------------------------------
+
+export async function fetchQualiteParSource(): Promise<QualiteParSourceRow[]> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data, error } = await supabase.from('qualite_par_source' as any).select('*');
+  if (error) throw error;
+  return (data ?? []) as unknown as QualiteParSourceRow[];
 }

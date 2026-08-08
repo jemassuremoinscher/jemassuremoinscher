@@ -18,7 +18,7 @@ import { DealCard } from "./DealCard";
 import { DealDrawer } from "./DealDrawer";
 import { NewDealDialog } from "./NewDealDialog";
 import { TasksWidget } from "@/components/admin/crm/TasksWidget";
-import { fetchOverdueDealIds } from "@/lib/crmApi";
+import { fetchOverdueDealIds, fetchQualiteParSource } from "@/lib/crmApi";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 
@@ -44,6 +44,22 @@ export default function CrmKanban() {
     queryFn: fetchOverdueDealIds,
     refetchInterval: 60000,
   });
+
+  const { data: qualiteParSource } = useQuery({
+    queryKey: ["qualite-par-source"],
+    queryFn: fetchQualiteParSource,
+  });
+
+  // % de coordonnées erronées ce mois, toutes sources confondues (moyenne
+  // pondérée sur les volumes, pas une moyenne des pourcentages par source).
+  const monthlyErrorPct = useMemo(() => {
+    if (!qualiteParSource || qualiteParSource.length === 0) return null;
+    const totals = qualiteParSource.reduce(
+      (acc, r) => ({ total: acc.total + r.total_leads, erronees: acc.erronees + r.coordonnees_erronees }),
+      { total: 0, erronees: 0 }
+    );
+    return totals.total > 0 ? Math.round((totals.erronees / totals.total) * 100) : 0;
+  }, [qualiteParSource]);
 
   // Global filters (seed from URL so dashboard links can preselect)
   const [agentFilter, setAgentFilter] = useState<string>(searchParams.get("agent") ?? "all");
@@ -269,6 +285,7 @@ export default function CrmKanban() {
                 agents={agents}
                 onAssigned={load}
                 overdueDealIds={overdueDealIds}
+                monthlyErrorPct={stage.id === "invalid_contact" ? monthlyErrorPct : undefined}
               />
             ))}
           </div>

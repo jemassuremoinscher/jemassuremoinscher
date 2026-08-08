@@ -15,10 +15,11 @@ import {
   Cell,
   Legend,
 } from "recharts";
-import { TrendingUp, Users, Target, Euro, CheckSquare, Phone, Clock, Save, Trash2, ArrowRight, Wallet, RefreshCw, AlertTriangle, Moon } from "lucide-react";
+import { TrendingUp, Users, Target, Euro, CheckSquare, Phone, Clock, Save, Trash2, ArrowRight, Wallet, RefreshCw, AlertTriangle, Moon, FileWarning, PhoneOff } from "lucide-react";
 import { OpportunitiesWidget } from "@/components/admin/crm/OpportunitiesWidget";
 import { DormantDealsWidget } from "@/components/admin/crm/DormantDealsWidget";
 import { ComplianceDdaWidget } from "@/components/admin/crm/ComplianceDdaWidget";
+import { MissingDocumentsWidget } from "@/components/admin/crm/MissingDocumentsWidget";
 import { fetchTableauBordPortefeuille } from "@/lib/portfolioApi";
 import type { TableauBordPortefeuilleRow } from "@/types/portfolio";
 
@@ -412,13 +413,18 @@ export default function CrmDashboard() {
           <Kpi icon={Users} label="Clients mono-produit" value={String(board?.clients_mono_produit ?? 0)} hint="opportunité multi-équipement" />
           <Kpi icon={AlertTriangle} label="Sans conseil DDA" value={String(board?.clients_sans_conseil_dda ?? 0)} />
           <Kpi icon={Moon} label="Deals dormants" value={String(board?.deals_dormants ?? 0)} />
+          <Kpi icon={AlertTriangle} label="Sinistres en cours" value={String(board?.sinistres_en_cours ?? 0)} />
+          <Kpi icon={Clock} label="Commissions en attente" value={String(board?.commissions_en_attente ?? 0)} />
+          <Kpi icon={FileWarning} label="Documents manquants" value={String(board?.documents_manquants ?? 0)} />
+          <Kpi icon={PhoneOff} label="Coordonnées erronées" value={String(board?.coordonnees_erronees ?? 0)} />
         </div>
       </div>
 
-      {/* Portefeuille : opportunités + deals dormants + conformité DDA */}
+      {/* Portefeuille : opportunités + deals dormants + documents manquants + conformité DDA */}
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
         <OpportunitiesWidget />
         <DormantDealsWidget />
+        <MissingDocumentsWidget />
         <div className="lg:col-span-2">
           <ComplianceDdaWidget />
         </div>
