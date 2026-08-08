@@ -635,33 +635,28 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         <input ref={honeypotRef} type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0 }} />
 
         {/* Content area */}
-        <div className={`px-6 pb-8 flex flex-col ${fixedHeight ? 'flex-1 overflow-y-auto min-h-0' : 'min-h-[420px]'}`}>
+        {/* `relative` : ancre le spinner de transition (absolute inset-0) ci-dessous. */}
+        <div className={`relative px-6 pb-8 flex flex-col ${fixedHeight ? 'flex-1 overflow-y-auto min-h-0' : 'min-h-[420px]'}`}>
+          {/* AnimatePresence dédiée au contenu d'étape uniquement — ne gère plus
+              que les transitions étape→étape (mode="wait" sur key={step.id+currentStep}).
+              Le spinner de transition ci-dessous vit dans sa PROPRE AnimatePresence,
+              totalement indépendante : avant, les deux se disputaient le même
+              AnimatePresence (ternaire content/spinner), et un enchaînement rapide
+              contenu→spinner→contenu pouvait laisser Framer Motion bloqué sur
+              l'ancien enfant — compteur et barre de progression avançaient
+              normalement (hors de cette zone), mais le contenu réel restait figé
+              sur l'étape précédente, avec son ancien handler onClick. */}
           <AnimatePresence mode="wait" custom={direction}>
-            {transitionScreen ? (
-              <motion.div
-                key="transition"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                className="flex-1 flex flex-col items-center justify-center gap-5 py-12"
-              >
-                <Loader2 className="h-8 w-8 animate-spin text-primary" />
-                <p className="text-sm font-medium text-muted-foreground text-center max-w-xs">
-                  {transitionScreen}
-                </p>
-              </motion.div>
-            ) : (
-              <motion.div
-                key={step.id + currentStep}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="flex-1 flex flex-col"
-              >
+            <motion.div
+              key={step.id + currentStep}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="flex-1 flex flex-col"
+            >
                 {/* Arthur mascot + speech bubble (mobile only) */}
                 <div className="flex justify-center mb-4">
                   <div className="relative inline-flex items-end gap-2 md:block">
@@ -785,6 +780,26 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
                     onSubmit={handleContactSubmit}
                   />
                 )}
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Spinner de transition — recouvre le contenu (absolute inset-0),
+              complètement indépendant de l'AnimatePresence ci-dessus : jamais
+              un "enfant" concurrent au contenu réel dans la même liste animée. */}
+          <AnimatePresence>
+            {transitionScreen && (
+              <motion.div
+                key="transition"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="absolute inset-0 flex flex-col items-center justify-center gap-5 py-12 bg-card"
+              >
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                <p className="text-sm font-medium text-muted-foreground text-center max-w-xs">
+                  {transitionScreen}
+                </p>
               </motion.div>
             )}
           </AnimatePresence>
