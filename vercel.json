@@ -28,7 +28,10 @@
     { "source": "/blog/recharge-domicile-assurance-borne-recharge", "destination": "/blog/assurance-habitation-et-borne-de-recharge-protegez-votre-investissement-en-2026", "statusCode": 301 },
     { "source": "/blog/assurance-trottinette-electrique-obligatoire-en-france-des-2026-le-guide-complet", "destination": "/blog/comparatif-assurance-trottinette-electrique-2026", "statusCode": 301 },
     { "source": "/blog/100-pour-cent-sante-2026-reste-a-charge", "destination": "/blog/reste-a-charge-zero-100-sante-lunettes-dents-2026", "statusCode": 301 },
-    { "source": "/blog/assurance-auto-malus-eleve-crm", "destination": "/blog/assurance-malus-eleve-compagnies-2026", "statusCode": 301 }
+    { "source": "/blog/assurance-auto-malus-eleve-crm", "destination": "/blog/assurance-malus-eleve-compagnies-2026", "statusCode": 301 },
+    { "source": "/blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026", "destination": "/blog/assurance-emprunteur-definition-complete-et-decryptage-pour-2026", "statusCode": 301 },
+    { "source": "/blog/faq-assurance-emprunteur-changement-2026", "destination": "/blog/assurance-emprunteur-definition-complete-et-decryptage-pour-2026", "statusCode": 301 },
+    { "source": "/blog/loi-lemoine-assurance-emprunteur-2026", "destination": "/blog/assurance-emprunteur-definition-complete-et-decryptage-pour-2026", "statusCode": 301 }
   ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }

@@ -347,7 +347,7 @@ const App = () => {
                 {/* Legacy slug redirects (mirrors public/.htaccess for Lovable hosting) */}
                 <Route path="/landing" element={<Navigate to="/comparateur" replace />} />
                 <Route path="/blog/guide-choisir-assurance-auto-2024" element={<Navigate to="/blog/guide-choisir-assurance-auto-2026" replace />} />
-                <Route path="/blog/loi-lemoine-assurance-emprunteur-2024" element={<Navigate to="/blog/loi-lemoine-assurance-emprunteur-2026" replace />} />
+                <Route path="/blog/loi-lemoine-assurance-emprunteur-2024" element={<Navigate to="/blog/assurance-emprunteur-definition-complete-et-decryptage-pour-2026" replace />} />
                 <Route path="/blog/resiliation-assurance-droits-2024" element={<Navigate to="/blog/resiliation-assurance-droits-2026" replace />} />
                 <Route path="/blog/mutuelle-sante-reduire-frais-medicaux-2024" element={<Navigate to="/blog/mutuelle-sante-reduire-frais-medicaux-2026" replace />} />
                 <Route path="/blog/assurance-jeune-conducteur-2025-moins-cher" element={<Navigate to="/blog/assurance-jeune-conducteur-2026-moins-cher" replace />} />
