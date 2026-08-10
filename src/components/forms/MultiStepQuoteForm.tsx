@@ -705,6 +705,8 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
                     selected={formData[step.field]}
                     onSelect={(value) => handleCardSelect(step.field!, value)}
                     microLoading={microLoading}
+                    showUnsureButton={step.showUnsureButton}
+                    unsureDefaultValue={step.unsureDefaultValue}
                   />
                 )}
 
@@ -823,7 +825,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
 
 // ─── Card Select Step ────────────────────────────────────────────────────────
-function CardSelectStep({ options, selected, onSelect, microLoading }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void; microLoading?: boolean }) {
+function CardSelectStep({ options, selected, onSelect, microLoading, showUnsureButton, unsureDefaultValue }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void; microLoading?: boolean; showUnsureButton?: boolean; unsureDefaultValue?: string }) {
   const { t } = useLanguage();
   // Si la liste d'options est longue (typiquement l'étape "type d'assurance"
   // du comparateur avec 12 options), on n'affiche que les 4 principales et on
@@ -960,6 +962,19 @@ function CardSelectStep({ options, selected, onSelect, microLoading }: { options
           </motion.button>
         </div>
       )}
+      {/* "Je ne sais pas" — pré-remplit une valeur par défaut et avance, pour ne
+          pas bloquer l'utilisateur sur un champ qu'il ne connaît pas par cœur. */}
+      {showUnsureButton && unsureDefaultValue && (
+        <div className="mt-4 flex justify-center">
+          <button
+            type="button"
+            onClick={() => onSelect(unsureDefaultValue)}
+            className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors"
+          >
+            Je ne sais pas / Estimer pour moi
+          </button>
+        </div>
+      )}
       {/* Micro-loading feedback */}
       {microLoading && (
         <motion.div
@@ -1079,6 +1094,13 @@ function VehicleSelectStep({ step, formData, onSelect }: {
     inputRef.current?.focus();
   }, []);
 
+  // "Je ne sais pas" pour le modèle : le premier modèle de la liste de la marque
+  // déjà choisie (les listes de src/data/vehicleBrands.ts sont ordonnées par
+  // popularité), ou une valeur générique si la marque n'est pas encore connue.
+  const unsureDefault = step.showUnsureButton && step.vehicleField === 'model'
+    ? (items[0] || 'Modèle non précisé')
+    : null;
+
   return (
     <div className="flex flex-col items-center gap-3 max-w-sm mx-auto w-full">
       <div className="relative w-full">
@@ -1109,6 +1131,15 @@ function VehicleSelectStep({ step, formData, onSelect }: {
           ))
         )}
       </div>
+      {unsureDefault && (
+        <button
+          type="button"
+          onClick={() => onSelect(step.field!, unsureDefault)}
+          className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors"
+        >
+          Je ne sais pas / Estimer pour moi
+        </button>
+      )}
     </div>
   );
 }

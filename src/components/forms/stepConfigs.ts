@@ -36,6 +36,12 @@ export interface FormStep {
   validationMessage?: string;
   vehicleType?: 'auto' | 'moto';
   vehicleField?: 'brand' | 'model' | 'year';
+  /** Affiche un bouton secondaire "Je ne sais pas / Estimer pour moi" qui pré-remplit
+   * une valeur par défaut et avance sans bloquer l'utilisateur sur ce champ. */
+  showUnsureButton?: boolean;
+  /** Valeur pré-sélectionnée par ce bouton (étapes card-select). Ignoré pour les étapes
+   * vehicle-select, qui calculent leur valeur par défaut dynamiquement (marque déjà choisie). */
+  unsureDefaultValue?: string;
 }
 
 export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur' | 'metiers_atypiques' | 'gestion_locative' | 'velo' | 'trottinette' | 'camping_car' | 'sans_permis' | 'auto_temporaire' | 'flotte' | 'cyber' | 'decennale' | 'protection_juridique' | 'mutuelle_entreprise';
@@ -149,6 +155,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
     field: 'vehicleModel',
     vehicleType: 'auto',
     vehicleField: 'model',
+    showUnsureButton: true,
   };
 
   const vehicleYearStep: FormStep = {
@@ -181,6 +188,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
     field: 'vehicleModel',
     vehicleType: 'moto',
     vehicleField: 'model',
+    showUnsureButton: true,
   };
 
   const cs = (it: InsuranceType, sid: string, field: string, opts: StepOption[]): FormStep => ({
@@ -207,11 +215,15 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'auto', 'usage_auto', 'trajet_travail', Briefcase),
         opt(t, 'auto', 'usage_auto', 'pro', Building2),
       ]),
-      cs('auto', 'bonus_malus_auto', 'bonusMalus', [
-        opt(t, 'auto', 'bonus_malus_auto', 'bonus_050', Award),
-        opt(t, 'auto', 'bonus_malus_auto', 'standard', ShieldCheck),
-        opt(t, 'auto', 'bonus_malus_auto', 'malus', AlertTriangle),
-      ]),
+      {
+        ...cs('auto', 'bonus_malus_auto', 'bonusMalus', [
+          opt(t, 'auto', 'bonus_malus_auto', 'bonus_050', Award),
+          opt(t, 'auto', 'bonus_malus_auto', 'standard', ShieldCheck),
+          opt(t, 'auto', 'bonus_malus_auto', 'malus', AlertTriangle),
+        ]),
+        showUnsureButton: true,
+        unsureDefaultValue: 'standard',
+      },
       ageStep, postalCodeStep, searchingStep, contactStep,
     ],
     moto: [
