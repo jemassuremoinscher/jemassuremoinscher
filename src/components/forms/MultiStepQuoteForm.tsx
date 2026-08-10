@@ -1447,6 +1447,13 @@ function ContactStep({
         {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
       </div>
 
+      {/* Trust badge */}
+      <div className="rounded-xl bg-primary/5 border border-primary/15 px-3 py-2.5">
+        <p className="text-xs text-muted-foreground leading-snug">
+          🔒 0 spam. Vos données sont en sécurité. Un conseiller vous rappelle uniquement pour valider ce tarif et gérer la résiliation de votre ancien contrat — sans aucune paperasse pour vous.
+        </p>
+      </div>
+
       {/* Terms */}
       <div className="flex items-start gap-2 pt-1">
         <Checkbox
