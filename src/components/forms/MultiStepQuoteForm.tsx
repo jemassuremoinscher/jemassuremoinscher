@@ -969,7 +969,7 @@ function CardSelectStep({ options, selected, onSelect, microLoading, showUnsureB
           <button
             type="button"
             onClick={() => onSelect(unsureDefaultValue)}
-            className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors"
+            className="inline-flex items-center justify-center rounded-full border border-primary/30 bg-primary/5 px-5 py-2.5 text-sm font-medium text-primary hover:bg-primary/10 hover:border-primary/50 active:scale-[0.97] transition-all"
           >
             Je ne sais pas / Estimer pour moi
           </button>
@@ -1135,7 +1135,7 @@ function VehicleSelectStep({ step, formData, onSelect }: {
         <button
           type="button"
           onClick={() => onSelect(step.field!, unsureDefault)}
-          className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground transition-colors"
+          className="inline-flex items-center justify-center rounded-full border border-primary/30 bg-primary/5 px-5 py-2.5 text-sm font-medium text-primary hover:bg-primary/10 hover:border-primary/50 active:scale-[0.97] transition-all"
         >
           Je ne sais pas / Estimer pour moi
         </button>
