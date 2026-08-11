@@ -771,6 +771,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
                     onChange={setContactData}
                     onSubmit={handleContactSubmit}
                     insuranceType={formData.insuranceType || insuranceType}
+                    formData={formData}
                   />
                 )}
 
@@ -1312,9 +1313,59 @@ const teaserPrices: Record<string, { label: string; prices: TeaserTier[] }> = {
   ]},
 };
 
+// ─── Teaser price personalization (auto & moto only) ─────────────────────────
+// Classification par marque établie et validée manuellement (pas de donnée
+// source pour la valeur/gamme des marques dans src/data/vehicleBrands.ts).
+type VehicleCategory = 'economique' | 'standard' | 'premium';
+
+const AUTO_VEHICLE_CATEGORY: Record<string, VehicleCategory> = {
+  Dacia: 'economique', 'Citroën': 'economique', Fiat: 'economique', Suzuki: 'economique', Smart: 'economique',
+  Peugeot: 'standard', Renault: 'standard', Volkswagen: 'standard', Toyota: 'standard', Ford: 'standard',
+  Opel: 'standard', Nissan: 'standard', Kia: 'standard', Hyundai: 'standard', Mazda: 'standard',
+  Honda: 'standard', Seat: 'standard', Skoda: 'standard', Mitsubishi: 'standard', Subaru: 'standard',
+  Audi: 'premium', BMW: 'premium', 'Mercedes-Benz': 'premium', Porsche: 'premium', Tesla: 'premium',
+  'Land Rover': 'premium', Jaguar: 'premium', Lexus: 'premium', 'Alfa Romeo': 'premium', Jeep: 'premium',
+  Volvo: 'premium', Mini: 'premium', DS: 'premium',
+};
+
+const MOTO_VEHICLE_CATEGORY: Record<string, VehicleCategory> = {
+  Sym: 'economique', Kymco: 'economique', Peugeot: 'economique', Benelli: 'economique', 'Royal Enfield': 'economique',
+  Yamaha: 'standard', Honda: 'standard', Kawasaki: 'standard', Suzuki: 'standard', Piaggio: 'standard', Vespa: 'standard',
+  BMW: 'premium', KTM: 'premium', Ducati: 'premium', Triumph: 'premium', 'Harley-Davidson': 'premium',
+  Aprilia: 'premium', 'MV Agusta': 'premium', Indian: 'premium',
+};
+
+const VEHICLE_CATEGORY_MULTIPLIER: Record<VehicleCategory, number> = {
+  economique: 0.85,
+  standard: 1,
+  premium: 1.6,
+};
+
+function ageMultiplier(age: number): number {
+  if (age <= 20) return 2.9;
+  if (age <= 24) return 2.3;
+  if (age <= 29) return 1.4;
+  if (age <= 59) return 1;
+  if (age <= 74) return 0.7;
+  return 1.2;
+}
+
+// Combine âge + catégorie véhicule, borné entre 60% et 350% du prix de base.
+function priceMultiplier(age: number | null, category: VehicleCategory | null): number {
+  const am = age !== null ? ageMultiplier(age) : 1;
+  const vm = category ? VEHICLE_CATEGORY_MULTIPLIER[category] : 1;
+  return Math.min(3.5, Math.max(0.6, am * vm));
+}
+
+function applyMultiplierToPrice(price: string, mult: number): string {
+  const n = parseInt(price, 10);
+  if (!Number.isFinite(n)) return price;
+  return `${Math.round(n * mult)}€`;
+}
+
 // ─── Contact Step ────────────────────────────────────────────────────────────
 function ContactStep({
-  data, errors, isSubmitting, isSuccess, onChange, onSubmit, insuranceType,
+  data, errors, isSubmitting, isSuccess, onChange, onSubmit, insuranceType, formData,
 }: {
   data: { fullName: string; email: string; phone: string; acceptTerms: boolean };
   errors: Record<string, string>;
@@ -1323,6 +1374,7 @@ function ContactStep({
   onChange: (d: typeof data) => void;
   onSubmit: () => void;
   insuranceType?: string;
+  formData: Record<string, string>;
 }) {
   const { t } = useLanguage();
   if (isSuccess) {
@@ -1346,13 +1398,24 @@ function ContactStep({
   const rawPrices = teaserPrices[insuranceType || 'auto']?.prices || teaserPrices.auto.prices;
   // Session-stable rotation so a returning visitor sees different insurers
   const rotationSeed = useMemo(() => Math.floor(Math.random() * 997), []);
+  // Prix personnalisés selon profil (âge + catégorie véhicule), auto/moto uniquement
+  const resolvedType = insuranceType || 'auto';
+  const mult = useMemo(() => {
+    if (resolvedType !== 'auto' && resolvedType !== 'moto') return 1;
+    const parsedAge = parseInt(formData.age, 10);
+    const age = Number.isFinite(parsedAge) && parsedAge > 0 ? parsedAge : null;
+    const categoryMap = resolvedType === 'auto' ? AUTO_VEHICLE_CATEGORY : MOTO_VEHICLE_CATEGORY;
+    const category = formData.vehicleBrand ? categoryMap[formData.vehicleBrand] || null : null;
+    return priceMultiplier(age, category);
+  }, [resolvedType, formData.age, formData.vehicleBrand]);
   const prices = useMemo(
     () => rawPrices.map((p, i) => {
       const pool = (p.logoPool || []).filter(Boolean);
       const logo = pool.length ? pool[(rotationSeed + i * 7) % pool.length] : '';
-      return { ...p, logo };
+      const price = mult !== 1 ? applyMultiplierToPrice(p.price, mult) : p.price;
+      return { ...p, logo, price };
     }),
-    [rawPrices, rotationSeed]
+    [rawPrices, rotationSeed, mult]
   );
 
   return (
