@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { ArrowLeft, ArrowRight, Loader2, CheckCircle2, Lock, Phone, Mail, User, Search } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Loader2, CheckCircle2, Lock, Phone, Mail, User, Search, MessageCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useAnalytics } from '@/hooks/useAnalytics';
@@ -694,6 +694,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
                   {step.subtitle && (
                     <p className="text-sm md:text-base text-muted-foreground max-w-md mx-auto">
                       {step.subtitle}
+                    </p>
+                  )}
+                  {step.arthurHint && (
+                    <p className="mt-2 inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/50 rounded-full px-3 py-1.5 max-w-md">
+                      <MessageCircle className="h-3.5 w-3.5 text-primary shrink-0" />
+                      {step.arthurHint}
                     </p>
                   )}
                 </div>
