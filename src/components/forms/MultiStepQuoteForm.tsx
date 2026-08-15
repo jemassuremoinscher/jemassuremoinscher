@@ -691,7 +691,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
                   <h2 className="text-xl md:text-2xl font-bold text-foreground mb-1.5">
                     {step.title}
                   </h2>
-                  {step.subtitle && (
+                  {step.subtitle && !step.arthurHint && (
                     <p className="text-sm md:text-base text-muted-foreground max-w-md mx-auto">
                       {step.subtitle}
                     </p>
