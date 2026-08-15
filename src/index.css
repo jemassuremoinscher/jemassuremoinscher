@@ -391,6 +391,12 @@ All colors MUST be HSL.
     -webkit-backdrop-filter: blur(12px);
   }
 
+  .dark .glass-card {
+    background: hsl(0 0% 100% / 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
   .glass-pill {
     @apply rounded-full px-4 py-2 transition-all duration-200;
     background: hsl(var(--titanium) / 0.8);
