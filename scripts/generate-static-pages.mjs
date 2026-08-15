@@ -71,6 +71,27 @@ const renderPage = (page) => {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Dark mode bootstrap: apply 'dark' class before paint, based on saved preference or OS setting -->
+    <script>
+    (function(){
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = saved ? saved === 'dark' : prefersDark;
+        if (isDark) document.documentElement.classList.add('dark');
+        // Live-update when OS preference changes (only if user hasn't chosen explicitly)
+        if (window.matchMedia) {
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
+            if (!localStorage.getItem('theme')) {
+              document.documentElement.classList.toggle('dark', e.matches);
+            }
+          });
+        }
+      } catch(e){}
+    })();
+    </script>
+
     <title>${escapeHtml(page.title)}</title>
     <meta name="description" content="${escapeAttribute(page.description)}" />
     <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
@@ -358,6 +379,27 @@ const renderArticle = (article, related = []) => {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Dark mode bootstrap: apply 'dark' class before paint, based on saved preference or OS setting -->
+    <script>
+    (function(){
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = saved ? saved === 'dark' : prefersDark;
+        if (isDark) document.documentElement.classList.add('dark');
+        // Live-update when OS preference changes (only if user hasn't chosen explicitly)
+        if (window.matchMedia) {
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
+            if (!localStorage.getItem('theme')) {
+              document.documentElement.classList.toggle('dark', e.matches);
+            }
+          });
+        }
+      } catch(e){}
+    })();
+    </script>
+
     <title>${escapeHtml(title)}</title>
     <meta name="description" content="${escapeAttribute(description)}" />
     <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />

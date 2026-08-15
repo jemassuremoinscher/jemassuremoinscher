@@ -3,6 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Dark mode bootstrap: apply 'dark' class before paint, based on saved preference or OS setting -->
+    <script>
+    (function(){
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = saved ? saved === 'dark' : prefersDark;
+        if (isDark) document.documentElement.classList.add('dark');
+        // Live-update when OS preference changes (only if user hasn't chosen explicitly)
+        if (window.matchMedia) {
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
+            if (!localStorage.getItem('theme')) {
+              document.documentElement.classList.toggle('dark', e.matches);
+            }
+          });
+        }
+      } catch(e){}
+    })();
+    </script>
     <title>Assurance au kilomètre (Pay as you drive) : Est-ce rentable sous 8000 km ?</title>
     <meta name="description" content="L'assurance au kilomètre est-elle rentable si vous roulez moins de 8 000 km/an ? Analyse et comparatif 2026." />
     <meta name="robots" content="noindex,follow" />

@@ -3,6 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Dark mode bootstrap: apply 'dark' class before paint, based on saved preference or OS setting -->
+    <script>
+    (function(){
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = saved ? saved === 'dark' : prefersDark;
+        if (isDark) document.documentElement.classList.add('dark');
+        // Live-update when OS preference changes (only if user hasn't chosen explicitly)
+        if (window.matchMedia) {
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
+            if (!localStorage.getItem('theme')) {
+              document.documentElement.classList.toggle('dark', e.matches);
+            }
+          });
+        }
+      } catch(e){}
+    })();
+    </script>
     <title>Assurance dans les Alpes-Maritimes (06) : pourquoi c'est plus cher et comment payer moins</title>
     <meta name="description" content="Assurance auto, habitation, santé dans les Alpes-Maritimes : le 06 est l'un des départements les plus chers de France. On vous explique pourquoi et comment faire baisser vos primes à Nice, Cannes, Antibes." />
     <meta name="robots" content="noindex,follow" />

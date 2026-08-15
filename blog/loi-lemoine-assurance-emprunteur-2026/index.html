@@ -3,6 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Dark mode bootstrap: apply 'dark' class before paint, based on saved preference or OS setting -->
+    <script>
+    (function(){
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = saved ? saved === 'dark' : prefersDark;
+        if (isDark) document.documentElement.classList.add('dark');
+        // Live-update when OS preference changes (only if user hasn't chosen explicitly)
+        if (window.matchMedia) {
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
+            if (!localStorage.getItem('theme')) {
+              document.documentElement.classList.toggle('dark', e.matches);
+            }
+          });
+        }
+      } catch(e){}
+    })();
+    </script>
     <title>Loi Lemoine Assurance Emprunteur 2026 : Économise Jusqu'à 15 000 € Sur Ton Prêt</title>
     <meta name="description" content="Loi Lemoine 2026 : résilie ton assurance emprunteur à tout moment et économise jusqu'à 15 000 €. Comparatif assureurs, 5 astuces, FAQ. Devis gratuit en 2 min." />
     <meta name="robots" content="noindex,follow" />

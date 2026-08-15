@@ -3,6 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Dark mode bootstrap: apply 'dark' class before paint, based on saved preference or OS setting -->
+    <script>
+    (function(){
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = saved ? saved === 'dark' : prefersDark;
+        if (isDark) document.documentElement.classList.add('dark');
+        // Live-update when OS preference changes (only if user hasn't chosen explicitly)
+        if (window.matchMedia) {
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e){
+            if (!localStorage.getItem('theme')) {
+              document.documentElement.classList.toggle('dark', e.matches);
+            }
+          });
+        }
+      } catch(e){}
+    })();
+    </script>
     <title>Comment comparer deux assurances habitation qui n’utilisent pas les mêmes noms de garanties ? Le guide ultime 2026</title>
     <meta name="description" content="Apprenez à décrypter et comparer les assurances habitation malgré des noms de garanties différents. Notre guide expert 2026 vous révèle les astuces cl" />
     <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
