@@ -11,6 +11,28 @@ const geoContent = JSON.parse(await readFile(geoContentPath, "utf8"));
 const { baseUrl, staticPages: pages } = geoContent;
 const excludedDirectories = new Set(["dist", "node_modules", ".git", "test-hosting-paths"]);
 
+// Charge les overrides meta_title/meta_description une seule fois, pour que
+// renderPage()/renderArticle() puissent les appliquer au HTML pre-genere —
+// jusqu'ici cette table n'etait lue que cote client (SEOOptimized.tsx), donc
+// jamais visible des crawlers qui ne executent pas le JS.
+const metaOverrides = new Map();
+try {
+  const overridesSupabase = createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { persistSession: false } });
+  const { data: overrideRows, error: overrideError } = await overridesSupabase
+    .from("page_meta_overrides")
+    .select("page_path, meta_title, meta_description");
+  if (overrideError) {
+    console.warn("[generate-static-pages] Could not load page_meta_overrides:", overrideError.message);
+  } else {
+    for (const row of overrideRows || []) {
+      if (row.page_path) metaOverrides.set(row.page_path, row);
+    }
+    console.log(`[generate-static-pages] Loaded ${metaOverrides.size} page_meta_overrides.`);
+  }
+} catch (err) {
+  console.warn("[generate-static-pages] Skipping page_meta_overrides:", err?.message || err);
+}
+
 const escapeHtml = (value = "") => value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 const escapeAttribute = (value = "") => escapeHtml(value).replaceAll('"', "&quot;");
 const escapeJson = (value = "") => value.replaceAll("\\", "\\\\").replaceAll('"', '\\"');
@@ -66,6 +88,9 @@ const buildBreadcrumbJsonLd = (items) => `
 
 const renderPage = (page) => {
   const canonical = `${baseUrl}${page.route}`;
+  const override = metaOverrides.get(page.route);
+  const title = override?.meta_title || page.title;
+  const description = override?.meta_description || page.description;
   return `<!doctype html>
 <html lang="fr">
   <head>
@@ -92,19 +117,19 @@ const renderPage = (page) => {
     })();
     </script>
 
-    <title>${escapeHtml(page.title)}</title>
-    <meta name="description" content="${escapeAttribute(page.description)}" />
+    <title>${escapeHtml(title)}</title>
+    <meta name="description" content="${escapeAttribute(description)}" />
     <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
     <link rel="canonical" href="${escapeAttribute(canonical)}" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="${escapeAttribute(page.title)}" />
-    <meta property="og:description" content="${escapeAttribute(page.description)}" />
+    <meta property="og:title" content="${escapeAttribute(title)}" />
+    <meta property="og:description" content="${escapeAttribute(description)}" />
     <meta property="og:url" content="${escapeAttribute(canonical)}" />
     <meta property="og:site_name" content="${escapeAttribute(geoContent.brandName)}" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${escapeAttribute(page.title)}" />
-    <meta name="twitter:description" content="${escapeAttribute(page.description)}" />
-${buildWebPageJsonLd({ title: page.title, description: page.description, canonical, heading: page.h1 })}
+    <meta name="twitter:title" content="${escapeAttribute(title)}" />
+    <meta name="twitter:description" content="${escapeAttribute(description)}" />
+${buildWebPageJsonLd({ title, description, canonical, heading: page.h1 })}
 ${buildBreadcrumbJsonLd(page.breadcrumb || [{ name: "Accueil", url: `${baseUrl}/` }, { name: page.h1, url: canonical }])}
     <style>
       body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #111827; background: #ffffff; }
@@ -344,8 +369,14 @@ const markdownToHtml = (md = "") => {
 
 const renderArticle = (article, related = []) => {
   const canonical = `${baseUrl}/blog/${article.slug}`;
+  // `title` reste le titre visible (H1, JSON-LD headline, fil d'Ariane) —
+  // jamais réécrit par un override, pour ne pas faire diverger la page de
+  // son propre H1. `metaTitle`/`description` alimentent uniquement <title>,
+  // meta description, og:*/twitter:* et JSON-LD "description" (invisibles).
   const title = article.title || "Article";
-  const description = article.suggested_meta_description || article.short_description || article.title || "";
+  const override = metaOverrides.get(`/blog/${article.slug}`);
+  const metaTitle = override?.meta_title || title;
+  const description = override?.meta_description || (article.suggested_meta_description || article.short_description || article.title || "");
   const author = article.suggested_author || "Rédaction jemassuremoinscher.fr";
   const publishedAt = article.published_at || article.created_at || new Date().toISOString();
   const image = article.image_url || `${baseUrl}/opengraph-image.png`;
@@ -400,13 +431,13 @@ const renderArticle = (article, related = []) => {
     })();
     </script>
 
-    <title>${escapeHtml(title)}</title>
+    <title>${escapeHtml(metaTitle)}</title>
     <meta name="description" content="${escapeAttribute(description)}" />
     <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
     <meta name="author" content="${escapeAttribute(author)}" />
     <link rel="canonical" href="${escapeAttribute(canonical)}" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="${escapeAttribute(title)}" />
+    <meta property="og:title" content="${escapeAttribute(metaTitle)}" />
     <meta property="og:description" content="${escapeAttribute(description)}" />
     <meta property="og:url" content="${escapeAttribute(canonical)}" />
     <meta property="og:image" content="${escapeAttribute(image)}" />
@@ -414,7 +445,7 @@ const renderArticle = (article, related = []) => {
     <meta property="article:published_time" content="${escapeAttribute(publishedAt)}" />
     <meta property="article:author" content="${escapeAttribute(author)}" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${escapeAttribute(title)}" />
+    <meta name="twitter:title" content="${escapeAttribute(metaTitle)}" />
     <meta name="twitter:description" content="${escapeAttribute(description)}" />
     <meta name="twitter:image" content="${escapeAttribute(image)}" />
     <script type="application/ld+json">${JSON.stringify(articleJsonLd)}</script>
