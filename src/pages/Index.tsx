@@ -24,6 +24,7 @@ const ContextualHelp = lazy(() => import("@/components/sections/ContextualHelp")
 const DirectAnswers = lazy(() => import("@/components/sections/DirectAnswers"));
 const ExpertiseEEAT = lazy(() => import("@/components/sections/ExpertiseEEAT"));
 const SimpleFooter = lazy(() => import("@/components/sections/SimpleFooter"));
+const CompareCTASection = lazy(() => import("@/components/sections/CompareCTASection"));
 const LeadMagnetSection = lazy(() => import("@/components/sections/LeadMagnetSection"));
 
 
@@ -359,6 +360,11 @@ const Index = () => {
           <li><Link to="/glossaire/ticket-moderateur">Ticket modérateur</Link></li>
         </ul>
       </nav>
+      <DeferredRender minHeight={360}>
+        <Suspense fallback={<div aria-hidden="true" className="min-h-[360px]" />}>
+          <MdReveal variant="up"><CompareCTASection /></MdReveal>
+        </Suspense>
+      </DeferredRender>
       <DeferredRender minHeight={460}>
         <Suspense fallback={<div aria-hidden="true" className="min-h-[460px]" />}>
           <SimpleFooter />
