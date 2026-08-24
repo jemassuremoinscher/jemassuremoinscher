@@ -47,6 +47,14 @@ const escapeHtmlKeepingInternalLinks = (value = "") =>
   );
 
 const renderSection = (section) => {
+  if (section.html) {
+    return `
+      <section>
+        <h2>${escapeHtml(section.title)}</h2>
+        ${section.html}
+      </section>`;
+  }
+
   if (section.table) {
     return `
       <section>
@@ -377,9 +385,17 @@ for (const page of pages) {
 }
 
 // ============ Blog articles prerender ============
+// Formatage inline appliqué APRES escapeHtml : le contenu est deja neutralise,
+// on ne fait que reintroduire du balisage sur des motifs markdown reconnus.
+// Sans ca, les **gras** et les [liens](/url) sortaient en texte litteral.
+const inlineMarkdown = (text = "") =>
+  text
+    .replace(/\[([^\]]+)\]\((\/[^)\s]*|https:\/\/[^)\s]*)\)/g, (_m, label, href) => `<a href="${escapeAttribute(href)}">${label}</a>`)
+    .replace(/\*\*([^*\n]+)\*\*/g, "<strong>$1</strong>");
+
 const markdownToHtml = (md = "") => {
   if (!md) return "";
-  const escaped = escapeHtml(md);
+  const escaped = inlineMarkdown(escapeHtml(md));
   const lines = escaped.split(/\r?\n/);
   const out = [];
   let inList = false;
@@ -656,35 +672,68 @@ await generateLocalBlogArticles();
 
 // ============ Glossary terms prerender ============
 const generateGlossaryTerms = async () => {
+  let vite;
   try {
-    const filePath = path.join(rootDir, "src/data/glossaryTerms.ts");
-    const src = await readFile(filePath, "utf8");
-    // Extract objects { id, term, slug, definition, category, ... }
-    const regex = /\{\s*id:\s*"[^"]+",\s*term:\s*"([^"]+)",\s*slug:\s*"([^"]+)",\s*definition:\s*"([^"]+)"/g;
-    let m;
+    // Le parsing regex precedent ne pouvait lire que term/slug/definition : content,
+    // relatedTerms et relatedProducts restaient inaccessibles. On charge le module
+    // comme le fait le generateur profil, ce qui donne acces a tous les champs.
+    const { createServer } = await import("vite");
+    vite = await createServer({
+      configFile: false,
+      root: rootDir,
+      resolve: { alias: { "@": path.join(rootDir, "src") } },
+      server: { middlewareMode: true },
+      optimizeDeps: { noDiscovery: true, include: [] },
+      logLevel: "silent",
+    });
+    const mod = await vite.ssrLoadModule(path.join(rootDir, "src/data/glossaryTerms.ts"));
+    const terms = mod.glossaryTerms || [];
+    const byId = new Map(terms.map((t) => [String(t.id), t]));
+
     let count = 0;
-    while ((m = regex.exec(src)) !== null) {
-      const [, term, slug, definition] = m;
-      const title = `${term} : définition assurance | ${geoContent.brandName}`;
-      const description = definition.length > 155 ? `${definition.slice(0, 152)}...` : definition;
-      const canonical = `${baseUrl}/glossaire/${slug}`;
+    for (const t of terms) {
+      if (!t?.slug || !t.term || !t.definition) continue;
+      const title = `${t.term} : définition assurance | ${geoContent.brandName}`;
+      const description = t.definition.length > 155 ? `${t.definition.slice(0, 152)}...` : t.definition;
+
+      // `definition` est deja rendue en intro sous le H1 : on ne la repete pas
+      // en section, ce qui evitait ~440 mots dupliques sur les 25 pages.
+      const sections = [];
+
+      if (typeof t.content === "string" && t.content.trim()) {
+        sections.push({ title: `Tout savoir sur : ${t.term}`, html: markdownToHtml(t.content) });
+      }
+
+      const related = (t.relatedTerms || [])
+        .map((id) => byId.get(String(id)))
+        .filter((r) => r && r.slug && r.term)
+        .map((r) => ({ href: `/glossaire/${r.slug}`, label: r.term }));
+      if (related.length) {
+        sections.push({ title: "Termes liés", list: related });
+      }
+
+      const products = (t.relatedProducts || []).filter((pr) => pr?.url && pr?.label)
+        .map((pr) => ({ href: pr.url, label: pr.label }));
+      if (products.length) {
+        sections.push({ title: "Produits d'assurance concernés", list: products });
+      }
+
+      sections.push({ title: "Voir aussi", list: [
+        { href: "/glossaire", label: "Tous les termes du glossaire" },
+        { href: "/comparateur", label: "Comparer les assurances" },
+      ]});
+
       const page = {
-        route: `/glossaire/${slug}`,
+        route: `/glossaire/${t.slug}`,
         title,
         description,
-        h1: term,
-        intro: definition,
-        sections: [
-          { title: "Définition complète", body: definition },
-          { title: "Voir aussi", list: [
-            { href: "/glossaire", label: "Tous les termes du glossaire" },
-            { href: "/comparateur", label: "Comparer les assurances" },
-          ]},
-        ],
+        h1: t.term,
+        intro: t.definition,
+        sections,
         ctaHref: "/comparateur",
         ctaLabel: "Comparer les assurances",
       };
-      const outputPath = path.join(rootDir, "glossaire", slug, "index.html");
+      const outputPath = path.join(rootDir, "glossaire", t.slug, "index.html");
       await mkdir(path.dirname(outputPath), { recursive: true });
       await writeFile(outputPath, renderPage(page), "utf8");
       count += 1;
@@ -692,6 +741,8 @@ const generateGlossaryTerms = async () => {
     console.log(`[generate-static-pages] Prerendered ${count} glossary terms.`);
   } catch (err) {
     console.warn("[generate-static-pages] Skipping glossary prerender:", err?.message || err);
+  } finally {
+    if (vite) await vite.close();
   }
 };
 
