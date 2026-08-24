@@ -37,7 +37,45 @@ const escapeHtml = (value = "") => value.replaceAll("&", "&amp;").replaceAll("<"
 const escapeAttribute = (value = "") => escapeHtml(value).replaceAll('"', "&quot;");
 const escapeJson = (value = "") => value.replaceAll("\\", "\\\\").replaceAll('"', '\\"');
 
+// Certains contenus first-party (nicheInsuranceData.ts) embarquent des liens internes
+// écrits en HTML. On échappe tout, puis on restaure uniquement les <a href="/..."> :
+// href relatif obligatoire, aucun attribut conservé, donc pas de vecteur d'injection.
+const escapeHtmlKeepingInternalLinks = (value = "") =>
+  escapeHtml(value).replace(
+    /&lt;a\s+href=['"](\/[^'"]*)['"][^&]*?&gt;([\s\S]*?)&lt;\/a&gt;/g,
+    (_match, href, label) => `<a href="${escapeAttribute(href)}">${label}</a>`
+  );
+
 const renderSection = (section) => {
+  if (section.table) {
+    return `
+      <section>
+        <h2>${escapeHtml(section.title)}</h2>
+        <table>
+          <thead><tr>${section.table.headers.map((h) => `<th>${escapeHtml(h)}</th>`).join("")}</tr></thead>
+          <tbody>${section.table.rows.map((row) => `<tr>${row.map((cell) => `<td>${escapeHtml(cell ?? "")}</td>`).join("")}</tr>`).join("")}</tbody>
+        </table>
+      </section>`;
+  }
+
+  if (section.faqs) {
+    return `
+      <section>
+        <h2>${escapeHtml(section.title)}</h2>
+        <dl>
+          ${section.faqs.map((f) => `<dt>${escapeHtml(f.question)}</dt><dd>${escapeHtmlKeepingInternalLinks(f.answer)}</dd>`).join("")}
+        </dl>
+      </section>`;
+  }
+
+  if (section.paragraphs) {
+    return `
+      <section>
+        <h2>${escapeHtml(section.title)}</h2>
+        ${section.paragraphs.map((para) => `<p>${escapeHtmlKeepingInternalLinks(para)}</p>`).join("")}
+      </section>`;
+  }
+
   if (section.list) {
     return `
       <section>
@@ -51,7 +89,7 @@ const renderSection = (section) => {
   return `
     <section>
       <h2>${escapeHtml(section.title)}</h2>
-      <p>${escapeHtml(section.body)}</p>
+      <p>${escapeHtmlKeepingInternalLinks(section.body)}</p>
     </section>`;
 };
 
@@ -721,6 +759,50 @@ const generateLandingAndProfilePages = async () => {
       console.warn("[generate-static-pages] Skipping landing prerender:", err?.message || err);
     }
 
+    // Expose dans le HTML statique le contenu déjà présent dans nicheInsuranceData.ts
+    // (expertiseBlocks, solutions, faqs...) — auparavant seul un paragraphe générique
+    // était émis, ce qui laissait ces pages à ~85 mots pour les robots sans JS.
+    const buildProfilSections = (prof, related) => {
+      const sections = [];
+
+      if (prof.heroSubtitle) {
+        sections.push({ title: prof.heroTitle || prof.title, body: prof.heroSubtitle });
+      }
+
+      for (const block of prof.expertiseBlocks || []) {
+        if (block?.title && block?.content) sections.push({ title: block.title, body: block.content });
+      }
+
+      if (typeof prof.expertContent === "string" && prof.expertContent.trim()) {
+        sections.push({
+          title: "L'analyse de nos courtiers",
+          paragraphs: prof.expertContent.split(/\n{2,}/).map((s) => s.trim()).filter(Boolean),
+        });
+      }
+
+      if (prof.surchargeExplanation) {
+        sections.push({ title: prof.surchargeLabel || "Majoration appliquée", body: prof.surchargeExplanation });
+      }
+
+      if (prof.solutions?.length) {
+        sections.push({
+          title: "Formules et tarifs indicatifs",
+          table: {
+            headers: ["Formule", "Couverture", "Franchise", "Prix indicatif", "Idéal pour"],
+            rows: prof.solutions.map((s) => [s.formule, s.couverture, s.franchise, s.prixIndicatif, s.ideal]),
+          },
+        });
+      }
+
+      if (prof.faqs?.length) {
+        sections.push({ title: "Questions fréquentes", faqs: prof.faqs });
+      }
+
+      sections.push({ title: "Un accompagnement adapté à votre profil", body: "Nos courtiers partenaires sont spécialisés dans les profils spécifiques et négocient des solutions auprès d'assureurs adaptés. Comparaison gratuite, sans engagement." });
+      sections.push(related);
+      return sections;
+    };
+
     // ---- Profil pages (src/data/nicheInsuranceData.ts) ----
     let pCreated = 0, pSkipped = 0;
     try {
@@ -736,10 +818,7 @@ const generateLandingAndProfilePages = async () => {
           description: prof.metaDescription,
           h1: prof.title,
           intro: prof.metaDescription,
-          sections: [
-            { title: "Un accompagnement adapté à votre profil", body: "Nos courtiers partenaires sont spécialisés dans les profils spécifiques et négocient des solutions auprès d'assureurs adaptés. Comparaison gratuite, sans engagement." },
-            relatedList,
-          ],
+          sections: buildProfilSections(prof, relatedList),
           ctaHref: "/comparateur",
           ctaLabel: "Trouver mon assurance",
         };
