@@ -791,6 +791,10 @@ const generateLandingAndProfilePages = async () => {
         const h1 = [cfg.heroTitle, cfg.heroHighlight].filter(Boolean).join(" ").replace(/\s+/g, " ").trim() || cfg.seoTitle;
         const page = {
           route: `/landing/${key}`,
+          // cfg.seoTitle etait valide par le garde-fou ci-dessus mais jamais
+          // transmis : renderPage tombait sur page.title === undefined et
+          // emettait <title></title> sur 35 des 36 landings.
+          title: cfg.seoTitle,
           description: cfg.seoDescription,
           h1,
           intro: cfg.seoDescription,
