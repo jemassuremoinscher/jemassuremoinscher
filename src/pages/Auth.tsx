@@ -16,21 +16,23 @@ const authSchema = z.object({
 });
 
 const Auth = () => {
+  const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { signIn, user } = useAuth();
+  const { signIn, signUp, user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
-      navigate('/admin');
+      // Mode de récupération d'accès : redonne le rôle admin aux comptes internes
+      supabase.rpc('recover_internal_access').finally(() => navigate('/admin'));
     }
   }, [user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
       authSchema.parse({ email, password });
     } catch (error) {
@@ -43,6 +45,22 @@ const Auth = () => {
     setIsLoading(true);
 
     try {
+      if (mode === 'signup') {
+        const { error } = await signUp(email, password);
+        if (error) {
+          if (error.message.toLowerCase().includes('already registered')) {
+            toast.error('Ce compte existe déjà — connecte-toi ou utilise « mot de passe oublié ».');
+            setMode('signin');
+          } else {
+            toast.error(error.message);
+          }
+        } else {
+          toast.success('Compte créé ! Tu peux te connecter.');
+          setMode('signin');
+        }
+        return;
+      }
+
       const { error } = await signIn(email, password);
 
       if (error) {
@@ -52,6 +70,7 @@ const Auth = () => {
           toast.error(error.message);
         }
       } else {
+        await supabase.rpc('recover_internal_access');
         toast.success('Connexion réussie !');
         navigate('/admin');
       }
@@ -61,6 +80,21 @@ const Auth = () => {
       setIsLoading(false);
     }
   };
+
+  const handleReset = async () => {
+    try {
+      authSchema.shape.email.parse(email);
+    } catch {
+      toast.error('Saisis ton email pour recevoir le lien de réinitialisation');
+      return;
+    }
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/auth`,
+    });
+    if (error) toast.error(error.message);
+    else toast.success('Email de réinitialisation envoyé');
+  };
+
 
   return (
     <>
