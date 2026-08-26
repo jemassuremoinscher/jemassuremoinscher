@@ -25,6 +25,7 @@ const AuthProvider = lazy(() => import("@/contexts/AuthContext").then(m => ({ de
 const Index = lazy(() => import("./pages/Index"));
 const MerciGuide = lazy(() => import("./pages/MerciGuide"));
 const Auth = lazy(() => import("./pages/Auth"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const Admin = lazy(() => import("./pages/Admin"));
 const CrmLayout = lazy(() => import("./pages/crm/CrmLayout"));
 const CrmKanban = lazy(() => import("./pages/crm/CrmKanban"));
