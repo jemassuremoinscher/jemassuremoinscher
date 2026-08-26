@@ -297,6 +297,45 @@ export type Database = {
           },
         ]
       }
+      backup_snapshots: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          error_message: string | null
+          file_path: string | null
+          id: string
+          row_count: number
+          size_bytes: number | null
+          status: string
+          tables: Json
+          trigger_source: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          error_message?: string | null
+          file_path?: string | null
+          id?: string
+          row_count?: number
+          size_bytes?: number | null
+          status?: string
+          tables?: Json
+          trigger_source?: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          error_message?: string | null
+          file_path?: string | null
+          id?: string
+          row_count?: number
+          size_bytes?: number | null
+          status?: string
+          tables?: Json
+          trigger_source?: string
+        }
+        Relationships: []
+      }
       blog_comments: {
         Row: {
           article_slug: string
@@ -2147,6 +2186,7 @@ export type Database = {
       }
       normalize_insurance_type: { Args: { _input: string }; Returns: string }
       reassign_pending_leads: { Args: never; Returns: number }
+      recover_internal_access: { Args: never; Returns: Json }
       supprimer_deal_manuel: {
         Args: { p_confirm_site?: boolean; p_deal_id: string }
         Returns: Json
