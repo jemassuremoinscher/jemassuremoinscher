@@ -26,6 +26,7 @@ const items: Item[] = [
   { to: "/admin/rgpd", label: "RGPD", icon: Shield, adminOnly: true },
   { to: "/admin/trash", label: "Corbeille", icon: Trash2, adminOnly: true },
   { to: "/admin/alertes", label: "Alertes techniques", icon: AlertTriangle, adminOnly: true },
+  { to: "/admin/sauvegardes", label: "Sauvegardes", icon: DatabaseBackup, adminOnly: true },
   { to: "/admin/reglages/notifications", label: "Réglages notif.", icon: Settings },
 ];
 
