@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     // THEN check for existing session
     const sessionWithTimeout = Promise.race([
       supabase.auth.getSession(),
-      new Promise((_, reject) =>
+      new Promise<never>((_, reject) =>
         setTimeout(() => reject(new Error('getSession timeout')), 5000)
       ),
     ]);
