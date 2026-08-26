@@ -41,7 +41,11 @@ const ResetPassword = () => {
       toast.error(error.message);
       return;
     }
-    await supabase.rpc('recover_internal_access').catch(() => {});
+    try {
+      await supabase.rpc('recover_internal_access');
+    } catch {
+      /* non bloquant */
+    }
     toast.success('Mot de passe mis à jour');
     navigate('/admin');
   };
