@@ -34,8 +34,11 @@ const Auth = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanPassword = password.trim();
+
     try {
-      authSchema.parse({ email, password });
+      authSchema.parse({ email: cleanEmail, password: cleanPassword });
     } catch (error) {
       if (error instanceof z.ZodError) {
         toast.error(error.errors[0].message);
@@ -47,7 +50,7 @@ const Auth = () => {
 
     try {
       if (mode === 'signup') {
-        const { error } = await signUp(email, password);
+        const { error } = await signUp(cleanEmail, cleanPassword);
         if (error) {
           if (error.message.toLowerCase().includes('already registered')) {
             toast.error('Ce compte existe déjà — connecte-toi ou utilise « mot de passe oublié ».');
@@ -62,11 +65,18 @@ const Auth = () => {
         return;
       }
 
-      const { error } = await signIn(email, password);
+      // Purge d'une éventuelle session périmée (refresh token invalide sur un autre navigateur)
+      await supabase.auth.signOut({ scope: 'local' }).catch(() => {});
+
+      const { error } = await signIn(cleanEmail, cleanPassword);
 
       if (error) {
         if (error.message.includes('Invalid login credentials')) {
-          toast.error('Email ou mot de passe incorrect');
+          toast.error(
+            "Email ou mot de passe incorrect. Si le compte a été recréé récemment, utilise « Mot de passe oublié » pour en définir un nouveau.",
+          );
+        } else if (error.message.toLowerCase().includes('email not confirmed')) {
+          toast.error("Email non confirmé — vérifie ta boîte mail.");
         } else {
           toast.error(error.message);
         }
@@ -82,15 +92,17 @@ const Auth = () => {
     }
   };
 
+
   const handleReset = async () => {
+    const cleanEmail = email.trim().toLowerCase();
     try {
-      authSchema.shape.email.parse(email);
+      authSchema.shape.email.parse(cleanEmail);
     } catch {
       toast.error('Saisis ton email pour recevoir le lien de réinitialisation');
       return;
     }
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/auth`,
+    const { error } = await supabase.auth.resetPasswordForEmail(cleanEmail, {
+      redirectTo: `${window.location.origin}/reset-password`,
     });
     if (error) toast.error(error.message);
     else toast.success('Email de réinitialisation envoyé');

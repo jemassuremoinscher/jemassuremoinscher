@@ -25,6 +25,7 @@ const AuthProvider = lazy(() => import("@/contexts/AuthContext").then(m => ({ de
 const Index = lazy(() => import("./pages/Index"));
 const MerciGuide = lazy(() => import("./pages/MerciGuide"));
 const Auth = lazy(() => import("./pages/Auth"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const Admin = lazy(() => import("./pages/Admin"));
 const CrmLayout = lazy(() => import("./pages/crm/CrmLayout"));
 const CrmKanban = lazy(() => import("./pages/crm/CrmKanban"));
@@ -228,6 +229,8 @@ const App = () => {
                 <Route path="/" element={<Index />} />
                 <Route path="/merci-guide" element={<MerciGuide />} />
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+
                 <Route path="/admin" element={<AuthRoute><CrmLayout /></AuthRoute>}>
                   <Route index element={<CrmKanban />} />
                   <Route path="contacts" element={<ContactsPage />} />
