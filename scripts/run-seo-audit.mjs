@@ -123,7 +123,11 @@ const report = {
   },
   pageScores,
   issues: failedChecks,
-  checks,
+  // Le rapport est servi publiquement (public/ -> /seo-audit-report.json). On
+  // n'ecrit que les checks en echec : les deux consommateurs (GeoScoreCard,
+  // SEOSuggestions) filtrent tous leurs acces par !pass, et `summary` conserve
+  // les compteurs exacts. Ecrire les ~2500 checks reussis faisait 1,9 Mo.
+  checks: failedChecks,
 };
 
 await mkdir(path.dirname(reportPath), { recursive: true });
