@@ -28,7 +28,7 @@ const ClientCases = () => {
 
   return (
     <section
-      className="py-16 md:py-20 bg-background section-lazy"
+      className="py-10 md:py-12 bg-background section-lazy"
       aria-labelledby="client-cases-title"
     >
       <div className="container mx-auto px-4">
@@ -36,11 +36,11 @@ const ClientCases = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10 md:mb-14"
+          className="text-center mb-6 md:mb-8"
         >
           <h2
             id="client-cases-title"
-            className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3"
+            className="text-2xl md:text-3xl font-bold text-foreground mb-2"
           >
             {t("clientCases.title")}
           </h2>
@@ -63,7 +63,7 @@ const ClientCases = () => {
                 className={`absolute -top-16 -right-16 w-48 h-48 rounded-full ${c.gradient} opacity-10 blur-3xl group-hover:opacity-20 transition-opacity duration-500`}
                 aria-hidden="true"
               />
-              <div className="relative z-10 p-6 md:p-7 flex flex-col h-full min-h-[280px]">
+              <div className="relative z-10 p-5 md:p-6 flex flex-col h-full min-h-[220px]">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <div

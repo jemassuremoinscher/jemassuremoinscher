@@ -278,7 +278,7 @@ const Index = () => {
           </Suspense>
         </DeferredRender>
 
-        <DeferredRender minHeight={400}>
+        <DeferredRender minHeight={300}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[400px]" />}>
             <MdReveal variant="scale"><ClientCases /></MdReveal>
           </Suspense>
