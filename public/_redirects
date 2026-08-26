@@ -1,8 +1,3 @@
-# Force HTTPS + apex canonical host (auth must always run on jemassuremoinscher.fr)
-http://jemassuremoinscher.fr/*       https://jemassuremoinscher.fr/:splat   301!
-http://www.jemassuremoinscher.fr/*   https://jemassuremoinscher.fr/:splat   301!
-https://www.jemassuremoinscher.fr/*  https://jemassuremoinscher.fr/:splat   301!
-
 # Strip trailing slash on /blog (fixes "Alternative page with proper canonical")
 /blog/   /blog   301!
 /blog/guide-choisir-assurance-auto-2024 /blog/guide-choisir-assurance-auto-2026 301!
