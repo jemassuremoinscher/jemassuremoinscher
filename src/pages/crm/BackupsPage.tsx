@@ -45,12 +45,48 @@ export default function BackupsPage() {
     load();
   }, [load]);
 
+  // Suivi temps réel : statut « en cours » puis « terminée » sans rafraîchir
+  useEffect(() => {
+    const channel = supabase
+      .channel("backup-snapshots-live")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "backup_snapshots" },
+        (payload) => {
+          const row = payload.new as Snapshot | undefined;
+          if (payload.eventType === "DELETE") {
+            const oldId = (payload.old as { id?: string })?.id;
+            setSnapshots((prev) => prev.filter((s) => s.id !== oldId));
+            return;
+          }
+          if (!row?.id) return;
+          setSnapshots((prev) => {
+            const exists = prev.some((s) => s.id === row.id);
+            if (exists) return prev.map((s) => (s.id === row.id ? { ...s, ...row } : s));
+            return [row, ...prev];
+          });
+          if (payload.eventType === "UPDATE" && row.status === "success") {
+            toast.success("Sauvegarde terminée");
+          }
+          if (payload.eventType === "UPDATE" && row.status === "error") {
+            toast.error("Sauvegarde en échec", { description: row.error_message ?? undefined });
+          }
+        },
+      )
+      .subscribe();
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  const runningSnapshot = snapshots.find((s) => s.status === "running");
+
   const runBackup = async () => {
     setRunning(true);
+    toast.info("Sauvegarde lancée…");
     try {
       const { error } = await supabase.functions.invoke("db-backup", { body: {} });
       if (error) throw error;
-      toast.success("Sauvegarde créée");
       await load();
     } catch (e) {
       toast.error("Échec de la sauvegarde", {
@@ -60,6 +96,7 @@ export default function BackupsPage() {
       setRunning(false);
     }
   };
+
 
   const download = async (snapshot: Snapshot) => {
     if (!snapshot.file_path) return;
