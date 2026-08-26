@@ -179,7 +179,7 @@ const GuidesSection = () => {
   };
 
   return (
-    <section className="py-16 md:py-28 bg-gradient-to-b from-background via-muted/20 to-background" aria-labelledby="guides-title">
+    <section className="py-10 md:py-14 bg-gradient-to-b from-background via-muted/20 to-background" aria-labelledby="guides-title">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -187,7 +187,7 @@ const GuidesSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16 md:mb-20"
+          className="text-center mb-8 md:mb-10"
         >
           <motion.div className="relative inline-block mb-6">
             <motion.img
@@ -212,10 +212,10 @@ const GuidesSection = () => {
                 <div className="absolute -bottom-1.5 left-3 w-3 h-3 bg-accent transform rotate-45" />
             </motion.div>
           </motion.div>
-          <h2 id="guides-title" className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 id="guides-title" className="text-2xl md:text-3xl font-bold text-foreground mb-3">
             {t('guides.mainTitle')}
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-base max-w-2xl mx-auto">
             {t('guides.mainSubtitle')}
           </p>
         </motion.div>
