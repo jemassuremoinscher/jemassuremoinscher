@@ -12,6 +12,18 @@
     <link rel="canonical" href="https://www.jemassuremoinscher.fr" />
     <link rel="alternate" type="application/rss+xml" title="Blog jemassuremoinscher.fr" href="https://www.jemassuremoinscher.fr/rss.xml" />
 
+    <!-- Canonical host: force www -> apex so auth always targets the same origin/backend -->
+    <script>
+    (function(){
+      try {
+        if (location.hostname === 'www.jemassuremoinscher.fr') {
+          location.replace('https://jemassuremoinscher.fr' + location.pathname + location.search + location.hash);
+        }
+      } catch (e) {}
+    })();
+    </script>
+
+
     <!-- Dark mode bootstrap: apply 'dark' class before paint, based on saved preference or OS setting -->
     <script>
     (function(){
