@@ -228,6 +228,8 @@ const App = () => {
                 <Route path="/" element={<Index />} />
                 <Route path="/merci-guide" element={<MerciGuide />} />
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+
                 <Route path="/admin" element={<AuthRoute><CrmLayout /></AuthRoute>}>
                   <Route index element={<CrmKanban />} />
                   <Route path="contacts" element={<ContactsPage />} />
