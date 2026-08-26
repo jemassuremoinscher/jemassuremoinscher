@@ -60,11 +60,11 @@ const PRICES = [
 const DirectAnswers = () => {
   return (
     <section
-      className="py-14 md:py-20 bg-muted/20 border-t border-border/30 section-lazy"
+      className="pt-4 md:pt-6 pb-10 md:pb-14 bg-muted/20 section-lazy"
       aria-labelledby="reponses-directes-title"
     >
       <div className="container mx-auto px-4 max-w-5xl">
-        <div className="text-center mb-10">
+        <div className="text-center mb-6 md:mb-8">
           <h2
             id="reponses-directes-title"
             className="text-2xl md:text-4xl font-bold text-foreground mb-3"

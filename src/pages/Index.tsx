@@ -255,15 +255,14 @@ const Index = () => {
           </Suspense>
         </DeferredRender>
 
-        <DeferredRender minHeight={760}>
-          <Suspense fallback={<div aria-hidden="true" className="min-h-[760px]" />}>
-            <MdReveal variant="up"><HowItWorks /></MdReveal>
-          </Suspense>
-        </DeferredRender>
-
-        <DeferredRender minHeight={900}>
-          <Suspense fallback={<div aria-hidden="true" className="min-h-[900px]" />}>
-            <MdReveal variant="up"><DirectAnswers /></MdReveal>
+        {/* HowItWorks + DirectAnswers : meme intention GEO, une seule zone
+            differee et un seul bloc visuel au lieu de deux dalles separees. */}
+        <DeferredRender minHeight={1180}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[1180px]" />}>
+            <MdReveal variant="up">
+              <HowItWorks />
+              <DirectAnswers />
+            </MdReveal>
           </Suspense>
         </DeferredRender>
 
