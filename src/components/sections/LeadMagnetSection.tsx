@@ -23,15 +23,24 @@ const LeadMagnetSection = () => {
       return;
     }
     setStatus("loading");
+    // La redirection n'a lieu QUE si la capture a reussi : auparavant l'echec
+    // etait avale en console.warn et l'utilisateur voyait quand meme la page de
+    // remerciement, donc une confirmation pour un email jamais enregistre.
     try {
       const { data, error } = await supabase.functions.invoke("lead-magnet-capture", {
         body: { email: trimmed, source: "homepage_lead_magnet" },
       });
       if (error || !data?.success) {
         console.warn("lead-magnet-capture failed", error || data);
+        setStatus("error");
+        setErrorMsg("L'envoi a échoué. Réessaie dans un instant.");
+        return;
       }
     } catch (err) {
       console.warn("lead-magnet-capture exception", err);
+      setStatus("error");
+      setErrorMsg("L'envoi a échoué. Vérifie ta connexion et réessaie.");
+      return;
     }
     navigate(`/merci-guide?email=${encodeURIComponent(trimmed)}`);
   };
