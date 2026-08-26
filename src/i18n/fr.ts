@@ -2672,6 +2672,7 @@ const fr: Record<string, string> = {
   "form.phoneCallback": "Téléphone (pour le rappel)",
   "form.phonePlaceholder": "06 12 34 56 78",
   "form.acceptTerms": "J'accepte les conditions d'utilisation et la politique de confidentialité. Mes données sont utilisées uniquement pour me recontacter.",
+  "form.acceptTermsError": "Merci d'accepter les conditions pour continuer",
   "form.callbackAcceptTerms": "J'accepte les conditions d'utilisation. Mes données servent uniquement à étudier mon dossier et à me rappeler.",
   "form.submit": "Recevoir mon devis personnalisé",
   "form.submitCallback": "Demander mon rappel sous 10 minutes",
