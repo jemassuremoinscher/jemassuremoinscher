@@ -27,7 +27,7 @@ const Auth = () => {
   useEffect(() => {
     if (user) {
       // Mode de récupération d'accès : redonne le rôle admin aux comptes internes
-      supabase.rpc('recover_internal_access').finally(() => navigate('/admin'));
+      supabase.rpc('recover_internal_access').then(() => navigate('/admin'), () => navigate('/admin'));
     }
   }, [user, navigate]);
 
