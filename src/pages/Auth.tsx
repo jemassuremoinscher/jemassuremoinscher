@@ -111,8 +111,25 @@ const Auth = () => {
             </div>
             <h1 className="text-3xl font-bold">Dashboard Admin</h1>
             <p className="text-muted-foreground text-center mt-2">
-              Accédez à votre espace d'administration
+              {mode === 'signin' ? "Accédez à votre espace d'administration" : 'Créez votre compte administrateur'}
             </p>
+          </div>
+
+          <div className="mb-6 grid grid-cols-2 gap-1 rounded-lg bg-muted p-1">
+            <button
+              type="button"
+              onClick={() => setMode('signin')}
+              className={`rounded-md py-2 text-sm font-medium transition ${mode === 'signin' ? 'bg-background shadow' : 'text-muted-foreground'}`}
+            >
+              Se connecter
+            </button>
+            <button
+              type="button"
+              onClick={() => setMode('signup')}
+              className={`rounded-md py-2 text-sm font-medium transition ${mode === 'signup' ? 'bg-background shadow' : 'text-muted-foreground'}`}
+            >
+              Créer un compte
+            </button>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -154,15 +171,20 @@ const Auth = () => {
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  Connexion...
+                  {mode === 'signin' ? 'Connexion...' : 'Création...'}
                 </>
-              ) : (
+              ) : mode === 'signin' ? (
                 'Se connecter'
+              ) : (
+                'Créer mon compte'
               )}
             </Button>
           </form>
 
-          <div className="mt-6 text-center">
+          <div className="mt-6 flex flex-col items-center gap-1">
+            <Button variant="ghost" onClick={handleReset} className="text-sm">
+              Mot de passe oublié ?
+            </Button>
             <Button
               variant="ghost"
               onClick={() => navigate('/')}
@@ -171,6 +193,7 @@ const Auth = () => {
               ← Retour à l'accueil
             </Button>
           </div>
+
         </Card>
       </div>
     </>
