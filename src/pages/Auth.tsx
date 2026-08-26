@@ -101,8 +101,10 @@ const Auth = () => {
       toast.error('Saisis ton email pour recevoir le lien de réinitialisation');
       return;
     }
+    // Always send the reset link to the canonical apex host (www is 301-redirected)
+    const origin = window.location.origin.replace('//www.jemassuremoinscher.fr', '//jemassuremoinscher.fr');
     const { error } = await supabase.auth.resetPasswordForEmail(cleanEmail, {
-      redirectTo: `${window.location.origin}/reset-password`,
+      redirectTo: `${origin}/reset-password`,
     });
     if (error) toast.error(error.message);
     else toast.success('Email de réinitialisation envoyé');
