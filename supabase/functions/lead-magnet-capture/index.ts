@@ -73,6 +73,11 @@ serve(async (req) => {
       .eq("email", normalized)
       .maybeSingle();
 
+    // Trois issues distinctes, journalisees separement : sans ca, une insertion
+    // ratee et une vraie inscription produisaient exactement la meme trace et
+    // la meme reponse success:true, ce qui rendait tout comptage ininterpretable.
+    const ts = new Date().toISOString();
+
     if (!existing) {
       const { error } = await supabase.from("newsletter_subscribers").insert({
         email: normalized,
@@ -80,17 +85,36 @@ serve(async (req) => {
         source: cleanSource || "lead_magnet_guide",
       } as any);
       if (error) {
-        console.error("lead-magnet insert error", error);
+        // L'echec remonte au client au lieu d'etre masque : sans cela
+        // l'utilisateur recevait une confirmation pour un email jamais stocke.
+        console.error("lead_magnet_capture_insert_error", { source: cleanSource, ts, message: error.message });
+        return new Response(
+          JSON.stringify({ success: false, message: "Enregistrement impossible pour le moment." }),
+          { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } },
+        );
       }
+      console.log("lead_magnet_capture", { source: cleanSource, ts, outcome: "inserted" });
     } else if (existing.status === "unsubscribed") {
       // ré-opt-in léger
-      await supabase
+      const { error } = await supabase
         .from("newsletter_subscribers")
         .update({ status: "pending", unsubscribed_at: null })
         .eq("id", existing.id);
+      if (error) {
+        console.error("lead_magnet_capture_reoptin_error", { source: cleanSource, ts, message: error.message });
+        return new Response(
+          JSON.stringify({ success: false, message: "Enregistrement impossible pour le moment." }),
+          { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } },
+        );
+      }
+      console.log("lead_magnet_capture", { source: cleanSource, ts, outcome: "reoptin" });
+    } else {
+      // Email deja present et actif : aucune ecriture, donc aucune ligne portant
+      // ce `source` n'apparaitra en base. C'est un succes pour l'utilisateur (il
+      // recoit le PDF) mais ce n'est PAS une nouvelle inscription : sans ce log
+      // distinct, ces soumissions etaient indiscernables d'une absence de trafic.
+      console.log("lead_magnet_capture_existing", { source: cleanSource, ts });
     }
-
-    console.log("lead_magnet_capture", { source: cleanSource, ts: new Date().toISOString() });
 
     return new Response(
       JSON.stringify({ success: true, pdf_url: PDF_PATH }),
