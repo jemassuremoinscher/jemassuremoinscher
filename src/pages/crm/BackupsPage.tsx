@@ -45,12 +45,48 @@ export default function BackupsPage() {
     load();
   }, [load]);
 
+  // Suivi temps réel : statut « en cours » puis « terminée » sans rafraîchir
+  useEffect(() => {
+    const channel = supabase
+      .channel("backup-snapshots-live")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "backup_snapshots" },
+        (payload) => {
+          const row = payload.new as Snapshot | undefined;
+          if (payload.eventType === "DELETE") {
+            const oldId = (payload.old as { id?: string })?.id;
+            setSnapshots((prev) => prev.filter((s) => s.id !== oldId));
+            return;
+          }
+          if (!row?.id) return;
+          setSnapshots((prev) => {
+            const exists = prev.some((s) => s.id === row.id);
+            if (exists) return prev.map((s) => (s.id === row.id ? { ...s, ...row } : s));
+            return [row, ...prev];
+          });
+          if (payload.eventType === "UPDATE" && row.status === "success") {
+            toast.success("Sauvegarde terminée");
+          }
+          if (payload.eventType === "UPDATE" && row.status === "error") {
+            toast.error("Sauvegarde en échec", { description: row.error_message ?? undefined });
+          }
+        },
+      )
+      .subscribe();
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  const runningSnapshot = snapshots.find((s) => s.status === "running");
+
   const runBackup = async () => {
     setRunning(true);
+    toast.info("Sauvegarde lancée…");
     try {
       const { error } = await supabase.functions.invoke("db-backup", { body: {} });
       if (error) throw error;
-      toast.success("Sauvegarde créée");
       await load();
     } catch (e) {
       toast.error("Échec de la sauvegarde", {
@@ -60,6 +96,7 @@ export default function BackupsPage() {
       setRunning(false);
     }
   };
+
 
   const download = async (snapshot: Snapshot) => {
     if (!snapshot.file_path) return;
@@ -90,16 +127,26 @@ export default function BackupsPage() {
             <RefreshCw className={`mr-2 h-4 w-4 ${loading ? "animate-spin" : ""}`} />
             Actualiser
           </Button>
-          <Button onClick={runBackup} disabled={running}>
-            {running ? (
+          <Button onClick={runBackup} disabled={running || !!runningSnapshot}>
+            {running || runningSnapshot ? (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             ) : (
               <ShieldCheck className="mr-2 h-4 w-4" />
             )}
-            Sauvegarder maintenant
+            {running || runningSnapshot ? "Sauvegarde en cours…" : "Sauvegarder maintenant"}
           </Button>
         </div>
       </header>
+
+      {(running || runningSnapshot) && (
+        <div className="flex items-center gap-3 rounded-2xl border border-[#E9D5FF] bg-[#FAF5FF] p-4 text-sm dark:border-[#362B54] dark:bg-[#1E1B2E]">
+          <Loader2 className="h-4 w-4 animate-spin text-[#7C3AED]" />
+          <span>
+            Sauvegarde en cours — le statut passera automatiquement à « Réussie » une fois terminée.
+          </span>
+        </div>
+      )}
+
 
       <Card className="overflow-hidden rounded-3xl">
         <div className="overflow-x-auto">
