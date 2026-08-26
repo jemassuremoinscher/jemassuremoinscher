@@ -239,6 +239,7 @@ const App = () => {
                   <Route path="trash" element={<TrashPage />} />
                   <Route path="import" element={<ImportPage />} />
                   <Route path="alertes" element={<AlertesPage />} />
+                  <Route path="sauvegardes" element={<BackupsPage />} />
                   <Route path="notifications" element={<NotificationsCenter />} />
                   <Route path="reglages/notifications" element={<NotificationSettings />} />
                 </Route>
