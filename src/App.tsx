@@ -30,6 +30,7 @@ const CrmLayout = lazy(() => import("./pages/crm/CrmLayout"));
 const CrmKanban = lazy(() => import("./pages/crm/CrmKanban"));
 const CrmDashboard = lazy(() => import("./pages/crm/CrmDashboard"));
 const AlertesPage = lazy(() => import("./pages/crm/AlertesPage"));
+const BackupsPage = lazy(() => import("./pages/crm/BackupsPage"));
 const CrmPlaceholder = lazy(() => import("./pages/crm/CrmPlaceholder"));
 const ContactsPage = lazy(() => import("./pages/crm/ContactsPage"));
 const GedPage = lazy(() => import("./pages/crm/GedPage"));
@@ -239,6 +240,7 @@ const App = () => {
                   <Route path="trash" element={<TrashPage />} />
                   <Route path="import" element={<ImportPage />} />
                   <Route path="alertes" element={<AlertesPage />} />
+                  <Route path="sauvegardes" element={<BackupsPage />} />
                   <Route path="notifications" element={<NotificationsCenter />} />
                   <Route path="reglages/notifications" element={<NotificationSettings />} />
                 </Route>
