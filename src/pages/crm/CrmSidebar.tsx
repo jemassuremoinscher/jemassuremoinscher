@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import {
   KanbanSquare, Users, FileText, BarChart3, Wallet, Megaphone,
-  Shield, Trash2, Settings, Upload, Bell, Briefcase, AlertTriangle,
+  Shield, Trash2, Settings, Upload, Bell, Briefcase, AlertTriangle, DatabaseBackup,
 } from "lucide-react";
 import arthurLogo from "@/assets/mascotte/arthur-thumbs-up.webp";
 
