@@ -40,10 +40,9 @@ Deno.serve(async (req) => {
 
   const { data: cfg } = await supabase
     .from('cron_config')
-    .select('value')
-    .eq('key', 'CRON_SECRET')
-    .maybeSingle()
-  const cronSecret = cfg?.value ?? ''
+    .select('key, value')
+    .in('key', ['CRON_SECRET', 'cron_secret'])
+  const cronSecret = cfg?.[0]?.value ?? ''
 
   let triggerSource = 'cron'
   let authorized = !!cronSecret && token === cronSecret
