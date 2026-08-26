@@ -10,7 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "13.0.5"
+    PostgrestVersion: "14.17"
   }
   public: {
     Tables: {
@@ -184,6 +184,20 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "advice_records_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "documents_manquants"
+            referencedColumns: ["contract_id"]
+          },
+          {
+            foreignKeyName: "advice_records_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "sinistralite_contrats"
+            referencedColumns: ["contract_id"]
+          },
+          {
             foreignKeyName: "advice_records_deal_id_fkey"
             columns: ["deal_id"]
             isOneToOne: false
@@ -354,6 +368,134 @@ export type Database = {
           visitor_phone?: string | null
         }
         Relationships: []
+      }
+      claims: {
+        Row: {
+          amount_claimed: number | null
+          amount_paid: number | null
+          claim_date: string
+          claim_type: string
+          contract_id: string
+          created_at: string
+          description: string | null
+          id: string
+          impact_bonus_malus: boolean
+          reported_by: string | null
+          responsibility: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount_claimed?: number | null
+          amount_paid?: number | null
+          claim_date: string
+          claim_type: string
+          contract_id: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          impact_bonus_malus?: boolean
+          reported_by?: string | null
+          responsibility?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount_claimed?: number | null
+          amount_paid?: number | null
+          claim_date?: string
+          claim_type?: string
+          contract_id?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          impact_bonus_malus?: boolean
+          reported_by?: string | null
+          responsibility?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "claims_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "contracts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "claims_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "documents_manquants"
+            referencedColumns: ["contract_id"]
+          },
+          {
+            foreignKeyName: "claims_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "sinistralite_contrats"
+            referencedColumns: ["contract_id"]
+          },
+        ]
+      }
+      commission_payments: {
+        Row: {
+          amount_expected: number
+          amount_received: number | null
+          contract_id: string
+          created_at: string
+          id: string
+          period_end: string
+          period_start: string
+          received_at: string | null
+          status: string
+        }
+        Insert: {
+          amount_expected: number
+          amount_received?: number | null
+          contract_id: string
+          created_at?: string
+          id?: string
+          period_end: string
+          period_start: string
+          received_at?: string | null
+          status?: string
+        }
+        Update: {
+          amount_expected?: number
+          amount_received?: number | null
+          contract_id?: string
+          created_at?: string
+          id?: string
+          period_end?: string
+          period_start?: string
+          received_at?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "commission_payments_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "contracts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "commission_payments_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "documents_manquants"
+            referencedColumns: ["contract_id"]
+          },
+          {
+            foreignKeyName: "commission_payments_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "sinistralite_contrats"
+            referencedColumns: ["contract_id"]
+          },
+        ]
       }
       contact_callbacks: {
         Row: {
@@ -803,44 +945,101 @@ export type Database = {
           },
         ]
       }
+      document_checklist_rules: {
+        Row: {
+          document_type: Database["public"]["Enums"]["document_type"]
+          id: string
+          insurance_type: string
+          required_before: string
+        }
+        Insert: {
+          document_type: Database["public"]["Enums"]["document_type"]
+          id?: string
+          insurance_type: string
+          required_before?: string
+        }
+        Update: {
+          document_type?: Database["public"]["Enums"]["document_type"]
+          id?: string
+          insurance_type?: string
+          required_before?: string
+        }
+        Relationships: []
+      }
       documents: {
         Row: {
+          contract_id: string | null
           created_at: string
           deal_id: string
+          document_type: Database["public"]["Enums"]["document_type"]
           drive_url: string | null
           file_path: string | null
           id: string
+          is_required: boolean
           name: string
           notes: string | null
           status: Database["public"]["Enums"]["doc_status"]
+          superseded_by: string | null
           updated_at: string
           uploaded_at: string | null
+          valid_until: string | null
         }
         Insert: {
+          contract_id?: string | null
           created_at?: string
           deal_id: string
+          document_type?: Database["public"]["Enums"]["document_type"]
           drive_url?: string | null
           file_path?: string | null
           id?: string
+          is_required?: boolean
           name: string
           notes?: string | null
           status?: Database["public"]["Enums"]["doc_status"]
+          superseded_by?: string | null
           updated_at?: string
           uploaded_at?: string | null
+          valid_until?: string | null
         }
         Update: {
+          contract_id?: string | null
           created_at?: string
           deal_id?: string
+          document_type?: Database["public"]["Enums"]["document_type"]
           drive_url?: string | null
           file_path?: string | null
           id?: string
+          is_required?: boolean
           name?: string
           notes?: string | null
           status?: Database["public"]["Enums"]["doc_status"]
+          superseded_by?: string | null
           updated_at?: string
           uploaded_at?: string | null
+          valid_until?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "documents_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "contracts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "documents_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "documents_manquants"
+            referencedColumns: ["contract_id"]
+          },
+          {
+            foreignKeyName: "documents_contract_id_fkey"
+            columns: ["contract_id"]
+            isOneToOne: false
+            referencedRelation: "sinistralite_contrats"
+            referencedColumns: ["contract_id"]
+          },
           {
             foreignKeyName: "documents_deal_id_fkey"
             columns: ["deal_id"]
@@ -861,6 +1060,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "deals_dormants"
             referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "documents_superseded_by_fkey"
+            columns: ["superseded_by"]
+            isOneToOne: false
+            referencedRelation: "documents"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -1800,6 +2006,25 @@ export type Database = {
         }
         Relationships: []
       }
+      documents_manquants: {
+        Row: {
+          contract_id: string | null
+          document_manquant: Database["public"]["Enums"]["document_type"] | null
+          email: string | null
+          full_name: string | null
+          insurance_type: string | null
+        }
+        Relationships: []
+      }
+      maturite_baromètre: {
+        Row: {
+          insurance_type: string | null
+          nb_devis: number | null
+          nb_devis_90j: number | null
+          statut: string | null
+        }
+        Relationships: []
+      }
       opportunites_multi_equipement: {
         Row: {
           commission_recurrente: number | null
@@ -1815,16 +2040,45 @@ export type Database = {
         }
         Relationships: []
       }
+      qualite_par_source: {
+        Row: {
+          coordonnees_erronees: number | null
+          gagnes: number | null
+          pct_conversion: number | null
+          pct_erronees: number | null
+          source_type: string | null
+          total_leads: number | null
+        }
+        Relationships: []
+      }
+      sinistralite_contrats: {
+        Row: {
+          contract_id: string | null
+          dernier_sinistre: string | null
+          full_name: string | null
+          insurance_type: string | null
+          nb_sinistres: number | null
+          policy_number: string | null
+          premium_annual: number | null
+          ratio_sinistres_prime: number | null
+          total_verse: number | null
+        }
+        Relationships: []
+      }
       tableau_bord_portefeuille: {
         Row: {
           clients_mono_produit: number | null
           clients_sans_conseil_dda: number | null
+          commissions_en_attente: number | null
           commissions_recurrentes: number | null
           contrats_actifs: number | null
+          coordonnees_erronees: number | null
           deals_dormants: number | null
+          documents_manquants: number | null
           echeances_60j: number | null
           primes_sous_gestion: number | null
           resiliations_12m: number | null
+          sinistres_en_cours: number | null
         }
         Relationships: []
       }
@@ -1902,6 +2156,7 @@ export type Database = {
       app_role: "admin" | "moderator" | "user" | "owner"
       deal_stage:
         | "lead"
+        | "invalid_contact"
         | "qualified"
         | "quote_sent"
         | "subscription"
@@ -1909,6 +2164,23 @@ export type Database = {
         | "won"
         | "lost"
       doc_status: "manquant" | "attente" | "valide"
+      document_type:
+        | "devis"
+        | "conditions_generales"
+        | "conditions_particulieres"
+        | "attestation"
+        | "carte_verte"
+        | "echeancier"
+        | "avenant"
+        | "lettre_resiliation"
+        | "accuse_resiliation"
+        | "releve_information"
+        | "piece_identite"
+        | "justificatif_domicile"
+        | "rib"
+        | "declaration_sinistre"
+        | "rapport_expertise"
+        | "autre"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -2039,6 +2311,7 @@ export const Constants = {
       app_role: ["admin", "moderator", "user", "owner"],
       deal_stage: [
         "lead",
+        "invalid_contact",
         "qualified",
         "quote_sent",
         "subscription",
@@ -2047,6 +2320,24 @@ export const Constants = {
         "lost",
       ],
       doc_status: ["manquant", "attente", "valide"],
+      document_type: [
+        "devis",
+        "conditions_generales",
+        "conditions_particulieres",
+        "attestation",
+        "carte_verte",
+        "echeancier",
+        "avenant",
+        "lettre_resiliation",
+        "accuse_resiliation",
+        "releve_information",
+        "piece_identite",
+        "justificatif_domicile",
+        "rib",
+        "declaration_sinistre",
+        "rapport_expertise",
+        "autre",
+      ],
     },
   },
 } as const
