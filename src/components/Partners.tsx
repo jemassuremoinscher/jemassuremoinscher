@@ -101,12 +101,12 @@ const Partners = () => {
   const { trackEvent } = useAnalytics();
 
   return (
-    <section className="py-20 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
+    <section className="py-10 md:py-12 bg-gradient-to-b from-background to-muted/20 relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--primary)/0.05),transparent_50%),radial-gradient(circle_at_70%_80%,hsl(var(--accent)/0.05),transparent_50%)]" />
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className="text-center mb-8 md:mb-10 animate-fade-in">
           <p className="text-accent font-semibold text-sm uppercase tracking-wide mb-3">{t('partnersComponent.badge')}</p>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
             {t('partnersComponent.title')} <span className="text-primary">{t('partnersComponent.titleHighlight')}</span> {t('partnersComponent.titleEnd')}
           </h2>
           <p className="text-muted-foreground text-lg">{t('partnersComponent.subtitle')} <span className="font-semibold text-foreground">{t('partnersComponent.agencies')}</span></p>

@@ -243,7 +243,7 @@ const Index = () => {
         <Hero />
         <MdReveal variant="up"><TrustRow /></MdReveal>
 
-        <DeferredRender minHeight={300}>
+        <DeferredRender minHeight={220}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[300px]" />}>
             <MdReveal variant="fade"><Partners /></MdReveal>
           </Suspense>
