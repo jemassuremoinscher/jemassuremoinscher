@@ -94,14 +94,15 @@ const Auth = () => {
 
 
   const handleReset = async () => {
+    const cleanEmail = email.trim().toLowerCase();
     try {
-      authSchema.shape.email.parse(email);
+      authSchema.shape.email.parse(cleanEmail);
     } catch {
       toast.error('Saisis ton email pour recevoir le lien de réinitialisation');
       return;
     }
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/auth`,
+    const { error } = await supabase.auth.resetPasswordForEmail(cleanEmail, {
+      redirectTo: `${window.location.origin}/reset-password`,
     });
     if (error) toast.error(error.message);
     else toast.success('Email de réinitialisation envoyé');
