@@ -30,6 +30,7 @@ const CrmLayout = lazy(() => import("./pages/crm/CrmLayout"));
 const CrmKanban = lazy(() => import("./pages/crm/CrmKanban"));
 const CrmDashboard = lazy(() => import("./pages/crm/CrmDashboard"));
 const AlertesPage = lazy(() => import("./pages/crm/AlertesPage"));
+const BackupsPage = lazy(() => import("./pages/crm/BackupsPage"));
 const CrmPlaceholder = lazy(() => import("./pages/crm/CrmPlaceholder"));
 const ContactsPage = lazy(() => import("./pages/crm/ContactsPage"));
 const GedPage = lazy(() => import("./pages/crm/GedPage"));
