@@ -127,16 +127,26 @@ export default function BackupsPage() {
             <RefreshCw className={`mr-2 h-4 w-4 ${loading ? "animate-spin" : ""}`} />
             Actualiser
           </Button>
-          <Button onClick={runBackup} disabled={running}>
-            {running ? (
+          <Button onClick={runBackup} disabled={running || !!runningSnapshot}>
+            {running || runningSnapshot ? (
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             ) : (
               <ShieldCheck className="mr-2 h-4 w-4" />
             )}
-            Sauvegarder maintenant
+            {running || runningSnapshot ? "Sauvegarde en cours…" : "Sauvegarder maintenant"}
           </Button>
         </div>
       </header>
+
+      {(running || runningSnapshot) && (
+        <div className="flex items-center gap-3 rounded-2xl border border-[#E9D5FF] bg-[#FAF5FF] p-4 text-sm dark:border-[#362B54] dark:bg-[#1E1B2E]">
+          <Loader2 className="h-4 w-4 animate-spin text-[#7C3AED]" />
+          <span>
+            Sauvegarde en cours — le statut passera automatiquement à « Réussie » une fois terminée.
+          </span>
+        </div>
+      )}
+
 
       <Card className="overflow-hidden rounded-3xl">
         <div className="overflow-x-auto">
