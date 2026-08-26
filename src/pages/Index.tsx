@@ -249,7 +249,7 @@ const Index = () => {
           </Suspense>
         </DeferredRender>
 
-        <DeferredRender minHeight={1200}>
+        <DeferredRender minHeight={760}>
           <Suspense fallback={<div aria-hidden="true" className="min-h-[1200px]" />}>
             <MdReveal variant="up"><WhyUsComparison /></MdReveal>
           </Suspense>

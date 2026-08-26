@@ -20,10 +20,10 @@ const WhyUsComparison = () => {
   const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 
   return (
-    <section className="py-12 md:py-20 bg-muted/30 section-lazy" aria-labelledby="why-us-title">
+    <section className="py-8 md:py-12 bg-muted/30 section-lazy" aria-labelledby="why-us-title">
       <div className="container mx-auto px-4">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-10">
-          <h2 id="why-us-title" className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-6 md:mb-8">
+          <h2 id="why-us-title" className="text-2xl md:text-3xl font-bold text-foreground mb-2">
             {t('whyUs.title')}
           </h2>
           <p className="text-muted-foreground max-w-md mx-auto">{t('whyUs.subtitle')}</p>
@@ -35,11 +35,11 @@ const WhyUsComparison = () => {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-border/50">
-                  <th className="p-4 text-left text-muted-foreground font-medium">{t('whyUs.criteria')}</th>
-                  <th className="p-4 text-center bg-primary/5">
+                  <th className="px-4 py-2.5 text-left text-muted-foreground font-medium">{t('whyUs.criteria')}</th>
+                  <th className="px-4 py-2.5 text-center bg-primary/5">
                     <span className="text-lg font-bold"><span className="text-primary">jemassure</span><span className="text-accent">moinscher</span><span className="text-primary">.fr</span></span>
                   </th>
-                  <th className="p-4 text-center">
+                  <th className="px-4 py-2.5 text-center">
                     <span className="text-lg font-semibold text-muted-foreground">{t('whyUs.others')}</span>
                   </th>
                 </tr>
@@ -47,19 +47,19 @@ const WhyUsComparison = () => {
               <tbody>
                 {comparisonData.map((row, index) => (
                   <tr key={row.feature} className={`border-b border-border/30 last:border-b-0 ${index % 2 === 0 ? "bg-background/50" : ""}`}>
-                    <td className="p-4">
+                    <td className="px-4 py-2.5">
                       <div className="flex items-center gap-3">
                         <div className="p-2 rounded-lg bg-primary/10"><row.icon className="w-4 h-4 text-primary" /></div>
                         <span className="font-medium text-foreground">{row.feature}</span>
                       </div>
                     </td>
-                    <td className="p-4 text-center bg-primary/5">
+                    <td className="px-4 py-2.5 text-center bg-primary/5">
                       <div className="flex items-center justify-center gap-2">
                         <CheckCircle className="w-5 h-5 text-emerald-500 flex-shrink-0" />
                         <span className="text-sm font-medium text-foreground">{row.us}</span>
                       </div>
                     </td>
-                    <td className="p-4 text-center">
+                    <td className="px-4 py-2.5 text-center">
                       <div className="flex items-center justify-center gap-2">
                         <XCircle className="w-5 h-5 text-destructive/70 flex-shrink-0" />
                         <span className="text-sm text-muted-foreground">{row.them}</span>
@@ -73,7 +73,7 @@ const WhyUsComparison = () => {
         </motion.div>
 
         {/* Mobile Slide Cards */}
-        <div className="md:hidden relative -mx-4 px-4 mb-10">
+        <div className="md:hidden relative -mx-4 px-4 mb-6">
           <div className="flex gap-4 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide">
             {comparisonData.map((row, index) => (
               <motion.div
