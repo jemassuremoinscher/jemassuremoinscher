@@ -64,8 +64,10 @@ const AvisClients = () => {
           </div>
         </section>
 
-        {/* Real Google reviews — only renders if the API returns data */}
-        <AvisGoogle injectJsonLd />
+        {/* Real Google reviews — only renders if the API returns data.
+            L'AggregateRating est déjà émis ci-dessus depuis geoContent.trust :
+            on désactive l'injection ici pour éviter un doublon Organization. */}
+        <AvisGoogle injectJsonLd={false} />
 
         <div className="container mx-auto px-4 py-10 md:py-14">
           <div className="max-w-5xl mx-auto space-y-10">
