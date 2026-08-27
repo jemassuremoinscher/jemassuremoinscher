@@ -21,6 +21,14 @@ const AvisClients = () => {
     { name: "Avis Clients", url: "https://www.jemassuremoinscher.fr/avis-clients" },
   ]);
 
+  // Signal de confiance statique (visible sans JS ni appel API) : même source
+  // que le reste du site, geoContent.trust.
+  const organizationSchema = addOrganizationSchema(
+    geoContent.trust.ratingValue,
+    geoContent.trust.reviewCount
+  );
+
+
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized
@@ -29,7 +37,7 @@ const AvisClients = () => {
         keyword="avis clients assurance"
         keywords="témoignages assurance, retour expérience, satisfaction"
         canonical="https://www.jemassuremoinscher.fr/avis-clients"
-        jsonLd={[breadcrumbSchema]}
+        jsonLd={[breadcrumbSchema, organizationSchema]}
       />
       <Header />
 
