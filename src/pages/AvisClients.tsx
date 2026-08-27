@@ -6,7 +6,8 @@ import ArthurHero from "@/components/insurance/ArthurHero";
 import AvisGoogle from "@/components/trust/AvisGoogle";
 import { Star, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { addBreadcrumbSchema } from "@/utils/seoUtils";
+import { addBreadcrumbSchema, addOrganizationSchema } from "@/utils/seoUtils";
+import geoContent from "@/data/geo-content.json";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
@@ -20,6 +21,14 @@ const AvisClients = () => {
     { name: "Avis Clients", url: "https://www.jemassuremoinscher.fr/avis-clients" },
   ]);
 
+  // Signal de confiance statique (visible sans JS ni appel API) : même source
+  // que le reste du site, geoContent.trust.
+  const organizationSchema = addOrganizationSchema(
+    geoContent.trust.ratingValue,
+    geoContent.trust.reviewCount
+  );
+
+
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized
@@ -28,7 +37,7 @@ const AvisClients = () => {
         keyword="avis clients assurance"
         keywords="témoignages assurance, retour expérience, satisfaction"
         canonical="https://www.jemassuremoinscher.fr/avis-clients"
-        jsonLd={[breadcrumbSchema]}
+        jsonLd={[breadcrumbSchema, organizationSchema]}
       />
       <Header />
 
@@ -55,8 +64,10 @@ const AvisClients = () => {
           </div>
         </section>
 
-        {/* Real Google reviews — only renders if the API returns data */}
-        <AvisGoogle injectJsonLd />
+        {/* Real Google reviews — only renders if the API returns data.
+            L'AggregateRating est déjà émis ci-dessus depuis geoContent.trust :
+            on désactive l'injection ici pour éviter un doublon Organization. */}
+        <AvisGoogle injectJsonLd={false} />
 
         <div className="container mx-auto px-4 py-10 md:py-14">
           <div className="max-w-5xl mx-auto space-y-10">
