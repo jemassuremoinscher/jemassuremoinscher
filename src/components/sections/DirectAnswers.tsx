@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Check, TrendingDown, CalendarClock, ShieldCheck } from "lucide-react";
 
 /**
@@ -64,7 +65,12 @@ const DirectAnswers = () => {
       aria-labelledby="reponses-directes-title"
     >
       <div className="container mx-auto px-4 max-w-5xl">
-        <div className="text-center mb-6 md:mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-6 md:mb-8"
+        >
           <h2
             id="reponses-directes-title"
             className="text-2xl md:text-4xl font-bold text-foreground mb-3"
@@ -75,13 +81,17 @@ const DirectAnswers = () => {
             Les règles concrètes qui font baisser une prime d'assurance en France, expliquées
             simplement par nos conseillers.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid gap-5 md:gap-6">
-          {ANSWERS.map((item) => (
-            <article
+          {ANSWERS.map((item, index) => (
+            <motion.article
               key={item.question}
-              className="rounded-2xl border border-border/50 bg-card p-6 md:p-7 shadow-sm"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="rounded-2xl border border-border/50 bg-card p-6 md:p-7 shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               <div className="flex items-start gap-4">
                 <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
@@ -102,12 +112,17 @@ const DirectAnswers = () => {
                   </ul>
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
 
         {/* Tableau de repères tarifaires : format citable par les moteurs génératifs */}
-        <div className="mt-10 rounded-2xl border border-border/50 bg-card p-5 md:p-7 shadow-sm">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-10 rounded-2xl border border-border/50 bg-card p-5 md:p-7 shadow-sm hover:shadow-md transition-shadow duration-300"
+        >
           <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">
             Combien coûte une assurance moins chère ? Repères de prix 2026
           </h3>
@@ -142,7 +157,7 @@ const DirectAnswers = () => {
               </tbody>
             </table>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

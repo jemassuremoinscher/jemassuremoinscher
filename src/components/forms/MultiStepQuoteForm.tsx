@@ -21,24 +21,9 @@ import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from '@/
 import FlipPriceCard from './FlipPriceCard';
 import { useLanguage } from '@/contexts/LanguageContext';
 // ExitIntentLeadMagnet est monté globalement dans App.tsx (GlobalExitIntent)
-
-// Mascot imports
-import arthurCar from '@/assets/mascotte/arthur-car.webp?w=480&format=webp';
-import arthurMoto from '@/assets/mascotte/arthur-moto.webp?w=480&format=webp';
-import arthurHouse from '@/assets/mascotte/arthur-house.webp?w=480&format=webp';
-import arthurSick from '@/assets/mascotte/arthur-sick.webp';
-import arthurThinking from '@/assets/mascotte/arthur-thinking.webp';
-import arthurAnimals from '@/assets/mascotte/arthur-animals.webp';
-import arthurIdea from '@/assets/mascotte/arthur-idea.webp';
-import arthurInjured from '@/assets/mascotte/arthur-injured.webp';
-import arthurBusiness from '@/assets/mascotte/arthur-business.webp';
-import arthurDetective from '@/assets/mascotte/arthur-detective.webp';
-import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.webp';
-import arthurExcited from '@/assets/mascotte/arthur-excited.webp';
-import arthurRunningCoin from '@/assets/mascotte/arthur-running-coin.webp';
-import arthurClimbing from '@/assets/mascotte/arthur-climbing.webp';
-import arthurBike from '@/assets/mascotte/arthur-bike.png';
-import arthurScoot from '@/assets/mascotte/arthur-scoot.png?w=480&format=webp';
+// Arthur est confine a la home et aux pages marketing : plus d'import ni de
+// rendu de la mascotte dans le tunnel (voir suppression du bloc mascotSrc /
+// mascotImages / JSX Arthur ci-dessous).
 
 // Logo imports for teaser prices
 import logoDirectAssurance from '@/assets/logos/direct-assurance-new.webp';
@@ -86,37 +71,6 @@ import logoMpa from '@/assets/logos/mpa.webp';
 import logoAComme from '@/assets/logos/a-comme-assure.png';
 import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 import { reportSiteError } from "@/lib/siteErrorLog";
-
-const mascotImages: Record<InsuranceType, string> = {
-  auto: arthurCar,
-  moto: arthurMoto,
-  habitation: arthurHouse,
-  sante: arthurSick,
-  pret: arthurThinking,
-  animaux: arthurAnimals,
-  vie: arthurIdea,
-  prevoyance: arthurInjured,
-  rc_pro: arthurBusiness,
-  mrp: arthurBusiness,
-  gli: arthurDetective,
-  pno: arthurHouse,
-  comparateur: arthurThumbsUp,
-  metiers_atypiques: arthurClimbing,
-  gestion_locative: arthurHouse,
-  velo: arthurBike,
-  trottinette: arthurScoot,
-  camping_car: arthurCar,
-  sans_permis: arthurCar,
-  auto_temporaire: arthurCar,
-  flotte: arthurBusiness,
-  cyber: arthurDetective,
-  decennale: arthurBusiness,
-  protection_juridique: arthurIdea,
-  mutuelle_entreprise: arthurBusiness,
-};
-
-const mascotSearching = arthurRunningCoin;
-const mascotSuccess = arthurExcited;
 
 // Partner logos to show during searching animation
 const partnerNames = [
@@ -353,12 +307,6 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   // Step time estimate
   const stepsRemaining = totalSteps - (currentStep + 1);
   const secondsEstimate = Math.max(15, stepsRemaining * 15);
-
-  const mascotSrc = step.type === 'searching'
-    ? mascotSearching
-    : step.type === 'contact'
-      ? (isSuccess ? mascotSuccess : mascotImages[insuranceType])
-      : mascotImages[insuranceType];
 
   // Searching animation
   useEffect(() => {
@@ -714,32 +662,8 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
             transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="flex-1 flex flex-col"
           >
-                {/* Arthur mascot + speech bubble (mobile only) */}
-                <div className="flex justify-center mb-4">
-                  <div className="relative inline-flex items-end gap-2 md:block">
-                    <motion.img
-                      src={mascotSrc}
-                      alt="Arthur"
-                      className="h-20 md:h-24 object-contain drop-shadow-lg"
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1, y: [0, -6, 0] }}
-                      transition={{
-                        scale: { duration: 0.4 },
-                        opacity: { duration: 0.4 },
-                        y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
-                      }}
-                      width={96}
-                      height={120}
-                    />
-                    {/* Bulle mobile uniquement, vient d'Arthur */}
-                    <div className="md:hidden relative bg-white border border-border rounded-2xl px-3 py-2 shadow-md mb-2 max-w-[180px]">
-                      <p className="text-primary font-bold text-xs leading-tight">
-                        Hello, moi c'est Arthur 👋
-                      </p>
-                      <div className="absolute bottom-3 -left-1.5 w-3 h-3 bg-white border-l border-b border-border transform rotate-45" />
-                    </div>
-                  </div>
-                </div>
+                {/* Arthur retire du tunnel (confine a la home et aux pages
+                    marketing) : plus de mascotte ni de bulle ici. */}
 
                 {/* Title */}
                 <div className="text-center mb-6">
