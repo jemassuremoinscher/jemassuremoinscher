@@ -239,7 +239,7 @@ const Index = () => {
         jsonLd={[webSiteSchema, webPageSchema, organizationSchema, financialServiceSchema, serviceSchema, howToSchema, breadcrumbSchema, faqSchema, localBusinessSchema]}
       />
       <Header />
-      <main id="main-content" role="main">
+      <main id="main-content" role="main" className="space-y-section-sm md:space-y-section">
         <Hero />
         <MdReveal variant="up"><TrustRow /></MdReveal>
 

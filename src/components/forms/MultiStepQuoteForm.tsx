@@ -613,7 +613,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         </div>
 
         {/* Step indicator */}
-        <div className="flex items-center justify-between px-6 pt-4 pb-2">
+        <div className="flex items-center justify-between px-6 md:px-8 pt-5 pb-3">
           <Button
             type="button"
             variant="ghost"
@@ -636,7 +636,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
         {/* Content area */}
         {/* `relative` : ancre le spinner de transition (absolute inset-0) ci-dessous. */}
-        <div className={`relative px-6 pb-8 flex flex-col ${fixedHeight ? 'flex-1 overflow-y-auto min-h-0' : 'min-h-[420px]'}`}>
+        <div className={`relative px-6 md:px-8 pb-10 md:pb-12 flex flex-col ${fixedHeight ? 'flex-1 overflow-y-auto min-h-0' : 'min-h-[420px]'}`}>
           {/* Pas d'AnimatePresence ici : après deux tentatives de correction côté
               Framer Motion (isoler le spinner dans sa propre AnimatePresence,
               retirer le ternaire content/spinner de la même liste animée), le
@@ -815,7 +815,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         </div>
 
         {/* Trust badges at bottom */}
-        <div className="border-t border-border/30 px-6 py-3 flex items-center justify-center gap-4 text-xs text-muted-foreground">
+        <div className="border-t border-border/30 px-6 md:px-8 py-4 flex items-center justify-center gap-4 text-xs text-muted-foreground">
           <span className="flex items-center gap-1"><Lock className="h-3 w-3" /> {t("form.trust.secured")}</span>
           <span className="hidden sm:inline">•</span>
           <span className="hidden sm:flex items-center gap-1">{t("form.trust.free")}</span>
