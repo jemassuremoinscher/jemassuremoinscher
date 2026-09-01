@@ -124,11 +124,33 @@ export default {
         "elevation-2": "0 3px 6px rgba(0,0,0,0.16)",
         "elevation-3": "0 5px 12px rgba(0,0,0,0.20)",
         "elevation-4": "0 15px 25px rgba(0,0,0,0.25)",
+        // Ces 4 tokens existaient deja dans src/index.css (--shadow-card, etc.)
+        // mais jamais exposes ici : chaque usage ecrivait shadow-[var(--shadow-hover)]
+        // au lieu d'une classe Tailwind normale. Memes valeurs, zero changement visuel.
+        card: "var(--shadow-card)",
+        hover: "var(--shadow-hover)",
+        elegant: "var(--shadow-elegant)",
+        glow: "var(--shadow-glow)",
       },
       transitionTimingFunction: {
         "md-emphasized": "cubic-bezier(0.2, 0, 0, 1)",
         "md-decelerate": "cubic-bezier(0.05, 0.7, 0.1, 1)",
         "md-standard": "cubic-bezier(0.4, 0, 0.2, 1)",
+      },
+      // Memes valeurs que --md-duration-* dans src/index.css, exposees en classes
+      // Tailwind pour le hover du point 6 (au lieu de duration-[200ms] partout).
+      transitionDuration: {
+        "md-short": "200ms",
+        "md-medium": "400ms",
+        "md-long": "550ms",
+      },
+      // Echelle de respiration verticale de section, absente jusqu'ici : le code
+      // actuel melange py-6/8/10/12/14/16/20 sans logique sur la home. Ces 3
+      // paliers servent de base au point 2 (rien n'est encore applique a une page).
+      spacing: {
+        "section-sm": "3.5rem",   // 56px  — sections compactes (ex: Partners)
+        "section": "5rem",        // 80px  — rythme standard
+        "section-lg": "7rem",     // 112px — sections d'ancrage (Hero-adjacent)
       },
     },
   },
