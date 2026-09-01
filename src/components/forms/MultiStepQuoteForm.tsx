@@ -221,6 +221,49 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   const totalSteps = steps.length;
   const progressPercent = ((currentStep + 1) / totalSteps) * 100;
 
+  // Regroupement visuel des etapes sous 3 macro-etapes, pour la barre de
+  // progression uniquement — ne touche ni aux questions, ni a leur ordre, ni
+  // a `currentStep`/`totalSteps` (inchanges partout ailleurs dans ce fichier).
+  //
+  // Classification generique par step.type plutot que par id/field : le
+  // formulaire couvre 24 types d'assurance (stepConfigs.ts) dont les etapes
+  // de contenu n'ont pas de decoupage "vehicule/profil" commun et fiable
+  // (cyber, decennale, velo... n'ont aucune notion de vehicule). Le seul
+  // regroupement verifiable pour TOUS les flux repose sur le type exhaustif
+  // de FormStep : card-select/input/vehicle-select (besoin), searching
+  // (recherche), contact/callback (coordonnees).
+  const macroBuckets = useMemo(() => {
+    const bucketOf = (s: typeof steps[number]) =>
+      s.type === 'searching' ? 1 : (s.type === 'contact' || s.type === 'callback') ? 2 : 0;
+    const labels = [t('form.macroStep.need'), t('form.macroStep.search'), t('form.macroStep.contact')];
+    const counts = [0, 0, 0];
+    const stepBucket = steps.map((s) => {
+      const b = bucketOf(s);
+      counts[b] += 1;
+      return b;
+    });
+    return { labels, counts, stepBucket };
+  }, [steps, t]);
+
+  const currentBucket = macroBuckets.stepBucket[currentStep] ?? 0;
+  const positionInBucket = useMemo(() => {
+    let pos = 0;
+    for (let i = 0; i <= currentStep; i++) {
+      if (macroBuckets.stepBucket[i] === currentBucket) pos += 1;
+    }
+    return pos;
+  }, [macroBuckets.stepBucket, currentStep, currentBucket]);
+
+  const visibleMacroIndices = [0, 1, 2].filter((i) => macroBuckets.counts[i] > 0);
+  const macroSegments = visibleMacroIndices.map((i) => ({
+    key: `macro-${i}`,
+    label: macroBuckets.labels[i],
+    fill: i < currentBucket ? 100 : i === currentBucket ? (positionInBucket / macroBuckets.counts[i]) * 100 : 0,
+  }));
+  const currentMacroLabel = macroBuckets.labels[currentBucket];
+  const currentMacroNumber = visibleMacroIndices.filter((i) => i <= currentBucket).length;
+  const totalMacroCount = visibleMacroIndices.length;
+
   // Funnel tracking — emit step_view on each step change
   const reachedSubmitRef = useRef(false);
   const effectiveType = formData.insuranceType || insuranceType;
@@ -574,7 +617,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         {step.type !== 'searching' && step.type !== 'callback' && !transitionScreen && (
           <div className="bg-primary px-4 py-2.5 flex items-center justify-between gap-3 text-[11px] md:text-xs">
             <span className="font-semibold text-primary-foreground/90">
-              {t("form.stepOf", { current: currentStep + 1, total: totalSteps })}
+              {t("form.macroStepOf", { current: currentMacroNumber, total: totalMacroCount, label: currentMacroLabel })}
             </span>
             <span className="text-primary-foreground/85 flex items-baseline gap-1.5">
               {t("form.timeLeftPrefix")}{' '}
@@ -599,17 +642,29 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
           </div>
         )}
 
-        {/* Progress bar */}
-        <div className="h-1.5 bg-muted/50 w-full relative overflow-hidden">
-          <motion.div
-            className="h-full bg-gradient-to-r from-accent to-accent/70 rounded-full"
-            initial={{ width: 0 }}
-            animate={{ width: `${progressPercent}%` }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-          />
-          {microLoading && (
-            <div className="absolute top-0 left-0 h-full w-full step-shimmer-bar" />
-          )}
+        {/* Progress bar — segmentee par macro-etape (memes questions, meme ordre ;
+            seul le regroupement visuel change, cf. macroBuckets ci-dessus). */}
+        <div
+          className="h-1.5 w-full flex gap-1"
+          role="progressbar"
+          aria-valuenow={Math.round(progressPercent)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label={currentMacroLabel}
+        >
+          {macroSegments.map((seg) => (
+            <div key={seg.key} className="flex-1 h-full bg-muted/50 rounded-full overflow-hidden relative">
+              <motion.div
+                className="h-full bg-gradient-to-r from-accent to-accent/70 rounded-full"
+                initial={false}
+                animate={{ width: `${seg.fill}%` }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+              />
+              {microLoading && seg.label === currentMacroLabel && (
+                <div className="absolute top-0 left-0 h-full w-full step-shimmer-bar" />
+              )}
+            </div>
+          ))}
         </div>
 
         {/* Step indicator */}

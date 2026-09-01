@@ -2123,6 +2123,10 @@ const en: Record<string, string> = {
 
   // MultiStep Form
   'form.stepOf': 'Step {current}/{total}',
+  'form.macroStepOf': "Step {current}/{total} · {label}",
+  'form.macroStep.need': "Your needs",
+  'form.macroStep.search': "Finding offers",
+  'form.macroStep.contact': "Your details",
   'form.timeLeftPrefix': 'Only',
   'form.timeLeftSuffix': 'left to see your prices',
   'form.lastStep': 'Last step — finalize your request',
