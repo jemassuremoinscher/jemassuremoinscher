@@ -97,7 +97,16 @@ const TrustRow = () => {
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4"
         >
           {/* Google Reviews */}
-          <motion.div variants={itemVariants} role="group" aria-label={`Note Google Reviews ${ratingLabel} sur 5`} className="bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
+          {/* Bulle epinglee : meme motif que celle d'Arthur en Hero (bg-white,
+              rounded-2xl, ombre, pointe triangulaire), reutilisee ici pour
+              mettre en avant la note reelle deja affichee dans la carte
+              (ratingLabel vient du live Google Reviews ou, a defaut, de
+              geo-content.json — jamais une valeur inventee). */}
+          <motion.div variants={itemVariants} role="group" aria-label={`Note Google Reviews ${ratingLabel} sur 5`} className="relative bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
+            <div aria-hidden="true" className="absolute -top-3 -right-2 bg-white rounded-2xl px-2.5 py-1 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] z-10">
+              <p className="text-primary font-bold text-xs whitespace-nowrap">{ratingLabel}★ vérifié</p>
+              <div className="absolute -bottom-1 left-4 w-2.5 h-2.5 bg-white transform rotate-45" />
+            </div>
             <svg viewBox="0 0 24 24" className="w-8 h-8 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" role="img" aria-label={`Logo Google Reviews avec note ${ratingLabel} étoiles`}>
               <title>{`Logo Google Reviews avec note ${ratingLabel} étoiles`}</title>
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>

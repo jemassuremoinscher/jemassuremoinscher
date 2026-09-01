@@ -60,20 +60,32 @@ const Hero = () => {
             </p>
           </div>
 
-          {/* Arthur — desktop & tablet */}
-          <div className="hidden md:flex shrink-0 justify-center items-center animate-fade-in-delay">
-            <div className="relative inline-block">
+          {/* Arthur — visible a tous les breakpoints desormais. En dessous de lg,
+              la bulle se place au-dessus de la mascotte (pointe vers le bas,
+              centree) plutot qu'en badge de coin absolu, pour ne jamais deborder
+              sur un ecran etroit. A partir de lg, motif de badge inchange. */}
+          <div className="flex shrink-0 justify-center items-center animate-fade-in-delay">
+            <div className="relative flex flex-col items-center lg:block">
               <div aria-hidden="true" className="absolute inset-0 -m-8 rounded-full bg-gradient-to-tr from-accent/40 via-white/10 to-transparent blur-2xl" />
+
+              <div className="lg:hidden relative bg-white rounded-2xl px-4 py-2 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] animate-fade-in-delay z-10 mb-2 max-w-[220px] text-center">
+                <p className="text-primary font-bold text-sm">
+                  {arthurBubble}
+                </p>
+                <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white transform rotate-45" />
+              </div>
+
               <img
                 src={arthurMascot}
                 alt={arthurImageAlt}
-                className="relative w-36 lg:w-52 h-auto drop-shadow-2xl animate-hero-float"
+                className="relative w-28 sm:w-36 lg:w-52 h-auto drop-shadow-2xl animate-hero-float"
                 width={208}
                 height={260}
                 loading="eager"
                 decoding="async"
                 fetchPriority="high"
               />
+
               <div className="hidden lg:block absolute -top-4 -right-4 bg-white rounded-2xl px-4 py-2 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] animate-fade-in-delay z-10">
                 <p className="text-primary font-bold text-sm whitespace-nowrap">
                   {arthurBubble}
