@@ -15,7 +15,7 @@ const ContextualHelp = () => {
 
   return (
     <aside
-      className="py-12 md:py-14 bg-muted/20 border-y border-border/20 section-lazy"
+      className="pt-4 md:pt-6 pb-12 md:pb-14 section-lazy"
       aria-labelledby="contextual-help-title"
     >
       <div className="container mx-auto px-4 max-w-4xl">

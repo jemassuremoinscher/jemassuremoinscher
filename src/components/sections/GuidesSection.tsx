@@ -179,7 +179,7 @@ const GuidesSection = () => {
   };
 
   return (
-    <section className="py-10 md:py-14 bg-gradient-to-b from-background via-muted/20 to-background" aria-labelledby="guides-title">
+    <section className="pt-10 md:pt-14 pb-6 md:pb-8 bg-gradient-to-b from-background via-muted/20 to-background" aria-labelledby="guides-title">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div

@@ -293,21 +293,19 @@ const Index = () => {
           </Suspense>
         </DeferredRender>
 
-        <DeferredRender minHeight={620}>
-          <Suspense fallback={<div aria-hidden="true" className="min-h-[880px]" />}>
-            <MdReveal variant="up"><GuidesSection /></MdReveal>
-          </Suspense>
-        </DeferredRender>
-
-        <DeferredRender minHeight={720}>
-          <Suspense fallback={<div aria-hidden="true" className="min-h-[720px]" />}>
-            <MdReveal variant="fade"><SEOContent /></MdReveal>
-          </Suspense>
-        </DeferredRender>
-
-        <DeferredRender minHeight={280}>
-          <Suspense fallback={<div aria-hidden="true" className="min-h-[280px]" />}>
-            <MdReveal variant="up"><ContextualHelp /></MdReveal>
+        {/* GuidesSection + SEOContent + ContextualHelp : trois blocs de liens/
+            ressources deja adjacents, une seule zone differee au lieu de trois
+            dalles empilees. Chaque composant garde son propre h2 et l'integralite
+            de son texte/liens (44 dans SEOContent, 5 dans ContextualHelp) ; seuls
+            les fonds/bordures qui creaient une couture entre les trois sont
+            retires (voir GuidesSection.tsx/SEOContent.tsx/ContextualHelp.tsx). */}
+        <DeferredRender minHeight={1200}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[1200px]" />}>
+            <MdReveal variant="up">
+              <GuidesSection />
+              <SEOContent />
+              <ContextualHelp />
+            </MdReveal>
           </Suspense>
         </DeferredRender>
 
