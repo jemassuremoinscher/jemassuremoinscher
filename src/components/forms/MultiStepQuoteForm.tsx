@@ -1362,6 +1362,17 @@ function ContactStep({
   formData: Record<string, string>;
 }) {
   const { t } = useLanguage();
+  const termsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!errors.acceptTerms || !termsRef.current) return;
+    const rect = termsRef.current.getBoundingClientRect();
+    const inView = rect.top >= 0 && rect.bottom <= window.innerHeight;
+    if (!inView) {
+      termsRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [errors.acceptTerms]);
+
   if (isSuccess) {
     return (
       <motion.div
@@ -1503,18 +1514,21 @@ function ContactStep({
       </div>
 
       {/* Terms */}
-      <div className="flex items-start gap-2 pt-1">
+      <div ref={termsRef} className="flex items-start gap-2 pt-1">
         <Checkbox
           id="msf-terms"
           checked={data.acceptTerms}
           onCheckedChange={(checked) => onChange({ ...data, acceptTerms: checked as boolean })}
           disabled={isSubmitting}
+          className={errors.acceptTerms ? 'border-destructive border-2' : undefined}
         />
         <Label htmlFor="msf-terms" className="text-xs text-muted-foreground leading-tight cursor-pointer">
           {t('form.acceptTerms')}
         </Label>
       </div>
-      {errors.acceptTerms && <p className="text-xs text-destructive">{errors.acceptTerms}</p>}
+      {errors.acceptTerms && (
+        <p className="text-sm font-medium text-destructive">{t('form.acceptTermsError')}</p>
+      )}
 
       {/* Submit */}
       <Button

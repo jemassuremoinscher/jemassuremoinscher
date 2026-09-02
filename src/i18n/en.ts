@@ -2685,6 +2685,7 @@ const en: Record<string, string> = {
   "form.phoneCallback": "Phone (for the callback)",
   "form.phonePlaceholder": "06 12 34 56 78",
   "form.acceptTerms": "I accept the terms of use and privacy policy. My data is used only to contact me back.",
+  "form.acceptTermsError": "Please accept the terms to continue",
   "form.callbackAcceptTerms": "I accept the terms of use. My data is used only to review my file and call me back.",
   "form.submit": "Get my personalised quote",
   "form.submitCallback": "Request my callback within 10 minutes",

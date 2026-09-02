@@ -1,8 +1,3 @@
-# Force HTTPS + www canonical host (fixes GSC "Redirect error")
-http://jemassuremoinscher.fr/*       https://www.jemassuremoinscher.fr/:splat   301!
-http://www.jemassuremoinscher.fr/*   https://www.jemassuremoinscher.fr/:splat   301!
-https://jemassuremoinscher.fr/*      https://www.jemassuremoinscher.fr/:splat   301!
-
 # Strip trailing slash on /blog (fixes "Alternative page with proper canonical")
 /blog/   /blog   301!
 /blog/guide-choisir-assurance-auto-2024 /blog/guide-choisir-assurance-auto-2026 301!

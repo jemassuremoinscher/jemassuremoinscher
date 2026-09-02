@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
@@ -16,23 +17,28 @@ const authSchema = z.object({
 });
 
 const Auth = () => {
+  const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { signIn, user } = useAuth();
+  const { signIn, signUp, user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
-      navigate('/admin');
+      // Mode de récupération d'accès : redonne le rôle admin aux comptes internes
+      supabase.rpc('recover_internal_access').then(() => navigate('/admin'), () => navigate('/admin'));
     }
   }, [user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanPassword = password.trim();
+
     try {
-      authSchema.parse({ email, password });
+      authSchema.parse({ email: cleanEmail, password: cleanPassword });
     } catch (error) {
       if (error instanceof z.ZodError) {
         toast.error(error.errors[0].message);
@@ -43,15 +49,39 @@ const Auth = () => {
     setIsLoading(true);
 
     try {
-      const { error } = await signIn(email, password);
+      if (mode === 'signup') {
+        const { error } = await signUp(cleanEmail, cleanPassword);
+        if (error) {
+          if (error.message.toLowerCase().includes('already registered')) {
+            toast.error('Ce compte existe déjà — connecte-toi ou utilise « mot de passe oublié ».');
+            setMode('signin');
+          } else {
+            toast.error(error.message);
+          }
+        } else {
+          toast.success('Compte créé ! Tu peux te connecter.');
+          setMode('signin');
+        }
+        return;
+      }
+
+      // Purge d'une éventuelle session périmée (refresh token invalide sur un autre navigateur)
+      await supabase.auth.signOut({ scope: 'local' }).catch(() => {});
+
+      const { error } = await signIn(cleanEmail, cleanPassword);
 
       if (error) {
         if (error.message.includes('Invalid login credentials')) {
-          toast.error('Email ou mot de passe incorrect');
+          toast.error(
+            "Email ou mot de passe incorrect. Si le compte a été recréé récemment, utilise « Mot de passe oublié » pour en définir un nouveau.",
+          );
+        } else if (error.message.toLowerCase().includes('email not confirmed')) {
+          toast.error("Email non confirmé — vérifie ta boîte mail.");
         } else {
           toast.error(error.message);
         }
       } else {
+        await supabase.rpc('recover_internal_access');
         toast.success('Connexion réussie !');
         navigate('/admin');
       }
@@ -61,6 +91,25 @@ const Auth = () => {
       setIsLoading(false);
     }
   };
+
+
+  const handleReset = async () => {
+    const cleanEmail = email.trim().toLowerCase();
+    try {
+      authSchema.shape.email.parse(cleanEmail);
+    } catch {
+      toast.error('Saisis ton email pour recevoir le lien de réinitialisation');
+      return;
+    }
+    // Always send the reset link to the canonical apex host (www is 301-redirected)
+    const origin = window.location.origin.replace('//www.jemassuremoinscher.fr', '//jemassuremoinscher.fr');
+    const { error } = await supabase.auth.resetPasswordForEmail(cleanEmail, {
+      redirectTo: `${origin}/reset-password`,
+    });
+    if (error) toast.error(error.message);
+    else toast.success('Email de réinitialisation envoyé');
+  };
+
 
   return (
     <>
@@ -76,8 +125,25 @@ const Auth = () => {
             </div>
             <h1 className="text-3xl font-bold">Dashboard Admin</h1>
             <p className="text-muted-foreground text-center mt-2">
-              Accédez à votre espace d'administration
+              {mode === 'signin' ? "Accédez à votre espace d'administration" : 'Créez votre compte administrateur'}
             </p>
+          </div>
+
+          <div className="mb-6 grid grid-cols-2 gap-1 rounded-lg bg-muted p-1">
+            <button
+              type="button"
+              onClick={() => setMode('signin')}
+              className={`rounded-md py-2 text-sm font-medium transition ${mode === 'signin' ? 'bg-background shadow' : 'text-muted-foreground'}`}
+            >
+              Se connecter
+            </button>
+            <button
+              type="button"
+              onClick={() => setMode('signup')}
+              className={`rounded-md py-2 text-sm font-medium transition ${mode === 'signup' ? 'bg-background shadow' : 'text-muted-foreground'}`}
+            >
+              Créer un compte
+            </button>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -119,15 +185,20 @@ const Auth = () => {
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  Connexion...
+                  {mode === 'signin' ? 'Connexion...' : 'Création...'}
                 </>
-              ) : (
+              ) : mode === 'signin' ? (
                 'Se connecter'
+              ) : (
+                'Créer mon compte'
               )}
             </Button>
           </form>
 
-          <div className="mt-6 text-center">
+          <div className="mt-6 flex flex-col items-center gap-1">
+            <Button variant="ghost" onClick={handleReset} className="text-sm">
+              Mot de passe oublié ?
+            </Button>
             <Button
               variant="ghost"
               onClick={() => navigate('/')}
@@ -136,6 +207,7 @@ const Auth = () => {
               ← Retour à l'accueil
             </Button>
           </div>
+
         </Card>
       </div>
     </>

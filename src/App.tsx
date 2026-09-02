@@ -25,11 +25,14 @@ const AuthProvider = lazy(() => import("@/contexts/AuthContext").then(m => ({ de
 const Index = lazy(() => import("./pages/Index"));
 const MerciGuide = lazy(() => import("./pages/MerciGuide"));
 const Auth = lazy(() => import("./pages/Auth"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const Admin = lazy(() => import("./pages/Admin"));
 const CrmLayout = lazy(() => import("./pages/crm/CrmLayout"));
 const CrmKanban = lazy(() => import("./pages/crm/CrmKanban"));
 const CrmDashboard = lazy(() => import("./pages/crm/CrmDashboard"));
 const AlertesPage = lazy(() => import("./pages/crm/AlertesPage"));
+const RequireAdmin = lazy(() => import("./pages/crm/RequireAdmin"));
+const BackupsPage = lazy(() => import("./pages/crm/BackupsPage"));
 const CrmPlaceholder = lazy(() => import("./pages/crm/CrmPlaceholder"));
 const ContactsPage = lazy(() => import("./pages/crm/ContactsPage"));
 const GedPage = lazy(() => import("./pages/crm/GedPage"));
@@ -226,23 +229,27 @@ const App = () => {
                 <Route path="/" element={<Index />} />
                 <Route path="/merci-guide" element={<MerciGuide />} />
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+
                 <Route path="/admin" element={<AuthRoute><CrmLayout /></AuthRoute>}>
                   <Route index element={<CrmKanban />} />
                   <Route path="contacts" element={<ContactsPage />} />
                   <Route path="documents" element={<GedPage />} />
-                  <Route path="dashboard" element={<CrmDashboard />} />
-                  <Route path="finance" element={<FinancePage />} />
+                  <Route path="dashboard" element={<RequireAdmin><CrmDashboard /></RequireAdmin>} />
+                  <Route path="finance" element={<RequireAdmin><FinancePage /></RequireAdmin>} />
                   <Route path="portefeuille" element={<PortfolioPage />} />
                   <Route path="portefeuille/:contractId" element={<ContractDetailPage />} />
-                  <Route path="marketing" element={<MarketingPage />} />
-                  <Route path="rgpd" element={<RgpdPage />} />
-                  <Route path="trash" element={<TrashPage />} />
-                  <Route path="import" element={<ImportPage />} />
-                  <Route path="alertes" element={<AlertesPage />} />
+                  <Route path="marketing" element={<RequireAdmin><MarketingPage /></RequireAdmin>} />
+                  <Route path="rgpd" element={<RequireAdmin><RgpdPage /></RequireAdmin>} />
+                  <Route path="trash" element={<RequireAdmin><TrashPage /></RequireAdmin>} />
+                  <Route path="import" element={<RequireAdmin><ImportPage /></RequireAdmin>} />
+                  <Route path="alertes" element={<RequireAdmin><AlertesPage /></RequireAdmin>} />
+                  <Route path="sauvegardes" element={<RequireAdmin><BackupsPage /></RequireAdmin>} />
                   <Route path="notifications" element={<NotificationsCenter />} />
                   <Route path="reglages/notifications" element={<NotificationSettings />} />
                 </Route>
-                <Route path="/admin/legacy" element={<AuthRoute><Admin /></AuthRoute>} />
+                <Route path="/admin/legacy" element={<AuthRoute><RequireAdmin><Admin /></RequireAdmin></AuthRoute>} />
+
                 <Route path="/commercial" element={<AuthRoute><Commercial /></AuthRoute>} />
                 <Route path="/landing/assurance" element={<LandingAds />} />
                 <Route path="/landing/auto" element={<LandingAuto />} />

@@ -31,7 +31,10 @@ const LeadMagnetSection = lazy(() => import("@/components/sections/LeadMagnetSec
 const Index = () => {
   const { t } = useLanguage();
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }]);
-  const organizationSchema = addOrganizationSchema();
+  const organizationSchema = addOrganizationSchema(
+    geoContent.trust.ratingValue,
+    geoContent.trust.reviewCount
+  );
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances Moins Chères en Ligne",
     description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 70+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
