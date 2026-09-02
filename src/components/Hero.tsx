@@ -36,7 +36,7 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">
         {/* Top row: content + Arthur */}
-        <div className="flex flex-col md:flex-row md:items-center md:gap-8 lg:gap-12 mb-10 md:mb-12">
+        <div className="flex flex-col gap-8 md:flex-row md:items-center md:gap-8 lg:gap-12 mb-10 md:mb-12">
           <div className="flex-1 min-w-0 text-center md:text-left">
 
             <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-white leading-[1.05] font-[Inter] animate-fade-in-up">
