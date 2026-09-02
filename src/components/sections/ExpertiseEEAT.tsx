@@ -64,7 +64,7 @@ const ExpertiseEEAT = () => {
 
   return (
     <section
-      className="py-14 md:py-20 bg-background border-t border-border/30 section-lazy"
+      className="pt-14 md:pt-20 pb-8 md:pb-10 bg-background border-t border-border/30 section-lazy"
       aria-labelledby="expertise-title"
     >
       <div className="container mx-auto px-4 max-w-5xl">

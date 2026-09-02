@@ -269,15 +269,17 @@ const Index = () => {
           </Suspense>
         </DeferredRender>
 
-        <DeferredRender minHeight={700}>
-          <Suspense fallback={<div aria-hidden="true" className="min-h-[700px]" />}>
-            <MdReveal variant="up"><ExpertiseEEAT /></MdReveal>
-          </Suspense>
-        </DeferredRender>
-
-        <DeferredRender minHeight={560}>
-          <Suspense fallback={<div aria-hidden="true" className="min-h-[560px]" />}>
-            <MdReveal variant="up"><SEOFaq /></MdReveal>
+        {/* ExpertiseEEAT + SEOFaq : deja adjacents, une seule zone differee
+            au lieu de deux dalles empilees. Chaque composant garde son propre
+            h2 et l'integralite de son texte et de ses liens (2 dans
+            ExpertiseEEAT, 1 dans SEOFaq) ; seule la couture entre les deux
+            (double padding vertical) est retiree. */}
+        <DeferredRender minHeight={1050}>
+          <Suspense fallback={<div aria-hidden="true" className="min-h-[1050px]" />}>
+            <MdReveal variant="up">
+              <ExpertiseEEAT />
+              <SEOFaq />
+            </MdReveal>
           </Suspense>
         </DeferredRender>
 
