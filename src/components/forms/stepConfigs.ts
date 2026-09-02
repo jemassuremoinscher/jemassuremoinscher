@@ -44,6 +44,10 @@ export interface FormStep {
   unsureDefaultValue?: string;
   /** Courte explication d'Arthur sur l'utilite de cette question pour le tarif. */
   arthurHint?: string;
+  /** Option A (bonus-malus) : sur une etape card-select, ajoute un lien qui
+   * revele un champ numerique precis pour le meme `field`, en plus des cartes
+   * rapides. Ignore pour les autres types d'etape. */
+  preciseInput?: { min: number; max: number; step: number; placeholder: string; label: string };
 }
 
 export type InsuranceType = 'auto' | 'moto' | 'habitation' | 'sante' | 'pret' | 'animaux' | 'vie' | 'prevoyance' | 'rc_pro' | 'mrp' | 'gli' | 'pno' | 'comparateur' | 'metiers_atypiques' | 'gestion_locative' | 'velo' | 'trottinette' | 'camping_car' | 'sans_permis' | 'auto_temporaire' | 'flotte' | 'cyber' | 'decennale' | 'protection_juridique' | 'mutuelle_entreprise';
@@ -233,6 +237,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         ], 'Même approximatif, ça affine fortement le tarif.'),
         showUnsureButton: true,
         unsureDefaultValue: 'standard',
+        preciseInput: { min: 0.5, max: 3.5, step: 0.01, placeholder: 'Ex : 0,73', label: 'Je connais mon coefficient exact' },
       },
       ageStep, postalCodeStep, searchingStep, contactStep,
     ],
@@ -255,6 +260,16 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'moto', 'stationnement_moto', 'parking', Building),
         opt(t, 'moto', 'stationnement_moto', 'rue', AlertTriangle),
       ], 'Un stationnement sécurisé réduit le risque de vol et peut faire baisser le tarif.'),
+      {
+        ...cs('moto', 'bonus_malus_moto', 'bonusMalus', [
+          opt(t, 'moto', 'bonus_malus_moto', 'bonus_050', Award),
+          opt(t, 'moto', 'bonus_malus_moto', 'standard', ShieldCheck),
+          opt(t, 'moto', 'bonus_malus_moto', 'malus', AlertTriangle),
+        ], 'Même approximatif, ça affine fortement le tarif.'),
+        showUnsureButton: true,
+        unsureDefaultValue: 'standard',
+        preciseInput: { min: 0.5, max: 3.5, step: 0.01, placeholder: 'Ex : 0,73', label: 'Je connais mon coefficient exact' },
+      },
       ageStep, postalCodeStep, searchingStep, contactStep,
     ],
     habitation: [

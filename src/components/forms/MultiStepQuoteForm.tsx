@@ -689,6 +689,8 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
                     microLoading={microLoading}
                     showUnsureButton={step.showUnsureButton}
                     unsureDefaultValue={step.unsureDefaultValue}
+                    preciseInput={step.preciseInput}
+                    onPreciseSubmit={(value) => handleCardSelect(step.field!, value)}
                   />
                 )}
 
@@ -808,8 +810,11 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
 
 // ─── Card Select Step ────────────────────────────────────────────────────────
-function CardSelectStep({ options, selected, onSelect, microLoading, showUnsureButton, unsureDefaultValue }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void; microLoading?: boolean; showUnsureButton?: boolean; unsureDefaultValue?: string }) {
+function CardSelectStep({ options, selected, onSelect, microLoading, showUnsureButton, unsureDefaultValue, preciseInput, onPreciseSubmit }: { options: StepOption[]; selected?: string; onSelect: (v: string) => void; microLoading?: boolean; showUnsureButton?: boolean; unsureDefaultValue?: string; preciseInput?: { min: number; max: number; step: number; placeholder: string; label: string }; onPreciseSubmit?: (v: string) => void }) {
   const { t } = useLanguage();
+  const [preciseOpen, setPreciseOpen] = useState(false);
+  const [preciseValue, setPreciseValue] = useState('');
+  const [preciseError, setPreciseError] = useState('');
   // Si la liste d'options est longue (typiquement l'étape "type d'assurance"
   // du comparateur avec 12 options), on n'affiche que les 4 principales et on
   // propose un toggle "Voir plus" pour révéler le reste. 80% des leads viennent
@@ -956,6 +961,54 @@ function CardSelectStep({ options, selected, onSelect, microLoading, showUnsureB
           >
             Je ne sais pas / Estimer pour moi
           </button>
+        </div>
+      )}
+      {/* OPTION A (exploration, point 3) : lien qui revele un champ numerique
+          precis pour le meme champ que les cartes ci-dessus. */}
+      {preciseInput && (
+        <div className="mt-3 flex flex-col items-center">
+          {!preciseOpen ? (
+            <button
+              type="button"
+              onClick={() => setPreciseOpen(true)}
+              className="text-sm font-medium text-primary underline underline-offset-2 hover:text-primary/80"
+            >
+              {preciseInput.label}
+            </button>
+          ) : (
+            <div className="w-full max-w-xs">
+              <div className="flex items-center gap-2">
+                <Input
+                  type="number"
+                  inputMode="decimal"
+                  min={preciseInput.min}
+                  max={preciseInput.max}
+                  step={preciseInput.step}
+                  value={preciseValue}
+                  onChange={(e) => { setPreciseValue(e.target.value); setPreciseError(''); }}
+                  placeholder={preciseInput.placeholder}
+                  className="h-11 text-center rounded-xl border-2 border-border/50 focus:border-primary"
+                  autoFocus
+                />
+                <Button
+                  type="button"
+                  size="sm"
+                  className="h-11 rounded-xl shrink-0"
+                  onClick={() => {
+                    const n = parseFloat(preciseValue.replace(',', '.'));
+                    if (Number.isNaN(n) || n < preciseInput.min || n > preciseInput.max) {
+                      setPreciseError(`Entre ${preciseInput.min} et ${preciseInput.max}`);
+                      return;
+                    }
+                    onPreciseSubmit?.(n.toFixed(2));
+                  }}
+                >
+                  OK
+                </Button>
+              </div>
+              {preciseError && <p className="text-xs text-destructive mt-1.5 text-center">{preciseError}</p>}
+            </div>
+          )}
         </div>
       )}
       {/* Micro-loading feedback */}
