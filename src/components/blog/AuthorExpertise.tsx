@@ -81,15 +81,17 @@ const AuthorExpertise = ({ authorName }: AuthorExpertiseProps) => {
 
         {/* Experience & Specialties */}
         <div className="space-y-3">
-          <div className="flex items-start gap-2.5">
-            <div className="p-1.5 rounded-lg bg-primary/10 shrink-0 mt-0.5">
-              <Briefcase className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+          {author.experienceYears !== undefined && (
+            <div className="flex items-start gap-2.5">
+              <div className="p-1.5 rounded-lg bg-primary/10 shrink-0 mt-0.5">
+                <Briefcase className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+              </div>
+              <div>
+                <p className="text-xs font-semibold text-foreground mb-0.5">Expérience</p>
+                <p className="text-xs text-muted-foreground">{author.experienceYears} ans dans l'assurance</p>
+              </div>
             </div>
-            <div>
-              <p className="text-xs font-semibold text-foreground mb-0.5">Expérience</p>
-              <p className="text-xs text-muted-foreground">{author.experienceYears} ans dans l'assurance</p>
-            </div>
-          </div>
+          )}
 
           <div className="flex items-start gap-2.5">
             <div className="p-1.5 rounded-lg bg-primary/10 shrink-0 mt-0.5">
