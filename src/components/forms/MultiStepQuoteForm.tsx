@@ -173,7 +173,6 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
   const step = steps[currentStep];
   const totalSteps = steps.length;
-  const progressPercent = ((currentStep + 1) / totalSteps) * 100;
 
   // Regroupement visuel des etapes sous 3 macro-etapes, pour la barre de
   // progression uniquement — ne touche ni aux questions, ni a leur ordre, ni
@@ -200,20 +199,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   }, [steps, t]);
 
   const currentBucket = macroBuckets.stepBucket[currentStep] ?? 0;
-  const positionInBucket = useMemo(() => {
-    let pos = 0;
-    for (let i = 0; i <= currentStep; i++) {
-      if (macroBuckets.stepBucket[i] === currentBucket) pos += 1;
-    }
-    return pos;
-  }, [macroBuckets.stepBucket, currentStep, currentBucket]);
-
   const visibleMacroIndices = [0, 1, 2].filter((i) => macroBuckets.counts[i] > 0);
-  const macroSegments = visibleMacroIndices.map((i) => ({
-    key: `macro-${i}`,
-    label: macroBuckets.labels[i],
-    fill: i < currentBucket ? 100 : i === currentBucket ? (positionInBucket / macroBuckets.counts[i]) * 100 : 0,
-  }));
   const currentMacroLabel = macroBuckets.labels[currentBucket];
   const currentMacroNumber = visibleMacroIndices.filter((i) => i <= currentBucket).length;
   const totalMacroCount = visibleMacroIndices.length;
@@ -590,29 +576,40 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
           </div>
         )}
 
-        {/* Progress bar — segmentee par macro-etape (memes questions, meme ordre ;
-            seul le regroupement visuel change, cf. macroBuckets ci-dessus). */}
+        {/* Progress bar — un repere par question, regroupes visuellement par
+            macro-etape (petit espace supplementaire entre groupes).
+            Un segment unique par macro-etape restait bloque en pratique sur
+            les flux longs : comparateur->auto met 9 des 11 questions dans
+            "Vos besoins", donc la barre semblait figee sur "Etape 1/3"
+            pendant l'essentiel du parcours alors que l'utilisateur avancait
+            reellement (verifie sur les 24 flux : de 3 reperes pour
+            comparateur direct a 10 pour metiers_atypiques). Chaque question
+            fait desormais avancer un repere visible, quel que soit le flux —
+            memes questions, meme ordre, seul l'indicateur change. */}
         <div
           className="h-1.5 w-full flex gap-1"
           role="progressbar"
-          aria-valuenow={Math.round(progressPercent)}
-          aria-valuemin={0}
-          aria-valuemax={100}
+          aria-valuenow={currentStep + 1}
+          aria-valuemin={1}
+          aria-valuemax={totalSteps}
           aria-label={currentMacroLabel}
         >
-          {macroSegments.map((seg) => (
-            <div key={seg.key} className="flex-1 h-full bg-muted/50 rounded-full overflow-hidden relative">
-              <motion.div
-                className="h-full bg-gradient-to-r from-accent to-accent/70 rounded-full"
-                initial={false}
-                animate={{ width: `${seg.fill}%` }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              />
-              {microLoading && seg.label === currentMacroLabel && (
-                <div className="absolute top-0 left-0 h-full w-full step-shimmer-bar" />
-              )}
-            </div>
-          ))}
+          {steps.map((s, i) => {
+            const startsNewGroup = i > 0 && macroBuckets.stepBucket[i] !== macroBuckets.stepBucket[i - 1];
+            return (
+              <div
+                key={`${s.id}-${i}`}
+                className={`relative flex-1 h-full bg-muted/50 rounded-full overflow-hidden ${startsNewGroup ? 'ml-1.5' : ''}`}
+              >
+                {i <= currentStep && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-accent to-accent/70 rounded-full" />
+                )}
+                {microLoading && i === currentStep && (
+                  <div className="absolute top-0 left-0 h-full w-full step-shimmer-bar" />
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* Step indicator */}
