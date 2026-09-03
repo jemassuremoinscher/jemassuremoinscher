@@ -1,4 +1,4 @@
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate, useLocation, Link } from "react-router-dom";
 import { useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -200,7 +200,9 @@ const BlogArticle = () => {
               <div className="flex flex-wrap items-center gap-4 text-sm text-white/80">
                 <div className="flex items-center gap-2">
                   <User className="h-4 w-4" aria-hidden="true" />
-                  <span>{article.author}</span>
+                  <Link to="/qui-sommes-nous" className="hover:underline hover:text-white">
+                    {article.author}
+                  </Link>
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" aria-hidden="true" />

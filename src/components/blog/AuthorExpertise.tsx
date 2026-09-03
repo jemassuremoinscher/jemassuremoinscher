@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Shield, CheckCircle, Award, Briefcase, BookOpen } from "lucide-react";
 import teamExperts from "@/assets/team-experts.png";
 import { getAuthor, type Author } from "@/data/authors";
@@ -22,7 +23,7 @@ const AuthorExpertise = ({ authorName }: AuthorExpertiseProps) => {
     <div
       className="rounded-2xl border border-border/60 bg-card overflow-hidden"
       itemScope
-      itemType="https://schema.org/Person"
+      itemType="https://schema.org/Organization"
     >
       {/* Header */}
       <div className="flex items-center gap-4 p-5 bg-muted/40">
@@ -38,11 +39,13 @@ const AuthorExpertise = ({ authorName }: AuthorExpertiseProps) => {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-0.5">
             <h3 className="font-bold text-foreground text-base truncate" itemProp="name">
-              {author.name}
+              <Link to="/qui-sommes-nous" className="hover:underline">
+                {author.name}
+              </Link>
             </h3>
             <Shield className="h-4 w-4 text-primary shrink-0" aria-label={t("a11y.blog.verifiedAuthor")} />
           </div>
-          <p className="text-sm text-muted-foreground" itemProp="jobTitle">
+          <p className="text-sm text-muted-foreground">
             {author.role}
           </p>
           <div className="flex items-center gap-1.5 mt-1 text-xs text-muted-foreground">

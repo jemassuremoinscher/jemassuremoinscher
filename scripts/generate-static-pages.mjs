@@ -520,7 +520,7 @@ const renderArticle = (article, related = []) => {
     <noscript>
       <main class="seo-shell">
         <h2>${escapeHtml(title)}</h2>
-        <p class="meta">Par ${escapeHtml(author)} — ${escapeHtml(new Date(publishedAt).toLocaleDateString("fr-FR"))}</p>
+        <p class="meta">Par <a href="/qui-sommes-nous">${escapeHtml(author)}</a> — ${escapeHtml(new Date(publishedAt).toLocaleDateString("fr-FR"))}</p>
         ${bodyHtml}${relatedHtml}${pillarHtml}
       </main>
     </noscript>
@@ -528,7 +528,7 @@ const renderArticle = (article, related = []) => {
     <div id="root">
       <main class="seo-shell">
         <h1>${escapeHtml(title)}</h1>
-        <p class="meta">Par ${escapeHtml(author)} — ${escapeHtml(new Date(publishedAt).toLocaleDateString("fr-FR"))}</p>
+        <p class="meta">Par <a href="/qui-sommes-nous">${escapeHtml(author)}</a> — ${escapeHtml(new Date(publishedAt).toLocaleDateString("fr-FR"))}</p>
         ${bodyHtml}${relatedHtml}${pillarHtml}
       </main>
     </div>
