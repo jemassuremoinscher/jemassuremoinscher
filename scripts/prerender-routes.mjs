@@ -1,16 +1,33 @@
 /**
- * Prérendu réel des routes React (Option C).
+ * Prérendu réel des routes React (Option C) — outil de génération LOCALE.
  *
  * Charge chaque route dans un Chromium headless servi depuis `dist/`, scrolle
  * jusqu'en bas pour déclencher les <DeferredRender>/lazy sections, puis écrit
- * le HTML rendu dans dist/<route>/index.html.
+ * le HTML rendu.
+ *
+ * Ce script suppose un Chromium disponible en local (cache Playwright, ou
+ * PRERENDER_CHROMIUM/CHROME_PATH) : le build Vercel n'en a jamais eu et n'en
+ * aura pas — voir scripts/apply-prerender-snapshot.mjs pour la partie qui
+ * s'exécute réellement en production, sans Chromium, à partir des fichiers
+ * générés ici et committés dans prerender-snapshots/.
+ *
+ * Deux modes de sortie, selon PRERENDER_OUT_DIR :
+ * - non défini (défaut) : écrit directement dans dist/<route>/index.html
+ *   (utile pour un test local avec `vite preview`, ou un déploiement qui aurait
+ *   son propre Chromium). Garde le HTML SPA d'origine dans dist/index.spa.html.
+ * - PRERENDER_OUT_DIR=prerender-snapshots : écrit un fichier plat par route
+ *   (prerender-snapshots/<slug>.html), destiné à être committé. C'est le mode
+ *   utilisé par `npm run prerender:snapshot`.
  *
  * Le bundle JS est conservé dans le snapshot : au montage, createRoot() écrase
- * le contenu de #root, donc aucun risque de mismatch d'hydratation.
+ * le contenu de #root, donc aucun risque de mismatch d'hydratation. Les noms de
+ * fichiers hashés qu'il référence datent de ce build local — c'est
+ * apply-prerender-snapshot.mjs qui les réécrit au build réel.
  *
  * Usage :
  *   node scripts/prerender-routes.mjs            # routes par défaut
  *   node scripts/prerender-routes.mjs / /assurance-auto
+ *   PRERENDER_OUT_DIR=prerender-snapshots node scripts/prerender-routes.mjs /
  *
  * Non bloquant : si aucun Chromium n'est disponible, le script log et sort en 0.
  */
@@ -21,7 +38,13 @@ import path from "node:path";
 
 const rootDir = process.cwd();
 const distDir = path.join(rootDir, "dist");
+const snapshotOutDir = process.env.PRERENDER_OUT_DIR
+  ? path.join(rootDir, process.env.PRERENDER_OUT_DIR)
+  : null;
 const PORT = Number(process.env.PRERENDER_PORT || 4183);
+
+// Nom de fichier plat pour le mode snapshot (prerender-snapshots/<slug>.html).
+const routeSlug = (route) => (route === "/" ? "home" : route.replace(/^\/|\/$/g, "").replace(/\//g, "-"));
 
 // Routes prérendues. Étape 1 : la home uniquement.
 const DEFAULT_ROUTES = ["/"];
@@ -166,13 +189,20 @@ const main = async () => {
         });
 
         const html = "<!DOCTYPE html>\n" + (await page.content()).replace(/^<!DOCTYPE html>/i, "").trim();
-        const outDir = route === "/" ? distDir : path.join(distDir, route.replace(/^\//, ""));
-        await mkdir(outDir, { recursive: true });
-        const outFile = path.join(outDir, "index.html");
 
-        // Garde le HTML SPA d'origine comme filet de sécurité (fallback hosting).
-        if (route === "/" && !existsSync(path.join(distDir, "index.spa.html"))) {
-          await writeFile(path.join(distDir, "index.spa.html"), await readFile(outFile, "utf8"), "utf8");
+        let outFile;
+        if (snapshotOutDir) {
+          await mkdir(snapshotOutDir, { recursive: true });
+          outFile = path.join(snapshotOutDir, `${routeSlug(route)}.html`);
+        } else {
+          const outDir = route === "/" ? distDir : path.join(distDir, route.replace(/^\//, ""));
+          await mkdir(outDir, { recursive: true });
+          outFile = path.join(outDir, "index.html");
+
+          // Garde le HTML SPA d'origine comme filet de sécurité (fallback hosting).
+          if (route === "/" && !existsSync(path.join(distDir, "index.spa.html"))) {
+            await writeFile(path.join(distDir, "index.spa.html"), await readFile(outFile, "utf8"), "utf8");
+          }
         }
 
         await writeFile(outFile, html, "utf8");
