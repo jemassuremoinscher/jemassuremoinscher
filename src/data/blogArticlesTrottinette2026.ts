@@ -183,7 +183,7 @@ Non. L'expertise reconstitue les modifications historiques (firmware, EEPROM). E
 **Le débridage logiciel (sans modification matérielle) est-il toléré ?**
 Non. La loi vise la vitesse réelle, pas la méthode. Logiciel ou matériel, même sanctions.
 
-**Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette) · [Comparateur EDPM](/comparateur) · [Trottinettes & EDPM : l'obligation 2026](/blog/trottinettes-electriques-edpm-assurance-obligatoire)
+**Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette) · [Comparateur EDPM](/comparateur) · [Trottinettes & EDPM : l'obligation 2026](/blog/trottinette-electrique-sans-assurance-delit-amende-2026)
     `
   },
   {
@@ -578,7 +578,7 @@ Non obligatoire (espace privé), mais la RC vie privée habitation est conseill�
 **Existe-t-il une assurance multi-EDPM (plusieurs engins, un contrat) ?**
 Oui chez certains assureurs spécialisés (Mobilease, Wakam, AssurOnline) : -25 à -40 % vs contrats séparés.
 
-**Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette) · [Trottinettes & EDPM obligation](/blog/trottinettes-electriques-edpm-assurance-obligatoire) · [Vol de trottinette](/blog/assurance-trottinette-vol-garantie-2026)
+**Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette) · [Trottinettes & EDPM obligation](/blog/trottinette-electrique-sans-assurance-delit-amende-2026) · [Vol de trottinette](/blog/assurance-trottinette-vol-garantie-2026)
     `
   },
   {

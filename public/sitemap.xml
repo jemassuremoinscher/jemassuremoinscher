@@ -1907,15 +1907,8 @@
       <image:loc>https://www.jemassuremoinscher.fr/opengraph-image.png</image:loc>
     </image:image>
   </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/blog/trottinettes-electriques-edpm-assurance-obligatoire</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://www.jemassuremoinscher.fr/opengraph-image.png</image:loc>
-    </image:image>
-  </url>
+<!-- Grappe "trottinette électrique — obligation légale" — référence : /blog/trottinette-electrique-sans-assurance-delit-amende-2026 -->
+<!-- /blog/trottinettes-electriques-edpm-assurance-obligatoire: doublon SEO (moins complet, mal catégorisé "Assurance Auto"), 301 → /blog/trottinette-electrique-sans-assurance-delit-amende-2026 -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/van-amenage-assurance-2026</loc>
     <lastmod>2026-07-24</lastmod>
