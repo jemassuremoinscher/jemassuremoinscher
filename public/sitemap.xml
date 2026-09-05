@@ -1151,15 +1151,8 @@
       <image:loc>https://www.jemassuremoinscher.fr/opengraph-image.png</image:loc>
     </image:image>
   </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/blog/assurance-trottinette-livreur-uber-eats-deliveroo-2026</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://www.jemassuremoinscher.fr/opengraph-image.png</image:loc>
-    </image:image>
-  </url>
+<!-- Grappe "trottinette livreur" — référence : /blog/assurance-trottinette-electrique-livreur-2026-le-guide-indispensable -->
+<!-- /blog/assurance-trottinette-livreur-uber-eats-deliveroo-2026: doublon SEO (949 mots vs 2556, cas Yacine + section revenus migrés en base), 301 → /blog/assurance-trottinette-electrique-livreur-2026-le-guide-indispensable -->
   <url>
     <loc>https://www.jemassuremoinscher.fr/blog/assurance-trottinette-vol-garantie-2026</loc>
     <lastmod>2026-07-24</lastmod>

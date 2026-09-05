@@ -5,6 +5,7 @@
   "redirects": [
     { "source": "/assurance-trottinette-electrique", "destination": "/assurance-trottinette", "statusCode": 301 },
     { "source": "/blog/trottinettes-electriques-edpm-assurance-obligatoire", "destination": "/blog/trottinette-electrique-sans-assurance-delit-amende-2026", "statusCode": 301 },
+    { "source": "/blog/assurance-trottinette-livreur-uber-eats-deliveroo-2026", "destination": "/blog/assurance-trottinette-electrique-livreur-2026-le-guide-indispensable", "statusCode": 301 },
     { "source": "/assurance-auto-malusse", "destination": "/assurance-auto-malus", "statusCode": 301 },
     { "source": "/assurance-creche", "destination": "/assurance-rc-pro", "statusCode": 301 },
     { "source": "/profil/jeune-conducteur-voiture-puissante", "destination": "/blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet", "statusCode": 301 },
