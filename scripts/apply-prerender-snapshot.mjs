@@ -68,6 +68,29 @@ const SNAPSHOTS = [
   { route: "/profil/chauffeur-vtc-taxi", file: "profil-chauffeur-vtc-taxi.html" },
   { route: "/profil/alcoolemie-stupefiants", file: "profil-alcoolemie-stupefiants.html" },
   { route: "/profil/delit-de-fuite", file: "profil-delit-de-fuite.html" },
+
+  // Duels comparatif (/comparatif/:slug) — liste canonique popularDuels (duelData.ts),
+  // 21 au total, 1 déjà ci-dessus.
+  { route: "/comparatif/axa-vs-allianz", file: "comparatif-axa-vs-allianz.html" },
+  { route: "/comparatif/amv-vs-maaf", file: "comparatif-amv-vs-maaf.html" },
+  { route: "/comparatif/direct-assurance-vs-l-olivier", file: "comparatif-direct-assurance-vs-l-olivier.html" },
+  { route: "/comparatif/maaf-vs-gmf", file: "comparatif-maaf-vs-gmf.html" },
+  { route: "/comparatif/matmut-vs-mma", file: "comparatif-matmut-vs-mma.html" },
+  { route: "/comparatif/maif-vs-axa", file: "comparatif-maif-vs-axa.html" },
+  { route: "/comparatif/macif-vs-groupama", file: "comparatif-macif-vs-groupama.html" },
+  { route: "/comparatif/direct-assurance-vs-luko", file: "comparatif-direct-assurance-vs-luko.html" },
+  { route: "/comparatif/gmf-vs-matmut", file: "comparatif-gmf-vs-matmut.html" },
+  { route: "/comparatif/allianz-vs-maaf", file: "comparatif-allianz-vs-maaf.html" },
+  { route: "/comparatif/axa-vs-maaf", file: "comparatif-axa-vs-maaf.html" },
+  { route: "/comparatif/maif-vs-gmf", file: "comparatif-maif-vs-gmf.html" },
+  { route: "/comparatif/generali-vs-axa", file: "comparatif-generali-vs-axa.html" },
+  { route: "/comparatif/april-vs-alan", file: "comparatif-april-vs-alan.html" },
+  { route: "/comparatif/acheel-vs-direct-assurance", file: "comparatif-acheel-vs-direct-assurance.html" },
+  { route: "/comparatif/abeille-vs-groupama", file: "comparatif-abeille-vs-groupama.html" },
+  { route: "/comparatif/harmonie-vs-ag2r", file: "comparatif-harmonie-vs-ag2r.html" },
+  { route: "/comparatif/swiss-life-vs-generali", file: "comparatif-swiss-life-vs-generali.html" },
+  { route: "/comparatif/luko-vs-acheel", file: "comparatif-luko-vs-acheel.html" },
+  { route: "/comparatif/alan-vs-april", file: "comparatif-alan-vs-april.html" },
 ];
 
 // Référence un asset hashé Vite : /assets/nom-<hash>.ext
