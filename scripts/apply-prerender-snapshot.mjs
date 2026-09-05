@@ -53,6 +53,21 @@ const SNAPSHOTS = [
   { route: "/assurance-gli", file: "assurance-gli.html" },
   { route: "/assurance-pno", file: "assurance-pno.html" },
   { route: "/gestion-locative", file: "gestion-locative.html" },
+
+  // Profils niche (/profil/:slug) — reste des 14, 1 déjà ci-dessus.
+  { route: "/profil/retrait-permis", file: "profil-retrait-permis.html" },
+  { route: "/profil/frequence-sinistres", file: "profil-frequence-sinistres.html" },
+  { route: "/profil/sans-antecedents", file: "profil-sans-antecedents.html" },
+  { route: "/profil/jeune-conducteur-voiture-puissante", file: "profil-jeune-conducteur-voiture-puissante.html" },
+  { route: "/profil/fausse-declaration", file: "profil-fausse-declaration.html" },
+  { route: "/profil/malus-eleve", file: "profil-malus-eleve.html" },
+  { route: "/profil/permis-etranger", file: "profil-permis-etranger.html" },
+  { route: "/profil/senior-75-plus", file: "profil-senior-75-plus.html" },
+  { route: "/profil/voiture-collection", file: "profil-voiture-collection.html" },
+  { route: "/profil/vehicule-importe", file: "profil-vehicule-importe.html" },
+  { route: "/profil/chauffeur-vtc-taxi", file: "profil-chauffeur-vtc-taxi.html" },
+  { route: "/profil/alcoolemie-stupefiants", file: "profil-alcoolemie-stupefiants.html" },
+  { route: "/profil/delit-de-fuite", file: "profil-delit-de-fuite.html" },
 ];
 
 // Référence un asset hashé Vite : /assets/nom-<hash>.ext
