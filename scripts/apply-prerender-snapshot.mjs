@@ -29,8 +29,15 @@ const rootDir = process.cwd();
 const distDir = path.join(rootDir, "dist");
 const snapshotDir = path.join(rootDir, "prerender-snapshots");
 
-// route -> fichier snapshot (cf. routeSlug dans prerender-routes.mjs). Étape 1 : la home seule.
-const SNAPSHOTS = [{ route: "/", file: "home.html" }];
+// route -> fichier snapshot (cf. routeSlug dans prerender-routes.mjs). Premier lot réel
+// (home + 4 routes test), validé en local avant extension aux 57 routes restantes.
+const SNAPSHOTS = [
+  { route: "/", file: "home.html" },
+  { route: "/assurance-auto", file: "assurance-auto.html" },
+  { route: "/assurance-moto", file: "assurance-moto.html" },
+  { route: "/profil/resilie-non-paiement", file: "profil-resilie-non-paiement.html" },
+  { route: "/comparatif/maif-vs-macif", file: "comparatif-maif-vs-macif.html" },
+];
 
 // Référence un asset hashé Vite : /assets/nom-<hash>.ext
 const ASSET_RE = /\/assets\/([a-zA-Z0-9._-]+?)-([\w-]{8,})\.(js|css|png|jpe?g|webp|svg|avif|woff2?|ico)/g;

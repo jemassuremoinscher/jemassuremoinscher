@@ -186,6 +186,18 @@ const main = async () => {
           document
             .querySelectorAll('[data-prerender-strip], [role="dialog"], [data-sonner-toaster]')
             .forEach((el) => el.remove());
+
+          // Le bootstrap GTM/Meta Pixel/Clarity d'index.html (inline, légitime) injecte
+          // dynamiquement des <script src> lors de son exécution ici — capturés dans le
+          // snapshot, ils figeraient des valeurs propres à CETTE session (ex. domain=127.0.0.1
+          // dans l'URL Meta Pixel). Le bootstrap inline reste intact et se réexécute
+          // normalement pour chaque vrai visiteur, qui régénère ses propres tags : on retire
+          // uniquement ces <script src> injectés, jamais le bootstrap lui-même.
+          document
+            .querySelectorAll(
+              'script[src*="connect.facebook.net"], script[src*="clarity.ms"], script[src*="googletagmanager.com"]'
+            )
+            .forEach((el) => el.remove());
         });
 
         const html = "<!DOCTYPE html>\n" + (await page.content()).replace(/^<!DOCTYPE html>/i, "").trim();
