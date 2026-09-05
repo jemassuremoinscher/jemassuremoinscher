@@ -29,14 +29,30 @@ const rootDir = process.cwd();
 const distDir = path.join(rootDir, "dist");
 const snapshotDir = path.join(rootDir, "prerender-snapshots");
 
-// route -> fichier snapshot (cf. routeSlug dans prerender-routes.mjs). Premier lot réel
-// (home + 4 routes test), validé en local avant extension aux 57 routes restantes.
+// route -> fichier snapshot (cf. routeSlug dans prerender-routes.mjs).
 const SNAPSHOTS = [
   { route: "/", file: "home.html" },
   { route: "/assurance-auto", file: "assurance-auto.html" },
   { route: "/assurance-moto", file: "assurance-moto.html" },
   { route: "/profil/resilie-non-paiement", file: "profil-resilie-non-paiement.html" },
   { route: "/comparatif/maif-vs-macif", file: "comparatif-maif-vs-macif.html" },
+
+  // Pages catégorie (MultiStepQuoteForm) — reste des 17, 2 déjà ci-dessus.
+  { route: "/comparateur", file: "comparateur.html" },
+  { route: "/assurance-trottinette", file: "assurance-trottinette.html" },
+  { route: "/assurance-sante", file: "assurance-sante.html" },
+  { route: "/assurance-habitation", file: "assurance-habitation.html" },
+  { route: "/assurance-pret", file: "assurance-pret.html" },
+  { route: "/assurance-prevoyance", file: "assurance-prevoyance.html" },
+  { route: "/assurance-animaux", file: "assurance-animaux.html" },
+  { route: "/assurance-vie", file: "assurance-vie.html" },
+  { route: "/assurance-expatries", file: "assurance-expatries.html" },
+  { route: "/assurance-mrp", file: "assurance-mrp.html" },
+  { route: "/assurance-rc-pro", file: "assurance-rc-pro.html" },
+  { route: "/assurance-metiers-atypiques", file: "assurance-metiers-atypiques.html" },
+  { route: "/assurance-gli", file: "assurance-gli.html" },
+  { route: "/assurance-pno", file: "assurance-pno.html" },
+  { route: "/gestion-locative", file: "gestion-locative.html" },
 ];
 
 // Référence un asset hashé Vite : /assets/nom-<hash>.ext
