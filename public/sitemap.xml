@@ -170,6 +170,11 @@
   <!-- Blog — Métiers Atypiques piliers -->
 <!-- SEO Pages -->
   <url>
+    <loc>https://www.jemassuremoinscher.fr/assurance-trottinette</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.jemassuremoinscher.fr/assurance-trottinette-electrique</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -2165,12 +2170,6 @@
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/landing/senior</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/landing/trottinette</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
