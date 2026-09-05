@@ -98,7 +98,6 @@ const AssuranceAutoMalusse = lazy(() => import("./pages/seo/AssuranceAutoMalusse
 const AssuranceJeuneConducteur = lazy(() => import("./pages/seo/AssuranceJeuneConducteur"));
 const MutuelleTNS = lazy(() => import("./pages/seo/MutuelleTNS"));
 const CategorieAutoSEO = lazy(() => import("./pages/seo/CategorieAutoSEO"));
-const AssuranceTrottinetteElectrique = lazy(() => import("./pages/seo/AssuranceTrottinetteElectrique"));
 const AssuranceAutoPermisEtranger = lazy(() => import("./pages/seo/AssuranceAutoPermisEtranger"));
 const AssuranceEmprunteurSEO = lazy(() => import("./pages/seo/AssuranceEmprunteurSEO"));
 const Comparateur = lazy(() => import("./pages/Comparateur"));
@@ -295,7 +294,6 @@ const App = () => {
                 <Route path="/assurance-auto-jeune-conducteur" element={<AssuranceJeuneConducteur />} />
                 <Route path="/mutuelle-tns" element={<MutuelleTNS />} />
                 <Route path="/assurance-auto-comparatif" element={<CategorieAutoSEO />} />
-                <Route path="/assurance-trottinette-electrique" element={<AssuranceTrottinetteElectrique />} />
                 <Route path="/assurance-auto-permis-etranger" element={<AssuranceAutoPermisEtranger />} />
                 <Route path="/assurance-emprunteur" element={<AssuranceEmprunteurSEO />} />
                 <Route path="/assurance-auto/ville/:slug" element={<CityInsurancePage />} />

@@ -175,7 +175,7 @@ const SEOContent = () => {
                 <ul className="space-y-2">
                   <li><Link to="/assurance-auto-malus" className="text-xs text-muted-foreground hover:text-primary transition-colors">Assurance auto malussé</Link></li>
                   <li><Link to="/assurance-auto-jeune-conducteur" className="text-xs text-muted-foreground hover:text-primary transition-colors">Jeune conducteur</Link></li>
-                  <li><Link to="/assurance-trottinette-electrique" className="text-xs text-muted-foreground hover:text-primary transition-colors">Trottinette électrique</Link></li>
+                  <li><Link to="/assurance-trottinette" className="text-xs text-muted-foreground hover:text-primary transition-colors">Trottinette électrique</Link></li>
                   <li><Link to="/assurance-auto-permis-etranger" className="text-xs text-muted-foreground hover:text-primary transition-colors">Permis étranger</Link></li>
                   <li><Link to="/assurance-emprunteur" className="text-xs text-muted-foreground hover:text-primary transition-colors">Assurance emprunteur</Link></li>
                   <li><Link to="/mutuelle-tns" className="text-xs text-muted-foreground hover:text-primary transition-colors">Mutuelle TNS</Link></li>

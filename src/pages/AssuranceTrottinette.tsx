@@ -146,7 +146,7 @@ const AssuranceTrottinette = () => {
               <li>✓ Vérifier que votre trottinette respecte les <strong>25 km/h</strong> maximum (au-delà = homologation moto obligatoire)</li>
               <li>✓ Comparer RC seule vs formule complète (vol + casse + assistance)</li>
               <li>✓ Souscrire une garantie vol avec <strong>antivol homologué SRA</strong></li>
-              <li>✓ En savoir plus sur la <Link to="/assurance-trottinette-electrique" className="text-primary hover:underline font-medium">réglementation EDPM détaillée</Link></li>
+              <li>✓ En savoir plus sur la <Link to="/blog/trottinette-electrique-sans-assurance-delit-amende-2026" className="text-primary hover:underline font-medium">réglementation EDPM détaillée</Link></li>
             </ul>
             <p className="text-xs text-muted-foreground/80 mt-4">
               Service 100% en ligne basé à Nice (06000).
@@ -239,7 +239,7 @@ const AssuranceTrottinette = () => {
               Aller plus loin sur l'assurance trottinette électrique
             </h2>
             <div className="grid md:grid-cols-2 gap-4 mb-6">
-              <Link to="/assurance-trottinette-electrique" className="block p-5 rounded-xl border border-border/60 hover:border-primary hover:bg-primary/5 transition">
+              <Link to="/blog/trottinette-electrique-sans-assurance-delit-amende-2026" className="block p-5 rounded-xl border border-border/60 hover:border-primary hover:bg-primary/5 transition">
                 <div className="font-semibold text-foreground mb-1">Guide réglementation EDPM</div>
                 <div className="text-sm text-muted-foreground">Loi, obligations, sanctions : tout ce qu'il faut savoir avant de rouler.</div>
               </Link>

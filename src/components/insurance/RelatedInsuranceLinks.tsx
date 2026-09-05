@@ -25,8 +25,7 @@ const allProducts: Record<string, RelatedLink> = {
   mrp: { to: "/assurance-mrp", label: "Assurance MRP", description: "Multirisque pour vos locaux professionnels" },
   pno: { to: "/assurance-pno", label: "Assurance PNO", description: "Propriétaire non occupant : protégez votre bien" },
   gli: { to: "/assurance-gli", label: "Garantie Loyers Impayés", description: "Sécurisez vos revenus locatifs" },
-  trottinette: { to: "/assurance-trottinette", label: "Assurance Trottinette", description: "EDPM : assurance obligatoire dès 2,90€/mois" },
-  trottinetteElectrique: { to: "/assurance-trottinette-electrique", label: "Assurance Trottinette Électrique", description: "EDPM : couverture obligatoire dès 2,90€/mois" },
+  trottinette: { to: "/assurance-trottinette", label: "Assurance Trottinette Électrique", description: "EDPM : assurance obligatoire dès 2,90€/mois" },
   permisEtranger: { to: "/assurance-auto-permis-etranger", label: "Permis Étranger", description: "Assurance auto avec permis étranger accepté" },
   emprunteur: { to: "/assurance-emprunteur", label: "Assurance Emprunteur", description: "Changez à tout moment, économisez jusqu'à 15 000€" },
   metiersAtypiques: { to: "/assurance-metiers-atypiques", label: "Métiers Atypiques", description: "Activités à risques : devis sur-mesure auprès de 12 assureurs spé." },
@@ -72,7 +71,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   moto: {
-    products: ["auto", "trottinette", "trottinetteElectrique", "habitation", "jeuneConducteur"],
+    products: ["auto", "trottinette", "habitation", "jeuneConducteur"],
     articles: [
       { to: "/blog/meilleure-assurance-auto-2026", label: "Guide assurance véhicule 2026" },
       { to: "/blog/resiliation-assurance-droits-2026", label: "Résilier son assurance facilement" },
@@ -207,7 +206,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   trottinette: {
-    products: ["auto", "moto", "trottinetteElectrique"],
+    products: ["auto", "moto"],
     articles: [
       { to: "/blog/comparatif-assurance-trottinette-electrique-2026", label: "Comparatif assurance trottinette 2026" },
       { to: "/blog/assurance-trottinette-vol-garantie-2026", label: "Garantie vol trottinette" },

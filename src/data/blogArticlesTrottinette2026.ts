@@ -85,7 +85,7 @@ Couvert uniquement si vous prouvez le vol de clé (effraction du domicile, vol d
 **Le vol partiel (batterie, roue, écran) est-il couvert ?**
 Rarement en formule standard. Seules les formules Premium et Tous Risques incluent le vol de pièces avec démontage avéré.
 
-**Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette-electrique) · [Assurance trottinette livreur](/assurance-trottinette-livreur) · [Vélos cargos et VAE : protection vol](/blog/velos-cargos-vae-protection-vol-urbain)
+**Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette) · [Assurance trottinette livreur](/assurance-trottinette-livreur) · [Vélos cargos et VAE : protection vol](/blog/velos-cargos-vae-protection-vol-urbain)
     `
   },
   {
@@ -183,7 +183,7 @@ Non. L'expertise reconstitue les modifications historiques (firmware, EEPROM). E
 **Le débridage logiciel (sans modification matérielle) est-il toléré ?**
 Non. La loi vise la vitesse réelle, pas la méthode. Logiciel ou matériel, même sanctions.
 
-**Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette-electrique) · [Comparateur EDPM](/comparateur) · [Trottinettes & EDPM : l'obligation 2026](/blog/trottinettes-electriques-edpm-assurance-obligatoire)
+**Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette) · [Comparateur EDPM](/comparateur) · [Trottinettes & EDPM : l'obligation 2026](/blog/trottinettes-electriques-edpm-assurance-obligatoire)
     `
   },
   {
@@ -312,7 +312,7 @@ L'obligation est la même : un seul accident en livraison déclenche la nullité
 **Que se passe-t-il si je change de plateforme ?**
 Votre assurance pro reste valable, c'est la qualification d'activité qui compte, pas la marque de la plateforme.
 
-**Liens utiles** : [Assurance trottinette livreur](/assurance-trottinette-livreur) · [Assurance trottinette électrique](/assurance-trottinette-electrique) · [RC pro micro-entreprise](/landing/rc-pro-micro-entreprise)
+**Liens utiles** : [Assurance trottinette livreur](/assurance-trottinette-livreur) · [Assurance trottinette électrique](/assurance-trottinette) · [RC pro micro-entreprise](/landing/rc-pro-micro-entreprise)
     `
   },
   {
@@ -456,7 +456,7 @@ Oui, en cas de fausse déclaration, débridage, usage pro non couvert, alcool/st
 **L'autre conducteur n'est pas assuré, que faire ?**
 Saisir le **FGAO (Fonds de Garantie des Assurances Obligatoires)** qui indemnisera à la place du tiers défaillant.
 
-**Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette-electrique) · [Constat amiable](/glossaire/constat-amiable) · [Comparateur EDPM](/comparateur)
+**Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette) · [Constat amiable](/glossaire/constat-amiable) · [Comparateur EDPM](/comparateur)
     `
   },
   {
@@ -578,7 +578,7 @@ Non obligatoire (espace privé), mais la RC vie privée habitation est conseill�
 **Existe-t-il une assurance multi-EDPM (plusieurs engins, un contrat) ?**
 Oui chez certains assureurs spécialisés (Mobilease, Wakam, AssurOnline) : -25 à -40 % vs contrats séparés.
 
-**Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette-electrique) · [Trottinettes & EDPM obligation](/blog/trottinettes-electriques-edpm-assurance-obligatoire) · [Vol de trottinette](/blog/assurance-trottinette-vol-garantie-2026)
+**Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette) · [Trottinettes & EDPM obligation](/blog/trottinettes-electriques-edpm-assurance-obligatoire) · [Vol de trottinette](/blog/assurance-trottinette-vol-garantie-2026)
     `
   },
   {
@@ -757,7 +757,7 @@ Rarement de façon compétitive. Les spécialistes EDPM (Mobilease, Wakam, Cycla
 **Que faire si mon assureur refuse de m'assurer (trottinette débridée à l'achat, antécédents) ?**
 Demander un courtier spécialisé. Si refus systématique, saisir le **BCT EDPM** (extension du Bureau Central de Tarification).
 
-**Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette-electrique) · [Assurance trottinette livreur](/assurance-trottinette-livreur) · [Vol de trottinette : la garantie qui rembourse](/blog/assurance-trottinette-vol-garantie-2026) · [Débridage : les risques](/blog/trottinette-electrique-debridage-loi-risques-2026)
+**Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette) · [Assurance trottinette livreur](/assurance-trottinette-livreur) · [Vol de trottinette : la garantie qui rembourse](/blog/assurance-trottinette-vol-garantie-2026) · [Débridage : les risques](/blog/trottinette-electrique-debridage-loi-risques-2026)
     `
   },
   {
@@ -874,7 +874,7 @@ Oui. Le plafond légal est de 3 750 €, mais le juge module la sanction selon l
 **Les trottinettes en libre-service (Lime, Dott) nécessitent-elles ma propre assurance ?**
 La RC est incluse dans le service de location, mais elle couvre uniquement la durée de la course. Vérifiez les CGU : votre responsabilité personnelle peut être engagée en cas d'usage non conforme (débridage, hors zone, mineur).
 
-**Liens utiles** : [Assurance trottinette électrique : le guide complet](/assurance-trottinette-electrique) · [Assurance trottinette livreur](/assurance-trottinette-livreur) · [Vol de trottinette : la garantie qui rembourse](/blog/assurance-trottinette-vol-garantie-2026) · [Débridage : les risques](/blog/trottinette-electrique-debridage-loi-risques-2026)
+**Liens utiles** : [Assurance trottinette électrique : le guide complet](/assurance-trottinette) · [Assurance trottinette livreur](/assurance-trottinette-livreur) · [Vol de trottinette : la garantie qui rembourse](/blog/assurance-trottinette-vol-garantie-2026) · [Débridage : les risques](/blog/trottinette-electrique-debridage-loi-risques-2026)
     `
   }
 ];
