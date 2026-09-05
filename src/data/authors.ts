@@ -12,6 +12,12 @@ export interface Author {
   experienceYears?: number;
   /** Specialties for E-E-A-T signals */
   specialties: string[];
+  /**
+   * Type de schema.org à émettre pour cet auteur. "Organization" par défaut
+   * (attribution collective) — passer "Person" uniquement pour une personne
+   * réelle et identifiée, jamais pour une équipe.
+   */
+  entityType?: "Person" | "Organization";
 }
 
 /**
@@ -38,6 +44,18 @@ export const authors: Record<string, Author> = {
     registrationId: "Immatriculation ORIAS en cours",
     specialties: ["Toutes assurances", "Comparaison", "Conseil personnalisé"],
   },
+  "Paul Vuillier de Rabaudy": {
+    id: "paul-vuillier-de-rabaudy",
+    name: "Paul Vuillier de Rabaudy",
+    role: "Cofondateur, jemassuremoinscher.fr",
+    bio: "Paul Vuillier de Rabaudy est cofondateur de jemassuremoinscher.fr depuis janvier 2026. Titulaire d'un doctorat (PhD) en commerce international de Griffith College Dublin (mention 1st Class Honours, 93/100), son parcours combine création et direction d'entreprises, stratégie marketing, et gestion financière et juridique, en France, aux Émirats arabes unis et à l'international.",
+    credentials: [
+      "PhD International Business — Griffith College Dublin (1st Class Honours, 93/100)",
+      "Président du Groupe Mammouth depuis 2014 (Île Maurice)",
+    ],
+    specialties: ["Création et direction d'entreprises", "Stratégie marketing", "Gestion financière et juridique"],
+    entityType: "Person",
+  },
 };
 
 /**
@@ -48,33 +66,39 @@ export const getAuthor = (name: string): Author => {
 };
 
 /**
- * Generate JSON-LD Person schema for an author (E-E-A-T).
+ * Generate JSON-LD schema for an author (E-E-A-T).
  */
-export const getAuthorJsonLd = (author: Author) => ({
-  "@context": "https://schema.org",
-  // Organization et non Person : l'attribution est collective. Emettre un
-  // Person pour une equipe affirmerait l'existence d'un individu nomme.
-  "@type": "Organization",
-  "name": author.name,
-  "description": author.bio,
-  "knowsAbout": author.specialties,
-  ...(author.linkedinUrl && { "sameAs": [author.linkedinUrl] }),
-  ...(author.credentials.length > 0 && {
-    "hasCredential": author.credentials.map((c) => ({
-      "@type": "EducationalOccupationalCredential",
-      "credentialCategory": c,
-    })),
-  }),
-  ...(author.experienceYears && {
-    "hasOccupation": {
-      "@type": "Occupation",
-      "name": author.role,
-      "experienceRequirements": `${author.experienceYears} ans d'expérience`,
+export const getAuthorJsonLd = (author: Author) => {
+  // Organization par defaut : l'attribution est collective. Emettre un Person
+  // pour une equipe affirmerait l'existence d'un individu nomme. Person
+  // seulement quand author.entityType le demande explicitement — une vraie
+  // personne reelle et identifiee (cf. authors.ts, "Paul Vuillier de Rabaudy").
+  const isPerson = author.entityType === "Person";
+  return {
+    "@context": "https://schema.org",
+    "@type": isPerson ? "Person" : "Organization",
+    "name": author.name,
+    "description": author.bio,
+    "knowsAbout": author.specialties,
+    ...(isPerson && { "jobTitle": author.role }),
+    ...(author.linkedinUrl && { "sameAs": [author.linkedinUrl] }),
+    ...(author.credentials.length > 0 && {
+      "hasCredential": author.credentials.map((c) => ({
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": c,
+      })),
+    }),
+    ...(author.experienceYears && {
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": author.role,
+        "experienceRequirements": `${author.experienceYears} ans d'expérience`,
+      },
+    }),
+    "worksFor": {
+      "@type": "Organization",
+      "name": "jemassuremoinscher.fr",
+      "url": "https://www.jemassuremoinscher.fr",
     },
-  }),
-  "worksFor": {
-    "@type": "Organization",
-    "name": "jemassuremoinscher.fr",
-    "url": "https://www.jemassuremoinscher.fr",
-  },
-});
+  };
+};

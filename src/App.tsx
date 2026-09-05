@@ -119,6 +119,7 @@ const AssuranceGLI = lazy(() => import("./pages/AssuranceGLI"));
 const AssurancePNO = lazy(() => import("./pages/AssurancePNO"));
 const GestionLocative = lazy(() => import("./pages/GestionLocative"));
 const QuiSommesNous = lazy(() => import("./pages/QuiSommesNous"));
+const PaulVuillierDeRabaudy = lazy(() => import("./pages/team/PaulVuillierDeRabaudy"));
 const NosPartenaires = lazy(() => import("./pages/NosPartenaires"));
 const AvisClients = lazy(() => import("./pages/AvisClients"));
 const Blog = lazy(() => import("./pages/Blog"));
@@ -324,6 +325,7 @@ const App = () => {
                 <Route path="/assurance-auto-temporaire" element={<AssuranceAutoTemporaire />} />
                 <Route path="/gestion-locative" element={<GestionLocative />} />
                 <Route path="/qui-sommes-nous" element={<QuiSommesNous />} />
+                <Route path="/qui-sommes-nous/paul-vuillier-de-rabaudy" element={<PaulVuillierDeRabaudy />} />
                 <Route path="/nos-partenaires" element={<NosPartenaires />} />
                 <Route path="/avis-clients" element={<AvisClients />} />
                 <Route path="/blog" element={<Blog />} />
