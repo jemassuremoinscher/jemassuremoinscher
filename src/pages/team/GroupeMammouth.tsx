@@ -7,9 +7,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { addBreadcrumbSchema, addOrganizationSchema } from "@/utils/seoUtils";
 import { ExternalLink } from "lucide-react";
-import mammouthAiLogo from "@/assets/mammouth-group/mammouth-ai.png";
-import myefflLogo from "@/assets/mammouth-group/myeffl.png";
-import mayoLogo from "@/assets/mammouth-group/mayo-favicon.png";
+
+// Chemins publics en dur (public/, non hashés, non traités par le pipeline
+// d'assets Vite) — même mécanisme que le logo du header et la mascotte du
+// hero (src/components/Header.tsx, src/components/Hero.tsx), pas un import
+// ES depuis src/assets/.
+const jemassuremoinscherLogo = "/arthur-thumbs-up.webp";
+const mammouthAiLogo = "/mammouth-group/mammouth-ai.png";
+const myefflLogo = "/mammouth-group/myeffl.png";
+const mayoLogo = "/mammouth-group/mayo-favicon.png";
 
 const baseUrl = "https://www.jemassuremoinscher.fr";
 const canonical = `${baseUrl}/qui-sommes-nous/groupe-mammouth`;
@@ -31,6 +37,7 @@ const entities: GroupEntity[] = [
   {
     name: "jemassuremoinscher.fr",
     description: "Comparateur d'assurances en ligne, courtier indépendant enregistré ORIAS.",
+    logo: jemassuremoinscherLogo,
     href: "/",
     monogramColor: "bg-primary",
   },
@@ -86,7 +93,7 @@ const EntityCard = ({ entity }: { entity: GroupEntity }) => {
       <CardContent className="p-0 flex flex-col items-center gap-3">
         {entity.logo ? (
           <div className="h-16 w-16 rounded-xl overflow-hidden border border-border/40 flex items-center justify-center bg-white shrink-0">
-            <img src={entity.logo} alt={`Logo ${entity.name}`} className="h-full w-full object-cover" loading="lazy" />
+            <img src={entity.logo} alt={`Logo ${entity.name}`} className="h-full w-full object-contain p-1.5" loading="lazy" />
           </div>
         ) : (
           <Avatar className="h-16 w-16 text-xl">
