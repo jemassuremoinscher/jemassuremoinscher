@@ -17,6 +17,9 @@ const mammouthAiLogo = "/mammouth-group/mammouth-ai.png";
 const myefflLogo = "/mammouth-group/myeffl.png";
 const mayoLogo = "/mammouth-group/mayo-favicon.png";
 const provenceConceptLogo = "/mammouth-group/provence-concept.png";
+const mammouthPatrimoineLogo = "/mammouth-group/mammouth-patrimoine.png";
+const mammouthMotorsLogo = "/mammouth-group/mammouth-motors.png";
+const mammouthConnectLogo = "/mammouth-group/mammouth-connect.png";
 
 const baseUrl = "https://www.jemassuremoinscher.fr";
 const canonical = `${baseUrl}/qui-sommes-nous/groupe-mammouth`;
@@ -31,12 +34,13 @@ interface GroupEntity {
   monogramColor?: string;
 }
 
-// Ordre et statut vérifiés un par un — aucun logo ni lien inventé pour les
-// entités sans site public (Mammouth Patrimoine, Mammouth Motors, Mammouth
-// Connect ; Provence Concept a un logo mais pas de domaine personnalisé,
-// vérifié via Vercel). Descriptions de Mammouth Patrimoine/Motors/Connect
-// issues du LinkedIn de Paul (fournies directement, pas de présence web
-// propre à vérifier en ligne).
+// Ordre et statut vérifiés un par un — aucun lien inventé pour les entités
+// sans site public (Mammouth Patrimoine, Mammouth Motors, Mammouth Connect :
+// logos fournis directement par Paul, mais pas de domaine à lier ; Provence
+// Concept a un logo et une description sourcés sur son propre déploiement,
+// mais pas de domaine personnalisé — vérifié via Vercel). Descriptions de
+// Mammouth Patrimoine/Motors/Connect issues du LinkedIn de Paul (fournies
+// directement, pas de présence web propre à vérifier en ligne).
 const entities: GroupEntity[] = [
   {
     name: "jemassuremoinscher.fr",
@@ -80,16 +84,19 @@ const entities: GroupEntity[] = [
   {
     name: "Mammouth Patrimoine",
     description: "Service et conseil en France.",
+    logo: mammouthPatrimoineLogo,
     monogramColor: "bg-stone-600",
   },
   {
     name: "Mammouth Motors",
     description: "Showroom virtuel et négoce international de véhicules neufs, basé à Dubaï (UAE, Afrique, CEI, Amérique du Sud).",
+    logo: mammouthMotorsLogo,
     monogramColor: "bg-stone-500",
   },
   {
     name: "Mammouth Connect",
     description: "Centre d'appels à l'Île Maurice, pour entreprises francophones internationales.",
+    logo: mammouthConnectLogo,
     monogramColor: "bg-stone-600",
   },
 ];
