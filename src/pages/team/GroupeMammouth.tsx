@@ -99,7 +99,7 @@ const EntityCard = ({ entity }: { entity: GroupEntity }) => {
     <Card className="h-full p-6 text-center hover:shadow-md transition-shadow">
       <CardContent className="p-0 flex flex-col items-center gap-3">
         {entity.logo ? (
-          <div className="h-16 w-16 rounded-xl overflow-hidden border border-border/40 flex items-center justify-center bg-white shrink-0">
+          <div className="h-16 w-16 rounded-xl overflow-hidden border border-border/40 flex items-center justify-center bg-primary shrink-0">
             <img src={entity.logo} alt={`Logo ${entity.name}`} className="h-full w-full object-contain p-1.5" loading="lazy" />
           </div>
         ) : (
@@ -149,7 +149,7 @@ const GroupeMammouth = () => {
     <div className="min-h-screen bg-background">
       <SEOOptimized
         title="Groupe Mammouth | jemassuremoinscher.fr"
-        description="Le Groupe Mammouth, présidé par Paul Vuillier de Rabaudy depuis 2014 : jemassuremoinscher.fr, Mammouth AI, EFFL, Mayo et les autres entités du groupe."
+        description="Le Groupe Mammouth, présidé par Paul depuis 2014 : jemassuremoinscher.fr, Mammouth AI, EFFL, Mayo et les autres entités du groupe."
         canonical={canonical}
         jsonLd={jsonLd}
       />
@@ -170,7 +170,7 @@ const GroupeMammouth = () => {
           <div className="container mx-auto px-4 max-w-3xl">
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Groupe Mammouth</h1>
             <p className="text-muted-foreground leading-relaxed">
-              jemassuremoinscher.fr fait partie du Groupe Mammouth, présidé par Paul Vuillier de Rabaudy depuis 2014
+              jemassuremoinscher.fr fait partie du Groupe Mammouth, présidé par Paul depuis 2014
               (Île Maurice).
             </p>
           </div>

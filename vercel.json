@@ -3,6 +3,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
+    { "source": "/qui-sommes-nous/paul-vuillier-de-rabaudy", "destination": "/qui-sommes-nous/paul", "statusCode": 301 },
     { "source": "/assurance-trottinette-electrique", "destination": "/assurance-trottinette", "statusCode": 301 },
     { "source": "/blog/trottinettes-electriques-edpm-assurance-obligatoire", "destination": "/blog/trottinette-electrique-sans-assurance-delit-amende-2026", "statusCode": 301 },
     { "source": "/blog/assurance-trottinette-livreur-uber-eats-deliveroo-2026", "destination": "/blog/assurance-trottinette-electrique-livreur-2026-le-guide-indispensable", "statusCode": 301 },

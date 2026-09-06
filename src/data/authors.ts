@@ -44,11 +44,11 @@ export const authors: Record<string, Author> = {
     registrationId: "Immatriculation ORIAS en cours",
     specialties: ["Toutes assurances", "Comparaison", "Conseil personnalisé"],
   },
-  "Paul Vuillier de Rabaudy": {
-    id: "paul-vuillier-de-rabaudy",
-    name: "Paul Vuillier de Rabaudy",
+  "Paul": {
+    id: "paul",
+    name: "Paul",
     role: "Cofondateur, jemassuremoinscher.fr",
-    bio: "Paul Vuillier de Rabaudy est cofondateur de jemassuremoinscher.fr depuis janvier 2026. Titulaire d'un doctorat (PhD) en commerce international de Griffith College Dublin (mention 1st Class Honours, 93/100), son parcours combine création et direction d'entreprises, stratégie marketing, et gestion financière et juridique, en France, aux Émirats arabes unis et à l'international.",
+    bio: "Paul est cofondateur de jemassuremoinscher.fr depuis janvier 2026. Titulaire d'un doctorat (PhD) en commerce international de Griffith College Dublin (mention 1st Class Honours, 93/100), son parcours combine création et direction d'entreprises, stratégie marketing, et gestion financière et juridique, en France, aux Émirats arabes unis et à l'international.",
     credentials: [
       "PhD International Business — Griffith College Dublin (1st Class Honours, 93/100)",
       "Président du Groupe Mammouth depuis 2014 (Île Maurice)",
@@ -72,7 +72,7 @@ export const getAuthorJsonLd = (author: Author) => {
   // Organization par defaut : l'attribution est collective. Emettre un Person
   // pour une equipe affirmerait l'existence d'un individu nomme. Person
   // seulement quand author.entityType le demande explicitement — une vraie
-  // personne reelle et identifiee (cf. authors.ts, "Paul Vuillier de Rabaudy").
+  // personne reelle et identifiee (cf. authors.ts, "Paul").
   const isPerson = author.entityType === "Person";
   return {
     "@context": "https://schema.org",

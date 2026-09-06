@@ -6,9 +6,9 @@ import { authors, getAuthorJsonLd } from "@/data/authors";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { Briefcase, GraduationCap, Landmark, Megaphone, Rocket } from "lucide-react";
 
-const author = authors["Paul Vuillier de Rabaudy"];
+const author = authors["Paul"];
 const baseUrl = "https://www.jemassuremoinscher.fr";
-const canonical = `${baseUrl}/qui-sommes-nous/paul-vuillier-de-rabaudy`;
+const canonical = `${baseUrl}/qui-sommes-nous/paul`;
 
 interface CareerEntry {
   role: string;
@@ -66,8 +66,8 @@ const PaulVuillierDeRabaudy = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOOptimized
-        title="Paul Vuillier de Rabaudy — Cofondateur | jemassuremoinscher.fr"
-        description="Paul Vuillier de Rabaudy, cofondateur de jemassuremoinscher.fr depuis janvier 2026. PhD en commerce international, parcours en entrepreneuriat, marketing et finance."
+        title="Paul — Cofondateur | jemassuremoinscher.fr"
+        description="Paul, cofondateur de jemassuremoinscher.fr depuis janvier 2026. PhD en commerce international, parcours en entrepreneuriat, marketing et finance."
         canonical={canonical}
         jsonLd={jsonLd}
       />
