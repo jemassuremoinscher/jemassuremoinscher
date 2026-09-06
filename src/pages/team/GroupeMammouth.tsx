@@ -16,6 +16,7 @@ const jemassuremoinscherLogo = "/arthur-thumbs-up.webp";
 const mammouthAiLogo = "/mammouth-group/mammouth-ai.png";
 const myefflLogo = "/mammouth-group/myeffl.png";
 const mayoLogo = "/mammouth-group/mayo-favicon.png";
+const provenceConceptLogo = "/mammouth-group/provence-concept.png";
 
 const baseUrl = "https://www.jemassuremoinscher.fr";
 const canonical = `${baseUrl}/qui-sommes-nous/groupe-mammouth`;
@@ -31,8 +32,11 @@ interface GroupEntity {
 }
 
 // Ordre et statut vérifiés un par un — aucun logo ni lien inventé pour les
-// entités sans site public (Provence Concept, Mammouth Patrimoine, Mammouth
-// Motors, Mammouth Connect).
+// entités sans site public (Mammouth Patrimoine, Mammouth Motors, Mammouth
+// Connect ; Provence Concept a un logo mais pas de domaine personnalisé,
+// vérifié via Vercel). Descriptions de Mammouth Patrimoine/Motors/Connect
+// issues du LinkedIn de Paul (fournies directement, pas de présence web
+// propre à vérifier en ligne).
 const entities: GroupEntity[] = [
   {
     name: "jemassuremoinscher.fr",
@@ -67,22 +71,25 @@ const entities: GroupEntity[] = [
   },
   {
     name: "Provence Concept",
-    description: "Entité du Groupe Mammouth.",
+    description: "Vêtements imaginés en Provence : t-shirts, sweatshirts et bientôt polos.",
+    logo: provenceConceptLogo,
+    // Pas de domaine personnalisé (vérifié via Vercel : uniquement des URLs
+    // *.vercel.app par défaut) — pas de lien public pour l'instant.
     monogramColor: "bg-stone-500",
   },
   {
     name: "Mammouth Patrimoine",
-    description: "Structure holding du Groupe Mammouth.",
+    description: "Service et conseil en France.",
     monogramColor: "bg-stone-600",
   },
   {
     name: "Mammouth Motors",
-    description: "Entité du Groupe Mammouth.",
+    description: "Showroom virtuel et négoce international de véhicules neufs, basé à Dubaï (UAE, Afrique, CEI, Amérique du Sud).",
     monogramColor: "bg-stone-500",
   },
   {
     name: "Mammouth Connect",
-    description: "Entité du Groupe Mammouth.",
+    description: "Centre d'appels à l'Île Maurice, pour entreprises francophones internationales.",
     monogramColor: "bg-stone-600",
   },
 ];
