@@ -19,7 +19,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Mail, Phone, Send, FileText, ExternalLink, Plus, Trash2, ShieldCheck } from "lucide-react";
+import { Mail, Phone, MessageSquare, MessageCircle, Send, FileText, ExternalLink, Plus, Trash2, ShieldCheck } from "lucide-react";
 import type { DealRow } from "./types";
 import { STAGES } from "./types";
 import { AuditTimeline } from "./AuditTimeline";
@@ -384,6 +384,28 @@ export function DealDrawer({
               >
                 <Phone className="h-4 w-4 text-[#7C3AED] dark:text-[#C4B5FD]" />
                 {contact.phone}
+              </a>
+            )}
+            {contact?.phone && (
+              <a
+                href={`sms:${contact.phone}`}
+                className="flex items-center gap-3 rounded-2xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-4 py-3 text-sm text-slate-700 dark:text-slate-200 hover:bg-[#FAF5FF] dark:hover:bg-[#262140]"
+              >
+                <MessageSquare className="h-4 w-4 text-[#7C3AED] dark:text-[#C4B5FD]" />
+                SMS
+              </a>
+            )}
+            {contact?.phone && (
+              // Numéro nettoyé (chiffres uniquement) pour le lien wa.me, calculé
+              // uniquement à l'affichage — contact.phone en base n'est jamais modifié.
+              <a
+                href={`https://wa.me/${contact.phone.replace(/\D/g, "")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 rounded-2xl border border-[#E9D5FF] dark:border-[#362B54] bg-white dark:bg-[#1E1B2E] px-4 py-3 text-sm text-slate-700 dark:text-slate-200 hover:bg-[#FAF5FF] dark:hover:bg-[#262140]"
+              >
+                <MessageCircle className="h-4 w-4 text-[#7C3AED] dark:text-[#C4B5FD]" />
+                WhatsApp
               </a>
             )}
           </section>

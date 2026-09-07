@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useOutletContext } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, Tag, Pencil } from "lucide-react";
+import { Mail, Phone, MessageSquare, MessageCircle, Tag, Pencil } from "lucide-react";
 import { EditContactDialog } from "./EditContactDialog";
 
 type Ctx = { query: string };
@@ -122,6 +122,28 @@ export default function ContactsPage() {
                       >
                         <Phone className="h-3 w-3" />
                         {c.phone}
+                      </a>
+                    )}
+                    {c.phone && (
+                      <a
+                        href={`sms:${c.phone}`}
+                        className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300"
+                      >
+                        <MessageSquare className="h-3 w-3" />
+                        SMS
+                      </a>
+                    )}
+                    {c.phone && (
+                      // Numéro nettoyé (chiffres uniquement) pour wa.me, calculé
+                      // uniquement à l'affichage — c.phone en base n'est jamais modifié.
+                      <a
+                        href={`https://wa.me/${c.phone.replace(/\D/g, "")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-slate-600 dark:text-slate-300"
+                      >
+                        <MessageCircle className="h-3 w-3" />
+                        WhatsApp
                       </a>
                     )}
                   </div>
