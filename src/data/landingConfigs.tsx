@@ -1427,6 +1427,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Assurance vélo classique, VAE, vélo cargo. Vol, casse, RC, assistance dépannage. Couverture France + Europe. Devis gratuit.",
     seoKeyword: "assurance vélo",
     seoKeywords: "assurance VAE, assurance vélo électrique, assurance vélo cargo, assurance vol vélo",
+    // Désindexée : cannibalise /assurance-velo (même seoKeyword "assurance vélo"),
+    // même fix déjà appliqué à la config trottinette ci-dessous.
+    noindex: true,
     topBarText: "🚲 Vélo & VAE — vol + casse dès 4€/mois, devis 2 min",
     badgeText: "Mobilité douce",
     heroTitle: "Assurance",
@@ -1434,11 +1437,16 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     heroSubtitle: <><strong>Vol, casse, RC, assistance.</strong> Vélo classique, VAE, vélo cargo, gravel ou route. Couverture France + Europe dès 4€/mois.</>,
     mascotSrc: arthurBike,
     mascotAlt: "Arthur cycliste avec casque — assurance vélo",
-    speechText: "Vélo ou VAE volé toutes les 12 minutes en France — protégez le vôtre dès 4€/mois.",
+    // "Toutes les 12 minutes" retiré : aucune source dans le repo, et
+    // contredit le "400 000/an" de l'article de blog (ça ferait ~1,3 min).
+    // Aucun des deux chiffres n'étant sourcé, formulation qualitative.
+    speechText: "Le vol de vélo est l'un des sinistres les plus fréquents en ville — protégez le vôtre dès 4€/mois.",
     insuranceType: "habitation",
     insuranceLabel: "Vélo & VAE",
     stats: [
-      { icon: Bike, value: "15+", label: "Assureurs vélo" },
+      // "15+ Assureurs vélo" retiré : aucun assureur vélo spécialisé (Cyclassur,
+      // Sharelock, Qover...) n'est un partenaire réel du site (cf. Partners.tsx,
+      // 39 assureurs généralistes, aucun spécialiste vélo). Chiffre invérifiable.
       { icon: Wallet, value: "4€/mois", label: "À partir de" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Pour le devis" },
@@ -1449,11 +1457,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Heart, title: "RC vélo & dommages corporels", description: "Si vous blessez un piéton ou détériorez un bien tiers, couverture jusqu'à 4,5 M€." },
       { icon: Phone, title: "Assistance dépannage", description: "Crevaison, panne batterie VAE, casse : retour à domicile ou poursuite trajet pris en charge." },
     ],
-    testimonials: [
-      { name: "Sophie B.", location: "Vélotafeuse Paris", text: "VAE volé en 3 mois, remboursé valeur d'achat en 15 jours. Indispensable !" },
-      { name: "Famille M.", location: "Vélo cargo Lyon", text: "Cargo 4 500€ assuré pour 9€/mois : vol + casse + assistance. Top pour les enfants." },
-      { name: "Romain T.", location: "Cyclosportif Toulouse", text: "Vélo route carbone 6 000€ couvert même en compétition — rare et précieux." },
-    ],
+    // Témoignages retirés : 3 noms détaillés (Sophie B., Famille M., Romain T.)
+    // sans aucune preuve qu'il s'agit de vrais clients. Tableau vide = section
+    // masquée par AdsLandingTemplate (testimonials.length > 0).
+    testimonials: [],
     faqs: [
       { question: "L'antivol homologué est-il obligatoire ?", answer: "Oui pour la garantie vol : antivol agréé FUB 2 roues classé Sold Secure Gold ou ART minimum." },
       { question: "Mon vélo est-il couvert hors France ?", answer: "Oui, Europe géographique incluse par défaut chez la plupart des assureurs spécialisés." },
@@ -1579,11 +1586,12 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Heart, title: "Individuelle conducteur", description: "Frais médicaux, indemnités journalières, invalidité, décès : VOS blessures couvertes, pas seulement celles des tiers." },
       { icon: Phone, title: "Assistance & dépannage", description: "Panne batterie, crevaison, casse : retour à domicile pris en charge 24/7." },
     ],
-    testimonials: [
-      { name: "Julien P.", location: "Vélotafeur Paris", text: "Trottinette à 950 € volée devant le bureau : remboursée valeur d'achat en 12 jours. L'antivol homologué a tout changé." },
-      { name: "Sarah K.", location: "Étudiante Lyon", text: "Chute sur pavés humides : frais médicaux + radio + kiné pris en charge. Sans individuelle conducteur, je payais tout." },
-      { name: "Mehdi R.", location: "Livreur Lille", text: "Renversé un piéton en livraison : la RC a couvert 8 000 € de dommages. Sans assurance, j'étais ruiné." },
-    ],
+    // Témoignages retirés : 3 noms détaillés (Julien P., Sarah K., Mehdi R. —
+    // le chantier vélo n'en avait signalé que 2, le 3ème avait échappé à la
+    // relecture) sans aucune preuve qu'il s'agit de vrais clients. Même
+    // défaut que la config vélo ci-dessus, jamais traité au moment du fix
+    // noindex de cette config.
+    testimonials: [],
     faqs: [
       { question: "L'assurance trottinette est-elle vraiment obligatoire ?", answer: "Oui, la RC EDPM est obligatoire depuis 2019 pour circuler sur la voie publique. Sans assurance : 3 750 € d'amende et confiscation possible de l'engin." },
       { question: "Mon assurance habitation suffit-elle ?", answer: "Parfois, mais à vérifier : la RC vie privée des contrats MRH récents inclut souvent la RC EDPM (à confirmer par écrit). Elle ne couvre ni le vol, ni la casse, ni vos blessures." },

@@ -1979,13 +1979,13 @@ Rarement. La LLD inclut l'entretien mais pas l'assurance auto.
     content: `
 # Vélos Cargos et VAE : Comment Se Protéger Contre le Vol en Milieu Urbain ?
 
-En 2026, plus de 400 000 vélos sont volés chaque année en France. Avec un vélo cargo valant 3 000 à 7 000 € et un VAE entre 1 500 et 5 000 €, une assurance vol dédiée est devenue indispensable.
+En 2026, le vol de vélo reste l'un des sinistres les plus fréquents en ville. Avec un vélo cargo valant 3 000 à 7 000 € et un VAE entre 1 500 et 5 000 €, une assurance vol dédiée est devenue indispensable.
 
 ## L'ampleur du problème en 2026
 
 ### Les chiffres clés
 
-- **400 000+** vélos volés par an en France
+- **Un sinistre fréquent** : le vol de vélo touche chaque année un grand nombre de foyers en France
 - **Taux de récupération** : seulement 7 %
 - **VAE et cargos** : cibles privilégiées (valeur élevée, revente facile)
 - **Hotspots** : Paris, Lyon, Bordeaux, Marseille, Nantes

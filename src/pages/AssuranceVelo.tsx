@@ -27,7 +27,10 @@ const AssuranceVelo = () => (
       { question: "L'assurance habitation couvre-t-elle le vol de vélo ?", answer: "Oui à domicile, mais rarement à l'extérieur. Une assurance vélo dédiée couvre partout (rue, transport, voyage)." },
     ]}
     enBrefFacts={[
-      <><BrandName /> compare les assureurs vélo (Cyclassur, Sharelock, Qover…).</>,
+      // "Cyclassur, Sharelock, Qover" retiré : aucun n'est un partenaire réel
+      // du site (cf. Partners.tsx) — formulation générique en attendant de
+      // confirmer les vrais partenaires vélo avec Paul.
+      <><BrandName /> compare les offres d'assurance vélo adaptées à votre profil.</>,
       "Garantie vol valable partout, y compris en extérieur.",
       "VAE, cargo, pliant, speed-bike : tous types couverts.",
       "Tarifs dès 4€/mois pour un vélo musculaire.",
