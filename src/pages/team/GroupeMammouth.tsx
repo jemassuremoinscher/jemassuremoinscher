@@ -14,9 +14,9 @@ import { ExternalLink } from "lucide-react";
 // ES depuis src/assets/.
 const jemassuremoinscherLogo = "/arthur-thumbs-up.webp";
 const mammouthAiLogo = "/mammouth-group/mammouth-ai.png";
-const myefflLogo = "/mammouth-group/myeffl.png";
+const myefflLogo = "/mammouth-group/effl-light.png";
 const mayoLogo = "/mammouth-group/mayo-favicon.png";
-const provenceConceptLogo = "/mammouth-group/provence-concept.png";
+const provenceConceptLogo = "/mammouth-group/provence-concept-white.png";
 const mammouthPatrimoineLogo = "/mammouth-group/mammouth-patrimoine.png";
 const mammouthMotorsLogo = "/mammouth-group/mammouth-motors.png";
 const mammouthConnectLogo = "/mammouth-group/mammouth-connect.png";
@@ -32,6 +32,13 @@ interface GroupEntity {
   href?: string;
   external?: boolean;
   monogramColor?: string;
+  /**
+   * Couleur de marque réelle de l'entité, vérifiée sur son propre site (CSS/
+   * design tokens) — jamais devinée. Violet (bg-primary) reste réservé à
+   * jemassuremoinscher.fr ; les autres cartes logo l'utilisent par défaut
+   * faute de couleur vérifiée (cf. Mayo, Mammouth AI sans version blanche).
+   */
+  cardBg?: string;
 }
 
 // Ordre et statut vérifiés un par un — aucun lien inventé pour les entités
@@ -56,6 +63,11 @@ const entities: GroupEntity[] = [
     href: "https://www.mammouth-ai.com",
     external: true,
     monogramColor: "bg-orange-500",
+    // #006ae6 : --primary vérifié dans leur CSS (assets/styles-*.css). Pas de
+    // version blanche/inversée du logo trouvée (aucune référence dans le
+    // HTML/CSS, chemins usuels en 404) — logo actuel conservé tel quel, fond
+    // blanc opaque intégré au fichier, même traitement que Mayo.
+    cardBg: "#006ae6",
   },
   {
     name: "EFFL",
@@ -64,6 +76,10 @@ const entities: GroupEntity[] = [
     href: "https://www.myeffl.com",
     external: true,
     monogramColor: "bg-emerald-700",
+    // #004225 : rgb(0 66 37) trouvé sur .ring-primary dans leur CSS Next.js.
+    // Logo remplacé par leur propre variante claire (/logo-icon-light.png,
+    // trouvée dans le DOM rendu) — vérifiée composée sur ce fond avant usage.
+    cardBg: "#004225",
   },
   {
     name: "Mayo",
@@ -80,6 +96,10 @@ const entities: GroupEntity[] = [
     // Pas de domaine personnalisé (vérifié via Vercel : uniquement des URLs
     // *.vercel.app par défaut) — pas de lien public pour l'instant.
     monogramColor: "bg-stone-500",
+    // #15639e : --primary vérifié dans leur CSS Next.js (--brand: #3c8dcc,
+    // --brand-deep: #0e3d6b). Logo remplacé par leur propre logo-white.png,
+    // vérifié composé sur ce fond avant usage.
+    cardBg: "#15639e",
   },
   {
     name: "Mammouth Patrimoine",
@@ -106,7 +126,10 @@ const EntityCard = ({ entity }: { entity: GroupEntity }) => {
     <Card className="h-full p-6 text-center hover:shadow-md transition-shadow">
       <CardContent className="p-0 flex flex-col items-center gap-3">
         {entity.logo ? (
-          <div className="h-16 w-16 rounded-xl overflow-hidden border border-border/40 flex items-center justify-center bg-primary shrink-0">
+          <div
+            className={`h-16 w-16 rounded-xl overflow-hidden border border-border/40 flex items-center justify-center shrink-0 ${entity.cardBg ? "" : "bg-primary"}`}
+            style={entity.cardBg ? { backgroundColor: entity.cardBg } : undefined}
+          >
             <img src={entity.logo} alt={`Logo ${entity.name}`} className="h-full w-full object-contain p-1.5" loading="lazy" />
           </div>
         ) : (
