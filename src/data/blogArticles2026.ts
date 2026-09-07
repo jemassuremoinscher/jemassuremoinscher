@@ -2043,6 +2043,17 @@ Certains contrats habitation couvrent le vol de vélo :
 
 > **Conseil d'Arthur :** Votre assurance habitation couvre probablement le vol de vélo chez vous, mais rarement à l'extérieur. Vérifiez les plafonds et souscrivez une extension si nécessaire. **[→ Comparer les prix pour ce profil](/comparateur)**
 
+## Que faire en cas de vol de vélo ?
+
+Si votre vélo est volé, plusieurs démarches doivent être effectuées rapidement :
+
+1. **Porter plainte** au commissariat, à la gendarmerie, ou via la pré-plainte en ligne (service du Ministère de l'Intérieur) — indispensable pour toute indemnisation. Munissez-vous du numéro de série ou du numéro Bicycode si le vélo est marqué.
+2. **Déclarer le vol à votre assureur** dans le délai prévu par votre contrat. Le Code des assurances (article L113-2) impose un délai minimal de 2 jours ouvrés pour déclarer un vol, sauf délai contractuel plus favorable — vérifiez celui de votre contrat, et déclarez le plus tôt possible pour ne prendre aucun risque.
+3. **Fournir les justificatifs** demandés par l'assureur : facture d'achat, photos du vélo, preuve de l'antivol utilisé au moment du vol, récépissé de la plainte.
+4. **Signaler le vélo comme volé** sur la base Bicycode s'il y est enregistré — cela ne garantit pas sa récupération, mais facilite son identification par la police s'il est repéré ou revendu.
+
+> **Conseil d'Arthur :** Gardez toujours une copie de votre facture d'achat et une photo de votre vélo avec le numéro de série visible — cela accélère nettement le traitement du dossier en cas de vol. **[→ Comparer les prix pour ce profil](/comparateur)**
+
 ## FAQ
 
 **L'assurance est-elle obligatoire pour un VAE ?**

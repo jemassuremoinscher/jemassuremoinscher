@@ -43,6 +43,10 @@ const AssuranceVelo = () => (
       { question: "Combien coûte une assurance VAE ?", answer: "Entre 4€ et 25€/mois selon la valeur du vélo (musculaire 600€ vs VAE 3000€) et les garanties choisies." },
       { question: "L'assurance habitation couvre-t-elle le vol de vélo ?", answer: "Oui à domicile (garantie vol standard), mais rarement en dehors : à l'extérieur, la couverture est souvent limitée à 300-500€ — insuffisant pour un VAE ou un vélo cargo. Une extension vol vélo (généralement 5-10€/mois) permet d'étendre la couverture partout." },
       { question: "Comment est calculée l'indemnisation en cas de vol ou de casse ?", answer: "La plupart des contrats indemnisent en valeur d'usage : le montant remboursé diminue avec la vétusté du vélo (son âge), pas seulement en cas d'occasion. Certaines formules proposent une indemnisation en valeur d'achat (à neuf) — à vérifier précisément dans les conditions générales avant de choisir. Une franchise (montant restant à votre charge) s'applique généralement en plus, son niveau variant fortement d'un contrat à l'autre." },
+      // Formulation B validée : reliée au plafond, purement factuelle sur
+      // l'existence de ces produits — jamais présentés comme comparés par
+      // nous (aucun n'est partenaire, cf. Partners.tsx).
+      { question: "Une assurance vélo dédiée est-elle utile en complément de l'habitation ?", answer: "Si la valeur de votre vélo dépasse le plafond de la garantie vol de votre assurance habitation, des contrats spécifiquement dédiés au vélo existent chez certains assureurs — par exemple Hepster ou Laka. Ce ne sont pas des offres que nous comparons aujourd'hui." },
       { question: "Et pour un vélo cargo utilisé à titre professionnel (livraison) ?", answer: "Un usage professionnel change le risque assuré et doit être déclaré à l'assureur — une omission peut entraîner un refus d'indemnisation. Le vélo cargo s'est fortement développé ces dernières années en France (11 000 unités vendues en 2020, +354% vs 2019, Union Sport & Cycle) porté par la livraison urbaine, un usage à anticiper dès la souscription." },
     ]}
     enBrefFacts={[
