@@ -132,6 +132,13 @@ const buildBreadcrumbJsonLd = (items) => `
     }
     </script>`;
 
+// Une seule source de vérité pour le contenu de <meta name="robots">, utilisée
+// à la fois par renderPage() (nouvelle page) et par la réconciliation des
+// pages landing déjà générées (cf. boucle "Landing pages" plus bas) — évite
+// que les deux endroits divergent silencieusement comme avant ce fix.
+const robotsContent = (noindex) =>
+  noindex ? "noindex,nofollow" : "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1";
+
 const renderPage = (page) => {
   const canonical = `${baseUrl}${page.route}`;
   const override = metaOverrides.get(page.route);
@@ -165,7 +172,7 @@ const renderPage = (page) => {
 
     <title>${escapeHtml(title)}</title>
     <meta name="description" content="${escapeAttribute(description)}" />
-    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <meta name="robots" content="${robotsContent(page.noindex)}" />
     <link rel="canonical" href="${escapeAttribute(canonical)}" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="${escapeAttribute(title)}" />
@@ -779,7 +786,7 @@ const generateLandingAndProfilePages = async () => {
     };
 
     // ---- Landing pages (src/data/landingConfigs.tsx) ----
-    let lCreated = 0, lSkipped = 0;
+    let lCreated = 0, lSkipped = 0, lRobotsFixed = 0;
     try {
       const landingMod = await vite.ssrLoadModule(path.join(rootDir, "src/data/landingConfigs.tsx"));
       const configs = landingMod.landingConfigs || {};
@@ -787,7 +794,28 @@ const generateLandingAndProfilePages = async () => {
         const cfg = raw && raw.fr ? raw.fr : raw;
         if (!cfg || !cfg.seoTitle || !cfg.seoDescription) continue;
         const outputPath = path.join(rootDir, "landing", key, "index.html");
-        try { await access(outputPath); lSkipped += 1; continue; } catch {}
+        const desiredRobots = robotsContent(cfg.noindex);
+        try {
+          const existing = await readFile(outputPath, "utf8");
+          // Fichier déjà généré : on ne régénère pas tout le contenu (pourrait
+          // avoir été retouché à la main), mais on corrige la balise robots si
+          // elle ne correspond plus à cfg.noindex — sinon un noindex ajouté
+          // après coup dans landingConfigs.tsx n'a jamais d'effet réel sur le
+          // HTML servi (bug trouvé le 2026-09-07 : trottinette + 4 autres
+          // pages avaient noindex dans le code mais index,follow dans le HTML
+          // réellement déployé).
+          const robotsTagMatch = existing.match(/<meta[^>]+name=["']robots["'][^>]*>/i);
+          const desiredTag = `<meta name="robots" content="${desiredRobots}" />`;
+          if (!robotsTagMatch) {
+            await writeFile(outputPath, injectBeforeHeadEnd(existing, `    ${desiredTag}`), "utf8");
+            lRobotsFixed += 1;
+          } else if (robotsTagMatch[0] !== desiredTag) {
+            await writeFile(outputPath, existing.replace(robotsTagMatch[0], desiredTag), "utf8");
+            lRobotsFixed += 1;
+          }
+          lSkipped += 1;
+          continue;
+        } catch {}
         const h1 = [cfg.heroTitle, cfg.heroHighlight].filter(Boolean).join(" ").replace(/\s+/g, " ").trim() || cfg.seoTitle;
         const page = {
           route: `/landing/${key}`,
@@ -796,6 +824,7 @@ const generateLandingAndProfilePages = async () => {
           // emettait <title></title> sur 35 des 36 landings.
           title: cfg.seoTitle,
           description: cfg.seoDescription,
+          noindex: cfg.noindex,
           h1,
           intro: cfg.seoDescription,
           sections: [
@@ -809,7 +838,7 @@ const generateLandingAndProfilePages = async () => {
         await writeFile(outputPath, renderPage(page), "utf8");
         lCreated += 1;
       }
-      console.log(`[generate-static-pages] Landing pages: ${lCreated} created, ${lSkipped} already present.`);
+      console.log(`[generate-static-pages] Landing pages: ${lCreated} created, ${lSkipped} already present (${lRobotsFixed} robots corrigés).`);
     } catch (err) {
       console.warn("[generate-static-pages] Skipping landing prerender:", err?.message || err);
     }
