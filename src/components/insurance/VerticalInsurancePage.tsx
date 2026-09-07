@@ -58,6 +58,14 @@ export interface VerticalPageProps {
   reviewCount?: number;
   /** Expertise display label */
   expertiseLabel: string;
+  /**
+   * Points d'expertise personnalisés pour ExpertiseSection — à fournir dès
+   * que le défaut du composant ("50+ compagnies d'assurance partenaires
+   * comparées") ne correspond pas à la réalité de cette verticale (ex :
+   * vélo, où il n'existe aucun partenaire spécialisé, seulement l'option
+   * vol des assureurs habitation généralistes).
+   */
+  expertisePoints?: string[];
 }
 
 const VerticalInsurancePage = (props: VerticalPageProps) => {
@@ -152,7 +160,7 @@ const VerticalInsurancePage = (props: VerticalPageProps) => {
 
           <InsuranceBottomHub
             currentPage={props.slug}
-            expertiseSection={<ExpertiseSection insuranceType={props.expertiseLabel} />}
+            expertiseSection={<ExpertiseSection insuranceType={props.expertiseLabel} expertisePoints={props.expertisePoints} />}
             enBref={
               <EnBref
                 facts={
