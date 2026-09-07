@@ -216,6 +216,20 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
       { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
     ],
   },
+  // Entrée absente jusqu'au 2026-09-07 : la section "liens associés" ne
+  // s'affichait pas du tout sur /assurance-velo (relatedMap[currentPage]
+  // undefined → RelatedInsuranceLinks retourne null). Corrige aussi le
+  // maillage manquant vers l'article vélo cargo/VAE (aucun sens dans les
+  // deux directions avant ce jour).
+  velo: {
+    products: ["habitation", "trottinette"],
+    articles: [
+      { to: "/blog/velos-cargos-vae-protection-vol-urbain", label: "Vélos cargos et VAE : se protéger du vol" },
+    ],
+    tools: [
+      { to: "/comparateur", label: "Comparateur multi-assurances" },
+    ],
+  },
 };
 
 const RelatedInsuranceLinks = ({ currentPage }: RelatedInsuranceLinksProps) => {

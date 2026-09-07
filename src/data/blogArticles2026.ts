@@ -2064,6 +2064,8 @@ Oui, la plupart des contrats couvrent le vol en France et en Europe.
 
 **Puis-je assurer un vélo d'occasion ?**
 Oui, mais l'indemnisation sera basée sur la valeur vénale (avec décote).
+
+**Liens utiles** : [Assurance vélo & VAE : garantie vol et habitation](/assurance-velo) · [Comparateur d'assurances](/comparateur)
     `
   },
   {

@@ -1,10 +1,32 @@
 import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage";
 import BrandName from "@/components/BrandName";
+import VeloVolStatsAnswers from "@/components/insurance/VeloVolStatsAnswers";
 import arthurBike from "@/assets/mascotte/arthur-bike.png";
+
+// Schema WebPage avec citation des sources des statistiques du bloc
+// "Vol de vélo en France : les chiffres" (VeloVolStatsAnswers) — même pattern
+// que le webPageSchema de la home (src/pages/Index.tsx), jamais utilisé
+// avant ce jour sur une page verticale. URLs vérifiées le 2026-09-07.
+const veloStatsWebPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.jemassuremoinscher.fr/assurance-velo#webpage",
+  "url": "https://www.jemassuremoinscher.fr/assurance-velo",
+  "name": "Assurance vélo & VAE : garantie vol habitation",
+  "inLanguage": "fr-FR",
+  "dateModified": "2026-09-07",
+  "citation": [
+    { "@type": "CreativeWork", "name": "ADMA — Le vol de vélos en France (synthèse, avril 2023)", "url": "https://www.mobilites-actives.fr/ressource/le-vol-de-velos-en-france-synthese/" },
+    { "@type": "CreativeWork", "name": "SSMSI (ministère de l'Intérieur) — Vécu et ressenti en matière de sécurité", "url": "https://www.interieur.gouv.fr/Interstats/Publications-et-infographies/Interstats-References/Rapport-d-enquete-Vecu-et-ressenti-en-matiere-de-securite-2022-victimation-delinquance-et-sentiment-d-insecurite" },
+    { "@type": "CreativeWork", "name": "Union Sport & Cycle — Observatoire du Cycle 2025", "url": "https://www.unionsportcycle.com/les-actualites/2026-04-24/observatoire-du-cycle-les-chiffres" },
+  ],
+};
 
 const AssuranceVelo = () => (
   <VerticalInsurancePage
     slug="velo"
+    extraSchemas={[veloStatsWebPageSchema]}
+    extraSection={<VeloVolStatsAnswers />}
     breadcrumbLabel="Assurance Vélo & VAE"
     heroImage={arthurBike}
     heroAlt="Arthur à vélo"

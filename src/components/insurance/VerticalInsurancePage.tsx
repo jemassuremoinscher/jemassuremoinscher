@@ -66,6 +66,19 @@ export interface VerticalPageProps {
    * vol des assureurs habitation généralistes).
    */
   expertisePoints?: string[];
+  /**
+   * Schemas JSON-LD additionnels (ex : WebPage avec citation pour des
+   * statistiques sourcées) — étalés APRÈS les 3 schemas par défaut. Optionnel
+   * : si omis (toutes les pages actuelles sauf vélo), le JSON-LD émis reste
+   * identique au caractère près à avant cet ajout.
+   */
+  extraSchemas?: object[];
+  /**
+   * Section libre insérée entre le tableau de garanties et CourtierValueCards
+   * (ex : bloc de statistiques sourcées façon DirectAnswers). Optionnel : si
+   * omis, rien ne change pour les pages qui ne le renseignent pas.
+   */
+  extraSection?: ReactNode;
 }
 
 const VerticalInsurancePage = (props: VerticalPageProps) => {
@@ -105,7 +118,7 @@ const VerticalInsurancePage = (props: VerticalPageProps) => {
         ogTitle={props.ogTitle ?? props.seoTitle}
         ogDescription={props.ogDescription ?? props.seoDescription}
         twitterDescription={props.ogDescription ?? props.seoDescription}
-        jsonLd={[serviceSchema, faqSchema, insuranceProductSchema]}
+        jsonLd={[serviceSchema, faqSchema, insuranceProductSchema, ...(props.extraSchemas ?? [])]}
       />
       <Header />
       <Breadcrumbs items={[{ label: props.breadcrumbLabel }]} />
@@ -153,6 +166,8 @@ const VerticalInsurancePage = (props: VerticalPageProps) => {
           </div>
 
           {props.productKey && <ProductGuaranteeTable product={props.productKey} />}
+
+          {props.extraSection}
 
           <CourtierValueCards product={props.productKey ?? "auto"} />
 
