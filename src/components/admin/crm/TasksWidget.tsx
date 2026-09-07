@@ -13,7 +13,7 @@ import {
   resolveAssigneeNames,
   resolveCurrentAgentRef,
 } from '@/lib/crmApi';
-import type { DealTask, TaskPriority } from '@/types/crm';
+import type { DealTask, TaskContactMethod, TaskPriority } from '@/types/crm';
 
 interface TasksWidgetProps {
   onNavigateToDeal: (dealId: string) => void;
@@ -34,6 +34,27 @@ const PRIORITY_LABELS: Record<TaskPriority, string> = {
   high: 'Haute',
   urgent: 'Urgente',
 };
+
+// Tâches créées avant l'ajout de ce champ (ou via un autre chemin) : category
+// peut contenir n'importe quelle valeur, ou une chaîne vide. On n'affiche le
+// badge que pour une valeur reconnue — jamais d'erreur, jamais de valeur
+// brute non traduite affichée.
+const CONTACT_METHOD_STYLES: Record<TaskContactMethod, string> = {
+  call: 'bg-emerald-100 dark:bg-[#0F2E22] text-emerald-700 dark:text-emerald-400',
+  email: 'bg-sky-100 dark:bg-[#0F2333] text-sky-700 dark:text-sky-400',
+  sms: 'bg-violet-100 dark:bg-[#241A3D] text-violet-700 dark:text-violet-400',
+  whatsapp: 'bg-green-100 dark:bg-[#0F2E1A] text-green-700 dark:text-green-400',
+};
+
+const CONTACT_METHOD_LABELS: Record<TaskContactMethod, string> = {
+  call: 'Appel',
+  email: 'Email',
+  sms: 'SMS',
+  whatsapp: 'WhatsApp',
+};
+
+const isKnownContactMethod = (value: string): value is TaskContactMethod =>
+  value in CONTACT_METHOD_LABELS;
 
 const formatDue = (dueAt: string | null) => {
   if (!dueAt) return 'Sans échéance';
@@ -141,6 +162,11 @@ export const TasksWidget = ({ onNavigateToDeal }: TasksWidgetProps) => {
             <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${PRIORITY_STYLES[task.priority]}`}>
               {PRIORITY_LABELS[task.priority]}
             </span>
+            {task.category && isKnownContactMethod(task.category) && (
+              <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${CONTACT_METHOD_STYLES[task.category]}`}>
+                {CONTACT_METHOD_LABELS[task.category]}
+              </span>
+            )}
           </div>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
             {label} · {formatDue(task.due_at)}

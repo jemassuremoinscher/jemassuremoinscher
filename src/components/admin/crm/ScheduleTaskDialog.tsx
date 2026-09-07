@@ -10,7 +10,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { CalendarClock } from 'lucide-react';
 import { createDealTask, resolveCurrentAgentRef } from '@/lib/crmApi';
-import type { TaskPriority } from '@/types/crm';
+import type { TaskContactMethod, TaskPriority } from '@/types/crm';
 
 interface ScheduleTaskDialogProps {
   dealId: string;
@@ -26,11 +26,22 @@ const PRIORITY_OPTIONS: { value: TaskPriority; label: string }[] = [
   { value: 'urgent', label: 'Urgente' },
 ];
 
+// Qualification du canal prévu pour le rappel — aucune action n'est
+// déclenchée par ce champ (pas de lien tel:/sms:/mailto:/wa.me), juste une
+// valeur stockée dans deal_tasks.category pour le suivi.
+const CONTACT_METHOD_OPTIONS: { value: TaskContactMethod; label: string }[] = [
+  { value: 'call', label: 'Appel' },
+  { value: 'email', label: 'Email' },
+  { value: 'sms', label: 'SMS' },
+  { value: 'whatsapp', label: 'WhatsApp' },
+];
+
 export const ScheduleTaskDialog = ({ dealId, onCreated }: ScheduleTaskDialogProps) => {
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState('Rappeler le client');
   const [dueAt, setDueAt] = useState(defaultDueAt());
   const [priority, setPriority] = useState<TaskPriority>('normal');
+  const [contactMethod, setContactMethod] = useState<TaskContactMethod>('call');
   const [assignedTo, setAssignedTo] = useState<string>('unassigned');
   const [submitting, setSubmitting] = useState(false);
 
@@ -51,6 +62,7 @@ export const ScheduleTaskDialog = ({ dealId, onCreated }: ScheduleTaskDialogProp
     setTitle('Rappeler le client');
     setDueAt(defaultDueAt());
     setPriority('normal');
+    setContactMethod('call');
     setAssignedTo('unassigned');
   };
 
@@ -68,6 +80,7 @@ export const ScheduleTaskDialog = ({ dealId, onCreated }: ScheduleTaskDialogProp
         title: title.trim(),
         due_at: dueAt ? new Date(dueAt).toISOString() : null,
         priority,
+        category: contactMethod,
         assigned_to: assignedTo === 'unassigned' ? null : assignedTo,
         created_by: agent?.userId ?? null,
       });
@@ -111,6 +124,21 @@ export const ScheduleTaskDialog = ({ dealId, onCreated }: ScheduleTaskDialogProp
               </SelectTrigger>
               <SelectContent>
                 {PRIORITY_OPTIONS.map((opt) => (
+                  <SelectItem key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <Label>Type de contact</Label>
+            <Select value={contactMethod} onValueChange={(v) => setContactMethod(v as TaskContactMethod)}>
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {CONTACT_METHOD_OPTIONS.map((opt) => (
                   <SelectItem key={opt.value} value={opt.value}>
                     {opt.label}
                   </SelectItem>

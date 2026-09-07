@@ -49,6 +49,9 @@ export interface ActivityInsert {
 
 export type TaskPriority = 'low' | 'normal' | 'high' | 'urgent';
 export type TaskStatus = 'open' | 'done' | 'cancelled';
+// Type de contact prévu pour un rappel planifié — pas une action déclenchée,
+// juste une qualification stockée sur la tâche (cf. ScheduleTaskDialog).
+export type TaskContactMethod = 'call' | 'email' | 'sms' | 'whatsapp';
 
 export interface DealTask {
   id: string;
@@ -63,6 +66,12 @@ export interface DealTask {
   completed_at: string | null;
   created_at: string;
   updated_at: string;
+  // Colonne déjà présente en base (cf. src/integrations/supabase/types.ts),
+  // jamais exposée côté code jusqu'ici. Les tâches créées avant ce jour ont
+  // une valeur quelconque (pas forcément l'une des 4 ci-dessus) : tout code
+  // de lecture doit ignorer silencieusement une valeur non reconnue plutôt
+  // que planter ou l'afficher telle quelle.
+  category: string;
 }
 
 export interface DealTaskInsert {
@@ -74,6 +83,7 @@ export interface DealTaskInsert {
   status?: TaskStatus;
   assigned_to?: string | null;
   created_by?: string | null;
+  category?: TaskContactMethod;
 }
 
 // Vue qualite_par_source (lecture seule, une ligne par source_type, mois en cours) —
