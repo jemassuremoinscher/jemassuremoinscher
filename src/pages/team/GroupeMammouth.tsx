@@ -33,10 +33,10 @@ interface GroupEntity {
   external?: boolean;
   monogramColor?: string;
   /**
-   * Couleur de marque réelle de l'entité, vérifiée sur son propre site (CSS/
-   * design tokens) — jamais devinée. Violet (bg-primary) reste réservé à
-   * jemassuremoinscher.fr ; les autres cartes logo l'utilisent par défaut
-   * faute de couleur vérifiée (cf. Mayo, Mammouth AI sans version blanche).
+   * Couleur de marque réelle de l'entité (CSS/design tokens de son propre
+   * site), ou à défaut la couleur déjà intégrée dans son fichier logo —
+   * jamais devinée/inventée. Violet (bg-primary) reste exclusivement réservé
+   * à jemassuremoinscher.fr.
    */
   cardBg?: string;
 }
@@ -88,6 +88,11 @@ const entities: GroupEntity[] = [
     href: "https://www.mayocreche.fr",
     external: true,
     monogramColor: "bg-sky-500",
+    // #009fe3 : couleur intégrée dans leurs propres fichiers logo (favicon +
+    // image "logo blanc" trouvée sur leur CDN) — plus fidèle à leur identité
+    // visuelle réelle que le --primary de leur CSS (#3eace0, teinte dérivée
+    // pour l'UI). Logo inchangé (déjà blanc sur fond bleu, carré).
+    cardBg: "#009fe3",
   },
   {
     name: "Provence Concept",
@@ -106,18 +111,40 @@ const entities: GroupEntity[] = [
     description: "Service et conseil en France.",
     logo: mammouthPatrimoineLogo,
     monogramColor: "bg-stone-600",
+    // Pas de site public (vérifié : aucun projet Vercel, aucun repo GitHub) —
+    // donc aucune couleur de marque externe vérifiable. #3c8dcc est la
+    // couleur déjà intégrée dans le fichier logo fourni par Paul (pas une
+    // couleur de marque affirmée, juste un raccord visuel avec l'image).
+    cardBg: "#3c8dcc",
   },
   {
     name: "Mammouth Motors",
     description: "Showroom virtuel et négoce international de véhicules neufs, basé à Dubaï (UAE, Afrique, CEI, Amérique du Sud).",
     logo: mammouthMotorsLogo,
     monogramColor: "bg-stone-500",
+    // Pas de site public (idem Mammouth Patrimoine/Connect). #009ee2 est la
+    // couleur déjà intégrée dans le fichier logo fourni par Paul.
+    cardBg: "#009ee2",
   },
   {
     name: "Mammouth Connect",
     description: "Centre d'appels à l'Île Maurice, pour entreprises francophones internationales.",
     logo: mammouthConnectLogo,
     monogramColor: "bg-stone-600",
+    // Pas de site public (idem Mammouth Patrimoine/Motors). #3c8dcc est la
+    // couleur déjà intégrée dans le fichier logo fourni par Paul (identique
+    // à Mammouth Patrimoine — les deux fichiers partagent ce bleu).
+    cardBg: "#3c8dcc",
+  },
+  {
+    name: "FINOPAYE",
+    description: "Conseil en gestion de paye, basé à Rennes.",
+    // Aucun logo fourni pour l'instant — monogramme générique, comme les 3
+    // entités ci-dessus sans site public. Teinte "slate" pour rester distincte
+    // du bleu "stone" des logos Patrimoine/Motors/Connect. SASU active depuis
+    // le 17/06/2025 (SIREN 988 682 456, Rennes, dirigeant Alexandre Reinbold)
+    // — vérifiée Pappers. Pas de site public, pas de lien.
+    monogramColor: "bg-slate-500",
   },
 ];
 
@@ -198,7 +225,13 @@ const GroupeMammouth = () => {
 
         <section className="pt-6 pb-10 md:pt-8 md:pb-14">
           <div className="container mx-auto px-4 max-w-3xl">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Groupe Mammouth</h1>
+            {/* Option B validée : "Groupe Mammouth" redescend en eyebrow discret,
+                le H1 devient neutre ("Nos autres marques") — Paul ne veut plus
+                que le nom du groupe soit le grand titre visible de la page. */}
+            <span className="text-xs font-semibold uppercase tracking-wide text-primary">
+              Groupe Mammouth
+            </span>
+            <h1 className="mt-1 text-3xl md:text-4xl font-bold text-foreground mb-4">Nos autres marques</h1>
             <p className="text-muted-foreground leading-relaxed">
               jemassuremoinscher.fr fait partie du Groupe Mammouth, présidé par Paul depuis 2014
               (Île Maurice).
