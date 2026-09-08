@@ -35,9 +35,11 @@ export interface Activity {
   created_at: string;
 }
 
-// Types d'activité composables depuis ActivityComposer (note/call/email → tel quel,
-// "Conseil délivré" → meeting avec metadata.kind = 'advice').
-export type ComposableActionType = 'note' | 'call' | 'email' | 'meeting';
+// Types d'activité composables depuis ActivityComposer (note/call/email/sms/whatsapp
+// → tel quel, "Conseil délivré" → meeting avec metadata.kind = 'advice'). sms/whatsapp
+// sont une simple qualification manuelle (Paul journalise après avoir contacté le
+// client par ce canal) — aucune action déclenchée, comme note/call/email.
+export type ComposableActionType = 'note' | 'call' | 'email' | 'sms' | 'whatsapp' | 'meeting';
 
 export interface ActivityInsert {
   deal_id: string;

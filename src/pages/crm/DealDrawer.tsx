@@ -367,7 +367,11 @@ export function DealDrawer({
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6 px-6 py-6 mt-0">
-          <section className="grid gap-3 sm:grid-cols-2">
+          {/* Email/Téléphone/SMS/WhatsApp partagent déjà la même classe (donc le
+              même style) — seule la grille passe à 4 colonnes à partir de sm
+              pour que les 4 boutons tiennent sur une même rangée au lieu que
+              email se retrouve seul sur la rangée du dessus avec Téléphone. */}
+          <section className="grid gap-3 sm:grid-cols-4">
             {contact?.email && (
               <a
                 href={`mailto:${contact.email}`}

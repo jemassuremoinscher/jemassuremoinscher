@@ -4,7 +4,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { StickyNote, Phone, Mail, GraduationCap, Send } from 'lucide-react';
+import { StickyNote, Phone, Mail, MessageSquare, MessageCircle, GraduationCap, Send } from 'lucide-react';
 import { toast } from 'sonner';
 import { createActivity, resolveCurrentAgentRef } from '@/lib/crmApi';
 import type { CallOutcome, ComposableActionType } from '@/types/crm';
@@ -14,12 +14,14 @@ interface ActivityComposerProps {
   onCreated: () => void;
 }
 
-type QuickAction = 'note' | 'call' | 'email' | 'advice';
+type QuickAction = 'note' | 'call' | 'email' | 'sms' | 'whatsapp' | 'advice';
 
 const ACTIONS: { key: QuickAction; label: string; icon: typeof Phone }[] = [
   { key: 'note', label: 'Note', icon: StickyNote },
   { key: 'call', label: 'Appel', icon: Phone },
   { key: 'email', label: 'Email', icon: Mail },
+  { key: 'sms', label: 'SMS', icon: MessageSquare },
+  { key: 'whatsapp', label: 'WhatsApp', icon: MessageCircle },
   { key: 'advice', label: 'Conseil délivré', icon: GraduationCap },
 ];
 
@@ -70,7 +72,7 @@ export const ActivityComposer = ({ dealId, onCreated }: ActivityComposerProps) =
 
       return createActivity({
         ...base,
-        action_type: action satisfies ComposableActionType, // 'note' | 'email'
+        action_type: action satisfies ComposableActionType, // 'note' | 'email' | 'sms' | 'whatsapp'
         description: content || null,
       });
     },
@@ -154,7 +156,11 @@ export const ActivityComposer = ({ dealId, onCreated }: ActivityComposerProps) =
                 ? 'Ajouter une note...'
                 : action === 'call'
                   ? "Détails de l'appel (optionnel)..."
-                  : "Résumé de l'email envoyé..."
+                  : action === 'sms'
+                    ? 'Résumé du SMS envoyé...'
+                    : action === 'whatsapp'
+                      ? 'Résumé de la conversation WhatsApp...'
+                      : "Résumé de l'email envoyé..."
             }
           />
         </div>
