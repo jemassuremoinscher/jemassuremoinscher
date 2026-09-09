@@ -26,6 +26,11 @@ const allProducts: Record<string, RelatedLink> = {
   pno: { to: "/assurance-pno", label: "Assurance PNO", description: "Propriétaire non occupant : protégez votre bien" },
   gli: { to: "/assurance-gli", label: "Garantie Loyers Impayés", description: "Sécurisez vos revenus locatifs" },
   trottinette: { to: "/assurance-trottinette", label: "Assurance Trottinette Électrique", description: "EDPM : assurance obligatoire dès 2,90€/mois" },
+  // Absente jusqu'ici : relatedMap.velo.products référençait déjà "velo" en
+  // interne (n'a pas de sens, une page ne se recommande pas elle-même — sans
+  // effet car ignoré) mais surtout aucune entrée ne permettait à une AUTRE
+  // page de recommander vélo. Ajoutée pour relatedMap.trottinette.products.
+  velo: { to: "/assurance-velo", label: "Assurance Vélo & VAE", description: "Garantie vol vélo, VAE et vélo cargo dès 4€/mois" },
   permisEtranger: { to: "/assurance-auto-permis-etranger", label: "Permis Étranger", description: "Assurance auto avec permis étranger accepté" },
   emprunteur: { to: "/assurance-emprunteur", label: "Assurance Emprunteur", description: "Changez à tout moment, économisez jusqu'à 15 000€" },
   metiersAtypiques: { to: "/assurance-metiers-atypiques", label: "Métiers Atypiques", description: "Activités à risques : devis sur-mesure auprès de 12 assureurs spé." },
@@ -206,7 +211,10 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   trottinette: {
-    products: ["auto", "moto"],
+    // "velo" ajouté le 2026-09-09 : velo→trottinette existait déjà (products
+    // de l'entrée velo ci-dessous), pas l'inverse — maillage à sens unique
+    // entre les deux verticales mobilité douce jusqu'ici.
+    products: ["auto", "moto", "velo"],
     articles: [
       { to: "/blog/comparatif-assurance-trottinette-electrique-2026", label: "Comparatif assurance trottinette 2026" },
       { to: "/blog/assurance-trottinette-vol-garantie-2026", label: "Garantie vol trottinette" },

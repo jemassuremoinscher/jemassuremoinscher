@@ -18,6 +18,24 @@ import arthurFlying from "@/assets/mascotte/arthur-sprint-coin.webp";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
+import TrottinetteStatsAnswers from "@/components/insurance/TrottinetteStatsAnswers";
+
+// Schema WebPage avec citation de la source des statistiques du bloc
+// "Trottinette électrique en France : les chiffres" (TrottinetteStatsAnswers)
+// — même pattern que veloStatsWebPageSchema (src/pages/AssuranceVelo.tsx) et
+// le webPageSchema de la home. URL vérifiée le 2026-09-09.
+const trottinetteStatsWebPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.jemassuremoinscher.fr/assurance-trottinette#webpage",
+  "url": "https://www.jemassuremoinscher.fr/assurance-trottinette",
+  "name": "Assurance trottinette électrique : comparateur EDPM",
+  "inLanguage": "fr-FR",
+  "dateModified": "2026-09-09",
+  "citation": [
+    { "@type": "CreativeWork", "name": "ONISR — Bilan 2025 de la sécurité routière", "url": "https://www.onisr.securite-routiere.gouv.fr/en/road-safety-performance/annual-road-safety-reports/2025-road-safety-annual-report" },
+  ],
+};
 
 const AssuranceTrottinette = () => {
   const formRef = useRef<HTMLDivElement>(null);
@@ -106,7 +124,7 @@ const AssuranceTrottinette = () => {
         ogTitle="Assurance Trottinette Électrique 2026 : Comparez 10+ assureurs EDPM"
         ogDescription="RC obligatoire dès 2,90€/mois. Vol, casse, assistance jusqu'à 12€/mois. Devis gratuit en 2 minutes."
         twitterDescription="Comparez les assurances trottinette électrique en 2 minutes. RC dès 2,90€/mois. Gratuit et sans engagement."
-        jsonLd={[serviceSchema, howToSchema, faqSchema, insuranceProductSchema]}
+        jsonLd={[serviceSchema, howToSchema, faqSchema, insuranceProductSchema, trottinetteStatsWebPageSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Trottinette Électrique" }]} />
@@ -230,6 +248,8 @@ const AssuranceTrottinette = () => {
           <div ref={formRef} className="mb-16 min-h-[480px]">
             <MultiStepQuoteForm insuranceType="trottinette" />
           </div>
+
+          <TrottinetteStatsAnswers />
 
           <CourtierValueCards product="moto" />
 

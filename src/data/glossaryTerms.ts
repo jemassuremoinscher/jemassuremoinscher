@@ -756,4 +756,49 @@ Après 8 ans de détention :
     tags: ["assurance vie", "épargne", "placement", "fiscalité", "transmission"],
     relatedTerms: ["15", "21"],
   },
+  {
+    id: "26",
+    term: "EDPM",
+    slug: "edpm",
+    definition: "Engin de Déplacement Personnel Motorisé — catégorie légale qui inclut la trottinette électrique, la gyroroue, l'hoverboard et le monoroue.",
+    category: "Auto & Moto",
+    content: `Un **EDPM** (Engin de Déplacement Personnel Motorisé) est un véhicule à moteur électrique, sans homologation routière classique, destiné au transport d'une seule personne : trottinette électrique, gyroroue, hoverboard, monoroue.
+
+**Cadre légal (décret n°2019-1082) :**
+
+- Vitesse maximale autorisée : **25 km/h**
+- Circulation interdite sur les trottoirs (sauf autorisation municipale à allure piéton)
+- **Assurance responsabilité civile obligatoire** depuis 2019, comme pour un véhicule terrestre à moteur
+- Rouler sans assurance est un délit puni de **3 750€ d'amende**
+
+**Au-delà de 25 km/h**, l'engin est requalifié en cyclomoteur : immatriculation, casque et permis deviennent obligatoires, et l'assurance RC seule ne suffit plus.
+
+**Ce qui n'est pas un EDPM :** le vélo (classique ou à assistance électrique bridée à 25 km/h avec pédalage) suit un régime différent — pas d'obligation légale d'assurance pour la circulation, seule la responsabilité civile vie privée s'applique par défaut.`,
+    tags: ["edpm", "trottinette", "gyroroue", "hoverboard", "monoroue", "assurance obligatoire"],
+    relatedProducts: [
+      { label: "Assurance Trottinette Électrique", url: "/assurance-trottinette" },
+    ],
+  },
+  {
+    id: "27",
+    term: "Bicycode",
+    slug: "bicycode",
+    definition: "Système national de marquage antivol du vélo par gravure d'un numéro unique sur le cadre, facilitant son identification et sa restitution en cas de vol.",
+    category: "Auto & Moto",
+    content: `Le **Bicycode** est un dispositif national de marquage antivol pour vélos, créé par la FUB (Fédération française des Usagers de la Bicyclette). Un numéro unique est gravé sur le cadre et enregistré dans une base de données consultable par les forces de l'ordre.
+
+**À quoi ça sert :**
+
+- **Dissuasion** : un vélo marqué et traçable est moins attractif pour le revendre
+- **Restitution** : en cas de retrouvaille par la police (contrôle, vélo abandonné), le numéro permet de remonter au propriétaire déclaré
+- **Preuve d'identité du vélo** utile en complément d'une facture d'achat lors d'une déclaration de vol
+
+**Marquage obligatoire depuis 2021** sur les vélos neufs vendus par un professionnel. Il ne remplace pas une assurance vol : c'est un outil d'identification, pas une garantie financière — un vélo marqué peut quand même être volé et jamais retrouvé.
+
+**Bon à savoir :** de nombreux assureurs vélo demandent ou valorisent le marquage Bicycode dans les conditions de leur garantie vol.`,
+    tags: ["bicycode", "vélo", "vol", "marquage", "antivol", "fub"],
+    relatedProducts: [
+      { label: "Assurance Vélo & VAE", url: "/assurance-velo" },
+    ],
+  },
 ];
