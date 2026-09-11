@@ -3,6 +3,7 @@ import { motion, useReducedMotion, useInView, useMotionValue, useTransform, anim
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useGoogleReviews } from "@/hooks/useGoogleReviews";
+import { ORIAS_VERIFY_URL } from "@/config/site";
 
 import oriasLogo from "@/assets/logos/orias.jpg?w=480&format=webp";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
@@ -136,7 +137,7 @@ const TrustRow = () => {
             />
             <p className="text-sm font-bold text-foreground">{t('whyUs.oriasRegistered')}</p>
             <p className="text-xs font-mono text-primary font-semibold">{t('whyUs.oriasNumber')}</p>
-            <a href="https://www.orias.fr" target="_blank" rel="noopener noreferrer" aria-label={t("a11y.trust.oriasVerify")} className="text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2">
+            <a href={ORIAS_VERIFY_URL} target="_blank" rel="noopener noreferrer" aria-label={t("a11y.trust.oriasVerify")} className="text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2">
               {t('whyUs.verifyOrias')}
             </a>
           </motion.div>

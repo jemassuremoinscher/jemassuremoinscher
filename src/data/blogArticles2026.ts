@@ -3367,7 +3367,7 @@ En 2026, la fraude à l'assurance coûte 2,5 milliards d'euros par an en France.
 
 ### Comment se protéger
 
-- Vérifiez le numéro **ORIAS** du courtier sur orias.fr
+- Vérifiez le numéro **ORIAS** du courtier sur [orias.fr](https://www.orias.fr/home/resultSearch?valueSaisie=26011100)
 - Méfiez-vous des tarifs trop beaux pour être vrais
 - Payez par carte bancaire (possibilité de chargeback)
 - Vérifiez l'attestation auprès de l'assureur mentionné
@@ -3433,7 +3433,7 @@ En 2026, la fraude à l'assurance coûte 2,5 milliards d'euros par an en France.
 - Toute résiliation nécessite votre **signature**
 - Vérifiez auprès de votre assureur actuel avant toute action
 
-> **Conseil d'Arthur :** Pour éviter les arnaques, utilisez uniquement des comparateurs reconnus et des assureurs vérifiables sur orias.fr. La sécurité de vos données et de votre couverture en dépend. **[→ Comparer les prix pour ce profil](/comparateur)**
+> **Conseil d'Arthur :** Pour éviter les arnaques, utilisez uniquement des comparateurs reconnus et des assureurs vérifiables sur [orias.fr](https://www.orias.fr/home/resultSearch?valueSaisie=26011100). La sécurité de vos données et de votre couverture en dépend. **[→ Comparer les prix pour ce profil](/comparateur)**
 
 ## Les chiffres de la fraude en 2026
 
@@ -3455,7 +3455,7 @@ Portez plainte, contactez votre banque pour un chargeback, et signalez sur inter
 La protection juridique et la garantie fraude bancaire peuvent intervenir selon les contrats.
 
 **Comment vérifier qu'un assureur est légitime ?**
-Vérifiez son immatriculation sur le registre ORIAS (orias.fr) et sa présence sur le site de l'ACPR.
+Vérifiez son immatriculation sur le registre ORIAS ([orias.fr](https://www.orias.fr/home/resultSearch?valueSaisie=26011100)) et sa présence sur le site de l'ACPR.
     `
   },
   {
