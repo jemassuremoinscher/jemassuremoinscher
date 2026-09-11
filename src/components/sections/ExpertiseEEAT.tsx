@@ -24,7 +24,7 @@ const PILLARS = [
     icon: Scale,
     title: "Notre statut et notre indépendance",
     body:
-      "jemassuremoinscher.fr est édité par ARPV, courtier en assurances (immatriculation ORIAS en cours), soumis au Code des assurances et au contrôle de l'ACPR.",
+      "jemassuremoinscher.fr est édité par ARPV, courtier en assurances (immatriculé ORIAS n° 26011100), soumis au Code des assurances et au contrôle de l'ACPR.",
     bullets: [
       "Rémunération par commission de l'assureur, jamais par le client",
       "Aucun classement payant : les offres sont triées par pertinence tarifaire",

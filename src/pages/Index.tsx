@@ -156,7 +156,7 @@ const Index = () => {
         "name": "Qui édite jemassuremoinscher.fr et comment êtes-vous rémunérés ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Le site est édité par ARPV, courtier en assurances (immatriculation ORIAS en cours), soumis au Code des assurances et au contrôle de l'ACPR. Nous sommes rémunérés par une commission versée par l'assureur uniquement en cas de souscription : la comparaison reste gratuite et sans engagement pour l'utilisateur."
+          "text": "Le site est édité par ARPV, courtier en assurances (immatriculé ORIAS n° 26011100), soumis au Code des assurances et au contrôle de l'ACPR. Nous sommes rémunérés par une commission versée par l'assureur uniquement en cas de souscription : la comparaison reste gratuite et sans engagement pour l'utilisateur."
         }
       }
     ]

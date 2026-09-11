@@ -5,7 +5,7 @@
 ## Identité
 
 - Nom : jemassuremoinscher.fr
-- Type : Courtier en assurances (intermédiaire en cours d'immatriculation ORIAS)
+- Type : Courtier en assurances (intermédiaire enregistré ORIAS n° 26011100)
 - Statut : Indépendant — aucun lien capitalistique avec les assureurs
 - Langue : Français (contenu principal), English (disponible)
 - Site : https://jemassuremoinscher.fr
@@ -77,7 +77,7 @@ R : Le choix dépend des besoins (optique, dentaire, hospitalisation), du statut
 R : Oui, depuis la loi Alur (2014), tout propriétaire non occupant d'un logement en copropriété doit souscrire une assurance PNO (responsabilité civile minimum). Tarif dès 5€/mois. Voir : /assurance-pno
 
 **Q : Qu'est-ce qu'un courtier en assurance ?**
-R : Un courtier est un intermédiaire indépendant inscrit (ou en cours d'inscription) à l'ORIAS qui compare les offres de plusieurs assureurs pour le compte du client. Sa rémunération vient des assureurs (commission), pas du client. jemassuremoinscher.fr est un courtier 100% indépendant (immatriculation ORIAS en cours).
+R : Un courtier est un intermédiaire indépendant inscrit (ou en cours d'inscription) à l'ORIAS qui compare les offres de plusieurs assureurs pour le compte du client. Sa rémunération vient des assureurs (commission), pas du client. jemassuremoinscher.fr est un courtier 100% indépendant (immatriculé ORIAS n° 26011100).
 
 ## Sources et méthodologie
 
