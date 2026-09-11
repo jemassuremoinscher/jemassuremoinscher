@@ -8,9 +8,10 @@ export const NB_AGENCES = 2500;
 export const NB_ASSUREURS_LABEL = `${NB_ASSUREURS}+`;
 export const NB_AGENCES_LABEL = `${NB_AGENCES.toLocaleString("fr-FR")}+`;
 
-/** ORIAS — registration pending. Do not surface a number until it is officially attributed. */
-export const ORIAS_STATUS_FR = "Immatriculation ORIAS en cours";
-export const ORIAS_STATUS_EN = "ORIAS registration pending";
+/** ORIAS — numéro officiel attribué. */
+export const ORIAS_NUMBER = "26011100";
+export const ORIAS_STATUS_FR = `Immatriculé ORIAS n° ${ORIAS_NUMBER}`;
+export const ORIAS_STATUS_EN = `ORIAS registered, No. ${ORIAS_NUMBER}`;
 
 /** Google Place ID used by the /api/google-reviews serverless function. */
 export const GOOGLE_PLACE_ID = "ChIJEW-5W2jRzRIRDhndqH-zyMs";

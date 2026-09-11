@@ -36,12 +36,12 @@ export const authors: Record<string, Author> = {
     role: "Courtiers en assurance",
     bio: "Une équipe de conseillers en assurance basée à Nice, qui traite chaque jour des demandes réelles : auto malussée, jeune conducteur, mutuelle senior, RC pro, PNO et GLI. Chaque contenu s'appuie sur des sources officielles — Légifrance, France Assureurs, ACPR — ou sur nos propres données de devis, et est relu à chaque évolution réglementaire.",
     credentials: [
-      "Édité par ARPV, courtier en assurances (immatriculation ORIAS en cours)",
+      "Édité par ARPV, courtier en assurances (immatriculé ORIAS n° 26011100)",
       "Soumis au Code des assurances et au contrôle de l'ACPR",
       "Plus de 70 assureurs partenaires interrogés à garanties comparables",
       "Plus de 247 avis clients vérifiés",
     ],
-    registrationId: "Immatriculation ORIAS en cours",
+    registrationId: "ORIAS n° 26011100",
     specialties: ["Toutes assurances", "Comparaison", "Conseil personnalisé"],
   },
   "Paul": {

@@ -101,7 +101,7 @@ const SimpleFooter = () => {
             </h4>
             <div className="space-y-3">
               <p className="text-[11px] text-primary-foreground/50 leading-relaxed">
-                Jemassuremoinscher.fr est un comparateur d'assurances indépendant, en qualité de courtier en assurances (immatriculation ORIAS en cours). Nous sommes rémunérés par nos partenaires assureurs lors de la mise en relation.
+                Jemassuremoinscher.fr est un comparateur d'assurances indépendant, en qualité de courtier en assurances (immatriculé ORIAS n° 26011100). Nous sommes rémunérés par nos partenaires assureurs lors de la mise en relation.
               </p>
               <p className="text-[11px] text-primary-foreground/50 leading-relaxed">
                 Conformément à la réglementation, nous vous rappelons que l'utilisation de notre comparateur est gratuite et sans engagement. Les tarifs affichés sont indicatifs.
