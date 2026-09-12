@@ -251,6 +251,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
       vehicleModelStepMoto,
       vehicleYearStep,
       cs('moto', 'cylindree_moto', 'engineSize', [
+        opt(t, 'moto', 'cylindree_moto', '50', Bike),
         opt(t, 'moto', 'cylindree_moto', '125', Bike),
         opt(t, 'moto', 'cylindree_moto', 'medium', Bike),
         opt(t, 'moto', 'cylindree_moto', 'large', AlertTriangle),
@@ -812,6 +813,26 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
   };
 
 };
+
+// Variante isolée de l'étape âge partagée (ageStep, validation 18-99),
+// réservée au cyclomoteur 50cc (engineSize === '50') : le BSR/AM s'obtient
+// dès 14 ans, un profil que ageStep rejetterait entièrement. N'affecte ni
+// ageStep lui-même ni aucune autre verticale — injectée à la volée dans
+// MultiStepQuoteForm.tsx uniquement pour ce cas précis (cf. diagnostic du
+// 2026-09-12 : aucun mécanisme de step conditionnel générique n'existe dans
+// ce fichier, et ce n'est pas l'objet de cet ajout).
+export const buildAgeStepMoto50 = (t: TFn): FormStep => ({
+  id: 'age',
+  type: 'input',
+  title: t('step.shared.age.title'),
+  subtitle: t('step.shared.age.subtitle'),
+  field: 'age',
+  arthurHint: "L'âge influence fortement le calcul du tarif.",
+  inputType: 'number',
+  placeholder: t('step.shared.age.placeholder'),
+  validation: /^(1[4-9]|[2-9]\d)$/,
+  validationMessage: t('step.moto50.age.validation'),
+});
 
 // Backward-compatible export — fallback returns French text by reading raw keys via no-op t.
 // Components should prefer buildStepConfigs(t) for proper i18n.

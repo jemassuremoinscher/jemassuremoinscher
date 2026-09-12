@@ -15,7 +15,7 @@ import { useHoneypot } from '@/hooks/useHoneypot';
 import { trackGoogleAdsConversionWithParams } from '@/utils/googleAdsTracking';
 import { trackMetaLead } from '@/utils/metaPixelTracking';
 import { normalizeInsuranceTypeStrict } from '@/utils/insuranceTypeNormalizer';
-import { buildStepConfigs, type InsuranceType, type FormStep, type StepOption } from './stepConfigs';
+import { buildStepConfigs, buildAgeStepMoto50, type InsuranceType, type FormStep, type StepOption } from './stepConfigs';
 import { useFieldTracking } from '@/hooks/useFieldTracking';
 import { AUTO_BRANDS, MOTO_BRANDS, AUTO_BRAND_NAMES, MOTO_BRAND_NAMES } from '@/data/vehicleBrands';
 import FlipPriceCard from './FlipPriceCard';
@@ -127,6 +127,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   const prefillAge = searchParams.get('age') || '';
   const prefillZip = searchParams.get('zipcode') || searchParams.get('postalCode') || '';
   const stepConfigsByType = useMemo(() => buildStepConfigs(t), [t]);
+  const ageStepMoto50 = useMemo(() => buildAgeStepMoto50(t), [t]);
   const initialFormData: Record<string, string> = {};
   if (insuranceType === 'comparateur' && prefillType && prefillType in stepConfigsByType) {
     initialFormData.insuranceType = prefillType;
@@ -157,11 +158,19 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         computed = [typeStep, ...productSteps, ...finalSteps];
       }
     }
+    // Cyclomoteur 50cc (BSR/AM dès 14 ans) : remplace uniquement l'étape âge
+    // partagée, dont la validation (18-99) rejetterait ce profil — addition
+    // isolée, cf. buildAgeStepMoto50 dans stepConfigs.ts. Couvre le flux moto
+    // direct et le flux comparateur ayant sélectionné "moto".
+    const effectiveType = insuranceType === 'comparateur' ? formData.insuranceType : insuranceType;
+    if (effectiveType === 'moto' && formData.engineSize === '50') {
+      computed = computed.map((s) => (s.id === 'age' ? ageStepMoto50 : s));
+    }
     if (excludeStepIds && excludeStepIds.length > 0) {
       computed = computed.filter((s) => !excludeStepIds.includes(s.id));
     }
     return computed;
-  }, [insuranceType, formData.insuranceType, stepConfigsByType, excludeStepIds]);
+  }, [insuranceType, formData.insuranceType, formData.engineSize, stepConfigsByType, ageStepMoto50, excludeStepIds]);
   const [contactErrors, setContactErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
