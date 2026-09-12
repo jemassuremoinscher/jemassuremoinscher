@@ -866,6 +866,12 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Assurance scooter 50cc, 125cc, électrique. Tiers dès 12 €/mois. Comparez 12 assureurs spécialisés deux-roues.",
     seoKeyword: "assurance scooter",
     seoKeywords: "assurance scooter 50cc, assurance scooter 125, assurance scooter électrique",
+    // Cannibalisation avec /assurance-moto (seoKeyword "assurance moto moins
+    // chère", différent) : aucune, mots-clés distincts. Mais même défaut que
+    // vélo/trottinette avant leur nettoyage : noindex absent + présente dans
+    // le sitemap + aucune entrée relatedMap → section "liens associés"
+    // invisible. Corrigé le 2026-09-12, même traitement.
+    noindex: true,
     topBarText: "🛵 Scooter : tiers dès 12 €/mois — assistance 0 km offerte",
     badgeText: "Spécialiste 2-roues",
     heroTitle: "Assurance Scooter",
@@ -877,9 +883,12 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "moto",
     insuranceLabel: "Assurance Scooter",
     stats: [
-      { icon: Bike, value: "6 400+", label: "Scooters assurés" },
+      // "6 400+ Scooters assurés" et "12 Assureurs 2-roues" retirés : aucune
+      // source vérifiable (même défaut que "15+ Assureurs vélo"/"20+
+      // Assureurs EDPM" trouvé sur vélo/trottinette). trustReviewStat est un
+      // vrai chiffre (avis Google réels, geoContent.trust).
       { icon: TrendingDown, value: "12 €/mois", label: "Tiers 50cc" },
-      { icon: Shield, value: "12", label: "Assureurs 2-roues" },
+      trustReviewStat,
       { icon: Clock, value: "2 min", label: "Attestation" },
     ],
     advantages: [
@@ -888,11 +897,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Phone, title: "Assistance 0 km", description: "Dépannage et remorquage 7j/7 24h/24." },
       { icon: Award, title: "Bonus conservé", description: "Votre bonus moto/scooter est conservé même en changeant d'assureur." },
     ],
-    testimonials: [
-      { name: "Léo D.", location: "Étudiant, Paris", text: "Tiers scooter 50cc à 14 €/mois, imbattable." },
-      { name: "Sarah B.", location: "Salariée, Lyon", text: "Tous risques 125cc avec assistance pour 32 €/mois." },
-      { name: "Thomas R.", location: "Livreur, Marseille", text: "Couverture parfaite pour mon usage pro." },
-    ],
+    // Témoignages inventés retirés (mêmes noms/style que ceux trouvés sur
+    // vélo/trottinette : aucune preuve que ce sont de vrais clients).
+    testimonials: [],
     faqs: [
       { question: "Quelle assurance pour un scooter 50cc ?", answer: "Au minimum la responsabilité civile (tiers). Recommandée : intermédiaire avec vol/incendie." },
       { question: "Faut-il un permis pour un scooter électrique ?", answer: "BSR (AM) suffit pour les scooters électriques limités à 45 km/h." },

@@ -238,6 +238,16 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
       { to: "/comparateur", label: "Comparateur multi-assurances" },
     ],
   },
+  // Entrée absente jusqu'au 2026-09-12 : même bug que vélo/trottinette avant
+  // leur nettoyage — section "liens associés" invisible sur /landing/scooter.
+  scooter: {
+    products: ["moto", "trottinette"],
+    articles: [],
+    tools: [
+      { to: "/comparateur", label: "Comparateur multi-assurances" },
+      { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
+    ],
+  },
 };
 
 const RelatedInsuranceLinks = ({ currentPage }: RelatedInsuranceLinksProps) => {
