@@ -27,6 +27,7 @@ import { EditDealSection } from "./EditDealSection";
 import { NewContractDialog } from "./NewContractDialog";
 import { LeadTimeline } from "@/components/admin/crm/LeadTimeline";
 import { ActivityComposer } from "@/components/admin/crm/ActivityComposer";
+import { INSURANCE_TYPE_LABELS, normalizeInsuranceTypeStrict } from "@/utils/insuranceTypeNormalizer";
 import { ScheduleTaskDialog } from "@/components/admin/crm/ScheduleTaskDialog";
 import { AdviceRecordTab } from "@/components/admin/crm/AdviceRecordTab";
 import { supprimerDealManuel } from "@/lib/crmApi";
@@ -243,6 +244,8 @@ export function DealDrawer({
 
   if (!deal) return null;
   const contact = deal.contacts;
+  const canonicalType = normalizeInsuranceTypeStrict(deal.insurance_type);
+  const productLabel = canonicalType ? INSURANCE_TYPE_LABELS[canonicalType] : deal.insurance_type;
   const stage = STAGES.find((s) => s.id === deal.stage);
 
   const validated = docs.filter((d) => d.status === "valide").length;
@@ -585,7 +588,13 @@ export function DealDrawer({
                 }}
               />
             </div>
-            <ActivityComposer dealId={deal.id} onCreated={invalidateActivities} />
+            <ActivityComposer
+              dealId={deal.id}
+              onCreated={invalidateActivities}
+              contactEmail={contact?.email}
+              contactFullName={contact?.full_name}
+              productLabel={productLabel}
+            />
             <LeadTimeline dealId={deal.id} />
           </section>
 

@@ -49,6 +49,16 @@ export interface ActivityInsert {
   author_id?: string | null;
 }
 
+// Templates d'emails réutilisables (table email_templates, migration
+// 20260910211500). Le corps contient des placeholders {{prenom}} / {{produit}}
+// substitués côté client avant l'appel à l'edge function crm-send-template.
+export interface EmailTemplate {
+  id: string;
+  name: string;
+  subject: string;
+  body: string;
+}
+
 export type TaskPriority = 'low' | 'normal' | 'high' | 'urgent';
 export type TaskStatus = 'open' | 'done' | 'cancelled';
 // Type de contact prévu pour un rappel planifié — pas une action déclenchée,
