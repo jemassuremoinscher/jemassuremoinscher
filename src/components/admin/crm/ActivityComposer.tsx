@@ -231,7 +231,7 @@ export const ActivityComposer = ({
             ) : (
               <span className="text-destructive">aucune adresse email pour ce contact</span>
             )}
-            {' · '}Expéditeur : <span className="font-medium text-foreground">hello@jemassuremoinscher.fr</span>
+            {' · '}Expéditeur : <span className="font-medium text-foreground">contact@jemassuremoinscher.fr</span>
           </div>
           <Select value={templateId} onValueChange={applyTemplate} disabled={!contactEmail}>
             <SelectTrigger className="w-full">

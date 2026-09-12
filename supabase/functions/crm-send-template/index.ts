@@ -4,7 +4,9 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.7.1";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
-const FROM = "jemassuremoinscher.fr <hello@jemassuremoinscher.fr>";
+// Expéditeur unique de tous les envois : contact@jemassuremoinscher.fr.
+// hello@ n'est pas une boîte réceptrice : les réponses clients y seraient perdues.
+const FROM = "jemassuremoinscher.fr <contact@jemassuremoinscher.fr>";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
