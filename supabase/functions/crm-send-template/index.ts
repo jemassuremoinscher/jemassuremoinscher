@@ -56,6 +56,7 @@ serve(async (req: Request): Promise<Response> => {
   });
   const { data: userData, error: userErr } = await authedClient.auth.getUser();
   if (userErr || !userData?.user) {
+    console.error("Auth rejetée (401) sur crm-send-template:", userErr?.message ?? "pas d'utilisateur dans la session");
     return json({ error: "Non authentifié" }, 401);
   }
   const authorId = userData.user.id;
@@ -63,15 +64,18 @@ serve(async (req: Request): Promise<Response> => {
   let payload: Payload;
   try {
     payload = await req.json();
-  } catch {
+  } catch (e) {
+    console.error("Corps de requête invalide (400) sur crm-send-template:", e);
     return json({ error: "Corps de requête invalide" }, 400);
   }
 
   const { dealId, templateId, recipientEmail, recipientName, subject, body } = payload;
   if (!dealId || !recipientEmail || !subject?.trim() || !body?.trim()) {
+    console.error("Champs manquants (400) sur crm-send-template:", { dealId, recipientEmail, hasSubject: Boolean(subject?.trim()), hasBody: Boolean(body?.trim()) });
     return json({ error: "Champs manquants (dealId, recipientEmail, subject, body)" }, 400);
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipientEmail)) {
+    console.error("Adresse email destinataire invalide (400) sur crm-send-template:", recipientEmail);
     return json({ error: "Adresse email destinataire invalide" }, 400);
   }
 
