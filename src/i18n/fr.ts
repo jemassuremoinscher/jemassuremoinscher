@@ -2565,6 +2565,8 @@ const fr: Record<string, string> = {
   "step.comparateur.type.opt.sante.description": "Mutuelle et complémentaire",
   "step.comparateur.type.opt.trottinette.label": "Trottinette Électrique",
   "step.comparateur.type.opt.trottinette.description": "EDPM et gyroroue",
+  "step.comparateur.type.opt.velo.label": "Vélo & VAE",
+  "step.comparateur.type.opt.velo.description": "Vol et garantie vélo",
   "step.comparateur.type.opt.pno.label": "PNO",
   "step.comparateur.type.opt.pno.description": "Propriétaire non occupant",
   "step.comparateur.type.opt.gli.label": "GLI",

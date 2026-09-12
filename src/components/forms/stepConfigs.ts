@@ -502,6 +502,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'comparateur', 'type', 'moto', Bike, mascotMoto),
         opt(t, 'comparateur', 'type', 'habitation', Home, mascotHouse),
         opt(t, 'comparateur', 'type', 'trottinette', Zap, mascotScoot),
+        opt(t, 'comparateur', 'type', 'velo', Bike, mascotBike),
         opt(t, 'comparateur', 'type', 'sante', Heart, mascotSick),
         opt(t, 'comparateur', 'type', 'pno', Building, mascotHouse),
         opt(t, 'comparateur', 'type', 'gli', Lock, mascotDetective),

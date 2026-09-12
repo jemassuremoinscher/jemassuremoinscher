@@ -2574,6 +2574,8 @@ const en: Record<string, string> = {
   "step.comparateur.type.opt.sante.description": "Health insurance and complementary",
   "step.comparateur.type.opt.trottinette.label": "Electric Scooter",
   "step.comparateur.type.opt.trottinette.description": "E-scooter and personal mobility",
+  "step.comparateur.type.opt.velo.label": "Bike & E-bike",
+  "step.comparateur.type.opt.velo.description": "Theft and bike coverage",
   "step.comparateur.type.opt.pno.label": "Non-occupant owner",
   "step.comparateur.type.opt.pno.description": "Non-occupant owner",
   "step.comparateur.type.opt.gli.label": "Rent guarantee",

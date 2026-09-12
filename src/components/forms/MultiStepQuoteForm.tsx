@@ -825,11 +825,12 @@ function CardSelectStep({ options, selected, onSelect, microLoading, showUnsureB
   const [preciseValue, setPreciseValue] = useState('');
   const [preciseError, setPreciseError] = useState('');
   // Si la liste d'options est longue (typiquement l'étape "type d'assurance"
-  // du comparateur avec 12 options), on n'affiche que les 4 principales et on
-  // propose un toggle "Voir plus" pour révéler le reste. 80% des leads viennent
-  // des 4 premières catégories (Auto, Moto, Habitation, Santé).
+  // du comparateur avec 14 options), on n'affiche que les 5 principales et on
+  // propose un toggle "Voir plus" pour révéler le reste : Auto, Moto,
+  // Habitation, Trottinette, Vélo (2026-09-12 : Vélo ajouté en 5e position,
+  // absent jusque-là du point d'entrée principal du site).
   const COLLAPSE_THRESHOLD = 8;
-  const PRIMARY_COUNT = 4;
+  const PRIMARY_COUNT = 5;
   const collapsible = options.length >= COLLAPSE_THRESHOLD;
   const [expanded, setExpanded] = useState(false);
   // Toujours montrer la sélection courante même si elle est dans la zone repliée
