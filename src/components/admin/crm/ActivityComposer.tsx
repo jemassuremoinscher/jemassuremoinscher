@@ -125,9 +125,11 @@ export const ActivityComposer = ({
         });
       }
 
+      // action est ici 'note' | 'email' | 'sms' | 'whatsapp'
+      // ('call', 'advice' et 'template' ont leur propre branche ci-dessus / sendTemplate)
       return createActivity({
         ...base,
-        action_type: action satisfies ComposableActionType, // 'note' | 'email' | 'sms' | 'whatsapp'
+        action_type: action as ComposableActionType,
         description: content || null,
       });
     },
