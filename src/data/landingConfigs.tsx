@@ -863,7 +863,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     slug: "scooter",
     trackingTitle: "Landing Page Assurance Scooter",
     seoTitle: "Assurance Scooter 50cc Pas Chère | Devis 2 min",
-    seoDescription: "Assurance scooter 50cc, 125cc, électrique. Tiers dès 12 €/mois. Comparez 12 assureurs spécialisés deux-roues.",
+    seoDescription: "Assurance scooter 50cc, 125cc, électrique. Tiers dès 13 €/mois. Comparez 12 assureurs spécialisés deux-roues.",
     seoKeyword: "assurance scooter",
     seoKeywords: "assurance scooter 50cc, assurance scooter 125, assurance scooter électrique",
     // Cannibalisation avec /assurance-moto (seoKeyword "assurance moto moins
@@ -872,14 +872,14 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // le sitemap + aucune entrée relatedMap → section "liens associés"
     // invisible. Corrigé le 2026-09-12, même traitement.
     noindex: true,
-    topBarText: "🛵 Scooter : tiers dès 12 €/mois — assistance 0 km offerte",
+    topBarText: "🛵 Scooter : tiers dès 13 €/mois — assistance 0 km offerte",
     badgeText: "Spécialiste 2-roues",
     heroTitle: "Assurance Scooter",
-    heroHighlight: "dès 12 €/mois",
+    heroHighlight: "dès 13 €/mois",
     heroSubtitle: <>Tiers, intermédiaire ou tous risques pour <strong>50cc, 125cc, électrique</strong>. Attestation en ligne.</>,
     mascotSrc: arthurMoto,
     mascotAlt: "Arthur en scooter — assurance scooter pas chère",
-    speechText: "Scooter ? Tiers à 12 €/mois et tous risques négocié !",
+    speechText: "Scooter ? Tiers à 13 €/mois et tous risques négocié !",
     insuranceType: "moto",
     insuranceLabel: "Assurance Scooter",
     stats: [
@@ -887,7 +887,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       // source vérifiable (même défaut que "15+ Assureurs vélo"/"20+
       // Assureurs EDPM" trouvé sur vélo/trottinette). trustReviewStat est un
       // vrai chiffre (avis Google réels, geoContent.trust).
-      { icon: TrendingDown, value: "12 €/mois", label: "Tiers 50cc" },
+      { icon: TrendingDown, value: "13 €/mois", label: "Tiers 50cc" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Attestation" },
     ],
@@ -906,7 +906,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Puis-je assurer mon scooter sans BSR ?", answer: "Non, BSR obligatoire si né après 1988." },
     ],
     bottomCtaTitle: "Roulez en scooter à petit prix",
-    bottomCtaDescription: "Tiers dès 12 €/mois, attestation en 2 min — devis gratuit.",
+    bottomCtaDescription: "Tiers dès 13 €/mois, attestation en 2 min — devis gratuit.",
   },
 
   "rc-pro-micro-entreprise": {
