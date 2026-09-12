@@ -28,6 +28,8 @@ const LLMS_TXT = `# jemassuremoinscher.fr
 |---|---|---|
 | Assurance Auto | dès 25€/mois | /assurance-auto |
 | Assurance Moto | dès 15€/mois | /assurance-moto |
+| Assurance Trottinette Électrique | RC obligatoire dès 2,90€/mois | /assurance-trottinette |
+| Assurance Vélo & VAE | extension vol vélo de l'assurance habitation, tarif variable | /assurance-velo |
 | Assurance Habitation | dès 3€/mois | /assurance-habitation |
 | Mutuelle Santé | dès 20€/mois | /assurance-sante |
 | Assurance Animaux | dès 8€/mois | /assurance-animaux |

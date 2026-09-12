@@ -2,6 +2,7 @@ import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage"
 import BrandName from "@/components/BrandName";
 import VeloVolStatsAnswers from "@/components/insurance/VeloVolStatsAnswers";
 import arthurBike from "@/assets/mascotte/arthur-bike.png";
+import { addHowToSchema } from "@/utils/seoUtils";
 
 // Schema WebPage avec citation des sources des statistiques du bloc
 // "Vol de vélo en France : les chiffres" (VeloVolStatsAnswers) — même pattern
@@ -22,10 +23,38 @@ const veloStatsWebPageSchema = {
   ],
 };
 
+// Étapes fidèles au contenu réel de la page : contrairement à trottinette
+// (produit RC obligatoire dédié), il n'existe aucun partenaire spécialisé
+// vélo (cf. Partners.tsx) — la page compare l'extension vol vélo de
+// l'assurance habitation, pas une souscription de police vélo autonome.
+const veloHowToSchema = addHowToSchema({
+  name: "Comment vérifier et compléter sa garantie vol de vélo",
+  description: "Guide étape par étape pour évaluer sa garantie vol de vélo en assurance habitation et comparer une extension dédiée si besoin",
+  totalTime: "PT2M",
+  steps: [
+    {
+      name: "Renseignez votre vélo",
+      text: "Indiquez le type de vélo (musculaire, VAE, cargo/pliant/speed-bike), sa valeur et son lieu de stationnement habituel.",
+    },
+    {
+      name: "Précisez les garanties recherchées",
+      text: "Vol uniquement, vol + casse, ou tous risques avec assistance : choisissez le niveau de protection adapté à votre usage.",
+    },
+    {
+      name: "Comparez votre couverture actuelle",
+      text: "Un conseiller vérifie les plafonds, franchises et exclusions de la garantie vol de votre contrat habitation.",
+    },
+    {
+      name: "Ajoutez l'extension si nécessaire",
+      text: "Si la couverture est insuffisante, comparez les extensions vol vélo proposées par nos assureurs partenaires généralistes.",
+    },
+  ],
+});
+
 const AssuranceVelo = () => (
   <VerticalInsurancePage
     slug="velo"
-    extraSchemas={[veloStatsWebPageSchema]}
+    extraSchemas={[veloStatsWebPageSchema, veloHowToSchema]}
     extraSection={<VeloVolStatsAnswers />}
     breadcrumbLabel="Assurance Vélo & VAE"
     heroImage={arthurBike}
