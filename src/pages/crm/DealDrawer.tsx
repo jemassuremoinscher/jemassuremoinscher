@@ -27,6 +27,7 @@ import { EditDealSection } from "./EditDealSection";
 import { NewContractDialog } from "./NewContractDialog";
 import { LeadTimeline } from "@/components/admin/crm/LeadTimeline";
 import { ActivityComposer } from "@/components/admin/crm/ActivityComposer";
+import { SendTemplateMenu } from "@/components/admin/crm/SendTemplateMenu";
 import { INSURANCE_TYPE_LABELS, normalizeInsuranceTypeStrict } from "@/utils/insuranceTypeNormalizer";
 import { ScheduleTaskDialog } from "@/components/admin/crm/ScheduleTaskDialog";
 import { AdviceRecordTab } from "@/components/admin/crm/AdviceRecordTab";
@@ -374,7 +375,7 @@ export function DealDrawer({
               même style) — seule la grille passe à 4 colonnes à partir de sm
               pour que les 4 boutons tiennent sur une même rangée au lieu que
               email se retrouve seul sur la rangée du dessus avec Téléphone. */}
-          <section className="grid gap-3 sm:grid-cols-4">
+          <section className="grid gap-3 sm:grid-cols-5">
             {contact?.email && (
               <a
                 href={`mailto:${contact.email}`}
@@ -415,6 +416,13 @@ export function DealDrawer({
                 WhatsApp
               </a>
             )}
+            <SendTemplateMenu
+              dealId={deal.id}
+              contactEmail={contact?.email}
+              contactFullName={contact?.full_name}
+              productLabel={productLabel}
+              onSent={invalidateActivities}
+            />
           </section>
 
           <EditDealSection deal={deal} onSaved={refresh} />

@@ -18,7 +18,7 @@ import { DealCard } from "./DealCard";
 import { DealDrawer } from "./DealDrawer";
 import { NewDealDialog } from "./NewDealDialog";
 import { TasksWidget } from "@/components/admin/crm/TasksWidget";
-import { fetchOverdueDealIds, fetchQualiteParSource } from "@/lib/crmApi";
+import { fetchAutoEmailDealIds, fetchOverdueDealIds, fetchQualiteParSource } from "@/lib/crmApi";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 
@@ -42,6 +42,12 @@ export default function CrmKanban() {
   const { data: overdueDealIds } = useQuery({
     queryKey: ["deal-tasks-overdue"],
     queryFn: fetchOverdueDealIds,
+    refetchInterval: 60000,
+  });
+
+  const { data: autoEmailDealIds } = useQuery({
+    queryKey: ["deal-auto-email-log"],
+    queryFn: fetchAutoEmailDealIds,
     refetchInterval: 60000,
   });
 
@@ -285,6 +291,7 @@ export default function CrmKanban() {
                 agents={agents}
                 onAssigned={load}
                 overdueDealIds={overdueDealIds}
+                autoEmailDealIds={autoEmailDealIds}
                 monthlyErrorPct={stage.id === "invalid_contact" ? monthlyErrorPct : undefined}
               />
             ))}

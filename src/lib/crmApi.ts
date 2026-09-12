@@ -195,6 +195,17 @@ export async function fetchOverdueDealIds(): Promise<Set<string>> {
   return new Set((data ?? []).map((row: { deal_id: string }) => row.deal_id));
 }
 
+// Deals ayant reçu au moins un email automatique (trigger de changement de
+// stage, migration 20260912090000) — badge enveloppe sur la carte Kanban.
+// Une seule requête pour tout le Kanban, jamais un appel par carte.
+export async function fetchAutoEmailDealIds(): Promise<Set<string>> {
+  const { data, error } = await crmFrom('deal_stage_email_log').select('deal_id');
+
+  if (error) throw error;
+
+  return new Set((data ?? []).map((row: { deal_id: string }) => row.deal_id));
+}
+
 // ---------------------------------------------------------------------------
 // Libellés des deals pour l'affichage des tâches (batch, pas de N+1)
 // ---------------------------------------------------------------------------

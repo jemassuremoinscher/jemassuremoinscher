@@ -12,6 +12,7 @@ export function KanbanColumn({
   agents,
   onAssigned,
   overdueDealIds,
+  autoEmailDealIds,
   monthlyErrorPct,
 }: {
   stage: (typeof STAGES)[number];
@@ -20,6 +21,7 @@ export function KanbanColumn({
   agents?: AgentOption[];
   onAssigned?: () => void;
   overdueDealIds?: Set<string>;
+  autoEmailDealIds?: Set<string>;
   // % de coordonnées erronées ce mois-ci (vue qualite_par_source) — affiché
   // uniquement sur la colonne "invalid_contact".
   monthlyErrorPct?: number | null;
@@ -79,6 +81,7 @@ export function KanbanColumn({
               agents={agents}
               onAssigned={onAssigned}
               overdue={overdueDealIds?.has(d.id)}
+              hasAutoEmail={autoEmailDealIds?.has(d.id)}
             />
           ))}
         </SortableContext>
