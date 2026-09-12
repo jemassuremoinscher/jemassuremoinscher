@@ -4,9 +4,6 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.7.1";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
-// Expéditeur figé : domaine racine vérifié côté Resend (cf. migration
-// 20260910211500). Le sous-domaine send. n'est qu'un mécanisme interne Resend
-// pour le Return-Path, il n'apparaît jamais dans l'adresse visible.
 const FROM = "jemassuremoinscher.fr <hello@jemassuremoinscher.fr>";
 
 const corsHeaders = {
@@ -51,8 +48,6 @@ serve(async (req: Request): Promise<Response> => {
   const anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
   const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
-  // Auth : le gateway impose déjà un JWT valide (verify_jwt par défaut), mais
-  // l'anon key est un JWT valide — on exige donc une vraie session utilisateur.
   const authHeader = req.headers.get("Authorization") ?? "";
   const authedClient = createClient(supabaseUrl, anonKey, {
     global: { headers: { Authorization: authHeader } },
@@ -78,7 +73,6 @@ serve(async (req: Request): Promise<Response> => {
     return json({ error: "Adresse email destinataire invalide" }, 400);
   }
 
-  // 1) Envoi Resend — si ça échoue, on s'arrête ici et on ne logue AUCUN succès.
   let resendId: string;
   try {
     const sent = await resend.emails.send({
@@ -101,7 +95,6 @@ serve(async (req: Request): Promise<Response> => {
     return json({ error: "Échec de l'envoi Resend (exception réseau)" }, 502);
   }
 
-  // 2) Envoi confirmé — on logue avec le service role (bypass RLS).
   const admin = createClient(supabaseUrl, serviceKey);
 
   const { error: activityErr } = await admin.from("activities").insert({
@@ -112,7 +105,6 @@ serve(async (req: Request): Promise<Response> => {
     metadata: { kind: "template", template_id: templateId, resend_email_id: resendId },
   });
   if (activityErr) {
-    // L'email est parti : on ne renvoie pas d'erreur bloquante, mais on le signale.
     console.error("Email envoyé mais échec du log activities:", activityErr);
   }
 
