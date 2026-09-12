@@ -91,7 +91,12 @@ const AssuranceVelo = () => (
     faqs={[
       { question: "L'assurance vélo est-elle obligatoire ?", answer: "Non, sauf pour certains speed-bikes (>25 km/h) qui nécessitent une RC moto. Une RC vie privée couvre la responsabilité civile à vélo." },
       { question: "Que couvre une assurance vélo ?", answer: "Principalement le vol (avec antivol agréé), la casse accidentelle, le vandalisme, et l'assistance/dépannage. Souvent avec RC complémentaire." },
-      { question: "Combien coûte une assurance VAE ?", answer: "Entre 4€ et 25€/mois selon la valeur du vélo (musculaire 600€ vs VAE 3000€) et les garanties choisies." },
+      // Reformulée le 2026-09-12 : l'ancienne fourchette (4€-25€/mois) parlait
+      // d'une "assurance VAE" générique comme si c'était notre produit,
+      // alors que la page compare l'extension habitation, pas une police
+      // vélo dédiée. Recadrée comme la FAQ "assureur dédié" plus bas
+      // (Hepster/Laka, non partenaires) avec la vraie fourchette marché.
+      { question: "Combien coûte une assurance vélo dédiée (hors extension habitation) ?", answer: "Chez un assureur spécialisé vélo (par exemple Hepster ou Laka) plutôt qu'en extension de votre assurance habitation, comptez généralement entre 9€ et 30€/mois selon la valeur du vélo et les garanties choisies. Ce ne sont pas des offres que nous comparons aujourd'hui — notre comparateur porte sur l'extension vol vélo de l'assurance habitation (voir question suivante)." },
       { question: "L'assurance habitation couvre-t-elle le vol de vélo ?", answer: "Oui à domicile (garantie vol standard), mais rarement en dehors : à l'extérieur, la couverture est souvent limitée à 300-500€ — insuffisant pour un VAE ou un vélo cargo. Une extension vol vélo (généralement 5-10€/mois) permet d'étendre la couverture partout." },
       { question: "Comment est calculée l'indemnisation en cas de vol ou de casse ?", answer: "La plupart des contrats indemnisent en valeur d'usage : le montant remboursé diminue avec la vétusté du vélo (son âge), pas seulement en cas d'occasion. Certaines formules proposent une indemnisation en valeur d'achat (à neuf) — à vérifier précisément dans les conditions générales avant de choisir. Une franchise (montant restant à votre charge) s'applique généralement en plus, son niveau variant fortement d'un contrat à l'autre." },
       // Formulation B validée : reliée au plafond, purement factuelle sur
