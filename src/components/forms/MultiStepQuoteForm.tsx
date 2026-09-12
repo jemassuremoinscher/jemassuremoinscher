@@ -842,7 +842,16 @@ function CardSelectStep({ options, selected, onSelect, microLoading, showUnsureB
     : options;
   return (
     <div className="relative">
-      <div className={`grid gap-3 ${visibleOptions.length <= 3 ? 'grid-cols-1 sm:grid-cols-3' : visibleOptions.length <= 4 ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'}`}>
+      <div className={`grid gap-3 ${
+        visibleOptions.length <= 3 ? 'grid-cols-1 sm:grid-cols-3'
+        : visibleOptions.length === 4 ? 'grid-cols-2 sm:grid-cols-4'
+        // 5 exactement (comparateur.type par défaut depuis l'ajout de Vélo,
+        // et metiers_atypiques.famille_activite) : une carte orpheline en
+        // lg:grid-cols-4 sinon. Mobile/tablette inchangés, seul le seuil
+        // desktop passe à 5 colonnes pour tenir sur une seule ligne.
+        : visibleOptions.length === 5 ? 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5'
+        : 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
+      }`}>
         {visibleOptions.map((option, idx) => {
           const Icon = option.icon;
           const isSelected = selected === option.value;
