@@ -219,31 +219,58 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
 
-    // Email au client - Note: In Resend test mode, emails can only be sent to verified addresses
-    // The client's info is already sent to the business email above
-    // To enable client emails, verify your domain at resend.com/domains
+    // Email au client — domaine vérifié côté Resend depuis le 2026-09-09,
+    // l'envoi n'est plus restreint aux adresses de test : on tente toujours.
+    // Contenu basé sur le template "Confirmation de demande de contact"
+    // (table email_templates) s'il existe et est actif ; sinon, contenu en
+    // dur ci-dessous conservé comme filet de sécurité.
+    const escHtml = (s: unknown) => String(s ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+    const fillVars = (text: string) => text
+      .replace(/\{\{\s*prenom\s*\}\}/gi, name.trim().split(/\s+/)[0] || name)
+      .replace(/\{\{\s*produit\s*\}\}/gi, type);
+    const bodyToHtml = (body: string) =>
+      `<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.6;color:#111827;">${escHtml(body).replace(/\r?\n/g, '<br>')}</div>`;
+
+    const { data: template } = await supabaseClient
+      .from('email_templates')
+      .select('subject, body')
+      .eq('name', 'Confirmation de demande de contact')
+      .eq('is_active', true)
+      .maybeSingle();
+
+    const clientSubject = template ? fillVars(template.subject) : "Votre devis d'assurance";
+    const clientHtml = template
+      ? bodyToHtml(fillVars(template.body))
+      : `
+          <h1>Merci pour votre demande, ${escHtml(name)} !</h1>
+          <p>Nous avons bien reçu votre demande de devis pour une <strong>${escHtml(type)}</strong>.</p>
+
+          <h2>Votre tarif estimé</h2>
+          <p style="font-size: 32px; color: #7e22ce; font-weight: bold;">${escHtml(estimatedPrice)}€/mois</p>
+
+          <p>Un de nos conseillers vous contactera dans les plus brefs délais au <strong>${escHtml(phone)}</strong> pour finaliser votre devis.</p>
+
+          <p>Cordialement,<br>L'équipe jemassuremoinscher.fr</p>
+        `;
+
     let clientEmail: any = { data: null, error: null };
-    
-    // Only attempt to send if the client email is the verified business email (for testing)
-    if (email === businessEmail) {
+    try {
       clientEmail = await resend.emails.send({
         from: `jemassuremoinscher.fr <${businessEmail}>`,
         to: email,
-        subject: "Votre devis d'assurance",
-        html: `
-          <h1>Merci pour votre demande, ${name} !</h1>
-          <p>Nous avons bien reçu votre demande de devis pour une <strong>${type}</strong>.</p>
-          
-          <h2>Votre tarif estimé</h2>
-          <p style="font-size: 32px; color: #7e22ce; font-weight: bold;">${estimatedPrice}€/mois</p>
-          
-          <p>Un de nos conseillers vous contactera dans les plus brefs délais au <strong>${phone}</strong> pour finaliser votre devis.</p>
-          
-          <p>Cordialement,<br>L'équipe jemassuremoinscher.fr</p>
-        `,
+        subject: clientSubject,
+        html: clientHtml,
       });
-    } else {
-      console.log(`Skipping client email to ${email} - only verified addresses can receive emails in test mode`);
+      if (clientEmail.error) {
+        console.error("Échec de l'envoi de l'email client:", clientEmail.error);
+      }
+    } catch (e) {
+      console.error("Exception pendant l'envoi de l'email client:", e);
     }
 
     // Track client email
