@@ -834,6 +834,52 @@ export type Database = {
           },
         ]
       }
+      deal_stage_email_log: {
+        Row: {
+          deal_id: string
+          id: string
+          resend_email_id: string | null
+          sent_at: string
+          stage: string
+        }
+        Insert: {
+          deal_id: string
+          id?: string
+          resend_email_id?: string | null
+          sent_at?: string
+          stage: string
+        }
+        Update: {
+          deal_id?: string
+          id?: string
+          resend_email_id?: string | null
+          sent_at?: string
+          stage?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "deal_stage_email_log_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "alertes_conformite_dda"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "deal_stage_email_log_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "deal_stage_email_log_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals_dormants"
+            referencedColumns: ["deal_id"]
+          },
+        ]
+      }
       deal_tasks: {
         Row: {
           assigned_to: string | null
