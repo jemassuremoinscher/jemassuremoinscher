@@ -93,7 +93,13 @@ export const SendTemplateMenu = ({
         expiresAt: debugSession?.expires_at ? new Date(debugSession.expires_at * 1000).toISOString() : null,
         expired: debugSession?.expires_at ? Date.now() > debugSession.expires_at * 1000 : null,
       }));
+      // Contournement : passe le token explicitement plutôt que de compter sur
+      // l'injection automatique du SDK (cf. investigation du 401 "Auth session
+      // missing!" — le mécanisme automatique est correct sur le papier mais le
+      // header n'atteignait pas le serveur en pratique). À retirer avec le log
+      // de debug ci-dessus une fois la cause confirmée.
       const { data, error } = await supabase.functions.invoke('crm-send-template', {
+        headers: debugSession?.access_token ? { Authorization: `Bearer ${debugSession.access_token}` } : undefined,
         body: {
           dealId,
           templateId,
