@@ -27,7 +27,8 @@ export type ProductKey =
   | "pret"
   | "prevoyance"
   | "metiers-atypiques"
-  | "gestion-locative";
+  | "gestion-locative"
+  | "trottinette";
 
 interface FormulaColumn {
   key: string;
@@ -309,6 +310,27 @@ const DATA: Record<ProductKey, ProductTableData> = {
       { name: "Assistance gestion (états des lieux, quittances)", values: { essentielle: "Option", premium: "Incluse" } },
     ],
     footnote: "Cumulable avec déduction fiscale des primes au régime réel d'imposition.",
+  },
+  trottinette: {
+    title: "Garanties par formule — Assurance Trottinette Électrique",
+    intro: "EDPM (RC obligatoire depuis 2019). Tarifs dès 2,90€/mois.",
+    columns: [
+      { key: "essentielle", label: "Essentielle", price: "dès 2,90€/mois" },
+      { key: "confort", label: "Confort", price: "5-7€/mois" },
+      { key: "tousrisques", label: "Tous risques", price: "8-12€/mois" },
+    ],
+    rows: [
+      { name: "Responsabilité civile obligatoire", values: { essentielle: "Incluse", confort: "Incluse", tousrisques: "Incluse" } },
+      { name: "Dommages aux tiers", values: { essentielle: "Incluse", confort: "Incluse", tousrisques: "Incluse" } },
+      { name: "Individuelle conducteur", values: { essentielle: "—", confort: "Incluse", tousrisques: "Incluse" } },
+      { name: "Assistance dépannage 24/7", values: { essentielle: "—", confort: "Incluse", tousrisques: "Incluse" } },
+      { name: "Protection juridique", values: { essentielle: "—", confort: "Incluse", tousrisques: "Incluse" } },
+      { name: "Vol (antivol homologué)", values: { essentielle: "—", confort: "—", tousrisques: "Incluse" } },
+      { name: "Casse accidentelle", values: { essentielle: "—", confort: "—", tousrisques: "Incluse" } },
+      { name: "Vandalisme & bris", values: { essentielle: "—", confort: "—", tousrisques: "Incluse" } },
+      { name: "Couverture Europe", values: { essentielle: "—", confort: "—", tousrisques: "Incluse" } },
+    ],
+    footnote: "Prix constatés en France, mis à jour janvier 2026. RC obligatoire depuis 2019 (décret n°2019-1082).",
   },
 };
 
