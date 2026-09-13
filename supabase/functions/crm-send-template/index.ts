@@ -50,6 +50,13 @@ serve(async (req: Request): Promise<Response> => {
   const anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
   const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
+  // DEBUG TEMPORAIRE (à retirer après diagnostic du 401 "Auth session
+  // missing!") : dump des NOMS de tous les headers reçus, jamais les valeurs.
+  // Objectif : voir si "authorization" arrive vraiment côté Deno, sous quel nom.
+  console.log(
+    "[DEBUG crm-send-template] headers reçus (noms uniquement):",
+    JSON.stringify([...req.headers.keys()])
+  );
   const authHeader = req.headers.get("Authorization") ?? "";
   const authedClient = createClient(supabaseUrl, anonKey, {
     global: { headers: { Authorization: authHeader } },
