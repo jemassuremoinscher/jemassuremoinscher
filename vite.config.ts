@@ -102,7 +102,16 @@ export default defineConfig(({ mode }) => {
               '@radix-ui/react-tabs',
             ],
             'icons': ['lucide-react'],
-            'charts': ['recharts'],
+            // Pas de chunk nommé pour recharts (retiré le 2026-09-13) : un
+            // manualChunks statique force Rollup à injecter un <script> pour
+            // ce chunk sur les ~100 entrées HTML générées par
+            // discoverHtmlEntries (une par page pré-rendue), y compris les
+            // pages publiques qui ne l'utilisent jamais (recharts n'est
+            // importé que sous /admin — CrmDashboard, FinancePage,
+            // MarketingPage, GoogleAnalyticsDashboard, GoogleAdsCampaignCharts,
+            // ChartsSection). Sans entrée manuelle, Rollup le regroupe
+            // naturellement dans les chunks async de ces composants déjà
+            // lazy-loadés (411 Ko en moins sur chaque page publique).
             'carousel': ['embla-carousel-react', 'embla-carousel-autoplay'],
             'animation': ['framer-motion'],
             'forms': ['react-hook-form', '@hookform/resolvers', 'zod'],
