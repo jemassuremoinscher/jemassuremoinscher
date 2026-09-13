@@ -153,12 +153,12 @@ export const ActivityComposer = ({
       // missing!") : vérifie l'état réel de la session juste avant l'appel,
       // sans jamais logger le token lui-même.
       const { data: { session: debugSession } } = await supabase.auth.getSession();
-      console.log('[DEBUG crm-send-template] session avant invoke (ActivityComposer):', {
+      console.log('[DEBUG crm-send-template] session avant invoke (ActivityComposer):', JSON.stringify({
         hasSession: !!debugSession,
         hasAccessToken: !!debugSession?.access_token,
         expiresAt: debugSession?.expires_at ? new Date(debugSession.expires_at * 1000).toISOString() : null,
         expired: debugSession?.expires_at ? Date.now() > debugSession.expires_at * 1000 : null,
-      });
+      }));
       const { data, error } = await supabase.functions.invoke('crm-send-template', {
         body: {
           dealId,
