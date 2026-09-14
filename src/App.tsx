@@ -92,6 +92,7 @@ const AssuranceCyber = lazy(() => import("./pages/AssuranceCyber"));
 const AssuranceSansPermis = lazy(() => import("./pages/AssuranceSansPermis"));
 const AssuranceCampingCar = lazy(() => import("./pages/AssuranceCampingCar"));
 const AssuranceVelo = lazy(() => import("./pages/AssuranceVelo"));
+const AssuranceScooter50cc = lazy(() => import("./pages/AssuranceScooter50cc"));
 const AssuranceProtectionJuridique = lazy(() => import("./pages/AssuranceProtectionJuridique"));
 const AssuranceAutoTemporaire = lazy(() => import("./pages/AssuranceAutoTemporaire"));
 const AssuranceAutoMalusse = lazy(() => import("./pages/seo/AssuranceAutoMalusse"));
@@ -322,6 +323,7 @@ const App = () => {
                 <Route path="/assurance-sans-permis" element={<AssuranceSansPermis />} />
                 <Route path="/assurance-camping-car" element={<AssuranceCampingCar />} />
                 <Route path="/assurance-velo" element={<AssuranceVelo />} />
+                <Route path="/assurance-scooter-50cc" element={<AssuranceScooter50cc />} />
                 <Route path="/assurance-protection-juridique" element={<AssuranceProtectionJuridique />} />
                 <Route path="/assurance-auto-temporaire" element={<AssuranceAutoTemporaire />} />
                 <Route path="/gestion-locative" element={<GestionLocative />} />

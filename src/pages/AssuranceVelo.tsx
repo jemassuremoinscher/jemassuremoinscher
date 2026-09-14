@@ -1,8 +1,9 @@
 import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage";
 import BrandName from "@/components/BrandName";
 import VeloVolStatsAnswers from "@/components/insurance/VeloVolStatsAnswers";
+import SpeedBikeSection from "@/components/insurance/SpeedBikeSection";
 import arthurBike from "@/assets/mascotte/arthur-bike.png";
-import { addHowToSchema } from "@/utils/seoUtils";
+import { addHowToSchema, addSpeakableSchema } from "@/utils/seoUtils";
 
 // Schema WebPage avec citation des sources des statistiques du bloc
 // "Vol de vélo en France : les chiffres" (VeloVolStatsAnswers) — même pattern
@@ -21,6 +22,9 @@ const veloStatsWebPageSchema = {
     { "@type": "CreativeWork", "name": "SSMSI (ministère de l'Intérieur) — Vécu et ressenti en matière de sécurité", "url": "https://www.interieur.gouv.fr/Interstats/Publications-et-infographies/Interstats-References/Rapport-d-enquete-Vecu-et-ressenti-en-matiere-de-securite-2022-victimation-delinquance-et-sentiment-d-insecurite" },
     { "@type": "CreativeWork", "name": "Union Sport & Cycle — Observatoire du Cycle 2025", "url": "https://www.unionsportcycle.com/les-actualites/2026-04-24/observatoire-du-cycle-les-chiffres" },
   ],
+  // Speakable ajouté le 2026-09-14 (infrastructure addSpeakableSchema,
+  // seoUtils.ts) : cible le H1 et le H2 du bloc réponses courtes sourcées.
+  "speakable": addSpeakableSchema(["h1", "#velo-stats-title"]),
 };
 
 // Étapes fidèles au contenu réel de la page : contrairement à trottinette
@@ -55,7 +59,7 @@ const AssuranceVelo = () => (
   <VerticalInsurancePage
     slug="velo"
     extraSchemas={[veloStatsWebPageSchema, veloHowToSchema]}
-    extraSection={<VeloVolStatsAnswers />}
+    extraSection={<><VeloVolStatsAnswers /><SpeedBikeSection /></>}
     breadcrumbLabel="Assurance Vélo & VAE"
     heroImage={arthurBike}
     heroAlt="Arthur à vélo"

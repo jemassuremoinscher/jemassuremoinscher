@@ -31,6 +31,7 @@ const allProducts: Record<string, RelatedLink> = {
   // effet car ignoré) mais surtout aucune entrée ne permettait à une AUTRE
   // page de recommander vélo. Ajoutée pour relatedMap.trottinette.products.
   velo: { to: "/assurance-velo", label: "Assurance Vélo & VAE", description: "Garantie vol vélo, VAE et vélo cargo dès 4€/mois" },
+  "scooter-50cc": { to: "/assurance-scooter-50cc", label: "Assurance Scooter 50cc", description: "Cyclomoteur dès 9€/mois, BSR/AM dès 14 ans" },
   permisEtranger: { to: "/assurance-auto-permis-etranger", label: "Permis Étranger", description: "Assurance auto avec permis étranger accepté" },
   emprunteur: { to: "/assurance-emprunteur", label: "Assurance Emprunteur", description: "Changez à tout moment, économisez jusqu'à 15 000€" },
   metiersAtypiques: { to: "/assurance-metiers-atypiques", label: "Métiers Atypiques", description: "Activités à risques : devis sur-mesure auprès de 12 assureurs spé." },
@@ -76,7 +77,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   moto: {
-    products: ["auto", "trottinette", "habitation", "jeuneConducteur"],
+    products: ["auto", "trottinette", "habitation", "jeuneConducteur", "scooter-50cc"],
     articles: [
       { to: "/blog/meilleure-assurance-auto-2026", label: "Guide assurance véhicule 2026" },
       { to: "/blog/resiliation-assurance-droits-2026", label: "Résilier son assurance facilement" },
@@ -230,12 +231,23 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   // maillage manquant vers l'article vélo cargo/VAE (aucun sens dans les
   // deux directions avant ce jour).
   velo: {
-    products: ["habitation", "trottinette"],
+    // "scooter-50cc" ajouté le 2026-09-14 avec la section speed-bike : un
+    // speed-bike (VAE >25km/h) a besoin d'une assurance cyclomoteur, pas
+    // d'une extension habitation — cf. SpeedBikeSection.tsx.
+    products: ["habitation", "trottinette", "scooter-50cc"],
     articles: [
       { to: "/blog/velos-cargos-vae-protection-vol-urbain", label: "Vélos cargos et VAE : se protéger du vol" },
     ],
     tools: [
       { to: "/comparateur", label: "Comparateur multi-assurances" },
+    ],
+  },
+  "scooter-50cc": {
+    products: ["moto", "velo", "trottinette"],
+    articles: [],
+    tools: [
+      { to: "/comparateur", label: "Comparateur multi-assurances" },
+      { to: "/outils/calculateur-bonus-malus", label: "Calculateur Bonus-Malus" },
     ],
   },
   // Entrée absente jusqu'au 2026-09-12 : même bug que vélo/trottinette avant

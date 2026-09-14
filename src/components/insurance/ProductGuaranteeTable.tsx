@@ -28,7 +28,8 @@ export type ProductKey =
   | "prevoyance"
   | "metiers-atypiques"
   | "gestion-locative"
-  | "trottinette";
+  | "trottinette"
+  | "scooter-50cc";
 
 interface FormulaColumn {
   key: string;
@@ -331,6 +332,26 @@ const DATA: Record<ProductKey, ProductTableData> = {
       { name: "Couverture Europe", values: { essentielle: "—", confort: "—", tousrisques: "Incluse" } },
     ],
     footnote: "Prix constatés en France, mis à jour janvier 2026. RC obligatoire depuis 2019 (décret n°2019-1082).",
+  },
+  "scooter-50cc": {
+    title: "Garanties par formule — Assurance Scooter 50cc & Cyclomoteur",
+    intro: "Mêmes formules que l'assurance moto classique. Le prix varie fortement selon l'âge — fourchette basse pour un conducteur confirmé (26-59 ans), fourchette haute pour un primo-conducteur 14-17 ans avec BSR/AM.",
+    columns: [
+      { key: "tiers", label: "Au tiers", price: "9 à 27€/mois" },
+      { key: "intermediaire", label: "Tiers +", price: "17 à 49€/mois" },
+      { key: "tousrisques", label: "Tous risques", price: "29 à 84€/mois" },
+    ],
+    rows: [
+      { name: "Responsabilité civile", values: { tiers: "Incluse", intermediaire: "Incluse", tousrisques: "Incluse" } },
+      { name: "Défense pénale & recours", values: { tiers: "Incluse", intermediaire: "Incluse", tousrisques: "Incluse" } },
+      { name: "Vol & tentative de vol", values: { tiers: "—", intermediaire: "Incluse", tousrisques: "Incluse" } },
+      { name: "Incendie", values: { tiers: "—", intermediaire: "Incluse", tousrisques: "Incluse" } },
+      { name: "Équipements du pilote (casque, blouson)", values: { tiers: "—", intermediaire: "Option", tousrisques: "Incluse" } },
+      { name: "Dommages tous accidents", values: { tiers: "—", intermediaire: "—", tousrisques: "Incluse" } },
+      { name: "Assistance 0 km", values: { tiers: "Option", intermediaire: "Option", tousrisques: "Incluse" } },
+      { name: "Garantie conducteur", values: { tiers: "Option", intermediaire: "Incluse", tousrisques: "Incluse" } },
+    ],
+    footnote: "Prix constatés lors d'un devis réel jemassuremoinscher.fr (profil Kymco 50cc, Nice) le 2026-09-14 : fourchette basse à 26-59 ans, fourchette haute à 14-17 ans avec BSR/AM. Immatriculation obligatoire depuis 2004.",
   },
 };
 
