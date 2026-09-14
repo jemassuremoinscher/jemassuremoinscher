@@ -83,33 +83,33 @@ export const SendTemplateMenu = ({
   const sendTemplate = useMutation({
     mutationFn: async () => {
       if (!contactEmail) throw new Error("Ce contact n'a pas d'adresse email");
-      // DEBUG TEMPORAIRE (à retirer après diagnostic du 401 "Auth session
-      // missing!") : vérifie l'état réel de la session juste avant l'appel,
-      // sans jamais logger le token lui-même.
-      const { data: { session: debugSession } } = await supabase.auth.getSession();
-      console.log('[DEBUG crm-send-template] session avant invoke (SendTemplateMenu):', JSON.stringify({
-        hasSession: !!debugSession,
-        hasAccessToken: !!debugSession?.access_token,
-        expiresAt: debugSession?.expires_at ? new Date(debugSession.expires_at * 1000).toISOString() : null,
-        expired: debugSession?.expires_at ? Date.now() > debugSession.expires_at * 1000 : null,
-      }));
-      // Contournement : passe le token explicitement plutôt que de compter sur
-      // l'injection automatique du SDK (cf. investigation du 401 "Auth session
-      // missing!" — le mécanisme automatique est correct sur le papier mais le
-      // header n'atteignait pas le serveur en pratique). À retirer avec le log
-      // de debug ci-dessus une fois la cause confirmée.
-      const { data, error } = await supabase.functions.invoke('crm-send-template', {
-        headers: debugSession?.access_token ? { Authorization: `Bearer ${debugSession.access_token}` } : undefined,
-        body: {
+      const { data: { session } } = await supabase.auth.getSession();
+      // Contournement définitif du 401 "Auth session missing!" (investigation
+      // du 2026-09-13/14) : fetch() direct plutôt que supabase.functions.invoke().
+      // Même un header Authorization forcé explicitement via invoke() produisait
+      // la même erreur serveur, alors qu'un fetch() natif avec les mêmes headers
+      // fonctionne (401 propre avec le bon message JSON quand le token est
+      // invalide — preuve que le serveur reçoit bien le header par ce chemin).
+      // Défaut non identifié du SDK dans ce projet précis, contourné plutôt que
+      // débogué davantage.
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/crm-send-template`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session?.access_token ?? ''}`,
+          'apikey': import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+        },
+        body: JSON.stringify({
           dealId,
           templateId,
           recipientEmail: contactEmail,
           recipientName: contactFullName ?? contactEmail,
           subject,
           body,
-        },
+        }),
       });
-      if (error) throw error;
+      const data = await response.json().catch(() => null);
+      if (!response.ok) throw new Error(data?.error || `Erreur serveur (${response.status})`);
       if (data?.error) throw new Error(data.error);
       return data;
     },
