@@ -5,7 +5,7 @@ export const blogArticlesTrottinette2026: BlogArticle[] = [
     id: "trottinette-vol-2026",
     title: "Vol de trottinette électrique : la garantie qui rembourse vraiment en 2026",
     slug: "assurance-trottinette-vol-garantie-2026",
-    description: "65 000 trottinettes volées par an en France : conditions, antivols agréés, indemnisation. Le guide spécialiste pour être réellement remboursé.",
+    description: "Vol de trottinette électrique : conditions, antivols agréés, indemnisation. Le guide spécialiste pour être réellement remboursé.",
     category: "Conseils",
     date: "5 juin 2026",
     readTime: "9 min",
@@ -14,16 +14,11 @@ export const blogArticlesTrottinette2026: BlogArticle[] = [
     content: `
 # Vol de Trottinette Électrique : la Garantie qui Rembourse Vraiment en 2026
 
-Avec **65 000 trottinettes volées chaque année** en France, le vol est devenu le sinistre numéro 1 des EDPM. Pourtant, **2 propriétaires sur 3 ne sont pas indemnisés** après un vol, faute de conditions respectées. Voici le guide spécialiste pour souscrire la bonne garantie et être réellement remboursé.
+Le vol de trottinette électrique est un sinistre fréquent — et pourtant, une part importante des propriétaires volés ne sont pas indemnisés, faute d'avoir respecté les conditions de la garantie (antivol homologué, point fixe, dépôt de plainte dans les délais). Voici le guide spécialiste pour souscrire la bonne garantie et être réellement remboursé.
 
-## L'ampleur du problème en 2026
+## Un sinistre mal documenté, mais bien réel
 
-- **65 000 vols/an** déclarés (chiffre réel estimé à 110 000 en intégrant les non-déclarés)
-- **Taux de récupération** : 4 % seulement (vs 7 % pour les vélos)
-- **Hotspots** : Paris (38 %), Lyon, Marseille, Bordeaux, Lille
-- **Cible privilégiée** : trottinettes haut de gamme (Dualtron, Speedway, Apollo) revendues sur marketplaces
-
-> **Le saviez-vous ?** Une trottinette à 1 200 € volée non assurée représente l'équivalent de 30 ans de prime d'assurance EDPM premium. Le calcul est vite fait.
+Contrairement au vol de vélo, étudié précisément par l'ADMA, **aucune étude officielle ne chiffre à ce jour le nombre de trottinettes électriques volées en France** — ni les sources gouvernementales sur la micromobilité (ADEME, France Mobilités, Cerema) ni l'ONISR ne publient de statistique dédiée au vol d'EDPM. Ce qu'on observe sur le terrain : les modèles haut de gamme sont des cibles privilégiées, et l'absence de garantie vol chez la plupart des utilisateurs se traduit par une indemnisation refusée dans une part significative des sinistres déclarés — le plus souvent faute d'antivol homologué, de point fixe ou de dépôt de plainte dans les délais.
 
 ## Pourquoi la majorité des vols ne sont pas remboursés
 
