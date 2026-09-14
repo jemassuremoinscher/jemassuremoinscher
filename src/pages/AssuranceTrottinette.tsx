@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Shield, Euro, Clock, ShieldAlert } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addServiceSchema, addFAQSchema, addHowToSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addHowToSchema, addInsuranceProductSchema, addSpeakableSchema } from "@/utils/seoUtils";
 import arthurScoot from "@/assets/mascotte/arthur-scoot.png?w=480&format=webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
@@ -36,6 +36,9 @@ const trottinetteStatsWebPageSchema = {
   "citation": [
     { "@type": "CreativeWork", "name": "ONISR — Bilan 2025 de la sécurité routière", "url": "https://www.onisr.securite-routiere.gouv.fr/en/road-safety-performance/annual-road-safety-reports/2025-road-safety-annual-report" },
   ],
+  // Speakable ajouté le 2026-09-14 (infrastructure addSpeakableSchema,
+  // seoUtils.ts) : cible le H1 et le H2 du bloc réponses courtes sourcées.
+  "speakable": addSpeakableSchema(["h1", "#trottinette-stats-title"]),
 };
 
 const AssuranceTrottinette = () => {

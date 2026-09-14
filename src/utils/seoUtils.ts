@@ -371,6 +371,25 @@ export const addComparisonProductSchemas = (comparison: {
   return [itemList, ...products];
 };
 
+/**
+ * Speakable (schema.org SpeakableSpecification) : contrairement à
+ * addHowToSchema, ce n'est pas un document JSON-LD autonome — c'est toujours
+ * une propriété `speakable` imbriquée dans un WebPage existant. À fusionner
+ * dans le schema WebPage.citation déjà présent sur la page (ex.
+ * `{ ...webPageSchema, speakable: addSpeakableSchema([...]) }`), jamais
+ * ajouté comme entrée séparée du tableau jsonLd (un @type "SpeakableSpecification"
+ * seul, sans WebPage englobant, n'est pas un document schema.org valide).
+ *
+ * cssSelectors : sélecteurs CSS des zones destinées à être lues à voix haute
+ * par un assistant vocal (Google Assistant notamment). "h1" cible le titre de
+ * la page ; ajouter l'id du H2 d'un bloc réponses courtes (ex.
+ * "#velo-stats-title") pour couvrir aussi les réponses factuelles.
+ */
+export const addSpeakableSchema = (cssSelectors: string[]) => ({
+  "@type": "SpeakableSpecification",
+  "cssSelector": cssSelectors,
+});
+
 export const addHowToSchema = (howTo: {
   name: string;
   description: string;
