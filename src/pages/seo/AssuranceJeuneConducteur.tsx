@@ -55,6 +55,8 @@ const AssuranceJeuneConducteur = () => {
     <p>Nos experts recommandent plusieurs stratégies pour <strong>optimiser votre budget assurance</strong> : privilégier un véhicule de catégorie d'assurance basse (groupes 1 à 6), envisager une formule au tiers+ plutôt que tous risques pour un véhicule d'occasion, et comparer systématiquement les offres avant de s'engager. Un courtier négocie également les <strong>franchises et les options</strong> pour vous offrir le meilleur équilibre entre protection et coût.</p>
 
     <p>Ne payez plus le prix fort pour votre première assurance auto. <strong>Demandez votre devis gratuit</strong> et laissez nos courtiers trouver l'offre idéale pour votre profil.</p>
+
+    <p><em>Vous visez un véhicule de plus de 110 chevaux malgré votre statut de jeune conducteur ? Consultez notre <a href="/blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet">guide complet sur l'assurance des voitures puissantes pour jeune conducteur</a>.</em></p>
   `;
 
   return (
