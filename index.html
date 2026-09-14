@@ -145,6 +145,11 @@
     <!-- Preload only the true LCP mascot to avoid competing image downloads on slow mobile -->
     <link rel="preload" as="image" type="image/webp" href="/arthur-wink-thumbsup.webp" fetchpriority="high" />
 
+    <!-- Preconnect Supabase : chargé en dur sur chaque page (chunk "supabase"),
+         appels session/auth tôt dans le cycle de vie — évite d'attendre le
+         DNS+TLS handshake en cascade avant le premier appel réel. -->
+    <link rel="preconnect" href="https://ybqxpngkbgosobtetxac.supabase.co" crossorigin />
+
     <!-- DNS prefetch for third-party domains -->
     <!-- DNS prefetch removed — analytics scripts are deferred to idle/interaction -->
 
