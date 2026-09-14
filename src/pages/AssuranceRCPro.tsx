@@ -1,7 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Shield, Euro, Clock } from "lucide-react";
+import { Shield, Euro, Clock, Baby } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
@@ -59,6 +60,35 @@ const AssuranceRCPro = () => {
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="rc_pro" /></div>
 
         <ProductGuaranteeTable product="rc-pro" />
+
+        {/* Section crèche : /assurance-creche redirige (301) vers cette page
+            depuis longtemps (vercel.json), et Mayo (partenaire réel du
+            groupe) pointe explicitement dessus avec l'ancre "Assurance
+            crèche recommandée" — mais la page ne traitait jamais ce sujet
+            (RC Pro générique auto-entrepreneur). Ajouté le 2026-09-14. */}
+        <section className="max-w-4xl mx-auto mb-12">
+          <Card className="p-6 md:p-8 border-2 border-primary/30 bg-primary/[0.03]">
+            <div className="flex items-start gap-4">
+              <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <Baby className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <div>
+                <h2 className="text-lg md:text-xl font-bold text-foreground mb-2">
+                  Assurance crèche & micro-crèche
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  Une crèche ou micro-crèche accueille des mineurs : votre responsabilité civile professionnelle doit être adaptée à ce risque spécifique, au-delà d'une RC Pro générique auto-entrepreneur. Une garantie individuelle accident enfants est également recommandée pour couvrir les blessures des enfants accueillis, en complément de la RC. Pour les locaux, le matériel et les équipements de la structure, une <strong>multirisque professionnelle (MRP)</strong> vient compléter votre RC Pro.
+                </p>
+                <Link
+                  to="/assurance-mrp"
+                  className="inline-flex items-center gap-1.5 font-semibold text-primary hover:underline"
+                >
+                  Comparer une assurance MRP en complément →
+                </Link>
+              </div>
+            </div>
+          </Card>
+        </section>
 
         <CourtierValueCards product="rc-pro" />
 
