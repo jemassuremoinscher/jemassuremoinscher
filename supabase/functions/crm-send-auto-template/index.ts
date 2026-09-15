@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.7.1";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 // Fonction appelée uniquement par le trigger Postgres notify_deal_stage_email()
 // (migration deal_stage_auto_email) via net.http_post — jamais par un client
