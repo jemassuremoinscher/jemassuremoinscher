@@ -50,6 +50,18 @@ serve(async (req: Request): Promise<Response> => {
   const anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
   const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
+  // DEBUG TEMPORAIRE (à retirer une fois la cause du 401 confirmée) :
+  // le nom "authorization" est déjà confirmé présent (log précédent) — reste
+  // à vérifier le CONTENU. Jamais le token complet : longueur + 15 premiers
+  // caractères seulement, pour distinguer vide / malformé / "Bearer" seul
+  // d'un vrai JWT ("Bearer eyJ...").
+  const rawAuthHeader = req.headers.get("authorization");
+  console.log(
+    "[DEBUG crm-send-template] authorization reçu — longueur:",
+    rawAuthHeader?.length ?? "absent",
+    "| début:",
+    rawAuthHeader ? rawAuthHeader.slice(0, 15) : "absent"
+  );
   const authHeader = req.headers.get("Authorization") ?? "";
   const authedClient = createClient(supabaseUrl, anonKey, {
     global: { headers: { Authorization: authHeader } },
