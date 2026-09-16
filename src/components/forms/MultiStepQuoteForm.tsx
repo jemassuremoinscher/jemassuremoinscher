@@ -469,7 +469,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       if (error) throw error;
 
       // Send email
+      // leadId transmis pour que send-quote-email résolve le deal_id via
+      // deals.source_id (bridge_quote_to_deal, migration 20260724032007) au
+      // lieu de chercher "le devis le plus récent pour cet email" — fragile
+      // si la même adresse soumet deux formulaires rapidement.
       await invokeSendQuoteEmail({
+          leadId,
           name: contactData.fullName,
           email: contactData.email,
           phone: contactData.phone,

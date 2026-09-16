@@ -16,6 +16,17 @@ interface QuoteRequest {
   type: string;
   details: Record<string, any>;
   estimatedPrice: number;
+  /**
+   * Optionnel : seuls MultiStepQuoteForm.tsx et QuoteRequestForm.tsx le
+   * transmettent (id généré côté client, utilisé comme insurance_quotes.id).
+   * Les autres appelants de invokeSendQuoteEmail (QuickHelpSection,
+   * TransferDialog, CallbackForm, InsuranceQuiz, CommentsSection,
+   * QuickQuoteSection, SimplifiedLeadForm, SubscriptionModal) n'insèrent pas
+   * dans insurance_quotes avec un id capturé, ou pas du tout — leadId reste
+   * undefined pour eux, la résolution de deal_id est alors sautée sans
+   * casser l'envoi d'email (comportement identique à avant ce changement).
+   */
+  leadId?: string;
 }
 
 // Rate limiting: track requests by IP
@@ -153,7 +164,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    const { name, email, phone, type, details, estimatedPrice }: QuoteRequest = requestData;
+    const { name, email, phone, type, details, estimatedPrice, leadId }: QuoteRequest = requestData;
 
     console.log("Sending quote email for:", { type, timestamp: new Date().toISOString() });
 
@@ -165,14 +176,29 @@ const handler = async (req: Request): Promise<Response> => {
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     const supabaseClient = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Find the quote_id if it exists (look for recent quote from this email)
-    const { data: recentQuote } = await supabaseClient
-      .from('insurance_quotes')
-      .select('id')
-      .eq('email', email)
-      .order('created_at', { ascending: false })
-      .limit(1)
-      .single();
+    // quote_id = leadId directement : c'est l'id que le frontend a lui-même
+    // attribué à la ligne insurance_quotes qu'il vient d'insérer (voir
+    // MultiStepQuoteForm.tsx). Remplace l'ancienne recherche "le devis le
+    // plus récent pour cet email", fragile si la même adresse soumet deux
+    // formulaires rapidement (mauvais quote_id silencieusement associé).
+    // deal_id résolu via deals.source_id (bridge_quote_to_deal, migration
+    // 20260724032007) : ce trigger crée le deal dans la même transaction
+    // que l'insert insurance_quotes, donc il existe déjà à ce stade.
+    // Si leadId absent (appelants qui n'insèrent pas dans insurance_quotes
+    // avec un id capturé, cf. interface QuoteRequest), les deux restent null
+    // — pas de régression sur ces chemins, juste pas de rattachement.
+    let quoteId: string | null = null;
+    let dealId: string | null = null;
+    if (leadId) {
+      quoteId = leadId;
+      const { data: deal } = await supabaseClient
+        .from('deals')
+        .select('id')
+        .eq('source_type', 'insurance_quote')
+        .eq('source_id', leadId)
+        .maybeSingle();
+      dealId = deal?.id ?? null;
+    }
 
     // Email au propriétaire du site
     const ownerEmail = await resend.emails.send({
@@ -209,7 +235,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Track owner email
     if (ownerEmail.data) {
       await supabaseClient.from('email_tracking').insert({
-        quote_id: recentQuote?.id || null,
+        quote_id: quoteId,
         recipient_email: businessEmail,
         recipient_name: 'Admin',
         email_type: 'quote_notification',
@@ -276,7 +302,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Track client email
     if (clientEmail.data) {
       await supabaseClient.from('email_tracking').insert({
-        quote_id: recentQuote?.id || null,
+        quote_id: quoteId,
         recipient_email: email,
         recipient_name: name,
         email_type: 'quote_confirmation',
@@ -284,6 +310,26 @@ const handler = async (req: Request): Promise<Response> => {
         resend_email_id: clientEmail.data.id,
         status: 'sent',
       });
+
+      // Trace dans le tiroir du deal (LeadTimeline.tsx lit activities.deal_id)
+      // — trou de visibilité corrigé le 2026-09-16 : l'email partait déjà
+      // mais n'apparaissait jamais côté CRM. Même pattern que
+      // crm-send-template/crm-send-auto-template ; author_id absent
+      // volontairement (LeadTimeline affiche "Système" quand null).
+      // Sautée si dealId n'a pas pu être résolu (leadId absent, ou deal pas
+      // encore créé par le trigger pour une raison quelconque).
+      if (dealId) {
+        const { error: activityErr } = await supabaseClient.from('activities').insert({
+          deal_id: dealId,
+          author_id: null,
+          action_type: 'email',
+          description: `Confirmation de demande de contact envoyée : ${clientSubject}`,
+          metadata: { kind: 'quote_confirmation', resend_email_id: clientEmail.data.id },
+        });
+        if (activityErr) {
+          console.error("Email envoyé mais échec du log activities:", activityErr);
+        }
+      }
     }
 
     console.log("Emails sent successfully:", { ownerEmail, clientEmail });

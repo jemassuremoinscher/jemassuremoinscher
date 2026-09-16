@@ -162,6 +162,7 @@ export const QuoteRequestForm = () => {
       if (error) throw error;
 
       const { error: emailError } = await invokeSendQuoteEmail({
+          leadId: insertedQuote?.id,
           name: data.fullName,
           email: data.email,
           phone: data.phone,
