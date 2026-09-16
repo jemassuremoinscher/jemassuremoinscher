@@ -32,8 +32,18 @@ const escapeHtml = (s: string) =>
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
 
+const EMAIL_LOGO_HEADER = `<div style="background-color:#ffffff;padding:24px 0;text-align:center;">
+  <img
+    src="https://www.jemassuremoinscher.fr/arthur-thumbs-up-email.png"
+    alt="jemassuremoinscher.fr"
+    width="140"
+    height="151"
+    style="display:block;margin:0 auto;width:140px;height:auto;max-width:140px;border:0;outline:none;text-decoration:none;"
+  />
+</div>`;
+
 const bodyToHtml = (body: string) =>
-  `<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.6;color:#111827;">${
+  `${EMAIL_LOGO_HEADER}<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.6;color:#111827;">${
     escapeHtml(body).replace(/\r?\n/g, "<br>")
   }</div>`;
 

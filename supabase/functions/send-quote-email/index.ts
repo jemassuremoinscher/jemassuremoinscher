@@ -259,8 +259,20 @@ const handler = async (req: Request): Promise<Response> => {
     const fillVars = (text: string) => text
       .replace(/\{\{\s*prenom\s*\}\}/gi, name.trim().split(/\s+/)[0] || name)
       .replace(/\{\{\s*produit\s*\}\}/gi, type);
+    // Logo uniquement sur l'email client (identité visuelle destinée au
+    // lead) — jamais sur l'email de notification interne au propriétaire
+    // du site (ownerEmail ci-dessus), qui reste un simple message technique.
+    const EMAIL_LOGO_HEADER = `<div style="background-color:#ffffff;padding:24px 0;text-align:center;">
+  <img
+    src="https://www.jemassuremoinscher.fr/arthur-thumbs-up-email.png"
+    alt="jemassuremoinscher.fr"
+    width="140"
+    height="151"
+    style="display:block;margin:0 auto;width:140px;height:auto;max-width:140px;border:0;outline:none;text-decoration:none;"
+  />
+</div>`;
     const bodyToHtml = (body: string) =>
-      `<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.6;color:#111827;">${escHtml(body).replace(/\r?\n/g, '<br>')}</div>`;
+      `${EMAIL_LOGO_HEADER}<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.6;color:#111827;">${escHtml(body).replace(/\r?\n/g, '<br>')}</div>`;
 
     const { data: template } = await supabaseClient
       .from('email_templates')
@@ -273,6 +285,7 @@ const handler = async (req: Request): Promise<Response> => {
     const clientHtml = template
       ? bodyToHtml(fillVars(template.body))
       : `
+          ${EMAIL_LOGO_HEADER}
           <h1>Merci pour votre demande, ${escHtml(name)} !</h1>
           <p>Nous avons bien reçu votre demande de devis pour une <strong>${escHtml(type)}</strong>.</p>
 
