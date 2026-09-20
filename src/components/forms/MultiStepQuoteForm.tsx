@@ -1447,24 +1447,9 @@ function ContactStep({
     }
   }, [errors.acceptTerms]);
 
-  if (isSuccess) {
-    return (
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        className="flex flex-col items-center gap-4 py-6"
-      >
-        <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
-          <CheckCircle2 className="h-10 w-10 text-primary" />
-        </div>
-        <h3 className="text-xl font-bold text-foreground">{t('form.successTitle')}</h3>
-        <p className="text-sm text-muted-foreground text-center max-w-sm">
-          {t('form.successDescription')}
-        </p>
-      </motion.div>
-    );
-  }
-
+  // Tous les hooks restent AVANT le return conditionnel sur isSuccess : React
+  // exige le même nombre de hooks à chaque rendu, sinon il plante quand
+  // isSuccess passe à true (écran "Oups, une erreur est survenue").
   const rawPrices = teaserPrices[insuranceType || 'auto']?.prices || teaserPrices.auto.prices;
   // Session-stable rotation so a returning visitor sees different insurers
   const rotationSeed = useMemo(() => Math.floor(Math.random() * 997), []);
@@ -1487,6 +1472,24 @@ function ContactStep({
     }),
     [rawPrices, rotationSeed, mult]
   );
+
+  if (isSuccess) {
+    return (
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="flex flex-col items-center gap-4 py-6"
+      >
+        <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
+          <CheckCircle2 className="h-10 w-10 text-primary" />
+        </div>
+        <h3 className="text-xl font-bold text-foreground">{t('form.successTitle')}</h3>
+        <p className="text-sm text-muted-foreground text-center max-w-sm">
+          {t('form.successDescription')}
+        </p>
+      </motion.div>
+    );
+  }
 
   return (
     <div className="space-y-5 max-w-md mx-auto w-full">
