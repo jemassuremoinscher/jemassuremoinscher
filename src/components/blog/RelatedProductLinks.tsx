@@ -5,6 +5,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 interface RelatedProductLinksProps {
   category: string;
   tags: string[];
+  /** Slug de l'article affiché : sert à ne jamais proposer un lien vers la page courante. */
+  currentSlug?: string;
 }
 
 interface ProductLink {
@@ -134,8 +136,14 @@ const defaultProducts: ProductLink[] = [
 ];
 
 // Tag-based extra links
-const tagToLink: Record<string, ProductLink> = {
-  "jeune conducteur": { to: "/blog/110-chevaux-jeune-conducteur-assurance", label: "Jeune conducteur + voiture puissante" },
+const tagToLink: Record<string, ProductLink | ProductLink[]> = {
+  // Deux liens : la page pilier (article -> pilier, absent jusque-là : l'article
+  // 110 chevaux vit dans Supabase, sans catégorie, donc sans lien auto) et
+  // l'article 110 chevaux (slug canonique ; l'ancien slug redirige en 301).
+  "jeune conducteur": [
+    { to: "/assurance-auto-jeune-conducteur", label: "Assurance jeune conducteur : comparer les offres" },
+    { to: "/blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet", label: "Jeune conducteur + voiture puissante" },
+  ],
   "bonus malus": { to: "/outils/calculateur-bonus-malus", label: "Calculateur bonus-malus" },
   "malus": { to: "/profil/frequence-sinistres", label: "Solutions multi-sinistré" },
   "résiliation": { to: "/profil/resilie-non-paiement", label: "Résilié pour non-paiement : solutions" },
@@ -167,18 +175,21 @@ const tagToLink: Record<string, ProductLink> = {
   "multirisque professionnelle": { to: "/assurance-mrp", label: "Assurance MRP" },
 };
 
-const RelatedProductLinks = ({ category, tags }: RelatedProductLinksProps) => {
+const RelatedProductLinks = ({ category, tags, currentSlug }: RelatedProductLinksProps) => {
   const { t } = useLanguage();
   const products = categoryToProducts[category] || defaultProducts;
 
-  // Add tag-based links (deduplicated)
+  // Add tag-based links (deduplicated, jamais vers la page courante)
   const tagLinks: ProductLink[] = [];
   const existingPaths = new Set(products.map((p) => p.to));
-  
+  if (currentSlug) existingPaths.add(`/blog/${currentSlug}`);
+
   for (const tag of tags) {
     const normalizedTag = tag.toLowerCase();
-    for (const [key, link] of Object.entries(tagToLink)) {
-      if (normalizedTag.includes(key) && !existingPaths.has(link.to)) {
+    for (const [key, entry] of Object.entries(tagToLink)) {
+      if (!normalizedTag.includes(key)) continue;
+      for (const link of Array.isArray(entry) ? entry : [entry]) {
+        if (existingPaths.has(link.to)) continue;
         tagLinks.push(link);
         existingPaths.add(link.to);
       }

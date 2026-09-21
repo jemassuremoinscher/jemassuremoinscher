@@ -357,7 +357,7 @@ const BlogArticle = () => {
               <BarometreOptin source={`blog_article:${article.slug}`} />
 
               {/* Related product links */}
-              <RelatedProductLinks category={article.category} tags={article.tags} />
+              <RelatedProductLinks category={article.category} tags={article.tags} currentSlug={slug} />
 
               {/* Related articles for internal linking */}
               <RelatedArticles

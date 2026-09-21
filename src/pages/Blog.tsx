@@ -165,7 +165,7 @@ const Blog = () => {
                     { label: "Résilié non-paiement", to: "/profil/resilie-non-paiement" },
                     { label: "Retrait de permis", to: "/profil/retrait-permis" },
                     { label: "Multi-sinistré (3+)", to: "/profil/frequence-sinistres" },
-                    { label: "Jeune + voiture puissante", to: "/blog/110-chevaux-jeune-conducteur-assurance" },
+                    { label: "Jeune + voiture puissante", to: "/blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet" },
                     { label: "Métiers atypiques", to: "/assurance-metiers-atypiques" },
                     { label: "Primo-assuré", to: "/profil/sans-antecedents" },
                   ],

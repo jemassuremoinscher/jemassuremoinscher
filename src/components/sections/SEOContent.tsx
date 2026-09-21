@@ -146,7 +146,7 @@ const SEOContent = () => {
                   <li><Link to="/profil/retrait-permis" className="text-xs text-muted-foreground hover:text-primary transition-colors">Retrait de permis</Link></li>
                   <li><Link to="/profil/frequence-sinistres" className="text-xs text-muted-foreground hover:text-primary transition-colors">Multi-sinistré (3+)</Link></li>
                   <li><Link to="/profil/sans-antecedents" className="text-xs text-muted-foreground hover:text-primary transition-colors">Sans antécédents</Link></li>
-                  <li><Link to="/blog/110-chevaux-jeune-conducteur-assurance" className="text-xs text-muted-foreground hover:text-primary transition-colors">Jeune + voiture puissante</Link></li>
+                  <li><Link to="/blog/110-chevaux-pour-jeune-conducteur-en-2026-le-guide-complet" className="text-xs text-muted-foreground hover:text-primary transition-colors">Jeune + voiture puissante</Link></li>
                   <li><Link to="/profil" className="text-xs font-medium text-primary hover:underline">Tous les profils →</Link></li>
                 </ul>
               </div>
