@@ -99,18 +99,6 @@ export const routes: RouteConfig[] = [
 
   // Landing Pages
   { path: "/landing/assurance", changefreq: "weekly", priority: 0.8 },
-  { path: "/landing/auto", changefreq: "weekly", priority: 0.7 },
-  { path: "/landing/sante", changefreq: "weekly", priority: 0.7 },
-  { path: "/landing/habitation", changefreq: "weekly", priority: 0.7 },
-  { path: "/landing/moto", changefreq: "weekly", priority: 0.7 },
-  { path: "/landing/animaux", changefreq: "weekly", priority: 0.7 },
-  { path: "/landing/pret", changefreq: "weekly", priority: 0.7 },
-  { path: "/landing/vie", changefreq: "weekly", priority: 0.7 },
-  { path: "/landing/prevoyance", changefreq: "weekly", priority: 0.7 },
-  { path: "/landing/rc-pro", changefreq: "weekly", priority: 0.7 },
-  { path: "/landing/gli", changefreq: "weekly", priority: 0.7 },
-  { path: "/landing/pno", changefreq: "weekly", priority: 0.7 },
-  { path: "/landing/mrp", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/vtc", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/auto-entrepreneur", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/senior", changefreq: "weekly", priority: 0.7 },

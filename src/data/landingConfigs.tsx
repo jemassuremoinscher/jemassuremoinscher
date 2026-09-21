@@ -52,6 +52,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       seoDescription: "Compare 70+ assureurs auto avec Arthur en 2 minutes. Service gratuit, sans engagement, courtier indépendant ORIAS. Rappel d'un expert sous 10 minutes.",
       seoKeyword: "assurance auto moins chère",
       seoKeywords: "devis assurance auto, comparateur assurance voiture, assurance auto pas chère",
+      // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-auto (cannibalisation),
+      // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+      noindex: true,
       topBarText: "Devis gratuit en 2 minutes — un expert te rappelle sous 10 minutes",
       badgeText: "Comparateur indépendant ORIAS",
       heroTitle: "Ton assurance auto,",
@@ -95,6 +98,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       seoDescription: "Compare 70+ car insurers with Arthur in 2 minutes. Free, no commitment, independent ORIAS-registered broker. Expert callback within 10 minutes.",
       seoKeyword: "cheaper car insurance",
       seoKeywords: "car insurance quote, car insurance comparison, cheap car insurance France",
+      // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-auto (cannibalisation),
+      // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+      noindex: true,
       topBarText: "Free quote in 2 minutes — an expert calls you back within 10 minutes",
       badgeText: "Independent ORIAS broker",
       heroTitle: "Your car insurance,",
@@ -140,6 +146,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Comparez les assurances moto en 2 min. Économisez jusqu'à 40 %. Rappel expert sous 10 minutes.",
     seoKeyword: "assurance moto moins chère",
     seoKeywords: "devis assurance moto, comparateur moto, assurance scooter",
+    // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-moto (cannibalisation),
+    // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+    noindex: true,
     topBarText: "🏍️ Offre Moto : -35 % la 1ère année + assistance 0 km offerte",
     badgeText: "Spécialiste 2-roues",
     heroTitle: "Assurance moto",
@@ -178,6 +187,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Comparez les assurances habitation en 2 min. Locataire ou propriétaire. Économisez jusqu'à 35 %.",
     seoKeyword: "assurance habitation moins chère",
     seoKeywords: "devis assurance habitation, MRH locataire, MRH propriétaire",
+    // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-habitation (cannibalisation),
+    // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+    noindex: true,
     topBarText: "🏠 Offre Habitation : jusqu'à 2 mois offerts + dégâts des eaux inclus",
     badgeText: "Locataires & Propriétaires",
     heroTitle: "Assurance habitation",
@@ -216,6 +228,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Comparez 25+ mutuelles santé. Économisez jusqu'à 50 %. Sans questionnaire médical.",
     seoKeyword: "mutuelle santé moins chère",
     seoKeywords: "devis mutuelle, comparateur mutuelle santé, complémentaire santé",
+    // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-sante (cannibalisation),
+    // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+    noindex: true,
     topBarText: "❤️ Offre Mutuelle : 1 mois offert + sans questionnaire médical",
     badgeText: "Sans questionnaire médical",
     heroTitle: "Mutuelle santé",
@@ -254,6 +269,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Économisez jusqu'à 15 000 € sur l'assurance de votre prêt grâce à la loi Lemoine. Devis gratuit.",
     seoKeyword: "assurance emprunteur moins chère",
     seoKeywords: "loi Lemoine, délégation assurance emprunteur, ADE",
+    // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-pret (cannibalisation),
+    // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+    noindex: true,
     topBarText: "💰 Loi Lemoine : changez d'assurance emprunteur à tout moment, économisez jusqu'à 15 000 €",
     badgeText: "Loi Lemoine 2026",
     heroTitle: "Assurance prêt immobilier",
@@ -292,6 +310,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Découvrez les meilleurs contrats d'assurance vie. Frais réduits, fonds €, unités de compte.",
     seoKeyword: "meilleure assurance vie",
     seoKeywords: "contrat assurance vie, placement assurance vie, fonds euros",
+    // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-vie (cannibalisation),
+    // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+    noindex: true,
     topBarText: "💼 Offre Vie : 0 € de frais d'entrée sur nos contrats partenaires",
     badgeText: "Sans frais d'entrée",
     heroTitle: "Assurance vie",
@@ -330,6 +351,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Protégez vos revenus en cas d'arrêt de travail, invalidité ou décès. Devis gratuit.",
     seoKeyword: "assurance prévoyance",
     seoKeywords: "garantie maintien de salaire, prévoyance TNS, prévoyance famille",
+    // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-prevoyance (cannibalisation),
+    // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+    noindex: true,
     topBarText: "🛡️ Offre Prévoyance : 1er mois offert + sans franchise les 90 premiers jours",
     badgeText: "Maintien de revenus garanti",
     heroTitle: "Prévoyance",
@@ -368,6 +392,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Mutuelle santé chien et chat. Remboursement jusqu'à 100 % des frais véto.",
     seoKeyword: "assurance animaux moins chère",
     seoKeywords: "mutuelle chien, mutuelle chat, assurance santé animale",
+    // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-animaux (cannibalisation),
+    // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+    noindex: true,
     topBarText: "🐾 Offre Animaux : 1 mois offert + remboursement jusqu'à 100 %",
     badgeText: "Chien & Chat",
     heroTitle: "Assurance pour vos animaux",
@@ -407,6 +434,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Responsabilité civile professionnelle pour TPE, indépendants et auto-entrepreneurs.",
     seoKeyword: "assurance rc pro moins chère",
     seoKeywords: "responsabilité civile professionnelle, RC pro indépendant, RC auto-entrepreneur",
+    // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-rc-pro (cannibalisation),
+    // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+    noindex: true,
     topBarText: "💼 Offre RC Pro : 1er mois offert + attestation immédiate",
     badgeText: "Tous métiers",
     heroTitle: "Responsabilité Civile Pro",
@@ -445,6 +475,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Multirisque professionnelle : locaux, matériel, perte d'exploitation. Devis gratuit.",
     seoKeyword: "assurance mrp moins chère",
     seoKeywords: "multirisque professionnelle, assurance local commercial, assurance perte d'exploitation",
+    // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-mrp (cannibalisation),
+    // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+    noindex: true,
     topBarText: "🏢 Offre MRP : -25 % la 1ère année + perte d'exploitation incluse",
     badgeText: "Locaux & Matériel",
     heroTitle: "Multirisque Pro",
@@ -483,6 +516,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Sécurisez vos revenus locatifs : loyers impayés, dégradations, frais juridiques. Devis gratuit.",
     seoKeyword: "garantie loyers impayés",
     seoKeywords: "assurance GLI bailleur, garantie loyers impayés moins chère",
+    // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-gli (cannibalisation),
+    // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+    noindex: true,
     topBarText: "🔑 Offre GLI : à partir de 2,5 % du loyer + frais juridiques inclus",
     badgeText: "Bailleurs particuliers",
     heroTitle: "Garantie Loyers Impayés",
@@ -521,6 +557,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Protégez votre bien locatif : sinistres, RC propriétaire, vacance locative.",
     seoKeyword: "assurance propriétaire non occupant",
     seoKeywords: "PNO bailleur, assurance bien locatif",
+    // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-pno (cannibalisation),
+    // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+    noindex: true,
     topBarText: "🏘️ Offre PNO : dès 80 €/an + obligatoire en copropriété (loi Alur)",
     badgeText: "Obligatoire en copropriété",
     heroTitle: "Assurance PNO",
