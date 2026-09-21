@@ -25,17 +25,41 @@ const GlobalMdReveal = () => {
 
     let raf = 0;
     const observed = new WeakSet<Element>();
+
+    // Seuil IntersectionObserver de 10 % de la surface de l'élément, avec une
+    // zone utile de 94 % de la fenêtre (rootMargin -6 %) : un élément plus
+    // haut que ~9,4 fenêtres ne peut jamais l'atteindre et resterait à
+    // opacity 0 pour toujours (constaté sur mobile : conteneur de 11 567 px
+    // sur /assurance-velo, 9 822 px sur /assurance-scooter-50cc). On le révèle
+    // donc sans attendre ; ses sections enfants gardent leur propre animation.
+    const isTooTall = (el: Element) =>
+      el.getBoundingClientRect().height * 0.1 > window.innerHeight * 0.94;
+
+    let ro: ResizeObserver | null = null;
+    const reveal = (el: Element) => {
+      el.classList.add("is-visible");
+      io.unobserve(el);
+      ro?.unobserve(el);
+    };
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            io.unobserve(entry.target);
-          }
+          if (entry.isIntersecting) reveal(entry.target);
         });
       },
       { threshold: 0.1, rootMargin: "0px 0px -6% 0px" }
     );
+
+    // ResizeObserver : la hauteur d'un conteneur grandit après coup (contenu
+    // lazy, images) ; on réévalue donc à chaque changement de taille.
+    if (typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver((entries) => {
+        entries.forEach(({ target }) => {
+          if (isTooTall(target)) reveal(target);
+        });
+      });
+    }
 
     const tag = (el: Element) => {
       if (observed.has(el)) return;
@@ -54,6 +78,7 @@ const GlobalMdReveal = () => {
         el.classList.add("is-visible");
       } else {
         io.observe(el);
+        ro?.observe(el);
       }
       observed.add(el);
     };
@@ -71,6 +96,7 @@ const GlobalMdReveal = () => {
 
     return () => {
       io.disconnect();
+      ro?.disconnect();
       mo.disconnect();
       window.cancelAnimationFrame(raf);
     };

@@ -1448,7 +1448,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // contredit le "400 000/an" de l'article de blog (ça ferait ~1,3 min).
     // Aucun des deux chiffres n'étant sourcé, formulation qualitative.
     speechText: "Le vol de vélo est l'un des sinistres les plus fréquents en ville — protégez le vôtre dès 4€/mois.",
-    insuranceType: "habitation",
+    // Corrigé le 2026-09-20 : valait "habitation" (même copié-collé que la
+    // config trottinette) — les leads vélo partaient comme des leads habitation.
+    insuranceType: "velo",
     insuranceLabel: "Vélo & VAE",
     stats: [
       // "15+ Assureurs vélo" retiré : aucun assureur vélo spécialisé (Cyclassur,
@@ -1579,7 +1581,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     mascotSrc: arthurScoot,
     mascotAlt: "Arthur en trottinette électrique — assurance EDPM obligatoire",
     speechText: "Sans assurance, vous risquez 3 750 € d'amende et la confiscation. Je vous trouve la meilleure couverture en 2 minutes.",
-    insuranceType: "habitation",
+    // Corrigé le 2026-09-20 : valait "habitation" (copié-collé de la config
+    // habitation), donc chaque lead de cette landing était enregistré, envoyé
+    // par email et tracké comme une assurance habitation.
+    insuranceType: "trottinette",
     insuranceLabel: "Trottinette / EDPM",
     stats: [
       { icon: Bike, value: "20+", label: "Assureurs EDPM" },
