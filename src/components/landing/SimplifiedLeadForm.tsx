@@ -51,9 +51,15 @@ export const SimplifiedLeadForm = ({ insuranceType, insuranceLabel }: Simplified
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const utmData = { source: urlParams.get('utm_source') || 'direct', medium: urlParams.get('utm_medium') || 'organic', campaign: urlParams.get('utm_campaign') || 'none', term: urlParams.get('utm_term') || null, content: urlParams.get('utm_content') || null };
-      const { error } = await supabase.from('insurance_quotes').insert({ insurance_type: canonicalType, full_name: data.fullName, email: data.email, phone: data.phone, quote_data: { source: `landing_${canonicalType}`, utm_data: utmData }, status: 'pending' });
+      // leadId généré ici (comme MultiStepQuoteForm) : send-quote-email le
+      // résout en deal via deals.source_id, ce qui permet de tracer l'email
+      // dans le tiroir du deal (activities). Sans crypto.randomUUID, on laisse
+      // la base générer l'id et on n'envoie pas de leadId : l'email part quand
+      // même, simplement sans rattachement CRM.
+      const leadId = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : undefined;
+      const { error } = await supabase.from('insurance_quotes').insert({ ...(leadId ? { id: leadId } : {}), insurance_type: canonicalType, full_name: data.fullName, email: data.email, phone: data.phone, quote_data: { source: `landing_${canonicalType}`, utm_data: utmData }, status: 'pending' });
       if (error) throw error;
-      const { error: emailError } = await invokeSendQuoteEmail({ name: data.fullName, email: data.email, phone: data.phone, type: insuranceType, details: { source: `landing_${insuranceType}`, utm: utmData }, estimatedPrice: 35 });
+      const { error: emailError } = await invokeSendQuoteEmail({ leadId, name: data.fullName, email: data.email, phone: data.phone, type: insuranceType, details: { source: `landing_${insuranceType}`, utm: utmData }, estimatedPrice: 35 });
       if (emailError) console.error("Error sending email:", emailError);
       trackConversion(`landing_${insuranceType}`, 200);
       trackEvent('quote_request', { category: 'landing_page', label: `landing_${insuranceType}`, insurance_type: insuranceType, value: 200 });
