@@ -193,10 +193,45 @@ const main = async () => {
           // dans l'URL Meta Pixel). Le bootstrap inline reste intact et se réexécute
           // normalement pour chaque vrai visiteur, qui régénère ses propres tags : on retire
           // uniquement ces <script src> injectés, jamais le bootstrap lui-même.
+          // Domaines Google Ads/GA ajoutés le 2026-09-21 : gtag injectait un
+          // <script src="googleads.g.doubleclick.net/pagead/viewthroughconversion/…
+          // url=http://127.0.0.1:4183/…"> dans les 10 snapshots VerticalInsurancePage,
+          // qui aurait envoyé à chaque visiteur une conversion "vue" avec cette URL.
           document
             .querySelectorAll(
-              'script[src*="connect.facebook.net"], script[src*="clarity.ms"], script[src*="googletagmanager.com"]'
+              [
+                'script[src*="connect.facebook.net"]',
+                'script[src*="clarity.ms"]',
+                'script[src*="googletagmanager.com"]',
+                'script[src*="doubleclick.net"]',
+                'script[src*="googleadservices.com"]',
+                'script[src*="google-analytics.com"]',
+              ].join(", ")
             )
+            .forEach((el) => el.remove());
+
+          // Canonical du shell (index.html, sans data-rh) resté dans le <head> à côté
+          // de celui de Helmet : constaté sur /comparatif (canonical de l'accueil +
+          // canonical de la page, en double dans le snapshot alors que le DOM hydraté
+          // de production n'en a qu'un). On ne garde que celui de Helmet.
+          if (document.querySelector('link[rel="canonical"][data-rh]')) {
+            document
+              .querySelectorAll('link[rel="canonical"]:not([data-rh])')
+              .forEach((el) => el.remove());
+          }
+
+          // Le HTML d'origine produit par Vite (dist/index.html) ne contient AUCUN
+          // <link rel="modulepreload"> statique. Ceux des snapshots (68 sur l'accueil,
+          // 43 en moyenne) sont injectés dans le <head> par l'aide de préchargement de
+          // Vite à chaque import dynamique, pendant le défilement de simulation qui
+          // déclenche les sections paresseuses — puis figés dans le HTML. Chaque
+          // visiteur préchargeait ainsi au démarrage presque tous les chunks (pied de
+          // page, sections du bas, chunks référençant des fichiers disparus). Mesuré
+          // le 2026-09-21 sur un miroir de la production : les retirer fait passer le
+          // score Lighthouse mobile de 64 à 70-71 (FCP 5,1 s -> 3,3 s). Le chargement
+          // redevient celui de la SPA normale : les chunks sont chargés à la demande.
+          document
+            .querySelectorAll('link[rel="modulepreload"]')
             .forEach((el) => el.remove());
         });
 

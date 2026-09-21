@@ -54,6 +54,45 @@ const SNAPSHOTS = [
   { route: "/assurance-pno", file: "assurance-pno.html" },
   { route: "/gestion-locative", file: "gestion-locative.html" },
 
+  // Pages VerticalInsurancePage (composant partagé) — oubliées lors du lot
+  // "17 pages catégorie (MultiStepQuoteForm)" du 2026-09-05, qui ne comptait
+  // que les pages important MultiStepQuoteForm directement. Sans snapshot, leur
+  // HTML brut était le shell SPA de la home (titre, description et canonical de
+  // l'accueil) : contenu invisible aux crawlers sans JavaScript.
+  { route: "/assurance-velo", file: "assurance-velo.html" },
+  { route: "/assurance-scooter-50cc", file: "assurance-scooter-50cc.html" },
+  { route: "/assurance-sans-permis", file: "assurance-sans-permis.html" },
+  { route: "/assurance-camping-car", file: "assurance-camping-car.html" },
+  { route: "/assurance-cyber", file: "assurance-cyber.html" },
+  { route: "/assurance-decennale", file: "assurance-decennale.html" },
+  { route: "/assurance-flotte-auto", file: "assurance-flotte-auto.html" },
+  { route: "/assurance-mutuelle-entreprise", file: "assurance-mutuelle-entreprise.html" },
+  { route: "/assurance-protection-juridique", file: "assurance-protection-juridique.html" },
+  { route: "/assurance-auto-temporaire", file: "assurance-auto-temporaire.html" },
+
+  // Pages de contenu restées en shell SPA (canonical de l'accueil dans le HTML
+  // brut), ajoutées le 2026-09-21 après audit des 100 routes statiques. Exclues
+  // volontairement : 7 pages utilitaires noindex (/auth, /reset-password,
+  // /commercial, /merci, /merci-guide, /blog-preview, /newsletter-gestion) et
+  // 10 pages déjà servies par generate-static-pages.mjs avec un canonical propre.
+  // /assurance-emprunteur : le canonical pointe volontairement vers
+  // /assurance-pret (code de la page) ; le snapshot le reproduit fidèlement.
+  { route: "/assurance-auto-jeune-conducteur", file: "assurance-auto-jeune-conducteur.html" },
+  { route: "/assurance-trottinette-livreur", file: "assurance-trottinette-livreur.html" },
+  { route: "/assurance-auto-malus", file: "assurance-auto-malus.html" },
+  { route: "/assurance-auto-comparatif", file: "assurance-auto-comparatif.html" },
+  { route: "/assurance-auto-permis-etranger", file: "assurance-auto-permis-etranger.html" },
+  { route: "/assurance-emprunteur", file: "assurance-emprunteur.html" },
+  { route: "/mutuelle-tns", file: "mutuelle-tns.html" },
+  { route: "/qui-sommes-nous", file: "qui-sommes-nous.html" },
+  { route: "/qui-sommes-nous/paul", file: "qui-sommes-nous-paul.html" },
+  { route: "/qui-sommes-nous/groupe-mammouth", file: "qui-sommes-nous-groupe-mammouth.html" },
+  { route: "/avis-clients", file: "avis-clients.html" },
+  { route: "/faq", file: "faq.html" },
+  { route: "/sources-et-methodologie", file: "sources-et-methodologie.html" },
+  { route: "/comparatif", file: "comparatif.html" },
+  { route: "/profil", file: "profil.html" },
+
   // Profils niche (/profil/:slug) — reste des 14, 1 déjà ci-dessus.
   { route: "/profil/retrait-permis", file: "profil-retrait-permis.html" },
   { route: "/profil/frequence-sinistres", file: "profil-frequence-sinistres.html" },
@@ -111,18 +150,49 @@ const buildCurrentAssetMap = async () => {
   return map;
 };
 
+const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
 const remapAssets = (html, currentMap) => {
+  let working = html;
+  const removed = [];
+
+  // Chunk JS/CSS référencé par un snapshot mais absent du build courant (ex. le chunk
+  // "charts", supprimé de vite.config.ts le 2026-09-13 alors que 53 snapshots le
+  // référençaient encore). Garder l'ancienne référence est pire que la retirer : le
+  // repli SPA de Vercel répond 200 avec le HTML de l'accueil (300 Ko) à la place du
+  // fichier, que chaque visiteur téléchargeait sans cache. On retire donc la balise
+  // <script>/<link> entière.
+  const stale = new Map();
+  for (const m of html.matchAll(ASSET_RE)) {
+    const [, base, , ext] = m;
+    if ((ext === "js" || ext === "css") && !currentMap.has(`${base}.${ext}`)) stale.set(`${base}.${ext}`, { base, ext });
+  }
+  for (const [key, { base, ext }] of stale) {
+    const tagRe = new RegExp(
+      `<(?:script|link)\\b[^>]*\\b(?:src|href)="/assets/${escapeRe(base)}-[\\w-]{8,}\\.${ext}"[^>]*>(?:\\s*</script>)?`,
+      "g"
+    );
+    const before = working.length;
+    working = working.replace(tagRe, () => {
+      removed.push(key);
+      return "";
+    });
+    if (working.length === before) removed.push(`${key} (référence hors balise, conservée)`);
+  }
+
+  // Autres références absentes du build (images, polices…) : on garde l'ancienne
+  // référence plutôt que de casser le lien, et on la signale.
   const missing = [];
-  const remapped = html.replace(ASSET_RE, (full, base, _oldHash, ext) => {
+  const remapped = working.replace(ASSET_RE, (full, base, _oldHash, ext) => {
     const key = `${base}.${ext}`;
     const current = currentMap.get(key);
     if (!current) {
       missing.push(key);
-      return full; // on garde l'ancienne référence plutôt que de casser le lien
+      return full;
     }
     return `/assets/${current}`;
   });
-  return { remapped, missing };
+  return { remapped, missing, removed };
 };
 
 const main = async () => {
@@ -145,7 +215,7 @@ const main = async () => {
     }
 
     const html = await readFile(snapshotPath, "utf8");
-    const { remapped, missing } = remapAssets(html, currentMap);
+    const { remapped, missing, removed } = remapAssets(html, currentMap);
 
     const outDir = route === "/" ? distDir : path.join(distDir, route.replace(/^\//, ""));
     await mkdir(outDir, { recursive: true });
@@ -159,6 +229,7 @@ const main = async () => {
     await writeFile(outFile, remapped, "utf8");
     console.log(
       `[prerender-snapshot] ${route} → ${path.relative(rootDir, outFile)} (${Math.round(remapped.length / 1024)} Ko)` +
+        (removed.length ? ` — ${removed.length} balise(s) vers un chunk disparu retirée(s) : ${removed.join(", ")}` : "") +
         (missing.length ? ` — ${missing.length} asset(s) non retrouvé(s) dans dist/assets/ : ${missing.join(", ")}` : "")
     );
   }
