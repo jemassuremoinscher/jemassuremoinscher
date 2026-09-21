@@ -1991,18 +1991,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.jemassuremoinscher.fr/landing/auto-temporaire</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/landing/camping-car</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://www.jemassuremoinscher.fr/landing/coach-sportif</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -2015,18 +2003,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.jemassuremoinscher.fr/landing/cyber</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/landing/decennale</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://www.jemassuremoinscher.fr/landing/drone</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -2034,12 +2010,6 @@
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/landing/evenementiel</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/landing/flotte-auto</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -2081,12 +2051,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.jemassuremoinscher.fr/landing/mutuelle-entreprise</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://www.jemassuremoinscher.fr/landing/photographe</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -2111,12 +2075,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.jemassuremoinscher.fr/landing/protection-juridique</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://www.jemassuremoinscher.fr/landing/rc-pro</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
@@ -2130,12 +2088,6 @@
   </url>
   <url>
     <loc>https://www.jemassuremoinscher.fr/landing/restaurant</loc>
-    <lastmod>2026-07-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.jemassuremoinscher.fr/landing/sans-permis</loc>
     <lastmod>2026-07-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

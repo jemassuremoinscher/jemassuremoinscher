@@ -125,15 +125,6 @@ export const routes: RouteConfig[] = [
   { path: "/landing/evenementiel", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/cordiste-btp", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/moniteur-sport", changefreq: "weekly", priority: 0.7 },
-  { path: "/landing/decennale", changefreq: "weekly", priority: 0.8 },
-  { path: "/landing/flotte-auto", changefreq: "weekly", priority: 0.8 },
-  { path: "/landing/mutuelle-entreprise", changefreq: "weekly", priority: 0.8 },
-  { path: "/landing/cyber", changefreq: "weekly", priority: 0.8 },
-  { path: "/landing/sans-permis", changefreq: "weekly", priority: 0.8 },
-  { path: "/landing/camping-car", changefreq: "weekly", priority: 0.8 },
-  { path: "/landing/velo", changefreq: "weekly", priority: 0.8 },
-  { path: "/landing/protection-juridique", changefreq: "weekly", priority: 0.8 },
-  { path: "/landing/auto-temporaire", changefreq: "weekly", priority: 0.8 },
 
   // Legal Pages
   { path: "/mentions-legales", changefreq: "yearly", priority: 0.3 },

@@ -1175,6 +1175,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Garantie décennale obligatoire pour artisans et entreprises BTP. 30+ assureurs comparés, attestation immédiate. Devis gratuit en 2 min.",
     seoKeyword: "garantie décennale",
     seoKeywords: "assurance décennale, décennale artisan, décennale BTP, attestation décennale",
+    // Désindexée le 2026-09-21 : cannibalise /assurance-decennale (seoKeyword "garantie décennale" quasi identique à celui du pilier ("assurance décennale")),
+    // même traitement que les configs velo et trottinette.
+    noindex: true,
     topBarText: "🏗️ Décennale BTP — attestation immédiate, rappel sous 10 min",
     badgeText: "Obligatoire BTP",
     heroTitle: "Garantie Décennale",
@@ -1218,6 +1221,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Assurance flotte de véhicules d'entreprise dès 3 voitures. Gestion centralisée, tarifs négociés, attestations immédiates. Comparez 30+ assureurs.",
     seoKeyword: "assurance flotte auto",
     seoKeywords: "assurance flotte entreprise, assurance véhicules professionnels, flotte automobile",
+    // Désindexée le 2026-09-21 : cannibalise /assurance-flotte-auto (même seoKeyword "assurance flotte auto"),
+    // même traitement que les configs velo et trottinette.
+    noindex: true,
     topBarText: "🚗 Flotte auto pro — devis groupé, économies jusqu'à 30%",
     badgeText: "Pro — Entreprises",
     heroTitle: "Assurance Flotte",
@@ -1261,6 +1267,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Mutuelle collective obligatoire pour vos salariés. Conformité ANI, panier de soins, déduction fiscale. Comparez 25+ mutuelles entreprises.",
     seoKeyword: "mutuelle entreprise",
     seoKeywords: "mutuelle collective, mutuelle obligatoire entreprise, ANI mutuelle, complémentaire santé entreprise",
+    // Désindexée le 2026-09-21 : cannibalise /assurance-mutuelle-entreprise (même seoKeyword "mutuelle entreprise"),
+    // même traitement que les configs velo et trottinette.
+    noindex: true,
     topBarText: "🏢 Mutuelle entreprise ANI — conformité garantie, déduction fiscale",
     badgeText: "Obligatoire ANI",
     heroTitle: "Mutuelle Entreprise",
@@ -1304,6 +1313,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Protégez votre entreprise contre les cyberattaques : rançongiciel, fuite de données, RGPD. Couverture jusqu'à 5 M€. Devis gratuit.",
     seoKeyword: "assurance cyber",
     seoKeywords: "assurance cyber-risques, cyberattaque entreprise, assurance ransomware, protection données RGPD",
+    // Désindexée le 2026-09-21 : cannibalise /assurance-cyber (même seoKeyword "assurance cyber"),
+    // même traitement que les configs velo et trottinette.
+    noindex: true,
     topBarText: "🛡️ Cyber-risques — couverture rançongiciel + RGPD, devis 2 min",
     badgeText: "Pro — Cybersécurité",
     heroTitle: "Assurance",
@@ -1348,6 +1360,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Assurance voiturette sans permis (VSP) Aixam, Ligier, Microcar. Tiers, tous risques, jeune ou senior. Devis gratuit en 2 min.",
     seoKeyword: "assurance voiture sans permis",
     seoKeywords: "assurance voiturette, assurance VSP, assurance Aixam, assurance Ligier sans permis",
+    // Désindexée le 2026-09-21 : cannibalise /assurance-sans-permis (même seoKeyword "assurance voiture sans permis"),
+    // même traitement que les configs velo et trottinette.
+    noindex: true,
     topBarText: "🚙 Voiture sans permis — dès 25€/mois, devis 2 min",
     badgeText: "VSP",
     heroTitle: "Assurance",
@@ -1391,6 +1406,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Assurance camping-car, van aménagé, fourgon. Tiers à tous risques, contenu, assistance Europe. Comparez 20+ assureurs spécialisés.",
     seoKeyword: "assurance camping-car",
     seoKeywords: "assurance van aménagé, assurance fourgon aménagé, assurance camping-car tous risques",
+    // Désindexée le 2026-09-21 : cannibalise /assurance-camping-car (même seoKeyword "assurance camping-car"),
+    // même traitement que les configs velo et trottinette.
+    noindex: true,
     topBarText: "🚐 Camping-car & van — assistance Europe, devis 2 min",
     badgeText: "Loisirs",
     heroTitle: "Assurance",
@@ -1486,6 +1504,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Protection juridique vie privée et pro. Conseils illimités, prise en charge des frais d'avocat et de procédure. Comparez 20+ assureurs.",
     seoKeyword: "protection juridique",
     seoKeywords: "assurance protection juridique, défense recours, frais avocat assurance, litige assurance",
+    // Désindexée le 2026-09-21 : cannibalise /assurance-protection-juridique (même seoKeyword "protection juridique"),
+    // même traitement que les configs velo et trottinette.
+    noindex: true,
     topBarText: "⚖️ Protection juridique — conseils illimités dès 9€/mois",
     badgeText: "Défense & conseils",
     heroTitle: "Protection",
@@ -1529,6 +1550,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoDescription: "Assurance auto temporaire de 1 à 90 jours. Voiture de prêt, achat, vente, étudiant à l'étranger. Attestation immédiate.",
     seoKeyword: "assurance auto temporaire",
     seoKeywords: "assurance voiture courte durée, assurance auto 1 jour, assurance auto 1 mois, assurance auto temporaire en ligne",
+    // Désindexée le 2026-09-21 : cannibalise /assurance-auto-temporaire (même seoKeyword "assurance auto temporaire"),
+    // même traitement que les configs velo et trottinette.
+    noindex: true,
     topBarText: "⏱️ Assurance auto temporaire 1 à 90 jours — attestation immédiate",
     badgeText: "Courte durée",
     heroTitle: "Assurance Auto",
