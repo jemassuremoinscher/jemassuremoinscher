@@ -16,7 +16,7 @@ const AssuranceMutuelleEntreprise = () => (
     keyword="mutuelle entreprise"
     keywords="mutuelle entreprise, mutuelle collective, mutuelle ANI, complémentaire santé entreprise"
     insuranceType="mutuelle_entreprise"
-    productKey="sante"
+    courtierProduct="mutuelle-entreprise"
     serviceName="Mutuelle Entreprise Collective"
     serviceDescription="Comparateur de mutuelles entreprise obligatoires (loi ANI). Tarifs négociés, conformité légale, gestion simplifiée."
     productCategory="Mutuelle Santé"
@@ -24,12 +24,12 @@ const AssuranceMutuelleEntreprise = () => (
     faqs={[
       { question: "La mutuelle entreprise est-elle obligatoire ?", answer: "Oui depuis le 1er janvier 2016 (loi ANI). Toute entreprise du secteur privé doit proposer une complémentaire santé à ses salariés et la financer à 50% minimum." },
       { question: "Qu'est-ce que le panier de soins minimum ?", answer: "Un socle légal minimum : 100% BR consultation, hospitalisation forfait journalier intégral, dentaire 125% BR, optique forfait par période 2 ans." },
-      { question: "Combien coûte une mutuelle collective ?", answer: "Entre 25€ et 90€/mois par salarié selon les garanties. L'employeur en finance au moins 50% (souvent 60 à 100% selon la politique RH)." },
+      { question: "Combien coûte une mutuelle collective ?", answer: "Le coût dépend du niveau de garanties, de la composition de l'effectif (âge, ayants droit) et de la convention collective éventuelle. L'employeur en finance au moins 50%. Nous ne publions pas de fourchette de prix : comparez des devis établis pour votre entreprise." },
       { question: "Quels cas de dispense ?", answer: "CDD <12 mois, temps très partiel, ayants droit déjà couverts, ACS, contrat en cours à la mise en place… selon les conditions de l'acte fondateur." },
     ]}
     enBrefFacts={[
       <><BrandName /> compare les mutuelles entreprise conformes ANI.</>,
-      "Tarifs négociés dès 25€/mois par salarié.",
+      "Le tarif dépend du niveau de garanties et de la composition de l'effectif.",
       "Conformité légale garantie (panier de soins, ANI, DSN).",
       "Gestion en ligne simplifiée : adhésion, radiation, ayants droit.",
     ]}

@@ -2107,6 +2107,17 @@ const en: Record<string, string> = {
   'courtierValue.product.gli': 'rent guarantee insurance',
   'courtierValue.product.pno': 'non-occupant landlord insurance',
   'courtierValue.product.gestion-locative': 'rental management',
+  'courtierValue.product.sans-permis': 'licence-free car insurance',
+  'courtierValue.product.camping-car': 'motorhome insurance',
+  'courtierValue.product.auto-temporaire': 'temporary car insurance',
+  'courtierValue.product.flotte-auto': 'company fleet insurance',
+  'courtierValue.product.cyber': 'cyber insurance',
+  'courtierValue.product.decennale': 'ten-year builder liability insurance',
+  'courtierValue.product.mutuelle-entreprise': 'company group health insurance',
+  'courtierValue.product.protection-juridique': 'legal expenses insurance',
+  'courtierValue.product.velo': 'bicycle insurance',
+  'courtierValue.product.trottinette': 'e-scooter insurance',
+  'courtierValue.product.scooter-50cc': '50cc scooter insurance',
 
   // SEO Tabs
   'seoTabs.faq': 'Frequently asked questions',

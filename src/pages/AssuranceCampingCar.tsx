@@ -16,14 +16,14 @@ const AssuranceCampingCar = () => (
     keyword="assurance camping-car"
     keywords="assurance camping-car, assurance van aménagé, assurance fourgon, hivernage camping-car"
     insuranceType="camping_car"
-    productKey="auto"
+    courtierProduct="camping-car"
     serviceName="Assurance Camping-car & Van"
     serviceDescription="Comparateur d'assurance camping-car et van aménagé. Garanties spécifiques contenu, accessoires, hivernage."
     productCategory="Assurance Automobile"
     expertiseLabel="assurance camping-car"
     faqs={[
       { question: "Quelles garanties spécifiques pour un camping-car ?", answer: "Au-delà du tiers obligatoire : contenu (effets personnels, vaisselle), accessoires (auvent, panneau solaire), assistance 0 km, et hivernage pour les périodes sans usage." },
-      { question: "Combien coûte une assurance camping-car ?", answer: "En moyenne 350 à 900€/an selon la valeur, le type (capucine, intégral) et l'usage (loisir, résidence principale)." },
+      { question: "Combien coûte une assurance camping-car ?", answer: "Le prix dépend de la valeur du véhicule, de son type (capucine, profilé, intégral, van aménagé), de l'usage (loisir, résidence principale), du profil du conducteur et des garanties choisies (contenu, accessoires, assistance, hivernage). Nous ne publions pas de fourchette de prix : comparez des devis établis pour votre situation." },
       { question: "Peut-on suspendre son assurance en hiver ?", answer: "Oui, la plupart des assureurs proposent une formule hivernage à tarif réduit (garage seul) pendant les mois d'inactivité." },
       { question: "Le permis B suffit-il pour un camping-car ?", answer: "Oui jusqu'à 3,5 tonnes. Au-delà, le permis C1 est requis. Cela influe sur la prime d'assurance." },
     ]}

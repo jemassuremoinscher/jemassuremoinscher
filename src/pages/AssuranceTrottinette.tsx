@@ -200,7 +200,7 @@ const AssuranceTrottinette = () => {
 
           <TrottinetteStatsAnswers />
 
-          <CourtierValueCards product="moto" />
+          <CourtierValueCards product="trottinette" />
 
           {/* Procédure sinistre : résumé factuel (déclaration, justificatifs)
               repris de l'article de blog existant, sans ses statistiques non

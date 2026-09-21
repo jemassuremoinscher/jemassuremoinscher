@@ -84,13 +84,7 @@ const AssuranceVelo = () => (
     keyword="assurance vélo"
     keywords="assurance vélo, assurance VAE, assurance vélo électrique, vol vélo, assurance vélo cargo, garantie vol vélo habitation, plafond vol vélo assurance habitation"
     insuranceType="velo"
-    // "habitation" plutôt que le défaut "auto" de CourtierValueCards (bug
-    // trouvé le 2026-09-07 : la page affichait "Pourquoi passer par un
-    // courtier spécialisé pour l'assurance auto ?"). Cohérent avec le
-    // nouvel angle : c'est bien la garantie vol de l'assurance habitation
-    // qui est au centre de cette page, pas un produit vélo dédié inexistant
-    // chez nos partenaires.
-    productKey="habitation"
+    courtierProduct="velo"
     serviceName="Assurance Vélo & VAE"
     serviceDescription="Comparateur d'assurance vélo et vélo à assistance électrique (VAE). Garanties vol, casse, assistance."
     productCategory="Assurance Mobilité"

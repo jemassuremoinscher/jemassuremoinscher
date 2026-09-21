@@ -2098,6 +2098,17 @@ const fr: Record<string, string> = {
   'courtierValue.product.gli': 'la garantie loyers impayés',
   'courtierValue.product.pno': "l'assurance PNO",
   'courtierValue.product.gestion-locative': 'la gestion locative',
+  'courtierValue.product.sans-permis': "l'assurance voiture sans permis",
+  'courtierValue.product.camping-car': "l'assurance camping-car",
+  'courtierValue.product.auto-temporaire': "l'assurance auto temporaire",
+  'courtierValue.product.flotte-auto': "l'assurance flotte auto",
+  'courtierValue.product.cyber': 'la cyber-assurance',
+  'courtierValue.product.decennale': "l'assurance décennale",
+  'courtierValue.product.mutuelle-entreprise': "la mutuelle d'entreprise",
+  'courtierValue.product.protection-juridique': 'la protection juridique',
+  'courtierValue.product.velo': "l'assurance vélo",
+  'courtierValue.product.trottinette': "l'assurance trottinette",
+  'courtierValue.product.scooter-50cc': "l'assurance scooter 50 cc",
 
   // SEO Tabs
   'seoTabs.faq': 'Questions fréquentes',

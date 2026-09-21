@@ -2,14 +2,14 @@ import { useRef, type ReactNode } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Shield, Euro, Clock } from "lucide-react";
+import { Shield, Search, Clock } from "lucide-react";
 import SEOOptimized from "@/components/SEOOptimized";
 import { addServiceSchema, addFAQSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
 import ProductGuaranteeTable, { type ProductKey } from "@/components/insurance/ProductGuaranteeTable";
-import CourtierValueCards from "@/components/insurance/CourtierValueCards";
+import CourtierValueCards, { type ProductContext } from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import EnBref from "@/components/seo/EnBref";
 import BrandName from "@/components/BrandName";
@@ -39,8 +39,18 @@ export interface VerticalPageProps {
   keywords?: string;
   /** MultiStep insurance type (closest existing key) */
   insuranceType: InsuranceType;
-  /** Optional product key for guarantee table (omit if not available) */
+  /**
+   * Clé du tableau de garanties. À OMETTRE tant qu'il n'existe pas de tableau
+   * propre à CE produit : ne jamais réutiliser celui d'un produit voisin
+   * (prix et niveaux de garanties d'un autre produit affichés à tort).
+   */
   productKey?: ProductKey;
+  /**
+   * Produit nommé dans le titre de CourtierValueCards. Obligatoire, sans
+   * repli : l'ancien défaut "auto" affichait « pour l'assurance auto » sur des
+   * pages qui n'en parlent pas.
+   */
+  courtierProduct: ProductContext;
   /** Advantages */
   advantages?: { title: string; description: string; icon?: any }[];
   /** FAQ */
@@ -102,7 +112,7 @@ const VerticalInsurancePage = (props: VerticalPageProps) => {
   });
 
   const advantages = props.advantages ?? [
-    { icon: Euro, title: "Économisez jusqu'à 40%", description: "Comparez les meilleures offres du marché." },
+    { icon: Search, title: "Comparez plusieurs assureurs", description: "Un conseiller met en regard les offres selon votre profil." },
     { icon: Clock, title: "Devis en 2 minutes", description: "Gratuit, sans engagement, sans carte bancaire." },
     { icon: Shield, title: "Courtier ORIAS", description: "Conseil expert et indépendant, 100% transparent." },
   ];
@@ -169,7 +179,7 @@ const VerticalInsurancePage = (props: VerticalPageProps) => {
 
           {props.extraSection}
 
-          <CourtierValueCards product={props.productKey ?? "auto"} />
+          <CourtierValueCards product={props.courtierProduct} />
 
           <InsuranceSEOTabs faqTitle="Questions fréquentes" faqs={props.faqs} />
 

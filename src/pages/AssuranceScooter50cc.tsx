@@ -74,6 +74,7 @@ const AssuranceScooter50cc = () => (
     keywords="assurance scooter 50cc, assurance cyclomoteur, assurance BSR, assurance AM, assurance scooter 14 ans"
     insuranceType="moto"
     productKey="scooter-50cc"
+    courtierProduct="scooter-50cc"
     serviceName="Assurance Scooter 50cc & Cyclomoteur"
     serviceDescription="Comparateur d'assurance cyclomoteur 50cc. RC obligatoire, vol, casse. BSR/AM dès 14 ans."
     productCategory="Assurance Mobilité"

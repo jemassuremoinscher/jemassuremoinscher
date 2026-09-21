@@ -2,7 +2,7 @@ import { Award, FileCheck, Search, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-type ProductContext =
+export type ProductContext =
   | "auto"
   | "moto"
   | "habitation"
@@ -16,7 +16,18 @@ type ProductContext =
   | "prevoyance"
   | "gli"
   | "pno"
-  | "gestion-locative";
+  | "gestion-locative"
+  | "sans-permis"
+  | "camping-car"
+  | "auto-temporaire"
+  | "flotte-auto"
+  | "cyber"
+  | "decennale"
+  | "mutuelle-entreprise"
+  | "protection-juridique"
+  | "velo"
+  | "trottinette"
+  | "scooter-50cc";
 
 interface CourtierValueCardsProps {
   product: ProductContext;
