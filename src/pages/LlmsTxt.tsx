@@ -17,7 +17,7 @@ const LLMS_TXT = `# jemassuremoinscher.fr
 ## Chiffres clés
 
 - **25+** assureurs partenaires (AXA, Allianz, MAIF, Generali, MMA, Matmut…)
-- **280€** d'économie moyenne par an constatée sur les contrats comparés
+- **Économie potentielle** variable selon le profil et le contrat précédent, calculée à chaque devis
 - **Moins de 2 minutes** pour obtenir un devis personnalisé
 - **100% gratuit** et sans engagement pour l'utilisateur
 - **${geoContent.trust.ratingValueLabel}/5** note moyenne sur **${geoContent.trust.reviewCountLabel}** avis vérifiés

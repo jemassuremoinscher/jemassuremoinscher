@@ -140,7 +140,7 @@ const ExitIntentLeadMagnet = ({ disabled = false, insuranceType }: Props) => {
                   </h3>
                   <p className="text-sm text-muted-foreground mb-5 leading-relaxed">
                     Pas le temps de finir ton devis&nbsp;? Reçois notre guide gratuit&nbsp;:
-                    les 7 réflexes qui font économiser jusqu'à <strong>280&nbsp;€/an</strong>{" "}
+                    les 7 réflexes pour <strong>réduire ta prime</strong>{" "}
                     sur ton assurance — sans changer tes garanties.
                   </p>
 

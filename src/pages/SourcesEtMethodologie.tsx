@@ -40,7 +40,7 @@ const SourcesEtMethodologie = () => {
       title: "Économies annoncées",
       items: [
         { label: "Calcul", desc: "Différence entre la prime du contrat précédent du client et la meilleure offre que nous lui proposons" },
-        { label: "Économie moyenne", desc: "280€/an tous produits confondus, jusqu'à 320€/an sur l'assurance auto" },
+        { label: "Économie moyenne", desc: "Variable selon le profil et le contrat précédent : aucune moyenne agrégée n'est publiée à ce jour" },
         { label: "Échantillon", desc: "Calcul basé sur les souscriptions effectives 2024-2025" },
       ],
     },

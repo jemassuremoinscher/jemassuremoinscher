@@ -64,7 +64,7 @@ const LeadMagnetSection = () => {
                 Guide gratuit&nbsp;: 7 erreurs qui font payer trop cher
               </h2>
               <p className="text-xs md:text-sm text-muted-foreground mt-0.5">
-                PDF 2 pages — économise jusqu'à <strong>280&nbsp;€/an</strong> sans changer tes garanties.
+                PDF 2 pages — <strong>réduis ta prime</strong> sans changer tes garanties.
               </p>
             </div>
           </div>

@@ -49,7 +49,7 @@ const PILLARS = [
       "Nous interrogeons plus de 70 assureurs partenaires et 2 500 agences locales à garanties comparables, puis nous présentons les écarts réels.",
     bullets: [
       "Comparaison à garanties équivalentes, franchise incluse",
-      "Économie moyenne constatée : jusqu'à 280 €/an selon le profil",
+      "L'économie potentielle dépend du profil et du contrat précédent",
       "Contenus relus et mis à jour à chaque évolution réglementaire",
     ],
   },

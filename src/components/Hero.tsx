@@ -40,8 +40,7 @@ const Hero = () => {
           <div className="flex-1 min-w-0 text-center md:text-left">
 
             <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-white leading-[1.05] font-[Inter] animate-fade-in-up">
-              {slogan.line1.replace(/280€\/an/, "")}
-              <span className="text-accent"> 280€/an</span>
+              {slogan.line1}
               <br className="hidden sm:block" />
               <span className="text-white/90 font-bold">
                 {" "}{slogan.line2Prefix}

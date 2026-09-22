@@ -56,13 +56,13 @@ export const InsuranceQuiz = () => {
     const firstAnswer = questions[0].options.find(opt => opt.value === answers.q1);
     const insuranceTypes = firstAnswer?.insuranceType || [];
     const recommendations: Record<string, any> = {
-      auto: { title: 'Assurance Auto', savings: '450€', description: "Économisez jusqu'à 450€/an", link: '/assurance-auto' },
-      moto: { title: 'Assurance Moto', savings: '280€', description: 'Meilleure assurance moto', link: '/assurance-moto' },
-      sante: { title: 'Mutuelle Santé', savings: '600€', description: 'Comparez les mutuelles', link: '/assurance-sante' },
-      prevoyance: { title: 'Prévoyance', savings: '380€', description: 'Protégez votre famille', link: '/assurance-prevoyance' },
-      habitation: { title: 'Assurance Habitation', savings: '320€', description: 'Assurez votre logement', link: '/assurance-habitation' },
-      pno: { title: 'Assurance PNO', savings: '250€', description: 'Protégez votre bien locatif', link: '/assurance-pno' },
-      vie: { title: 'Assurance Vie', savings: '500€', description: "Préparez l'avenir", link: '/assurance-vie' },
+      auto: { title: 'Assurance Auto', description: 'Comparez les meilleures offres auto', link: '/assurance-auto' },
+      moto: { title: 'Assurance Moto', description: 'Meilleure assurance moto', link: '/assurance-moto' },
+      sante: { title: 'Mutuelle Santé', description: 'Comparez les mutuelles', link: '/assurance-sante' },
+      prevoyance: { title: 'Prévoyance', description: 'Protégez votre famille', link: '/assurance-prevoyance' },
+      habitation: { title: 'Assurance Habitation', description: 'Assurez votre logement', link: '/assurance-habitation' },
+      pno: { title: 'Assurance PNO', description: 'Protégez votre bien locatif', link: '/assurance-pno' },
+      vie: { title: 'Assurance Vie', description: "Préparez l'avenir", link: '/assurance-vie' },
     };
     return insuranceTypes.map(type => recommendations[type]).filter(Boolean);
   };
@@ -115,7 +115,7 @@ export const InsuranceQuiz = () => {
                         <CardContent className="p-4">
                           <div className="flex justify-between items-start">
                             <div><h4 className="font-semibold text-lg">{rec.title}</h4><p className="text-sm text-muted-foreground mt-1">{rec.description}</p></div>
-                            <div className="text-right"><div className="text-2xl font-bold text-primary">{rec.savings}</div><div className="text-xs text-muted-foreground">{t('quiz.savingsPerYear')}</div></div>
+                            <div className="text-right"><div className="text-xl font-bold text-primary">{t('quiz.compare')}</div><div className="text-xs text-muted-foreground">{t('quiz.savingsPerYear')}</div></div>
                           </div>
                           <Button asChild variant="outline" className="w-full mt-4"><a href={rec.link}>{t('quiz.compareOffers')}<ArrowRight className="ml-2 h-4 w-4" /></a></Button>
                         </CardContent>

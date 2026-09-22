@@ -92,7 +92,7 @@ const Index = () => {
         "name": "Combien puis-je économiser?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "En moyenne 280€ par an, soit jusqu'à 40% d'économies."
+          "text": "Cela dépend de votre profil et de votre contrat actuel. Un conseiller compare votre situation à celle de nos 70+ assureurs partenaires pour identifier une économie réelle, sans engagement."
         }
       },
       {
