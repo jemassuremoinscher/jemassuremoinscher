@@ -29,8 +29,8 @@ const ArthurHero = ({
   savingsHighlight,
   ctaLabel,
   onCtaClick,
-  savingsValue = "280€/an",
-  savingsLabel = "Économie moyenne",
+  savingsValue = "Économisez",
+  savingsLabel = "en comparant les offres",
   reviewsValue = "5/5",
   reviewsLabel = "avis vérifiés",
 }: ArthurHeroProps) => {
