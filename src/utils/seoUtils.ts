@@ -176,20 +176,29 @@ export const addArticleSchema = (article: {
   headline: string;
   description: string;
   author?: string;
+  /**
+   * N'émettre un schema.org Person QUE pour un profil réel, vérifié et
+   * explicitement désigné comme tel par l'appelant (ex. "Paul", cf.
+   * src/data/authors.ts, entityType: "Person"). Faux par défaut : toute
+   * chaîne d'auteur — réelle ou générée — est traitée comme une attribution
+   * collective (Organization), jamais déduite du contenu de la chaîne
+   * elle-même. C'est cette déduction automatique qui exposait en JSON-LD
+   * Person des identités fictives issues de seo_article_suggestions
+   * (nettoyées le 2026-09-23) : ne jamais la réintroduire.
+   */
+  isVerifiedPerson?: boolean;
   datePublished: string;
   image?: string;
 }) => {
   const authorName = article.author || "jemassuremoinscher.fr";
-  const isTeam = authorName.includes("équipe") || authorName === "jemassuremoinscher.fr";
-  
+
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": article.headline,
     "description": article.description,
-    "author": isTeam
-      ? { "@type": "Organization", "name": authorName }
-      : {
+    "author": article.isVerifiedPerson
+      ? {
           "@type": "Person",
           "name": authorName,
           "worksFor": {
@@ -197,7 +206,8 @@ export const addArticleSchema = (article: {
             "name": "jemassuremoinscher.fr",
             "url": "https://www.jemassuremoinscher.fr"
           }
-        },
+        }
+      : { "@type": "Organization", "name": authorName },
     "publisher": {
       "@type": "Organization",
       "name": "jemassuremoinscher.fr",

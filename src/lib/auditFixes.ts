@@ -56,45 +56,14 @@ const trimToLength = (text: string, max: number) => (text.length <= max ? text :
 
 const humanizeSlug = (slug: string) => slug.split("-").filter(Boolean).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
 
-const normalizeTextFingerprint = (...values: Array<string | null | undefined>) => values
-  .filter(Boolean)
-  .join(" ")
-  .toLowerCase();
-
-export const getSuggestedAuthorLabel = (input: {
-  slug?: string | null;
-  title?: string | null;
-  target_keyword?: string | null;
-  suggested_content?: string | null;
-}) => {
-  const fingerprint = normalizeTextFingerprint(input.slug, input.title, input.target_keyword, input.suggested_content);
-
-  if (fingerprint.includes("emprunteur") || fingerprint.includes("lemoine") || fingerprint.includes("crédit")) {
-    return "Sophie Mercier – Juriste en assurance emprunteur";
-  }
-
-  if (fingerprint.includes("mutuelle") || fingerprint.includes("santé") || fingerprint.includes("hospitalisation")) {
-    return "Dr. Marie Dupont – Experte en assurance santé";
-  }
-
-  if (fingerprint.includes("auto") || fingerprint.includes("conducteur") || fingerprint.includes("malussé")) {
-    return "Claire Rousseau – Rédactrice experte assurance auto";
-  }
-
-  if (fingerprint.includes("habitation") || fingerprint.includes("pno") || fingerprint.includes("gli") || fingerprint.includes("immobili")) {
-    return "Thomas Leroy – Courtier en assurance IARD";
-  }
-
-  if (fingerprint.includes("résiliation") || fingerprint.includes("hamon") || fingerprint.includes("glossaire") || fingerprint.includes("définition") || fingerprint.includes("franchise")) {
-    return "Sophie Martin – Juriste spécialisée en droit de l'assurance";
-  }
-
-  if (fingerprint.includes("courtier") || fingerprint.includes("expertise") || fingerprint.includes("preuve")) {
-    return "L'équipe d'experts Jemassuremoinscher";
-  }
-
-  return "L'équipe d'experts Jemassuremoinscher";
-};
+// getSuggestedAuthorLabel a été supprimée le 2026-09-23 : elle générait, par
+// mot-clé, de fausses identités présentées comme des personnes qualifiées
+// ("Dr. Marie Dupont – Experte en assurance santé", "Sophie Mercier – Juriste
+// en assurance emprunteur"...), écrites en dur dans ce fichier et poussées
+// jusqu'en base via publishNewSuggestions (plus bas). Ce n'était pas une
+// donnée à nettoyer mais un générateur actif : tous ses appels ci-dessous
+// utilisent désormais directement l'attribution collective réelle.
+const GENERIC_AUTHOR = "L'équipe d'experts Jemassuremoinscher";
 
 export const auditFileToPagePath = (file: string) => {
   const normalized = file.trim().replace(/^\/+/, "");
@@ -532,12 +501,7 @@ const buildGeoContentSuggestion = (input: GeoContentImprovementInput) => {
     target_keyword: trimToLength(baseKeyword, 120),
     suggested_meta_description: trimToLength(`Amélioration GEO proposée pour ${input.path}${input.query ? ` autour de “${input.query}”` : ""}.`, 160),
     suggested_content,
-    suggested_author: getSuggestedAuthorLabel({
-      slug,
-      title,
-      target_keyword: baseKeyword,
-      suggested_content,
-    }),
+    suggested_author: GENERIC_AUTHOR,
   };
 };
 
@@ -592,7 +556,7 @@ const IA_SOURCE_SUGGESTIONS = [
     target_keyword: "comparatif assurance auto profil conducteur",
     suggested_meta_description: "Créer un comparatif orienté profils pour multiplier les reprises par les assistants IA.",
     suggested_content: "Rédiger un comparatif structuré par profils (jeune conducteur, malussé, petit rouleur, famille), avec FAQ courte, tableau comparatif et critères de décision.",
-    suggested_author: getSuggestedAuthorLabel({ slug: "comparatif-assurance-auto-profils-2026", title: "Comparatif assurance auto 2026 selon le profil conducteur", target_keyword: "comparatif assurance auto profil conducteur" }),
+    suggested_author: GENERIC_AUTHOR,
   },
   {
     slug: "definition-franchise-assurance-exemples",
@@ -600,7 +564,7 @@ const IA_SOURCE_SUGGESTIONS = [
     target_keyword: "franchise assurance définition",
     suggested_meta_description: "Créer une définition courte, réutilisable et précise pour les assistants IA.",
     suggested_content: "Créer une page définition avec entités nommées, exemples concrets, mini FAQ et liens vers auto, habitation et santé.",
-    suggested_author: getSuggestedAuthorLabel({ slug: "definition-franchise-assurance-exemples", title: "Franchise assurance : définition simple et exemples concrets", target_keyword: "franchise assurance définition" }),
+    suggested_author: GENERIC_AUTHOR,
   },
   {
     slug: "faq-assurance-emprunteur-changement-2026",
@@ -608,7 +572,7 @@ const IA_SOURCE_SUGGESTIONS = [
     target_keyword: "faq assurance emprunteur 2026",
     suggested_meta_description: "Créer une FAQ dense et cit-able pour diversifier les sources IA.",
     suggested_content: "Rédiger une FAQ très précise avec réponses courtes, conditions, délais, exclusions et liens internes vers les pages décisionnelles.",
-    suggested_author: getSuggestedAuthorLabel({ slug: "faq-assurance-emprunteur-changement-2026", title: "FAQ assurance emprunteur 2026 : changer, comparer, économiser", target_keyword: "faq assurance emprunteur 2026" }),
+    suggested_author: GENERIC_AUTHOR,
   },
   {
     slug: "guide-choisir-mutuelle-sante-selon-besoins",
@@ -616,7 +580,7 @@ const IA_SOURCE_SUGGESTIONS = [
     target_keyword: "guide choisir mutuelle santé besoins",
     suggested_meta_description: "Créer un guide de décision structuré pour augmenter les reprises multi-assistants.",
     suggested_content: "Construire un guide de décision par cas d'usage avec preuves d'expertise, critères prioritaires et liens vers pages santé associées.",
-    suggested_author: getSuggestedAuthorLabel({ slug: "guide-choisir-mutuelle-sante-selon-besoins", title: "Guide : choisir une mutuelle santé selon ses vrais besoins", target_keyword: "guide choisir mutuelle santé besoins" }),
+    suggested_author: GENERIC_AUTHOR,
   },
 ];
 
@@ -627,7 +591,7 @@ const IA_CITATION_SUGGESTIONS = [
     target_keyword: "courtier assurance indépendant expertise",
     suggested_meta_description: "Mettre en avant expertise, preuves et entités nommées pour augmenter les citations IA.",
     suggested_content: "Créer une page avec preuves d'expertise, processus, partenaires, exemples de profils accompagnés et FAQ précise sur le rôle du courtier.",
-    suggested_author: getSuggestedAuthorLabel({ slug: "preuves-expertise-courtier-assurance-independant", title: "Pourquoi passer par un courtier en assurance indépendant ?", target_keyword: "courtier assurance indépendant expertise" }),
+    suggested_author: GENERIC_AUTHOR,
   },
   {
     slug: "faq-resiliation-assurance-lois-hamon-lemoine",
@@ -635,7 +599,7 @@ const IA_CITATION_SUGGESTIONS = [
     target_keyword: "faq résiliation assurance hamon lemoine",
     suggested_meta_description: "Ajouter une FAQ précise et fiable sur les lois citées par les assistants IA.",
     suggested_content: "Rédiger une FAQ citant explicitement loi Hamon, loi Lemoine, délais, conditions et documents requis, avec maillage vers les pages concernées.",
-    suggested_author: getSuggestedAuthorLabel({ slug: "faq-resiliation-assurance-lois-hamon-lemoine", title: "FAQ résiliation assurance : loi Hamon, Lemoine, obligations", target_keyword: "faq résiliation assurance hamon lemoine" }),
+    suggested_author: GENERIC_AUTHOR,
   },
   {
     slug: "assurance-glossaire-termes-essentiels-decider",
@@ -643,7 +607,7 @@ const IA_CITATION_SUGGESTIONS = [
     target_keyword: "glossaire assurance termes essentiels",
     suggested_meta_description: "Renforcer les entités nommées et le maillage sémantique avec un glossaire enrichi.",
     suggested_content: "Créer un contenu pivot regroupant les définitions clés, avec renvois vers les pages glossaire et les offres liées pour renforcer les citations.",
-    suggested_author: getSuggestedAuthorLabel({ slug: "assurance-glossaire-termes-essentiels-decider", title: "Glossaire assurance : les termes essentiels pour décider sans erreur", target_keyword: "glossaire assurance termes essentiels" }),
+    suggested_author: GENERIC_AUTHOR,
   },
 ];
 
@@ -702,7 +666,7 @@ const createContentSuggestions = async (suggestions: typeof IA_SOURCE_SUGGESTION
   const items: ContentSuggestionDraft[] = [];
 
   for (const suggestion of suggestions) {
-    const author = getSuggestedAuthorLabel(suggestion);
+    const author = suggestion.suggested_author || GENERIC_AUTHOR;
     const payload = {
       ...suggestion,
       suggested_author: author,
