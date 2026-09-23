@@ -818,6 +818,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
 
   "auto-entrepreneur": {
     slug: "auto-entrepreneur",
+    // Désindexée le 2026-09-23 : cannibalise le nouveau pilier
+    // /assurance-auto-entrepreneur (même seoKeyword), même traitement que
+    // les sujets traités avant elle.
+    noindex: true,
     trackingTitle: "Landing Page Assurance Auto-Entrepreneur",
     seoTitle: "Assurance Auto-Entrepreneur | RC Pro dès 9 €/mois",
     seoDescription: "Assurance auto-entrepreneur : RC pro, mutuelle TNS, prévoyance. 100% adapté aux micro-entrepreneurs. Devis 2 min.",

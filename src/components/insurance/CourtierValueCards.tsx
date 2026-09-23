@@ -32,7 +32,8 @@ export type ProductContext =
   | "drone"
   | "coach-sportif"
   | "rc-pro-micro-entreprise"
-  | "influenceur";
+  | "influenceur"
+  | "auto-entrepreneur";
 
 interface CourtierValueCardsProps {
   product: ProductContext;

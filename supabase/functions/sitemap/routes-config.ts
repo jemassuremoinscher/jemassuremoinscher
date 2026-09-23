@@ -99,7 +99,6 @@ export const routes: RouteConfig[] = [
 
   // Landing Pages
   { path: "/landing/assurance", changefreq: "weekly", priority: 0.8 },
-  { path: "/landing/auto-entrepreneur", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/senior", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/scooter", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/restaurant", changefreq: "weekly", priority: 0.7 },
