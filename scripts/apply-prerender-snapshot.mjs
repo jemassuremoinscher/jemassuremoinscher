@@ -68,6 +68,7 @@ const SNAPSHOTS = [
   { route: "/assurance-flotte-auto", file: "assurance-flotte-auto.html" },
   { route: "/assurance-vtc", file: "assurance-vtc.html" },
   { route: "/assurance-drone", file: "assurance-drone.html" },
+  { route: "/assurance-coach-sportif", file: "assurance-coach-sportif.html" },
   { route: "/assurance-mutuelle-entreprise", file: "assurance-mutuelle-entreprise.html" },
   { route: "/assurance-protection-juridique", file: "assurance-protection-juridique.html" },
   { route: "/assurance-auto-temporaire", file: "assurance-auto-temporaire.html" },

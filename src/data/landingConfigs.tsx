@@ -1040,6 +1040,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
 
   "coach-sportif": {
     slug: "coach-sportif",
+    // Désindexée le 2026-09-23 : cannibalise le nouveau pilier
+    // /assurance-coach-sportif (même seoKeyword), même traitement que les
+    // sujets traités avant elle.
+    noindex: true,
     trackingTitle: "Landing Page Assurance Coach Sportif",
     seoTitle: "Assurance Coach Sportif & Yoga | RC Pro dès 12 €/mois",
     seoDescription: "RC pro coach sportif, yoga, pilates, fitness : dommages clients, accidents, salles partenaires. BPJEPS accepté.",
