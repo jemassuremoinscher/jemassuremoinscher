@@ -36,7 +36,7 @@ export const blogDrafts2026: BlogArticle[] = [
     content: `
 # Assurance Auto Voiture d'Occasion 2026 : Le Guide Complet pour Économiser
 
-**Mise à jour : mai 2026** — Courtier ORIAS agréé — Basé sur l'analyse de 2 347 contrats d'assurance automobile occasion.
+**Mise à jour : mai 2026** — Courtier ORIAS agréé.
 
 ## Introduction
 
@@ -237,7 +237,7 @@ Tiers = vos responsabilités légales uniquement. Tiers+ = Tiers + Vol + Incendi
     content: `
 # Constat Amiable 2026 : Le Guide Complet + Modèle à Télécharger
 
-**Mise à jour : mai 2026** — Courtier ORIAS agréé — Basé sur l'analyse de 4 182 sinistres automobiles.
+**Mise à jour : mai 2026** — Courtier ORIAS agréé.
 
 ## Introduction
 
@@ -403,7 +403,7 @@ Nous avons préparé un modèle 2026 prérempli prêt à imprimer.
     content: `
 # Assurance Colocation Étudiant 2026 : Économisez 50 % + Conseils Pratiques
 
-**Mise à jour : mai 2026** — Courtier ORIAS agréé — Basé sur l'analyse de 1 256 contrats étudiants.
+**Mise à jour : mai 2026** — Courtier ORIAS agréé.
 
 ## Introduction
 
@@ -531,7 +531,7 @@ Oui après 1 an (loi Hamon). Avant = pénalité ou paiement jusqu'à la fin.
     content: `
 # Assurance PNO 2026 : Comparatif Complet pour Propriétaires Non-Occupants
 
-**Mise à jour : mai 2026** — Courtier ORIAS agréé — Basé sur l'analyse de 892 dossiers PNO.
+**Mise à jour : mai 2026** — Courtier ORIAS agréé.
 
 ## Introduction
 
@@ -672,7 +672,7 @@ Le locataire (via sa RC). Si non assuré = votre PNO si vous avez « couverture 
     content: `
 # Assurance Emprunteur 2026 : La Loi Lemoine Change Tout
 
-**Mise à jour : mai 2026** — Courtier ORIAS agréé — Basé sur l'analyse de 3 456 contrats d'assurance emprunteur.
+**Mise à jour : mai 2026** — Courtier ORIAS agréé.
 
 ## Introduction
 
