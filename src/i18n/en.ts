@@ -2051,6 +2051,7 @@ const en: Record<string, string> = {
   'courtierValue.product.drone': 'drone insurance',
   'courtierValue.product.coach-sportif': 'personal trainer insurance',
   'courtierValue.product.rc-pro-micro-entreprise': 'micro-business liability insurance',
+  'courtierValue.product.influenceur': 'influencer insurance',
 
   // SEO Tabs
   'seoTabs.faq': 'Frequently asked questions',

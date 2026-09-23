@@ -91,6 +91,7 @@ const AssuranceVtc = lazy(() => import("./pages/AssuranceVtc"));
 const AssuranceDrone = lazy(() => import("./pages/AssuranceDrone"));
 const AssuranceCoachSportif = lazy(() => import("./pages/AssuranceCoachSportif"));
 const AssuranceRcProMicroEntreprise = lazy(() => import("./pages/AssuranceRcProMicroEntreprise"));
+const AssuranceInfluenceur = lazy(() => import("./pages/AssuranceInfluenceur"));
 const AssuranceMutuelleEntreprise = lazy(() => import("./pages/AssuranceMutuelleEntreprise"));
 const AssuranceCyber = lazy(() => import("./pages/AssuranceCyber"));
 const AssuranceSansPermis = lazy(() => import("./pages/AssuranceSansPermis"));
@@ -326,6 +327,7 @@ const App = () => {
                 <Route path="/assurance-drone" element={<AssuranceDrone />} />
                 <Route path="/assurance-coach-sportif" element={<AssuranceCoachSportif />} />
                 <Route path="/assurance-rc-pro-micro-entreprise" element={<AssuranceRcProMicroEntreprise />} />
+                <Route path="/assurance-influenceur" element={<AssuranceInfluenceur />} />
                 <Route path="/assurance-mutuelle-entreprise" element={<AssuranceMutuelleEntreprise />} />
                 <Route path="/assurance-cyber" element={<AssuranceCyber />} />
                 <Route path="/assurance-sans-permis" element={<AssuranceSansPermis />} />

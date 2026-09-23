@@ -2042,6 +2042,7 @@ const fr: Record<string, string> = {
   'courtierValue.product.drone': "l'assurance drone",
   'courtierValue.product.coach-sportif': "l'assurance coach sportif",
   'courtierValue.product.rc-pro-micro-entreprise': "la RC pro micro-entreprise",
+  'courtierValue.product.influenceur': "l'assurance influenceur",
 
   // SEO Tabs
   'seoTabs.faq': 'Questions fréquentes',

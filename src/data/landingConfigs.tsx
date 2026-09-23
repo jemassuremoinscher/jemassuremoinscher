@@ -1134,6 +1134,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
 
   influenceur: {
     slug: "influenceur",
+    // Désindexée le 2026-09-23 : cannibalise le nouveau pilier
+    // /assurance-influenceur (même seoKeyword), même traitement que les
+    // sujets traités avant elle.
+    noindex: true,
     trackingTitle: "Landing Page Assurance Influenceur",
     seoTitle: "Assurance Influenceur & Créateur de Contenu | RC Pro 2026",
     seoDescription: "RC pro influenceur, créateur, streamer : litiges marques, droit à l'image, diffamation. Conforme loi influence 2023.",
