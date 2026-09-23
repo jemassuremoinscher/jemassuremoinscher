@@ -954,6 +954,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
 
   "rc-pro-micro-entreprise": {
     slug: "rc-pro-micro-entreprise",
+    // Désindexée le 2026-09-23 : cannibalise le nouveau pilier
+    // /assurance-rc-pro-micro-entreprise (même seoKeyword), même traitement
+    // que les sujets traités avant elle.
+    noindex: true,
     trackingTitle: "Landing Page RC Pro Micro-Entreprise",
     seoTitle: "RC Pro Micro-Entreprise | Assurance dès 9 €/mois",
     seoDescription: "RC pro micro-entreprise : couverture dommages clients, juridique, attestation immédiate. 15 assureurs comparés.",

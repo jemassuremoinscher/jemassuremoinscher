@@ -2050,6 +2050,7 @@ const en: Record<string, string> = {
   'courtierValue.product.vtc': 'ride-hailing driver insurance',
   'courtierValue.product.drone': 'drone insurance',
   'courtierValue.product.coach-sportif': 'personal trainer insurance',
+  'courtierValue.product.rc-pro-micro-entreprise': 'micro-business liability insurance',
 
   // SEO Tabs
   'seoTabs.faq': 'Frequently asked questions',

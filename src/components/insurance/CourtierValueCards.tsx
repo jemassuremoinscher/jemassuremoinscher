@@ -30,7 +30,8 @@ export type ProductContext =
   | "scooter-50cc"
   | "vtc"
   | "drone"
-  | "coach-sportif";
+  | "coach-sportif"
+  | "rc-pro-micro-entreprise";
 
 interface CourtierValueCardsProps {
   product: ProductContext;

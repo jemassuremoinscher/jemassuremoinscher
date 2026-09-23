@@ -102,7 +102,6 @@ export const routes: RouteConfig[] = [
   { path: "/landing/auto-entrepreneur", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/senior", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/scooter", changefreq: "weekly", priority: 0.7 },
-  { path: "/landing/rc-pro-micro-entreprise", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/restaurant", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/photographe", changefreq: "weekly", priority: 0.7 },
   { path: "/landing/influenceur", changefreq: "weekly", priority: 0.7 },
