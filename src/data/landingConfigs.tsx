@@ -851,7 +851,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { name: "Sandra K.", location: "Esthéticienne, Lille", text: "Enfin une assurance pas chère et adaptée." },
     ],
     faqs: [
-      { question: "La RC pro est-elle obligatoire pour un auto-entrepreneur ?", answer: "Obligatoire pour BTP, santé, beauté, conseil réglementé, transport. Recommandée sinon." },
+      { question: "La RC pro est-elle obligatoire pour un auto-entrepreneur ?", answer: "Ça dépend de votre activité, pas de votre statut. La loi l'impose pour le BTP, le tourisme et certaines professions de santé, juridiques ou financières précisément définies — pas pour la beauté ou le conseil en général, où elle reste une démarche volontaire fortement recommandée." },
       { question: "Combien coûte une RC pro auto-entrepreneur ?", answer: "À partir de 9 €/mois selon l'activité." },
       { question: "Puis-je ajouter une mutuelle TNS ?", answer: "Oui, pack RC pro + mutuelle TNS + prévoyance optimisé Madelin disponible." },
     ],
