@@ -2053,6 +2053,7 @@ const en: Record<string, string> = {
   'courtierValue.product.rc-pro-micro-entreprise': 'micro-business liability insurance',
   'courtierValue.product.influenceur': 'influencer insurance',
   'courtierValue.product.auto-entrepreneur': 'freelancer insurance',
+  'courtierValue.product.senior': 'senior insurance',
 
   // SEO Tabs
   'seoTabs.faq': 'Frequently asked questions',

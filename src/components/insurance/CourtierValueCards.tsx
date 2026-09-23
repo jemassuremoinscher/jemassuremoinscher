@@ -33,7 +33,8 @@ export type ProductContext =
   | "coach-sportif"
   | "rc-pro-micro-entreprise"
   | "influenceur"
-  | "auto-entrepreneur";
+  | "auto-entrepreneur"
+  | "senior";
 
 interface CourtierValueCardsProps {
   product: ProductContext;

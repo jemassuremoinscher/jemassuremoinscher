@@ -865,6 +865,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
 
   senior: {
     slug: "senior",
+    // Désindexée le 2026-09-23 : cannibalise le nouveau pilier
+    // /assurance-senior (même seoKeyword), même traitement que les sujets
+    // traités avant elle.
+    noindex: true,
     trackingTitle: "Landing Page Mutuelle Senior",
     seoTitle: "Mutuelle Senior 60+ | -50% Optique, Dentaire, Audio",
     seoDescription: "Mutuelle senior 60 ans et plus : optique, dentaire, audioprothèse, hospitalisation. Comparez 25 mutuelles en 2 min.",
