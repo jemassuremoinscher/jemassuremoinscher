@@ -1170,15 +1170,17 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
   drone: {
     slug: "drone",
     trackingTitle: "Landing Page Assurance Drone Pro",
-    seoTitle: "Assurance Drone Pro | DGAC S1 S2 S3 dès 25 €/mois",
-    seoDescription: "RC pro drone professionnel : scénarios DGAC S1, S2, S3. Matériel couvert tous risques. Attestation immédiate.",
+    // Corrigé le 2026-09-23 : les scénarios nationaux S-1/S-2/S-3 n'existent
+    // plus depuis le 1er janvier 2026 (remplacés par le cadre européen UAS).
+    seoTitle: "Assurance Drone Pro | RC Pro DGAC dès 25 €/mois",
+    seoDescription: "RC pro drone professionnel : catégorie spécifique DGAC, réglementation européenne UAS. Matériel couvert tous risques. Attestation immédiate.",
     seoKeyword: "assurance drone",
     seoKeywords: "assurance drone professionnel, rc pro drone, assurance télépilote",
     topBarText: "🚁 Télépilotes : RC pro DGAC + drone couvert dès 25 €/mois",
     badgeText: "Spécialiste Drone Pro",
     heroTitle: "Assurance Drone Pro",
     heroHighlight: "DGAC + matériel",
-    heroSubtitle: <>RC pro <strong>scénarios S1, S2, S3</strong>, couverture matériel tous risques, conforme exigences DGAC.</>,
+    heroSubtitle: <>RC pro <strong>catégorie spécifique</strong>, couverture matériel tous risques, conforme exigences DGAC.</>,
     mascotSrc: arthurFlying,
     mascotAlt: "Arthur télépilote drone — assurance drone professionnel",
     speechText: "Télépilote drone ? RC pro DGAC + votre matériel couvert !",
@@ -1187,18 +1189,18 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     stats: [
       { icon: Sparkles, value: "560+", label: "Télépilotes" },
       { icon: TrendingDown, value: "25 €/mois", label: "Tarif d'entrée" },
-      { icon: Shield, value: "S1/S2/S3", label: "Scénarios DGAC" },
+      { icon: Shield, value: "UAS UE", label: "Catégorie spécifique" },
       { icon: Clock, value: "Immédiate", label: "Attestation" },
     ],
     advantages: [
-      { icon: ShieldCheck, title: "Scénarios DGAC", description: "Couverture S1, S2, S3 selon votre déclaration MAP." },
+      { icon: ShieldCheck, title: "Catégorie spécifique DGAC", description: "Couverture adaptée à votre autorisation d'exploitation (scénario standard européen, PDRA ou LUC)." },
       { icon: Sparkles, title: "Drone tous risques", description: "Casse, perte, vol du drone et accessoires." },
       { icon: Award, title: "Garantie jusqu'à 1,5 M€", description: "Plafonds adaptés aux exigences corporate." },
       { icon: FileCheck, title: "Attestation DGAC immédiate", description: "PDF conforme pour vos déclarations de vol." },
     ],
     testimonials: [
       { name: "Vincent L.", location: "Télépilote audiovisuel, Paris", text: "RC + matériel pour 35 €/mois. Acceptée par tous mes clients corporate." },
-      { name: "Antoine R.", location: "Inspection toiture, Bordeaux", text: "Couverture S2/S3 parfaite pour mes inspections industrielles." },
+      { name: "Antoine R.", location: "Inspection toiture, Bordeaux", text: "Couverture catégorie spécifique parfaite pour mes inspections industrielles." },
       { name: "Camille B.", location: "Mariage aérien, Lyon", text: "Drone Mavic 3 remplacé en 12 jours après une casse." },
     ],
     faqs: [
