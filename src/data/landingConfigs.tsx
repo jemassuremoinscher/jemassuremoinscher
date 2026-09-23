@@ -1099,6 +1099,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
 
   photographe: {
     slug: "photographe",
+    // Désindexée le 2026-09-23 : cannibalise le nouveau pilier
+    // /assurance-photographe (même seoKeyword), même traitement que les
+    // sujets traités avant elle.
+    noindex: true,
     trackingTitle: "Landing Page Assurance Photographe",
     seoTitle: "Assurance Photographe & Vidéaste | RC Pro + Matériel",
     seoDescription: "RC pro photographe : prestations mariage, événementiel, studio. Matériel photo/vidéo couvert. Devis 5 min.",

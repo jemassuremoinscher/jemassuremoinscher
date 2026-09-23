@@ -2054,6 +2054,7 @@ const en: Record<string, string> = {
   'courtierValue.product.influenceur': 'influencer insurance',
   'courtierValue.product.auto-entrepreneur': 'freelancer insurance',
   'courtierValue.product.senior': 'senior insurance',
+  'courtierValue.product.photographe': 'photographer insurance',
 
   // SEO Tabs
   'seoTabs.faq': 'Frequently asked questions',

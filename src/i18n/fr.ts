@@ -2045,6 +2045,7 @@ const fr: Record<string, string> = {
   'courtierValue.product.influenceur': "l'assurance influenceur",
   'courtierValue.product.auto-entrepreneur': "l'assurance auto-entrepreneur",
   'courtierValue.product.senior': "l'assurance senior",
+  'courtierValue.product.photographe': "l'assurance photographe",
 
   // SEO Tabs
   'seoTabs.faq': 'Questions fréquentes',

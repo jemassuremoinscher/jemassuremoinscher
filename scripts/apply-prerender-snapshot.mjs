@@ -73,6 +73,7 @@ const SNAPSHOTS = [
   { route: "/assurance-influenceur", file: "assurance-influenceur.html" },
   { route: "/assurance-auto-entrepreneur", file: "assurance-auto-entrepreneur.html" },
   { route: "/assurance-senior", file: "assurance-senior.html" },
+  { route: "/assurance-photographe", file: "assurance-photographe.html" },
   { route: "/assurance-mutuelle-entreprise", file: "assurance-mutuelle-entreprise.html" },
   { route: "/assurance-protection-juridique", file: "assurance-protection-juridique.html" },
   { route: "/assurance-auto-temporaire", file: "assurance-auto-temporaire.html" },
