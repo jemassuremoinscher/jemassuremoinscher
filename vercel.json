@@ -38,7 +38,8 @@
     { "source": "/blog/assurance-auto-malus-eleve-crm", "destination": "/blog/assurance-malus-eleve-compagnies-2026", "statusCode": 301 },
     { "source": "/blog/assurance-emprunteur-substitution-loi-lemoine-votre-guide-complet-pour-economiser-en-2026", "destination": "/blog/assurance-emprunteur-definition-complete-et-decryptage-pour-2026", "statusCode": 301 },
     { "source": "/blog/faq-assurance-emprunteur-changement-2026", "destination": "/blog/assurance-emprunteur-definition-complete-et-decryptage-pour-2026", "statusCode": 301 },
-    { "source": "/blog/loi-lemoine-assurance-emprunteur-2026", "destination": "/blog/assurance-emprunteur-definition-complete-et-decryptage-pour-2026", "statusCode": 301 }
+    { "source": "/blog/loi-lemoine-assurance-emprunteur-2026", "destination": "/blog/assurance-emprunteur-definition-complete-et-decryptage-pour-2026", "statusCode": 301 },
+    { "source": "/blog/assurance-emprunteur-pour-restaurant-le-guide-complet-2026-pour-un-financement-reussi", "destination": "/blog/assurance-emprunteur-restaurant-le-guide-complet-2026-pour-les-pros-de-la-restauration", "statusCode": 301 }
   ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
