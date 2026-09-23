@@ -775,6 +775,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoTitle: "Assurance VTC Pas Chère | Devis Chauffeur Privé en 2 min",
     seoDescription: "Assurance VTC dès 90 €/mois. RC pro + flotte + protection juridique. 15 assureurs spécialisés Uber, Bolt, Heetch.",
     seoKeyword: "assurance vtc",
+    // Désindexée le 2026-09-23 : cannibalise le nouveau pilier /assurance-vtc
+    // (même seoKeyword "assurance vtc"), même traitement que velo, trottinette
+    // et les 20 sujets traités avant elle.
+    noindex: true,
     seoKeywords: "assurance chauffeur vtc, assurance uber, rc pro vtc, assurance flotte vtc",
     topBarText: "🚖 VTC : -30% sur votre assurance flotte + RC pro inclus",
     badgeText: "Spécialiste Chauffeurs VTC",
