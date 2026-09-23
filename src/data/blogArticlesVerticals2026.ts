@@ -17,7 +17,7 @@ export const blogArticlesVerticals2026: BlogArticle[] = [
     category: "Conseils Experts",
     date: "5 mai 2026",
     readTime: "12 min",
-    author: "Thomas Leroy",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["décennale", "BTP", "artisan", "obligation légale", "assurance pro"],
     content: `
 # Garantie décennale 2026 : le guide complet pour les artisans du BTP
@@ -104,7 +104,7 @@ La décennale n'est pas une dépense, c'est un **investissement de protection**.
     category: "Conseils Experts",
     date: "8 mai 2026",
     readTime: "6 min",
-    author: "Thomas Leroy",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["décennale", "RC Pro", "BTP", "artisan"],
     content: `
 # RC Pro et décennale : quelles différences pour les artisans du BTP ?
@@ -157,7 +157,7 @@ La **Responsabilité Civile Professionnelle** couvre les dommages causés à des
     category: "Conseils Experts",
     date: "11 mai 2026",
     readTime: "7 min",
-    author: "Thomas Leroy",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["décennale", "auto-entrepreneur", "BTP", "micro-entreprise"],
     content: `
 # Décennale auto-entrepreneur : tout ce qu'il faut savoir en 2026
@@ -215,7 +215,7 @@ Pour un auto-entrepreneur avec un CA prévisionnel **inférieur à 50 000 €** 
     category: "Conseils Experts",
     date: "6 mai 2026",
     readTime: "11 min",
-    author: "Thomas Laurent",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["flotte auto", "entreprise", "parc véhicules", "assurance pro"],
     content: `
 # Assurance flotte auto 2026 : le guide complet pour entreprises
@@ -305,7 +305,7 @@ Une assurance flotte bien négociée représente **une économie moyenne de 25 %
     category: "Conseils Experts",
     date: "9 mai 2026",
     readTime: "6 min",
-    author: "Thomas Laurent",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["flotte auto", "télématique", "boîtier connecté", "entreprise"],
     content: `
 # Boîtiers connectés et flotte auto : enjeux 2026
@@ -369,7 +369,7 @@ L'utilisation de la télématique doit respecter **3 règles** :
     category: "Conseils Experts",
     date: "12 mai 2026",
     readTime: "7 min",
-    author: "Thomas Laurent",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["flotte auto", "économies", "entreprise", "gestion"],
     content: `
 # Réduire le coût de sa flotte auto en 2026 : 10 leviers concrets
@@ -454,7 +454,7 @@ Un véhicule entretenu = moins de pannes = moins d'immobilisation = moins de co�
     category: "Conseils Experts",
     date: "7 mai 2026",
     readTime: "11 min",
-    author: "Dr. Antoine Mercier",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["mutuelle entreprise", "complémentaire santé", "ANI", "obligation employeur"],
     content: `
 # Mutuelle entreprise 2026 : le guide complet de la complémentaire santé collective
@@ -544,7 +544,7 @@ La mutuelle entreprise est **bien plus qu'une obligation légale** : c'est un **
     category: "Conseils Experts",
     date: "10 mai 2026",
     readTime: "6 min",
-    author: "Dr. Antoine Mercier",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["mutuelle TNS", "mutuelle entreprise", "loi Madelin", "dirigeant"],
     content: `
 # Mutuelle TNS vs mutuelle entreprise : quelles différences en 2026 ?
@@ -599,7 +599,7 @@ Les cotisations de mutuelle TNS sont **déductibles du revenu imposable** dans l
     category: "Conseils Experts",
     date: "13 mai 2026",
     readTime: "6 min",
-    author: "Dr. Antoine Mercier",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["surcomplémentaire", "mutuelle entreprise", "santé", "RH"],
     content: `
 # Surcomplémentaire santé en entreprise : pourquoi la proposer en 2026 ?

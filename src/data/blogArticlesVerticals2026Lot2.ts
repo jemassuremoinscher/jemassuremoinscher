@@ -16,7 +16,7 @@ export const blogArticlesVerticals2026Lot2: BlogArticle[] = [
     category: "Conseils Experts",
     date: "6 mai 2026",
     readTime: "11 min",
-    author: "Thomas Leroy",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["cyber", "entreprise", "ransomware", "RGPD", "assurance pro"],
     content: `
 # Assurance cyber 2026 : protéger son entreprise face aux attaques numériques
@@ -82,7 +82,7 @@ L'assurance cyber n'est plus un luxe : c'est un **filet de sécurité indispensa
     category: "Conseils Experts",
     date: "6 mai 2026",
     readTime: "7 min",
-    author: "Thomas Leroy",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["ransomware", "cyber", "PME", "sécurité IT"],
     content: `
 # Ransomware : 5 réflexes pour éviter le pire en 2026
@@ -136,7 +136,7 @@ Les 5 réflexes ci-dessus coûtent peu et évitent la majorité des sinistres gr
     category: "Conseils Experts",
     date: "6 mai 2026",
     readTime: "6 min",
-    author: "Thomas Leroy",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["RGPD", "cyber", "fuite de données", "CNIL"],
     content: `
 # RGPD et fuite de données : que couvre l'assurance cyber en 2026 ?
@@ -199,7 +199,7 @@ L'assurance cyber ne paie pas l'amende mais **prend en charge tout le reste** �
     category: "Conseils Experts",
     date: "7 mai 2026",
     readTime: "10 min",
-    author: "Sophie Martin",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["voiture sans permis", "VSP", "assurance auto", "BSR"],
     content: `
 # Assurance voiture sans permis 2026 : le guide complet
@@ -262,7 +262,7 @@ L'assurance VSP est moins chère qu'une assurance auto classique, mais les écar
     category: "Conseils Experts",
     date: "7 mai 2026",
     readTime: "6 min",
-    author: "Sophie Martin",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["voiture sans permis", "ado", "permis AM", "BSR", "assurance jeune"],
     content: `
 # VSP pour ado de 14 ans : permis AM et assurance en 2026
@@ -317,7 +317,7 @@ Une VSP pour ado coûte en moyenne **600 à 900 €/an** d'assurance — à anti
     category: "Conseils Experts",
     date: "7 mai 2026",
     readTime: "6 min",
-    author: "Sophie Martin",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["voiture sans permis", "suspension permis", "résilié", "malus"],
     content: `
 # VSP après suspension de permis : comment s'assurer en 2026 ?
@@ -376,7 +376,7 @@ Suspension ne signifie pas isolement : avec une VSP correctement assurée, vous 
     category: "Conseils Experts",
     date: "8 mai 2026",
     readTime: "11 min",
-    author: "Sophie Martin",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["camping-car", "van", "fourgon aménagé", "assurance véhicule loisir"],
     content: `
 # Assurance camping-car 2026 : le guide complet pour bien choisir
@@ -445,7 +445,7 @@ L'assurance camping-car est plus technique qu'une assurance auto. Prenez le temp
     category: "Conseils Experts",
     date: "8 mai 2026",
     readTime: "6 min",
-    author: "Sophie Martin",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["van", "fourgon aménagé", "vanlife", "assurance"],
     content: `
 # Van aménagé : quelle assurance choisir en 2026 ?
@@ -496,7 +496,7 @@ Pour un van aménagé, une **assurance dédiée VASP** offre la meilleure protec
     category: "Conseils Experts",
     date: "8 mai 2026",
     readTime: "5 min",
-    author: "Sophie Martin",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["camping-car", "hivernage", "garage mort", "assurance"],
     content: `
 # Camping-car en hivernage : faut-il garder l'assurance en 2026 ?

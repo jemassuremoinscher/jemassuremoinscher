@@ -3579,7 +3579,7 @@ Non, tant que vous n'êtes pas tenu légalement de déclarer (pas de tiers, pas 
     category: "Mutuelle Santé",
     date: "10 mars 2026",
     readTime: "11 min",
-    author: "Dr. Antoine Mercier",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["hypnose", "remboursement", "mutuelle", "médecines douces", "hypnothérapie", "ostéopathie"],
     content: `
 # Hypnose et remboursement mutuelle : le guide complet 2026
@@ -3726,7 +3726,7 @@ Le remboursement n'est pas un critère de qualité. Vérifiez plutôt la certifi
     category: "Assurance Auto",
     date: "12 mars 2026",
     readTime: "12 min",
-    author: "Thomas Laurent",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["jeune conducteur", "devis assurance auto", "simulation", "assurance auto pas cher", "permis probatoire"],
     content: `
 # Devis assurance auto jeune conducteur : combien ça coûte vraiment en 2026 ?
@@ -3903,7 +3903,7 @@ Non, sauf si votre véhicule vaut plus de 10 000€. Pour un véhicule d'occasio
     category: "Assurance Habitation",
     date: "14 mars 2026",
     readTime: "10 min",
-    author: "Pierre Durand",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["assurance PNO", "propriétaire non occupant", "assurance pas chère", "investissement locatif", "comparatif"],
     content: `
 # Assurance PNO pas chère : comment trouver la meilleure offre en 2026
@@ -4562,7 +4562,7 @@ Non, c'est une exclusion universelle. La garantie annulation couvre uniquement l
     category: "Guides Pratiques",
     date: "auto",
     readTime: "4 min",
-    author: "Alexandre Petit",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["baromètre assurance", "prime auto", "prime habitation", "mutuelle santé", "T3 2026"],
     content: `
 # Baromètre des primes d'assurance — T3 2026

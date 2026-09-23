@@ -30,7 +30,7 @@ const _blogArticlesRaw: BlogArticle[] = [
     category: "Guides Pratiques",
     date: "18 janvier 2026",
     readTime: "9 min",
-    author: "Dr. Marie Dupont",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["mutuelle santé", "économies", "remboursements", "conseils santé"],
     content: `
 # Mutuelle Santé : Le Guide Complet pour Économiser
@@ -215,7 +215,7 @@ Une bonne mutuelle santé peut vous faire économiser **plusieurs milliers d'eur
     category: "Conseils Experts",
     date: "16 janvier 2026",
     readTime: "8 min",
-    author: "Alexandre Petit",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["jeune conducteur", "assurance auto", "économies", "permis"],
     content: `
 # Jeune Conducteur : Le Vrai Guide Pour Ne Pas Se Faire Plumer
@@ -337,7 +337,7 @@ Chaque année sans sinistre = **-5 %** sur votre coefficient.
     category: "Actualités Légales",
     date: "14 janvier 2026",
     readTime: "7 min",
-    author: "Sophie Martin",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["résiliation", "droits", "loi hamon", "loi chatel"],
     content: `
 # Résiliation d'Assurance : Le Guide Terrain du Courtier
@@ -624,7 +624,7 @@ Vous payez 600€/an, résiliation le 15 avril :
     category: "Actualités Légales",
     date: "15 janvier 2026",
     readTime: "11 min",
-    author: "Sophie Martin",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["loi lemoine", "assurance emprunteur", "législation", "économies", "assurance prêt"],
     content: `
 # Loi Lemoine Assurance Emprunteur 2026 : Économise Jusqu'à 15 000 € Sur Ton Prêt
@@ -727,7 +727,7 @@ N'attends plus un jour de plus. Chaque mois qui passe est une mensualité trop �
     category: "Actualités Légales",
     date: "12 janvier 2026",
     readTime: "6 min",
-    author: "Marc Dubois",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["loi hamon", "résiliation", "assurance auto", "assurance habitation"],
     content: `
 # Loi Hamon : Comment Nos Clients Économisent 350 €/an en Changeant d'Assurance
@@ -827,7 +827,7 @@ Oui, au prorata temporis, sous 30 jours après résiliation effective.
     category: "Guides Pratiques",
     date: "10 janvier 2026",
     readTime: "10 min",
-    author: "Claire Rousseau",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["assurance auto", "guide pratique", "conseils", "économies"],
     content: `
 # Comment choisir la meilleure assurance auto en 2026
@@ -1042,7 +1042,7 @@ Changement d'adresse, de garage, etc.
     category: "Guides Pratiques",
     date: "8 janvier 2026",
     readTime: "7 min",
-    author: "Thomas Leroy",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["assurance habitation", "garanties", "conseils", "protection"],
     content: `
 # Assurance Habitation : Les Garanties à Ne Pas Négliger (et Celles Qui Sont du Remplissage)
@@ -1297,7 +1297,7 @@ Coupez l'eau et l'électricité + prévenez les voisins
     category: "Conseils Experts",
     date: "5 janvier 2026",
     readTime: "9 min",
-    author: "Julie Bernard",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["économies", "conseils", "budget", "assurances"],
     content: `
 # 10 Conseils d'Experts pour Économiser sur Vos Assurances
@@ -1537,7 +1537,7 @@ En cas de sinistre, l'assureur peut refuser l'[indemnisation](/glossaire/indemni
     category: "Guides Pratiques",
     date: "3 janvier 2026",
     readTime: "8 min",
-    author: "Dr. Antoine Mercier",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["mutuelle", "santé", "remboursements", "conseils"],
     content: `
 # Comment Bien Choisir sa Mutuelle Santé en 2026
@@ -1679,7 +1679,7 @@ Certaines garanties diminuent ou s'arrêtent après 65 ans. Vérifiez le contrat
     category: "Assurance Auto",
     date: "2 janvier 2026",
     readTime: "12 min",
-    author: "Alexandre Dupont",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["meilleure assurance auto 2026", "comparatif assurance auto", "assurance auto pas cher", "classement assurance"],
     content: `
 # Meilleure Assurance Auto 2026 : Le Comparatif Complet
@@ -1986,7 +1986,7 @@ La **meilleure assurance auto en 2026** dépend de votre profil et de vos priori
     category: "Mutuelle Santé",
     date: "5 janvier 2026",
     readTime: "11 min",
-    author: "Dr. Marie Legrand",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["meilleure mutuelle 2026", "comparatif mutuelle santé", "mutuelle pas cher", "remboursement optique"],
     content: `
 # Top 10 Meilleures Mutuelles Santé 2026
@@ -2298,7 +2298,7 @@ La **meilleure mutuelle santé 2026** dépend de vos besoins spécifiques. Alan 
     category: "Assurance Auto",
     date: "8 janvier 2026",
     readTime: "9 min",
-    author: "Lucas Bernard",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["assurance jeune conducteur", "assurance -25 ans", "permis probatoire", "surprime jeune conducteur"],
     content: `
 # Assurance Jeune Conducteur 2026 : Le Guide Pour Payer Moins Cher
@@ -2614,7 +2614,7 @@ Oui, mais la surprime jeune conducteur s\'applique aussi en 2-roues.
     category: "Guides Pratiques",
     date: "3 janvier 2026",
     readTime: "12 min",
-    author: "Thomas Laurent",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["assurance auto", "comparatif 2026", "meilleurs assureurs", "tarifs"],
     content: `
 # Meilleure Assurance Auto 2026 : Le Guide Ultime
@@ -2827,7 +2827,7 @@ Comparez au moins 3 offres adaptées à votre profil. Le meilleur assureur pour 
     category: "Guides Pratiques",
     date: "28 décembre 2026",
     readTime: "11 min",
-    author: "Dr. Marie Dubois",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["mutuelle santé", "comparatif", "remboursements", "complémentaire santé"],
     content: `
 # Top Mutuelles Santé 2026 : Notre Sélection Experte
@@ -3124,7 +3124,7 @@ Choisissez selon vos besoins réels, pas selon la pub. Une mutuelle à 40€/moi
     category: "Guides Pratiques",
     date: "20 décembre 2026",
     readTime: "10 min",
-    author: "Pierre Durand",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["assurance habitation", "comparatif", "logement", "garanties"],
     content: `
 # Assurance Habitation 2026 : Le Comparatif Complet
@@ -3480,7 +3480,7 @@ Pour les maisons → Groupama
     category: "Actualités Légales",
     date: "15 janvier 2026",
     readTime: "8 min",
-    author: "Sophie Mercier",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["loi lemoine", "assurance emprunteur", "crédit immobilier", "réglementation"],
     content: `
 # Loi Lemoine 2026 : La Révolution de l'Assurance Emprunteur Continue
@@ -3768,7 +3768,7 @@ La loi Lemoine est une vraie révolution pour les emprunteurs. En 2026, c'est en
     category: "Actualités Légales",
     date: "8 janvier 2026",
     readTime: "9 min",
-    author: "Marc Duval",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["réglementation", "nouvelles lois", "2026", "droits assurés"],
     content: `
 # Réglementation Assurance 2026 : Tous Les Changements
@@ -4176,7 +4176,7 @@ Profitez de ces nouvelles dispositions pour revoir tous vos contrats et optimise
     category: "Actualités Légales",
     date: "2 janvier 2026",
     readTime: "10 min",
-    author: "Maître Julie Renard",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["droits assurés", "protection consommateur", "recours", "indemnisation"],
     content: `
 # Vos Droits en Tant qu'Assuré : Le Guide Complet 2026
@@ -4660,7 +4660,7 @@ Connaître vos droits, c'est pouvoir les faire valoir !
     category: "Assurance Auto",
     date: "22 juillet 2026",
     readTime: "7 min",
-    author: "Alexandre Petit",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["jeune conducteur", "puissance", "110 chevaux", "assurance auto", "permis probatoire"],
     content: `
 # Voiture 110 chevaux et jeune conducteur : est-ce assurable, et à quel prix ?
@@ -4732,7 +4732,7 @@ Comparez plusieurs assureurs (écarts fréquents de plus de 40 %), privilégiez 
     category: "Assurance Auto",
     date: "22 juillet 2026",
     readTime: "8 min",
-    author: "Alexandre Petit",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["alpes-maritimes", "nice", "assurance auto", "assurance locale", "06"],
     content: `
 # Assurance dans les Alpes-Maritimes (06) : pourquoi c'est plus cher, et comment payer moins
@@ -4799,7 +4799,7 @@ Comparer plusieurs assureurs, déclarer un stationnement sécurisé et adapter l
     category: "Assurance Habitation",
     date: "22 juillet 2026",
     readTime: "7 min",
-    author: "Sophie Martin",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["location saisonnière", "airbnb", "assurance habitation", "propriétaire", "PNO"],
     content: `
 # Assurance location saisonnière et Airbnb : êtes-vous vraiment couvert ?
@@ -4860,7 +4860,7 @@ Une assurance propriétaire non occupant (PNO), qui couvre les risques spécifiq
     category: "Assurance Auto",
     date: "22 juillet 2026",
     readTime: "6 min",
-    author: "Alexandre Petit",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["délai de carence", "assurance auto", "garanties", "franchise", "glossaire"],
     content: `
 # Délai de carence en assurance auto : ce qu'il faut savoir avant de signer
@@ -4915,7 +4915,7 @@ Non. Le délai de carence est une période sans garantie en début de contrat. L
     category: "Assurance Emprunteur",
     date: "22 juillet 2026",
     readTime: "7 min",
-    author: "Sophie Martin",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["disability insurance", "expats", "prévoyance", "france", "english"],
     content: `
 # Disability Insurance in France: A Guide for Expats
@@ -4985,7 +4985,7 @@ Often yes. Self-employed statuses (*TNS*) generally have thinner public coverage
     category: "Mutuelle Santé",
     date: "22 juillet 2026",
     readTime: "7 min",
-    author: "Sophie Martin",
+    author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["health insurance", "nice", "expats", "mutuelle", "french riviera"],
     content: `
 # Health Insurance in Nice: A Practical Guide for Expats on the French Riviera
@@ -5133,15 +5133,6 @@ const existingWithDates = _blogArticlesRaw.map((article, index) => {
 // Assign spread dates to 2026 articles
 const articles2026WithDates = blogArticles2026.map((article) => ({
   ...article,
-  author: article.author === "L'équipe d'experts Jemassuremoinscher"
-    ? article.category === "Assurance Habitation"
-      ? "Thomas Leroy"
-      : article.category === "Mutuelle Santé" || article.category === "Assurance Emprunteur"
-        ? "Dr. Antoine Mercier"
-        : article.category === "Droits & Litiges" || article.category === "Actualités Légales"
-          ? "Sophie Martin"
-          : "Thomas Laurent"
-    : article.author,
   date: spreadDates[article.id] || article.date,
 }));
 
