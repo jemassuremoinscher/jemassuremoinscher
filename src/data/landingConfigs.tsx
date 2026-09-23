@@ -1073,7 +1073,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { name: "Inès B.", location: "Coach perso, Paris", text: "Indispensable pour le coaching à domicile." },
     ],
     faqs: [
-      { question: "RC pro obligatoire pour coach sportif ?", answer: "Oui, obligatoire pour tout éducateur sportif rémunéré (Code du sport art. L321-1)." },
+      { question: "RC pro obligatoire pour coach sportif ?", answer: "Le diplôme (BPJEPS, etc.) est obligatoire pour enseigner contre rémunération (Code du sport, art. L212-1). La RC pro n'est pas imposée par un texte spécifique au coach indépendant — elle l'est pour les salles et associations qui l'emploient (art. L321-1) — mais elle est quasi systématiquement exigée par les salles partenaires et les clients." },
       { question: "Combien coûte une RC pro coach ?", answer: "Entre 12 et 30 €/mois selon le nombre d'élèves et disciplines." },
       { question: "Cours en visio couverts ?", answer: "Oui, les coachs en visio sont couverts (responsabilité conseils, programmes inadaptés)." },
     ],
