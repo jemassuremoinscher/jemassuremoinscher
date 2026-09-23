@@ -1169,6 +1169,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
 
   drone: {
     slug: "drone",
+    // Désindexée le 2026-09-23 : cannibalise le nouveau pilier
+    // /assurance-drone (même seoKeyword), même traitement que les sujets
+    // traités avant elle.
+    noindex: true,
     trackingTitle: "Landing Page Assurance Drone Pro",
     // Corrigé le 2026-09-23 : les scénarios nationaux S-1/S-2/S-3 n'existent
     // plus depuis le 1er janvier 2026 (remplacés par le cadre européen UAS).

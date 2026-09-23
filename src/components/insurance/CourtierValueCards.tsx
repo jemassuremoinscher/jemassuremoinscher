@@ -28,7 +28,8 @@ export type ProductContext =
   | "velo"
   | "trottinette"
   | "scooter-50cc"
-  | "vtc";
+  | "vtc"
+  | "drone";
 
 interface CourtierValueCardsProps {
   product: ProductContext;
