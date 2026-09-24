@@ -66,9 +66,9 @@ const AssuranceHabitation = () => {
         keyword="assurance habitation moins chère"
         keywords="assurance maison, assurance appartement, assurance logement, assurance locataire"
         canonical="https://www.jemassuremoinscher.fr/assurance-habitation"
-        ogTitle="Assurance Habitation Moins Chère en 2025 : Comparez 70+ assureurs dès 3€/mois"
-        ogDescription="Comparez 70+ assureurs habitation en 2 minutes. Locataire ou propriétaire, maison ou appartement. Économisez jusqu'à 40% sur votre contrat."
-        twitterDescription="Comparez 70+ assureurs habitation. Économisez jusqu'à 40%/an. Devis gratuit en 2 min."
+        ogTitle="Assurance Habitation Moins Chère | Comparez 70+ assureurs dès 3€/mois"
+        ogDescription="Comparez 70+ assureurs habitation en 2 minutes. Locataire ou propriétaire, maison ou appartement."
+        twitterDescription="Comparez 70+ assureurs habitation. Devis gratuit en 2 min."
         jsonLd={[serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />

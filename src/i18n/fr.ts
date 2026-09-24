@@ -695,8 +695,8 @@ const fr: Record<string, string> = {
 
   // Auto Page
  'autoPage.title': 'Assurances voiture moins chères',
- 'autoPage.subtitle': "Comparez 70+ assureurs auto et économisez jusqu'à 400€/an. Devis gratuit en 2 minutes, sans engagement.",
-  'autoPage.adv1.title': "Jusqu'à 400€ d'économies",
+ 'autoPage.subtitle': "Comparez 70+ assureurs auto et trouvez une offre plus avantageuse. Devis gratuit en 2 minutes, sans engagement.",
+  'autoPage.adv1.title': "Un tarif plus avantageux",
   'autoPage.adv1.desc': 'Comparez et économisez sur votre assurance auto.',
   'autoPage.adv2.desc': "Les meilleures offres du marché.",
   'autoPage.adv2.title': '20+ assureurs comparés',
@@ -737,8 +737,8 @@ const fr: Record<string, string> = {
 
   // Santé Page
   'santePage.title': 'Mutuelle Santé Moins Chère',
-  'santePage.subtitle': "Comparez 70+ mutuelles et économisez jusqu'à 300€ par an sur votre complémentaire santé.",
-  'santePage.adv1.title': "Jusqu'à 300€ d'économies",
+  'santePage.subtitle': "Comparez 70+ mutuelles et trouvez une complémentaire santé plus avantageuse.",
+  'santePage.adv1.title': "Un tarif plus avantageux",
   'santePage.adv1.desc': 'Comparez et économisez sur votre mutuelle santé.',
   'santePage.adv2.title': '20+ mutuelles comparées',
   'santePage.adv2.desc': "Les meilleures offres du marché.",
@@ -769,8 +769,8 @@ const fr: Record<string, string> = {
 
   // Habitation Page
   'habitationPage.title': 'Assurance Habitation Moins Chère',
-  'habitationPage.subtitle': "Comparez 70+ assureurs et économisez jusqu'à 300€ par an sur votre assurance habitation.",
-  'habitationPage.adv1.title': "Jusqu'à 300€ d'économies",
+  'habitationPage.subtitle': "Comparez 70+ assureurs et trouvez une offre plus avantageuse pour votre assurance habitation.",
+  'habitationPage.adv1.title': "Un tarif plus avantageux",
   'habitationPage.adv1.desc': 'Comparez et économisez sur votre assurance habitation.',
   'habitationPage.adv2.title': '20+ assureurs comparés',
   'habitationPage.adv2.desc': "Les meilleures offres du marché.",
@@ -801,8 +801,8 @@ const fr: Record<string, string> = {
 
   // Moto Page
   'motoPage.title': 'Assurance Moto Moins Chère',
-  'motoPage.subtitle': "Comparez les meilleures offres et économisez jusqu'à 35% sur votre assurance moto.",
-  'motoPage.adv1.title': "Jusqu'à 35% d'économies",
+  'motoPage.subtitle': "Comparez les meilleures offres pour votre assurance moto.",
+  'motoPage.adv1.title': "Un tarif plus avantageux",
   'motoPage.adv1.desc': 'Comparez et économisez sur votre assurance moto.',
   'motoPage.adv2.title': '15+ assureurs comparés',
   'motoPage.adv2.desc': "Les meilleures offres du marché.",
@@ -903,8 +903,8 @@ const fr: Record<string, string> = {
 
   // Prêt Page
   'pretPage.title': 'Assurance Emprunteur Moins Chère',
-  'pretPage.subtitle': "Économisez jusqu'à 50% sur votre assurance emprunteur grâce à la loi Lemoine.",
-  'pretPage.adv1.title': "Jusqu'à 15 000€ d'économies",
+  'pretPage.subtitle': "Comparez votre assurance emprunteur grâce à la loi Lemoine.",
+  'pretPage.adv1.title': "Un tarif plus avantageux",
   'pretPage.adv1.desc': 'Comparez et économisez sur votre assurance emprunteur.',
   'pretPage.adv2.title': 'Changement gratuit',
   'pretPage.adv2.desc': 'Loi Lemoine : résiliation à tout moment.',

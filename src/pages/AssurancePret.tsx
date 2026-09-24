@@ -61,9 +61,9 @@ const AssurancePret = () => {
         keyword="assurance emprunteur moins chère"
         keywords="assurance emprunteur, loi Lemoine, délégation assurance, changer assurance emprunteur"
         canonical="https://www.jemassuremoinscher.fr/assurance-pret"
-        ogTitle="Assurance Emprunteur Moins Chère en 2025 : Loi Lemoine, économisez jusqu'à 15 000€"
-        ogDescription="Comparez 70+ assureurs emprunteur. Grâce à la loi Lemoine, changez d'assurance de prêt à tout moment. Économisez jusqu'à 50% sur votre assurance crédit."
-        twitterDescription="Loi Lemoine : changez d'assurance prêt quand vous voulez. Économisez jusqu'à 15 000€. Devis gratuit en 2 min."
+        ogTitle="Assurance Emprunteur Moins Chère | Loi Lemoine"
+        ogDescription="Comparez 70+ assureurs emprunteur. Grâce à la loi Lemoine, changez d'assurance de prêt à tout moment."
+        twitterDescription="Loi Lemoine : changez d'assurance prêt quand vous voulez. Devis gratuit en 2 min."
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />

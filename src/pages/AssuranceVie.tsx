@@ -74,7 +74,7 @@ const AssuranceVie = () => {
         keyword="assurance vie frais entrée offerts"
         keywords="assurance vie 2026, 0% frais entrée, frais arbitrage offerts, épargne, placement, transmission patrimoine, PER"
         canonical="https://www.jemassuremoinscher.fr/assurance-vie"
-        ogTitle="Assurance Vie en 2025 : 0% de frais d'entrée, comparez les meilleures offres"
+        ogTitle="Assurance Vie : 0% de frais d'entrée, comparez les meilleures offres"
         ogDescription="Comparez les meilleures assurances vie : fonds euros sécurisés et unités de compte. 0% de frais d'entrée. Fiscalité avantageuse après 8 ans."
         twitterDescription="Assurance vie 0% frais d'entrée. Comparez fonds euros et UC. Fiscalité avantageuse après 8 ans."
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}

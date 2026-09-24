@@ -32,7 +32,7 @@ const AssuranceAuto = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Auto",
     description:
-      "Comparez les meilleures offres d'assurance auto en France. Devis gratuit et personnalisé en 2 minutes. Économisez jusqu'à 400€ par an.",
+      "Comparez les meilleures offres d'assurance auto en France. Devis gratuit et personnalisé en 2 minutes.",
     provider: "jemassuremoinscher.fr",
     areaServed: "France",
   });
@@ -69,7 +69,7 @@ const AssuranceAuto = () => {
     {
       question: "Combien coûte une assurance auto ?",
       answer:
-        "Le prix varie selon votre âge, votre véhicule, votre historique et votre lieu de résidence. En moyenne, entre 400€ et 800€ par an.",
+        "Le prix varie selon votre âge, votre véhicule, votre historique et votre lieu de résidence. Comparez des devis établis pour votre profil.",
     },
     {
       question: "Puis-je changer d'assurance auto à tout moment ?",
@@ -78,7 +78,7 @@ const AssuranceAuto = () => {
   ]);
   const insuranceProductSchema = addInsuranceProductSchema({
     name: "Assurance Auto",
-    description: "Comparateur d'assurance auto. Comparez les offres de 25+ assureurs et économisez jusqu'à 320€/an.",
+    description: "Comparateur d'assurance auto. Comparez les offres de 25+ assureurs et trouvez un contrat plus avantageux.",
     category: "Assurance Automobile",
     url: "https://www.jemassuremoinscher.fr/assurance-auto",
   });
@@ -97,9 +97,9 @@ const AssuranceAuto = () => {
         keyword="assurance auto moins chère"
         keywords="assurance auto moins cher, Comparateur assurance auto, devis assurance voiture, changer assurance auto"
         canonical="https://www.jemassuremoinscher.fr/assurance-auto"
-        ogTitle="Assurance Auto Moins Chère en 2025 : Comparez 70+ assureurs, économisez jusqu'à 40%"
-        ogDescription="Comparez 70+ assureurs auto en 2 minutes. Devis gratuit et personnalisé. Nos clients économisent 320€/an. Tiers, Tiers+, Tous Risques dès 25€/mois."
-        twitterDescription="Comparez 70+ assureurs auto en 2 minutes. Économisez jusqu'à 40%/an. Gratuit et sans engagement."
+        ogTitle="Assurance Auto Moins Chère | Comparez 70+ assureurs"
+        ogDescription="Comparez 70+ assureurs auto en 2 minutes. Devis gratuit et personnalisé. Tiers, Tiers+, Tous Risques dès 25€/mois."
+        twitterDescription="Comparez 70+ assureurs auto en 2 minutes. Gratuit et sans engagement."
         jsonLd={[serviceSchema, howToSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
@@ -124,7 +124,7 @@ const AssuranceAuto = () => {
 
         <div
           className="container mx-auto px-4 py-12"
-          data-ai-description="Comparateur d'assurance auto — jemassuremoinscher.fr compare 25+ assureurs, devis gratuit en moins de 2 minutes, économie moyenne 320€/an"
+          data-ai-description="Comparateur d'assurance auto — jemassuremoinscher.fr compare 25+ assureurs, devis gratuit en moins de 2 minutes"
         >
 
           {/* H2 above-the-fold ciblé "assurances voiture moins chères" */}
@@ -133,7 +133,7 @@ const AssuranceAuto = () => {
               Comment trouver les <span className="text-primary">assurances voiture moins chères</span> en 2026 ?
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Pour décrocher l'assurance voiture la moins chère adaptée à votre profil, trois leviers font 90% de l'écart de prix : <strong>la formule</strong> (Tiers à partir de 25€/mois, Tous Risques jusqu'à 80€/mois), <strong>votre coefficient bonus malus</strong> (un CRM de 0,50 divise la prime par deux par rapport à 1,00) et <strong>la mise en concurrence</strong> des assureurs. Nos clients qui changent d'assurance après comparaison économisent en moyenne <strong>320€ par an</strong>, jusqu'à 400€ pour les conducteurs avec un bon bonus.
+              Pour décrocher l'assurance voiture la moins chère adaptée à votre profil, trois leviers font la différence : <strong>la formule</strong> (Tiers à partir de 25€/mois, Tous Risques jusqu'à 80€/mois), <strong>votre coefficient bonus malus</strong> (un CRM de 0,50 divise la prime par deux par rapport à 1,00) et <strong>la mise en concurrence</strong> des assureurs.
             </p>
             <ul className="text-sm text-muted-foreground mt-4 space-y-1.5 list-none pl-0">
               <li>✓ Connaître son CRM exact avant de demander un devis — <Link to="/outils/calculateur-bonus-malus" className="text-primary hover:underline font-medium">calculer mon bonus malus</Link></li>
@@ -197,7 +197,7 @@ const AssuranceAuto = () => {
                   </>,
                   "Tarif moyen constaté : dès 25€/mois selon le profil.",
                   "Devis gratuit en moins de 2 minutes, sans engagement.",
-                  "Nos clients économisent en moyenne 320€/an sur leur assurance auto.",
+                  "Comparez plusieurs assureurs pour trouver le tarif le plus adapté à votre profil.",
                 ]}
               />
             }

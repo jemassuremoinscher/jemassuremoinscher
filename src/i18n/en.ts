@@ -700,8 +700,8 @@ const en: Record<string, string> = {
 
   // Auto Page
   'autoPage.title': 'Cheaper Car Insurance',
-  'autoPage.subtitle': 'Compare 70+ insurers and save up to €400 per year on your car insurance.',
-  'autoPage.adv1.title': 'Save up to €400',
+  'autoPage.subtitle': 'Compare 70+ insurers and find a better deal on your car insurance.',
+  'autoPage.adv1.title': 'A better rate',
   'autoPage.adv1.desc': 'Compare and save on your car insurance.',
   'autoPage.adv2.desc': 'The best offers on the market.',
   'autoPage.adv2.title': '20+ insurers compared',
@@ -742,8 +742,8 @@ const en: Record<string, string> = {
 
   // Santé Page
   'santePage.title': 'Cheaper Health Insurance',
-  'santePage.subtitle': 'Compare 70+ health plans and save up to €300 per year.',
-  'santePage.adv1.title': 'Save up to €300',
+  'santePage.subtitle': 'Compare 70+ health plans and find a better deal.',
+  'santePage.adv1.title': 'A better rate',
   'santePage.adv1.desc': 'Compare and save on your health insurance.',
   'santePage.adv2.title': '20+ health plans compared',
   'santePage.adv2.desc': 'The best offers on the market.',
@@ -774,8 +774,8 @@ const en: Record<string, string> = {
 
   // Habitation Page
   'habitationPage.title': 'Cheaper Home Insurance',
-  'habitationPage.subtitle': 'Compare 70+ insurers and save up to €300 per year on your home insurance.',
-  'habitationPage.adv1.title': 'Save up to €300',
+  'habitationPage.subtitle': 'Compare 70+ insurers and find a better deal on your home insurance.',
+  'habitationPage.adv1.title': 'A better rate',
   'habitationPage.adv1.desc': 'Compare and save on your home insurance.',
   'habitationPage.adv2.title': '20+ insurers compared',
   'habitationPage.adv2.desc': 'The best offers on the market.',
@@ -806,8 +806,8 @@ const en: Record<string, string> = {
 
   // Moto Page
   'motoPage.title': 'Cheaper Motorcycle Insurance',
-  'motoPage.subtitle': 'Compare the best offers and save up to 35% on your motorcycle insurance.',
-  'motoPage.adv1.title': 'Save up to 35%',
+  'motoPage.subtitle': 'Compare the best offers for your motorcycle insurance.',
+  'motoPage.adv1.title': 'A better rate',
   'motoPage.adv1.desc': 'Compare and save on your motorcycle insurance.',
   'motoPage.adv2.title': '15+ insurers compared',
   'motoPage.adv2.desc': 'The best offers on the market.',
@@ -908,8 +908,8 @@ const en: Record<string, string> = {
 
   // Prêt Page
   'pretPage.title': 'Cheaper Loan Insurance',
-  'pretPage.subtitle': 'Save up to 50% on your loan insurance thanks to the Lemoine law.',
-  'pretPage.adv1.title': 'Save up to €15,000',
+  'pretPage.subtitle': 'Compare your loan insurance thanks to the Lemoine law.',
+  'pretPage.adv1.title': 'A better rate',
   'pretPage.adv1.desc': 'Compare and save on your loan insurance.',
   'pretPage.adv2.title': 'Free switching',
   'pretPage.adv2.desc': 'Lemoine law: cancel at any time.',

@@ -74,9 +74,9 @@ const AssuranceSante = () => {
         keyword="mutuelle santé moins chère"
         keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher, mutuelle famille"
         canonical="https://www.jemassuremoinscher.fr/assurance-sante"
-        ogTitle="Mutuelle Santé Moins Chère en 2025 : Comparez 70+ mutuelles, économisez 300€/an"
+        ogTitle="Mutuelle Santé Moins Chère | Comparez 70+ mutuelles"
         ogDescription="Comparez 70+ mutuelles santé en 2 minutes. Optique, dentaire, hospitalisation. Devis gratuit et personnalisé dès 10€/mois."
-        twitterDescription="Comparez 70+ mutuelles en 2 min. Économisez jusqu'à 300€/an. Gratuit et sans engagement."
+        twitterDescription="Comparez 70+ mutuelles en 2 min. Gratuit et sans engagement."
         jsonLd={[serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
