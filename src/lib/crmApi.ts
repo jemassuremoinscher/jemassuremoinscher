@@ -15,7 +15,7 @@ import type {
 // deux tables : chaque fonction exportée ci-dessous retype explicitement ce
 // qu'elle renvoie, donc ce `any` reste confiné à cette ligne.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const crmFrom = (table: 'activities' | 'deal_tasks'): any => supabase.from(table as any);
+const crmFrom = (table: 'activities' | 'deal_tasks' | 'deal_stage_email_log'): any => supabase.from(table as any);
 
 // Même confinement pour `profiles` (id, email, full_name, is_active, created_at,
 // updated_at) : réelle en base, absente du schéma généré.
