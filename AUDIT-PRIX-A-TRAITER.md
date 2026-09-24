@@ -30,18 +30,33 @@ Fichier : `src/data/landingConfigs.tsx` ligne ~87 (slug `auto`).
 
 Claim : "En moyenne, nos utilisateurs économisent jusqu'à 40 % en mettant en concurrence les 70+ assureurs partenaires." Même famille, page landing spécifique.
 
-## 5. `AssuranceHabitation.tsx` — "40%" en dur dans `ogDescription`/`twitterDescription`
+## 5. ~~`AssuranceHabitation.tsx` — "40%" en dur dans `ogDescription`/`twitterDescription`~~ — TRAITÉ le 2026-09-24
 
-Fichier : `src/pages/AssuranceHabitation.tsx`, lignes ~70-71.
+Corrigé dans le chantier "audit grosses verticales" (commit `e9902c99`), avec 5 autres pages ayant le même défaut (auto, moto, sante, vie, pret) et deux couches supplémentaires jamais auditées (sous-titre visible `*Page.subtitle`, titre de carte avantage `*Page.adv1.title`).
 
-Claim : `ogDescription="...Économisez jusqu'à 40% sur votre contrat."`, `twitterDescription="...Économisez jusqu'à 40%/an..."`. Même famille que le "40%" déjà corrigé sur la homepage, jamais repéré jusqu'ici car cette page n'utilise pas l'objet `R` de `index.html` (ces props sont propres au composant React de la page). Flagué en passant pendant le chantier protection juridique (2026-09-24), pas traité.
+---
+
+## 6. `DynamicUpdateDate` sur 7 pages restantes (audit du 2026-09-24)
+
+Composant supprimé sur les 12 grosses verticales (commit `24bd2134`) car il affichait `new Date()` sans lien avec une vraie mise à jour — fausse fraîcheur mécanique. **7 pages l'utilisent encore, pas traitées ce soir** : `AssuranceExpatries.tsx`, `BlogArticle.tsx`, `AssuranceAnimaux.tsx`, `Contact.tsx`, `AssuranceTrottinette.tsx`, `Blog.tsx`, `AssuranceMetiersAtypiques.tsx`.
+
+Cas particulier à traiter différemment : `Blog.tsx`/`BlogArticle.tsx` ont probablement une vraie date exploitable côté Supabase (`published_at`/`reviewed_at` sur `seo_article_suggestions`) — à vérifier et wiring proprement plutôt qu'un simple retrait, contrairement aux 5 autres qui n'ont probablement pas de source réelle non plus.
+
+## 7. Incohérence de prix PNO (audit du 2026-09-24)
+
+`ProductGuaranteeTable.tsx` (`pno`) affiche "dès 5€/mois", mais `pnoPage.adv2.title` (i18n) affiche "Dès 9€/mois" — deux prix différents pour le même produit sur la même page. Pas traité (catégorie "prix des tableaux", explicitement différée).
 
 ---
 
 ## Autres points flagués en cours de route (chantier prix passes 2-3), non traités car hors des 6 confirmées
 
-- `AssuranceAuto.tsx` : "Nos clients économisent 320€/an, jusqu'à 400€" (non sourcé) — le pilier auto lui-même contient un chiffre non vérifié, ce qui a compliqué la vérification de la landing `auto`.
+- `AssuranceAuto.tsx` : "Nos clients économisent 320€/an, jusqu'à 400€" — **traité le 2026-09-24** (commit `e9902c99`), avec 7 autres emplacements dans le même fichier (serviceSchema, faqSchema, insuranceProductSchema, data-ai-description, enBrefFacts).
 - `mrp` (landingConfigs.tsx) : topBarText "-25% la 1ère année", stats "-25% Économie moy." — non sourcé, pas dans les 6 traitées.
 - `prevoyance` (landingConfigs.tsx) : stats "100% Maintien salaire", "-30% Vs marché" — non sourcé.
 - `pno` (landingConfigs.tsx) : stats "-30% Vs marché" — non sourcé.
 - Témoignages avec prix chiffrés sur plusieurs landings (sans-permis "32€/mois"/"48€/mois", prevoyance "22€/mois", pno "92€/an", rc-pro "14€/mois") — même famille que les 36 témoignages fictifs déjà supprimés des fichiers i18n, mais ceux-ci sont dans `landingConfigs.tsx` (`testimonials` par landing), jamais audités pour authenticité.
+
+## 8. Reste explicitement différé au futur "chantier verticales" (confirmé le 2026-09-24)
+
+- Prix des tableaux `ProductGuaranteeTable.tsx` (auto, moto, habitation, sante, pno, mrp, rc-pro, pret, prevoyance, gli, gestion-locative) : aucun n'a de commentaire "devis vérifié" (contrairement à scooter-50cc/trottinette).
+- Absence de `dateModified`/`datePublished` en JSON-LD sur les 12 grosses verticales (contrairement aux nouveaux piliers créés cette nuit).
