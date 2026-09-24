@@ -48,7 +48,7 @@ const Index = () => {
     "name": "jemassuremoinscher.fr",
     "url": "https://www.jemassuremoinscher.fr",
     "logo": "https://www.jemassuremoinscher.fr/logo.png",
-    "description": "Courtier en assurances en ligne. Comparez gratuitement les offres de 70 assureurs partenaires et économisez en moyenne 40% sur votre contrat.",
+    "description": "Courtier en assurances en ligne. Comparez gratuitement les offres de 70 assureurs partenaires et trouvez un contrat plus avantageux.",
     "areaServed": {
       "@type": "Country",
       "name": "France"
@@ -222,7 +222,7 @@ const Index = () => {
     "@type": "LocalBusiness",
     "name": "jemassuremoinscher.fr",
     "url": "https://www.jemassuremoinscher.fr",
-    "description": "Comparateur d'assurances gratuit. Comparez 70+ assureurs (auto, habitation, santé, animaux). Économisez jusqu'à 40%.",
+    "description": "Comparateur d'assurances gratuit. Comparez 70+ assureurs (auto, habitation, santé, animaux) et trouvez une offre plus avantageuse.",
     "areaServed": "FR",
     "sameAs": "https://www.instagram.com/jemassuremoinscher"
   };
@@ -233,8 +233,8 @@ const Index = () => {
         title={t("seo.home.title")}
         description={t("seo.home.description")}
         ogTitle="Comparateur Assurance Moins Chère"
-        ogDescription="Comparez 70 assureurs gratuitement. Économisez en moyenne 40%."
-        twitterDescription="Trouvez l'assurance la moins chère en 2 minutes avec notre comparateur gratuit. Comparez 70 assureurs partenaires (AXA, Allianz, MAIF, Groupama…) et économisez en moyenne 40% sur votre contrat. Sans engagement."
+        ogDescription="Comparez 70 assureurs gratuitement et trouvez une offre plus avantageuse."
+        twitterDescription="Trouvez l'assurance la moins chère en 2 minutes avec notre comparateur gratuit. Comparez 70 assureurs partenaires (AXA, Allianz, MAIF, Groupama…) et trouvez un contrat plus avantageux. Sans engagement."
         keyword="assurance moins chère"
         keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
         canonical="https://www.jemassuremoinscher.fr"

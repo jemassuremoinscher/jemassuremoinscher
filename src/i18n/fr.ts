@@ -271,7 +271,7 @@ const fr: Record<string, string> = {
   'seoFaq.title': 'Questions fréquentes sur l\'assurance pas chère',
   'seoFaq.subtitle': "Tout savoir pour trouver une assurance pas chère et changer d'assurance facilement",
   'seoFaq.q1': 'Comment trouver une assurance pas chère ?',
-  'seoFaq.a1': "Pour trouver une assurance pas chère, utilisez un comparateur d'assurances comme jemassuremoinscher.fr. Notre comparateur analyse les offres de 70 assureurs pour vous proposer l'assurance la moins chère adaptée à votre profil. En moyenne, nos utilisateurs économisent 40% sur leur contrat en comparant les prix. C'est plus simple et plus complet qu'un comparateur traditionnel comme LesFurets.",
+  'seoFaq.a1': "Pour trouver une assurance pas chère, utilisez un comparateur d'assurances comme jemassuremoinscher.fr. Notre comparateur analyse les offres de 70 assureurs pour vous proposer l'assurance la moins chère adaptée à votre profil, en comparant les prix. C'est plus simple et plus complet qu'un comparateur traditionnel comme LesFurets.",
   'seoFaq.q2': 'Pourquoi utiliser un comparateur d\'assurances plutôt que LesFurets ?',
   'seoFaq.a2': "Notre comparateur d'assurances se différencie des comparateurs traditionnels comme LesFurets par son accompagnement personnalisé. Là où d'autres comparateurs vous laissent seul face aux devis, jemassuremoinscher.fr vous offre un conseiller dédié qui vous rappelle sous 5 minutes. Notre service est 100% gratuit, sans engagement, et compare 70+ assureurs pour trouver l'assurance pas chère qui vous convient.",
   'seoFaq.q3': "Comment changer d'assurance facilement ?",
@@ -353,7 +353,7 @@ const fr: Record<string, string> = {
   'guides.article1.title': 'Loi Hamon : comment résilier ?',
   'guides.article1.excerpt': "Résiliez votre assurance à tout moment après 1 an de contrat.",
   'guides.article2.title': '5 astuces pour réduire sa prime',
-  'guides.article2.excerpt': "Découvrez nos conseils d'experts pour économiser jusqu'à 40%.",
+  'guides.article2.excerpt': "Découvrez nos conseils d'experts pour réduire votre prime.",
   'guides.article3.title': 'Jeune conducteur : quel budget ?',
   'guides.article3.excerpt': "Guide complet pour assurer votre première voiture au meilleur prix.",
   
@@ -2684,7 +2684,7 @@ const fr: Record<string, string> = {
 
   // SEO meta — per page
   "seo.home.title": "Comparateur Assurance Moins Chère | Devis Gratuit",
-  "seo.home.description": "Comparateur d'assurances gratuit. Comparez 70 assureurs et économisez en moyenne 40%. Devis en 2 min, sans engagement.",
+  "seo.home.description": "Comparateur d'assurances gratuit. Comparez 70 assureurs partenaires et trouvez une offre plus avantageuse. Devis en 2 min, sans engagement.",
   "seo.contact.title": "Contactez-nous | jemassuremoinscher.fr",
   "seo.contact.description": "Une question sur votre assurance ? Contactez nos courtiers par email, formulaire ou rappel gratuit. Réponse experte sous 10 minutes, 6j/7.",
   "seo.about.title": "Qui sommes-nous | jemassuremoinscher.fr",

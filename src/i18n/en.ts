@@ -273,7 +273,7 @@ const en: Record<string, string> = {
   'seoFaq.title': 'Frequently Asked Questions About Cheap Insurance',
   'seoFaq.subtitle': 'Everything you need to know to find cheap insurance and switch easily',
   'seoFaq.q1': 'How can I find cheap insurance?',
-  'seoFaq.a1': 'To find cheap insurance, use a comparison tool like jemassuremoinscher.fr. Our comparator analyses offers from 70 insurers to find the cheapest insurance suited to your profile. On average, our users save 40% on their policy by comparing prices.',
+  'seoFaq.a1': 'To find cheap insurance, use a comparison tool like jemassuremoinscher.fr. Our comparator analyses offers from 70 insurers to find the cheapest insurance suited to your profile, by comparing prices.',
   'seoFaq.q2': 'Why use our comparator instead of others?',
   'seoFaq.a2': 'Our insurance comparator stands out through personalised support. Where other comparators leave you alone with quotes, jemassuremoinscher.fr offers a dedicated advisor who calls you back within 2 hours. Our service is 100% free, no commitment, and compares 70+ insurers.',
   'seoFaq.q3': 'Can I switch insurance at any time?',
@@ -355,7 +355,7 @@ const en: Record<string, string> = {
   'guides.article1.title': 'Hamon Law: how to cancel?',
   'guides.article1.excerpt': 'Cancel your insurance at any time after 1 year of contract.',
   'guides.article2.title': '5 tips to reduce your premium',
-  'guides.article2.excerpt': "Discover our expert advice to save up to 40%.",
+  'guides.article2.excerpt': "Discover our expert advice to reduce your premium.",
   'guides.article3.title': 'New driver: what budget?',
   'guides.article3.excerpt': 'Complete guide to insuring your first car at the best price.',
   
@@ -2693,7 +2693,7 @@ const en: Record<string, string> = {
 
   // SEO meta — per page
   "seo.home.title": "Cheaper Insurance Comparator | Free Quote",
-  "seo.home.description": "Free insurance comparator. Compare 70 insurers and save 40% on average. Quote in 2 min, no commitment.",
+  "seo.home.description": "Free insurance comparator. Compare 70 partner insurers and find a better deal. Quote in 2 min, no commitment.",
   "seo.contact.title": "Contact Us | jemassuremoinscher.fr",
   "seo.contact.description": "A question about your insurance? Contact our brokers by email, form or free callback. Expert reply within 10 minutes, 6 days a week.",
   "seo.about.title": "About Us | jemassuremoinscher.fr",
