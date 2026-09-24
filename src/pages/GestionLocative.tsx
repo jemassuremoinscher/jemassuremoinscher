@@ -13,7 +13,6 @@ import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 
 const GestionLocative = () => {
@@ -82,7 +81,6 @@ const GestionLocative = () => {
         </section>
 
         <div className="container mx-auto px-4 py-12">
-          <DynamicUpdateDate />
 
           <section className="max-w-4xl mx-auto mb-12">
             <div className="grid md:grid-cols-3 gap-6">

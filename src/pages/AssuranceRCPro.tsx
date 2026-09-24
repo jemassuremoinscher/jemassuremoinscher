@@ -15,7 +15,6 @@ import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import arthurFlying from "@/assets/mascotte/arthur-wink-thumbsup.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 
 const AssuranceRCPro = () => {
@@ -54,7 +53,6 @@ const AssuranceRCPro = () => {
         </div>
       </section>
       <div className="container mx-auto px-4 py-12">
-        <DynamicUpdateDate />
 
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="rc_pro" /></div>

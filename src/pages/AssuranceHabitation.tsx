@@ -17,7 +17,6 @@ import BrandName from "@/components/BrandName";
 import arthurFlying from "@/assets/mascotte/arthur-waving.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 import ProtectionJuridiqueSection from "@/components/insurance/ProtectionJuridiqueSection";
 
@@ -95,7 +94,6 @@ const AssuranceHabitation = () => {
           className="container mx-auto px-4 py-12"
           data-ai-description="Comparateur d'assurance habitation — jemassuremoinscher.fr compare 25+ assureurs, devis gratuit en moins de 2 minutes"
         >
-          <DynamicUpdateDate />
 
           <section className="max-w-4xl mx-auto mb-12">
             <div className="grid md:grid-cols-3 gap-6">

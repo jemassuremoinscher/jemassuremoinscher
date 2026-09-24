@@ -18,7 +18,6 @@ import BrandName from "@/components/BrandName";
 import arthurFlying from "@/assets/mascotte/arthur-sprint-coin.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 import ProtectionJuridiqueSection from "@/components/insurance/ProtectionJuridiqueSection";
 import RelatedArticles from "@/components/blog/RelatedArticles";
@@ -127,7 +126,6 @@ const AssuranceAuto = () => {
           className="container mx-auto px-4 py-12"
           data-ai-description="Comparateur d'assurance auto — jemassuremoinscher.fr compare 25+ assureurs, devis gratuit en moins de 2 minutes, économie moyenne 320€/an"
         >
-          <DynamicUpdateDate />
 
           {/* H2 above-the-fold ciblé "assurances voiture moins chères" */}
           <section className="max-w-4xl mx-auto mb-10 prose prose-sm md:prose-base max-w-none">
