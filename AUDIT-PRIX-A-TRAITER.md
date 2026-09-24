@@ -30,6 +30,12 @@ Fichier : `src/data/landingConfigs.tsx` ligne ~87 (slug `auto`).
 
 Claim : "En moyenne, nos utilisateurs économisent jusqu'à 40 % en mettant en concurrence les 70+ assureurs partenaires." Même famille, page landing spécifique.
 
+## 5. `AssuranceHabitation.tsx` — "40%" en dur dans `ogDescription`/`twitterDescription`
+
+Fichier : `src/pages/AssuranceHabitation.tsx`, lignes ~70-71.
+
+Claim : `ogDescription="...Économisez jusqu'à 40% sur votre contrat."`, `twitterDescription="...Économisez jusqu'à 40%/an..."`. Même famille que le "40%" déjà corrigé sur la homepage, jamais repéré jusqu'ici car cette page n'utilise pas l'objet `R` de `index.html` (ces props sont propres au composant React de la page). Flagué en passant pendant le chantier protection juridique (2026-09-24), pas traité.
+
 ---
 
 ## Autres points flagués en cours de route (chantier prix passes 2-3), non traités car hors des 6 confirmées

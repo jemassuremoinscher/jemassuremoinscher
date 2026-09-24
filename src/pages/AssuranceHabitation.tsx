@@ -19,6 +19,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
+import ProtectionJuridiqueSection from "@/components/insurance/ProtectionJuridiqueSection";
 
 const AssuranceHabitation = () => {
   const { t } = useLanguage();
@@ -117,6 +118,8 @@ const AssuranceHabitation = () => {
           </div>
 
           <ProductGuaranteeTable product="habitation" />
+
+          <ProtectionJuridiqueSection context="habitation" />
 
           <CourtierValueCards product="habitation" />
 

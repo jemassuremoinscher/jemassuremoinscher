@@ -20,6 +20,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
+import ProtectionJuridiqueSection from "@/components/insurance/ProtectionJuridiqueSection";
 import RelatedArticles from "@/components/blog/RelatedArticles";
 
 const AssuranceAuto = () => {
@@ -170,6 +171,8 @@ const AssuranceAuto = () => {
 
           {/* Tableau garanties par formule (SEO/GEO — extraction LLM) */}
           <ProductGuaranteeTable product="auto" />
+
+          <ProtectionJuridiqueSection context="auto" />
 
           <CourtierValueCards product="auto" />
 
