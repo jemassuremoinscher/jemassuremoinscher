@@ -13,9 +13,9 @@ interface RelatedInsuranceLinksProps {
 }
 
 const allProducts: Record<string, RelatedLink> = {
-  auto: { to: "/assurance-auto", label: "Assurance Auto", description: "Comparez les offres auto dès 11€/mois" },
+  auto: { to: "/assurance-auto", label: "Assurance Auto", description: "Comparez les offres auto adaptées à votre profil" },
   moto: { to: "/assurance-moto", label: "Assurance Moto", description: "Protégez votre deux-roues au meilleur prix" },
-  habitation: { to: "/assurance-habitation", label: "Assurance Habitation", description: "Couvrez votre logement dès 4€/mois" },
+  habitation: { to: "/assurance-habitation", label: "Assurance Habitation", description: "Couvrez votre logement au meilleur tarif" },
   sante: { to: "/assurance-sante", label: "Mutuelle Santé", description: "Remboursements optimaux, cotisation maîtrisée" },
   animaux: { to: "/assurance-animaux", label: "Assurance Animaux", description: "Frais vétérinaires couverts jusqu'à 100%" },
   vie: { to: "/assurance-vie", label: "Assurance Vie", description: "Protégez vos proches et faites fructifier votre épargne" },
@@ -30,10 +30,10 @@ const allProducts: Record<string, RelatedLink> = {
   // interne (n'a pas de sens, une page ne se recommande pas elle-même — sans
   // effet car ignoré) mais surtout aucune entrée ne permettait à une AUTRE
   // page de recommander vélo. Ajoutée pour relatedMap.trottinette.products.
-  velo: { to: "/assurance-velo", label: "Assurance Vélo & VAE", description: "Garantie vol vélo, VAE et vélo cargo dès 4€/mois" },
+  velo: { to: "/assurance-velo", label: "Assurance Vélo & VAE", description: "Garantie vol vélo, VAE et vélo cargo" },
   "scooter-50cc": { to: "/assurance-scooter-50cc", label: "Assurance Scooter 50cc", description: "Cyclomoteur dès 9€/mois, BSR/AM dès 14 ans" },
   permisEtranger: { to: "/assurance-auto-permis-etranger", label: "Permis Étranger", description: "Assurance auto avec permis étranger accepté" },
-  emprunteur: { to: "/assurance-emprunteur", label: "Assurance Emprunteur", description: "Changez à tout moment, économisez jusqu'à 15 000€" },
+  emprunteur: { to: "/assurance-emprunteur", label: "Assurance Emprunteur", description: "Changez à tout moment grâce à la loi Lemoine" },
   metiersAtypiques: { to: "/assurance-metiers-atypiques", label: "Métiers Atypiques", description: "Activités à risques : devis sur-mesure auprès de 12 assureurs spé." },
   gestionLocative: { to: "/gestion-locative", label: "Gestion Locative", description: "Confiez vos biens à un pro : honoraires dès 5%" },
   jeuneConducteur: { to: "/assurance-auto-jeune-conducteur", label: "Assurance Jeune Conducteur", description: "L'offre dédiée aux conducteurs novices et primo-assurés" },
