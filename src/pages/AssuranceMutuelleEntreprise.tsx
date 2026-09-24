@@ -1,10 +1,35 @@
 import VerticalInsurancePage from "@/components/insurance/VerticalInsurancePage";
 import BrandName from "@/components/BrandName";
 import arthurBusiness from "@/assets/mascotte/arthur-business.webp";
+import { MutuelleEntrepriseCadreLegal, MutuelleEntrepriseSourcesNote } from "@/components/insurance/MutuelleEntrepriseGuideSections";
+
+// Citation de source ajoutée le 2026-09-24 (traitement léger — le contenu
+// existant était déjà exact, cette section ajoute la citation directe des
+// textes). Sources lues le même jour.
+const mutuelleEntrepriseWebPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://www.jemassuremoinscher.fr/assurance-mutuelle-entreprise#webpage",
+  "url": "https://www.jemassuremoinscher.fr/assurance-mutuelle-entreprise",
+  "name": "Mutuelle entreprise obligatoire (ANI)",
+  "inLanguage": "fr-FR",
+  "dateModified": "2026-09-24",
+  "citation": [
+    { "@type": "CreativeWork", "name": "Code de la sécurité sociale — article L911-7", "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000031686110" },
+    { "@type": "CreativeWork", "name": "Décret n°2014-1025 du 8 septembre 2014", "url": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000029434975" },
+  ],
+};
 
 const AssuranceMutuelleEntreprise = () => (
   <VerticalInsurancePage
     slug="mutuelle-entreprise"
+    extraSchemas={[mutuelleEntrepriseWebPageSchema]}
+    extraSection={
+      <>
+        <MutuelleEntrepriseCadreLegal />
+        <MutuelleEntrepriseSourcesNote />
+      </>
+    }
     breadcrumbLabel="Mutuelle Entreprise (Collective)"
     heroImage={arthurBusiness}
     heroAlt="Arthur mutuelle entreprise collective"
