@@ -42,12 +42,12 @@ const AssuranceAnimaux = () => {
     },
     {
       question: "Combien coûte une assurance animaux ?",
-      answer: "De 10€ à 60€/mois selon l'espèce, l'âge, la race et le niveau de garanties.",
+      answer: "Le prix dépend de l'espèce, de l'âge, de la race et du niveau de garanties choisi. Comparez plusieurs offres pour trouver le tarif adapté à votre animal.",
     },
   ]);
   const insuranceProductSchema = addInsuranceProductSchema({
     name: "Assurance Animaux",
-    description: "Comparateur d'assurance chien, chat et NAC. Remboursement vétérinaire jusqu'à 100%. Dès 8€/mois.",
+    description: "Comparateur d'assurance chien, chat et NAC. Remboursement vétérinaire jusqu'à 100%.",
     category: "Assurance Animaux",
     url: "https://www.jemassuremoinscher.fr/assurance-animaux",
   });
@@ -65,9 +65,9 @@ const AssuranceAnimaux = () => {
         keyword="assurance animaux moins chère"
         keywords="assurance chien, assurance chat, mutuelle animaux, assurance NAC"
         canonical="https://www.jemassuremoinscher.fr/assurance-animaux"
-        ogTitle="Assurance Animaux Moins Chère en 2025 : Chien & Chat dès 8€/mois"
+        ogTitle="Assurance Animaux Moins Chère : Chien & Chat | Comparateur Gratuit"
         ogDescription="Comparez les meilleures mutuelles pour chien et chat. Remboursement vétérinaire jusqu'à 100%. Devis gratuit en 2 minutes, sans délai de carence."
-        twitterDescription="Mutuelle chien/chat dès 8€/mois. Remboursement vétérinaire jusqu'à 100%. Devis gratuit en 2 min."
+        twitterDescription="Mutuelle chien/chat : comparez les offres. Remboursement vétérinaire jusqu'à 100%. Devis gratuit en 2 min."
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
@@ -130,7 +130,7 @@ const AssuranceAnimaux = () => {
                   <>
                     <BrandName /> compare les assurances chien, chat et NAC.
                   </>,
-                  "Assurance animaux dès 8€/mois selon l'espèce et les garanties.",
+                  "Le tarif dépend de l'espèce et des garanties choisies.",
                   "Remboursement des frais vétérinaires jusqu'à 100%.",
                   "Devis gratuit en moins de 2 minutes, sans engagement.",
                 ]}
