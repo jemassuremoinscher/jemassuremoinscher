@@ -84,7 +84,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       ],
       faqs: [
         { question: "Comment Arthur compare-t-il les assurances auto ?", answer: "Tu remplis le formulaire en 2 minutes avec ton véhicule et ton profil. Arthur interroge en temps réel les 70+ assureurs partenaires et te présente les meilleures offres adaptées à ton profil." },
-        { question: "Combien puis-je économiser ?", answer: "Cela dépend de ton profil et de ton contrat actuel. En moyenne, nos utilisateurs économisent jusqu'à 40 % en mettant en concurrence les 70+ assureurs partenaires." },
+        { question: "Combien puis-je économiser ?", answer: "Cela dépend de ton profil et de ton contrat actuel. Un conseiller compare ta situation à celle de nos 70+ assureurs partenaires pour identifier une économie réelle, sans engagement." },
         { question: "Le service est-il vraiment gratuit ?", answer: "Oui, 100 % gratuit et sans engagement. Aucune carte bancaire demandée. Un conseiller te rappelle sous 10 minutes pour t'accompagner si tu le souhaites." },
         { question: "Puis-je changer d'assurance à tout moment ?", answer: "Oui, dès la première année grâce à la loi Hamon. Nous nous occupons gratuitement de la résiliation de ton ancien contrat." },
       ],

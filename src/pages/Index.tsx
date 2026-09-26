@@ -132,7 +132,7 @@ const Index = () => {
         "name": "Comment payer son assurance moins cher en 2026 ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "En comparant au moins 5 offres avant chaque échéance : à garanties identiques, l'écart de prix entre deux assureurs atteint couramment 30 à 40 % pour un même profil. Ajuster sa franchise, déclarer son kilométrage réel, regrouper auto et habitation chez le même assureur (5 à 15 % de remise) et réévaluer ses garanties sur un véhicule de plus de 8 ans sont les leviers les plus efficaces."
+          "text": "En comparant au moins 5 offres avant chaque échéance : à garanties identiques, l'écart de prix entre deux assureurs peut être significatif pour un même profil. Ajuster sa franchise, déclarer son kilométrage réel, regrouper auto et habitation chez le même assureur et réévaluer ses garanties sur un véhicule de plus de 8 ans sont les leviers les plus efficaces."
         }
       },
       {

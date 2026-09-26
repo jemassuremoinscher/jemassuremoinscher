@@ -13,11 +13,11 @@ const ANSWERS = [
     icon: TrendingDown,
     question: "Comment payer son assurance moins cher en 2026 ?",
     lead:
-      "En comparant au moins 5 offres avant chaque échéance : à garanties identiques, l'écart de prix entre deux assureurs atteint couramment 30 à 40 % pour un même profil.",
+      "En comparant au moins 5 offres avant chaque échéance : à garanties identiques, l'écart de prix entre deux assureurs peut être significatif pour un même profil.",
     bullets: [
       "Réévaluez vos garanties : une voiture de plus de 8 ans passe souvent avantageusement du tous risques au tiers étendu.",
-      "Ajustez votre franchise : +150 € de franchise fait généralement baisser la prime auto de 5 à 10 %.",
-      "Regroupez auto + habitation chez le même assureur : 5 à 15 % de remise multi-contrats.",
+      "Ajustez votre franchise : une franchise plus élevée fait généralement baisser la prime auto.",
+      "Regroupez auto + habitation chez le même assureur : les contrats multi-produits sont souvent proposés avec une remise.",
       "Déclarez votre kilométrage réel : sous 8 000 km/an, les formules « petits rouleurs » sont moins chères.",
       "Comparez chaque année : la fidélité n'est presque jamais récompensée tarifairement en assurance.",
     ],
