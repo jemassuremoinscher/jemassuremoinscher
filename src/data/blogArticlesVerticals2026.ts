@@ -2,8 +2,10 @@ import type { BlogArticle } from "./blogArticles";
 
 /**
  * Série Verticales 2026 — 9 articles (3 sujets × 1 pilier + 2 satellites).
- * Liens internes intégrés vers les landing pages /landing/decennale,
- * /landing/flotte-auto, /landing/mutuelle-entreprise et articles connexes.
+ * Liens internes intégrés vers les pages piliers /assurance-decennale,
+ * /assurance-flotte-auto, /assurance-mutuelle-entreprise et articles connexes.
+ * Corrigé le 2026-09-26 : pointaient vers les landings /landing/* (désindexées,
+ * cannibalisantes) au lieu des piliers indexés ci-dessus.
  */
 export const blogArticlesVerticals2026: BlogArticle[] = [
   // ============================================================
@@ -43,7 +45,7 @@ L'obligation s'applique à **tout constructeur** au sens du Code civil :
 - Architectes, maîtres d'œuvre, bureaux d'études
 - Promoteurs immobiliers
 
-> 👉 Pour un comparatif personnalisé, consultez notre page dédiée à l'[assurance décennale BTP](/landing/decennale).
+> 👉 Pour un comparatif personnalisé, consultez notre page dédiée à l'[assurance décennale BTP](/assurance-decennale).
 
 ## Combien coûte une décennale en 2026 ?
 
@@ -87,13 +89,13 @@ Le tarif dépend de **6 critères principaux** :
 
 - [RC Pro et décennale : quelles différences pour les artisans ?](/blog/rc-pro-decennale-differences-artisans-btp)
 - [Décennale auto-entrepreneur : tout ce qu'il faut savoir](/blog/decennale-auto-entrepreneur-btp-2026)
-- [Comparatif RC Pro pour artisans et indépendants](/landing/rc-pro)
+- [Comparatif RC Pro pour artisans et indépendants](/assurance-rc-pro)
 
 ## Conclusion
 
 La décennale n'est pas une dépense, c'est un **investissement de protection**. Un seul sinistre non couvert peut suffire à mettre une entreprise en faillite. Prenez le temps de comparer, vérifiez les exclusions, et n'attendez pas le premier chantier pour souscrire.
 
-**Besoin d'un devis personnalisé ?** Obtenez votre [comparatif décennale gratuit en 2 minutes](/landing/decennale).
+**Besoin d'un devis personnalisé ?** Obtenez votre [comparatif décennale gratuit en 2 minutes](/assurance-decennale).
     `,
   },
   {
@@ -113,7 +115,7 @@ Beaucoup d'artisans confondent **RC Pro** et **garantie décennale**. Pourtant, 
 
 ## Ce que couvre la décennale
 
-La [garantie décennale](/landing/decennale) protège pendant **10 ans après la réception** des travaux contre :
+La [garantie décennale](/assurance-decennale) protège pendant **10 ans après la réception** des travaux contre :
 - Les dommages affectant la **solidité de l'ouvrage**
 - Les désordres rendant l'ouvrage **impropre à sa destination**
 
@@ -144,9 +146,9 @@ La **Responsabilité Civile Professionnelle** couvre les dommages causés à des
 
 - [Guide complet de la décennale 2026](/blog/garantie-decennale-2026-guide-complet-artisans-btp)
 - [Décennale auto-entrepreneur](/blog/decennale-auto-entrepreneur-btp-2026)
-- [Comparatif RC Pro pour artisans](/landing/rc-pro)
+- [Comparatif RC Pro pour artisans](/assurance-rc-pro)
 
-**Vous démarrez votre activité ?** Obtenez un [devis décennale + RC Pro en 2 minutes](/landing/decennale).
+**Vous démarrez votre activité ?** Obtenez un [devis décennale + RC Pro en 2 minutes](/assurance-decennale).
     `,
   },
   {
@@ -162,7 +164,7 @@ La **Responsabilité Civile Professionnelle** couvre les dommages causés à des
     content: `
 # Décennale auto-entrepreneur : tout ce qu'il faut savoir en 2026
 
-Être **micro-entrepreneur** dans le bâtiment ne vous dispense pas de la [garantie décennale](/landing/decennale). Au contraire : vous êtes soumis **exactement aux mêmes obligations** qu'une entreprise classique du BTP.
+Être **micro-entrepreneur** dans le bâtiment ne vous dispense pas de la [garantie décennale](/assurance-decennale). Au contraire : vous êtes soumis **exactement aux mêmes obligations** qu'une entreprise classique du BTP.
 
 ## L'obligation légale
 
@@ -183,7 +185,7 @@ Pour un auto-entrepreneur avec un CA prévisionnel **inférieur à 50 000 €** 
 
 ## Comment réduire la facture ?
 
-1. **Comparer au moins 3 devis** ([comparateur gratuit ici](/landing/decennale))
+1. **Comparer au moins 3 devis** ([comparateur gratuit ici](/assurance-decennale))
 2. Choisir une **franchise plus élevée** (économie de 10 à 20 %)
 3. Limiter les **activités secondaires** déclarées
 4. Adhérer à un **réseau d'artisans** qui négocie des tarifs groupés
@@ -200,7 +202,7 @@ Pour un auto-entrepreneur avec un CA prévisionnel **inférieur à 50 000 €** 
 - [Guide complet de la décennale 2026](/blog/garantie-decennale-2026-guide-complet-artisans-btp)
 - [RC Pro vs décennale : quelles différences ?](/blog/rc-pro-decennale-differences-artisans-btp)
 
-**Démarrez votre activité l'esprit tranquille** : [obtenez votre attestation décennale en 48 h](/landing/decennale).
+**Démarrez votre activité l'esprit tranquille** : [obtenez votre attestation décennale en 48 h](/assurance-decennale).
     `,
   },
 
@@ -257,7 +259,7 @@ Le tarif dépend de **5 facteurs** :
 | 20 utilitaires livraison | 1 100 – 1 900 € |
 | 50+ véhicules mixtes | 600 – 1 200 € |
 
-> 👉 Obtenez un [devis flotte auto personnalisé en 2 min](/landing/flotte-auto).
+> 👉 Obtenez un [devis flotte auto personnalisé en 2 min](/assurance-flotte-auto).
 
 ## Les 3 types de contrats
 
@@ -294,7 +296,7 @@ Votre prime est calculée selon votre **sinistralité réelle** (taux S/P). **Id
 
 Une assurance flotte bien négociée représente **une économie moyenne de 25 %** par rapport à des contrats individuels, **plus une charge administrative divisée par 5**. Si votre entreprise possède 3 véhicules ou plus, c'est un changement à faire dès aujourd'hui.
 
-**Comparez les meilleures offres flotte** en [demandant votre devis personnalisé gratuit](/landing/flotte-auto).
+**Comparez les meilleures offres flotte** en [demandant votre devis personnalisé gratuit](/assurance-flotte-auto).
     `,
   },
   {
@@ -356,9 +358,9 @@ L'utilisation de la télématique doit respecter **3 règles** :
 
 - [Guide complet de l'assurance flotte auto 2026](/blog/assurance-flotte-auto-2026-guide-entreprise)
 - [Réduire le coût de sa flotte auto](/blog/reduire-cout-flotte-auto-entreprise-2026)
-- [Assurance flotte : comparatif 2026](/landing/flotte-auto)
+- [Assurance flotte : comparatif 2026](/assurance-flotte-auto)
 
-**Équipez votre flotte intelligemment** : [obtenez un devis flotte + télématique](/landing/flotte-auto).
+**Équipez votre flotte intelligemment** : [obtenez un devis flotte + télématique](/assurance-flotte-auto).
     `,
   },
   {
@@ -379,7 +381,7 @@ Une flotte auto représente en moyenne **15 à 25 % des charges variables** d'un
 ## 1. Renégocier l'assurance flotte
 
 Un audit tous les 24 mois permet d'économiser **15 à 30 %**. Le marché est très concurrentiel.
-👉 [Demandez un comparatif flotte auto](/landing/flotte-auto).
+👉 [Demandez un comparatif flotte auto](/assurance-flotte-auto).
 
 ## 2. Choisir la bonne formule
 
@@ -439,7 +441,7 @@ Un véhicule entretenu = moins de pannes = moins d'immobilisation = moins de co�
 - [Guide complet flotte auto 2026](/blog/assurance-flotte-auto-2026-guide-entreprise)
 - [Boîtiers connectés et flotte auto](/blog/boitiers-connectes-flotte-auto-entreprise-2026)
 
-**Lancez votre optimisation flotte dès aujourd'hui** : [demandez votre devis personnalisé](/landing/flotte-auto).
+**Lancez votre optimisation flotte dès aujourd'hui** : [demandez votre devis personnalisé](/assurance-flotte-auto).
     `,
   },
 
@@ -489,7 +491,7 @@ L'employeur doit :
 
 **Pour l'employeur** : 50 % minimum, en moyenne **60 % pratiqué** dans les PME.
 
-> 👉 [Comparez les mutuelles entreprise gratuitement](/landing/mutuelle-entreprise).
+> 👉 [Comparez les mutuelles entreprise gratuitement](/assurance-mutuelle-entreprise).
 
 ## Les 5 critères pour choisir
 
@@ -533,7 +535,7 @@ Demandez systématiquement le **justificatif de dispense** chaque année.
 
 La mutuelle entreprise est **bien plus qu'une obligation légale** : c'est un **levier RH** majeur en 2026. Une bonne complémentaire améliore l'attractivité, la fidélisation et la santé globale de vos collaborateurs.
 
-**Comparez les meilleures mutuelles entreprise** : [obtenez vos devis personnalisés en 2 minutes](/landing/mutuelle-entreprise).
+**Comparez les meilleures mutuelles entreprise** : [obtenez vos devis personnalisés en 2 minutes](/assurance-mutuelle-entreprise).
     `,
   },
   {
@@ -549,7 +551,7 @@ La mutuelle entreprise est **bien plus qu'une obligation légale** : c'est un **
     content: `
 # Mutuelle TNS vs mutuelle entreprise : quelles différences en 2026 ?
 
-Selon votre **statut social**, la mutuelle adaptée à vos besoins n'est pas la même. Voici un comparatif clair pour choisir entre **mutuelle TNS (loi Madelin)** et **[mutuelle entreprise collective](/landing/mutuelle-entreprise)**.
+Selon votre **statut social**, la mutuelle adaptée à vos besoins n'est pas la même. Voici un comparatif clair pour choisir entre **mutuelle TNS (loi Madelin)** et **[mutuelle entreprise collective](/assurance-mutuelle-entreprise)**.
 
 ## Qui est concerné par quoi ?
 
@@ -588,7 +590,7 @@ Les cotisations de mutuelle TNS sont **déductibles du revenu imposable** dans l
 - [Surcomplémentaire santé en entreprise](/blog/surcomplementaire-sante-entreprise-2026)
 - [Bien choisir sa mutuelle santé en 2026](/blog/bien-choisir-mutuelle-sante)
 
-**Quel statut, quelle mutuelle ?** [Obtenez un comparatif personnalisé](/landing/mutuelle-entreprise).
+**Quel statut, quelle mutuelle ?** [Obtenez un comparatif personnalisé](/assurance-mutuelle-entreprise).
     `,
   },
   {
@@ -652,7 +654,7 @@ L'entreprise **négocie un contrat groupe**, les salariés y adhèrent **libreme
 - [Guide complet de la mutuelle entreprise](/blog/mutuelle-entreprise-2026-guide-complementaire-sante-collective)
 - [Mutuelle TNS vs mutuelle entreprise](/blog/mutuelle-tns-vs-mutuelle-entreprise-2026)
 
-**Boostez votre attractivité RH** : [comparez les meilleures surcomplémentaires entreprise](/landing/mutuelle-entreprise).
+**Boostez votre attractivité RH** : [comparez les meilleures surcomplémentaires entreprise](/assurance-mutuelle-entreprise).
     `,
   },
 ];

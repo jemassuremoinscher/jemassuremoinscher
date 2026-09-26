@@ -43,7 +43,7 @@ Le coût moyen d'une cyberattaque pour une PME en France dépasse **97 000 €**
 | Rançon | Selon contrats (négociée, parfois plafonnée) |
 | Responsabilité civile | Dommages causés à des tiers |
 
-> 👉 Comparez les offres adaptées à votre activité sur notre [page dédiée assurance cyber](/landing/cyber).
+> 👉 Comparez les offres adaptées à votre activité sur notre [page dédiée assurance cyber](/assurance-cyber).
 
 ## Combien coûte une assurance cyber en 2026 ?
 
@@ -65,13 +65,13 @@ Le coût moyen d'une cyberattaque pour une PME en France dépasse **97 000 €**
 
 - [Ransomware : 5 réflexes pour éviter le pire](/blog/ransomware-5-reflexes-eviter-pire-2026)
 - [RGPD et fuite de données : que couvre l'assurance cyber ?](/blog/rgpd-fuite-donnees-assurance-cyber-2026)
-- [RC Pro et cyber : faut-il les cumuler ?](/landing/rc-pro)
+- [RC Pro et cyber : faut-il les cumuler ?](/assurance-rc-pro)
 
 ## Conclusion
 
 L'assurance cyber n'est plus un luxe : c'est un **filet de sécurité indispensable** dès la première donnée client traitée. Comparez au moins 3 devis et adaptez les garanties à votre exposition réelle.
 
-**Besoin d'un comparatif personnalisé ?** Obtenez votre [devis assurance cyber en 2 minutes](/landing/cyber).
+**Besoin d'un comparatif personnalisé ?** Obtenez votre [devis assurance cyber en 2 minutes](/assurance-cyber).
     `,
   },
   {
@@ -116,7 +116,7 @@ Sans plan, la panique fait perdre 48-72h critiques. Votre plan doit lister :
 
 Une bonne assurance prend en charge : expertise forensique, restauration, perte d'exploitation, frais juridiques, parfois la rançon. Vérifiez les **exclusions de négligence** : un patch oublié peut suffire à refuser une indemnisation.
 
-> 👉 Découvrez les meilleures offres sur notre [page assurance cyber](/landing/cyber).
+> 👉 Découvrez les meilleures offres sur notre [page assurance cyber](/assurance-cyber).
 
 ## Articles complémentaires
 
@@ -125,7 +125,7 @@ Une bonne assurance prend en charge : expertise forensique, restauration, perte 
 
 ## Conclusion
 
-Les 5 réflexes ci-dessus coûtent peu et évitent la majorité des sinistres graves. Combinez-les à une **assurance cyber bien dimensionnée** pour dormir tranquille. [Obtenez votre devis cyber](/landing/cyber).
+Les 5 réflexes ci-dessus coûtent peu et évitent la majorité des sinistres graves. Combinez-les à une **assurance cyber bien dimensionnée** pour dormir tranquille. [Obtenez votre devis cyber](/assurance-cyber).
     `,
   },
   {
@@ -175,7 +175,7 @@ L'amende CNIL de 60 000 € reste à la charge de l'entreprise.
 2. Vérifiez l'inclusion d'une **hotline juridique 24/7**
 3. Privilégiez les assureurs avec **expertise CNIL avérée**
 
-> 👉 Comparez les contrats adaptés à votre activité sur [notre page assurance cyber](/landing/cyber).
+> 👉 Comparez les contrats adaptés à votre activité sur [notre page assurance cyber](/assurance-cyber).
 
 ## Articles complémentaires
 
@@ -184,7 +184,7 @@ L'amende CNIL de 60 000 € reste à la charge de l'entreprise.
 
 ## Conclusion
 
-L'assurance cyber ne paie pas l'amende mais **prend en charge tout le reste** — souvent bien supérieur à la sanction elle-même. [Obtenez votre devis personnalisé](/landing/cyber).
+L'assurance cyber ne paie pas l'amende mais **prend en charge tout le reste** — souvent bien supérieur à la sanction elle-même. [Obtenez votre devis personnalisé](/assurance-cyber).
     `,
   },
 
@@ -225,7 +225,7 @@ Comme tout véhicule terrestre à moteur, la VSP doit être assurée **au minimu
 | **Tiers +** | RC + vol + incendie + bris de glace | 550 - 800 €/an |
 | **Tous risques** | Couverture complète | 800 - 1 300 €/an |
 
-> 👉 Comparez les offres adaptées à votre profil sur notre [page assurance VSP](/landing/sans-permis).
+> 👉 Comparez les offres adaptées à votre profil sur notre [page assurance VSP](/assurance-sans-permis).
 
 ## Facteurs qui influencent le prix
 
@@ -251,7 +251,7 @@ Si vous êtes **résilié** ou **malussé**, certains assureurs spécialisés ac
 
 L'assurance VSP est moins chère qu'une assurance auto classique, mais les écarts entre assureurs peuvent dépasser **40 %**. Comparez systématiquement avant de souscrire.
 
-**Besoin d'un devis VSP ?** Obtenez votre [comparatif personnalisé en 2 minutes](/landing/sans-permis).
+**Besoin d'un devis VSP ?** Obtenez votre [comparatif personnalisé en 2 minutes](/assurance-sans-permis).
     `,
   },
   {
@@ -297,7 +297,7 @@ La surprime jeune conducteur peut atteindre **+ 80 %** la première année.
 3. **Boîtier connecté** : suivi de conduite, jusqu'à -30 %
 4. **Comparer 5+ devis** : écarts > 40 % constatés
 
-> 👉 Comparez les meilleures offres sur notre [page assurance VSP](/landing/sans-permis).
+> 👉 Comparez les meilleures offres sur notre [page assurance VSP](/assurance-sans-permis).
 
 ## Articles complémentaires
 
@@ -306,7 +306,7 @@ La surprime jeune conducteur peut atteindre **+ 80 %** la première année.
 
 ## Conclusion
 
-Une VSP pour ado coûte en moyenne **600 à 900 €/an** d'assurance — à anticiper dans le budget familial. [Obtenez votre devis personnalisé](/landing/sans-permis).
+Une VSP pour ado coûte en moyenne **600 à 900 €/an** d'assurance — à anticiper dans le budget familial. [Obtenez votre devis personnalisé](/assurance-sans-permis).
     `,
   },
   {
@@ -350,7 +350,7 @@ Si **2 assureurs refusent** explicitement de vous couvrir, vous pouvez saisir le
 | Annulation pour alcoolémie | 900 - 1 400 € | 1 600 - 2 400 € |
 | Résiliation pour non-paiement | 800 - 1 300 € | 1 500 - 2 200 € |
 
-> 👉 Comparez les offres acceptant les profils résiliés sur notre [page VSP](/landing/sans-permis).
+> 👉 Comparez les offres acceptant les profils résiliés sur notre [page VSP](/assurance-sans-permis).
 
 ## Articles complémentaires
 
@@ -359,7 +359,7 @@ Si **2 assureurs refusent** explicitement de vous couvrir, vous pouvez saisir le
 
 ## Conclusion
 
-Suspension ne signifie pas isolement : avec une VSP correctement assurée, vous retrouvez votre autonomie en quelques jours. [Obtenez votre devis](/landing/sans-permis).
+Suspension ne signifie pas isolement : avec une VSP correctement assurée, vous retrouvez votre autonomie en quelques jours. [Obtenez votre devis](/assurance-sans-permis).
     `,
   },
 
@@ -399,7 +399,7 @@ Un camping-car cumule deux fonctions : **véhicule routier** et **habitation mob
 | **Tiers étendu** | CC < 50 000 €, usage occasionnel | 450 - 750 € |
 | **Tous risques** | CC neuf ou récent, gros rouleurs | 750 - 1 400 € |
 
-> 👉 Comparez les meilleures offres camping-car sur notre [page dédiée](/landing/camping-car).
+> 👉 Comparez les meilleures offres camping-car sur notre [page dédiée](/assurance-camping-car).
 
 ## Garanties spécifiques à vérifier
 
@@ -434,7 +434,7 @@ Un camping-car cumule deux fonctions : **véhicule routier** et **habitation mob
 
 L'assurance camping-car est plus technique qu'une assurance auto. Prenez le temps de comparer les **plafonds aménagements**, les **franchises** et l'**assistance à l'étranger** avant de signer.
 
-**Besoin d'un comparatif personnalisé ?** Obtenez votre [devis camping-car en 2 minutes](/landing/camping-car).
+**Besoin d'un comparatif personnalisé ?** Obtenez votre [devis camping-car en 2 minutes](/assurance-camping-car).
     `,
   },
   {
@@ -476,7 +476,7 @@ L'homologation VASP est fortement recommandée si vous avez investi plus de 5 00
 3. **Assistance 0 km** : panne devant chez vous
 4. **Garantie panne mécanique** : utile au-delà de 5 ans
 
-> 👉 Découvrez les meilleures offres pour vans et fourgons sur notre [page camping-car](/landing/camping-car).
+> 👉 Découvrez les meilleures offres pour vans et fourgons sur notre [page camping-car](/assurance-camping-car).
 
 ## Articles complémentaires
 
@@ -485,7 +485,7 @@ L'homologation VASP est fortement recommandée si vous avez investi plus de 5 00
 
 ## Conclusion
 
-Pour un van aménagé, une **assurance dédiée VASP** offre la meilleure protection. [Comparez les offres en 2 minutes](/landing/camping-car).
+Pour un van aménagé, une **assurance dédiée VASP** offre la meilleure protection. [Comparez les offres en 2 minutes](/assurance-camping-car).
     `,
   },
   {
@@ -531,7 +531,7 @@ En revanche, le véhicule ne doit **pas circuler** sous cette garantie — sinon
 | Tiers étendu (600 €) | 600 € | 470 € (-22 %) |
 | Tous risques (1 100 €) | 1 100 € | 770 € (-30 %) |
 
-> 👉 Vérifiez si votre contrat inclut le garage mort sur notre [page camping-car](/landing/camping-car).
+> 👉 Vérifiez si votre contrat inclut le garage mort sur notre [page camping-car](/assurance-camping-car).
 
 ## Articles complémentaires
 
@@ -540,7 +540,7 @@ En revanche, le véhicule ne doit **pas circuler** sous cette garantie — sinon
 
 ## Conclusion
 
-Ne résiliez **jamais** votre assurance camping-car pendant l'hiver : activez plutôt le **garage mort** pour économiser jusqu'à 60 % sans prendre de risque légal. [Comparez les offres camping-car](/landing/camping-car).
+Ne résiliez **jamais** votre assurance camping-car pendant l'hiver : activez plutôt le **garage mort** pour économiser jusqu'à 60 % sans prendre de risque légal. [Comparez les offres camping-car](/assurance-camping-car).
     `,
   },
 ];
