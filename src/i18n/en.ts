@@ -2000,7 +2000,6 @@ const en: Record<string, string> = {
 
   // EnBref / DynamicUpdateDate
   'enBref.title': 'In brief',
-  'updateDate.label': 'Data updated in real time on {date}',
 
   // CourtierValueCards
   'courtierValue.title': 'Why use a specialized broker for {product}?',

@@ -15,7 +15,6 @@ import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
 import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -190,7 +189,6 @@ const AssuranceMetiersAtypiques = () => {
         </section>
 
         <div className="container mx-auto px-4 py-12">
-          <DynamicUpdateDate />
 
           {/* Avantages */}
           <section className="max-w-4xl mx-auto mb-16">

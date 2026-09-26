@@ -16,7 +16,6 @@ import EnBref from "@/components/seo/EnBref";
 import BrandName from "@/components/BrandName";
 import arthurFlying from "@/assets/mascotte/arthur-sprint-coin.webp";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 import TrottinetteStatsAnswers from "@/components/insurance/TrottinetteStatsAnswers";
 import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
@@ -154,7 +153,6 @@ const AssuranceTrottinette = () => {
           className="container mx-auto px-4 py-12"
           data-ai-description="Comparateur d'assurance trottinette électrique — jemassuremoinscher.fr compare 10+ assureurs EDPM, RC obligatoire dès 2,90€/mois, devis gratuit en moins de 2 minutes"
         >
-          <DynamicUpdateDate />
 
           {/* H2 above-the-fold */}
           <section className="max-w-4xl mx-auto mb-10 prose prose-sm md:prose-base max-w-none">

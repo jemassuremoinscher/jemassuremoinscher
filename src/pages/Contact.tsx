@@ -13,7 +13,6 @@ import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.png';
 import arthurFlying from '@/assets/mascotte/arthur-flying.png';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ArthurHero from '@/components/insurance/ArthurHero';
-import DynamicUpdateDate from '@/components/DynamicUpdateDate';
 
 
 const Contact = () => {
@@ -79,7 +78,6 @@ const Contact = () => {
           </section>
 
           <div className="container mx-auto px-4 py-6 md:py-10">
-            <DynamicUpdateDate />
             <div className="max-w-5xl mx-auto space-y-10">
 
               {/* Contact card */}

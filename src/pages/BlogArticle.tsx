@@ -25,7 +25,6 @@ import SuggestedKeywords from "@/components/blog/SuggestedKeywords";
 import PopularArticles from "@/components/blog/PopularArticles";
 import RelatedProductLinks from "@/components/blog/RelatedProductLinks";
 import RelatedArticles from "@/components/blog/RelatedArticles";
-import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 import SmartConversionWidget, { detectCategory } from "@/components/blog/SmartConversionWidget";
 import BarometreOptin from "@/components/BarometreOptin";
@@ -230,7 +229,6 @@ const BlogArticle = () => {
         </section>
 
         <div className="container mx-auto px-4 py-10 md:py-14">
-          <DynamicUpdateDate />
           <div className="flex gap-8 max-w-6xl mx-auto">
             {/* Article */}
             <article className="flex-1 min-w-0">

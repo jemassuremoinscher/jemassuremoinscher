@@ -15,7 +15,6 @@ import EnBref from "@/components/seo/EnBref";
 import BrandName from "@/components/BrandName";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 import type { InsuranceType } from "@/components/forms/stepConfigs";
 
@@ -150,8 +149,6 @@ const VerticalInsurancePage = (props: VerticalPageProps) => {
         </section>
 
         <div className="container mx-auto px-4 py-12" data-ai-description={`${props.serviceName} — comparateur jemassuremoinscher.fr`}>
-          <DynamicUpdateDate />
-
           <section className="max-w-4xl mx-auto mb-12">
             <div className="grid md:grid-cols-3 gap-6">
               {advantages.map((item, i) => {

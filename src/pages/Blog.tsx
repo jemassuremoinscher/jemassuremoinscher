@@ -17,7 +17,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ArthurHero from "@/components/insurance/ArthurHero";
-import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 
 const convertToISO = (frenchDate: string): string => {
   const months: Record<string, string> = {
@@ -124,7 +123,6 @@ const Blog = () => {
         </section>
 
         <div className="container mx-auto px-4 py-6 md:py-10">
-          <DynamicUpdateDate />
           <div className="max-w-7xl mx-auto space-y-10">
             {/* Search */}
             <div className="max-w-2xl mx-auto">

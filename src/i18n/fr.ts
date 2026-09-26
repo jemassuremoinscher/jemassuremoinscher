@@ -1991,7 +1991,6 @@ const fr: Record<string, string> = {
 
   // EnBref / DynamicUpdateDate
   'enBref.title': 'En bref',
-  'updateDate.label': 'Données mises à jour en temps réel le {date}',
 
   // CourtierValueCards
   'courtierValue.title': 'Pourquoi passer par un courtier spécialisé pour {product} ?',

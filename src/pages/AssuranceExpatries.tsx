@@ -19,7 +19,6 @@ import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import EnBref from "@/components/seo/EnBref";
 import BrandName from "@/components/BrandName";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import DynamicUpdateDate from "@/components/DynamicUpdateDate";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -153,7 +152,6 @@ const AssuranceExpatries = () => {
         </section>
 
         <div className="container mx-auto px-4 py-12">
-          <DynamicUpdateDate />
 
           {/* Audience selector */}
           <div className="max-w-3xl mx-auto mb-10">
