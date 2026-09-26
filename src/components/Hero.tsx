@@ -12,7 +12,8 @@ const Hero = () => {
   const { language, t } = useLanguage();
   const slogan = language === "en"
     ? {
-        line1: t("hero.slogan.line1"),
+        line1a: t("hero.slogan.line1a"),
+        line1b: t("hero.slogan.line1b"),
         line2Prefix: t("hero.slogan.line2Prefix"),
         line2Highlight: t("hero.slogan.line2Highlight"),
         line2Suffix: t("hero.slogan.line2Suffix"),
@@ -40,8 +41,10 @@ const Hero = () => {
           <div className="flex-1 min-w-0 text-center md:text-left">
 
             <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight text-white leading-[1.05] font-[Inter] animate-fade-in-up">
-              {slogan.line1}
+              {slogan.line1a}{" "}
               <br className="hidden sm:block" />
+              {slogan.line1b}
+              {" "}
               <span className="text-white/90 font-bold">
                 {" "}{slogan.line2Prefix}
                 <span>{slogan.line2Highlight}</span>
