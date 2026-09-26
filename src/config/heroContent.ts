@@ -10,9 +10,10 @@
  */
 
 export const heroContent = {
-  /** Slogan principal — affiché dans le <h1> du Hero (3 lignes) */
+  /** Slogan principal — affiché dans le <h1> du Hero (2 lignes sur desktop/tablette) */
   slogan: {
-    line1: "En 2 minutes, comparez votre assurance",
+    line1a: "En 2 minutes, comparez votre",
+    line1b: "assurance",
     line2Prefix: "grâce à ",
     line2Highlight: "Arthur",
     line2Suffix: ".",

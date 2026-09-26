@@ -37,8 +37,8 @@ const SEOContent = () => {
         {/* 3 cartes thématiques GEO - reprennent H3 + paragraphes complets */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-12 md:mb-16">
           {/* Carte 1 — Comment ça marche */}
-          <article className="bg-card border border-border/60 p-6 md:p-7 transition-all duration-300 hover:shadow-[var(--shadow-hover)] flex flex-col">
-            <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+          <article className="group relative overflow-hidden rounded-[2rem] bg-card/70 backdrop-blur-sm border border-border/40 p-6 md:p-7 transition-all duration-250 hover:shadow-elevation-2 hover:border-primary/30 hover:-translate-y-1 flex flex-col">
+            <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 transition-colors duration-250 group-hover:bg-primary/15">
               <Workflow className="w-5 h-5 text-primary" aria-hidden="true" />
             </div>
             <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 leading-tight">
@@ -52,8 +52,8 @@ const SEOContent = () => {
           </article>
 
           {/* Carte 2 — Pourquoi nous choisir */}
-          <article className="bg-card border border-border/60 p-6 md:p-7 transition-all duration-300 hover:shadow-[var(--shadow-hover)] flex flex-col">
-            <div className="w-11 h-11 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+          <article className="group relative overflow-hidden rounded-[2rem] bg-card/70 backdrop-blur-sm border border-border/40 p-6 md:p-7 transition-all duration-250 hover:shadow-elevation-2 hover:border-accent/30 hover:-translate-y-1 flex flex-col">
+            <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center mb-4 transition-colors duration-250 group-hover:bg-accent/15">
               <Award className="w-5 h-5 text-accent" aria-hidden="true" />
             </div>
             <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 leading-tight">
@@ -65,8 +65,8 @@ const SEOContent = () => {
           </article>
 
           {/* Carte 3 — Toutes les assurances */}
-          <article className="bg-card border border-border/60 p-6 md:p-7 transition-all duration-300 hover:shadow-[var(--shadow-hover)] flex flex-col">
-            <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+          <article className="group relative overflow-hidden rounded-[2rem] bg-card/70 backdrop-blur-sm border border-border/40 p-6 md:p-7 transition-all duration-250 hover:shadow-elevation-2 hover:border-primary/30 hover:-translate-y-1 flex flex-col">
+            <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 transition-colors duration-250 group-hover:bg-primary/15">
               <Layers className="w-5 h-5 text-primary" aria-hidden="true" />
             </div>
             <h3 className="text-lg md:text-xl font-bold text-foreground mb-3 leading-tight">
@@ -88,7 +88,7 @@ const SEOContent = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
             {/* Particuliers */}
-            <div className="bg-muted/40 border border-border/40 p-5 md:p-7">
+            <div className="rounded-[2rem] bg-card/60 backdrop-blur-sm border border-border/40 p-5 md:p-7">
               <div className="flex items-center gap-2 mb-4 md:mb-5">
                 <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 text-primary">
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -108,7 +108,7 @@ const SEOContent = () => {
             </div>
 
             {/* Professionnels */}
-            <div className="bg-muted/40 border border-border/40 p-5 md:p-7">
+            <div className="rounded-[2rem] bg-card/60 backdrop-blur-sm border border-border/40 p-5 md:p-7">
               <div className="flex items-center gap-2 mb-4 md:mb-5">
                 <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 text-primary">
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
@@ -126,7 +126,7 @@ const SEOContent = () => {
           </div>
 
           {/* Bloc unifié — Explorer nos guides et outils (fusion : Profils Spéciaux, Comparatifs, Pages Spécialisées, Outils) */}
-          <div className="mt-4 md:mt-5 bg-muted/40 border border-border/40 p-5 md:p-7">
+          <div className="mt-4 md:mt-5 rounded-[2rem] bg-card/60 backdrop-blur-sm border border-border/40 p-5 md:p-7">
             <div className="flex items-center gap-2 mb-5 md:mb-6">
               <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 text-primary">
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
