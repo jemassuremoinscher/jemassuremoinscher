@@ -1,5 +1,7 @@
 # Suivi — chiffres/prix non sourcés repérés mais non traités (2026-09-24)
 
+**Mise à jour 2026-09-26 : les points 1-4 et 6 sont traités** (commits `38325975` et `f89bc896`). Reste : point 7 (incohérence prix PNO) et point 8 (dateModified manquant, prix des tableaux) — futur chantier verticales.
+
 Fichier de suivi créé pendant le chantier prix (passes 1-3) pour ne pas perdre les points flagués en cours de route mais hors du périmètre traité ce soir. À reprendre après le plan de travail en cours (chantier cyber, mutuelle entreprise, protection juridique, audit grosses verticales, liens blog).
 
 ## 1. Objet `R` dans `index.html` (bootstrap SEO par route, avant hydratation React)
