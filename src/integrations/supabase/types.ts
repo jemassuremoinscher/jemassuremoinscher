@@ -1719,6 +1719,39 @@ export type Database = {
         }
         Relationships: []
       }
+      page_meta_overrides_backup_20260921: {
+        Row: {
+          created_at: string | null
+          id: string | null
+          meta_description: string | null
+          meta_title: string | null
+          og_description: string | null
+          og_title: string | null
+          page_path: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          og_description?: string | null
+          og_title?: string | null
+          page_path?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string | null
+          meta_description?: string | null
+          meta_title?: string | null
+          og_description?: string | null
+          og_title?: string | null
+          page_path?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -1947,6 +1980,24 @@ export type Database = {
           tags?: string[] | null
           target_keyword?: string | null
           title?: string
+        }
+        Relationships: []
+      }
+      seo_article_suggestions_author_backup_20260923: {
+        Row: {
+          id: string | null
+          slug: string | null
+          suggested_author: string | null
+        }
+        Insert: {
+          id?: string | null
+          slug?: string | null
+          suggested_author?: string | null
+        }
+        Update: {
+          id?: string | null
+          slug?: string | null
+          suggested_author?: string | null
         }
         Relationships: []
       }
