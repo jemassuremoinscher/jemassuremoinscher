@@ -47,6 +47,13 @@ const AssurancePret = () => {
     category: "Assurance Emprunteur",
     url: "https://www.jemassuremoinscher.fr/assurance-pret",
   });
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://www.jemassuremoinscher.fr/assurance-pret",
+    "dateModified": "2026-09-26",
+  };
+
   const advantages = [
     { icon: Euro, title: t("pretPage.adv1.title"), description: t("pretPage.adv1.desc") },
     { icon: Clock, title: t("pretPage.adv2.title"), description: t("pretPage.adv2.desc") },
@@ -64,7 +71,7 @@ const AssurancePret = () => {
         ogTitle="Assurance Emprunteur Moins Chère | Loi Lemoine"
         ogDescription="Comparez 70+ assureurs emprunteur. Grâce à la loi Lemoine, changez d'assurance de prêt à tout moment."
         twitterDescription="Loi Lemoine : changez d'assurance prêt quand vous voulez. Devis gratuit en 2 min."
-        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
+        jsonLd={[webPageSchema, breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Emprunteur" }]} />

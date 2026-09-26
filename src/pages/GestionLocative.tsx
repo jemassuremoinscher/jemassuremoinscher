@@ -46,6 +46,13 @@ const GestionLocative = () => {
   ];
   const faqSchema = addFAQSchema(faqs);
 
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://www.jemassuremoinscher.fr/gestion-locative",
+    "dateModified": "2026-09-26",
+  };
+
   const advantages = [
     { icon: Building2, title: "Gestionnaires triés", description: "Comparez les meilleures agences et plateformes du marché." },
     { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
@@ -60,7 +67,7 @@ const GestionLocative = () => {
         keyword="gestion locative"
         keywords="gestion immobilière, administrateur de biens, gestionnaire locatif, honoraires gestion locative"
         canonical="https://www.jemassuremoinscher.fr/gestion-locative"
-        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema]}
+        jsonLd={[webPageSchema, breadcrumbSchema, serviceSchema, faqSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Gestion Locative" }]} />

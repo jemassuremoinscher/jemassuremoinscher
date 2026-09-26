@@ -52,6 +52,13 @@ const AssuranceHabitation = () => {
     url: "https://www.jemassuremoinscher.fr/assurance-habitation",
   });
 
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://www.jemassuremoinscher.fr/assurance-habitation",
+    "dateModified": "2026-09-26",
+  };
+
   const advantages = [
     { icon: Euro, title: t("habitationPage.adv1.title"), description: t("habitationPage.adv1.desc") },
     { icon: Clock, title: t("insPage.quoteIn2min"), description: t("insPage.quoteIn2minDesc") },
@@ -66,10 +73,10 @@ const AssuranceHabitation = () => {
         keyword="assurance habitation moins chère"
         keywords="assurance maison, assurance appartement, assurance logement, assurance locataire"
         canonical="https://www.jemassuremoinscher.fr/assurance-habitation"
-        ogTitle="Assurance Habitation Moins Chère | Comparez 70+ assureurs dès 3€/mois"
+        ogTitle="Assurance Habitation Moins Chère | Comparez 70+ assureurs"
         ogDescription="Comparez 70+ assureurs habitation en 2 minutes. Locataire ou propriétaire, maison ou appartement."
         twitterDescription="Comparez 70+ assureurs habitation. Devis gratuit en 2 min."
-        jsonLd={[serviceSchema, faqSchema, insuranceProductSchema]}
+        jsonLd={[webPageSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Habitation" }]} />
@@ -140,7 +147,7 @@ const AssuranceHabitation = () => {
                   <>
                     <BrandName /> compare les offres de 25+ assureurs habitation.
                   </>,
-                  "Assurance habitation dès 3€/mois selon le logement et les garanties.",
+                  "Le tarif dépend du logement et des garanties choisies.",
                   "Devis gratuit en moins de 2 minutes, sans engagement.",
                   "Locataire ou propriétaire : trouvez la meilleure couverture au meilleur prix.",
                 ]}

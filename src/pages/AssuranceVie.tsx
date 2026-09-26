@@ -52,6 +52,13 @@ const AssuranceVie = () => {
     category: "Assurance Vie",
     url: "https://www.jemassuremoinscher.fr/assurance-vie",
   });
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://www.jemassuremoinscher.fr/assurance-vie",
+    "dateModified": "2026-09-26",
+  };
+
   const advantages = [
     {
       icon: Euro,
@@ -77,7 +84,7 @@ const AssuranceVie = () => {
         ogTitle="Assurance Vie : 0% de frais d'entrée, comparez les meilleures offres"
         ogDescription="Comparez les meilleures assurances vie : fonds euros sécurisés et unités de compte. 0% de frais d'entrée. Fiscalité avantageuse après 8 ans."
         twitterDescription="Assurance vie 0% frais d'entrée. Comparez fonds euros et UC. Fiscalité avantageuse après 8 ans."
-        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
+        jsonLd={[webPageSchema, breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Vie" }]} />

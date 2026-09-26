@@ -49,7 +49,7 @@ const AssuranceSante = () => {
     {
       question: "Combien coûte une mutuelle santé ?",
       answer:
-        "Le prix varie selon votre âge, situation familiale et niveau de garanties. Comptez entre 45€ et 200€/mois.",
+        "Le prix varie selon votre âge, votre situation familiale et le niveau de garanties choisi. Comparez plusieurs mutuelles pour trouver le tarif adapté à votre profil.",
     },
   ]);
   const insuranceProductSchema = addInsuranceProductSchema({
@@ -59,6 +59,13 @@ const AssuranceSante = () => {
     category: "Complémentaire Santé",
     url: "https://www.jemassuremoinscher.fr/assurance-sante",
   });
+
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://www.jemassuremoinscher.fr/assurance-sante",
+    "dateModified": "2026-09-26",
+  };
 
   const advantages = [
     { icon: Euro, title: t("santePage.adv1.title"), description: t("santePage.adv1.desc") },
@@ -75,9 +82,9 @@ const AssuranceSante = () => {
         keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher, mutuelle famille"
         canonical="https://www.jemassuremoinscher.fr/assurance-sante"
         ogTitle="Mutuelle Santé Moins Chère | Comparez 70+ mutuelles"
-        ogDescription="Comparez 70+ mutuelles santé en 2 minutes. Optique, dentaire, hospitalisation. Devis gratuit et personnalisé dès 10€/mois."
+        ogDescription="Comparez 70+ mutuelles santé en 2 minutes. Optique, dentaire, hospitalisation. Devis gratuit et personnalisé."
         twitterDescription="Comparez 70+ mutuelles en 2 min. Gratuit et sans engagement."
-        jsonLd={[serviceSchema, faqSchema, insuranceProductSchema]}
+        jsonLd={[webPageSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Mutuelle Santé" }]} />
@@ -146,7 +153,7 @@ const AssuranceSante = () => {
                   <>
                     <BrandName /> compare les offres de 25+ mutuelles santé partenaires.
                   </>,
-                  "Mutuelle santé dès 20€/mois selon l'âge et les garanties choisies.",
+                  "Le tarif dépend de l'âge et des garanties choisies.",
                   "Devis gratuit en moins de 2 minutes, sans engagement.",
                   "Optique, dentaire, hospitalisation : comparez tous les niveaux de remboursement.",
                 ]}

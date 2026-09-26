@@ -25,7 +25,14 @@ const AssuranceRCPro = () => {
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "RC Pro", url: "https://www.jemassuremoinscher.fr/assurance-rc-pro" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance RC Pro", description: "Comparez les assurances RC Professionnelle.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const faqSchema = addFAQSchema([{ question: t('rcProPage.faq1.q'), answer: t('rcProPage.faq1.a') }, { question: t('rcProPage.faq2.q'), answer: t('rcProPage.faq2.a') }, { question: t('rcProPage.faq3.q'), answer: t('rcProPage.faq3.a') }]);
-  const insuranceProductSchema = addInsuranceProductSchema({ name: "RC Professionnelle", description: "Comparateur d'assurance responsabilité civile professionnelle. Tous secteurs : BTP, conseil, IT, commerce. Dès 15€/mois.", category: "Responsabilité Civile Professionnelle", url: "https://www.jemassuremoinscher.fr/assurance-rc-pro" });
+  const insuranceProductSchema = addInsuranceProductSchema({ name: "RC Professionnelle", description: "Comparateur d'assurance responsabilité civile professionnelle. Tous secteurs : BTP, conseil, IT, commerce.", category: "Responsabilité Civile Professionnelle", url: "https://www.jemassuremoinscher.fr/assurance-rc-pro" });
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://www.jemassuremoinscher.fr/assurance-rc-pro",
+    "dateModified": "2026-09-26",
+  };
+
   const advantages = [
     { icon: Euro, title: t('rcProPage.adv1.title'), description: t('rcProPage.adv1.desc') },
     { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
@@ -34,7 +41,7 @@ const AssuranceRCPro = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title={t("seo.rcpro.title")} description={t("seo.rcpro.description")} keyword="RC Pro moins chère" keywords="responsabilité civile professionnelle, assurance RC Pro, RC pro auto-entrepreneur" canonical="https://www.jemassuremoinscher.fr/assurance-rc-pro" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title={t("seo.rcpro.title")} description={t("seo.rcpro.description")} keyword="RC Pro moins chère" keywords="responsabilité civile professionnelle, assurance RC Pro, RC pro auto-entrepreneur" canonical="https://www.jemassuremoinscher.fr/assurance-rc-pro" jsonLd={[webPageSchema, breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "RC Professionnelle" }]} />
       <main id="main-content">

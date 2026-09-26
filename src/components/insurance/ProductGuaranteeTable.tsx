@@ -58,11 +58,11 @@ const DATA: Record<ProductKey, ProductTableData> = {
   auto: {
     title: "Garanties par formule — Assurance Auto",
     intro:
-      "Comparatif des garanties incluses selon la formule choisie. Tarifs indicatifs constatés sur les devis 2025-2026 de nos 25+ assureurs partenaires.",
+      "Comparatif des garanties incluses selon la formule choisie, chez nos 25+ assureurs partenaires.",
     columns: [
-      { key: "tiers", label: "Au tiers", price: "dès 25€/mois" },
-      { key: "intermediaire", label: "Tiers +", price: "dès 38€/mois" },
-      { key: "tousrisques", label: "Tous risques", price: "dès 55€/mois" },
+      { key: "tiers", label: "Au tiers" },
+      { key: "intermediaire", label: "Tiers +" },
+      { key: "tousrisques", label: "Tous risques" },
     ],
     rows: [
       { name: "Responsabilité civile", values: { tiers: "Incluse", intermediaire: "Incluse", tousrisques: "Incluse" } },
@@ -75,15 +75,15 @@ const DATA: Record<ProductKey, ProductTableData> = {
       { name: "Véhicule de remplacement", values: { tiers: "Option", intermediaire: "Option", tousrisques: "Incluse" } },
       { name: "Garantie conducteur", values: { tiers: "Option", intermediaire: "Incluse", tousrisques: "Incluse" } },
     ],
-    footnote: "Économie moyenne constatée : 320€/an. Franchise dommages : 150 à 500€ selon contrat.",
+    footnote: "Franchise dommages : 150 à 500€ selon contrat.",
   },
   moto: {
     title: "Garanties par formule — Assurance Moto",
-    intro: "Couvertures pour 2-roues, scooters et motos selon la formule. Tarifs dès 15€/mois.",
+    intro: "Couvertures pour 2-roues, scooters et motos selon la formule choisie.",
     columns: [
-      { key: "tiers", label: "Au tiers", price: "dès 15€/mois" },
-      { key: "intermediaire", label: "Tiers +", price: "dès 28€/mois" },
-      { key: "tousrisques", label: "Tous risques", price: "dès 45€/mois" },
+      { key: "tiers", label: "Au tiers" },
+      { key: "intermediaire", label: "Tiers +" },
+      { key: "tousrisques", label: "Tous risques" },
     ],
     rows: [
       { name: "Responsabilité civile", values: { tiers: "Incluse", intermediaire: "Incluse", tousrisques: "Incluse" } },
@@ -99,11 +99,11 @@ const DATA: Record<ProductKey, ProductTableData> = {
   },
   habitation: {
     title: "Garanties par formule — Assurance Habitation",
-    intro: "MRH propriétaire ou locataire, appartement ou maison. Tarifs dès 3€/mois.",
+    intro: "MRH propriétaire ou locataire, appartement ou maison.",
     columns: [
-      { key: "essentielle", label: "Essentielle", price: "dès 3€/mois" },
-      { key: "confort", label: "Confort", price: "dès 12€/mois" },
-      { key: "premium", label: "Premium", price: "dès 22€/mois" },
+      { key: "essentielle", label: "Essentielle" },
+      { key: "confort", label: "Confort" },
+      { key: "premium", label: "Premium" },
     ],
     rows: [
       { name: "Responsabilité civile vie privée", values: { essentielle: "Incluse", confort: "Incluse", premium: "Incluse" } },
@@ -120,11 +120,11 @@ const DATA: Record<ProductKey, ProductTableData> = {
   },
   sante: {
     title: "Niveaux de remboursement — Mutuelle Santé",
-    intro: "Niveaux de prise en charge selon la formule choisie. Tarifs dès 20€/mois selon âge et besoins.",
+    intro: "Niveaux de prise en charge selon la formule choisie.",
     columns: [
-      { key: "eco", label: "Économique", price: "dès 20€/mois" },
-      { key: "equilibre", label: "Équilibre", price: "dès 40€/mois" },
-      { key: "renforcee", label: "Renforcée", price: "dès 75€/mois" },
+      { key: "eco", label: "Économique" },
+      { key: "equilibre", label: "Équilibre" },
+      { key: "renforcee", label: "Renforcée" },
     ],
     rows: [
       { name: "Hospitalisation (honoraires)", values: { eco: "100%", equilibre: "200%", renforcee: "300%" } },
@@ -141,11 +141,11 @@ const DATA: Record<ProductKey, ProductTableData> = {
   },
   animaux: {
     title: "Garanties par formule — Assurance Animaux",
-    intro: "Couverture chien, chat et NAC. Tarifs dès 8€/mois selon l'espèce, l'âge et la race.",
+    intro: "Couverture chien, chat et NAC selon l'espèce, l'âge et la race.",
     columns: [
-      { key: "essentielle", label: "Essentielle", price: "dès 8€/mois" },
-      { key: "confort", label: "Confort", price: "dès 18€/mois" },
-      { key: "premium", label: "Premium", price: "dès 35€/mois" },
+      { key: "essentielle", label: "Essentielle" },
+      { key: "confort", label: "Confort" },
+      { key: "premium", label: "Premium" },
     ],
     rows: [
       { name: "Taux de remboursement", values: { essentielle: "60%", confort: "80%", premium: "100%" } },
@@ -162,10 +162,10 @@ const DATA: Record<ProductKey, ProductTableData> = {
   },
   pno: {
     title: "Garanties — Assurance PNO (Propriétaire Non Occupant)",
-    intro: "Obligatoire en copropriété depuis la loi Alur (2014). Tarifs dès 5€/mois.",
+    intro: "Obligatoire en copropriété depuis la loi Alur (2014).",
     columns: [
-      { key: "base", label: "Essentielle", price: "dès 5€/mois" },
-      { key: "complete", label: "Complète", price: "dès 12€/mois" },
+      { key: "base", label: "Essentielle" },
+      { key: "complete", label: "Complète" },
     ],
     rows: [
       { name: "Responsabilité civile propriétaire", values: { base: "Incluse", complete: "Incluse" } },
@@ -292,7 +292,7 @@ const DATA: Record<ProductKey, ProductTableData> = {
       { name: "Protection juridique pro", values: { rcpro: "Option", complete: "Incluse" } },
       { name: "Multirisque locaux / matériel pro", values: { rcpro: "—", complete: "Incluse" } },
     ],
-    footnote: "Taux de placement supérieur à 92% via 20 assureurs spécialisés (Hiscox, Albingia, MMA Pro Sport, Markel…).",
+    footnote: "Assureurs spécialisés dans les risques atypiques : Hiscox, Albingia, MMA Pro Sport, Markel…",
   },
   "gestion-locative": {
     title: "Garanties — Gestion Locative & Protection Bailleur",

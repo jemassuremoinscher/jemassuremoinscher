@@ -47,10 +47,17 @@ const AssuranceMoto = () => {
   ]);
   const insuranceProductSchema = addInsuranceProductSchema({
     name: "Assurance Moto",
-    description: "Comparateur d'assurance moto et scooter. Tous risques dès 15€/mois. Comparez 25+ assureurs.",
+    description: "Comparateur d'assurance moto et scooter, toutes formules. Comparez 25+ assureurs.",
     category: "Assurance Moto",
     url: "https://www.jemassuremoinscher.fr/assurance-moto",
   });
+
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://www.jemassuremoinscher.fr/assurance-moto",
+    "dateModified": "2026-09-26",
+  };
 
   const advantages = [
     { icon: Euro, title: t("motoPage.adv1.title"), description: t("motoPage.adv1.desc") },
@@ -67,9 +74,9 @@ const AssuranceMoto = () => {
         keywords="assurance scooter, comparateur assurance moto, assurance 125, assurance moto jeune conducteur"
         canonical="https://www.jemassuremoinscher.fr/assurance-moto"
         ogTitle="Assurance Moto Moins Chère | Comparez 70+ assureurs"
-        ogDescription="Comparez 70+ assureurs moto et scooter en 2 minutes. Tous risques dès 15€/mois. Devis gratuit pour moto, scooter, 125cc."
+        ogDescription="Comparez 70+ assureurs moto et scooter en 2 minutes. Toutes formules. Devis gratuit pour moto, scooter, 125cc."
         twitterDescription="Comparez 70+ assureurs moto en 2 min. Devis gratuit sans engagement."
-        jsonLd={[serviceSchema, faqSchema, insuranceProductSchema]}
+        jsonLd={[webPageSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Moto" }]} />
@@ -138,7 +145,7 @@ const AssuranceMoto = () => {
                   <>
                     <BrandName /> compare les offres de 25+ assureurs moto et scooter.
                   </>,
-                  "Assurance moto dès 15€/mois selon le profil et la cylindrée.",
+                  "Le tarif dépend du profil et de la cylindrée.",
                   "Devis gratuit en moins de 2 minutes, sans engagement.",
                   "Couverture disponible : tiers, tiers étendu, tous risques.",
                 ]}

@@ -24,7 +24,14 @@ const AssurancePNO = () => {
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance PNO", url: "https://www.jemassuremoinscher.fr/assurance-pno" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance PNO", description: "Comparez les assurances PNO pour protéger votre bien immobilier.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const faqSchema = addFAQSchema([{ question: t('pnoPage.faq1.q'), answer: t('pnoPage.faq1.a') }, { question: t('pnoPage.faq2.q'), answer: t('pnoPage.faq2.a') }, { question: t('pnoPage.faq3.q'), answer: t('pnoPage.faq3.a') }]);
-  const insuranceProductSchema = addInsuranceProductSchema({ name: "PNO Assurance", description: "Comparateur d'assurance propriétaire non occupant. Obligatoire en copropriété (loi Alur). Dès 5€/mois.", category: "Assurance PNO", url: "https://www.jemassuremoinscher.fr/assurance-pno" });
+  const insuranceProductSchema = addInsuranceProductSchema({ name: "PNO Assurance", description: "Comparateur d'assurance propriétaire non occupant. Obligatoire en copropriété (loi Alur).", category: "Assurance PNO", url: "https://www.jemassuremoinscher.fr/assurance-pno" });
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://www.jemassuremoinscher.fr/assurance-pno",
+    "dateModified": "2026-09-26",
+  };
+
   const advantages = [
     { icon: Home, title: t('pnoPage.adv1.title'), description: t('pnoPage.adv1.desc') },
     { icon: Clock, title: t('insPage.quoteIn2min'), description: t('insPage.quoteIn2minDesc') },
@@ -33,7 +40,7 @@ const AssurancePNO = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title={t("seo.pno.title")} description={t("seo.pno.description")} keyword="PNO assurance" keywords="pno assurance, assurance PNO, propriétaire non occupant, assurance logement vide, PNO obligatoire, assurance bailleur" canonical="https://www.jemassuremoinscher.fr/assurance-pno" jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title={t("seo.pno.title")} description={t("seo.pno.description")} keyword="PNO assurance" keywords="pno assurance, assurance PNO, propriétaire non occupant, assurance logement vide, PNO obligatoire, assurance bailleur" canonical="https://www.jemassuremoinscher.fr/assurance-pno" jsonLd={[webPageSchema, breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance PNO" }]} />
       <main id="main-content">
@@ -43,7 +50,7 @@ const AssurancePNO = () => {
             <ArthurHero
               imageSrc={arthurHouse}
               imageAlt="Arthur - PNO"
-              title="PNO Assurance : Comparez et Économisez dès 5€/mois"
+              title="PNO Assurance : Comparez et Trouvez une Offre Avantageuse"
               subtitle={t('pnoPage.subtitle')}
               ctaLabel={t('insPage.compareNow')}
               onCtaClick={scrollToForm}

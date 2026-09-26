@@ -83,6 +83,13 @@ const AssuranceAuto = () => {
     url: "https://www.jemassuremoinscher.fr/assurance-auto",
   });
 
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": "https://www.jemassuremoinscher.fr/assurance-auto",
+    "dateModified": "2026-09-26",
+  };
+
   const advantages = [
     { icon: Euro, title: t("autoPage.adv1.title"), description: t("autoPage.adv1.desc") },
     { icon: Clock, title: t("insPage.quoteIn2min"), description: t("insPage.quoteIn2minDesc") },
@@ -98,9 +105,9 @@ const AssuranceAuto = () => {
         keywords="assurance auto moins cher, Comparateur assurance auto, devis assurance voiture, changer assurance auto"
         canonical="https://www.jemassuremoinscher.fr/assurance-auto"
         ogTitle="Assurance Auto Moins Chère | Comparez 70+ assureurs"
-        ogDescription="Comparez 70+ assureurs auto en 2 minutes. Devis gratuit et personnalisé. Tiers, Tiers+, Tous Risques dès 25€/mois."
+        ogDescription="Comparez 70+ assureurs auto en 2 minutes. Devis gratuit et personnalisé. Tiers, Tiers+, Tous Risques."
         twitterDescription="Comparez 70+ assureurs auto en 2 minutes. Gratuit et sans engagement."
-        jsonLd={[serviceSchema, howToSchema, faqSchema, insuranceProductSchema]}
+        jsonLd={[webPageSchema, serviceSchema, howToSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Auto" }]} />
@@ -133,7 +140,7 @@ const AssuranceAuto = () => {
               Comment trouver les <span className="text-primary">assurances voiture moins chères</span> en 2026 ?
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Pour décrocher l'assurance voiture la moins chère adaptée à votre profil, trois leviers font la différence : <strong>la formule</strong> (Tiers à partir de 25€/mois, Tous Risques jusqu'à 80€/mois), <strong>votre coefficient bonus malus</strong> (un CRM de 0,50 divise la prime par deux par rapport à 1,00) et <strong>la mise en concurrence</strong> des assureurs.
+              Pour décrocher l'assurance voiture la moins chère adaptée à votre profil, trois leviers font la différence : <strong>la formule</strong> (au tiers, tiers étendu ou tous risques), <strong>votre coefficient bonus malus</strong> (un CRM de 0,50 divise la prime par deux par rapport à 1,00) et <strong>la mise en concurrence</strong> des assureurs.
             </p>
             <ul className="text-sm text-muted-foreground mt-4 space-y-1.5 list-none pl-0">
               <li>✓ Connaître son CRM exact avant de demander un devis — <Link to="/outils/calculateur-bonus-malus" className="text-primary hover:underline font-medium">calculer mon bonus malus</Link></li>
@@ -195,7 +202,7 @@ const AssuranceAuto = () => {
                   <>
                     <BrandName /> compare les offres de 25+ assureurs auto partenaires.
                   </>,
-                  "Tarif moyen constaté : dès 25€/mois selon le profil.",
+                  "Trois formules disponibles : au tiers, tiers étendu, tous risques.",
                   "Devis gratuit en moins de 2 minutes, sans engagement.",
                   "Comparez plusieurs assureurs pour trouver le tarif le plus adapté à votre profil.",
                 ]}
