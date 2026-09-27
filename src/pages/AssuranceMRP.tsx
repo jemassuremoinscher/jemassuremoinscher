@@ -60,6 +60,22 @@ const AssuranceMRP = () => {
       </section>
       <div className="container mx-auto px-4 py-12">
 
+        <section className="max-w-4xl mx-auto mb-8 prose prose-sm md:prose-base max-w-none">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            La MRP est-elle <span className="text-primary">obligatoire</span> ?
+          </h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Aucune loi n'impose une multirisque professionnelle en tant que telle. Mais l'{" "}
+            <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006442901" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+              article 1733 du Code civil
+            </a>
+            {" "}présume le locataire responsable en cas d'incendie du local qu'il occupe — ce qui rend une assurance pratiquement indispensable, même sans obligation légale directe. Par ailleurs, la quasi-totalité des <strong>baux commerciaux</strong> contient une clause rendant l'assurance contractuellement obligatoire, avec une attestation à fournir chaque année au bailleur : ne pas la fournir, après mise en demeure, peut exposer à la résiliation du bail.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mt-4">
+            La garantie <strong>perte d'exploitation</strong>, souvent optionnelle plutôt qu'incluse de base, indemnise la baisse de marge brute lorsqu'un sinistre garanti (incendie, dégât des eaux...) contraint à réduire ou interrompre l'activité, en couvrant aussi les charges fixes (loyer, salaires, remboursements) pendant l'arrêt forcé. La durée d'indemnisation et le délai de carence ne sont pas fixés par la loi : ils varient selon le contrat et l'assureur, généralement entre plusieurs mois et jusqu'à 3 ans selon les besoins de l'entreprise.
+          </p>
+        </section>
+
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="mrp" /></div>
 
