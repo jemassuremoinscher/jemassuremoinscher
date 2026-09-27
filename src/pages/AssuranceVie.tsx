@@ -105,6 +105,25 @@ const AssuranceVie = () => {
         </section>
         <div className="container mx-auto px-4 py-12">
 
+          <section className="max-w-4xl mx-auto mb-10 prose prose-sm md:prose-base max-w-none">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Fiscalité, fonds euros et garanties : <span className="text-primary">ce qu'il faut savoir</span>
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              L'avantage fiscal de l'assurance vie ne s'active qu'après <strong>8 ans de détention</strong> (article 125-0 A du Code général des impôts) : un abattement annuel de <strong>4 600€</strong> (personne seule) ou <strong>9 200€</strong> (couple marié ou pacsé) s'applique sur les gains lors d'un retrait — jamais sur le capital versé. Au-delà de cet abattement, les gains restent taxés à 7,5% (pour la part des primes ≤150 000€) ou 12,8% au-delà, plus 17,2% de prélèvements sociaux.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mt-4">
+              Sur le support d'investissement : le <strong>fonds euros</strong> offre un capital garanti par l'assureur, tandis que les <strong>unités de compte</strong> présentent un risque de perte en capital, la valeur suivant les marchés financiers.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mt-4">
+              ⚠️ Une confusion fréquente à éviter : le <strong>FGAP</strong> (Fonds de Garantie des Assurances de Personnes, Code des assurances{" "}
+              <a href="https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000006073984/LEGISCTA000006159161/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                articles L423-1 à L423-8
+              </a>
+              ) garantit jusqu'à 70 000€ par assuré et par assureur — mais <strong>uniquement en cas de défaillance de l'assureur lui-même</strong>, jamais contre une baisse de marché. Si votre fonds euros ou vos unités de compte perdent de la valeur suite à une crise boursière, ce fonds de garantie n'intervient pas : ce risque reste entièrement le vôtre.
+            </p>
+          </section>
+
           <section className="max-w-4xl mx-auto mb-12">
             <div className="grid md:grid-cols-3 gap-6">
               {advantages.map((item, index) => (
