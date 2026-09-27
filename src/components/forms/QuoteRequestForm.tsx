@@ -216,7 +216,7 @@ export const QuoteRequestForm = () => {
       // Google Ads conversion event via gtag
       if (typeof window !== 'undefined' && window.gtag) {
         window.gtag('event', 'conversion', {
-          send_to: 'AW-972332620/QUOTE_SUBMIT',
+          send_to: 'AW-972332620/8lD1CJjp5oUdEMy80s8D',
           value: 100,
           currency: 'EUR',
           transaction_id: insertedQuote?.id || `${Date.now()}`,
