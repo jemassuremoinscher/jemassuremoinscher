@@ -60,6 +60,22 @@ const AssuranceGLI = () => {
       </section>
       <div className="container mx-auto px-4 py-12">
 
+        <section className="max-w-4xl mx-auto mb-8 prose prose-sm md:prose-base max-w-none">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            GLI ou <span className="text-primary">Visale</span> : comment choisir ?
+          </h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Un bailleur ayant souscrit une GLI ne peut pas cumuler celle-ci avec une caution solidaire classique : l'{" "}
+            <a href="https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000037670657/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+              article 22-1 de la loi n°89-462 du 6 juillet 1989
+            </a>
+            , renforcé par la loi Boutin n°2009-323 du 25 mars 2009, prévoit la nullité du cautionnement dans ce cas — sauf logement loué à un étudiant ou un apprenti, seule exception légale.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mt-4">
+            La <strong>garantie Visale</strong> d'Action Logement fonctionne sur le même principe d'exclusivité : c'est une caution gratuite, couvrant jusqu'à 3 ans d'impayés et les dégradations dans la limite de 2 mois de loyer et charges. Mais son accès est <strong>restreint</strong> : elle ne concerne que les locataires de moins de 31 ans (quel que soit leur statut), les salariés de plus de 30 ans en mobilité professionnelle, ou les apprentis et étudiants en alternance. Pour tout autre profil de locataire, la GLI reste la seule option pour se protéger contre les impayés.
+          </p>
+        </section>
+
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="gli" /></div>
 
