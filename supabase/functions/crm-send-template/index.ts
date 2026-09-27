@@ -101,6 +101,29 @@ serve(async (req: Request): Promise<Response> => {
     return json({ error: "Adresse email destinataire invalide" }, 400);
   }
 
+  // Autorisation : admin, ou agent auquel le dossier (deal) est assigné —
+  // meme granularite que les policies RLS deals/activities. Un utilisateur
+  // authentifie sans lien avec ce dossier ne doit pas pouvoir y envoyer
+  // d'email en son nom (audit securite du 2026-09-27).
+  const admin = createClient(supabaseUrl, serviceKey);
+  const { data: roleRow } = await admin
+    .from("user_roles")
+    .select("role")
+    .eq("user_id", authorId)
+    .eq("role", "admin")
+    .maybeSingle();
+  if (!roleRow) {
+    const { data: dealRow, error: dealErr } = await admin
+      .from("deals")
+      .select("assigned_to")
+      .eq("id", dealId)
+      .maybeSingle();
+    if (dealErr || !dealRow || dealRow.assigned_to !== authorId) {
+      console.error("Autorisation refusee (403) sur crm-send-template : dossier non assigne a cet utilisateur", { dealId, authorId });
+      return json({ error: "Non autorise pour ce dossier" }, 403);
+    }
+  }
+
   let resendId: string;
   try {
     const sent = await resend.emails.send({
@@ -122,8 +145,6 @@ serve(async (req: Request): Promise<Response> => {
     console.error("Exception pendant l'envoi Resend:", e);
     return json({ error: "Échec de l'envoi Resend (exception réseau)" }, 502);
   }
-
-  const admin = createClient(supabaseUrl, serviceKey);
 
   const { error: activityErr } = await admin.from("activities").insert({
     deal_id: dealId,
