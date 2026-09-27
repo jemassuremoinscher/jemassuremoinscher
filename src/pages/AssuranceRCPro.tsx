@@ -61,6 +61,25 @@ const AssuranceRCPro = () => {
       </section>
       <div className="container mx-auto px-4 py-12">
 
+        <section className="max-w-4xl mx-auto mb-8 prose prose-sm md:prose-base max-w-none">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            Qui est <span className="text-primary">obligé</span> d'avoir une RC Pro ?
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            L'obligation de RC Pro n'est pas générale : elle varie selon la profession, avec un texte de référence propre à chacune.
+          </p>
+          <ul className="text-sm text-muted-foreground space-y-2.5 list-none pl-0">
+            <li>✓ <strong>Agents immobiliers</strong> — loi Hoguet n°70-9 du 2 janvier 1970 (article 3, al. 3) : RC Pro obligatoire, plancher légal de 75 000€ par an.</li>
+            <li>✓ <strong>Avocats</strong> — loi n°71-1130 du 31 décembre 1971 (article 27) : double obligation, RC Pro et garantie de représentation des fonds clients.</li>
+            <li>✓ <strong>Professions de santé</strong> (médecins, dentistes, infirmiers...) — loi n°2002-303 du 4 mars 2002 relative aux droits des malades.</li>
+            <li>✓ <strong>Architectes</strong> — loi n°77-2 du 3 janvier 1977 sur l'architecture.</li>
+            <li>✓ <strong>Experts-comptables</strong> — ordonnance n°45-2138 du 19 septembre 1945.</li>
+          </ul>
+          <p className="text-xs text-muted-foreground/80 mt-4">
+            Pour les activités non listées ici (conseil, IT, commerce...), la RC Pro n'est généralement pas une obligation légale mais reste fortement recommandée — les tiers ou clients l'exigent souvent contractuellement.
+          </p>
+        </section>
+
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="rc_pro" /></div>
 
