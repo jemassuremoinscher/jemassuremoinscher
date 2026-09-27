@@ -933,7 +933,7 @@ const en: Record<string, string> = {
   'pretPage.faq3.q': 'How long does the switch take?',
   'pretPage.faq3.a': 'On average 2 to 4 weeks from request to the new contract taking effect.',
   'pretPage.faq4.q': 'Is a medical questionnaire required?',
-  'pretPage.faq4.a': 'Not for loans under €200,000 per person over max 25 years (Lemoine law).',
+  'pretPage.faq4.a': "Not if the insured amount is under €200,000 per person and repayment ends before you turn 60 (French law n°2022-270 of 28 February 2022, the 'loi Lemoine').",
 
   // Prevoyance Page
   'prevoyancePage.title': 'Cheaper Life Protection Insurance',

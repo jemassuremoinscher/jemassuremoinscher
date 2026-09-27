@@ -60,6 +60,16 @@ const AssurancePNO = () => {
       </section>
       <div className="container mx-auto px-4 py-12">
 
+        <section className="max-w-4xl mx-auto mb-8 prose prose-sm md:prose-base max-w-none">
+          <p className="text-muted-foreground leading-relaxed">
+            En copropriété, l'assurance PNO est obligatoire pour tout copropriétaire non-occupant depuis la loi Alur : l'article 9-1 de la loi n°65-557 du 10 juillet 1965 (créé par l'article 58 de la{" "}
+            <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000028772256/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+              loi n°2014-366 du 24 mars 2014
+            </a>
+            , en vigueur depuis le 1er janvier 2015) impose à chaque copropriétaire de s'assurer contre les risques de responsabilité civile dont il doit répondre en sa qualité de copropriétaire occupant ou non-occupant. Hors copropriété, ce n'est pas une obligation légale générale, mais fortement recommandé.
+          </p>
+        </section>
+
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="pno" /></div>
 

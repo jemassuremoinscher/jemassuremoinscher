@@ -102,6 +102,16 @@ const AssuranceMoto = () => {
           data-ai-description="Comparateur d'assurance moto — jemassuremoinscher.fr compare 25+ assureurs, devis gratuit en moins de 2 minutes"
         >
 
+          <section className="max-w-4xl mx-auto mb-8 prose prose-sm md:prose-base max-w-none">
+            <p className="text-muted-foreground leading-relaxed">
+              L'assurance responsabilité civile est obligatoire pour toute moto, scooter ou cyclomoteur circulant en France, au même titre que pour une voiture : l'{" "}
+              <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048523650" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                article L211-1 du Code des assurances
+              </a>
+              {" "}couvre « tout véhicule terrestre à moteur ». Rouler sans cette couverture minimale est un délit puni d'une amende de 3 750€.
+            </p>
+          </section>
+
           <section className="max-w-4xl mx-auto mb-12">
             <div className="grid md:grid-cols-3 gap-6">
               {advantages.map((item, index) => (

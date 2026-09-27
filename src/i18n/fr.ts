@@ -928,7 +928,7 @@ const fr: Record<string, string> = {
   'pretPage.faq3.q': 'Combien de temps prend le changement ?',
   'pretPage.faq3.a': "En moyenne 2 à 4 semaines entre la demande et l'entrée en vigueur du nouveau contrat.",
   'pretPage.faq4.q': 'Y a-t-il un questionnaire médical ?',
-  'pretPage.faq4.a': 'Pas pour les prêts de moins de 200 000€ par personne sur 25 ans max (loi Lemoine).',
+  'pretPage.faq4.a': "Pas si la part assurée est inférieure à 200 000€ par personne et que le remboursement s'achève avant vos 60 ans (loi n°2022-270 du 28 février 2022, dite loi Lemoine).",
 
   // Prévoyance Page
   'prevoyancePage.title': 'Assurance Prévoyance Moins Chère',

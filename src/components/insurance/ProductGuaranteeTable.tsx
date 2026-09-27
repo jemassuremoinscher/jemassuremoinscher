@@ -252,9 +252,9 @@ const DATA: Record<ProductKey, ProductTableData> = {
       { name: "Incapacité Temporaire de Travail (ITT)", values: { base: "Option", renforcee: "Incluse" } },
       { name: "Perte d'emploi", values: { base: "—", renforcee: "Option" } },
       { name: "Quotité (couverture)", values: { base: "100%", renforcee: "100% à 200%" } },
-      { name: "Suppression questionnaire santé (loi Lemoine)", values: { base: "Si prêt < 200 000€", renforcee: "Si prêt < 200 000€" } },
+      { name: "Suppression questionnaire santé (loi Lemoine)", values: { base: "Si < 200 000€ et fin avant 60 ans", renforcee: "Si < 200 000€ et fin avant 60 ans" } },
     ],
-    footnote: "Loi Lemoine (2022) : changement possible à tout moment, sans frais. Suppression du questionnaire santé sous conditions.",
+    footnote: "Loi n°2022-270 du 28 février 2022 (loi Lemoine) : changement possible à tout moment, sans frais. Suppression du questionnaire santé si la part assurée est inférieure à 200 000€ par personne et que le remboursement s'achève avant les 60 ans de l'assuré.",
   },
   prevoyance: {
     title: "Garanties — Assurance Prévoyance",
