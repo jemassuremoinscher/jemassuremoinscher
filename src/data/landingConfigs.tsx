@@ -67,7 +67,6 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       insuranceLabel: "Assurance Auto",
       stats: [
         { icon: Car, value: "50+", label: "Assureurs comparés" },
-        { icon: Users, value: "2 500", label: "Agences locales" },
         trustReviewStat,
         { icon: Clock, value: "2 min", label: "Pour ton devis" },
       ],
@@ -77,11 +76,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
         { icon: Phone, title: "Un expert dédié, pas un robot", description: "Arthur fait l'analyse, un conseiller humain te rappelle pour finaliser." },
         { icon: Lock, title: "Données protégées RGPD", description: "Site SSL, hébergement France, courtier inscrit à l'ORIAS." },
       ],
-      testimonials: [
-        { name: "Marc T.", location: "Lyon", text: "J'ai économisé 520 € sur mon assurance auto. Tous risques moins cher que mon ancien tiers, c'est bluffant." },
-        { name: "Claire B.", location: "Paris", text: "Service ultra rapide. En 30 minutes j'avais mon nouveau contrat, moins cher avec de meilleures garanties." },
-        { name: "Ahmed R.", location: "Marseille", text: "Jeune conducteur, j'ai enfin trouvé une assurance abordable grâce à Arthur. Merci !" },
-      ],
+      testimonials: [],
       faqs: [
         { question: "Comment Arthur compare-t-il les assurances auto ?", answer: "Tu remplis le formulaire en 2 minutes avec ton véhicule et ton profil. Arthur interroge en temps réel les 70+ assureurs partenaires et te présente les meilleures offres adaptées à ton profil." },
         { question: "Combien puis-je économiser ?", answer: "Cela dépend de ton profil et de ton contrat actuel. Un conseiller compare ta situation à celle de nos 70+ assureurs partenaires pour identifier une économie réelle, sans engagement." },

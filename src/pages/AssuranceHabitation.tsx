@@ -41,7 +41,7 @@ const AssuranceHabitation = () => {
     },
     {
       question: "Combien coûte une assurance habitation ?",
-      answer: "Entre 120€ et 350€ par an selon la surface et les garanties.",
+      answer: "Le prix dépend de la surface, du type de logement (maison ou appartement) et des garanties choisies. Comparez plusieurs offres pour trouver le tarif adapté à votre profil.",
     },
   ]);
   const insuranceProductSchema = addInsuranceProductSchema({
@@ -101,6 +101,16 @@ const AssuranceHabitation = () => {
           className="container mx-auto px-4 py-12"
           data-ai-description="Comparateur d'assurance habitation — jemassuremoinscher.fr compare 25+ assureurs, devis gratuit en moins de 2 minutes"
         >
+
+          <section className="max-w-4xl mx-auto mb-8 prose prose-sm md:prose-base max-w-none">
+            <p className="text-muted-foreground leading-relaxed">
+              Pour un locataire, l'assurance habitation est obligatoire : l'article 7 g) de la{" "}
+              <a href="https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038834730/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                loi n°89-462 du 6 juillet 1989
+              </a>
+              {" "}(loi Mermaz) impose au locataire de s'assurer contre les risques dont il doit répondre en sa qualité de locataire (incendie, explosion, dégâts des eaux). Pour un propriétaire non-locataire, ce n'est pas une obligation légale générale, mais fortement recommandé pour protéger son patrimoine.
+            </p>
+          </section>
 
           <section className="max-w-4xl mx-auto mb-12">
             <div className="grid md:grid-cols-3 gap-6">
