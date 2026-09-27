@@ -110,6 +110,22 @@ const AssuranceSante = () => {
           data-ai-description="Comparateur de mutuelle santé — jemassuremoinscher.fr compare 25+ mutuelles, devis gratuit en moins de 2 minutes"
         >
 
+          <section className="max-w-4xl mx-auto mb-10 prose prose-sm md:prose-base max-w-none">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Comment fonctionne le remboursement <span className="text-primary">Sécu + mutuelle</span> ?
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              La Sécurité sociale rembourse vos soins sur une <strong>base de remboursement</strong> (le tarif de convention), pas sur le prix réellement facturé. La part non remboursée sur cette base — le <strong>ticket modérateur</strong> — varie selon le soin : environ 30% pour une consultation chez un généraliste conventionné, 40% pour le dentaire, 20% pour l'hospitalisation. Une mutuelle santé complète tout ou partie de ce ticket modérateur, et peut aussi couvrir les dépassements d'honoraires, que la Sécu ne prend jamais en charge.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mt-4">
+              Depuis le{" "}
+              <a href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037995163" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                décret n°2019-21 du 11 janvier 2019
+              </a>
+              , la réforme <strong>100% Santé</strong> garantit un reste à charge nul sur un panier de soins défini en optique, dentaire et audiologie, dès lors que la mutuelle est un <strong>contrat responsable</strong> — le cas de plus de 95% des contrats du marché. Ce cadre (<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042685398" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">articles L871-1 à L871-3 du Code de la sécurité sociale</a>) impose notamment l'absence de questionnaire médical à l'adhésion et l'interdiction de moduler les cotisations selon l'état de santé.
+            </p>
+          </section>
+
           <section className="max-w-4xl mx-auto mb-12">
             <div className="grid md:grid-cols-3 gap-6">
               {advantages.map((item, index) => (
