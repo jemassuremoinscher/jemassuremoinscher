@@ -62,6 +62,14 @@ export const SimplifiedLeadForm = ({ insuranceType, insuranceLabel }: Simplified
       const { error: emailError } = await invokeSendQuoteEmail({ leadId, name: data.fullName, email: data.email, phone: data.phone, type: insuranceType, details: { source: `landing_${insuranceType}`, utm: utmData }, estimatedPrice: 35 });
       if (emailError) console.error("Error sending email:", emailError);
       trackConversion(`landing_${insuranceType}`, 200);
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-972332620/8lD1CJjp5oUdEMy80s8D',
+          value: 200,
+          currency: 'EUR',
+          transaction_id: leadId || `${Date.now()}`,
+        });
+      }
       trackEvent('quote_request', { category: 'landing_page', label: `landing_${insuranceType}`, insurance_type: insuranceType, value: 200 });
       setIsSuccess(true);
       toast.success(t('leadForm.successTitle'));
