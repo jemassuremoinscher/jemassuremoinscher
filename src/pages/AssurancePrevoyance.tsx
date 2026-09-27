@@ -62,6 +62,19 @@ const AssurancePrevoyance = () => {
       </section>
       <div className="container mx-auto px-4 py-12">
 
+        <section className="max-w-4xl mx-auto mb-8 prose prose-sm md:prose-base max-w-none">
+          <p className="text-muted-foreground leading-relaxed">
+            Contrairement aux salariés cadres, dont l'employeur doit cotiser à hauteur de 1,50% du salaire pour une couverture décès (article 7 de la convention collective nationale du 14 mars 1947, maintenu par un ANI du 17 novembre 2017), les travailleurs non-salariés (TNS) ne bénéficient d'aucune prévoyance équivalente financée par un tiers : c'est pourquoi une prévoyance individuelle est particulièrement recommandée pour les indépendants.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mt-4">
+            Pour les TNS, les cotisations versées sur un contrat prévoyance éligible "loi Madelin" (nom courant de la loi n°94-126 du 11 février 1994, codifiée depuis à l'{" "}
+            <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000047288764" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+              article 154 bis du Code général des impôts
+            </a>
+            ) sont déductibles du revenu imposable, dans la limite d'un plafond calculé sur le revenu professionnel et le plafond annuel de la Sécurité sociale (PASS).
+          </p>
+        </section>
+
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
         <div ref={formRef} className="mb-16 min-h-[480px]"><MultiStepQuoteForm insuranceType="prevoyance" /></div>
 
