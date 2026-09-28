@@ -454,6 +454,11 @@
     <script>
       function loadAnalytics() {
         if (window.__analyticsLoaded) return;
+        // Le jeton de désinscription (query string ou fragment) ne doit
+        // jamais atteindre GA4/Clarity/Meta Pixel : aucun script tiers
+        // n'est chargé sur cette page, quel que soit l'événement qui
+        // déclenche loadAnalytics (idle, scroll, clic sur le bouton...).
+        if (location.pathname === '/desinscription') return;
         window.__analyticsLoaded = true;
 
         var gs = document.createElement('script');

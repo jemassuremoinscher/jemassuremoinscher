@@ -29,3 +29,9 @@ verify_jwt = false
 
 [functions.crm-send-auto-template]
 verify_jwt = false
+
+[functions.email-optout]
+verify_jwt = false
+
+[functions.send-followup-reminders]
+verify_jwt = false

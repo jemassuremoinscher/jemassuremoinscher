@@ -1,14 +1,14 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-
-// Fonction appelée uniquement par le trigger Postgres notify_deal_stage_email()
-// (migration deal_stage_auto_email) via net.http_post — jamais par un client
-// utilisateur. Pas de session utilisateur possible ici (un trigger n'a pas de
-// JWT) : l'authentification se fait par secret partagé (public.cron_config),
-// même mécanisme déjà utilisé par generate-seo-suggestions/db-backup dans ce
-// projet. verify_jwt=false côté gateway (cf. supabase/config.toml), vérifié
-// manuellement ci-dessous.
+import {
+  productLabel,
+  TRANSACTIONAL_TEMPLATES,
+  fillVars,
+  containsVar,
+  buildUnsubLink,
+  bodyToHtml,
+} from "../_shared/email-vars.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 const FROM = "jemassuremoinscher.fr <contact@jemassuremoinscher.fr>";
@@ -24,33 +24,15 @@ const json = (body: unknown, status = 200) =>
     headers: { "Content-Type": "application/json", ...corsHeaders },
   });
 
-const escapeHtml = (s: string) =>
-  s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-
-const EMAIL_LOGO_HEADER = `<div style="background-color:#ffffff;padding:24px 0;text-align:center;">
-  <img
-    src="https://www.jemassuremoinscher.fr/arthur-thumbs-up-email.png"
-    alt="jemassuremoinscher.fr"
-    width="140"
-    height="151"
-    style="display:block;margin:0 auto;width:140px;height:auto;max-width:140px;border:0;outline:none;text-decoration:none;"
-  />
-</div>`;
-
-const bodyToHtml = (body: string) =>
-  `${EMAIL_LOGO_HEADER}<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.6;color:#111827;">${
-    escapeHtml(body).replace(/\r?\n/g, "<br>")
-  }</div>`;
-
-const fillVars = (text: string, firstName: string, product: string) =>
-  text
-    .replace(/\{\{\s*prenom\s*\}\}/gi, firstName)
-    .replace(/\{\{\s*produit\s*\}\}/gi, product);
+// Comparaison à temps constant maison — pas d'import externe (un import
+// deno.land/std indisponible au déploiement a déjà cassé cette fonction
+// une fois, on ne prend plus ce risque pour un utilitaire de 5 lignes).
+function constantTimeEqual(a: Uint8Array, b: Uint8Array): boolean {
+  if (a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) diff |= a[i] ^ b[i];
+  return diff === 0;
+}
 
 interface Payload {
   dealId: string;
@@ -69,16 +51,21 @@ serve(async (req: Request): Promise<Response> => {
   const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
   const admin = createClient(supabaseUrl, serviceKey);
 
-  // Auth par secret partagé : env var d'abord, sinon repli sur cron_config
-  // (verrouillée au service_role, cf. migration 20260621135820).
-  let expectedSecret = Deno.env.get("CRON_SECRET") || "";
-  if (!expectedSecret) {
-    const { data } = await admin.from("cron_config").select("value").eq("key", "cron_secret").maybeSingle();
-    expectedSecret = data?.value || "";
-  }
+  const { data: secretRow } = await admin
+    .from("cron_config")
+    .select("value")
+    .eq("key", "cron_secret")
+    .maybeSingle();
+  const expectedSecret = secretRow?.value || "";
   const authHeader = req.headers.get("Authorization") || "";
   const providedSecret = authHeader.replace(/^Bearer\s+/i, "");
-  if (!expectedSecret || providedSecret !== expectedSecret) {
+
+  const enc = new TextEncoder();
+  const isAuthorized =
+    expectedSecret.length > 0 &&
+    constantTimeEqual(enc.encode(expectedSecret), enc.encode(providedSecret));
+
+  if (!isAuthorized) {
     return json({ error: "Non autorisé" }, 401);
   }
 
@@ -97,6 +84,8 @@ serve(async (req: Request): Promise<Response> => {
     return json({ error: "Adresse email destinataire invalide" }, 400);
   }
 
+  const isTransactional = TRANSACTIONAL_TEMPLATES.has(templateName);
+
   const { data: template, error: templateErr } = await admin
     .from("email_templates")
     .select("id, subject, body")
@@ -107,9 +96,73 @@ serve(async (req: Request): Promise<Response> => {
     return json({ error: `Template "${templateName}" introuvable ou inactif` }, 404);
   }
 
+  const { data: dealRow, error: dealErr } = await admin
+    .from("deals")
+    .select("contact_id, contacts(id, email_opt_out)")
+    .eq("id", dealId)
+    .maybeSingle();
+  const contact = (dealRow as unknown as { contacts: { id: string; email_opt_out: boolean } | null })?.contacts ?? null;
+
+  // Opt-out en mode FERMÉ pour tout template non transactionnel : si on ne
+  // peut pas prouver que le contact n'est pas désinscrit, on n'envoie pas.
+  if (!isTransactional) {
+    if (dealErr || !contact) {
+      console.error(
+        "crm-send-auto-template: statut de désinscription non vérifiable, envoi refusé:",
+        dealErr?.message ?? "contact introuvable pour ce deal",
+      );
+      await admin.from("site_error_log").insert({
+        page_path: "function:crm-send-auto-template",
+        error_type: "opt_out_unverifiable",
+        message: dealErr?.message ?? "contact introuvable pour ce deal",
+        context: { deal_id: dealId, template_name: templateName },
+      });
+      return json({ error: "Statut de désinscription non vérifiable — envoi refusé par sécurité" }, 500);
+    }
+    if (contact.email_opt_out) {
+      console.log(`crm-send-auto-template: envoi annulé (contact désinscrit) — deal ${dealId}, template "${templateName}"`);
+      return json({ success: true, skipped: true, reason: "contact désinscrit (email_opt_out)" });
+    }
+  }
+
+  // Lien de désinscription : généré seulement si le template en a besoin
+  // (évite un blocage inutile pour un template qui ne le mentionne pas).
+  // Pour un template non transactionnel qui EN A besoin, une clé
+  // UNSUB_TOKEN_SECRET absente/invalide bloque l'envoi (500 explicite +
+  // log) plutôt que de partir avec un lien cassé.
+  const needsUnsubLink = contact != null && (containsVar(template.subject, "lien_desinscription") || containsVar(template.body, "lien_desinscription"));
+  let unsubLink = "";
+  if (needsUnsubLink) {
+    try {
+      unsubLink = await buildUnsubLink(contact!.id);
+    } catch (e) {
+      console.error("crm-send-auto-template: génération du lien de désinscription impossible:", e);
+      if (!isTransactional) {
+        await admin.from("site_error_log").insert({
+          page_path: "function:crm-send-auto-template",
+          error_type: "unsub_token_unavailable",
+          message: e instanceof Error ? e.message : String(e),
+          context: { deal_id: dealId, template_name: templateName },
+        });
+        return json({ error: "Lien de désinscription indisponible (UNSUB_TOKEN_SECRET) — envoi refusé" }, 500);
+      }
+      // Transactionnel : ne bloque jamais un email de suivi de dossier.
+    }
+  }
+
+  const productReadable = productLabel(product || "");
+  if (product && !productReadable) {
+    await admin.from("site_error_log").insert({
+      page_path: "function:crm-send-auto-template",
+      error_type: "unmapped_product_slug",
+      message: `Slug insurance_type non couvert par PRODUCT_LABELS: "${product}"`,
+      context: { deal_id: dealId, template_name: templateName, product },
+    });
+  }
+
   const firstName = (recipientName || "").trim().split(/\s+/)[0] || "";
-  const subject = fillVars(template.subject, firstName, product || "");
-  const emailBody = fillVars(template.body, firstName, product || "");
+  const subject = fillVars(template.subject, firstName, productReadable, unsubLink);
+  const emailBody = fillVars(template.body, firstName, productReadable, unsubLink);
 
   let resendId: string;
   try {
@@ -122,10 +175,7 @@ serve(async (req: Request): Promise<Response> => {
     });
     if (sent.error || !sent.data?.id) {
       console.error("Resend a renvoyé une erreur (auto-template):", sent.error);
-      return json(
-        { error: `Échec de l'envoi Resend : ${sent.error?.message ?? "réponse sans id"}` },
-        502,
-      );
+      return json({ error: `Échec de l'envoi Resend : ${sent.error?.message ?? "réponse sans id"}` }, 502);
     }
     resendId = sent.data.id;
   } catch (e) {
@@ -133,8 +183,6 @@ serve(async (req: Request): Promise<Response> => {
     return json({ error: "Échec de l'envoi Resend (exception réseau)" }, 502);
   }
 
-  // Envoi confirmé — log. author_id volontairement absent : LeadTimeline
-  // affiche déjà "Système" quand author_id est null.
   const { error: activityErr } = await admin.from("activities").insert({
     deal_id: dealId,
     author_id: null,

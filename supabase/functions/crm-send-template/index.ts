@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { productLabel, fillVars, containsVar, buildUnsubLink, bodyToHtml } from "../_shared/email-vars.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -18,29 +19,6 @@ const json = (body: unknown, status = 200) =>
     status,
     headers: { "Content-Type": "application/json", ...corsHeaders },
   });
-
-const escapeHtml = (s: string) =>
-  s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-
-const EMAIL_LOGO_HEADER = `<div style="background-color:#ffffff;padding:24px 0;text-align:center;">
-  <img
-    src="https://www.jemassuremoinscher.fr/arthur-thumbs-up-email.png"
-    alt="jemassuremoinscher.fr"
-    width="140"
-    height="151"
-    style="display:block;margin:0 auto;width:140px;height:auto;max-width:140px;border:0;outline:none;text-decoration:none;"
-  />
-</div>`;
-
-const bodyToHtml = (body: string) =>
-  `${EMAIL_LOGO_HEADER}<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.6;color:#111827;">${
-    escapeHtml(body).replace(/\r?\n/g, "<br>")
-  }</div>`;
 
 interface Payload {
   dealId: string;
@@ -101,10 +79,6 @@ serve(async (req: Request): Promise<Response> => {
     return json({ error: "Adresse email destinataire invalide" }, 400);
   }
 
-  // Autorisation : admin, ou agent auquel le dossier (deal) est assigné —
-  // meme granularite que les policies RLS deals/activities. Un utilisateur
-  // authentifie sans lien avec ce dossier ne doit pas pouvoir y envoyer
-  // d'email en son nom (audit securite du 2026-09-27).
   const admin = createClient(supabaseUrl, serviceKey);
   const { data: roleRow } = await admin
     .from("user_roles")
@@ -112,16 +86,71 @@ serve(async (req: Request): Promise<Response> => {
     .eq("user_id", authorId)
     .eq("role", "admin")
     .maybeSingle();
+
+  // Une seule lecture du deal, utilisée à la fois pour l'autorisation
+  // (agent assigné ou admin) et pour résoudre {{produit}}/{{lien_desinscription}}
+  // ci-dessous (avant, cette fonction n'avait aucune substitution de
+  // variables : un template envoyé "tel quel" avec {{...}} encore dedans
+  // partait littéralement au client).
+  const { data: dealRow, error: dealErr } = await admin
+    .from("deals")
+    .select("assigned_to, contact_id, insurance_type")
+    .eq("id", dealId)
+    .maybeSingle();
+
+  // Autorisation : admin, ou agent auquel le dossier (deal) est assigné —
+  // meme granularite que les policies RLS deals/activities. Un utilisateur
+  // authentifie sans lien avec ce dossier ne doit pas pouvoir y envoyer
+  // d'email en son nom (audit securite du 2026-09-27).
   if (!roleRow) {
-    const { data: dealRow, error: dealErr } = await admin
-      .from("deals")
-      .select("assigned_to")
-      .eq("id", dealId)
-      .maybeSingle();
     if (dealErr || !dealRow || dealRow.assigned_to !== authorId) {
       console.error("Autorisation refusee (403) sur crm-send-template : dossier non assigne a cet utilisateur", { dealId, authorId });
       return json({ error: "Non autorise pour ce dossier" }, 403);
     }
+  }
+
+  const productReadable = productLabel(dealRow?.insurance_type || "");
+  if (dealRow?.insurance_type && !productReadable) {
+    await admin.from("site_error_log").insert({
+      page_path: "function:crm-send-template",
+      error_type: "unmapped_product_slug",
+      message: `Slug insurance_type non couvert par PRODUCT_LABELS: "${dealRow.insurance_type}"`,
+      context: { deal_id: dealId, product: dealRow.insurance_type },
+    });
+  }
+
+  const needsUnsubLink =
+    !!dealRow?.contact_id && (containsVar(subject, "lien_desinscription") || containsVar(body, "lien_desinscription"));
+  let unsubLink = "";
+  if (needsUnsubLink) {
+    try {
+      unsubLink = await buildUnsubLink(dealRow!.contact_id as string);
+    } catch (e) {
+      console.error("crm-send-template: génération du lien de désinscription impossible:", e);
+      await admin.from("site_error_log").insert({
+        page_path: "function:crm-send-template",
+        error_type: "unsub_token_unavailable",
+        message: e instanceof Error ? e.message : String(e),
+        context: { deal_id: dealId },
+      });
+      return json({ error: "Lien de désinscription indisponible (UNSUB_TOKEN_SECRET) — envoi refusé" }, 500);
+    }
+  }
+
+  const firstName = (recipientName || "").trim().split(/\s+/)[0] || "";
+  const finalSubject = fillVars(subject.trim(), firstName, productReadable, unsubLink);
+  const finalBody = fillVars(body, firstName, productReadable, unsubLink);
+
+  // Garde-fou : un {{...}} encore présent après substitution partirait tel
+  // quel au client (cf. le placeholder [Numéro de téléphone], jamais
+  // résolu parce que jamais reconnu comme une variable). On bloque plutôt
+  // que d'envoyer un texte cassé — l'agent peut corriger et renvoyer.
+  const unresolved = (["prenom", "produit", "lien_desinscription"] as const).find(
+    (v) => containsVar(finalSubject, v) || containsVar(finalBody, v),
+  );
+  if (unresolved) {
+    console.error(`crm-send-template: variable {{${unresolved}}} non résolue, envoi refusé (deal ${dealId})`);
+    return json({ error: `Variable {{${unresolved}}} non résolue dans le texte — envoi refusé` }, 400);
   }
 
   let resendId: string;
@@ -129,9 +158,9 @@ serve(async (req: Request): Promise<Response> => {
     const sent = await resend.emails.send({
       from: FROM,
       to: recipientEmail,
-      subject: subject.trim(),
-      text: body,
-      html: bodyToHtml(body),
+      subject: finalSubject,
+      text: finalBody,
+      html: bodyToHtml(finalBody),
     });
     if (sent.error || !sent.data?.id) {
       console.error("Resend a renvoyé une erreur:", sent.error);
@@ -150,7 +179,7 @@ serve(async (req: Request): Promise<Response> => {
     deal_id: dealId,
     author_id: authorId,
     action_type: "email",
-    description: `Template envoyé : ${subject.trim()}`,
+    description: `Template envoyé : ${finalSubject}`,
     metadata: { kind: "template", template_id: templateId, resend_email_id: resendId },
   });
   if (activityErr) {
@@ -162,7 +191,7 @@ serve(async (req: Request): Promise<Response> => {
     recipient_email: recipientEmail,
     recipient_name: recipientName || recipientEmail,
     email_type: "crm_template",
-    subject: subject.trim(),
+    subject: finalSubject,
     resend_email_id: resendId,
     status: "sent",
   });
