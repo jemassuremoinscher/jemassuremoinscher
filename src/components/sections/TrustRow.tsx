@@ -1,6 +1,5 @@
-import { Star, Scale, BadgeCheck, TrendingUp } from "lucide-react";
-import { motion, useReducedMotion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { Star, Scale, BadgeCheck } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useGoogleReviews } from "@/hooks/useGoogleReviews";
 import { ORIAS_VERIFY_URL } from "@/config/site";
@@ -8,17 +7,6 @@ import { ORIAS_VERIFY_URL } from "@/config/site";
 import oriasLogo from "@/assets/logos/orias.jpg?w=480&format=webp";
 import arthurKarting from "@/assets/mascotte/arthur-karting.webp";
 import geoContent from "@/data/geo-content.json";
-
-// Compteur familles accompagnées : démarre au 1er janvier 2026 (date de
-// création de jemassuremoinscher.fr) à 0, + 4 nouvelles familles par jour.
-const FAMILIES_BASELINE = 0;
-const FAMILIES_PER_DAY = 4;
-const FAMILIES_SINCE = new Date("2026-01-01T00:00:00");
-const computeFamiliesTotal = () => {
-  const now = new Date();
-  const days = Math.max(0, Math.floor((now.getTime() - FAMILIES_SINCE.getTime()) / 86400000));
-  return FAMILIES_BASELINE + days * FAMILIES_PER_DAY;
-};
 
 const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
 const itemVariants = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
@@ -46,34 +34,6 @@ const TrustRow = () => {
     ? undefined
     : { x: [0, 4, 0, -4, 0] };
 
-  // Compteur "familles accompagnées" (baseline + +4/jour)
-  const [familiesCount, setFamiliesCount] = useState<number>(computeFamiliesTotal());
-  const counterRef = useRef<HTMLDivElement>(null);
-  const counterInView = useInView(counterRef, { once: true, margin: "-50px" });
-  const motionVal = useMotionValue(0);
-  const rounded = useTransform(motionVal, (v) => Math.floor(v).toLocaleString('fr-FR'));
-  const [displayCount, setDisplayCount] = useState("0");
-
-  useEffect(() => {
-    const unsub = rounded.on("change", (v) => setDisplayCount(v));
-    return () => unsub();
-  }, [rounded]);
-
-  useEffect(() => {
-    const interval = setInterval(() => setFamiliesCount(computeFamiliesTotal()), 3600000);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    if (!counterInView) return;
-    if (prefersReducedMotion) {
-      motionVal.set(familiesCount);
-      return;
-    }
-    const controls = animate(motionVal, familiesCount, { duration: 2, ease: "easeOut" });
-    return () => controls.stop();
-  }, [counterInView, familiesCount, prefersReducedMotion, motionVal]);
-
   const handleArthurClick = () => {
     const target = document.getElementById('hero-quote-form') || document.getElementById('quote-form');
     if (target) {
@@ -97,13 +57,18 @@ const TrustRow = () => {
           viewport={{ once: true }}
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4"
         >
-          {/* Google Reviews */}
+          {/* Google Reviews — chiffre unique mis en avant (col-span-2 sur toutes
+              les tailles) plutot que juxtapose a egalite avec les autres badges.
+              Le compteur "familles accompagnees" qui siegeait ici a ete retire :
+              c'etait une formule synthetique (baseline + 4/jour depuis une date
+              arbitraire), pas une donnee reelle — le laisser aurait contredit
+              "aucun chiffre non verifie" cote de celui-ci. */}
           {/* Bulle epinglee : meme motif que celle d'Arthur en Hero (bg-white,
               rounded-2xl, ombre, pointe triangulaire), reutilisee ici pour
               mettre en avant la note reelle deja affichee dans la carte
               (ratingLabel vient du live Google Reviews ou, a defaut, de
               geo-content.json — jamais une valeur inventee). */}
-          <motion.div variants={itemVariants} role="group" aria-label={`Note Google Reviews ${ratingLabel} sur 5`} className="relative bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
+          <motion.div variants={itemVariants} role="group" aria-label={`Note Google Reviews ${ratingLabel} sur 5`} className="relative col-span-2 bg-card rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(0,0,0,0.08)] border border-border/40 hover:shadow-[0_12px_28px_-10px_rgba(0,0,0,0.15)] hover:-translate-y-1 transition-all flex flex-col items-center text-center gap-3">
             <div aria-hidden="true" className="absolute -top-3 -right-2 bg-white rounded-2xl px-2.5 py-1 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.25)] z-10">
               <p className="text-primary font-bold text-xs whitespace-nowrap">{ratingLabel}★ vérifié</p>
               <div className="absolute -bottom-1 left-4 w-2.5 h-2.5 bg-white transform rotate-45" />
@@ -120,7 +85,7 @@ const TrustRow = () => {
                 <Star key={star} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
               ))}
             </div>
-            <p className="text-3xl font-black text-foreground">{ratingLabel}<span className="text-lg text-muted-foreground">/5</span></p>
+            <p className="text-4xl font-black text-foreground">{ratingLabel}<span className="text-lg text-muted-foreground">/5</span></p>
             <p className="text-xs text-muted-foreground">{t('trustRow.googleReviewsSuffix', { count: reviewCountLabel })}</p>
           </motion.div>
 
@@ -160,7 +125,7 @@ const TrustRow = () => {
             <p className="text-xs text-muted-foreground">{t('trustRow.transparencyDesc')}</p>
           </motion.div>
 
-          {/* Rappel 5 min - Arthur Karting (clickable) */}
+          {/* Rappel rapide - Arthur Karting (clickable) */}
           <motion.button
             type="button"
             onClick={handleArthurClick}
@@ -168,7 +133,7 @@ const TrustRow = () => {
             whileHover={prefersReducedMotion ? undefined : { y: -6, scale: 1.02 }}
             whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
             aria-label={t('trustRow.callbackAria')}
-            className="col-span-2 md:col-span-1 lg:col-span-1 bg-primary rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(124,58,237,0.3)] hover:shadow-[0_16px_32px_-10px_rgba(124,58,237,0.6)] transition-shadow border border-primary-foreground/10 flex flex-col items-center text-center gap-3 relative overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
+            className="bg-primary rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(124,58,237,0.3)] hover:shadow-[0_16px_32px_-10px_rgba(124,58,237,0.6)] transition-shadow border border-primary-foreground/10 flex flex-col items-center text-center gap-3 relative overflow-hidden cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
           >
             <motion.img
               src={arthurKarting}
@@ -183,24 +148,6 @@ const TrustRow = () => {
             <p className="text-sm font-bold text-white">{t('trustRow.callback')}</p>
             <p className="text-xs text-white/90">{t('trustRow.callbackDesc')}</p>
           </motion.button>
-
-          {/* Compteur familles accompagnées (total cumulé) */}
-          <motion.div
-            ref={counterRef}
-            variants={itemVariants}
-            role="group"
-            aria-label={`${familiesCount.toLocaleString('fr-FR')} familles accompagnées par jemassuremoinscher.fr`}
-            className="col-span-2 md:col-span-1 lg:col-span-1 bg-gradient-to-br from-accent/95 to-accent rounded-3xl p-6 shadow-[0_4px_16px_-6px_rgba(252,211,77,0.4)] hover:shadow-[0_16px_32px_-10px_rgba(252,211,77,0.6)] hover:-translate-y-1 transition-all border border-accent-foreground/10 flex flex-col items-center text-center gap-3 relative overflow-hidden"
-          >
-            <div className="p-3 rounded-full bg-primary/15" aria-hidden="true">
-              <TrendingUp className="w-7 h-7 text-primary" />
-            </div>
-            <p className="text-3xl font-black text-primary tabular-nums leading-none">
-              {displayCount}+
-            </p>
-            <p className="text-xs font-bold text-primary/90 uppercase tracking-wide">Familles accompagnées</p>
-            <p className="text-[11px] text-primary/70 leading-snug">Depuis la création de jemassuremoinscher.fr</p>
-          </motion.div>
         </motion.div>
       </div>
     </section>

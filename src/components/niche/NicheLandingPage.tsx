@@ -157,7 +157,7 @@ const NicheLandingPage = ({ data }: NicheLandingPageProps) => {
               Prêt à retrouver une assurance adaptée ?
             </h2>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Nos courtiers partenaires sont spécialisés dans les profils atypiques. Devis gratuit, sans engagement, sous 10 minutes.
+              Nos courtiers partenaires sont spécialisés dans les profils atypiques. Devis gratuit, sans engagement. Rappel rapide par un conseiller.
             </p>
             <Button size="lg" className="text-lg px-8 py-6" asChild>
               <Link to="/comparateur">Obtenir mon tarif spécial</Link>

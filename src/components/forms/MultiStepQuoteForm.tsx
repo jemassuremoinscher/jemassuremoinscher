@@ -583,8 +583,8 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
             </span>
             <span className="text-primary-foreground/85 flex items-baseline gap-1.5">
               {t("form.callbackPrefix")}{' '}
-              <span className="text-[22px] md:text-[26px] font-bold leading-none text-[#fcd34d] tabular-nums tracking-tight animate-[pulse_2.4s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(252,211,77,0.45)]">
-                30 min
+              <span className="text-[22px] md:text-[26px] font-bold leading-none text-[#fcd34d] tracking-tight animate-[pulse_2.4s_ease-in-out_infinite] drop-shadow-[0_0_10px_rgba(252,211,77,0.45)]">
+                {t("form.callbackHighlight")}
               </span>
             </span>
           </div>

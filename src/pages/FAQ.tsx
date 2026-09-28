@@ -33,7 +33,7 @@ const categories: FaqCategory[] = [
     items: [
       {
         q: "Comment fonctionne le comparateur jemassuremoinscher.fr ?",
-        a: "Vous remplissez un formulaire en 2 minutes, nos experts analysent les offres de plus de 70 assureurs partenaires (Allianz, AXA, Groupama, MAIF, Generali, Swiss Life…) et un conseiller dédié vous rappelle sous 5 minutes avec les meilleures propositions adaptées à votre profil.",
+        a: "Vous remplissez un formulaire en 2 minutes, nos experts analysent les offres de plus de 70 assureurs partenaires (Allianz, AXA, Groupama, MAIF, Generali, Swiss Life…) et un conseiller dédié vous rappelle rapidement, en général dans l'heure aux heures d'ouverture, avec les meilleures propositions adaptées à votre profil.",
       },
       {
         q: "La comparaison est-elle vraiment gratuite ?",
@@ -117,7 +117,7 @@ const categories: FaqCategory[] = [
     items: [
       {
         q: "Sous combien de temps suis-je rappelé ?",
-        a: "Un conseiller dédié vous rappelle sous 5 minutes pendant nos horaires d'ouverture (lundi-samedi, 9h-19h).",
+        a: "Un conseiller dédié vous rappelle rapidement, en général dans l'heure pendant nos horaires d'ouverture (lundi-samedi, 9h-19h).",
       },
       {
         q: "Mes données sont-elles sécurisées ?",
@@ -325,8 +325,8 @@ const FAQPage = () => {
                 Vous n'avez pas trouvé votre réponse ?
               </h2>
               <p className="text-muted-foreground mb-6">
-                Un conseiller dédié vous rappelle sous 5 minutes, gratuitement
-                et sans engagement.
+                Un conseiller dédié vous rappelle rapidement, en général dans l'heure
+                aux heures d'ouverture, gratuitement et sans engagement.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button asChild size="lg">
