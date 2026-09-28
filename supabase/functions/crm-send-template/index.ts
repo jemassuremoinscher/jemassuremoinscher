@@ -1,7 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { productLabel, fillVars, containsVar, buildUnsubLink, bodyToHtml } from "../_shared/email-vars.ts";
+import { productLabel, fillVars, containsVar, findUnresolvedPlaceholder, buildUnsubLink, bodyToHtml } from "../_shared/email-vars.ts";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -109,14 +109,20 @@ serve(async (req: Request): Promise<Response> => {
     }
   }
 
+  // Ne bloque que si le texte composé par l'agent utilise réellement
+  // {{produit}} — sinon un slug non couvert (ex. "contact", deals issus
+  // d'un callback) ne doit pas empêcher un email libre sans rapport.
+  const templateNeedsProduct = containsVar(subject, "produit") || containsVar(body, "produit");
   const productReadable = productLabel(dealRow?.insurance_type || "");
-  if (dealRow?.insurance_type && !productReadable) {
+  if (templateNeedsProduct && dealRow?.insurance_type && productReadable === null) {
+    console.error(`crm-send-template: slug produit non reconnu "${dealRow.insurance_type}", envoi refusé`);
     await admin.from("site_error_log").insert({
       page_path: "function:crm-send-template",
       error_type: "unmapped_product_slug",
       message: `Slug insurance_type non couvert par PRODUCT_LABELS: "${dealRow.insurance_type}"`,
       context: { deal_id: dealId, product: dealRow.insurance_type },
     });
+    return json({ error: `Produit non reconnu : "${dealRow.insurance_type}" — envoi refusé` }, 500);
   }
 
   const needsUnsubLink =
@@ -138,19 +144,23 @@ serve(async (req: Request): Promise<Response> => {
   }
 
   const firstName = (recipientName || "").trim().split(/\s+/)[0] || "";
-  const finalSubject = fillVars(subject.trim(), firstName, productReadable, unsubLink);
-  const finalBody = fillVars(body, firstName, productReadable, unsubLink);
+  const finalSubject = fillVars(subject.trim(), firstName, productReadable ?? "", unsubLink);
+  const finalBody = fillVars(body, firstName, productReadable ?? "", unsubLink);
 
-  // Garde-fou : un {{...}} encore présent après substitution partirait tel
-  // quel au client (cf. le placeholder [Numéro de téléphone], jamais
-  // résolu parce que jamais reconnu comme une variable). On bloque plutôt
-  // que d'envoyer un texte cassé — l'agent peut corriger et renvoyer.
-  const unresolved = (["prenom", "produit", "lien_desinscription"] as const).find(
-    (v) => containsVar(finalSubject, v) || containsVar(finalBody, v),
-  );
+  // Garde-fou générique : un {{...}} ou un [xxx] encore présent après
+  // substitution partirait tel quel au client (cf. le placeholder
+  // [Numéro de téléphone], jamais reconnu comme une variable). On bloque
+  // plutôt que d'envoyer un texte cassé — l'agent peut corriger et renvoyer.
+  const unresolved = findUnresolvedPlaceholder(finalSubject) ?? findUnresolvedPlaceholder(finalBody);
   if (unresolved) {
-    console.error(`crm-send-template: variable {{${unresolved}}} non résolue, envoi refusé (deal ${dealId})`);
-    return json({ error: `Variable {{${unresolved}}} non résolue dans le texte — envoi refusé` }, 400);
+    console.error(`crm-send-template: placeholder non résolu "${unresolved}", envoi refusé (deal ${dealId})`);
+    await admin.from("site_error_log").insert({
+      page_path: "function:crm-send-template",
+      error_type: "unresolved_placeholder",
+      message: `Placeholder non résolu : "${unresolved}"`,
+      context: { deal_id: dealId, template_id: templateId },
+    });
+    return json({ error: `Placeholder non résolu : "${unresolved}" — envoi refusé` }, 400);
   }
 
   let resendId: string;

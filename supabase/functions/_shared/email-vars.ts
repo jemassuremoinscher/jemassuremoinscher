@@ -43,11 +43,13 @@ export const PRODUCT_LABELS: Record<string, string> = {
   mutuelle_entreprise: "mutuelle d'entreprise",
 };
 
-// 2026-09-28 : plus de libellé générique inventé pour un slug hors liste.
-// Renvoie "" - à l'appelant de journaliser le slug manquant dans
-// site_error_log plutôt que d'afficher un texte inventé au client.
-export function productLabel(slug: string): string {
-  return PRODUCT_LABELS[slug] ?? "";
+// 2026-09-28 : plus de libellé générique inventé pour un slug hors liste
+// (un fallback "" faisait lire "assurance ." dans les templates qui
+// écrivent "assurance {{produit}}."). Renvoie null pour un slug non
+// couvert - à l'appelant de refuser l'envoi et de journaliser le slug
+// manquant dans site_error_log plutôt que d'envoyer un texte cassé.
+export function productLabel(slug: string): string | null {
+  return slug in PRODUCT_LABELS ? PRODUCT_LABELS[slug] : null;
 }
 
 // Templates exemptés d'email_opt_out (contenu transactionnel, nécessaire
@@ -70,6 +72,24 @@ export function fillVars(text: string, firstName: string, product: string, unsub
 
 export function containsVar(text: string, varName: "prenom" | "produit" | "lien_desinscription"): boolean {
   return new RegExp(`\\{\\{\\s*${varName}\\s*\\}\\}`, "i").test(text);
+}
+
+// Garde-fou générique, appliqué APRÈS fillVars sur le sujet ET le corps,
+// en envoi manuel comme automatique. Deux motifs :
+// - {{...}} encore présent : une variable non reconnue par fillVars (nom
+//   mal orthographié, ou une nouvelle variable jamais implémentée) est
+//   restée telle quelle.
+// - [xxx] d'au moins 3 caractères : couvre les placeholders à la main
+//   laissés dans le texte des templates eux-mêmes, jamais traités comme
+//   des variables ({{...}}) donc jamais remplacés par fillVars — cas réels
+//   trouvés dans ce projet : "[Nom du document manquant]",
+//   "[Numéro de téléphone]".
+// Renvoie le premier motif trouvé (pour le message d'erreur), ou null.
+const UNRESOLVED_VAR_RE = /\{\{[^{}]+\}\}/;
+const UNRESOLVED_BRACKET_RE = /\[[^\[\]]{3,}\]/;
+
+export function findUnresolvedPlaceholder(text: string): string | null {
+  return UNRESOLVED_VAR_RE.exec(text)?.[0] ?? UNRESOLVED_BRACKET_RE.exec(text)?.[0] ?? null;
 }
 
 async function getUnsubKey(): Promise<CryptoKey> {

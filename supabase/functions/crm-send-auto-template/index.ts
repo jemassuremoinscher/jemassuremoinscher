@@ -6,6 +6,7 @@ import {
   TRANSACTIONAL_TEMPLATES,
   fillVars,
   containsVar,
+  findUnresolvedPlaceholder,
   buildUnsubLink,
   bodyToHtml,
 } from "../_shared/email-vars.ts";
@@ -150,19 +151,43 @@ serve(async (req: Request): Promise<Response> => {
     }
   }
 
+  // Slug produit inconnu : refuse plutôt que d'envoyer "assurance ." — un
+  // fallback vide casse le texte silencieusement. Tous les insurance_type
+  // réels doivent être couverts par PRODUCT_LABELS ; un slug manquant est
+  // une lacune à combler, pas un cas à masquer. Ne bloque que si le
+  // template utilise réellement {{produit}} — un template qui ne le
+  // mentionne pas n'a pas à échouer pour un slug qu'il n'affichera jamais.
+  const templateNeedsProduct = containsVar(template.subject, "produit") || containsVar(template.body, "produit");
   const productReadable = productLabel(product || "");
-  if (product && !productReadable) {
+  if (templateNeedsProduct && product && productReadable === null) {
+    console.error(`crm-send-auto-template: slug produit non reconnu "${product}", envoi refusé`);
     await admin.from("site_error_log").insert({
       page_path: "function:crm-send-auto-template",
       error_type: "unmapped_product_slug",
       message: `Slug insurance_type non couvert par PRODUCT_LABELS: "${product}"`,
       context: { deal_id: dealId, template_name: templateName, product },
     });
+    return json({ error: `Produit non reconnu : "${product}" — envoi refusé` }, 500);
   }
 
   const firstName = (recipientName || "").trim().split(/\s+/)[0] || "";
-  const subject = fillVars(template.subject, firstName, productReadable, unsubLink);
-  const emailBody = fillVars(template.body, firstName, productReadable, unsubLink);
+  const subject = fillVars(template.subject, firstName, productReadable ?? "", unsubLink);
+  const emailBody = fillVars(template.body, firstName, productReadable ?? "", unsubLink);
+
+  // Garde-fou générique : un {{...}} ou un [xxx] encore présent après
+  // substitution partirait tel quel au client (cf. le placeholder
+  // [Nom du document manquant], jamais reconnu comme une variable).
+  const unresolved = findUnresolvedPlaceholder(subject) ?? findUnresolvedPlaceholder(emailBody);
+  if (unresolved) {
+    console.error(`crm-send-auto-template: placeholder non résolu "${unresolved}" dans le template "${templateName}", envoi refusé`);
+    await admin.from("site_error_log").insert({
+      page_path: "function:crm-send-auto-template",
+      error_type: "unresolved_placeholder",
+      message: `Placeholder non résolu : "${unresolved}"`,
+      context: { deal_id: dealId, template_name: templateName },
+    });
+    return json({ error: `Placeholder non résolu dans le template "${templateName}" : "${unresolved}" — envoi refusé` }, 400);
+  }
 
   let resendId: string;
   try {
