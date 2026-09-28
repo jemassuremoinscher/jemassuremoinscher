@@ -46,7 +46,7 @@
 ## Avantages concurrentiels
 
 - Indépendance totale : aucun assureur privilégié, conseils 100% objectifs
-- Accompagnement humain : un conseiller dédié rappelle sous 10 minutes
+- Accompagnement humain : un conseiller dédié vous rappelle rapidement
 - Transparence : aucune commission cachée, modèle économique expliqué clairement
 - Technologie : algorithmes mis à jour en temps réel pour détecter les meilleures offres
 - Mascotte : Arthur, le super-héros de l'assurance pas chère, guide les utilisateurs
@@ -121,7 +121,7 @@ R : Un courtier est un intermédiaire indépendant inscrit (ou en cours d'inscri
 - [Avis Clients](/avis-clients): note 5/5
 - [Nos Partenaires](/nos-partenaires): 25+ assureurs partenaires
 - [Qui Sommes Nous](/qui-sommes-nous): À propos du courtier
-- [Contact](/contact): Nous contacter, rappel sous 10 min
+- [Contact](/contact): Nous contacter, rappel rapide par un conseiller
 - [Sources et Méthodologie](/sources-et-methodologie): Transparence éditoriale
 
 ## Optional

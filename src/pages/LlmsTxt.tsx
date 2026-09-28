@@ -51,7 +51,7 @@ const LLMS_TXT = `# jemassuremoinscher.fr
 ## Avantages concurrentiels
 
 - **Indépendance totale** : aucun assureur privilégié, conseils 100% objectifs
-- **Accompagnement humain** : un conseiller dédié rappelle sous 5 minutes
+- **Accompagnement humain** : un conseiller dédié vous rappelle rapidement
 - **Transparence** : aucune commission cachée, modèle économique expliqué clairement
 - **Technologie** : algorithmes mis à jour en temps réel pour détecter les meilleures offres
 - **Mascotte** : Arthur, le super-héros de l'assurance pas chère, guide les utilisateurs

@@ -17,7 +17,7 @@ const PILLARS = [
     bullets: [
       "Accompagnement humain par téléphone, pas seulement un formulaire",
       "Plus de 247 avis clients vérifiés (4,9/5) sur notre fiche Google",
-      "Rappel sous 2 h ouvrées après une demande de devis",
+      "Rappel rapide par un conseiller après une demande de devis",
     ],
   },
   {

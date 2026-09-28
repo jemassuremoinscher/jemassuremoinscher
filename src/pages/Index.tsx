@@ -100,7 +100,7 @@ const Index = () => {
         "name": "Combien de temps pour obtenir un devis?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Moins de 2 minutes pour remplir le formulaire. Un conseiller vous rappelle sous 2h."
+          "text": "Moins de 2 minutes pour remplir le formulaire. Un conseiller vous rappelle rapidement."
         }
       },
       {
@@ -188,7 +188,7 @@ const Index = () => {
         "@type": "HowToStep",
         "position": 3,
         "name": "Souscrivez et résiliez sans frais",
-        "text": "Un conseiller vous rappelle sous 2 h ouvrées, valide le contrat retenu et se charge gratuitement de la résiliation de votre ancien contrat (loi Hamon).",
+        "text": "Un conseiller vous rappelle rapidement, en général dans l'heure aux heures d'ouverture, valide le contrat retenu et se charge gratuitement de la résiliation de votre ancien contrat (loi Hamon).",
         "url": "https://www.jemassuremoinscher.fr/contact"
       }
     ]
