@@ -53,6 +53,10 @@ export const useCookieConsent = () => {
     localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(newConsent));
     setConsent(newConsent);
     setShowBanner(false);
+    // Lu par le loader analytics (scripts/analytics-loader.snippet.html) pour
+    // charger/neutraliser GA4, Clarity, Ads et Meta Pixel immédiatement, sans
+    // recharger la page (chantier consentement, 2026-09-29).
+    window.dispatchEvent(new CustomEvent('cookie-consent-updated', { detail: newConsent }));
   };
 
   const acceptAll = () => {

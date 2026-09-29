@@ -1,0 +1,134 @@
+<!-- Third-party analytics — consent-gated (v2) -->
+<script>
+(function () {
+  window.__analyticsLoaderVersion = 2;
+  var GA4_ID = 'G-2S9BMSWT79';
+  var ADS_ID = 'AW-972332620';
+  var META_PIXEL_ID = '2130973847755698';
+  var CLARITY_ID = 'vjn36y0aqr';
+  var CONSENT_KEY = 'cookie-consent';
+
+  function readConsent() {
+    try {
+      var raw = localStorage.getItem(CONSENT_KEY);
+      if (!raw) return null;
+      var parsed = JSON.parse(raw);
+      if (!parsed || !parsed.hasConsented) return null;
+      return parsed.preferences || null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function isConversionPage() {
+    var p = location.pathname;
+    return (
+      p === '/' || p === '/comparateur' || p === '/contact' ||
+      p.indexOf('/assurance-') === 0 || p.indexOf('/landing') === 0 ||
+      p === '/devis' || p === '/merci'
+    );
+  }
+
+  function ensureGtag() {
+    window.dataLayer = window.dataLayer || [];
+    if (!window.gtag) {
+      window.gtag = function () { window.dataLayer.push(arguments); };
+    }
+  }
+
+  function loadGA4AndClarity() {
+    if (window.__ga4ClarityLoaded) return;
+    window.__ga4ClarityLoaded = true;
+
+    var gs = document.createElement('script');
+    gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+    gs.async = true;
+    document.head.appendChild(gs);
+    ensureGtag();
+    window.gtag('js', new Date());
+    window.gtag('config', GA4_ID, { anonymize_ip: true, cookie_flags: 'SameSite=None;Secure', send_page_view: true });
+
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, 'clarity', 'script', CLARITY_ID);
+  }
+
+  function loadAdsAndMeta() {
+    if (window.__adsMetaLoaded) return;
+    window.__adsMetaLoaded = true;
+
+    ensureGtag();
+    window.gtag('config', ADS_ID);
+
+    if (isConversionPage()) {
+      !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return; n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+        n.queue = []; t = b.createElement(e); t.async = !0; t.src = v;
+        s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+      }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      window.fbq('init', META_PIXEL_ID);
+      window.fbq('track', 'PageView');
+    }
+  }
+
+  // Expire tout cookie dont le nom COMMENCE par un des préfixes donnés.
+  // Nécessaire pour _ga_<container-id> : le suffixe après "_ga_" est un id
+  // interne au conteneur GA4, pas dérivable depuis GA4_ID (constaté : pour
+  // G-2S9BMSWT79, gtag.js pose _ga_KKYZRZB5LQ, pas _ga_2S9BMSWT79) — un nom
+  // de cookie construit à la main l'aurait raté silencieusement.
+  function expireCookiesByPrefix(prefixes) {
+    var host = location.hostname;
+    var apex = host.replace(/^www\./, '');
+    var past = 'expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;';
+    var names = document.cookie.split(';').map(function (c) { return c.split('=')[0].trim(); });
+    names.forEach(function (name) {
+      if (!prefixes.some(function (p) { return name.indexOf(p) === 0; })) return;
+      document.cookie = name + '=; ' + past;
+      document.cookie = name + '=; ' + past + ' domain=' + apex + ';';
+      document.cookie = name + '=; ' + past + ' domain=.' + apex + ';';
+    });
+  }
+
+  function revoke(prefs) {
+    // Neutralise ce qui a pu être chargé avant un retrait de consentement
+    // (Accepter puis Refuser dans la même session). Best-effort : les scripts
+    // tiers déjà chargés restent en mémoire tant que la page n'est pas
+    // rechargée — voir la limite documentée à côté de ce fichier.
+    if (!prefs.analytics) {
+      window['ga-disable-' + GA4_ID] = true;
+      if (window.clarity) {
+        try { window.clarity('consent', false); } catch (e) {}
+      }
+      expireCookiesByPrefix(['_ga', '_clck', '_clsk']);
+    }
+    if (!prefs.marketing) {
+      if (window.fbq) {
+        try { window.fbq('consent', 'revoke'); } catch (e) {}
+      }
+      expireCookiesByPrefix(['_gcl_au', '_gcl_dc', '_fbp', '_fbc']);
+    }
+  }
+
+  function evaluate() {
+    // Le jeton de désinscription (query string ou fragment) ne doit jamais
+    // atteindre GA4/Clarity/Ads/Meta : aucun script tiers n'est chargé sur
+    // cette page, quel que soit l'état de consentement stocké.
+    if (location.pathname === '/desinscription') return;
+
+    var prefs = readConsent();
+    if (!prefs) return; // pas encore de choix explicite : rien ne charge
+
+    if (prefs.analytics) loadGA4AndClarity();
+    if (prefs.marketing) loadAdsAndMeta();
+    revoke(prefs);
+  }
+
+  evaluate();
+  window.addEventListener('cookie-consent-updated', evaluate);
+})();
+</script>

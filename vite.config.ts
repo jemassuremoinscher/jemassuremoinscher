@@ -1,10 +1,30 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
-import { readdirSync, statSync, existsSync } from "node:fs";
+import { readdirSync, statSync, existsSync, readFileSync } from "node:fs";
 import { componentTagger } from "lovable-tagger";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import { imagetools } from "vite-imagetools";
+
+// Source unique du loader analytics (chantier consentement, 2026-09-29) :
+// injecté dans CHAQUE entrée HTML (racine + les ~280 entrées MPA de
+// discoverHtmlEntries) plutôt que copié en dur dans index.html. Le même
+// motif de détection/remplacement est réutilisé par
+// scripts/apply-prerender-snapshot.mjs pour les routes à snapshot Puppeteer,
+// et par scripts/verify-analytics-loader.mjs pour le contrôle post-build.
+const ANALYTICS_SNIPPET_PATH = path.resolve(__dirname, "scripts/analytics-loader.snippet.html");
+const ANALYTICS_BLOCK_RE = /<!-- Third-party analytics[\s\S]*?<\/script>\s*/;
+
+const analyticsLoaderPlugin = (): Plugin => ({
+  name: "inject-analytics-loader",
+  transformIndexHtml(html) {
+    const snippet = readFileSync(ANALYTICS_SNIPPET_PATH, "utf8");
+    if (ANALYTICS_BLOCK_RE.test(html)) {
+      return html.replace(ANALYTICS_BLOCK_RE, snippet);
+    }
+    return html.replace(/<\/body>/, `${snippet}\n  </body>`);
+  },
+});
 
 // Auto-discover every <root>/<...>/index.html so vite emits dist/<route>/index.html
 // for each pre-rendered route. The root index.html is always included.
@@ -74,6 +94,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       mode === "development" && componentTagger(),
+      analyticsLoaderPlugin(),
       imagetools(),
       ViteImageOptimizer({
         png: { quality: 70 },

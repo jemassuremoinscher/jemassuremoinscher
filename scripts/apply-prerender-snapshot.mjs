@@ -21,13 +21,30 @@
  * ou un asset introuvable dans le mapping -> avertissement, jamais d'échec
  * de build.
  */
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const rootDir = process.cwd();
 const distDir = path.join(rootDir, "dist");
 const snapshotDir = path.join(rootDir, "prerender-snapshots");
+
+// Les 89 snapshots committés dans prerender-snapshots/ ont été capturés à un
+// moment où le loader analytics n'était pas encore gated sur le consentement
+// (chantier consentement, 2026-09-29). Plutôt que de réécrire chaque fichier
+// à la main, on remplace le bloc au vol ici, avec le même motif de
+// détection/remplacement que le plugin Vite inject-analytics-loader
+// (vite.config.ts) — source unique : scripts/analytics-loader.snippet.html.
+const ANALYTICS_SNIPPET_PATH = path.join(rootDir, "scripts", "analytics-loader.snippet.html");
+const ANALYTICS_BLOCK_RE = /<!-- Third-party analytics[\s\S]*?<\/script>\s*/;
+
+const applyAnalyticsLoader = (html) => {
+  const snippet = readFileSync(ANALYTICS_SNIPPET_PATH, "utf8");
+  if (ANALYTICS_BLOCK_RE.test(html)) {
+    return html.replace(ANALYTICS_BLOCK_RE, snippet);
+  }
+  return html.replace(/<\/body>/, `${snippet}\n  </body>`);
+};
 
 // route -> fichier snapshot (cf. routeSlug dans prerender-routes.mjs).
 const SNAPSHOTS = [
@@ -223,7 +240,8 @@ const main = async () => {
     }
 
     const html = await readFile(snapshotPath, "utf8");
-    const { remapped, missing, removed } = remapAssets(html, currentMap);
+    const { remapped: assetsRemapped, missing, removed } = remapAssets(html, currentMap);
+    const remapped = applyAnalyticsLoader(assetsRemapped);
 
     const outDir = route === "/" ? distDir : path.join(distDir, route.replace(/^\//, ""));
     await mkdir(outDir, { recursive: true });
