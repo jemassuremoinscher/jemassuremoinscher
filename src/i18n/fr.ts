@@ -2678,7 +2678,6 @@ const fr: Record<string, string> = {
   "landingTpl.whyChoose": "Pourquoi choisir",
   "landingTpl.trust.ssl": "SSL / RGPD",
   "landingTpl.trust.orias": "ORIAS vérifié",
-  "landingTpl.trust.reviews": "5/5",
   "landingTpl.testimonials.title": "Ils nous ont fait confiance",
   "landingTpl.faq.title": "Questions fréquentes",
   "landingTpl.bottomCta.button": "Recevoir mon devis gratuit",

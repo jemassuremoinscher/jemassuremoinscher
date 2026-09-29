@@ -2687,7 +2687,6 @@ const en: Record<string, string> = {
   "landingTpl.whyChoose": "Why choose",
   "landingTpl.trust.ssl": "SSL / GDPR",
   "landingTpl.trust.orias": "ORIAS verified",
-  "landingTpl.trust.reviews": "5/5",
   "landingTpl.testimonials.title": "Trusted by thousands",
   "landingTpl.faq.title": "Frequently asked questions",
   "landingTpl.bottomCta.button": "Get my free quote",

@@ -15,7 +15,6 @@ import {
   Lock,
   BadgeCheck,
   Scale,
-  Star,
   Eye,
   Banknote,
 } from "lucide-react";
@@ -57,10 +56,12 @@ const QuiSommesNous = () => {
     ...authorSchemas,
   ];
 
+  // stat3 ("5/5 Note clients") retiré : aucune source réelle derrière ce
+  // chiffre (chantier avis clients 2026-09-29) — le vrai avis Google (5.0,
+  // 2 avis) est affiché plus bas, dans le bloc certifications avec ORIAS.
   const stats = [
     { value: t("aboutPage.stat1Value"), label: t("aboutPage.stat1Label") },
     { value: t("aboutPage.stat2Value"), label: t("aboutPage.stat2Label") },
-    { value: t("aboutPage.stat3Value"), label: t("aboutPage.stat3Label") },
     { value: t("aboutPage.stat4Value"), label: t("aboutPage.stat4Label") },
   ];
 
@@ -111,6 +112,7 @@ const QuiSommesNous = () => {
                 imageAlt="Arthur mascotte jemassuremoinscher.fr"
                 title={t("aboutPage.heroTitle")}
                 subtitle={t("aboutPage.heroDesc")}
+                showReviewsCard={false}
                 ctaLabel={t("aboutPage.ctaBtn")}
                 onCtaClick={() => {
                   window.location.href = "/comparateur";
@@ -123,7 +125,7 @@ const QuiSommesNous = () => {
         {/* ─── Chiffres clés ─── */}
         <section className="py-12 md:py-16 bg-muted/20">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 max-w-4xl mx-auto">
+            <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -322,18 +324,9 @@ const QuiSommesNous = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
-                  <div className="flex items-center gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-accent text-accent" />
-                    ))}
-                  </div>
-                  <div className="text-left">
-                    <p className="text-xs font-bold text-foreground">{t("aboutPage.googleReviews")}</p>
-                    <p className="text-xs text-muted-foreground">{t("aboutPage.googleReviewsCount")}</p>
-                  </div>
-                </div>
-
+                {/* Carte "5/5 avis vérifiés" retirée : ORIAS est juste à
+                    gauche dans le même bandeau — pas de second badge de
+                    confiance redondant (chantier avis clients 2026-09-29). */}
                 <div className="flex items-center gap-3 bg-card rounded-xl border border-border/50 px-5 py-4 shadow-sm min-w-[200px]">
                   <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                     <Shield className="h-5 w-5 text-primary" />

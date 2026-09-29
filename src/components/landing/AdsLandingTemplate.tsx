@@ -203,9 +203,6 @@ const AdsLandingTemplate = (props: AdsLandingProps | LocalizedAdsLandingProps) =
                 <Badge variant="outline" className="gap-2">
                   <CheckCircle2 className="h-4 w-4" /> {t("landingTpl.trust.orias")}
                 </Badge>
-                <Badge variant="outline" className="gap-2">
-                  <Star className="h-4 w-4 fill-current" /> {t("landingTpl.trust.reviews")}
-                </Badge>
               </div>
             </div>
 

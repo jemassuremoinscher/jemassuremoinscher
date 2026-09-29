@@ -141,6 +141,7 @@ const VerticalInsurancePage = (props: VerticalPageProps) => {
                 imageAlt={props.heroAlt}
                 title={props.heroTitle}
                 subtitle={props.heroSubtitle}
+                showReviewsCard={false}
                 ctaLabel="Comparer maintenant"
                 onCtaClick={scrollToForm}
               />

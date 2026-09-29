@@ -24,9 +24,7 @@ import arthurExcited from "@/assets/mascotte/arthur-excited.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
 import arthurBike from "@/assets/mascotte/arthur-bike.png";
 import arthurScoot from "@/assets/mascotte/arthur-scoot.png?w=480&format=webp";
-import geoContent from "@/data/geo-content.json";
-
-const trustReviewStat = { icon: Star, value: `${geoContent.trust.ratingValueLabel}/5`, label: "Avis vérifiés" };
+const trustReviewStat = { icon: ShieldCheck, value: "ORIAS", label: "n° 26011100 · courtier indépendant" };
 
 const baseStats = [
   { icon: Users, value: "6k", label: "Clients accompagnés" },
@@ -65,9 +63,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       speechText: "Salut ! Je compare 70+ assureurs auto pour toi en 2 minutes.",
       insuranceType: "auto",
       insuranceLabel: "Assurance Auto",
+      // trustReviewStat retiré ici : badgeText affiche déjà "Comparateur
+      // indépendant ORIAS" juste au-dessus du hero — pas de doublon.
       stats: [
         { icon: Car, value: "50+", label: "Assureurs comparés" },
-        trustReviewStat,
         { icon: Clock, value: "2 min", label: "Pour ton devis" },
       ],
       advantages: [
@@ -106,10 +105,11 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       speechText: "Hi! I'll compare 70+ car insurers for you in 2 minutes.",
       insuranceType: "auto",
       insuranceLabel: "Car Insurance",
+      // "Verified reviews" retiré : badgeText affiche déjà "Independent
+      // ORIAS broker" juste au-dessus du hero — pas de doublon.
       stats: [
         { icon: Car, value: "50+", label: "Insurers compared" },
         { icon: Users, value: "2,500", label: "Local agencies" },
-        { icon: Star, value: "5/5", label: "Verified reviews" },
         { icon: Clock, value: "2 min", label: "For your quote" },
       ],
       advantages: [
@@ -926,8 +926,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     stats: [
       // "6 400+ Scooters assurés" et "12 Assureurs 2-roues" retirés : aucune
       // source vérifiable (même défaut que "15+ Assureurs vélo"/"20+
-      // Assureurs EDPM" trouvé sur vélo/trottinette). trustReviewStat est un
-      // vrai chiffre (avis Google réels, geoContent.trust).
+      // Assureurs EDPM" trouvé sur vélo/trottinette). trustReviewStat
+      // affiche l'immatriculation ORIAS (chantier avis clients 2026-09-29 :
+      // "5/5 avis vérifiés" ne correspondait à aucune source réelle).
       { icon: TrendingDown, value: "9 €/mois", label: "Tiers 50cc" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Attestation" },

@@ -5,7 +5,7 @@ import ArthurHero from "@/components/insurance/ArthurHero";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { LucideIcon, Award, CheckCircle2, Shield, Star } from "lucide-react";
+import { LucideIcon, Award, CheckCircle2, Shield } from "lucide-react";
 import SEOOptimized from "@/components/SEOOptimized";
 import InsuranceFAQ from "@/components/insurance/InsuranceFAQ";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, optimizeLandingFaqAnswer, optimizeLandingReassuranceDescription } from "@/utils/seoUtils";
@@ -196,9 +196,6 @@ const SEOLandingPage = ({
                 </Badge>
                 <Badge variant="outline" className="gap-2">
                   <CheckCircle2 className="h-4 w-4" /> ORIAS vérifié
-                </Badge>
-                <Badge variant="outline" className="gap-2">
-                  <Star className="h-4 w-4 fill-current" /> 5/5
                 </Badge>
               </div>
             </div>
