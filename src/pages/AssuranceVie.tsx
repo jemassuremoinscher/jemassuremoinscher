@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -121,6 +122,9 @@ const AssuranceVie = () => {
                 articles L423-1 à L423-8
               </a>
               ) garantit jusqu'à 70 000€ par assuré et par assureur — mais <strong>uniquement en cas de défaillance de l'assureur lui-même</strong>, jamais contre une baisse de marché. Si votre fonds euros ou vos unités de compte perdent de la valeur suite à une crise boursière, ce fonds de garantie n'intervient pas : ce risque reste entièrement le vôtre.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mt-4">
+              Un crédit immobilier en cours ? L'<Link to="/assurance-pret" className="text-primary hover:underline font-medium">assurance emprunteur</Link> qui y est attachée est un produit différent de l'assurance vie : elle ne couvre que ce prêt, sans épargne ni clause bénéficiaire propre.
             </p>
           </section>
 

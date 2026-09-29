@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -91,6 +92,15 @@ const AssurancePret = () => {
           </div>
         </section>
         <div className="container mx-auto px-4 py-12">
+
+          <section className="max-w-4xl mx-auto mb-8 prose prose-sm md:prose-base max-w-none">
+            <p className="text-muted-foreground leading-relaxed">
+              L'assurance emprunteur garantit le remboursement de ce prêt en cas de décès, d'invalidité ou d'incapacité de travail (selon les garanties souscrites) — mais ne couvre que ce prêt. Elle ne doit pas être confondue avec une <Link to="/assurance-vie" className="text-primary hover:underline font-medium">assurance vie</Link>, un produit d'épargne avec clause bénéficiaire, qui répond à un objectif différent : transmettre un capital à vos proches, indépendamment de tout crédit.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mt-4">
+              Pour une protection de vos revenus qui aille au-delà du strict remboursement du prêt, la <Link to="/assurance-prevoyance" className="text-primary hover:underline font-medium">prévoyance</Link> prend le relais en cas d'arrêt de travail prolongé, y compris pour vos charges autres que ce crédit.
+            </p>
+          </section>
 
           <section className="max-w-4xl mx-auto mb-12">
             <div className="grid md:grid-cols-3 gap-6">

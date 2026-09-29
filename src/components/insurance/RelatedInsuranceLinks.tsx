@@ -137,7 +137,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   pret: {
-    products: ["vie", "habitation", "auto"],
+    products: ["vie", "prevoyance", "habitation", "auto"],
     articles: [
       { to: "/blog/loi-lemoine-2026", label: "Loi Lemoine : changer d'assurance emprunteur" },
       { to: "/blog/resiliation-assurance-droits-2026", label: "Vos droits de résiliation" },
@@ -148,7 +148,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     ],
   },
   prevoyance: {
-    products: ["sante", "vie", "rcpro"],
+    products: ["sante", "vie", "pret", "rcpro"],
     articles: [
       { to: "/blog/droits-des-assures-2026", label: "Droits des assurés 2026" },
     ],

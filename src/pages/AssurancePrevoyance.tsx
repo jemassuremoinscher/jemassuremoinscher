@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -72,6 +73,12 @@ const AssurancePrevoyance = () => {
               article 154 bis du Code général des impôts
             </a>
             ) sont déductibles du revenu imposable, dans la limite d'un plafond calculé sur le revenu professionnel et le plafond annuel de la Sécurité sociale (PASS).
+          </p>
+          <p className="text-muted-foreground leading-relaxed mt-4">
+            À ne pas confondre avec une <Link to="/assurance-sante" className="text-primary hover:underline font-medium">mutuelle santé</Link> : la prévoyance ne remplace pas les frais de soins médicaux, elle protège vos revenus en cas d'arrêt de travail, d'invalidité ou de décès. Les deux garanties sont complémentaires, pas substituables.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mt-4">
+            Vous avez un crédit en cours ? Votre <Link to="/assurance-pret" className="text-primary hover:underline font-medium">assurance emprunteur</Link> ne couvre que ce prêt : la prévoyance prend le relais pour vos autres charges en cas d'arrêt de travail prolongé.
           </p>
         </section>
 

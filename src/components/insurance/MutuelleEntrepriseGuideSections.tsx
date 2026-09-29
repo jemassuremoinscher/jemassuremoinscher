@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 
 /**
@@ -33,6 +34,9 @@ export const MutuelleEntrepriseCadreLegal = () => (
     </p>
     <p className={P}>
       Le panier de soins minimum est fixé par le décret n°2014-1025 du 8 septembre 2014 : prise en charge intégrale du ticket modérateur sur les consultations et actes remboursables, forfait journalier hospitalier sans limitation de durée, frais dentaires à 125 % du tarif de la Sécurité sociale, et un forfait optique par période de deux ans (100 € minimum pour une correction simple, jusqu'à 200 € pour une correction complexe).
+    </p>
+    <p className={P}>
+      La mutuelle entreprise collective ne couvre les salariés que dans le cadre de leur contrat de travail. Pour un indépendant, un retraité, ou un ayant droit qui n'est pas couvert par le contrat collectif d'un conjoint, une <Link to="/assurance-sante" className="text-primary hover:underline font-medium">mutuelle santé</Link> individuelle reste nécessaire.
     </p>
     <p className="text-xs text-muted-foreground mt-4 leading-relaxed">
       Sources :{" "}
