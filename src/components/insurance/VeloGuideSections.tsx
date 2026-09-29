@@ -17,11 +17,20 @@ import { VELO_HOWTO_STEPS } from "@/data/veloHowToSteps";
  * - Code des assurances, art. L113-2 (version en vigueur depuis le 01/04/2018)
  * - FUB, commission antivol ; Sold Secure, "Ratings explained"
  *
- * Réserves : Légifrance est derrière un contrôle anti-robot, les textes L113-2
- * et du décret ont été lus via un outil de lecture web (à recontrôler). Les
- * sites officiels SRA et ART étaient inaccessibles : ces labels ne sont
- * décrits que tels que MAIF les cite. Les conditions décrites sont celles d'un
- * assureur (MAIF), pas des règles valables pour tous les contrats.
+ * Textes de loi relus directement sur Légifrance le 2026-09-21 (lecture de la
+ * page par un outil web, l'accès étant possible ce jour-là) :
+ * - L113-2 (en vigueur depuis le 01/04/2018) : délai de déclaration « ne peut
+ *   être inférieur à cinq jours ouvrés », « ramené à deux jours ouvrés en cas
+ *   de vol » ; déchéance opposable seulement si l'assureur établit un
+ *   préjudice, et jamais en cas fortuit ou de force majeure ;
+ * - décret 2020-1439, article R. 1271-3 : identification obligatoire à
+ *   compter du 1er janvier 2021 (cycles neufs) et du 1er juillet 2021
+ *   (cycles d'occasion).
+ * Le texte de la page est conforme à ces deux extraits.
+ *
+ * Réserves : les sites officiels SRA et ART étaient inaccessibles : ces labels
+ * ne sont décrits que tels que MAIF les cite. Les conditions décrites sont
+ * celles d'un assureur (MAIF), pas des règles valables pour tous les contrats.
  */
 
 const SRC = {
