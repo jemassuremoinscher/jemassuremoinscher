@@ -41,7 +41,7 @@ const SEOContent = () => {
             <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 transition-colors duration-250 group-hover:bg-primary/15">
               <Workflow className="w-5 h-5 text-primary" aria-hidden="true" />
             </div>
-            <h3 className="text-base md:text-[17px] lg:text-xl font-bold text-foreground mb-3 leading-tight break-words">
+            <h3 className="text-base md:text-base lg:text-xl font-bold text-foreground mb-3 leading-tight break-words">
               {t('seoContent.h3_1')}
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed flex-1">
@@ -56,7 +56,7 @@ const SEOContent = () => {
             <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center mb-4 transition-colors duration-250 group-hover:bg-accent/15">
               <Award className="w-5 h-5 text-accent" aria-hidden="true" />
             </div>
-            <h3 className="text-base md:text-[17px] lg:text-xl font-bold text-foreground mb-3 leading-tight break-words">
+            <h3 className="text-base md:text-base lg:text-xl font-bold text-foreground mb-3 leading-tight break-words">
               {t('seoContent.h3_2')}
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed flex-1">
@@ -69,7 +69,7 @@ const SEOContent = () => {
             <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 transition-colors duration-250 group-hover:bg-primary/15">
               <Layers className="w-5 h-5 text-primary" aria-hidden="true" />
             </div>
-            <h3 className="text-base md:text-[17px] lg:text-xl font-bold text-foreground mb-3 leading-tight break-words">
+            <h3 className="text-base md:text-base lg:text-xl font-bold text-foreground mb-3 leading-tight break-words">
               {t('seoContent.h3_3')}
             </h3>
             <p className="text-sm text-muted-foreground leading-relaxed flex-1">
