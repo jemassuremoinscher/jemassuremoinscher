@@ -22,10 +22,10 @@ const loadEnTranslations = async () => {
 };
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>(() => {
-    const saved = localStorage.getItem('language') as Language;
-    return saved && (saved === 'fr' || saved === 'en') ? saved : 'fr';
-  });
+  // Toujours 'fr' au premier rendu : identique au HTML prerendered/statique,
+  // pour ne pas provoquer de désaccord d'hydratation. La préférence sauvegardée
+  // n'est appliquée qu'après le montage (voir effet ci-dessous).
+  const [language, setLanguageState] = useState<Language>('fr');
   const [enLoaded, setEnLoaded] = useState(false);
 
   const setLanguage = useCallback((lang: Language) => {
@@ -43,12 +43,20 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   }, []);
 
+  // Restaure la préférence sauvegardée une fois le montage effectué (post-hydratation).
+  useEffect(() => {
+    const saved = localStorage.getItem('language') as Language | null;
+    if (saved === 'en') {
+      loadEnTranslations().then(() => {
+        setEnLoaded(true);
+        setLanguageState('en');
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     document.documentElement.lang = language;
-    // If saved language is EN, load translations on mount
-    if (language === 'en' && !enTranslations) {
-      loadEnTranslations().then(() => setEnLoaded(true));
-    }
   }, [language]);
 
   const t = useCallback((key: string, vars?: Record<string, string | number>): string => {

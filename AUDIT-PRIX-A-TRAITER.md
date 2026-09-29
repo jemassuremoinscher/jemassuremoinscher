@@ -62,3 +62,26 @@ Cas particulier à traiter différemment : `Blog.tsx`/`BlogArticle.tsx` ont prob
 
 - Prix des tableaux `ProductGuaranteeTable.tsx` (auto, moto, habitation, sante, pno, mrp, rc-pro, pret, prevoyance, gli, gestion-locative) : aucun n'a de commentaire "devis vérifié" (contrairement à scooter-50cc/trottinette).
 - Absence de `dateModified`/`datePublished` en JSON-LD sur les 12 grosses verticales (contrairement aux nouveaux piliers créés cette nuit).
+
+---
+
+## 9. Chantier LCP/hydratation — `hydrateRoot` testé, échec confirmé (2026-09-27)
+
+**Diagnostic de départ** : le LCP est probablement pénalisé par `createRoot` qui détruit et reconstruit tout le DOM prérendu au boot React, au lieu de le réutiliser. `hydrateRoot` éviterait cette destruction — mais toutes les pages sont chargées via `lazy()` + `<Suspense fallback={spinner}>` au niveau du routeur (`App.tsx`), sans marqueurs SSR (le "SSR" ici est un snapshot Puppeteer statique, pas un vrai rendu serveur streamé) : React ne sait pas que ce Suspense était déjà résolu, donc `hydrateRoot` risque d'afficher le spinner de fallback à la place du contenu déjà peint.
+
+**Corrections faites avant le test** (conservées, indépendamment du résultat) :
+- `LanguageContext.tsx` : l'état initial de la langue lisait `localStorage` de façon synchrone dans l'initialiseur de `useState` — désaccord garanti pour un visiteur revenant avec `language: 'en'` sauvegardé. Corrigé : état initial toujours `'fr'`, restauration de la préférence dans un `useEffect` post-montage (même pattern que `useCookieConsent`, déjà correct).
+- `DynamicGreeting.tsx`/`DynamicHeroContent.tsx` (contenu de hero variable selon `?ref=` dans l'URL) : identifié comme risque potentiel, mais **finalement du code mort** — jamais importé dans une page réelle. Rien à corriger.
+- `ContactStep` (Math.random, `MultiStepQuoteForm.tsx`) et `useCookieConsent` (bannière cookies) : vérifiés, **pas des sources de désaccord** contrairement à l'hypothèse initiale — le premier ne se monte jamais au premier rendu (`currentStep` démarre toujours à 0), le second suit déjà le bon pattern (état par défaut identique partout, vraie valeur posée en effet).
+
+**Mécanisme testé** : dans `main.tsx`, précharger le chunk JS de la route (`import("./pages/AssuranceAuto")`) et l'attendre avant d'appeler `hydrateRoot`, scopé à `/assurance-auto` uniquement (`createRoot` inchangé pour toutes les autres routes).
+
+**Résultat** : échec. Testé sur `serve dist` (voir découverte annexe ci-dessous) — console affiche des erreurs React réelles au chargement de `/assurance-auto` :
+- Erreur #418 (répétée ~7 fois) : *"Hydration failed because the initial UI does not match what was rendered on the server."*
+- Erreur #423 : *"There was an error while hydrating but React was able to recover by instead client rendering the entire root."*
+
+React récupère (contenu final correct pour l'utilisateur), mais retombe de fait sur un rendu client complet — probablement aucun gain LCP, avec en plus le coût de la tentative d'hydratation ratée et des erreurs console. **Cause exacte non identifiée** : les erreurs sont minifiées (build de prod) ; les localiser avec certitude demanderait un build React en mode dev servi sur le HTML prérendu, ou une recherche dichotomique en désactivant des sous-arbres — pas fait, sur instruction explicite d'arrêter l'investigation ici. Le gain potentiel de `hydrateRoot` reste donc **hypothétique**, pas démontré.
+
+**`main.tsx` reverté** à l'état d'origine (`createRoot` simple) — l'expérimentation n'a pas été déployée au-delà du test local.
+
+**Découverte annexe (utile pour tout futur test d'hydratation ou de prerendering)** : `vite preview` ne reproduit PAS le routing réel de production — il retombe sur `dist/index.html` (l'accueil) pour toute route sans extension, donnant l'impression trompeuse que le prerendering par route ne fonctionne pas. Vérifié sur le site en ligne (`curl https://www.jemassuremoinscher.fr/assurance-auto`, `x-vercel-cache: HIT`, titre correct) : la prod sert bien la bonne page. Pour tester localement avec un routing fidèle à la prod, utiliser `npx serve dist -l <port>` plutôt que `vite preview`.
