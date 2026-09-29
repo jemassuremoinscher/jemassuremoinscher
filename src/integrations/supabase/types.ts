@@ -608,6 +608,7 @@ export type Database = {
         Row: {
           created_at: string
           email: string | null
+          email_opt_out: boolean
           first_name: string | null
           full_name: string | null
           id: string
@@ -622,6 +623,7 @@ export type Database = {
         Insert: {
           created_at?: string
           email?: string | null
+          email_opt_out?: boolean
           first_name?: string | null
           full_name?: string | null
           id?: string
@@ -636,6 +638,7 @@ export type Database = {
         Update: {
           created_at?: string
           email?: string | null
+          email_opt_out?: boolean
           first_name?: string | null
           full_name?: string | null
           id?: string
@@ -1830,6 +1833,58 @@ export type Database = {
         }
         Relationships: []
       }
+      quote_followup_log: {
+        Row: {
+          created_at: string
+          deal_id: string
+          error_message: string | null
+          id: string
+          milestone: string
+          resend_email_id: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          deal_id: string
+          error_message?: string | null
+          id?: string
+          milestone: string
+          resend_email_id?: string | null
+          status: string
+        }
+        Update: {
+          created_at?: string
+          deal_id?: string
+          error_message?: string | null
+          id?: string
+          milestone?: string
+          resend_email_id?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quote_followup_log_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "alertes_conformite_dda"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "quote_followup_log_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "quote_followup_log_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals_dormants"
+            referencedColumns: ["deal_id"]
+          },
+        ]
+      }
       quote_funnel_events: {
         Row: {
           created_at: string
@@ -2253,6 +2308,10 @@ export type Database = {
       }
     }
     Functions: {
+      assert_template_names_exist: {
+        Args: { expected_names: string[] }
+        Returns: undefined
+      }
       build_social_short_description: {
         Args: { _content?: string; _meta?: string; _title: string }
         Returns: string
@@ -2302,6 +2361,17 @@ export type Database = {
         }[]
       }
       get_agent_current_load: { Args: { p_agent_id: string }; Returns: number }
+      get_deals_due_for_followup: {
+        Args: { p_milestone: string }
+        Returns: {
+          contact_email: string
+          contact_id: string
+          contact_name: string
+          deal_id: string
+          insurance_type: string
+          stage: string
+        }[]
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
