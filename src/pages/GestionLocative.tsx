@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -9,6 +10,7 @@ import arthurHouse from "@/assets/mascotte/arthur-house.webp?w=480&format=webp";
 import arthurFlying from "@/assets/mascotte/arthur-welcome.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
+import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
 import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -88,6 +90,27 @@ const GestionLocative = () => {
         </section>
 
         <div className="container mx-auto px-4 py-12">
+
+          <section className="max-w-4xl mx-auto mb-8 prose prose-sm md:prose-base max-w-none">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Ce que la loi <span className="text-primary">impose</span> à un gestionnaire locatif
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              La gestion locative est encadrée par la{" "}
+              <a href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000855024" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                loi Hoguet n°70-9 du 2 janvier 1970
+              </a>
+              {" "}et son décret d'application n°72-678 du 20 juillet 1972 : le mandataire doit détenir une carte professionnelle (valable 3 ans, renouvelable sous conditions de RC Pro et de garantie financière), et le mandat de gestion doit être écrit, numéroté et établi en double exemplaire, mentionnant l'identité des parties, le numéro de carte professionnelle du mandataire, sa garantie financière et sa rémunération.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mt-4">
+              La durée du mandat ne peut dépasser 30 ans (10 ans en cas de tacite reconduction), et le mandataire doit rendre compte au propriétaire de ce qu'il a encaissé et dépensé <strong>au moins une fois par an</strong> — en pratique, souvent mensuellement ou trimestriellement. L'absence de reddition de comptes est reconnue par la jurisprudence comme une faute pouvant justifier une résiliation du mandat.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mt-4">
+              Confier la gestion à un professionnel ne dispense pas des garanties propriétaire : <Link to="/assurance-pno" className="text-primary hover:underline font-medium">PNO</Link> et <Link to="/assurance-gli" className="text-primary hover:underline font-medium">GLI</Link> ne sont pas automatiquement incluses dans un mandat de gestion locative — vérifiez votre contrat avant de souscrire en double.
+            </p>
+          </section>
+
+          <ProductGuaranteeTable product="gestion-locative" />
 
           <section className="max-w-4xl mx-auto mb-12">
             <div className="grid md:grid-cols-3 gap-6">

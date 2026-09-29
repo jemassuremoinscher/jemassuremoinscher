@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -109,6 +110,9 @@ const AssuranceHabitation = () => {
                 loi n°89-462 du 6 juillet 1989
               </a>
               {" "}(loi Mermaz) impose au locataire de s'assurer contre les risques dont il doit répondre en sa qualité de locataire (incendie, explosion, dégâts des eaux). Pour un propriétaire non-locataire, ce n'est pas une obligation légale générale, mais fortement recommandé pour protéger son patrimoine.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mt-4">
+              Vous mettez ce logement en location ? La loi ALUR (article 9-1 de la loi n°65-557 du 10 juillet 1965) impose une <Link to="/assurance-pno" className="text-primary hover:underline font-medium">assurance PNO</Link> à tout copropriétaire non-occupant ; hors copropriété, elle reste fortement recommandée dès que le logement n'est plus votre résidence principale.
             </p>
           </section>
 

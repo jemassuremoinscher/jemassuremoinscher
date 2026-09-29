@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -67,6 +68,12 @@ const AssurancePNO = () => {
               loi n°2014-366 du 24 mars 2014
             </a>
             , en vigueur depuis le 1er janvier 2015) impose à chaque copropriétaire de s'assurer contre les risques de responsabilité civile dont il doit répondre en sa qualité de copropriétaire occupant ou non-occupant. Hors copropriété, ce n'est pas une obligation légale générale, mais fortement recommandé.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mt-4">
+            La PNO couvre votre responsabilité de propriétaire pendant toute la durée de la location, pas seulement les périodes de vacance locative. Si vous occupez vous-même un autre logement, une <Link to="/assurance-habitation" className="text-primary hover:underline font-medium">assurance habitation</Link> classique reste nécessaire pour votre résidence principale — ce sont deux contrats distincts.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mt-4">
+            Pour se protéger contre les loyers impayés, la PNO ne suffit pas : c'est le rôle de la <Link to="/assurance-gli" className="text-primary hover:underline font-medium">garantie loyers impayés (GLI)</Link>, une garantie distincte et complémentaire.
           </p>
         </section>
 

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -73,6 +74,9 @@ const AssuranceGLI = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed mt-4">
             La <strong>garantie Visale</strong> d'Action Logement fonctionne sur le même principe d'exclusivité : c'est une caution gratuite, couvrant jusqu'à 3 ans d'impayés et les dégradations dans la limite de 2 mois de loyer et charges. Mais son accès est <strong>restreint</strong> : elle ne concerne que les locataires de moins de 31 ans (quel que soit leur statut), les salariés de plus de 30 ans en mobilité professionnelle, ou les apprentis et étudiants en alternance. Pour tout autre profil de locataire, la GLI reste la seule option pour se protéger contre les impayés.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mt-4">
+            La GLI ne couvre pas les dommages au logement lui-même : pour cela, une <Link to="/assurance-pno" className="text-primary hover:underline font-medium">assurance PNO</Link> reste nécessaire en complément, notamment obligatoire pour un copropriétaire non-occupant.
           </p>
         </section>
 
