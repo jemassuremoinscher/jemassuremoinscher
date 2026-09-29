@@ -120,8 +120,12 @@
     // cette page, quel que soit l'état de consentement stocké.
     if (location.pathname === '/desinscription') return;
 
-    var prefs = readConsent();
-    if (!prefs) return; // pas encore de choix explicite : rien ne charge
+    // Pas de choix stocké (jamais consenti, ou consentement retiré via
+    // resetConsent) : traité comme un refus explicite des deux catégories —
+    // rien ne charge, ET on neutralise ce qui a pu être chargé avant (bug
+    // trouvé le 2026-09-29 : un simple "return" ici sautait revoke() et
+    // laissait GA4/Ads/Clarity/Meta actifs après un retrait de consentement).
+    var prefs = readConsent() || { analytics: false, marketing: false };
 
     if (prefs.analytics) loadGA4AndClarity();
     if (prefs.marketing) loadAdsAndMeta();
