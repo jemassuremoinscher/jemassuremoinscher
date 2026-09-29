@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -73,6 +74,9 @@ const AssuranceMRP = () => {
           </p>
           <p className="text-muted-foreground leading-relaxed mt-4">
             La garantie <strong>perte d'exploitation</strong>, souvent optionnelle plutôt qu'incluse de base, indemnise la baisse de marge brute lorsqu'un sinistre garanti (incendie, dégât des eaux...) contraint à réduire ou interrompre l'activité, en couvrant aussi les charges fixes (loyer, salaires, remboursements) pendant l'arrêt forcé. La durée d'indemnisation et le délai de carence ne sont pas fixés par la loi : ils varient selon le contrat et l'assureur, généralement entre plusieurs mois et jusqu'à 3 ans selon les besoins de l'entreprise.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mt-4">
+            La MRP inclut souvent une responsabilité civile d'exploitation, mais pas la RC professionnelle liée à vos prestations : c'est le rôle de la <Link to="/assurance-rc-pro" className="text-primary hover:underline font-medium">RC Pro</Link>, obligatoire pour certaines professions réglementées et recommandée pour les autres.
           </p>
         </section>
 

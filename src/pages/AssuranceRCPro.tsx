@@ -78,6 +78,9 @@ const AssuranceRCPro = () => {
           <p className="text-xs text-muted-foreground/80 mt-4">
             Pour les activités non listées ici (conseil, IT, commerce...), la RC Pro n'est généralement pas une obligation légale mais reste fortement recommandée — les tiers ou clients l'exigent souvent contractuellement.
           </p>
+          <p className="text-muted-foreground leading-relaxed mt-4">
+            La RC Pro couvre votre responsabilité si vous causez un dommage à un tiers dans l'exercice de votre activité. Elle ne protège pas vos locaux ni votre matériel professionnel : c'est le rôle de la <Link to="/assurance-mrp" className="text-primary hover:underline font-medium">MRP</Link>, à considérer dès que vous disposez d'un local (bureau, atelier, boutique).
+          </p>
         </section>
 
         <section className="max-w-4xl mx-auto mb-12"><div className="grid md:grid-cols-3 gap-6">{advantages.map((item, index) => (<Card key={index} className="p-6 text-center"><div className="flex justify-center mb-4"><div className="p-3 rounded-full bg-primary/10"><item.icon className="h-8 w-8 text-primary" /></div></div><h2 className="font-bold text-lg mb-2">{item.title}</h2><p className="text-muted-foreground text-sm">{item.description}</p></Card>))}</div></section>
