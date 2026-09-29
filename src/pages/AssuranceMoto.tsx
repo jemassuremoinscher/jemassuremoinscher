@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -109,6 +110,9 @@ const AssuranceMoto = () => {
                 article L211-1 du Code des assurances
               </a>
               {" "}couvre « tout véhicule terrestre à moteur ». Rouler sans cette couverture minimale est un délit puni d'une amende de 3 750€.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mt-4">
+              Vous avez aussi une voiture ? Comparez séparément votre <Link to="/assurance-auto" className="text-primary hover:underline font-medium">assurance auto</Link> : le profil de risque et les garanties ne sont pas les mêmes que pour un deux-roues.
             </p>
           </section>
 

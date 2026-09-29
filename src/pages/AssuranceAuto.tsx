@@ -145,6 +145,9 @@ const AssuranceAuto = () => {
             <p className="text-muted-foreground leading-relaxed mt-4">
               L'assurance <Link to="/glossaire/responsabilite-civile" className="text-primary hover:underline font-medium">responsabilité civile</Link> auto est obligatoire pour tout véhicule terrestre à moteur circulant en France (<a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048523650" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">article L211-1 du Code des assurances</a>). Rouler sans cette couverture minimale est un délit puni d'une amende de 3 750€.
             </p>
+            <p className="text-muted-foreground leading-relaxed mt-4">
+              Vous roulez aussi à moto ou en scooter ? Le profil de risque n'est pas le même : comparez votre <Link to="/assurance-moto" className="text-primary hover:underline font-medium">assurance moto</Link> séparément pour trouver le meilleur tarif sur chacun de vos véhicules.
+            </p>
             <ul className="text-sm text-muted-foreground mt-4 space-y-1.5 list-none pl-0">
               <li>✓ Connaître son CRM exact avant de demander un devis — <Link to="/outils/calculateur-bonus-malus" className="text-primary hover:underline font-medium">calculer mon bonus malus</Link></li>
               <li>✓ Comparer au moins 3 formules équivalentes (Tiers / Tiers+ / Tous Risques)</li>
