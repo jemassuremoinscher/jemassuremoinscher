@@ -85,7 +85,9 @@ export const SubscriptionModal = ({ open, onOpenChange, offerDetails }: Subscrip
 
       setIsSuccess(true);
       toast.success(t('subModal.toastSuccess'));
-      trackConversion("quote_request", offerDetails.price);
+      // Type distinct de "quote_request" : la modale d'abonnement ne doit pas
+      // déclencher le label Ads "Demande de devis" (chantier label, 2026-09-29).
+      trackConversion("subscription_selected", offerDetails.price);
       trackEvent("quote_request", {
         category: "conversion", insurer: offerDetails.insurer,
         price: offerDetails.price, insurance_type: offerDetails.insuranceType,

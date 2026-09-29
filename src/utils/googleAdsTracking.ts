@@ -1,72 +1,32 @@
 /**
- * Google Ads Conversion Tracking Utility
- * Tracks conversions for leads (quotes and callbacks) with proper value assignment
+ * Enregistrement des conversions "devis" pour le dashboard admin
+ * (GoogleAdsDashboard.tsx, table google_ads_conversions).
+ *
+ * N'envoie plus rien à Google Ads elle-même — c'est trackConversion
+ * (src/hooks/useAnalytics.ts) qui envoie l'unique conversion gtag, avec le
+ * vrai label et le garde-fou "devis/rappel uniquement". Avant le chantier du
+ * 2026-09-29, ce fichier envoyait sa propre conversion en parallèle avec un
+ * label placeholder ('XXXXXXXXX') jamais configuré : une fois le vrai label
+ * posé dans analytics.ts, les deux envois auraient doublé chaque conversion.
+ * trackGoogleAdsConversion (sans logging DB, aucun autre appelant) a été
+ * supprimée avec le reste du doublon.
  */
 
 export type ConversionType = 'quote_request' | 'callback_request';
 
-interface ConversionConfig {
-  conversionId: string;
-  conversionLabel: string;
+interface ConversionValueConfig {
   value?: number;
   currency?: string;
 }
 
-// Configuration des conversions Google Ads
-// À remplacer par vos propres IDs de conversion après configuration dans Google Ads
-const CONVERSION_CONFIGS: Record<ConversionType, ConversionConfig> = {
-  quote_request: {
-    conversionId: 'AW-972332620',
-    conversionLabel: 'XXXXXXXXX', // À configurer dans Google Ads pour "Demande de Devis"
-    value: 100, // Valeur estimée d'un devis de qualité
-    currency: 'EUR',
-  },
-  callback_request: {
-    conversionId: 'AW-972332620',
-    conversionLabel: 'XXXXXXXXX', // À configurer dans Google Ads pour "Demande de Rappel"
-    value: 50, // Valeur estimée d'une demande de rappel
-    currency: 'EUR',
-  },
+const CONVERSION_VALUES: Record<ConversionType, ConversionValueConfig> = {
+  quote_request: { value: 100, currency: 'EUR' },
+  callback_request: { value: 50, currency: 'EUR' },
 };
 
 /**
- * Track a conversion event in Google Ads
- * @param type - Type of conversion (quote_request or callback_request)
- * @param customValue - Optional custom value to override default
- */
-export const trackGoogleAdsConversion = (
-  type: ConversionType,
-  customValue?: number
-): void => {
-  if (typeof window === 'undefined' || !window.gtag) {
-    return;
-  }
-
-  const config = CONVERSION_CONFIGS[type];
-  const value = customValue ?? config.value;
-
-  try {
-    window.gtag('event', 'conversion', {
-      send_to: `${config.conversionId}/${config.conversionLabel}`,
-      value: value,
-      currency: config.currency,
-      transaction_id: generateTransactionId(),
-    });
-
-    if (import.meta.env.DEV) {
-      console.log(`Google Ads Conversion tracked: ${type}`, { value, currency: config.currency });
-    }
-  } catch (error) {
-    if (import.meta.env.DEV) {
-      console.error('Error tracking Google Ads conversion:', error);
-    }
-  }
-};
-
-/**
- * Track a conversion with additional parameters and save to database
- * @param type - Type of conversion
- * @param params - Additional tracking parameters
+ * Enregistre une conversion "devis" dans google_ads_conversions, pour le
+ * dashboard admin. N'envoie rien à Google Ads (voir trackConversion).
  */
 export const trackGoogleAdsConversionWithParams = async (
   type: ConversionType,
@@ -84,29 +44,12 @@ export const trackGoogleAdsConversionWithParams = async (
     utmTerm?: string;
   }
 ): Promise<void> => {
-  if (typeof window === 'undefined' || !window.gtag) {
-    return;
-  }
-
-  const config = CONVERSION_CONFIGS[type];
+  const config = CONVERSION_VALUES[type];
 
   try {
-    // Track in Google Ads
-    window.gtag('event', 'conversion', {
-      send_to: `${config.conversionId}/${config.conversionLabel}`,
-      value: params.value ?? config.value,
-      currency: config.currency,
-      transaction_id: generateTransactionId(),
-      // Custom parameters (will appear in Google Ads reports if configured)
-      insurance_type: params.insuranceType,
-      postal_code: params.postalCode,
-      source: params.source,
-    });
-
-    // Save to Supabase for analytics dashboard
-    // Dynamic import to avoid bundling issues
+    // Dynamic import pour éviter d'alourdir le bundle des formulaires.
     const { supabase } = await import('@/integrations/supabase/client');
-    
+
     await supabase.from('google_ads_conversions').insert({
       campaign_id: params.campaignId || params.utmCampaign || null,
       conversion_type: type,
@@ -123,56 +66,11 @@ export const trackGoogleAdsConversionWithParams = async (
     });
 
     if (import.meta.env.DEV) {
-      console.log(`Google Ads Conversion tracked with params: ${type}`, params);
+      console.log(`Google Ads conversion enregistrée (dashboard) : ${type}`, params);
     }
   } catch (error) {
     if (import.meta.env.DEV) {
-      console.error('Error tracking Google Ads conversion:', error);
+      console.error('Error logging Google Ads conversion:', error);
     }
-  }
-};
-
-/**
- * Generate a unique transaction ID for deduplication
- */
-const generateTransactionId = (): string => {
-  return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-};
-
-/**
- * Check if Google Ads tracking is properly configured
- */
-export const isGoogleAdsConfigured = (): boolean => {
-  return (
-    typeof window !== 'undefined' &&
-    typeof window.gtag === 'function' &&
-    CONVERSION_CONFIGS.quote_request.conversionId !== 'AW-XXXXXXXXX'
-  );
-};
-
-/**
- * Log configuration status (for debugging)
- */
-export const logGoogleAdsStatus = (): void => {
-  if (!import.meta.env.DEV) return;
-
-  if (typeof window === 'undefined') {
-    console.log('Google Ads: Window not available (SSR)');
-    return;
-  }
-
-  const isConfigured = isGoogleAdsConfigured();
-  const hasGtag = typeof window.gtag === 'function';
-
-  console.log('Google Ads Status:', {
-    configured: isConfigured,
-    gtagAvailable: hasGtag,
-    conversions: Object.keys(CONVERSION_CONFIGS),
-  });
-
-  if (!isConfigured) {
-    console.warn(
-      'Google Ads conversions not configured. Update CONVERSION_CONFIGS in googleAdsTracking.ts'
-    );
   }
 };

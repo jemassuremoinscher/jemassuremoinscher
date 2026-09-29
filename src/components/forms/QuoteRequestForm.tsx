@@ -184,6 +184,13 @@ export const QuoteRequestForm = () => {
         description: t('quoteForm.toastSuccessDesc'),
       });
       
+      // Seul appel qui envoie la conversion Ads elle-même : trackConversion
+      // gère le label et le garde-fou "devis/rappel uniquement" (chantier
+      // label, 2026-09-29). L'appel gtag en dur qui suivait ici dupliquait
+      // le même envoi — retiré. trackGoogleAdsConversionWithParams ci-dessous
+      // est conservé : il n'envoie plus rien à Ads (gtag retiré de la
+      // fonction), il ne fait plus qu'enregistrer la conversion dans
+      // google_ads_conversions pour le dashboard admin (GoogleAdsDashboard.tsx).
       trackConversion('quote_request', 100);
       trackEvent('quote_request', {
         category: 'lead_generation',
@@ -191,7 +198,7 @@ export const QuoteRequestForm = () => {
         coverage_level: data.coverageLevel,
         value: 100,
       });
-      
+
       const quoteData = insertedQuote?.quote_data as any;
       trackGoogleAdsConversionWithParams('quote_request', {
         value: 100,
@@ -213,16 +220,6 @@ export const QuoteRequestForm = () => {
         currency: 'EUR',
       });
 
-      // Google Ads conversion event via gtag
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', 'conversion', {
-          send_to: 'AW-972332620/8lD1CJjp5oUdEMy80s8D',
-          value: 100,
-          currency: 'EUR',
-          transaction_id: insertedQuote?.id || `${Date.now()}`,
-        });
-      }
-      
       form.reset();
       navigate('/merci');
     } catch (error) {

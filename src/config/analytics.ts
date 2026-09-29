@@ -7,9 +7,9 @@
 // Google Analytics 4 — get from: analytics.google.com > Admin > Data Streams
 export const GA4_MEASUREMENT_ID = 'G-2S9BMSWT79';
 
-// Google Ads — conversion tracking
+// Google Ads — conversion tracking ("Demande de devis" action)
 export const GOOGLE_ADS_ID = 'AW-972332620';
-export const GOOGLE_ADS_CONVERSION_LABEL = 'XXXXXXXXX'; // TODO: Create conversion actions in Google Ads to get per-action labels
+export const GOOGLE_ADS_CONVERSION_LABEL = '8lD1CJjp5oUdEMy80s8D';
 
 // Microsoft Clarity
 export const CLARITY_PROJECT_ID = 'vjn36y0aqr';

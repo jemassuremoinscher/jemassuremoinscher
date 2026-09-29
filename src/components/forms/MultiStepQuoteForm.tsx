@@ -493,6 +493,13 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       });
       toast.success(t('form.toast.successTitle'), { description: t('form.toast.successDescription') });
 
+      // Seul appel qui envoie la conversion Ads elle-même : trackConversion
+      // gère le label et le garde-fou "devis/rappel uniquement" (chantier
+      // label, 2026-09-29). L'appel gtag en dur qui suivait ici dupliquait
+      // le même envoi — retiré. trackGoogleAdsConversionWithParams ci-dessous
+      // est conservé : il n'envoie plus rien à Ads (gtag retiré de la
+      // fonction), il ne fait plus qu'enregistrer la conversion dans
+      // google_ads_conversions pour le dashboard admin (GoogleAdsDashboard.tsx).
       trackConversion('quote_request', 100);
       trackEvent('quote_request', {
         category: 'lead_generation',
@@ -523,15 +530,6 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         value: 100,
         currency: 'EUR',
       });
-
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'conversion', {
-          send_to: 'AW-972332620/8lD1CJjp5oUdEMy80s8D',
-          value: 100,
-          currency: 'EUR',
-          transaction_id: leadId,
-        });
-      }
 
       setTimeout(() => {
         navigate('/merci');

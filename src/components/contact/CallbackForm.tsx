@@ -13,7 +13,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useHoneypot } from "@/hooks/useHoneypot";
-import { trackGoogleAdsConversion } from "@/utils/googleAdsTracking";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 
@@ -52,9 +51,11 @@ export const CallbackForm = () => {
           details: { source: 'callback_form', preferredTime: data.preferredTime, message: data.message || '' }, estimatedPrice: 0 },).catch(err => console.error('Email notification error:', err));
       setIsSuccess(true);
       toast.success(t('callbackForm.successTitle'), { description: t('callbackForm.successDesc') });
+      // trackConversion envoie seule la conversion Ads (label + garde-fou
+      // "devis/rappel uniquement", chantier label 2026-09-29) ; trackGoogleAdsConversion
+      // aurait dupliqué le même envoi une fois son label corrigé — retiré.
       trackConversion('callback_request');
       trackEvent('callback_request', { category: 'lead_generation', label: data.preferredTime });
-      trackGoogleAdsConversion('callback_request');
       form.reset();
     } catch (error) {
       console.error("Error submitting callback request:", error);

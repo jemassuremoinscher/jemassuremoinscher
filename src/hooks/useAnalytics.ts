@@ -76,7 +76,16 @@ export const useAnalytics = () => {
   }, []);
 
   const trackConversion = useCallback((conversionType: string, value?: number) => {
-    if (typeof window !== 'undefined' && window.gtag && isAdsConversionConfigured()) {
+    // Le label Ads "Demande de devis" ne doit partir que pour un vrai
+    // formulaire de devis ou de rappel — pas pour la newsletter, le quiz ou
+    // la modale d'abonnement (chantier consentement/label, 2026-09-29).
+    const isQuoteOrCallback =
+      conversionType === 'quote_request' ||
+      conversionType === 'callback_request' ||
+      conversionType === 'quick_quote' ||
+      conversionType.startsWith('landing_');
+
+    if (isQuoteOrCallback && typeof window !== 'undefined' && window.gtag && isAdsConversionConfigured()) {
       window.gtag('event', 'conversion', {
         send_to: `${GOOGLE_ADS_ID}/${GOOGLE_ADS_CONVERSION_LABEL}`,
         value: value || 0,
