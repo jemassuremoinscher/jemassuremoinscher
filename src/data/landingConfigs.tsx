@@ -38,7 +38,7 @@ const baseStats = [
 const baseAdvantages = [
   { icon: CheckCircle2, title: "100% gratuit & sans engagement", description: "Aucune carte bancaire, aucun frais caché." },
   { icon: Award, title: "30+ assureurs comparés", description: "AXA, Allianz, MAIF, Matmut, Generali et bien d'autres." },
-  { icon: Phone, title: "Expert dédié — rappel sous 10 minutes", description: "Un humain, jamais un robot, pour finaliser." },
+  { icon: Phone, title: "Expert dédié — rappel rapide par un conseiller", description: "Un humain, jamais un robot, pour finaliser." },
   { icon: Lock, title: "Données protégées RGPD", description: "Site SSL, hébergement France, courtier ORIAS." },
 ];
 
@@ -49,13 +49,13 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       slug: "auto",
       trackingTitle: "Landing Page Assurance Auto",
       seoTitle: "Assurance auto moins chère | Devis gratuit en 2 min avec Arthur",
-      seoDescription: "Compare 70+ assureurs auto avec Arthur en 2 minutes. Service gratuit, sans engagement, courtier indépendant ORIAS. Rappel d'un expert sous 10 minutes.",
+      seoDescription: "Compare 70+ assureurs auto avec Arthur en 2 minutes. Service gratuit, sans engagement, courtier indépendant ORIAS. Rappel rapide par un conseiller.",
       seoKeyword: "assurance auto moins chère",
       seoKeywords: "devis assurance auto, comparateur assurance voiture, assurance auto pas chère",
       // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-auto (cannibalisation),
       // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
       noindex: true,
-      topBarText: "Devis gratuit en 2 minutes — un expert te rappelle sous 10 minutes",
+      topBarText: "Devis gratuit en 2 minutes — rappel rapide par un conseiller",
       badgeText: "Comparateur indépendant ORIAS",
       heroTitle: "Ton assurance auto,",
       heroHighlight: "comparée en 2 minutes",
@@ -80,23 +80,23 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       faqs: [
         { question: "Comment Arthur compare-t-il les assurances auto ?", answer: "Tu remplis le formulaire en 2 minutes avec ton véhicule et ton profil. Arthur interroge en temps réel les 70+ assureurs partenaires et te présente les meilleures offres adaptées à ton profil." },
         { question: "Combien puis-je économiser ?", answer: "Cela dépend de ton profil et de ton contrat actuel. Un conseiller compare ta situation à celle de nos 70+ assureurs partenaires pour identifier une économie réelle, sans engagement." },
-        { question: "Le service est-il vraiment gratuit ?", answer: "Oui, 100 % gratuit et sans engagement. Aucune carte bancaire demandée. Un conseiller te rappelle sous 10 minutes pour t'accompagner si tu le souhaites." },
+        { question: "Le service est-il vraiment gratuit ?", answer: "Oui, 100 % gratuit et sans engagement. Aucune carte bancaire demandée. Un conseiller te rappelle rapidement, en général dans l'heure aux heures d'ouverture, pour t'accompagner si tu le souhaites." },
         { question: "Puis-je changer d'assurance à tout moment ?", answer: "Oui, dès la première année grâce à la loi Hamon. Nous nous occupons gratuitement de la résiliation de ton ancien contrat." },
       ],
       bottomCtaTitle: "Prêt à comparer ton assurance auto ?",
-      bottomCtaDescription: "Devis gratuit en 2 minutes — un expert te rappelle sous 10 minutes.",
+      bottomCtaDescription: "Devis gratuit en 2 minutes — rappel rapide par un conseiller.",
     },
     en: {
       slug: "auto",
       trackingTitle: "Landing Page Car Insurance",
       seoTitle: "Cheaper car insurance | Free quote in 2 min with Arthur",
-      seoDescription: "Compare 70+ car insurers with Arthur in 2 minutes. Free, no commitment, independent ORIAS-registered broker. Expert callback within 10 minutes.",
+      seoDescription: "Compare 70+ car insurers with Arthur in 2 minutes. Free, no commitment, independent ORIAS-registered broker. Quick callback from an advisor.",
       seoKeyword: "cheaper car insurance",
       seoKeywords: "car insurance quote, car insurance comparison, cheap car insurance France",
       // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-auto (cannibalisation),
       // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
       noindex: true,
-      topBarText: "Free quote in 2 minutes — an expert calls you back within 10 minutes",
+      topBarText: "Free quote in 2 minutes — quick callback from an advisor",
       badgeText: "Independent ORIAS broker",
       heroTitle: "Your car insurance,",
       heroHighlight: "compared in 2 minutes",
@@ -126,11 +126,11 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       faqs: [
         { question: "How does Arthur compare car insurance?", answer: "You fill in the 2-minute form with your vehicle and profile. Arthur queries the 70+ partner insurers in real time and shows you the best offers for your profile." },
         { question: "How much can I save?", answer: "It depends on your profile and current contract. On average, our users save up to 40% by putting the 70+ partner insurers in competition." },
-        { question: "Is the service really free?", answer: "Yes, 100% free and no commitment. No credit card required. An advisor calls you back within 10 minutes to help if you'd like." },
+        { question: "Is the service really free?", answer: "Yes, 100% free and no commitment. No credit card required. An advisor calls you back quickly, usually within the hour during business hours, to help if you'd like." },
         { question: "Can I switch insurance anytime?", answer: "Yes, after the first year thanks to the Hamon law. We handle the cancellation of your previous contract for free." },
       ],
       bottomCtaTitle: "Ready to compare your car insurance?",
-      bottomCtaDescription: "Free quote in 2 minutes — an expert calls you back within 10 minutes.",
+      bottomCtaDescription: "Free quote in 2 minutes — quick callback from an advisor.",
     },
   },
 
@@ -138,16 +138,16 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     slug: "moto",
     trackingTitle: "Landing Page Assurance Moto",
     seoTitle: "Assurance Moto Moins Chère | Devis Gratuit",
-    seoDescription: "Comparez les assurances moto en 2 min. Économisez jusqu'à 40 %. Rappel expert sous 10 minutes.",
+    seoDescription: "Comparez les assurances moto en 2 min. Rappel rapide par un conseiller.",
     seoKeyword: "assurance moto moins chère",
     seoKeywords: "devis assurance moto, comparateur moto, assurance scooter",
     // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-moto (cannibalisation),
     // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
     noindex: true,
-    topBarText: "🏍️ Offre Moto : -35 % la 1ère année + assistance 0 km offerte",
+    topBarText: "🏍️ Offre Moto : assistance 0 km offerte",
     badgeText: "Spécialiste 2-roues",
     heroTitle: "Assurance moto",
-    heroHighlight: "jusqu'à -400 €/an",
+    heroHighlight: "comparée en 2 minutes",
     heroSubtitle: <>Tous types de cylindrées — du 50 cm³ au gros cube. Devis personnalisé en 2 minutes.</>,
     mascotSrc: arthurMoto,
     mascotAlt: "Arthur en moto — comparateur assurance 2-roues",
@@ -157,18 +157,13 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     stats: [
       { icon: Bike, value: "8k+", label: "Motards" },
       trustReviewStat,
-      { icon: TrendingDown, value: "-400 €", label: "Économie moy." },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
-    testimonials: [
-      { name: "Julien L.", location: "Bordeaux", text: "Assurance moto 380 € moins chère, avec assistance 0 km incluse. Que demander de plus ?" },
-      { name: "Sandra M.", location: "Lille", text: "Permis A2, pas évident à assurer. Ils m'ont trouvé une formule adaptée et abordable." },
-      { name: "Karim B.", location: "Nice", text: "Changement de moto, contrat refait en 24 h, prime divisée par 2." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Quelles motos puis-je assurer ?", answer: "Toutes : 50 cm³, scooters, A2, A, gros cube, custom et trail." },
-      { question: "Est-ce moins cher qu'en agence ?", answer: "Oui — la mise en concurrence de 30+ assureurs réduit la prime de 25 à 40 % en moyenne." },
+      { question: "Est-ce moins cher qu'en agence ?", answer: "La mise en concurrence de 30+ assureurs permet souvent de trouver un tarif plus avantageux." },
       { question: "Puis-je résilier à tout moment ?", answer: "Oui, dès la 1ère année grâce à la loi Hamon. Nous nous occupons de la résiliation." },
     ],
     bottomCtaTitle: "Trouvez la meilleure assurance moto",
@@ -595,7 +590,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoKeyword: "assurance parc accrobranche",
     seoKeywords: "assurance tyrolienne, assurance loisirs aventure, RC parc aventure, norme EN 15567",
     noindex: true,
-    topBarText: "🌲 Spécialiste loisirs aventure — 20 assureurs de niche, rappel sous 10 minutes",
+    topBarText: "🌲 Spécialiste loisirs aventure — 20 assureurs de niche, rappel rapide par un conseiller",
     badgeText: "Métiers atypiques",
     heroTitle: "Assurance Parc",
     heroHighlight: "Accrobranche & Aventure",
@@ -624,11 +619,11 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     ],
     faqs: [
       { question: "Pourquoi un courtier spécialisé ?", answer: "Les généralistes refusent les activités classées risques aggravés. Nous travaillons avec 20 assureurs de niche (Hiscox, Albingia, MMA Pro Sport, Generali Évolution…)." },
-      { question: "Combien de temps pour une attestation ?", answer: "Rappel sous 10 minutes, attestation 48 à 72 h après dossier complet (Kbis, dernier bilan, descriptif activité)." },
+      { question: "Combien de temps pour une attestation ?", answer: "Rappel rapide par un conseiller, attestation 48 à 72 h après dossier complet (Kbis, dernier bilan, descriptif activité)." },
       { question: "Mes animateurs sont-ils couverts ?", answer: "RC exploitation oui ; pour leur santé personnelle souscrivez en plus AT/MP et garantie individuelle accident." },
     ],
     bottomCtaTitle: "Sécurisez votre parc dès aujourd'hui",
-    bottomCtaDescription: "Étude gratuite et personnalisée — rappel sous 10 minutes par un courtier expert.",
+    bottomCtaDescription: "Étude gratuite et personnalisée — rappel rapide par un courtier expert.",
   },
 
   "cordiste-btp": {
@@ -639,7 +634,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     seoKeyword: "assurance cordiste",
     seoKeywords: "assurance travaux en hauteur, RC pro cordiste, assurance BTP spécialisé, IRATA",
     noindex: true,
-    topBarText: "⛏️ Cordistes & BTP en hauteur — 20 assureurs spécialisés, rappel sous 10 minutes",
+    topBarText: "⛏️ Cordistes & BTP en hauteur — 20 assureurs spécialisés, rappel rapide par un conseiller",
     badgeText: "Métiers atypiques",
     heroTitle: "Assurance",
     heroHighlight: "Cordiste & BTP en hauteur",
@@ -672,7 +667,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Faut-il une certification IRATA ?", answer: "Pas obligatoire pour souscrire mais elle réduit fortement la prime — démontre votre maîtrise du risque." },
     ],
     bottomCtaTitle: "Travaillez en hauteur en toute sécurité",
-    bottomCtaDescription: "Étude personnalisée — rappel sous 10 minutes par un courtier spécialisé risques aggravés.",
+    bottomCtaDescription: "Étude personnalisée — rappel rapide par un courtier spécialisé risques aggravés.",
   },
 
   evenementiel: {
@@ -1246,7 +1241,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // Désindexée le 2026-09-21 : cannibalise /assurance-decennale (seoKeyword "garantie décennale" quasi identique à celui du pilier ("assurance décennale")),
     // même traitement que les configs velo et trottinette.
     noindex: true,
-    topBarText: "🏗️ Décennale BTP — attestation immédiate, rappel sous 10 min",
+    topBarText: "🏗️ Décennale BTP — attestation immédiate, rappel rapide par un conseiller",
     badgeText: "Obligatoire BTP",
     heroTitle: "Garantie Décennale",
     heroHighlight: "obligatoire BTP",
@@ -1279,7 +1274,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Combien coûte une décennale ?", answer: "Entre 600€ et 3 000€/an selon activité, CA et antécédents. Comparer permet d'économiser 20 à 40%." },
     ],
     bottomCtaTitle: "Lancez votre activité BTP sereinement",
-    bottomCtaDescription: "Attestation décennale conforme — rappel sous 10 minutes par un expert BTP.",
+    bottomCtaDescription: "Attestation décennale conforme — rappel rapide par un expert BTP.",
   },
 
   "flotte-auto": {
@@ -1325,7 +1320,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Qui peut conduire ?", answer: "Tout salarié titulaire du permis adapté. Conducteurs non nommément déclarés, gain administratif important." },
     ],
     bottomCtaTitle: "Optimisez votre flotte de véhicules",
-    bottomCtaDescription: "Étude personnalisée — rappel sous 10 minutes par un expert flottes.",
+    bottomCtaDescription: "Étude personnalisée — rappel rapide par un expert flottes.",
   },
 
   "mutuelle-entreprise": {
@@ -1371,7 +1366,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Quelles dispenses possibles ?", answer: "Salariés couverts par mutuelle conjoint, CDD courts, apprentis sous conditions : dispenses prévues par la loi." },
     ],
     bottomCtaTitle: "Mettez votre entreprise en conformité",
-    bottomCtaDescription: "Étude personnalisée — rappel sous 10 minutes par un expert mutuelle collective.",
+    bottomCtaDescription: "Étude personnalisée — rappel rapide par un expert mutuelle collective.",
   },
 
   cyber: {
@@ -1417,7 +1412,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Et le RGPD ?", answer: "Couverture des frais de notification CNIL, des amendes (selon limites légales) et des actions clients post-incident." },
     ],
     bottomCtaTitle: "Anticipez la cyberattaque",
-    bottomCtaDescription: "Étude personnalisée — rappel sous 10 minutes par un expert cyber.",
+    bottomCtaDescription: "Étude personnalisée — rappel rapide par un expert cyber.",
   },
 
   // ────────────────────────────── Particuliers — nouvelles verticales ──────────────────────────────
@@ -1464,7 +1459,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Mon malus auto compte-t-il ?", answer: "Non, la VSP utilise un coefficient propre. Idéal en cas de retrait de permis ou de malus important." },
     ],
     bottomCtaTitle: "Roulez sans permis, assurés",
-    bottomCtaDescription: "Devis VSP gratuit — rappel sous 10 minutes par un expert.",
+    bottomCtaDescription: "Devis VSP gratuit — rappel rapide par un expert.",
   },
 
   "camping-car": {
@@ -1510,7 +1505,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Peut-on rouler hors Europe ?", answer: "Oui, certaines extensions couvrent Maroc, Tunisie, voire Balkans. À préciser à la souscription." },
     ],
     bottomCtaTitle: "Prenez la route en toute liberté",
-    bottomCtaDescription: "Devis camping-car gratuit — rappel sous 10 minutes par un expert loisirs.",
+    bottomCtaDescription: "Devis camping-car gratuit — rappel rapide par un expert loisirs.",
   },
 
   velo: {
@@ -1562,7 +1557,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Et si je n'ai pas la facture ?", answer: "Une photo, un certificat de marquage Bicycode ou un témoignage peut suffire — à vérifier au cas par cas." },
     ],
     bottomCtaTitle: "Roulez serein sur votre vélo",
-    bottomCtaDescription: "Devis vélo & VAE gratuit — rappel sous 10 minutes par un expert mobilité.",
+    bottomCtaDescription: "Devis vélo & VAE gratuit — rappel rapide par un expert mobilité.",
   },
 
   "protection-juridique": {
@@ -1608,7 +1603,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Puis-je choisir mon avocat ?", answer: "Oui, libre choix garanti par la loi. L'assureur peut proposer un avocat partenaire (souvent moins cher pour vous)." },
     ],
     bottomCtaTitle: "Défendez vos droits sans avancer",
-    bottomCtaDescription: "Devis protection juridique gratuit — rappel sous 10 minutes par un expert.",
+    bottomCtaDescription: "Devis protection juridique gratuit — rappel rapide par un expert.",
   },
 
   "auto-temporaire": {
@@ -1703,7 +1698,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Faut-il un antivol homologué pour la garantie vol ?", answer: "Oui, la plupart des assureurs imposent un antivol agréé FUB ou Sold Secure Gold, fixé à un point fixe. Conservez la facture de l'antivol." },
     ],
     bottomCtaTitle: "Roulez en règle dès aujourd'hui",
-    bottomCtaDescription: "Devis trottinette gratuit — attestation immédiate, rappel sous 10 minutes par un expert mobilité.",
+    bottomCtaDescription: "Devis trottinette gratuit — attestation immédiate, rappel rapide par un expert mobilité.",
   },
 };
 

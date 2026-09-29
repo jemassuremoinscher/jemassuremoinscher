@@ -47,12 +47,12 @@ const AssuranceMetiersAtypiques = () => {
     {
       question: "Combien coûte une RC pro pour un métier atypique ?",
       answer:
-        "Aucun prix instantané n'est fiable : la prime dépend du chiffre d'affaires, du nombre d'encadrants, des certifications et de l'historique sinistre. C'est pourquoi nous vous rappelons sous 10 minutes avec une estimation argumentée. À titre indicatif 2026 : exploitant accrobranche 2 800–6 500 €/an, moniteur escalade indépendant 280–1 100 €/an, organisateur festival 5 000 personnes 1 800–4 200 € pour l'événement, cordiste 1 200–2 800 €/an. Notre intervention divise généralement la facture par 2 versus une souscription en direct.",
+        "Aucun prix instantané n'est fiable : la prime dépend du chiffre d'affaires, du nombre d'encadrants, des certifications et de l'historique sinistre. C'est pourquoi nous vous rappelons rapidement, en général dans l'heure aux heures d'ouverture, avec une estimation argumentée. À titre indicatif 2026 : exploitant accrobranche 2 800–6 500 €/an, moniteur escalade indépendant 280–1 100 €/an, organisateur festival 5 000 personnes 1 800–4 200 € pour l'événement, cordiste 1 200–2 800 €/an. Notre intervention divise généralement la facture par 2 versus une souscription en direct.",
     },
     {
       question: "Quel est le délai pour obtenir une attestation ?",
       answer:
-        "Rappel sous 10 minutes après votre demande, puis attestation 48 à 72 h après réception du dossier complet (Kbis, dernier bilan, descriptif d'activité, sinistralité 5 ans). Pour un événement ponctuel avec date imminente, nous activons une procédure express sous 10 minutes.",
+        "Rappel rapide par un conseiller après votre demande, puis attestation 48 à 72 h après réception du dossier complet (Kbis, dernier bilan, descriptif d'activité, sinistralité 5 ans). Pour un événement ponctuel avec date imminente, nous activons une procédure express.",
     },
     {
       question: "Le BCT peut-il m'imposer un assureur ?",
@@ -86,7 +86,7 @@ const AssuranceMetiersAtypiques = () => {
   const insuranceProductSchema = addInsuranceProductSchema({
     name: "Assurance Métiers Atypiques",
     description:
-      "Courtier spécialisé activités à risques aggravés : accrobranche, sports outdoor, événementiel, BTP spécialisé. Mise en concurrence de 20 assureurs de niche. Rappel sous 10 minutes.",
+      "Courtier spécialisé activités à risques aggravés : accrobranche, sports outdoor, événementiel, BTP spécialisé. Mise en concurrence de 20 assureurs de niche. Rappel rapide par un conseiller.",
     category: "RC Pro spécialisée — Métiers atypiques",
     url: "https://www.jemassuremoinscher.fr/assurance-metiers-atypiques",
   });
@@ -99,8 +99,8 @@ const AssuranceMetiersAtypiques = () => {
     },
     {
       icon: Clock,
-      title: "Rappel & devis sous 10 minutes",
-      description: "Un courtier dédié vous rappelle sous 5 minutes avec une étude personnalisée et 2 à 3 propositions argumentées.",
+      title: "Rappel rapide, devis personnalisé",
+      description: "Un courtier dédié vous rappelle rapidement avec une étude personnalisée et 2 à 3 propositions argumentées.",
     },
     {
       icon: Shield,
@@ -176,7 +176,7 @@ const AssuranceMetiersAtypiques = () => {
                 imageAlt="Arthur grimpeur — expert en assurances de métiers atypiques"
                 title="Assurance Métiers Atypiques : couvrir l'inassurable, c'est notre métier"
                 subtitle="Accrobranche, sports outdoor, événementiel, cordistes, métiers à risques aggravés… Nos courtiers négocient avec les 20 assureurs spécialisés du marché français pour vous trouver une couverture sur-mesure."
-                savingsHighlight="Rappel sous 10 minutes, 0 refus"
+                savingsHighlight="Rappel rapide, 0 refus"
                 ctaLabel="Obtenir mon devis sur-mesure"
                 onCtaClick={scrollToForm}
                 savingsValue="20+"
@@ -288,7 +288,7 @@ const AssuranceMetiersAtypiques = () => {
               {[
                 { step: "1", title: "Questionnaire détaillé activité", desc: "9 questions ciblées sur votre activité, vos certifications, votre fréquentation et votre sinistralité — pour un dossier solide dès le départ." },
                 { step: "2", title: "Mise en concurrence 20 assureurs", desc: "Nous sollicitons uniquement les assureurs spécialisés ayant un appétit pour votre secteur — pas de refus inutiles." },
-                { step: "3", title: "Rappel & propositions sous 10 minutes", desc: "Un courtier dédié vous rappelle sous 5 minutes avec 2 à 3 propositions argumentées. Souscription et attestation immédiate à la signature." },
+                { step: "3", title: "Rappel & propositions rapides", desc: "Un courtier dédié vous rappelle rapidement avec 2 à 3 propositions argumentées. Souscription et attestation immédiate à la signature." },
               ].map((s) => (
                 <Card key={s.step} className="p-6">
                   <div className="text-5xl font-bold text-primary/20 mb-3">{s.step}</div>
@@ -380,8 +380,8 @@ const AssuranceMetiersAtypiques = () => {
           <InsuranceBottomHub
             currentPage="rcpro"
             ctaTitle="Votre activité mérite une couverture sur-mesure"
-            ctaDescription="Demande de rappel gratuite et sans engagement. Un courtier dédié vous rappelle sous 5 minutes avec une étude personnalisée et 2 à 3 propositions argumentées."
-            ctaButtonLabel="Demander mon rappel sous 10 minutes"
+            ctaDescription="Demande de rappel gratuite et sans engagement. Un courtier dédié vous rappelle rapidement avec une étude personnalisée et 2 à 3 propositions argumentées."
+            ctaButtonLabel="Demander mon rappel"
             ctaMascotSrc={arthurBtp}
             ctaMascotAlt="Arthur — Métiers Atypiques"
             onCtaClick={scrollToForm}
