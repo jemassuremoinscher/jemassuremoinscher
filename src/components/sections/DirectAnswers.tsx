@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Check, TrendingDown, CalendarClock, ShieldCheck } from "lucide-react";
 
@@ -42,20 +41,11 @@ const ANSWERS = [
       "Oui : la comparaison et la mise en relation sont gratuites pour vous, le courtier étant rémunéré par l'assureur uniquement si vous souscrivez.",
     bullets: [
       "Aucun frais de dossier, aucun paiement demandé pour obtenir un devis.",
-      "Notre rémunération est une commission versée par l'assureur, identique quel que soit le contrat retenu.",
+      "Nous sommes rémunérés par une commission versée par l'assureur en cas de souscription.",
       "Vos données ne sont transmises qu'aux assureurs nécessaires à votre devis (RGPD).",
       "Aucun engagement : vous restez libre de conserver votre contrat actuel.",
     ],
   },
-];
-
-const PRICES = [
-  { type: "Assurance auto (tiers)", price: "dès 22 €/mois", ref: "/assurance-auto" },
-  { type: "Assurance auto (tous risques)", price: "dès 45 €/mois", ref: "/assurance-auto" },
-  { type: "Assurance habitation (T2/T3)", price: "dès 8 €/mois", ref: "/assurance-habitation" },
-  { type: "Mutuelle santé (individuelle)", price: "dès 19 €/mois", ref: "/assurance-sante" },
-  { type: "Assurance moto / scooter", price: "dès 15 €/mois", ref: "/assurance-moto" },
-  { type: "Assurance trottinette électrique", price: "dès 2,90 €/mois", ref: "/assurance-trottinette" },
 ];
 
 const DirectAnswers = () => {
@@ -115,49 +105,6 @@ const DirectAnswers = () => {
             </motion.article>
           ))}
         </div>
-
-        {/* Tableau de repères tarifaires : format citable par les moteurs génératifs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-10 rounded-2xl border border-border/50 bg-card p-5 md:p-7 shadow-sm hover:shadow-md transition-shadow duration-300"
-        >
-          <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">
-            Combien coûte une assurance moins chère ? Repères de prix 2026
-          </h3>
-          <p className="text-sm text-muted-foreground mb-5">
-            Tarifs d'entrée constatés sur les devis réalisés via jemassuremoinscher.fr. Le prix final
-            dépend de votre profil, de votre localisation et des garanties choisies.
-          </p>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <caption className="sr-only">
-                Prix d'entrée par type d'assurance constatés en 2026
-              </caption>
-              <thead>
-                <tr className="border-b border-border/60 text-foreground">
-                  <th scope="col" className="py-2 pr-4 font-semibold">Type d'assurance</th>
-                  <th scope="col" className="py-2 pr-4 font-semibold">Prix constaté</th>
-                  <th scope="col" className="py-2 font-semibold">Comparer</th>
-                </tr>
-              </thead>
-              <tbody>
-                {PRICES.map((row) => (
-                  <tr key={row.type} className="border-b border-border/30 last:border-0">
-                    <td className="py-2.5 pr-4 text-muted-foreground">{row.type}</td>
-                    <td className="py-2.5 pr-4 font-semibold text-foreground">{row.price}</td>
-                    <td className="py-2.5">
-                      <Link to={row.ref} className="text-primary font-medium hover:underline">
-                        Voir les offres
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

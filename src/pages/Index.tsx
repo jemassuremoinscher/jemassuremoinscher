@@ -7,8 +7,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import DeferredRender from "@/components/performance/DeferredRender";
 import MdReveal from "@/components/motion/MdReveal";
 import { addOrganizationSchema, addServiceSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
-import geoContent from "@/data/geo-content.json";
 import { CONTENT_LAST_REVIEWED } from "@/config/contentReview";
+import { NB_ASSUREURS, NB_ASSUREURS_LABEL } from "@/config/site";
 
 // Lazy load below-the-fold sections
 
@@ -17,7 +17,6 @@ const TrustRow = lazy(() => import("@/components/sections/TrustRow"));
 const WhyUsComparison = lazy(() => import("@/components/comparison/WhyUsComparison"));
 const HowItWorks = lazy(() => import("@/components/sections/HowItWorks"));
 const SEOFaq = lazy(() => import("@/components/sections/SEOFaq"));
-const ClientCases = lazy(() => import("@/components/sections/ClientCases"));
 const GuidesSection = lazy(() => import("@/components/sections/GuidesSection"));
 const SEOContent = lazy(() => import("@/components/sections/SEOContent"));
 const ContextualHelp = lazy(() => import("@/components/sections/ContextualHelp"));
@@ -31,13 +30,10 @@ const LeadMagnetSection = lazy(() => import("@/components/sections/LeadMagnetSec
 const Index = () => {
   const { t } = useLanguage();
   const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }]);
-  const organizationSchema = addOrganizationSchema(
-    geoContent.trust.ratingValue,
-    geoContent.trust.reviewCount
-  );
+  const organizationSchema = addOrganizationSchema();
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances Moins Chères en Ligne",
-    description: "Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez 70+ assureurs : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.",
+    description: `Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.`,
     provider: "jemassuremoinscher.fr",
     areaServed: "France"
   });
@@ -48,7 +44,7 @@ const Index = () => {
     "name": "jemassuremoinscher.fr",
     "url": "https://www.jemassuremoinscher.fr",
     "logo": "https://www.jemassuremoinscher.fr/logo.png",
-    "description": "Courtier en assurances en ligne. Comparez gratuitement les offres de 70 assureurs partenaires et trouvez un contrat plus avantageux.",
+    "description": `Courtier en assurances en ligne. Comparez gratuitement les offres de ${NB_ASSUREURS} assureurs et courtiers partenaires et trouvez un contrat plus avantageux.`,
     "areaServed": {
       "@type": "Country",
       "name": "France"
@@ -63,7 +59,7 @@ const Index = () => {
     "name": "jemassuremoinscher.fr",
     "alternateName": "Je M'Assure Moins Cher",
     "url": "https://www.jemassuremoinscher.fr",
-    "description": "Comparateur d'assurances gratuit. Comparez 70+ assureurs et trouvez l'assurance moins chère en 2 minutes.",
+    "description": `Comparateur d'assurances gratuit. Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers et trouvez l'assurance moins chère en 2 minutes.`,
     "inLanguage": ["fr", "en"],
     "potentialAction": {
       "@type": "SearchAction",
@@ -92,7 +88,7 @@ const Index = () => {
         "name": "Combien puis-je économiser?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Cela dépend de votre profil et de votre contrat actuel. Un conseiller compare votre situation à celle de nos 70+ assureurs partenaires pour identifier une économie réelle, sans engagement."
+          "text": `Cela dépend de votre profil et de votre contrat actuel. Un conseiller compare votre situation à celle de nos ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires pour identifier une économie réelle, sans engagement.`
         }
       },
       {
@@ -116,7 +112,7 @@ const Index = () => {
         "name": "Quels assureurs comparez-vous?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Plus de 70 assureurs partenaires: AXA, Allianz, MAIF, Generali, MMA, Matmut, Groupama, Gan, MACIF et autres."
+          "text": `${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires : AXA, Allianz, MAIF, Generali, MMA, Matmut, Groupama, Gan, MACIF et autres.`
         }
       },
       {
@@ -166,7 +162,7 @@ const Index = () => {
     "@context": "https://schema.org",
     "@type": "HowTo",
     "name": "Comment trouver une assurance moins chère en 3 étapes",
-    "description": "Méthode en 3 étapes pour comparer plus de 70 assureurs et réduire le prix de son assurance en moins de 2 minutes.",
+    "description": `Méthode en 3 étapes pour comparer ${NB_ASSUREURS_LABEL} assureurs et courtiers et réduire le prix de son assurance en moins de 2 minutes.`,
     "totalTime": "PT2M",
     "estimatedCost": { "@type": "MonetaryAmount", "currency": "EUR", "value": "0" },
     "step": [
@@ -181,7 +177,7 @@ const Index = () => {
         "@type": "HowToStep",
         "position": 2,
         "name": "Comparez les offres",
-        "text": "Nous interrogeons plus de 70 assureurs partenaires et 2 500 agences locales à garanties équivalentes pour identifier les écarts de prix réels.",
+        "text": `Nous interrogeons ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires à garanties équivalentes pour identifier les écarts de prix réels.`,
         "url": "https://www.jemassuremoinscher.fr/comparateur"
       },
       {
@@ -222,7 +218,7 @@ const Index = () => {
     "@type": "LocalBusiness",
     "name": "jemassuremoinscher.fr",
     "url": "https://www.jemassuremoinscher.fr",
-    "description": "Comparateur d'assurances gratuit. Comparez 70+ assureurs (auto, habitation, santé, animaux) et trouvez une offre plus avantageuse.",
+    "description": `Comparateur d'assurances gratuit. Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers (auto, habitation, santé, animaux) et trouvez une offre plus avantageuse.`,
     "areaServed": "FR",
     "sameAs": "https://www.instagram.com/jemassuremoinscher"
   };
@@ -233,8 +229,8 @@ const Index = () => {
         title={t("seo.home.title")}
         description={t("seo.home.description")}
         ogTitle="Comparateur Assurance Moins Chère"
-        ogDescription="Comparez 70 assureurs gratuitement et trouvez une offre plus avantageuse."
-        twitterDescription="Trouvez l'assurance la moins chère en 2 minutes avec notre comparateur gratuit. Comparez 70 assureurs partenaires (AXA, Allianz, MAIF, Groupama…) et trouvez un contrat plus avantageux. Sans engagement."
+        ogDescription={`Comparez ${NB_ASSUREURS} assureurs et courtiers gratuitement et trouvez une offre plus avantageuse.`}
+        twitterDescription={`Trouvez l'assurance la moins chère en 2 minutes avec notre comparateur gratuit. Comparez ${NB_ASSUREURS} assureurs et courtiers partenaires (AXA, Allianz, MAIF, Groupama…) et trouvez un contrat plus avantageux. Sans engagement.`}
         keyword="assurance moins chère"
         keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
         canonical="https://www.jemassuremoinscher.fr"
@@ -280,12 +276,6 @@ const Index = () => {
               <ExpertiseEEAT />
               <SEOFaq />
             </MdReveal>
-          </Suspense>
-        </DeferredRender>
-
-        <DeferredRender minHeight={300}>
-          <Suspense fallback={<div aria-hidden="true" className="min-h-[400px]" />}>
-            <MdReveal variant="scale"><ClientCases /></MdReveal>
           </Suspense>
         </DeferredRender>
 
@@ -335,7 +325,7 @@ const Index = () => {
           <li><Link to="/blog">Blog assurance - Conseils pour changer d'assurance</Link></li>
           <li><Link to="/glossaire">Glossaire de l'assurance</Link></li>
           <li><Link to="/qui-sommes-nous">À propos de jemassuremoinscher.fr - Comparateur d'assurances</Link></li>
-          <li><Link to="/nos-partenaires">Nos 70+ partenaires assureurs</Link></li>
+          <li><Link to="/nos-partenaires">Nos {NB_ASSUREURS_LABEL} partenaires assureurs</Link></li>
           <li><Link to="/avis-clients">Avis clients - Comparateur d'assurances moins chères</Link></li>
           <li><Link to="/contact">Contactez notre équipe</Link></li>
         </ul>

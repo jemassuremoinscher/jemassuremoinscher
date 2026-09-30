@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { BadgeCheck, BookOpen, Users, Scale } from "lucide-react";
 import { CONTENT_LAST_REVIEWED } from "@/config/contentReview";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 
 /**
  * Bloc E-E-A-T : Experience, Expertise, Authoritativeness, Trustworthiness.
@@ -16,7 +17,6 @@ const PILLARS = [
       "Une équipe de conseillers en assurance basée à Nice, qui traite chaque jour des demandes réelles : auto malussée, jeune conducteur, mutuelle senior, RC pro, PNO et GLI.",
     bullets: [
       "Accompagnement humain par téléphone, pas seulement un formulaire",
-      "Plus de 247 avis clients vérifiés (4,9/5) sur notre fiche Google",
       "Rappel rapide par un conseiller après une demande de devis",
     ],
   },
@@ -27,8 +27,7 @@ const PILLARS = [
       "jemassuremoinscher.fr est édité par ARPV, courtier en assurances (immatriculé ORIAS n° 26011100), soumis au Code des assurances et au contrôle de l'ACPR.",
     bullets: [
       "Rémunération par commission de l'assureur, jamais par le client",
-      "Aucun classement payant : les offres sont triées par pertinence tarifaire",
-      "Données traitées conformément au RGPD, hébergement en France",
+      <>Vos données sont traitées selon notre <Link to="/politique-confidentialite" className="underline hover:text-foreground">politique de confidentialité</Link></>,
     ],
   },
   {
@@ -39,14 +38,13 @@ const PILLARS = [
     bullets: [
       "Légifrance (lois Hamon, Chatel, Lemoine, Code des assurances)",
       "France Assureurs et ACPR pour les statistiques de marché",
-      "Nos devis internes 2026 pour les prix constatés",
     ],
   },
   {
     icon: BadgeCheck,
     title: "Notre méthode de comparaison",
     body:
-      "Nous interrogeons plus de 70 assureurs partenaires et 2 500 agences locales à garanties comparables, puis nous présentons les écarts réels.",
+      `Nous interrogeons ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires à garanties comparables, puis nous présentons les écarts réels.`,
     bullets: [
       "Comparaison à garanties équivalentes, franchise incluse",
       "L'économie potentielle dépend du profil et du contrat précédent",
@@ -90,8 +88,8 @@ const ExpertiseEEAT = () => {
               <h3 className="text-lg font-bold text-foreground mb-2">{p.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed mb-3">{p.body}</p>
               <ul className="space-y-1.5">
-                {p.bullets.map((b) => (
-                  <li key={b} className="text-sm text-muted-foreground leading-relaxed pl-4 relative">
+                {p.bullets.map((b, i) => (
+                  <li key={i} className="text-sm text-muted-foreground leading-relaxed pl-4 relative">
                     <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
                     {b}
                   </li>

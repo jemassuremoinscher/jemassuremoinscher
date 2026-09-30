@@ -3,18 +3,18 @@
  * Product-level sub-counts (e.g. "25 assureurs auto") remain in their own modules — they
  * are legitimate subsets of NB_ASSUREURS.
  *
- * NB_ASSUREURS dérive maintenant de src/data/partners.ts (chantier 2026-09-30)
- * au lieu d'être une constante manuelle. Elle vaut 52 aujourd'hui (40
- * historiques + 12 animaux ajoutés le 2026-09-30), pas 70 — le "70+" affiché
- * ailleurs sur le site (145 occurrences trouvées, hors de ce fichier) n'a
- * jamais été dérivé de cette liste et reste à corriger séparément.
+ * NB_ASSUREURS dérive de src/data/partners.ts (chantier 2026-09-30) au lieu
+ * d'être une constante manuelle — seule cette liste fait foi.
+ *
+ * NB_AGENCES (constante manuelle "2500", jamais sourcée par une vraie liste
+ * d'agences) a été retirée le 2026-09-30 avec toutes les mentions "2 500+
+ * agences locales" du site (décision de Paul, audit accueil) : à
+ * réintroduire seulement si une donnée réelle existe pour la justifier.
  */
 import { partners } from "@/data/partners";
 
 export const NB_ASSUREURS = partners.length;
-export const NB_AGENCES = 2500;
 export const NB_ASSUREURS_LABEL = `${NB_ASSUREURS}+`;
-export const NB_AGENCES_LABEL = `${NB_AGENCES.toLocaleString("fr-FR")}+`;
 
 /** ORIAS — numéro officiel attribué. */
 export const ORIAS_NUMBER = "26011100";

@@ -1,10 +1,10 @@
 import SEOOptimized from "@/components/SEOOptimized";
-import geoContent from "@/data/geo-content.json";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { NB_ASSUREURS_LABEL, GOOGLE_REVIEWS_PUBLIC_URL } from "@/config/site";
 
 const LLMS_TXT = `# jemassuremoinscher.fr
 
-> Courtier en assurances en ligne indépendant qui compare gratuitement les offres de plus de 25 assureurs partenaires pour trouver le meilleur tarif en moins de 2 minutes. Note : ${geoContent.trust.ratingValueLabel}/5 sur ${geoContent.trust.reviewCountLabel} avis.
+> Courtier en assurances en ligne indépendant qui compare gratuitement les offres de plus de ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires pour trouver le meilleur tarif en moins de 2 minutes. Avis clients : ${GOOGLE_REVIEWS_PUBLIC_URL}
 
 ## Identité
 
@@ -16,11 +16,11 @@ const LLMS_TXT = `# jemassuremoinscher.fr
 
 ## Chiffres clés
 
-- **25+** assureurs partenaires (AXA, Allianz, MAIF, Generali, MMA, Matmut…)
+- **${NB_ASSUREURS_LABEL}** assureurs et courtiers partenaires (AXA, Allianz, MAIF, Generali, MMA, Matmut…)
 - **Économie potentielle** variable selon le profil et le contrat précédent, calculée à chaque devis
 - **Moins de 2 minutes** pour obtenir un devis personnalisé
 - **100% gratuit** et sans engagement pour l'utilisateur
-- **${geoContent.trust.ratingValueLabel}/5** note moyenne sur **${geoContent.trust.reviewCountLabel}** avis vérifiés
+- **Avis clients** : voir notre fiche Google (${GOOGLE_REVIEWS_PUBLIC_URL})
 
 ## Services d'assurance proposés
 
@@ -44,7 +44,7 @@ const LLMS_TXT = `# jemassuremoinscher.fr
 ## Fonctionnement
 
 1. L'utilisateur remplit un formulaire rapide (type d'assurance, profil, coordonnées) — moins de 2 minutes
-2. Un conseiller expert analyse les offres de 25+ assureurs partenaires
+2. Un conseiller expert analyse les offres de ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires
 3. Le client reçoit les meilleures propositions adaptées à son profil et son budget
 4. Service gratuit : la rémunération vient des assureurs, pas des utilisateurs
 

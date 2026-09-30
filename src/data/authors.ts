@@ -1,3 +1,5 @@
+import { NB_ASSUREURS_LABEL } from "@/config/site";
+
 export interface Author {
   id: string;
   name: string;
@@ -38,8 +40,7 @@ export const authors: Record<string, Author> = {
     credentials: [
       "Édité par ARPV, courtier en assurances (immatriculé ORIAS n° 26011100)",
       "Soumis au Code des assurances et au contrôle de l'ACPR",
-      "Plus de 70 assureurs partenaires interrogés à garanties comparables",
-      "Plus de 247 avis clients vérifiés",
+      `${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires interrogés à garanties comparables`,
     ],
     registrationId: "ORIAS n° 26011100",
     specialties: ["Toutes assurances", "Comparaison", "Conseil personnalisé"],

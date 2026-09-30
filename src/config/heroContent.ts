@@ -9,6 +9,8 @@
  * la homepage (override runtime côté React).
  */
 
+import { NB_ASSUREURS_LABEL } from "@/config/site";
+
 export const heroContent = {
   /** Slogan principal — affiché dans le <h1> du Hero (2 lignes sur desktop/tablette) */
   slogan: {
@@ -31,13 +33,13 @@ export const heroContent = {
   seo: {
     title: "Comparez votre assurance en 2 minutes | Devis gratuit",
     description:
-      "Comparez votre assurance avec Arthur. 70+ assureurs et 2 500+ agences locales en 2 minutes. Gratuit, sans engagement.",
+      `Comparez votre assurance avec Arthur. ${NB_ASSUREURS_LABEL} assureurs et courtiers en 2 minutes. Gratuit, sans engagement.`,
     ogTitle: "Comparez votre assurance avec Arthur",
     ogDescription:
-      "70+ assureurs et 2 500+ agences locales comparés en 2 minutes avec Arthur. Devis gratuit, sans engagement.",
+      `${NB_ASSUREURS_LABEL} assureurs et courtiers comparés en 2 minutes avec Arthur. Devis gratuit, sans engagement.`,
     twitterTitle: "Comparez votre assurance | Devis en 2 min",
     twitterDescription:
-      "Avec Arthur, comparez 70+ assureurs et 2 500+ agences locales (auto, santé, habitation) en 2 minutes.",
+      `Avec Arthur, comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers (auto, santé, habitation) en 2 minutes.`,
   },
 } as const;
 

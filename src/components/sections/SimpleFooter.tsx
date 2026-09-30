@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Instagram, Linkedin, Facebook, Lock, ShieldCheck, Shield, BadgeCheck } from "lucide-react";
+import { Instagram, Linkedin, Facebook, ShieldCheck } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-sprint-coin.webp";
 import CrossSiteLinks from '@/components/CrossSiteLinks';
@@ -141,20 +141,8 @@ const SimpleFooter = () => {
             {/* Trust badges */}
             <div className="flex flex-wrap items-center justify-center gap-4">
               <div className="flex items-center gap-1.5 text-primary-foreground/50">
-                <Lock className="h-3 w-3 text-accent" aria-hidden="true" />
-                <span className="text-[10px] font-medium">Paiement sécurisé</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-primary-foreground/50">
                 <ShieldCheck className="h-3 w-3 text-accent" aria-hidden="true" />
                 <span className="text-[10px] font-medium">Site sécurisé SSL</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-primary-foreground/50">
-                <Shield className="h-3 w-3 text-accent" aria-hidden="true" />
-                <span className="text-[10px] font-medium">RGPD conforme</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-primary-foreground/50">
-                <BadgeCheck className="h-3 w-3 text-accent" aria-hidden="true" />
-                <span className="text-[10px] font-medium">ORIAS vérifié</span>
               </div>
             </div>
 
