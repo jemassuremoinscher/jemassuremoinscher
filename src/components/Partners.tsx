@@ -2,47 +2,7 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 import Autoplay from "embla-carousel-autoplay";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-import aCommeAssureLogo from "@/assets/logos/a-comme-assure.png";
-import abeilleLogo from "@/assets/logos/abeille.webp";
-import acheelLogo from "@/assets/logos/acheel.webp";
-import agfLogo from "@/assets/logos/agf.webp";
-import alanLogo from "@/assets/logos/alan-new.webp";
-import allianzLogo from "@/assets/logos/allianz.webp";
-import amaguizLogo from "@/assets/logos/amaguiz.webp";
-import amvLogo from "@/assets/logos/amv.webp";
-import animauxSanteLogo from "@/assets/logos/animaux-sante.png";
-import aonLogo from "@/assets/logos/aon.webp";
-import aprilLogo from "@/assets/logos/april-new.webp";
-import aprilMotoLogo from "@/assets/logos/april-moto.png";
-import assu2000Logo from "@/assets/logos/assu-2000.png";
-import assurpeopleLogo from "@/assets/logos/assurpeople.png";
-import axaLogo from "@/assets/logos/axa.webp";
-import bulleBleueLogo from "@/assets/logos/bulle-bleue.png";
-import cardifLogo from "@/assets/logos/cardif.png";
-import directAssuranceLogo from "@/assets/logos/direct-assurance-new.webp";
-import fidanimoLogo from "@/assets/logos/fidanimo.png";
-import ganLogo from "@/assets/logos/gan.svg";
-import generaliLogo from "@/assets/logos/generali-new.webp";
-import gmfLogo from "@/assets/logos/gmf-new.webp";
-import goodflairLogo from "@/assets/logos/goodflair.png";
-import leocareLogo from "@/assets/logos/leocare.webp";
-import lolivierLogo from "@/assets/logos/lolivier.webp";
-import maafLogo from "@/assets/logos/maaf.webp";
-import macifLogo from "@/assets/logos/macif-new.webp";
-import maifLogo from "@/assets/logos/maif.webp";
-import matmutLogo from "@/assets/logos/matmut-new.webp";
-import maxanceLogo from "@/assets/logos/maxance.webp";
-import milaLogo from "@/assets/logos/mila.webp";
-import mmaLogo from "@/assets/logos/mma-new.webp";
-import mpaLogo from "@/assets/logos/mpa.webp";
-import neoLogo from "@/assets/logos/neo.webp";
-import omerosLogo from "@/assets/logos/omeros.png";
-import ornikarLogo from "@/assets/logos/ornikar.webp";
-import santevetLogo from "@/assets/logos/santevet.png";
-import sollyAzarLogo from "@/assets/logos/solly-azar.png";
-import swissLifeLogo from "@/assets/logos/swisslife.webp";
-import wilovLogo from "@/assets/logos/wilov.webp";
+import { partners } from "@/data/partners";
 
 // Per-logo scale adjustments for readability (within the fixed block)
 const logoScaleMap: Record<string, string> = {
@@ -52,49 +12,6 @@ const logoScaleMap: Record<string, string> = {
   "Matmut": "scale-110",
   "Amaguiz": "scale-105",
 };
-
-const partners = [
-  { name: "A comme Assure", logo: aCommeAssureLogo },
-  { name: "Abeille Assurances", logo: abeilleLogo },
-  { name: "Acheel", logo: acheelLogo },
-  { name: "AGF", logo: agfLogo },
-  { name: "Alan", logo: alanLogo },
-  { name: "Allianz", logo: allianzLogo },
-  { name: "Amaguiz", logo: amaguizLogo },
-  { name: "AMV", logo: amvLogo },
-  { name: "Animaux Santé", logo: animauxSanteLogo },
-  { name: "AON", logo: aonLogo },
-  { name: "April", logo: aprilLogo },
-  { name: "April Moto", logo: aprilMotoLogo },
-  { name: "Assu 2000", logo: assu2000Logo },
-  { name: "Assurpeople", logo: assurpeopleLogo },
-  { name: "AXA", logo: axaLogo },
-  { name: "Bulle Bleue", logo: bulleBleueLogo },
-  { name: "Cardif", logo: cardifLogo },
-  { name: "Direct Assurance", logo: directAssuranceLogo },
-  { name: "Fidanimo", logo: fidanimoLogo },
-  { name: "GAN", logo: ganLogo },
-  { name: "Generali", logo: generaliLogo },
-  { name: "GMF", logo: gmfLogo },
-  { name: "Goodflair", logo: goodflairLogo },
-  { name: "Leocare", logo: leocareLogo },
-  { name: "L'Olivier Assurance", logo: lolivierLogo },
-  { name: "MAAF", logo: maafLogo },
-  { name: "MACIF", logo: macifLogo },
-  { name: "MAIF", logo: maifLogo },
-  { name: "Matmut", logo: matmutLogo },
-  { name: "Maxance", logo: maxanceLogo },
-  { name: "Mila", logo: milaLogo },
-  { name: "MMA", logo: mmaLogo },
-  { name: "Mutuelle de Poitiers", logo: mpaLogo },
-  { name: "Neo Assurances", logo: neoLogo },
-  { name: "Omeros", logo: omerosLogo },
-  { name: "Ornikar", logo: ornikarLogo },
-  { name: "Santevet", logo: santevetLogo },
-  { name: "Solly Azar", logo: sollyAzarLogo },
-  { name: "SwissLife", logo: swissLifeLogo },
-  { name: "Wilov", logo: wilovLogo },
-];
 
 const Partners = () => {
   const { t } = useLanguage();
@@ -117,7 +34,11 @@ const Partners = () => {
             {partners.map((partner, index) => (
               <CarouselItem key={index} className="pl-4 basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 xl:basis-[12.5%]">
                 <button type="button" className="flex items-center justify-center p-3 bg-card rounded-xl border-2 border-border hover:border-primary/30 hover-lift transition-all duration-300 group h-20 w-full cursor-pointer" onClick={() => trackEvent('partner_click', { category: 'engagement', partner_name: partner.name, label: 'partner_logo' })} aria-label={`Voir le partenaire ${partner.name}`}>
-                  <img src={partner.logo} alt={`Logo ${partner.name}`} className={`h-10 max-w-[80px] w-auto object-contain transition-transform ${logoScaleMap[partner.name] || ''}`} width={100} height={40} loading="lazy" decoding="async" />
+                  {partner.logo && partner.autorisationLogo ? (
+                    <img src={partner.logo} alt={`Logo ${partner.name}`} className={`h-10 max-w-[80px] w-auto object-contain transition-transform ${logoScaleMap[partner.name] || ''}`} width={100} height={40} loading="lazy" decoding="async" />
+                  ) : (
+                    <span className="text-xs font-semibold text-foreground text-center leading-tight px-1">{partner.name}</span>
+                  )}
                 </button>
               </CarouselItem>
             ))}

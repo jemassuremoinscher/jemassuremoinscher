@@ -2,8 +2,16 @@
  * Single source of truth for global, marketing-wide numbers displayed across the site.
  * Product-level sub-counts (e.g. "25 assureurs auto") remain in their own modules — they
  * are legitimate subsets of NB_ASSUREURS.
+ *
+ * NB_ASSUREURS dérive maintenant de src/data/partners.ts (chantier 2026-09-30)
+ * au lieu d'être une constante manuelle. Elle vaut 52 aujourd'hui (40
+ * historiques + 12 animaux ajoutés le 2026-09-30), pas 70 — le "70+" affiché
+ * ailleurs sur le site (145 occurrences trouvées, hors de ce fichier) n'a
+ * jamais été dérivé de cette liste et reste à corriger séparément.
  */
-export const NB_ASSUREURS = 70;
+import { partners } from "@/data/partners";
+
+export const NB_ASSUREURS = partners.length;
 export const NB_AGENCES = 2500;
 export const NB_ASSUREURS_LABEL = `${NB_ASSUREURS}+`;
 export const NB_AGENCES_LABEL = `${NB_AGENCES.toLocaleString("fr-FR")}+`;
