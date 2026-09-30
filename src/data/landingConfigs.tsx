@@ -1,7 +1,7 @@
 import {
-  Car, Bike, Home, Heart, PiggyBank, ShieldCheck, Building2, Briefcase, KeyRound, Wallet,
-  PawPrint, HeartPulse, Trees, HardHat, PartyPopper, Mountain,
-  Users, TrendingDown, Clock, Star, Award, CheckCircle2, Phone, Sparkles, Lock, Shield, FileCheck,
+  Car, Bike, Home, Heart, ShieldCheck, Building2, Briefcase, Wallet,
+  HeartPulse, HardHat, PartyPopper,
+  Users, TrendingDown, Clock, Award, CheckCircle2, Phone, Sparkles, Lock, Shield, FileCheck,
 } from "lucide-react";
 import type { AdsLandingProps } from "@/components/landing/AdsLandingTemplate";
 import { TROTTINETTE_RC_PRICE_MONTHLY, NB_ASSUREURS_LABEL } from "@/config/site";
@@ -27,16 +27,9 @@ import arthurBike from "@/assets/mascotte/arthur-bike.png";
 import arthurScoot from "@/assets/mascotte/arthur-scoot.png?w=480&format=webp";
 const trustReviewStat = { icon: ShieldCheck, value: "ORIAS", label: "n° 26011100 · courtier indépendant" };
 
-const baseStats = [
-  { icon: Users, value: "6k", label: "Clients accompagnés" },
-  { icon: Star, value: "5/5", label: "Avis vérifiés" },
-  { icon: TrendingDown, value: "Jusqu'à -40%", label: "Économies moy." },
-  { icon: Clock, value: "2 min", label: "Pour le devis" },
-];
-
 const baseAdvantages = [
   { icon: CheckCircle2, title: "100% gratuit & sans engagement", description: "Aucune carte bancaire, aucun frais caché." },
-  { icon: Award, title: "30+ assureurs comparés", description: "AXA, Allianz, MAIF, Matmut, Generali et bien d'autres." },
+  { icon: Award, title: `${NB_ASSUREURS_LABEL} assureurs et courtiers comparés`, description: "AXA, Allianz, MAIF, Matmut, Generali et bien d'autres." },
   { icon: Phone, title: "Expert dédié — rappel rapide par un conseiller", description: "Un humain, jamais un robot, pour finaliser." },
   { icon: Lock, title: "Données protégées RGPD", description: "Site SSL, hébergement France, courtier ORIAS." },
 ];
@@ -67,7 +60,6 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       // trustReviewStat retiré ici : badgeText affiche déjà "Comparateur
       // indépendant ORIAS" juste au-dessus du hero — pas de doublon.
       stats: [
-        { icon: Car, value: "50+", label: "Assureurs comparés" },
         { icon: Clock, value: "2 min", label: "Pour ton devis" },
       ],
       advantages: [
@@ -100,7 +92,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       badgeText: "Independent ORIAS broker",
       heroTitle: "Your car insurance,",
       heroHighlight: "compared in 2 minutes",
-      heroSubtitle: <>Arthur compares <strong className="text-primary">{NB_ASSUREURS_LABEL} partner insurers</strong> and finds the best rate, without compromising on cover.</>,
+      heroSubtitle: <>Arthur compares <strong className="text-primary">{NB_ASSUREURS_LABEL} partner insurers and brokers</strong> and finds the best rate, without compromising on cover.</>,
       mascotSrc: arthurCar,
       mascotAlt: "Arthur driving — car insurance comparator jemassuremoinscher.fr",
       speechText: `Hi! I'll compare ${NB_ASSUREURS_LABEL} car insurers for you in 2 minutes.`,
@@ -109,8 +101,6 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       // "Verified reviews" retiré : badgeText affiche déjà "Independent
       // ORIAS broker" juste au-dessus du hero — pas de doublon.
       stats: [
-        { icon: Car, value: "50+", label: "Insurers compared" },
-        { icon: Users, value: "2,500", label: "Local agencies" },
         { icon: Clock, value: "2 min", label: "For your quote" },
       ],
       advantages: [
@@ -121,8 +111,8 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       ],
       testimonials: [],
       faqs: [
-        { question: "How does Arthur compare car insurance?", answer: `You fill in the 2-minute form with your vehicle and profile. Arthur queries the ${NB_ASSUREURS_LABEL} partner insurers in real time and shows you the best offers for your profile.` },
-        { question: "How much can I save?", answer: `It depends on your profile and current contract. On average, our users save up to 40% by putting the ${NB_ASSUREURS_LABEL} partner insurers in competition.` },
+        { question: "How does Arthur compare car insurance?", answer: `You fill in the 2-minute form with your vehicle and profile. Arthur queries the ${NB_ASSUREURS_LABEL} partner insurers and brokers in real time and shows you the best offers for your profile.` },
+        { question: "How much can I save?", answer: `It depends on your profile and current contract. An advisor compares your situation with the ${NB_ASSUREURS_LABEL} partner insurers and brokers to find real savings, with no commitment.` },
         { question: "Is the service really free?", answer: "Yes, 100% free and no commitment. No credit card required. An advisor calls you back quickly, usually within the hour during business hours, to help if you'd like." },
         { question: "Can I switch insurance anytime?", answer: "Yes, after the first year thanks to the Hamon law. We handle the cancellation of your previous contract for free." },
       ],
@@ -148,11 +138,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     heroSubtitle: <>Tous types de cylindrées — du 50 cm³ au gros cube. Devis personnalisé en 2 minutes.</>,
     mascotSrc: arthurMoto,
     mascotAlt: "Arthur en moto — comparateur assurance 2-roues",
-    speechText: "Roulez serein : 30+ assureurs moto comparés en 2 minutes !",
+    speechText: "Roulez serein : assureurs moto comparés en 2 minutes !",
     insuranceType: "moto",
     insuranceLabel: "Assurance Moto",
     stats: [
-      { icon: Bike, value: "8k+", label: "Motards" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
@@ -160,27 +149,27 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     testimonials: [],
     faqs: [
       { question: "Quelles motos puis-je assurer ?", answer: "Toutes : 50 cm³, scooters, A2, A, gros cube, custom et trail." },
-      { question: "Est-ce moins cher qu'en agence ?", answer: "La mise en concurrence de 30+ assureurs permet souvent de trouver un tarif plus avantageux." },
+      { question: "Est-ce moins cher qu'en agence ?", answer: "La mise en concurrence de plusieurs assureurs permet souvent de trouver un tarif plus avantageux." },
       { question: "Puis-je résilier à tout moment ?", answer: "Oui, dès la 1ère année grâce à la loi Hamon. Nous nous occupons de la résiliation." },
     ],
     bottomCtaTitle: "Trouvez la meilleure assurance moto",
-    bottomCtaDescription: "Comparez 30+ assureurs spécialistes 2-roues — devis en 2 min.",
+    bottomCtaDescription: "Comparez des assureurs spécialistes 2-roues — devis en 2 min.",
   },
 
   habitation: {
     slug: "habitation",
     trackingTitle: "Landing Page Assurance Habitation",
     seoTitle: "Assurance Habitation Moins Chère | Devis Gratuit",
-    seoDescription: "Comparez les assurances habitation en 2 min. Locataire ou propriétaire. Économisez jusqu'à 35 %.",
+    seoDescription: "Comparez les assurances habitation en 2 min. Locataire ou propriétaire.",
     seoKeyword: "assurance habitation moins chère",
     seoKeywords: "devis assurance habitation, MRH locataire, MRH propriétaire",
     // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-habitation (cannibalisation),
     // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
     noindex: true,
-    topBarText: "🏠 Offre Habitation : jusqu'à 2 mois offerts + dégâts des eaux inclus",
+    topBarText: "🏠 Assurance habitation : locataire ou propriétaire, devis en 2 minutes",
     badgeText: "Locataires & Propriétaires",
     heroTitle: "Assurance habitation",
-    heroHighlight: "dès 6 €/mois",
+    heroHighlight: "au juste prix",
     heroSubtitle: <>Studio, appartement ou maison — couverture complète, prix imbattable.</>,
     mascotSrc: arthurHouse,
     mascotAlt: "Arthur devant sa maison — comparateur assurance habitation",
@@ -188,9 +177,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "habitation",
     insuranceLabel: "Assurance Habitation",
     stats: [
-      { icon: Home, value: "22k+", label: "Logements assurés" },
       trustReviewStat,
-      { icon: TrendingDown, value: "-35 %", label: "Économie moy." },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
@@ -208,16 +195,16 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     slug: "sante",
     trackingTitle: "Landing Page Mutuelle Santé",
     seoTitle: "Mutuelle Santé Moins Chère | Devis Gratuit en 2 min",
-    seoDescription: "Comparez 25+ mutuelles santé. Économisez jusqu'à 50 %. Sans questionnaire médical.",
+    seoDescription: "Comparez les mutuelles santé. Sans questionnaire médical.",
     seoKeyword: "mutuelle santé moins chère",
     seoKeywords: "devis mutuelle, comparateur mutuelle santé, complémentaire santé",
     // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-sante (cannibalisation),
     // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
     noindex: true,
-    topBarText: "❤️ Offre Mutuelle : 1 mois offert + sans questionnaire médical",
+    topBarText: "❤️ Mutuelle santé : sans questionnaire médical",
     badgeText: "Sans questionnaire médical",
     heroTitle: "Mutuelle santé",
-    heroHighlight: "dès 9,90 €/mois",
+    heroHighlight: "adaptée à votre budget",
     heroSubtitle: <>Soins, optique, dentaire, hospitalisation. Couverture renforcée pour toute la famille.</>,
     mascotSrc: arthurSick,
     mascotAlt: "Arthur en blouse — comparateur mutuelle santé",
@@ -225,9 +212,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "sante",
     insuranceLabel: "Mutuelle Santé",
     stats: [
-      { icon: HeartPulse, value: "30k+", label: "Adhérents" },
       trustReviewStat,
-      { icon: TrendingDown, value: "-50 %", label: "Économie moy." },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
@@ -247,16 +232,16 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // "-60 %" retiré du seoTitle uniquement (non sourcé), même logique que
     // gli/animaux ci-dessus — corps de page hors périmètre de cette demande.
     seoTitle: "Assurance Emprunteur | Loi Lemoine 2026",
-    seoDescription: "Économisez jusqu'à 15 000 € sur l'assurance de votre prêt grâce à la loi Lemoine. Devis gratuit.",
+    seoDescription: "Changez d'assurance de prêt à tout moment grâce à la loi Lemoine. Devis gratuit.",
     seoKeyword: "assurance emprunteur moins chère",
     seoKeywords: "loi Lemoine, délégation assurance emprunteur, ADE",
     // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-pret (cannibalisation),
     // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
     noindex: true,
-    topBarText: "💰 Loi Lemoine : changez d'assurance emprunteur à tout moment, économisez jusqu'à 15 000 €",
+    topBarText: "💰 Loi Lemoine : changez d'assurance emprunteur à tout moment",
     badgeText: "Loi Lemoine 2026",
     heroTitle: "Assurance prêt immobilier",
-    heroHighlight: "jusqu'à 15 000 € d'économies",
+    heroHighlight: "sans attendre l'échéance",
     heroSubtitle: <>La loi Lemoine vous permet de changer d'assurance emprunteur à tout moment. Profitez-en.</>,
     mascotSrc: arthurThinking,
     mascotAlt: "Arthur calcule — assurance emprunteur",
@@ -264,9 +249,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "pret",
     insuranceLabel: "Assurance Emprunteur",
     stats: [
-      { icon: Wallet, value: "15 000 €", label: "Économies max" },
       trustReviewStat,
-      { icon: TrendingDown, value: "-60 %", label: "Sur la prime" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
@@ -276,7 +259,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Ma banque peut-elle refuser ?", answer: "Non, si les garanties sont équivalentes elle est tenue d'accepter (équivalence des garanties)." },
       { question: "En combien de temps c'est effectif ?", answer: "Comptez 2 à 4 semaines entre la souscription et la prise d'effet du nouveau contrat." },
     ],
-    bottomCtaTitle: "Récupérez jusqu'à 15 000 € sur votre prêt",
+    bottomCtaTitle: "Réduisez le coût de votre assurance de prêt",
     bottomCtaDescription: "Profitez de la loi Lemoine — devis personnalisé en 2 min.",
   },
 
@@ -290,7 +273,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-vie (cannibalisation),
     // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
     noindex: true,
-    topBarText: "💼 Offre Vie : 0 € de frais d'entrée sur nos contrats partenaires",
+    topBarText: "💼 Assurance vie : comparez frais et supports",
     badgeText: "Sans frais d'entrée",
     heroTitle: "Assurance vie",
     heroHighlight: "sans frais d'entrée",
@@ -301,9 +284,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "vie",
     insuranceLabel: "Assurance Vie",
     stats: [
-      { icon: PiggyBank, value: "5k+", label: "Épargnants" },
       trustReviewStat,
-      { icon: TrendingDown, value: "0 €", label: "Frais d'entrée" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
@@ -327,7 +308,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-prevoyance (cannibalisation),
     // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
     noindex: true,
-    topBarText: "🛡️ Offre Prévoyance : 1er mois offert + sans franchise les 90 premiers jours",
+    topBarText: "🛡️ Prévoyance : arrêt de travail, invalidité, décès",
     badgeText: "Maintien de revenus garanti",
     heroTitle: "Prévoyance",
     heroHighlight: "adaptée à votre profil",
@@ -338,9 +319,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "prevoyance",
     insuranceLabel: "Prévoyance",
     stats: [
-      { icon: Shield, value: "100 %", label: "Maintien salaire" },
       trustReviewStat,
-      { icon: TrendingDown, value: "-30 %", label: "Vs marché" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
@@ -377,9 +356,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "animaux",
     insuranceLabel: "Assurance Animaux",
     stats: [
-      { icon: PawPrint, value: "12k+", label: "Animaux assurés" },
       trustReviewStat,
-      { icon: TrendingDown, value: "100 %", label: "Remboursement" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
@@ -390,7 +367,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Combien suis-je remboursé ?", answer: "Selon la formule choisie : de 60 à 100 % des frais vétérinaires, dans la limite du plafond annuel." },
     ],
     bottomCtaTitle: "Protégez la santé de votre compagnon",
-    bottomCtaDescription: "Devis personnalisé en 2 min — comparez 10+ assureurs.",
+    bottomCtaDescription: "Devis personnalisé en 2 min — comparez les assureurs spécialisés.",
   },
 
   // ────────────────────────────── Pros ──────────────────────────────
@@ -404,7 +381,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-rc-pro (cannibalisation),
     // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
     noindex: true,
-    topBarText: "💼 Offre RC Pro : 1er mois offert + attestation immédiate",
+    topBarText: "💼 RC Pro : attestation immédiate",
     badgeText: "Tous métiers",
     heroTitle: "Responsabilité Civile Pro",
     heroHighlight: "adaptée à votre métier",
@@ -415,7 +392,6 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "rc_pro",
     insuranceLabel: "RC Pro",
     stats: [
-      { icon: Briefcase, value: "8k+", label: "Pros assurés" },
       trustReviewStat,
       { icon: FileCheck, value: "Immédiat", label: "Attestation" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
@@ -441,7 +417,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-mrp (cannibalisation),
     // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
     noindex: true,
-    topBarText: "🏢 Offre MRP : -25 % la 1ère année + perte d'exploitation incluse",
+    topBarText: "🏢 Multirisque pro : locaux, matériel, perte d'exploitation",
     badgeText: "Locaux & Matériel",
     heroTitle: "Multirisque Pro",
     heroHighlight: "protection complète",
@@ -452,9 +428,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "mrp",
     insuranceLabel: "Assurance MRP",
     stats: [
-      { icon: Building2, value: "3k+", label: "Entreprises" },
       trustReviewStat,
-      { icon: TrendingDown, value: "-25 %", label: "Économie moy." },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
@@ -483,20 +457,18 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // page_meta_overrides en base (confirmé par Paul) qui peut écraser ce
     // titre en production — à vérifier séparément.
     noindex: true,
-    topBarText: "🔑 Offre GLI : à partir de 2,5 % du loyer + frais juridiques inclus",
+    topBarText: "🔑 GLI : loyers impayés, dégradations, frais juridiques",
     badgeText: "Bailleurs particuliers",
     heroTitle: "Garantie Loyers Impayés",
-    heroHighlight: "dès 2,5 % du loyer",
-    heroSubtitle: <>Loyers impayés, dégradations, frais de procédure : votre revenu locatif sécurisé à 100 %.</>,
+    heroHighlight: "pour bailleurs",
+    heroSubtitle: <>Loyers impayés, dégradations, frais de procédure : votre revenu locatif sécurisé.</>,
     mascotSrc: arthurThumbsUp,
     mascotAlt: "Arthur pouce levé — GLI bailleur",
-    speechText: "Loyers impayés ? Plus jamais. Je vous protège à 100 % !",
+    speechText: "Loyers impayés ? Je vous aide à vous protéger !",
     insuranceType: "gli",
     insuranceLabel: "GLI",
     stats: [
-      { icon: KeyRound, value: "2,5 %", label: "Du loyer" },
       trustReviewStat,
-      { icon: ShieldCheck, value: "100 %", label: "Loyers couverts" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
@@ -531,9 +503,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "pno",
     insuranceLabel: "Assurance PNO",
     stats: [
-      { icon: Home, value: "5k+", label: "Bailleurs" },
       trustReviewStat,
-      { icon: TrendingDown, value: "-30 %", label: "Vs marché" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
@@ -544,7 +514,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Doublonne-t-elle avec l'assurance du locataire ?", answer: "Non — la PNO couvre les vacances locatives et les sinistres non couverts par votre locataire." },
     ],
     bottomCtaTitle: "Protégez votre bien locatif",
-    bottomCtaDescription: "PNO dès 80 €/an — attestation immédiate pour votre syndic.",
+    bottomCtaDescription: "PNO — attestation immédiate pour votre syndic.",
   },
 
   // ────────────────────────────── Métiers atypiques ──────────────────────────────
@@ -567,10 +537,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "metiers_atypiques",
     insuranceLabel: "Parc Accrobranche",
     stats: [
-      { icon: Trees, value: "180+", label: "Exploitants" },
       { icon: Award, value: "EN 15567", label: "Norme respectée" },
-      { icon: Users, value: "20", label: "Assureurs de niche" },
-      { icon: Clock, value: "30 min", label: "Rappel garanti" },
     ],
     advantages: [
       { icon: ShieldCheck, title: "RC exploitant complète", description: "Dommages corporels et matériels causés aux grimpeurs (chutes, blocages tyrolienne, défaut équipement)." },
@@ -607,10 +574,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "metiers_atypiques",
     insuranceLabel: "Cordiste & BTP",
     stats: [
-      { icon: HardHat, value: "120+", label: "Cordistes assurés" },
       { icon: Award, value: "IRATA", label: "Certification reconnue" },
-      { icon: Users, value: "20", label: "Assureurs de niche" },
-      { icon: Clock, value: "30 min", label: "Rappel garanti" },
     ],
     advantages: [
       { icon: ShieldCheck, title: "RC pro adaptée", description: "Couverture des dommages causés aux tiers pendant vos interventions en hauteur." },
@@ -620,7 +584,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     ],
     testimonials: [],
     faqs: [
-      { question: "Pourquoi mon assureur généraliste refuse-t-il ?", answer: "Les travaux en hauteur sont classés risque aggravé : surprime jusqu'à +150 %. Les généralistes ne disposent pas de grilles dédiées." },
+      { question: "Pourquoi mon assureur généraliste refuse-t-il ?", answer: "Les travaux en hauteur sont classés risque aggravé, souvent avec surprime. Les généralistes ne disposent pas de grilles dédiées." },
       { question: "Mes cordes et EPI sont-ils couverts ?", answer: "Oui, en garantie matériel professionnel, avec contrôle annuel ECP exigé pour le maintien de la couverture." },
       { question: "Faut-il une certification IRATA ?", answer: "Pas obligatoire pour souscrire mais elle réduit fortement la prime — démontre votre maîtrise du risque." },
     ],
@@ -643,13 +607,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     heroSubtitle: <><strong>RC organisateur, annulation, matériel scénique, intempéries.</strong> Solutions pour festivals, soirées, conférences et compétitions.</>,
     mascotSrc: arthurExcited,
     mascotAlt: "Arthur fête — assurance événementiel",
-    speechText: "Festivals, soirées, salons : on couvre tout, jusqu'à 50 000 personnes !",
+    speechText: "Festivals, soirées, salons : trouvons la couverture adaptée !",
     insuranceType: "metiers_atypiques",
     insuranceLabel: "Événementiel",
     stats: [
-      { icon: PartyPopper, value: "350+", label: "Événements/an" },
-      { icon: Award, value: "50k+", label: "Personnes couvertes" },
-      { icon: Users, value: "20", label: "Assureurs spécialisés" },
       { icon: Clock, value: "24 h", label: "Procédure express" },
     ],
     advantages: [
@@ -687,9 +648,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "metiers_atypiques",
     insuranceLabel: "Moniteur Sport",
     stats: [
-      { icon: Mountain, value: "240+", label: "Moniteurs assurés" },
       { icon: Award, value: "BE/DE", label: "Diplômes acceptés" },
-      { icon: Users, value: "20", label: "Assureurs de niche" },
       { icon: Clock, value: "30 min", label: "Devis express" },
     ],
     advantages: [
@@ -720,7 +679,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // et les 20 sujets traités avant elle.
     noindex: true,
     seoKeywords: "assurance chauffeur vtc, assurance uber, rc pro vtc, assurance flotte vtc",
-    topBarText: "🚖 VTC : -30% sur votre assurance flotte + RC pro inclus",
+    topBarText: "🚖 VTC : assurance flotte + RC pro",
     badgeText: "Spécialiste Chauffeurs VTC",
     heroTitle: "Assurance VTC",
     heroHighlight: "RC pro + flotte",
@@ -731,9 +690,6 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "auto",
     insuranceLabel: "Assurance VTC",
     stats: [
-      { icon: Car, value: "1 800+", label: "Chauffeurs assurés" },
-      { icon: TrendingDown, value: "-30%", label: "vs marché" },
-      { icon: Shield, value: "15", label: "Assureurs VTC" },
       { icon: Clock, value: "2 min", label: "Attestation" },
     ],
     advantages: [
@@ -760,7 +716,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     noindex: true,
     trackingTitle: "Landing Page Assurance Auto-Entrepreneur",
     seoTitle: "Assurance Auto-Entrepreneur | RC Pro Adaptée",
-    seoDescription: "Assurance auto-entrepreneur : RC pro, mutuelle TNS, prévoyance. 100% adapté aux micro-entrepreneurs. Devis 2 min.",
+    seoDescription: "Assurance auto-entrepreneur : RC pro, mutuelle TNS, prévoyance. Adapté aux micro-entrepreneurs. Devis 2 min.",
     seoKeyword: "assurance auto entrepreneur",
     seoKeywords: "rc pro auto entrepreneur, assurance micro entreprise, mutuelle auto entrepreneur",
     topBarText: "💼 Auto-entrepreneur : RC pro adaptée à votre activité",
@@ -774,9 +730,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "rc_pro",
     insuranceLabel: "RC Pro Auto-Entrepreneur",
     stats: [
-      { icon: Briefcase, value: "8 200+", label: "Auto-entrepreneurs" },
       { icon: FileCheck, value: "Immédiate", label: "Attestation" },
-      { icon: Shield, value: "100%", label: "Activités couvertes" },
       { icon: Clock, value: "2 min", label: "Souscription" },
     ],
     advantages: [
@@ -802,14 +756,14 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // traités avant elle.
     noindex: true,
     trackingTitle: "Landing Page Mutuelle Senior",
-    seoTitle: "Mutuelle Senior 60+ | -50% Optique, Dentaire, Audio",
-    seoDescription: "Mutuelle senior 60 ans et plus : optique, dentaire, audioprothèse, hospitalisation. Comparez 25 mutuelles en 2 min.",
+    seoTitle: "Mutuelle Senior 60+ | Optique, Dentaire, Audio",
+    seoDescription: "Mutuelle senior 60 ans et plus : optique, dentaire, audioprothèse, hospitalisation. Comparez les mutuelles en 2 min.",
     seoKeyword: "mutuelle senior",
     seoKeywords: "mutuelle 60 ans, mutuelle retraité, mutuelle senior pas chère",
-    topBarText: "👴 Mutuelle senior : jusqu'à -50% sur optique, dentaire et audio",
+    topBarText: "👴 Mutuelle senior : optique, dentaire et audio renforcés",
     badgeText: "Spécialiste Senior",
     heroTitle: "Mutuelle Senior",
-    heroHighlight: "jusqu'à -40%",
+    heroHighlight: "adaptée à vos besoins",
     heroSubtitle: <>Couverture renforcée <strong>optique, dentaire, audioprothèse, hospitalisation</strong>. Sans questionnaire médical.</>,
     mascotSrc: arthurThumbsUp,
     mascotAlt: "Arthur senior — mutuelle senior pas chère",
@@ -817,20 +771,17 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "sante",
     insuranceLabel: "Mutuelle Senior",
     stats: [
-      { icon: HeartPulse, value: "12k+", label: "Seniors assurés" },
-      { icon: TrendingDown, value: "-40%", label: "Économie moy." },
-      { icon: Award, value: "25", label: "Mutuelles comparées" },
       { icon: Clock, value: "Immédiate", label: "Prise d'effet" },
     ],
     advantages: [
-      { icon: HeartPulse, title: "Optique, dentaire, audio renforcés", description: "Postes les plus coûteux après 60 ans, remboursements jusqu'à 400%." },
+      { icon: HeartPulse, title: "Optique, dentaire, audio renforcés", description: "Postes les plus coûteux après 60 ans, remboursements renforcés selon la formule." },
       { icon: Shield, title: "Sans questionnaire médical", description: "Acceptation garantie, aucune sélection médicale." },
       { icon: Heart, title: "Cures thermales & médecines douces", description: "Ostéopathie, acupuncture, homéopathie, cures conventionnées." },
       { icon: Phone, title: "Conseiller dédié senior", description: "Un interlocuteur unique qui connaît votre dossier." },
     ],
     testimonials: [],
     faqs: [
-      { question: "Quel est le prix d'une mutuelle senior ?", answer: "Entre 60 € et 180 €/mois selon âge et garanties. Économie moyenne 40%." },
+      { question: "Quel est le prix d'une mutuelle senior ?", answer: "Le tarif dépend de l'âge, du lieu de résidence et des garanties choisies : un devis personnalisé est nécessaire." },
       { question: "Y a-t-il un questionnaire médical ?", answer: "Non, acceptation garantie sans questionnaire ni examen." },
       { question: "Puis-je résilier ma mutuelle actuelle ?", answer: "Oui, loi Bourquin permet la résiliation à tout moment après 1 an." },
     ],
@@ -842,7 +793,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     slug: "scooter",
     trackingTitle: "Landing Page Assurance Scooter",
     seoTitle: "Assurance Scooter 50cc Pas Chère | Devis 2 min",
-    seoDescription: "Assurance scooter 50cc, 125cc, électrique. Tiers dès 9 €/mois. Comparez 12 assureurs spécialisés deux-roues.",
+    seoDescription: "Assurance scooter 50cc, 125cc, électrique. Comparez les assureurs spécialisés deux-roues.",
     seoKeyword: "assurance scooter",
     seoKeywords: "assurance scooter 50cc, assurance scooter 125, assurance scooter électrique",
     // Cannibalisation avec /assurance-moto (seoKeyword "assurance moto moins
@@ -851,14 +802,14 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // le sitemap + aucune entrée relatedMap → section "liens associés"
     // invisible. Corrigé le 2026-09-12, même traitement.
     noindex: true,
-    topBarText: "🛵 Scooter : tiers dès 9 €/mois — assistance 0 km offerte",
+    topBarText: "🛵 Scooter : du tiers au tous risques — assistance 0 km",
     badgeText: "Spécialiste 2-roues",
     heroTitle: "Assurance Scooter",
-    heroHighlight: "dès 9 €/mois",
+    heroHighlight: "50cc, 125cc, électrique",
     heroSubtitle: <>Tiers, intermédiaire ou tous risques pour <strong>50cc, 125cc, électrique</strong>. Attestation en ligne.</>,
     mascotSrc: arthurMoto,
     mascotAlt: "Arthur en scooter — assurance scooter pas chère",
-    speechText: "Scooter ? Tiers à 9 €/mois et tous risques négocié !",
+    speechText: "Scooter ? Tiers ou tous risques, je compare pour vous !",
     insuranceType: "moto",
     insuranceLabel: "Assurance Scooter",
     stats: [
@@ -867,7 +818,6 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       // Assureurs EDPM" trouvé sur vélo/trottinette). trustReviewStat
       // affiche l'immatriculation ORIAS (chantier avis clients 2026-09-29 :
       // "5/5 avis vérifiés" ne correspondait à aucune source réelle).
-      { icon: TrendingDown, value: "9 €/mois", label: "Tiers 50cc" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Attestation" },
     ],
@@ -886,7 +836,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Puis-je assurer mon scooter sans BSR ?", answer: "Non, BSR obligatoire si né après 1988." },
     ],
     bottomCtaTitle: "Roulez en scooter à petit prix",
-    bottomCtaDescription: "Tiers dès 9 €/mois, attestation en 2 min — devis gratuit.",
+    bottomCtaDescription: "Attestation en ligne — devis gratuit.",
   },
 
   "rc-pro-micro-entreprise": {
@@ -911,15 +861,13 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "rc_pro",
     insuranceLabel: "RC Pro Micro",
     stats: [
-      { icon: Briefcase, value: "5 200+", label: "Micros assurés" },
       { icon: Phone, value: "Juridique", label: "Litiges inclus" },
-      { icon: Shield, value: "1M€", label: "Garantie max" },
       { icon: Clock, value: "5 min", label: "Souscription" },
     ],
     advantages: [
       { icon: ShieldCheck, title: "Dommages 360°", description: "Corporels, matériels et immatériels causés à vos clients." },
       { icon: FileCheck, title: "Attestation officielle", description: "PDF téléchargeable immédiatement, indispensable pour appels d'offres." },
-      { icon: Award, title: "Garantie jusqu'à 1M€", description: "Plafonds adaptés à toutes activités." },
+      { icon: Award, title: "Plafonds adaptés", description: "Montants de garantie adaptés à votre activité." },
       { icon: Phone, title: "Juridique inclus", description: "Litiges contractuels, recouvrement, accompagnement URSSAF." },
     ],
     testimonials: [],
@@ -942,7 +890,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     topBarText: "🍽️ Restaurateurs : MRP + RC pro + perte d'exploitation — devis 24 h",
     badgeText: "Spécialiste Restauration",
     heroTitle: "Assurance Restaurant",
-    heroHighlight: "100% restauration",
+    heroHighlight: "spécial restauration",
     heroSubtitle: <>MRP, RC pro, perte d'exploitation, intoxication alimentaire pour <strong>restaurants, food trucks, brasseries</strong>.</>,
     mascotSrc: arthurExcited,
     mascotAlt: "Arthur chef — assurance restaurant",
@@ -950,9 +898,6 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "mrp",
     insuranceLabel: "Assurance Restaurant",
     stats: [
-      { icon: Building2, value: "1 400+", label: "Restos assurés" },
-      { icon: Shield, value: "5", label: "Garanties incluses" },
-      { icon: Award, value: "12", label: "Assureurs HCR" },
       { icon: Clock, value: "24 h", label: "Devis sur-mesure" },
     ],
     advantages: [
@@ -964,7 +909,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     testimonials: [],
     faqs: [
       { question: "Quelle assurance obligatoire pour un restaurant ?", answer: "MRP + RC pro indispensables. Perte d'exploitation et TIAC fortement recommandées." },
-      { question: "Combien coûte l'assurance d'un restaurant ?", answer: "Entre 1 200 € et 4 500 €/an selon surface, CA et localisation." },
+      { question: "Combien coûte l'assurance d'un restaurant ?", answer: "Le tarif dépend de la surface, du chiffre d'affaires et de la localisation : un devis personnalisé est nécessaire." },
       { question: "Food truck : quelle couverture ?", answer: "MRP ambulante + RC pro + assurance véhicule pro + équipements cuisine." },
     ],
     bottomCtaTitle: "Protégez votre restaurant",
@@ -993,7 +938,6 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "rc_pro",
     insuranceLabel: "RC Pro Coach",
     stats: [
-      { icon: HeartPulse, value: "1 200+", label: "Coachs assurés" },
       { icon: Award, value: "BPJEPS", label: "Diplômes acceptés" },
       { icon: HeartPulse, value: "Tous cours", label: "Yoga, pilates, fitness" },
       { icon: Clock, value: "5 min", label: "Souscription" },
@@ -1036,7 +980,6 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "rc_pro",
     insuranceLabel: "RC Pro Photo/Vidéo",
     stats: [
-      { icon: Sparkles, value: "920+", label: "Photographes" },
       { icon: Award, value: "Droit à l'image", label: "Protection incluse" },
       { icon: Shield, value: "Matériel", label: "Tous risques" },
       { icon: Clock, value: "5 min", label: "Souscription" },
@@ -1079,7 +1022,6 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "rc_pro",
     insuranceLabel: "RC Pro Influenceur",
     stats: [
-      { icon: Sparkles, value: "380+", label: "Créateurs assurés" },
       { icon: FileCheck, value: "Toutes plateformes", label: "Instagram, TikTok..." },
       { icon: Shield, value: "Loi 2023", label: "Conforme" },
       { icon: Clock, value: "5 min", label: "Souscription" },
@@ -1124,15 +1066,13 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "rc_pro",
     insuranceLabel: "RC Pro Drone",
     stats: [
-      { icon: Sparkles, value: "560+", label: "Télépilotes" },
-      { icon: Award, value: "1,5 M€", label: "Garantie max" },
       { icon: Shield, value: "UAS UE", label: "Catégorie spécifique" },
       { icon: Clock, value: "Immédiate", label: "Attestation" },
     ],
     advantages: [
       { icon: ShieldCheck, title: "Catégorie spécifique DGAC", description: "Couverture adaptée à votre autorisation d'exploitation (scénario standard européen, PDRA ou LUC)." },
       { icon: Sparkles, title: "Drone tous risques", description: "Casse, perte, vol du drone et accessoires." },
-      { icon: Award, title: "Garantie jusqu'à 1,5 M€", description: "Plafonds adaptés aux exigences corporate." },
+      { icon: Award, title: "Plafonds adaptés", description: "Montants de garantie adaptés aux exigences corporate." },
       { icon: FileCheck, title: "Attestation DGAC immédiate", description: "PDF conforme pour vos déclarations de vol." },
     ],
     testimonials: [],
@@ -1150,7 +1090,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     slug: "decennale",
     trackingTitle: "Landing Page Garantie Décennale BTP",
     seoTitle: "Garantie Décennale BTP : Devis en 2 min | Arthur",
-    seoDescription: "Garantie décennale obligatoire pour artisans et entreprises BTP. 30+ assureurs comparés, attestation immédiate. Devis gratuit en 2 min.",
+    seoDescription: "Garantie décennale obligatoire pour artisans et entreprises BTP. Plusieurs assureurs comparés, attestation immédiate. Devis gratuit en 2 min.",
     seoKeyword: "garantie décennale",
     seoKeywords: "assurance décennale, décennale artisan, décennale BTP, attestation décennale",
     // Désindexée le 2026-09-21 : cannibalise /assurance-decennale (seoKeyword "garantie décennale" quasi identique à celui du pilier ("assurance décennale")),
@@ -1167,7 +1107,6 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "rc_pro",
     insuranceLabel: "Garantie Décennale",
     stats: [
-      { icon: HardHat, value: "30+", label: "Assureurs comparés" },
       { icon: ShieldCheck, value: "10 ans", label: "Couverture légale" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Pour le devis" },
@@ -1176,13 +1115,13 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: ShieldCheck, title: "Garantie décennale conforme", description: "Articles 1792 et suivants du Code civil. Attestation conforme exigée par tous les donneurs d'ordre." },
       { icon: Award, title: "Tous corps d'état", description: "Maçonnerie, plomberie, électricité, couverture, second œuvre : grille adaptée à votre activité." },
       { icon: FileCheck, title: "Attestation immédiate", description: "PDF reçu sous 24 h après souscription, opposable à vos clients et aux notaires." },
-      { icon: TrendingDown, title: "Tarifs négociés", description: "Comparez 30+ assureurs et économisez jusqu'à 35% sur votre prime annuelle." },
+      { icon: TrendingDown, title: "Tarifs négociés", description: "Comparez plusieurs assureurs pour trouver une prime adaptée à votre activité." },
     ],
     testimonials: [],
     faqs: [
       { question: "La décennale est-elle vraiment obligatoire ?", answer: "Oui, pour tout professionnel du BTP exécutant des travaux de construction soumis à la responsabilité décennale (loi Spinetta de 1978)." },
       { question: "Que couvre la décennale ?", answer: "Tous dommages compromettant la solidité de l'ouvrage ou le rendant impropre à sa destination, pendant 10 ans après réception des travaux." },
-      { question: "Combien coûte une décennale ?", answer: "Entre 600€ et 3 000€/an selon activité, CA et antécédents. Comparer permet d'économiser 20 à 40%." },
+      { question: "Combien coûte une décennale ?", answer: "Le tarif dépend de l'activité, du chiffre d'affaires et des antécédents : un devis personnalisé est nécessaire." },
     ],
     bottomCtaTitle: "Lancez votre activité BTP sereinement",
     bottomCtaDescription: "Attestation décennale conforme — rappel rapide par un expert BTP.",
@@ -1192,32 +1131,30 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     slug: "flotte-auto",
     trackingTitle: "Landing Page Assurance Flotte Auto Entreprise",
     seoTitle: "Assurance Flotte Auto Entreprise : Devis en 2 min | Arthur",
-    seoDescription: "Assurance flotte de véhicules d'entreprise dès 3 voitures. Gestion centralisée, tarifs négociés, attestations immédiates. Comparez 30+ assureurs.",
+    seoDescription: "Assurance flotte de véhicules d'entreprise dès 3 voitures. Gestion centralisée, tarifs négociés, attestations immédiates. Comparez plusieurs assureurs.",
     seoKeyword: "assurance flotte auto",
     seoKeywords: "assurance flotte entreprise, assurance véhicules professionnels, flotte automobile",
     // Désindexée le 2026-09-21 : cannibalise /assurance-flotte-auto (même seoKeyword "assurance flotte auto"),
     // même traitement que les configs velo et trottinette.
     noindex: true,
-    topBarText: "🚗 Flotte auto pro — devis groupé, économies jusqu'à 30%",
+    topBarText: "🚗 Flotte auto pro — devis groupé",
     badgeText: "Pro — Entreprises",
     heroTitle: "Assurance Flotte",
     heroHighlight: "véhicules d'entreprise",
     heroSubtitle: <><strong>Dès 3 véhicules.</strong> Contrat unique, gestion centralisée, tarifs préférentiels et conducteurs interchangeables.</>,
     mascotSrc: arthurCar,
     mascotAlt: "Arthur au volant — assurance flotte entreprise",
-    speechText: "3 véhicules ou +, un seul contrat : économisez jusqu'à 30% sur votre flotte.",
+    speechText: "3 véhicules ou +, un seul contrat pour toute votre flotte.",
     insuranceType: "auto",
     insuranceLabel: "Flotte Auto",
     stats: [
-      { icon: Car, value: "30+", label: "Assureurs flotte" },
-      { icon: TrendingDown, value: "-30%", label: "Économies moyennes" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: [
       { icon: Briefcase, title: "Contrat unique multi-véhicules", description: "Une seule prime, un seul interlocuteur, une seule échéance pour toute la flotte." },
       { icon: Users, title: "Conducteurs interchangeables", description: "Tous vos salariés autorisés à conduire chaque véhicule sans déclaration nominative." },
-      { icon: TrendingDown, title: "Tarifs préférentiels", description: "Mutualisation des risques : remise volume jusqu'à 30% vs contrats individuels." },
+      { icon: TrendingDown, title: "Tarifs préférentiels", description: "Mutualisation des risques : tarif négocié pour l'ensemble de la flotte." },
       { icon: FileCheck, title: "Gestion en ligne", description: "Ajout/retrait d'un véhicule en temps réel, attestations téléchargeables 24/7." },
     ],
     testimonials: [],
@@ -1251,8 +1188,6 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "sante",
     insuranceLabel: "Mutuelle Entreprise",
     stats: [
-      { icon: HeartPulse, value: "25+", label: "Mutuelles comparées" },
-      { icon: ShieldCheck, value: "100%", label: "Conforme ANI" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
@@ -1276,7 +1211,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     slug: "cyber",
     trackingTitle: "Landing Page Assurance Cyber-Risques",
     seoTitle: "Assurance Cyber-Risques Entreprise : Devis en 2 min",
-    seoDescription: "Protégez votre entreprise contre les cyberattaques : rançongiciel, fuite de données, RGPD. Couverture jusqu'à 5 M€. Devis gratuit.",
+    seoDescription: "Protégez votre entreprise contre les cyberattaques : rançongiciel, fuite de données, RGPD. Devis gratuit.",
     seoKeyword: "assurance cyber",
     seoKeywords: "assurance cyber-risques, cyberattaque entreprise, assurance ransomware, protection données RGPD",
     // Désindexée le 2026-09-21 : cannibalise /assurance-cyber (même seoKeyword "assurance cyber"),
@@ -1286,15 +1221,13 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     badgeText: "Pro — Cybersécurité",
     heroTitle: "Assurance",
     heroHighlight: "Cyber-Risques entreprise",
-    heroSubtitle: <><strong>Rançongiciel, phishing, fuite de données.</strong> Couverture jusqu'à 5 M€ et cellule de crise 24/7 incluse.</>,
+    heroSubtitle: <><strong>Rançongiciel, phishing, fuite de données.</strong> Couverture et cellule de crise selon le contrat.</>,
     mascotSrc: arthurDetective,
     mascotAlt: "Arthur détective — assurance cyber",
     speechText: "1 PME sur 2 a subi une cyberattaque en 2024 — protégez-vous avant qu'il ne soit trop tard.",
     insuranceType: "rc_pro",
     insuranceLabel: "Cyber-Risques",
     stats: [
-      { icon: Shield, value: "5 M€", label: "Couverture max" },
-      { icon: Phone, value: "24/7", label: "Cellule de crise" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
@@ -1332,11 +1265,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     heroSubtitle: <><strong>Aixam, Ligier, Microcar, Chatenet.</strong> Tiers à tous risques, formules adaptées jeunes (BSR) et seniors.</>,
     mascotSrc: arthurCar,
     mascotAlt: "Arthur — assurance voiture sans permis",
-    speechText: "Voiturette sans permis ? Je compare 20+ assureurs spécialisés VSP en 2 min.",
+    speechText: "Voiturette sans permis ? Je compare les assureurs spécialisés VSP en 2 min.",
     insuranceType: "auto",
     insuranceLabel: "Sans Permis",
     stats: [
-      { icon: Car, value: "20+", label: "Assureurs VSP" },
       { icon: Users, value: "Dès 14 ans", label: "BSR accepté" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Pour le devis" },
@@ -1361,7 +1293,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     slug: "camping-car",
     trackingTitle: "Landing Page Assurance Camping-Car",
     seoTitle: "Assurance Camping-Car & Van : Devis en 2 min",
-    seoDescription: "Assurance camping-car, van aménagé, fourgon. Tiers à tous risques, contenu, assistance Europe. Comparez 20+ assureurs spécialisés.",
+    seoDescription: "Assurance camping-car, van aménagé, fourgon. Tiers à tous risques, contenu, assistance Europe. Comparez les assureurs spécialisés.",
     seoKeyword: "assurance camping-car",
     seoKeywords: "assurance van aménagé, assurance fourgon aménagé, assurance camping-car tous risques",
     // Désindexée le 2026-09-21 : cannibalise /assurance-camping-car (même seoKeyword "assurance camping-car"),
@@ -1378,7 +1310,6 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "auto",
     insuranceLabel: "Camping-Car",
     stats: [
-      { icon: Car, value: "20+", label: "Assureurs spécialisés" },
       { icon: Award, value: "Europe", label: "Assistance incluse" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Pour le devis" },
@@ -1435,7 +1366,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     advantages: [
       { icon: Lock, title: "Vol & tentative de vol", description: "Indemnisation à valeur d'achat ou valeur d'usage, antivol homologué FUB exigé." },
       { icon: ShieldCheck, title: "Casse accidentelle", description: "Cadre, fourche, roues, transmission : pièces et main d'œuvre remboursées." },
-      { icon: Heart, title: "RC vélo & dommages corporels", description: "Si vous blessez un piéton ou détériorez un bien tiers, couverture jusqu'à 4,5 M€." },
+      { icon: Heart, title: "RC vélo & dommages corporels", description: "Si vous blessez un piéton ou détériorez un bien tiers, votre responsabilité civile est couverte." },
       { icon: Phone, title: "Assistance dépannage", description: "Crevaison, panne batterie VAE, casse : retour à domicile ou poursuite trajet pris en charge." },
     ],
     // Témoignages retirés : 3 noms détaillés (Sophie B., Famille M., Romain T.)
@@ -1455,7 +1386,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     slug: "protection-juridique",
     trackingTitle: "Landing Page Protection Juridique",
     seoTitle: "Protection Juridique : Devis Gratuit | Arthur",
-    seoDescription: "Protection juridique vie privée et pro. Conseils illimités, prise en charge des frais d'avocat et de procédure. Comparez 20+ assureurs.",
+    seoDescription: "Protection juridique vie privée et pro. Conseils illimités, prise en charge des frais d'avocat et de procédure. Comparez plusieurs assureurs.",
     seoKeyword: "protection juridique",
     seoKeywords: "assurance protection juridique, défense recours, frais avocat assurance, litige assurance",
     // Désindexée le 2026-09-21 : cannibalise /assurance-protection-juridique (même seoKeyword "protection juridique"),
@@ -1472,14 +1403,13 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "metiers_atypiques",
     insuranceLabel: "Protection Juridique",
     stats: [
-      { icon: ShieldCheck, value: "20+", label: "Assureurs comparés" },
       { icon: FileCheck, value: "Illimités", label: "Conseils juridiques" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: [
       { icon: Phone, title: "Conseils juridiques illimités", description: "Juristes disponibles par téléphone du lundi au samedi pour tous vos questionnements légaux." },
-      { icon: FileCheck, title: "Frais d'avocat couverts", description: "Honoraires avocat, expert, huissier pris en charge jusqu'au plafond souscrit (souvent 20 000€)." },
+      { icon: FileCheck, title: "Frais d'avocat couverts", description: "Honoraires avocat, expert, huissier pris en charge jusqu'au plafond souscrit." },
       { icon: ShieldCheck, title: "Tous domaines de la vie", description: "Conso, travail, voisinage, famille, immobilier, fiscalité : couverture étendue." },
       { icon: Award, title: "Procédures amiables et judiciaires", description: "Médiation, transaction, contentieux : accompagnement à chaque étape." },
     ],
