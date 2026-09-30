@@ -8,6 +8,14 @@ const SUPABASE_ANON = process.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.S
 const geoContentPath = path.join(rootDir, "src/data/geo-content.json");
 const geoContent = JSON.parse(await readFile(geoContentPath, "utf8"));
 
+// Décompte des assureurs partenaires, lu directement dans src/data/partners.ts
+// (source unique — voir src/config/site.ts) plutôt qu'une valeur en dur, pour
+// que index.html reste synchronisé avec la vraie liste (chantier 2026-09-30 :
+// "70+" était affiché partout sans plus aucun lien avec les partenaires réels).
+const partnersSrc = await readFile(path.join(rootDir, "src/data/partners.ts"), "utf8");
+const NB_ASSUREURS = (partnersSrc.match(/\{\s*name:\s*"/g) || []).length;
+const NB_ASSUREURS_LABEL = `${NB_ASSUREURS}+`;
+
 const { baseUrl, staticPages: pages } = geoContent;
 const excludedDirectories = new Set(["dist", "node_modules", ".git", "test-hosting-paths"]);
 
@@ -249,7 +257,29 @@ const buildRouteFromFile = (relativePath) => {
   return `/${relativePath.replace(/\/index\.html$/, "").replace(/index\.html$/, "").replace(/\\/g, "/")}`;
 };
 
+// Décompte assureurs (chantier 2026-09-30) — "70+"/"70 assureurs" était codé
+// en dur partout, sans lien avec la vraie liste de partenaires. Remplacé ici
+// par NB_ASSUREURS(_LABEL), calculé plus haut depuis src/data/partners.ts,
+// seule source qui compte. Appliqué depuis patchHtmlSeo() pour couvrir TOUTES
+// les pages HTML déjà générées (profil, blog, comparatif...), pas seulement
+// index.html — ces pages ne sont pas régénérées à chaque build (créées une
+// fois, "already present" ensuite), donc sans ce patch elles restent figées
+// sur l'ancien nombre indéfiniment. Le nombre recherché est \d+\+? (pas "70"
+// en dur) pour rester idempotent après un premier passage qui a déjà changé
+// "70+" en, par exemple, "52+" — sinon un deuxième changement de partners.ts
+// ne matcherait plus rien. "et courtiers" ajouté partout où le texte dit
+// "assureurs" tout court : la liste mélange désormais assureurs et courtiers
+// (25 ajouts du 2026-09-30 au statut "a verifier" — voir partners.ts).
+const patchAssureurCount = (html) => html
+  .replace(/\d+\+? assureurs\b(?! et courtiers)/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers`)
+  .replace(/\d+\+? Compagnies\b(?! et Courtiers)/g, `${NB_ASSUREURS_LABEL} Compagnies et Courtiers`)
+  .replace(/\d+\+? compagnies\b(?! et courtiers)/g, `${NB_ASSUREURS_LABEL} compagnies et courtiers`)
+  .replace(/\d+\+? partenaires\b/g, `${NB_ASSUREURS_LABEL} partenaires`)
+  .replace(/plus de \d+ assureurs\b(?! et courtiers)/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers`)
+  .replace(/les offres de \d+ assureurs\b(?! et courtiers)/g, `les offres de ${NB_ASSUREURS} assureurs et courtiers`);
+
 const patchHtmlSeo = (html, relativePath) => {
+  html = patchAssureurCount(html);
   const title = extractTagContent(html, /<title>([^<]+)<\/title>/i);
   const description = extractMetaContent(html, "description");
   const canonical = extractTagContent(html, /<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["'][^>]*>/i) ?? `${baseUrl}${buildRouteFromFile(relativePath)}`;
@@ -384,6 +414,43 @@ const syncExistingHtmlPages = async () => {
 };
 
 await syncRootIndex();
+
+// public/manifest.json et public/.well-known/ai-plugin.json sont copiés tels
+// quels par Vite (pas de build-time templating natif pour ces deux fichiers
+// statiques) — on y patche le décompte assureurs ici, même source que
+// syncRootIndex() (chantier 2026-09-30, "70+" en dur trouvé après coup).
+const syncStaticManifests = async () => {
+  const manifestPath = path.join(rootDir, "public/manifest.json");
+  const manifestRaw = await readFile(manifestPath, "utf8");
+  const patchedManifest = manifestRaw.replace(/\d+\+? assureurs\b(?! et courtiers)/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers`);
+  if (patchedManifest !== manifestRaw) {
+    await writeFile(manifestPath, patchedManifest, "utf8");
+  }
+
+  const aiPluginPath = path.join(rootDir, "public/.well-known/ai-plugin.json");
+  const aiPluginRaw = await readFile(aiPluginPath, "utf8");
+  const patchedAiPlugin = aiPluginRaw
+    .replace(/\d+\+? assureurs\b(?! et courtiers)/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers`)
+    .replace(/\d+\+? insurance partners\b(?! and brokers)/g, `${NB_ASSUREURS_LABEL} insurance partners and brokers`);
+  if (patchedAiPlugin !== aiPluginRaw) {
+    await writeFile(aiPluginPath, patchedAiPlugin, "utf8");
+  }
+
+  // llms.txt : "25+" était un compte manuel jamais lié à partners.ts (trouvé
+  // le 2026-09-30 en corrigeant l'accueil) — comme pour "70+" ailleurs, on le
+  // rend idempotent en matchant n'importe quel nombre, pas "25" en dur.
+  const llmsPath = path.join(rootDir, "public/llms.txt");
+  const llmsRaw = await readFile(llmsPath, "utf8");
+  const patchedLlms = llmsRaw
+    .replace(/\d+\+? assureurs partenaires\b(?! \(|et courtiers)/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires`)
+    .replace(/\d+\+? assureurs\b(?! et courtiers|\()/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers`)
+    .replace(/\d+\+? mutuelles\b/g, `${NB_ASSUREURS_LABEL} mutuelles`);
+  if (patchedLlms !== llmsRaw) {
+    await writeFile(llmsPath, patchedLlms, "utf8");
+  }
+};
+
+await syncStaticManifests();
 
 for (const page of pages) {
   const outputPath = path.join(rootDir, page.outputDir, "index.html");
@@ -813,7 +880,7 @@ const generateLandingAndProfilePages = async () => {
           h1,
           intro: cfg.seoDescription,
           sections: [
-            { title: "Pourquoi comparer avec jemassuremoinscher.fr ?", body: "Courtier indépendant, immatriculation ORIAS en cours. Comparez plus de 70 assureurs partenaires en 2 minutes, gratuitement et sans engagement." },
+            { title: "Pourquoi comparer avec jemassuremoinscher.fr ?", body: `Courtier indépendant, immatriculation ORIAS en cours. Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires en 2 minutes, gratuitement et sans engagement.` },
             relatedList,
           ],
           ctaHref: "/comparateur",

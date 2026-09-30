@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Sparkles, Workflow, Award, Layers } from "lucide-react";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 
 const SEOContent = () => {
   const { t } = useLanguage();
@@ -75,7 +76,7 @@ const SEOContent = () => {
             <p className="text-sm text-muted-foreground leading-relaxed flex-1">
               {t('seoContent.p5')}{' '}
               Découvrez les <Link to="/avis-clients" className="text-primary hover:underline font-medium">avis de nos clients</Link> et
-              ce que disent nos <Link to="/nos-partenaires" className="text-primary hover:underline font-medium">70+ assureurs partenaires</Link>.
+              ce que disent nos <Link to="/nos-partenaires" className="text-primary hover:underline font-medium">{NB_ASSUREURS_LABEL} assureurs et courtiers partenaires</Link>.
             </p>
           </article>
         </div>

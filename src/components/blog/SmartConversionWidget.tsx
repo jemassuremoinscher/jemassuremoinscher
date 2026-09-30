@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import arthurPointing from "@/assets/mascotte/arthur-pointing.webp";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 
 // ─── Config per category ────────────────────────────────────────────────────
 interface WidgetConfig {
@@ -36,7 +37,7 @@ const widgetConfigs: Record<string, WidgetConfig> = {
   },
   "jeune-conducteur": {
     title: "Économiser sur l'assurance permis probatoire",
-    subtitle: "Jeune conducteur ? On compare 70+ assureurs pour vous trouver le meilleur prix.",
+    subtitle: `Jeune conducteur ? On compare ${NB_ASSUREURS_LABEL} assureurs et courtiers pour vous trouver le meilleur prix.`,
     buttonText: "Comparer les prix jeune conducteur →",
     deepLink: "/comparateur?step=1&profile=jeune-conducteur",
     miniQuestion: {
@@ -76,7 +77,7 @@ const widgetConfigs: Record<string, WidgetConfig> = {
 // Default fallback
 const defaultConfig: WidgetConfig = {
   title: "Comparez et économisez sur votre assurance",
-  subtitle: "70+ assureurs comparés gratuitement. Trouvez le meilleur prix en 2 minutes.",
+  subtitle: `${NB_ASSUREURS_LABEL} assureurs et courtiers comparés gratuitement. Trouvez le meilleur prix en 2 minutes.`,
   buttonText: "Comparer maintenant →",
   deepLink: "/comparateur",
   accentColor: "bg-accent/10 border-accent/30",

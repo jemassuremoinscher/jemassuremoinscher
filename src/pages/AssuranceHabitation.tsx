@@ -7,6 +7,7 @@ import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import { addServiceSchema, addFAQSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurHouse from "@/assets/mascotte/arthur-house.webp?w=480&format=webp";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
@@ -74,9 +75,9 @@ const AssuranceHabitation = () => {
         keyword="assurance habitation moins chère"
         keywords="assurance maison, assurance appartement, assurance logement, assurance locataire"
         canonical="https://www.jemassuremoinscher.fr/assurance-habitation"
-        ogTitle="Assurance Habitation Moins Chère | Comparez 70+ assureurs"
-        ogDescription="Comparez 70+ assureurs habitation en 2 minutes. Locataire ou propriétaire, maison ou appartement."
-        twitterDescription="Comparez 70+ assureurs habitation. Devis gratuit en 2 min."
+        ogTitle={`Assurance Habitation Moins Chère | Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers`}
+        ogDescription={`Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers habitation en 2 minutes. Locataire ou propriétaire, maison ou appartement.`}
+        twitterDescription={`Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers habitation. Devis gratuit en 2 min.`}
         jsonLd={[webPageSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />

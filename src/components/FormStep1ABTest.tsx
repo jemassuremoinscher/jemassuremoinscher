@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,8 +49,8 @@ export const FormStep1ABTest: React.FC<{ onNextStep: () => void }> = ({ onNextSt
       </h2>
       <p>
         {variant === "A"
-          ? "Nous comparerons 70+ offres pour vous."
-          : "Nous comparerons 70+ offres d'assurance auto, habitation, santé et plus."}
+          ? `Nous comparerons ${NB_ASSUREURS_LABEL} offres pour vous.`
+          : `Nous comparerons ${NB_ASSUREURS_LABEL} offres d'assurance auto, habitation, santé et plus.`}
       </p>
 
       <button

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 
 interface ArticleCTAProps {
   title?: string;
@@ -15,7 +16,7 @@ interface ArticleCTAProps {
  */
 const ArticleCTA = ({
   title = "Vérifiez si vous payez trop cher",
-  description = "Comparez gratuitement les offres de 70+ assureurs et découvrez combien vous pourriez économiser.",
+  description = `Comparez gratuitement les offres de ${NB_ASSUREURS_LABEL} assureurs et courtiers et découvrez combien vous pourriez économiser.`,
   buttonText = "Comparer gratuitement en 2 minutes",
   href = "/comparateur",
   variant = "primary",

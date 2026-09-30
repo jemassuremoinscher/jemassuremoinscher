@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SEOOptimized from "@/components/SEOOptimized";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 import {
   Shield,
   Award,
@@ -92,7 +93,7 @@ const QuiSommesNous = () => {
         canonical={`${baseUrl}/qui-sommes-nous`}
         ogTitle="Qui sommes-nous ? | jemassuremoinscher.fr — Courtier indépendant enregistré ORIAS"
         ogDescription="Découvrez l'équipe derrière jemassuremoinscher.fr : courtier en assurances indépendant, enregistré ORIAS, gratuit et 100% transparent."
-        twitterDescription="Courtier en assurances indépendant, enregistré ORIAS. Comparez 70+ assureurs gratuitement sur jemassuremoinscher.fr."
+        twitterDescription={`Courtier en assurances indépendant, enregistré ORIAS. Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers gratuitement sur jemassuremoinscher.fr.`}
         jsonLd={jsonLd}
       />
 

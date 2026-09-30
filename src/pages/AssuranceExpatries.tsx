@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Globe, Shield, Clock, Plane, MapPin } from "lucide-react";
 import { useRef, useState } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 import {
   addServiceSchema,
   addFAQSchema,
@@ -110,7 +111,7 @@ const AssuranceExpatries = () => {
 
   const advantagesInFrance = [
     { icon: Globe, title: "Tous statuts acceptés", description: "Visa long séjour, étudiant, salarié, passeport talent, frontalier." },
-    { icon: Clock, title: "Devis en 2 minutes", description: "Compare 70+ assureurs en ligne, sans engagement." },
+    { icon: Clock, title: "Devis en 2 minutes", description: `Compare ${NB_ASSUREURS_LABEL} assureurs et courtiers en ligne, sans engagement.` },
     { icon: Shield, title: "Permis & bonus étrangers", description: "Permis hors UE accepté 12 mois, bonus étranger pris en compte." },
   ];
   const advantagesAbroad = [
@@ -143,7 +144,7 @@ const AssuranceExpatries = () => {
                 imageSrc={arthurFlying}
                 imageAlt="Arthur en vol — assurance expatriés"
                 title="Assurance Expatriés — Où que tu sois, on te couvre"
-                subtitle="Tu pars vivre à l'étranger ? Tu viens d'arriver en France ? On compare santé, auto, habitation et prévoyance auprès de 70+ assureurs spécialisés expat."
+                subtitle={`Tu pars vivre à l'étranger ? Tu viens d'arriver en France ? On compare santé, auto, habitation et prévoyance auprès de ${NB_ASSUREURS_LABEL} assureurs et courtiers spécialisés expat.`}
                 ctaLabel="Comparer maintenant"
                 onCtaClick={scrollToForm}
               />

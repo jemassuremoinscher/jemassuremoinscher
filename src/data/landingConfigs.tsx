@@ -4,7 +4,7 @@ import {
   Users, TrendingDown, Clock, Star, Award, CheckCircle2, Phone, Sparkles, Lock, Shield, FileCheck,
 } from "lucide-react";
 import type { AdsLandingProps } from "@/components/landing/AdsLandingTemplate";
-import { TROTTINETTE_RC_PRICE_MONTHLY } from "@/config/site";
+import { TROTTINETTE_RC_PRICE_MONTHLY, NB_ASSUREURS_LABEL } from "@/config/site";
 
 import arthurCar from "@/assets/mascotte/arthur-car.webp?w=480&format=webp";
 import arthurMoto from "@/assets/mascotte/arthur-moto.webp?w=480&format=webp";
@@ -48,7 +48,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       slug: "auto",
       trackingTitle: "Landing Page Assurance Auto",
       seoTitle: "Assurance auto moins chère | Devis gratuit en 2 min avec Arthur",
-      seoDescription: "Compare 70+ assureurs auto avec Arthur en 2 minutes. Service gratuit, sans engagement, courtier indépendant ORIAS. Rappel rapide par un conseiller.",
+      seoDescription: `Compare ${NB_ASSUREURS_LABEL} assureurs et courtiers auto avec Arthur en 2 minutes. Service gratuit, sans engagement, courtier indépendant ORIAS. Rappel rapide par un conseiller.`,
       seoKeyword: "assurance auto moins chère",
       seoKeywords: "devis assurance auto, comparateur assurance voiture, assurance auto pas chère",
       // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-auto (cannibalisation),
@@ -58,10 +58,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       badgeText: "Comparateur indépendant ORIAS",
       heroTitle: "Ton assurance auto,",
       heroHighlight: "comparée en 2 minutes",
-      heroSubtitle: <>Arthur compare <strong className="text-primary">70+ assureurs partenaires</strong> et te trouve le meilleur tarif, sans compromis sur les garanties.</>,
+      heroSubtitle: <>Arthur compare <strong className="text-primary">{NB_ASSUREURS_LABEL} assureurs et courtiers partenaires</strong> et te trouve le meilleur tarif, sans compromis sur les garanties.</>,
       mascotSrc: arthurCar,
       mascotAlt: "Arthur au volant — Comparateur assurance auto jemassuremoinscher.fr",
-      speechText: "Salut ! Je compare 70+ assureurs auto pour toi en 2 minutes.",
+      speechText: `Salut ! Je compare ${NB_ASSUREURS_LABEL} assureurs et courtiers auto pour toi en 2 minutes.`,
       insuranceType: "auto",
       insuranceLabel: "Assurance Auto",
       // trustReviewStat retiré ici : badgeText affiche déjà "Comparateur
@@ -72,14 +72,14 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       ],
       advantages: [
         { icon: CheckCircle2, title: "100 % gratuit & sans engagement", description: "Aucune carte bancaire demandée, aucun frais caché." },
-        { icon: Award, title: "70+ assureurs comparés", description: "AXA, Allianz, MAIF, Matmut, Generali, Direct Assurance, MACIF et bien d'autres." },
+        { icon: Award, title: `${NB_ASSUREURS_LABEL} assureurs et courtiers comparés`, description: "AXA, Allianz, MAIF, Matmut, Generali, Direct Assurance, MACIF et bien d'autres." },
         { icon: Phone, title: "Un expert dédié, pas un robot", description: "Arthur fait l'analyse, un conseiller humain te rappelle pour finaliser." },
         { icon: Lock, title: "Données protégées RGPD", description: "Site SSL, hébergement France, courtier inscrit à l'ORIAS." },
       ],
       testimonials: [],
       faqs: [
-        { question: "Comment Arthur compare-t-il les assurances auto ?", answer: "Tu remplis le formulaire en 2 minutes avec ton véhicule et ton profil. Arthur interroge en temps réel les 70+ assureurs partenaires et te présente les meilleures offres adaptées à ton profil." },
-        { question: "Combien puis-je économiser ?", answer: "Cela dépend de ton profil et de ton contrat actuel. Un conseiller compare ta situation à celle de nos 70+ assureurs partenaires pour identifier une économie réelle, sans engagement." },
+        { question: "Comment Arthur compare-t-il les assurances auto ?", answer: `Tu remplis le formulaire en 2 minutes avec ton véhicule et ton profil. Arthur interroge en temps réel les ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires et te présente les meilleures offres adaptées à ton profil.` },
+        { question: "Combien puis-je économiser ?", answer: `Cela dépend de ton profil et de ton contrat actuel. Un conseiller compare ta situation à celle de nos ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires pour identifier une économie réelle, sans engagement.` },
         { question: "Le service est-il vraiment gratuit ?", answer: "Oui, 100 % gratuit et sans engagement. Aucune carte bancaire demandée. Un conseiller te rappelle rapidement, en général dans l'heure aux heures d'ouverture, pour t'accompagner si tu le souhaites." },
         { question: "Puis-je changer d'assurance à tout moment ?", answer: "Oui, dès la première année grâce à la loi Hamon. Nous nous occupons gratuitement de la résiliation de ton ancien contrat." },
       ],
@@ -90,7 +90,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       slug: "auto",
       trackingTitle: "Landing Page Car Insurance",
       seoTitle: "Cheaper car insurance | Free quote in 2 min with Arthur",
-      seoDescription: "Compare 70+ car insurers with Arthur in 2 minutes. Free, no commitment, independent ORIAS-registered broker. Quick callback from an advisor.",
+      seoDescription: `Compare ${NB_ASSUREURS_LABEL} car insurers with Arthur in 2 minutes. Free, no commitment, independent ORIAS-registered broker. Quick callback from an advisor.`,
       seoKeyword: "cheaper car insurance",
       seoKeywords: "car insurance quote, car insurance comparison, cheap car insurance France",
       // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-auto (cannibalisation),
@@ -100,10 +100,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       badgeText: "Independent ORIAS broker",
       heroTitle: "Your car insurance,",
       heroHighlight: "compared in 2 minutes",
-      heroSubtitle: <>Arthur compares <strong className="text-primary">70+ partner insurers</strong> and finds the best rate, without compromising on cover.</>,
+      heroSubtitle: <>Arthur compares <strong className="text-primary">{NB_ASSUREURS_LABEL} partner insurers</strong> and finds the best rate, without compromising on cover.</>,
       mascotSrc: arthurCar,
       mascotAlt: "Arthur driving — car insurance comparator jemassuremoinscher.fr",
-      speechText: "Hi! I'll compare 70+ car insurers for you in 2 minutes.",
+      speechText: `Hi! I'll compare ${NB_ASSUREURS_LABEL} car insurers for you in 2 minutes.`,
       insuranceType: "auto",
       insuranceLabel: "Car Insurance",
       // "Verified reviews" retiré : badgeText affiche déjà "Independent
@@ -115,7 +115,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       ],
       advantages: [
         { icon: CheckCircle2, title: "100% free & no commitment", description: "No credit card required, no hidden fees." },
-        { icon: Award, title: "70+ insurers compared", description: "AXA, Allianz, MAIF, Matmut, Generali, Direct Assurance, MACIF and many more." },
+        { icon: Award, title: `${NB_ASSUREURS_LABEL} insurers compared`, description: "AXA, Allianz, MAIF, Matmut, Generali, Direct Assurance, MACIF and many more." },
         { icon: Phone, title: "A dedicated expert, not a bot", description: "Arthur runs the analysis, a human advisor calls you back to finalise." },
         { icon: Lock, title: "GDPR-protected data", description: "SSL site, France-based hosting, ORIAS-registered broker." },
       ],
@@ -125,8 +125,8 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
         { name: "Ahmed R.", location: "Marseille", text: "As a young driver I finally found affordable insurance thanks to Arthur. Thank you!" },
       ],
       faqs: [
-        { question: "How does Arthur compare car insurance?", answer: "You fill in the 2-minute form with your vehicle and profile. Arthur queries the 70+ partner insurers in real time and shows you the best offers for your profile." },
-        { question: "How much can I save?", answer: "It depends on your profile and current contract. On average, our users save up to 40% by putting the 70+ partner insurers in competition." },
+        { question: "How does Arthur compare car insurance?", answer: `You fill in the 2-minute form with your vehicle and profile. Arthur queries the ${NB_ASSUREURS_LABEL} partner insurers in real time and shows you the best offers for your profile.` },
+        { question: "How much can I save?", answer: `It depends on your profile and current contract. On average, our users save up to 40% by putting the ${NB_ASSUREURS_LABEL} partner insurers in competition.` },
         { question: "Is the service really free?", answer: "Yes, 100% free and no commitment. No credit card required. An advisor calls you back quickly, usually within the hour during business hours, to help if you'd like." },
         { question: "Can I switch insurance anytime?", answer: "Yes, after the first year thanks to the Hamon law. We handle the cancellation of your previous contract for free." },
       ],

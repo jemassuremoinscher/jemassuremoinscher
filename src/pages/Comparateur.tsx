@@ -3,6 +3,7 @@ import Footer from '@/components/Footer';
 import SEOOptimized from '@/components/SEOOptimized';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { Link } from 'react-router-dom';
+import { NB_ASSUREURS_LABEL } from '@/config/site';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { MultiStepQuoteForm } from '@/components/forms/MultiStepQuoteForm';
 
@@ -33,7 +34,7 @@ const Comparateur = () => {
         <Breadcrumbs items={[{ label: t('comparatorPage.breadcrumb') }]} />
         <main className="flex-1">
           <div className="container mx-auto px-4 py-10">
-            <h1 className="sr-only">Comparateur d'assurances en ligne — Comparez 70+ assureurs gratuitement</h1>
+            <h1 className="sr-only">Comparateur d'assurances en ligne — Comparez {NB_ASSUREURS_LABEL} assureurs et courtiers gratuitement</h1>
             <div className="min-h-[480px]">
               <MultiStepQuoteForm insuranceType="comparateur" />
             </div>

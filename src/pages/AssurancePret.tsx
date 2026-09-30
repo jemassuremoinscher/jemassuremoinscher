@@ -7,6 +7,7 @@ import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
 import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
@@ -70,7 +71,7 @@ const AssurancePret = () => {
         keywords="assurance emprunteur, loi Lemoine, délégation assurance, changer assurance emprunteur"
         canonical="https://www.jemassuremoinscher.fr/assurance-pret"
         ogTitle="Assurance Emprunteur Moins Chère | Loi Lemoine"
-        ogDescription="Comparez 70+ assureurs emprunteur. Grâce à la loi Lemoine, changez d'assurance de prêt à tout moment."
+        ogDescription={`Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers emprunteur. Grâce à la loi Lemoine, changez d'assurance de prêt à tout moment.`}
         twitterDescription="Loi Lemoine : changez d'assurance prêt quand vous voulez. Devis gratuit en 2 min."
         jsonLd={[webPageSchema, breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />

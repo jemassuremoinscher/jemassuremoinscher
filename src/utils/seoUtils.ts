@@ -1,4 +1,5 @@
 import geoContent from "@/data/geo-content.json";
+import { NB_ASSUREURS } from "@/config/site";
 
 export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number) => {
   const schema: Record<string, unknown> = {
@@ -8,7 +9,7 @@ export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number
     "legalName": "ARPV",
     "url": "https://www.jemassuremoinscher.fr",
     "logo": "https://www.jemassuremoinscher.fr/logo.png",
-    "description": "Comparateur d'assurances pas chères en ligne. Trouvez une assurance pas chère, comparez 70 assureurs, changez d'assurance facilement. Alternative à LesFurets.",
+    "description": `Comparateur d'assurances pas chères en ligne. Trouvez une assurance pas chère, comparez ${NB_ASSUREURS} assureurs et courtiers, changez d'assurance facilement. Alternative à LesFurets.`,
     "alternateName": ["jemassuremoinscher.fr", "je m'assure moins cher", "comparateur assurance pas chère", "ARPV"],
     "taxID": "10538727800010",
     "vatID": "FR46105387278",
@@ -136,7 +137,7 @@ export const optimizeLandingReassuranceDescription = (title: string, description
   }
 
   if (lowerTitle.includes("assureurs") || lowerTitle.includes("compar")) {
-    return "Nous comparons 70 assureurs pour afficher des options adaptées à votre profil.";
+    return `Nous comparons ${NB_ASSUREURS} assureurs et courtiers pour afficher des options adaptées à votre profil.`;
   }
 
   if (lowerTitle.includes("expert") || lowerTitle.includes("rappel")) {

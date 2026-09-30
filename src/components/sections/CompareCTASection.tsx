@@ -1,5 +1,6 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurStanding from "@/assets/mascotte/arthur-standing.webp";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 
 // Scroll+focus vers le formulaire de devis du Hero — même comportement que le
 // CTA "Arthur" de TrustRow.tsx (seul CTA de ce type existant sur le site).
@@ -27,7 +28,7 @@ const CompareCTASection = () => {
           Toujours pas comparé votre assurance ?
         </h2>
         <p className="text-base md:text-lg text-muted-foreground mb-8">
-          Arthur compare 70+ assureurs pour vous, en 2 minutes.
+          Arthur compare {NB_ASSUREURS_LABEL} assureurs et courtiers pour vous, en 2 minutes.
         </p>
         <button
           type="button"

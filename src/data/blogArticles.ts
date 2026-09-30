@@ -1,3 +1,5 @@
+import { NB_ASSUREURS_LABEL } from "@/config/site";
+
 export interface BlogArticle {
   id: string;
   title: string;
@@ -1675,7 +1677,7 @@ Certaines garanties diminuent ou s'arrêtent après 65 ans. Vérifiez le contrat
     id: "11",
     title: "Meilleure Assurance Auto 2026 : comparatif dès 25€/mois",
     slug: "meilleure-assurance-auto-2026-comparatif",
-    description: "Quelle est la meilleure assurance auto en 2026 ? Comparatif, prix dès 25€/mois et critères de choix. 70+ assureurs comparés gratuitement.",
+    description: `Quelle est la meilleure assurance auto en 2026 ? Comparatif, prix dès 25€/mois et critères de choix. ${NB_ASSUREURS_LABEL} assureurs et courtiers comparés gratuitement.`,
     category: "Assurance Auto",
     date: "2 janvier 2026",
     readTime: "12 min",
@@ -4775,7 +4777,7 @@ Le tarif est élevé, mais loin d'être une fatalité. Les leviers les plus effi
 
 Les Alpes-Maritimes cumulent densité, valeur du parc automobile et exposition climatique, ce qui en fait l'un des départements les plus chers de France pour l'assurance. Mais entre deux assureurs, l'écart de prix pour un même profil peut être significatif. **Le réflexe qui paie : comparer.**
 
-> **Comparez en 2 minutes** les offres de 70+ assureurs adaptées à votre commune dans le 06 avec notre [comparateur d'assurance auto](/assurance-auto). Gratuit et sans engagement.
+> **Comparez en 2 minutes** les offres de ${NB_ASSUREURS_LABEL} assureurs et courtiers adaptées à votre commune dans le 06 avec notre [comparateur d'assurance auto](/assurance-auto). Gratuit et sans engagement.
 
 ## Questions fréquentes
 
@@ -4893,7 +4895,7 @@ C'est un mécanisme **anti-fraude et anti-anti-sélection**. Sans lui, une perso
 
 Le délai de carence est une période initiale où certaines garanties ne sont pas encore actives. La responsabilité civile, elle, est immédiate. Pour l'éviter : souscrivez sans coupure de couverture, présentez votre relevé d'information, et comparez les conditions des contrats — pas seulement le tarif.
 
-> **Vous changez d'assurance auto ?** Comparez les garanties et les délais de 70+ assureurs avec notre [comparateur d'assurance auto](/assurance-auto). Devis gratuit en 2 minutes.
+> **Vous changez d'assurance auto ?** Comparez les garanties et les délais de ${NB_ASSUREURS_LABEL} assureurs et courtiers avec notre [comparateur d'assurance auto](/assurance-auto). Devis gratuit en 2 minutes.
 
 ## Questions fréquentes
 

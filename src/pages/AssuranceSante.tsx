@@ -6,6 +6,7 @@ import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import { addServiceSchema, addFAQSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurSick from "@/assets/mascotte/arthur-sick.webp";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
@@ -81,9 +82,9 @@ const AssuranceSante = () => {
         keyword="mutuelle santé moins chère"
         keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher, mutuelle famille"
         canonical="https://www.jemassuremoinscher.fr/assurance-sante"
-        ogTitle="Mutuelle Santé Moins Chère | Comparez 70+ mutuelles"
-        ogDescription="Comparez 70+ mutuelles santé en 2 minutes. Optique, dentaire, hospitalisation. Devis gratuit et personnalisé."
-        twitterDescription="Comparez 70+ mutuelles en 2 min. Gratuit et sans engagement."
+        ogTitle={`Mutuelle Santé Moins Chère | Comparez ${NB_ASSUREURS_LABEL} mutuelles`}
+        ogDescription={`Comparez ${NB_ASSUREURS_LABEL} mutuelles santé en 2 minutes. Optique, dentaire, hospitalisation. Devis gratuit et personnalisé.`}
+        twitterDescription={`Comparez ${NB_ASSUREURS_LABEL} mutuelles en 2 min. Gratuit et sans engagement.`}
         jsonLd={[webPageSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />

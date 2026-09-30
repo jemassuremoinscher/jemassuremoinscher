@@ -13,6 +13,7 @@ import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
 import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
 import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 import EnBref from "@/components/seo/EnBref";
 import BrandName from "@/components/BrandName";
 import arthurFlying from "@/assets/mascotte/arthur-sprint-coin.webp";
@@ -104,9 +105,9 @@ const AssuranceAuto = () => {
         keyword="assurance auto moins chère"
         keywords="assurance auto moins cher, Comparateur assurance auto, devis assurance voiture, changer assurance auto"
         canonical="https://www.jemassuremoinscher.fr/assurance-auto"
-        ogTitle="Assurance Auto Moins Chère | Comparez 70+ assureurs"
-        ogDescription="Comparez 70+ assureurs auto en 2 minutes. Devis gratuit et personnalisé. Tiers, Tiers+, Tous Risques."
-        twitterDescription="Comparez 70+ assureurs auto en 2 minutes. Gratuit et sans engagement."
+        ogTitle={`Assurance Auto Moins Chère | Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers`}
+        ogDescription={`Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers auto en 2 minutes. Devis gratuit et personnalisé. Tiers, Tiers+, Tous Risques.`}
+        twitterDescription={`Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers auto en 2 minutes. Gratuit et sans engagement.`}
         jsonLd={[webPageSchema, serviceSchema, howToSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />

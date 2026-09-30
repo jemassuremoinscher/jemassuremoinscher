@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ArrowRight, BookOpen, ExternalLink } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { glossaryTerms } from "@/data/glossaryTerms";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -33,7 +34,7 @@ const glossarySeoMeta: Record<string, { title: string; description: string }> = 
 "gli": { title: "GLI : Protégez Vos Loyers dès 2,5%", description: "Garantie Loyers Impayés : couverture, conditions et coût. Sécurisez vos revenus locatifs. Guide." },
 "vetuste": { title: "Vétusté Assurance : Calcul & Impact", description: "Comment la vétusté affecte votre indemnisation ? Taux, calcul et astuces pour être mieux remboursé." },
 "resiliation": { title: "Résiliation Assurance : Vos Droits", description: "Loi Hamon, Chatel, infra-annuelle : tous les moyens pour résilier votre assurance facilement. Guide." },
-"devis": { title: "Devis Assurance Gratuit : Comparez", description: "Obtenez un devis assurance gratuit en 2 minutes. Comparez 70+ assureurs et économisez." },
+"devis": { title: "Devis Assurance Gratuit : Comparez", description: `Obtenez un devis assurance gratuit en 2 minutes. Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers et économisez.` },
 };
 
 const GlossaireTerme = () => {

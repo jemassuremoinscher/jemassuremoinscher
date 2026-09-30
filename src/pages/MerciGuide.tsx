@@ -4,6 +4,7 @@ import { Download, CheckCircle2, ArrowRight, Sparkles, Mail, Shield } from "luci
 import { motion } from "framer-motion";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
 import SEOOptimized from "@/components/SEOOptimized";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 
 const PDF_URL = "/lead-magnets/7-erreurs-assurance.pdf";
 
@@ -137,7 +138,7 @@ const MerciGuide = () => {
                       Envie de passer à l'action tout de suite&nbsp;?
                     </h3>
                     <p className="text-sm text-muted-foreground mt-0.5">
-                      Comparez 70+ assureurs en 3 minutes et voyez combien vous pouvez économiser.
+                      Comparez {NB_ASSUREURS_LABEL} assureurs et courtiers en 3 minutes et voyez combien vous pouvez économiser.
                     </p>
                   </div>
                 </div>
@@ -154,7 +155,7 @@ const MerciGuide = () => {
               <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] text-muted-foreground pt-2 border-t border-border">
                 <span>★ sur Google Reviews</span>
                 <span>·</span>
-                <span>70+ assureurs comparés</span>
+                <span>{NB_ASSUREURS_LABEL} assureurs et courtiers comparés</span>
                 <span>·</span>
                 <span>100 % en ligne</span>
                 <span>·</span>

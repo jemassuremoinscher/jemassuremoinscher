@@ -7,6 +7,7 @@ import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import { addServiceSchema, addFAQSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurMoto from "@/assets/mascotte/arthur-moto.webp?w=480&format=webp";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import ExpertiseSection from "@/components/insurance/ExpertiseSection";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
@@ -74,9 +75,9 @@ const AssuranceMoto = () => {
         keyword="assurance moto moins chère"
         keywords="assurance scooter, comparateur assurance moto, assurance 125, assurance moto jeune conducteur"
         canonical="https://www.jemassuremoinscher.fr/assurance-moto"
-        ogTitle="Assurance Moto Moins Chère | Comparez 70+ assureurs"
-        ogDescription="Comparez 70+ assureurs moto et scooter en 2 minutes. Toutes formules. Devis gratuit pour moto, scooter, 125cc."
-        twitterDescription="Comparez 70+ assureurs moto en 2 min. Devis gratuit sans engagement."
+        ogTitle={`Assurance Moto Moins Chère | Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers`}
+        ogDescription={`Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers moto et scooter en 2 minutes. Toutes formules. Devis gratuit pour moto, scooter, 125cc.`}
+        twitterDescription={`Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers moto en 2 min. Devis gratuit sans engagement.`}
         jsonLd={[webPageSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />

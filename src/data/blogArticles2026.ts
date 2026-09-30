@@ -1,4 +1,5 @@
 import type { BlogArticle } from "./blogArticles";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 
 export const blogArticles2026: BlogArticle[] = [
   {
@@ -3722,7 +3723,7 @@ Le remboursement n'est pas un critère de qualité. Vérifiez plutôt la certifi
     id: "60",
     title: "Devis assurance auto jeune conducteur : simulez votre prix en 2 min (2026)",
     slug: "devis-assurance-auto-jeune-conducteur-2026",
-    description: "Jeune conducteur ? Obtenez un devis assurance auto en 2 minutes. Tarifs moyens 2026, astuces pour payer moins cher et simulation gratuite avec 70+ assureurs.",
+    description: `Jeune conducteur ? Obtenez un devis assurance auto en 2 minutes. Tarifs moyens 2026, astuces pour payer moins cher et simulation gratuite avec ${NB_ASSUREURS_LABEL} assureurs et courtiers.`,
     category: "Assurance Auto",
     date: "12 mars 2026",
     readTime: "12 min",
@@ -3830,7 +3831,7 @@ Si vos parents sont déjà chez un assureur pour leur [habitation](/assurance-ha
 
 ### 8. Comparez, comparez, comparez
 
-Les écarts entre assureurs peuvent atteindre **50%** pour le même profil. Un comparateur indépendant comme jemassuremoinscher.fr interroge 70+ assureurs en 2 minutes.
+Les écarts entre assureurs peuvent atteindre **50%** pour le même profil. Un comparateur indépendant comme jemassuremoinscher.fr interroge ${NB_ASSUREURS_LABEL} assureurs et courtiers en 2 minutes.
 
 > **Conseil d'Arthur :** Ne vous arrêtez pas au premier devis. J'ai vu des écarts de 1 200€ entre le plus cher et le moins cher pour un même profil de jeune conducteur ! **[→ Simuler mon prix en 2 minutes](/assurance-auto)**
 
