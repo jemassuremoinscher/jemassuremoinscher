@@ -408,7 +408,7 @@ const QuiSommesNous = () => {
                 {
                   icon: Scale,
                   title: "Indépendance garantie",
-                  desc: "Nous ne sommes liés par aucun accord d'exclusivité avec un assureur. Notre comparaison est impartiale : nous présentons les offres de 60+ partenaires sans favoriser aucune compagnie. Notre objectif est de trouver le meilleur rapport garanties/prix pour vous.",
+                  desc: `Nous ne sommes liés par aucun accord d'exclusivité avec un assureur. Nous présentons les offres de ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires, sans favoriser aucune compagnie. Notre objectif est de trouver le meilleur rapport garanties/prix pour vous.`,
                 },
                 {
                   icon: Heart,
