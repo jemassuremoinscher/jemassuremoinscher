@@ -110,13 +110,13 @@ export const getMetaDefaultsForPath = (path: string) => {
 // Tout check en échec dont on peut résoudre un pagePath est corrigeable
 // via harmonisation des 4 métadonnées (title/desc/og) en base — solution pérenne
 // car relue par SEOOptimized à chaque rendu et validée par validate*Fix au refresh.
-export const canAutoFixSeoIssue = (issue: { category: string; description: string; file: string }) => {
-  return Boolean(auditFileToPagePath(issue.file));
-};
+// Désactivé le 2026-09-30 (décision de Paul) : ces "auto-fix" écrivaient les
+// valeurs par défaut de PAGE_META_CATALOG dans page_meta_overrides, ce qui
+// réinjectait en base des chiffres non sourcés. Les meta se modifient
+// désormais uniquement à la main (SERPPreview).
+export const canAutoFixSeoIssue = (_issue: { category: string; description: string; file: string }) => false;
 
-export const canAutoFixGeoIssue = (issue: { category: string; description: string; file: string }) => {
-  return Boolean(auditFileToPagePath(issue.file));
-};
+export const canAutoFixGeoIssue = (_issue: { category: string; description: string; file: string }) => false;
 
 const upsertPageMetaOverride = async (pagePath: string, payload: { meta_title?: string | null; meta_description?: string | null; og_title?: string | null; og_description?: string | null; }) => {
   const { data: existing, error: lookupError } = await supabase
