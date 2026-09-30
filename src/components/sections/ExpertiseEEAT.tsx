@@ -14,7 +14,7 @@ const PILLARS = [
     icon: Users,
     title: "Qui vous conseille",
     body:
-      "Une équipe de conseillers en assurance basée à Nice, qui traite chaque jour des demandes réelles : auto malussée, jeune conducteur, mutuelle senior, RC pro, PNO et GLI.",
+      "Une équipe de conseillers basée à Nice, qui accompagne chaque demande par téléphone.",
     bullets: [
       "Accompagnement humain par téléphone, pas seulement un formulaire",
       "Rappel rapide par un conseiller après une demande de devis",
