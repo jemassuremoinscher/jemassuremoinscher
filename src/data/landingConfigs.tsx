@@ -337,7 +337,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     slug: "animaux",
     trackingTitle: "Landing Page Assurance Animaux",
     seoTitle: "Assurance Animaux | Comparateur",
-    seoDescription: "Mutuelle santé chien et chat. Remboursement jusqu'à 100 % des frais véto.",
+    seoDescription: "Mutuelle santé chien et chat : comparez les remboursements des frais vétérinaires.",
     seoKeyword: "assurance animaux moins chère",
     seoKeywords: "mutuelle chien, mutuelle chat, assurance santé animale",
     // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-animaux (cannibalisation),
@@ -345,11 +345,11 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // "dès 8 €/mois" retiré du titre et du heroHighlight (non sourcé, même
     // défaut que les prix retirés ailleurs).
     noindex: true,
-    topBarText: "🐾 Offre Animaux : 1 mois offert + remboursement jusqu'à 100 %",
+    topBarText: "🐾 Assurance chien et chat : comparez les formules",
     badgeText: "Chien & Chat",
     heroTitle: "Assurance pour vos animaux",
     heroHighlight: "Chien & chat",
-    heroSubtitle: <>Vétérinaire, chirurgie, médicaments — remboursés jusqu'à 100 %.</>,
+    heroSubtitle: <>Vétérinaire, chirurgie, médicaments : le taux de remboursement dépend de la formule choisie.</>,
     mascotSrc: arthurAnimals,
     mascotAlt: "Arthur avec chien & chat — assurance animaux",
     speechText: "Vos boules de poils méritent les meilleurs soins !",
@@ -364,7 +364,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     faqs: [
       { question: "Mon animal est-il éligible ?", answer: "Oui, chiens et chats de 2 mois à 7-10 ans selon les contrats (sans race exclue)." },
       { question: "Quel est le délai de carence ?", answer: "Généralement 7 jours pour la maladie, 48 h pour l'accident." },
-      { question: "Combien suis-je remboursé ?", answer: "Selon la formule choisie : de 60 à 100 % des frais vétérinaires, dans la limite du plafond annuel." },
+      { question: "Combien suis-je remboursé ?", answer: "Le taux de remboursement dépend de la formule choisie, dans la limite du plafond annuel du contrat." },
     ],
     bottomCtaTitle: "Protégez la santé de votre compagnon",
     bottomCtaDescription: "Devis personnalisé en 2 min — comparez les assureurs spécialisés.",
