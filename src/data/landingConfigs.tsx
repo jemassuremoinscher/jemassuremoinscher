@@ -1152,7 +1152,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // sujets traités avant elle.
     noindex: true,
     trackingTitle: "Landing Page Assurance Influenceur",
-    seoTitle: "Assurance Influenceur & Créateur de Contenu | RC Pro 2026",
+    seoTitle: "Assurance Influenceur & Créateur de Contenu | RC Pro",
     seoDescription: "RC pro influenceur, créateur, streamer : litiges marques, droit à l'image, diffamation. Conforme loi influence 2023.",
     seoKeyword: "assurance influenceur",
     seoKeywords: "rc pro créateur de contenu, assurance instagram, assurance youtuber",

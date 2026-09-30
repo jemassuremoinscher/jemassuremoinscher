@@ -37,13 +37,18 @@ interface SEOOptimizedProps {
 const BASE_URL = 'https://www.jemassuremoinscher.fr';
 const DEFAULT_IMAGE = `${BASE_URL}/opengraph-image.png`;
 
-const MONTHS_FR = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-
-/** Replace [Month] with current month + year (e.g. "Mars 2026") */
+/**
+ * Retiré le 2026-09-30 (décision de Paul) : ce token injectait le mois/année
+ * courants dans les titres/meta ("Assurance Auto Moins Chère Juin 2026"),
+ * périmé dès le mois suivant et jamais réellement à jour. Toutes les
+ * occurrences de "[Month]" ont été retirées des sources (auditFixes.ts,
+ * GlossaireTerme.tsx, i18n fr/en). Cette fonction ne fait plus que nettoyer
+ * un éventuel token résiduel (ex. une ligne page_meta_overrides pas encore
+ * corrigée en base) — elle n'injecte plus jamais de date.
+ */
 const resolveDynamicTokens = (text: string): string => {
   if (!text.includes('[Month]')) return text;
-  const now = new Date();
-  return text.replace(/\[Month\]/g, `${MONTHS_FR[now.getMonth()]} ${now.getFullYear()}`);
+  return text.replace(/\s*\[Month\]/g, '').trim();
 };
 
 /**

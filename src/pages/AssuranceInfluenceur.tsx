@@ -39,7 +39,7 @@ const AssuranceInfluenceur = () => (
     heroAlt="Arthur, créateur de contenu"
     heroTitle="Assurance influenceur : ce qu'il faut vraiment savoir"
     heroSubtitle="La loi du 9 juin 2023 encadre surtout les contrats et la publicité. Sur l'assurance, elle vise un cas précis — pas tous les influenceurs."
-    seoTitle="Assurance Influenceur 2026 | Loi du 9 juin 2023, RC pro"
+    seoTitle="Assurance Influenceur | Loi du 9 juin 2023, RC pro"
     seoDescription="Influenceur : ce que dit vraiment la loi du 9 juin 2023 sur l'assurance RC pro. Un angle précis (hors UE/EEE/Suisse), pas une obligation générale."
     canonical="https://www.jemassuremoinscher.fr/assurance-influenceur"
     keyword="assurance influenceur"

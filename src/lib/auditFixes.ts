@@ -2,18 +2,18 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const PAGE_META_CATALOG: { path: string; label: string; defaultTitle: string; defaultDesc: string }[] = [
   { path: "/", label: "Accueil", defaultTitle: "Assurance Moins Chère : Comparateur Gratuit | jemassuremoinscher.fr", defaultDesc: "Comparateur d'assurances gratuit. Comparez 70+ assureurs et économisez jusqu'à 280€. Devis en 2 min, sans engagement." },
-  { path: "/assurance-auto", label: "Assurance Auto", defaultTitle: "Assurance Auto Moins Chère [Month] : -40% ⭐", defaultDesc: "70+ assureurs comparés gratuitement. Nos clients économisent 320€/an en moyenne. Devis auto instantané, sans engagement." },
-  { path: "/assurance-moto", label: "Assurance Moto", defaultTitle: "Assurance Moto Moins Chère [Month] : -35% ⭐", defaultDesc: "Moto, scooter, 125cc : comparez 70+ assureurs. Tous risques dès 15€/mois. Devis gratuit et sans engagement." },
-  { path: "/assurance-habitation", label: "Assurance Habitation", defaultTitle: "Assurance Habitation Moins Chère [Month] dès 3€", defaultDesc: "Comparez 70+ assureurs habitation en 2 min. Maison ou appartement, locataire ou propriétaire. Économisez jusqu'à 40%." },
-  { path: "/assurance-sante", label: "Mutuelle Santé", defaultTitle: "Mutuelle Santé Moins Chère [Month] : -300€/an", defaultDesc: "Comparez 70+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale. 5/5 satisfaction client." },
-  { path: "/assurance-animaux", label: "Assurance Animaux", defaultTitle: "Assurance Chien Chat dès 8€/mois [Month]", defaultDesc: "Mutuelle animaux : remboursement vétérinaire jusqu'à 100%. Comparez les offres chien et chat en 2 min. Sans délai de carence." },
-  { path: "/assurance-vie", label: "Assurance Vie", defaultTitle: "Assurance Vie [Month] : Meilleurs Rendements", defaultDesc: "Fonds euros, unités de compte, PER : comparez les meilleures assurances vie. Fiscalité avantageuse après 8 ans. Devis gratuit." },
-  { path: "/assurance-pret", label: "Assurance Emprunteur", defaultTitle: "Assurance Emprunteur [Month] : -15 000€ (Lemoine)", defaultDesc: "Loi Lemoine : changez d'assurance de prêt à tout moment. Comparez 70+ assureurs, économisez jusqu'à 50%. Devis gratuit en 2 min." },
-  { path: "/assurance-prevoyance", label: "Prévoyance", defaultTitle: "Prévoyance [Month] : Protégez Votre Famille 9€/mois", defaultDesc: "Décès, invalidité, obsèques : comparez les garanties prévoyance de 70+ assureurs. Devis personnalisé gratuit en 2 min." },
-  { path: "/assurance-rc-pro", label: "RC Professionnelle", defaultTitle: "RC Pro dès 15€/mois [Month] : Devis Gratuit", defaultDesc: "Responsabilité civile professionnelle : comparez 70+ assureurs. Tous secteurs : BTP, conseil, IT, commerce. Attestation immédiate." },
-  { path: "/assurance-mrp", label: "Assurance MRP", defaultTitle: "Multirisque Pro (MRP) [Month] dès 20€/mois", defaultDesc: "Locaux, stock, matériel : protégez votre entreprise avec une MRP adaptée. 70+ assureurs comparés. Devis gratuit en 2 min." },
-  { path: "/assurance-pno", label: "Assurance PNO", defaultTitle: "PNO Assurance dès 5€/mois [Month] | Copropriété", defaultDesc: "PNO assurance : comparez les assurances propriétaire non occupant. Obligatoire en copropriété (loi Alur). 70+ assureurs comparés. Devis gratuit." },
-  { path: "/assurance-gli", label: "Garantie Loyers Impayés", defaultTitle: "GLI [Month] : Garantie Loyer Impayé dès 2,5%", defaultDesc: "Loyers impayés, dégradations, frais juridiques : sécurisez vos revenus locatifs. Comparez les GLI de 70+ assureurs. Devis gratuit." },
+{ path: "/assurance-auto", label: "Assurance Auto", defaultTitle: "Assurance Auto Moins Chère : -40% ⭐", defaultDesc: "70+ assureurs comparés gratuitement. Nos clients économisent 320€/an en moyenne. Devis auto instantané, sans engagement." },
+{ path: "/assurance-moto", label: "Assurance Moto", defaultTitle: "Assurance Moto Moins Chère : -35% ⭐", defaultDesc: "Moto, scooter, 125cc : comparez 70+ assureurs. Tous risques dès 15€/mois. Devis gratuit et sans engagement." },
+{ path: "/assurance-habitation", label: "Assurance Habitation", defaultTitle: "Assurance Habitation Moins Chère dès 3€", defaultDesc: "Comparez 70+ assureurs habitation en 2 min. Maison ou appartement, locataire ou propriétaire. Économisez jusqu'à 40%." },
+{ path: "/assurance-sante", label: "Mutuelle Santé", defaultTitle: "Mutuelle Santé Moins Chère : -300€/an", defaultDesc: "Comparez 70+ mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale. 5/5 satisfaction client." },
+{ path: "/assurance-animaux", label: "Assurance Animaux", defaultTitle: "Assurance Chien Chat dès 8€/mois", defaultDesc: "Mutuelle animaux : remboursement vétérinaire jusqu'à 100%. Comparez les offres chien et chat en 2 min. Sans délai de carence." },
+{ path: "/assurance-vie", label: "Assurance Vie", defaultTitle: "Assurance Vie : Meilleurs Rendements", defaultDesc: "Fonds euros, unités de compte, PER : comparez les meilleures assurances vie. Fiscalité avantageuse après 8 ans. Devis gratuit." },
+{ path: "/assurance-pret", label: "Assurance Emprunteur", defaultTitle: "Assurance Emprunteur : -15 000€ (Lemoine)", defaultDesc: "Loi Lemoine : changez d'assurance de prêt à tout moment. Comparez 70+ assureurs, économisez jusqu'à 50%. Devis gratuit en 2 min." },
+{ path: "/assurance-prevoyance", label: "Prévoyance", defaultTitle: "Prévoyance : Protégez Votre Famille 9€/mois", defaultDesc: "Décès, invalidité, obsèques : comparez les garanties prévoyance de 70+ assureurs. Devis personnalisé gratuit en 2 min." },
+{ path: "/assurance-rc-pro", label: "RC Professionnelle", defaultTitle: "RC Pro dès 15€/mois : Devis Gratuit", defaultDesc: "Responsabilité civile professionnelle : comparez 70+ assureurs. Tous secteurs : BTP, conseil, IT, commerce. Attestation immédiate." },
+{ path: "/assurance-mrp", label: "Assurance MRP", defaultTitle: "Multirisque Pro (MRP) dès 20€/mois", defaultDesc: "Locaux, stock, matériel : protégez votre entreprise avec une MRP adaptée. 70+ assureurs comparés. Devis gratuit en 2 min." },
+{ path: "/assurance-pno", label: "Assurance PNO", defaultTitle: "PNO Assurance dès 5€/mois | Copropriété", defaultDesc: "PNO assurance : comparez les assurances propriétaire non occupant. Obligatoire en copropriété (loi Alur). 70+ assureurs comparés. Devis gratuit." },
+{ path: "/assurance-gli", label: "Garantie Loyers Impayés", defaultTitle: "GLI : Garantie Loyer Impayé dès 2,5%", defaultDesc: "Loyers impayés, dégradations, frais juridiques : sécurisez vos revenus locatifs. Comparez les GLI de 70+ assureurs. Devis gratuit." },
   { path: "/comparateur", label: "Comparateur", defaultTitle: "Comparateur d'Assurances Gratuit", defaultDesc: "Comparez les offres de 70+ assureurs en 2 minutes. Auto, santé, habitation, prêt. Sans engagement." },
   { path: "/blog", label: "Blog", defaultTitle: "Blog Assurance - Conseils & Guides", defaultDesc: "Guides complets, actualités et conseils pour économiser sur vos assurances." },
   { path: "/glossaire", label: "Glossaire", defaultTitle: "Glossaire de l'Assurance", defaultDesc: "Définitions claires de tous les termes d'assurance : franchise, prime, sinistre, responsabilité civile..." },
@@ -21,35 +21,31 @@ export const PAGE_META_CATALOG: { path: string; label: string; defaultTitle: str
   { path: "/contact", label: "Contact", defaultTitle: "Contactez-nous | jemassuremoinscher.fr", defaultDesc: "Besoin d'aide ? Contactez notre équipe de conseillers. Rappel rapide par un conseiller." },
   { path: "/nos-partenaires", label: "Nos Partenaires", defaultTitle: "Nos 70+ Partenaires Assureurs", defaultDesc: "AXA, Allianz, MAIF, Groupama... Découvrez tous nos assureurs partenaires." },
   { path: "/mutuelle-tns", label: "Mutuelle TNS", defaultTitle: "Mutuelle TNS : Meilleure Complémentaire Indépendant", defaultDesc: "Comparez les mutuelles TNS adaptées aux indépendants. Loi Madelin, déduction fiscale. Devis gratuit." },
-  // Nouvelles verticales (niches) — toutes avec [Month] dynamique
-  { path: "/assurance-velo", label: "Assurance Vélo", defaultTitle: "Assurance Vélo & VAE dès 4€/mois [Month]", defaultDesc: "Vélo, VAE, vélo cargo : protégez contre vol, casse, accident. Comparez 20+ assureurs. Devis instantané, sans engagement." },
-  { path: "/assurance-camping-car", label: "Assurance Camping-Car", defaultTitle: "Assurance Camping-Car [Month] dès 28€/mois", defaultDesc: "Camping-car, van, fourgon aménagé : tous risques, assistance Europe. Comparez 30+ assureurs spécialisés. Devis 2 min." },
-  { path: "/assurance-cyber", label: "Assurance Cyber", defaultTitle: "Assurance Cyber TPE/PME [Month] : dès 29€/mois", defaultDesc: "Cyberattaque, ransomware, fuite de données : protégez votre entreprise. RC cyber, frais de notification, expertise IT. Devis gratuit." },
-  { path: "/assurance-decennale", label: "Garantie Décennale", defaultTitle: "Assurance Décennale [Month] : dès 89€/mois", defaultDesc: "Garantie décennale obligatoire BTP : artisans, maîtres d'œuvre, auto-entrepreneurs. Attestation rapide. Comparez 20+ assureurs." },
-  { path: "/assurance-flotte-auto", label: "Flotte Auto Entreprise", defaultTitle: "Assurance Flotte Auto [Month] : -25% Pro", defaultDesc: "3 véhicules ou plus : optimisez le coût de votre flotte pro. Bonus collectif, assistance 24/7, gestion centralisée. Devis gratuit." },
-  { path: "/assurance-mutuelle-entreprise", label: "Mutuelle Entreprise", defaultTitle: "Mutuelle Entreprise (ANI) [Month] dès 29€/mois", defaultDesc: "Mutuelle collective obligatoire : conforme ANI, 50% employeur. Comparez 30+ contrats adaptés à vos salariés. Devis 2 min." },
-  { path: "/assurance-protection-juridique", label: "Protection Juridique", defaultTitle: "Protection Juridique [Month] dès 9€/mois", defaultDesc: "Conflits du quotidien : conso, voisinage, travail, immobilier. Conseils juridiques + prise en charge des frais. Devis gratuit." },
-  { path: "/assurance-sans-permis", label: "Assurance Sans Permis", defaultTitle: "Assurance Voiturette Sans Permis [Month] dès 25€", defaultDesc: "Voiture sans permis (VSP), quadricycle léger : comparez 15+ assureurs. Tiers, vol, tous risques. Devis instantané." },
-  { path: "/assurance-auto-temporaire", label: "Auto Temporaire", defaultTitle: "Assurance Auto Temporaire [Month] : 1 à 90 jours", defaultDesc: "Assurance auto courte durée : 1 jour, 1 semaine, 1 mois. Idéal essai, prêt, déménagement. Attestation immédiate par email." },
-  { path: "/assurance-expatries", label: "Assurance Expatriés", defaultTitle: "Assurance Expatriés [Month] : Santé Internationale", defaultDesc: "Français à l'étranger ou étrangers en France : santé internationale, rapatriement, auto, habitation. 70+ assureurs comparés." },
-  { path: "/assurance-metiers-atypiques", label: "Métiers Atypiques", defaultTitle: "Assurance Métiers Atypiques [Month] | RC Pro Niche", defaultDesc: "Accrobranche, sports outdoor, événementiel, BTP spécialisé : 20+ assureurs de niche. Rappel rapide par un conseiller." },
+  // Nouvelles verticales (niches)
+{ path: "/assurance-velo", label: "Assurance Vélo", defaultTitle: "Assurance Vélo & VAE dès 4€/mois", defaultDesc: "Vélo, VAE, vélo cargo : protégez contre vol, casse, accident. Comparez 20+ assureurs. Devis instantané, sans engagement." },
+{ path: "/assurance-camping-car", label: "Assurance Camping-Car", defaultTitle: "Assurance Camping-Car dès 28€/mois", defaultDesc: "Camping-car, van, fourgon aménagé : tous risques, assistance Europe. Comparez 30+ assureurs spécialisés. Devis 2 min." },
+{ path: "/assurance-cyber", label: "Assurance Cyber", defaultTitle: "Assurance Cyber TPE/PME : dès 29€/mois", defaultDesc: "Cyberattaque, ransomware, fuite de données : protégez votre entreprise. RC cyber, frais de notification, expertise IT. Devis gratuit." },
+{ path: "/assurance-decennale", label: "Garantie Décennale", defaultTitle: "Assurance Décennale : dès 89€/mois", defaultDesc: "Garantie décennale obligatoire BTP : artisans, maîtres d'œuvre, auto-entrepreneurs. Attestation rapide. Comparez 20+ assureurs." },
+{ path: "/assurance-flotte-auto", label: "Flotte Auto Entreprise", defaultTitle: "Assurance Flotte Auto : -25% Pro", defaultDesc: "3 véhicules ou plus : optimisez le coût de votre flotte pro. Bonus collectif, assistance 24/7, gestion centralisée. Devis gratuit." },
+{ path: "/assurance-mutuelle-entreprise", label: "Mutuelle Entreprise", defaultTitle: "Mutuelle Entreprise (ANI) dès 29€/mois", defaultDesc: "Mutuelle collective obligatoire : conforme ANI, 50% employeur. Comparez 30+ contrats adaptés à vos salariés. Devis 2 min." },
+{ path: "/assurance-protection-juridique", label: "Protection Juridique", defaultTitle: "Protection Juridique dès 9€/mois", defaultDesc: "Conflits du quotidien : conso, voisinage, travail, immobilier. Conseils juridiques + prise en charge des frais. Devis gratuit." },
+{ path: "/assurance-sans-permis", label: "Assurance Sans Permis", defaultTitle: "Assurance Voiturette Sans Permis dès 25€", defaultDesc: "Voiture sans permis (VSP), quadricycle léger : comparez 15+ assureurs. Tiers, vol, tous risques. Devis instantané." },
+{ path: "/assurance-auto-temporaire", label: "Auto Temporaire", defaultTitle: "Assurance Auto Temporaire : 1 à 90 jours", defaultDesc: "Assurance auto courte durée : 1 jour, 1 semaine, 1 mois. Idéal essai, prêt, déménagement. Attestation immédiate par email." },
+{ path: "/assurance-expatries", label: "Assurance Expatriés", defaultTitle: "Assurance Expatriés : Santé Internationale", defaultDesc: "Français à l'étranger ou étrangers en France : santé internationale, rapatriement, auto, habitation. 70+ assureurs comparés." },
+{ path: "/assurance-metiers-atypiques", label: "Métiers Atypiques", defaultTitle: "Assurance Métiers Atypiques | RC Pro Niche", defaultDesc: "Accrobranche, sports outdoor, événementiel, BTP spécialisé : 20+ assureurs de niche. Rappel rapide par un conseiller." },
 ];
 
-/** Re-tokenize any resolved month (e.g. "Mai 2026", "(Avril 2026)") back to [Month].
- *  Used before persisting overrides so titles stay dynamic across months. */
-const MONTH_NAMES_FR = ["Janvier","Février","Fevrier","Mars","Avril","Mai","Juin","Juillet","Août","Aout","Septembre","Octobre","Novembre","Décembre","Decembre"];
-export const detokenizeMonth = (text: string | null | undefined): string | null => {
-  if (!text) return text ?? null;
-  const pattern = new RegExp(`\\(?\\s*(?:${MONTH_NAMES_FR.join("|")})\\s+\\d{4}\\s*\\)?`, "gi");
-  return text.replace(pattern, (match) => match.trim().startsWith("(") ? "([Month])" : "[Month]");
-};
-
-const MONTHS_FR = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-
+/**
+ * Retiré le 2026-09-30 (décision de Paul) : le token [Month] injectait le
+ * mois/année courants dans les titres/meta, périmé dès le mois suivant.
+ * Toutes les occurrences de "[Month]" ont été retirées des sources. Cette
+ * fonction ne fait plus que nettoyer un éventuel token résiduel (ex. une
+ * ligne page_meta_overrides pas encore corrigée en base) — elle n'injecte
+ * plus jamais de date. Miroir de la même fonction dans SEOOptimized.tsx.
+ */
 const resolveDynamicTokens = (text: string): string => {
   if (!text.includes("[Month]")) return text;
-  const now = new Date();
-  return text.replace(/\[Month\]/g, `${MONTHS_FR[now.getMonth()]} ${now.getFullYear()}`);
+  return text.replace(/\s*\[Month\]/g, "").trim();
 };
 
 const trimToLength = (text: string, max: number) => (text.length <= max ? text : `${text.slice(0, max - 1).trimEnd()}…`);
@@ -508,17 +504,17 @@ const buildGeoContentSuggestion = (input: GeoContentImprovementInput) => {
 const POSITION_PAGE_UPDATES = [
   {
     path: "/assurance-auto",
-    meta_title: resolveDynamicTokens("Assurance Auto Pas Chère [Month] : 70+ assureurs comparés"),
+    meta_title: "Assurance Auto Pas Chère : 70+ assureurs comparés",
     meta_description: "Comparez garanties, prix et franchises auprès de 70+ assureurs et 2 500+ agences locales pour trouver la formule adaptée à votre profil.",
   },
   {
     path: "/assurance-sante",
-    meta_title: resolveDynamicTokens("Mutuelle Santé Pas Chère [Month] : Comparez les garanties"),
+    meta_title: "Mutuelle Santé Pas Chère : Comparez les garanties",
     meta_description: "Comparez les remboursements optique, dentaire et hospitalisation pour choisir une mutuelle santé réellement adaptée.",
   },
   {
     path: "/assurance-pret",
-    meta_title: resolveDynamicTokens("Assurance Emprunteur [Month] : Comparez et économisez"),
+    meta_title: "Assurance Emprunteur : Comparez et économisez",
     meta_description: "Comparez les garanties décès, IPT, ITT et exclusions pour changer d'assurance emprunteur au meilleur coût.",
   },
 ].map((item) => ({
@@ -535,12 +531,12 @@ const QUALIFIED_TRAFFIC_PAGE_UPDATES = [
   },
   {
     path: "/assurance-habitation",
-    meta_title: resolveDynamicTokens("Assurance Habitation [Month] : Comparez les garanties utiles"),
+    meta_title: "Assurance Habitation : Comparez les garanties utiles",
     meta_description: "Comparez les garanties essentielles, franchises et tarifs pour trouver une assurance habitation claire et adaptée.",
   },
   {
     path: "/assurance-rc-pro",
-    meta_title: resolveDynamicTokens("RC Pro [Month] : Comparez les garanties par métier"),
+    meta_title: "RC Pro : Comparez les garanties par métier",
     meta_description: "Comparez les garanties RC Pro par activité pour obtenir une couverture claire, rapide à comprendre et pertinente.",
   },
 ].map((item) => ({

@@ -14,26 +14,26 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const normalizeGlossaryMarkdownHeadings = (markdown: string) => markdown.replace(/^#\s+/gm, "## ");
 
 const glossarySeoMeta: Record<string, { title: string; description: string }> = {
-  "franchise": { title: "Franchise Assurance : Définition & Guide [Month]", description: "Qu'est-ce que la franchise en assurance ? Absolue, relative, proportionnelle : tout comprendre pour mieux choisir. Guide [Month]." },
-  "prime-assurance": { title: "Prime d'Assurance : Payer Moins Cher en [Month]", description: "Comprenez le calcul de votre prime d'assurance et économisez jusqu'à 40% en comparant les offres. Mis à jour [Month]." },
-  "sinistre": { title: "Sinistre Assurance : Définition & Démarches [Month]", description: "Que faire en cas de sinistre ? Délais, preuves, déclaration : guide complet pour être indemnisé rapidement. [Month]." },
-  "bonus-malus": { title: "Bonus-Malus Auto : Calcul & Barème [Month]", description: "Comment fonctionne le coefficient bonus-malus ? Calcul, barème et astuces pour retrouver votre bonus. Guide [Month]." },
-  "indemnisation": { title: "Indemnisation Assurance : Modes & Délais [Month]", description: "Valeur à neuf, vénale, en nature : comprenez les modes d'indemnisation et les délais légaux. Guide [Month]." },
-  "tiers": { title: "Assurance au Tiers : Définition & Garanties [Month]", description: "Assurance au tiers, tiers étendu ou tous risques ? Comparez les formules et trouvez la meilleure couverture. [Month]." },
-  "tous-risques": { title: "Assurance Tous Risques : Garanties & Prix [Month]", description: "Quand choisir l'assurance tous risques ? Garanties incluses, prix moyen et comparatif des offres. [Month]." },
-  "constat-amiable": { title: "Constat Amiable : Comment le Remplir [Month]", description: "Guide pas à pas pour remplir un constat amiable après un accident. Conseils et erreurs à éviter. [Month]." },
-  "loi-hamon": { title: "Loi Hamon : Résilier son Assurance en [Month]", description: "La loi Hamon permet de résilier votre assurance auto, moto ou habitation à tout moment après 1 an. Guide [Month]." },
-  "loi-lemoine": { title: "Loi Lemoine : Changer d'Assurance Emprunteur [Month]", description: "Résiliez votre assurance emprunteur à tout moment sans frais grâce à la loi Lemoine. Économisez jusqu'à 15 000€. [Month]." },
-  "mutuelle-sante": { title: "Mutuelle Santé : Guide Complet [Month]", description: "Complémentaire santé, 100% Santé, remboursements : tout savoir pour choisir la meilleure mutuelle. [Month]." },
-  "ticket-moderateur": { title: "Ticket Modérateur : Définition & Calcul [Month]", description: "Qu'est-ce que le ticket modérateur ? Exemples concrets, cas d'exonération et rôle de la mutuelle. [Month]." },
-  "tiers-payant": { title: "Tiers Payant : Comment en Bénéficier [Month]", description: "Tiers payant partiel ou intégral : évitez d'avancer vos frais de santé. Guide pratique [Month]." },
-  "responsabilite-civile": { title: "Responsabilité Civile : Définition & Guide [Month]", description: "RC vie privée, auto, professionnelle : comprenez vos obligations et choisissez la bonne couverture. [Month]." },
-  "assurance-emprunteur": { title: "Assurance Emprunteur : Économisez en [Month]", description: "Changez d'assurance de prêt immobilier et économisez jusqu'à 15 000€. Comparatif et guide [Month]." },
-  "pno": { title: "Assurance PNO dès 60€/an : Meilleurs Tarifs [Month]", description: "L'assurance PNO est-elle obligatoire ? Garanties, tarifs 2026 et devis gratuit en 2 min. Guide [Month]." },
-  "gli": { title: "GLI : Protégez Vos Loyers dès 2,5% [Month]", description: "Garantie Loyers Impayés : couverture, conditions et coût. Sécurisez vos revenus locatifs. Guide [Month]." },
-  "vetuste": { title: "Vétusté Assurance : Calcul & Impact [Month]", description: "Comment la vétusté affecte votre indemnisation ? Taux, calcul et astuces pour être mieux remboursé. [Month]." },
-  "resiliation": { title: "Résiliation Assurance : Vos Droits en [Month]", description: "Loi Hamon, Chatel, infra-annuelle : tous les moyens pour résilier votre assurance facilement. Guide [Month]." },
-  "devis": { title: "Devis Assurance Gratuit : Comparez en [Month]", description: "Obtenez un devis assurance gratuit en 2 minutes. Comparez 70+ assureurs et économisez. [Month]." },
+"franchise": { title: "Franchise Assurance : Définition & Guide", description: "Qu'est-ce que la franchise en assurance ? Absolue, relative, proportionnelle : tout comprendre pour mieux choisir. Guide." },
+"prime-assurance": { title: "Prime d'Assurance : Payer Moins Cher", description: "Comprenez le calcul de votre prime d'assurance et économisez jusqu'à 40% en comparant les offres. Mis à jour." },
+"sinistre": { title: "Sinistre Assurance : Définition & Démarches", description: "Que faire en cas de sinistre ? Délais, preuves, déclaration : guide complet pour être indemnisé rapidement." },
+"bonus-malus": { title: "Bonus-Malus Auto : Calcul & Barème", description: "Comment fonctionne le coefficient bonus-malus ? Calcul, barème et astuces pour retrouver votre bonus. Guide." },
+"indemnisation": { title: "Indemnisation Assurance : Modes & Délais", description: "Valeur à neuf, vénale, en nature : comprenez les modes d'indemnisation et les délais légaux. Guide." },
+"tiers": { title: "Assurance au Tiers : Définition & Garanties", description: "Assurance au tiers, tiers étendu ou tous risques ? Comparez les formules et trouvez la meilleure couverture." },
+"tous-risques": { title: "Assurance Tous Risques : Garanties & Prix", description: "Quand choisir l'assurance tous risques ? Garanties incluses, prix moyen et comparatif des offres." },
+"constat-amiable": { title: "Constat Amiable : Comment le Remplir", description: "Guide pas à pas pour remplir un constat amiable après un accident. Conseils et erreurs à éviter." },
+"loi-hamon": { title: "Loi Hamon : Résilier son Assurance", description: "La loi Hamon permet de résilier votre assurance auto, moto ou habitation à tout moment après 1 an. Guide." },
+"loi-lemoine": { title: "Loi Lemoine : Changer d'Assurance Emprunteur", description: "Résiliez votre assurance emprunteur à tout moment sans frais grâce à la loi Lemoine. Économisez jusqu'à 15 000€." },
+"mutuelle-sante": { title: "Mutuelle Santé : Guide Complet", description: "Complémentaire santé, 100% Santé, remboursements : tout savoir pour choisir la meilleure mutuelle." },
+"ticket-moderateur": { title: "Ticket Modérateur : Définition & Calcul", description: "Qu'est-ce que le ticket modérateur ? Exemples concrets, cas d'exonération et rôle de la mutuelle." },
+"tiers-payant": { title: "Tiers Payant : Comment en Bénéficier", description: "Tiers payant partiel ou intégral : évitez d'avancer vos frais de santé. Guide pratique." },
+"responsabilite-civile": { title: "Responsabilité Civile : Définition & Guide", description: "RC vie privée, auto, professionnelle : comprenez vos obligations et choisissez la bonne couverture." },
+"assurance-emprunteur": { title: "Assurance Emprunteur : Économisez", description: "Changez d'assurance de prêt immobilier et économisez jusqu'à 15 000€. Comparatif et guide." },
+"pno": { title: "Assurance PNO dès 60€/an : Meilleurs Tarifs", description: "L'assurance PNO est-elle obligatoire ? Garanties, tarifs 2026 et devis gratuit en 2 min. Guide." },
+"gli": { title: "GLI : Protégez Vos Loyers dès 2,5%", description: "Garantie Loyers Impayés : couverture, conditions et coût. Sécurisez vos revenus locatifs. Guide." },
+"vetuste": { title: "Vétusté Assurance : Calcul & Impact", description: "Comment la vétusté affecte votre indemnisation ? Taux, calcul et astuces pour être mieux remboursé." },
+"resiliation": { title: "Résiliation Assurance : Vos Droits", description: "Loi Hamon, Chatel, infra-annuelle : tous les moyens pour résilier votre assurance facilement. Guide." },
+"devis": { title: "Devis Assurance Gratuit : Comparez", description: "Obtenez un devis assurance gratuit en 2 minutes. Comparez 70+ assureurs et économisez." },
 };
 
 const GlossaireTerme = () => {
@@ -91,8 +91,8 @@ const GlossaireTerme = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title={glossarySeoMeta[term.slug]?.title || `${term.term} : Définition & Guide [Month]`}
-        description={glossarySeoMeta[term.slug]?.description || `${term.definition.substring(0, 120)} Guide mis à jour en [Month].`}
+title={glossarySeoMeta[term.slug]?.title || `${term.term} : Définition & Guide`}
+description={glossarySeoMeta[term.slug]?.description || `${term.definition.substring(0, 120)} Guide mis à jour.`}
         keywords={term.tags.join(", ")}
         canonical={`https://www.jemassuremoinscher.fr/glossaire/${term.slug}`}
         jsonLd={[breadcrumbSchema, definitionSchema]}
