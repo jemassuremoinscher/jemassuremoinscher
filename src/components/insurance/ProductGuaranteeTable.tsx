@@ -240,7 +240,7 @@ const DATA: Record<ProductKey, ProductTableData> = {
   },
   pret: {
     title: "Garanties — Assurance Emprunteur Immobilier",
-    intro: "Délégation d'assurance emprunteur (loi Lemoine). Économie moyenne : 5 000 à 15 000€ sur la durée du prêt.",
+    intro: "Délégation d'assurance emprunteur (loi Lemoine).",
     columns: [
       { key: "base", label: "Base légale" },
       { key: "renforcee", label: "Renforcée" },

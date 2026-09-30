@@ -45,7 +45,7 @@ const AssurancePret = () => {
   const insuranceProductSchema = addInsuranceProductSchema({
     name: "Assurance Emprunteur",
     description:
-      "Comparateur d'assurance de prêt immobilier. Loi Lemoine : changez à tout moment. Économisez entre 5 000€ et 15 000€ selon la durée restante du prêt.",
+      "Comparateur d'assurance de prêt immobilier. Loi Lemoine : changez à tout moment.",
     category: "Assurance Emprunteur",
     url: "https://www.jemassuremoinscher.fr/assurance-pret",
   });
@@ -145,7 +145,7 @@ const AssurancePret = () => {
                     <BrandName /> compare les assurances de prêt immobilier de 25+ assureurs.
                   </>,
                   "Loi Lemoine : changez d'assurance emprunteur à tout moment, sans frais.",
-                  "Économie potentielle : entre 5 000€ et 15 000€ sur la durée du prêt, selon la loi Lemoine.",
+                  "Économie potentielle selon votre profil et la durée restante du prêt (loi Lemoine).",
                   "Devis gratuit en moins de 2 minutes, sans engagement.",
                 ]}
               />

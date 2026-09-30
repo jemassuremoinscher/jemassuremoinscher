@@ -66,7 +66,7 @@ const AssuranceAnimaux = () => {
         keywords="assurance chien, assurance chat, mutuelle animaux, assurance NAC"
         canonical="https://www.jemassuremoinscher.fr/assurance-animaux"
         ogTitle="Assurance Animaux Moins Chère : Chien & Chat | Comparateur Gratuit"
-        ogDescription="Comparez les meilleures mutuelles pour chien et chat. Remboursement vétérinaire jusqu'à 100%. Devis gratuit en 2 minutes, sans délai de carence."
+        ogDescription="Comparez les meilleures mutuelles pour chien et chat. Remboursement vétérinaire jusqu'à 100%. Devis gratuit en 2 minutes."
         twitterDescription="Mutuelle chien/chat : comparez les offres. Remboursement vétérinaire jusqu'à 100%. Devis gratuit en 2 min."
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />

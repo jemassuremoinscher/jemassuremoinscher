@@ -24,22 +24,20 @@ const LLMS_TXT = `# jemassuremoinscher.fr
 
 ## Services d'assurance proposés
 
-| Service | Tarif indicatif moyen | Page |
-|---|---|---|
-| Assurance Auto | dès 25€/mois | /assurance-auto |
-| Assurance Moto | dès 15€/mois | /assurance-moto |
-| Assurance Trottinette Électrique | RC obligatoire dès 2,90€/mois | /assurance-trottinette |
-| Assurance Vélo & VAE | extension vol vélo de l'assurance habitation, tarif variable | /assurance-velo |
-| Assurance Habitation | dès 3€/mois | /assurance-habitation |
-| Mutuelle Santé | dès 20€/mois | /assurance-sante |
-| Assurance Animaux | dès 8€/mois | /assurance-animaux |
-| Assurance Emprunteur / Prêt | sur devis | /assurance-pret |
-| Assurance Vie | sur devis | /assurance-vie |
-| Assurance Prévoyance | sur devis | /assurance-prevoyance |
-| RC Professionnelle | sur devis | /assurance-rc-pro |
-| Assurance PNO | sur devis | /assurance-pno |
-| Assurance MRP | sur devis | /assurance-mrp |
-| Garantie Loyers Impayés (GLI) | sur devis | /assurance-gli |
+- Assurance Auto : /assurance-auto
+- Assurance Moto : /assurance-moto
+- Assurance Trottinette Électrique : /assurance-trottinette
+- Assurance Vélo & VAE : /assurance-velo
+- Assurance Habitation : /assurance-habitation
+- Mutuelle Santé : /assurance-sante
+- Assurance Animaux : /assurance-animaux
+- Assurance Emprunteur / Prêt : /assurance-pret
+- Assurance Vie : /assurance-vie
+- Assurance Prévoyance : /assurance-prevoyance
+- RC Professionnelle : /assurance-rc-pro
+- Assurance PNO : /assurance-pno
+- Assurance MRP : /assurance-mrp
+- Garantie Loyers Impayés (GLI) : /assurance-gli
 
 ## Fonctionnement
 

@@ -453,8 +453,7 @@ const syncStaticManifests = async () => {
   const llmsRaw = await readFile(llmsPath, "utf8");
   const patchedLlms = llmsRaw
     .replace(/\d+\+? assureurs partenaires\b(?! \(|et courtiers)/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires`)
-    .replace(/\d+\+? assureurs\b(?! et courtiers|\()/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers`)
-    .replace(/\d+\+? mutuelles\b/g, `${NB_ASSUREURS_LABEL} mutuelles`);
+    .replace(/\d+\+? assureurs\b(?! et courtiers|\()/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers`);
   if (patchedLlms !== llmsRaw) {
     await writeFile(llmsPath, patchedLlms, "utf8");
   }

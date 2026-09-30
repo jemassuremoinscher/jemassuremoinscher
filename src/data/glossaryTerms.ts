@@ -286,7 +286,7 @@ C'est le niveau minimum obligatoire en assurance auto. Elle couvre uniquement le
 
 **Économies potentielles :**
 
-En changeant d'assurance emprunteur, vous pouvez économiser entre 5 000€ et 15 000€ sur la durée de votre prêt immobilier.
+Changer d'assurance emprunteur peut réduire le coût total de votre prêt immobilier, à garanties équivalentes.
 
 **Étapes pour changer :**
 1. Comparer les offres d'assurance emprunteur

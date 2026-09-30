@@ -5,9 +5,9 @@ const AssuranceEmprunteurSEO = () => {
   const advantages = [
     {
       icon: Euro,
-      title: "Jusqu'à 15 000 € d'économies",
+      title: "Changement à tout moment",
       description:
-        "En changeant d'assurance emprunteur, nos clients économisent en moyenne 10 000 à 15 000 € sur la durée totale de leur prêt.",
+        "La loi Lemoine permet de changer d'assurance emprunteur à tout moment, sans frais, à garanties équivalentes.",
     },
     {
       icon: Scale,
@@ -37,7 +37,7 @@ const AssuranceEmprunteurSEO = () => {
     {
       question: "Combien peut-on économiser en changeant d'assurance emprunteur ?",
       answer:
-        "Les économies dépendent de votre profil, du montant emprunté et de la durée restante. En moyenne, un emprunteur économise entre 5 000 € et 15 000 € sur la durée totale du prêt en passant du contrat groupe de la banque à une délégation d'assurance individuelle. Pour un prêt de 250 000 € sur 25 ans, l'économie peut atteindre 20 000 €. Un courtier calcule gratuitement votre économie potentielle.",
+        "Les économies dépendent de votre profil, du montant emprunté et de la durée restante. Le gain vient principalement du passage du contrat groupe de la banque à une délégation d'assurance individuelle. Un courtier calcule gratuitement votre économie potentielle.",
     },
   ];
 
@@ -68,12 +68,12 @@ const AssuranceEmprunteurSEO = () => {
   return (
     <SEOLandingPage
       title="Assurance Emprunteur : Définition, Loi Lemoine & Devis"
-      metaDescription="Assurance emprunteur : définition, garanties et loi Lemoine 2026. Changez à tout moment et économisez jusqu'à 15 000€. Devis gratuit."
+      metaDescription="Assurance emprunteur : définition, garanties et loi Lemoine 2026. Changez à tout moment. Devis gratuit."
       keyword="assurance emprunteur"
       keywords="assurance emprunteur définition, assurance de prêt immobilier, délégation assurance emprunteur, loi Lemoine assurance emprunteur, changer assurance emprunteur"
       canonical="https://www.jemassuremoinscher.fr/assurance-pret"
       heroIcon={Landmark}
-      heroTitle="Assurance Emprunteur : Économisez jusqu'à 15 000 € sur Votre Prêt"
+      heroTitle="Assurance Emprunteur : Changez à Tout Moment (Loi Lemoine)"
       heroSubtitle="Grâce à la loi Lemoine, changez d'assurance emprunteur à tout moment. Nos courtiers comparent 30+ assureurs pour réduire votre prime."
       ctaLabel="Calculer mes économies"
       ctaLink="/assurance-pret"
