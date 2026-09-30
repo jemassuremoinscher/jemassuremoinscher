@@ -131,7 +131,7 @@ const GuidesSection = () => {
           { title: "4. Adjust your coverage", text: "For a vehicle over 10 years old, switch to third-party plus rather than comprehensive. Savings can reach €200 per year." },
           { title: "5. Pay annually", text: "Monthly payment often incurs additional fees of 5-8%. Prefer annual payment if your cash flow allows." },
         ],
-        conclusion: "By applying these tips, our users save an average of €320 per year. Start your free comparison to discover your savings potential!"
+        conclusion: "Apply these tips, then start your free comparison to discover your savings potential!"
       } : {
         intro: "L'assurance représente un budget conséquent pour les ménages français. Voici 5 astuces concrètes pour réduire significativement vos primes sans sacrifier votre couverture.",
         sections: [
@@ -141,7 +141,7 @@ const GuidesSection = () => {
           { title: "4. Adaptez vos garanties", text: "Pour un véhicule de plus de 10 ans, passez au tiers étendu plutôt qu'à une assurance tous risques. L'économie peut atteindre 200€ par an." },
           { title: "5. Optez pour le paiement annuel", text: "Le paiement mensuel entraîne souvent des frais supplémentaires de 5 à 8%. Préférez le paiement annuel si votre trésorerie le permet." },
         ],
-        conclusion: "En appliquant ces conseils, nos utilisateurs économisent en moyenne 320€ par an. Utilisez notre calculateur de bonus-malus et comparez les assureurs face à face dans nos duels détaillés !"
+        conclusion: "Appliquez ces conseils, puis utilisez notre calculateur de bonus-malus et comparez les assureurs face à face dans nos duels détaillés !"
       }
     },
     {

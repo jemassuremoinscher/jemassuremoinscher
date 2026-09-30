@@ -55,7 +55,7 @@ export const glossaryTerms: GlossaryTerm[] = [
 
 La prime peut être payée mensuellement, trimestriellement ou annuellement. Un paiement annuel est souvent moins cher car il évite les frais de fractionnement.
 
-**Astuce :** Comparez régulièrement vos primes avec les offres du marché. Vous pouvez économiser jusqu'à 40% en changeant d'assureur.`,
+**Astuce :** Comparez régulièrement vos primes avec les offres du marché. Changer d'assureur peut faire baisser votre prime à garanties équivalentes.`,
     tags: ["prime", "cotisation", "tarif", "paiement"],
     relatedTerms: ["1", "3", "4"],
   },

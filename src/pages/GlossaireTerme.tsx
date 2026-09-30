@@ -16,7 +16,7 @@ const normalizeGlossaryMarkdownHeadings = (markdown: string) => markdown.replace
 
 const glossarySeoMeta: Record<string, { title: string; description: string }> = {
 "franchise": { title: "Franchise Assurance : Définition & Guide", description: "Qu'est-ce que la franchise en assurance ? Absolue, relative, proportionnelle : tout comprendre pour mieux choisir. Guide." },
-"prime-assurance": { title: "Prime d'Assurance : Payer Moins Cher", description: "Comprenez le calcul de votre prime d'assurance et économisez jusqu'à 40% en comparant les offres. Mis à jour." },
+"prime-assurance": { title: "Prime d'Assurance : Payer Moins Cher", description: "Comprenez le calcul de votre prime d'assurance et comparez les offres. Mis à jour." },
 "sinistre": { title: "Sinistre Assurance : Définition & Démarches", description: "Que faire en cas de sinistre ? Délais, preuves, déclaration : guide complet pour être indemnisé rapidement." },
 "bonus-malus": { title: "Bonus-Malus Auto : Calcul & Barème", description: "Comment fonctionne le coefficient bonus-malus ? Calcul, barème et astuces pour retrouver votre bonus. Guide." },
 "indemnisation": { title: "Indemnisation Assurance : Modes & Délais", description: "Valeur à neuf, vénale, en nature : comprenez les modes d'indemnisation et les délais légaux. Guide." },
@@ -30,7 +30,7 @@ const glossarySeoMeta: Record<string, { title: string; description: string }> = 
 "tiers-payant": { title: "Tiers Payant : Comment en Bénéficier", description: "Tiers payant partiel ou intégral : évitez d'avancer vos frais de santé. Guide pratique." },
 "responsabilite-civile": { title: "Responsabilité Civile : Définition & Guide", description: "RC vie privée, auto, professionnelle : comprenez vos obligations et choisissez la bonne couverture." },
 "assurance-emprunteur": { title: "Assurance Emprunteur : Économisez", description: "Changez d'assurance de prêt immobilier et économisez jusqu'à 15 000€. Comparatif et guide." },
-"pno": { title: "Assurance PNO dès 60€/an : Meilleurs Tarifs", description: "L'assurance PNO est-elle obligatoire ? Garanties, tarifs 2026 et devis gratuit en 2 min. Guide." },
+"pno": { title: "Assurance PNO : Obligations et Garanties", description: "L'assurance PNO est-elle obligatoire ? Garanties, tarifs 2026 et devis gratuit en 2 min. Guide." },
 "gli": { title: "GLI : Protégez Vos Loyers dès 2,5%", description: "Garantie Loyers Impayés : couverture, conditions et coût. Sécurisez vos revenus locatifs. Guide." },
 "vetuste": { title: "Vétusté Assurance : Calcul & Impact", description: "Comment la vétusté affecte votre indemnisation ? Taux, calcul et astuces pour être mieux remboursé." },
 "resiliation": { title: "Résiliation Assurance : Vos Droits", description: "Loi Hamon, Chatel, infra-annuelle : tous les moyens pour résilier votre assurance facilement. Guide." },

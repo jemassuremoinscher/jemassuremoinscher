@@ -27,7 +27,7 @@ const refConfigs: Record<string, DynamicGreetingConfig> = {
         <br />au meilleur prix
       </>
     ),
-    subtitle: "Permis récent ? Économisez jusqu'à 40% sur votre première assurance auto. Nos assureurs partenaires proposent des tarifs spéciaux permis probatoire.",
+    subtitle: "Permis récent ? Comparez les offres pour votre première assurance auto. Nos assureurs partenaires proposent des tarifs spéciaux permis probatoire.",
     arthurSpeech: "Bienvenue, jeune conducteur ! 🚗",
     mascotSrc: arthurCar,
     mascotAlt: "Arthur en voiture — assurance jeune conducteur pas chère",

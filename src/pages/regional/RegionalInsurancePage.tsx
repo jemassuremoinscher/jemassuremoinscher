@@ -74,7 +74,7 @@ export default function RegionalInsurancePage() {
             Assurance Auto en {dept.name} ({dept.code})
           </h1>
           <p className="text-muted-foreground mb-8 max-w-2xl">
-            Trouvez l'assurance auto la moins chère en {dept.name}. Comparez les tarifs de {dept.topInsurers.length}+ assureurs et économisez jusqu'à 40% sur votre prime.
+            Trouvez l'assurance auto la moins chère en {dept.name}. Comparez les tarifs de {dept.topInsurers.length}+ assureurs pour trouver une prime adaptée à votre profil.
           </p>
 
           <RegionalDataWidget

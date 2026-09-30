@@ -53,7 +53,7 @@ const widgetConfigs: Record<string, WidgetConfig> = {
   },
   auto: {
     title: "Payez-vous trop cher votre assurance auto ?",
-    subtitle: "Comparez en 2 min et économisez jusqu'à 40% sur votre contrat.",
+    subtitle: "Comparez en 2 min les offres adaptées à votre contrat.",
     buttonText: "Comparer les prix auto →",
     deepLink: "/comparateur?step=1&profile=auto",
     accentColor: "bg-primary/5 border-primary/30",

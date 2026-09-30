@@ -57,7 +57,7 @@ const categories: FaqCategory[] = [
     items: [
       {
         q: "Combien puis-je économiser en moyenne ?",
-        a: "Nos clients économisent en moyenne 320 € par an sur leur assurance auto et jusqu'à 40 % sur leur mutuelle santé. Les économies dépendent de votre contrat actuel et de votre profil.",
+        a: "Les économies dépendent de votre contrat actuel et de votre profil : un conseiller compare votre situation pour identifier une économie réelle, sans engagement.",
       },
       {
         q: "Pourquoi les prix varient-ils autant entre assureurs ?",

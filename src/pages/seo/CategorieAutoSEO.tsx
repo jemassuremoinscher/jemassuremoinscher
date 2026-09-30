@@ -52,7 +52,7 @@ const contentBlocks = [
   {
     title: "Pourquoi comparer les assurances auto avec notre outil ?",
     content: `
-      <p>Comparer les offres d'assurance auto est la méthode la plus efficace pour <strong>réduire votre prime jusqu'à 40 %</strong>. Les tarifs varient considérablement d'un assureur à l'autre pour des garanties équivalentes, et seul un comparateur indépendant vous permet d'obtenir une vision claire du marché en quelques clics.</p>
+      <p>Comparer les offres d'assurance auto est la méthode la plus efficace pour <strong>réduire votre prime</strong>. Les tarifs varient considérablement d'un assureur à l'autre pour des garanties équivalentes, et seul un comparateur indépendant vous permet d'obtenir une vision claire du marché en quelques clics.</p>
       <p>Notre outil analyse en temps réel les offres de <strong>plus de 30 compagnies partenaires</strong> (Allianz, AXA, MAIF, Matmut, Direct Assurance…) pour vous présenter les contrats les plus compétitifs adaptés à votre profil. Contrairement aux devis obtenus un par un, vous gagnez un temps précieux et accédez à des tarifs négociés exclusifs.</p>
       <p>De plus, notre comparateur est <strong>100 % gratuit et sans engagement</strong>. Vous n'avez aucune obligation de souscrire et vos données restent confidentielles conformément au RGPD.</p>
     `,
@@ -192,16 +192,16 @@ const contentBlocks = [
 const CategorieAutoSEO = () => (
   <SEOCategoryPage
     metaTitle="Assurance Auto Moins Chère | Comparer en 2 min"
-    metaDescription="Comparez les assurances auto et économisez jusqu'à 40 % sur votre prime. Devis gratuit et sans engagement en 2 minutes."
+    metaDescription="Comparez les assurances auto et trouvez une prime adaptée à votre profil. Devis gratuit et sans engagement en 2 minutes."
     canonicalPath="/assurance-auto-comparatif"
     h1="Assurance Auto : Comparez et payez moins cher"
-    subtitle="Trouvez la meilleure assurance auto en comparant gratuitement plus de 30 offres en 2 minutes. Économisez jusqu'à 40 % sur votre prime annuelle sans sacrifier vos garanties."
+    subtitle="Trouvez la meilleure assurance auto en comparant gratuitement plus de 30 offres en 2 minutes, sans sacrifier vos garanties."
     contentBlocks={contentBlocks}
     faqItems={faqItems}
     ctaLabel="Lancer le comparateur auto"
     ctaLink="/assurance-auto"
     serviceName="Comparateur d'assurance auto"
-    serviceDescription="Service gratuit de comparaison d'assurances auto permettant d'économiser jusqu'à 40 % sur sa prime annuelle."
+    serviceDescription="Service gratuit de comparaison d'assurances auto à garanties équivalentes."
   />
 );
 

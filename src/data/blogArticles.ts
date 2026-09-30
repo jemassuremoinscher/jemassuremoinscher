@@ -28,7 +28,7 @@ const _blogArticlesRaw: BlogArticle[] = [
     id: "5",
     title: "Mutuelle santé : Comment réduire vos frais médicaux de 40% en 2026",
     slug: "mutuelle-sante-reduire-frais-medicaux-2026",
-    description: "Découvrez comment choisir la bonne mutuelle santé et optimiser vos remboursements pour économiser jusqu'à 40% sur vos dépenses médicales annuelles.",
+    description: "Découvrez comment choisir la bonne mutuelle santé et optimiser vos remboursements sur vos dépenses médicales annuelles.",
     category: "Guides Pratiques",
     date: "18 janvier 2026",
     readTime: "9 min",
