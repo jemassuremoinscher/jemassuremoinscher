@@ -202,7 +202,7 @@ Pour un auto-entrepreneur avec un CA prévisionnel **inférieur à 50 000 €** 
 - [Guide complet de la décennale 2026](/blog/garantie-decennale-2026-guide-complet-artisans-btp)
 - [RC Pro vs décennale : quelles différences ?](/blog/rc-pro-decennale-differences-artisans-btp)
 
-**Démarrez votre activité l'esprit tranquille** : [obtenez votre attestation décennale en 48 h](/assurance-decennale).
+**Démarrez votre activité l'esprit tranquille** : [demandez votre devis décennale](/assurance-decennale).
     `,
   },
 

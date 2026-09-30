@@ -185,10 +185,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     faqs: [
       { question: "Que couvre une assurance habitation ?", answer: "Incendie, dégâts des eaux, vol, vandalisme, responsabilité civile et catastrophes naturelles." },
       { question: "Est-elle obligatoire ?", answer: "Obligatoire pour les locataires et copropriétaires. Vivement recommandée pour les propriétaires." },
-      { question: "Puis-je l'obtenir le jour-même ?", answer: "Oui, attestation envoyée immédiatement après souscription en ligne." },
+      { question: "Comment recevoir mon attestation ?", answer: "Un conseiller vous l'envoie par email après la souscription." },
     ],
     bottomCtaTitle: "Protégez votre logement dès aujourd'hui",
-    bottomCtaDescription: "Devis personnalisé en 2 min — attestation immédiate.",
+    bottomCtaDescription: "Devis personnalisé en 2 min — rappel rapide par un conseiller.",
   },
 
   sante: {
@@ -381,7 +381,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-rc-pro (cannibalisation),
     // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
     noindex: true,
-    topBarText: "💼 RC Pro : attestation immédiate",
+    topBarText: "💼 RC Pro : adaptée à votre métier",
     badgeText: "Tous métiers",
     heroTitle: "Responsabilité Civile Pro",
     heroHighlight: "adaptée à votre métier",
@@ -393,7 +393,6 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceLabel: "RC Pro",
     stats: [
       trustReviewStat,
-      { icon: FileCheck, value: "Immédiat", label: "Attestation" },
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
@@ -401,10 +400,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     faqs: [
       { question: "La RC Pro est-elle obligatoire ?", answer: "Obligatoire pour les professions réglementées (santé, juridique, immobilier, BTP), recommandée pour tous les autres." },
       { question: "Couvre-t-elle les dommages corporels ?", answer: "Oui, dommages corporels, matériels et immatériels causés à des tiers (clients, prestataires)." },
-      { question: "Délai pour obtenir mon attestation ?", answer: "Attestation envoyée par email immédiatement après souscription." },
+      { question: "Comment recevoir mon attestation ?", answer: "Un conseiller vous l'envoie par email après la souscription." },
     ],
     bottomCtaTitle: "Protégez votre activité dès aujourd'hui",
-    bottomCtaDescription: "RC Pro adaptée à votre métier — attestation immédiate.",
+    bottomCtaDescription: "RC Pro adaptée à votre métier — rappel rapide par un conseiller.",
   },
 
   mrp: {
@@ -514,7 +513,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Doublonne-t-elle avec l'assurance du locataire ?", answer: "Non — la PNO couvre les vacances locatives et les sinistres non couverts par votre locataire." },
     ],
     bottomCtaTitle: "Protégez votre bien locatif",
-    bottomCtaDescription: "PNO — attestation immédiate pour votre syndic.",
+    bottomCtaDescription: "PNO — attestation pour votre syndic envoyée par email après souscription.",
   },
 
   // ────────────────────────────── Métiers atypiques ──────────────────────────────
@@ -548,7 +547,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     testimonials: [],
     faqs: [
       { question: "Pourquoi un courtier spécialisé ?", answer: "Les généralistes refusent les activités classées risques aggravés. Nous travaillons avec 20 assureurs de niche (Hiscox, Albingia, MMA Pro Sport, Generali Évolution…)." },
-      { question: "Combien de temps pour une attestation ?", answer: "Rappel rapide par un conseiller, attestation 48 à 72 h après dossier complet (Kbis, dernier bilan, descriptif activité)." },
+      { question: "Comment obtenir une attestation ?", answer: "Rappel rapide par un conseiller, puis attestation émise après réception du dossier complet (Kbis, dernier bilan, descriptif activité)." },
       { question: "Mes animateurs sont-ils couverts ?", answer: "RC exploitation oui ; pour leur santé personnelle souscrivez en plus AT/MP et garantie individuelle accident." },
     ],
     bottomCtaTitle: "Sécurisez votre parc dès aujourd'hui",
@@ -617,7 +616,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: ShieldCheck, title: "RC organisateur", description: "Dommages corporels et matériels causés aux participants, prestataires et tiers." },
       { icon: PartyPopper, title: "Garantie annulation", description: "Remboursement frais engagés en cas d'annulation pour cause indépendante (intempéries, force majeure)." },
       { icon: Building2, title: "Matériel scénique", description: "Sonorisation, éclairage, structures, scènes : couverts contre vol, bris, incendie." },
-      { icon: Phone, title: "Étude express 24 h", description: "Pour les événements à date imminente, procédure accélérée avec attestation 24 h." },
+      { icon: Phone, title: "Étude express 24 h", description: "Pour les événements à date imminente, procédure accélérée." },
     ],
     testimonials: [],
     faqs: [
@@ -683,19 +682,19 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     badgeText: "Spécialiste Chauffeurs VTC",
     heroTitle: "Assurance VTC",
     heroHighlight: "RC pro + flotte",
-    heroSubtitle: <>Couverture <strong>RC pro + flotte + assistance</strong> pour chauffeurs Uber, Bolt, Heetch. Attestation immédiate.</>,
+    heroSubtitle: <>Couverture <strong>RC pro + flotte + assistance</strong> pour chauffeurs Uber, Bolt, Heetch.</>,
     mascotSrc: arthurCar,
     mascotAlt: "Arthur chauffeur VTC — assurance VTC pas chère",
     speechText: "Chauffeur VTC ? Je négocie votre assurance flotte et RC pro !",
     insuranceType: "auto",
     insuranceLabel: "Assurance VTC",
     stats: [
-      { icon: Clock, value: "2 min", label: "Attestation" },
+      { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: [
       { icon: Car, title: "RC pro + flotte incluses", description: "Une seule prime, deux protections : votre activité VTC et votre véhicule." },
       { icon: Award, title: "Plateformes acceptées", description: "Uber, Bolt, Heetch, Marcel, Kapten — toutes plateformes couvertes." },
-      { icon: Phone, title: "Attestation immédiate", description: "Justificatif valable préfecture envoyé en 2 minutes par email." },
+      { icon: Phone, title: "Attestation par email", description: "Justificatif valable préfecture envoyé par email après souscription." },
       { icon: ShieldCheck, title: "Protection juridique", description: "Litiges plateformes, contrôle URSSAF, contestation préfecture inclus." },
     ],
     testimonials: [],
@@ -705,7 +704,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "L'attestation est-elle valable préfecture ?", answer: "Oui, attestation conforme aux exigences préfecture pour l'inscription au registre VTC." },
     ],
     bottomCtaTitle: "Roulez assuré dès aujourd'hui",
-    bottomCtaDescription: "Attestation VTC valable préfecture en 2 min — devis gratuit.",
+    bottomCtaDescription: "Attestation VTC valable préfecture — devis gratuit.",
   },
 
   "auto-entrepreneur": {
@@ -737,7 +736,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Briefcase, title: "Toutes activités couvertes", description: "Services, conseil, BTP, beauté, e-commerce, prestations intellectuelles." },
       { icon: ShieldCheck, title: "RC pro + protection juridique", description: "Dommages clients + litiges contractuels et URSSAF inclus." },
       { icon: Award, title: "Contrat sans engagement", description: "Résiliable à tout moment après la 1ère année (loi Hamon)." },
-      { icon: FileCheck, title: "Attestation immédiate", description: "Indispensable pour gagner clients exigeants ou répondre à appels d'offres." },
+      { icon: FileCheck, title: "Attestation RC pro", description: "Indispensable pour gagner clients exigeants ou répondre à appels d'offres." },
     ],
     testimonials: [],
     faqs: [
@@ -746,7 +745,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Puis-je ajouter une mutuelle TNS ?", answer: "Oui, pack RC pro + mutuelle TNS + prévoyance optimisé Madelin disponible." },
     ],
     bottomCtaTitle: "Protégez votre micro-entreprise",
-    bottomCtaDescription: "RC pro adaptée à votre activité, attestation immédiate — devis gratuit.",
+    bottomCtaDescription: "RC pro adaptée à votre activité — devis gratuit.",
   },
 
   senior: {
@@ -819,7 +818,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       // affiche l'immatriculation ORIAS (chantier avis clients 2026-09-29 :
       // "5/5 avis vérifiés" ne correspondait à aucune source réelle).
       trustReviewStat,
-      { icon: Clock, value: "2 min", label: "Attestation" },
+      { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: [
       { icon: Bike, title: "50cc, 125cc, électrique", description: "Toutes cylindrées et motorisations couvertes, dont scooters électriques." },
@@ -847,17 +846,17 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     noindex: true,
     trackingTitle: "Landing Page RC Pro Micro-Entreprise",
     seoTitle: "RC Pro Micro-Entreprise | Assurance Adaptée",
-    seoDescription: "RC pro micro-entreprise : couverture dommages clients, juridique, attestation immédiate. 15 assureurs comparés.",
+    seoDescription: "RC pro micro-entreprise : couverture dommages clients, juridique. 15 assureurs comparés.",
     seoKeyword: "rc pro micro entreprise",
     seoKeywords: "responsabilité civile professionnelle micro entreprise, rc pro freelance",
-    topBarText: "📋 RC Pro Micro-entreprise : attestation immédiate",
+    topBarText: "📋 RC Pro Micro-entreprise : adaptée à votre activité",
     badgeText: "Spécialiste Micro-entreprise",
     heroTitle: "RC Pro Micro-Entreprise",
     heroHighlight: "adaptée à votre activité",
     heroSubtitle: <>Protection essentielle <strong>dommages corporels, matériels, immatériels</strong> causés à vos clients.</>,
     mascotSrc: arthurDetective,
     mascotAlt: "Arthur expert — RC pro micro-entreprise",
-    speechText: "RC pro micro-entreprise adaptée, attestation immédiate !",
+    speechText: "RC pro micro-entreprise adaptée à votre activité !",
     insuranceType: "rc_pro",
     insuranceLabel: "RC Pro Micro",
     stats: [
@@ -866,7 +865,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     ],
     advantages: [
       { icon: ShieldCheck, title: "Dommages 360°", description: "Corporels, matériels et immatériels causés à vos clients." },
-      { icon: FileCheck, title: "Attestation officielle", description: "PDF téléchargeable immédiatement, indispensable pour appels d'offres." },
+      { icon: FileCheck, title: "Attestation officielle", description: "PDF envoyé par email après souscription, indispensable pour appels d'offres." },
       { icon: Award, title: "Plafonds adaptés", description: "Montants de garantie adaptés à votre activité." },
       { icon: Phone, title: "Juridique inclus", description: "Litiges contractuels, recouvrement, accompagnement URSSAF." },
     ],
@@ -877,7 +876,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Combien coûte une RC pro micro ?", answer: "Le prix dépend de votre activité et de votre chiffre d'affaires. Comparez des devis établis pour votre situation." },
     ],
     bottomCtaTitle: "Sécurisez votre micro-entreprise",
-    bottomCtaDescription: "RC pro adaptée à votre activité — attestation immédiate.",
+    bottomCtaDescription: "RC pro adaptée à votre activité — rappel rapide par un conseiller.",
   },
 
   restaurant: {
@@ -1052,7 +1051,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // Corrigé le 2026-09-23 : les scénarios nationaux S-1/S-2/S-3 n'existent
     // plus depuis le 1er janvier 2026 (remplacés par le cadre européen UAS).
     seoTitle: "Assurance Drone Pro | RC Pro DGAC",
-    seoDescription: "RC pro drone professionnel : catégorie spécifique DGAC, réglementation européenne UAS. Matériel couvert tous risques. Attestation immédiate.",
+    seoDescription: "RC pro drone professionnel : catégorie spécifique DGAC, réglementation européenne UAS. Matériel couvert tous risques.",
     seoKeyword: "assurance drone",
     seoKeywords: "assurance drone professionnel, rc pro drone, assurance télépilote",
     topBarText: "🚁 Télépilotes : RC pro DGAC + drone couvert",
@@ -1067,13 +1066,12 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceLabel: "RC Pro Drone",
     stats: [
       { icon: Shield, value: "UAS UE", label: "Catégorie spécifique" },
-      { icon: Clock, value: "Immédiate", label: "Attestation" },
     ],
     advantages: [
       { icon: ShieldCheck, title: "Catégorie spécifique DGAC", description: "Couverture adaptée à votre autorisation d'exploitation (scénario standard européen, PDRA ou LUC)." },
       { icon: Sparkles, title: "Drone tous risques", description: "Casse, perte, vol du drone et accessoires." },
       { icon: Award, title: "Plafonds adaptés", description: "Montants de garantie adaptés aux exigences corporate." },
-      { icon: FileCheck, title: "Attestation DGAC immédiate", description: "PDF conforme pour vos déclarations de vol." },
+      { icon: FileCheck, title: "Attestation DGAC", description: "PDF conforme pour vos déclarations de vol." },
     ],
     testimonials: [],
     faqs: [
@@ -1082,7 +1080,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Et les vols hors France ?", answer: "Extension Europe ou monde entier disponible." },
     ],
     bottomCtaTitle: "Volez en toute légalité",
-    bottomCtaDescription: "RC pro drone DGAC + matériel — attestation immédiate.",
+    bottomCtaDescription: "RC pro drone DGAC + matériel — devis gratuit.",
   },
 
   // ────────────────────────────── Pro — nouvelles verticales ──────────────────────────────
@@ -1090,13 +1088,13 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     slug: "decennale",
     trackingTitle: "Landing Page Garantie Décennale BTP",
     seoTitle: "Garantie Décennale BTP : Devis en 2 min | Arthur",
-    seoDescription: "Garantie décennale obligatoire pour artisans et entreprises BTP. Plusieurs assureurs comparés, attestation immédiate. Devis gratuit en 2 min.",
+    seoDescription: "Garantie décennale obligatoire pour artisans et entreprises BTP. Plusieurs assureurs comparés. Devis gratuit en 2 min.",
     seoKeyword: "garantie décennale",
     seoKeywords: "assurance décennale, décennale artisan, décennale BTP, attestation décennale",
     // Désindexée le 2026-09-21 : cannibalise /assurance-decennale (seoKeyword "garantie décennale" quasi identique à celui du pilier ("assurance décennale")),
     // même traitement que les configs velo et trottinette.
     noindex: true,
-    topBarText: "🏗️ Décennale BTP — attestation immédiate, rappel rapide par un conseiller",
+    topBarText: "🏗️ Décennale BTP — rappel rapide par un conseiller",
     badgeText: "Obligatoire BTP",
     heroTitle: "Garantie Décennale",
     heroHighlight: "obligatoire BTP",
@@ -1114,7 +1112,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     advantages: [
       { icon: ShieldCheck, title: "Garantie décennale conforme", description: "Articles 1792 et suivants du Code civil. Attestation conforme exigée par tous les donneurs d'ordre." },
       { icon: Award, title: "Tous corps d'état", description: "Maçonnerie, plomberie, électricité, couverture, second œuvre : grille adaptée à votre activité." },
-      { icon: FileCheck, title: "Attestation immédiate", description: "PDF reçu sous 24 h après souscription, opposable à vos clients et aux notaires." },
+      { icon: FileCheck, title: "Attestation par email", description: "PDF envoyé après souscription, opposable à vos clients et aux notaires." },
       { icon: TrendingDown, title: "Tarifs négociés", description: "Comparez plusieurs assureurs pour trouver une prime adaptée à votre activité." },
     ],
     testimonials: [],
@@ -1131,7 +1129,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     slug: "flotte-auto",
     trackingTitle: "Landing Page Assurance Flotte Auto Entreprise",
     seoTitle: "Assurance Flotte Auto Entreprise : Devis en 2 min | Arthur",
-    seoDescription: "Assurance flotte de véhicules d'entreprise dès 3 voitures. Gestion centralisée, tarifs négociés, attestations immédiates. Comparez plusieurs assureurs.",
+    seoDescription: "Assurance flotte de véhicules d'entreprise dès 3 voitures. Gestion centralisée, tarifs négociés. Comparez plusieurs assureurs.",
     seoKeyword: "assurance flotte auto",
     seoKeywords: "assurance flotte entreprise, assurance véhicules professionnels, flotte automobile",
     // Désindexée le 2026-09-21 : cannibalise /assurance-flotte-auto (même seoKeyword "assurance flotte auto"),
@@ -1427,31 +1425,30 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     slug: "auto-temporaire",
     trackingTitle: "Landing Page Assurance Auto Temporaire",
     seoTitle: "Assurance Auto Temporaire : 1 jour à 3 mois | Arthur",
-    seoDescription: "Assurance auto temporaire de 1 à 90 jours. Voiture de prêt, achat, vente, étudiant à l'étranger. Attestation immédiate.",
+    seoDescription: "Assurance auto temporaire de 1 à 90 jours. Voiture de prêt, achat, vente, étudiant à l'étranger.",
     seoKeyword: "assurance auto temporaire",
     seoKeywords: "assurance voiture courte durée, assurance auto 1 jour, assurance auto 1 mois, assurance auto temporaire en ligne",
     // Désindexée le 2026-09-21 : cannibalise /assurance-auto-temporaire (même seoKeyword "assurance auto temporaire"),
     // même traitement que les configs velo et trottinette.
     noindex: true,
-    topBarText: "⏱️ Assurance auto temporaire 1 à 90 jours — attestation immédiate",
+    topBarText: "⏱️ Assurance auto temporaire de 1 à 90 jours",
     badgeText: "Courte durée",
     heroTitle: "Assurance Auto",
     heroHighlight: "Temporaire",
-    heroSubtitle: <><strong>De 1 à 90 jours.</strong> Voiture de prêt, achat-vente, étudiant à l'étranger, expat de retour. Attestation immédiate.</>,
+    heroSubtitle: <><strong>De 1 à 90 jours.</strong> Voiture de prêt, achat-vente, étudiant à l'étranger, expat de retour.</>,
     mascotSrc: arthurCar,
     mascotAlt: "Arthur — assurance auto temporaire",
-    speechText: "Besoin d'assurance pour 3 jours, 2 semaines ou 2 mois ? Attestation immédiate.",
+    speechText: "Besoin d'assurance pour 3 jours, 2 semaines ou 2 mois ? Comparons les offres !",
     insuranceType: "auto",
     insuranceLabel: "Auto Temporaire",
     stats: [
       { icon: Car, value: "1 à 90j", label: "Durée souple" },
-      { icon: Clock, value: "Immédiat", label: "Attestation" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: [
       { icon: Clock, title: "Durée à la carte", description: "1, 7, 15, 30, 60 ou 90 jours : choisissez la durée pile adaptée à votre besoin." },
-      { icon: FileCheck, title: "Attestation immédiate", description: "Carte verte et attestation PDF reçues par email dès la souscription en ligne." },
+      { icon: FileCheck, title: "Attestation par email", description: "Carte verte et attestation PDF envoyées par email après la souscription." },
       { icon: ShieldCheck, title: "Tiers + assistance", description: "Responsabilité civile obligatoire incluse + assistance dépannage 24/7." },
       { icon: Wallet, title: "Pas d'engagement annuel", description: "Vous payez uniquement la période souscrite, idéal pour usage ponctuel ou transitoire." },
     ],
@@ -1462,7 +1459,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Et pour un véhicule étranger ?", answer: "Possible si carte grise européenne en cours de validité. Démarches d'importation à finaliser ensuite." },
     ],
     bottomCtaTitle: "Roulez assuré, pile le temps qu'il faut",
-    bottomCtaDescription: "Devis auto temporaire gratuit — attestation immédiate.",
+    bottomCtaDescription: "Devis auto temporaire gratuit — rappel rapide par un conseiller.",
   },
 
   trottinette: {

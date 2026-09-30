@@ -2414,7 +2414,7 @@ const fr: Record<string, string> = {
 "seo.prevoyance.title": "Prévoyance : Protégez Votre Famille",
   "seo.prevoyance.description": `Décès, invalidité, obsèques : comparez les garanties prévoyance de ${NB_ASSUREURS_LABEL} assureurs et courtiers. Devis personnalisé gratuit en 2 min.`,
 "seo.rcpro.title": "RC Pro : Devis Gratuit",
-  "seo.rcpro.description": `Responsabilité civile professionnelle : comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers. Tous secteurs : BTP, conseil, IT, commerce. Attestation immédiate.`,
+  "seo.rcpro.description": `Responsabilité civile professionnelle : comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers. Tous secteurs : BTP, conseil, IT, commerce.`,
 "seo.vie.title": "Assurance Vie : Frais 0% Offerts",
   "seo.vie.description": "Assurance vie : comparez fonds euros et UC. 0% de frais d'entrée, frais d'arbitrage offerts, fiscalité avantageuse après 8 ans.",
   "seo.blogPreview.title": "Aperçu brouillons blog",

@@ -70,7 +70,7 @@ const AssuranceDecennale = () => (
     insuranceType="decennale"
     courtierProduct="decennale"
     serviceName="Assurance Décennale BTP"
-    serviceDescription="Comparateur d'assurance décennale pour artisans et entreprises du bâtiment. Attestation rapide, tarifs négociés."
+    serviceDescription="Comparateur d'assurance décennale pour artisans et entreprises du bâtiment. Tarifs négociés."
     productCategory="Assurance Professionnelle"
     expertiseLabel="assurance décennale"
     faqs={[
@@ -83,7 +83,7 @@ const AssuranceDecennale = () => (
     ]}
     enBrefFacts={[
       <><BrandName /> compare les assureurs spécialistes décennale BTP.</>,
-      "Attestation décennale en 48h après validation du dossier.",
+      "Attestation décennale émise après validation du dossier.",
       "Tous corps de métier : maçon, plombier, électricien, couvreur, plaquiste…",
       "Le tarif dépend du métier, du chiffre d'affaires et de l'expérience.",
     ]}

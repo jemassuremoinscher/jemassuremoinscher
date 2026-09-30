@@ -2421,7 +2421,7 @@ const en: Record<string, string> = {
 "seo.prevoyance.title": "Income Protection: Protect Your Family",
   "seo.prevoyance.description": `Death, disability, funeral: compare protection cover from ${NB_ASSUREURS_LABEL} insurers and brokers. Personalised free quote in 2 min.`,
 "seo.rcpro.title": "Pro Liability | Free Quote",
-  "seo.rcpro.description": `Professional liability: compare ${NB_ASSUREURS_LABEL} insurers and brokers. All sectors: construction, consulting, IT, retail. Instant certificate.`,
+  "seo.rcpro.description": `Professional liability: compare ${NB_ASSUREURS_LABEL} insurers and brokers. All sectors: construction, consulting, IT, retail.`,
 "seo.vie.title": "Life Insurance: 0% Fees Included",
   "seo.vie.description": "Life insurance: compare euro funds and unit-linked. 0% entry fees, free arbitrage, tax advantages after 8 years.",
   "seo.blogPreview.title": "Blog drafts preview",

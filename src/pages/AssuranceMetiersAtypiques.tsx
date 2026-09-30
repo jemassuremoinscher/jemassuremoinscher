@@ -52,7 +52,7 @@ const AssuranceMetiersAtypiques = () => {
     {
       question: "Quel est le délai pour obtenir une attestation ?",
       answer:
-        "Rappel rapide par un conseiller après votre demande, puis attestation 48 à 72 h après réception du dossier complet (Kbis, dernier bilan, descriptif d'activité, sinistralité 5 ans). Pour un événement ponctuel avec date imminente, nous activons une procédure express.",
+        "Rappel rapide par un conseiller après votre demande, puis attestation émise après réception du dossier complet (Kbis, dernier bilan, descriptif d'activité, sinistralité 5 ans). Pour un événement ponctuel avec date imminente, nous activons une procédure express.",
     },
     {
       question: "Le BCT peut-il m'imposer un assureur ?",
@@ -288,7 +288,7 @@ const AssuranceMetiersAtypiques = () => {
               {[
                 { step: "1", title: "Questionnaire détaillé activité", desc: "9 questions ciblées sur votre activité, vos certifications, votre fréquentation et votre sinistralité — pour un dossier solide dès le départ." },
                 { step: "2", title: "Mise en concurrence 20 assureurs", desc: "Nous sollicitons uniquement les assureurs spécialisés ayant un appétit pour votre secteur — pas de refus inutiles." },
-                { step: "3", title: "Rappel & propositions rapides", desc: "Un courtier dédié vous rappelle rapidement avec 2 à 3 propositions argumentées. Souscription et attestation immédiate à la signature." },
+                { step: "3", title: "Rappel & propositions rapides", desc: "Un courtier dédié vous rappelle rapidement avec 2 à 3 propositions argumentées. Attestation envoyée par email après la signature." },
               ].map((s) => (
                 <Card key={s.step} className="p-6">
                   <div className="text-5xl font-bold text-primary/20 mb-3">{s.step}</div>

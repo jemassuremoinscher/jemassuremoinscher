@@ -84,7 +84,7 @@ const categories: FaqCategory[] = [
       },
       {
         q: "Combien de temps pour souscrire un nouveau contrat ?",
-        a: "La souscription se fait en quelques minutes par téléphone ou en ligne. Votre attestation d'assurance vous est transmise immédiatement par email.",
+        a: "La souscription se fait en quelques minutes par téléphone ou en ligne. Votre attestation d'assurance vous est ensuite transmise par email.",
       },
       {
         q: "Que se passe-t-il si je ne suis pas satisfait ?",

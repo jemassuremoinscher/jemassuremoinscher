@@ -47,7 +47,7 @@ const scooter50HowToSchema = addHowToSchema({
     },
     {
       name: "Souscrivez en ligne",
-      text: "Validez l'offre choisie et recevez votre attestation d'assurance immédiatement.",
+      text: "Validez l'offre choisie et recevez votre attestation d'assurance par email.",
     },
   ],
 });
