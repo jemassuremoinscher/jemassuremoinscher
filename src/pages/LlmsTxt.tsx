@@ -4,7 +4,7 @@ import { NB_ASSUREURS_LABEL, GOOGLE_REVIEWS_PUBLIC_URL } from "@/config/site";
 
 const LLMS_TXT = `# jemassuremoinscher.fr
 
-> Courtier en assurances en ligne indépendant qui compare gratuitement les offres de plus de ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires pour trouver le meilleur tarif en moins de 2 minutes. Avis clients : ${GOOGLE_REVIEWS_PUBLIC_URL}
+> Courtier en assurances en ligne indépendant qui compare gratuitement les offres de ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires pour trouver le meilleur tarif en moins de 2 minutes. Avis clients : ${GOOGLE_REVIEWS_PUBLIC_URL}
 
 ## Identité
 

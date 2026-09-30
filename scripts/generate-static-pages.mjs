@@ -270,13 +270,23 @@ const buildRouteFromFile = (relativePath) => {
 // ne matcherait plus rien. "et courtiers" ajouté partout où le texte dit
 // "assureurs" tout court : la liste mélange désormais assureurs et courtiers
 // (25 ajouts du 2026-09-30 au statut "a verifier" — voir partners.ts).
+// Gabarits (ordre important) : les formes avec prefixe ("plus de X",
+// "les offres de X") doivent matcher AVANT la forme nue "X assureurs" —
+// sinon la forme nue absorbe le nombre en premier et laisse "plus de"
+// devant le résultat déjà "+" (ex. "plus de 76+ assureurs et courtiers",
+// trouvé le 2026-09-30 dans llms.txt). Le "\+?" dans le nombre absorbe
+// aussi un "+" déjà présent (ex. "70+ assureurs"), pour rester idempotent
+// si ce script tourne deux fois sur le même texte.
 const patchAssureurCount = (html) => html
+  .replace(/plus de \d+\+? assureurs\b(?! et courtiers)/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers`)
+  .replace(/les offres de \d+\+? assureurs\b(?! et courtiers)/g, `les offres de ${NB_ASSUREURS} assureurs et courtiers`)
   .replace(/\d+\+? assureurs\b(?! et courtiers)/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers`)
   .replace(/\d+\+? Compagnies\b(?! et Courtiers)/g, `${NB_ASSUREURS_LABEL} Compagnies et Courtiers`)
   .replace(/\d+\+? compagnies\b(?! et courtiers)/g, `${NB_ASSUREURS_LABEL} compagnies et courtiers`)
   .replace(/\d+\+? partenaires\b/g, `${NB_ASSUREURS_LABEL} partenaires`)
-  .replace(/plus de \d+ assureurs\b(?! et courtiers)/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers`)
-  .replace(/les offres de \d+ assureurs\b(?! et courtiers)/g, `les offres de ${NB_ASSUREURS} assureurs et courtiers`);
+  // Filet de sécurité : si "plus de"/"Plus de" se retrouve quand même
+  // juste devant le résultat déjà en "+", on le retire (redondant).
+  .replace(/\bplus de (\d+\+ (?:assureurs|compagnies) et courtiers)/gi, "$1");
 
 const patchHtmlSeo = (html, relativePath) => {
   html = patchAssureurCount(html);
