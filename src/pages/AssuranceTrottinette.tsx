@@ -19,6 +19,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 import TrottinetteStatsAnswers from "@/components/insurance/TrottinetteStatsAnswers";
 import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
+import { TROTTINETTE_RC_PRICE_MONTHLY, TROTTINETTE_RC_PRICE_ANNUAL } from "@/config/site";
 
 // Schema WebPage avec citation de la source des statistiques du bloc
 // "Trottinette électrique en France : les chiffres" (TrottinetteStatsAnswers)
@@ -49,7 +50,7 @@ const AssuranceTrottinette = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Trottinette Électrique",
     description:
-      "Comparez les meilleures offres d'assurance trottinette électrique (EDPM) en France. Responsabilité civile obligatoire dès 2,90€/mois. Devis gratuit en 2 minutes.",
+      `Comparez les meilleures offres d'assurance trottinette électrique (EDPM) en France. Responsabilité civile obligatoire dès ${TROTTINETTE_RC_PRICE_MONTHLY}. Devis gratuit en 2 minutes.`,
     provider: "jemassuremoinscher.fr",
     areaServed: "France",
   });
@@ -65,7 +66,7 @@ const AssuranceTrottinette = () => {
       },
       {
         name: "Choisissez vos garanties",
-        text: "Responsabilité civile obligatoire, vol, dommages, assistance : sélectionnez le niveau de couverture adapté.",
+        text: "Responsabilité civile obligatoire, garantie Mobilité, défense pénale et recours, protection du conducteur en option : sélectionnez le niveau de couverture adapté.",
       },
       {
         name: "Comparez les offres",
@@ -87,12 +88,12 @@ const AssuranceTrottinette = () => {
     {
       question: "Combien coûte une assurance trottinette électrique ?",
       answer:
-        "À partir de 2,90€/mois (33€/an) pour une responsabilité civile seule, et entre 8€ et 12€/mois pour une formule complète avec vol, dommages et assistance (jusqu'à 20€/mois pour un usage livraison). Le prix dépend de la valeur de la trottinette, de la zone d'usage et du niveau de garanties.",
+        `À partir de ${TROTTINETTE_RC_PRICE_MONTHLY} pour la formule Solo (responsabilité civile, garantie Mobilité et défense pénale et recours inclus). Sur une base annuelle, comptez ${TROTTINETTE_RC_PRICE_ANNUAL}. La formule Famille (souscripteur + conjoint et enfants) et la protection du conducteur sont disponibles en option ; le vol n'est pas couvert à ce jour par ce contrat.`,
     },
     {
       question: "Que couvre une assurance trottinette électrique ?",
       answer:
-        "La RC couvre les dommages causés aux tiers (piétons, cyclistes, véhicules). Les formules complètes ajoutent le vol (avec antivol homologué), la casse accidentelle, le vandalisme, l'assistance/dépannage et parfois une garantie corporelle conducteur.",
+        "La formule Solo couvre la responsabilité civile (dommages matériels causés aux tiers), une garantie Mobilité forfaitaire et la défense pénale et recours en cas de litige. La formule Famille étend cette couverture au conjoint et aux enfants. La protection corporelle du conducteur reste une option. Le vol n'est pas couvert par ce contrat à ce jour (option à venir).",
     },
     {
       question: "Mon assurance habitation couvre-t-elle ma trottinette ?",
@@ -105,13 +106,13 @@ const AssuranceTrottinette = () => {
 
   const insuranceProductSchema = addInsuranceProductSchema({
     name: "Assurance Trottinette Électrique",
-    description: "Comparateur d'assurance trottinette électrique (EDPM). RC obligatoire dès 2,90€/mois, vol, casse, assistance jusqu'à 12€/mois.",
+    description: `Comparateur d'assurance trottinette électrique (EDPM). RC obligatoire dès ${TROTTINETTE_RC_PRICE_MONTHLY}, garantie Mobilité, défense pénale et recours.`,
     category: "Assurance Mobilité",
     url: "https://www.jemassuremoinscher.fr/assurance-trottinette",
   });
 
   const advantages = [
-    { icon: Euro, title: "Dès 2,90€/mois", description: "Responsabilité civile obligatoire à partir de 2,90€/mois (33€/an)." },
+    { icon: Euro, title: `Dès ${TROTTINETTE_RC_PRICE_MONTHLY}`, description: `Responsabilité civile obligatoire à partir de ${TROTTINETTE_RC_PRICE_MONTHLY}.` },
     { icon: Clock, title: "Devis en 2 minutes", description: "Comparez et souscrivez en ligne, sans engagement." },
     { icon: Shield, title: "Assureurs EDPM spécialisés", description: "Les spécialistes de la trottinette électrique comparés." },
   ];
@@ -119,14 +120,14 @@ const AssuranceTrottinette = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title="Assurance Trottinette Électrique 2026 : Comparateur EDPM dès 2,90€/mois"
-        description="Comparez les meilleures assurances trottinette électrique (EDPM). Responsabilité civile obligatoire, vol, casse, assistance. Devis gratuit en 2 minutes."
+        title={`Assurance Trottinette Électrique 2026 : Comparateur EDPM dès ${TROTTINETTE_RC_PRICE_MONTHLY}`}
+        description="Comparez les meilleures assurances trottinette électrique (EDPM). Responsabilité civile obligatoire, garantie Mobilité, défense pénale et recours. Devis gratuit en 2 minutes."
         keyword="assurance trottinette électrique"
-        keywords="assurance trottinette électrique, assurance EDPM, RC trottinette, vol trottinette, comparateur assurance trottinette"
+        keywords="assurance trottinette électrique, assurance EDPM, RC trottinette, comparateur assurance trottinette"
         canonical="https://www.jemassuremoinscher.fr/assurance-trottinette"
         ogTitle="Assurance Trottinette Électrique 2026 : Comparez les assureurs EDPM"
-        ogDescription="RC obligatoire dès 2,90€/mois. Vol, casse, assistance jusqu'à 12€/mois. Devis gratuit en 2 minutes."
-        twitterDescription="Comparez les assurances trottinette électrique en 2 minutes. RC dès 2,90€/mois. Gratuit et sans engagement."
+        ogDescription={`RC obligatoire dès ${TROTTINETTE_RC_PRICE_MONTHLY}. Garantie Mobilité, défense pénale et recours. Devis gratuit en 2 minutes.`}
+        twitterDescription={`Comparez les assurances trottinette électrique en 2 minutes. RC dès ${TROTTINETTE_RC_PRICE_MONTHLY}. Gratuit et sans engagement.`}
         jsonLd={[serviceSchema, howToSchema, faqSchema, insuranceProductSchema, trottinetteStatsWebPageSchema]}
       />
       <Header />
@@ -141,7 +142,7 @@ const AssuranceTrottinette = () => {
                 imageSrc={arthurScoot}
                 imageAlt="Arthur mascotte jemassuremoinscher sur trottinette électrique assurée"
                 title="Assurance trottinette électrique"
-                subtitle="RC obligatoire, vol, casse, assistance. Comparez les assureurs EDPM et souscrivez en ligne dès 2,90€/mois."
+                subtitle={`RC obligatoire, garantie Mobilité, défense pénale et recours. Comparez les assureurs EDPM et souscrivez en ligne dès ${TROTTINETTE_RC_PRICE_MONTHLY}.`}
                 ctaLabel="Comparer maintenant"
                 onCtaClick={scrollToForm}
               />
@@ -151,7 +152,7 @@ const AssuranceTrottinette = () => {
 
         <div
           className="container mx-auto px-4 py-12"
-          data-ai-description="Comparateur d'assurance trottinette électrique — jemassuremoinscher.fr compare les assureurs EDPM, RC obligatoire dès 2,90€/mois, devis gratuit en moins de 2 minutes"
+          data-ai-description={`Comparateur d'assurance trottinette électrique — jemassuremoinscher.fr compare les assureurs EDPM, RC obligatoire dès ${TROTTINETTE_RC_PRICE_MONTHLY}, devis gratuit en moins de 2 minutes`}
         >
 
           {/* H2 above-the-fold */}
@@ -160,12 +161,11 @@ const AssuranceTrottinette = () => {
               Comment trouver la <span className="text-primary">meilleure assurance trottinette électrique</span> en 2026 ?
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Depuis le <Link to="/glossaire/edpm" className="text-primary hover:underline font-medium"><strong>décret n°2019-1082</strong></Link>, toute trottinette électrique circulant sur la voie publique doit être couverte par une <strong>assurance responsabilité civile</strong>, comme un scooter. Rouler sans assurance est un <strong>délit puni de 3 750€ d'amende</strong>. Trois leviers déterminent votre prix : <strong>la formule</strong> (RC seule dès 2,90€/mois (33€/an), formule complète 8€ à 12€/mois), <strong>la valeur de la trottinette</strong> (impact fort sur les garanties vol et casse) et <strong>votre zone d'usage</strong> (grandes agglomérations = surprime vol).
+              Depuis le <Link to="/glossaire/edpm" className="text-primary hover:underline font-medium"><strong>décret n°2019-1082</strong></Link>, toute trottinette électrique circulant sur la voie publique doit être couverte par une <strong>assurance responsabilité civile</strong>, comme un scooter. Rouler sans assurance est un <strong>délit puni de 3 750€ d'amende</strong>. Le contrat comparé ici couvre la <strong>responsabilité civile</strong> dès {TROTTINETTE_RC_PRICE_MONTHLY} en formule Solo, avec la <strong>garantie Mobilité</strong> et la <strong>défense pénale et recours</strong> ; la formule <strong>Famille</strong> (souscripteur + conjoint et enfants) et la <strong>protection du conducteur</strong> sont disponibles en option.
             </p>
             <ul className="text-sm text-muted-foreground mt-4 space-y-1.5 list-none pl-0">
               <li>✓ Vérifier que votre trottinette respecte les <strong>25 km/h</strong> maximum (au-delà = homologation moto obligatoire)</li>
-              <li>✓ Comparer RC seule vs formule complète (vol + casse + assistance)</li>
-              <li>✓ Souscrire une garantie vol avec <strong>antivol homologué SRA</strong></li>
+              <li>✓ Comparer les formules Solo et Famille selon qui doit être couvert</li>
               <li>✓ En savoir plus sur la <Link to="/blog/trottinette-electrique-sans-assurance-delit-amende-2026" className="text-primary hover:underline font-medium">réglementation EDPM détaillée</Link></li>
             </ul>
             <p className="text-xs text-muted-foreground/80 mt-4">
@@ -282,8 +282,8 @@ const AssuranceTrottinette = () => {
                     <BrandName /> compare les offres d'assureurs spécialistes EDPM.
                   </>,
                   "RC responsabilité civile obligatoire depuis 2019 pour toute trottinette électrique.",
-                  "Tarif constaté : 2,90€/mois (33€/an) pour la RC seule, 8 à 12€/mois en formule complète.",
-                  "Attestation d'assurance délivrée immédiatement après souscription.",
+                  `Tarif constaté : ${TROTTINETTE_RC_PRICE_MONTHLY} pour la formule Solo (RC seule).`,
+                  "Attestation d'assurance délivrée après souscription.",
                 ]}
               />
             }

@@ -27,7 +27,7 @@ const AssuranceTrottinetteLivreur = () => {
     {
       question: "Mon assurance trottinette perso couvre-t-elle la livraison Uber Eats ?",
       answer:
-        "Non, dans 95 % des cas. Les contrats grand public excluent l'usage professionnel et la livraison rémunérée. En cas d'accident pendant une course, l'assureur peut refuser la garantie et vous laisser face à la responsabilité civile illimitée. Une formule pro livreur EDPM est obligatoire.",
+        "Non, dans 95 % des cas. Les contrats grand public excluent l'usage professionnel et la livraison rémunérée — dans le document d'information d'un contrat du marché (2025), l'exclusion vise nommément les \"tournées\" et la \"livraison de restauration rapide\". En cas d'accident pendant une course, l'assureur peut refuser la garantie et vous laisser face à la responsabilité civile illimitée. Une formule pro livreur EDPM est obligatoire.",
     },
     {
       question: "Quelles garanties indispensables pour un livreur en trottinette électrique ?",

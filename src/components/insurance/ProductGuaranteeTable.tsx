@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { TROTTINETTE_RC_PRICE_MONTHLY, TROTTINETTE_VOL_STATUS } from "@/config/site";
 
 /**
  * ProductGuaranteeTable
@@ -313,25 +314,30 @@ const DATA: Record<ProductKey, ProductTableData> = {
     footnote: "Cumulable avec déduction fiscale des primes au régime réel d'imposition.",
   },
   trottinette: {
-    title: "Garanties par formule — Assurance Trottinette Électrique",
-    intro: "EDPM (RC obligatoire depuis 2019). Tarifs dès 2,90€/mois.",
+    title: "Garanties — Assurance Trottinette Électrique",
+    intro: `EDPM (RC obligatoire depuis 2019). Tarifs dès ${TROTTINETTE_RC_PRICE_MONTHLY}.`,
+    // Solo/Famille remplacent Essentielle/Confort/Tous risques (2026-09-30) :
+    // seule distinction confirmée par la source disponible (IPID e-Trottineur
+    // + fiche produit April, 05/2025), Famille = souscripteur + conjoint et
+    // enfants. Aucun tarif Famille connu — pas de "price" fabriqué pour cette
+    // colonne, seule Solo reprend le tarif confirmé.
     columns: [
-      { key: "essentielle", label: "Essentielle", price: "dès 2,90€/mois" },
-      { key: "confort", label: "Confort", price: "5-7€/mois" },
-      { key: "tousrisques", label: "Tous risques", price: "8-12€/mois" },
+      { key: "solo", label: "Solo", price: `dès ${TROTTINETTE_RC_PRICE_MONTHLY}` },
+      { key: "famille", label: "Famille (souscripteur + conjoint et enfants)" },
     ],
+    // Lignes vérifiées contre l'IPID e-Trottineur + fiche produit April
+    // (05/2025), seule source disponible — chantier 2026-09-30. Casse,
+    // vandalisme et couverture Europe retirées : non mentionnées par ce
+    // document. Vol : conservé à la demande de Paul (option à venir), valeur
+    // exacte imposée (ni "Option" ni "Incluse") via TROTTINETTE_VOL_STATUS.
     rows: [
-      { name: "Responsabilité civile obligatoire", values: { essentielle: "Incluse", confort: "Incluse", tousrisques: "Incluse" } },
-      { name: "Dommages aux tiers", values: { essentielle: "Incluse", confort: "Incluse", tousrisques: "Incluse" } },
-      { name: "Individuelle conducteur", values: { essentielle: "—", confort: "Incluse", tousrisques: "Incluse" } },
-      { name: "Assistance dépannage 24/7", values: { essentielle: "—", confort: "Incluse", tousrisques: "Incluse" } },
-      { name: "Protection juridique", values: { essentielle: "—", confort: "Incluse", tousrisques: "Incluse" } },
-      { name: "Vol (antivol homologué)", values: { essentielle: "—", confort: "—", tousrisques: "Incluse" } },
-      { name: "Casse accidentelle", values: { essentielle: "—", confort: "—", tousrisques: "Incluse" } },
-      { name: "Vandalisme & bris", values: { essentielle: "—", confort: "—", tousrisques: "Incluse" } },
-      { name: "Couverture Europe", values: { essentielle: "—", confort: "—", tousrisques: "Incluse" } },
+      { name: "Responsabilité civile obligatoire (100 M€ dommages matériels)", values: { solo: "Incluse", famille: "Incluse" } },
+      { name: "Garantie Mobilité (forfait 10€, une fois, carence 30 j)", values: { solo: "Incluse", famille: "Incluse" } },
+      { name: "Défense pénale et recours (3 000€/sinistre)", values: { solo: "Incluse", famille: "Incluse" } },
+      { name: "Protection du conducteur (individuelle accident)", values: { solo: "Option", famille: "Option" } },
+      { name: "Vol", values: { solo: TROTTINETTE_VOL_STATUS, famille: TROTTINETTE_VOL_STATUS } },
     ],
-    footnote: "Prix constatés en France, mis à jour janvier 2026. RC obligatoire depuis 2019 (décret n°2019-1082).",
+    footnote: "Garanties vérifiées sur l'IPID e-Trottineur et la fiche produit April (mai 2025), seule source disponible à ce jour. RC obligatoire depuis 2019 (décret n°2019-1082).",
   },
   "scooter-50cc": {
     title: "Garanties par formule — Assurance Scooter 50cc & Cyclomoteur",

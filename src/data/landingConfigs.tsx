@@ -4,6 +4,7 @@ import {
   Users, TrendingDown, Clock, Star, Award, CheckCircle2, Phone, Sparkles, Lock, Shield, FileCheck,
 } from "lucide-react";
 import type { AdsLandingProps } from "@/components/landing/AdsLandingTemplate";
+import { TROTTINETTE_RC_PRICE_MONTHLY } from "@/config/site";
 
 import arthurCar from "@/assets/mascotte/arthur-car.webp?w=480&format=webp";
 import arthurMoto from "@/assets/mascotte/arthur-moto.webp?w=480&format=webp";
@@ -1665,16 +1666,20 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
   trottinette: {
     slug: "trottinette",
     trackingTitle: "Landing Page Assurance Trottinette Électrique",
-    seoTitle: "Assurance Trottinette Électrique : Devis dès 2,90€/mois (RC seule)",
-    seoDescription: "Assurance trottinette électrique obligatoire (EDPM). RC seule dès 2,90€/mois, vol, casse, individuelle accident en formule complète. Devis 2 min, attestation envoyée par email après souscription. Spécialiste mobilité.",
+    seoTitle: `Assurance Trottinette Électrique : Devis dès ${TROTTINETTE_RC_PRICE_MONTHLY} (RC seule)`,
+    seoDescription: `Assurance trottinette électrique obligatoire (EDPM). RC seule dès ${TROTTINETTE_RC_PRICE_MONTHLY}. Devis 2 min, attestation envoyée par email après souscription. Spécialiste mobilité.`,
     seoKeyword: "assurance trottinette électrique",
     seoKeywords: "assurance EDPM, assurance trottinette obligatoire, assurance gyroroue, assurance hoverboard, trottinette électrique pas chère",
     noindex: true,
-    topBarText: "⚡ Trottinette électrique — RC seule obligatoire dès 2,90€/mois, attestation par email",
+    topBarText: `⚡ Trottinette électrique — RC seule obligatoire dès ${TROTTINETTE_RC_PRICE_MONTHLY}, attestation par email`,
     badgeText: "EDPM • Spécialiste mobilité",
     heroTitle: "Assurance",
     heroHighlight: "Trottinette électrique",
-    heroSubtitle: <><strong>Obligatoire depuis 2019.</strong> RC, vol, casse, individuelle accident. Trottinette, gyroroue, hoverboard, monoroue : tous EDPM couverts, RC seule dès 2,90€/mois.</>,
+    // "vol, casse, individuelle accident" retiré : contredisait "RC seule"
+    // juste après (ces garanties ne sont pas confirmées par l'IPID fourni
+    // par Paul, qui ne documente que RC, garantie Mobilité, défense pénale
+    // et recours, et protection du conducteur en option — chantier 2026-09-30).
+    heroSubtitle: <><strong>Obligatoire depuis 2019.</strong> Responsabilité civile jusqu'à 100 M€, défense pénale et recours (3 000€/sinistre). RC seule dès {TROTTINETTE_RC_PRICE_MONTHLY}.</>,
     mascotSrc: arthurScoot,
     mascotAlt: "Arthur en trottinette électrique — assurance EDPM obligatoire",
     speechText: "Sans assurance, vous risquez 3 750 € d'amende et la confiscation. Je vous trouve la meilleure couverture en 2 minutes.",
@@ -1686,15 +1691,23 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // "20+ Assureurs EDPM" retiré : aucune source vérifiable (même défaut
     // déjà corrigé sur vélo/scooter le 2026-09-29, jamais appliqué ici).
     stats: [
-      { icon: Wallet, value: "2,90€/mois", label: "RC seule, à partir de" },
+      { icon: Wallet, value: TROTTINETTE_RC_PRICE_MONTHLY, label: "RC seule, à partir de" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
+    // "Individuelle conducteur" et "Assistance & dépannage" (24/7) retirées :
+    // aucune assistance/dépannage/retour à domicile dans l'IPID e-Trottineur
+    // (Allianz IARD / April Moto, 05/2025) fourni par Paul, et la protection
+    // corporelle du conducteur y est en OPTION, jamais incluse par défaut —
+    // remplacées par les garanties réellement confirmées (chantier 2026-09-30).
+    // "Garantie vol & tentative" retirée (2026-09-30, décision de Paul) :
+    // aucune mention du vol dans les avantages/titre/meta/JSON-LD/landing —
+    // la seule ligne "Vol" du site vit désormais dans le tableau de
+    // garanties du pilier (TROTTINETTE_VOL_STATUS), pas ici.
     advantages: [
-      { icon: ShieldCheck, title: "RC obligatoire incluse", description: "Responsabilité civile EDPM imposée par la loi : jusqu'à 100 M€ pour les dommages causés aux tiers." },
-      { icon: Lock, title: "Garantie vol & tentative", description: "65 000 trottinettes volées par an : indemnisation à valeur d'achat ou d'usage, antivol agréé recommandé." },
-      { icon: Heart, title: "Individuelle conducteur", description: "Frais médicaux, indemnités journalières, invalidité, décès : VOS blessures couvertes, pas seulement celles des tiers." },
-      { icon: Phone, title: "Assistance & dépannage", description: "Panne batterie, crevaison, casse : retour à domicile pris en charge 24/7." },
+      { icon: ShieldCheck, title: "RC obligatoire incluse", description: "Responsabilité civile EDPM imposée par la loi : jusqu'à 100 M€ pour les dommages matériels causés aux tiers." },
+      { icon: FileCheck, title: "Défense pénale et recours", description: "Litige après un accident ? Vos frais de défense et de recours pris en charge jusqu'à 3 000 € par sinistre." },
+      { icon: Heart, title: "Protection du conducteur (en option)", description: "Frais médicaux, invalidité, décès : une garantie individuelle accident disponible en option, à ajouter selon vos besoins." },
     ],
     // Témoignages retirés : 3 noms détaillés (Julien P., Sarah K., Mehdi R. —
     // le chantier vélo n'en avait signalé que 2, le 3ème avait échappé à la
@@ -1702,11 +1715,15 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // défaut que la config vélo ci-dessus, jamais traité au moment du fix
     // noindex de cette config.
     testimonials: [],
+    // FAQ "antivol homologué pour la garantie vol" retirée (2026-09-30) :
+    // présupposait une garantie vol incluse, ce qui n'est plus le cas
+    // (TROTTINETTE_VOL_STATUS). Le mot "vol" a aussi été retiré de la
+    // réponse "assurance habitation" ci-dessous (question conservée, elle
+    // décrit une limite de l'habitation, pas une promesse sur notre offre).
     faqs: [
       { question: "L'assurance trottinette est-elle vraiment obligatoire ?", answer: "Oui, la RC EDPM est obligatoire depuis 2019 pour circuler sur la voie publique. Sans assurance : 3 750 € d'amende et confiscation possible de l'engin." },
-      { question: "Mon assurance habitation suffit-elle ?", answer: "Parfois, mais à vérifier : la RC vie privée des contrats MRH récents inclut souvent la RC EDPM (à confirmer par écrit). Elle ne couvre ni le vol, ni la casse, ni vos blessures." },
+      { question: "Mon assurance habitation suffit-elle ?", answer: "Parfois, mais à vérifier : la RC vie privée des contrats MRH récents inclut souvent la RC EDPM (à confirmer par écrit). Elle ne couvre ni la casse ni vos blessures." },
       { question: "Et si ma trottinette est débridée ?", answer: "Aucun assureur ne couvre une trottinette débridée (>25 km/h) : elle devient juridiquement un cyclomoteur (immatriculation + permis AM requis)." },
-      { question: "Faut-il un antivol homologué pour la garantie vol ?", answer: "Oui, la plupart des assureurs imposent un antivol agréé FUB ou Sold Secure Gold, fixé à un point fixe. Conservez la facture de l'antivol." },
     ],
     bottomCtaTitle: "Roulez en règle dès aujourd'hui",
     bottomCtaDescription: "Devis trottinette gratuit — attestation par email après souscription, rappel rapide par un expert mobilité.",
