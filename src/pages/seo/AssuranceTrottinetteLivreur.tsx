@@ -27,7 +27,7 @@ const AssuranceTrottinetteLivreur = () => {
     {
       question: "Mon assurance trottinette perso couvre-t-elle la livraison Uber Eats ?",
       answer:
-        "Non, dans 95 % des cas. Les contrats grand public excluent l'usage professionnel et la livraison rémunérée — dans le document d'information d'un contrat du marché (2025), l'exclusion vise nommément les \"tournées\" et la \"livraison de restauration rapide\". En cas d'accident pendant une course, l'assureur peut refuser la garantie et vous laisser face à la responsabilité civile illimitée. Une formule pro livreur EDPM est obligatoire.",
+        "En général non : les contrats grand public excluent l'usage professionnel (par exemple, le document d'information d'un contrat du marché, 2025, exclut les tournées et la livraison de restauration rapide). En cas d'accident pendant une course, l'assureur peut refuser la garantie et vous laisser face à la responsabilité civile illimitée. Une formule pro livreur EDPM est obligatoire.",
     },
     {
       question: "Quelles garanties indispensables pour un livreur en trottinette électrique ?",
@@ -56,7 +56,7 @@ const AssuranceTrottinetteLivreur = () => {
 
     <p>Chez <strong>jemassuremoinscher.fr</strong>, nos courtiers spécialisés mobilité urbaine professionnelle comparent les assureurs partenaires <strong>livreurs EDPM</strong> pour vous trouver la formule la moins chère et la plus adaptée à votre rythme (temps plein, temps partiel, étudiant complément).</p>
 
-    <p><em>Vous utilisez votre trottinette à titre personnel ? Consultez notre guide complet <a href="/assurance-trottinette">assurance trottinette électrique</a>.</em></p>
+    <p><em>Pour un usage personnel, consultez notre guide <a href="/assurance-trottinette">assurance trottinette électrique</a>.</em></p>
 
     <h3>Pourquoi une assurance pro est obligatoire pour les livreurs en trottinette</h3>
     <p>L'usage professionnel d'un EDPM (Engin de Déplacement Personnel Motorisé) — trottinette, gyroroue, hoverboard — entre dans la catégorie des <strong>activités à risque aggravé</strong> pour les assureurs. Trois raisons :</p>
@@ -75,6 +75,9 @@ const AssuranceTrottinetteLivreur = () => {
       <li><strong>Bris d'équipement</strong> : smartphone (souvent à 400-1 000 €), sac isotherme, batterie additionnelle.</li>
       <li><strong>Assistance dépannage 24/7</strong> : crucial pour finir vos courses en cas de panne batterie ou crevaison.</li>
     </ul>
+
+    <h3>Équipement</h3>
+    <p>Pour le sac isotherme et le reste du matériel, PAKERS, boutique spécialisée dans les sacs de livraison, détaille un kit de démarrage : <a href="https://pakers.co/blogs/guides-livreurs/kit-debutant-livreur-uber-eats-2026" target="_blank" rel="noopener">kit débutant livreur Uber Eats</a>.</p>
 
     <h3>Combien gagne réellement un livreur trottinette en 2026 ?</h3>
     <p>Avec une rémunération moyenne de 5 à 9 € par course et 3 à 6 courses/heure, un livreur trottinette gagne entre <strong>1 200 € et 2 800 €/mois</strong> selon l'intensité. Sur cette base, une assurance pro à 18 €/mois représente moins de <strong>1 % du chiffre d'affaires</strong> mais protège des sinistres pouvant atteindre 100 000 €. Un investissement non négociable.</p>
