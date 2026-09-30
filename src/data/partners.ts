@@ -18,12 +18,24 @@
  * en déduire une absence de couverture, juste que la catégorisation n'a pas
  * encore été faite pour cette entrée (décision de Paul, 2026-09-30 : ne pas
  * toucher aux catégories des 34 entrées hors périmètre animaux).
+ * `type` : "assureur" | "courtier" | "a verifier" — statut vérifié dans un
+ * registre officiel (ORIAS pour les courtiers, ACPR/liste des organismes
+ * d'assurance pour les assureurs), jamais une déduction. REGAFI (registre
+ * consulté le 2026-09-30 pour les 25 ajouts ci-dessous) couvre les
+ * établissements BANCAIRES/PAIEMENT/monnaie électronique — PAS les
+ * assureurs ni les courtiers d'assurance ; recherche via ce registre non
+ * concluante pour cette raison, pas pour un problème de nom. Les 25
+ * entrées ci-dessous sont donc "a verifier" (statut réel non prouvé par un
+ * registre) même si Paul en confirme la relation partenariale.
+ * `publicRestreint` : mention à afficher quand le partenaire ne s'adresse
+ * qu'à un public défini (ex. professions de santé, collectivités) — pour
+ * éviter de suggérer au visiteur qu'il peut souscrire alors qu'il n'y est
+ * pas éligible.
  */
 
 import aCommeAssureLogo from "@/assets/logos/a-comme-assure.png";
 import abeilleLogo from "@/assets/logos/abeille.webp";
 import acheelLogo from "@/assets/logos/acheel.webp";
-import agfLogo from "@/assets/logos/agf.webp";
 import alanLogo from "@/assets/logos/alan-new.webp";
 import allianzLogo from "@/assets/logos/allianz.webp";
 import amaguizLogo from "@/assets/logos/amaguiz.webp";
@@ -66,6 +78,8 @@ export interface Partner {
   logo?: string;
   autorisationLogo?: boolean;
   categories: string[];
+  type?: "assureur" | "courtier" | "a verifier";
+  publicRestreint?: string;
 }
 
 export const partners: Partner[] = [
@@ -73,7 +87,6 @@ export const partners: Partner[] = [
   { name: "A comme Assure", logo: aCommeAssureLogo, autorisationLogo: true, categories: [] },
   { name: "Abeille Assurances", logo: abeilleLogo, autorisationLogo: true, categories: [] },
   { name: "Acheel", logo: acheelLogo, autorisationLogo: true, categories: ["animaux"] },
-  { name: "AGF", logo: agfLogo, autorisationLogo: true, categories: [] },
   { name: "Alan", logo: alanLogo, autorisationLogo: true, categories: [] },
   { name: "Allianz", logo: allianzLogo, autorisationLogo: true, categories: [] },
   { name: "Amaguiz", logo: amaguizLogo, autorisationLogo: true, categories: [] },
@@ -126,4 +139,35 @@ export const partners: Partner[] = [
   { name: "ECA Assurances", categories: ["animaux"] },
   { name: "MGEN", categories: ["animaux"] },
   { name: "Groupama", categories: ["animaux"] },
+
+  // ── 25 ajouts confirmés par Paul (2026-09-30) ──
+  // Aucun logo fourni. `type` à "a verifier" pour les 25 : REGAFI (seul
+  // registre consulté) ne couvre pas les assureurs/courtiers d'assurance,
+  // voir le commentaire d'en-tête — reste à vérifier via ORIAS ou la liste
+  // ACPR des organismes d'assurance.
+  { name: "Pacifica (Crédit Agricole Assurances)", categories: [], type: "a verifier" },
+  { name: "Thélem assurances", categories: [], type: "a verifier" },
+  { name: "Allianz Direct", categories: [], type: "a verifier" },
+  { name: "Hiscox", categories: [], type: "a verifier" },
+  { name: "Zurich", categories: [], type: "a verifier" },
+  { name: "SMABTP / SMA", categories: [], type: "a verifier" },
+  { name: "SMACL Assurances", categories: [], type: "a verifier", publicRestreint: "Collectivités locales, associations et acteurs de l'économie sociale" },
+  { name: "Wakam", categories: [], type: "a verifier" },
+  { name: "Lemonade", categories: [], type: "a verifier" },
+  { name: "Sogessur", categories: [], type: "a verifier" },
+  { name: "Mutuelle des Motards", categories: [], type: "a verifier" },
+  { name: "Harmonie Mutuelle", categories: [], type: "a verifier" },
+  { name: "Malakoff Humanis", categories: [], type: "a verifier" },
+  { name: "AG2R La Mondiale", categories: [], type: "a verifier" },
+  { name: "Klesia", categories: [], type: "a verifier" },
+  { name: "Apicil", categories: [], type: "a verifier" },
+  { name: "MGEFI", categories: [], type: "a verifier" },
+  { name: "MACSF", categories: [], type: "a verifier", publicRestreint: "Professions de santé" },
+  { name: "CNP Assurances", categories: [], type: "a verifier" },
+  { name: "AFI ESCA", categories: [], type: "a verifier" },
+  { name: "Suravenir", categories: [], type: "a verifier" },
+  { name: "Assurances du Crédit Mutuel (ACM)", categories: [], type: "a verifier" },
+  { name: "MetLife", categories: [], type: "a verifier" },
+  { name: "Sogecap", categories: [], type: "a verifier" },
+  { name: "Alptis", categories: [], type: "a verifier" },
 ];
