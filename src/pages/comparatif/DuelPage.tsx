@@ -69,12 +69,6 @@ export default function DuelPage() {
         name: `Assurance Auto ${a.name}`,
         image: a.logo,
         brand: { "@type": "Brand", name: a.name },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: a.avisNote,
-          reviewCount: a.avisCount,
-          bestRating: 5,
-        },
         offers: {
           "@type": "Offer",
           price: a.prixMoyen,
@@ -87,12 +81,6 @@ export default function DuelPage() {
         name: `Assurance Auto ${b.name}`,
         image: b.logo,
         brand: { "@type": "Brand", name: b.name },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: b.avisNote,
-          reviewCount: b.avisCount,
-          bestRating: 5,
-        },
         offers: {
           "@type": "Offer",
           price: b.prixMoyen,
