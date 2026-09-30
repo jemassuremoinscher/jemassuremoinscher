@@ -119,11 +119,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
         { icon: Phone, title: "A dedicated expert, not a bot", description: "Arthur runs the analysis, a human advisor calls you back to finalise." },
         { icon: Lock, title: "GDPR-protected data", description: "SSL site, France-based hosting, ORIAS-registered broker." },
       ],
-      testimonials: [
-        { name: "Marc T.", location: "Lyon", text: "I saved €520 on my car insurance. Comprehensive cover cheaper than my previous third-party — impressive." },
-        { name: "Claire B.", location: "Paris", text: "Lightning-fast service. Within 30 minutes I had my new contract, cheaper and with better cover." },
-        { name: "Ahmed R.", location: "Marseille", text: "As a young driver I finally found affordable insurance thanks to Arthur. Thank you!" },
-      ],
+      testimonials: [],
       faqs: [
         { question: "How does Arthur compare car insurance?", answer: `You fill in the 2-minute form with your vehicle and profile. Arthur queries the ${NB_ASSUREURS_LABEL} partner insurers in real time and shows you the best offers for your profile.` },
         { question: "How much can I save?", answer: `It depends on your profile and current contract. On average, our users save up to 40% by putting the ${NB_ASSUREURS_LABEL} partner insurers in competition.` },
@@ -198,11 +194,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
-    testimonials: [
-      { name: "Émilie R.", location: "Toulouse", text: "Dégât des eaux géré sous 10 minutes. Et j'économise 180 €/an, je recommande !" },
-      { name: "Pierre D.", location: "Rennes", text: "Propriétaire d'une maison de 120 m² : assurance moins chère que mon studio précédent." },
-      { name: "Léa F.", location: "Strasbourg", text: "Étudiante, j'avais besoin d'une assurance vraiment pas chère. Trouvée à 6,90 €/mois." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Que couvre une assurance habitation ?", answer: "Incendie, dégâts des eaux, vol, vandalisme, responsabilité civile et catastrophes naturelles." },
       { question: "Est-elle obligatoire ?", answer: "Obligatoire pour les locataires et copropriétaires. Vivement recommandée pour les propriétaires." },
@@ -239,11 +231,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
-    testimonials: [
-      { name: "Nathalie P.", location: "Nantes", text: "Mutuelle famille, 65 € en moins par mois, et meilleurs remboursements optique." },
-      { name: "Henri D.", location: "Montpellier", text: "Senior, on m'a trouvé une mutuelle sans surprime malgré mon âge." },
-      { name: "Yasmine K.", location: "Reims", text: "Indépendante, mutuelle TNS très avantageuse fiscalement (loi Madelin)." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Y a-t-il un questionnaire médical ?", answer: "Non, aucune de nos mutuelles partenaires n'impose de questionnaire médical." },
       { question: "Combien de temps pour changer de mutuelle ?", answer: "Grâce à la loi Hamon, vous pouvez résilier après 1 an, à tout moment, sans frais." },
@@ -282,11 +270,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
-    testimonials: [
-      { name: "Thomas G.", location: "Bordeaux", text: "12 400 € d'économies sur mon prêt 25 ans. Procédure 100 % en ligne en 3 semaines." },
-      { name: "Sophie L.", location: "Annecy", text: "Mon banquier ne m'avait pas parlé de la loi Lemoine. J'ai gagné 8 200 €." },
-      { name: "Jean-Marc T.", location: "Toulouse", text: "Garanties identiques (banque acceptée), prime divisée par 3." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Qu'est-ce que la loi Lemoine ?", answer: "Depuis juin 2022, vous pouvez changer d'assurance emprunteur à tout moment, sans frais." },
       { question: "Ma banque peut-elle refuser ?", answer: "Non, si les garanties sont équivalentes elle est tenue d'accepter (équivalence des garanties)." },
@@ -323,11 +307,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
-    testimonials: [
-      { name: "Patrick V.", location: "Lyon", text: "Frais réduits, rendement attractif, et accompagnement pédagogique. Top." },
-      { name: "Anne-Sophie M.", location: "Paris", text: "Versement initial de 500 €, puis 100 €/mois. Simple et efficace." },
-      { name: "Marc D.", location: "Aix-en-Provence", text: "Conseil patrimonial sérieux, sans pression commerciale. Rare." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Quel ticket d'entrée ?", answer: "Le montant du premier versement varie selon les contrats — certains sont accessibles avec un montant réduit." },
       { question: "Mon argent est-il bloqué ?", answer: "Non, votre épargne reste disponible à tout moment (rachat partiel ou total)." },
@@ -364,11 +344,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
-    testimonials: [
-      { name: "Caroline H.", location: "Nantes", text: "Indépendante, en arrêt 2 mois : indemnités versées à temps, j'ai pu tenir." },
-      { name: "Mehdi K.", location: "Lyon", text: "Famille avec 2 enfants : capital décès de 200 k€ pour 22 €/mois, c'est rassurant." },
-      { name: "Isabelle B.", location: "Bordeaux", text: "Conseillère réactive, contrat clair, garanties solides." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "À qui s'adresse la prévoyance ?", answer: "Indépendants, salariés sans bonne couverture, parents : tous ceux qui veulent sécuriser leurs revenus." },
       { question: "Y a-t-il une franchise ?", answer: "Variable selon contrat (de 0 à 90 jours). Plus la franchise est courte, plus la prime est élevée." },
@@ -407,11 +383,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
-    testimonials: [
-      { name: "Claire M.", location: "Lille", text: "Opération du genou de mon chien : 1 800 € remboursés sur 2 100 € de facture." },
-      { name: "Olivier T.", location: "Rennes", text: "Mutuelle chat parfaite pour les visites annuelles et les imprévus." },
-      { name: "Aurélie P.", location: "Marseille", text: "Souscription en ligne en 5 min, attestation reçue immédiatement." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Mon animal est-il éligible ?", answer: "Oui, chiens et chats de 2 mois à 7-10 ans selon les contrats (sans race exclue)." },
       { question: "Quel est le délai de carence ?", answer: "Généralement 7 jours pour la maladie, 48 h pour l'accident." },
@@ -449,11 +421,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
-    testimonials: [
-      { name: "Julie F.", location: "Paris", text: "Consultante : RC Pro à 14 €/mois, attestation en 2 min, parfait pour mes appels d'offres." },
-      { name: "Thomas R.", location: "Lyon", text: "Artisan, RC Pro + dommages aux biens dans le même contrat. Simple et complet." },
-      { name: "Marie B.", location: "Bordeaux", text: "Service client réactif, conseils avisés sur les garanties à choisir." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "La RC Pro est-elle obligatoire ?", answer: "Obligatoire pour les professions réglementées (santé, juridique, immobilier, BTP), recommandée pour tous les autres." },
       { question: "Couvre-t-elle les dommages corporels ?", answer: "Oui, dommages corporels, matériels et immatériels causés à des tiers (clients, prestataires)." },
@@ -490,11 +458,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
-    testimonials: [
-      { name: "Vincent P.", location: "Toulouse", text: "Restaurant, sinistre incendie partiel : indemnisé sous 3 semaines, perte d'exploitation incluse." },
-      { name: "Caroline D.", location: "Lille", text: "Boutique de prêt-à-porter : prime divisée par 1,8, garanties élargies." },
-      { name: "Hervé M.", location: "Nantes", text: "Cabinet médical, contrat sur-mesure pour mon matériel coûteux." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Que couvre la MRP ?", answer: "Locaux, matériel, marchandises, RC exploitation, perte d'exploitation, dégâts des eaux et incendie." },
       { question: "Pour quelles activités ?", answer: "Commerces, restaurants, bureaux, ateliers, cabinets… toutes les TPE et PME." },
@@ -536,11 +500,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
-    testimonials: [
-      { name: "Laurent F.", location: "Paris", text: "Locataire en impayé pendant 8 mois : indemnisé en totalité, procédure gérée par l'assureur." },
-      { name: "Hélène M.", location: "Lyon", text: "Bailleur de 3 lots, GLI sur chacun : tranquillité totale." },
-      { name: "Bernard D.", location: "Marseille", text: "Tarif compétitif, dossier traité en 24 h après vérification du locataire." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Quel locataire est éligible ?", answer: "Solvabilité du locataire vérifiée selon le critère légal des 3× le loyer en revenus nets." },
       { question: "Que couvre la GLI ?", answer: "Loyers impayés, charges, taxe foncière non récupérée, dégradations, frais de procédure et d'huissier." },
@@ -577,11 +537,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
     advantages: baseAdvantages,
-    testimonials: [
-      { name: "Martine V.", location: "Bordeaux", text: "PNO à 92 €/an, bien moins cher que ce que mon syndic me proposait." },
-      { name: "Antoine L.", location: "Paris", text: "Sinistre dégât des eaux entre 2 locataires : remboursement intégral en 3 semaines." },
-      { name: "Sophie B.", location: "Nice", text: "Souscription en 5 min, attestation envoyée à mon syndic immédiatement." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "La PNO est-elle obligatoire ?", answer: "Oui depuis la loi Alur (2014) pour les biens en copropriété. Vivement recommandée pour tous les autres." },
       { question: "Que couvre-t-elle ?", answer: "Sinistres dans les parties privatives, RC propriétaire, recours des voisins et du locataire." },
@@ -622,11 +578,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: HardHat, title: "Matériel & EPI couverts", description: "Plateformes, lignes de vie, baudriers, mousquetons : remplacement et contrôles ECP." },
       { icon: Phone, title: "0 refus", description: "Solution même pour gros parcs et activités à risque aggravé." },
     ],
-    testimonials: [
-      { name: "Thierry M.", location: "Parc Aventure Ardèche", text: "Mon assureur historique a refusé après un sinistre. Solution trouvée en 3 jours, prime baissée." },
-      { name: "Sophie R.", location: "Cimes & Forêts Vosges", text: "Ouverture de mon 2ᵉ parc : montage du contrat avant l'inauguration. Conformité EN 15567 vérifiée." },
-      { name: "Karim D.", location: "Aventure Pyrénées", text: "Tarif divisé par 1,8 vs mon contrat précédent, garanties élargies team-building." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Pourquoi un courtier spécialisé ?", answer: "Les généralistes refusent les activités classées risques aggravés. Nous travaillons avec 20 assureurs de niche (Hiscox, Albingia, MMA Pro Sport, Generali Évolution…)." },
       { question: "Combien de temps pour une attestation ?", answer: "Rappel rapide par un conseiller, attestation 48 à 72 h après dossier complet (Kbis, dernier bilan, descriptif activité)." },
@@ -666,11 +618,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Heart, title: "Individuelle accident pro", description: "Complément CPAM/AT-MP en cas d'arrêt suite à accident en hauteur." },
       { icon: FileCheck, title: "Attestations chantier", description: "Attestations renforcées pour donneurs d'ordre exigeants (BTP, industrie)." },
     ],
-    testimonials: [
-      { name: "Florian B.", location: "Cordiste IRATA-3, Lyon", text: "Refusé par 4 assureurs avant de vous trouver. Contrat en 1 semaine, tarif raisonnable." },
-      { name: "Marc V.", location: "SARL Travaux Acro, Paris", text: "5 cordistes salariés : RC + EPI + AT complémentaire dans un contrat unique." },
-      { name: "Étienne C.", location: "Indépendant, Grenoble", text: "Attestations chantier validées par tous mes donneurs d'ordre. Top." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Pourquoi mon assureur généraliste refuse-t-il ?", answer: "Les travaux en hauteur sont classés risque aggravé : surprime jusqu'à +150 %. Les généralistes ne disposent pas de grilles dédiées." },
       { question: "Mes cordes et EPI sont-ils couverts ?", answer: "Oui, en garantie matériel professionnel, avec contrôle annuel ECP exigé pour le maintien de la couverture." },
@@ -710,11 +658,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Building2, title: "Matériel scénique", description: "Sonorisation, éclairage, structures, scènes : couverts contre vol, bris, incendie." },
       { icon: Phone, title: "Étude express 24 h", description: "Pour les événements à date imminente, procédure accélérée avec attestation 24 h." },
     ],
-    testimonials: [
-      { name: "Léo T.", location: "Festival Été Provence", text: "12 000 festivaliers couverts, prime divisée par 2 vs mon ancien contrat." },
-      { name: "Marina P.", location: "Agence événementielle Paris", text: "Soirées corporate jusqu'à 800 invités : RC + annulation, dossier signé en 48 h." },
-      { name: "Hugo M.", location: "Course Trail Cévennes", text: "1 200 coureurs, événement nature à risque : couverture sur-mesure obtenue." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "À partir de combien de personnes faut-il s'assurer ?", answer: "Dès le 1er invité, mais la RC organisateur est obligatoire dès 50 personnes ou si l'événement est ouvert au public." },
       { question: "Quels événements couvrez-vous ?", answer: "Festivals, concerts, courses sportives, soirées privées/corporate, salons, conférences, mariages." },
@@ -754,11 +698,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Users, title: "Stagiaires couverts", description: "Vos élèves, stagiaires et clients couverts pendant vos prestations." },
       { icon: FileCheck, title: "Attestations FFME/FFCK", description: "Attestations conformes aux exigences fédérales et préfectorales." },
     ],
-    testimonials: [
-      { name: "Pauline R.", location: "Monitrice escalade, Annecy", text: "RC pro adaptée à mes encadrements en falaise et SAE pour 480 €/an. Bien moins cher qu'en agence." },
-      { name: "Romain V.", location: "Guide kayak, Bretagne", text: "Couverture pour mes sorties mer avec stagiaires : enfin un assureur qui comprend mon métier." },
-      { name: "Léa C.", location: "Monitrice parapente, Pyrénées", text: "Mon ancien contrat ne couvrait pas le biplace. Solution trouvée en 24 h !" },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Quels diplômes acceptés ?", answer: "BE, BPJEPS, DEJEPS, brevets fédéraux, qualifications guide haute montagne, etc." },
       { question: "Sorties multi-jours couvertes ?", answer: "Oui, raids, treks et stages multi-jours inclus dans la RC, à préciser à la souscription." },
@@ -802,11 +742,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Phone, title: "Attestation immédiate", description: "Justificatif valable préfecture envoyé en 2 minutes par email." },
       { icon: ShieldCheck, title: "Protection juridique", description: "Litiges plateformes, contrôle URSSAF, contestation préfecture inclus." },
     ],
-    testimonials: [
-      { name: "Karim B.", location: "Chauffeur VTC, Paris", text: "Économie de 1 200 €/an sur ma flotte de 3 véhicules. Service ultra réactif." },
-      { name: "Stéphane L.", location: "VTC indépendant, Lyon", text: "Attestation reçue en 10 min, j'ai pu déposer ma demande de carte pro le jour même." },
-      { name: "Mehdi T.", location: "Flotte VTC, Marseille", text: "Enfin un courtier qui comprend les spécificités VTC." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Quelle assurance pour un VTC ?", answer: "Un VTC doit souscrire une assurance auto à usage transport de personnes + une RC pro. Notre offre combine les deux." },
       { question: "Combien coûte une assurance VTC ?", answer: "Le prix dépend du véhicule, de l'expérience et de la zone d'activité. Comparez des devis établis pour votre situation." },
@@ -849,11 +785,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Award, title: "Contrat sans engagement", description: "Résiliable à tout moment après la 1ère année (loi Hamon)." },
       { icon: FileCheck, title: "Attestation immédiate", description: "Indispensable pour gagner clients exigeants ou répondre à appels d'offres." },
     ],
-    testimonials: [
-      { name: "Julie M.", location: "Graphiste freelance, Bordeaux", text: "RC pro à 12 €/mois, attestation en 5 min. Ma cliente a validé le contrat dans la foulée." },
-      { name: "Antoine R.", location: "Coach business, Paris", text: "Couverture parfaite pour mon activité de conseil." },
-      { name: "Sandra K.", location: "Esthéticienne, Lille", text: "Enfin une assurance pas chère et adaptée." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "La RC pro est-elle obligatoire pour un auto-entrepreneur ?", answer: "Ça dépend de votre activité, pas de votre statut. La loi l'impose pour le BTP, le tourisme et certaines professions de santé, juridiques ou financières précisément définies — pas pour la beauté ou le conseil en général, où elle reste une démarche volontaire fortement recommandée." },
       { question: "Combien coûte une RC pro auto-entrepreneur ?", answer: "Le prix dépend de votre activité. Comparez des devis établis pour votre situation." },
@@ -896,11 +828,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Heart, title: "Cures thermales & médecines douces", description: "Ostéopathie, acupuncture, homéopathie, cures conventionnées." },
       { icon: Phone, title: "Conseiller dédié senior", description: "Un interlocuteur unique qui connaît votre dossier." },
     ],
-    testimonials: [
-      { name: "Christiane D.", location: "Retraitée, Toulouse", text: "Économie de 720 €/an avec une meilleure couverture dentaire." },
-      { name: "Jean-Pierre M.", location: "Retraité, Nantes", text: "Audioprothèse remboursée à 100% : 1 800 € économisés." },
-      { name: "Monique L.", location: "Retraitée, Strasbourg", text: "Souscription en 15 min par téléphone. Parfait." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Quel est le prix d'une mutuelle senior ?", answer: "Entre 60 € et 180 €/mois selon âge et garanties. Économie moyenne 40%." },
       { question: "Y a-t-il un questionnaire médical ?", answer: "Non, acceptation garantie sans questionnaire ni examen." },
@@ -994,11 +922,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Award, title: "Garantie jusqu'à 1M€", description: "Plafonds adaptés à toutes activités." },
       { icon: Phone, title: "Juridique inclus", description: "Litiges contractuels, recouvrement, accompagnement URSSAF." },
     ],
-    testimonials: [
-      { name: "Mathieu V.", location: "Développeur freelance, Nantes", text: "RC pro à 11 €/mois. Parfait pour Malt." },
-      { name: "Élodie F.", location: "Consultante RH, Paris", text: "Couverture solide à un prix imbattable." },
-      { name: "Pierre N.", location: "Photographe, Lyon", text: "Indispensable pour mes prestations mariage." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "RC pro obligatoire pour micro-entreprise ?", answer: "Ça dépend de votre activité, pas de votre statut. La loi l'impose pour le BTP, le tourisme et certaines professions de santé, juridiques ou financières précisément définies — pas pour la beauté ou le conseil en général, où elle reste une démarche volontaire fortement recommandée." },
       { question: "Quel plafond de garantie choisir ?", answer: "Le plafond adapté dépend de votre activité et de votre exposition au risque : comparez des devis établis pour votre situation." },
@@ -1037,11 +961,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: ShieldCheck, title: "Perte d'exploitation", description: "Indemnisation de votre marge en cas de fermeture forcée." },
       { icon: FileCheck, title: "Food truck inclus", description: "Véhicule + équipements + activité ambulante dans un seul contrat." },
     ],
-    testimonials: [
-      { name: "Sophie M.", location: "Restaurateur, Lyon", text: "Pack à 1 800 €/an. Mon ancien contrat coûtait 2 700 €." },
-      { name: "Karim B.", location: "Food truck, Marseille", text: "Sinistre indemnisé en 8 jours." },
-      { name: "Léa D.", location: "Brasserie, Paris", text: "Vrai expert HCR. Je recommande." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Quelle assurance obligatoire pour un restaurant ?", answer: "MRP + RC pro indispensables. Perte d'exploitation et TIAC fortement recommandées." },
       { question: "Combien coûte l'assurance d'un restaurant ?", answer: "Entre 1 200 € et 4 500 €/an selon surface, CA et localisation." },
@@ -1084,11 +1004,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Award, title: "BPJEPS, BEMF, CQP", description: "Tous diplômes officiels acceptés sans surprime." },
       { icon: FileCheck, title: "Attestation salle", description: "Acceptée par Basic Fit, Fitness Park, etc." },
     ],
-    testimonials: [
-      { name: "Camille R.", location: "Prof de yoga, Annecy", text: "RC pro à 14 €/mois acceptée par mes 3 salles partenaires." },
-      { name: "Yann M.", location: "Coach crossfit, Bordeaux", text: "Couverture parfaite pour mes cours en salle et outdoor." },
-      { name: "Inès B.", location: "Coach perso, Paris", text: "Indispensable pour le coaching à domicile." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "RC pro obligatoire pour coach sportif ?", answer: "Le diplôme (BPJEPS, etc.) est obligatoire pour enseigner contre rémunération (Code du sport, art. L212-1). La RC pro n'est pas imposée par un texte spécifique au coach indépendant — elle l'est pour les salles et associations qui l'emploient (art. L321-1) — mais elle est quasi systématiquement exigée par les salles partenaires et les clients." },
       { question: "Combien coûte une RC pro coach ?", answer: "Le prix dépend du nombre d'élèves et des disciplines enseignées. Comparez des devis établis pour votre situation." },
@@ -1131,11 +1047,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Award, title: "Droit à l'image", description: "Litiges droit à l'image, contestations de cession, propriété intellectuelle." },
       { icon: FileCheck, title: "Drone inclus en option", description: "RC drone pro DGAC ajoutable au contrat." },
     ],
-    testimonials: [
-      { name: "Théo P.", location: "Photographe mariage, Paris", text: "RC + matériel pour 28 €/mois. Casse d'objectif remboursée en 8 jours." },
-      { name: "Léa D.", location: "Vidéaste corporate, Lyon", text: "Couverture parfaite pour studio et tournages extérieurs." },
-      { name: "Marc J.", location: "Photographe événementiel, Marseille", text: "Le seul assureur qui comprend notre métier." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "RC pro obligatoire pour photographe ?", answer: "Non obligatoire mais vivement recommandée. Indispensable pour mariages et corporate." },
       { question: "Mon matériel est-il couvert ?", answer: "Oui, garantie tous risques disponible : vol, casse accidentelle, perte." },
@@ -1178,11 +1090,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Sparkles, title: "Droit à l'image & diffamation", description: "Plaintes de tiers, accusations diffamatoires, deepfakes." },
       { icon: FileCheck, title: "Toutes plateformes", description: "Instagram, TikTok, YouTube, Twitch, X, Snapchat." },
     ],
-    testimonials: [
-      { name: "Maelys G.", location: "Créatrice lifestyle, Paris", text: "RC pro à 22 €/mois, indispensable depuis la loi." },
-      { name: "Kevin L.", location: "Streamer Twitch, Lyon", text: "Couverture parfaite pour les litiges sponsors." },
-      { name: "Léna F.", location: "YouTubeuse beauté, Lille", text: "Enfin un assureur qui comprend notre métier." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "RC pro obligatoire pour un influenceur ?", answer: "Non obligatoire stricto sensu, mais quasi-indispensable depuis la loi du 9 juin 2023." },
       { question: "Combien coûte une assurance influenceur ?", answer: "Le prix dépend du nombre d'abonnés et des plateformes concernées. Comparez des devis établis pour votre situation." },
@@ -1227,11 +1135,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Award, title: "Garantie jusqu'à 1,5 M€", description: "Plafonds adaptés aux exigences corporate." },
       { icon: FileCheck, title: "Attestation DGAC immédiate", description: "PDF conforme pour vos déclarations de vol." },
     ],
-    testimonials: [
-      { name: "Vincent L.", location: "Télépilote audiovisuel, Paris", text: "RC + matériel pour 35 €/mois. Acceptée par tous mes clients corporate." },
-      { name: "Antoine R.", location: "Inspection toiture, Bordeaux", text: "Couverture catégorie spécifique parfaite pour mes inspections industrielles." },
-      { name: "Camille B.", location: "Mariage aérien, Lyon", text: "Drone Mavic 3 remplacé en 12 jours après une casse." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "RC pro obligatoire pour un drone professionnel ?", answer: "Oui, obligatoire pour tout vol professionnel. Sans elle, vol interdit." },
       { question: "Mon drone est-il couvert ?", answer: "Oui, garantie tous risques en option : casse, perte, vol." },
@@ -1274,11 +1178,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: FileCheck, title: "Attestation immédiate", description: "PDF reçu sous 24 h après souscription, opposable à vos clients et aux notaires." },
       { icon: TrendingDown, title: "Tarifs négociés", description: "Comparez 30+ assureurs et économisez jusqu'à 35% sur votre prime annuelle." },
     ],
-    testimonials: [
-      { name: "Karim B.", location: "Maçon, Marseille", text: "Décennale + RC pro pour 850€/an, attestation reçue le lendemain. Top pour démarrer en auto-entrepreneur." },
-      { name: "Stéphanie L.", location: "Plombière, Nantes", text: "J'ai économisé 420€ vs mon ancien contrat avec de meilleures garanties." },
-      { name: "Entreprise Vidal", location: "BTP gros œuvre, Lyon", text: "5 salariés, CA 480k€ : décennale tous corps d'état négociée à un tarif imbattable." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "La décennale est-elle vraiment obligatoire ?", answer: "Oui, pour tout professionnel du BTP exécutant des travaux de construction soumis à la responsabilité décennale (loi Spinetta de 1978)." },
       { question: "Que couvre la décennale ?", answer: "Tous dommages compromettant la solidité de l'ouvrage ou le rendant impropre à sa destination, pendant 10 ans après réception des travaux." },
@@ -1320,11 +1220,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: TrendingDown, title: "Tarifs préférentiels", description: "Mutualisation des risques : remise volume jusqu'à 30% vs contrats individuels." },
       { icon: FileCheck, title: "Gestion en ligne", description: "Ajout/retrait d'un véhicule en temps réel, attestations téléchargeables 24/7." },
     ],
-    testimonials: [
-      { name: "Olivier D.", location: "Dirigeant PME, Toulouse", text: "8 véhicules : on est passé de 14 800€ à 10 200€/an. ROI immédiat." },
-      { name: "Société Logitrans", location: "Transport, Lyon", text: "22 utilitaires couverts en un seul contrat, gestion ultra simple." },
-      { name: "Marc P.", location: "Concession auto, Bordeaux", text: "Flotte VO + véhicules de prêt : solution sur-mesure obtenue en 48h." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "À partir de combien de véhicules ?", answer: "La plupart des assureurs flotte démarrent à 3 véhicules. Au-delà de 10, négociation sur-mesure." },
       { question: "Tous types de véhicules acceptés ?", answer: "Oui : VL, utilitaires, poids lourds, véhicules spéciaux. Grille tarifaire dédiée par catégorie." },
@@ -1366,11 +1262,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Users, title: "Salariés satisfaits", description: "Couverture étendue : médecines douces, télémédecine, prévention. Argument RH différenciant." },
       { icon: FileCheck, title: "Mise en place clé en main", description: "Acte juridique, affichage obligatoire, dispenses : on s'occupe de tout pour vous." },
     ],
-    testimonials: [
-      { name: "Marion K.", location: "DRH, agence digitale 18 salariés", text: "Conformité ANI + bons remboursements optique/dentaire pour 38€/salarié. Top." },
-      { name: "Restaurant Lou Pebrè", location: "12 salariés, Nice", text: "Mutuelle CHR négociée, conforme à la convention collective. Mise en place en 10 jours." },
-      { name: "TPE Conseil RH", location: "5 salariés, Paris", text: "Première mutuelle d'entreprise : guidée pas à pas, validation expert-comptable simple." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "La mutuelle entreprise est-elle obligatoire ?", answer: "Oui, depuis le 1er janvier 2016 (ANI 2013), tout employeur du secteur privé doit proposer une mutuelle collective à ses salariés." },
       { question: "Quelle part employeur minimum ?", answer: "L'employeur doit financer au minimum 50% de la cotisation. Le reste est à la charge du salarié." },
@@ -1412,11 +1304,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Phone, title: "Cellule de crise 24/7", description: "Experts forensic, juristes RGPD, communicants : intervention immédiate après incident." },
       { icon: TrendingDown, title: "Perte d'exploitation", description: "Indemnisation du chiffre d'affaires perdu pendant l'arrêt forcé de l'activité." },
     ],
-    testimonials: [
-      { name: "ETI logistique", location: "120 salariés, Lille", text: "Ransomware géré en 72h grâce à la cellule de crise, perte d'exploitation prise en charge." },
-      { name: "Cabinet d'avocats", location: "8 associés, Paris", text: "Fuite de données : notification CNIL et indemnisation clients couverts intégralement." },
-      { name: "E-commerce DTC", location: "CA 4 M€, Bordeaux", text: "Plafond 2 M€ pour 1 200€/an — indispensable vu la sensibilité de nos données clients." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Qui est concerné par la cyber-assurance ?", answer: "Toute entreprise manipulant des données numériques ou dépendante de ses systèmes : TPE, PME, ETI, profession libérale." },
       { question: "La rançon est-elle vraiment couverte ?", answer: "Oui, dans les pays où c'est légal et sous validation préalable de l'assureur. La priorité reste la restauration des systèmes." },
@@ -1459,11 +1347,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Award, title: "Toutes marques VSP", description: "Aixam, Ligier, Microcar, Chatenet, JDM, Bellier : grille adaptée par modèle." },
       { icon: Phone, title: "Assistance 0 km", description: "Dépannage dès la porte de chez vous, véhicule de prêt sur option." },
     ],
-    testimonials: [
-      { name: "Léa M.", location: "16 ans, BSR, Reims", text: "Première assurance pour ma voiturette : 32€/mois en tiers étendu. Simple et rapide." },
-      { name: "Robert C.", location: "78 ans, Antibes", text: "Permis suspendu suite à problème de santé : VSP indispensable, assurance trouvée en 24h." },
-      { name: "Camille V.", location: "Étudiante, Toulouse", text: "Aixam tous risques pour 48€/mois, top pour aller en cours sans permis B." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Faut-il une assurance pour une VSP ?", answer: "Oui, obligatoire au même titre qu'une voiture classique : a minima la responsabilité civile (tiers)." },
       { question: "À partir de quel âge ?", answer: "Dès 14 ans avec le permis AM (ex-BSR). Certains assureurs imposent 16 ans selon les formules." },
@@ -1505,11 +1389,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: Phone, title: "Assistance Europe 24/7", description: "Dépannage, rapatriement, frais d'hébergement et véhicule de remplacement en cas de panne." },
       { icon: Wallet, title: "Usage saisonnier possible", description: "Tarif réduit si utilisation < 6 mois/an, parfait pour les retraités voyageurs." },
     ],
-    testimonials: [
-      { name: "Christine D.", location: "Retraitée, Annecy", text: "Profilé Hymer 7,5m : tous risques + assistance Europe pour 720€/an. Voyage l'esprit léger." },
-      { name: "Julien R.", location: "Famille van life, Lyon", text: "Van aménagé California : contenu garanti jusqu'à 8 000€, on emporte tout sereinement." },
-      { name: "Marc B.", location: "Camping-cariste 4 saisons, Bordeaux", text: "Intégral 9m : tarif divisé par 2 vs mon ancien assureur classique." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Mon contenu est-il couvert en cas de vol ?", answer: "Oui, en formule tous risques avec extension contenu (mobilier, électronique, outdoor) jusqu'au plafond souscrit." },
       { question: "Quid des panneaux solaires installés ?", answer: "Couverts s'ils sont déclarés à la souscription (valeur d'achat à l'appui). Vol et bris inclus." },
@@ -1603,11 +1483,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: ShieldCheck, title: "Tous domaines de la vie", description: "Conso, travail, voisinage, famille, immobilier, fiscalité : couverture étendue." },
       { icon: Award, title: "Procédures amiables et judiciaires", description: "Médiation, transaction, contentieux : accompagnement à chaque étape." },
     ],
-    testimonials: [
-      { name: "Sarah F.", location: "Salariée, Rennes", text: "Licenciement abusif : avocate prise en charge, 18 000€ d'indemnités obtenues aux Prud'hommes." },
-      { name: "Famille G.", location: "Propriétaires, Bordeaux", text: "Litige voisinage 4 ans, frais d'expertise + huissier couverts. Sans, on n'aurait pas tenu." },
-      { name: "Pierre L.", location: "Consommateur, Nantes", text: "SAV automobile défaillant : juriste m'a guidé étape par étape, remboursement obtenu." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Que couvre la protection juridique ?", answer: "Tous litiges hors pénal grave : consommation, travail, voisinage, copropriété, famille, fiscalité, immobilier." },
       { question: "Et si j'ai déjà un litige en cours ?", answer: "Non, l'assureur exclut les litiges connus avant la souscription (délai de carence souvent 3 mois)." },
@@ -1649,11 +1525,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { icon: ShieldCheck, title: "Tiers + assistance", description: "Responsabilité civile obligatoire incluse + assistance dépannage 24/7." },
       { icon: Wallet, title: "Pas d'engagement annuel", description: "Vous payez uniquement la période souscrite, idéal pour usage ponctuel ou transitoire." },
     ],
-    testimonials: [
-      { name: "Antoine M.", location: "Achat-vente, Paris", text: "Voiture achetée samedi, assurée 8 jours le temps du transfert : 42€, parfait." },
-      { name: "Léa B.", location: "Étudiante de retour des USA, Lille", text: "3 mois en France l'été : assurance temporaire évite de réactiver un contrat annuel." },
-      { name: "Marc V.", location: "Conducteur occasionnel, Nice", text: "Voiture de prêt pendant les vacances, attestation reçue en 5 minutes. Top." },
-    ],
+    testimonials: [],
     faqs: [
       { question: "Quelle durée minimale et maximale ?", answer: "De 1 jour à 90 jours selon les assureurs. Au-delà, contrat annuel classique recommandé." },
       { question: "Quel profil conducteur accepté ?", answer: "Permis depuis 1 an minimum, sans malus important. Jeunes conducteurs et résiliés : étude au cas par cas." },
