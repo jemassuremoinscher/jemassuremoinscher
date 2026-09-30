@@ -2686,7 +2686,6 @@ const en: Record<string, string> = {
   "landingTpl.broker": "independent ORIAS-registered broker.",
   "landingTpl.whyChoose": "Why choose",
   "landingTpl.trust.ssl": "SSL / GDPR",
-  "landingTpl.trust.orias": "ORIAS verified",
   "landingTpl.testimonials.title": "Trusted by thousands",
   "landingTpl.faq.title": "Frequently asked questions",
   "landingTpl.bottomCta.button": "Get my free quote",

@@ -255,7 +255,9 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
   pret: {
     slug: "pret",
     trackingTitle: "Landing Page Assurance Emprunteur",
-    seoTitle: "Assurance Emprunteur -60 % | Loi Lemoine 2026",
+    // "-60 %" retiré du seoTitle uniquement (non sourcé), même logique que
+    // gli/animaux ci-dessus — corps de page hors périmètre de cette demande.
+    seoTitle: "Assurance Emprunteur | Loi Lemoine 2026",
     seoDescription: "Économisez jusqu'à 15 000 € sur l'assurance de votre prêt grâce à la loi Lemoine. Devis gratuit.",
     seoKeyword: "assurance emprunteur moins chère",
     seoKeywords: "loi Lemoine, délégation assurance emprunteur, ADE",
@@ -378,17 +380,19 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
   animaux: {
     slug: "animaux",
     trackingTitle: "Landing Page Assurance Animaux",
-    seoTitle: "Assurance Animaux dès 8 €/mois | Comparateur",
+    seoTitle: "Assurance Animaux | Comparateur",
     seoDescription: "Mutuelle santé chien et chat. Remboursement jusqu'à 100 % des frais véto.",
     seoKeyword: "assurance animaux moins chère",
     seoKeywords: "mutuelle chien, mutuelle chat, assurance santé animale",
     // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-animaux (cannibalisation),
     // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+    // "dès 8 €/mois" retiré du titre et du heroHighlight (non sourcé, même
+    // défaut que les prix retirés ailleurs).
     noindex: true,
     topBarText: "🐾 Offre Animaux : 1 mois offert + remboursement jusqu'à 100 %",
     badgeText: "Chien & Chat",
     heroTitle: "Assurance pour vos animaux",
-    heroHighlight: "dès 8 €/mois",
+    heroHighlight: "Chien & chat",
     heroSubtitle: <>Vétérinaire, chirurgie, médicaments — remboursés jusqu'à 100 %.</>,
     mascotSrc: arthurAnimals,
     mascotAlt: "Arthur avec chien & chat — assurance animaux",
@@ -502,12 +506,17 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
   gli: {
     slug: "gli",
     trackingTitle: "Landing Page Assurance GLI",
-    seoTitle: "Assurance GLI dès 2,5 % | Garantie Loyers Impayés",
+    seoTitle: "Assurance GLI | Garantie Loyers Impayés",
     seoDescription: "Sécurisez vos revenus locatifs : loyers impayés, dégradations, frais juridiques. Devis gratuit.",
     seoKeyword: "garantie loyers impayés",
     seoKeywords: "assurance GLI bailleur, garantie loyers impayés moins chère",
     // Désindexée le 2026-09-21 : même sujet que le pilier /assurance-gli (cannibalisation),
     // même traitement que les configs velo, trottinette et les 8 sujets traités avant elle.
+    // "dès 2,5 %" retiré du seoTitle uniquement (non sourcé) — le corps de
+    // page (topBarText/heroHighlight/stats) garde ce chiffre pour l'instant,
+    // hors périmètre de cette demande. Attention : cette route a une ligne
+    // page_meta_overrides en base (confirmé par Paul) qui peut écraser ce
+    // titre en production — à vérifier séparément.
     noindex: true,
     topBarText: "🔑 Offre GLI : à partir de 2,5 % du loyer + frais juridiques inclus",
     badgeText: "Bailleurs particuliers",
@@ -1656,16 +1665,16 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
   trottinette: {
     slug: "trottinette",
     trackingTitle: "Landing Page Assurance Trottinette Électrique",
-    seoTitle: "Assurance Trottinette Électrique : Devis dès 2,90€/mois",
-    seoDescription: "Assurance trottinette électrique obligatoire (EDPM). RC, vol, casse, individuelle accident. Devis 2 min, attestation immédiate. Spécialiste mobilité.",
+    seoTitle: "Assurance Trottinette Électrique : Devis dès 2,90€/mois (RC seule)",
+    seoDescription: "Assurance trottinette électrique obligatoire (EDPM). RC seule dès 2,90€/mois, vol, casse, individuelle accident en formule complète. Devis 2 min, attestation envoyée par email après souscription. Spécialiste mobilité.",
     seoKeyword: "assurance trottinette électrique",
     seoKeywords: "assurance EDPM, assurance trottinette obligatoire, assurance gyroroue, assurance hoverboard, trottinette électrique pas chère",
     noindex: true,
-    topBarText: "⚡ Trottinette électrique — assurance obligatoire dès 2,90€/mois, attestation immédiate",
+    topBarText: "⚡ Trottinette électrique — RC seule obligatoire dès 2,90€/mois, attestation par email",
     badgeText: "EDPM • Spécialiste mobilité",
     heroTitle: "Assurance",
     heroHighlight: "Trottinette électrique",
-    heroSubtitle: <><strong>Obligatoire depuis 2019.</strong> RC, vol, casse, individuelle accident. Trottinette, gyroroue, hoverboard, monoroue : tous EDPM couverts dès 2,90€/mois.</>,
+    heroSubtitle: <><strong>Obligatoire depuis 2019.</strong> RC, vol, casse, individuelle accident. Trottinette, gyroroue, hoverboard, monoroue : tous EDPM couverts, RC seule dès 2,90€/mois.</>,
     mascotSrc: arthurScoot,
     mascotAlt: "Arthur en trottinette électrique — assurance EDPM obligatoire",
     speechText: "Sans assurance, vous risquez 3 750 € d'amende et la confiscation. Je vous trouve la meilleure couverture en 2 minutes.",
@@ -1674,9 +1683,10 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     // par email et tracké comme une assurance habitation.
     insuranceType: "trottinette",
     insuranceLabel: "Trottinette / EDPM",
+    // "20+ Assureurs EDPM" retiré : aucune source vérifiable (même défaut
+    // déjà corrigé sur vélo/scooter le 2026-09-29, jamais appliqué ici).
     stats: [
-      { icon: Bike, value: "20+", label: "Assureurs EDPM" },
-      { icon: Wallet, value: "2,90€/mois", label: "À partir de" },
+      { icon: Wallet, value: "2,90€/mois", label: "RC seule, à partir de" },
       trustReviewStat,
       { icon: Clock, value: "2 min", label: "Pour le devis" },
     ],
@@ -1699,7 +1709,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "Faut-il un antivol homologué pour la garantie vol ?", answer: "Oui, la plupart des assureurs imposent un antivol agréé FUB ou Sold Secure Gold, fixé à un point fixe. Conservez la facture de l'antivol." },
     ],
     bottomCtaTitle: "Roulez en règle dès aujourd'hui",
-    bottomCtaDescription: "Devis trottinette gratuit — attestation immédiate, rappel rapide par un expert mobilité.",
+    bottomCtaDescription: "Devis trottinette gratuit — attestation par email après souscription, rappel rapide par un expert mobilité.",
   },
 };
 

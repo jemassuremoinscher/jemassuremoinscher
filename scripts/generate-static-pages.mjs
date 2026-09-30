@@ -786,7 +786,17 @@ const generateLandingAndProfilePages = async () => {
     };
 
     // ---- Landing pages (src/data/landingConfigs.tsx) ----
-    let lCreated = 0, lSkipped = 0, lRobotsFixed = 0;
+    // Régénérées intégralement à CHAQUE build depuis landingConfigs.tsx
+    // (source unique) : l'ancien comportement "déjà généré -> on ne touche
+    // qu'au robots" figeait le titre/description/corps à leur état du premier
+    // passage, pour toujours. Bug trouvé le 2026-09-30 sur /landing/trottinette :
+    // le prix du titre HTML statique servi en prod ("3,50€/mois") ne
+    // correspondait plus à landingConfigs.tsx ("2,90€/mois") depuis que la
+    // config avait été corrigée après la génération initiale — corrigé
+    // seulement sur le robots (2026-09-07), jamais sur le contenu. Un contrôle
+    // dédié (scripts/verify-landing-titles.mjs) fait maintenant échouer le
+    // build si un tel écart devait réapparaître.
+    let lCreated = 0;
     try {
       const landingMod = await vite.ssrLoadModule(path.join(rootDir, "src/data/landingConfigs.tsx"));
       const configs = landingMod.landingConfigs || {};
@@ -794,34 +804,9 @@ const generateLandingAndProfilePages = async () => {
         const cfg = raw && raw.fr ? raw.fr : raw;
         if (!cfg || !cfg.seoTitle || !cfg.seoDescription) continue;
         const outputPath = path.join(rootDir, "landing", key, "index.html");
-        const desiredRobots = robotsContent(cfg.noindex);
-        try {
-          const existing = await readFile(outputPath, "utf8");
-          // Fichier déjà généré : on ne régénère pas tout le contenu (pourrait
-          // avoir été retouché à la main), mais on corrige la balise robots si
-          // elle ne correspond plus à cfg.noindex — sinon un noindex ajouté
-          // après coup dans landingConfigs.tsx n'a jamais d'effet réel sur le
-          // HTML servi (bug trouvé le 2026-09-07 : trottinette + 4 autres
-          // pages avaient noindex dans le code mais index,follow dans le HTML
-          // réellement déployé).
-          const robotsTagMatch = existing.match(/<meta[^>]+name=["']robots["'][^>]*>/i);
-          const desiredTag = `<meta name="robots" content="${desiredRobots}" />`;
-          if (!robotsTagMatch) {
-            await writeFile(outputPath, injectBeforeHeadEnd(existing, `    ${desiredTag}`), "utf8");
-            lRobotsFixed += 1;
-          } else if (robotsTagMatch[0] !== desiredTag) {
-            await writeFile(outputPath, existing.replace(robotsTagMatch[0], desiredTag), "utf8");
-            lRobotsFixed += 1;
-          }
-          lSkipped += 1;
-          continue;
-        } catch {}
         const h1 = [cfg.heroTitle, cfg.heroHighlight].filter(Boolean).join(" ").replace(/\s+/g, " ").trim() || cfg.seoTitle;
         const page = {
           route: `/landing/${key}`,
-          // cfg.seoTitle etait valide par le garde-fou ci-dessus mais jamais
-          // transmis : renderPage tombait sur page.title === undefined et
-          // emettait <title></title> sur 35 des 36 landings.
           title: cfg.seoTitle,
           description: cfg.seoDescription,
           noindex: cfg.noindex,
@@ -838,7 +823,7 @@ const generateLandingAndProfilePages = async () => {
         await writeFile(outputPath, renderPage(page), "utf8");
         lCreated += 1;
       }
-      console.log(`[generate-static-pages] Landing pages: ${lCreated} created, ${lSkipped} already present (${lRobotsFixed} robots corrigés).`);
+      console.log(`[generate-static-pages] Landing pages: ${lCreated} régénérées depuis landingConfigs.tsx.`);
     } catch (err) {
       console.warn("[generate-static-pages] Skipping landing prerender:", err?.message || err);
     }

@@ -2677,7 +2677,6 @@ const fr: Record<string, string> = {
   "landingTpl.broker": "courtier indépendant ORIAS.",
   "landingTpl.whyChoose": "Pourquoi choisir",
   "landingTpl.trust.ssl": "SSL / RGPD",
-  "landingTpl.trust.orias": "ORIAS vérifié",
   "landingTpl.testimonials.title": "Ils nous ont fait confiance",
   "landingTpl.faq.title": "Questions fréquentes",
   "landingTpl.bottomCta.button": "Recevoir mon devis gratuit",

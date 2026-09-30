@@ -195,13 +195,12 @@ const AdsLandingTemplate = (props: AdsLandingProps | LocalizedAdsLandingProps) =
                 </ul>
               </Card>
 
-              {/* Trust */}
+              {/* Trust — badge ORIAS générique retiré (2026-09-30) : redondant
+                  avec la carte stat trustReviewStat qui affiche déjà le
+                  numéro ORIAS précis sur ces mêmes pages. */}
               <div className="flex items-center justify-center gap-4 py-2 flex-wrap">
                 <Badge variant="outline" className="gap-2">
                   <Shield className="h-4 w-4" /> {t("landingTpl.trust.ssl")}
-                </Badge>
-                <Badge variant="outline" className="gap-2">
-                  <CheckCircle2 className="h-4 w-4" /> {t("landingTpl.trust.orias")}
                 </Badge>
               </div>
             </div>

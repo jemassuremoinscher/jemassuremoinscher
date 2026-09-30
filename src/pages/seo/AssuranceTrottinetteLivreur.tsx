@@ -54,7 +54,7 @@ const AssuranceTrottinetteLivreur = () => {
   const contentBody = `
     <p>Vous livrez en trottinette électrique pour <strong>Uber Eats, Deliveroo, Stuart ou Coursier.fr</strong> ? Votre assurance personnelle ne vous couvre pas. La livraison rémunérée est un <strong>usage professionnel</strong> qui exige une RC pro livreur EDPM dédiée. Sans elle, un seul accident peut vous ruiner financièrement et vous faire perdre votre compte plateforme.</p>
 
-    <p>Chez <strong>jemassuremoinscher.fr</strong>, nos courtiers spécialisés mobilité urbaine professionnelle comparent les 12 assureurs partenaires <strong>livreurs EDPM</strong> pour vous trouver la formule la moins chère et la plus adaptée à votre rythme (temps plein, temps partiel, étudiant complément).</p>
+    <p>Chez <strong>jemassuremoinscher.fr</strong>, nos courtiers spécialisés mobilité urbaine professionnelle comparent les assureurs partenaires <strong>livreurs EDPM</strong> pour vous trouver la formule la moins chère et la plus adaptée à votre rythme (temps plein, temps partiel, étudiant complément).</p>
 
     <p><em>Vous utilisez votre trottinette à titre personnel ? Consultez notre guide complet <a href="/assurance-trottinette">assurance trottinette électrique</a>.</em></p>
 
@@ -82,7 +82,7 @@ const AssuranceTrottinetteLivreur = () => {
     <h3>Auto-entrepreneur ou salarié : quel statut, quelle assurance ?</h3>
     <p>La grande majorité des livreurs sont en <strong>auto-entrepreneur</strong>. Dans ce cas, vous êtes votre propre patron et seul responsable de votre couverture. Aucune obligation légale d'avoir une assurance, mais sans elle, vous êtes personnellement engagé sur votre patrimoine. Pour les livreurs <strong>salariés</strong> (rare, mais existant chez certaines dark kitchens), l'employeur a une obligation de couverture professionnelle, mais elle exclut souvent les trajets domicile-zone.</p>
 
-    <p>Notre cellule mobilité pro construit votre devis livreur EDPM en 2 minutes, avec une attestation immédiate à présenter à votre plateforme. <strong>Comparez gratuitement et choisissez la formule adaptée à votre activité.</strong></p>
+    <p>Notre cellule mobilité pro construit votre devis livreur EDPM en 2 minutes, avec une attestation envoyée par email après souscription, à présenter à votre plateforme. <strong>Comparez gratuitement et choisissez la formule adaptée à votre activité.</strong></p>
   `;
 
   return (
@@ -107,7 +107,7 @@ const AssuranceTrottinetteLivreur = () => {
         { name: "Assurance Trottinette Livreur", url: "https://www.jemassuremoinscher.fr/assurance-trottinette-livreur" },
       ]}
       bottomCtaTitle="Roulez pro dès aujourd'hui"
-      bottomCtaDescription="Devis assurance livreur EDPM en 2 minutes — attestation immédiate pour votre plateforme."
+      bottomCtaDescription="Devis assurance livreur EDPM en 2 minutes — attestation par email pour votre plateforme."
       bottomCtaLabel="Obtenir mon devis livreur"
       bottomCtaLink="/comparateur"
     />
