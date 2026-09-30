@@ -118,7 +118,7 @@ const categories: FaqCategory[] = [
     items: [
       {
         q: "Sous combien de temps suis-je rappelé ?",
-        a: "Un conseiller dédié vous rappelle rapidement, en général dans l'heure pendant nos horaires d'ouverture (lundi-samedi, 9h-19h).",
+        a: "Un conseiller dédié vous rappelle rapidement, en général dans l'heure pendant nos horaires d'ouverture (7j/7, de 8h à 19h).",
       },
       {
         q: "Mes données sont-elles sécurisées ?",

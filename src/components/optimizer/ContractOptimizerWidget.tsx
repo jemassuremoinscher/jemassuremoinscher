@@ -280,7 +280,7 @@ export default function ContractOptimizerWidget() {
                   </div>
                   <p className="text-base font-bold text-foreground">C'est envoyé !</p>
                   <p className="text-sm text-muted-foreground">
-                    Un conseiller auto vous contactera rapidement, en général dans l'heure aux heures d'ouverture, avec votre analyse personnalisée.
+                    Un conseiller auto vous contactera rapidement, en général dans l'heure aux heures d'ouverture (8h-19h), avec votre analyse personnalisée.
                   </p>
                   <a
                     href="/comparateur?step=1&profile=auto"

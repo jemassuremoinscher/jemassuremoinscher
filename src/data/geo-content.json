@@ -15,12 +15,33 @@
       "https://www.linkedin.com/company/jemassuremoinscher"
     ]
   },
+  "contactHours": {
+    "label": "7j/7, de 8h à 19h",
+    "contactPointSchema": {
+      "availableLanguage": "fr",
+      "hoursAvailable": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "https://schema.org/Monday",
+          "https://schema.org/Tuesday",
+          "https://schema.org/Wednesday",
+          "https://schema.org/Thursday",
+          "https://schema.org/Friday",
+          "https://schema.org/Saturday",
+          "https://schema.org/Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "19:00"
+      }
+    }
+  },
   "staticPages": [
     {
       "route": "/contact",
       "outputDir": "contact",
-      "title": "Contact | jemassuremoinscher.fr",
-      "description": "Contactez jemassuremoinscher.fr par email ou formulaire. Réponse sous 10 minutes, service 100% en ligne.",
+      "title": "Contactez-nous | jemassuremoinscher.fr",
+      "description": "Besoin d'aide ? Contactez notre équipe de conseillers. Rappel rapide par un conseiller, 7j/7 de 8h à 19h.",
+      "includeContactPoint": true,
       "h1": "Contact jemassuremoinscher.fr",
       "intro": "Besoin d'aide pour comparer vos assurances ou finaliser votre demande ? Notre équipe vous répond rapidement, avec un accompagnement 100% en ligne.",
       "sections": [
@@ -29,8 +50,8 @@
           "body": "Écrivez-nous à contact@jemassuremoinscher.fr pour toute question sur un devis, un contrat ou une demande d'information."
         },
         {
-          "title": "Délais de réponse",
-          "body": "Page Contact : réponse sous 10 minutes pendant les horaires d'ouverture, avec suivi par un conseiller expert."
+          "title": "Horaires",
+          "body": "Horaires : 7j/7, de 8h à 19h (heure de Paris). Un conseiller vous rappelle rapidement, en général dans l'heure aux heures d'ouverture."
         },
         {
           "title": "Notre siège",

@@ -140,6 +140,33 @@ const buildBreadcrumbJsonLd = (items) => `
     }
     </script>`;
 
+// Horaires de rappel (7j/7, 8h-19h) : ContactPoint.hoursAvailable, source
+// unique geo-content.json (contactHours), partagée avec seoUtils. Pas
+// d'openingHoursSpecification sur l'Organization : pas d'accueil physique.
+const buildContactPageJsonLd = (canonical) => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    url: canonical,
+    mainEntity: {
+      "@type": "Organization",
+      "@id": `${baseUrl}/#organization`,
+      name: geoContent.brandName,
+      url: `${baseUrl}/`,
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        url: canonical,
+        ...geoContent.contactHours.contactPointSchema,
+      },
+    },
+  };
+  return `
+    <script type="application/ld+json">
+    ${JSON.stringify(schema).replace(/</g, "\\u003c")}
+    </script>`;
+};
+
 // Une seule source de vérité pour le contenu de <meta name="robots">, utilisée
 // à la fois par renderPage() (nouvelle page) et par la réconciliation des
 // pages landing déjà générées (cf. boucle "Landing pages" plus bas) — évite
@@ -191,7 +218,7 @@ const renderPage = (page) => {
     <meta name="twitter:title" content="${escapeAttribute(title)}" />
     <meta name="twitter:description" content="${escapeAttribute(description)}" />
 ${buildWebPageJsonLd({ title, description, canonical, heading: page.h1 })}
-${buildBreadcrumbJsonLd(page.breadcrumb || [{ name: "Accueil", url: `${baseUrl}/` }, { name: page.h1, url: canonical }])}
+${buildBreadcrumbJsonLd(page.breadcrumb || [{ name: "Accueil", url: `${baseUrl}/` }, { name: page.h1, url: canonical }])}${page.includeContactPoint ? buildContactPageJsonLd(canonical) : ""}
     <style>
       body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; color: #111827; background: #ffffff; }
       .seo-shell { max-width: 900px; margin: 0 auto; padding: 2rem 1rem; line-height: 1.65; }

@@ -122,6 +122,7 @@ const Footer = () => {
                     </li>
                   ))}
                 </ul>
+                <p className="mt-4 text-xs text-primary-foreground/60">{t('footer.hours')}</p>
               </nav>
 
               {/* Col 4: Informations Légales + Baromètre optin */}

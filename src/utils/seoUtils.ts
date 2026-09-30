@@ -25,7 +25,7 @@ export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number
       "telephone": "+33-6-86-12-28-20",
       "contactType": "Service Client",
       "areaServed": "FR",
-      "availableLanguage": "French"
+      ...geoContent.contactHours.contactPointSchema
     },
     "sameAs": geoContent.trust.sameAs
   };

@@ -13,6 +13,27 @@ import arthurThumbsUp from '@/assets/mascotte/arthur-thumbs-up.png';
 import arthurFlying from '@/assets/mascotte/arthur-flying.png';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ArthurHero from '@/components/insurance/ArthurHero';
+import geoContent from '@/data/geo-content.json';
+
+// Horaires de rappel : ContactPoint.hoursAvailable (7j/7, 8h-19h), source
+// unique geo-content.json. Pas d'openingHoursSpecification sur l'Organization.
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "url": "https://www.jemassuremoinscher.fr/contact",
+  "mainEntity": {
+    "@type": "Organization",
+    "@id": "https://www.jemassuremoinscher.fr/#organization",
+    "name": "jemassuremoinscher.fr",
+    "url": "https://www.jemassuremoinscher.fr/",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "url": "https://www.jemassuremoinscher.fr/contact",
+      ...geoContent.contactHours.contactPointSchema,
+    },
+  },
+};
 
 
 const Contact = () => {
@@ -52,7 +73,8 @@ const Contact = () => {
       <SEOOptimized
         title={t("seo.contact.title")}
         description={t("seo.contact.description")}
-        canonical="https://www.jemassuremoinscher.fr/contact" />
+        canonical="https://www.jemassuremoinscher.fr/contact"
+        jsonLd={contactPageSchema} />
       
       
       <div className="min-h-screen flex flex-col bg-background">
@@ -172,8 +194,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-foreground mb-1">Horaires de contact</h3>
-                    <p className="text-sm text-muted-foreground">{t('contactPage.weekdays')}</p>
-                    <p className="text-sm text-muted-foreground">{t('contactPage.saturday')}</p>
+                    <p className="text-sm text-muted-foreground">{t('contactPage.hoursValue')}</p>
                   </div>
                 </div>
                 <div className="glass-card p-6 rounded-[2rem] flex items-start gap-4">
