@@ -145,7 +145,7 @@ export const optimizeLandingReassuranceDescription = (title: string, description
   }
 
   if (lowerTitle.includes("rgpd") || lowerTitle.includes("données") || lowerTitle.includes("ssl")) {
-    return "Vos données sont chiffrées, hébergées en France et traitées dans le cadre RGPD.";
+    return "Vos données sont chiffrées et traitées dans le cadre du RGPD.";
   }
 
   return description.replace(/\s+/g, " ").trim();

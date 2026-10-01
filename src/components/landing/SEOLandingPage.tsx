@@ -194,9 +194,6 @@ const SEOLandingPage = ({
                 <Badge variant="outline" className="gap-2">
                   <Shield className="h-4 w-4" /> SSL / RGPD
                 </Badge>
-                <Badge variant="outline" className="gap-2">
-                  <CheckCircle2 className="h-4 w-4" /> ORIAS vérifié
-                </Badge>
               </div>
             </div>
 
