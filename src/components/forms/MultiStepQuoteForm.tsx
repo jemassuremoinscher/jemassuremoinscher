@@ -69,7 +69,7 @@ import logoAnimauxSante from '@/assets/logos/animaux-sante.png';
 import logoNeo from '@/assets/logos/neo.webp';
 import logoMpa from '@/assets/logos/mpa.webp';
 import logoAComme from '@/assets/logos/a-comme-assure.png';
-import { invokeSendQuoteEmail } from "@/lib/recaptcha";
+import { invokeSendQuoteEmail, preloadRecaptcha } from "@/lib/recaptcha";
 import { reportSiteError } from "@/lib/siteErrorLog";
 
 // Partner logos to show during searching animation
@@ -288,6 +288,13 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
     document.addEventListener('visibilitychange', onVisibilityChange);
     return () => document.removeEventListener('visibilitychange', onVisibilityChange);
   }, [currentStep, totalSteps, effectiveType, trackEvent]);
+
+  // Précharge reCAPTCHA dès l'étape coordonnées : avant, le script Google
+  // n'était téléchargé qu'au clic d'envoi (temps d'attente, et envoi sans
+  // jeton -> 401 si le chargement échouait).
+  useEffect(() => {
+    if (step?.type === 'contact') preloadRecaptcha();
+  }, [step?.type]);
 
   // Auto-advance past steps already pre-filled from URL params (hero form, deep links).
   // Gated on prefilledFieldsRef (captured once at mount from the URL) rather than

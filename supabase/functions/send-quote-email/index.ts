@@ -273,12 +273,30 @@ const handler = async (req: Request): Promise<Response> => {
     const bodyToHtml = (body: string) =>
       `${EMAIL_LOGO_HEADER}<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.6;color:#111827;">${escHtml(body).replace(/\r?\n/g, '<br>')}</div>`;
 
-    const { data: template } = await supabaseClient
+    // 2026-10-01 : maybeSingle() échouait en silence (data = null, donc email
+    // de secours) dès que plusieurs modèles actifs portaient ce nom, et toute
+    // erreur de lecture était ignorée. On prend le plus récent et on journalise
+    // l'absence, l'erreur ou le doublon dans site_error_log.
+    const TEMPLATE_NAME = 'Confirmation de demande de contact';
+    const { data: templateRows, error: templateErr } = await supabaseClient
       .from('email_templates')
       .select('subject, body')
-      .eq('name', 'Confirmation de demande de contact')
+      .eq('name', TEMPLATE_NAME)
       .eq('is_active', true)
-      .maybeSingle();
+      .order('updated_at', { ascending: false })
+      .limit(2);
+    const template = templateRows?.[0] ?? null;
+    if (templateErr || !template || (templateRows?.length ?? 0) > 1) {
+      await supabaseClient.from('site_error_log').insert({
+        page_path: 'edge:send-quote-email',
+        error_type: templateErr ? 'template_query_failed' : !template ? 'template_not_found' : 'template_duplicate_active',
+        message: templateErr?.message
+          ?? (!template
+            ? `Modèle actif "${TEMPLATE_NAME}" introuvable : email de secours envoyé au prospect.`
+            : `Plusieurs modèles actifs "${TEMPLATE_NAME}" : le plus récent est utilisé.`),
+        context: { quote_id: quoteId },
+      });
+    }
 
     const clientSubject = template ? fillVars(template.subject) : "Votre devis d'assurance";
     const clientHtml = template
@@ -315,7 +333,10 @@ const handler = async (req: Request): Promise<Response> => {
         recipient_email: email,
         recipient_name: name,
         email_type: 'quote_confirmation',
-        subject: "Votre devis d'assurance",
+        // Sujet réellement envoyé (modèle ou secours), et non plus une valeur
+        // en dur : le CRM affichait "Votre devis d'assurance" même quand le
+        // modèle avait été utilisé.
+        subject: clientSubject,
         resend_email_id: clientEmail.data.id,
         status: 'sent',
       });
