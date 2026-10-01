@@ -56,7 +56,7 @@ const AssuranceSante = () => {
   const insuranceProductSchema = addInsuranceProductSchema({
     name: "Mutuelle Santé",
     description:
-      "Comparateur de mutuelles santé. Optique, dentaire, hospitalisation : comparez 25+ mutuelles partenaires.",
+      `Comparateur de mutuelles santé. Optique, dentaire, hospitalisation : comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires.`,
     category: "Complémentaire Santé",
     url: "https://www.jemassuremoinscher.fr/assurance-sante",
   });
@@ -82,9 +82,9 @@ const AssuranceSante = () => {
         keyword="mutuelle santé moins chère"
         keywords="complémentaire santé, comparateur mutuelle, mutuelle moins cher, mutuelle famille"
         canonical="https://www.jemassuremoinscher.fr/assurance-sante"
-        ogTitle={`Mutuelle Santé Moins Chère | Comparez ${NB_ASSUREURS_LABEL} mutuelles`}
-        ogDescription={`Comparez ${NB_ASSUREURS_LABEL} mutuelles santé en 2 minutes. Optique, dentaire, hospitalisation. Devis gratuit et personnalisé.`}
-        twitterDescription={`Comparez ${NB_ASSUREURS_LABEL} mutuelles en 2 min. Gratuit et sans engagement.`}
+        ogTitle={`Mutuelle Santé Moins Chère | Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires`}
+        ogDescription={`Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires en 2 minutes. Optique, dentaire, hospitalisation. Devis gratuit et personnalisé.`}
+        twitterDescription={`Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires en 2 min. Gratuit et sans engagement.`}
         jsonLd={[webPageSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
@@ -108,7 +108,7 @@ const AssuranceSante = () => {
 
         <div
           className="container mx-auto px-4 py-12"
-          data-ai-description="Comparateur de mutuelle santé — jemassuremoinscher.fr compare 25+ mutuelles, devis gratuit en moins de 2 minutes"
+          data-ai-description={`Comparateur de mutuelle santé — jemassuremoinscher.fr compare ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires, devis gratuit en moins de 2 minutes`}
         >
 
           <section className="max-w-4xl mx-auto mb-10 prose prose-sm md:prose-base max-w-none">
@@ -168,7 +168,7 @@ const AssuranceSante = () => {
               <EnBref
                 facts={[
                   <>
-                    <BrandName /> compare les offres de 25+ mutuelles santé partenaires.
+                    <BrandName /> compare les offres de {NB_ASSUREURS_LABEL} assureurs et courtiers partenaires.
                   </>,
                   "Le tarif dépend de l'âge et des garanties choisies.",
                   "Devis gratuit en moins de 2 minutes, sans engagement.",

@@ -44,7 +44,7 @@ const AssuranceEmprunteurSEO = () => {
   const contentBody = `
     <p>L'<strong>assurance emprunteur</strong>, aussi appelée assurance de prêt immobilier, est la garantie que votre banque exige pour accorder un crédit immobilier. Elle représente en moyenne <strong>25 à 30 % du coût total de votre prêt</strong> — un poste de dépense considérable que la plupart des emprunteurs négligent.</p>
 
-    <p>Chez <strong>jemassuremoinscher.fr</strong>, nos courtiers sont spécialisés en <strong>délégation d'assurance emprunteur</strong>. Nous comparons les offres de plus de 30 assureurs pour vous trouver une couverture équivalente ou supérieure à celle de votre banque, à un tarif nettement inférieur. En moyenne, nos clients économisent <strong>10 000 à 15 000 €</strong> sur la durée de leur prêt.</p>
+    <p>Chez <strong>jemassuremoinscher.fr</strong>, nos courtiers sont spécialisés en <strong>délégation d'assurance emprunteur</strong>. Nous comparons les offres de nos assureurs partenaires pour vous trouver une couverture équivalente ou supérieure à celle de votre banque, à un tarif nettement inférieur.</p>
 
     <h3>Assurance emprunteur : définition et garanties</h3>
     <p>L'assurance emprunteur couvre plusieurs risques liés à votre capacité de remboursement :</p>

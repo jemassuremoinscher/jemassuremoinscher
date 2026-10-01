@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 import arthurThumbsUp from "@/assets/mascotte/arthur-wink-thumbsup.webp";
 import arthurCar from "@/assets/mascotte/arthur-car.webp?w=480&format=webp";
 import arthurHouse from "@/assets/mascotte/arthur-house.webp?w=480&format=webp";
@@ -102,13 +103,13 @@ const refConfigs: Record<string, DynamicGreetingConfig> = {
         <br />sur mesure
       </>
     ),
-    subtitle: "Trouvez la mutuelle qui correspond à vos besoins : optique, dentaire, hospitalisation. Comparez plus de 50 mutuelles.",
+    subtitle: `Trouvez la mutuelle qui correspond à vos besoins : optique, dentaire, hospitalisation. Comparez les offres de ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires.`,
     arthurSpeech: "Votre santé, notre priorité ! 🏥",
     mascotSrc: arthurSick,
     mascotAlt: "Arthur — mutuelle santé pas chère",
     ctaLink: "/comparateur?step=1&type=sante",
     ctaText: "Mon prix mutuelle →",
-    badgeText: <>Plus de <span className="text-accent">50 mutuelles</span> comparées</>,
+    badgeText: <><span className="text-accent">{NB_ASSUREURS_LABEL}</span> assureurs et courtiers partenaires</>,
   },
   "animaux": {
     title: (

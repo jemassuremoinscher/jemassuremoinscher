@@ -715,10 +715,10 @@ const en: Record<string, string> = {
 
   // Santé Page
   'santePage.title': 'Cheaper Health Insurance',
-  'santePage.subtitle': `Compare ${NB_ASSUREURS_LABEL} health plans and find a better deal.`,
+  'santePage.subtitle': `Compare offers from ${NB_ASSUREURS_LABEL} partner insurers and brokers and find a better deal.`,
   'santePage.adv1.title': 'A better rate',
   'santePage.adv1.desc': 'Compare and save on your health insurance.',
-  'santePage.adv2.title': '20+ health plans compared',
+  'santePage.adv2.title': `${NB_ASSUREURS_LABEL} partner insurers and brokers`,
   'santePage.adv2.desc': 'The best offers on the market.',
   'santePage.form.situation': 'Family situation',
   'santePage.form.single': 'Single',
@@ -2399,7 +2399,7 @@ const en: Record<string, string> = {
 "seo.habitation.title": "Cheaper Home Insurance",
   "seo.habitation.description": `Compare ${NB_ASSUREURS_LABEL} home insurers in 2 min. House or flat, tenant or owner.`,
 "seo.sante.title": "Cheaper Health Insurance | Free Comparison",
-  "seo.sante.description": `Compare ${NB_ASSUREURS_LABEL} health plans in 2 min. Optical, dental, hospital: find the ideal cover.`,
+  "seo.sante.description": `Compare ${NB_ASSUREURS_LABEL} partner insurers and brokers in 2 min. Optical, dental, hospital: find the ideal cover.`,
   "seo.reviews.title": "Customer Reviews | jemassuremoinscher.fr",
   "seo.reviews.description": "Customer reviews of our insurance comparator.",
 "seo.animaux.title": "Pet Insurance | Free Comparison",

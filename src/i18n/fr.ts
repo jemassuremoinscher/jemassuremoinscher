@@ -709,10 +709,10 @@ const fr: Record<string, string> = {
 
   // Santé Page
   'santePage.title': 'Mutuelle Santé Moins Chère',
-  'santePage.subtitle': `Comparez ${NB_ASSUREURS_LABEL} mutuelles et trouvez une complémentaire santé plus avantageuse.`,
+  'santePage.subtitle': `Comparez les offres de ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires et trouvez une complémentaire santé plus avantageuse.`,
   'santePage.adv1.title': "Un tarif plus avantageux",
   'santePage.adv1.desc': 'Comparez et économisez sur votre mutuelle santé.',
-  'santePage.adv2.title': '20+ mutuelles comparées',
+  'santePage.adv2.title': `${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires`,
   'santePage.adv2.desc': "Les meilleures offres du marché.",
   'santePage.form.situation': 'Situation familiale',
   'santePage.form.single': 'Célibataire',
@@ -2392,7 +2392,7 @@ const fr: Record<string, string> = {
 "seo.habitation.title": "Assurance Habitation Moins Chère",
   "seo.habitation.description": `Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers habitation en 2 min. Maison ou appartement, locataire ou propriétaire.`,
 "seo.sante.title": "Mutuelle Santé Moins Chère | Comparateur Gratuit",
-  "seo.sante.description": `Comparez ${NB_ASSUREURS_LABEL} mutuelles en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale.`,
+  "seo.sante.description": `Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale.`,
   "seo.reviews.title": "Avis Clients | jemassuremoinscher.fr",
   "seo.reviews.description": "Avis clients sur notre comparateur d'assurance.",
 "seo.animaux.title": "Assurance Chien Chat | Comparateur Gratuit",

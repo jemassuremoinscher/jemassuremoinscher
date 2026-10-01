@@ -223,7 +223,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
       { question: "La mutuelle prend-elle effet immédiatement ?", answer: "Oui, prise en charge dès le 1er jour, sans délai de carence sur les soins courants." },
     ],
     bottomCtaTitle: "Mieux remboursé, moins cher",
-    bottomCtaDescription: "Comparez 25+ mutuelles en 2 min, sans questionnaire médical.",
+    bottomCtaDescription: `Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires en 2 min, sans questionnaire médical.`,
   },
 
   pret: {
@@ -1169,7 +1169,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     slug: "mutuelle-entreprise",
     trackingTitle: "Landing Page Mutuelle Entreprise Collective",
     seoTitle: "Mutuelle Entreprise Obligatoire : Devis en 2 min | Arthur",
-    seoDescription: "Mutuelle collective obligatoire pour vos salariés. Conformité ANI, panier de soins, déduction fiscale. Comparez 25+ mutuelles entreprises.",
+    seoDescription: `Mutuelle collective obligatoire pour vos salariés. Conformité ANI, panier de soins, déduction fiscale. Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires.`,
     seoKeyword: "mutuelle entreprise",
     seoKeywords: "mutuelle collective, mutuelle obligatoire entreprise, ANI mutuelle, complémentaire santé entreprise",
     // Désindexée le 2026-09-21 : cannibalise /assurance-mutuelle-entreprise (même seoKeyword "mutuelle entreprise"),
