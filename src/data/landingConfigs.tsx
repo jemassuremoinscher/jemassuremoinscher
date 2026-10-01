@@ -610,7 +610,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceType: "metiers_atypiques",
     insuranceLabel: "Événementiel",
     stats: [
-      { icon: Clock, value: "24 h", label: "Procédure express" },
+      { icon: Clock, value: "Sous 24 h", label: "Devis" },
     ],
     advantages: [
       { icon: ShieldCheck, title: "RC organisateur", description: "Dommages corporels et matériels causés aux participants, prestataires et tiers." },
