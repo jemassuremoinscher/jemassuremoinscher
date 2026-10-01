@@ -861,7 +861,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     insuranceLabel: "RC Pro Micro",
     stats: [
       { icon: Phone, value: "Juridique", label: "Litiges inclus" },
-      { icon: Clock, value: "5 min", label: "Souscription" },
+      { icon: Phone, value: "Rappel rapide", label: "Par un conseiller" },
     ],
     advantages: [
       { icon: ShieldCheck, title: "Dommages 360°", description: "Corporels, matériels et immatériels causés à vos clients." },
@@ -939,7 +939,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     stats: [
       { icon: Award, value: "BPJEPS", label: "Diplômes acceptés" },
       { icon: HeartPulse, value: "Tous cours", label: "Yoga, pilates, fitness" },
-      { icon: Clock, value: "5 min", label: "Souscription" },
+      { icon: Phone, value: "Rappel rapide", label: "Par un conseiller" },
     ],
     advantages: [
       { icon: HeartPulse, title: "Tous types de cours", description: "Individuel, collectif, à domicile, en salle, outdoor, visio." },
@@ -981,7 +981,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     stats: [
       { icon: Award, value: "Droit à l'image", label: "Protection incluse" },
       { icon: Shield, value: "Matériel", label: "Tous risques" },
-      { icon: Clock, value: "5 min", label: "Souscription" },
+      { icon: Phone, value: "Rappel rapide", label: "Par un conseiller" },
     ],
     advantages: [
       { icon: Sparkles, title: "Matériel photo/vidéo", description: "Boîtiers, objectifs, drones, éclairage : vol, casse, perte couverts." },
@@ -1023,7 +1023,7 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     stats: [
       { icon: FileCheck, value: "Toutes plateformes", label: "Instagram, TikTok..." },
       { icon: Shield, value: "Loi 2023", label: "Conforme" },
-      { icon: Clock, value: "5 min", label: "Souscription" },
+      { icon: Phone, value: "Rappel rapide", label: "Par un conseiller" },
     ],
     advantages: [
       { icon: ShieldCheck, title: "Conforme loi du 9 juin 2023", description: "Couverture spécifique aux obligations des influenceurs commerciaux." },

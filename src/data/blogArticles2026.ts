@@ -2272,7 +2272,7 @@ La loi Hamon permet de résilier votre assurance auto, habitation ou emprunteur 
 
 Utilisez un comparateur pour trouver une meilleure offre. Notez le numéro de votre contrat actuel.
 
-### Étape 2 : Souscrivez chez le nouvel assureur (10 minutes)
+### Étape 2 : Souscrivez chez le nouvel assureur
 
 Le nouvel assureur se charge de **tout** :
 - Envoi de la lettre de résiliation à votre ancien assureur
@@ -3963,7 +3963,7 @@ Pour une maison individuelle, l'assurance PNO n'est pas légalement obligatoire.
 
 | Assureur | Tarif T2 en copro | Garanties incluses | Point fort |
 |---|---|---|---|
-| **Luko** | 65€/an | RC + dégât des eaux + incendie | 100% en ligne, souscription en 3 min |
+| **Luko** | 65€/an | RC + dégât des eaux + incendie | 100% en ligne |
 | **Lovys** | 72€/an | RC + multirisque | Résiliation en 1 clic |
 | **AXA** (formule Eco) | 95€/an | RC + incendie + vol | Réseau d'experts sinistres |
 | **MAIF** | 98€/an | RC + multirisque complète | Meilleure gestion des sinistres |

@@ -321,7 +321,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
     avisCount: 900,
     rapiditeRemboursement: "48h",
     rapiditeJours: 2,
-    pointsForts: ["100% digital nouvelle génération", "Prix ultra-compétitifs", "Souscription en 3 min"],
+    pointsForts: ["100% digital nouvelle génération", "Prix ultra-compétitifs"],
     pointsFaibles: ["Très jeune assureur", "Peu de recul sur les sinistres"],
   },
   ag2r: {

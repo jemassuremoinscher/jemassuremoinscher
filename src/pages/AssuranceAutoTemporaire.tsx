@@ -9,7 +9,7 @@ const AssuranceAutoTemporaire = () => (
     heroImage={arthurCar}
     heroAlt="Arthur avec assurance auto temporaire"
     heroTitle="Assurance auto temporaire (1 jour à 90 jours)"
-    heroSubtitle="Besoin d'assurer une voiture pour 1 jour, 1 semaine, 1 mois ? Souscription immédiate, attestation envoyée par email."
+    heroSubtitle="Besoin d'assurer une voiture pour 1 jour, 1 semaine, 1 mois ? Rappel rapide par un conseiller, attestation envoyée par email."
     seoTitle="Assurance auto temporaire 2026 | 1 jour à 90 jours"
     seoDescription="Souscrivez une assurance auto temporaire de 1 à 90 jours en ligne. Idéal achat, prêt de véhicule, vacances."
     canonical="https://www.jemassuremoinscher.fr/assurance-auto-temporaire"
@@ -34,7 +34,7 @@ const AssuranceAutoTemporaire = () => (
       "Le tarif dépend de la durée, du véhicule et du profil du conducteur.",
     ]}
     ctaTitle="Prêt à assurer votre véhicule pour quelques jours ?"
-    ctaDescription="Souscription 100% en ligne, attestation par email."
+    ctaDescription="Rappel rapide par un conseiller, attestation par email."
   />
 );
 export default AssuranceAutoTemporaire;
