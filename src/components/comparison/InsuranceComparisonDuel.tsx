@@ -6,24 +6,6 @@ interface Props {
   duel: DuelConfig;
 }
 
-function StarRating({ note }: { note: number }) {
-  const full = Math.floor(note);
-  const half = note - full >= 0.3;
-  return (
-    <span className="inline-flex items-center gap-0.5" aria-label={`${note} sur 5`}>
-      {Array.from({ length: 5 }, (_, i) => (
-        <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill={i < full ? "currentColor" : half && i === full ? "url(#half)" : "none"} stroke="currentColor" strokeWidth="1.5" className={i < full ? "text-accent" : "text-muted-foreground/40"}>
-          {half && i === full && (
-            <defs><linearGradient id="half"><stop offset="50%" stopColor="currentColor"/><stop offset="50%" stopColor="transparent"/></linearGradient></defs>
-          )}
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-        </svg>
-      ))}
-      <span className="text-xs font-semibold text-foreground ml-1">{note}</span>
-    </span>
-  );
-}
-
 export default function InsuranceComparisonDuel({ duel }: Props) {
   const { insurerA: a, insurerB: b } = duel;
 
@@ -34,13 +16,12 @@ export default function InsuranceComparisonDuel({ duel }: Props) {
   // AI verdict
   const verdict = useMemo(() => {
     const prixWinner = a.prixMoyen <= b.prixMoyen ? a : b;
-    const serviceWinner = a.avisNote >= b.avisNote ? a : b;
     const speedWinner = a.rapiditeJours <= b.rapiditeJours ? a : b;
 
-    if (prixWinner.slug === serviceWinner.slug && prixWinner.slug === speedWinner.slug) {
-      return `${prixWinner.name} domine clairement ce comparatif avec le meilleur prix (${prixWinner.prixMoyen}€/an), la meilleure note client (${prixWinner.avisNote}/5) et le remboursement le plus rapide (${prixWinner.rapiditeRemboursement}). C'est notre recommandation pour la plupart des profils.`;
+    if (prixWinner.slug === speedWinner.slug) {
+      return `${prixWinner.name} domine clairement ce comparatif avec le meilleur prix (${prixWinner.prixMoyen}€/an) et le remboursement le plus rapide (${prixWinner.rapiditeRemboursement}). C'est notre recommandation pour la plupart des profils.`;
     }
-    return `${prixWinner.name} est le meilleur choix si le prix est votre priorité (${prixWinner.prixMoyen}€/an vs ${(prixWinner === a ? b : a).prixMoyen}€/an). En revanche, ${serviceWinner.name} se démarque par la qualité de service (${serviceWinner.avisNote}/5, ${serviceWinner.avisCount} avis). Pour la rapidité de remboursement, ${speedWinner.name} l'emporte avec un délai de ${speedWinner.rapiditeRemboursement}.`;
+    return `${prixWinner.name} est le meilleur choix si le prix est votre priorité (${prixWinner.prixMoyen}€/an vs ${(prixWinner === a ? b : a).prixMoyen}€/an). Pour la rapidité de remboursement, ${speedWinner.name} l'emporte avec un délai de ${speedWinner.rapiditeRemboursement}.`;
   }, [a, b]);
 
   const rows: { label: string; valueA: React.ReactNode; valueB: React.ReactNode; winnerA: boolean; winnerB: boolean }[] = [
@@ -68,13 +49,6 @@ export default function InsuranceComparisonDuel({ duel }: Props) {
         : <span className="text-muted-foreground">✗ En option</span>,
       winnerA: a.assistance0km && !b.assistance0km,
       winnerB: b.assistance0km && !a.assistance0km,
-    },
-    {
-      label: "Avis clients",
-      valueA: <StarRating note={a.avisNote} />,
-      valueB: <StarRating note={b.avisNote} />,
-      winnerA: a.avisNote >= b.avisNote,
-      winnerB: b.avisNote > a.avisNote,
     },
     {
       label: "Remboursement",

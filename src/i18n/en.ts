@@ -234,7 +234,6 @@ const en: Record<string, string> = {
   'footer.trustSecurePayment': 'Secure payment',
   'footer.trustSSL': 'SSL secure site',
   'footer.trustGDPR': 'GDPR compliant',
-  'footer.trustOrias': 'ORIAS verified',
   'footer.followInstagram': 'Follow us on Instagram',
   'footer.followLinkedIn': 'Follow us on LinkedIn',
   'footer.followFacebook': 'Follow us on Facebook',

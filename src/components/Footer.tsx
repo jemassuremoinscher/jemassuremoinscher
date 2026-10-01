@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Shield, Lock, FileCheck, X, BadgeCheck, ShieldCheck, Instagram, Linkedin, Facebook } from "lucide-react";
+import { Shield, Lock, FileCheck, X, ShieldCheck, Instagram, Linkedin, Facebook } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Dialog,
@@ -200,10 +200,6 @@ const Footer = () => {
               <div className="flex items-center gap-1.5 text-primary-foreground/60">
                 <Shield className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
                 <span className="text-[11px] font-medium">{t('footer.trustGDPR')}</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-primary-foreground/60">
-                <BadgeCheck className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                <span className="text-[11px] font-medium">{t('footer.trustOrias')}</span>
               </div>
             </div>
 
