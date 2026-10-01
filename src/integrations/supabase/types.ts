@@ -2056,6 +2056,27 @@ export type Database = {
         }
         Relationships: []
       }
+      seo_article_suggestions_content_backup_20260930: {
+        Row: {
+          id: string | null
+          sauvegarde_le: string | null
+          slug: string | null
+          suggested_content: string | null
+        }
+        Insert: {
+          id?: string | null
+          sauvegarde_le?: string | null
+          slug?: string | null
+          suggested_content?: string | null
+        }
+        Update: {
+          id?: string | null
+          sauvegarde_le?: string | null
+          slug?: string | null
+          suggested_content?: string | null
+        }
+        Relationships: []
+      }
       site_error_log: {
         Row: {
           context: Json
