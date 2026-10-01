@@ -14,6 +14,10 @@ export interface CookieConsent {
 
 const COOKIE_CONSENT_KEY = 'cookie-consent';
 const CONSENT_EVENT = 'cookie-consent-updated';
+// Durée de validité du choix (acceptation comme refus) : 6 mois, puis la
+// bannière est reproposée. Même règle dans le loader analytics
+// (scripts/analytics-loader.snippet.html, CONSENT_MAX_AGE_MONTHS).
+export const CONSENT_MAX_AGE_MONTHS = 6;
 
 const defaultPreferences: CookiePreferences = {
   necessary: true, // Always true, can't be disabled
@@ -21,11 +25,25 @@ const defaultPreferences: CookiePreferences = {
   marketing: false,
 };
 
+// Horodatage absent ou illisible : traité comme expiré (on redemande).
+const isExpired = (consent: CookieConsent): boolean => {
+  const given = new Date(consent.timestamp);
+  if (Number.isNaN(given.getTime())) return true;
+  const expiry = new Date(given);
+  expiry.setMonth(expiry.getMonth() + CONSENT_MAX_AGE_MONTHS);
+  return Date.now() >= expiry.getTime();
+};
+
 const readStoredConsent = (): CookieConsent | null => {
   try {
     const raw = localStorage.getItem(COOKIE_CONSENT_KEY);
     if (!raw) return null;
-    return JSON.parse(raw) as CookieConsent;
+    const parsed = JSON.parse(raw) as CookieConsent;
+    if (isExpired(parsed)) {
+      localStorage.removeItem(COOKIE_CONSENT_KEY);
+      return null;
+    }
+    return parsed;
   } catch (error) {
     console.error('Error parsing cookie consent:', error);
     return null;

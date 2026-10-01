@@ -7,6 +7,17 @@
   var META_PIXEL_ID = '2130973847755698';
   var CLARITY_ID = 'vjn36y0aqr';
   var CONSENT_KEY = 'cookie-consent';
+  // Choix valable 6 mois (même règle que src/hooks/useCookieConsent.ts) :
+  // au-delà, rien n'est chargé et la bannière est reproposée.
+  var CONSENT_MAX_AGE_MONTHS = 6;
+
+  function isExpired(timestamp) {
+    var given = new Date(timestamp);
+    if (isNaN(given.getTime())) return true;
+    var expiry = new Date(given.getTime());
+    expiry.setMonth(expiry.getMonth() + CONSENT_MAX_AGE_MONTHS);
+    return Date.now() >= expiry.getTime();
+  }
 
   function readConsent() {
     try {
@@ -14,6 +25,7 @@
       if (!raw) return null;
       var parsed = JSON.parse(raw);
       if (!parsed || !parsed.hasConsented) return null;
+      if (isExpired(parsed.timestamp)) return null;
       return parsed.preferences || null;
     } catch (e) {
       return null;
