@@ -162,7 +162,6 @@ export const blogArticles: RouteConfig[] = [
   { path: "/blog/trottinettes-electriques-edpm-assurance-obligatoire", changefreq: "monthly", priority: 0.85 },
   { path: "/blog/assurance-trottinette-vol-garantie-2026", changefreq: "monthly", priority: 0.85 },
   { path: "/blog/trottinette-electrique-debridage-loi-risques-2026", changefreq: "monthly", priority: 0.85 },
-  { path: "/blog/assurance-trottinette-livreur-uber-eats-deliveroo-2026", changefreq: "monthly", priority: 0.9 },
   { path: "/blog/trottinette-electrique-accident-sinistre-demarches-2026", changefreq: "monthly", priority: 0.85 },
   { path: "/blog/assurance-gyroroue-hoverboard-monoroue-edpm-2026", changefreq: "monthly", priority: 0.85 },
   { path: "/blog/comparatif-assurance-trottinette-electrique-2026", changefreq: "monthly", priority: 0.9 },
