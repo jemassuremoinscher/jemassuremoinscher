@@ -1272,7 +1272,7 @@ function SearchingStep({ progress, currentPartner }: { progress: number; current
 // ─── Teaser Prices by insurance type ─────────────────────────────────────────
 // Note: `logoPool` is rotated per session in ContactStep so two consecutive
 // devis don't show the same insurers. Prices reflect realistic FR market 2026.
-type TeaserTier = { name: string; price: string; badge?: string; logoPool: string[]; features: string[] };
+type TeaserTier = { name: string; price?: string; badge?: string; logoPool: string[]; features: string[] };
 const teaserPrices: Record<string, { label: string; prices: TeaserTier[] }> = {
   auto: { label: 'Assurance Auto', prices: [
     { name: 'Tiers', price: '14€', badge: 'Dès', logoPool: [logoDirectAssurance, logoLolivier, logoLeocare, logoOrnikar, logoAssu2000, logoAmaguiz], features: ['Responsabilité civile obligatoire', 'Défense pénale et recours', 'Assistance 50 km du domicile'] },
@@ -1300,9 +1300,11 @@ const teaserPrices: Record<string, { label: string; prices: TeaserTier[] }> = {
     { name: 'Complète', price: '19€', badge: 'Dès', logoPool: [logoGenerali, logoAxa, logoAllianz, logoMetlife], features: ['Décès et PTIA', 'Invalidité (IPT, IPP)', 'Incapacité de travail (ITT)', 'Perte d\'emploi en option'] },
   ]},
   animaux: { label: 'Assurance Animaux', prices: [
-    { name: 'Accident', price: '7€', badge: 'Dès', logoPool: [logoAcheel, logoSantevet, logoFidanimo, logoBulleBleue, logoAnimauxSante], features: ['Frais vétérinaires accident', 'Chirurgie d\'urgence', 'Hospitalisation'] },
-    { name: 'Confort', price: '17€', badge: 'Dès', logoPool: [logoAllianz, logoSantevet, logoFidanimo, logoBulleBleue, logoAcheel], features: ['Accidents et maladies', 'Remboursement 70%', 'Plafond 1500€/an', 'Vaccins inclus'] },
-    { name: 'Intégrale', price: '29€', badge: 'Dès', logoPool: [logoAxa, logoSantevet, logoBulleBleue, logoAnimauxSante, logoGenerali], features: ['Accidents et maladies', 'Remboursement 100%', 'Plafond 2500€/an', 'Prévention et stérilisation'] },
+    // Aucun prix ni taux/plafond animaux tant que le chantier animaux n'a pas
+    // les documents publiés par les assureurs (décision de Paul) : "Sur devis".
+    { name: 'Accident', logoPool: [logoAcheel, logoSantevet, logoFidanimo, logoBulleBleue, logoAnimauxSante], features: ['Frais vétérinaires accident', 'Chirurgie d\'urgence', 'Hospitalisation'] },
+    { name: 'Confort', logoPool: [logoAllianz, logoSantevet, logoFidanimo, logoBulleBleue, logoAcheel], features: ['Accidents et maladies', 'Taux et plafond selon le contrat', 'Vaccins inclus'] },
+    { name: 'Intégrale', logoPool: [logoAxa, logoSantevet, logoBulleBleue, logoAnimauxSante, logoGenerali], features: ['Accidents et maladies', 'Taux et plafond selon le contrat', 'Prévention et stérilisation'] },
   ]},
   vie: { label: 'Assurance Vie', prices: [
     { name: 'Essentielle', price: '0€ frais', badge: 'Dès', logoPool: [logoSwisslife, logoCardif, logoLcl, logoApril], features: ['Fonds euros sécurisé', 'Versements libres', 'Frais d\'entrée 0%'] },

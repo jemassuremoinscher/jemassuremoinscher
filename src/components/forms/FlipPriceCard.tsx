@@ -4,7 +4,8 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 
 export interface FlipPriceCardProps {
   name: string;
-  price: string;
+  /** Absent : formule "Sur devis" (aucun prix publié, ex. animaux). */
+  price?: string;
   badge?: string;
   logo: string;
   features: string[];
@@ -20,7 +21,8 @@ export interface FlipPriceCardProps {
  */
 const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranceType, position }: FlipPriceCardProps) => {
   const [flipped, setFlipped] = useState(false);
-  const isPercent = price.includes("%");
+  const hasPrice = !!price;
+  const isPercent = !!price && price.includes("%");
   const { trackEvent } = useAnalytics();
   const detailsTrackedRef = useRef(false);
   // Guard against double-firing: pointerup + click can both trigger on some browsers.
@@ -43,7 +45,7 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
         label: `${insuranceType || "unknown"}:${name}`,
         insurance_type: insuranceType,
         formula_name: name,
-        formula_price: price,
+        formula_price: price || "sur_devis",
         position,
         highlight: !!highlight,
         action: next ? "show_details" : "show_price",
@@ -55,7 +57,7 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
           label: `${insuranceType || "unknown"}:${name}`,
           insurance_type: insuranceType,
           formula_name: name,
-          formula_price: price,
+          formula_price: price || "sur_devis",
           position,
           highlight: !!highlight,
         });
@@ -95,7 +97,7 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
       >
         {!flipped ? (
           <div className="h-full text-center flex flex-col items-center justify-between">
-            {highlight && (
+            {highlight && hasPrice && (
               <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap shadow-md">
                 Meilleur prix
               </span>
@@ -107,13 +109,19 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
 
             {/* Price bubble — violet bg + gold text for contrast */}
             <div className="bg-gradient-to-br from-primary to-[hsl(265,85%,45%)] rounded-full px-4 py-2 shadow-md flex items-baseline gap-1">
-              {badge && (
-                <span className="text-[9px] text-white/80 font-medium uppercase mr-0.5">{badge}</span>
+              {hasPrice ? (
+                <>
+                  {badge && (
+                    <span className="text-[9px] text-white/80 font-medium uppercase mr-0.5">{badge}</span>
+                  )}
+                  <span className="text-xl md:text-2xl font-extrabold text-[#fcd34d] leading-none tabular-nums">{price}</span>
+                  <span className="text-[10px] text-white/85 font-medium">
+                    {isPercent ? "loyers" : "/mois"}
+                  </span>
+                </>
+              ) : (
+                <span className="text-sm md:text-base font-extrabold text-[#fcd34d] leading-none">Sur devis</span>
               )}
-              <span className="text-xl md:text-2xl font-extrabold text-[#fcd34d] leading-none tabular-nums">{price}</span>
-              <span className="text-[10px] text-white/85 font-medium">
-                {isPercent ? "loyers" : "/mois"}
-              </span>
             </div>
 
             <p className="text-[11px] text-primary font-bold flex items-center gap-1">
