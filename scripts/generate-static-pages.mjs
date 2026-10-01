@@ -514,9 +514,24 @@ const markdownToHtml = (md = "") => {
   const out = [];
   let inList = false;
   const closeList = () => { if (inList) { out.push("</ul>"); inList = false; } };
-  for (const raw of lines) {
-    const line = raw.trim();
+  // Tableaux GFM (| a | b | + ligne |---|---|), comme remark-gfm côté SPA :
+  // sans ça le HTML statique affichait les lignes brutes "| a | b |".
+  const isTableRow = (l) => /^\|.*\|$/.test(l);
+  const isTableSep = (l) => /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)*\|?$/.test(l);
+  const cells = (l) => l.replace(/^\|/, "").replace(/\|$/, "").split("|").map((c) => c.trim());
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
     if (!line) { closeList(); continue; }
+    if (isTableRow(line) && i + 1 < lines.length && isTableSep(lines[i + 1].trim())) {
+      closeList();
+      const head = cells(line);
+      const rows = [];
+      i += 2;
+      while (i < lines.length && isTableRow(lines[i].trim())) { rows.push(cells(lines[i].trim())); i++; }
+      i--;
+      out.push(`<table><thead><tr>${head.map((c) => `<th>${c}</th>`).join("")}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table>`);
+      continue;
+    }
     if (/^######\s+/.test(line)) { closeList(); out.push(`<h6>${line.replace(/^######\s+/, "")}</h6>`); continue; }
     if (/^#####\s+/.test(line)) { closeList(); out.push(`<h5>${line.replace(/^#####\s+/, "")}</h5>`); continue; }
     if (/^####\s+/.test(line)) { closeList(); out.push(`<h4>${line.replace(/^####\s+/, "")}</h4>`); continue; }

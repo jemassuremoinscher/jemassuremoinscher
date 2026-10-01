@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, ArrowRight, BookOpen, ExternalLink } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { glossaryTerms } from "@/data/glossaryTerms";
 import { NB_ASSUREURS_LABEL } from "@/config/site";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
@@ -126,7 +127,7 @@ description={glossarySeoMeta[term.slug]?.description || `${term.definition.subst
 
             <Card className="mb-8">
               <CardContent className="p-8 prose prose-lg max-w-none dark:prose-invert">
-                <ReactMarkdown>{normalizeGlossaryMarkdownHeadings(term.content)}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{normalizeGlossaryMarkdownHeadings(term.content)}</ReactMarkdown>
               </CardContent>
             </Card>
 

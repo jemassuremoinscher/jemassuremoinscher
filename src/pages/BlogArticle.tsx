@@ -10,6 +10,7 @@ import { usePublishedDraftSlugs } from "@/hooks/usePublishedDrafts";
 import { useSupabaseBlogArticle } from "@/hooks/useSupabaseBlogArticles";
 import SEOOptimized from "@/components/SEOOptimized";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { toast } from "sonner";
 import AuthorExpertise from "@/components/blog/AuthorExpertise";
 import { getAuthor, getAuthorJsonLd } from "@/data/authors";
@@ -246,6 +247,7 @@ const BlogArticle = () => {
               {/* Article Content */}
               <div className="prose prose-lg max-w-none prose-headings:text-foreground prose-p:text-muted-foreground prose-p:my-4 prose-ul:my-4 prose-ol:my-4">
                 <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
                   components={{
                     h1: ({ node, ...props }) => (
                       <h2 className="text-3xl font-bold mt-10 mb-5 text-foreground" {...props} />
