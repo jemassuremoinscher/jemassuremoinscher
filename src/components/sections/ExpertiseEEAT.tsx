@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { BadgeCheck, BookOpen, Users, Scale } from "lucide-react";
-import { CONTENT_LAST_REVIEWED } from "@/config/contentReview";
 import { NB_ASSUREURS_LABEL } from "@/config/site";
 
 /**
@@ -34,7 +33,7 @@ const PILLARS = [
     icon: BookOpen,
     title: "Nos sources",
     body:
-      "Chaque chiffre publié s'appuie sur des sources officielles ou sur nos propres données de devis, datées et vérifiables.",
+      "Chaque chiffre publié s'appuie sur des sources officielles, datées et vérifiables.",
     bullets: [
       "Légifrance (lois Hamon, Chatel, Lemoine, Code des assurances)",
       "France Assureurs et ACPR pour les statistiques de marché",
@@ -48,18 +47,11 @@ const PILLARS = [
     bullets: [
       "Comparaison à garanties équivalentes, franchise incluse",
       "L'économie potentielle dépend du profil et du contrat précédent",
-      "Contenus relus et mis à jour à chaque évolution réglementaire",
     ],
   },
 ];
 
 const ExpertiseEEAT = () => {
-  const formatted = new Date(CONTENT_LAST_REVIEWED).toLocaleDateString("fr-FR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-
   return (
     <section
       className="pt-14 md:pt-20 pb-8 md:pb-10 bg-background border-t border-border/30 section-lazy"
@@ -100,8 +92,7 @@ const ExpertiseEEAT = () => {
         </div>
 
         <p className="mt-8 text-center text-sm text-muted-foreground">
-          Contenu relu par notre équipe de conseillers le{" "}
-          <time dateTime={CONTENT_LAST_REVIEWED}>{formatted}</time>. Consultez nos{" "}
+          Consultez nos{" "}
           <Link to="/sources-et-methodologie" className="text-primary font-medium hover:underline">
             sources et notre méthodologie
           </Link>{" "}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Shield, CheckCircle, Award, Briefcase, BookOpen } from "lucide-react";
+import { Shield, Award, Briefcase, BookOpen } from "lucide-react";
 import teamExperts from "@/assets/team-experts.png";
 import { getAuthor, type Author } from "@/data/authors";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -48,10 +48,6 @@ const AuthorExpertise = ({ authorName }: AuthorExpertiseProps) => {
           <p className="text-sm text-muted-foreground">
             {author.role}
           </p>
-          <div className="flex items-center gap-1.5 mt-1 text-xs text-muted-foreground">
-            <CheckCircle className="h-3.5 w-3.5 text-emerald-600 shrink-0" aria-hidden="true" />
-            <span>Vérifié par nos courtiers certifiés ORIAS</span>
-          </div>
         </div>
       </div>
 

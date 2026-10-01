@@ -1,4 +1,4 @@
-import { Shield, Award, Users, BookOpen, CheckCircle } from "lucide-react";
+import { Shield, Award, Users, CheckCircle } from "lucide-react";
 import teamExperts from "@/assets/team-experts.png";
 import geoContent from "@/data/geo-content.json";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -92,18 +92,6 @@ const ExpertiseSection = ({
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="p-2 rounded-lg bg-primary/10 shrink-0">
-                  <BookOpen className="h-5 w-5 text-primary" aria-hidden="true" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground mb-1">Contenu vérifié</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Chaque guide et comparatif est rédigé et relu par nos experts, puis mis à jour 
-                    régulièrement selon l'évolution de la réglementation.
-                  </p>
-                </div>
-              </div>
             </div>
 
             {/* Checklist + image */}

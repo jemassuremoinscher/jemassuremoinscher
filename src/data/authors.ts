@@ -36,7 +36,7 @@ export const authors: Record<string, Author> = {
     id: "equipe-experts",
     name: "L'équipe d'experts Jemassuremoinscher",
     role: "Courtiers en assurance",
-    bio: "Une équipe de conseillers basée à Nice, qui accompagne chaque demande par téléphone. Chaque contenu s'appuie sur des sources officielles — Légifrance, France Assureurs, ACPR — ou sur nos propres données de devis, et est relu à chaque évolution réglementaire.",
+    bio: "Une équipe de conseillers basée à Nice, qui accompagne chaque demande par téléphone. Chaque contenu s'appuie sur des sources officielles — Légifrance, France Assureurs, ACPR.",
     credentials: [
       "Édité par ARPV, courtier en assurances (immatriculé ORIAS n° 26011100)",
       "Soumis au Code des assurances et au contrôle de l'ACPR",

@@ -101,7 +101,7 @@ export const SeniorExpatriationEntrante = () => (
 export const SeniorSourcesNote = () => (
   <Card className="p-4 md:p-5 bg-muted/30 max-w-4xl mx-auto mb-12">
     <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
-      <strong className="text-foreground">Page de synthèse mise à jour le 23 septembre 2026.</strong> Cette page renvoie vers nos contenus détaillés plutôt que de les dupliquer. Il n'existe pas de contrat "assurance senior" unique : le bouton de comparaison ci-dessous ouvre notre comparateur général, où vous choisissez le type de contrat qui correspond à votre situation précise.
+      Cette page renvoie vers nos contenus détaillés plutôt que de les dupliquer. Il n'existe pas de contrat "assurance senior" unique : le bouton de comparaison ci-dessous ouvre notre comparateur général, où vous choisissez le type de contrat qui correspond à votre situation précise.
     </p>
   </Card>
 );

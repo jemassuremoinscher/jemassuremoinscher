@@ -7,7 +7,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import DeferredRender from "@/components/performance/DeferredRender";
 import MdReveal from "@/components/motion/MdReveal";
 import { addOrganizationSchema, addServiceSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
-import { CONTENT_LAST_REVIEWED } from "@/config/contentReview";
 import { NB_ASSUREURS, NB_ASSUREURS_LABEL } from "@/config/site";
 
 // Lazy load below-the-fold sections
@@ -198,14 +197,8 @@ const Index = () => {
     "name": "Comparateur d'assurance moins chère",
     "inLanguage": "fr-FR",
     "datePublished": "2025-01-15",
-    "dateModified": CONTENT_LAST_REVIEWED,
     "isPartOf": { "@type": "WebSite", "url": "https://www.jemassuremoinscher.fr" },
     "about": { "@type": "Thing", "name": "Comparaison d'assurances en France" },
-    "reviewedBy": {
-      "@type": "Organization",
-      "name": "ARPV — jemassuremoinscher.fr",
-      "url": "https://www.jemassuremoinscher.fr/qui-sommes-nous"
-    },
     "citation": [
       { "@type": "CreativeWork", "name": "Légifrance — Code des assurances", "url": "https://www.legifrance.gouv.fr/codes/texte_lc/LEGITEXT000006073984" },
       { "@type": "CreativeWork", "name": "ACPR — Autorité de contrôle prudentiel et de résolution", "url": "https://acpr.banque-france.fr/" },
