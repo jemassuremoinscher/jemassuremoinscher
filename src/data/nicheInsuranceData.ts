@@ -41,7 +41,7 @@ export const nicheProfiles: NicheData[] = [
   {
     slug: "resilie-non-paiement",
     title: "Assurance Auto Résilié Non-Paiement — Solutions 2026",
-    metaDescription: "Résilié pour non-paiement ? Retrouvez un contrat auto adapté. Nos courtiers spécialisés négocient des tarifs jusqu'à 30% moins chers que le marché.",
+    metaDescription: "Résilié pour non-paiement ? Retrouvez un contrat auto adapté. Nos courtiers spécialisés comparent les solutions adaptées à votre profil.",
     keyword: "assurance auto résilié non-paiement",
     heroTitle: "Assurance Auto après Résiliation pour Non-Paiement : Retrouvez un contrat aujourd'hui",
     heroSubtitle: "Une résiliation ne signifie pas la fin : nos partenaires spécialisés étudient votre profil. Rappel rapide par un conseiller.",
@@ -79,7 +79,7 @@ export const nicheProfiles: NicheData[] = [
       { question: "Combien de temps reste-t-on fiché AGIRA après un non-paiement ?", answer: "L'inscription au fichier AGIRA dure 2 ans à compter de la date de résiliation. Passé ce délai, votre profil redevient standard et les assureurs ne peuvent plus consulter cet historique. Pendant ces 2 ans, des assureurs spécialisés vous couvrent avec une majoration dégressive." },
       { question: "Peut-on contester une résiliation pour non-paiement ?", answer: "Oui, si la mise en demeure n'a pas été envoyée en recommandé avec AR, ou si le délai de 30 jours n'a pas été respecté, la résiliation est juridiquement contestable. Vérifiez les dates sur votre courrier. Nous avons vu des cas où la résiliation a été annulée pour vice de procédure." },
       { question: "Que se passe-t-il si je roule sans assurance pendant la recherche ?", answer: "Rouler sans assurance est un délit (article L324-2 du Code de la route). Sanction : amende de 3 750€, suspension de permis, confiscation du véhicule. En cas d'accident, vous êtes personnellement responsable de tous les dommages. Ne prenez jamais ce risque — une couverture tiers temporaire peut être souscrite en 24h." },
-      { question: "Comment réduire la surprime après une résiliation ?", answer: "Trois leviers concrets : 1) Soldez votre dette auprès de l'ancien assureur (preuve de paiement à fournir). 2) Souscrivez au tiers pendant 12 mois sans sinistre. 3) Passez par un courtier spécialisé qui négocie des tarifs 20 à 30% inférieurs au marché direct." },
+      { question: "Comment réduire la surprime après une résiliation ?", answer: "Trois leviers concrets : 1) Soldez votre dette auprès de l'ancien assureur (preuve de paiement à fournir). 2) Souscrivez au tiers pendant 12 mois sans sinistre. 3) Passez par un courtier spécialisé qui compare les offres du marché spécialisé." },
     ]
   },
   {
@@ -117,7 +117,7 @@ export const nicheProfiles: NicheData[] = [
     ],
     surchargeCoefficient: 2.5,
     surchargeLabel: "Majoration retrait de permis (alcool/stups)",
-    surchargeExplanation: "La surprime moyenne constatée est de +150% pour une suspension et +200% pour une annulation. Elle diminue de 20 à 30% par année sans incident. Nos courtiers parviennent à réduire ces taux de 20 à 30% via des contrats spécialisés.",
+    surchargeExplanation: "La surprime moyenne constatée est de +150% pour une suspension et +200% pour une annulation. Elle diminue de 20 à 30% par année sans incident.",
     expertContent: "",
     faqs: [
       { question: "Peut-on s'assurer pendant une suspension de permis ?", answer: "Oui. Vous pouvez assurer votre véhicule même si votre permis est suspendu (le véhicule reste votre propriété). En revanche, vous ne pouvez pas le conduire. L'assurance couvre le vol, l'incendie et les dommages stationnement. Nommer un conducteur secondaire sur le contrat permet au véhicule de continuer à rouler." },
@@ -160,7 +160,7 @@ export const nicheProfiles: NicheData[] = [
     ],
     surchargeCoefficient: 2.0,
     surchargeLabel: "Majoration multi-sinistres (CRM élevé)",
-    surchargeExplanation: "Avec un CRM supérieur à 2.00, la surprime moyenne constatée est de +100%. Chaque année sans sinistre la réduit de 5%. Un courtier spécialisé obtient des tarifs 20 à 30% inférieurs au marché direct.",
+    surchargeExplanation: "Avec un CRM supérieur à 2.00, la surprime moyenne constatée est de +100%. Chaque année sans sinistre la réduit de 5%.",
     expertContent: "",
     faqs: [
       { question: "Mon assureur peut-il me résilier pour trop de sinistres même si je ne suis pas responsable ?", answer: "En théorie, un assureur ne devrait pas résilier pour des sinistres non responsables. En pratique, certains contrats prévoient une clause de résiliation pour 'fréquence anormale de sinistres' indépendamment de la responsabilité. Vérifiez vos conditions générales et contestez si la clause est abusive." },
@@ -174,7 +174,7 @@ export const nicheProfiles: NicheData[] = [
     metaDescription: "Pas d'historique d'assurance auto ? Trouvez un contrat adapté aux profils sans antécédents. Tarifs compétitifs pour primo-assurés.",
     keyword: "assurance auto sans antécédents primo-assuré",
     heroTitle: "Assurance Auto sans Antécédents : obtenez votre premier contrat au juste prix",
-    heroSubtitle: "Pas d'historique ≠ mauvais conducteur. 72% de nos primo-assurés obtiennent un tarif inférieur à la moyenne du marché grâce à notre réseau de courtiers.",
+    heroSubtitle: "Pas d'historique ≠ mauvais conducteur : notre réseau de courtiers compare les offres adaptées aux primo-assurés.",
     quickCheckQuestions: [
       { id: "permis", label: "Avez-vous le permis depuis plus de 3 ans ?", yesText: "Oui", noText: "Moins de 3 ans" },
       { id: "vehicule", label: "Le véhicule fait-il moins de 6 CV fiscaux ?", yesText: "Oui", noText: "Plus de 6 CV" },
@@ -217,7 +217,7 @@ export const nicheProfiles: NicheData[] = [
     metaDescription: "Jeune conducteur avec voiture puissante ? Comparez les assurances adaptées. Solutions pour assurer un véhicule de + de 6 CV avec un permis récent.",
     keyword: "assurance jeune conducteur voiture puissante",
     heroTitle: "Jeune Conducteur + Voiture Puissante : comment s'assurer sans se ruiner",
-    heroSubtitle: "Un profil perçu comme risqué par les assureurs, mais pas sans solutions. Nos courtiers obtiennent des tarifs jusqu'à 35% inférieurs au marché pour ce segment.",
+    heroSubtitle: "Un profil perçu comme risqué par les assureurs, mais pas sans solutions. Nos courtiers comparent les offres du marché spécialisé pour ce segment.",
     quickCheckQuestions: [
       { id: "permis", label: "Permis obtenu depuis moins de 3 ans ?", yesText: "Oui", noText: "Plus de 3 ans" },
       { id: "puissance", label: "Votre véhicule dépasse 7 CV fiscaux ?", yesText: "Oui", noText: "Non" },
@@ -232,7 +232,7 @@ export const nicheProfiles: NicheData[] = [
       },
       {
         title: "Idée reçue : « On ne peut pas assurer un jeune sur une sportive »",
-        content: "Faux dans 60% des cas. Les assureurs traditionnels refusent souvent, mais le marché spécialisé accepte ces profils. La clé est le montage du contrat : conducteur secondaire sur le contrat d'un parent (si le jeune vit au domicile), assurance au km, ou boîtier télématique qui prouve une conduite prudente. Le refus du premier assureur n'est pas le dernier mot."
+        content: "Pas forcément. Les assureurs traditionnels refusent souvent, mais le marché spécialisé accepte ces profils. La clé est le montage du contrat : conducteur secondaire sur le contrat d'un parent (si le jeune vit au domicile), assurance au km, ou boîtier télématique qui prouve une conduite prudente. Le refus du premier assureur n'est pas le dernier mot."
       },
       {
         title: "Le hack courtier : le boîtier télématique, l'arme secrète",

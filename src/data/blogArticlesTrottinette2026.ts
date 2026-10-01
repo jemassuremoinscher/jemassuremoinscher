@@ -441,9 +441,6 @@ Oui tant que le bridage est actif et que vous ne roulez pas au-delà de 25 km/h 
 **Hoverboard utilisé uniquement dans mon jardin, ai-je besoin d'une assurance ?**
 Non obligatoire (espace privé), mais la RC vie privée habitation est conseillée pour couvrir un éventuel invité blessé.
 
-**Existe-t-il une assurance multi-EDPM (plusieurs engins, un contrat) ?**
-Oui chez certains assureurs spécialisés (Mobilease, Wakam, AssurOnline) : -25 à -40 % vs contrats séparés.
-
 **Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette) · [Trottinettes & EDPM obligation](/blog/trottinette-electrique-sans-assurance-delit-amende-2026) · [Vol de trottinette](/blog/assurance-trottinette-vol-garantie-2026)
     `
   },

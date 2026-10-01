@@ -73,8 +73,8 @@ const ExpertiseSection = ({
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Expérience terrain</h3>
                   <p className="text-sm text-muted-foreground">
-                    Nos courtiers ont accompagné plus de 25 000 assurés dans le choix de leur 
-                    {insuranceType}. Chaque recommandation est basée sur une analyse personnalisée.
+                    Nos courtiers vous accompagnent dans le choix de votre {insuranceType}.
+                    Chaque recommandation est basée sur une analyse personnalisée.
                   </p>
                 </div>
               </div>
