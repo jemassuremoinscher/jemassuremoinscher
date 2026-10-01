@@ -75,8 +75,8 @@ const AssuranceTrottinetteLivreur = () => {
       <li><strong>Bris d'équipement</strong> : smartphone (souvent à 400-1 000 €), sac isotherme, batterie additionnelle.</li>
     </ul>
 
-    <h3>Équipement</h3>
-    <p>Pour le sac isotherme et le reste du matériel, PAKERS, boutique spécialisée dans les sacs de livraison, détaille un kit de démarrage : <a href="https://pakers.co/blogs/guides-livreurs/kit-debutant-livreur-uber-eats-2026" target="_blank" rel="noopener">kit débutant livreur Uber Eats</a>.</p>
+    <h2 id="equipement">Équipement</h2>
+    <p>Pour le sac isotherme et le reste du matériel, PAKERS, boutique spécialisée dans les sacs de livraison, détaille un kit de démarrage : <a href="https://pakers.co/blogs/guides-livreurs/kit-debutant-livreur-uber-eats-2026" target="_blank" rel="noopener" class="text-primary font-medium underline underline-offset-2">kit débutant livreur Uber Eats de PAKERS</a>.</p>
 
     <h3>Combien gagne réellement un livreur trottinette en 2026 ?</h3>
     <p>Avec une rémunération moyenne de 5 à 9 € par course et 3 à 6 courses/heure, un livreur trottinette gagne entre <strong>1 200 € et 2 800 €/mois</strong> selon l'intensité.</p>
