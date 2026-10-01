@@ -43,7 +43,7 @@ const PILLARS = [
     icon: BadgeCheck,
     title: "Notre méthode de comparaison",
     body:
-      `Nous interrogeons ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires à garanties comparables, puis nous présentons les écarts réels.`,
+      `Un conseiller étudie votre demande et consulte les assureurs adaptés à votre profil parmi nos ${NB_ASSUREURS_LABEL} partenaires.`,
     bullets: [
       "Comparaison à garanties équivalentes, franchise incluse",
       "L'économie potentielle dépend du profil et du contrat précédent",

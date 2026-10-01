@@ -9,7 +9,7 @@ export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number
     "legalName": "ARPV",
     "url": "https://www.jemassuremoinscher.fr",
     "logo": "https://www.jemassuremoinscher.fr/logo.png",
-    "description": `Comparateur d'assurances pas chères en ligne. Trouvez une assurance pas chère, comparez ${NB_ASSUREURS} assureurs et courtiers, changez d'assurance facilement. Alternative à LesFurets.`,
+    "description": `Comparateur d'assurances pas chères en ligne. Trouvez une assurance pas chère, comparez ${NB_ASSUREURS} assureurs et courtiers, changez d'assurance facilement.`,
     "alternateName": ["jemassuremoinscher.fr", "je m'assure moins cher", "comparateur assurance pas chère", "ARPV"],
     "taxID": "10538727800010",
     "vatID": "FR46105387278",

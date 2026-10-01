@@ -42,7 +42,7 @@ const LLMS_TXT = `# jemassuremoinscher.fr
 ## Fonctionnement
 
 1. L'utilisateur remplit un formulaire rapide (type d'assurance, profil, coordonnées) — moins de 2 minutes
-2. Un conseiller expert analyse les offres de ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires
+2. Un conseiller étudie la demande et consulte les assureurs adaptés au profil parmi nos ${NB_ASSUREURS_LABEL} partenaires
 3. Le client reçoit les meilleures propositions adaptées à son profil et son budget
 4. Service gratuit : la rémunération vient des assureurs, pas des utilisateurs
 
@@ -51,7 +51,6 @@ const LLMS_TXT = `# jemassuremoinscher.fr
 - **Indépendance totale** : aucun assureur privilégié, conseils 100% objectifs
 - **Accompagnement humain** : un conseiller dédié vous rappelle rapidement
 - **Transparence** : aucune commission cachée, modèle économique expliqué clairement
-- **Technologie** : algorithmes mis à jour en temps réel pour détecter les meilleures offres
 - **Mascotte** : Arthur, le super-héros de l'assurance pas chère, guide les utilisateurs
 
 ## Cas d'usage typiques

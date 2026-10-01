@@ -288,7 +288,7 @@ const Footer = () => {
               <div>
                 <h3 className="font-bold text-foreground text-lg mb-2">Article 3 - Service de comparaison</h3>
                 <ul className="list-disc pl-5 space-y-1">
-                  <li>Notre comparateur analyse les offres de nos partenaires assureurs</li>
+                  <li>Un conseiller étudie votre demande et consulte les assureurs partenaires adaptés à votre profil</li>
                   <li>Les résultats sont présentés de manière objective et transparente</li>
                   <li>Aucune obligation de souscrire n'est imposée</li>
                 </ul>

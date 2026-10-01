@@ -28,7 +28,7 @@ const CompareCTASection = () => {
           Toujours pas comparé votre assurance ?
         </h2>
         <p className="text-base md:text-lg text-muted-foreground mb-8">
-          Arthur compare {NB_ASSUREURS_LABEL} assureurs et courtiers pour vous, en 2 minutes.
+          Un conseiller étudie votre demande et consulte les assureurs adaptés à votre profil parmi nos {NB_ASSUREURS_LABEL} partenaires.
         </p>
         <button
           type="button"

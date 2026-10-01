@@ -32,7 +32,7 @@ const Index = () => {
   const organizationSchema = addOrganizationSchema();
   const serviceSchema = addServiceSchema({
     name: "Comparateur d'Assurances Moins Chères en Ligne",
-    description: `Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers : auto, santé, habitation. Alternative à LesFurets. Changez d'assurance facilement.`,
+    description: `Comparateur d'assurances gratuit pour trouver une assurance moins chère. Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers : auto, santé, habitation. Changez d'assurance facilement.`,
     provider: "jemassuremoinscher.fr",
     areaServed: "France"
   });
@@ -176,7 +176,7 @@ const Index = () => {
         "@type": "HowToStep",
         "position": 2,
         "name": "Comparez les offres",
-        "text": `Nous interrogeons ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires à garanties équivalentes pour identifier les écarts de prix réels.`,
+        "text": `Un conseiller étudie votre demande et consulte les assureurs adaptés à votre profil parmi nos ${NB_ASSUREURS_LABEL} partenaires.`,
         "url": "https://www.jemassuremoinscher.fr/comparateur"
       },
       {
@@ -225,7 +225,7 @@ const Index = () => {
         ogDescription={`Comparez ${NB_ASSUREURS} assureurs et courtiers gratuitement et trouvez une offre plus avantageuse.`}
         twitterDescription={`Trouvez l'assurance la moins chère en 2 minutes avec notre comparateur gratuit. Comparez ${NB_ASSUREURS} assureurs et courtiers partenaires (AXA, Allianz, MAIF, Groupama…) et trouvez un contrat plus avantageux. Sans engagement.`}
         keyword="assurance moins chère"
-        keywords="comparateur d'assurances, changer d'assurance, lesfurets alternative"
+        keywords="comparateur d'assurances, changer d'assurance, courtier en assurances"
         canonical="https://www.jemassuremoinscher.fr"
         ogImage="https://www.jemassuremoinscher.fr/opengraph-image.png"
         jsonLd={[webSiteSchema, webPageSchema, organizationSchema, financialServiceSchema, serviceSchema, howToSchema, breadcrumbSchema, faqSchema, localBusinessSchema]}
@@ -314,7 +314,7 @@ const Index = () => {
         </ul>
         <h2>Changer d'assurance - Informations utiles</h2>
         <ul>
-          <li><Link to="/comparateur">Comparateur d'assurances en ligne gratuit - Alternative à LesFurets</Link></li>
+          <li><Link to="/comparateur">Comparateur d'assurances en ligne gratuit</Link></li>
           <li><Link to="/blog">Blog assurance - Conseils pour changer d'assurance</Link></li>
           <li><Link to="/glossaire">Glossaire de l'assurance</Link></li>
           <li><Link to="/qui-sommes-nous">À propos de jemassuremoinscher.fr - Comparateur d'assurances</Link></li>
