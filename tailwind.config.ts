@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
 
 export default {
   darkMode: ["class"],
@@ -152,7 +153,52 @@ export default {
         "section": "5rem",        // 80px  — rythme standard
         "section-lg": "7rem",     // 112px — sections d'ancrage (Hero-adjacent)
       },
+      // @tailwindcss/typography : la classe "prose" (24 fichiers : landings SEO,
+      // piliers, blog, glossaire, pages régionales) n'avait aucun effet faute
+      // de plugin déclaré — titres H2/H3, listes et liens sans style. Couleurs
+      // branchées sur les variables du thème (clair ET sombre, y compris
+      // prose-invert) au lieu des gris par défaut du plugin.
+      typography: {
+        DEFAULT: {
+          css: {
+            "--tw-prose-body": "hsl(var(--muted-foreground))",
+            "--tw-prose-invert-body": "hsl(var(--muted-foreground))",
+            "--tw-prose-headings": "hsl(var(--foreground))",
+            "--tw-prose-invert-headings": "hsl(var(--foreground))",
+            "--tw-prose-lead": "hsl(var(--muted-foreground))",
+            "--tw-prose-invert-lead": "hsl(var(--muted-foreground))",
+            "--tw-prose-links": "hsl(var(--primary))",
+            "--tw-prose-invert-links": "hsl(var(--primary))",
+            "--tw-prose-bold": "hsl(var(--foreground))",
+            "--tw-prose-invert-bold": "hsl(var(--foreground))",
+            "--tw-prose-counters": "hsl(var(--muted-foreground))",
+            "--tw-prose-invert-counters": "hsl(var(--muted-foreground))",
+            "--tw-prose-bullets": "hsl(var(--primary))",
+            "--tw-prose-invert-bullets": "hsl(var(--primary))",
+            "--tw-prose-hr": "hsl(var(--border))",
+            "--tw-prose-invert-hr": "hsl(var(--border))",
+            "--tw-prose-quotes": "hsl(var(--foreground))",
+            "--tw-prose-invert-quotes": "hsl(var(--foreground))",
+            "--tw-prose-quote-borders": "hsl(var(--primary))",
+            "--tw-prose-invert-quote-borders": "hsl(var(--primary))",
+            "--tw-prose-captions": "hsl(var(--muted-foreground))",
+            "--tw-prose-invert-captions": "hsl(var(--muted-foreground))",
+            "--tw-prose-kbd": "hsl(var(--foreground))",
+            "--tw-prose-invert-kbd": "hsl(var(--foreground))",
+            "--tw-prose-code": "hsl(var(--foreground))",
+            "--tw-prose-invert-code": "hsl(var(--foreground))",
+            "--tw-prose-pre-code": "hsl(var(--foreground))",
+            "--tw-prose-invert-pre-code": "hsl(var(--foreground))",
+            "--tw-prose-pre-bg": "hsl(var(--muted))",
+            "--tw-prose-invert-pre-bg": "hsl(var(--muted))",
+            "--tw-prose-th-borders": "hsl(var(--border))",
+            "--tw-prose-invert-th-borders": "hsl(var(--border))",
+            "--tw-prose-td-borders": "hsl(var(--border))",
+            "--tw-prose-invert-td-borders": "hsl(var(--border))",
+          },
+        },
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), typography],
 } satisfies Config;

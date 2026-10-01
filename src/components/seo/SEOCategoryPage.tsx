@@ -138,7 +138,7 @@ const SEOCategoryPage = ({
                   {block.title}
                 </h2>
                 <div
-                  className="prose prose-sm md:prose-base text-muted-foreground leading-relaxed [&_strong]:text-foreground [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1"
+                  className="prose prose-sm md:prose-base max-w-none text-muted-foreground leading-relaxed [&_strong]:text-foreground [&_ul]:list-disc [&_ul]:pl-5 [&_li]:mb-1"
                   dangerouslySetInnerHTML={{ __html: normalizeContentBlockHeadings(block.content) }}
                 />
               </motion.div>
