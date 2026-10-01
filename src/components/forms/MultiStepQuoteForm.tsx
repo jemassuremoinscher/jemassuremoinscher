@@ -134,6 +134,21 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   }
   if (prefillAge) initialFormData.age = prefillAge;
   if (prefillZip && /^\d{5}$/.test(prefillZip)) initialFormData.postalCode = prefillZip;
+  // ?usage=livreur (lien de /assurance-trottinette-livreur) : pré-sélectionne
+  // l'usage, uniquement si c'est une option réelle de l'étape vehicleUse du
+  // produit (trottinette) — l'étape est ensuite sautée par l'auto-avance.
+  const prefillUsage = searchParams.get('usage');
+  const usageProduct = insuranceType === 'comparateur' ? initialFormData.insuranceType : insuranceType;
+  if (prefillUsage && usageProduct) {
+    const usageStep = stepConfigsByType[usageProduct as InsuranceType]?.find((s) => s.field === 'vehicleUse');
+    if (usageStep?.options?.some((o) => o.value === prefillUsage)) initialFormData.vehicleUse = prefillUsage;
+  }
+  // Page d'origine de la demande (quote_data.source_page) : ?source_page= si
+  // c'est un chemin interne, sinon la page qui affiche le formulaire.
+  const sourcePageParam = searchParams.get('source_page');
+  const sourcePage = sourcePageParam && /^\/[a-z0-9\-/]{0,150}$/i.test(sourcePageParam)
+    ? sourcePageParam
+    : (typeof window !== 'undefined' ? window.location.pathname : '');
 
   // Snapshot des champs pré-remplis par l'URL au montage — stable ensuite quel
   // que soit ce que formData devient (cf. l'effet d'auto-avance plus bas).
@@ -461,6 +476,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
         quote_data: {
           ...formData,
           source: 'multi_step_form',
+          source_page: sourcePage,
           insuranceType: insType,
         },
         status: 'pending',
@@ -479,7 +495,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
           email: contactData.email,
           phone: contactData.phone,
           type: insType,
-          details: formData,
+          details: { ...formData, source_page: sourcePage },
           estimatedPrice: 35,
         },).catch(console.error);
 

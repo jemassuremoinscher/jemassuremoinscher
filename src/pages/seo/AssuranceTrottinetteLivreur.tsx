@@ -98,7 +98,7 @@ const AssuranceTrottinetteLivreur = () => {
       heroTitle="Assurance Trottinette Livreur : RC pro dès 12 €/mois"
       heroSubtitle="Uber Eats, Deliveroo, Stuart : votre assurance perso ne couvre pas la livraison rémunérée. Spécialiste EDPM pro, devis en 2 minutes."
       ctaLabel="Comparer les offres livreur"
-      ctaLink="/comparateur"
+      ctaLink="/comparateur?type=trottinette&usage=livreur&source_page=/assurance-trottinette-livreur"
       contentTitle="Assurance trottinette pour livreur Uber Eats, Deliveroo, Stuart"
       contentBody={contentBody}
       advantages={advantages}
@@ -111,7 +111,7 @@ const AssuranceTrottinetteLivreur = () => {
       bottomCtaTitle="Roulez pro dès aujourd'hui"
       bottomCtaDescription="Devis assurance livreur EDPM en 2 minutes — attestation par email pour votre plateforme."
       bottomCtaLabel="Obtenir mon devis livreur"
-      bottomCtaLink="/comparateur"
+      bottomCtaLink="/comparateur?type=trottinette&usage=livreur&source_page=/assurance-trottinette-livreur"
     />
   );
 };

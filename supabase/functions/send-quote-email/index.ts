@@ -215,6 +215,8 @@ const handler = async (req: Request): Promise<Response> => {
         return `
         <h1>Nouvelle demande de devis</h1>
         <h2>Type d'assurance: ${esc(type)}</h2>
+        ${details?.vehicleUse === 'livreur' ? `<p style="font-size: 20px; color: #b91c1c; font-weight: bold;">Usage professionnel : livraison</p>` : ''}
+        ${details?.source_page ? `<p><strong>Page d'origine :</strong> ${esc(details.source_page)}</p>` : ''}
         
         <h3>Coordonnées du client:</h3>
         <ul>
@@ -288,9 +290,6 @@ const handler = async (req: Request): Promise<Response> => {
           ${EMAIL_LOGO_HEADER}
           <h1>Merci pour votre demande, ${escHtml(name)} !</h1>
           <p>Nous avons bien reçu votre demande de devis pour une <strong>${escHtml(type)}</strong>.</p>
-
-          <h2>Votre tarif estimé</h2>
-          <p style="font-size: 32px; color: #7e22ce; font-weight: bold;">${escHtml(estimatedPrice)}€/mois</p>
 
           <p>Un de nos conseillers vous contactera dans les plus brefs délais au <strong>${escHtml(phone)}</strong> pour finaliser votre devis.</p>
 
