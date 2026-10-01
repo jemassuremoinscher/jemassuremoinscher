@@ -61,7 +61,7 @@ const AssuranceTrottinetteLivreur = () => {
     <h3>Pourquoi une assurance pro est obligatoire pour les livreurs en trottinette</h3>
     <p>L'usage professionnel d'un EDPM (Engin de Déplacement Personnel Motorisé) — trottinette, gyroroue, hoverboard — entre dans la catégorie des <strong>activités à risque aggravé</strong> pour les assureurs. Trois raisons :</p>
     <ul>
-      <li><strong>Kilométrage élevé</strong> : un livreur parcourt en moyenne 80 à 150 km/semaine (vs 30 km pour un usager standard).</li>
+      <li><strong>Kilométrage élevé</strong> : un livreur roule beaucoup plus qu'un usager occasionnel.</li>
       <li><strong>Conditions de circulation difficiles</strong> : pluie, nuit, sacs isothermes encombrants, créneaux serrés.</li>
       <li><strong>Tiers exposés</strong> : circulation dense en centre-ville, livraisons à pied jusqu'au client = risque RC démultiplié.</li>
     </ul>
@@ -78,9 +78,6 @@ const AssuranceTrottinetteLivreur = () => {
 
     <h2 id="equipement">Équipement</h2>
     <p>Pour le sac isotherme et le reste du matériel, PAKERS, boutique spécialisée dans les sacs de livraison, détaille un kit de démarrage : <a href="https://pakers.co/blogs/guides-livreurs/kit-debutant-livreur-uber-eats-2026" target="_blank" rel="noopener" class="text-primary font-medium underline underline-offset-2">kit débutant livreur Uber Eats de PAKERS</a>.</p>
-
-    <h3>Combien gagne réellement un livreur trottinette en 2026 ?</h3>
-    <p>Avec une rémunération moyenne de 5 à 9 € par course et 3 à 6 courses/heure, un livreur trottinette gagne entre <strong>1 200 € et 2 800 €/mois</strong> selon l'intensité.</p>
 
     <h3>Auto-entrepreneur ou salarié : quel statut, quelle assurance ?</h3>
     <p>La grande majorité des livreurs sont en <strong>auto-entrepreneur</strong>. Dans ce cas, vous êtes votre propre patron et seul responsable de votre couverture. La responsabilité civile reste obligatoire pour toute trottinette électrique (assimilée à un véhicule terrestre à moteur, service-public.gouv.fr), et elle doit couvrir votre usage professionnel. Pour les livreurs <strong>salariés</strong> (rare, mais existant chez certaines dark kitchens), l'employeur a une obligation de couverture professionnelle, mais elle exclut souvent les trajets domicile-zone.</p>
