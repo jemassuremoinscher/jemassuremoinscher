@@ -55,7 +55,7 @@ interface ProductTableData {
   footnote?: string;
 }
 
-const DATA: Record<ProductKey, ProductTableData> = {
+const DATA: Partial<Record<ProductKey, ProductTableData>> = {
   auto: {
     title: "Garanties par formule — Assurance Auto",
     intro:
@@ -140,27 +140,9 @@ const DATA: Record<ProductKey, ProductTableData> = {
     ],
     footnote: "Pourcentages exprimés sur la base de remboursement Sécurité sociale (BR). 100% Santé inclus dans tous les niveaux.",
   },
-  animaux: {
-    title: "Garanties par formule — Assurance Animaux",
-    intro: "Couverture chien, chat et NAC selon l'espèce, l'âge et la race.",
-    columns: [
-      { key: "essentielle", label: "Essentielle" },
-      { key: "confort", label: "Confort" },
-      { key: "premium", label: "Premium" },
-    ],
-    rows: [
-      { name: "Taux de remboursement", values: { essentielle: "60%", confort: "80%", premium: "100%" } },
-      { name: "Plafond annuel", values: { essentielle: "1 200€", confort: "2 000€", premium: "2 500€" } },
-      { name: "Maladie", values: { essentielle: "Incluse", confort: "Incluse", premium: "Incluse" } },
-      { name: "Accident", values: { essentielle: "Incluse", confort: "Incluse", premium: "Incluse" } },
-      { name: "Chirurgie & hospitalisation", values: { essentielle: "Incluse", confort: "Incluse", premium: "Incluse" } },
-      { name: "Médicaments prescrits", values: { essentielle: "Incluse", confort: "Incluse", premium: "Incluse" } },
-      { name: "Examens & analyses", values: { essentielle: "Option", confort: "Incluse", premium: "Incluse" } },
-      { name: "Prévention (vaccins, vermifuge)", values: { essentielle: "—", confort: "50€/an", premium: "100€/an" } },
-      { name: "Assistance animaux", values: { essentielle: "Option", confort: "Incluse", premium: "Incluse" } },
-    ],
-    footnote: "Délai de carence standard : 7 jours pour accident, 45 jours pour maladie.",
-  },
+  // animaux : tableau retiré le 2026-10-01 (taux, plafonds, prévention et
+  // carences sans source). À reconstruire depuis les documents d'information
+  // des assureurs (chantier animaux, étape 1).
   pno: {
     title: "Garanties — Assurance PNO (Propriétaire Non Occupant)",
     intro: "Obligatoire en copropriété depuis la loi Alur (2014).",

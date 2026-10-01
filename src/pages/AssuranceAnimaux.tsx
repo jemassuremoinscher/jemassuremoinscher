@@ -8,7 +8,6 @@ import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProduc
 import arthurAnimals from "@/assets/mascotte/arthur-animals.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
-import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
 import CourtierValueCards from "@/components/insurance/CourtierValueCards";
 import InsuranceBottomHub from "@/components/insurance/InsuranceBottomHub";
 import EnBref from "@/components/seo/EnBref";
@@ -108,7 +107,6 @@ const AssuranceAnimaux = () => {
             <MultiStepQuoteForm insuranceType="animaux" />
           </div>
 
-          <ProductGuaranteeTable product="animaux" />
 
           <CourtierValueCards product="animaux" />
 

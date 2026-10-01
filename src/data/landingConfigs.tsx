@@ -362,8 +362,8 @@ export const landingConfigs: Record<string, AdsLandingProps | { fr: AdsLandingPr
     advantages: baseAdvantages,
     testimonials: [],
     faqs: [
-      { question: "Mon animal est-il éligible ?", answer: "Oui, chiens et chats de 2 mois à 7-10 ans selon les contrats (sans race exclue)." },
-      { question: "Quel est le délai de carence ?", answer: "Généralement 7 jours pour la maladie, 48 h pour l'accident." },
+      { question: "Mon animal est-il éligible ?", answer: "Les conditions d'âge et de race dépendent du contrat : un conseiller vous les indique avec le devis." },
+      { question: "Quel est le délai de carence ?", answer: "Il varie selon le contrat et le type de soins (accident ou maladie) : il figure dans le document d'information remis avec le devis." },
       { question: "Combien suis-je remboursé ?", answer: "Le taux de remboursement dépend de la formule choisie, dans la limite du plafond annuel du contrat." },
     ],
     bottomCtaTitle: "Protégez la santé de votre compagnon",

@@ -1516,46 +1516,9 @@ function ContactStep({
 
   return (
     <div className="space-y-5 max-w-md mx-auto w-full">
-      {/* Teaser prices */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="space-y-3"
-      >
-        <div className="flex flex-col items-center gap-1">
-          <p className="text-sm font-semibold text-primary text-center">
-            {t('form.scrollToContinue')}
-          </p>
-          <span className="text-xl text-primary animate-bounce" aria-hidden="true">↓</span>
-        </div>
-        <div className="grid grid-cols-3 gap-2">
-          {prices.map((p, i) => (
-            <motion.div
-              key={p.name}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.1, duration: 0.3 }}
-            >
-              <FlipPriceCard
-                name={p.name}
-                price={p.price}
-                badge={p.badge}
-                logo={p.logo}
-                features={p.features}
-                highlight={i === 0}
-                insuranceType={insuranceType || 'auto'}
-                position={i}
-              />
-            </motion.div>
-          ))}
-        </div>
-        <p className="text-[11px] text-muted-foreground text-center italic">
-          {t("form.clickCardToReveal")}
-        </p>
-      </motion.div>
-
-      <div className="h-px bg-border/40" />
+      {/* Formulaire en premier : le bouton d'envoi doit être visible sans
+      défilement (avant, les cartes de formules le poussaient sous la ligne de
+      flottaison). Les cartes passent sous le bouton. */}
       {/* Full name */}
       <div className="space-y-1.5">
         <Label htmlFor="msf-name" className="text-sm font-medium flex items-center gap-1.5">
@@ -1609,7 +1572,7 @@ function ContactStep({
       {/* Trust badge */}
       <div className="rounded-xl bg-primary/5 border border-primary/15 px-3 py-2.5">
         <p className="text-xs text-muted-foreground leading-snug">
-          🔒 0 spam. Vos données sont en sécurité. Un conseiller vous rappelle uniquement pour valider ce tarif et gérer la résiliation de votre ancien contrat — sans aucune paperasse pour vous.
+          🔒 0 spam. Vos données sont en sécurité. Un conseiller vous rappelle uniquement pour étudier votre demande et, si vous changez d'assurance, gérer la résiliation de votre ancien contrat.
         </p>
       </div>
 
@@ -1647,6 +1610,41 @@ function ContactStep({
       <p className="text-[11px] text-muted-foreground text-center">
         {t('form.dataProtected')}
       </p>
+
+      <div className="h-px bg-border/40" />
+      {/* Teaser prices */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="space-y-3"
+      >
+        <div className="grid grid-cols-3 gap-2">
+          {prices.map((p, i) => (
+            <motion.div
+              key={p.name}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: i * 0.1, duration: 0.3 }}
+            >
+              <FlipPriceCard
+                name={p.name}
+                price={p.price}
+                badge={p.badge}
+                logo={p.logo}
+                features={p.features}
+                highlight={i === 0}
+                insuranceType={insuranceType || 'auto'}
+                position={i}
+              />
+            </motion.div>
+          ))}
+        </div>
+        <p className="text-[11px] text-muted-foreground text-center italic">
+          {t("form.clickCardToReveal")}
+        </p>
+      </motion.div>
+
     </div>
   );
 }

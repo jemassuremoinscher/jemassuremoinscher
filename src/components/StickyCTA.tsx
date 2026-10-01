@@ -49,10 +49,10 @@ const StickyCTA = () => {
     <button
       onClick={handleClick}
       className="hidden lg:flex fixed left-4 bottom-6 z-40 items-center gap-2 py-2.5 px-4 rounded-full font-bold text-sm text-secondary-foreground bg-gradient-to-r from-[hsl(43_80%_65%)] to-[hsl(38_75%_58%)] shadow-lg hover:shadow-xl active:scale-95 transition-all duration-200 animate-fade-in"
-      aria-label="Voir mon prix"
+      aria-label="Obtenir mon devis"
     >
       <Calculator className="w-4 h-4" aria-hidden="true" />
-      <span>Prix direct</span>
+      <span>Obtenir mon devis</span>
     </button>
   );
 };
