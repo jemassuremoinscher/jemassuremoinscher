@@ -227,9 +227,6 @@ const handler = async (req: Request): Promise<Response> => {
         
         <h3>Détails de la demande:</h3>
         <pre>${esc(JSON.stringify(details, null, 2))}</pre>
-        
-        <h3>Tarif estimé:</h3>
-        <p style="font-size: 24px; color: #7e22ce; font-weight: bold;">${esc(estimatedPrice)}€/mois</p>
       `;
       })(),
     });
