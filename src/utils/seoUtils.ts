@@ -218,7 +218,6 @@ export const addArticleSchema = (article: {
       }
     },
     "datePublished": article.datePublished,
-    "dateModified": article.datePublished,
     ...(article.image && { "image": article.image })
   };
 };

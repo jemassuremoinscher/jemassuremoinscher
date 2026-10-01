@@ -266,7 +266,7 @@ const Blog = () => {
                           <div className="flex items-center gap-1">
                             <Calendar className="w-4 h-4" />
                             <time dateTime={convertToISO(article.date)}>
-                              {t("blogPage.updatedOn")} {article.date}
+                              {t("blogPage.publishedOn")} {article.date}
                             </time>
                           </div>
                           <div className="flex items-center gap-1">

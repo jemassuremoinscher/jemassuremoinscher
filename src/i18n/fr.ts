@@ -1203,7 +1203,7 @@ const fr: Record<string, string> = {
   'blogPage.specialProfiles': 'Profils Spéciaux',
   'blogPage.insurerDuels': 'Duels Assureurs',
   'blogPage.allDuels': 'Tous les duels →',
-  'blogPage.updatedOn': 'Mis à jour le',
+  'blogPage.publishedOn': 'Publié le',
 
   // Blog Article Page
   'blogArticlePage.backToBlog': 'Retour au blog',
@@ -1214,7 +1214,7 @@ const fr: Record<string, string> = {
   'blogArticlePage.ctaDesc': "Comparez gratuitement les meilleures offres et trouvez l'assurance idéale en quelques clics",
   'blogArticlePage.compareBtn': 'Comparer les assurances',
   'blogArticlePage.relatedArticles': 'Articles similaires',
-  'blogArticlePage.lastUpdated': 'Dernière mise à jour le',
+  'blogArticlePage.publishedOn': 'Publié le',
   'blogArticlePage.articleNotFound': 'Article introuvable',
   'blogArticlePage.articleNotFoundDesc': "L'article demandé n'existe pas ou a été déplacé. Vous allez être redirigé vers le blog.",
   'blogArticlePage.fairPrice': 'Payez-vous le juste prix ?',

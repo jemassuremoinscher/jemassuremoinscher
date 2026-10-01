@@ -542,7 +542,10 @@ const renderArticle = (article, related = []) => {
   const metaTitle = override?.meta_title || title;
   const description = override?.meta_description || (article.suggested_meta_description || article.short_description || article.title || "");
   const author = article.suggested_author || "Rédaction jemassuremoinscher.fr";
-  const publishedAt = article.published_at || article.created_at || new Date().toISOString();
+  // Aucune date de modification de contenu n'existe en base
+  // (seo_article_suggestions : created_at, published_at, reviewed_at) :
+  // pas de dateModified, et jamais de date générée au build.
+  const publishedAt = article.published_at || article.created_at;
   const image = article.image_url || `${baseUrl}/opengraph-image.png`;
   const bodyHtml = markdownToHtml(article.suggested_content || "");
   const relatedHtml =
@@ -558,7 +561,6 @@ const renderArticle = (article, related = []) => {
     description,
     image,
     datePublished: publishedAt,
-    dateModified: publishedAt,
     author: { "@type": "Person", name: author },
     publisher: {
       "@type": "Organization",

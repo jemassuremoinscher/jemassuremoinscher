@@ -1209,7 +1209,7 @@ const en: Record<string, string> = {
   'blogPage.specialProfiles': 'Special Profiles',
   'blogPage.insurerDuels': 'Insurer Duels',
   'blogPage.allDuels': 'All duels →',
-  'blogPage.updatedOn': 'Updated on',
+  'blogPage.publishedOn': 'Published on',
 
   // Blog Article
   'blogArticlePage.backToBlog': 'Back to blog',
@@ -1220,7 +1220,7 @@ const en: Record<string, string> = {
   'blogArticlePage.ctaDesc': 'Compare the best offers for free and find the ideal insurance in a few clicks',
   'blogArticlePage.compareBtn': 'Compare insurance',
   'blogArticlePage.relatedArticles': 'Related articles',
-  'blogArticlePage.lastUpdated': 'Last updated on',
+  'blogArticlePage.publishedOn': 'Published on',
   'blogArticlePage.articleNotFound': 'Article not found',
   'blogArticlePage.articleNotFoundDesc': 'The requested article does not exist or has been moved. You will be redirected to the blog.',
   'blogArticlePage.fairPrice': 'Are you paying the fair price?',
