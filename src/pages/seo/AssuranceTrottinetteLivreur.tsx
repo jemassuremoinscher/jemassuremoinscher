@@ -7,7 +7,7 @@ const AssuranceTrottinetteLivreur = () => {
       icon: Briefcase,
       title: "RC pro livreur obligatoire",
       description:
-        "Pour Uber Eats, Deliveroo, Stuart : la RC vie privée ne suffit pas. Une RC professionnelle livreur EDPM est exigée par les plateformes.",
+        "Pour Uber Eats, Deliveroo, Stuart : la RC vie privée ne suffit pas. Les plateformes exigent un contrat qui prévoit expressément la livraison.",
     },
     {
       icon: AlertTriangle,
@@ -19,7 +19,7 @@ const AssuranceTrottinetteLivreur = () => {
       icon: Euro,
       title: "Dès 12 €/mois en pro",
       description:
-        "Formules livreur dédiées : RC pro + dommages + vol + arrêt de travail. Tarifs courtier mutualisés à partir de 12 €/mois.",
+        "Formules qui prévoient la livraison : RC pro + dommages + vol + arrêt de travail. Tarifs à partir de 12 €/mois selon le profil et la formule.",
     },
   ];
 
@@ -27,7 +27,7 @@ const AssuranceTrottinetteLivreur = () => {
     {
       question: "Mon assurance trottinette perso couvre-t-elle la livraison Uber Eats ?",
       answer:
-        "En général non : les contrats grand public excluent l'usage professionnel (par exemple, le document d'information d'un contrat du marché, 2025, exclut les tournées et la livraison de restauration rapide). En cas d'accident pendant une course, l'assureur peut refuser la garantie et vous laisser face à la responsabilité civile illimitée. Une formule pro livreur EDPM est obligatoire.",
+        "En général non : les contrats grand public excluent l'usage professionnel (par exemple, le document d'information d'un contrat du marché, 2025, exclut les tournées et la livraison de restauration rapide). En cas d'accident pendant une course, l'assureur peut refuser la garantie et vous laisser face à la responsabilité civile illimitée. Il faut un contrat qui prévoit expressément la livraison.",
     },
     {
       question: "Quelles garanties indispensables pour un livreur en trottinette électrique ?",
@@ -37,7 +37,7 @@ const AssuranceTrottinetteLivreur = () => {
     {
       question: "Combien coûte une assurance trottinette livreur en 2026 ?",
       answer:
-        "Comptez entre 12 € et 35 €/mois selon la formule : 12-18 € pour la RC pro + assistance, 20-28 € en formule intermédiaire (avec vol et individuelle), 30-35 € en tous risques avec indemnités journalières d'arrêt de travail. Les plateformes (Uber Eats, Deliveroo) imposent au minimum la RC pro.",
+        "Comptez entre 12 € et 35 €/mois selon le profil et la formule : 12-18 € pour la RC pro, 20-28 € en formule intermédiaire (avec vol et individuelle), 30-35 € en tous risques avec indemnités journalières d'arrêt de travail. Les plateformes (Uber Eats, Deliveroo) imposent au minimum la RC pro.",
     },
     {
       question: "Les plateformes (Uber Eats, Deliveroo) fournissent-elles une assurance ?",
@@ -52,7 +52,7 @@ const AssuranceTrottinetteLivreur = () => {
   ];
 
   const contentBody = `
-    <p>Vous livrez en trottinette électrique pour <strong>Uber Eats, Deliveroo, Stuart ou Coursier.fr</strong> ? Votre assurance personnelle ne vous couvre pas. La livraison rémunérée est un <strong>usage professionnel</strong> qui exige une RC pro livreur EDPM dédiée. Sans elle, un seul accident peut vous ruiner financièrement et vous faire perdre votre compte plateforme.</p>
+    <p>Vous livrez en trottinette électrique pour <strong>Uber Eats, Deliveroo, Stuart ou Coursier.fr</strong> ? Votre assurance personnelle ne vous couvre pas. La livraison rémunérée est un <strong>usage professionnel</strong> qui exige un contrat qui prévoit expressément la livraison. Sans lui, un seul accident peut vous ruiner financièrement et vous faire perdre votre compte plateforme.</p>
 
     <p>Chez <strong>jemassuremoinscher.fr</strong>, nos courtiers spécialisés mobilité urbaine professionnelle comparent les assureurs partenaires <strong>livreurs EDPM</strong> pour vous trouver la formule la moins chère et la plus adaptée à votre rythme (temps plein, temps partiel, étudiant complément).</p>
 
@@ -73,14 +73,13 @@ const AssuranceTrottinetteLivreur = () => {
       <li><strong>Individuelle conducteur renforcée</strong> : frais médicaux, indemnités journalières (15 à 40 €/jour d'arrêt de travail), invalidité, capital décès.</li>
       <li><strong>Vol et casse de la trottinette</strong> : votre outil de travail. Indemnisation à valeur d'achat si antivol agréé.</li>
       <li><strong>Bris d'équipement</strong> : smartphone (souvent à 400-1 000 €), sac isotherme, batterie additionnelle.</li>
-      <li><strong>Assistance dépannage 24/7</strong> : crucial pour finir vos courses en cas de panne batterie ou crevaison.</li>
     </ul>
 
     <h3>Équipement</h3>
     <p>Pour le sac isotherme et le reste du matériel, PAKERS, boutique spécialisée dans les sacs de livraison, détaille un kit de démarrage : <a href="https://pakers.co/blogs/guides-livreurs/kit-debutant-livreur-uber-eats-2026" target="_blank" rel="noopener">kit débutant livreur Uber Eats</a>.</p>
 
     <h3>Combien gagne réellement un livreur trottinette en 2026 ?</h3>
-    <p>Avec une rémunération moyenne de 5 à 9 € par course et 3 à 6 courses/heure, un livreur trottinette gagne entre <strong>1 200 € et 2 800 €/mois</strong> selon l'intensité. Sur cette base, une assurance pro à 18 €/mois représente moins de <strong>1 % du chiffre d'affaires</strong> mais protège des sinistres pouvant atteindre 100 000 €. Un investissement non négociable.</p>
+    <p>Avec une rémunération moyenne de 5 à 9 € par course et 3 à 6 courses/heure, un livreur trottinette gagne entre <strong>1 200 € et 2 800 €/mois</strong> selon l'intensité.</p>
 
     <h3>Auto-entrepreneur ou salarié : quel statut, quelle assurance ?</h3>
     <p>La grande majorité des livreurs sont en <strong>auto-entrepreneur</strong>. Dans ce cas, vous êtes votre propre patron et seul responsable de votre couverture. Aucune obligation légale d'avoir une assurance, mais sans elle, vous êtes personnellement engagé sur votre patrimoine. Pour les livreurs <strong>salariés</strong> (rare, mais existant chez certaines dark kitchens), l'employeur a une obligation de couverture professionnelle, mais elle exclut souvent les trajets domicile-zone.</p>
