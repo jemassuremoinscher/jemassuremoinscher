@@ -27,6 +27,9 @@ const Index = lazy(() => import("./pages/Index"));
 const MerciGuide = lazy(() => import("./pages/MerciGuide"));
 const Auth = lazy(() => import("./pages/Auth"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const AuthMfa = lazy(() => import("./pages/AuthMfa"));
+const MfaGate = lazy(() => import("./components/auth/MfaGate"));
+const SecuritePage = lazy(() => import("./pages/crm/SecuritePage"));
 const Desinscription = lazy(() => import("./pages/Desinscription"));
 const Admin = lazy(() => import("./pages/Admin"));
 const CrmLayout = lazy(() => import("./pages/crm/CrmLayout"));
@@ -247,10 +250,11 @@ const App = () => {
                 <Route path="/" element={<Index />} />
                 <Route path="/merci-guide" element={<MerciGuide />} />
                 <Route path="/auth" element={<AuthRoute><Auth /></AuthRoute>} />
+                <Route path="/auth/mfa" element={<AuthRoute><AuthMfa /></AuthRoute>} />
                 <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/desinscription" element={<Desinscription />} />
 
-                <Route path="/admin" element={<AuthRoute><CrmLayout /></AuthRoute>}>
+                <Route path="/admin" element={<AuthRoute><MfaGate><CrmLayout /></MfaGate></AuthRoute>}>
                   <Route index element={<CrmKanban />} />
                   <Route path="contacts" element={<ContactsPage />} />
                   <Route path="documents" element={<GedPage />} />
@@ -266,10 +270,11 @@ const App = () => {
                   <Route path="sauvegardes" element={<RequireAdmin><BackupsPage /></RequireAdmin>} />
                   <Route path="notifications" element={<NotificationsCenter />} />
                   <Route path="reglages/notifications" element={<NotificationSettings />} />
+                  <Route path="securite" element={<SecuritePage />} />
                 </Route>
-                <Route path="/admin/legacy" element={<AuthRoute><RequireAdmin><Admin /></RequireAdmin></AuthRoute>} />
+                <Route path="/admin/legacy" element={<AuthRoute><MfaGate><RequireAdmin><Admin /></RequireAdmin></MfaGate></AuthRoute>} />
 
-                <Route path="/commercial" element={<AuthRoute><Commercial /></AuthRoute>} />
+                <Route path="/commercial" element={<AuthRoute><MfaGate><Commercial /></MfaGate></AuthRoute>} />
                 <Route path="/landing/assurance" element={<LandingAds />} />
                 <Route path="/landing/auto" element={<LandingAuto />} />
                 <Route path="/landing/sante" element={<LandingSante />} />

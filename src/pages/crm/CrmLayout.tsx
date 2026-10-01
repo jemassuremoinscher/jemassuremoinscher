@@ -5,6 +5,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useAdminTheme } from "@/hooks/useAdminTheme";
 import { CrmSidebar } from "./CrmSidebar";
 import { CrmHeader } from "./CrmHeader";
+import { MfaBanner } from "@/components/auth/MfaGate";
 import arthurWatermark from "@/assets/mascotte/arthur-thumbs-up.webp";
 
 export default function CrmLayout() {
@@ -50,6 +51,7 @@ export default function CrmLayout() {
             />
           </div>
           <main className="relative z-10 flex flex-1 flex-col overflow-hidden">
+            <MfaBanner />
             <Outlet context={{ query }} />
           </main>
         </div>
