@@ -1,6 +1,7 @@
 import { access, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
+import { LOCAL_ARTICLES_CREATE_ONLY, localArticleSourceHash } from "./lib/local-article-source.mjs";
 
 const rootDir = process.cwd();
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || "https://ybqxpngkbgosobtetxac.supabase.co";
@@ -550,7 +551,7 @@ const markdownToHtml = (md = "") => {
   return out.join("\n        ");
 };
 
-const renderArticle = (article, related = []) => {
+const renderArticle = (article, related = [], extraHead = "") => {
   const canonical = `${baseUrl}/blog/${article.slug}`;
   // `title` reste le titre visible (H1, JSON-LD headline, fil d'Ariane) —
   // jamais réécrit par un override, pour ne pas faire diverger la page de
@@ -619,7 +620,7 @@ const renderArticle = (article, related = []) => {
     <title>${escapeHtml(metaTitle)}</title>
     <meta name="description" content="${escapeAttribute(description)}" />
     <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
-    <meta name="author" content="${escapeAttribute(author)}" />
+    <meta name="author" content="${escapeAttribute(author)}" />${extraHead}
     <link rel="canonical" href="${escapeAttribute(canonical)}" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="${escapeAttribute(metaTitle)}" />
@@ -669,6 +670,10 @@ const renderArticle = (article, related = []) => {
 </html>`;
 };
 
+// Slugs écrits depuis Supabase : la base reste prioritaire sur la source TS
+// pour un même slug (generateLocalBlogArticles ne les réécrit pas).
+const dbArticleSlugs = new Set();
+
 const generateBlogArticles = async () => {
   try {
     const supabase = createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { persistSession: false } });
@@ -695,6 +700,7 @@ const generateBlogArticles = async () => {
     let preserved = 0;
     for (const article of data) {
       if (!article.slug) continue;
+      dbArticleSlugs.add(article.slug);
       const outputPath = path.join(rootDir, "blog", article.slug, "index.html");
       // Un doublon SEO consolidé (noindex manuel) ne doit jamais être régénéré à
       // l'identique depuis Supabase : sans ce garde-fou, ce prerender écrase le
@@ -710,7 +716,7 @@ const generateBlogArticles = async () => {
         // pas de fichier existant -> génération normale ci-dessous
       }
       await mkdir(path.dirname(outputPath), { recursive: true });
-      await writeFile(outputPath, renderArticle(article), "utf8");
+      await writeFile(outputPath, renderArticle(article, [], `\n    <meta name="jmmc-source" content="supabase" />`), "utf8");
       count += 1;
     }
     console.log(`[generate-static-pages] Prerendered ${count} blog articles (${preserved} noindex préservés).`);
@@ -763,18 +769,24 @@ const generateLocalBlogArticles = async () => {
       if (!a?.slug || a.noindex) continue;
       (byCat[a.category] = byCat[a.category] || []).push({ slug: a.slug, title: a.title });
     }
-    let created = 0;
-    let skipped = 0;
+    // Régénérés à CHAQUE build depuis la source TS (comme les landings) :
+    // avant le 2026-10-01 ils n'étaient créés qu'une fois et restaient figés
+    // (77/80 périmés en production). Exceptions : slug déjà écrit depuis
+    // Supabase (la base prime) et LOCAL_ARTICLES_CREATE_ONLY (créé s'il
+    // manque, jamais réécrit). Un fichier existant en noindex (doublon
+    // consolidé à la main) est régénéré mais garde sa balise robots.
+    // Chaque page porte l'empreinte de sa source (meta jmmc-source-hash),
+    // contrôlée par scripts/verify-local-articles.mjs.
+    let written = 0;
+    let preserved = 0;
     for (const a of articles) {
       if (!a?.slug || a.noindex) continue;
+      if (dbArticleSlugs.has(a.slug)) { preserved += 1; continue; }
       const outputPath = path.join(rootDir, "blog", a.slug, "index.html");
-      try {
-        await access(outputPath);
-        skipped += 1;
-        continue;
-      } catch {
-        // no existing file -> generate
-      }
+      let existing = null;
+      try { existing = await readFile(outputPath, "utf8"); } catch { /* absent -> génération */ }
+      if (existing !== null && LOCAL_ARTICLES_CREATE_ONLY.has(a.slug)) { preserved += 1; continue; }
+      const existingRobots = existing?.match(/<meta[^>]+name=["']robots["'][^>]*>/i)?.[0] || "";
       const mapped = {
         slug: a.slug,
         title: a.title,
@@ -787,10 +799,13 @@ const generateLocalBlogArticles = async () => {
       };
       const related = (byCat[a.category] || []).filter((r) => r.slug !== a.slug).slice(0, 3);
       await mkdir(path.dirname(outputPath), { recursive: true });
-      await writeFile(outputPath, renderArticle(mapped, related), "utf8");
-      created += 1;
+      const hashMeta = `\n    <meta name="jmmc-source-hash" content="${localArticleSourceHash(a)}" />`;
+      let html = renderArticle(mapped, related, hashMeta);
+      if (/noindex/i.test(existingRobots)) html = html.replace(/<meta[^>]+name=["']robots["'][^>]*>/i, existingRobots);
+      await writeFile(outputPath, html, "utf8");
+      written += 1;
     }
-    console.log(`[generate-static-pages] Local blog articles: ${created} created, ${skipped} already present.`);
+    console.log(`[generate-static-pages] Local blog articles: ${written} régénérés depuis la source TS, ${preserved} préservés (base ou création seule).`);
   } catch (err) {
     console.warn("[generate-static-pages] Skipping local blog prerender:", err?.message || err);
   } finally {
