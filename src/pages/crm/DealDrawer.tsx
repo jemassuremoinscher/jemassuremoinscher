@@ -324,12 +324,12 @@ export function DealDrawer({
                       <>
                         Ce lead provient du site ({dealSource}). Sa suppression est réservée aux
                         administrateurs et sera tracée dans l'historique. Le lead de{" "}
-                        {contact?.full_name ?? "ce prospect"} partira en corbeille (purge après 180 jours).
+                        {contact?.full_name ?? "ce prospect"} partira en corbeille (purge manuelle).
                       </>
                     ) : (
                       <>
                         Le lead de {contact?.full_name ?? "ce prospect"} partira en corbeille
-                        (purge après 180 jours).
+                        (purge manuelle).
                       </>
                     )}
                   </AlertDialogDescription>

@@ -82,7 +82,7 @@ export default function TrashPage() {
           {loading ? "Chargement…" : `${filtered.length} deals supprimés`}
         </p>
         <p className="mt-2 inline-flex rounded-full bg-amber-50 px-3 py-1 text-xs text-amber-800">
-          🕒 Purge automatique après 180 jours
+          Purge manuelle
         </p>
       </div>
 
