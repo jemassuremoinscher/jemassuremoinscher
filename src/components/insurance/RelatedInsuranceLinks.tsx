@@ -217,7 +217,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
     // entre les deux verticales mobilité douce jusqu'ici.
     products: ["auto", "moto", "velo"],
     articles: [
-      { to: "/blog/comparatif-assurance-trottinette-electrique-2026", label: "Comparatif assurance trottinette 2026" },
+      { to: "/blog/comparatif-assurance-trottinette-electrique-2026", label: "Comparer les assurances trottinette : les critères" },
       { to: "/blog/assurance-trottinette-vol-garantie-2026", label: "Garantie vol trottinette" },
     ],
     tools: [

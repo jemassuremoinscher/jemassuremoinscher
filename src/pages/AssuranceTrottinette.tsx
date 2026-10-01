@@ -249,7 +249,7 @@ const AssuranceTrottinette = () => {
             <ul className="grid md:grid-cols-3 gap-3 list-none pl-0">
               <li>
                 <Link to="/blog/comparatif-assurance-trottinette-electrique-2026" className="block p-4 rounded-lg border border-border/50 hover:border-primary hover:bg-primary/5 transition text-sm">
-                  <span className="font-medium text-foreground">Comparatif 2026 des meilleures assurances trottinette</span>
+                  <span className="font-medium text-foreground">Comparer les assurances trottinette : les critères</span>
                 </Link>
               </li>
               <li>

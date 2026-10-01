@@ -449,179 +449,75 @@ Oui chez certains assureurs spécialisés (Mobilease, Wakam, AssurOnline) : -25 
   },
   {
     id: "trottinette-comparatif-2026",
-    title: "Comparatif 2026 : les meilleures assurances trottinette électrique du marché",
+    title: "Comparer les assurances trottinette électrique en 2026 : les critères qui comptent",
     slug: "comparatif-assurance-trottinette-electrique-2026",
-    description: "Comparatif spécialiste des 8 meilleures assurances trottinette électrique 2026 : garanties, prix, franchises, avis. Le classement courtier indépendant.",
+    description: "Comment comparer les assurances trottinette électrique en 2026 : responsabilité civile, vol, franchise, individuelle conducteur, exclusions. Les priorités selon votre usage.",
     category: "Guides Pratiques",
     date: "10 juillet 2026",
-    readTime: "11 min",
+    readTime: "5 min",
     author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["trottinette électrique", "comparatif", "assurance", "EDPM", "prix"],
     content: `
-# Comparatif 2026 : les Meilleures Assurances Trottinette Électrique du Marché
+# Comparer les assurances trottinette électrique en 2026 : les critères qui comptent
 
-Nous avons analysé les **20 contrats EDPM** distribués en France en 2026 selon 12 critères : garanties, franchises, plafonds, exclusions, qualité du service client, délais d'indemnisation. Voici le classement courtier indépendant des **8 assurances trottinette électrique** les plus recommandables, par profil d'usage.
+Le prix mensuel ne suffit pas pour comparer deux contrats EDPM. Garanties, franchises, plafonds, exclusions et délais d'indemnisation changent d'un contrat à l'autre. Voici les critères à vérifier, puis les priorités selon votre usage.
 
-## Méthodologie du comparatif
+## Les critères à comparer
 
-Critères évalués (pondération) :
-- Prix mensuel (15 %)
-- Plafond RC (15 %)
-- Indemnisation vol (15 %)
-- Conditions antivol (10 %)
-- Individuelle conducteur (10 %)
-- Délai d'indemnisation (10 %)
-- Franchise vol/casse (10 %)
-- Service client (note utilisateurs) (5 %)
-- Couverture Europe (5 %)
-- Application mobile (5 %)
+- **Responsabilité civile** : obligatoire pour tout EDPM ; vérifiez le plafond prévu au contrat.
+- **Garantie vol** : base d'indemnisation (valeur d'achat ou valeur d'usage) et durée pendant laquelle la valeur d'achat est retenue.
+- **Conditions antivol** : modèle d'antivol exigé et lieux de stationnement couverts.
+- **Franchise vol/casse** : à rapporter à la valeur de votre trottinette.
+- **Individuelle conducteur** : vos propres blessures ne sont pas couvertes par la responsabilité civile.
+- **Délai d'indemnisation** et modalités de déclaration de sinistre.
+- **Exclusions d'usage** : compétition, location, livraison rémunérée.
+- **Couverture géographique** : France seule ou Europe.
 
-**Note finale sur 100.** Toutes les données ont été vérifiées au 1er juin 2026.
+## Quelles priorités selon votre profil ?
 
-## Top 8 — Le classement général
+### Trajets quotidiens (domicile-travail)
+Privilégiez une garantie vol indemnisée en valeur d'achat et une franchise basse au regard de la valeur de l'engin.
 
-| Rang | Assureur | Note | Tarif dès | Spécialité |
-|------|----------|------|-----------|-----------|
-| 🥇 1 | **Mobilease Premium** | 92/100 | 9,90 €/mois | Tous risques + indemnités |
-| 🥈 2 | **April Mobilité Confort** | 88/100 | 6,50 €/mois | Meilleur rapport qualité/prix |
-| 🥉 3 | **Wakam EDPM Pro** | 86/100 | 12,90 €/mois | Livreurs et usage pro |
-| 4 | **AssurOnline Trott' Plus** | 84/100 | 5,90 €/mois | Vol renforcé + GPS |
-| 5 | **Cyclassur EDPM** | 81/100 | 4,90 €/mois | RC + vol basique |
-| 6 | **Luko Mobilité** | 79/100 | 7,90 €/mois | Service client + app |
-| 7 | **Direct Assurance Trott'** | 76/100 | 3,90 €/mois | Entrée de gamme |
-| 8 | **Allianz Mobilité Urbaine** | 74/100 | 11 €/mois | Couverture monde entier |
-
-## Analyse détaillée par contrat
-
-### 🥇 Mobilease Premium — 92/100
-**Tarif** : dès 9,90 €/mois
-**Cible** : trottinettes haut de gamme (> 800 €), usage quotidien intensif
-- ✅ RC 100 M€ (record du marché)
-- ✅ Vol valeur d'achat 36 mois
-- ✅ Franchise vol/casse : 50 €
-- ✅ Individuelle conducteur : capital 100 000 €
-- ✅ Indemnités journalières 25 €/jour
-- ✅ Bris équipement (téléphone, casque)
-- ✅ Délai indemnisation : 12 jours moyen
-- ❌ Tarif premium
-
-### 🥈 April Mobilité Confort — 88/100
-**Tarif** : dès 6,50 €/mois
-**Cible** : usage régulier, meilleur compromis du marché
-- ✅ RC 10 M€
-- ✅ Vol valeur d'achat 24 mois
-- ✅ Franchise 80 €
-- ✅ Individuelle conducteur capital 60 000 €
-- ✅ Assistance 24/7
-- ✅ Application mobile excellente
-- ❌ Pas d'indemnités journalières en formule de base
-
-### 🥉 Wakam EDPM Pro — 86/100
-**Tarif** : dès 12,90 €/mois (formule pro)
-**Cible** : livreurs Uber Eats, Deliveroo, Stuart
-- ✅ RC pro 4,5 M€ active 24/7
-- ✅ Indemnités journalières 30 €/jour
-- ✅ Bris équipement renforcé (téléphone 1 200 €, casque, sac)
-- ✅ Couverture toutes plateformes
-- ✅ Attestation immédiate téléchargeable
-- ❌ Coût plus élevé (légitime pour usage pro)
-
-### 4. AssurOnline Trott' Plus — 84/100
-**Tarif** : dès 5,90 €/mois
-**Cible** : zones urbaines à fort taux de vol (Paris, Lyon, Marseille)
-- ✅ Vol valeur d'achat 24 mois + clés
-- ✅ GPS tracker fourni (option +1,50 €/mois)
-- ✅ Couverture parking, transport en commun, gare
-- ✅ Délai indemnisation court : 10 jours moyen
-- ❌ Individuelle conducteur plafonnée à 30 000 €
-
-### 5. Cyclassur EDPM — 81/100
-**Tarif** : dès 4,90 €/mois
-**Cible** : usage occasionnel, premier contrat
-- ✅ Bon rapport qualité/prix entrée de gamme
-- ✅ RC 5 M€
-- ✅ Vol couvert avec antivol FUB
-- ❌ Franchise élevée (150 €)
-- ❌ Pas d'indemnités journalières
-
-### 6. Luko Mobilité — 79/100
-**Tarif** : dès 7,90 €/mois
-**Cible** : utilisateurs digital-first, qualité service prioritaire
-- ✅ Application mobile la mieux notée (4,7/5)
-- ✅ Déclaration sinistre 100 % digital
-- ✅ Service client réactif (chat 7j/7)
-- ❌ Garanties standard, pas d'options pro
-- ❌ Couverture limitée hors France
-
-### 7. Direct Assurance Trott' — 76/100
-**Tarif** : dès 3,90 €/mois
-**Cible** : budget serré, trottinette < 400 €
-- ✅ Le moins cher du marché
-- ✅ RC obligatoire respectée
-- ❌ Vol uniquement en option (+ 3 €/mois)
-- ❌ Pas d'individuelle conducteur en formule de base
-- ❌ Franchise 200 € vol/casse
-
-### 8. Allianz Mobilité Urbaine — 74/100
-**Tarif** : dès 11 €/mois
-**Cible** : voyageurs internationaux, expatriés
-- ✅ Couverture monde entier (rare)
-- ✅ Marque rassurante, réseau international
-- ✅ RC 15 M€
-- ❌ Application mobile médiocre
-- ❌ Délai indemnisation long (25 jours moyen)
-
-## Quel contrat choisir selon votre profil ?
-
-### Vélotafeur urbain quotidien (trottinette 600-1 200 €)
-→ **April Mobilité Confort** (6,50 €/mois) : meilleur équilibre garanties / prix
-
-### Propriétaire de trottinette premium (> 1 200 €)
-→ **Mobilease Premium** (9,90 €/mois) : indemnisation valeur d'achat 36 mois
+### Trottinette haut de gamme
+Vérifiez la durée pendant laquelle la valeur d'achat est retenue et le plafond de la garantie vol.
 
 ### Livreur Uber Eats / Deliveroo
-→ **Wakam EDPM Pro** (12,90 €/mois) : seule formule réellement pro du top 5
+Les contrats grand public excluent en général la livraison rémunérée : il faut un contrat qui prévoit expressément la livraison. Voir [assurance trottinette livreur](/assurance-trottinette-livreur).
 
-### Zone à fort taux de vol
-→ **AssurOnline Trott' Plus** + GPS (7,40 €/mois) : tracker intégré
+### Zone à fort risque de vol
+Lisez les conditions antivol et la liste des lieux couverts (rue, parking, transports en commun).
 
-### Budget serré / usage occasionnel
-→ **Cyclassur EDPM** (4,90 €/mois) : RC + vol basique acceptable
+### Usage occasionnel, petit budget
+La responsabilité civile est le minimum légal ; la garantie vol se justifie selon la valeur de la trottinette.
 
-### Étudiant / jeune adulte
-→ **Luko Mobilité** (7,90 €/mois) : digital, gestion app, vie étudiante mobile
+## Les points à vérifier avant de signer
 
-## Les 6 points à vérifier avant de signer
-
-1. **Modèle d'antivol exigé** (FUB ou Sold Secure Gold)
-2. **Franchise vol/casse** (idéalement ≤ 100 €)
-3. **Plafond indemnisation vol** (valeur d'achat 24+ mois mieux que valeur d'usage)
-4. **Délai de carence vol** (souvent 7-15 jours après souscription)
-5. **Exclusions usage** (compétition, livraison, location)
+1. **Modèle d'antivol exigé**
+2. **Franchise vol/casse**
+3. **Base d'indemnisation du vol** (valeur d'achat ou valeur d'usage)
+4. **Délai de carence vol** après la souscription
+5. **Exclusions d'usage** (compétition, livraison, location)
 6. **Couverture géographique** (France seule ou Europe ?)
 
-## Bonus : les pièges à éviter
+## Les pièges à éviter
 
-❌ Souscrire un contrat « starter » à 2 €/mois sans garantie vol — la RC seule ne protège que les tiers
-❌ Choisir une franchise à 250 € sur une trottinette à 500 € — autant pas d'assurance
+❌ Souscrire la responsabilité civile seule en pensant être couvert contre le vol — la RC ne protège que les tiers
+❌ Choisir une franchise élevée au regard de la valeur de la trottinette
 ❌ Oublier de vérifier la clause débridage (toujours exclus)
 ❌ Sous-déclarer la valeur de la trottinette — sous-indemnisation garantie
-❌ Ne pas demander l'attestation papier — refus possible des forces de l'ordre
+❌ Ne pas pouvoir présenter son attestation d'assurance lors d'un contrôle
 
-> **Conseil d'Arthur** : le « moins cher » n'est pas toujours le plus pertinent. Sur une trottinette à 900 €, économiser 3 €/mois sur la prime peut vous coûter 800 € en franchise après un vol. Privilégiez le **rapport indemnisation/prime**.
+> **Conseil d'Arthur** : le « moins cher » n'est pas toujours le plus pertinent. Une franchise élevée peut coûter davantage, après un vol, que l'économie réalisée sur la prime. Comparez ce que le contrat rembourse, pas seulement ce qu'il coûte.
 
-**[→ Comparer ces 8 contrats sur votre profil exact](/comparateur)**
+**[→ Comparer les contrats sur votre profil](/comparateur)**
 
 ## FAQ
 
 **Puis-je changer d'assurance trottinette en cours d'année ?**
 Oui, la **loi Hamon** s'applique aux EDPM : résiliation possible après 12 mois sans frais, avec préavis 1 mois.
 
-**Les assureurs auto traditionnels (MAIF, MAAF, Macif) proposent-ils des contrats EDPM ?**
-Rarement de façon compétitive. Les spécialistes EDPM (Mobilease, Wakam, Cyclassur) offrent de meilleures garanties à prix égal.
-
-**Que faire si mon assureur refuse de m'assurer (trottinette débridée à l'achat, antécédents) ?**
-Demander un courtier spécialisé. Si refus systématique, saisir le **BCT EDPM** (extension du Bureau Central de Tarification).
+**Que faire si aucun assureur n'accepte de m'assurer ?**
+Pour la responsabilité civile obligatoire, vous pouvez saisir le **Bureau central de tarification (BCT)**, qui fixe la prime moyennant laquelle l'assureur choisi est tenu de vous garantir.
 
 **Liens utiles** : [Assurance trottinette électrique](/assurance-trottinette) · [Assurance trottinette livreur](/assurance-trottinette-livreur) · [Vol de trottinette : la garantie qui rembourse](/blog/assurance-trottinette-vol-garantie-2026) · [Débridage : les risques](/blog/trottinette-electrique-debridage-loi-risques-2026)
     `
