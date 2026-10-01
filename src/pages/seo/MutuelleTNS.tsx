@@ -1,5 +1,6 @@
 import { Stethoscope, ShieldCheck, Euro, Users, Briefcase } from "lucide-react";
 import SEOLandingPage from "@/components/landing/SEOLandingPage";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 
 const MutuelleTNS = () => {
   const advantages = [
@@ -46,7 +47,7 @@ const MutuelleTNS = () => {
 
     <p>Chez <strong>jemassuremoinscher.fr</strong>, nos courtiers sont spécialisés dans les contrats Madelin pour TNS. Nous comparons les offres de plus de 30 assureurs et mutuelles partenaires pour vous proposer la <strong>meilleure couverture au meilleur prix</strong>, en tenant compte de votre activité professionnelle, de votre âge et de vos besoins spécifiques.</p>
 
-    <p>Faire appel à un courtier pour votre mutuelle TNS, c'est l'assurance de <strong>ne rien laisser au hasard</strong>. Chaque profession a des besoins différents : un artisan du bâtiment n'aura pas les mêmes priorités qu'un consultant indépendant ou un médecin libéral. Nos experts analysent votre situation et vous orientent vers les contrats qui correspondent réellement à votre quotidien.</p>
+    <p>Faire appel à un courtier pour votre mutuelle TNS, c'est l'assurance de <strong>ne rien laisser au hasard</strong>. Chaque profession a des besoins différents : un artisan du bâtiment n'aura pas les mêmes priorités qu'un consultant indépendant ou un médecin libéral. Un conseiller étudie votre demande et consulte les assureurs adaptés à votre profil parmi nos ${NB_ASSUREURS_LABEL} partenaires.</p>
 
     <h3>L'avantage fiscal Madelin : comment ça marche ?</h3>
     <p>La loi Madelin vous permet de <strong>déduire vos cotisations de mutuelle de votre revenu imposable</strong>. Le plafond de déduction est calculé selon la formule suivante : 3,75 % de votre bénéfice imposable + 7 % du Plafond Annuel de la Sécurité Sociale (PASS). Concrètement, cela peut représenter une <strong>économie d'impôt de plusieurs centaines d'euros par an</strong>. Votre courtier vous aidera à maximiser cet avantage fiscal.</p>

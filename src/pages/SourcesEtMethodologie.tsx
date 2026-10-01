@@ -31,7 +31,7 @@ const SourcesEtMethodologie = () => {
       items: [
         { label: "Source", desc: "Devis 2025-2026 collectés auprès de nos 25+ assureurs partenaires" },
         { label: "Méthode", desc: "Moyennes pondérées par profil (âge, zone, véhicule, garanties)" },
-        { label: "Mise à jour", desc: "Mensuelle pour les tarifs indicatifs, en temps réel pour les devis personnalisés" },
+        { label: "Mise à jour", desc: "Mensuelle pour les tarifs indicatifs ; les devis personnalisés sont établis par un conseiller, qui consulte les assureurs adaptés à votre profil" },
         { label: "Limites", desc: "Tarifs indicatifs uniquement — le devis final dépend de l'évaluation de chaque assureur" },
       ],
     },

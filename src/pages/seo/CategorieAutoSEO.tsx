@@ -1,4 +1,5 @@
 import SEOCategoryPage from "@/components/seo/SEOCategoryPage";
+import { NB_ASSUREURS_LABEL } from "@/config/site";
 
 const faqItems = [
   {
@@ -53,7 +54,7 @@ const contentBlocks = [
     title: "Pourquoi comparer les assurances auto avec notre outil ?",
     content: `
       <p>Comparer les offres d'assurance auto est la méthode la plus efficace pour <strong>réduire votre prime</strong>. Les tarifs varient considérablement d'un assureur à l'autre pour des garanties équivalentes, et seul un comparateur indépendant vous permet d'obtenir une vision claire du marché en quelques clics.</p>
-      <p>Notre outil analyse en temps réel les offres de <strong>plus de 30 compagnies partenaires</strong> (Allianz, AXA, MAIF, Matmut, Direct Assurance…) pour vous présenter les contrats les plus compétitifs adaptés à votre profil. Contrairement aux devis obtenus un par un, vous gagnez un temps précieux et accédez à des tarifs négociés exclusifs.</p>
+      <p>Un conseiller étudie votre demande et consulte les assureurs adaptés à votre profil parmi nos <strong>${NB_ASSUREURS_LABEL} partenaires</strong>. Vous évitez de demander les devis un par un.</p>
       <p>De plus, notre comparateur est <strong>100 % gratuit et sans engagement</strong>. Vous n'avez aucune obligation de souscrire et vos données restent confidentielles conformément au RGPD.</p>
     `,
   },

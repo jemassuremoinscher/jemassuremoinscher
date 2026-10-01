@@ -103,8 +103,8 @@ export const InsuranceComparisonTool = () => {
   return (
     <>
       <SEOOptimized
-        title="Comparatif assurance en temps réel | jemassuremoinscher.fr"
-        description="Comparez les offres d'assurance affichées en temps réel selon le prix, la note et les garanties."
+        title="Comparatif assurance | jemassuremoinscher.fr"
+        description="Un conseiller étudie votre demande et consulte les assureurs adaptés à votre profil parmi nos partenaires."
         canonical="https://www.jemassuremoinscher.fr/comparateur"
         jsonLd={comparisonSchemas}
       />
@@ -112,7 +112,7 @@ export const InsuranceComparisonTool = () => {
         <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Comparez les offres <span className="text-primary">en temps réel</span>
+            Comparez les <span className="text-primary">offres</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             Filtrez et comparez pour trouver la meilleure assurance selon vos critères
