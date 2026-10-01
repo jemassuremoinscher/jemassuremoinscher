@@ -24,7 +24,7 @@ const Partners = () => {
         <div className="text-center mb-8 md:mb-10 animate-fade-in">
           <p className="text-accent font-semibold text-sm uppercase tracking-wide mb-3">{t('partnersComponent.badge')}</p>
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-            {t('partnersComponent.title')} <span className="text-primary">{t('partnersComponent.titleHighlight')}</span> {t('partnersComponent.titleEnd')}
+            <span className="text-primary">{t('partnersComponent.titleHighlight')}</span> {t('partnersComponent.titleEnd')}
           </h2>
           <div className="w-24 h-1 bg-accent mx-auto rounded-full mt-4" />
         </div>

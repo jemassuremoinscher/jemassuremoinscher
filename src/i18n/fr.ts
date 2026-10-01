@@ -1430,9 +1430,8 @@ const fr: Record<string, string> = {
 
   // Partners Component
   'partnersComponent.badge': 'Nos partenaires',
-  'partnersComponent.title': 'Plus de',
   'partnersComponent.titleHighlight': `${NB_ASSUREURS_LABEL} assureurs et courtiers`,
-  'partnersComponent.titleEnd': 'comparés',
+  'partnersComponent.titleEnd': 'partenaires',
   'partnersComponent.autoScroll': 'Le carrousel défile automatiquement. Passez la souris dessus pour mettre en pause.',
 
   // Landing Pages Common

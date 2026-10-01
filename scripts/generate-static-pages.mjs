@@ -14,7 +14,7 @@ const geoContent = JSON.parse(await readFile(geoContentPath, "utf8"));
 // "70+" était affiché partout sans plus aucun lien avec les partenaires réels).
 const partnersSrc = await readFile(path.join(rootDir, "src/data/partners.ts"), "utf8");
 const NB_ASSUREURS = (partnersSrc.match(/\{\s*name:\s*"/g) || []).length;
-const NB_ASSUREURS_LABEL = `${NB_ASSUREURS}+`;
+const NB_ASSUREURS_LABEL = `${NB_ASSUREURS}`; // nombre exact, sans "+" (décision de Paul, 2026-10-01)
 
 const { baseUrl, staticPages: pages } = geoContent;
 const excludedDirectories = new Set(["dist", "node_modules", ".git", "test-hosting-paths"]);
@@ -304,16 +304,20 @@ const buildRouteFromFile = (relativePath) => {
 // trouvé le 2026-09-30 dans llms.txt). Le "\+?" dans le nombre absorbe
 // aussi un "+" déjà présent (ex. "70+ assureurs"), pour rester idempotent
 // si ce script tourne deux fois sur le même texte.
+// 2026-10-01 : le nombre est EXACT (décision de Paul) — plus de "+" ni de
+// "Plus de" accolé. Les deux dernières règles retirent ceux qui subsistent
+// dans des HTML déjà générés (idempotent).
 const patchAssureurCount = (html) => html
-  .replace(/plus de \d+\+? assureurs\b(?! et courtiers)/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers`)
+  .replace(/[Pp]lus de \d+\+? assureurs\b(?! et courtiers)/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers`)
   .replace(/les offres de \d+\+? assureurs\b(?! et courtiers)/g, `les offres de ${NB_ASSUREURS} assureurs et courtiers`)
   .replace(/\d+\+? assureurs\b(?! et courtiers)/g, `${NB_ASSUREURS_LABEL} assureurs et courtiers`)
   .replace(/\d+\+? Compagnies\b(?! et Courtiers)/g, `${NB_ASSUREURS_LABEL} Compagnies et Courtiers`)
   .replace(/\d+\+? compagnies\b(?! et courtiers)/g, `${NB_ASSUREURS_LABEL} compagnies et courtiers`)
   .replace(/\d+\+? partenaires\b/g, `${NB_ASSUREURS_LABEL} partenaires`)
-  // Filet de sécurité : si "plus de"/"Plus de" se retrouve quand même
-  // juste devant le résultat déjà en "+", on le retire (redondant).
-  .replace(/\bplus de (\d+\+ (?:assureurs|compagnies) et courtiers)/gi, "$1");
+  // Filet de sécurité : "plus de"/"Plus de" devant le nombre de partenaires,
+  // et "+" collé au nombre, retirés.
+  .replace(/\b[Pp]lus de (\d+\+? (?:assureurs|compagnies|Compagnies|partenaires)\b)/g, "$1")
+  .replace(/\b(\d+)\+ (assureurs|compagnies|Compagnies|partenaires|insurance partners|insurers)\b/g, "$1 $2");
 
 const patchHtmlSeo = (html, relativePath) => {
   html = patchAssureurCount(html);

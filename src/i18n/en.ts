@@ -1434,9 +1434,8 @@ const en: Record<string, string> = {
 
   // Partners Component
   'partnersComponent.badge': 'Our partners',
-  'partnersComponent.title': 'More than',
-  'partnersComponent.titleHighlight': `${NB_ASSUREURS_LABEL} insurers and brokers`,
-  'partnersComponent.titleEnd': 'compared',
+  'partnersComponent.titleHighlight': `${NB_ASSUREURS_LABEL} partner`,
+  'partnersComponent.titleEnd': 'insurers and brokers',
   'partnersComponent.autoScroll': 'Auto-scrolling carousel. Hover to pause.',
 
   // Landing Common

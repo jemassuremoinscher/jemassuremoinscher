@@ -14,7 +14,9 @@
 import { partners } from "@/data/partners";
 
 export const NB_ASSUREURS = partners.length;
-export const NB_ASSUREURS_LABEL = `${NB_ASSUREURS}+`;
+// Nombre EXACT (décision de Paul, 2026-10-01) : ni "+" ni "Plus de" accolé.
+// Nom conservé pour ne pas toucher les ~100 usages ; vaut String(NB_ASSUREURS).
+export const NB_ASSUREURS_LABEL = `${NB_ASSUREURS}`;
 
 /** ORIAS — numéro officiel attribué. */
 export const ORIAS_NUMBER = "26011100";
