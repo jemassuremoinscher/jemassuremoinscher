@@ -17,7 +17,7 @@ const allProducts: Record<string, RelatedLink> = {
   moto: { to: "/assurance-moto", label: "Assurance Moto", description: "Protégez votre deux-roues au meilleur prix" },
   habitation: { to: "/assurance-habitation", label: "Assurance Habitation", description: "Couvrez votre logement au meilleur tarif" },
   sante: { to: "/assurance-sante", label: "Mutuelle Santé", description: "Remboursements optimaux, cotisation maîtrisée" },
-  animaux: { to: "/assurance-animaux", label: "Assurance Animaux", description: "Frais vétérinaires couverts jusqu'à 100%" },
+  animaux: { to: "/assurance-animaux", label: "Assurance Animaux", description: "Frais vétérinaires remboursés selon la formule" },
   vie: { to: "/assurance-vie", label: "Assurance Vie", description: "Protégez vos proches et faites fructifier votre épargne" },
   pret: { to: "/assurance-pret", label: "Assurance Emprunteur", description: "Économisez sur votre assurance emprunteur" },
   prevoyance: { to: "/assurance-prevoyance", label: "Prévoyance", description: "Anticipez les aléas de la vie" },

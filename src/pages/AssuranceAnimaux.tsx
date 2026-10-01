@@ -31,7 +31,7 @@ const AssuranceAnimaux = () => {
   ]);
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Animaux",
-    description: "Comparez les assurances pour chiens et chats. Remboursement des frais vétérinaires jusqu'à 100%.",
+    description: "Comparez les assurances pour chiens et chats : le taux de remboursement des frais vétérinaires dépend de la formule choisie.",
     provider: "jemassuremoinscher.fr",
     areaServed: "France",
   });
@@ -47,7 +47,7 @@ const AssuranceAnimaux = () => {
   ]);
   const insuranceProductSchema = addInsuranceProductSchema({
     name: "Assurance Animaux",
-    description: "Comparateur d'assurance chien, chat et NAC. Remboursement vétérinaire jusqu'à 100%.",
+    description: "Comparateur d'assurance chien, chat et NAC.",
     category: "Assurance Animaux",
     url: "https://www.jemassuremoinscher.fr/assurance-animaux",
   });
@@ -66,8 +66,8 @@ const AssuranceAnimaux = () => {
         keywords="assurance chien, assurance chat, mutuelle animaux, assurance NAC"
         canonical="https://www.jemassuremoinscher.fr/assurance-animaux"
         ogTitle="Assurance Animaux Moins Chère : Chien & Chat | Comparateur Gratuit"
-        ogDescription="Comparez les meilleures mutuelles pour chien et chat. Remboursement vétérinaire jusqu'à 100%. Devis gratuit en 2 minutes."
-        twitterDescription="Mutuelle chien/chat : comparez les offres. Remboursement vétérinaire jusqu'à 100%. Devis gratuit en 2 min."
+        ogDescription="Comparez les meilleures mutuelles pour chien et chat. Devis gratuit en 2 minutes."
+        twitterDescription="Mutuelle chien/chat : comparez les offres. Devis gratuit en 2 min."
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
@@ -131,7 +131,7 @@ const AssuranceAnimaux = () => {
                     <BrandName /> compare les assurances chien, chat et NAC.
                   </>,
                   "Le tarif dépend de l'espèce et des garanties choisies.",
-                  "Remboursement des frais vétérinaires jusqu'à 100%.",
+                  "Le taux de remboursement des frais vétérinaires dépend de la formule choisie.",
                   "Devis gratuit en moins de 2 minutes, sans engagement.",
                 ]}
               />

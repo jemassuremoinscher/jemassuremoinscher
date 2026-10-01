@@ -117,13 +117,13 @@ const refConfigs: Record<string, DynamicGreetingConfig> = {
         <br />à petit prix
       </>
     ),
-    subtitle: "Protégez votre compagnon à 4 pattes. Frais vétérinaires remboursés jusqu'à 100%. Dès 8€/mois.",
+    subtitle: "Protégez votre compagnon à 4 pattes : comparez les remboursements des frais vétérinaires.",
     arthurSpeech: "Nos amis comptent aussi ! 🐾",
     mascotSrc: arthurAnimals,
     mascotAlt: "Arthur — assurance animaux économique",
     ctaLink: "/comparateur?step=1&type=animaux",
     ctaText: "Mon prix animaux →",
-    badgeText: <>Dès <span className="text-accent">8€/mois</span> — chiens et chats</>,
+    badgeText: <>Assurance <span className="text-accent">chiens et chats</span></>,
   },
   "moto": {
     title: (
