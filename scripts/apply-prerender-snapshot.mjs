@@ -142,7 +142,6 @@ const SNAPSHOTS = [
   { route: "/comparatif/matmut-vs-mma", file: "comparatif-matmut-vs-mma.html" },
   { route: "/comparatif/maif-vs-axa", file: "comparatif-maif-vs-axa.html" },
   { route: "/comparatif/macif-vs-groupama", file: "comparatif-macif-vs-groupama.html" },
-  { route: "/comparatif/direct-assurance-vs-luko", file: "comparatif-direct-assurance-vs-luko.html" },
   { route: "/comparatif/gmf-vs-matmut", file: "comparatif-gmf-vs-matmut.html" },
   { route: "/comparatif/allianz-vs-maaf", file: "comparatif-allianz-vs-maaf.html" },
   { route: "/comparatif/axa-vs-maaf", file: "comparatif-axa-vs-maaf.html" },
@@ -153,7 +152,6 @@ const SNAPSHOTS = [
   { route: "/comparatif/abeille-vs-groupama", file: "comparatif-abeille-vs-groupama.html" },
   { route: "/comparatif/harmonie-vs-ag2r", file: "comparatif-harmonie-vs-ag2r.html" },
   { route: "/comparatif/swiss-life-vs-generali", file: "comparatif-swiss-life-vs-generali.html" },
-  { route: "/comparatif/luko-vs-acheel", file: "comparatif-luko-vs-acheel.html" },
   { route: "/comparatif/alan-vs-april", file: "comparatif-alan-vs-april.html" },
 ];
 

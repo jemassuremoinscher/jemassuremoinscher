@@ -51,7 +51,6 @@ const categoryToProducts: Record<string, ProductLink[]> = {
     { to: "/assurance-habitation", label: "Comparer les assurances habitation" },
     { to: "/assurance-pno", label: "Assurance propriétaire non occupant" },
     { to: "/assurance-gli", label: "Garantie loyers impayés" },
-    { to: "/comparatif/luko-vs-alan", label: "Duel Luko vs Alan" },
   ],
   "Assurance Habitation": [
     { to: "/assurance-habitation", label: "Comparer les assurances habitation" },

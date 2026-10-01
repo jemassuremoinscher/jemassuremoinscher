@@ -3,6 +3,8 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
+    { "source": "/comparatif/:duel(.*luko.*)", "destination": "/comparatif", "statusCode": 301 },
+    { "source": "/blog/temoignages-expatries-assurance", "destination": "/assurance-expatries", "statusCode": 301 },
     { "source": "/qui-sommes-nous/paul-vuillier-de-rabaudy", "destination": "/qui-sommes-nous/paul", "statusCode": 301 },
     { "source": "/assurance-trottinette-electrique", "destination": "/assurance-trottinette", "statusCode": 301 },
     { "source": "/blog/trottinettes-electriques-edpm-assurance-obligatoire", "destination": "/blog/trottinette-electrique-sans-assurance-delit-amende-2026", "statusCode": 301 },

@@ -162,7 +162,6 @@ const SEOContent = () => {
                   <li><Link to="/comparatif/maif-vs-macif" className="text-xs text-muted-foreground hover:text-primary transition-colors">MAIF vs Macif</Link></li>
                   <li><Link to="/comparatif/axa-vs-allianz" className="text-xs text-muted-foreground hover:text-primary transition-colors">AXA vs Allianz</Link></li>
                   <li><Link to="/comparatif/direct-assurance-vs-l-olivier" className="text-xs text-muted-foreground hover:text-primary transition-colors">Direct Assurance vs L'Olivier</Link></li>
-                  <li><Link to="/comparatif/luko-vs-alan" className="text-xs text-muted-foreground hover:text-primary transition-colors">Luko vs Alan</Link></li>
                   <li><Link to="/comparatif" className="text-xs font-medium text-primary hover:underline">Tous les comparatifs →</Link></li>
                 </ul>
               </div>

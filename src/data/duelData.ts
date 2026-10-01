@@ -306,7 +306,6 @@ const popularDuels: [string, string][] = [
   ["matmut", "mma"],
   ["maif", "axa"],
   ["macif", "groupama"],
-  ["direct-assurance", "luko"],
   ["gmf", "matmut"],
   ["allianz", "maaf"],
   ["axa", "maaf"],
@@ -318,7 +317,6 @@ const popularDuels: [string, string][] = [
   ["abeille", "groupama"],
   ["harmonie", "ag2r"],
   ["swiss-life", "generali"],
-  ["luko", "acheel"],
   ["alan", "april"],
 ];
 

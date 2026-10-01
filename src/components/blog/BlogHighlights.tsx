@@ -87,7 +87,6 @@ export const BlogHighlights = () => {
                 <li><button type="button" onClick={() => navigate('/comparatif/maif-vs-macif')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• MAIF vs Macif</button></li>
                 <li><button type="button" onClick={() => navigate('/comparatif/axa-vs-allianz')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• AXA vs Allianz</button></li>
                 <li><button type="button" onClick={() => navigate('/comparatif/direct-assurance-vs-l-olivier')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Direct Assurance vs L'Olivier</button></li>
-                <li><button type="button" onClick={() => navigate('/comparatif/luko-vs-alan')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline">• Luko vs Alan</button></li>
                 <li><button type="button" onClick={() => navigate('/comparatif')} className="bg-transparent border-0 p-0 text-left cursor-pointer hover:underline text-primary font-medium">→ Tous les duels</button></li>
               </ul>
             </div>

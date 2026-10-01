@@ -51,7 +51,6 @@ const duelLinks = [
   { to: "/comparatif/maif-vs-macif", label: "MAIF vs Macif" },
   { to: "/comparatif/axa-vs-allianz", label: "AXA vs Allianz" },
   { to: "/comparatif/direct-assurance-vs-l-olivier", label: "Direct Assurance vs L'Olivier" },
-  { to: "/comparatif/luko-vs-alan", label: "Luko vs Alan" },
 ];
 
 const relatedMap: Record<string, { products: string[]; articles: { to: string; label: string }[]; tools: { to: string; label: string }[]; niches?: { to: string; label: string }[] }> = {
