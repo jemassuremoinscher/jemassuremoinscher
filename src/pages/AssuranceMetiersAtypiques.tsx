@@ -349,7 +349,7 @@ const AssuranceMetiersAtypiques = () => {
           {/* Cas clients */}
           <section className="max-w-4xl mx-auto mb-16">
             <h2 className="text-2xl font-bold text-foreground mb-8 text-center">Ils nous ont fait confiance</h2>
-            <div className="grid md:grid-cols-3 gap-5">
+            <div className="grid md:grid-cols-2 gap-5">
               {[
                 {
                   title: "Parc accrobranche, Ardèche",
@@ -360,11 +360,6 @@ const AssuranceMetiersAtypiques = () => {
                   title: "Moniteur escalade, Chamonix",
                   quote: "Auto-entrepreneur multi-disciplines (escalade, alpi, ski de rando). Couverture unique chez MMA Pro Sport pour 720 €/an au lieu de 1 600 € en direct.",
                   who: "Camille, BE alpinisme",
-                },
-                {
-                  title: "Organisateur trail, Pyrénées",
-                  quote: "Trail de 2 200 coureurs annulé pour intempéries en 2025. Indemnisation à 92 % grâce à la garantie annulation négociée par leurs courtiers.",
-                  who: "Marc, association sportive",
                 },
               ].map((c) => (
                 <Card key={c.title} className="p-5">

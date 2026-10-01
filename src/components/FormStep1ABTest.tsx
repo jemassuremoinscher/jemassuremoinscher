@@ -41,7 +41,7 @@ export const FormStep1ABTest: React.FC<{ onNextStep: () => void }> = ({ onNextSt
   return (
     <div className="form-step">
       <div className="timer" data-timer>
-        ⏰ Plus que {timeLeft}s pour voir vos prix
+        ⏰ Plus que {timeLeft}{'\u00a0'}s pour finir votre demande
       </div>
 
       <h2 className="text-2xl font-semibold">
