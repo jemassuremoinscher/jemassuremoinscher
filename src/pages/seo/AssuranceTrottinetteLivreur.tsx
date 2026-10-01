@@ -69,7 +69,7 @@ const AssuranceTrottinetteLivreur = () => {
     <h3>Les garanties spécifiques au livreur EDPM</h3>
     <p>Une bonne formule trottinette livreur doit inclure :</p>
     <ul>
-      <li><strong>RC professionnelle livreur</strong> (obligatoire) : couvre les dommages causés à un piéton, un véhicule ou un client pendant une mission, jusqu'à 4,5 M€.</li>
+      <li><strong>RC professionnelle livreur</strong> (obligatoire) : couvre les dommages causés à un piéton, un véhicule ou un client pendant une mission, dans les limites prévues au contrat.</li>
       <li><strong>Individuelle conducteur renforcée</strong> : frais médicaux, indemnités journalières (15 à 40 €/jour d'arrêt de travail), invalidité, capital décès.</li>
       <li><strong>Vol et casse de la trottinette</strong> : votre outil de travail. Indemnisation à valeur d'achat si antivol agréé.</li>
       <li><strong>Bris d'équipement</strong> : smartphone (souvent à 400-1 000 €), sac isotherme, batterie additionnelle.</li>
