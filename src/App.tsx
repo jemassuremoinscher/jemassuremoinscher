@@ -89,6 +89,7 @@ const AssuranceTrottinetteLivreur = lazy(() => import("./pages/seo/AssuranceTrot
 const AssuranceChienCategorie = lazy(() => import("./pages/seo/AssuranceChienCategorie"));
 const AssuranceChiot = lazy(() => import("./pages/seo/AssuranceChiot"));
 const AssuranceChaton = lazy(() => import("./pages/seo/AssuranceChaton"));
+const AssuranceNac = lazy(() => import("./pages/seo/AssuranceNac"));
 
 const AssuranceDecennale = lazy(() => import("./pages/AssuranceDecennale"));
 const AssuranceFlotteAuto = lazy(() => import("./pages/AssuranceFlotteAuto"));
@@ -309,6 +310,7 @@ const App = () => {
                 <Route path="/assurance-chien-categorie-1-2" element={<AssuranceChienCategorie />} />
                 <Route path="/assurance-chiot" element={<AssuranceChiot />} />
                 <Route path="/assurance-chaton" element={<AssuranceChaton />} />
+                <Route path="/assurance-nac" element={<AssuranceNac />} />
 
                 <Route path="/comparateur" element={<Comparateur />} />
                 <Route path="/assurance-auto-malus" element={<AssuranceAutoMalusse />} />
