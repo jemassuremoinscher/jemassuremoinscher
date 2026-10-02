@@ -252,9 +252,10 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Email au client — domaine vérifié côté Resend depuis le 2026-09-09,
     // l'envoi n'est plus restreint aux adresses de test : on tente toujours.
-    // Contenu basé sur le template "Confirmation de demande de contact"
-    // (table email_templates) s'il existe et est actif ; sinon, contenu en
-    // dur ci-dessous conservé comme filet de sécurité.
+    // Demande de devis : contenu basé sur le template "Confirmation de demande
+    // de contact" (table email_templates) s'il existe et est actif ; sinon,
+    // contenu en dur ci-dessous conservé comme filet de sécurité. Demande de
+    // rappel : jamais ce modèle, toujours le texte dédié.
     const escHtml = (s: unknown) => String(s ?? '')
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
@@ -284,15 +285,17 @@ const handler = async (req: Request): Promise<Response> => {
     // erreur de lecture était ignorée. On prend le plus récent et on journalise
     // l'absence, l'erreur ou le doublon dans site_error_log.
     const TEMPLATE_NAME = 'Confirmation de demande de contact';
-    const { data: templateRows, error: templateErr } = await supabaseClient
-      .from('email_templates')
-      .select('subject, body')
-      .eq('name', TEMPLATE_NAME)
-      .eq('is_active', true)
-      .order('updated_at', { ascending: false })
-      .limit(2);
+    const { data: templateRows, error: templateErr } = isCallback
+      ? { data: null, error: null }
+      : await supabaseClient
+        .from('email_templates')
+        .select('subject, body')
+        .eq('name', TEMPLATE_NAME)
+        .eq('is_active', true)
+        .order('updated_at', { ascending: false })
+        .limit(2);
     const template = templateRows?.[0] ?? null;
-    if (templateErr || !template || (templateRows?.length ?? 0) > 1) {
+    if (!isCallback && (templateErr || !template || (templateRows?.length ?? 0) > 1)) {
       await supabaseClient.from('site_error_log').insert({
         page_path: 'edge:send-quote-email',
         error_type: templateErr ? 'template_query_failed' : !template ? 'template_not_found' : 'template_duplicate_active',
@@ -304,13 +307,9 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
 
-    // Demande de rappel (/contact) : le modèle n'est utilisé que s'il ne
-    // parle pas de devis ; sinon, texte de confirmation dédié au rappel.
-    const templateMentionsQuote = !!template && /devis/i.test(`${template.subject} ${template.body}`);
-    const useTemplate = !!template && !(isCallback && templateMentionsQuote);
-    if (isCallback && template && !useTemplate) {
-      console.log(`Modèle "${TEMPLATE_NAME}" écarté pour une demande de rappel : il mentionne un devis.`);
-    }
+    // Demande de rappel (/contact) : le modèle n'est jamais utilisé (décision
+    // du 2 octobre 2026), texte de confirmation dédié au rappel.
+    const useTemplate = !!template && !isCallback;
 
     const clientSubject = useTemplate
       ? fillVars(template!.subject)
@@ -377,7 +376,7 @@ const handler = async (req: Request): Promise<Response> => {
           deal_id: dealId,
           author_id: null,
           action_type: 'email',
-          description: `Confirmation de demande de contact envoyée : ${clientSubject}`,
+          description: `${isCallback ? 'Confirmation de demande de rappel' : 'Confirmation de demande de contact'} envoyée : ${clientSubject}`,
           metadata: { kind: 'quote_confirmation', resend_email_id: clientEmail.data.id },
         });
         if (activityErr) {
