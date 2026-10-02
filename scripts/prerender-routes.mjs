@@ -80,8 +80,15 @@ const startServer = () =>
         res.writeHead(403).end();
         return;
       }
-      if (existsSync(filePath) && !path.extname(filePath)) filePath = path.join(filePath, "index.html");
-      if (!existsSync(filePath) || !path.extname(filePath)) filePath = path.join(distDir, "index.html");
+      // Pages : toujours le shell neuf de vite build (index.spa.html), jamais
+      // dist/<route>/index.html, qui est la capture précédente appliquée par
+      // apply-prerender-snapshot. Sinon tout ce qu'une ancienne capture avait
+      // figé (ex. le JSON-LD Organization avec aggregateRating retiré
+      // d'index.html) se reporte de capture en capture.
+      const spaShell = path.join(distDir, "index.spa.html");
+      if (!path.extname(filePath) || !existsSync(filePath)) {
+        filePath = existsSync(spaShell) ? spaShell : path.join(distDir, "index.html");
+      }
       res.writeHead(200, { "content-type": MIME[path.extname(filePath)] || "application/octet-stream" });
       createReadStream(filePath).pipe(res);
     });
