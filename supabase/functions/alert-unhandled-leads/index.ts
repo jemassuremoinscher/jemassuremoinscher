@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@2.0.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { isWithinAlertHours } from "./paris-hour.ts";
 
 // Alerte interne : demandes de devis non traitées après 45 minutes ouvrées
 // (8h-19h, 7j/7, Europe/Paris). Déclenchée par pg_cron toutes les 10 min
@@ -54,9 +55,6 @@ const esc = (s: unknown) =>
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
-
-const parisHour = (d: Date) =>
-  Number(new Intl.DateTimeFormat("fr-FR", { timeZone: "Europe/Paris", hour: "2-digit", hourCycle: "h23" }).format(d));
 
 const formatParis = (iso: string) =>
   new Intl.DateTimeFormat("fr-FR", {
@@ -146,8 +144,7 @@ serve(async (req: Request): Promise<Response> => {
 
   // Double garde horaires (get_unhandled_leads() filtre déjà) : jamais
   // d'email hors 8h-19h, heure de Paris.
-  const hour = parisHour(new Date());
-  if (hour < 8 || hour >= 19) return json({ success: true, skipped: "hors horaires (8h-19h, Europe/Paris)", dryRun });
+  if (!isWithinAlertHours(new Date())) return json({ success: true, skipped: "hors horaires (8h-19h, Europe/Paris)", dryRun });
 
   const { data: leadsData, error: leadsErr } = await admin.rpc("get_unhandled_leads", { p_limit: MAX_DEALS_PER_RUN });
   if (leadsErr) {
