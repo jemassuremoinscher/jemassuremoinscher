@@ -25,7 +25,6 @@ const refConfigs: Record<string, DynamicGreetingConfig> = {
     title: (
       <>
         Assurance <span className="text-accent">Jeune Conducteur</span>
-        <br />au meilleur prix
       </>
     ),
     subtitle: "Permis récent ? Comparez les offres pour votre première assurance auto. Nos assureurs partenaires proposent des tarifs spéciaux permis probatoire.",
@@ -88,7 +87,7 @@ const refConfigs: Record<string, DynamicGreetingConfig> = {
         <br />pas chère
       </>
     ),
-    subtitle: "Locataire ou propriétaire ? Comparez les meilleures offres habitation dès 3€/mois. Souscription en ligne rapide.",
+    subtitle: "Locataire ou propriétaire ? Comparez les offres habitation. Souscription en ligne rapide.",
     arthurSpeech: "Votre logement mérite le meilleur ! 🏠",
     mascotSrc: arthurHouse,
     mascotAlt: "Arthur — assurance habitation économique",
@@ -130,7 +129,6 @@ const refConfigs: Record<string, DynamicGreetingConfig> = {
     title: (
       <>
         Assurance <span className="text-accent">Moto</span>
-        <br />au meilleur tarif
       </>
     ),
     subtitle: "Motard passionné ? Comparez les assurances moto tous risques, équipements inclus. Devis en 2 minutes.",

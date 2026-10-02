@@ -2,10 +2,6 @@
   "brandName": "jemassuremoinscher.fr",
   "baseUrl": "https://www.jemassuremoinscher.fr",
   "trust": {
-    "ratingValue": 5,
-    "ratingValueLabel": "5",
-    "reviewCount": 2,
-    "reviewCountLabel": "2",
     "sameAs": [
       "https://www.facebook.com/jemassuremoinscher",
       "https://twitter.com/jemassuremoinscher",

@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
-import { Star, Shield, Check, X, TrendingUp, Filter } from "lucide-react";
+import { Shield, Check, X, TrendingUp, Filter } from "lucide-react";
 import SEOOptimized from "@/components/SEOOptimized";
 import { addComparisonProductSchemas } from "@/utils/seoUtils";
 
@@ -15,7 +15,6 @@ interface InsuranceOffer {
   insurer: string;
   logo?: string;
   price: number;
-  rating: number;
   coverage: string[];
   deductible: number;
   monthlyPayment: number;
@@ -28,7 +27,6 @@ const mockOffers: InsuranceOffer[] = [
     id: "1",
     insurer: "AXA Premium",
     price: 45,
-    rating: 4.9,
     coverage: ["Responsabilité civile", "Tous risques", "Protection juridique", "Bris de glace"],
     deductible: 200,
     monthlyPayment: 45,
@@ -39,7 +37,6 @@ const mockOffers: InsuranceOffer[] = [
     id: "2",
     insurer: "Allianz Confort",
     price: 52,
-    rating: 4.6,
     coverage: ["Responsabilité civile", "Tous risques", "Vol et incendie"],
     deductible: 150,
     monthlyPayment: 52,
@@ -49,7 +46,6 @@ const mockOffers: InsuranceOffer[] = [
     id: "3",
     insurer: "MAIF Équilibre",
     price: 38,
-    rating: 4.7,
     coverage: ["Responsabilité civile", "Dommages collision", "Protection juridique"],
     deductible: 300,
     monthlyPayment: 38,
@@ -59,7 +55,6 @@ const mockOffers: InsuranceOffer[] = [
     id: "4",
     insurer: "Groupama Sérénité",
     price: 48,
-    rating: 4.5,
     coverage: ["Responsabilité civile", "Tous risques", "Assistance panne", "Bris de glace"],
     deductible: 250,
     monthlyPayment: 48,
@@ -69,20 +64,17 @@ const mockOffers: InsuranceOffer[] = [
 
 export const InsuranceComparisonTool = () => {
   const [maxPrice, setMaxPrice] = useState<number>(100);
-  const [minRating, setMinRating] = useState<number>(0);
   const [sortBy, setSortBy] = useState<string>("price");
   const [selectedCoverage, setSelectedCoverage] = useState<string>("all");
 
   const filteredOffers = mockOffers
     .filter((offer) => offer.price <= maxPrice)
-    .filter((offer) => offer.rating >= minRating)
     .filter((offer) => {
       if (selectedCoverage === "all") return true;
       return offer.coverage.includes(selectedCoverage);
     })
     .sort((a, b) => {
       if (sortBy === "price") return a.price - b.price;
-      if (sortBy === "rating") return b.rating - a.rating;
       return 0;
     });
 
@@ -94,7 +86,6 @@ export const InsuranceComparisonTool = () => {
     offers: filteredOffers.map((offer) => ({
       insurer: offer.insurer,
       price: offer.price,
-      rating: offer.rating,
       coverage: offer.coverage.join(", "),
       benefits: offer.benefits,
     })),
@@ -143,20 +134,6 @@ export const InsuranceComparisonTool = () => {
             </div>
 
             <div className="space-y-2">
-              <Label>Note minimum</Label>
-              <Select value={minRating.toString()} onValueChange={(value) => setMinRating(Number(value))}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="0">Toutes les notes</SelectItem>
-                  <SelectItem value="4">4+ étoiles</SelectItem>
-                  <SelectItem value="4.5">4.5+ étoiles</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-2">
               <Label>Type de couverture</Label>
               <Select value={selectedCoverage} onValueChange={setSelectedCoverage}>
                 <SelectTrigger>
@@ -179,7 +156,6 @@ export const InsuranceComparisonTool = () => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="price">Prix croissant</SelectItem>
-                  <SelectItem value="rating">Meilleure note</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -199,19 +175,6 @@ export const InsuranceComparisonTool = () => {
               <div className="grid md:grid-cols-4 gap-6">
                 <div className="md:col-span-1 flex flex-col items-center justify-center border-r border-border pr-6">
                   <h3 className="text-2xl font-bold text-center mb-2">{offer.insurer}</h3>
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`h-4 w-4 ${
-                          i < Math.floor(offer.rating)
-                            ? "fill-accent text-accent"
-                            : "text-muted-foreground"
-                        }`}
-                      />
-                    ))}
-                    <span className="ml-2 font-semibold">{offer.rating}</span>
-                  </div>
                   <div className="text-center">
                     <p className="text-3xl font-bold text-primary">{offer.price}€</p>
                     <p className="text-sm text-muted-foreground">par mois</p>

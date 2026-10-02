@@ -422,18 +422,10 @@ const syncHostingRouteConfig = async () => {
 
 const syncRootIndex = async () => {
   const indexPath = path.join(rootDir, "index.html");
-  const trust = geoContent.trust;
-  const reviewSnippet = `${trust.ratingValueLabel}/5 sur ${trust.reviewCountLabel}+ avis vérifiés`;
-  const reviewSentence = `Note moyenne ${trust.ratingValueLabel}/5 sur plus de ${trust.reviewCountLabel} avis vérifiés.`;
-
+  // Plus aucune réécriture de note ou de nombre d'avis (décision du
+  // 2 octobre 2026) : seul le patch SEO commun s'applique.
   const indexTemplate = await readFile(indexPath, "utf8");
-  let updatedIndex = indexTemplate
-    .replace(/Avis Clients \| [^']+ avis vérifiés/g, `Avis Clients | ${reviewSnippet}`)
-    .replace(/Note moyenne [^.]+ avis vérifiés\./g, reviewSentence)
-    .replace(/<strong>[0-9.]+\/5<\/strong> — Plus de [^<]+ avis clients vérifiés/g, `<strong>${trust.ratingValueLabel}/5</strong> — Plus de ${trust.reviewCountLabel} avis clients vérifiés`)
-    .replace(/<strong>[0-9.]+\/5 — Plus de [^<]+ avis clients vérifiés<\/strong>/g, `<strong>${trust.ratingValueLabel}/5 — Plus de ${trust.reviewCountLabel} avis clients vérifiés</strong>`);
-
-  updatedIndex = patchHtmlSeo(updatedIndex, "index.html");
+  const updatedIndex = patchHtmlSeo(indexTemplate, "index.html");
 
   if (updatedIndex !== indexTemplate) {
     await writeFile(indexPath, updatedIndex, "utf8");

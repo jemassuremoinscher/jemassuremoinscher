@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Check, TrendingDown, Star, Sparkles, Share2 } from 'lucide-react';
+import { Check, TrendingDown, Sparkles, Share2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 import { SubscriptionModal } from './SubscriptionModal';
@@ -23,7 +23,6 @@ interface InsuranceOffer {
   insurer: string;
   price: number;
   originalPrice: number;
-  rating: number;
   coverage: string;
   benefits: string[];
   popular?: boolean;
@@ -31,36 +30,36 @@ interface InsuranceOffer {
 
 const offersByType: Record<string, Omit<InsuranceOffer, 'price' | 'originalPrice'>[]> = {
   auto: [
-    { id: '1', insurer: 'AXA', rating: 4.9, coverage: 'Premium', benefits: ['Assistance 24/7', 'Franchise 0€', 'Véhicule de remplacement', 'Protection juridique'], popular: true },
-    { id: '2', insurer: 'MAIF', rating: 4.7, coverage: 'Tous risques', benefits: ['Bris de glace inclus', 'Protection conducteur', 'Assistance 0 km'] },
-    { id: '3', insurer: 'Allianz', rating: 4.6, coverage: 'Confort', benefits: ['Garantie valeur à neuf', 'Prêt de véhicule', 'Assistance Europe'] },
-    { id: '4', insurer: 'Groupama', rating: 4.5, coverage: 'Optimal', benefits: ['Catastrophes naturelles', 'Protection famille', 'Garage agréé'] },
-    { id: '5', insurer: 'MACIF', rating: 4.7, coverage: 'Essentiel+', benefits: ['Vol et incendie', 'Dommages collision', 'Assistance panne'] },
-    { id: '6', insurer: 'Direct Assurance', rating: 4.2, coverage: 'Éco', benefits: ['Responsabilité civile', 'Assistance de base'] },
+    { id: '1', insurer: 'AXA', coverage: 'Premium', benefits: ['Assistance 24/7', 'Franchise 0€', 'Véhicule de remplacement', 'Protection juridique'], popular: true },
+    { id: '2', insurer: 'MAIF', coverage: 'Tous risques', benefits: ['Bris de glace inclus', 'Protection conducteur', 'Assistance 0 km'] },
+    { id: '3', insurer: 'Allianz', coverage: 'Confort', benefits: ['Garantie valeur à neuf', 'Prêt de véhicule', 'Assistance Europe'] },
+    { id: '4', insurer: 'Groupama', coverage: 'Optimal', benefits: ['Catastrophes naturelles', 'Protection famille', 'Garage agréé'] },
+    { id: '5', insurer: 'MACIF', coverage: 'Essentiel+', benefits: ['Vol et incendie', 'Dommages collision', 'Assistance panne'] },
+    { id: '6', insurer: 'Direct Assurance', coverage: 'Éco', benefits: ['Responsabilité civile', 'Assistance de base'] },
   ],
   moto: [
-    { id: '1', insurer: 'AXA', rating: 4.9, coverage: 'Premium', benefits: ['Assistance 24/7', 'Équipement pilote couvert', 'Vol et incendie', 'Protection juridique'], popular: true },
-    { id: '2', insurer: 'MAIF', rating: 4.7, coverage: 'Tous risques', benefits: ['Casque et gants couverts', 'Protection conducteur', 'Assistance 0 km'] },
-    { id: '3', insurer: 'Allianz', rating: 4.6, coverage: 'Confort', benefits: ['Valeur à neuf 2 ans', 'Accessoires couverts', 'Assistance Europe'] },
-    { id: '4', insurer: 'Groupama', rating: 4.5, coverage: 'Optimal', benefits: ['Catastrophes naturelles', 'Prêt de 2 roues', 'Garage agréé'] },
-    { id: '5', insurer: 'MACIF', rating: 4.7, coverage: 'Essentiel+', benefits: ['Vol et incendie', 'Dommages collision', 'Assistance panne'] },
-    { id: '6', insurer: 'Direct Assurance', rating: 4.2, coverage: 'Éco', benefits: ['Responsabilité civile', 'Assistance de base'] },
+    { id: '1', insurer: 'AXA', coverage: 'Premium', benefits: ['Assistance 24/7', 'Équipement pilote couvert', 'Vol et incendie', 'Protection juridique'], popular: true },
+    { id: '2', insurer: 'MAIF', coverage: 'Tous risques', benefits: ['Casque et gants couverts', 'Protection conducteur', 'Assistance 0 km'] },
+    { id: '3', insurer: 'Allianz', coverage: 'Confort', benefits: ['Valeur à neuf 2 ans', 'Accessoires couverts', 'Assistance Europe'] },
+    { id: '4', insurer: 'Groupama', coverage: 'Optimal', benefits: ['Catastrophes naturelles', 'Prêt de 2 roues', 'Garage agréé'] },
+    { id: '5', insurer: 'MACIF', coverage: 'Essentiel+', benefits: ['Vol et incendie', 'Dommages collision', 'Assistance panne'] },
+    { id: '6', insurer: 'Direct Assurance', coverage: 'Éco', benefits: ['Responsabilité civile', 'Assistance de base'] },
   ],
   habitation: [
-    { id: '1', insurer: 'AXA', rating: 4.9, coverage: 'Premium', benefits: ['Dégâts des eaux', 'Vol et vandalisme', 'Rééquipement à neuf', 'Protection juridique'], popular: true },
-    { id: '2', insurer: 'MAIF', rating: 4.7, coverage: 'Tous risques', benefits: ['Incendie et explosion', 'Bris de glace', 'Catastrophes naturelles'] },
-    { id: '3', insurer: 'Allianz', rating: 4.6, coverage: 'Confort', benefits: ['Responsabilité civile vie privée', 'Objets de valeur', 'Jardin et piscine'] },
-    { id: '4', insurer: 'Groupama', rating: 4.5, coverage: 'Optimal', benefits: ['Dommages électriques', 'Assistance serrurerie', 'Relogement temporaire'] },
-    { id: '5', insurer: 'MACIF', rating: 4.7, coverage: 'Essentiel+', benefits: ['Dégâts des eaux', 'Incendie', 'Responsabilité civile'] },
-    { id: '6', insurer: 'Direct Assurance', rating: 4.2, coverage: 'Éco', benefits: ['Responsabilité civile', 'Incendie de base'] },
+    { id: '1', insurer: 'AXA', coverage: 'Premium', benefits: ['Dégâts des eaux', 'Vol et vandalisme', 'Rééquipement à neuf', 'Protection juridique'], popular: true },
+    { id: '2', insurer: 'MAIF', coverage: 'Tous risques', benefits: ['Incendie et explosion', 'Bris de glace', 'Catastrophes naturelles'] },
+    { id: '3', insurer: 'Allianz', coverage: 'Confort', benefits: ['Responsabilité civile vie privée', 'Objets de valeur', 'Jardin et piscine'] },
+    { id: '4', insurer: 'Groupama', coverage: 'Optimal', benefits: ['Dommages électriques', 'Assistance serrurerie', 'Relogement temporaire'] },
+    { id: '5', insurer: 'MACIF', coverage: 'Essentiel+', benefits: ['Dégâts des eaux', 'Incendie', 'Responsabilité civile'] },
+    { id: '6', insurer: 'Direct Assurance', coverage: 'Éco', benefits: ['Responsabilité civile', 'Incendie de base'] },
   ],
   sante: [
-    { id: '1', insurer: 'AXA', rating: 4.9, coverage: 'Premium', benefits: ['Hospitalisation 100%', 'Dentaire 300%', 'Optique 400€/an', 'Médecines douces'], popular: true },
-    { id: '2', insurer: 'Harmonie Mutuelle', rating: 4.7, coverage: 'Intégrale', benefits: ['Hospitalisation chambre seule', 'Orthodontie adulte', 'Cure thermale'] },
-    { id: '3', insurer: 'Allianz', rating: 4.6, coverage: 'Confort', benefits: ['Consultation spécialistes 100%', 'Optique 300€/an', 'Prothèses dentaires'] },
-    { id: '4', insurer: 'Groupama', rating: 4.5, coverage: 'Optimal', benefits: ['Hospitalisation 150%', 'Pharmacie remboursée', 'Téléconsultation incluse'] },
-    { id: '5', insurer: 'MACIF', rating: 4.7, coverage: 'Essentiel+', benefits: ['Consultation généraliste 100%', 'Dentaire 200%', 'Optique 200€/an'] },
-    { id: '6', insurer: 'MGEN', rating: 4.3, coverage: 'Éco', benefits: ['Soins courants 100%', 'Hospitalisation de base'] },
+    { id: '1', insurer: 'AXA', coverage: 'Premium', benefits: ['Hospitalisation 100%', 'Dentaire 300%', 'Optique 400€/an', 'Médecines douces'], popular: true },
+    { id: '2', insurer: 'Harmonie Mutuelle', coverage: 'Intégrale', benefits: ['Hospitalisation chambre seule', 'Orthodontie adulte', 'Cure thermale'] },
+    { id: '3', insurer: 'Allianz', coverage: 'Confort', benefits: ['Consultation spécialistes 100%', 'Optique 300€/an', 'Prothèses dentaires'] },
+    { id: '4', insurer: 'Groupama', coverage: 'Optimal', benefits: ['Hospitalisation 150%', 'Pharmacie remboursée', 'Téléconsultation incluse'] },
+    { id: '5', insurer: 'MACIF', coverage: 'Essentiel+', benefits: ['Consultation généraliste 100%', 'Dentaire 200%', 'Optique 200€/an'] },
+    { id: '6', insurer: 'MGEN', coverage: 'Éco', benefits: ['Soins courants 100%', 'Hospitalisation de base'] },
   ],
 };
 
@@ -79,7 +78,7 @@ export const InteractiveComparator = () => {
   const { t } = useLanguage();
   const [insuranceType, setInsuranceType] = useState('auto');
   const [currentPrice, setCurrentPrice] = useState([65]);
-  const [sortBy, setSortBy] = useState<'price' | 'rating' | 'coverage'>('price');
+  const [sortBy, setSortBy] = useState<'price' | 'coverage'>('price');
   const [selectedOffer, setSelectedOffer] = useState<InsuranceOffer | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasCompared, setHasCompared] = useState(false);
@@ -120,8 +119,7 @@ export const InteractiveComparator = () => {
       .map(offer => ({ ...offer, savings: offer.originalPrice - offer.price }))
       .sort((a, b) => {
         if (sortBy === 'price') return a.price - b.price;
-        if (sortBy === 'coverage') return b.benefits.length - a.benefits.length;
-        return b.rating - a.rating;
+        return b.benefits.length - a.benefits.length;
       });
   }, [sortBy, currentPrice, insuranceType]);
 
@@ -138,7 +136,6 @@ export const InteractiveComparator = () => {
     offers: filteredOffers.map((offer) => ({
       insurer: offer.insurer,
       price: offer.price,
-      rating: offer.rating,
       coverage: offer.coverage,
       benefits: offer.benefits,
     })),
@@ -195,7 +192,6 @@ export const InteractiveComparator = () => {
                 <SelectTrigger id="comparator-sort-by" className="h-14 md:h-12 rounded-2xl text-base" aria-label={t('comparator.sortBy')}><SelectValue /></SelectTrigger>
                 <SelectContent className="rounded-2xl">
                   <SelectItem value="price">{t('comparator.lowestPrice')}</SelectItem>
-                  <SelectItem value="rating">{t('comparator.bestRating')}</SelectItem>
                   <SelectItem value="coverage">Meilleures garanties</SelectItem>
                 </SelectContent>
               </Select>
@@ -286,10 +282,6 @@ export const InteractiveComparator = () => {
                       )}
                       {offer.popular && <Badge variant="secondary">{t('comparator.popular')}</Badge>}
                       <h3 className="text-xl font-bold text-foreground">{offer.insurer}</h3>
-                      <div className="flex items-center gap-1">
-                        <Star className="h-4 w-4 fill-secondary text-secondary" />
-                        <span className="text-sm font-semibold text-foreground">{offer.rating}</span>
-                      </div>
                     </div>
                     <div>
                       <Badge variant="outline" className="mb-2 rounded-full">{offer.coverage}</Badge>

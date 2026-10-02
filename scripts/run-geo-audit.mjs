@@ -129,7 +129,7 @@ for (const htmlFile of htmlFiles) {
     file: htmlFile,
     description: "La page statique ne contient pas d'anciennes métriques de confiance",
     pass: !stalePatterns.some(({ pattern }) => pattern.test(html)),
-    expected: `Aucune ancienne métrique, utiliser ${trust.ratingValueLabel}/5 et ${trust.reviewCountLabel} avis si la page expose une preuve sociale`,
+    expected: "Aucune ancienne métrique ni note affichée",
     weight: 5,
     actual: stalePatterns.flatMap(({ pattern }) => [...html.matchAll(pattern)].map((m) => m[0])).join(", ") || null,
   }));
@@ -192,9 +192,9 @@ addCheck(makeCheck({
   id: "home-route-map-review",
   category: "static-metric",
   file: "index.html",
-  description: "La route /avis-clients du shell statique utilise les métriques GEO partagées",
-  pass: contents["index.html"].includes(`'/avis-clients':{t:'Avis Clients | ${trust.ratingValueLabel}/5 sur ${trust.reviewCountLabel}+ avis vérifiés',d:'Lisez les avis de nos clients. Note moyenne ${trust.ratingValueLabel}/5 sur plus de ${trust.reviewCountLabel} avis vérifiés.'}`),
-  expected: `Avis Clients | ${trust.ratingValueLabel}/5 sur ${trust.reviewCountLabel}+ avis vérifiés`,
+  description: "La route /avis-clients du shell statique n'affiche ni note ni nombre d'avis",
+  pass: /'\/avis-clients':\{t:'[^']*',d:'[^']*'\}/.test(contents["index.html"]) && !/'\/avis-clients':\{[^}]*\/5/.test(contents["index.html"]),
+  expected: "Titre et description /avis-clients sans note",
   weight: 10,
 }));
 
@@ -227,14 +227,15 @@ for (const file of [
   "src/components/insurance/ExpertiseSection.tsx",
 ]) {
   addCheck(makeCheck({
-    id: `${file}-shared-rating`,
+    id: `${file}-no-rating`,
     category: "react-source",
     file,
-    description: `${path.basename(file)} lit bien les métriques GEO depuis la source partagée`,
-    pass: contents[file].includes("geoContent.trust.ratingValueLabel") && contents[file].includes("geoContent.trust.reviewCountLabel"),
-    expected: "geoContent.trust.ratingValueLabel + geoContent.trust.reviewCountLabel",
+    description: `${path.basename(file)} n'affiche ni note ni nombre d'avis de l'entreprise`,
+    pass: !/trust\.(rating|reviewCount)|\d\/5 sur \d/.test(contents[file]),
+    expected: "Aucune note ni nombre d'avis",
     weight: 10,
   }));
+
 }
 
 for (const file of ["public/llms.txt", "src/components/admin/SERPPreview.tsx", "src/data/landingConfigs.tsx"]) {
@@ -245,7 +246,7 @@ for (const file of ["public/llms.txt", "src/components/admin/SERPPreview.tsx", "
     file,
     description: `${path.basename(file)} ne contient pas d'ancienne métrique marque`,
     pass: !stalePatterns.some(({ pattern }) => pattern.test(fileContent)),
-    expected: `Aucune ancienne métrique, utiliser ${trust.ratingValueLabel}/5 et ${trust.reviewCountLabel} avis`,
+    expected: "Aucune ancienne métrique ni note affichée",
     weight: 10,
     actual: stalePatterns.flatMap(({ pattern }) => [...fileContent.matchAll(pattern)].map((m) => m[0])).join(", ") || null,
   }));
