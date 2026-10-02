@@ -187,7 +187,7 @@ const VerticalInsurancePage = (props: VerticalPageProps) => {
                     ? props.enBrefFacts
                     : [
                         <>
-                          <BrandName /> compare les meilleurs assureurs du marché.
+                          <BrandName /> compare les offres de ses assureurs partenaires.
                         </>,
                       ]
                 }

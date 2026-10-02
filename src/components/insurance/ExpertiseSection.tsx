@@ -46,7 +46,7 @@ const ExpertiseSection = ({
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Notre équipe de courtiers certifiés analyse chaque contrat pour vous recommander 
-              la couverture optimale au meilleur prix.
+              la couverture adaptée à vos besoins.
             </p>
           </div>
 
@@ -87,7 +87,7 @@ const ExpertiseSection = ({
                   <h3 className="font-semibold text-foreground mb-1">Indépendance totale</h3>
                   <p className="text-sm text-muted-foreground">
                     Nous ne sommes liés à aucune compagnie d'assurance. Notre seul objectif : 
-                    vous trouver le meilleur rapport garanties/prix.
+                    comparer pour vous les garanties et les prix.
                   </p>
                 </div>
               </div>

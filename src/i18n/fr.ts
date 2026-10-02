@@ -119,7 +119,7 @@ const fr: Record<string, string> = {
   'footer.gdprProtected': 'Données Protégées RGPD',
   'footer.verifiedSite': 'Site Vérifié',
   'footer.disclaimer': 'Jemassuremoinscher.fr est un comparateur indépendant. Les tarifs affichés sont indicatifs et peuvent varier selon votre profil. Ce site ne se substitue pas aux conseils d\'un professionnel de l\'assurance.',
-  'footer.description': 'Comparez les meilleures assurances en France. Gratuit, rapide et sans engagement.',
+  'footer.description': 'Comparez les assurances en France. Gratuit, rapide et sans engagement.',
   'footer.legalSection': 'Légal',
   'footer.privacyPolicy': 'Politique de confidentialité',
   'footer.cookiePolicy': 'Politique cookies',

@@ -14,8 +14,8 @@ interface RelatedInsuranceLinksProps {
 
 const allProducts: Record<string, RelatedLink> = {
   auto: { to: "/assurance-auto", label: "Assurance Auto", description: "Comparez les offres auto adaptées à votre profil" },
-  moto: { to: "/assurance-moto", label: "Assurance Moto", description: "Protégez votre deux-roues au meilleur prix" },
-  habitation: { to: "/assurance-habitation", label: "Assurance Habitation", description: "Couvrez votre logement au meilleur tarif" },
+  moto: { to: "/assurance-moto", label: "Assurance Moto", description: "Comparez les assurances pour votre deux-roues" },
+  habitation: { to: "/assurance-habitation", label: "Assurance Habitation", description: "Comparez les assurances pour votre logement" },
   sante: { to: "/assurance-sante", label: "Mutuelle Santé", description: "Remboursements optimaux, cotisation maîtrisée" },
   animaux: { to: "/assurance-animaux", label: "Assurance Animaux", description: "Frais vétérinaires remboursés selon la formule" },
   vie: { to: "/assurance-vie", label: "Assurance Vie", description: "Protégez vos proches et faites fructifier votre épargne" },
@@ -57,7 +57,7 @@ const relatedMap: Record<string, { products: string[]; articles: { to: string; l
   auto: {
     products: ["moto", "habitation", "permisEtranger", "jeuneConducteur"],
     articles: [
-      { to: "/blog/meilleure-assurance-auto-2026", label: "Meilleure assurance auto 2026" },
+      { to: "/blog/meilleure-assurance-auto-2026", label: "Guide assurance auto 2026" },
       { to: "/blog/assurance-auto-jeune-conducteur-astuces", label: "Astuces jeune conducteur" },
       { to: "/blog/permis-conduire-etranger-assurance-auto-france", label: "Assurance auto avec permis étranger" },
       { to: "/blog/heritage-vehicule-assurer-voiture-deces", label: "Assurer une voiture après un décès" },

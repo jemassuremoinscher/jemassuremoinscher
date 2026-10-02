@@ -119,7 +119,7 @@ const en: Record<string, string> = {
   'footer.gdprProtected': 'GDPR Protected Data',
   'footer.verifiedSite': 'Verified Site',
   'footer.disclaimer': 'Jemassuremoinscher.fr is an independent comparison site. Displayed rates are indicative and may vary based on your profile. This site does not replace advice from an insurance professional.',
-  'footer.description': 'Compare the best insurance in France. Free, fast and no commitment.',
+  'footer.description': 'Compare insurance in France. Free, fast and no commitment.',
   'footer.legalSection': 'Legal',
   'footer.privacyPolicy': 'Privacy Policy',
   'footer.cookiePolicy': 'Cookie Policy',
