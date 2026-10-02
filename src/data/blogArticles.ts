@@ -344,7 +344,7 @@ Chaque année sans sinistre = **-5 %** sur votre coefficient.
     content: `
 # Résiliation d'Assurance : Le Guide Terrain du Courtier
 
-En 2026, les lois Hamon, Chatel et Lemoine vous donnent une liberté quasi totale pour changer d'assureur. Pourtant, **35 % des résiliations échouent** à cause d'erreurs de procédure. Voici les cas réels que nous traitons chaque semaine — et comment éviter les pièges.
+En 2026, les lois Hamon, Chatel et Lemoine vous donnent une liberté quasi totale pour changer d'assureur.
 
 ## Les 3 grandes lois à connaître
 
@@ -599,18 +599,6 @@ Vous payez 600€/an, résiliation le 15 avril :
 ✅ **Je conserve une copie de tout**
 ✅ **Je vérifie la continuité de garantie**
 
-## Économies constatées après résiliation (données internes 2026)
-
-| Type de contrat | Économie moyenne | Meilleur cas constaté | Temps de procédure |
-|-----------------|------------------|-----------------------|-------------------|
-| Auto (loi Hamon) | 340 €/an | 780 €/an | 15-30 jours |
-| Habitation (loi Hamon) | 180 €/an | 420 €/an | 15-30 jours |
-| Emprunteur (loi Lemoine) | 4 800 € (durée prêt) | 18 000 € | 10-25 jours |
-| Moto (loi Hamon) | 220 €/an | 550 €/an | 15-30 jours |
-
-> **💡 Retour terrain**
-> Un client nous a contacté après avoir raté sa résiliation à l'échéance d'1 jour : sa lettre recommandée était arrivée le lendemain de la date limite. Résultat : contrat reconduit pour un an. Ce qu'il ne savait pas : avec la loi Hamon (son contrat avait plus d'un an), il aurait pu résilier **à tout moment** sans se soucier de la date d'échéance. On a corrigé le tir en 48 heures via délégation au nouvel assureur.
-
 ## Les 3 règles d'or du courtier
 
 1. **Souscrivez AVANT de résilier** — le nouvel assureur gère tout et garantit zéro jour sans couverture
@@ -732,9 +720,9 @@ N'attends plus un jour de plus. Chaque mois qui passe est une mensualité trop �
     author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["loi hamon", "résiliation", "assurance auto", "assurance habitation"],
     content: `
-# Loi Hamon : Comment Nos Clients Économisent 350 €/an en Changeant d'Assurance
+# Loi Hamon : Résiliez votre assurance facilement
 
-Depuis 2015, la **[loi Hamon](/glossaire/loi-hamon)** vous donne le droit de résilier votre assurance auto, moto ou habitation **à tout moment après 1 an**, sans frais ni justification. En 2026, nous constatons que les assurés qui utilisent ce droit économisent en moyenne **350 €/an** — et pourtant, 65 % des Français ne l'ont jamais fait.
+Depuis 2015, la **[loi Hamon](/glossaire/loi-hamon)** vous donne le droit de résilier votre assurance auto, moto ou habitation **à tout moment après 1 an**, sans frais ni justification.
 
 ## Ce que la loi Hamon couvre (et ne couvre pas)
 
@@ -751,27 +739,6 @@ Depuis 2015, la **[loi Hamon](/glossaire/loi-hamon)** vous donne le droit de ré
 
 **Après 12 mois d'engagement**, vous envoyez une demande de résiliation (ou mieux : votre nouvel assureur le fait pour vous). Votre ancien contrat prend fin **30 jours** après réception. Le trop-perçu de cotisation vous est remboursé au prorata.
 
-> **💡 Retour terrain — Le cas de Rachid, 34 ans**
-> Rachid payait 980 €/an chez son assureur auto historique (MMA, [tous risques](/glossaire/tous-risques), Clio IV). En utilisant la loi Hamon, il est passé chez Direct Assurance à 620 €/an avec des garanties équivalentes — même franchise, même assistance 0 km. Économie : **360 €/an**. Sa seule action : remplir un formulaire en ligne chez le nouvel assureur, qui a géré toute la résiliation.
-
-## Économies constatées par type d'assurance (2026)
-
-### Assurance auto
-
-| Profil | Assureur d'origine | Nouvel assureur | Économie/an |
-|--------|-------------------|-----------------|-------------|
-| Conducteur 35 ans, bonus 0.50 | MAAF (680 €) | Direct Assurance (420 €) | **260 €** |
-| Jeune conducteur 22 ans | Allianz (1 800 €) | L'Olivier (1 350 €) | **450 €** |
-| Senior 68 ans, bonus max | AXA (520 €) | Macif (380 €) | **140 €** |
-
-### Assurance habitation
-
-| Profil | Assureur d'origine | Nouvel assureur | Économie/an |
-|--------|-------------------|-----------------|-------------|
-| Locataire T3 Paris | GMF (320 €) | Luko (180 €) | **140 €** |
-| Propriétaire maison | Groupama (580 €) | MAIF (420 €) | **160 €** |
-| PNO investisseur | MMA (280 €) | Direct Assurance (180 €) | **100 €** |
-
 ## Comment faire concrètement
 
 ### Méthode recommandée : délégation au nouvel assureur
@@ -784,12 +751,6 @@ Depuis 2015, la **[loi Hamon](/glossaire/loi-hamon)** vous donne le droit de ré
 
 > **💡 Le conseil du courtier**
 > Ne résiliez **jamais** vous-même avant d'avoir souscrit ailleurs. Le nouvel assureur s'occupe de la résiliation pour vous et garantit zéro jour sans couverture. Si vous résiliez d'abord, vous risquez une période sans assurance — ce qui est illégal pour l'auto.
-
-## 🚫 L'erreur que font 30 % de nos clients
-
-**« J'attends la date anniversaire pour changer, c'est plus simple. »**
-
-Faux. Avec la loi Hamon, attendre votre échéance vous fait perdre des mois d'économies. Si vous trouvez mieux en mars et que votre échéance est en novembre, c'est **8 mois de trop-payé** — soit potentiellement 200-300 € jetés par la fenêtre.
 
 ## Les pièges à éviter
 
@@ -1032,8 +993,6 @@ Changement d'adresse, de garage, etc.
 
 *Tarifs pour un conducteur de 35 ans, bonus 0.50, Clio V essence, zone urbaine*
 
-> **💡 Retour terrain — Le cas de Marc, 42 ans**
-> Marc roulait en tous risques chez AXA à 780 €/an avec un véhicule de 2016 coté 6 500 € Argus. On lui a fait passer en tiers étendu chez Macif à 480 €/an. Ses garanties vol + incendie + bris de glace sont identiques, la seule différence : pas de garantie dommages tous accidents. Sur un véhicule coté 6 500 €, la franchise tous risques de 500 € rendait cette garantie peu rentable. **Économie : 300 €/an sans perte de protection réelle.**
     `
   },
   {
@@ -1251,9 +1210,6 @@ Ne vous fiez pas qu'au prix ! Vérifiez :
 
 *Tarifs indicatifs mars 2026, formule intermédiaire, zone urbaine standard*
 
-> **💡 Retour terrain — Le cas de Nathalie, propriétaire T4**
-> Nathalie avait un contrat Groupama à 42 €/mois sans garantie dommages électriques. Après une surtension qui a grillé son réfrigérateur, sa plaque de cuisson et son lave-linge (2 800 € de dégâts), elle n'a rien touché. En changeant pour la MAIF à 38 €/mois avec l'option dommages électriques (plafond 8 000 €), elle est désormais mieux couverte et paie **moins cher**.
-
 ## Conseils pour économiser
 
 ### 1. Ajustez votre capital mobilier
@@ -1317,9 +1273,6 @@ Les tarifs des assureurs évoluent constamment. Un contrat compétitif il y a 3 
 - Demandez 3 à 5 devis différents
 
 **Économie potentielle : 200-500€/an**
-
-**Témoignage :**
-> "J'ai comparé après 5 ans chez le même assureur. J'ai trouvé 380€ moins cher avec des garanties équivalentes !" - Pierre, 42 ans
 
 ## 2. Regroupez vos contrats
 
@@ -2497,31 +2450,6 @@ Déclarez TOUS vos accidents, même sans tiers identifié.
 **Coût :** 400-800€/an d\'écart entre assureurs
 
 Comparez au moins 5 devis avant de souscrire.
-
-## 📊 Cas Pratique : Mathéo, 19 ans
-
-**Profil :**
-- Permis depuis 6 mois
-- Renault Clio 4 CV (2015)
-- Usage : études + trajet domicile
-- 8 000 km/an
-- Garage fermé
-
-**Sans optimisation :**
-- Assurance MMA tous risques : 165€/mois
-- Total annuel : 1 980€
-
-**Avec optimisations :**
-- Conduite accompagnée : ✅ -25%
-- Conducteur secondaire du véhicule parental : ✅ -30%
-- Formule tiers + au lieu de tous risques : ✅ -30€/mois
-- Paiement annuel : ✅ -5%
-- Kilométrage limité : ✅ -10%
-
-**Résultat optimisé :**
-- Direct Assurance tiers étendu : 72€/mois
-- Total annuel : 864€
-- **ÉCONOMIE : 1 116€/an (56%)**
 
 ## 🎓 Cas Particuliers
 

@@ -139,12 +139,6 @@ C'est la conséquence la plus dangereuse, et la moins connue. **Aucun assureur E
 3. **Saisie sur salaire et patrimoine** jusqu'au remboursement intégral, sans plafond
 4. **Inscription au fichier AGIRA** : tout futur contrat d'assurance refusé ou avec surprime sévère pendant 5 ans
 
-## Cas réel (anonymisé) : 312 000 € de dette personnelle
-
-> Léo, 19 ans, étudiant à Lyon. Trottinette débridée à 45 km/h via app. Renverse un piéton de 67 ans → fracture du fémur + traumatisme crânien. Indemnisation totale du préjudice : **312 000 €**. Assurance EDPM refuse (clause débridage). Léo est condamné personnellement à payer. **Saisie sur salaire à vie**.
-
-Ce cas n'est pas isolé : la FFA (Fédération Française de l'Assurance) recense **~180 dossiers similaires/an** depuis 2023.
-
 ## Comment les assureurs détectent le débridage
 
 - **Expertise post-sinistre** : analyse du firmware, lecture des compteurs internes (vitesse max enregistrée)

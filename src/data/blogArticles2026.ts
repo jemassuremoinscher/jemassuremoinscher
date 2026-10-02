@@ -3732,7 +3732,7 @@ Le remboursement n'est pas un critère de qualité. Vérifiez plutôt la certifi
     content: `
 # Devis assurance auto jeune conducteur : combien ça coûte vraiment en 2026 ?
 
-Vous venez d'obtenir votre permis et vous cherchez une assurance auto pas chère ? La surprime jeune conducteur (jusqu'à +100% la première année) rend la comparaison indispensable. En tant qu'ancien souscripteur auto, je vous montre exactement comment les assureurs calculent votre prime — et comment contourner le système.
+Vous venez d'obtenir votre permis et vous cherchez une assurance auto pas chère ? La surprime jeune conducteur (jusqu'à +100% la première année) rend la comparaison indispensable.
 
 ## L'essentiel à retenir
 
@@ -3833,8 +3833,6 @@ Si vos parents sont déjà chez un assureur pour leur [habitation](/assurance-ha
 
 Les écarts entre assureurs peuvent atteindre **50%** pour le même profil. Un comparateur indépendant comme jemassuremoinscher.fr interroge ${NB_ASSUREURS_LABEL} assureurs et courtiers en 2 minutes.
 
-> **Conseil d'Arthur :** Ne vous arrêtez pas au premier devis. J'ai vu des écarts de 1 200€ entre le plus cher et le moins cher pour un même profil de jeune conducteur ! **[→ Simuler mon prix en 2 minutes](/assurance-auto)**
-
 ## Quels assureurs sont les moins chers pour les jeunes conducteurs en 2026 ?
 
 ### Top 5 des assureurs compétitifs
@@ -3853,23 +3851,6 @@ Les écarts entre assureurs peuvent atteindre **50%** pour le même profil. Un c
 - **Kilométrage annuel** : moins de 8 000 km = -10%
 - **Usage** : domicile-travail vs loisirs
 - **Puissance du véhicule** : clé du tarif
-
-## Simulation : cas concrets de devis jeune conducteur
-
-### Cas 1 : Lucas, 18 ans, Lyon
-- **Véhicule** : Renault Clio IV (2018), 5 CV
-- **Garage** : parking collectif fermé
-- **Kilométrage** : 10 000 km/an
-- **Meilleur devis trouvé** : 1 080€/an (tiers étendu) chez Direct Assurance
-- **Devis le plus cher** : 2 340€/an chez un assureur traditionnel
-- **Économie** : **1 260€/an** grâce à la comparaison
-
-### Cas 2 : Emma, 19 ans, Bordeaux (AAC)
-- **Véhicule** : Citroën C3 (2020), 4 CV
-- **Garage** : rue
-- **Kilométrage** : 8 000 km/an
-- **Meilleur devis trouvé** : 780€/an (tiers étendu) chez L'Olivier
-- **Économie avec AAC vs sans** : 420€/an
 
 ## Vous avez un malus ? D'autres solutions existent
 
