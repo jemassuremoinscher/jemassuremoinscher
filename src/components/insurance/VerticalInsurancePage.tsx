@@ -63,8 +63,6 @@ export interface VerticalPageProps {
   serviceName: string;
   serviceDescription: string;
   productCategory: string;
-  ratingValue?: number;
-  reviewCount?: number;
   /** Expertise display label */
   expertiseLabel: string;
   /**
@@ -106,8 +104,6 @@ const VerticalInsurancePage = (props: VerticalPageProps) => {
     description: props.serviceDescription,
     category: props.productCategory,
     url: props.canonical,
-    ratingValue: props.ratingValue,
-    reviewCount: props.reviewCount,
   });
 
   const advantages = props.advantages ?? [

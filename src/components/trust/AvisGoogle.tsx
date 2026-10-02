@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { Star, ExternalLink } from "lucide-react";
 import { GOOGLE_REVIEWS_PUBLIC_URL } from "@/config/site";
 
@@ -39,14 +38,14 @@ const Stars = ({ value }: { value: number }) => (
   </div>
 );
 
+// Pas de JSON-LD ici : aucune note ni nombre d'avis dans les données
+// structurées de l'entreprise (décision du 2 octobre 2026).
 interface Props {
-  /** Inject AggregateRating JSON-LD (only on pages where it makes sense). */
-  injectJsonLd?: boolean;
   /** Optional override of the section title. */
   title?: string;
 }
 
-const AvisGoogle = ({ injectJsonLd = true, title = "Avis Google vérifiés" }: Props) => {
+const AvisGoogle = ({ title = "Avis Google vérifiés" }: Props) => {
   const [data, setData] = useState<GoogleReviewsData | null>(null);
   const [error, setError] = useState(false);
 
@@ -171,25 +170,6 @@ const AvisGoogle = ({ injectJsonLd = true, title = "Avis Google vérifiés" }: P
         </div>
       </div>
 
-      {injectJsonLd && (
-        <Helmet>
-          <script type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "jemassuremoinscher.fr",
-              url: "https://www.jemassuremoinscher.fr",
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: data.rating.toFixed(1),
-                bestRating: "5",
-                worstRating: "1",
-                ratingCount: String(data.total),
-              },
-            })}
-          </script>
-        </Helmet>
-      )}
     </section>
   );
 };

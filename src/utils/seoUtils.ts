@@ -1,7 +1,9 @@
 import geoContent from "@/data/geo-content.json";
 import { NB_ASSUREURS } from "@/config/site";
 
-export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number) => {
+// Aucune note ni nombre d'avis dans les données structurées de l'entreprise
+// (décision du 2 octobre 2026) : pas d'aggregateRating, de review ni de rating.
+export const addOrganizationSchema = () => {
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -29,37 +31,7 @@ export const addOrganizationSchema = (ratingValue?: number, reviewCount?: number
     },
     "sameAs": geoContent.trust.sameAs
   };
-  if (ratingValue && reviewCount) {
-    schema.aggregateRating = {
-      "@type": "AggregateRating",
-      "ratingValue": ratingValue.toString(),
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": reviewCount.toString()
-    };
-  }
   return schema;
-};
-
-/**
- * @deprecated Use addOrganizationSchema(ratingValue, reviewCount) instead.
- * Kept for backward compatibility on non-homepage pages.
- */
-export const addAggregateRatingSchema = (name: string, ratingValue: number, reviewCount: number) => {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": name,
-    "@id": "https://www.jemassuremoinscher.fr/#organization",
-    "url": "https://www.jemassuremoinscher.fr",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": ratingValue.toString(),
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": reviewCount.toString()
-    }
-  };
 };
 
 export const addServiceSchema = (service: {
@@ -222,13 +194,6 @@ export const addArticleSchema = (article: {
   };
 };
 
-const verifiedReviewBase = {
-  ratingValue: geoContent.trust.ratingValue,
-  reviewCount: geoContent.trust.reviewCount,
-};
-
-const productReviewData: Record<string, { reviewBody: string; authorName: string }> = {};
-
 export const addInsuranceProductSchema = (product: {
   name: string;
   description: string;
@@ -236,8 +201,6 @@ export const addInsuranceProductSchema = (product: {
   url: string;
   providerName?: string;
   priceRange?: string;
-  ratingValue?: number;
-  reviewCount?: number;
 }) => {
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
@@ -266,48 +229,6 @@ export const addInsuranceProductSchema = (product: {
       }
     };
   }
-  const productPath = new URL(product.url).pathname.replace(/\/$/, "") || "/";
-  const productReview = productReviewData[productPath];
-  const ratingValue = productReview ? verifiedReviewBase.ratingValue : product.ratingValue;
-  const reviewCount = productReview ? verifiedReviewBase.reviewCount : product.reviewCount;
-
-  if (ratingValue && reviewCount) {
-    schema.aggregateRating = {
-      "@type": "AggregateRating",
-      "ratingValue": ratingValue.toString(),
-      "bestRating": "5",
-      "worstRating": "1",
-      "ratingCount": reviewCount.toString(),
-      "reviewCount": reviewCount.toString()
-    };
-  }
-  if (productReview) {
-    // Stable date per product to satisfy Google rich results validators
-    // (Review requires datePublished). NOTE: when the Review is nested
-    // inside a parent InsuranceProduct/Product, do NOT set "itemReviewed"
-    // — Google flags it as a directional conflict (parent already implies it).
-    const reviewDate = new Date();
-    reviewDate.setMonth(reviewDate.getMonth() - 2);
-    schema.review = {
-      "@type": "Review",
-      "author": {
-        "@type": "Person",
-        "name": productReview.authorName
-      },
-      "datePublished": reviewDate.toISOString().split("T")[0],
-      "reviewBody": productReview.reviewBody,
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": verifiedReviewBase.ratingValue.toString(),
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "jemassuremoinscher.fr"
-      }
-    };
-  }
   return schema;
 };
 
@@ -319,8 +240,6 @@ export const addComparisonProductSchemas = (comparison: {
   offers: Array<{
     insurer: string;
     price: number;
-    rating?: number;
-    reviewCount?: number;
     coverage?: string;
     benefits?: string[];
   }>;
@@ -365,17 +284,6 @@ export const addComparisonProductSchemas = (comparison: {
         unitText: "mois",
       },
     },
-    ...(offer.rating
-      ? {
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: offer.rating,
-            bestRating: 5,
-            worstRating: 1,
-            reviewCount: offer.reviewCount || 1,
-          },
-        }
-      : {}),
   }));
 
   return [itemList, ...products];

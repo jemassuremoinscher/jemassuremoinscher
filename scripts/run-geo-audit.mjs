@@ -198,23 +198,25 @@ addCheck(makeCheck({
   weight: 10,
 }));
 
+// Aucune note ni nombre d'avis dans les données structurées (décision du
+// 2 octobre 2026) : ces deux contrôles vérifient désormais leur absence.
 addCheck(makeCheck({
-  id: "home-jsonld-rating",
+  id: "home-jsonld-no-rating",
   category: "structured-data",
   file: "index.html",
-  description: "Le JSON-LD statique utilise la note et le nombre d'avis partagés",
-  pass: contents["index.html"].includes(`"ratingValue":"${trust.ratingValueLabel}","reviewCount":"${trust.reviewCountLabel}"`),
-  expected: `${trust.ratingValueLabel} / ${trust.reviewCountLabel}`,
+  description: "Le JSON-LD statique ne contient ni note ni nombre d'avis",
+  pass: !/aggregateRating|ratingValue|reviewCount|ratingCount/.test(contents["index.html"]),
+  expected: "Aucun aggregateRating / ratingValue / reviewCount",
   weight: 10,
 }));
 
 addCheck(makeCheck({
-  id: "react-home-shared-source",
+  id: "react-home-no-rating",
   category: "react-source",
   file: "src/pages/Index.tsx",
-  description: "La home React lit la note GEO depuis la source partagée",
-  pass: contents["src/pages/Index.tsx"].includes("addOrganizationSchema(geoContent.trust.ratingValue, geoContent.trust.reviewCount)"),
-  expected: "geoContent.trust.ratingValue + geoContent.trust.reviewCount",
+  description: "La home React n'émet pas de note dans son Organization",
+  pass: !contents["src/pages/Index.tsx"].includes("addOrganizationSchema(geoContent.trust.ratingValue"),
+  expected: "addOrganizationSchema() sans note",
   weight: 10,
 }));
 

@@ -9,7 +9,7 @@ const BASE = "https://www.jemassuremoinscher.fr";
 
 /**
  * Globally injected JSON-LD schemas:
- * - Organization (with AggregateRating from geo-content)
+ * - Organization (sans note ni nombre d'avis)
  * - WebSite (with SearchAction)
  * - BreadcrumbList (auto-generated from URL pathname)
  *
@@ -24,9 +24,6 @@ const GlobalSchemas = () => {
   const pageDeclaresBreadcrumb = declared.component + declared.jsonld > 0;
 
   const schemas = useMemo(() => {
-    // AggregateRating is now injected dynamically by <AvisGoogle /> from the live
-    // Google Reviews API. We deliberately do NOT inject a static rating here, to
-    // avoid Schema.org rich-result violations when the real data is unavailable.
     const organization = addOrganizationSchema();
 
     const website = {
