@@ -807,7 +807,7 @@ const en: Record<string, string> = {
   'motoPage.faq4.a': 'Yes, insurance is mandatory for all motor vehicles, including 50cc scooters.',
 
   // Animaux Page
-  'animauxPage.title': 'Cheaper Pet Insurance',
+  'animauxPage.title': 'Dog and cat insurance: how it works',
   'animauxPage.subtitle': "Protect your pet's health and control vet costs.",
   'animauxPage.adv1.title': 'Reimbursement by plan',
   'animauxPage.adv1.desc': 'The reimbursement rate and annual cap depend on the chosen contract.',
@@ -828,7 +828,7 @@ const en: Record<string, string> = {
   'animauxPage.learnMore': 'pet insurance',
   'animauxPage.readyToSave': 'pet',
   'animauxPage.readyTitle': 'Ready to protect your pet?',
-  'animauxPage.readyDesc': 'Compare the best pet insurance for free in 2 minutes.',
+  'animauxPage.readyDesc': 'Fill in the form: an adviser reviews your request and presents the offers suited to your pet.',
   'animauxPage.faq1.q': 'From what age can you insure your pet?',
   'animauxPage.faq1.a': 'Minimum and maximum ages at subscription depend on the contract: an advisor tells you with the quote.',
   'animauxPage.faq2.q': 'What is the waiting period?',

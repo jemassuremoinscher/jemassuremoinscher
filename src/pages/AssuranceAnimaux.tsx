@@ -16,9 +16,12 @@ import arthurFlying from "@/assets/mascotte/arthur-walking.webp";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
+import AnimauxPillar from "@/components/insurance/AnimauxPillar";
+import { ANIMAUX_FAQ } from "@/data/animauxPilier";
 
 const AssuranceAnimaux = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isFr = language === "fr";
   const formRef = useRef<HTMLDivElement>(null);
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -34,16 +37,13 @@ const AssuranceAnimaux = () => {
     provider: "jemassuremoinscher.fr",
     areaServed: "France",
   });
-  const faqSchema = addFAQSchema([
-    {
-      question: "Pourquoi assurer son animal ?",
-      answer: "Pour couvrir les frais vétérinaires souvent élevés (accidents, maladies, chirurgie).",
-    },
-    {
-      question: "Combien coûte une assurance animaux ?",
-      answer: "Le prix dépend de l'espèce, de l'âge, de la race et du niveau de garanties choisi. Comparez plusieurs offres pour trouver le tarif adapté à votre animal.",
-    },
-  ]);
+  // FAQPage = exactement la FAQ affichée : celle du pilier en français, celle
+  // des onglets en anglais.
+  const enFaqs = [1, 2, 3, 4].map((n) => ({
+    question: t(`animauxPage.faq${n}.q`),
+    answer: t(`animauxPage.faq${n}.a`),
+  }));
+  const faqSchema = addFAQSchema(isFr ? ANIMAUX_FAQ : enFaqs);
   const insuranceProductSchema = addInsuranceProductSchema({
     name: "Assurance Animaux",
     description: "Comparateur d'assurance chien, chat et NAC.",
@@ -61,12 +61,12 @@ const AssuranceAnimaux = () => {
       <SEOOptimized
         title={t("seo.animaux.title")}
         description={t("seo.animaux.description")}
-        keyword="assurance animaux moins chère"
+        keyword="assurance chien chat"
         keywords="assurance chien, assurance chat, mutuelle animaux, assurance NAC"
         canonical="https://www.jemassuremoinscher.fr/assurance-animaux"
-        ogTitle="Assurance Animaux Moins Chère : Chien & Chat | Comparateur Gratuit"
-        ogDescription="Comparez les meilleures mutuelles pour chien et chat. Devis gratuit en 2 minutes."
-        twitterDescription="Mutuelle chien/chat : comparez les offres. Devis gratuit en 2 min."
+        ogTitle="Assurance chien et chat : remboursement, plafond, carence"
+        ogDescription="Remboursement, plafond, franchise, carence, âge limite : comment fonctionne une assurance chien ou chat. Fourchettes de trois contrats, sources citées."
+        twitterDescription="Remboursement, plafond, franchise, carence, âge limite : comment fonctionne une assurance chien ou chat. Fourchettes de trois contrats, sources citées."
         jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
@@ -82,6 +82,9 @@ const AssuranceAnimaux = () => {
                 subtitle={t("animauxPage.subtitle")}
                 ctaLabel={t("insPage.compareNow")}
                 onCtaClick={scrollToForm}
+                // Pilier : pas de promesse d'économie (encart par défaut « Économisez »).
+                savingsValue={isFr ? "Devis gratuit" : "Free quote"}
+                savingsLabel={isFr ? "et sans engagement" : "with no commitment"}
               />
             </div>
           </div>
@@ -110,15 +113,11 @@ const AssuranceAnimaux = () => {
 
           <CourtierValueCards product="animaux" />
 
-          <InsuranceSEOTabs
-            faqTitle={t("insPage.faqTitle")}
-            faqs={[
-              { question: t("animauxPage.faq1.q"), answer: t("animauxPage.faq1.a") },
-              { question: t("animauxPage.faq2.q"), answer: t("animauxPage.faq2.a") },
-              { question: t("animauxPage.faq3.q"), answer: t("animauxPage.faq3.a") },
-              { question: t("animauxPage.faq4.q"), answer: t("animauxPage.faq4.a") },
-            ]}
-          />
+          {isFr ? (
+            <AnimauxPillar onCtaClick={scrollToForm} />
+          ) : (
+            <InsuranceSEOTabs faqTitle={t("insPage.faqTitle")} faqs={enFaqs} />
+          )}
 
           <InsuranceBottomHub
             currentPage="animaux"

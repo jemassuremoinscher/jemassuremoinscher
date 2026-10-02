@@ -801,7 +801,7 @@ const fr: Record<string, string> = {
   'motoPage.faq4.a': "Oui, l'assurance est obligatoire pour tout véhicule à moteur, y compris les scooters 50cc.",
 
   // Animaux Page
-  'animauxPage.title': 'Assurance Animaux Moins Chère',
+  'animauxPage.title': 'Assurance chien et chat : comment ça marche',
   'animauxPage.subtitle': 'Protégez la santé de votre compagnon et maîtrisez vos dépenses vétérinaires.',
   'animauxPage.adv1.title': "Remboursement selon la formule",
   'animauxPage.adv1.desc': 'Le taux de remboursement et le plafond annuel dépendent du contrat choisi.',
@@ -822,7 +822,7 @@ const fr: Record<string, string> = {
   'animauxPage.learnMore': "l'assurance animaux",
   'animauxPage.readyToSave': 'compagnon',
   'animauxPage.readyTitle': 'Prêt à protéger votre compagnon ?',
-  'animauxPage.readyDesc': 'Comparez gratuitement les meilleures mutuelles animaux en 2 minutes.',
+  'animauxPage.readyDesc': 'Remplissez le formulaire : un conseiller étudie votre demande et vous présente les offres adaptées à votre animal.',
   'animauxPage.faq1.q': "À partir de quel âge peut-on assurer son animal ?",
   'animauxPage.faq1.a': "L'âge minimal et l'âge maximal à la souscription dépendent du contrat : un conseiller vous les indique avec le devis.",
   'animauxPage.faq2.q': "Qu'est-ce que le délai de carence ?",
@@ -2403,8 +2403,8 @@ const fr: Record<string, string> = {
   "seo.sante.description": `Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers partenaires en 2 min. Optique, dentaire, hospitalisation : trouvez la formule idéale.`,
   "seo.reviews.title": "Avis Clients | jemassuremoinscher.fr",
   "seo.reviews.description": "Avis clients sur notre comparateur d'assurance.",
-"seo.animaux.title": "Assurance Chien Chat | Comparateur Gratuit",
-  "seo.animaux.description": "Mutuelle animaux : remboursement des frais vétérinaires selon la formule. Comparez les offres chien et chat en 2 min.",
+"seo.animaux.title": "Assurance chien et chat : remboursement, plafond, carence",
+  "seo.animaux.description": "Remboursement, plafond, franchise, carence, âge limite : comment fonctionne une assurance chien ou chat. Fourchettes de trois contrats, sources citées.",
   "seo.expatries.title": "Assurance Expatriés — Français à l'étranger & Étrangers en France",
   "seo.expatries.description": `Expatrié français à l'étranger ou étranger en France ? Compare santé internationale, rapatriement, auto, habitation. ${NB_ASSUREURS_LABEL} assureurs et courtiers, devis 2 min.`,
 "seo.gli.title": "GLI : Garantie Loyer Impayé dès 2,5%",
