@@ -244,11 +244,6 @@ Faux dans 30 % des cas. Nos données montrent que près d'un tiers des malussés
 
 Oubliez les listes vagues. Voici la réalité terrain :
 
-**Assureurs directs en ligne** (tarifs constatés mars 2026) :
-- Direct Assurance : accepte jusqu'à 2,50 de coefficient, tiers dès 900 €/an pour une citadine
-- L'Olivier : malus jusqu'à 2,00, formule kilométrique intéressante
-- Acheel : jeune assureur, accepte les profils à risque avec boîtier obligatoire
-
 **Courtiers spécialisés risques aggravés** :
 - Négocient auprès de 5–8 compagnies partenaires
 - Obtiennent des tarifs 15–30 % inférieurs à la souscription directe
@@ -269,21 +264,18 @@ C'est un arbitrage, pas un choix évident :
 
 **La règle du courtier** : augmentez la franchise uniquement si vous avez une épargne de précaution d'au moins 1 500 €. Sinon, gardez 300–500 € de franchise.
 
-## Les 5 stratégies qui marchent vraiment
+## Les 4 stratégies qui marchent vraiment
 
 ### 1. Le véhicule stratégique
 Citadine < 6 CV fiscaux, essence, valeur Argus < 5 000 €. La prime de base est 40 % plus basse qu'un SUV — et le malus s'applique sur cette base plus faible.
 
-### 2. Le boîtier télématique « pay how you drive »
-En 2026, les assureurs connectés offrent **-20 à -30 %** pour une conduite douce (score > 80/100). Sur un contrat malussé à 1 500 €, c'est 300–450 € récupérés.
-
-### 3. L'assurance au kilomètre
+### 2. L'assurance au kilomètre
 Si vous roulez < 8 000 km/an : formule « pay as you drive ». Économie constatée : **-25 % en moyenne** vs forfait classique.
 
-### 4. La patience calculée
+### 3. La patience calculée
 Votre malus baisse de 5 % chaque année sans sinistre. À chaque échéance annuelle, refaites un comparatif. Un conducteur à 1,56 en 2026 sera à 1,48 en 2027 — suffisant pour que de nouveaux assureurs ouvrent leurs portes.
 
-### 5. La contestation du sinistre
+### 4. La contestation du sinistre
 > **💡 Le conseil du courtier**
 > Si vous estimez que le constat amiable vous a été défavorable, vous avez le droit de le contester auprès de la commission IRSA (convention inter-assureurs). Peu de gens le savent, mais 18 % des contestations aboutissent à une requalification en tort partagé — ce qui divise votre malus par deux.
 
@@ -3162,19 +3154,7 @@ Oui, autant de fois que vous le souhaitez.
 
 En 2026, 70 % des mutuelles proposent un forfait médecines douces, couvrant 2 à 6 séances par an pour l'ostéopathie, l'acupuncture, la sophrologie et parfois l'hypnose, avec un remboursement de 25 à 60 € par séance.
 
-## Les médecines douces les plus remboursées
-
-### Le classement par taux de couverture
-
-| Discipline | % de mutuelles qui remboursent | Remboursement moyen/séance |
-|-----------|-------------------------------|---------------------------|
-| Ostéopathie | 85 % | 30-60 € |
-| Acupuncture | 70 % | 25-50 € |
-| Sophrologie | 55 % | 20-40 € |
-| Hypnose | 40 % | 25-45 € |
-| Naturopathie | 35 % | 20-40 € |
-| Chiropractie | 60 % | 30-50 € |
-| Diététique | 50 % | 25-45 € |
+## Le remboursement des médecines douces
 
 ### Ce que rembourse la Sécurité sociale
 
@@ -3833,15 +3813,17 @@ Si vos parents sont déjà chez un assureur pour leur [habitation](/assurance-ha
 
 Les écarts entre assureurs peuvent atteindre **50%** pour le même profil. Un comparateur indépendant comme jemassuremoinscher.fr interroge ${NB_ASSUREURS_LABEL} assureurs et courtiers en 2 minutes.
 
-## Quels assureurs sont les moins chers pour les jeunes conducteurs en 2026 ?
+## Critères pour choisir une assurance jeune conducteur
 
-### Top 5 des assureurs compétitifs
+Plutôt qu'un classement d'assureurs, voici les points à comparer d'un devis à l'autre :
 
-1. **Direct Assurance** : formules dès 70€/mois, app mobile intuitive
-2. **L'Olivier Assurance** : tarifs agressifs, service 100% en ligne
-3. **Wilov** : pay-as-you-drive, idéal si vous roulez peu
-4. **Ornikar Assurance** : tarifs compétitifs pour les jeunes permis
-5. **MAIF** : excellent rapport qualité/prix, sinistres bien gérés
+- **Les garanties de la formule** : la responsabilité civile est la seule garantie obligatoire ; vol, incendie, bris de glace et dommages tous accidents dépendent de la formule choisie.
+- **Les franchises** : leur montant en cas de sinistre responsable, de vol ou de bris de glace, et l'éventuelle franchise supplémentaire appliquée à un conducteur novice.
+- **L'acceptation du profil** : certains contrats limitent les permis récents, les véhicules puissants ou les conducteurs ayant déjà eu un sinistre.
+- **La conduite accompagnée** : la surprime réglementaire est réduite après un apprentissage anticipé de la conduite ; vérifiez qu'elle est bien appliquée sur le devis.
+- **Le prêt du volant** : conditions pour un conducteur occasionnel et franchise appliquée s'il est novice.
+- **L'assistance** : panne ou accident, franchise kilométrique, véhicule de remplacement.
+- **Le paiement et la résiliation** : paiement mensuel ou annuel, et possibilité de résilier à tout moment après un an (loi Hamon).
 
 ### Ce que les assureurs regardent dans votre profil
 
@@ -3881,7 +3863,7 @@ Non, sauf si votre véhicule vaut plus de 10 000€. Pour un véhicule d'occasio
     id: "61",
     title: "Assurance PNO pas chère : comparatif et guide du propriétaire non occupant 2026",
     slug: "assurance-pno-pas-chere-comparatif-2026",
-    description: "Trouvez l'assurance PNO la moins chère en 2026. Comparatif des tarifs, obligations légales et astuces pour réduire votre prime de propriétaire non occupant.",
+    description: "Trouvez l'assurance PNO la moins chère en 2026. Critères de choix, obligations légales et astuces pour réduire votre prime de propriétaire non occupant.",
     category: "Assurance Habitation",
     date: "14 mars 2026",
     readTime: "10 min",
@@ -3890,13 +3872,11 @@ Non, sauf si votre véhicule vaut plus de 10 000€. Pour un véhicule d'occasio
     content: `
 # Assurance PNO pas chère : comment trouver la meilleure offre en 2026
 
-Vous êtes propriétaire d'un bien que vous louez ou qui est vacant ? L'assurance PNO (Propriétaire Non Occupant) est quasiment indispensable — et parfois obligatoire. Après avoir accompagné des centaines d'investisseurs locatifs, voici mon analyse terrain des offres 2026.
+Vous êtes propriétaire d'un bien que vous louez ou qui est vacant ? L'assurance PNO (Propriétaire Non Occupant) est quasiment indispensable — et parfois obligatoire.
 
 ## L'essentiel à retenir
 
 - L'assurance PNO est **obligatoire en copropriété** (loi ALUR) et fortement recommandée partout ailleurs
-- Le tarif moyen en 2026 : **80 à 200€/an** pour un appartement standard
-- Les écarts entre assureurs peuvent atteindre **60%** pour le même bien
 - L'assurance PNO couvre les **sinistres survenant en période de vacance locative**
 - Elle complète l'assurance habitation du locataire sans la remplacer
 
@@ -3915,44 +3895,27 @@ Pour une maison individuelle, l'assurance PNO n'est pas légalement obligatoire.
 - En cas de vacance locative, vous n'avez **aucune couverture**
 - Un dégât des eaux ou un incendie peut coûter **des dizaines de milliers d'euros**
 
-> **Conseil d'Arthur :** J'ai vu un propriétaire à Lyon se retrouver avec 35 000€ de travaux après un dégât des eaux pendant une vacance locative de 2 mois — sans PNO. Pour 100€/an, ne prenez pas ce risque. **[→ Comparer les assurances PNO](/assurance-pno)**
+## Ce qui fait varier le prix d'une assurance PNO
 
-## Combien coûte une assurance PNO en 2026 ?
-
-### Grille tarifaire par type de bien
-
-| Type de bien | Surface | Tarif moyen/an | Fourchette |
-|---|---|---|---|
-| Studio/T1 en copro | 20-35 m² | 80€ | 50-120€ |
-| T2 en copro | 35-55 m² | 110€ | 70-160€ |
-| T3 en copro | 55-80 m² | 140€ | 90-200€ |
-| T4+ en copro | 80+ m² | 180€ | 120-280€ |
-| Maison individuelle | 80-120 m² | 200€ | 130-320€ |
-| Local commercial | Variable | 250€ | 150-450€ |
-
-### Facteurs qui influencent le prix
-
-- **Localisation** : zones inondables ou à risque = +30-50%
-- **Vétusté** : immeuble ancien (avant 1970) = +15-25%
+- **Localisation** : zones inondables ou à risque
+- **Vétusté** : immeuble ancien
 - **Garanties choisies** : RC seule vs multirisque PNO
 - **Capital mobilier** : si le bien est loué meublé
 - **Nombre de lots** : pour les multi-propriétaires, des remises existent
 
-## Comparatif des meilleures assurances PNO pas chères en 2026
+## Critères pour choisir son assurance PNO
 
-### Top 5 des offres les plus compétitives
+Plutôt qu'un classement d'assureurs, voici les points à comparer d'un devis à l'autre :
 
-| Assureur | Tarif T2 en copro | Garanties incluses | Point fort |
-|---|---|---|---|
-| **Luko** | 65€/an | RC + dégât des eaux + incendie | 100% en ligne |
-| **Lovys** | 72€/an | RC + multirisque | Résiliation en 1 clic |
-| **AXA** (formule Eco) | 95€/an | RC + incendie + vol | Réseau d'experts sinistres |
-| **MAIF** | 98€/an | RC + multirisque complète | Meilleure gestion des sinistres |
-| **Groupama** | 105€/an | RC + tous risques | Agences locales |
+- **La responsabilité civile propriétaire** : obligatoire en copropriété, elle doit couvrir les dommages causés aux tiers, voisins et locataire compris.
+- **Les garanties dommages** : dégât des eaux, incendie, catastrophes naturelles, vol et vandalisme, bris de glace.
+- **La couverture pendant la vacance locative** : vérifiez qu'elle reste acquise entre deux locataires et pour quelle durée.
+- **Le meublé** : prise en charge du mobilier si le bien est loué meublé.
+- **Les franchises et plafonds** de chaque garantie.
+- **L'articulation avec l'assurance de la copropriété** : la PNO couvre vos parties privatives, l'immeuble est couvert par le contrat du syndic.
+- **La protection juridique** : litiges avec le locataire ou le syndic.
 
-*Tarifs indicatifs relevés en mars 2026 pour un T2 de 45 m² en copropriété à Lyon.*
-
-> **Conseil d'Arthur :** Attention aux assurances PNO « RC seule » à 30-40€/an : elles ne couvrent que votre responsabilité civile. En cas de dégât des eaux ou d'incendie, vous n'êtes pas indemnisé pour les réparations de votre bien. Optez pour une **multirisque PNO**. **[→ Comparer les assurances PNO](/assurance-pno)**
+> **Conseil d'Arthur :** Attention aux assurances PNO « RC seule » : elles ne couvrent que votre responsabilité civile. En cas de dégât des eaux ou d'incendie, vous n'êtes pas indemnisé pour les réparations de votre bien. Optez pour une **multirisque PNO**. **[→ Comparer les assurances PNO](/assurance-pno)**
 
 ## Que couvre exactement l'assurance PNO ?
 
@@ -3982,31 +3945,31 @@ Pour une maison individuelle, l'assurance PNO n'est pas légalement obligatoire.
 
 L'investisseur locatif débutant confond souvent ces 3 contrats. Voici la différence :
 
-| Assurance | Qui la souscrit | Ce qu'elle couvre | Prix moyen |
-|---|---|---|---|
-| **PNO** | Le propriétaire | Dégâts au bien (murs, parties privatives) | 80-200€/an |
-| [**GLI**](/assurance-gli) | Le propriétaire | Loyers impayés + dégradations locatives | 2,5-4% du loyer/an |
-| [**Habitation**](/assurance-habitation) | Le locataire | Biens personnels du locataire + RC | 150-300€/an |
+| Assurance | Qui la souscrit | Ce qu'elle couvre |
+|---|---|---|
+| **PNO** | Le propriétaire | Dégâts au bien (murs, parties privatives) |
+| [**GLI**](/assurance-gli) | Le propriétaire | Loyers impayés + dégradations locatives |
+| [**Habitation**](/assurance-habitation) | Le locataire | Biens personnels du locataire + RC |
 
-Les 3 sont complémentaires. La PNO et la GLI sont souvent proposées ensemble en pack investisseur avec des remises de 10-20%.
+Les 3 sont complémentaires. La PNO et la GLI sont souvent proposées ensemble en pack investisseur.
 
 ## Les 5 astuces pour réduire votre prime PNO
 
 ### 1. Comparez au moins 3 assureurs
 
-Les écarts de prix sont énormes sur ce segment. Un comparateur permet de trouver des offres **40 à 60% moins chères** que la première proposition reçue.
+Les écarts de prix sont énormes sur ce segment.
 
 ### 2. Regroupez vos contrats
 
-Si vous êtes multi-propriétaire, certains assureurs offrent des **remises de 15 à 25%** pour les contrats groupés (PNO + GLI + habitation principale).
+Si vous êtes multi-propriétaire, certains assureurs offrent des remises pour les contrats groupés (PNO + GLI + habitation principale).
 
 ### 3. Augmentez votre franchise
 
-Passer de 150€ à 300€ de franchise réduit la prime de **10 à 15%**. Pour un bien en bon état, c'est un arbitrage rentable. C'est le même mécanisme que pour l'[assurance auto](/assurance-auto) : une franchise plus haute = une prime plus basse.
+C'est le même mécanisme que pour l'[assurance auto](/assurance-auto) : une franchise plus haute = une prime plus basse.
 
 ### 4. Ajustez les capitaux assurés
 
-Ne surévaluez pas la valeur du contenu (mobilier). Pour un bien loué vide, un capital mobilier de 5 000€ suffit largement.
+Ne surévaluez pas la valeur du contenu (mobilier).
 
 ### 5. Vérifiez les doublons avec le syndic
 
@@ -4037,9 +4000,6 @@ Grâce à la [loi Hamon](/blog/resiliation-assurance-loi-hamon-guide-2026), vous
 **L'assurance PNO est-elle obligatoire ?**
 Oui en copropriété depuis la loi ALUR 2014. Hors copropriété, elle n'est pas obligatoire mais vivement recommandée pour couvrir les risques de vacance locative et les dommages aux parties privatives.
 
-**Combien coûte une assurance PNO pas chère ?**
-Les meilleures offres démarrent à 50-65€/an pour un studio en copropriété. Pour un T2, comptez 70 à 110€/an. En comparant, vous pouvez trouver 40 à 60% moins cher que la première offre.
-
 **Quelle est la différence entre PNO et GLI ?**
 L'assurance PNO protège votre bien immobilier (dégâts, responsabilité civile). La [GLI](/assurance-gli) (Garantie Loyers Impayés) couvre les impayés de loyers. Ce sont deux contrats complémentaires mais distincts.
 
@@ -4065,7 +4025,7 @@ Le syndic peut vous mettre en demeure de souscrire. En cas de sinistre, vous êt
 
 Exploiter un parc accrobranche en France, c'est jongler chaque jour avec la **norme EN 15567**, les contrôles ECP annuels, et un risque corporel non négligeable : chutes, entorses, blocages en tyrolienne, défaillance d'EPI. La RC exploitant n'est pas qu'une formalité administrative — c'est ce qui sépare une saison sereine d'une fermeture définitive après le premier sinistre grave.
 
-> **L'essentiel** — Un parc accrobranche moyen (45 000 visiteurs/an) paie entre **2 800 et 6 500 €/an** de RC exploitant. Notre intervention de courtage divise généralement la facture par 1,8 grâce à la mise en concurrence d'assureurs spécialisés (Hiscox, Albingia, MMA Pro Sport). [→ Demander mon devis sur-mesure](/assurance-metiers-atypiques)
+> **L'essentiel** — Un parc accrobranche moyen (45 000 visiteurs/an) paie entre **2 800 et 6 500 €/an** de RC exploitant. [→ Demander mon devis sur-mesure](/assurance-metiers-atypiques)
 
 ## 1. Le cadre légal : ce que la loi vous impose en 2026
 
@@ -4111,7 +4071,7 @@ L'**Examen de Contrôle Périodique** par un organisme habilité (Veritas, Apave
 - ⚠️ **Dommages aux EPI loués/prêtés** : à couvrir séparément
 - ⚠️ **Sinistres antérieurs non déclarés** : nullité du contrat
 
-> **Conseil d'Arthur :** Les contrats généralistes (AXA Pro, Allianz Entreprises) contiennent souvent des exclusions destructrices pour le métier. Toujours faire relire le contrat par un courtier spécialisé avant signature. [→ Audit gratuit](/assurance-metiers-atypiques)
+> **Conseil d'Arthur :** Les contrats généralistes contiennent souvent des exclusions destructrices pour le métier. Toujours faire relire le contrat par un courtier spécialisé avant signature. [→ Audit gratuit](/assurance-metiers-atypiques)
 
 ## 3. Individuelle Accident des participants : option ou must ?
 
@@ -4125,12 +4085,6 @@ Vous souscrivez une garantie **automatique pour tous les visiteurs**, intégrée
 - Coût pour vous : **0,15 à 0,40 € par visiteur**
 - Indemnisation immédiate du visiteur en cas d'accident (forfait journalier, frais médicaux, invalidité)
 - Désamorce 90 % des contentieux et améliore drastiquement votre image
-
-### Top assureurs sur ce produit (2026)
-
-1. **Albingia Loisirs** — référence du marché, intégration fluide à la billetterie
-2. **MMA Pro Sport** — bon rapport prix/garanties pour les parcs < 30 000 visiteurs
-3. **Generali Évolution Pro Loisirs** — souple sur les activités annexes
 
 ## 4. Garanties matériel & EPI
 
@@ -4151,15 +4105,15 @@ Vous souscrivez une garantie **automatique pour tous les visiteurs**, intégrée
 | Moyen | 15 000–50 000 | 2 800–4 500 € | 4 800–8 500 € |
 | Grand | > 50 000 | 4 500–9 000 € | 8 500–18 000 € |
 
-## 5. Top 5 des assureurs spécialisés en 2026
+## 5. Critères pour choisir son assureur
 
-1. **Hiscox Loisirs Pro** — leader pour les parcs > 30 000 visiteurs, défense juridique premium
-2. **Albingia** — meilleurs tarifs pour parcs en démarrage ou avec un sinistre récent
-3. **MMA Pro Sport** — solution package idéale pour exploitants multi-activités
-4. **Generali Évolution Pro** — souple sur les surprimes après sinistre
-5. **Gras Savoye Loisirs** — courtier wholesaler, taux préférentiel via nos accords
+Plutôt qu'un classement d'assureurs, voici les points à vérifier sur chaque proposition :
 
-> **Conseil d'Arthur :** Les tarifs publiés en direct chez ces assureurs sont **30 à 60 % plus chers** qu'en passant par un courtier spécialisé (volume d'affaires + connaissance des grilles internes). [→ Comparer mes 3 meilleurs devis](/assurance-metiers-atypiques)
+- **La responsabilité civile exploitant** : montants de garantie et exclusions (défaut de contrôle, matériel non conforme).
+- **Les conditions liées à la sécurité** : respect de la norme NF EN 15567 et contrôles périodiques exigés par l'assureur.
+- **L'individuelle accident des participants** : capitaux, frais médicaux, intégration au billet.
+- **La multirisque exploitation** : plateformes, lignes de vie, EPI, bâtiments d'accueil.
+- **La défense juridique** en cas de mise en cause après un accident.
 
 ## 6. Sinistre type : que faire en cas de chute ?
 
@@ -4216,7 +4170,7 @@ Oui. Le statut juridique ne réduit ni les obligations légales ni les risques. 
 
 Un moniteur d'escalade SAE/SNE, un guide de canyoning, un pilote de parapente biplace : trois métiers, trois niveaux de risque, trois tarifs RC qui varient de **280 € à 1 800 €/an**. Le **Code du sport (article L.321-1)** impose à tout encadrant rémunéré une assurance RC couvrant ses pratiquants — sans elle, c'est l'exercice illégal de la profession (1 an de prison, 15 000 € d'amende).
 
-> **L'essentiel** — Tarifs 2026 : moniteur escalade 280–700 €/an, guide kayak 450–950 €/an, pilote parapente biplace 900–1 800 €/an, BE alpinisme polyvalent 1 200–2 500 €/an. Notre courtage divise en moyenne ces montants par 1,5. [→ Devis personnalisé sous 10 minutes](/assurance-metiers-atypiques)
+> **L'essentiel** — Tarifs 2026 : moniteur escalade 280–700 €/an, guide kayak 450–950 €/an, pilote parapente biplace 900–1 800 €/an, BE alpinisme polyvalent 1 200–2 500 €/an. [→ Devis personnalisé sous 10 minutes](/assurance-metiers-atypiques)
 
 ## 1. Le statut juridique impose la RC
 
@@ -4256,31 +4210,26 @@ L'article **L.321-7** étend cette obligation aux **éducateurs sportifs déclar
 
 - **Couverture standard** : 280–500 €/an pour SAE seule, 400–700 €/an avec SNE jusqu'à 6c
 - **Points de vigilance** : déclaration des sites SNE pratiqués, équipements en place vs équipement temporaire, ratio encadrant/grimpeurs
-- **Top assureur** : MMA Pro Sport, Generali Évolution Pro
 
 ### Canoë-kayak & eau-vive
 
 - **Couverture standard** : 450–950 €/an selon classe d'eau pratiquée (II à V)
 - **Points de vigilance** : reconnaissance préalable du parcours, briefing sécurité documenté, gilets CE avec sifflet
-- **Top assureur** : Albingia Loisirs, MAIF Sport
 
 ### Parapente & activités aériennes
 
 - **Couverture standard** : 900–1 800 €/an pour biplace, 600–1 100 €/an pour vol solo encadré
 - **Points de vigilance** : carnet d'entretien aile à jour, qualif biplace FFVL, déclaration sites de décollage
-- **Top assureur** : Verspieren Aérien, Generali Aviation
 
 ### VTT enduro / DH / freeride
 
 - **Couverture standard** : 350–700 €/an pour VTT XC/randonnée, 700–1 200 €/an pour enduro/DH
 - **Points de vigilance** : taille des groupes (max 8), équipement protections obligatoire (casque intégral, dorsale)
-- **Top assureur** : MAIF Sport, Allianz Pro Sport
 
 ### Multi-activités (BE alpinisme, accompagnateur montagne)
 
 - **Couverture standard** : 1 200–2 500 €/an
 - **Points de vigilance** : déclaration exhaustive des disciplines pratiquées, justificatifs de formation continue
-- **Top assureur** : MMA Pro Sport, Albingia
 
 ## 4. Carte pro & attestation annuelle : le piège
 
@@ -4326,12 +4275,16 @@ Votre **carte professionnelle d'éducateur sportif** est valable 5 ans, mais doi
 | VTT enduro | 700–1 200 € | 480–820 € | + 400 € |
 | BE alpinisme polyvalent | 1 200–2 500 € | 800–1 700 € | inclus |
 
-## 7. Top 4 assureurs sport 2026
+## 7. Critères pour choisir son assureur
 
-1. **MMA Pro Sport** — leader auto-entrepreneurs et petites structures, tarifs imbattables sur escalade et canyoning
-2. **Generali Évolution Pro** — meilleur sur les multi-disciplines et activités aériennes
-3. **MAIF Sport** — référence éducateurs sportifs salariés, bonne couverture VTT et eau-vive
-4. **Verspieren** — courtier wholesaler indispensable pour les disciplines à risque accru
+Plutôt qu'un classement d'assureurs, voici les points à vérifier sur chaque proposition :
+
+- **Les disciplines couvertes** : chacune doit figurer explicitement au contrat et sur l'attestation.
+- **Les montants de garantie** en responsabilité civile, par sinistre et par année.
+- **La défense et le recours** en cas de mise en cause.
+- **L'individuelle accident** pour vous-même et, si besoin, pour les pratiquants.
+- **L'étendue territoriale** : activités encadrées à l'étranger.
+- **Les exclusions** : activités à risque accru, encadrement hors diplôme.
 
 ## FAQ — Assurance moniteur sports outdoor
 
@@ -4366,9 +4319,9 @@ Ne signez jamais une nouvelle RC sans déclarer le sinistre — la fausse décla
     content: `
 # Assurance Organisateur d'Événement 2026 : Festival, Concert, Course, Salon
 
-En 2024, le festival « Les Échappées » en Bretagne a dû annuler à 48 h du J-1 pour intempéries — sans garantie annulation, c'est **380 000 €** qui se sont envolés. La RC organisateur couvre les dommages aux tiers, mais elle ne rembourse **jamais** la perte d'exploitation. Distinguer ces deux garanties, c'est le b.a.-ba de tout organisateur en 2026.
+La RC organisateur couvre les dommages aux tiers, mais elle ne rembourse **jamais** la perte d'exploitation. Distinguer ces deux garanties, c'est le b.a.-ba de tout organisateur en 2026.
 
-> **L'essentiel** — Pour un festival de 5 000 personnes (1 jour), comptez 1 800 à 4 200 € de pack assurance complet (RC + annulation + bénévoles + matériel). Pour un marathon de 2 000 coureurs : 800 à 1 600 €. Notre courtage divise ces montants par 1,7 grâce à la mise en concurrence d'Albingia, Hiscox, Circles Group et Gras Savoye Événement. [→ Devis sur-mesure sous 10 minutes](/assurance-metiers-atypiques)
+> **L'essentiel** — Pour un festival de 5 000 personnes (1 jour), comptez 1 800 à 4 200 € de pack assurance complet (RC + annulation + bénévoles + matériel). Pour un marathon de 2 000 coureurs : 800 à 1 600 €. [→ Devis sur-mesure sous 10 minutes](/assurance-metiers-atypiques)
 
 ## 1. RC Organisateur : obligation légale dès 1 spectateur payant
 
@@ -4496,7 +4449,7 @@ Les **bénévoles ne sont pas des salariés** : ils ne bénéficient pas de la c
 ❌ Engagement 12 mois minimum
 ❌ Plafond annuel à respecter
 
-> **Conseil d'Arthur :** Si vous organisez > 4 événements par an, le contrat annuel est presque toujours rentable. Notre cellule événementielle structure ces contrats package avec Albingia ou Hiscox. [→ Audit gratuit de votre besoin](/assurance-metiers-atypiques)
+> **Conseil d'Arthur :** Si vous organisez > 4 événements par an, le contrat annuel est presque toujours rentable. [→ Audit gratuit de votre besoin](/assurance-metiers-atypiques)
 
 ## 7. Tarifs 2026 — exemples concrets
 
@@ -4509,12 +4462,16 @@ Les **bénévoles ne sont pas des salariés** : ils ne bénéficient pas de la c
 | Trail montagne | 1 200 coureurs | 1 100–2 200 € | + 800–1 800 € |
 | Salon pro 2 jours | 3 000 visiteurs | 1 200–2 400 € | + 800–1 600 € |
 
-## 8. Top 4 assureurs événementiel 2026
+## 8. Critères pour choisir son assureur
 
-1. **Albingia** — leader incontesté du marché français événementiel, capacités importantes
-2. **Hiscox Événementiel** — premium pour événements internationaux et têtes d'affiche
-3. **Circles Group** — spécialiste festivals musique et arts vivants
-4. **Gras Savoye Événement** — courtier wholesaler, accès aux meilleures conditions Lloyd's
+Plutôt qu'un classement d'assureurs, voici les points à vérifier sur chaque proposition :
+
+- **La responsabilité civile organisateur** : montants de garantie par sinistre, adaptés à la jauge et au type d'événement.
+- **L'annulation** : événements couverts (intempéries, défection d'artiste, décision administrative) et exclusions.
+- **Le matériel** : scène, son, lumière, biens loués ou empruntés.
+- **L'individuelle accident** des bénévoles et du personnel.
+- **La formule** : contrat ponctuel ou contrat annuel multi-événements.
+- **Le délai de souscription** avant la date de l'événement.
 
 ## FAQ — Assurance organisateur événement
 

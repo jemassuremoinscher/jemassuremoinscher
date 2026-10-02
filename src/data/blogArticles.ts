@@ -980,19 +980,6 @@ Changement d'adresse, de garage, etc.
 | Dommages véhicule | ❌ | ❌ | ✅ |
 | Véhicule recommandé | > 10 ans | 5-10 ans | < 5 ans |
 
-## Comparatif des assureurs auto (tarifs mars 2026)
-
-| Assureur | Au tiers | Tiers + | Tous risques | Assistance 0km | Avis |
-|----------|----------|---------|--------------|----------------|------|
-| Direct Assurance | 280 €/an | 420 €/an | 580 €/an | ✅ | 4.2/5 |
-| L'Olivier | 310 €/an | 440 €/an | 620 €/an | ✅ | 4.0/5 |
-| Macif | 340 €/an | 480 €/an | 650 €/an | ✅ | 4.5/5 |
-| MAIF | 360 €/an | 530 €/an | 710 €/an | ✅ | 4.7/5 |
-| AXA | 350 €/an | 500 €/an | 680 €/an | ✅ | 4.3/5 |
-| Allianz | 380 €/an | 520 €/an | 720 €/an | ✅ | 4.4/5 |
-
-*Tarifs pour un conducteur de 35 ans, bonus 0.50, Clio V essence, zone urbaine*
-
     `
   },
   {
@@ -1197,18 +1184,6 @@ Ne vous fiez pas qu'au prix ! Vérifiez :
 - **Piscine :** Garantie spécifique requise
 - **Dépendances** (cave, garage) : À déclarer
 - **Travaux :** Prévenir l'assureur avant
-
-## Comparatif des assureurs habitation (mars 2026)
-
-| Assureur | Studio Paris | T3 province | Maison 100m² | Franchise DDE | Avis clients |
-|----------|-------------|-------------|--------------|---------------|-------------|
-| Luko | 15 €/mois | 22 €/mois | 35 €/mois | 0 € | 4.6/5 |
-| Direct Assurance | 12 €/mois | 18 €/mois | 30 €/mois | 200 € | 4.1/5 |
-| MAIF | 18 €/mois | 28 €/mois | 45 €/mois | 0 € (1er sinistre) | 4.7/5 |
-| Groupama | 20 €/mois | 30 €/mois | 48 €/mois | 150 € | 4.3/5 |
-| Allianz | 25 €/mois | 35 €/mois | 60 €/mois | 0 € | 4.4/5 |
-
-*Tarifs indicatifs mars 2026, formule intermédiaire, zone urbaine standard*
 
 ## Conseils pour économiser
 
@@ -1628,252 +1603,30 @@ Certaines garanties diminuent ou s'arrêtent après 65 ans. Vérifiez le contrat
   },
   {
     id: "11",
-    title: "Meilleure Assurance Auto 2026 : comparatif dès 25€/mois",
+    title: "Meilleure assurance auto 2026 : les critères pour bien choisir",
     slug: "meilleure-assurance-auto-2026-comparatif",
-    description: `Quelle est la meilleure assurance auto en 2026 ? Comparatif, prix dès 25€/mois et critères de choix. ${NB_ASSUREURS_LABEL} assureurs et courtiers comparés gratuitement.`,
+    description: `Quelle est la meilleure assurance auto en 2026 ? Les critères pour comparer les offres. ${NB_ASSUREURS_LABEL} assureurs et courtiers comparés gratuitement.`,
     category: "Assurance Auto",
     date: "2 janvier 2026",
     readTime: "12 min",
     author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["meilleure assurance auto 2026", "comparatif assurance auto", "assurance auto pas cher", "classement assurance"],
     content: `
-# Meilleure Assurance Auto 2026 : Le Comparatif Complet
+# Meilleure assurance auto 2026 : les critères pour bien choisir
 
-Trouver la **meilleure assurance auto en 2026** nécessite de comparer les tarifs, les garanties et la qualité de service. Nous avons analysé 30 assureurs pour vous présenter le top 10.
+Trouver la **meilleure assurance auto en 2026** nécessite de comparer les tarifs, les garanties et la qualité de service.
 
-## 🏆 Top 10 des Meilleures Assurances Auto 2026
+## Les critères pour choisir son assurance auto
 
-### 1. Direct Assurance - Le Meilleur Rapport Qualité/Prix
-**Note : 9.2/10**
+Plutôt qu'un classement d'assureurs, voici les points à comparer d'un devis à l'autre, à garanties équivalentes :
 
-**Prix moyen :** 35€/mois en formule [tiers](/glossaire/tiers)
-
-**Points forts :**
-- Tarifs très compétitifs
-- Gestion 100% en ligne
-- Application mobile performante
-- Assistance 24h/7j
-
-**Points faibles :**
-- Pas d'agence physique
-- Service client parfois surchargé
-
-**Pour qui ?** Conducteurs expérimentés cherchant le meilleur prix
-
-### 2. Allianz - L'Excellence du Service
-**Note : 9.0/10**
-
-**Prix moyen :** 52€/mois en formule [tous risques](/glossaire/tous-risques)
-
-**Points forts :**
-- Réseau d'agences étendu
-- Garanties très complètes
-- Service [sinistre](/glossaire/sinistre) réactif
-- Options personnalisables
-
-**Points faibles :**
-- Prix plus élevé
-- [Franchise](/glossaire/franchise) importante
-
-**Pour qui ?** Conducteurs exigeants sur le service
-
-### 3. Macif - L'Assureur Mutualiste de Référence
-**Note : 8.9/10**
-
-**Prix moyen :** 45€/mois
-
-**Points forts :**
-- Statut mutualiste
-- Ristournes possibles
-- Conseiller dédié
-- Engagement social
-
-**Points faibles :**
-- Adhésion requise
-- Tarifs moyens
-
-**Pour qui ?** Ceux qui privilégient l'approche mutualiste
-
-### 4. AXA - Le Leader Européen
-**Note : 8.8/10**
-
-**Prix moyen :** 48€/mois
-
-**Points forts :**
-- Solidité financière
-- Innovation technologique
-- Application de suivi
-- Présence internationale
-
-**Points faibles :**
-- Prix au-dessus de la moyenne
-- Complexité des contrats
-
-**Pour qui ?** Conducteurs internationaux
-
-### 5. MAIF - La Référence pour les Enseignants
-**Note : 8.7/10**
-
-**Prix moyen :** 42€/mois
-
-**Points forts :**
-- Tarifs préférentiels fonctionnaires
-- Service de qualité
-- Peu de litiges
-- Éthique reconnue
-
-**Points faibles :**
-- Réservé à certaines professions
-- Moins de flexibilité
-
-**Pour qui ?** Enseignants et agents publics
-
-### 6. Groupama - L'Assurance Agricole
-**Note : 8.6/10**
-
-**Prix moyen :** 44€/mois
-
-**Points forts :**
-- Réseau local fort
-- Connaissance du monde rural
-- Tarifs agriculteurs
-- Proximité
-
-**Points faibles :**
-- Service digital à améliorer
-- Prix variables selon régions
-
-**Pour qui ?** Habitants des zones rurales
-
-### 7. GMF - Spécialiste des Fonctionnaires
-**Note : 8.5/10**
-
-**Prix moyen :** 40€/mois
-
-**Points forts :**
-- Prix avantageux fonctionnaires
-- Service de qualité
-- Peu de résiliations
-- Stabilité
-
-**Points faibles :**
-- Restrictions d\'accès
-- Moins d\'options modernes
-
-**Pour qui ?** Fonctionnaires et agents publics
-
-### 8. Matmut - La Mutuelle Accessible
-**Note : 8.4/10**
-
-**Prix moyen :** 43€/mois
-
-**Points forts :**
-- Tarifs compétitifs
-- Formules modulables
-- Service correct
-- Application pratique
-
-**Points faibles :**
-- Délais de traitement longs
-- Service client perfectible
-
-**Pour qui ?** Budget moyen
-
-### 9. MMA - L'Assurance Tous Profils
-**Note : 8.3/10**
-
-**Prix moyen :** 46€/mois
-
-**Points forts :**
-- Accepte tous les profils
-- Réseau d\'agents
-- Garanties solides
-- Historique
-
-**Points faibles :**
-- Prix élevé jeunes conducteurs
-- Lourdeur administrative
-
-**Pour qui ?** Profils à risque
-
-### 10. Luko - Le Challenger 100% Digital
-**Note : 8.2/10**
-
-**Prix moyen :** 38€/mois
-
-**Points forts :**
-- Interface moderne
-- Prix transparents
-- Innovation
-
-**Points faibles :**
-- Jeune entreprise
-- Réseau limité
-
-**Pour qui ?** Jeunes conducteurs connectés
-
-## 💰 Comparatif des Prix Moyens 2026
-
-| Assureur | Tiers | Tiers + | Tous Risques |
-|----------|-------|---------|--------------|
-| Direct Assurance | 35€ | 48€ | 62€ |
-| Luko | 38€ | 50€ | 65€ |
-| GMF | 40€ | 55€ | 70€ |
-| MAIF | 42€ | 58€ | 75€ |
-| Matmut | 43€ | 56€ | 72€ |
-| Groupama | 44€ | 60€ | 78€ |
-| Macif | 45€ | 62€ | 80€ |
-| MMA | 46€ | 64€ | 82€ |
-| AXA | 48€ | 66€ | 85€ |
-| Allianz | 52€ | 70€ | 90€ |
-
-*Prix moyens pour un conducteur de 35 ans, bonus 0.50, zone urbaine*
-
-## 🎯 Comment Choisir LA Meilleure Pour Vous ?
-
-### Selon votre profil
-
-**Jeune conducteur (-25 ans) :**
-→ Luko, Direct Assurance, Matmut
-
-**Conducteur expérimenté :**
-→ Direct Assurance, Macif, MAIF
-
-**Senior (+65 ans) :**
-→ Groupama, MMA, Allianz
-
-**Fonctionnaire :**
-→ MAIF, GMF
-
-**Malussé :**
-→ MMA, Allianz
-
-### Selon vos priorités
-
-**Prix bas :**
-1. Direct Assurance
-2. Luko
-3. GMF
-
-**Service premium :**
-1. Allianz
-2. AXA
-3. MAIF
-
-**Digital/Innovation :**
-1. Luko
-2. Direct Assurance
-3. AXA
-
-## 📊 Notre Méthodologie d\'Évaluation
-
-Nous avons noté chaque assureur sur 5 critères :
-
-1. **Prix** (30%) : Compétitivité tarifaire
-2. **Garanties** (25%) : Étendue de la couverture
-3. **Service client** (20%) : Réactivité et qualité
-4. **Simplicité** (15%) : Souscription et gestion
-5. **Avis clients** (10%) : Satisfaction globale
+- **La formule** : au tiers (responsabilité civile, seule garantie obligatoire), tiers étendu (vol, incendie, bris de glace) ou tous risques (dommages à votre véhicule même si vous êtes responsable).
+- **Les franchises** : montant restant à votre charge pour chaque garantie, y compris en cas de prêt du volant.
+- **Les plafonds d'indemnisation** et le mode d'indemnisation du véhicule (valeur à dire d'expert, valeur à neuf pendant une durée limitée selon les contrats).
+- **Les exclusions** : conduite par un conducteur non déclaré, usage professionnel non déclaré, stationnement exigé.
+- **L'assistance** : franchise kilométrique (assistance dès le domicile ou non), véhicule de remplacement.
+- **La garantie du conducteur** : indemnisation de vos propres blessures lorsque vous êtes responsable, et son plafond.
+- **Les conditions de résiliation** : résiliation à tout moment après un an (loi Hamon).
 
 ## 💡 Nos Conseils d\'Expert 2026
 
@@ -1905,29 +1658,14 @@ Nous avons noté chaque assureur sur 5 critères :
 
 ## ❓ FAQ : Meilleure Assurance Auto 2026
 
-**Quelle est l\'assurance auto la moins chère en 2026 ?**
-Direct Assurance et Luko proposent les tarifs les plus bas, dès 35€/mois en formule tiers.
-
-**Quelle assurance auto pour jeune conducteur ?**
-Luko, Direct Assurance et Matmut sont les plus compétitives pour les moins de 25 ans.
-
 **Puis-je changer d\'assurance auto à tout moment ?**
 Oui, grâce à la loi Hamon, après 1 an d\'engagement vous pouvez résilier quand vous voulez.
 
-**Combien coûte une assurance auto tous risques ?**
-Entre 62€ et 90€/mois selon l\'assureur et votre profil.
-
-## 🎁 Offres Spéciales 2026
-
-**Direct Assurance :** -15% pour nouvelle souscription en ligne
-**Luko :** 2 mois offerts jusqu\'à fin janvier
-**Allianz :** Franchise réduite de 50% la première année
-
 ## Conclusion
 
-La **meilleure assurance auto en 2026** dépend de votre profil et de vos priorités. Direct Assurance domine pour le prix, Allianz pour le service, et Luko pour l\'innovation.
+La **meilleure assurance auto en 2026** dépend de votre profil et de vos priorités.
 
-**Notre recommandation générale :** Comparez au moins 3 devis personnalisés avant de vous engager. Économie moyenne : 350€/an.
+**Notre recommandation générale :** Comparez au moins 3 devis personnalisés avant de vous engager.
 
 **Prêt à trouver votre assurance auto idéale ?** Comparez gratuitement les meilleures offres 2026 en 2 minutes.
     `
@@ -2282,53 +2020,17 @@ Vous venez d\'obtenir votre permis ? La **surprime jeune conducteur** peut doubl
 | 3ème année | 25% | 50€/mois |
 | 4ème année | 0% | 40€/mois |
 
-## 🏆 Top 5 Assureurs Jeune Conducteur 2026
+## Critères pour choisir une assurance jeune conducteur
 
-### 1. Luko - Le Champion des Jeunes
-**Prix moyen :** 85€/mois (tous risques)
+Plutôt qu'un classement d'assureurs, voici les points à comparer d'un devis à l'autre :
 
-**Avantages :**
-- Prix transparents
-- Pas de paperasse
-- Assurance au km disponible
-
-**Offre spéciale :** -20% la première année
-
-### 2. Direct Assurance - Le Moins Cher
-**Prix moyen :** 90€/mois
-
-**Avantages :**
-- Tarifs les plus bas du marché
-- Gestion 100% en ligne
-- Application mobile pratique
-- Assistance 24/7
-
-### 3. Allianz Jeunes Actifs - La Formule Dédiée
-**Prix moyen :** 95€/mois
-
-**Avantages :**
-- Formule spéciale -26 ans
-- Bonus étudiant
-- Stage de conduite offert
-- Réduction multi-contrats
-
-### 4. Matmut - Le Bon Compromis
-**Prix moyen :** 98€/mois
-
-**Avantages :**
-- Tarifs compétitifs
-- Réseau d\'agences
-- Formules modulables
-- Parrainage avantageux
-
-### 5. MMA Expérience - Pour Tous Profils
-**Prix moyen :** 105€/mois
-
-**Avantages :**
-- Accepte les profils à risque
-- Bonus conduite accompagnée
-- Assistance complète
-- Garantie conducteur renforcée
+- **Les garanties de la formule** : la responsabilité civile est la seule garantie obligatoire ; vol, incendie, bris de glace et dommages tous accidents dépendent de la formule choisie.
+- **Les franchises** : leur montant en cas de sinistre responsable, de vol ou de bris de glace, et l'éventuelle franchise supplémentaire appliquée à un conducteur novice.
+- **L'acceptation du profil** : certains contrats limitent les permis récents, les véhicules puissants ou les conducteurs ayant déjà eu un sinistre.
+- **La conduite accompagnée** : la surprime réglementaire est réduite après un apprentissage anticipé de la conduite ; vérifiez qu'elle est bien appliquée sur le devis.
+- **Le prêt du volant** : conditions pour un conducteur occasionnel et franchise appliquée s'il est novice.
+- **L'assistance** : panne ou accident, franchise kilométrique, véhicule de remplacement.
+- **Le paiement et la résiliation** : paiement mensuel ou annuel, et possibilité de résilier à tout moment après un an (loi Hamon).
 
 ## 💡 10 Astuces Pour Réduire Votre Prime
 
@@ -2367,10 +2069,6 @@ Plus la puissance fiscale est faible, moins c\'est cher.
 
 Si vous roulez moins de 10 000 km/an, signalez-le !
 
-**Formules au km :**
-- Luko : 7 500 km/an
-- Allianz : 8 000 km/an
-
 ### 5. Augmenter la Franchise
 **Économie : 10-15%**
 
@@ -2397,8 +2095,6 @@ Les assureurs proposent des boîtiers qui analysent votre conduite.
 - Pas d\'excès de vitesse : -10%
 - Pas de freinage brusque : -5%
 - Conduite de nuit limitée : -5%
-
-**Assureurs proposant :** Allianz, Axa, Direct Assurance
 
 ### 8. Grouper vos Contrats
 **Économie : 10-15%**
@@ -2459,14 +2155,10 @@ Comparez au moins 5 devis avant de souscrire.
 - Véhicule garé sur campus : -5%
 - Usage limité (pas trajet quotidien) : -10%
 
-**Meilleurs assureurs :** Luko, Allianz Jeunes Actifs, MAIF (si parents adhérents)
-
 ### Apprenti
 **Bonus :**
 - Statut apprenti reconnu : -10%
 - Véhicule nécessaire pour le travail : garanties adaptées
-
-**Meilleurs assureurs :** Matmut, Macif, MMA
 
 ### En Mission de Service Civique
 **Avantage :** Pas de majoration pendant la période (véhicule peu utilisé)
@@ -3048,147 +2740,28 @@ Choisissez selon vos besoins réels, pas selon la pub. Une mutuelle à 40€/moi
     id: "10",
     title: "Comparatif habitation 2026 : Quelle assurance choisir ?",
     slug: "comparatif-habitation-2026",
-    description: "Guide complet pour choisir son assurance habitation. Comparatif des meilleures offres, garanties indispensables et conseils d'experts.",
+    description: "Guide complet pour choisir son assurance habitation. Critères de choix, garanties indispensables et conseils.",
     category: "Guides Pratiques",
     date: "20 décembre 2026",
     readTime: "10 min",
     author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["assurance habitation", "comparatif", "logement", "garanties"],
     content: `
-# Assurance Habitation 2026 : Le Comparatif Complet
+# Comparatif habitation 2026 : quelle assurance choisir ?
 
 Choisir une assurance habitation peut sembler complexe face aux nombreuses offres. Ce guide vous aide à y voir clair et à trouver la meilleure protection pour votre logement au meilleur prix.
 
-## Top 5 assurances habitation 2026
+## Critères pour choisir son assurance habitation
 
-### 1. Luko - La 100% digitale
+Plutôt qu'un classement d'assureurs, voici les points à comparer d'un devis à l'autre :
 
-**Note : 9.3/10**
-
-**Points forts :**
-- Application ultra-intuitive
-- Prix très compétitifs
-- Déclaration [sinistre](/glossaire/sinistre) photo
-- [Indemnisation](/glossaire/indemnisation) rapide
-
-**Prix moyens :**
-- Studio Paris : 15€/mois
-- T3 propriétaire : 28€/mois
-- Maison 100m² : 35€/mois
-
-**Garanties incluses :**
-- Dégâts des eaux
-- Incendie
-- Vol avec effraction
-- Bris de glace
-- Catastrophes naturelles
-- [Responsabilité civile](/glossaire/responsabilite-civile)
-
-**Pour qui ?**
-Parfait pour les locataires et jeunes propriétaires connectés.
-
-### 2. Maif - La valeur sûre
-
-**Note : 9.0/10**
-
-**Points forts :**
-- Mutuelle de confiance
-- Service client excellent
-- Pas de [franchise](/glossaire/franchise) 1er sinistre
-- Protection juridique incluse
-- Réseau d'agences
-
-**Prix moyens :**
-- Studio Paris : 18€/mois
-- T3 propriétaire : 35€/mois
-- Maison 100m² : 45€/mois
-
-**Garanties incluses :**
-- Toutes garanties de base
-- Protection juridique
-- Assistance 24/7
-- Rééquipement à neuf
-- Dommages électriques
-
-**Pour qui ?**
-Idéal pour ceux qui privilégient la qualité de service.
-
-### 3. Groupama - La spécialiste maison
-
-**Note : 8.8/10**
-
-**Points forts :**
-- Expert en maisons individuelles
-- Garanties jardin et piscine
-- Conseillers spécialisés
-- Options modulables
-- Multi-équipement avantageux
-
-**Prix moyens :**
-- Studio Paris : 20€/mois
-- T3 propriétaire : 38€/mois
-- Maison 100m² : 48€/mois
-
-**Garanties incluses :**
-- Garanties de base
-- Dépendances
-- Jardin et clôture
-- Piscine (option)
-- Panneaux solaires (option)
-
-**Pour qui ?**
-Parfait pour propriétaires de maisons avec jardin.
-
-### 4. Direct Assurance - Le meilleur prix
-
-**Note : 8.7/10**
-
-**Points forts :**
-- Tarifs imbattables
-- 100% en ligne
-- Gestion simple
-- Assistance incluse
-- Bonus fidélité
-
-**Prix moyens :**
-- Studio Paris : 12€/mois
-- T3 propriétaire : 22€/mois
-- Maison 100m² : 30€/mois
-
-**Garanties incluses :**
-- Garanties essentielles
-- Dégâts électriques
-- Vol simple
-- Responsabilité civile
-
-**Pour qui ?**
-Pour ceux qui cherchent le prix le plus bas.
-
-### 5. Allianz - La premium
-
-**Note : 8.5/10**
-
-**Points forts :**
-- Garanties très étendues
-- Service conciergerie
-- Expertise rapide
-- Protection maximale
-- Objets de valeur
-
-**Prix moyens :**
-- Studio Paris : 25€/mois
-- T3 propriétaire : 45€/mois
-- Maison 100m² : 60€/mois
-
-**Garanties incluses :**
-- Toutes garanties
-- Objets précieux
-- Jardin et piscine
-- Protection juridique premium
-- Assurance villégiature
-
-**Pour qui ?**
-Pour ceux qui veulent la meilleure couverture.
+- **Votre situation** : locataire (l'assurance des risques locatifs est obligatoire), propriétaire occupant ou copropriétaire.
+- **Les garanties incluses** : responsabilité civile, incendie, dégâts des eaux, vol, bris de glace, dommages électriques, catastrophes naturelles.
+- **Les plafonds** : capital mobilier, objets de valeur, plafond par sinistre.
+- **Les franchises** : montant par sinistre et éventuelles franchises spécifiques (vol, dégâts des eaux).
+- **Le mode d'indemnisation** : valeur à neuf ou vétusté déduite.
+- **Les conditions et exclusions** : exigences de fermeture et de serrures pour la garantie vol, inoccupation prolongée, dépendances non déclarées.
+- **Les options utiles à votre logement** : jardin, piscine, panneaux solaires, protection juridique.
 
 ## Garanties indispensables
 
@@ -3227,38 +2800,6 @@ Obligatoire dans tous les contrats.
 ✅ Piscine
 ✅ Panneaux solaires
 ✅ Portail automatique
-
-## Comparatif des garanties
-
-### Dégâts des eaux
-
-| Assureur | Franchise | Plafond | Recherche fuite |
-|----------|-----------|---------|-----------------|
-| Luko | 0€ | Illimité | ✅ 1000€ |
-| Maif | 0€ | Illimité | ✅ 1500€ |
-| Groupama | 150€ | Illimité | ✅ 800€ |
-| Direct Ass. | 200€ | 1M€ | ✅ 500€ |
-| Allianz | 0€ | Illimité | ✅ 2000€ |
-
-### Vol
-
-| Assureur | Franchise | Plafond | Sans effraction |
-|----------|-----------|---------|-----------------|
-| Luko | 150€ | 50 000€ | ❌ |
-| Maif | 150€ | 80 000€ | ✅ Option |
-| Groupama | 200€ | 100 000€ | ✅ Inclus |
-| Direct Ass. | 300€ | 40 000€ | ❌ |
-| Allianz | 150€ | 150 000€ | ✅ Inclus |
-
-### Dommages électriques
-
-| Assureur | Plafond | Vétusté déduite |
-|----------|---------|-----------------|
-| Luko | 5 000€ | Non |
-| Maif | 8 000€ | Non |
-| Groupama | 6 000€ | Oui (30%) |
-| Direct Ass. | 4 000€ | Oui (20%) |
-| Allianz | 10 000€ | Non |
 
 ## Nouveautés 2026
 
@@ -3344,32 +2885,6 @@ Utile en cas de litige avec voisins.
 ❌ Oublier de résilier l'ancienne assurance
 Double cotisation possible !
 
-## Cas pratiques
-
-**Cas 1 : Locataire studio Paris**
-- Besoins : Garanties minimales
-- Recommandation : Luko
-- Prix : 12-15€/mois
-- Économie vs mutuelle classique : 100€/an
-
-**Cas 2 : Propriétaire T3**
-- Besoins : Protection complète
-- Recommandation : Maif
-- Prix : 35€/mois
-- Garanties supplémentaires incluses
-
-**Cas 3 : Maison avec jardin et piscine**
-- Besoins : Couverture étendue
-- Recommandation : Groupama
-- Prix : 48€/mois
-- Spécialiste équipements extérieurs
-
-**Cas 4 : Budget serré**
-- Besoins : Essentiel uniquement
-- Recommandation : Direct Assurance
-- Prix : 22-30€/mois
-- Meilleur rapport qualité-prix
-
 ## Checklist avant de souscrire
 
 ✅ Capital mobilier bien évalué ?
@@ -3383,20 +2898,6 @@ Double cotisation possible !
 ✅ Avis clients consultés ?
 ✅ Prix comparé (minimum 3 offres) ?
 
-## Verdict 2026
-
-**Meilleure innovation :** Luko
-**Meilleur service :** Maif
-**Spécialiste maisons :** Groupama
-**Meilleur prix :** Direct Assurance
-**Plus complète :** Allianz
-
-**Notre recommandation :**
-Pour la plupart des locataires → Luko
-Pour les propriétaires exigeants → Maif
-Pour les maisons → Groupama
-
-**Comparez maintenant et économisez jusqu'à 200€/an.**
     `
   },
   {
@@ -3479,14 +2980,6 @@ Surprimes en baisse et délais raccourcis.
 
 **Prêt à la consommation :**
 Étude en cours pour étendre la loi Lemoine aux prêts conso > 20 000€.
-
-### Comparateur officiel
-
-Lancement en 2026 d'un comparateur public :
-- Offres standardisées
-- Comparaison simplifiée
-- Labels qualité
-- Avis vérifiés
 
 ### Sanctions renforcées
 
@@ -3596,24 +3089,16 @@ Une fois accepté :
 
 **Économie moyenne tous profils : 30-50%**
 
-## Assurances recommandées 2026
+## Critères pour choisir une assurance emprunteur externe
 
-### Top 3 assurances externes
+Plutôt qu'un classement d'assureurs, voici les points à vérifier avant de proposer un contrat à votre banque :
 
-**1. Cardif**
-- Taux : 0,12-0,25%
-- Excellent rapport qualité-prix
-- Leader du marché
-
-**2. Metlife**
-- Taux : 0,10-0,22%
-- Très compétitif
-- Garanties étendues
-
-**3. Swiss Life**
-- Taux : 0,15-0,28%
-- Qualité premium
-- Service irréprochable
+- **L'équivalence de garanties** : la banque compare le contrat à ses propres exigences ; demandez-lui la liste des critères retenus, figurant dans la fiche standardisée d'information.
+- **Les garanties couvertes** : décès, perte totale et irréversible d'autonomie, incapacité temporaire de travail, invalidité permanente totale ou partielle.
+- **La quotité** assurée sur chaque emprunteur.
+- **Le délai de carence et la franchise** des garanties incapacité et invalidité.
+- **Les exclusions** : sports, professions, pathologies.
+- **Le mode de calcul de la cotisation** : sur le capital initial ou sur le capital restant dû.
 
 ## Questions fréquentes
 
