@@ -7,6 +7,7 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import CookieBanner from "@/components/CookieBanner";
 import GlobalSchemas from "@/components/seo/GlobalSchemas";
+import { BreadcrumbDeclarationProvider } from "@/contexts/BreadcrumbDeclarationContext";
 
 // Lazy load non-critical global components
 const AIChatbot = lazy(() => import("@/components/chatbot/AIChatbot").then(m => ({ default: m.AIChatbot })));
@@ -213,6 +214,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
+        <BreadcrumbDeclarationProvider>
         <TooltipProvider>
           <Toaster />
           <GlobalSchemas />
@@ -401,6 +403,7 @@ const App = () => {
             </>
           )}
         </TooltipProvider>
+        </BreadcrumbDeclarationProvider>
       </LanguageProvider>
     </QueryClientProvider>
   );

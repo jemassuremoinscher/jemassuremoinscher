@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
+import { useBreadcrumbDeclarations, useDeclareBreadcrumb } from "@/contexts/BreadcrumbDeclarationContext";
 
 interface SEOOptimizedProps {
   /** Page title — max 60 characters recommended */
@@ -148,11 +149,22 @@ const SEOOptimized = ({
       : [jsonLd]
     : [];
 
+  // Un seul BreadcrumbList par page : si le composant Breadcrumbs (fil
+  // visible) est présent, il fait foi et le nôtre est retiré ; sinon le nôtre
+  // est déclaré pour que GlobalSchemas n'en ajoute pas un généré depuis l'URL.
+  const declaredBreadcrumbs = useBreadcrumbDeclarations();
+  const hasOwnBreadcrumb = rawSchemas.some(
+    (s) => typeof s === 'object' && s !== null && (s as Record<string, unknown>)['@type'] === 'BreadcrumbList',
+  );
+  const keepOwnBreadcrumb = hasOwnBreadcrumb && declaredBreadcrumbs.component === 0;
+  useDeclareBreadcrumb('jsonld', keepOwnBreadcrumb);
+
   // Deduplicate schemas by @type to prevent Google "Duplicate field" errors
   // (e.g. multiple FAQPage blocks injected during SPA navigation)
   const seenTypes = new Set<string>();
   const schemas = rawSchemas.filter((schema: any) => {
     const type = schema?.['@type'];
+    if (type === 'BreadcrumbList' && !keepOwnBreadcrumb) return false;
     // Only dedupe single-type schemas that should appear once per page
     const singleTypes = ['FAQPage', 'BreadcrumbList', 'Organization', 'WebSite'];
     if (typeof type === 'string' && singleTypes.includes(type)) {

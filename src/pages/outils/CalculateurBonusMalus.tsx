@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { useDeclareBreadcrumb } from "@/contexts/BreadcrumbDeclarationContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Slider } from "@/components/ui/slider";
@@ -107,6 +108,7 @@ const CalculateurBonusMalus = () => {
     offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
   };
 
+  useDeclareBreadcrumb("jsonld");
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

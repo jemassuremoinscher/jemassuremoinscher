@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useMemo } from "react";
 import geoContent from "@/data/geo-content.json";
 import { addOrganizationSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { useBreadcrumbDeclarations } from "@/contexts/BreadcrumbDeclarationContext";
 
 const BASE = "https://www.jemassuremoinscher.fr";
 
@@ -12,11 +13,15 @@ const BASE = "https://www.jemassuremoinscher.fr";
  * - WebSite (with SearchAction)
  * - BreadcrumbList (auto-generated from URL pathname)
  *
- * Deduplication of single-type schemas (Organization, WebSite, BreadcrumbList)
- * is handled in SEOOptimized so per-page overrides win.
+ * BreadcrumbList : émis seulement si la page n'en déclare aucun (composant
+ * Breadcrumbs ou BreadcrumbList dans le jsonLd de SEOOptimized), voir
+ * contexts/BreadcrumbDeclarationContext.tsx. SEOOptimized ne déduplique que
+ * son propre jsonLd : il ne voit pas les scripts émis ici.
  */
 const GlobalSchemas = () => {
   const { pathname } = useLocation();
+  const declared = useBreadcrumbDeclarations();
+  const pageDeclaresBreadcrumb = declared.component + declared.jsonld > 0;
 
   const schemas = useMemo(() => {
     // AggregateRating is now injected dynamically by <AvisGoogle /> from the live
@@ -48,10 +53,10 @@ const GlobalSchemas = () => {
         .replace(/\b\w/g, (c) => c.toUpperCase());
       items.push({ name: label, url: `${BASE}${acc}` });
     }
-    const breadcrumb = items.length > 1 ? addBreadcrumbSchema(items) : null;
+    const breadcrumb = items.length > 1 && !pageDeclaresBreadcrumb ? addBreadcrumbSchema(items) : null;
 
     return [organization, website, breadcrumb].filter(Boolean) as object[];
-  }, [pathname]);
+  }, [pathname, pageDeclaresBreadcrumb]);
 
   return (
     <Helmet>

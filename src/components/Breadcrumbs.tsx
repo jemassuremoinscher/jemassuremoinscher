@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ChevronRight } from "lucide-react";
+import { useDeclareBreadcrumb } from "@/contexts/BreadcrumbDeclarationContext";
 
 export interface BreadcrumbItem {
   label: string;
@@ -13,6 +14,7 @@ interface BreadcrumbsProps {
 }
 
 const Breadcrumbs = ({ items, baseUrl = "https://www.jemassuremoinscher.fr" }: BreadcrumbsProps) => {
+  useDeclareBreadcrumb("component");
   const allItems: BreadcrumbItem[] = [{ label: "Accueil", href: "/" }, ...items];
 
   const jsonLd = {
