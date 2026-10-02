@@ -177,6 +177,10 @@ const AnimauxPillar = ({ onCtaClick }: AnimauxPillarProps) => (
       des garanties, évolution de la cotisation, éventuelles limitations. Ces règles figurent dans les conditions
       générales.
     </p>
+    <p>
+      Pour un chiot, les points propres à son âge (identification, délais de carence, vaccins et prévention) sont
+      détaillés dans notre page <Link to="/assurance-chiot">assurance chiot</Link>.
+    </p>
 
     <h2 id="prevention">8. La prévention</h2>
     <p>
