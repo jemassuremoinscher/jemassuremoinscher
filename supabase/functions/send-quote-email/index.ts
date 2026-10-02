@@ -166,6 +166,11 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const { name, email, phone, type, details, estimatedPrice, leadId }: QuoteRequest = requestData;
+    // Demande de rappel (/contact) : sujets et confirmation dédiés.
+    const isCallback = type === 'Demande de rappel';
+    const ownerSubject = isCallback
+      ? `Nouvelle demande de rappel - ${name.replace(/[\r\n]+/g, ' ').trim()}`
+      : `Nouvelle demande de devis - ${type}`;
 
     console.log("Sending quote email for:", { type, timestamp: new Date().toISOString() });
 
@@ -205,7 +210,7 @@ const handler = async (req: Request): Promise<Response> => {
     const ownerEmail = await resend.emails.send({
       from: `jemassuremoinscher.fr <${businessEmail}>`,
       to: businessEmail,
-      subject: `Nouvelle demande de devis - ${type}`,
+      subject: ownerSubject,
       html: (() => {
         const esc = (s: unknown) => String(s ?? '')
           .replace(/&/g, '&amp;')
@@ -214,7 +219,7 @@ const handler = async (req: Request): Promise<Response> => {
           .replace(/"/g, '&quot;')
           .replace(/'/g, '&#39;');
         return `
-        <h1>Nouvelle demande de devis</h1>
+        <h1>${isCallback ? 'Nouvelle demande de rappel' : 'Nouvelle demande de devis'}</h1>
         <h2>Type d'assurance: ${esc(type)}</h2>
         ${details?.vehicleUse === 'livreur' ? `<p style="font-size: 20px; color: #b91c1c; font-weight: bold;">Usage professionnel : livraison</p>` : ''}
         ${details?.source_page ? `<p><strong>Page d'origine :</strong> ${esc(details.source_page)}</p>` : ''}
@@ -239,7 +244,7 @@ const handler = async (req: Request): Promise<Response> => {
         recipient_email: businessEmail,
         recipient_name: 'Admin',
         email_type: 'quote_notification',
-        subject: `Nouvelle demande de devis - ${type}`,
+        subject: ownerSubject,
         resend_email_id: ownerEmail.data.id,
         status: 'sent',
       });
@@ -301,7 +306,6 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Demande de rappel (/contact) : le modèle n'est utilisé que s'il ne
     // parle pas de devis ; sinon, texte de confirmation dédié au rappel.
-    const isCallback = type === 'Demande de rappel';
     const templateMentionsQuote = !!template && /devis/i.test(`${template.subject} ${template.body}`);
     const useTemplate = !!template && !(isCallback && templateMentionsQuote);
     if (isCallback && template && !useTemplate) {
