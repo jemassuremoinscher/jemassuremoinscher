@@ -297,6 +297,27 @@ export type Database = {
           },
         ]
       }
+      alert_recipients: {
+        Row: {
+          active: boolean
+          created_at: string
+          email: string
+          id: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          email: string
+          id?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
       backup_snapshots: {
         Row: {
           completed_at: string | null
@@ -1432,6 +1453,55 @@ export type Database = {
           },
         ]
       }
+      lead_alert_log: {
+        Row: {
+          created_at: string
+          deal_id: string
+          error_message: string | null
+          id: string
+          resend_email_id: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          deal_id: string
+          error_message?: string | null
+          id?: string
+          resend_email_id?: string | null
+          status: string
+        }
+        Update: {
+          created_at?: string
+          deal_id?: string
+          error_message?: string | null
+          id?: string
+          resend_email_id?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_alert_log_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "alertes_conformite_dda"
+            referencedColumns: ["deal_id"]
+          },
+          {
+            foreignKeyName: "lead_alert_log_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lead_alert_log_deal_id_fkey"
+            columns: ["deal_id"]
+            isOneToOne: false
+            referencedRelation: "deals_dormants"
+            referencedColumns: ["deal_id"]
+          },
+        ]
+      }
       lead_redistribution_log: {
         Row: {
           created_at: string
@@ -2391,6 +2461,19 @@ export type Database = {
           deal_id: string
           insurance_type: string
           stage: string
+        }[]
+      }
+      get_unhandled_leads: {
+        Args: { p_limit?: number }
+        Returns: {
+          business_minutes_elapsed: number
+          clock_start: string
+          deal_id: string
+          due_at: string
+          failed_attempts: number
+          first_name: string
+          insurance_type: string
+          requested_at: string
         }[]
       }
       has_role: {
