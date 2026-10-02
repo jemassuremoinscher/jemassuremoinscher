@@ -70,8 +70,9 @@ function validateQuoteRequest(data: any): { valid: boolean; errors: string[] } {
 
   if (!data.phone || typeof data.phone !== 'string' || data.phone.trim().length === 0) {
     errors.push('Phone is required');
-  } else if (data.phone.length > 20) {
-    errors.push('Phone must be less than 20 characters');
+  } else if (data.phone.length > 30) {
+    // 30 = même limite que validate_contact_callback() et le formulaire /contact.
+    errors.push('Phone must be at most 30 characters');
   }
 
   if (!data.type || typeof data.type !== 'string' || data.type.trim().length === 0) {
@@ -298,9 +299,28 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
 
-    const clientSubject = template ? fillVars(template.subject) : "Votre devis d'assurance";
-    const clientHtml = template
-      ? bodyToHtml(fillVars(template.body))
+    // Demande de rappel (/contact) : le modèle n'est utilisé que s'il ne
+    // parle pas de devis ; sinon, texte de confirmation dédié au rappel.
+    const isCallback = type === 'Demande de rappel';
+    const templateMentionsQuote = !!template && /devis/i.test(`${template.subject} ${template.body}`);
+    const useTemplate = !!template && !(isCallback && templateMentionsQuote);
+    if (isCallback && template && !useTemplate) {
+      console.log(`Modèle "${TEMPLATE_NAME}" écarté pour une demande de rappel : il mentionne un devis.`);
+    }
+
+    const clientSubject = useTemplate
+      ? fillVars(template!.subject)
+      : isCallback ? "Votre demande de rappel" : "Votre devis d'assurance";
+    const clientHtml = useTemplate
+      ? bodyToHtml(fillVars(template!.body))
+      : isCallback
+      ? `
+          ${EMAIL_LOGO_HEADER}
+          <h1>Merci, ${escHtml(name)} !</h1>
+          <p>Nous avons bien reçu votre demande de rappel, un conseiller vous rappelle rapidement, 7j/7 de 8h à 19h.</p>
+
+          <p>Cordialement,<br>L'équipe jemassuremoinscher.fr</p>
+        `
       : `
           ${EMAIL_LOGO_HEADER}
           <h1>Merci pour votre demande, ${escHtml(name)} !</h1>
