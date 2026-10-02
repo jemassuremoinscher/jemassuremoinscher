@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ORIAS_NUMBER } from "@/config/site";
 import { ANIMAUX_FAQ, ANIMAUX_SOURCES } from "@/data/animauxPilier";
@@ -215,6 +216,11 @@ const AnimauxPillar = ({ onCtaClick }: AnimauxPillarProps) => (
       facultative pour ces chiens comme pour les autres. Demandez à votre assureur habitation si sa garantie
       responsabilité civile couvre un chien catégorisé et s'il peut vous délivrer l'attestation demandée pour le
       permis.
+    </p>
+    <p>
+      Le détail des obligations (permis de détention, identification, vaccination antirabique, évaluation
+      comportementale, stérilisation pour la 1re catégorie) est présenté dans notre page{" "}
+      <Link to="/assurance-chien-categorie-1-2">chien de 1re ou 2e catégorie : obligations et assurance</Link>.
     </p>
 
     <h2 id="comparer">10. Comment comparer les offres</h2>

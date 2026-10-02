@@ -85,6 +85,7 @@ const LandingProtectionJuridique = lazy(() => import("./pages/landing/LandingPro
 const LandingAutoTemporaire = lazy(() => import("./pages/landing/LandingAutoTemporaire"));
 const LandingTrottinette = lazy(() => import("./pages/landing/LandingTrottinette"));
 const AssuranceTrottinetteLivreur = lazy(() => import("./pages/seo/AssuranceTrottinetteLivreur"));
+const AssuranceChienCategorie = lazy(() => import("./pages/seo/AssuranceChienCategorie"));
 
 const AssuranceDecennale = lazy(() => import("./pages/AssuranceDecennale"));
 const AssuranceFlotteAuto = lazy(() => import("./pages/AssuranceFlotteAuto"));
@@ -301,6 +302,7 @@ const App = () => {
                 <Route path="/landing/auto-temporaire" element={<LandingAutoTemporaire />} />
                 <Route path="/landing/trottinette" element={<LandingTrottinette />} />
                 <Route path="/assurance-trottinette-livreur" element={<AssuranceTrottinetteLivreur />} />
+                <Route path="/assurance-chien-categorie-1-2" element={<AssuranceChienCategorie />} />
 
                 <Route path="/comparateur" element={<Comparateur />} />
                 <Route path="/assurance-auto-malus" element={<AssuranceAutoMalusse />} />
