@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Breadcrumbs, { type BreadcrumbItem } from "@/components/Breadcrumbs";
 import SEOOptimized from "@/components/SEOOptimized";
 import SemanticFAQ, { type FAQItem } from "@/components/SemanticFAQ";
-import { addBreadcrumbSchema, addFAQSchema, addServiceSchema } from "@/utils/seoUtils";
+import { addFAQSchema, addServiceSchema } from "@/utils/seoUtils";
 import { motion } from "framer-motion";
 
 const normalizeContentBlockHeadings = (content: string) =>
@@ -60,14 +60,8 @@ const SEOCategoryPage = ({
 }: SEOCategoryPageProps) => {
   const baseUrl = "https://www.jemassuremoinscher.fr";
 
-  const breadcrumbSchemaItems = [
-    { name: "Accueil", url: baseUrl },
-    { name: breadcrumbLabel || h1, url: `${baseUrl}${canonicalPath}` },
-  ];
-
   // Collect all JSON-LD schemas as an array
   const jsonLdSchemas: object[] = [
-    addBreadcrumbSchema(breadcrumbSchemaItems),
     addFAQSchema(faqItems),
   ];
 

@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Shield, Home, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurHouse from "@/assets/mascotte/arthur-house.webp?w=480&format=webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
@@ -22,7 +22,6 @@ const AssurancePNO = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
 
-  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance PNO", url: "https://www.jemassuremoinscher.fr/assurance-pno" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance PNO", description: "Comparez les assurances PNO pour protéger votre bien immobilier.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const faqSchema = addFAQSchema([{ question: t('pnoPage.faq1.q'), answer: t('pnoPage.faq1.a') }, { question: t('pnoPage.faq2.q'), answer: t('pnoPage.faq2.a') }, { question: t('pnoPage.faq3.q'), answer: t('pnoPage.faq3.a') }]);
   const insuranceProductSchema = addInsuranceProductSchema({ name: "PNO Assurance", description: "Comparateur d'assurance propriétaire non occupant. Obligatoire en copropriété (loi Alur).", category: "Assurance PNO", url: "https://www.jemassuremoinscher.fr/assurance-pno" });
@@ -41,7 +40,7 @@ const AssurancePNO = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title={t("seo.pno.title")} description={t("seo.pno.description")} keyword="PNO assurance" keywords="pno assurance, assurance PNO, propriétaire non occupant, assurance logement vide, PNO obligatoire, assurance bailleur" canonical="https://www.jemassuremoinscher.fr/assurance-pno" jsonLd={[webPageSchema, breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title={t("seo.pno.title")} description={t("seo.pno.description")} keyword="PNO assurance" keywords="pno assurance, assurance PNO, propriétaire non occupant, assurance logement vide, PNO obligatoire, assurance bailleur" canonical="https://www.jemassuremoinscher.fr/assurance-pno" jsonLd={[webPageSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance PNO" }]} />
       <main id="main-content">

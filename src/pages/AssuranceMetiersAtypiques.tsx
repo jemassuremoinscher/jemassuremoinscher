@@ -5,7 +5,7 @@ import { Shield, Users, Clock, Mountain, TreePine, PartyPopper, HardHat, Sparkle
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurClimbing from "@/assets/mascotte/arthur-climbing.webp";
 import arthurKayak from "@/assets/mascotte/arthur-kayak.webp";
 import arthurBtp from "@/assets/mascotte/arthur-btp.webp";
@@ -25,10 +25,6 @@ const AssuranceMetiersAtypiques = () => {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Métiers Atypiques", url: "https://www.jemassuremoinscher.fr/assurance-metiers-atypiques" },
-  ]);
 
   const serviceSchema = addServiceSchema({
     name: "Assurance Métiers Atypiques",
@@ -163,7 +159,7 @@ const AssuranceMetiersAtypiques = () => {
         keyword="assurance métiers atypiques"
         keywords="assurance activité à risque, RC pro spécialisée, assurance accrobranche, assurance moniteur sport, assurance organisateur événement, assurance cordiste"
         canonical="https://www.jemassuremoinscher.fr/assurance-metiers-atypiques"
-        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
+        jsonLd={[serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Métiers Atypiques" }]} />

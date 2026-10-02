@@ -19,7 +19,7 @@ import {
   Eye,
   Banknote,
 } from "lucide-react";
-import { addOrganizationSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { addOrganizationSchema } from "@/utils/seoUtils";
 import { authors, getAuthorJsonLd } from "@/data/authors";
 import { motion } from "framer-motion";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
@@ -46,14 +46,10 @@ const fadeUp = {
 const QuiSommesNous = () => {
   const { t } = useLanguage();
   const baseUrl = "https://www.jemassuremoinscher.fr";
-  // JSON-LD: org + breadcrumb + all author Person schemas
+  // JSON-LD: org + all author Person schemas (le fil d'Ariane JSON-LD vient du composant Breadcrumbs)
   const authorSchemas = Object.values(authors).map(getAuthorJsonLd);
   const jsonLd = [
     addOrganizationSchema(),
-    addBreadcrumbSchema([
-      { name: "Accueil", url: baseUrl },
-      { name: "Qui sommes-nous ?", url: `${baseUrl}/qui-sommes-nous` },
-    ]),
     ...authorSchemas,
   ];
 

@@ -12,7 +12,6 @@ import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 import { blogArticles, blogArticleDrafts, blogCategories } from "@/data/blogArticles";
 import { usePublishedDraftSlugs } from "@/hooks/usePublishedDrafts";
 import { useSupabaseBlogArticles } from "@/hooks/useSupabaseBlogArticles";
-import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -71,10 +70,6 @@ const Blog = () => {
     return matchesCategory && matchesSearch;
   });
 
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: t("breadcrumb.home"), url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Blog", url: "https://www.jemassuremoinscher.fr/blog" },
-  ]);
 
   const blogSchema = {
     "@context": "https://schema.org",
@@ -99,7 +94,7 @@ const Blog = () => {
         ogTitle="Blog Assurance : Conseils, Guides et Actualités pour Économiser"
         ogDescription="Retrouvez tous nos conseils assurance auto, santé, habitation. Guides pratiques, comparatifs et actualités pour payer moins cher votre assurance."
         twitterDescription="Conseils et guides pratiques pour payer moins cher vos assurances. Auto, santé, habitation et plus."
-        jsonLd={[breadcrumbSchema, blogSchema]}
+        jsonLd={[blogSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Blog" }]} />

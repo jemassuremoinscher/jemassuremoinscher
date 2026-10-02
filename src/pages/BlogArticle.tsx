@@ -19,7 +19,7 @@ import EssentielBox from "@/components/blog/EssentielBox";
 import ArticleCTA from "@/components/blog/ArticleCTA";
 import SemanticFAQ from "@/components/SemanticFAQ";
 import type { FAQItem } from "@/components/SemanticFAQ";
-import { addArticleSchema, addBreadcrumbSchema, addFAQSchema } from "@/utils/seoUtils";
+import { addArticleSchema, addFAQSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SuggestedKeywords from "@/components/blog/SuggestedKeywords";
@@ -124,11 +124,6 @@ const BlogArticle = () => {
   const essentielSummary =
     article.description.split(" ").slice(0, 40).join(" ") + (article.description.split(" ").length > 40 ? "..." : "");
 
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: t("breadcrumb.home"), url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Blog", url: "https://www.jemassuremoinscher.fr/blog" },
-    { name: article.title, url: `https://www.jemassuremoinscher.fr/blog/${article.slug}` },
-  ]);
 
   const blogFaqItems: FAQItem[] = [
     { question: t("blogArticlePage.faq1Q"), answer: t("blogArticlePage.faq1A") },
@@ -166,7 +161,7 @@ const BlogArticle = () => {
         ogDescription={article.description.substring(0, 200)}
         twitterDescription={article.description.substring(0, 200)}
         articlePublishedTime={convertToISO(article.date)}
-        jsonLd={[breadcrumbSchema, articleSchema, blogFaqSchema, authorJsonLd]}
+        jsonLd={[articleSchema, blogFaqSchema, authorJsonLd]}
         noindex={article.noindex || isPreview}
       />
       <Header />

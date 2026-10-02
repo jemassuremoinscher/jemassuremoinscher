@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import SEOOptimized from "@/components/SEOOptimized";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { authors, getAuthorJsonLd } from "@/data/authors";
-import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { Briefcase, GraduationCap, Landmark, Megaphone, Rocket } from "lucide-react";
 
 const author = authors["Paul"];
@@ -56,11 +55,6 @@ const careerSections: { icon: typeof Rocket; title: string; entries: CareerEntry
 const PaulVuillierDeRabaudy = () => {
   const jsonLd = [
     getAuthorJsonLd(author),
-    addBreadcrumbSchema([
-      { name: "Accueil", url: baseUrl },
-      { name: "Qui sommes-nous ?", url: `${baseUrl}/qui-sommes-nous` },
-      { name: author.name, url: canonical },
-    ]),
   ];
 
   return (

@@ -2,17 +2,12 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { ShieldCheck, BookOpen, Database, RefreshCw, Users, Scale } from "lucide-react";
 import BrandName from "@/components/BrandName";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const SourcesEtMethodologie = () => {
   const { t } = useLanguage();
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Sources & Méthodologie", url: "https://www.jemassuremoinscher.fr/sources-et-methodologie" },
-  ]);
 
   const sections = [
     {
@@ -82,7 +77,6 @@ const SourcesEtMethodologie = () => {
         keyword="méthodologie comparateur assurance"
         keywords="sources comparateur assurance, méthodologie courtier, transparence assurance, ORIAS"
         canonical="https://www.jemassuremoinscher.fr/sources-et-methodologie"
-        jsonLd={[breadcrumbSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Sources & Méthodologie" }]} />

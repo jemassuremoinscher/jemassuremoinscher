@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Building2, Clock, Shield } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema } from "@/utils/seoUtils";
 import arthurHouse from "@/assets/mascotte/arthur-house.webp?w=480&format=webp";
 import arthurFlying from "@/assets/mascotte/arthur-welcome.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
@@ -22,10 +22,6 @@ const GestionLocative = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
 
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Gestion Locative", url: "https://www.jemassuremoinscher.fr/gestion-locative" },
-  ]);
   const serviceSchema = addServiceSchema({
     name: "Comparateur Gestion Locative",
     description: "Trouvez le meilleur gestionnaire pour vos biens locatifs. Gestion complète, partielle ou déclarative.",
@@ -69,7 +65,7 @@ const GestionLocative = () => {
         keyword="gestion locative"
         keywords="gestion immobilière, administrateur de biens, gestionnaire locatif, honoraires gestion locative"
         canonical="https://www.jemassuremoinscher.fr/gestion-locative"
-        jsonLd={[webPageSchema, breadcrumbSchema, serviceSchema, faqSchema]}
+        jsonLd={[webPageSchema, serviceSchema, faqSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Gestion Locative" }]} />

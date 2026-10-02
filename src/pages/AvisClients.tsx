@@ -6,7 +6,7 @@ import ArthurHero from "@/components/insurance/ArthurHero";
 import AvisGoogle from "@/components/trust/AvisGoogle";
 import { Star, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { addBreadcrumbSchema, addOrganizationSchema } from "@/utils/seoUtils";
+import { addOrganizationSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThumbsUp from "@/assets/mascotte/arthur-thumbs-up.webp";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
@@ -15,10 +15,6 @@ import { GOOGLE_REVIEWS_PUBLIC_URL, GOOGLE_REVIEW_WRITE_URL } from "@/config/sit
 const AvisClients = () => {
   const { t } = useLanguage();
 
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Avis Clients", url: "https://www.jemassuremoinscher.fr/avis-clients" },
-  ]);
 
   // Organization sans note ni nombre d'avis (voir addOrganizationSchema).
   const organizationSchema = addOrganizationSchema();
@@ -32,7 +28,7 @@ const AvisClients = () => {
         keyword="avis clients assurance"
         keywords="témoignages assurance, retour expérience, satisfaction"
         canonical="https://www.jemassuremoinscher.fr/avis-clients"
-        jsonLd={[breadcrumbSchema, organizationSchema]}
+        jsonLd={[organizationSchema]}
       />
       <Header />
 

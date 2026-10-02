@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Search, BookOpen, ArrowRight } from "lucide-react";
 import { glossaryTerms, glossaryCategories } from "@/data/glossaryTerms";
-import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
@@ -36,10 +35,6 @@ const Glossaire = () => {
     a.term.localeCompare(b.term, "fr")
   );
 
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Glossaire", url: "https://www.jemassuremoinscher.fr/glossaire" },
-  ]);
 
   const glossarySchema = {
     "@context": "https://schema.org",
@@ -64,7 +59,7 @@ const Glossaire = () => {
         keyword="glossaire assurance"
         keywords="définition franchise, bonus malus, loi hamon"
         canonical="https://www.jemassuremoinscher.fr/glossaire"
-        jsonLd={[breadcrumbSchema, glossarySchema]}
+        jsonLd={[glossarySchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Glossaire" }]} />

@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Shield, Heart, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurInjured from "@/assets/mascotte/arthur-injured.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
@@ -24,7 +24,6 @@ const AssurancePrevoyance = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
 
-  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance Prévoyance", url: "https://www.jemassuremoinscher.fr/assurance-prevoyance" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance Prévoyance", description: "Comparez les meilleures assurances prévoyance.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const faqSchema = addFAQSchema([{ question: t('prevoyancePage.faq1.q'), answer: t('prevoyancePage.faq1.a') }, { question: t('prevoyancePage.faq2.q'), answer: t('prevoyancePage.faq2.a') }]);
   const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Prévoyance", description: "Comparateur d'assurance prévoyance. Décès, invalidité, obsèques : protégez votre famille.", category: "Assurance Prévoyance", url: "https://www.jemassuremoinscher.fr/assurance-prevoyance" });
@@ -43,7 +42,7 @@ const AssurancePrevoyance = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title={t("seo.prevoyance.title")} description={t("seo.prevoyance.description")} keyword="assurance prévoyance" keywords="assurance décès, assurance obsèques, dépendance, prévoyance TNS" canonical="https://www.jemassuremoinscher.fr/assurance-prevoyance" jsonLd={[webPageSchema, breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title={t("seo.prevoyance.title")} description={t("seo.prevoyance.description")} keyword="assurance prévoyance" keywords="assurance décès, assurance obsèques, dépendance, prévoyance TNS" canonical="https://www.jemassuremoinscher.fr/assurance-prevoyance" jsonLd={[webPageSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Prévoyance" }]} />
       <main id="main-content">

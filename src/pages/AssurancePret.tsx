@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
 import { NB_ASSUREURS_LABEL } from "@/config/site";
 import ArthurHero from "@/components/insurance/ArthurHero";
@@ -28,10 +28,6 @@ const AssurancePret = () => {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Assurance Emprunteur", url: "https://www.jemassuremoinscher.fr/assurance-pret" },
-  ]);
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Emprunteur",
     description: "Économisez des milliers d'euros sur votre crédit immobilier. Loi Lemoine.",
@@ -73,7 +69,7 @@ const AssurancePret = () => {
         ogTitle="Assurance Emprunteur Moins Chère | Loi Lemoine"
         ogDescription={`Comparez ${NB_ASSUREURS_LABEL} assureurs et courtiers emprunteur. Grâce à la loi Lemoine, changez d'assurance de prêt à tout moment.`}
         twitterDescription="Loi Lemoine : changez d'assurance prêt quand vous voulez. Devis gratuit en 2 min."
-        jsonLd={[webPageSchema, breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
+        jsonLd={[webPageSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Emprunteur" }]} />

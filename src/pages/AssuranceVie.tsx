@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurIdea from "@/assets/mascotte/arthur-idea.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
@@ -25,10 +25,6 @@ const AssuranceVie = () => {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Assurance Vie", url: "https://www.jemassuremoinscher.fr/assurance-vie" },
-  ]);
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Vie",
     description:
@@ -85,7 +81,7 @@ const AssuranceVie = () => {
         ogTitle="Assurance Vie : 0% de frais d'entrée, comparez les meilleures offres"
         ogDescription="Comparez les meilleures assurances vie : fonds euros sécurisés et unités de compte. 0% de frais d'entrée. Fiscalité avantageuse après 8 ans."
         twitterDescription="Assurance vie 0% frais d'entrée. Comparez fonds euros et UC. Fiscalité avantageuse après 8 ans."
-        jsonLd={[webPageSchema, breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
+        jsonLd={[webPageSchema, serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Vie" }]} />

@@ -8,7 +8,6 @@ import { NB_ASSUREURS_LABEL } from "@/config/site";
 import {
   addServiceSchema,
   addFAQSchema,
-  addBreadcrumbSchema,
   addInsuranceProductSchema,
 } from "@/utils/seoUtils";
 import arthurFlying from "@/assets/mascotte/arthur-flying.webp";
@@ -31,10 +30,6 @@ const AssuranceExpatries = () => {
   const [audience, setAudience] = useState<Audience>("in-france");
   const scrollToForm = () => formRef.current?.scrollIntoView({ behavior: "smooth" });
 
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Assurance Expatriés", url: "https://www.jemassuremoinscher.fr/assurance-expatries" },
-  ]);
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Expatriés",
     description:
@@ -132,7 +127,7 @@ const AssuranceExpatries = () => {
         keyword="assurance expatriés"
         keywords="assurance expatrié, français à l'étranger, étranger en France, CFE, 1er euro, visa long séjour, rapatriement, mutuelle expat"
         canonical="https://www.jemassuremoinscher.fr/assurance-expatries"
-        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
+        jsonLd={[serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Expatriés" }]} />

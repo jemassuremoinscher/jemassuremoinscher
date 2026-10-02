@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurBusiness from "@/assets/mascotte/arthur-business.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
@@ -22,7 +22,6 @@ const AssuranceMRP = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const scrollToForm = () => { formRef.current?.scrollIntoView({ behavior: 'smooth' }); };
 
-  const breadcrumbSchema = addBreadcrumbSchema([{ name: "Accueil", url: "https://www.jemassuremoinscher.fr/" }, { name: "Assurance MRP", url: "https://www.jemassuremoinscher.fr/assurance-mrp" }]);
   const serviceSchema = addServiceSchema({ name: "Comparateur Assurance MRP", description: "Comparez les assurances multirisque professionnelle.", provider: "jemassuremoinscher.fr", areaServed: "France" });
   const faqSchema = addFAQSchema([{ question: t('mrpPage.faq1.q'), answer: t('mrpPage.faq1.a') }, { question: t('mrpPage.faq2.q'), answer: t('mrpPage.faq2.a') }]);
   const insuranceProductSchema = addInsuranceProductSchema({ name: "Assurance Multirisque Professionnelle", description: "Comparateur MRP. Locaux, stock, matériel : protégez votre entreprise.", category: "Assurance Professionnelle", url: "https://www.jemassuremoinscher.fr/assurance-mrp" });
@@ -41,7 +40,7 @@ const AssuranceMRP = () => {
 
   return (
     <div className="min-h-screen">
-      <SEOOptimized title={t("seo.mrp.title")} description={t("seo.mrp.description")} keyword="assurance multirisque professionnelle" keywords="MRP, assurance entreprise, assurance local professionnel, multirisque commerce" canonical="https://www.jemassuremoinscher.fr/assurance-mrp" jsonLd={[webPageSchema, breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
+      <SEOOptimized title={t("seo.mrp.title")} description={t("seo.mrp.description")} keyword="assurance multirisque professionnelle" keywords="MRP, assurance entreprise, assurance local professionnel, multirisque commerce" canonical="https://www.jemassuremoinscher.fr/assurance-mrp" jsonLd={[webPageSchema, serviceSchema, faqSchema, insuranceProductSchema]} />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance MRP" }]} />
       <main id="main-content">

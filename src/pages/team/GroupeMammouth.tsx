@@ -5,7 +5,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import BrandName from "@/components/BrandName";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { addBreadcrumbSchema, addOrganizationSchema } from "@/utils/seoUtils";
+import { addOrganizationSchema } from "@/utils/seoUtils";
 import { ExternalLink } from "lucide-react";
 
 // Chemins publics en dur (public/, non hashés, non traités par le pipeline
@@ -195,11 +195,6 @@ const EntityCard = ({ entity }: { entity: GroupEntity }) => {
 const GroupeMammouth = () => {
   const jsonLd = [
     addOrganizationSchema(),
-    addBreadcrumbSchema([
-      { name: "Accueil", url: baseUrl },
-      { name: "Qui sommes-nous ?", url: `${baseUrl}/qui-sommes-nous` },
-      { name: "Groupe Mammouth", url: canonical },
-    ]),
   ];
 
   return (
