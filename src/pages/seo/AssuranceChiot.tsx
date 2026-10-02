@@ -94,10 +94,21 @@ const AssuranceChiot = () => {
                 financières et logistiques de sa garde tout au long de sa vie.
               </li>
               <li>
-                <strong>Les documents remis</strong> : une attestation de cession et un certificat vétérinaire de moins
-                de 3 mois, établi après examen de l'animal. Ce certificat mentionne notamment son identification et, le
-                cas échéant, ses vaccinations, sa stérilisation et sa race s'il est inscrit au livre des origines
-                français (LOF).
+                <strong>Les documents remis</strong> : la fiche en cite trois.
+                <ul>
+                  <li>une attestation de cession ;</li>
+                  <li>
+                    un certificat vétérinaire de moins de 3 mois, établi après examen de l'animal ; il mentionne
+                    notamment son identification et, le cas échéant, ses vaccinations, sa stérilisation et sa race s'il
+                    est inscrit au livre des origines français (LOF) ;
+                  </li>
+                  <li>
+                    un « document d'information sur les caractéristiques et les besoins de l'animal contenant également,
+                    au besoin, des conseils d'éducation », que la fiche mentionne « si vous avez déjà acquis un animal de
+                    la même espèce et présenté votre certificat d'engagement et de connaissance pour cette précédente
+                    acquisition ».
+                  </li>
+                </ul>
               </li>
             </ul>
             <h3>Vérifier l'annonce</h3>
