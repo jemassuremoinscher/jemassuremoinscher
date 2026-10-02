@@ -14,6 +14,13 @@ import arthurFlying from '@/assets/mascotte/arthur-flying.png';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ArthurHero from '@/components/insurance/ArthurHero';
 import geoContent from '@/data/geo-content.json';
+import { invokeSendQuoteEmail, preloadRecaptcha } from '@/lib/recaptcha';
+import { reportSiteError } from '@/lib/siteErrorLog';
+import { useAnalytics } from '@/hooks/useAnalytics';
+
+// Même règle que validate_contact_callback() en base : 6 à 30 caractères.
+// Caractères admis : chiffres, espaces, +, point, tiret.
+const PHONE_RE = /^[0-9\s+.-]{6,30}$/;
 
 // Horaires de rappel : ContactPoint.hoursAvailable (7j/7, 8h-19h), source
 // unique geo-content.json. Pas d'openingHoursSpecification sur l'Organization.
@@ -39,30 +46,64 @@ const contactPageSchema = {
 const Contact = () => {
   const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState({ prenom: "", email: "", sujet: "", message: "" });
+  const { trackConversion, trackEvent } = useAnalytics();
+  const [formData, setFormData] = useState({ prenom: "", email: "", phone: "", sujet: "", message: "" });
+  const [phoneError, setPhoneError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.prenom || !formData.email || !formData.sujet) {
+    const phone = formData.phone.trim();
+    if (!formData.prenom || !formData.email || !formData.sujet || !phone) {
+      if (!phone) setPhoneError(t('contactPage.phoneRequired'));
       toast.error(t('quoteForm.toastErrorDesc'));
       return;
     }
+    if (!PHONE_RE.test(phone)) {
+      setPhoneError(t('contactPage.phoneInvalid'));
+      return;
+    }
+    setPhoneError(null);
     setIsLoading(true);
     try {
       const { error } = await supabase.from("contact_callbacks").insert({
         full_name: formData.prenom,
         email: formData.email,
-        phone: "",
+        phone,
         preferred_time: "morning",
         message: `${formData.sujet}${formData.message ? ` - ${formData.message}` : ""}`,
         status: "pending"
       });
-      if (error) throw error;
+      if (error) {
+        // Le message technique (ex. règle de validation en base) va dans
+        // site_error_log, jamais à l'écran.
+        reportSiteError({ type: "callback_submit", message: `contact_callbacks : ${error.message}`, context: { code: error.code, source: "contact_page" } });
+        throw error;
+      }
+
+      // Email interne à contact@ (et confirmation au prospect), avec jeton
+      // reCAPTCHA. invokeSendQuoteEmail trace lui-même jeton manquant et
+      // échec d'appel dans site_error_log ; l'envoi ne bloque pas l'écran.
+      invokeSendQuoteEmail({
+        name: formData.prenom,
+        email: formData.email,
+        phone,
+        type: 'Demande de rappel',
+        details: { source: 'contact_page', source_page: '/contact', sujet: formData.sujet, message: formData.message || '' },
+        estimatedPrice: 0,
+      }, 'contact_callback').catch((err) => {
+        reportSiteError({ type: "edge_function", message: `send-quote-email (contact) : ${err instanceof Error ? err.message : String(err)}`, context: { source: "contact_page" } });
+      });
+
+      // Conversion Ads « Demande de devis » : même label et mêmes garde-fous
+      // que le formulaire de devis (trackConversion).
+      trackConversion('callback_request');
+      trackEvent('callback_request', { category: 'lead_generation', label: 'contact_page' });
+
       toast.success(t('quoteForm.toastSuccess'));
-      setFormData({ prenom: "", email: "", sujet: "", message: "" });
+      setFormData({ prenom: "", email: "", phone: "", sujet: "", message: "" });
     } catch (error) {
       console.error("Error submitting contact form:", error);
-      toast.error(t('quoteForm.toastError'));
+      toast.error(t('quoteForm.toastError'), { description: t('quoteForm.toastErrorDesc') });
     } finally {
       setIsLoading(false);
     }
@@ -119,7 +160,8 @@ const Contact = () => {
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">{t('contactPage.formTitle')}</h2>
                 <p className="text-muted-foreground mb-8">{t('contactPage.formDesc')}</p>
 
-                <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-5">
+                {/* reCAPTCHA préchargé au premier champ touché, pas au chargement de la page. */}
+                <form onSubmit={handleSubmit} onFocus={preloadRecaptcha} className="grid md:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="contact-prenom" className="sr-only">{t('contactPage.firstName')}</label>
                     <Input
@@ -141,6 +183,26 @@ const Contact = () => {
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="h-12 text-base rounded-2xl" />
                     
+                  </div>
+                  <div className="md:col-span-2">
+                    <label htmlFor="contact-phone" className="sr-only">{t('contactPage.phoneField')}</label>
+                    <Input
+                      id="contact-phone"
+                      type="tel"
+                      inputMode="tel"
+                      autoComplete="tel"
+                      placeholder={t('contactPage.phoneField')}
+                      value={formData.phone}
+                      aria-invalid={!!phoneError}
+                      aria-describedby={phoneError ? 'contact-phone-error' : undefined}
+                      onChange={(e) => {
+                        setFormData({ ...formData, phone: e.target.value });
+                        if (phoneError) setPhoneError(null);
+                      }}
+                      className={`h-12 text-base rounded-2xl ${phoneError ? 'border-destructive' : ''}`} />
+                    {phoneError && (
+                      <p id="contact-phone-error" role="alert" className="mt-1.5 text-sm text-destructive">{phoneError}</p>
+                    )}
                   </div>
                   <div className="md:col-span-2">
                     <label htmlFor="contact-sujet" className="sr-only">{t('contactPage.subject')}</label>
@@ -182,6 +244,11 @@ const Contact = () => {
                         </>
                       }
                     </Button>
+                    <p className="mt-3 text-sm font-medium text-foreground">{t('contactPage.callbackHours')}</p>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {t('contactPage.legal')}{' '}
+                      <a href="/politique-confidentialite" className="underline hover:text-primary">{t('contactPage.legalLink')}</a>.
+                    </p>
                   </div>
                 </form>
               </div>
