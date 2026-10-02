@@ -2771,8 +2771,6 @@ Maintenant : Résiliation possible **à tout moment**, **gratuitement**
 - Changement effectif le mois suivant
 - ZÉRO frais, ZÉRO pénalité
 
-**Économie moyenne : 15 000€ sur un prêt de 200 000€ sur 20 ans**
-
 ### 2. Suppression du questionnaire médical
 
 **Conditions 2026 :**
@@ -2930,8 +2928,6 @@ Une fois accepté :
 - Vous n'avez pas de problème de santé
 - Votre métier n'est pas à risque
 
-**Économie moyenne tous profils : 30-50%**
-
 ## Critères pour choisir une assurance emprunteur externe
 
 Plutôt qu'un classement d'assureurs, voici les points à vérifier avant de proposer un contrat à votre banque :
@@ -3006,13 +3002,12 @@ Grilles de garanties harmonisées.
 La loi Lemoine est une vraie révolution pour les emprunteurs. En 2026, c'est encore plus simple et avantageux de changer.
 
 **3 raisons d'agir maintenant :**
-1. Économie immédiate (30-50%)
+1. Économie immédiate
 2. Procédure ultra simple (2-4 semaines)
 3. Aucun frais ni risque
 
 **Ne laissez plus votre banque s'enrichir sur votre dos !**
 
-**Comparez maintenant et économisez jusqu'à 15 000€.**
     `
   },
   {

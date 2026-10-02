@@ -215,19 +215,19 @@ Absolument. Toute modification doit être déclarée sous peine de nullité du c
     content: `
 # Assurance Malus Élevé en 2026 : Ce Que Votre Assureur Ne Vous Dit Pas
 
-Coefficient supérieur à 1,25 ? Vous faites partie des 8 % d'automobilistes français dans cette situation. Avant de paniquer — ou de signer le premier contrat venu — voici ce qu'un courtier indépendant vous dirait en face à face.
+Coefficient supérieur à 1,25 ? Avant de paniquer — ou de signer le premier contrat venu — voici ce qu'un courtier indépendant vous dirait en face à face.
 
 ## Le calcul du malus : les chiffres bruts
 
 Chaque sinistre responsable = **+25 %** sur votre coefficient. Responsabilité partagée = +12,5 %. Plafond : **3,50** (soit une surprime de +250 %).
 
-| Sinistres responsables | Coefficient | Surprime réelle | Prime estimée (Clio) |
-|------------------------|-------------|-----------------|----------------------|
-| 0 (bonus max) | 0,50 | -50 % | 320 €/an |
-| 1 | 1,25 | +25 % | 800 €/an |
-| 2 | 1,56 | +56 % | 1 100 €/an |
-| 3 | 1,95 | +95 % | 1 400 €/an |
-| 4+ | 2,44–3,50 | +144 à +250 % | 1 800–2 800 €/an |
+| Sinistres responsables | Coefficient | Surprime réelle |
+|------------------------|-------------|-----------------|
+| 0 (bonus max) | 0,50 | -50 % |
+| 1 | 1,25 | +25 % |
+| 2 | 1,56 | +56 % |
+| 3 | 1,95 | +95 % |
+| 4+ | 2,44–3,50 | +144 à +250 % |
 
 > **💡 Le conseil du courtier**
 > La « règle des 2 ans » est votre meilleur allié : après 24 mois consécutifs sans sinistre responsable, retour automatique à 1,00. Concrètement ? Si vous avez un malus de 1,56 en mars 2026 et zéro sinistre jusqu'en mars 2028, vous repartez de zéro. Mais attention : **même un accrochage de parking à 200 € déclaré remet le compteur à zéro**.
@@ -236,7 +236,7 @@ Chaque sinistre responsable = **+25 %** sur votre coefficient. Responsabilité p
 
 **« Être malussé, c'est être un mauvais conducteur. »**
 
-Faux dans 30 % des cas. Nos données montrent que près d'un tiers des malussés le sont à cause d'un seul sinistre corporel (un piéton qui surgit, un verglas) ou d'un désaccord sur le constat amiable mal rempli. Le malus ne mesure pas votre compétence — il mesure votre historique statistique.
+Le malus ne mesure pas votre compétence — il mesure votre historique statistique.
 
 **Ce que ça change :** Si votre malus vient d'un sinistre unique contestable, faites-le savoir à votre courtier. Certains assureurs acceptent une lettre d'explication circonstanciée pour modérer la surprime.
 
@@ -266,10 +266,10 @@ C'est un arbitrage, pas un choix évident :
 ## Les 4 stratégies qui marchent vraiment
 
 ### 1. Le véhicule stratégique
-Citadine < 6 CV fiscaux, essence, valeur Argus < 5 000 €. La prime de base est 40 % plus basse qu'un SUV — et le malus s'applique sur cette base plus faible.
+Citadine < 6 CV fiscaux, essence, valeur Argus < 5 000 €.
 
 ### 2. L'assurance au kilomètre
-Si vous roulez < 8 000 km/an : formule « pay as you drive ». Économie constatée : **-25 % en moyenne** vs forfait classique.
+Si vous roulez < 8 000 km/an : formule « pay as you drive ».
 
 ### 3. La patience calculée
 Votre malus baisse de 5 % chaque année sans sinistre. À chaque échéance annuelle, refaites un comparatif. Un conducteur à 1,56 en 2026 sera à 1,48 en 2027 — suffisant pour que de nouveaux assureurs ouvrent leurs portes.
@@ -3163,7 +3163,9 @@ Oui, autant de fois que vous le souhaitez.
 2. **Le plafond par séance** : maximum remboursé par consultation (ex : 40 €/séance)
 3. **Le nombre de séances** : 2 à 6 par an selon les contrats
 
-### Exemple comparatif 2026
+### Exemple fictif
+
+*Exemple fictif : montants inventés pour illustrer la comparaison, ce ne sont pas des offres réelles.*
 
 | Mutuelle type | Forfait annuel | Plafond/séance | Disciplines couvertes |
 |--------------|---------------|----------------|----------------------|
@@ -4051,6 +4053,8 @@ L'**Examen de Contrôle Périodique** par un organisme habilité (Veritas, Apave
 | Pollution accidentelle | 500 000 € |
 | Défense pénale & recours | Inclus |
 
+*Ordre de grandeur indicatif, à faire valider avec votre assureur.*
+
 ### Les exclusions à scruter (signature en bas du contrat)
 
 - ⚠️ **Activités annexes non déclarées** : si vous ajoutez tyrolienne géante, accroclim, escape outdoor sans déclaration → exclusion
@@ -4291,6 +4295,8 @@ L'article **L.211-1 du Code des assurances** impose à tout organisateur d'évé
 | Moyen | 500–5 000 | 10 M€ | 1 M€ |
 | Grand | 5 000–30 000 | 20 M€ | 2,5 M€ |
 | Très grand | > 30 000 | 50 M€ + | 5 M€ + |
+
+*Ordre de grandeur indicatif, à faire valider avec votre assureur.*
 
 > **Conseil d'Arthur :** Les communes et préfectures exigent désormais des **attestations à 10 M€ minimum** dès 1 000 spectateurs. Anticipez : sans attestation conforme, pas d'arrêté municipal d'autorisation. [→ Attestation conforme sous 10 minutes](/assurance-metiers-atypiques)
 
