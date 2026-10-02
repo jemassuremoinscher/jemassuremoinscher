@@ -34,6 +34,7 @@ export const routes: RouteConfig[] = [
   { path: "/assurance-pret", changefreq: "weekly", priority: 0.8 },
   { path: "/assurance-animaux", changefreq: "weekly", priority: 0.9 },
   { path: "/assurance-chien-categorie-1-2", changefreq: "monthly", priority: 0.7 },
+  { path: "/assurance-chiot", changefreq: "monthly", priority: 0.7 },
   { path: "/assurance-pno", changefreq: "weekly", priority: 0.7 },
   { path: "/assurance-gli", changefreq: "weekly", priority: 0.9 },
   { path: "/assurance-mrp", changefreq: "weekly", priority: 0.7 },
