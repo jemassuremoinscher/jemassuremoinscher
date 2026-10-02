@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
-import { addServiceSchema, addFAQSchema, addBreadcrumbSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
+import { addServiceSchema, addFAQSchema, addInsuranceProductSchema } from "@/utils/seoUtils";
 import arthurAnimals from "@/assets/mascotte/arthur-animals.webp";
 import ArthurHero from "@/components/insurance/ArthurHero";
 import InsuranceSEOTabs from "@/components/insurance/InsuranceSEOTabs";
@@ -27,10 +27,9 @@ const AssuranceAnimaux = () => {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const breadcrumbSchema = addBreadcrumbSchema([
-    { name: "Accueil", url: "https://www.jemassuremoinscher.fr/" },
-    { name: "Assurance Animaux", url: "https://www.jemassuremoinscher.fr/assurance-animaux" },
-  ]);
+  // Pas de BreadcrumbList ici : le composant Breadcrumbs ci-dessous émet le
+  // seul fil d'Ariane JSON-LD de la page (un second, passé en jsonLd, restait
+  // dans la capture prerender).
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Animaux",
     description: "Comparez les assurances pour chiens et chats : le taux de remboursement des frais vétérinaires dépend de la formule choisie.",
@@ -67,7 +66,7 @@ const AssuranceAnimaux = () => {
         ogTitle="Assurance chien et chat : remboursement, plafond, carence"
         ogDescription="Remboursement, plafond, franchise, carence, âge limite : comment fonctionne une assurance chien ou chat. Fourchettes de trois contrats, sources citées."
         twitterDescription="Remboursement, plafond, franchise, carence, âge limite : comment fonctionne une assurance chien ou chat. Fourchettes de trois contrats, sources citées."
-        jsonLd={[breadcrumbSchema, serviceSchema, faqSchema, insuranceProductSchema]}
+        jsonLd={[serviceSchema, faqSchema, insuranceProductSchema]}
       />
       <Header />
       <Breadcrumbs items={[{ label: "Assurance Animaux" }]} />
