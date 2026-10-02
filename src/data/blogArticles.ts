@@ -765,7 +765,7 @@ Vérifiez que le nouveau contrat inclut bien :
 - ✅ Garantie conducteur si incluse
 
 ### Le « bonus fidélité » fantôme
-Votre assureur vous promet un bonus fidélité ? Demandez le montant exact. En moyenne, les « réductions fidélité » représentent **3 à 5 %** — bien moins que les **15 à 40 %** d'économie en changeant.
+Votre assureur vous promet un bonus fidélité ? Demandez le montant exact.
 
 ## FAQ
 
@@ -1226,7 +1226,7 @@ Coupez l'eau et l'électricité + prévenez les voisins
     id: "5",
     title: "10 conseils d'experts pour économiser sur vos assurances",
     slug: "10-conseils-economiser-assurances",
-    description: "Nos experts révèlent leurs meilleures astuces pour réduire le coût de vos assurances sans sacrifier vos garanties. Économisez jusqu'à 1000€ par an !",
+    description: "Nos experts révèlent leurs meilleures astuces pour réduire le coût de vos assurances sans sacrifier vos garanties.",
     category: "Conseils Experts",
     date: "5 janvier 2026",
     readTime: "9 min",
@@ -1247,19 +1247,10 @@ Les tarifs des assureurs évoluent constamment. Un contrat compétitif il y a 3 
 - Notez votre date d'échéance annuelle dans votre agenda
 - Demandez 3 à 5 devis différents
 
-**Économie potentielle : 200-500€/an**
-
 ## 2. Regroupez vos contrats
 
 **Le principe :**
 Souscrire plusieurs assurances chez le même assureur donne droit à des réductions.
-
-**Combinaisons gagnantes :**
-- Auto + Habitation : -10 à 20%
-- Auto + Moto : -15%
-- Multirisque complète : jusqu'à -25%
-
-**Économie potentielle : 150-400€/an**
 
 **Attention :** Vérifiez que le groupage est réellement avantageux. Parfois, deux assureurs différents restent moins chers.
 
@@ -1268,49 +1259,33 @@ Souscrire plusieurs assurances chez le même assureur donne droit à des réduct
 **Comment ça marche :**
 Plus votre [franchise](/glossaire/franchise) est élevée, moins votre prime est chère.
 
-**Exemple concret :**
-- Franchise 200€ → Prime : 65€/mois
-- Franchise 500€ → Prime : 55€/mois
-- **Économie : 120€/an**
-
 **Conseil d'expert :**
 Augmentez la franchise sur les garanties que vous utilisez rarement (vol, bris de glace) mais gardez-la basse sur les garanties fréquentes (dégâts des eaux).
-
-**Économie potentielle : 80-200€/an**
 
 ## 4. Déclarez tous vos avantages
 
 **Ne cachez rien qui peut réduire votre prime !**
 
 ### Pour l'assurance auto :
-- ✅ Garage fermé (-10%)
-- ✅ Alarme certifiée (-5 à 15%)
-- ✅ Faible kilométrage (-5 à 10%)
-- ✅ Conduite accompagnée (-5%)
-- ✅ Formation post-permis (-5%)
+- ✅ Garage fermé
+- ✅ Alarme certifiée
+- ✅ Faible kilométrage
+- ✅ Conduite accompagnée
+- ✅ Formation post-permis
 
 ### Pour l'assurance habitation :
-- ✅ Système d'alarme (-10 à 20%)
-- ✅ Porte blindée (-10%)
+- ✅ Système d'alarme
+- ✅ Porte blindée
 - ✅ Détecteurs de fumée
 - ✅ Voisinage actif
-
-**Économie potentielle : 100-300€/an**
 
 ## 5. Choisissez le bon mode de paiement
 
 **Paiement annuel vs mensuel :**
 
-Le paiement mensuel coûte plus cher à cause des frais de fractionnement (5-8% du total).
-
-**Exemple :**
-- Prime annuelle : 600€
-- En mensuel : 12 × 52€ = **624€**
-- **Surcoût : 24€**
+Le paiement mensuel coûte plus cher à cause des frais de fractionnement.
 
 **Astuce :** Si vous ne pouvez pas payer d'un coup, négociez un paiement trimestriel (moins de frais).
-
-**Économie potentielle : 20-80€/an**
 
 ## 6. Révisez vos garanties inutiles
 
@@ -1325,8 +1300,6 @@ Le paiement mensuel coûte plus cher à cause des frais de fractionnement (5-8% 
 - Garantie jardin → Inutile en appartement
 - Protection scolaire → Souvent incluse dans la RC
 - Garantie ski → Vérifiez votre carte bancaire
-
-**Économie potentielle : 50-150€/an**
 
 ## 7. Améliorez votre bonus-malus
 
@@ -1346,8 +1319,6 @@ Le paiement mensuel coûte plus cher à cause des frais de fractionnement (5-8% 
 3. **Choisir le bon moment**
    - Si vous avez un [sinistre](/glossaire/sinistre), attendez 2 ans avant de comparer (le malus pèse lourd)
 
-**Économie potentielle : 200-600€/an** (en protégeant votre bonus 0,50)
-
 ## 8. Profitez des lois à votre avantage
 
 ### Loi Hamon (assurance auto/habitation)
@@ -1360,8 +1331,6 @@ Résiliez à tout moment et économisez gros.
 
 **Action :** Faites une simulation tous les 6 mois.
 
-**Économie potentielle : 500-1500€/an** (surtout sur l'[assurance emprunteur](/glossaire/assurance-emprunteur))
-
 ## 9. Négociez avec votre assureur actuel
 
 **Avant de partir, tentez une négociation !**
@@ -1369,13 +1338,7 @@ Résiliez à tout moment et économisez gros.
 **Script efficace :**
 > "Bonjour, je suis client depuis X années. J'ai reçu une proposition à Y€ pour les mêmes garanties. Pouvez-vous m'aligner ?"
 
-**Statistiques :**
-- 60% des assureurs acceptent de baisser le prix pour garder un client fidèle
-- Réduction moyenne obtenue : 10-15%
-
 **Conseil :** Ayez vraiment un devis concurrent en main avant d'appeler.
-
-**Économie potentielle : 80-250€/an**
 
 ## 10. Optimisez votre profil d'assuré
 
@@ -1391,25 +1354,6 @@ Résiliez à tout moment et économisez gros.
 ### Pour l'habitation :
 - **Sous-louez avec assurance incluse** → Faites payer une partie par le sous-locataire
 - **Réduisez le capital mobilier** → Si vous avez vendu des biens, déclarez-le
-
-**Économie potentielle : 100-400€/an**
-
-## Tableau récapitulatif des économies
-
-| Conseil | Économie min | Économie max | Facilité |
-|---------|-------------|--------------|----------|
-| Comparer régulièrement | 200€ | 500€ | ⭐⭐⭐ Facile |
-| Regrouper contrats | 150€ | 400€ | ⭐⭐ Moyen |
-| Adapter franchises | 80€ | 200€ | ⭐⭐⭐ Facile |
-| Déclarer avantages | 100€ | 300€ | ⭐⭐⭐ Facile |
-| Paiement annuel | 20€ | 80€ | ⭐⭐⭐ Facile |
-| Supprimer options | 50€ | 150€ | ⭐⭐ Moyen |
-| Améliorer bonus | 200€ | 600€ | ⭐ Difficile |
-| Utiliser les lois | 500€ | 1500€ | ⭐⭐ Moyen |
-| Négocier | 80€ | 250€ | ⭐⭐ Moyen |
-| Optimiser profil | 100€ | 400€ | ⭐⭐ Moyen |
-
-**Total possible : 1 480€ à 4 380€/an d'économies !**
 
 ## Plan d'action sur 1 mois
 
@@ -1454,7 +1398,7 @@ En cas de sinistre, l'assureur peut refuser l'[indemnisation](/glossaire/indemni
 
 Économiser sur ses assurances ne signifie pas prendre des risques. C'est simplement optimiser ses contrats, profiter des lois et être vigilant sur les tarifs du marché.
 
-**Combinez plusieurs de ces conseils** pour maximiser vos économies. Même en appliquant seulement 3-4 astuces, vous pouvez facilement économiser 500-800€ par an.
+**Combinez plusieurs de ces conseils** pour maximiser vos économies.
 
 **Prêt à économiser ?** Commencez par comparer vos assurances dès aujourd'hui, c'est gratuit et ça peut vous faire économiser gros !
     `
@@ -1995,30 +1939,18 @@ La **meilleure mutuelle santé 2026** dépend de vos besoins spécifiques. Alan 
     content: `
 # Assurance Jeune Conducteur 2026 : Le Guide Pour Payer Moins Cher
 
-Vous venez d\'obtenir votre permis ? La **surprime jeune conducteur** peut doubler vos cotisations. Voici comment économiser jusqu\'à 40% sur votre assurance auto.
+Vous venez d\'obtenir votre permis ? La **surprime jeune conducteur** peut doubler vos cotisations.
 
-## 💰 Combien Coûte une Assurance Jeune Conducteur ?
-
-### Tarifs moyens 2026
-
-**Jeune conducteur (18-25 ans) :**
-- Formule [tiers](/glossaire/tiers) : 80-120€/mois
-- Formule [tous risques](/glossaire/tous-risques) : 130-180€/mois
-
-**Conducteur expérimenté :**
-- Formule tiers : 35-50€/mois
-- Formule tous risques : 65-90€/mois
-
-**Surprime moyenne : +100% la première année**
+## 💰 La surprime jeune conducteur
 
 ### Évolution de la surprime
 
-| Année | Surprime | Exemple 40€/mois |
-|-------|----------|------------------|
-| 1ère année | 100% | 80€/mois |
-| 2ème année | 50% | 60€/mois |
-| 3ème année | 25% | 50€/mois |
-| 4ème année | 0% | 40€/mois |
+| Année | Surprime |
+|-------|----------|
+| 1ère année | 100% |
+| 2ème année | 50% |
+| 3ème année | 25% |
+| 4ème année | 0% |
 
 ## Critères pour choisir une assurance jeune conducteur
 
@@ -2039,20 +1971,13 @@ Plutôt qu'un classement d'assureurs, voici les points à comparer d'un devis à
 
 La conduite accompagnée réduit la surprime à 50% la première année au lieu de 100%.
 
-**Calcul :**
-- Sans AAC : 40€ x 2 = 80€/mois
-- Avec AAC : 40€ x 1.5 = 60€/mois
-- **Gain : 240€/an**
-
 ### 2. Être Conducteur Secondaire
-**Économie : 30-40%**
 
 Assurez le véhicule au nom d\'un parent et déclarez-vous conducteur secondaire.
 
 **Attention :** Déclarez vos sinistres honnêtement pour éviter la nullité du contrat.
 
 ### 3. Choisir une Petite Voiture
-**Économie : 20-30%**
 
 Plus la puissance fiscale est faible, moins c\'est cher.
 
@@ -2065,61 +1990,34 @@ Plus la puissance fiscale est faible, moins c\'est cher.
 **À éviter :** SUV, voitures sportives, +7 CV
 
 ### 4. Limiter le Kilométrage
-**Économie : 10-15%**
 
 Si vous roulez moins de 10 000 km/an, signalez-le !
 
 ### 5. Augmenter la Franchise
-**Économie : 10-15%**
 
 Passer de 150€ à 500€ de [franchise](/glossaire/franchise) réduit la prime.
 
 **Conseil :** Gardez cette somme de côté en cas de [sinistre](/glossaire/sinistre).
 
 ### 6. Payer Annuellement
-**Économie : 5-8%**
 
 Le paiement mensuel coûte plus cher (frais de fractionnement).
 
-**Exemple :**
-- Mensuel : 95€ x 12 = 1 140€
-- Annuel : 1 060€
-- **Gain : 80€**
-
 ### 7. Installer un Boîtier Télématique
-**Économie : 10-20%**
 
 Les assureurs proposent des boîtiers qui analysent votre conduite.
 
-**Bonus conduite :**
-- Pas d\'excès de vitesse : -10%
-- Pas de freinage brusque : -5%
-- Conduite de nuit limitée : -5%
-
 ### 8. Grouper vos Contrats
-**Économie : 10-15%**
 
 Auto + habitation chez le même assureur = réduction.
 
-**Exemple :**
-- Auto seule : 95€/mois
-- Auto + habitation : 85€ + 20€ = 105€/mois
-- **Gain : 10€/mois**
-
 ### 9. Profiter du Parrainage
-**Économie : 1 à 2 mois offerts**
 
 La plupart des assureurs offrent des réductions si vous êtes parrainé.
 
-**Bonus moyen :** 30-60€
-
 ### 10. Suivre un Stage de Conduite Sécuritaire
-**Économie : 5-10%**
 
 Certains assureurs récompensent les stages de perfectionnement.
-
-**Coût du stage :** 200-300€
-**Économie sur 3 ans :** 300-600€
 
 ## ❌ Erreurs à Éviter Absolument
 
@@ -2143,21 +2041,13 @@ Pour un véhicule récent, privilégiez au minimum le tiers étendu (vol/incendi
 Déclarez TOUS vos accidents, même sans tiers identifié.
 
 ### 4. Oublier de Comparer
-**Coût :** 400-800€/an d\'écart entre assureurs
 
 Comparez au moins 5 devis avant de souscrire.
 
 ## 🎓 Cas Particuliers
 
-### Étudiant
-**Réductions disponibles :**
-- Carte étudiante : -5 à -10%
-- Véhicule garé sur campus : -5%
-- Usage limité (pas trajet quotidien) : -10%
-
 ### Apprenti
 **Bonus :**
-- Statut apprenti reconnu : -10%
 - Véhicule nécessaire pour le travail : garanties adaptées
 
 ### En Mission de Service Civique
@@ -2179,11 +2069,6 @@ Comparez au moins 5 devis avant de souscrire.
 - Conduite de nuit (risque accru)
 - Utilisation du téléphone
 - Distances parcourues
-
-### Économies potentielles
-- Bon conducteur : jusqu\'à -30%
-- Conduite moyenne : -10 à -15%
-- Conduite à risque : pas de réduction (voire +10%)
 
 ## ❓ FAQ Jeune Conducteur
 
@@ -2212,16 +2097,14 @@ Oui, mais la surprime jeune conducteur s\'applique aussi en 2-roues.
 
 ## Conclusion
 
-Être **jeune conducteur ne signifie pas forcément payer le prix fort**. En appliquant nos 10 astuces, vous pouvez réduire votre prime de 30 à 50%.
+Être **jeune conducteur ne signifie pas forcément payer le prix fort**.
 
 **Les 3 actions immédiates :**
 1. Comparez les assureurs spécialisés jeunes
 2. Optimisez votre profil (conduite accompagnée, conducteur secondaire)
 3. Choisissez un véhicule adapté (-6 CV)
 
-**Économie moyenne avec notre méthode : 800€/an**
-
-**Comparez maintenant les meilleures assurances jeune conducteur 2026** et économisez jusqu\'à 40%.
+**Comparez maintenant les meilleures assurances jeune conducteur 2026**.
     `
   },
   {
@@ -2742,7 +2625,7 @@ Choisissez selon vos besoins réels, pas selon la pub. Une mutuelle à 40€/moi
     slug: "comparatif-habitation-2026",
     description: "Guide complet pour choisir son assurance habitation. Critères de choix, garanties indispensables et conseils.",
     category: "Guides Pratiques",
-    date: "20 décembre 2026",
+    date: "18 mars 2026",
     readTime: "10 min",
     author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["assurance habitation", "comparatif", "logement", "garanties"],
@@ -2776,7 +2659,7 @@ Couvre les dommages causés aux [tiers](/glossaire/tiers).
 Essentiel dans tous les cas.
 
 **3. Dégâts des eaux**
-Sinistre le plus fréquent (40% des cas).
+Sinistre le plus fréquent.
 
 **4. Catastrophes naturelles**
 Obligatoire dans tous les contrats.
@@ -2801,69 +2684,27 @@ Obligatoire dans tous les contrats.
 ✅ Panneaux solaires
 ✅ Portail automatique
 
-## Nouveautés 2026
-
-### Objets connectés
-Réduction avec équipements :
-- Détecteur de fumée connecté : -5%
-- Caméra de surveillance : -8%
-- Détecteur de fuite : -10%
-
-**Cumulable jusqu'à -20% !**
-
-### Assurance à l'usage
-Pay as you live pour résidences secondaires :
-- Payez uniquement les mois d'occupation
-- Économie : 40-60%
-
-### Télésurveillance incluse
-Certaines offrent maintenant :
-- Caméras connectées gratuites
-- Application de surveillance
-- Alerte temps réel
-
-### Indemnisation accélérée
-Sinistres < 2000€ :
-- Indemnisation sous 48h
-- Sans expertise
-- Sur simple photo
-
 ## Comment économiser ?
 
 ### 1. Adapter la capital mobilier
 Ne sur-assurez pas !
-- Studio : 10 000-15 000€
-- T3 : 20 000-30 000€
-- Maison : 40 000-80 000€
-
-**Économie : 30-50€/an**
 
 ### 2. Augmenter la franchise
 Passer de 150€ à 500€ de franchise.
 
-**Économie : 15-20% soit 60-80€/an**
-
 ### 3. Multi-équipement
 Assurer auto + habitation chez le même assureur.
 
-**Économie : -15% sur habitation soit 50-80€/an**
-
 ### 4. Sécuriser le logement
-- Porte blindée : -5%
-- Alarme : -10%
-- Télésurveillance : -15%
-
-**Économie cumulée : jusqu'à -30%**
+- Porte blindée
+- Alarme
+- Télésurveillance
 
 ### 5. Payer à l'année
 Éviter frais de fractionnement.
 
-**Économie : 20-30€/an**
-
 ### 6. Comparer chaque année
 Les prix évoluent !
-
-**Économie moyenne : 100-200€/an**
 
 ## Pièges à éviter
 
@@ -3059,21 +2900,23 @@ Une fois accepté :
 
 ## Combien pouvez-vous économiser ?
 
-### Exemples concrets
+### Exemples chiffrés fictifs
 
-**Cas 1 : Jeune couple sans problème de santé**
+*Exemples chiffrés fictifs, pour illustrer le calcul : ce ne sont ni des cas réels ni des tarifs constatés.*
+
+**Exemple chiffré fictif n° 1 : jeune couple sans problème de santé**
 - Prêt : 250 000€ sur 25 ans
 - Assurance banque : 0,35% = 875€/an
 - Assurance externe : 0,15% = 375€/an
 - **Économie : 500€/an soit 12 500€ sur 25 ans**
 
-**Cas 2 : Emprunteur 45 ans**
+**Exemple chiffré fictif n° 2 : emprunteur de 45 ans**
 - Prêt : 180 000€ sur 20 ans
 - Assurance banque : 0,45% = 810€/an
 - Assurance externe : 0,22% = 396€/an
 - **Économie : 414€/an soit 8 280€ sur 20 ans**
 
-**Cas 3 : Investissement locatif**
+**Exemple chiffré fictif n° 3 : investissement locatif**
 - Prêt : 300 000€ sur 20 ans
 - Assurance banque : 0,38% = 1 140€/an
 - Assurance externe : 0,18% = 540€/an
