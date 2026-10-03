@@ -59,7 +59,8 @@ export default function DuelPage() {
 
   const { insurerA: a, insurerB: b } = duel;
   const title = `${a.name} vs ${b.name} — Comparatif Assurance Auto 2026`;
-  const description = `Comparatif ${a.name} vs ${b.name} : prix (${a.prixMoyen}€ vs ${b.prixMoyen}€), franchise, avis clients, rapidité de remboursement. Notre verdict d'expert.`;
+  // Sans prix d'assureur nommé dans la meta (pas de source datée).
+  const description = `Comparatif ${a.name} vs ${b.name} : prix, franchise, assistance et délai de remboursement, à vérifier sur un devis à votre nom.`;
 
   const structuredData = {
     "@context": "https://schema.org",

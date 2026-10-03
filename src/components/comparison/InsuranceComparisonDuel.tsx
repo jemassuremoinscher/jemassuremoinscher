@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import type { DuelConfig } from "@/data/duelData";
 
@@ -9,20 +8,11 @@ interface Props {
 export default function InsuranceComparisonDuel({ duel }: Props) {
   const { insurerA: a, insurerB: b } = duel;
 
-  const savings = Math.abs(a.prixMoyen - b.prixMoyen);
-  const cheaperName = a.prixMoyen <= b.prixMoyen ? a.name : b.name;
-  const moreExpensiveName = a.prixMoyen > b.prixMoyen ? a.name : b.name;
-
-  // AI verdict
-  const verdict = useMemo(() => {
-    const prixWinner = a.prixMoyen <= b.prixMoyen ? a : b;
-    const speedWinner = a.rapiditeJours <= b.rapiditeJours ? a : b;
-
-    if (prixWinner.slug === speedWinner.slug) {
-      return `${prixWinner.name} domine clairement ce comparatif avec le meilleur prix (${prixWinner.prixMoyen}€/an) et le remboursement le plus rapide (${prixWinner.rapiditeRemboursement}). C'est notre recommandation pour la plupart des profils.`;
-    }
-    return `${prixWinner.name} est le meilleur choix si le prix est votre priorité (${prixWinner.prixMoyen}€/an vs ${(prixWinner === a ? b : a).prixMoyen}€/an). Pour la rapidité de remboursement, ${speedWinner.name} l'emporte avec un délai de ${speedWinner.rapiditeRemboursement}.`;
-  }, [a, b]);
+  // Aucune affirmation chiffrée ni classement appliqué à un assureur nommé
+  // sans source datée (décision du 3 octobre 2026) : avis et encadré de gain
+  // neutres, sans prix ni « gagnant ».
+  const verdict =
+    "Ces deux contrats se comparent sur le prix, la franchise, l'assistance et le délai de remboursement. Ces éléments dépendent de votre profil, de votre véhicule et de la formule choisie : vérifiez-les sur un devis à votre nom avant de choisir.";
 
   const rows: { label: string; valueA: React.ReactNode; valueB: React.ReactNode; winnerA: boolean; winnerB: boolean }[] = [
     {
@@ -147,22 +137,17 @@ export default function InsuranceComparisonDuel({ duel }: Props) {
       </div>
 
       {/* === Savings Calculator === */}
-      {savings > 0 && (
-        <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5 md:p-6 text-center">
-          <p className="text-sm text-muted-foreground mb-1">Calculateur de gain</p>
-          <p className="text-base md:text-lg font-bold text-foreground">
-            Basculer de <span className="text-destructive">{moreExpensiveName}</span> à{" "}
-            <span className="text-primary">{cheaperName}</span> pourrait vous faire économiser
-          </p>
-          <p className="text-3xl md:text-4xl font-extrabold text-primary mt-2">{savings}€<span className="text-base font-normal text-muted-foreground">/an</span></p>
-          <Link
-            to={`/comparateur?step=1&type=auto`}
-            className="inline-flex items-center gap-2 mt-4 rounded-xl bg-primary text-primary-foreground px-6 py-2.5 font-semibold text-sm shadow-md hover:shadow-lg transition-all hover:opacity-90"
-          >
-            Comparer mon prix réel →
-          </Link>
-        </div>
-      )}
+      <div className="rounded-2xl border border-primary/20 bg-primary/5 p-5 md:p-6 text-center">
+        <p className="text-base md:text-lg font-bold text-foreground">
+          Le prix de chaque contrat dépend de votre profil et de la formule choisie.
+        </p>
+        <Link
+          to={`/comparateur?step=1&type=auto`}
+          className="inline-flex items-center gap-2 mt-4 rounded-xl bg-primary text-primary-foreground px-6 py-2.5 font-semibold text-sm shadow-md hover:shadow-lg transition-all hover:opacity-90"
+        >
+          Comparer mon prix réel →
+        </Link>
+      </div>
 
       {/* === Expert Verdict === */}
       <div className="rounded-2xl border border-border bg-card p-5 md:p-6 shadow-[var(--shadow-card)]">

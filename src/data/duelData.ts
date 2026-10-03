@@ -50,7 +50,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
     assistance0km: true,
     rapiditeRemboursement: "48h",
     rapiditeJours: 2,
-    pointsForts: ["Service client réputé n°1", "Garantie corporelle étendue", "Protection du bonus"],
+    pointsForts: ["Garantie corporelle étendue", "Protection du bonus"],
     pointsFaibles: ["Pas le moins cher", "Réseau d'agences limité"],
   },
   macif: {
@@ -74,7 +74,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
     assistance0km: false,
     rapiditeRemboursement: "5 jours",
     rapiditeJours: 5,
-    pointsForts: ["Leader européen", "Large gamme de produits", "Application mobile complète"],
+    pointsForts: ["Large gamme de produits", "Application mobile complète"],
     pointsFaibles: ["Prix élevé", "Pas d'assistance 0km de base"],
   },
   allianz: {
@@ -231,7 +231,7 @@ const insurerProfiles: Record<string, InsurerDuelProfile> = {
     assistance0km: false,
     rapiditeRemboursement: "5 jours",
     rapiditeJours: 5,
-    pointsForts: ["N°1 assurance patrimoniale", "Prévoyance haut de gamme", "Conseil en gestion de patrimoine"],
+    pointsForts: ["Prévoyance haut de gamme", "Conseil en gestion de patrimoine"],
     pointsFaibles: ["Tarifs premium élevés", "Pas d'offre auto low-cost"],
   },
   abeille: {
