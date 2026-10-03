@@ -1,4 +1,7 @@
 import { supabase } from "@/integrations/supabase/client";
+// Import circulaire voulu : staleChunkReload utilise reportSiteError ; les
+// fonctions ne sont appelées qu'après le chargement des deux modules.
+import { flushPendingStaleChunkReport, isStaleChunkError, reloadOnceForStaleChunk } from "@/lib/staleChunkReload";
 
 export type SiteErrorType =
   | "form_submit"
@@ -73,6 +76,30 @@ export function installGlobalErrorReporter(): void {
   if (installed || typeof window === "undefined") return;
   installed = true;
 
+  // Rechargement unique après déploiement (staleChunkReload.ts).
+  {
+    flushPendingStaleChunkReport();
+
+    // Vite : échec de préchargement des dépendances d'un import dynamique.
+    // preventDefault() évite l'erreur non gérée ; on recharge une fois.
+    window.addEventListener("vite:preloadError", (event) => {
+      const payload = (event as Event & { payload?: unknown }).payload;
+      const msg = payload instanceof Error ? payload.message : String(payload ?? "vite:preloadError");
+      if (reloadOnceForStaleChunk("vite:preloadError", msg)) event.preventDefault();
+    });
+
+    window.addEventListener("error", (event) => {
+      const msg = event.message || String(event.error ?? "");
+      if (isStaleChunkError(msg)) reloadOnceForStaleChunk("window.error", msg);
+    });
+
+    window.addEventListener("unhandledrejection", (event) => {
+      const reason = (event as PromiseRejectionEvent).reason;
+      const msg = reason instanceof Error ? reason.message : String(reason ?? "");
+      if (isStaleChunkError(msg)) reloadOnceForStaleChunk("unhandledrejection", msg);
+    });
+  }
+
   window.addEventListener("error", (event) => {
     const msg = event.message || String(event.error ?? "");
     if (!msg) return;
@@ -82,17 +109,6 @@ export function installGlobalErrorReporter(): void {
       message: msg,
       context: { filename: (event as ErrorEvent).filename, line: (event as ErrorEvent).lineno },
     });
-    // Déploiement plus récent : le bundle en cache est périmé → un seul rechargement.
-    if (isChunk) {
-      try {
-        if (!sessionStorage.getItem("chunk-reload")) {
-          sessionStorage.setItem("chunk-reload", "1");
-          window.location.reload();
-        }
-      } catch {
-        /* storage indisponible */
-      }
-    }
   });
 
   window.addEventListener("unhandledrejection", (event) => {

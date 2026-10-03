@@ -1,5 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { toast } from 'sonner';
+import { isStaleChunkError, reloadOnceForStaleChunk } from '@/lib/staleChunkReload';
 
 interface Props {
   children: ReactNode;
@@ -22,18 +23,10 @@ export class ErrorBoundary extends Component<Props, State> {
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('Error caught by boundary:', error, errorInfo);
 
-    // Stale chunk after a new deploy → auto-reload once
+    // Fichier JS/CSS d'un déploiement précédent : un seul rechargement
+    // (garde-fou et trace dans staleChunkReload.ts).
     const msg = error?.message || '';
-    const isChunkError =
-      /Failed to fetch dynamically imported module/i.test(msg) ||
-      /Loading chunk [\d]+ failed/i.test(msg) ||
-      /Importing a module script failed/i.test(msg);
-
-    if (isChunkError && !sessionStorage.getItem('chunk-reload-attempted')) {
-      sessionStorage.setItem('chunk-reload-attempted', '1');
-      window.location.reload();
-      return;
-    }
+    if (isStaleChunkError(msg) && reloadOnceForStaleChunk('ErrorBoundary', msg)) return;
 
     toast.error('Erreur de chargement', {
       description: 'Une erreur est survenue lors du chargement de la page. Veuillez rafraîchir ou réessayer plus tard.',
