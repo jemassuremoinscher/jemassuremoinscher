@@ -54,3 +54,13 @@ export const TROTTINETTE_VOL_STATUS = "Non incluse dans ce contrat ; proposée p
 /** Note affichée sous le tableau de garanties trottinette. */
 export const TROTTINETTE_TABLE_NOTE =
   "Ce tableau décrit le contrat d'entrée de gamme mis en avant sur cette page (document d'information d'un contrat du marché, 2025). Les garanties vol, casse et assistance dépendent de l'assureur : un conseiller vous présente ce que chaque contrat inclut ou exclut.";
+
+/**
+ * Table app_settings (réglages publics : 'languages_enabled', plus tard
+ * 'callback_languages'). false tant que la migration proposée
+ * (docs/i18n/migrations-proposees/app_settings.sql) n'est pas appliquée :
+ * le site utilise alors les valeurs par défaut sans interroger la base (une
+ * requête vers une table absente renvoie un 404 journalisé en console).
+ * Passer à true une fois la migration appliquée.
+ */
+export const APP_SETTINGS_AVAILABLE = false;

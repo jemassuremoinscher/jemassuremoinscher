@@ -2508,6 +2508,16 @@ const en: Record<string, string> = {
   "a11y.about.cscaAlt": "CSCA logo - French Insurance Brokers Union",
   "a11y.about.certifAlt": "Arthur showcasing jemassuremoinscher.fr certifications",
   "a11y.about.flyAlt": "Arthur flying",
+
+  // i18n — socle (étape 1) : bandeaux et bouton de langue
+  'i18n.notice.residency': 'Service reserved for people living in France',
+  'i18n.notice.frenchOnlyArticle': 'This article is only available in French.',
+  'i18n.notice.frenchOnlyBlog': 'Blog articles are only available in French.',
+  'i18n.notice.frenchOnlyGlossary': 'The glossary is only available in French.',
+  'i18n.switcher.label': 'Choose language',
+  'i18n.switcher.fr': 'Français',
+  'i18n.switcher.en': 'English',
+  'i18n.switcher.it': 'Italiano',
 };
 
 export default en;

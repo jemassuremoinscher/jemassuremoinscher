@@ -2500,6 +2500,16 @@ const fr: Record<string, string> = {
   "a11y.about.cscaAlt": "Logo CSCA - Chambre Syndicale des Courtiers d'Assurances",
   "a11y.about.certifAlt": "Arthur présente les certifications de jemassuremoinscher.fr",
   "a11y.about.flyAlt": "Arthur en vol",
+
+  // i18n — socle (étape 1) : bandeaux et bouton de langue
+  'i18n.notice.residency': 'Service réservé aux personnes résidant en France',
+  'i18n.notice.frenchOnlyArticle': 'Cet article est disponible en français uniquement.',
+  'i18n.notice.frenchOnlyBlog': 'Les articles du blog sont disponibles en français uniquement.',
+  'i18n.notice.frenchOnlyGlossary': 'Le glossaire est disponible en français uniquement.',
+  'i18n.switcher.label': 'Choisir la langue',
+  'i18n.switcher.fr': 'Français',
+  'i18n.switcher.en': 'English',
+  'i18n.switcher.it': 'Italiano',
 };
 
 export default fr;
