@@ -125,7 +125,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
     title: t('step.shared.postalCode.title'),
     subtitle: t('step.shared.postalCode.subtitle'),
     field: 'postalCode',
-    arthurHint: 'Le code postal affine le tarif selon les risques de votre zone (vol, sinistralité locale).',
+    arthurHint: t('step.shared.postalCode.arthurHint'),
     inputType: 'text',
     placeholder: t('step.shared.postalCode.placeholder'),
     maxLength: 5,
@@ -139,7 +139,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
     title: t('step.shared.age.title'),
     subtitle: t('step.shared.age.subtitle'),
     field: 'age',
-    arthurHint: "L'âge influence fortement le calcul du tarif.",
+    arthurHint: t('step.shared.age.arthurHint'),
     inputType: 'number',
     placeholder: t('step.shared.age.placeholder'),
     validation: /^(1[89]|[2-9]\d)$/,
@@ -154,7 +154,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
     field: 'vehicleBrand',
     vehicleType: 'auto',
     vehicleField: 'brand',
-    arthurHint: 'La marque du véhicule influence le coût des réparations et donc le tarif.',
+    arthurHint: t('step.shared.vehicleBrandAuto.arthurHint'),
   };
 
   const vehicleModelStepAuto: FormStep = {
@@ -165,7 +165,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
     field: 'vehicleModel',
     vehicleType: 'auto',
     vehicleField: 'model',
-    arthurHint: 'Le modèle influence directement le tarif.',
+    arthurHint: t('step.shared.vehicleModel.arthurHint'),
     showUnsureButton: true,
   };
 
@@ -175,7 +175,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
     title: t('step.shared.vehicleYear.title'),
     subtitle: t('step.shared.vehicleYear.subtitle'),
     field: 'vehicleYear',
-    arthurHint: "L'année du véhicule joue sur sa valeur et le coût de remplacement en cas de sinistre.",
+    arthurHint: t('step.shared.vehicleYear.arthurHint'),
     inputType: 'number',
     placeholder: t('step.shared.vehicleYear.placeholder'),
     validation: /^(19[89]\d|20[0-2]\d|203[0-6])$/,
@@ -190,7 +190,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
     field: 'vehicleBrand',
     vehicleType: 'moto',
     vehicleField: 'brand',
-    arthurHint: 'La marque du véhicule influence le coût des réparations et donc le tarif.',
+    arthurHint: t('step.shared.vehicleBrandMoto.arthurHint'),
   };
 
   const vehicleModelStepMoto: FormStep = {
@@ -201,7 +201,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
     field: 'vehicleModel',
     vehicleType: 'moto',
     vehicleField: 'model',
-    arthurHint: 'Le modèle influence directement le tarif.',
+    arthurHint: t('step.shared.vehicleModel.arthurHint'),
     showUnsureButton: true,
   };
 
@@ -221,7 +221,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'auto', 'formule', 'tiers', Shield),
         opt(t, 'auto', 'formule', 'tiers_plus', ShieldCheck),
         opt(t, 'auto', 'formule', 'tous_risques', ShieldPlus),
-      ], 'Le niveau de garantie est le principal levier du prix : tiers, tiers étendu ou tous risques.'),
+      ], t('step.auto.formule.arthurHint')),
       vehicleBrandStepAuto,
       vehicleModelStepAuto,
       vehicleYearStep,
@@ -229,16 +229,16 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'auto', 'usage_auto', 'prive', User),
         opt(t, 'auto', 'usage_auto', 'trajet_travail', Briefcase),
         opt(t, 'auto', 'usage_auto', 'pro', Building2),
-      ], 'Un usage professionnel augmente l\'exposition au risque, donc le tarif.'),
+      ], t('step.auto.usage_auto.arthurHint')),
       {
         ...cs('auto', 'bonus_malus_auto', 'bonusMalus', [
           opt(t, 'auto', 'bonus_malus_auto', 'bonus_050', Award),
           opt(t, 'auto', 'bonus_malus_auto', 'standard', ShieldCheck),
           opt(t, 'auto', 'bonus_malus_auto', 'malus', AlertTriangle),
-        ], 'Même approximatif, ça affine fortement le tarif.'),
+        ], t('step.auto.bonus_malus_auto.arthurHint')),
         showUnsureButton: true,
         unsureDefaultValue: 'standard',
-        preciseInput: { min: 0.5, max: 3.5, step: 0.01, placeholder: 'Ex : 0,73', label: 'Je connais mon coefficient exact' },
+        preciseInput: { min: 0.5, max: 3.5, step: 0.01, placeholder: t('step.shared.bonusMalusPrecise.placeholder'), label: t('step.shared.bonusMalusPrecise.label') },
       },
       ageStep, postalCodeStep, searchingStep, contactStep,
     ],
@@ -247,7 +247,7 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'moto', 'formule', 'tiers', Shield),
         opt(t, 'moto', 'formule', 'tiers_plus', ShieldCheck),
         opt(t, 'moto', 'formule', 'tous_risques', ShieldPlus),
-      ], 'Le niveau de garantie est le principal levier du prix de l\'assurance moto.'),
+      ], t('step.moto.formule.arthurHint')),
       vehicleBrandStepMoto,
       vehicleModelStepMoto,
       vehicleYearStep,
@@ -256,21 +256,21 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'moto', 'cylindree_moto', '125', Bike),
         opt(t, 'moto', 'cylindree_moto', 'medium', Bike),
         opt(t, 'moto', 'cylindree_moto', 'large', AlertTriangle),
-      ], 'La cylindrée est un facteur clé du tarif : plus elle est élevée, plus le risque augmente.'),
+      ], t('step.moto.cylindree_moto.arthurHint')),
       cs('moto', 'stationnement_moto', 'parkingType', [
         opt(t, 'moto', 'stationnement_moto', 'garage', Lock),
         opt(t, 'moto', 'stationnement_moto', 'parking', Building),
         opt(t, 'moto', 'stationnement_moto', 'rue', AlertTriangle),
-      ], 'Un stationnement sécurisé réduit le risque de vol et peut faire baisser le tarif.'),
+      ], t('step.moto.stationnement_moto.arthurHint')),
       {
         ...cs('moto', 'bonus_malus_moto', 'bonusMalus', [
           opt(t, 'moto', 'bonus_malus_moto', 'bonus_050', Award),
           opt(t, 'moto', 'bonus_malus_moto', 'standard', ShieldCheck),
           opt(t, 'moto', 'bonus_malus_moto', 'malus', AlertTriangle),
-        ], 'Même approximatif, ça affine fortement le tarif.'),
+        ], t('step.moto.bonus_malus_moto.arthurHint')),
         showUnsureButton: true,
         unsureDefaultValue: 'standard',
-        preciseInput: { min: 0.5, max: 3.5, step: 0.01, placeholder: 'Ex : 0,73', label: 'Je connais mon coefficient exact' },
+        preciseInput: { min: 0.5, max: 3.5, step: 0.01, placeholder: t('step.shared.bonusMalusPrecise.placeholder'), label: t('step.shared.bonusMalusPrecise.label') },
       },
       ageStep, postalCodeStep, searchingStep, contactStep,
     ],
@@ -279,22 +279,22 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'habitation', 'logement', 'appartement', Building),
         opt(t, 'habitation', 'logement', 'maison', Home),
         opt(t, 'habitation', 'logement', 'villa', Castle),
-      ], 'Le type de logement (appartement, maison, villa) influence le niveau de risque assuré.'),
+      ], t('step.habitation.logement.arthurHint')),
       cs('habitation', 'formule', 'coverageLevel', [
         opt(t, 'habitation', 'formule', 'essentielle', Shield),
         opt(t, 'habitation', 'formule', 'confort', ShieldCheck),
         opt(t, 'habitation', 'formule', 'premium', ShieldPlus),
-      ], 'Le niveau de garantie détermine ce qui est couvert et le tarif associé.'),
+      ], t('step.habitation.formule.arthurHint')),
       cs('habitation', 'surface_logement', 'housingSurface', [
         opt(t, 'habitation', 'surface_logement', 'sub_40', Home),
         opt(t, 'habitation', 'surface_logement', '40_90', Building),
         opt(t, 'habitation', 'surface_logement', 'sup_90', Castle),
-      ], 'La surface du logement est un critère direct du calcul de la prime.'),
+      ], t('step.habitation.surface_logement.arthurHint')),
       cs('habitation', 'statut_occupant', 'occupancyStatus', [
         opt(t, 'habitation', 'statut_occupant', 'locataire', KeyRound),
         opt(t, 'habitation', 'statut_occupant', 'proprietaire', Home),
         opt(t, 'habitation', 'statut_occupant', 'coproprietaire', Building2),
-      ], 'Être locataire ou propriétaire change les garanties obligatoires et donc le tarif.'),
+      ], t('step.habitation.statut_occupant.arthurHint')),
       postalCodeStep, searchingStep, contactStep,
     ],
     sante: [
@@ -302,22 +302,22 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'sante', 'situation', 'seul', User),
         opt(t, 'sante', 'situation', 'couple', Users),
         opt(t, 'sante', 'situation', 'famille', Baby),
-      ], 'Le nombre de personnes à couvrir (seul, couple, famille) détermine le tarif global.'),
+      ], t('step.sante.situation.arthurHint')),
       cs('sante', 'besoins', 'coverageLevel', [
         opt(t, 'sante', 'besoins', 'economique', Stethoscope),
         opt(t, 'sante', 'besoins', 'equilibre', Eye),
         opt(t, 'sante', 'besoins', 'integrale', HeartPulse),
-      ], 'Le niveau de remboursement souhaité est le principal levier du tarif de mutuelle.'),
+      ], t('step.sante.besoins.arthurHint')),
       cs('sante', 'hospitalisation_sante', 'hospitalCoverage', [
         opt(t, 'sante', 'hospitalisation_sante', 'standard', Stethoscope),
         opt(t, 'sante', 'hospitalisation_sante', 'renforce', ShieldCheck),
         opt(t, 'sante', 'hospitalisation_sante', 'premium', HeartPulse),
-      ], 'Le niveau de couverture hospitalisation pèse fortement sur le prix de la mutuelle.'),
+      ], t('step.sante.hospitalisation_sante.arthurHint')),
       cs('sante', 'optique_dentaire', 'opticalDentalNeeds', [
         opt(t, 'sante', 'optique_dentaire', 'faibles', Eye),
         opt(t, 'sante', 'optique_dentaire', 'reguliers', Pill),
         opt(t, 'sante', 'optique_dentaire', 'forts', HeartPulse),
-      ], 'Vos besoins en optique et dentaire orientent vers la formule la plus adaptée.'),
+      ], t('step.sante.optique_dentaire.arthurHint')),
       ageStep, postalCodeStep, searchingStep, contactStep,
     ],
     pret: [
@@ -325,17 +325,17 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'pret', 'garanties', 'deces', Shield),
         opt(t, 'pret', 'garanties', 'deces_ipt', ShieldCheck),
         opt(t, 'pret', 'garanties', 'deces_ipt_itt', ShieldPlus),
-      ], 'Le niveau de garanties (décès, IPT, ITT) est le principal facteur du tarif.'),
+      ], t('step.pret.garanties.arthurHint')),
       cs('pret', 'montant_pret', 'loanAmount', [
         opt(t, 'pret', 'montant_pret', 'sub_150k', Wallet),
         opt(t, 'pret', 'montant_pret', '150_300k', Landmark),
         opt(t, 'pret', 'montant_pret', 'sup_300k', Building2),
-      ], 'Le montant emprunté détermine directement le capital à assurer.'),
+      ], t('step.pret.montant_pret.arthurHint')),
       cs('pret', 'fumeur_pret', 'smokerStatus', [
         opt(t, 'pret', 'fumeur_pret', 'non', ShieldCheck),
         opt(t, 'pret', 'fumeur_pret', 'ex', Activity),
         opt(t, 'pret', 'fumeur_pret', 'oui', AlertTriangle),
-      ], 'Le statut fumeur est un critère médical qui influence fortement le tarif.'),
+      ], t('step.pret.fumeur_pret.arthurHint')),
       ageStep, postalCodeStep, searchingStep, contactStep,
     ],
     animaux: [
@@ -343,22 +343,22 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'animaux', 'animal', 'chien', PawPrint),
         opt(t, 'animaux', 'animal', 'chat', PawPrint),
         opt(t, 'animaux', 'animal', 'nac', PawPrint),
-      ], 'L\'espèce de l\'animal (chien, chat, NAC) conditionne les garanties disponibles.'),
+      ], t('step.animaux.animal.arthurHint')),
       cs('animaux', 'formule', 'coverageLevel', [
         opt(t, 'animaux', 'formule', 'accident', Activity),
         opt(t, 'animaux', 'formule', 'maladie_accident', HeartPulse),
         opt(t, 'animaux', 'formule', 'integrale', Heart),
-      ], 'Le niveau de garantie choisi détermine les frais vétérinaires remboursés.'),
+      ], t('step.animaux.formule.arthurHint')),
       cs('animaux', 'age_animal', 'petAge', [
         opt(t, 'animaux', 'age_animal', 'junior', PawPrint),
         opt(t, 'animaux', 'age_animal', 'adult', PawPrint),
         opt(t, 'animaux', 'age_animal', 'senior', HeartPulse),
-      ], 'L\'âge de l\'animal influence son risque de santé et donc le tarif.'),
+      ], t('step.animaux.age_animal.arthurHint')),
       cs('animaux', 'race_animal', 'petRisk', [
         opt(t, 'animaux', 'race_animal', 'standard', ShieldCheck),
         opt(t, 'animaux', 'race_animal', 'race_sensible', AlertTriangle),
         opt(t, 'animaux', 'race_animal', 'antecedents', Stethoscope),
-      ], 'Certaines races sont plus sujettes à des pathologies, ce qui impacte le tarif.'),
+      ], t('step.animaux.race_animal.arthurHint')),
       postalCodeStep, searchingStep, contactStep,
     ],
     vie: [
@@ -366,17 +366,17 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'vie', 'objectif', 'epargne', Wallet),
         opt(t, 'vie', 'objectif', 'protection', Umbrella),
         opt(t, 'vie', 'objectif', 'mixte', Landmark),
-      ], 'Votre objectif (épargne, protection, mixte) oriente le contrat le plus adapté.'),
+      ], t('step.vie.objectif.arthurHint')),
       cs('vie', 'versement_initial', 'initialPayment', [
         opt(t, 'vie', 'versement_initial', 'sub_5k', Wallet),
         opt(t, 'vie', 'versement_initial', '5_50k', Landmark),
         opt(t, 'vie', 'versement_initial', 'sup_50k', Award),
-      ], 'Le montant du versement initial peut influencer les frais et options disponibles.'),
+      ], t('step.vie.versement_initial.arthurHint')),
       cs('vie', 'horizon_vie', 'investmentHorizon', [
         opt(t, 'vie', 'horizon_vie', 'sub_4', Calendar),
         opt(t, 'vie', 'horizon_vie', '4_8', ShieldCheck),
         opt(t, 'vie', 'horizon_vie', 'sup_8', Sparkles),
-      ], 'L\'horizon de placement aide à choisir un profil de risque adapté.'),
+      ], t('step.vie.horizon_vie.arthurHint')),
       ageStep, postalCodeStep, searchingStep, contactStep,
     ],
     prevoyance: [
@@ -384,17 +384,17 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'prevoyance', 'formule', 'essentielle', Shield),
         opt(t, 'prevoyance', 'formule', 'confort', ShieldCheck),
         opt(t, 'prevoyance', 'formule', 'integrale', ShieldPlus),
-      ], 'Le niveau de garanties détermine l\'étendue de la protection en cas de coup dur.'),
+      ], t('step.prevoyance.formule.arthurHint')),
       cs('prevoyance', 'statut_prevoyance', 'professionalStatus', [
         opt(t, 'prevoyance', 'statut_prevoyance', 'salarie', Briefcase),
         opt(t, 'prevoyance', 'statut_prevoyance', 'tns', User),
         opt(t, 'prevoyance', 'statut_prevoyance', 'dirigeant', Building2),
-      ], 'Le statut professionnel (salarié, TNS, dirigeant) change les besoins de couverture.'),
+      ], t('step.prevoyance.statut_prevoyance.arthurHint')),
       cs('prevoyance', 'revenu_prevoyance', 'incomeToProtect', [
         opt(t, 'prevoyance', 'revenu_prevoyance', 'sub_2k', Wallet),
         opt(t, 'prevoyance', 'revenu_prevoyance', '2_4k', ShieldCheck),
         opt(t, 'prevoyance', 'revenu_prevoyance', 'sup_4k', Award),
-      ], 'Le revenu à protéger détermine le montant des indemnités journalières.'),
+      ], t('step.prevoyance.revenu_prevoyance.arthurHint')),
       ageStep, postalCodeStep, searchingStep, contactStep,
     ],
     rc_pro: [
@@ -402,22 +402,22 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'rc_pro', 'activite', 'liberal', Briefcase),
         opt(t, 'rc_pro', 'activite', 'commerce', Scale),
         opt(t, 'rc_pro', 'activite', 'tech', FileText),
-      ], 'Le secteur d\'activité détermine les risques couverts par la RC Pro.'),
+      ], t('step.rc_pro.activite.arthurHint')),
       cs('rc_pro', 'formule', 'coverageLevel', [
         opt(t, 'rc_pro', 'formule', 'basique', Shield),
         opt(t, 'rc_pro', 'formule', 'standard', ShieldCheck),
         opt(t, 'rc_pro', 'formule', 'premium', ShieldPlus),
-      ], 'Le niveau de garantie fixe le plafond d\'indemnisation en cas de litige.'),
+      ], t('step.rc_pro.formule.arthurHint')),
       cs('rc_pro', 'ca_rcpro', 'revenue', [
         opt(t, 'rc_pro', 'ca_rcpro', 'sub_50k', Wallet),
         opt(t, 'rc_pro', 'ca_rcpro', '50_250k', Briefcase),
         opt(t, 'rc_pro', 'ca_rcpro', 'sup_250k', Building2),
-      ], 'Le chiffre d\'affaires est un critère clé du calcul de la prime RC Pro.'),
+      ], t('step.rc_pro.ca_rcpro.arthurHint')),
       cs('rc_pro', 'clients_rcpro', 'clientType', [
         opt(t, 'rc_pro', 'clients_rcpro', 'particuliers', Users),
         opt(t, 'rc_pro', 'clients_rcpro', 'entreprises', Building2),
         opt(t, 'rc_pro', 'clients_rcpro', 'mixte', Scale),
-      ], 'Le type de clientèle (particuliers, entreprises) influence le niveau de risque.'),
+      ], t('step.rc_pro.clients_rcpro.arthurHint')),
       postalCodeStep, searchingStep, contactStep,
     ],
     mrp: [
@@ -425,17 +425,17 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'mrp', 'formule', 'essentielle', Shield),
         opt(t, 'mrp', 'formule', 'confort', ShieldCheck),
         opt(t, 'mrp', 'formule', 'premium', ShieldPlus),
-      ], 'Le niveau de garantie détermine la protection de vos locaux professionnels.'),
+      ], t('step.mrp.formule.arthurHint')),
       cs('mrp', 'local_mrp', 'businessPremises', [
         opt(t, 'mrp', 'local_mrp', 'bureau', Building),
         opt(t, 'mrp', 'local_mrp', 'commerce', Briefcase),
         opt(t, 'mrp', 'local_mrp', 'atelier', HardHat),
-      ], 'Le type de local (bureau, commerce, atelier) influence le risque assuré.'),
+      ], t('step.mrp.local_mrp.arthurHint')),
       cs('mrp', 'stock_mrp', 'equipmentValue', [
         opt(t, 'mrp', 'stock_mrp', 'sub_10k', Shield),
         opt(t, 'mrp', 'stock_mrp', '10_50k', ShieldCheck),
         opt(t, 'mrp', 'stock_mrp', 'sup_50k', ShieldPlus),
-      ], 'La valeur du matériel et du stock détermine le capital à assurer.'),
+      ], t('step.mrp.stock_mrp.arthurHint')),
       postalCodeStep, searchingStep, contactStep,
     ],
     gli: [
@@ -443,17 +443,17 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'gli', 'formule', 'basique', Shield),
         opt(t, 'gli', 'formule', 'standard', ShieldCheck),
         opt(t, 'gli', 'formule', 'premium', ShieldPlus),
-      ], 'Le niveau de garantie fixe le plafond de loyers impayés couverts.'),
+      ], t('step.gli.formule.arthurHint')),
       cs('gli', 'loyer_gli', 'monthlyRent', [
         opt(t, 'gli', 'loyer_gli', 'sub_700', Wallet),
         opt(t, 'gli', 'loyer_gli', '700_1500', Home),
         opt(t, 'gli', 'loyer_gli', 'sup_1500', Building2),
-      ], 'Le montant du loyer détermine directement le tarif de la garantie.'),
+      ], t('step.gli.loyer_gli.arthurHint')),
       cs('gli', 'locataire_gli', 'tenantStatus', [
         opt(t, 'gli', 'locataire_gli', 'nouveau', Search),
         opt(t, 'gli', 'locataire_gli', 'en_place_ok', ShieldCheck),
         opt(t, 'gli', 'locataire_gli', 'incident', AlertTriangle),
-      ], 'Le profil du locataire (nouveau, en place, incident) est central dans l\'évaluation du risque.'),
+      ], t('step.gli.locataire_gli.arthurHint')),
       postalCodeStep, searchingStep, contactStep,
     ],
     pno: [
@@ -461,17 +461,17 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'pno', 'formule', 'essentielle', Shield),
         opt(t, 'pno', 'formule', 'confort', ShieldCheck),
         opt(t, 'pno', 'formule', 'premium', ShieldPlus),
-      ], 'Le niveau de garantie détermine la protection de votre bien loué.'),
+      ], t('step.pno.formule.arthurHint')),
       cs('pno', 'occupation_pno', 'propertyOccupancy', [
         opt(t, 'pno', 'occupation_pno', 'loue', KeyRound),
         opt(t, 'pno', 'occupation_pno', 'vacant', Home),
         opt(t, 'pno', 'occupation_pno', 'travaux', HardHat),
-      ], 'L\'occupation du bien (loué, vacant, travaux) change le niveau de risque.'),
+      ], t('step.pno.occupation_pno.arthurHint')),
       cs('pno', 'type_bien_pno', 'propertyType', [
         opt(t, 'pno', 'type_bien_pno', 'appartement', Building),
         opt(t, 'pno', 'type_bien_pno', 'maison', Home),
         opt(t, 'pno', 'type_bien_pno', 'immeuble', Building2),
-      ], 'Le type de bien (appartement, maison, immeuble) influence le tarif.'),
+      ], t('step.pno.type_bien_pno.arthurHint')),
       postalCodeStep, searchingStep, contactStep,
     ],
     gestion_locative: [
@@ -479,22 +479,22 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'gestion_locative', 'propertyCount', '1', Home),
         opt(t, 'gestion_locative', 'propertyCount', '2-5', Building),
         opt(t, 'gestion_locative', 'propertyCount', '5+', Building2),
-      ], 'Le nombre de biens à gérer détermine l\'ampleur du service et son tarif.'),
+      ], t('step.gestion_locative.propertyCount.arthurHint')),
       cs('gestion_locative', 'managementType', 'managementType', [
         opt(t, 'gestion_locative', 'managementType', 'full', ShieldPlus),
         opt(t, 'gestion_locative', 'managementType', 'partial', ShieldCheck),
         opt(t, 'gestion_locative', 'managementType', 'declaration', FileText),
-      ], 'Le niveau de gestion souhaité (complète, partielle) fixe l\'étendue des prestations.'),
+      ], t('step.gestion_locative.managementType.arthurHint')),
       cs('gestion_locative', 'rentCollection', 'rentCollection', [
         opt(t, 'gestion_locative', 'rentCollection', 'oui', Wallet),
         opt(t, 'gestion_locative', 'rentCollection', 'non', User),
         opt(t, 'gestion_locative', 'rentCollection', 'a_decider', Search),
-      ], 'L\'encaissement des loyers est une prestation clé qui influence le tarif.'),
+      ], t('step.gestion_locative.rentCollection.arthurHint')),
       cs('gestion_locative', 'gli_included', 'includeGLI', [
         opt(t, 'gestion_locative', 'gli_included', 'oui', Lock),
         opt(t, 'gestion_locative', 'gli_included', 'non', FileText),
         opt(t, 'gestion_locative', 'gli_included', 'comparer', Scale),
-      ], 'Inclure la garantie loyers impayés change le niveau de protection et le prix.'),
+      ], t('step.gestion_locative.gli_included.arthurHint')),
       postalCodeStep, searchingStep, contactStep,
     ],
     comparateur: [
@@ -513,12 +513,12 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'comparateur', 'type', 'pret', FileText, mascotThinking),
         opt(t, 'comparateur', 'type', 'mrp', Building2, mascotBusiness),
         opt(t, 'comparateur', 'type', 'gestion_locative', KeyRound, mascotHouse),
-      ], 'Le type d\'assurance choisi détermine le parcours et les critères suivants.'),
+      ], t('step.comparateur.type.arthurHint')),
       cs('comparateur', 'formule', 'coverageLevel', [
         opt(t, 'comparateur', 'formule', 'essentielle', Shield),
         opt(t, 'comparateur', 'formule', 'confort', ShieldCheck),
         opt(t, 'comparateur', 'formule', 'premium', ShieldPlus),
-      ], 'Le niveau de garantie recherché aide à cibler les meilleures offres.'),
+      ], t('step.comparateur.formule.arthurHint')),
       postalCodeStep, searchingStep, contactStep,
     ],
     metiers_atypiques: [
@@ -528,14 +528,14 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'metiers_atypiques', 'famille_activite', 'evenementiel', PartyPopper),
         opt(t, 'metiers_atypiques', 'famille_activite', 'btp_specialise', HardHat),
         opt(t, 'metiers_atypiques', 'famille_activite', 'autre', Sparkles),
-      ], 'La famille d\'activité détermine les garanties spécifiques nécessaires.'),
+      ], t('step.metiers_atypiques.famille_activite.arthurHint')),
       {
         id: 'description_activite',
         type: 'input',
         title: t('step.metiers_atypiques.description_activite.title'),
         subtitle: t('step.metiers_atypiques.description_activite.subtitle'),
         field: 'activityDescription',
-        arthurHint: 'Une description précise permet d\'évaluer correctement le risque de votre activité.',
+        arthurHint: t('step.metiers_atypiques.description_activite.arthurHint'),
         inputType: 'text',
         placeholder: t('step.metiers_atypiques.description_activite.placeholder'),
         maxLength: 120,
@@ -547,43 +547,43 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         opt(t, 'metiers_atypiques', 'statut', 'sasu_eurl', Briefcase),
         opt(t, 'metiers_atypiques', 'statut', 'sas_sarl', Building2),
         opt(t, 'metiers_atypiques', 'statut', 'asso', Users),
-      ], 'Le statut juridique influence les responsabilités et garanties à couvrir.'),
+      ], t('step.metiers_atypiques.statut.arthurHint')),
       cs('metiers_atypiques', 'public_encadre', 'publicExposure', [
         opt(t, 'metiers_atypiques', 'public_encadre', 'aucun', Lock),
         opt(t, 'metiers_atypiques', 'public_encadre', 'adultes', User),
         opt(t, 'metiers_atypiques', 'public_encadre', 'mixte', Users),
         opt(t, 'metiers_atypiques', 'public_encadre', 'mineurs', Baby),
-      ], 'Le public encadré (mineurs, adultes) est un facteur clé du niveau de risque.'),
+      ], t('step.metiers_atypiques.public_encadre.arthurHint')),
       cs('metiers_atypiques', 'frequentation', 'attendance', [
         opt(t, 'metiers_atypiques', 'frequentation', 'sub_500', Calendar),
         opt(t, 'metiers_atypiques', 'frequentation', '500_5k', Users),
         opt(t, 'metiers_atypiques', 'frequentation', '5k_50k', Users),
         opt(t, 'metiers_atypiques', 'frequentation', 'sup_50k', PartyPopper),
-      ], 'La fréquentation impacte directement l\'exposition au risque.'),
+      ], t('step.metiers_atypiques.frequentation.arthurHint')),
       cs('metiers_atypiques', 'salaries', 'staffSize', [
         opt(t, 'metiers_atypiques', 'salaries', 'solo', User),
         opt(t, 'metiers_atypiques', 'salaries', '2_5', Users),
         opt(t, 'metiers_atypiques', 'salaries', '6_20', Users),
         opt(t, 'metiers_atypiques', 'salaries', 'sup_20', Building2),
-      ], 'Le nombre de salariés influence les garanties responsabilité civile nécessaires.'),
+      ], t('step.metiers_atypiques.salaries.arthurHint')),
       cs('metiers_atypiques', 'ca', 'revenue', [
         opt(t, 'metiers_atypiques', 'ca', 'sub_50k', Wallet),
         opt(t, 'metiers_atypiques', 'ca', '50_200k', Wallet),
         opt(t, 'metiers_atypiques', 'ca', '200k_1m', Wallet),
         opt(t, 'metiers_atypiques', 'ca', 'sup_1m', Wallet),
-      ], 'Le chiffre d\'affaires est un critère central du calcul de la prime.'),
+      ], t('step.metiers_atypiques.ca.arthurHint')),
       cs('metiers_atypiques', 'certifications', 'certifications', [
         opt(t, 'metiers_atypiques', 'certifications', 'oui_majeures', Award),
         opt(t, 'metiers_atypiques', 'certifications', 'oui_partielles', ShieldCheck),
         opt(t, 'metiers_atypiques', 'certifications', 'non', AlertTriangle),
         opt(t, 'metiers_atypiques', 'certifications', 'en_cours', Activity),
-      ], 'Les certifications peuvent réduire le risque perçu et donc le tarif.'),
+      ], t('step.metiers_atypiques.certifications.arthurHint')),
       cs('metiers_atypiques', 'sinistres', 'claimsHistory', [
         opt(t, 'metiers_atypiques', 'sinistres', 'aucun', ShieldCheck),
         opt(t, 'metiers_atypiques', 'sinistres', '1_2', Shield),
         opt(t, 'metiers_atypiques', 'sinistres', '3_5', AlertTriangle),
         opt(t, 'metiers_atypiques', 'sinistres', 'sup_5', AlertTriangle),
-      ], 'L\'historique de sinistres est l\'un des facteurs les plus déterminants du tarif.'),
+      ], t('step.metiers_atypiques.sinistres.arthurHint')),
       postalCodeStep,
       {
         id: 'callback',
@@ -592,226 +592,226 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         subtitle: t('step.metiers_atypiques.callback.subtitle'),
       },
     ],
-    // ============ NICHES (inline FR, no i18n keys) ============
+    // ============ NICHES (clés step.<produit>.* extraites le 2026-10-03) ============
     velo: [
-      { id: 'velo_type', type: 'card-select', title: 'Quel type de vélo souhaitez-vous assurer ?', field: 'bikeType', arthurHint: 'Le type de vélo détermine le niveau de risque et les garanties adaptées.', options: [
-        { value: 'musculaire', label: 'Vélo musculaire', description: 'Ville, route, VTT classique', icon: Bike },
-        { value: 'vae', label: 'Vélo à assistance électrique (VAE)', description: 'Pédalage assisté ≤ 25 km/h', icon: Zap },
-        { value: 'cargo', label: 'Vélo cargo / pliant / speed-bike', description: 'Usage spécifique ou > 25 km/h', icon: Truck },
+      { id: 'velo_type', type: 'card-select', title: t('step.velo.velo_type.title'), field: 'bikeType', arthurHint: t('step.velo.velo_type.arthurHint'), options: [
+        { value: 'musculaire', label: t('step.velo.velo_type.opt.musculaire.label'), description: t('step.velo.velo_type.opt.musculaire.description'), icon: Bike },
+        { value: 'vae', label: t('step.velo.velo_type.opt.vae.label'), description: t('step.velo.velo_type.opt.vae.description'), icon: Zap },
+        { value: 'cargo', label: t('step.velo.velo_type.opt.cargo.label'), description: t('step.velo.velo_type.opt.cargo.description'), icon: Truck },
       ]},
-      { id: 'velo_valeur', type: 'card-select', title: 'Quelle est la valeur de votre vélo ?', field: 'bikeValue', arthurHint: 'La valeur du vélo fixe le plafond d\'indemnisation en cas de vol ou casse.', options: [
-        { value: 'sub_800', label: 'Moins de 800 €', icon: Wallet },
-        { value: '800_2500', label: 'Entre 800 € et 2 500 €', icon: Shield },
-        { value: 'sup_2500', label: 'Plus de 2 500 €', icon: ShieldPlus },
+      { id: 'velo_valeur', type: 'card-select', title: t('step.velo.velo_valeur.title'), field: 'bikeValue', arthurHint: t('step.velo.velo_valeur.arthurHint'), options: [
+        { value: 'sub_800', label: t('step.velo.velo_valeur.opt.sub_800.label'), icon: Wallet },
+        { value: '800_2500', label: t('step.velo.velo_valeur.opt.800_2500.label'), icon: Shield },
+        { value: 'sup_2500', label: t('step.velo.velo_valeur.opt.sup_2500.label'), icon: ShieldPlus },
       ]},
-      { id: 'velo_formule', type: 'card-select', title: 'Quelles garanties recherchez-vous ?', field: 'coverageLevel', arthurHint: 'Le niveau de garantie choisi définit ce qui est couvert (vol, casse, tous risques).', options: [
-        { value: 'vol', label: 'Vol uniquement', description: 'Protection antivol agréé', icon: Lock },
-        { value: 'vol_casse', label: 'Vol + Casse', description: 'Couverture étendue', icon: ShieldCheck },
-        { value: 'tous_risques', label: 'Tous risques + Assistance', description: 'Protection maximale', icon: ShieldPlus },
+      { id: 'velo_formule', type: 'card-select', title: t('step.velo.velo_formule.title'), field: 'coverageLevel', arthurHint: t('step.velo.velo_formule.arthurHint'), options: [
+        { value: 'vol', label: t('step.velo.velo_formule.opt.vol.label'), description: t('step.velo.velo_formule.opt.vol.description'), icon: Lock },
+        { value: 'vol_casse', label: t('step.velo.velo_formule.opt.vol_casse.label'), description: t('step.velo.velo_formule.opt.vol_casse.description'), icon: ShieldCheck },
+        { value: 'tous_risques', label: t('step.velo.velo_formule.opt.tous_risques.label'), description: t('step.velo.velo_formule.opt.tous_risques.description'), icon: ShieldPlus },
       ]},
-      { id: 'velo_stationnement', type: 'card-select', title: 'Où stationnez-vous votre vélo ?', field: 'parkingType', arthurHint: 'Le lieu de stationnement influence directement le risque de vol.', options: [
-        { value: 'garage', label: 'Garage / local fermé', icon: Lock },
-        { value: 'local_velo', label: 'Local vélo / cave', icon: Building },
-        { value: 'exterieur', label: 'Rue / extérieur', icon: AlertTriangle },
+      { id: 'velo_stationnement', type: 'card-select', title: t('step.velo.velo_stationnement.title'), field: 'parkingType', arthurHint: t('step.velo.velo_stationnement.arthurHint'), options: [
+        { value: 'garage', label: t('step.velo.velo_stationnement.opt.garage.label'), icon: Lock },
+        { value: 'local_velo', label: t('step.velo.velo_stationnement.opt.local_velo.label'), icon: Building },
+        { value: 'exterieur', label: t('step.velo.velo_stationnement.opt.exterieur.label'), icon: AlertTriangle },
       ]},
       postalCodeStep, searchingStep, contactStep,
     ],
     trottinette: [
-      { id: 'trot_engin', type: 'card-select', title: 'Quel engin souhaitez-vous assurer ?', subtitle: 'Tout EDPM doit être couvert en responsabilité civile depuis 2019.', field: 'vehicleSubtype', arthurHint: 'Le type d\'engin détermine les garanties légalement exigées.', options: [
-        { value: 'trottinette', label: 'Trottinette électrique', description: 'Bridée à 25 km/h (EDPM)', icon: Zap, iconImage: mascotScoot },
-        { value: 'trottinette_debridee', label: 'Trottinette > 25 km/h', description: 'Engin non homologué EDPM', icon: AlertTriangle },
-        { value: 'gyroroue', label: 'Gyroroue / hoverboard / monoroue', description: 'Autre EDPM motorisé', icon: Activity },
+      { id: 'trot_engin', type: 'card-select', title: t('step.trottinette.trot_engin.title'), subtitle: t('step.trottinette.trot_engin.subtitle'), field: 'vehicleSubtype', arthurHint: t('step.trottinette.trot_engin.arthurHint'), options: [
+        { value: 'trottinette', label: t('step.trottinette.trot_engin.opt.trottinette.label'), description: t('step.trottinette.trot_engin.opt.trottinette.description'), icon: Zap, iconImage: mascotScoot },
+        { value: 'trottinette_debridee', label: t('step.trottinette.trot_engin.opt.trottinette_debridee.label'), description: t('step.trottinette.trot_engin.opt.trottinette_debridee.description'), icon: AlertTriangle },
+        { value: 'gyroroue', label: t('step.trottinette.trot_engin.opt.gyroroue.label'), description: t('step.trottinette.trot_engin.opt.gyroroue.description'), icon: Activity },
       ]},
-      { id: 'trot_usage', type: 'card-select', title: "Quel est l'usage de votre trottinette ?", field: 'vehicleUse', arthurHint: 'Un usage professionnel (livraison) implique un risque et une formule différents.', options: [
-        { value: 'perso', label: 'Usage personnel / loisirs', description: 'Balades, trajets occasionnels', icon: Zap },
-        { value: 'domicile_travail', label: 'Trajets domicile-travail', description: 'Usage quotidien urbain', icon: Activity },
-        { value: 'livreur', label: 'Livraison (Uber Eats, Deliveroo…)', description: 'Usage commercial : formule pro requise', icon: Truck },
+      { id: 'trot_usage', type: 'card-select', title: t('step.trottinette.trot_usage.title'), field: 'vehicleUse', arthurHint: t('step.trottinette.trot_usage.arthurHint'), options: [
+        { value: 'perso', label: t('step.trottinette.trot_usage.opt.perso.label'), description: t('step.trottinette.trot_usage.opt.perso.description'), icon: Zap },
+        { value: 'domicile_travail', label: t('step.trottinette.trot_usage.opt.domicile_travail.label'), description: t('step.trottinette.trot_usage.opt.domicile_travail.description'), icon: Activity },
+        { value: 'livreur', label: t('step.trottinette.trot_usage.opt.livreur.label'), description: t('step.trottinette.trot_usage.opt.livreur.description'), icon: Truck },
       ]},
-      { id: 'trot_valeur', type: 'card-select', title: 'Quelle est la valeur de votre trottinette ?', subtitle: 'Elle détermine le niveau des garanties vol et casse.', field: 'bikeValue', arthurHint: 'Cette valeur fixe le plafond d\'indemnisation en cas de sinistre.', options: [
-        { value: 'sub_500', label: 'Moins de 500 €', icon: Wallet },
-        { value: '500_1500', label: 'Entre 500 € et 1 500 €', icon: Shield },
-        { value: 'sup_1500', label: 'Plus de 1 500 €', icon: ShieldPlus },
+      { id: 'trot_valeur', type: 'card-select', title: t('step.trottinette.trot_valeur.title'), subtitle: t('step.trottinette.trot_valeur.subtitle'), field: 'bikeValue', arthurHint: t('step.trottinette.trot_valeur.arthurHint'), options: [
+        { value: 'sub_500', label: t('step.trottinette.trot_valeur.opt.sub_500.label'), icon: Wallet },
+        { value: '500_1500', label: t('step.trottinette.trot_valeur.opt.500_1500.label'), icon: Shield },
+        { value: 'sup_1500', label: t('step.trottinette.trot_valeur.opt.sup_1500.label'), icon: ShieldPlus },
       ]},
-      { id: 'trot_formule', type: 'card-select', title: 'Quelles garanties recherchez-vous ?', field: 'coverageLevel', arthurHint: 'Le niveau de garantie choisi détermine l\'étendue de votre protection.', options: [
+      { id: 'trot_formule', type: 'card-select', title: t('step.trottinette.trot_formule.title'), field: 'coverageLevel', arthurHint: t('step.trottinette.trot_formule.arthurHint'), options: [
         // Trois choix gardés (le conseiller a besoin du choix du visiteur) mais
         // sans promettre que vol, casse ou assistance sont inclus chez un
         // assureur donné (décision du 3 octobre 2026).
-        { value: 'rc', label: 'Responsabilité civile seule', description: `Minimum légal obligatoire, dès ${TROTTINETTE_RC_PRICE_MONTHLY}`, icon: Shield },
-        { value: 'rc_vol', label: 'RC + Vol', description: "Selon l'assureur, avec antivol homologué", icon: ShieldCheck },
-        { value: 'tous_risques', label: 'Tous risques', description: "Vol, casse, vandalisme, assistance : selon l'assureur", icon: ShieldPlus },
+        { value: 'rc', label: t('step.trottinette.trot_formule.opt.rc.label'), description: t('step.trottinette.trot_formule.opt.rc.description', { prixMensuel: TROTTINETTE_RC_PRICE_MONTHLY }), icon: Shield },
+        { value: 'rc_vol', label: t('step.trottinette.trot_formule.opt.rc_vol.label'), description: t('step.trottinette.trot_formule.opt.rc_vol.description'), icon: ShieldCheck },
+        { value: 'tous_risques', label: t('step.trottinette.trot_formule.opt.tous_risques.label'), description: t('step.trottinette.trot_formule.opt.tous_risques.description'), icon: ShieldPlus },
       ]},
-      { id: 'trot_antivol', type: 'card-select', title: 'Utilisez-vous un antivol ?', subtitle: 'Un antivol homologué SRA conditionne la garantie vol.', field: 'antitheftDevice', arthurHint: 'Un antivol homologué peut réduire votre tarif.', options: [
-        { value: 'sra', label: 'Oui, antivol homologué SRA', icon: Lock },
-        { value: 'standard', label: 'Oui, antivol standard', icon: ShieldCheck },
-        { value: 'aucun', label: 'Non, pas encore', icon: AlertTriangle },
+      { id: 'trot_antivol', type: 'card-select', title: t('step.trottinette.trot_antivol.title'), subtitle: t('step.trottinette.trot_antivol.subtitle'), field: 'antitheftDevice', arthurHint: t('step.trottinette.trot_antivol.arthurHint'), options: [
+        { value: 'sra', label: t('step.trottinette.trot_antivol.opt.sra.label'), icon: Lock },
+        { value: 'standard', label: t('step.trottinette.trot_antivol.opt.standard.label'), icon: ShieldCheck },
+        { value: 'aucun', label: t('step.trottinette.trot_antivol.opt.aucun.label'), icon: AlertTriangle },
       ]},
-      { id: 'trot_stationnement', type: 'card-select', title: 'Où stationnez-vous votre trottinette ?', field: 'parkingType', arthurHint: 'Le lieu de stationnement influence le risque de vol évalué.', options: [
-        { value: 'garage', label: 'Garage / local fermé', icon: Lock },
-        { value: 'appartement', label: 'Domicile (appartement/maison)', icon: Building },
-        { value: 'exterieur', label: 'Rue / extérieur', icon: AlertTriangle },
+      { id: 'trot_stationnement', type: 'card-select', title: t('step.trottinette.trot_stationnement.title'), field: 'parkingType', arthurHint: t('step.trottinette.trot_stationnement.arthurHint'), options: [
+        { value: 'garage', label: t('step.trottinette.trot_stationnement.opt.garage.label'), icon: Lock },
+        { value: 'appartement', label: t('step.trottinette.trot_stationnement.opt.appartement.label'), icon: Building },
+        { value: 'exterieur', label: t('step.trottinette.trot_stationnement.opt.exterieur.label'), icon: AlertTriangle },
       ]},
-      { id: 'trot_conducteur', type: 'card-select', title: "Quel est l'âge du conducteur principal ?", subtitle: 'La conduite d\'un EDPM est interdite aux moins de 14 ans.', field: 'driverAge', arthurHint: 'L\'âge du conducteur est un facteur important du tarif.', options: [
-        { value: '14_17', label: '14 à 17 ans', icon: User },
-        { value: '18_25', label: '18 à 25 ans', icon: User },
-        { value: '26_59', label: '26 à 59 ans', icon: Users },
-        { value: 'sup_60', label: '60 ans et plus', icon: Award },
+      { id: 'trot_conducteur', type: 'card-select', title: t('step.trottinette.trot_conducteur.title'), subtitle: t('step.trottinette.trot_conducteur.subtitle'), field: 'driverAge', arthurHint: t('step.trottinette.trot_conducteur.arthurHint'), options: [
+        { value: '14_17', label: t('step.trottinette.trot_conducteur.opt.14_17.label'), icon: User },
+        { value: '18_25', label: t('step.trottinette.trot_conducteur.opt.18_25.label'), icon: User },
+        { value: '26_59', label: t('step.trottinette.trot_conducteur.opt.26_59.label'), icon: Users },
+        { value: 'sup_60', label: t('step.trottinette.trot_conducteur.opt.sup_60.label'), icon: Award },
       ]},
-      { id: 'trot_sinistres', type: 'card-select', title: 'Avez-vous eu un sinistre sur les 24 derniers mois ?', field: 'claimsHistory', arthurHint: 'Votre historique de sinistres influence directement le tarif proposé.', options: [
-        { value: 'aucun', label: 'Aucun sinistre', icon: ShieldCheck },
-        { value: 'vol', label: 'Un vol', icon: Lock },
-        { value: 'accident', label: 'Un accident / une casse', icon: AlertTriangle },
+      { id: 'trot_sinistres', type: 'card-select', title: t('step.trottinette.trot_sinistres.title'), field: 'claimsHistory', arthurHint: t('step.trottinette.trot_sinistres.arthurHint'), options: [
+        { value: 'aucun', label: t('step.trottinette.trot_sinistres.opt.aucun.label'), icon: ShieldCheck },
+        { value: 'vol', label: t('step.trottinette.trot_sinistres.opt.vol.label'), icon: Lock },
+        { value: 'accident', label: t('step.trottinette.trot_sinistres.opt.accident.label'), icon: AlertTriangle },
       ]},
       postalCodeStep, searchingStep, contactStep,
     ],
 
     camping_car: [
-      { id: 'cc_type', type: 'card-select', title: 'Quel type de camping-car possédez-vous ?', field: 'vehicleSubtype', arthurHint: 'Le type de camping-car influence sa valeur et le coût de réparation.', options: [
-        { value: 'capucine', label: 'Capucine / Profilé', icon: Truck },
-        { value: 'integral', label: 'Intégral', icon: Castle },
-        { value: 'fourgon', label: 'Van / Fourgon aménagé', icon: Car },
+      { id: 'cc_type', type: 'card-select', title: t('step.camping_car.cc_type.title'), field: 'vehicleSubtype', arthurHint: t('step.camping_car.cc_type.arthurHint'), options: [
+        { value: 'capucine', label: t('step.camping_car.cc_type.opt.capucine.label'), icon: Truck },
+        { value: 'integral', label: t('step.camping_car.cc_type.opt.integral.label'), icon: Castle },
+        { value: 'fourgon', label: t('step.camping_car.cc_type.opt.fourgon.label'), icon: Car },
       ]},
-      { id: 'cc_formule', type: 'card-select', title: 'Quelle formule souhaitez-vous ?', field: 'coverageLevel', arthurHint: 'Le niveau de garantie détermine l\'étendue de votre protection.', options: [
-        { value: 'tiers', label: 'Au tiers', icon: Shield },
-        { value: 'tiers_plus', label: 'Tiers étendu (vol/incendie)', icon: ShieldCheck },
-        { value: 'tous_risques', label: 'Tous risques', icon: ShieldPlus },
+      { id: 'cc_formule', type: 'card-select', title: t('step.camping_car.cc_formule.title'), field: 'coverageLevel', arthurHint: t('step.camping_car.cc_formule.arthurHint'), options: [
+        { value: 'tiers', label: t('step.camping_car.cc_formule.opt.tiers.label'), icon: Shield },
+        { value: 'tiers_plus', label: t('step.camping_car.cc_formule.opt.tiers_plus.label'), icon: ShieldCheck },
+        { value: 'tous_risques', label: t('step.camping_car.cc_formule.opt.tous_risques.label'), icon: ShieldPlus },
       ]},
-      { id: 'cc_usage', type: 'card-select', title: 'Quel est votre usage annuel ?', field: 'vehicleUse', arthurHint: 'Votre usage annuel (kilométrage) influence l\'exposition au risque.', options: [
-        { value: 'occasionnel', label: 'Occasionnel (< 5 000 km/an)', icon: Calendar },
-        { value: 'regulier', label: 'Régulier (5 000 - 15 000 km)', icon: Activity },
-        { value: 'intensif', label: 'Intensif (> 15 000 km)', icon: Award },
+      { id: 'cc_usage', type: 'card-select', title: t('step.camping_car.cc_usage.title'), field: 'vehicleUse', arthurHint: t('step.camping_car.cc_usage.arthurHint'), options: [
+        { value: 'occasionnel', label: t('step.camping_car.cc_usage.opt.occasionnel.label'), icon: Calendar },
+        { value: 'regulier', label: t('step.camping_car.cc_usage.opt.regulier.label'), icon: Activity },
+        { value: 'intensif', label: t('step.camping_car.cc_usage.opt.intensif.label'), icon: Award },
       ]},
       vehicleYearStep, ageStep, postalCodeStep, searchingStep, contactStep,
     ],
     sans_permis: [
-      { id: 'sp_type', type: 'card-select', title: 'Quel type de véhicule sans permis ?', field: 'vehicleSubtype', arthurHint: 'Le type de véhicule sans permis détermine les garanties disponibles.', options: [
-        { value: 'voiturette', label: 'Voiturette (quadricycle léger)', icon: Car },
-        { value: 'scooter', label: 'Scooter 50cm³', icon: Bike },
-        { value: 'autre', label: 'Autre (quad, etc.)', icon: Activity },
+      { id: 'sp_type', type: 'card-select', title: t('step.sans_permis.sp_type.title'), field: 'vehicleSubtype', arthurHint: t('step.sans_permis.sp_type.arthurHint'), options: [
+        { value: 'voiturette', label: t('step.sans_permis.sp_type.opt.voiturette.label'), icon: Car },
+        { value: 'scooter', label: t('step.sans_permis.sp_type.opt.scooter.label'), icon: Bike },
+        { value: 'autre', label: t('step.sans_permis.sp_type.opt.autre.label'), icon: Activity },
       ]},
-      { id: 'sp_formule', type: 'card-select', title: 'Quelle formule recherchez-vous ?', field: 'coverageLevel', arthurHint: 'Le niveau de garantie choisi définit l\'étendue de la couverture.', options: [
-        { value: 'tiers', label: 'Au tiers (obligatoire)', icon: Shield },
-        { value: 'tiers_plus', label: 'Tiers + vol / incendie', icon: ShieldCheck },
-        { value: 'tous_risques', label: 'Tous risques', icon: ShieldPlus },
+      { id: 'sp_formule', type: 'card-select', title: t('step.sans_permis.sp_formule.title'), field: 'coverageLevel', arthurHint: t('step.sans_permis.sp_formule.arthurHint'), options: [
+        { value: 'tiers', label: t('step.sans_permis.sp_formule.opt.tiers.label'), icon: Shield },
+        { value: 'tiers_plus', label: t('step.sans_permis.sp_formule.opt.tiers_plus.label'), icon: ShieldCheck },
+        { value: 'tous_risques', label: t('step.sans_permis.sp_formule.opt.tous_risques.label'), icon: ShieldPlus },
       ]},
-      { id: 'sp_conducteur', type: 'card-select', title: 'Qui sera le conducteur principal ?', field: 'driverProfile', arthurHint: 'Le profil du conducteur principal est un facteur clé du tarif.', options: [
-        { value: 'jeune', label: 'Jeune (14-18 ans, sans permis B)', icon: User },
-        { value: 'adulte', label: 'Adulte sans permis B', icon: User },
-        { value: 'senior', label: 'Senior (suspension/perte permis)', icon: User },
+      { id: 'sp_conducteur', type: 'card-select', title: t('step.sans_permis.sp_conducteur.title'), field: 'driverProfile', arthurHint: t('step.sans_permis.sp_conducteur.arthurHint'), options: [
+        { value: 'jeune', label: t('step.sans_permis.sp_conducteur.opt.jeune.label'), icon: User },
+        { value: 'adulte', label: t('step.sans_permis.sp_conducteur.opt.adulte.label'), icon: User },
+        { value: 'senior', label: t('step.sans_permis.sp_conducteur.opt.senior.label'), icon: User },
       ]},
       ageStep, postalCodeStep, searchingStep, contactStep,
     ],
     auto_temporaire: [
-      { id: 'at_duree', type: 'card-select', title: 'Quelle durée souhaitez-vous assurer ?', field: 'duration', arthurHint: 'La durée d\'assurance souhaitée détermine directement le tarif total.', options: [
-        { value: '1_3j', label: '1 à 3 jours', icon: Clock },
-        { value: '4_15j', label: '4 à 15 jours', icon: Calendar },
-        { value: '16_90j', label: '16 à 90 jours', icon: Calendar },
+      { id: 'at_duree', type: 'card-select', title: t('step.auto_temporaire.at_duree.title'), field: 'duration', arthurHint: t('step.auto_temporaire.at_duree.arthurHint'), options: [
+        { value: '1_3j', label: t('step.auto_temporaire.at_duree.opt.1_3j.label'), icon: Clock },
+        { value: '4_15j', label: t('step.auto_temporaire.at_duree.opt.4_15j.label'), icon: Calendar },
+        { value: '16_90j', label: t('step.auto_temporaire.at_duree.opt.16_90j.label'), icon: Calendar },
       ]},
-      { id: 'at_motif', type: 'card-select', title: 'Pour quelle utilisation ?', field: 'usage', arthurHint: 'Le motif d\'utilisation aide à proposer la formule la plus adaptée.', options: [
-        { value: 'voyage', label: 'Voyage / vacances', icon: Globe },
-        { value: 'achat_vente', label: 'Achat / vente d\'un véhicule', icon: Car },
-        { value: 'pret_emprunt', label: 'Prêt ou emprunt ponctuel', icon: KeyRound },
+      { id: 'at_motif', type: 'card-select', title: t('step.auto_temporaire.at_motif.title'), field: 'usage', arthurHint: t('step.auto_temporaire.at_motif.arthurHint'), options: [
+        { value: 'voyage', label: t('step.auto_temporaire.at_motif.opt.voyage.label'), icon: Globe },
+        { value: 'achat_vente', label: t('step.auto_temporaire.at_motif.opt.achat_vente.label'), icon: Car },
+        { value: 'pret_emprunt', label: t('step.auto_temporaire.at_motif.opt.pret_emprunt.label'), icon: KeyRound },
       ]},
-      { id: 'at_formule', type: 'card-select', title: 'Quelle formule ?', field: 'coverageLevel', arthurHint: 'Le niveau de garantie choisi définit l\'étendue de la couverture temporaire.', options: [
-        { value: 'tiers', label: 'Au tiers', icon: Shield },
-        { value: 'tiers_plus', label: 'Tiers étendu', icon: ShieldCheck },
-        { value: 'tous_risques', label: 'Tous risques', icon: ShieldPlus },
+      { id: 'at_formule', type: 'card-select', title: t('step.auto_temporaire.at_formule.title'), field: 'coverageLevel', arthurHint: t('step.auto_temporaire.at_formule.arthurHint'), options: [
+        { value: 'tiers', label: t('step.auto_temporaire.at_formule.opt.tiers.label'), icon: Shield },
+        { value: 'tiers_plus', label: t('step.auto_temporaire.at_formule.opt.tiers_plus.label'), icon: ShieldCheck },
+        { value: 'tous_risques', label: t('step.auto_temporaire.at_formule.opt.tous_risques.label'), icon: ShieldPlus },
       ]},
       ageStep, postalCodeStep, searchingStep, contactStep,
     ],
     flotte: [
-      { id: 'fl_taille', type: 'card-select', title: 'Combien de véhicules à assurer ?', field: 'fleetSize', arthurHint: 'Le nombre de véhicules à assurer détermine le tarif global de la flotte.', options: [
-        { value: '3_5', label: '3 à 5 véhicules', icon: Car },
-        { value: '6_20', label: '6 à 20 véhicules', icon: Truck },
-        { value: 'sup_20', label: 'Plus de 20 véhicules', icon: Building2 },
+      { id: 'fl_taille', type: 'card-select', title: t('step.flotte.fl_taille.title'), field: 'fleetSize', arthurHint: t('step.flotte.fl_taille.arthurHint'), options: [
+        { value: '3_5', label: t('step.flotte.fl_taille.opt.3_5.label'), icon: Car },
+        { value: '6_20', label: t('step.flotte.fl_taille.opt.6_20.label'), icon: Truck },
+        { value: 'sup_20', label: t('step.flotte.fl_taille.opt.sup_20.label'), icon: Building2 },
       ]},
-      { id: 'fl_compo', type: 'card-select', title: 'Composition de votre flotte ?', field: 'fleetComposition', arthurHint: 'La composition de la flotte (VP, utilitaires) influence le niveau de risque.', options: [
-        { value: 'vp', label: 'Véhicules particuliers', icon: Car },
-        { value: 'utilitaires', label: 'Utilitaires / fourgons', icon: Truck },
-        { value: 'mixte', label: 'Mixte (VP + utilitaires)', icon: Briefcase },
+      { id: 'fl_compo', type: 'card-select', title: t('step.flotte.fl_compo.title'), field: 'fleetComposition', arthurHint: t('step.flotte.fl_compo.arthurHint'), options: [
+        { value: 'vp', label: t('step.flotte.fl_compo.opt.vp.label'), icon: Car },
+        { value: 'utilitaires', label: t('step.flotte.fl_compo.opt.utilitaires.label'), icon: Truck },
+        { value: 'mixte', label: t('step.flotte.fl_compo.opt.mixte.label'), icon: Briefcase },
       ]},
-      { id: 'fl_usage', type: 'card-select', title: 'Usage principal ?', field: 'vehicleUse', arthurHint: 'L\'usage principal de la flotte impacte directement le tarif.', options: [
-        { value: 'tournee', label: 'Tournées / livraisons', icon: Truck },
-        { value: 'commercial', label: 'Déplacements commerciaux', icon: Briefcase },
-        { value: 'mixte', label: 'Mixte', icon: Scale },
+      { id: 'fl_usage', type: 'card-select', title: t('step.flotte.fl_usage.title'), field: 'vehicleUse', arthurHint: t('step.flotte.fl_usage.arthurHint'), options: [
+        { value: 'tournee', label: t('step.flotte.fl_usage.opt.tournee.label'), icon: Truck },
+        { value: 'commercial', label: t('step.flotte.fl_usage.opt.commercial.label'), icon: Briefcase },
+        { value: 'mixte', label: t('step.flotte.fl_usage.opt.mixte.label'), icon: Scale },
       ]},
       postalCodeStep, searchingStep, contactStep,
     ],
     cyber: [
-      { id: 'cy_taille', type: 'card-select', title: 'Quelle est la taille de votre entreprise ?', field: 'companySize', arthurHint: 'La taille de l\'entreprise détermine l\'ampleur du risque cyber à couvrir.', options: [
-        { value: 'tpe', label: 'TPE (< 10 salariés)', icon: User },
-        { value: 'pme', label: 'PME (10 - 250 salariés)', icon: Users },
-        { value: 'eti', label: 'ETI / Grand groupe', icon: Building2 },
+      { id: 'cy_taille', type: 'card-select', title: t('step.cyber.cy_taille.title'), field: 'companySize', arthurHint: t('step.cyber.cy_taille.arthurHint'), options: [
+        { value: 'tpe', label: t('step.cyber.cy_taille.opt.tpe.label'), icon: User },
+        { value: 'pme', label: t('step.cyber.cy_taille.opt.pme.label'), icon: Users },
+        { value: 'eti', label: t('step.cyber.cy_taille.opt.eti.label'), icon: Building2 },
       ]},
-      { id: 'cy_donnees', type: 'card-select', title: 'Manipulez-vous des données sensibles ?', field: 'dataSensitivity', arthurHint: 'La sensibilité des données manipulées est un facteur clé du tarif cyber.', options: [
-        { value: 'oui_clients', label: 'Oui (données clients RGPD)', icon: Database },
-        { value: 'oui_sante_fin', label: 'Oui (santé / financier)', icon: HeartPulse },
-        { value: 'non', label: 'Peu / pas de données sensibles', icon: Shield },
+      { id: 'cy_donnees', type: 'card-select', title: t('step.cyber.cy_donnees.title'), field: 'dataSensitivity', arthurHint: t('step.cyber.cy_donnees.arthurHint'), options: [
+        { value: 'oui_clients', label: t('step.cyber.cy_donnees.opt.oui_clients.label'), icon: Database },
+        { value: 'oui_sante_fin', label: t('step.cyber.cy_donnees.opt.oui_sante_fin.label'), icon: HeartPulse },
+        { value: 'non', label: t('step.cyber.cy_donnees.opt.non.label'), icon: Shield },
       ]},
-      { id: 'cy_ca', type: 'card-select', title: 'Quel est votre chiffre d\'affaires annuel ?', field: 'revenue', arthurHint: 'Le chiffre d\'affaires influence le plafond de garantie nécessaire.', options: [
-        { value: 'sub_500k', label: 'Moins de 500 k€', icon: Wallet },
-        { value: '500k_5m', label: '500 k€ - 5 M€', icon: Landmark },
-        { value: 'sup_5m', label: 'Plus de 5 M€', icon: Building2 },
+      { id: 'cy_ca', type: 'card-select', title: t('step.cyber.cy_ca.title'), field: 'revenue', arthurHint: t('step.cyber.cy_ca.arthurHint'), options: [
+        { value: 'sub_500k', label: t('step.cyber.cy_ca.opt.sub_500k.label'), icon: Wallet },
+        { value: '500k_5m', label: t('step.cyber.cy_ca.opt.500k_5m.label'), icon: Landmark },
+        { value: 'sup_5m', label: t('step.cyber.cy_ca.opt.sup_5m.label'), icon: Building2 },
       ]},
       postalCodeStep, searchingStep, contactStep,
     ],
     decennale: [
-      { id: 'dc_metier', type: 'card-select', title: 'Quel est votre métier du bâtiment ?', field: 'activityType', arthurHint: 'Votre métier du bâtiment détermine le niveau de risque couvert.', options: [
-        { value: 'gros_oeuvre', label: 'Gros œuvre (maçon, charpentier)', icon: HardHat },
-        { value: 'second_oeuvre', label: 'Second œuvre (électricien, plombier)', icon: Hammer },
-        { value: 'finition', label: 'Finition (peintre, carreleur)', icon: Sparkles },
-        { value: 'autre', label: 'Autre / multi-activités', icon: Building },
+      { id: 'dc_metier', type: 'card-select', title: t('step.decennale.dc_metier.title'), field: 'activityType', arthurHint: t('step.decennale.dc_metier.arthurHint'), options: [
+        { value: 'gros_oeuvre', label: t('step.decennale.dc_metier.opt.gros_oeuvre.label'), icon: HardHat },
+        { value: 'second_oeuvre', label: t('step.decennale.dc_metier.opt.second_oeuvre.label'), icon: Hammer },
+        { value: 'finition', label: t('step.decennale.dc_metier.opt.finition.label'), icon: Sparkles },
+        { value: 'autre', label: t('step.decennale.dc_metier.opt.autre.label'), icon: Building },
       ]},
-      { id: 'dc_statut', type: 'card-select', title: 'Quel est votre statut juridique ?', field: 'legalStatus', arthurHint: 'Le statut juridique influence les responsabilités à assurer.', options: [
-        { value: 'micro', label: 'Auto-entrepreneur / micro', icon: User },
-        { value: 'sasu_eurl', label: 'SASU / EURL', icon: Briefcase },
-        { value: 'sas_sarl', label: 'SAS / SARL', icon: Building2 },
+      { id: 'dc_statut', type: 'card-select', title: t('step.decennale.dc_statut.title'), field: 'legalStatus', arthurHint: t('step.decennale.dc_statut.arthurHint'), options: [
+        { value: 'micro', label: t('step.decennale.dc_statut.opt.micro.label'), icon: User },
+        { value: 'sasu_eurl', label: t('step.decennale.dc_statut.opt.sasu_eurl.label'), icon: Briefcase },
+        { value: 'sas_sarl', label: t('step.decennale.dc_statut.opt.sas_sarl.label'), icon: Building2 },
       ]},
-      { id: 'dc_ca', type: 'card-select', title: 'Chiffre d\'affaires annuel ?', field: 'revenue', arthurHint: 'Le chiffre d\'affaires est un critère central du calcul de la prime décennale.', options: [
-        { value: 'sub_70k', label: 'Moins de 70 k€', icon: Wallet },
-        { value: '70_250k', label: '70 - 250 k€', icon: Briefcase },
-        { value: 'sup_250k', label: 'Plus de 250 k€', icon: Building2 },
+      { id: 'dc_ca', type: 'card-select', title: t('step.decennale.dc_ca.title'), field: 'revenue', arthurHint: t('step.decennale.dc_ca.arthurHint'), options: [
+        { value: 'sub_70k', label: t('step.decennale.dc_ca.opt.sub_70k.label'), icon: Wallet },
+        { value: '70_250k', label: t('step.decennale.dc_ca.opt.70_250k.label'), icon: Briefcase },
+        { value: 'sup_250k', label: t('step.decennale.dc_ca.opt.sup_250k.label'), icon: Building2 },
       ]},
-      { id: 'dc_anciennete', type: 'card-select', title: 'Depuis combien de temps exercez-vous ?', field: 'experience', arthurHint: 'Votre ancienneté dans le métier est un facteur pris en compte dans le tarif.', options: [
-        { value: 'creation', label: 'Création / < 1 an', icon: Sparkles },
-        { value: '1_5', label: '1 à 5 ans', icon: Activity },
-        { value: 'sup_5', label: 'Plus de 5 ans', icon: Award },
+      { id: 'dc_anciennete', type: 'card-select', title: t('step.decennale.dc_anciennete.title'), field: 'experience', arthurHint: t('step.decennale.dc_anciennete.arthurHint'), options: [
+        { value: 'creation', label: t('step.decennale.dc_anciennete.opt.creation.label'), icon: Sparkles },
+        { value: '1_5', label: t('step.decennale.dc_anciennete.opt.1_5.label'), icon: Activity },
+        { value: 'sup_5', label: t('step.decennale.dc_anciennete.opt.sup_5.label'), icon: Award },
       ]},
       postalCodeStep, searchingStep, contactStep,
     ],
     protection_juridique: [
-      { id: 'pj_profil', type: 'card-select', title: 'Pour qui souhaitez-vous une protection juridique ?', field: 'profile', arthurHint: 'Le profil assuré (particulier, pro, entreprise) détermine les litiges couverts.', options: [
-        { value: 'particulier', label: 'Particulier / famille', icon: User },
-        { value: 'pro', label: 'Professionnel / indépendant', icon: Briefcase },
-        { value: 'entreprise', label: 'Entreprise / société', icon: Building2 },
+      { id: 'pj_profil', type: 'card-select', title: t('step.protection_juridique.pj_profil.title'), field: 'profile', arthurHint: t('step.protection_juridique.pj_profil.arthurHint'), options: [
+        { value: 'particulier', label: t('step.protection_juridique.pj_profil.opt.particulier.label'), icon: User },
+        { value: 'pro', label: t('step.protection_juridique.pj_profil.opt.pro.label'), icon: Briefcase },
+        { value: 'entreprise', label: t('step.protection_juridique.pj_profil.opt.entreprise.label'), icon: Building2 },
       ]},
-      { id: 'pj_domaines', type: 'card-select', title: 'Quels litiges souhaitez-vous couvrir en priorité ?', field: 'coverageScope', arthurHint: 'Les domaines de litiges prioritaires orientent la formule la plus adaptée.', options: [
-        { value: 'conso_habitat', label: 'Consommation / habitation', icon: Home },
-        { value: 'travail', label: 'Travail / contrat', icon: FileText },
-        { value: 'tous', label: 'Tous domaines (vie privée + pro)', icon: Scale },
+      { id: 'pj_domaines', type: 'card-select', title: t('step.protection_juridique.pj_domaines.title'), field: 'coverageScope', arthurHint: t('step.protection_juridique.pj_domaines.arthurHint'), options: [
+        { value: 'conso_habitat', label: t('step.protection_juridique.pj_domaines.opt.conso_habitat.label'), icon: Home },
+        { value: 'travail', label: t('step.protection_juridique.pj_domaines.opt.travail.label'), icon: FileText },
+        { value: 'tous', label: t('step.protection_juridique.pj_domaines.opt.tous.label'), icon: Scale },
       ]},
-      { id: 'pj_formule', type: 'card-select', title: 'Quel niveau de couverture ?', field: 'coverageLevel', arthurHint: 'Le niveau de couverture choisi définit l\'étendue de votre protection juridique.', options: [
-        { value: 'essentielle', label: 'Essentielle', icon: Shield },
-        { value: 'confort', label: 'Confort', icon: ShieldCheck },
-        { value: 'premium', label: 'Premium (avocat libre choix)', icon: ShieldPlus },
+      { id: 'pj_formule', type: 'card-select', title: t('step.protection_juridique.pj_formule.title'), field: 'coverageLevel', arthurHint: t('step.protection_juridique.pj_formule.arthurHint'), options: [
+        { value: 'essentielle', label: t('step.protection_juridique.pj_formule.opt.essentielle.label'), icon: Shield },
+        { value: 'confort', label: t('step.protection_juridique.pj_formule.opt.confort.label'), icon: ShieldCheck },
+        { value: 'premium', label: t('step.protection_juridique.pj_formule.opt.premium.label'), icon: ShieldPlus },
       ]},
       postalCodeStep, searchingStep, contactStep,
     ],
     mutuelle_entreprise: [
-      { id: 'me_effectif', type: 'card-select', title: 'Combien de salariés à couvrir ?', field: 'staffSize', arthurHint: 'Le nombre de salariés à couvrir détermine le tarif global du contrat.', options: [
-        { value: '1_5', label: '1 à 5 salariés', icon: User },
-        { value: '6_20', label: '6 à 20 salariés', icon: Users },
-        { value: '21_100', label: '21 à 100 salariés', icon: Building },
-        { value: 'sup_100', label: 'Plus de 100 salariés', icon: Building2 },
+      { id: 'me_effectif', type: 'card-select', title: t('step.mutuelle_entreprise.me_effectif.title'), field: 'staffSize', arthurHint: t('step.mutuelle_entreprise.me_effectif.arthurHint'), options: [
+        { value: '1_5', label: t('step.mutuelle_entreprise.me_effectif.opt.1_5.label'), icon: User },
+        { value: '6_20', label: t('step.mutuelle_entreprise.me_effectif.opt.6_20.label'), icon: Users },
+        { value: '21_100', label: t('step.mutuelle_entreprise.me_effectif.opt.21_100.label'), icon: Building },
+        { value: 'sup_100', label: t('step.mutuelle_entreprise.me_effectif.opt.sup_100.label'), icon: Building2 },
       ]},
-      { id: 'me_convention', type: 'card-select', title: 'Avez-vous une convention collective imposant un socle ?', field: 'collectiveAgreement', arthurHint: 'Une convention collective peut imposer un socle minimum de garanties.', options: [
-        { value: 'oui_connue', label: 'Oui, je connais le socle', icon: ShieldCheck },
-        { value: 'oui_a_verifier', label: 'Oui, mais à vérifier', icon: Search },
-        { value: 'non', label: 'Non / je ne sais pas', icon: AlertTriangle },
+      { id: 'me_convention', type: 'card-select', title: t('step.mutuelle_entreprise.me_convention.title'), field: 'collectiveAgreement', arthurHint: t('step.mutuelle_entreprise.me_convention.arthurHint'), options: [
+        { value: 'oui_connue', label: t('step.mutuelle_entreprise.me_convention.opt.oui_connue.label'), icon: ShieldCheck },
+        { value: 'oui_a_verifier', label: t('step.mutuelle_entreprise.me_convention.opt.oui_a_verifier.label'), icon: Search },
+        { value: 'non', label: t('step.mutuelle_entreprise.me_convention.opt.non.label'), icon: AlertTriangle },
       ]},
-      { id: 'me_niveau', type: 'card-select', title: 'Quel niveau de garanties souhaitez-vous ?', field: 'coverageLevel', arthurHint: 'Le niveau de garanties choisi définit l\'étendue de la couverture proposée.', options: [
-        { value: 'socle_anim', label: 'Socle ANI (minimum légal)', icon: Shield },
-        { value: 'intermediaire', label: 'Intermédiaire (confort)', icon: ShieldCheck },
-        { value: 'premium', label: 'Premium (optique/dentaire renforcés)', icon: ShieldPlus },
+      { id: 'me_niveau', type: 'card-select', title: t('step.mutuelle_entreprise.me_niveau.title'), field: 'coverageLevel', arthurHint: t('step.mutuelle_entreprise.me_niveau.arthurHint'), options: [
+        { value: 'socle_anim', label: t('step.mutuelle_entreprise.me_niveau.opt.socle_anim.label'), icon: Shield },
+        { value: 'intermediaire', label: t('step.mutuelle_entreprise.me_niveau.opt.intermediaire.label'), icon: ShieldCheck },
+        { value: 'premium', label: t('step.mutuelle_entreprise.me_niveau.opt.premium.label'), icon: ShieldPlus },
       ]},
       postalCodeStep, searchingStep, contactStep,
     ],
@@ -832,7 +832,7 @@ export const buildAgeStepMoto50 = (t: TFn): FormStep => ({
   title: t('step.shared.age.title'),
   subtitle: t('step.shared.age.subtitle'),
   field: 'age',
-  arthurHint: "L'âge influence fortement le calcul du tarif.",
+  arthurHint: t('step.shared.age.arthurHint'),
   inputType: 'number',
   placeholder: t('step.shared.age.placeholder'),
   validation: /^(1[4-9]|[2-9]\d)$/,

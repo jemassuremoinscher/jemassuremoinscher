@@ -85,30 +85,31 @@ const COVERAGE_OPTIONS: Record<string, { value: string; labelKey: string }[]> = 
   ],
 };
 
-const quoteFormSchema = z.object({
-  insuranceType: z.string().min(1, "Veuillez sélectionner un type d'assurance"),
+// Messages de validation dans la langue courante (construit avec t).
+const buildQuoteFormSchema = (t: (key: string) => string) => z.object({
+  insuranceType: z.string().min(1, t('form.quoteRequest.validation.insuranceType')),
   coverageLevel: z.string().optional(),
   fullName: z.string()
     .trim()
-    .min(2, "Le nom doit contenir au moins 2 caractères")
-    .max(100, "Le nom ne peut pas dépasser 100 caractères"),
+    .min(2, t('form.quoteRequest.validation.fullNameMin'))
+    .max(100, t('form.quoteRequest.validation.fullNameMax')),
   email: z.string()
     .trim()
-    .email("Email invalide")
-    .max(255, "L'email ne peut pas dépasser 255 caractères"),
+    .email(t('form.quoteRequest.validation.email'))
+    .max(255, t('form.quoteRequest.validation.emailMax')),
   phone: z.string()
     .trim()
-    .regex(/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/, "Numéro de téléphone invalide"),
+    .regex(/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/, t('form.quoteRequest.validation.phone')),
   postalCode: z.string()
     .trim()
-    .regex(/^\d{5}$/, "Code postal invalide (5 chiffres)"),
+    .regex(/^\d{5}$/, t('form.quoteRequest.validation.postalCode')),
   currentInsurer: z.string().max(100).optional(),
   acceptTerms: z.boolean().refine((val) => val === true, {
-    message: "Vous devez accepter les conditions",
+    message: t('form.quoteRequest.validation.acceptTerms'),
   }),
 });
 
-type QuoteFormData = z.infer<typeof quoteFormSchema>;
+type QuoteFormData = z.infer<ReturnType<typeof buildQuoteFormSchema>>;
 
 export const QuoteRequestForm = () => {
   const { t } = useLanguage();
@@ -119,7 +120,7 @@ export const QuoteRequestForm = () => {
   const { honeypotRef, isBot } = useHoneypot();
 
   const form = useForm<QuoteFormData>({
-    resolver: zodResolver(quoteFormSchema),
+    resolver: zodResolver(buildQuoteFormSchema(t)),
     defaultValues: {
       insuranceType: "",
       coverageLevel: "",
@@ -170,7 +171,10 @@ export const QuoteRequestForm = () => {
           type: data.insuranceType,
           details: {
             postalCode: data.postalCode,
+            // Valeurs envoyées au CRM et dans l'email interne : restent en français.
+            // eslint-disable-next-line local/no-hardcoded-french
             currentInsurer: data.currentInsurer || 'Non renseigné',
+            // eslint-disable-next-line local/no-hardcoded-french
             coverageLevel: data.coverageLevel || 'Non renseigné',
           },
           estimatedPrice: 35,
@@ -339,7 +343,7 @@ export const QuoteRequestForm = () => {
                     <FormItem>
                       <FormLabel>{t('quoteForm.fullName')}</FormLabel>
                       <FormControl>
-                        <Input placeholder="Jean Dupont" {...field} />
+                        <Input placeholder={t('form.placeholder.fullName')} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -353,7 +357,7 @@ export const QuoteRequestForm = () => {
                     <FormItem>
                       <FormLabel>{t('quoteForm.email')}</FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder="jean.dupont@email.com" {...field} />
+                        <Input type="email" placeholder={t('form.placeholder.email')} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -398,7 +402,7 @@ export const QuoteRequestForm = () => {
                   <FormItem>
                     <FormLabel>{t('quoteForm.currentInsurer')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="Ex: AXA, Allianz..." {...field} />
+                      <Input placeholder={t('form.quoteRequest.placeholder.currentInsurer')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

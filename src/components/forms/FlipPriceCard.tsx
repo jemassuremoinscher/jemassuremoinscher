@@ -1,6 +1,7 @@
 import { useRef, useState, type KeyboardEvent } from "react";
 import { Check, RotateCcw } from "lucide-react";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export interface FlipPriceCardProps {
   name: string;
@@ -24,6 +25,7 @@ export interface FlipPriceCardProps {
  * Tracks flips and detail-views per insurance category for engagement analytics.
  */
 const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranceType, position }: FlipPriceCardProps) => {
+  const { t } = useLanguage();
   const [flipped, setFlipped] = useState(false);
   const hasPrice = !!price;
   const isPercent = !!price && price.includes("%");
@@ -92,7 +94,7 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
         onKeyDown={onKey}
         aria-pressed={flipped}
         aria-expanded={flipped}
-        aria-label={`Formule ${name} — ${flipped ? "voir le prix" : "voir les garanties incluses"}`}
+        aria-label={t(flipped ? 'form.teaser.aria.back' : 'form.teaser.aria.front', { name })}
         // Lus par le test E2E des tunnels (npm run qa:funnels).
         data-teaser-card={name}
         data-teaser-mode={hasPrice ? "prix" : "devis"}
@@ -119,22 +121,22 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
                   )}
                   <span className="text-xl md:text-2xl font-extrabold text-[#fcd34d] leading-none tabular-nums">{price}</span>
                   <span className="text-[10px] text-white/85 font-medium">
-                    {isPercent ? "loyers" : "/mois"}
+                    {isPercent ? t('form.teaser.rents') : t('form.teaser.perMonth')}
                   </span>
                 </>
               ) : (
-                <span className="text-sm md:text-base font-extrabold text-[#fcd34d] leading-none">Sur devis</span>
+                <span className="text-sm md:text-base font-extrabold text-[#fcd34d] leading-none">{t('form.teaser.onQuote')}</span>
               )}
             </div>
 
             <p className="text-[11px] text-primary font-bold flex items-center gap-1">
-              Voir les garanties <span aria-hidden="true">→</span>
+              {t('form.teaser.seeGuarantees')} <span aria-hidden="true">→</span>
             </p>
           </div>
         ) : (
           <div className="h-full text-left flex flex-col">
             <div className="flex items-center justify-between mb-2 pb-1.5 border-b border-border/50">
-              <span className="text-xs font-extrabold text-foreground truncate">Garanties {name}</span>
+              <span className="text-xs font-extrabold text-foreground truncate">{t('form.teaser.guaranteesOf', { name })}</span>
               <RotateCcw className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
             </div>
             <ul className="space-y-1.5 flex-1 overflow-y-auto pr-1">
@@ -146,7 +148,7 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
               ))}
             </ul>
             <p className="text-[10px] text-primary/75 font-semibold text-center mt-2 pt-1.5 border-t border-border/50">
-              Cliquez pour revenir au prix
+              {t('form.teaser.backToPrice')}
             </p>
           </div>
         )}

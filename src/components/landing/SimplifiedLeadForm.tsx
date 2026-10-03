@@ -16,13 +16,14 @@ import { normalizeInsuranceTypeStrict } from '@/utils/insuranceTypeNormalizer';
 import { invokeSendQuoteEmail } from "@/lib/recaptcha";
 import ResidencyNotice from "@/components/i18n/ResidencyNotice";
 
-const simplifiedLeadSchema = z.object({
-  fullName: z.string().trim().min(2, 'Nom requis').max(100),
-  email: z.string().trim().email('Email invalide').max(255),
-  phone: z.string().trim().regex(/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/, 'Téléphone invalide'),
+// Messages de validation dans la langue courante (construit avec t).
+const buildSimplifiedLeadSchema = (t: (key: string) => string) => z.object({
+  fullName: z.string().trim().min(2, t('form.simplifiedLead.validation.fullName')).max(100),
+  email: z.string().trim().email(t('form.simplifiedLead.validation.email')).max(255),
+  phone: z.string().trim().regex(/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/, t('form.simplifiedLead.validation.phone')),
 });
 
-type SimplifiedLeadData = z.infer<typeof simplifiedLeadSchema>;
+type SimplifiedLeadData = z.infer<ReturnType<typeof buildSimplifiedLeadSchema>>;
 
 interface SimplifiedLeadFormProps {
   insuranceType: string;
@@ -37,7 +38,7 @@ export const SimplifiedLeadForm = ({ insuranceType, insuranceLabel }: Simplified
   const { honeypotRef, isBot } = useHoneypot();
 
   const form = useForm<SimplifiedLeadData>({
-    resolver: zodResolver(simplifiedLeadSchema),
+    resolver: zodResolver(buildSimplifiedLeadSchema(t)),
     defaultValues: { fullName: '', email: '', phone: '' },
   });
 
@@ -111,20 +112,20 @@ export const SimplifiedLeadForm = ({ insuranceType, insuranceLabel }: Simplified
         <input ref={honeypotRef} type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0 }} />
         <div>
           <Label htmlFor="fullName" className="text-base font-semibold mb-2 block">{t('leadForm.fullName')}</Label>
-          <Input {...form.register('fullName')} id="fullName" placeholder="Jean Dupont" className="h-12 text-base" disabled={isSubmitting} />
+          <Input {...form.register('fullName')} id="fullName" placeholder={t('form.placeholder.fullName')} className="h-12 text-base" disabled={isSubmitting} />
           {form.formState.errors.fullName && <p className="text-sm text-red-600 mt-1">{form.formState.errors.fullName.message}</p>}
         </div>
         <div>
           <Label htmlFor="email" className="text-base font-semibold mb-2 block">{t('leadForm.email')}</Label>
-          <Input {...form.register('email')} id="email" type="email" placeholder="jean.dupont@email.com" className="h-12 text-base" disabled={isSubmitting} />
+          <Input {...form.register('email')} id="email" type="email" placeholder={t('form.placeholder.email')} className="h-12 text-base" disabled={isSubmitting} />
           {form.formState.errors.email && <p className="text-sm text-red-600 mt-1">{form.formState.errors.email.message}</p>}
         </div>
         <div>
           <Label htmlFor="phone" className="text-base font-semibold mb-2 block">{t('leadForm.phone')}</Label>
-          <Input {...form.register('phone')} id="phone" type="tel" placeholder="06 12 34 56 78" className="h-12 text-base" disabled={isSubmitting} />
+          <Input {...form.register('phone')} id="phone" type="tel" placeholder={t('form.phonePlaceholder')} className="h-12 text-base" disabled={isSubmitting} />
           {form.formState.errors.phone && <p className="text-sm text-red-600 mt-1">{form.formState.errors.phone.message}</p>}
         </div>
-        <Button type="submit" size="lg" className="w-full h-14 text-lg font-bold" disabled={isSubmitting} aria-label={`Recevoir mon devis ${insuranceLabel} gratuit`}>
+        <Button type="submit" size="lg" className="w-full h-14 text-lg font-bold" disabled={isSubmitting} aria-label={t('form.simplifiedLead.submitAria', { label: insuranceLabel })}>
           {isSubmitting ? (<><Loader2 className="mr-2 h-5 w-5 animate-spin" />{t('leadForm.sending')}</>) : t('leadForm.submit')}
         </Button>
         <p className="text-xs text-center text-muted-foreground">{t('leadForm.disclaimer')}</p>

@@ -27,15 +27,16 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 // Logo imports for teaser prices
 import { invokeSendQuoteEmail, preloadRecaptcha } from "@/lib/recaptcha";
-import { teaserPrices } from './teaserPrices';
+import { buildTeaserPrices } from './teaserPrices';
 import { reportSiteError } from "@/lib/siteErrorLog";
 import ResidencyNotice from "@/components/i18n/ResidencyNotice";
 
-const contactSchema = z.object({
-  fullName: z.string().trim().min(2, 'Minimum 2 caractères').max(100),
-  email: z.string().trim().email('Email invalide'),
-  phone: z.string().trim().regex(/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/, 'Numéro invalide'),
-  acceptTerms: z.literal(true, { errorMap: () => ({ message: 'Requis' }) }),
+// Messages de validation dans la langue courante (construit avec t).
+const buildContactSchema = (t: (key: string) => string) => z.object({
+  fullName: z.string().trim().min(2, t('form.quote.validation.fullNameMin')).max(100),
+  email: z.string().trim().email(t('form.quote.validation.email')),
+  phone: z.string().trim().regex(/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/, t('form.quote.validation.phone')),
+  acceptTerms: z.literal(true, { errorMap: () => ({ message: t('form.quote.validation.required') }) }),
 });
 
 interface MultiStepQuoteFormProps {
@@ -392,7 +393,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   };
 
   const handleContactSubmit = async () => {
-    const result = contactSchema.safeParse(contactData);
+    const result = buildContactSchema(t).safeParse(contactData);
     if (!result.success) {
       const errors: Record<string, string> = {};
       result.error.issues.forEach(issue => {
@@ -963,7 +964,7 @@ function CardSelectStep({ options, selected, onSelect, microLoading, showUnsureB
             onClick={() => onSelect(unsureDefaultValue)}
             className="inline-flex items-center justify-center rounded-full border border-primary/30 bg-primary/5 px-5 py-2.5 text-sm font-medium text-primary hover:bg-primary/10 hover:border-primary/50 active:scale-[0.97] transition-all"
           >
-            Je ne sais pas / Estimer pour moi
+            {t('form.quote.unsure')}
           </button>
         </div>
       )}
@@ -1001,13 +1002,13 @@ function CardSelectStep({ options, selected, onSelect, microLoading, showUnsureB
                   onClick={() => {
                     const n = parseFloat(preciseValue.replace(',', '.'));
                     if (Number.isNaN(n) || n < preciseInput.min || n > preciseInput.max) {
-                      setPreciseError(`Entre ${preciseInput.min} et ${preciseInput.max}`);
+                      setPreciseError(t('form.quote.precise.range', { min: preciseInput.min, max: preciseInput.max }));
                       return;
                     }
                     onPreciseSubmit?.(n.toFixed(2));
                   }}
                 >
-                  OK
+                  {t('form.quote.precise.submit')}
                 </Button>
               </div>
               {preciseError && <p className="text-xs text-destructive mt-1.5 text-center">{preciseError}</p>}
@@ -1139,6 +1140,7 @@ function VehicleSelectStep({ step, formData, onSelect }: {
   // déjà choisie (les listes de src/data/vehicleBrands.ts sont ordonnées par
   // popularité), ou une valeur générique si la marque n'est pas encore connue.
   const unsureDefault = step.showUnsureButton && step.vehicleField === 'model'
+    // eslint-disable-next-line local/no-hardcoded-french -- valeur enregistrée pour le CRM (français)
     ? (items[0] || 'Modèle non précisé')
     : null;
 
@@ -1179,7 +1181,7 @@ function VehicleSelectStep({ step, formData, onSelect }: {
           onClick={() => onSelect(step.field!, unsureDefault)}
           className="inline-flex items-center justify-center rounded-full border border-primary/30 bg-primary/5 px-5 py-2.5 text-sm font-medium text-primary hover:bg-primary/10 hover:border-primary/50 active:scale-[0.97] transition-all"
         >
-          Je ne sais pas / Estimer pour moi
+          {t('form.quote.unsure')}
         </button>
       )}
     </div>
@@ -1327,6 +1329,8 @@ function ContactStep({
   // Tous les hooks restent AVANT le return conditionnel sur isSuccess : React
   // exige le même nombre de hooks à chaque rendu, sinon il plante quand
   // isSuccess passe à true (écran "Oups, une erreur est survenue").
+  // Textes des vignettes dans la langue courante (clés i18n, teaserPrices.ts).
+  const teaserPrices = useMemo(() => buildTeaserPrices(t), [t]);
   const rawPrices = teaserPrices[insuranceType || 'auto']?.prices || teaserPrices.auto.prices;
   // Session-stable rotation so a returning visitor sees different insurers
   const rotationSeed = useMemo(() => Math.floor(Math.random() * 997), []);
@@ -1470,7 +1474,7 @@ function ContactStep({
           défilement à l'arrivée sur l'étape (contrôlé par npm run qa:funnels). */}
       <div className="rounded-xl bg-primary/5 border border-primary/15 px-3 py-2.5">
         <p className="text-xs text-muted-foreground leading-snug">
-          🔒 0 spam. Vos données sont en sécurité. Un conseiller vous rappelle uniquement pour étudier votre demande et, si vous changez d'assurance, gérer la résiliation de votre ancien contrat.
+          {t('form.quote.contact.trust')}
         </p>
       </div>
 

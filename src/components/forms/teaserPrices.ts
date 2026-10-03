@@ -59,133 +59,137 @@ import logoAComme from '@/assets/logos/a-comme-assure.png';
 // animaux (vérifié par scripts/verify-teasers.mjs et le test E2E).
 export const ANIMAUX_POOL = [logoSantevet, logoAcheel, logoFidanimo, logoBulleBleue, logoAnimauxSante, logoGoodflair];
 
+// Textes des vignettes : clés i18n (étape 2, 2026-10-03). Les noms reprennent
+// les clés des libellés de formule quand ils sont identiques en français.
+type TFn = (key: string, vars?: Record<string, string | number>) => string;
+
 export type TeaserTier = { name: string; price?: string; badge?: string; logoPool: string[]; features: string[] };
-export const teaserPrices: Record<string, { label: string; prices: TeaserTier[] }> = {
-  auto: { label: 'Assurance Auto', prices: [
-    { name: 'Tiers', price: '14€', badge: 'Dès', logoPool: [logoDirectAssurance, logoLolivier, logoLeocare, logoOrnikar, logoAssu2000, logoAmaguiz], features: ['Responsabilité civile obligatoire', 'Défense pénale et recours', 'Assistance 50 km du domicile'] },
-    { name: 'Tiers +', price: '24€', badge: 'Dès', logoPool: [logoAllianz, logoMaif, logoMacif, logoMatmut, logoMaaf, logoMma, logoAbeille], features: ['Tout du Tiers', 'Vol et incendie', 'Bris de glace', 'Catastrophes naturelles'] },
-    { name: 'Tous Risques', price: '37€', badge: 'Dès', logoPool: [logoAxa, logoGroupama, logoGenerali, logoGmf, logoAllianz, logoLuko], features: ['Tous dommages au véhicule', 'Vol, incendie, vandalisme', 'Bris de glace 0€ franchise', 'Véhicule de prêt'] },
+export const buildTeaserPrices = (t: TFn): Record<string, { label: string; prices: TeaserTier[] }> => ({
+  auto: { label: t('teaser.auto.label'), prices: [
+    { name: t('teaser.auto.1.name'), price: '14€', badge: t('teaser.badge.des'), logoPool: [logoDirectAssurance, logoLolivier, logoLeocare, logoOrnikar, logoAssu2000, logoAmaguiz], features: [t('teaser.auto.1.feature1'), t('teaser.auto.1.feature2'), t('teaser.auto.1.feature3')] },
+    { name: t('teaser.auto.2.name'), price: '24€', badge: t('teaser.badge.des'), logoPool: [logoAllianz, logoMaif, logoMacif, logoMatmut, logoMaaf, logoMma, logoAbeille], features: [t('teaser.auto.2.feature1'), t('teaser.auto.2.feature2'), t('teaser.auto.2.feature3'), t('teaser.auto.2.feature4')] },
+    { name: t('teaser.auto.3.name'), price: '37€', badge: t('teaser.badge.des'), logoPool: [logoAxa, logoGroupama, logoGenerali, logoGmf, logoAllianz, logoLuko], features: [t('teaser.auto.3.feature1'), t('teaser.auto.3.feature2'), t('teaser.auto.3.feature3'), t('teaser.auto.3.feature4')] },
   ]},
-  moto: { label: 'Assurance Moto', prices: [
-    { name: 'Tiers', price: '11€', badge: 'Dès', logoPool: [logoAmaguiz, logoAprilMoto, logoAmv, logoSollyAzar, logoAssu2000], features: ['Responsabilité civile', 'Défense pénale', 'Assistance dépannage'] },
-    { name: 'Tiers +', price: '20€', badge: 'Dès', logoPool: [logoAllianz, logoMaif, logoMacif, logoMma, logoAbeille], features: ['Tout du Tiers', 'Vol et incendie', 'Équipement pilote 500€'] },
-    { name: 'Tous Risques', price: '34€', badge: 'Dès', logoPool: [logoAxa, logoGroupama, logoGenerali, logoGmf, logoMaaf], features: ['Tous dommages moto', 'Vol et incendie', 'Équipement 1500€', 'Assistance 0 km'] },
+  moto: { label: t('teaser.moto.label'), prices: [
+    { name: t('teaser.moto.1.name'), price: '11€', badge: t('teaser.badge.des'), logoPool: [logoAmaguiz, logoAprilMoto, logoAmv, logoSollyAzar, logoAssu2000], features: [t('teaser.moto.1.feature1'), t('teaser.moto.1.feature2'), t('teaser.moto.1.feature3')] },
+    { name: t('teaser.moto.2.name'), price: '20€', badge: t('teaser.badge.des'), logoPool: [logoAllianz, logoMaif, logoMacif, logoMma, logoAbeille], features: [t('teaser.moto.2.feature1'), t('teaser.moto.2.feature2'), t('teaser.moto.2.feature3')] },
+    { name: t('teaser.moto.3.name'), price: '34€', badge: t('teaser.badge.des'), logoPool: [logoAxa, logoGroupama, logoGenerali, logoGmf, logoMaaf], features: [t('teaser.moto.3.feature1'), t('teaser.moto.3.feature2'), t('teaser.moto.3.feature3'), t('teaser.moto.3.feature4')] },
   ]},
-  habitation: { label: 'Assurance Habitation', prices: [
-    { name: 'Essentielle', price: '6€', badge: 'Dès', logoPool: [logoDirectAssurance, logoLuko, logoLolivier, logoLeocare, logoAcheel], features: ['Responsabilité civile vie privée', 'Incendie et explosion', 'Dégâts des eaux'] },
-    { name: 'Confort', price: '11€', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoMatmut, logoMma, logoAbeille], features: ['Tout de l\'Essentielle', 'Vol et vandalisme', 'Bris de glace', 'Catastrophes naturelles'] },
-    { name: 'Premium', price: '19€', badge: 'Dès', logoPool: [logoGroupama, logoAxa, logoAllianz, logoGenerali, logoMaaf, logoGmf], features: ['Couverture tous risques', 'Objets de valeur protégés', 'Protection juridique', 'Relogement inclus'] },
+  habitation: { label: t('teaser.habitation.label'), prices: [
+    { name: t('teaser.habitation.1.name'), price: '6€', badge: t('teaser.badge.des'), logoPool: [logoDirectAssurance, logoLuko, logoLolivier, logoLeocare, logoAcheel], features: [t('teaser.habitation.1.feature1'), t('teaser.habitation.1.feature2'), t('teaser.habitation.1.feature3')] },
+    { name: t('teaser.habitation.2.name'), price: '11€', badge: t('teaser.badge.des'), logoPool: [logoMaif, logoMacif, logoMatmut, logoMma, logoAbeille], features: [t('teaser.habitation.2.feature1'), t('teaser.habitation.2.feature2'), t('teaser.habitation.2.feature3'), t('teaser.habitation.2.feature4')] },
+    { name: t('teaser.habitation.3.name'), price: '19€', badge: t('teaser.badge.des'), logoPool: [logoGroupama, logoAxa, logoAllianz, logoGenerali, logoMaaf, logoGmf], features: [t('teaser.habitation.3.feature1'), t('teaser.habitation.3.feature2'), t('teaser.habitation.3.feature3'), t('teaser.habitation.3.feature4')] },
   ]},
-  sante: { label: 'Mutuelle Santé', prices: [
-    { name: 'Essentielle', price: '14€', badge: 'Dès', logoPool: [logoAlanNew, logoAcheel, logoMgen, logoMutuelleGenerale], features: ['Hospitalisation 100% BR', 'Soins courants 100%', 'Optique simple'] },
-    { name: 'Confort', price: '26€', badge: 'Dès', logoPool: [logoHarmonie, logoMalakoff, logoAg2r, logoApril, logoSwisslife], features: ['Hospitalisation 200% BR', 'Dentaire 200%', 'Optique 200€/an', 'Médecines douces'] },
-    { name: 'Premium', price: '44€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoMetlife, logoMaaf], features: ['Hospitalisation 300% BR', 'Dentaire 400%', 'Optique 500€/an', 'Chambre particulière'] },
+  sante: { label: t('teaser.sante.label'), prices: [
+    { name: t('teaser.sante.1.name'), price: '14€', badge: t('teaser.badge.des'), logoPool: [logoAlanNew, logoAcheel, logoMgen, logoMutuelleGenerale], features: [t('teaser.sante.1.feature1'), t('teaser.sante.1.feature2'), t('teaser.sante.1.feature3')] },
+    { name: t('teaser.sante.2.name'), price: '26€', badge: t('teaser.badge.des'), logoPool: [logoHarmonie, logoMalakoff, logoAg2r, logoApril, logoSwisslife], features: [t('teaser.sante.2.feature1'), t('teaser.sante.2.feature2'), t('teaser.sante.2.feature3'), t('teaser.sante.2.feature4')] },
+    { name: t('teaser.sante.3.name'), price: '44€', badge: t('teaser.badge.des'), logoPool: [logoAxa, logoAllianz, logoGenerali, logoMetlife, logoMaaf], features: [t('teaser.sante.3.feature1'), t('teaser.sante.3.feature2'), t('teaser.sante.3.feature3'), t('teaser.sante.3.feature4')] },
   ]},
-  pret: { label: 'Assurance Emprunteur', prices: [
-    { name: 'Décès', price: '7€', badge: 'Dès', logoPool: [logoApril, logoCardif, logoMetlife, logoLcl], features: ['Garantie décès toutes causes', 'Capital remboursé à la banque', 'Couverture jusqu\'à 75 ans'] },
-    { name: 'Décès + PTIA', price: '12€', badge: 'Dès', logoPool: [logoCardif, logoSwisslife, logoGenerali, logoApril], features: ['Décès', 'PTIA (perte totale d\'autonomie)', 'Délégation loi Lemoine'] },
-    { name: 'Complète', price: '19€', badge: 'Dès', logoPool: [logoGenerali, logoAxa, logoAllianz, logoMetlife], features: ['Décès et PTIA', 'Invalidité (IPT, IPP)', 'Incapacité de travail (ITT)', 'Perte d\'emploi en option'] },
+  pret: { label: t('teaser.pret.label'), prices: [
+    { name: t('teaser.pret.1.name'), price: '7€', badge: t('teaser.badge.des'), logoPool: [logoApril, logoCardif, logoMetlife, logoLcl], features: [t('teaser.pret.1.feature1'), t('teaser.pret.1.feature2'), t('teaser.pret.1.feature3')] },
+    { name: t('teaser.pret.2.name'), price: '12€', badge: t('teaser.badge.des'), logoPool: [logoCardif, logoSwisslife, logoGenerali, logoApril], features: [t('teaser.pret.2.feature1'), t('teaser.pret.2.feature2'), t('teaser.pret.2.feature3')] },
+    { name: t('teaser.pret.3.name'), price: '19€', badge: t('teaser.badge.des'), logoPool: [logoGenerali, logoAxa, logoAllianz, logoMetlife], features: [t('teaser.pret.3.feature1'), t('teaser.pret.3.feature2'), t('teaser.pret.3.feature3'), t('teaser.pret.3.feature4')] },
   ]},
-  animaux: { label: 'Assurance Animaux', prices: [
+  animaux: { label: t('teaser.animaux.label'), prices: [
     // Aucun prix ni taux/plafond animaux (décision de Paul) : « Sur devis ».
     // Même pool ordonné de 6 assureurs spécialisés pour les 3 vignettes :
     // pool[(rotationSeed + i*7) % 6] donne trois logos toujours différents.
     // Noms = libellés de step.animaux.formule.opt.*.label (fr).
-    { name: 'Accidents', logoPool: ANIMAUX_POOL, features: ['Frais vétérinaires liés à un accident'] },
-    { name: 'Maladie + Accident', logoPool: ANIMAUX_POOL, features: ['Accidents et maladies', 'Taux, plafond et franchise selon le contrat', 'Délais de carence selon le contrat'] },
-    { name: 'Intégrale', logoPool: ANIMAUX_POOL, features: ['Accidents et maladies', 'Prévention (forfait ou option) selon le contrat', 'Exclusions : maladies préexistantes, congénitales ou héréditaires selon le contrat'] },
+    { name: t('step.animaux.formule.opt.accident.label'), logoPool: ANIMAUX_POOL, features: [t('teaser.animaux.1.feature1')] },
+    { name: t('step.animaux.formule.opt.maladie_accident.label'), logoPool: ANIMAUX_POOL, features: [t('teaser.animaux.2.feature1'), t('teaser.animaux.2.feature2'), t('teaser.animaux.2.feature3')] },
+    { name: t('step.animaux.formule.opt.integrale.label'), logoPool: ANIMAUX_POOL, features: [t('teaser.animaux.3.feature1'), t('teaser.animaux.3.feature2'), t('teaser.animaux.3.feature3')] },
   ]},
-  vie: { label: 'Assurance Vie', prices: [
-    { name: 'Essentielle', price: '0€ frais', badge: 'Dès', logoPool: [logoSwisslife, logoCardif, logoLcl, logoApril], features: ['Fonds euros sécurisé', 'Versements libres', 'Frais d\'entrée 0%'] },
-    { name: 'Confort', price: '0,6%', badge: 'Frais', logoPool: [logoGenerali, logoSwisslife, logoAllianz, logoCardif], features: ['Fonds euros + unités de compte', 'Gestion pilotée', 'Arbitrages gratuits', 'Avance sur épargne'] },
-    { name: 'Premium', price: '0,9%', badge: 'Frais', logoPool: [logoAxa, logoGenerali, logoMetlife, logoAllianz], features: ['Multi-supports premium', 'Gestion sous mandat', 'SCPI accessibles', 'Conseiller dédié'] },
+  vie: { label: t('teaser.vie.label'), prices: [
+    { name: t('teaser.vie.1.name'), price: '0€ frais', badge: t('teaser.badge.des'), logoPool: [logoSwisslife, logoCardif, logoLcl, logoApril], features: [t('teaser.vie.1.feature1'), t('teaser.vie.1.feature2'), t('teaser.vie.1.feature3')] },
+    { name: t('teaser.vie.2.name'), price: '0,6%', badge: t('teaser.badge.frais'), logoPool: [logoGenerali, logoSwisslife, logoAllianz, logoCardif], features: [t('teaser.vie.2.feature1'), t('teaser.vie.2.feature2'), t('teaser.vie.2.feature3'), t('teaser.vie.2.feature4')] },
+    { name: t('teaser.vie.3.name'), price: '0,9%', badge: t('teaser.badge.frais'), logoPool: [logoAxa, logoGenerali, logoMetlife, logoAllianz], features: [t('teaser.vie.3.feature1'), t('teaser.vie.3.feature2'), t('teaser.vie.3.feature3'), t('teaser.vie.3.feature4')] },
   ]},
-  prevoyance: { label: 'Prévoyance', prices: [
-    { name: 'Essentielle', price: '11€', badge: 'Dès', logoPool: [logoApril, logoMalakoff, logoAg2r, logoMutuelleGenerale], features: ['Capital décès', 'Rente éducation enfants', 'Frais d\'obsèques'] },
-    { name: 'Confort', price: '21€', badge: 'Dès', logoPool: [logoAllianz, logoSwisslife, logoHarmonie, logoApril], features: ['Capital décès', 'Invalidité permanente', 'Indemnités journalières', 'Rente conjoint'] },
-    { name: 'Intégrale', price: '37€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoMetlife, logoCardif], features: ['Toutes garanties Confort', 'IJ majorées', 'Rente éducation', 'Assistance famille'] },
+  prevoyance: { label: t('teaser.prevoyance.label'), prices: [
+    { name: t('teaser.prevoyance.1.name'), price: '11€', badge: t('teaser.badge.des'), logoPool: [logoApril, logoMalakoff, logoAg2r, logoMutuelleGenerale], features: [t('teaser.prevoyance.1.feature1'), t('teaser.prevoyance.1.feature2'), t('teaser.prevoyance.1.feature3')] },
+    { name: t('teaser.prevoyance.2.name'), price: '21€', badge: t('teaser.badge.des'), logoPool: [logoAllianz, logoSwisslife, logoHarmonie, logoApril], features: [t('teaser.prevoyance.2.feature1'), t('teaser.prevoyance.2.feature2'), t('teaser.prevoyance.2.feature3'), t('teaser.prevoyance.2.feature4')] },
+    { name: t('teaser.prevoyance.3.name'), price: '37€', badge: t('teaser.badge.des'), logoPool: [logoAxa, logoGenerali, logoMetlife, logoCardif], features: [t('teaser.prevoyance.3.feature1'), t('teaser.prevoyance.3.feature2'), t('teaser.prevoyance.3.feature3'), t('teaser.prevoyance.3.feature4')] },
   ]},
-  rc_pro: { label: 'RC Pro', prices: [
-    { name: 'Basique', price: '14€', badge: 'Dès', logoPool: [logoAon, logoApril, logoAComme, logoSollyAzar], features: ['RC exploitation', 'RC professionnelle', 'Plafond 1M€'] },
-    { name: 'Standard', price: '26€', badge: 'Dès', logoPool: [logoAllianz, logoMma, logoMaaf, logoGenerali], features: ['RC exploitation et pro', 'Défense recours', 'Plafond 3M€', 'Faute inexcusable'] },
-    { name: 'Premium', price: '44€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: ['Toutes garanties Standard', 'Cyber-risques inclus', 'Plafond 8M€', 'Protection juridique étendue'] },
+  rc_pro: { label: t('teaser.rc_pro.label'), prices: [
+    { name: t('teaser.rc_pro.1.name'), price: '14€', badge: t('teaser.badge.des'), logoPool: [logoAon, logoApril, logoAComme, logoSollyAzar], features: [t('teaser.rc_pro.1.feature1'), t('teaser.rc_pro.1.feature2'), t('teaser.rc_pro.1.feature3')] },
+    { name: t('teaser.rc_pro.2.name'), price: '26€', badge: t('teaser.badge.des'), logoPool: [logoAllianz, logoMma, logoMaaf, logoGenerali], features: [t('teaser.rc_pro.2.feature1'), t('teaser.rc_pro.2.feature2'), t('teaser.rc_pro.2.feature3'), t('teaser.rc_pro.2.feature4')] },
+    { name: t('teaser.rc_pro.3.name'), price: '44€', badge: t('teaser.badge.des'), logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: [t('teaser.rc_pro.3.feature1'), t('teaser.rc_pro.3.feature2'), t('teaser.rc_pro.3.feature3'), t('teaser.rc_pro.3.feature4')] },
   ]},
-  mrp: { label: 'Multirisque Pro', prices: [
-    { name: 'Essentielle', price: '26€', badge: 'Dès', logoPool: [logoGenerali, logoMma, logoMaaf, logoAbeille], features: ['Locaux et matériel', 'Incendie, dégâts des eaux', 'RC exploitation'] },
-    { name: 'Confort', price: '44€', badge: 'Dès', logoPool: [logoAllianz, logoGroupama, logoMaif, logoMacif], features: ['Tout de l\'Essentielle', 'Vol et vandalisme', 'Bris de machines', 'Perte d\'exploitation'] },
-    { name: 'Premium', price: '71€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoAllianz, logoAbeille], features: ['Couverture tous risques', 'Cyber-risques', 'Marchandises transportées', 'Protection juridique pro'] },
+  mrp: { label: t('teaser.mrp.label'), prices: [
+    { name: t('teaser.mrp.1.name'), price: '26€', badge: t('teaser.badge.des'), logoPool: [logoGenerali, logoMma, logoMaaf, logoAbeille], features: [t('teaser.mrp.1.feature1'), t('teaser.mrp.1.feature2'), t('teaser.mrp.1.feature3')] },
+    { name: t('teaser.mrp.2.name'), price: '44€', badge: t('teaser.badge.des'), logoPool: [logoAllianz, logoGroupama, logoMaif, logoMacif], features: [t('teaser.mrp.2.feature1'), t('teaser.mrp.2.feature2'), t('teaser.mrp.2.feature3'), t('teaser.mrp.2.feature4')] },
+    { name: t('teaser.mrp.3.name'), price: '71€', badge: t('teaser.badge.des'), logoPool: [logoAxa, logoGenerali, logoAllianz, logoAbeille], features: [t('teaser.mrp.3.feature1'), t('teaser.mrp.3.feature2'), t('teaser.mrp.3.feature3'), t('teaser.mrp.3.feature4')] },
   ]},
-  gli: { label: 'GLI', prices: [
-    { name: 'Basique', price: '2,5%', badge: 'Dès', logoPool: [logoAllianz, logoMma, logoMaaf], features: ['Loyers impayés couverts', 'Plafond 50 000€', 'Carence 3 mois'] },
-    { name: 'Standard', price: '3%', badge: 'Dès', logoPool: [logoGenerali, logoGroupama, logoAbeille], features: ['Loyers impayés', 'Détériorations immobilières', 'Frais de procédure', 'Carence 2 mois'] },
-    { name: 'Premium', price: '3,5%', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali], features: ['Toutes garanties Standard', 'Vacance locative', 'Plafond 90 000€', 'Sans carence'] },
+  gli: { label: t('teaser.gli.label'), prices: [
+    { name: t('teaser.gli.1.name'), price: '2,5%', badge: t('teaser.badge.des'), logoPool: [logoAllianz, logoMma, logoMaaf], features: [t('teaser.gli.1.feature1'), t('teaser.gli.1.feature2'), t('teaser.gli.1.feature3')] },
+    { name: t('teaser.gli.2.name'), price: '3%', badge: t('teaser.badge.des'), logoPool: [logoGenerali, logoGroupama, logoAbeille], features: [t('teaser.gli.2.feature1'), t('teaser.gli.2.feature2'), t('teaser.gli.2.feature3'), t('teaser.gli.2.feature4')] },
+    { name: t('teaser.gli.3.name'), price: '3,5%', badge: t('teaser.badge.des'), logoPool: [logoAxa, logoAllianz, logoGenerali], features: [t('teaser.gli.3.feature1'), t('teaser.gli.3.feature2'), t('teaser.gli.3.feature3'), t('teaser.gli.3.feature4')] },
   ]},
-  pno: { label: 'PNO', prices: [
-    { name: 'Essentielle', price: '6€', badge: 'Dès', logoPool: [logoDirectAssurance, logoLuko, logoLolivier, logoAcheel], features: ['Responsabilité civile propriétaire', 'Incendie et dégâts des eaux', 'Recours des locataires'] },
-    { name: 'Confort', price: '11€', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoMatmut, logoAbeille], features: ['Tout de l\'Essentielle', 'Vol entre locataires', 'Bris de glace', 'Vacance locative 3 mois'] },
-    { name: 'Premium', price: '17€', badge: 'Dès', logoPool: [logoGroupama, logoAxa, logoAllianz, logoGenerali], features: ['Couverture tous risques', 'Vacance locative 6 mois', 'Protection juridique', 'Détériorations immobilières'] },
+  pno: { label: t('teaser.pno.label'), prices: [
+    { name: t('teaser.pno.1.name'), price: '6€', badge: t('teaser.badge.des'), logoPool: [logoDirectAssurance, logoLuko, logoLolivier, logoAcheel], features: [t('teaser.pno.1.feature1'), t('teaser.pno.1.feature2'), t('teaser.pno.1.feature3')] },
+    { name: t('teaser.pno.2.name'), price: '11€', badge: t('teaser.badge.des'), logoPool: [logoMaif, logoMacif, logoMatmut, logoAbeille], features: [t('teaser.pno.2.feature1'), t('teaser.pno.2.feature2'), t('teaser.pno.2.feature3'), t('teaser.pno.2.feature4')] },
+    { name: t('teaser.pno.3.name'), price: '17€', badge: t('teaser.badge.des'), logoPool: [logoGroupama, logoAxa, logoAllianz, logoGenerali], features: [t('teaser.pno.3.feature1'), t('teaser.pno.3.feature2'), t('teaser.pno.3.feature3'), t('teaser.pno.3.feature4')] },
   ]},
-  gestion_locative: { label: 'Gestion Locative', prices: [
-    { name: 'Essentielle', price: '5%', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoAbeille], features: ['Encaissement loyers', 'Quittancement', 'Révision annuelle'] },
-    { name: 'Confort', price: '7%', badge: 'Dès', logoPool: [logoAllianz, logoMma, logoGenerali], features: ['Tout de l\'Essentielle', 'GLI incluse', 'Gestion technique', 'Visites annuelles'] },
-    { name: 'Premium', price: '9%', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGroupama], features: ['Gestion complète', 'GLI + vacance', 'Travaux supervisés', 'Reporting détaillé'] },
+  gestion_locative: { label: t('teaser.gestion_locative.label'), prices: [
+    { name: t('teaser.gestion_locative.1.name'), price: '5%', badge: t('teaser.badge.des'), logoPool: [logoMaif, logoMacif, logoAbeille], features: [t('teaser.gestion_locative.1.feature1'), t('teaser.gestion_locative.1.feature2'), t('teaser.gestion_locative.1.feature3')] },
+    { name: t('teaser.gestion_locative.2.name'), price: '7%', badge: t('teaser.badge.des'), logoPool: [logoAllianz, logoMma, logoGenerali], features: [t('teaser.gestion_locative.2.feature1'), t('teaser.gestion_locative.2.feature2'), t('teaser.gestion_locative.2.feature3'), t('teaser.gestion_locative.2.feature4')] },
+    { name: t('teaser.gestion_locative.3.name'), price: '9%', badge: t('teaser.badge.des'), logoPool: [logoAxa, logoAllianz, logoGroupama], features: [t('teaser.gestion_locative.3.feature1'), t('teaser.gestion_locative.3.feature2'), t('teaser.gestion_locative.3.feature3'), t('teaser.gestion_locative.3.feature4')] },
   ]},
   // Trottinette (décision du 3 octobre 2026) : trois vignettes « Sur devis »,
   // noms identiques aux libellés de l'étape trot_formule. Seul le logo April
   // (contrat d'entrée de gamme mis en avant sur /assurance-trottinette) ; vol,
   // casse et assistance ne sont pas promis chez lui : « selon l'assureur ».
-  trottinette: { label: 'Assurance Trottinette', prices: [
-    { name: 'Responsabilité civile seule', logoPool: [logoApril], features: ['Responsabilité civile obligatoire (minimum légal)', 'Défense pénale et recours selon le contrat'] },
-    { name: 'RC + Vol', logoPool: [logoApril], features: ['Tout de la responsabilité civile', 'Vol : selon l\'assureur (antivol homologué souvent exigé)'] },
-    { name: 'Tous risques', logoPool: [logoApril], features: ['Tout de la formule RC + Vol', 'Casse et vandalisme : selon l\'assureur', 'Assistance : selon l\'assureur'] },
+  trottinette: { label: t('teaser.trottinette.label'), prices: [
+    { name: t('step.trottinette.trot_formule.opt.rc.label'), logoPool: [logoApril], features: [t('teaser.trottinette.1.feature1'), t('teaser.trottinette.1.feature2')] },
+    { name: t('step.trottinette.trot_formule.opt.rc_vol.label'), logoPool: [logoApril], features: [t('teaser.trottinette.2.feature1'), t('teaser.trottinette.2.feature2')] },
+    { name: t('step.trottinette.trot_formule.opt.tous_risques.label'), logoPool: [logoApril], features: [t('teaser.trottinette.3.feature1'), t('teaser.trottinette.3.feature2'), t('teaser.trottinette.3.feature3')] },
   ]},
-  velo: { label: 'Assurance Vélo', prices: [
-    { name: 'Vol uniquement', price: '3€', badge: 'Dès', logoPool: [logoAcheel, logoLuko, logoLeocare, logoNeo], features: ['Vol avec effraction'] },
-    { name: 'Vol + Casse', price: '7€', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoAllianz, logoMaaf], features: ['Vol partout en France', 'Casse + chute'] },
-    { name: 'Tous risques + Assistance', price: '11€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoGroupama, logoAbeille], features: ['Vol en tous lieux Europe', 'Tous dommages', 'Assistance 0 km'] },
+  velo: { label: t('teaser.velo.label'), prices: [
+    { name: t('step.velo.velo_formule.opt.vol.label'), price: '3€', badge: t('teaser.badge.des'), logoPool: [logoAcheel, logoLuko, logoLeocare, logoNeo], features: [t('teaser.velo.1.feature1')] },
+    { name: t('step.velo.velo_formule.opt.vol_casse.label'), price: '7€', badge: t('teaser.badge.des'), logoPool: [logoMaif, logoMacif, logoAllianz, logoMaaf], features: [t('teaser.velo.2.feature1'), t('teaser.velo.2.feature2')] },
+    { name: t('step.velo.velo_formule.opt.tous_risques.label'), price: '11€', badge: t('teaser.badge.des'), logoPool: [logoAxa, logoGenerali, logoGroupama, logoAbeille], features: [t('teaser.velo.3.feature1'), t('teaser.velo.3.feature2'), t('teaser.velo.3.feature3')] },
   ]},
-  camping_car: { label: 'Camping-car', prices: [
-    { name: 'Au tiers', price: '21€', badge: 'Dès', logoPool: [logoMacif, logoMaif, logoMaaf, logoMma], features: ['Responsabilité civile', 'Défense recours'] },
-    { name: 'Tiers étendu (vol/incendie)', price: '34€', badge: 'Dès', logoPool: [logoAllianz, logoGroupama, logoMatmut, logoAbeille], features: ['Tout de la formule Au tiers', 'Vol et incendie'] },
-    { name: 'Tous risques', price: '54€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoGmf, logoAllianz], features: ['Tout de la formule Tiers étendu', 'Tous dommages'] },
+  camping_car: { label: t('teaser.camping_car.label'), prices: [
+    { name: t('step.camping_car.cc_formule.opt.tiers.label'), price: '21€', badge: t('teaser.badge.des'), logoPool: [logoMacif, logoMaif, logoMaaf, logoMma], features: [t('teaser.camping_car.1.feature1'), t('teaser.camping_car.1.feature2')] },
+    { name: t('step.camping_car.cc_formule.opt.tiers_plus.label'), price: '34€', badge: t('teaser.badge.des'), logoPool: [logoAllianz, logoGroupama, logoMatmut, logoAbeille], features: [t('teaser.camping_car.2.feature1'), t('teaser.camping_car.2.feature2')] },
+    { name: t('step.camping_car.cc_formule.opt.tous_risques.label'), price: '54€', badge: t('teaser.badge.des'), logoPool: [logoAxa, logoGenerali, logoGmf, logoAllianz], features: [t('teaser.camping_car.3.feature1'), t('teaser.camping_car.3.feature2')] },
   ]},
-  sans_permis: { label: 'Voiture sans permis', prices: [
-    { name: 'Au tiers (obligatoire)', price: '17€', badge: 'Dès', logoPool: [logoSollyAzar, logoAssu2000, logoAComme, logoAmaguiz], features: ['Responsabilité civile', 'Défense recours'] },
-    { name: 'Tiers + vol / incendie', price: '26€', badge: 'Dès', logoPool: [logoMma, logoMaaf, logoMacif, logoAbeille], features: ['Tout de la formule Au tiers', 'Vol et incendie'] },
-    { name: 'Tous risques', price: '39€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGroupama, logoGenerali], features: ['Tous dommages', 'Vol et incendie'] },
+  sans_permis: { label: t('teaser.sans_permis.label'), prices: [
+    { name: t('step.sans_permis.sp_formule.opt.tiers.label'), price: '17€', badge: t('teaser.badge.des'), logoPool: [logoSollyAzar, logoAssu2000, logoAComme, logoAmaguiz], features: [t('teaser.sans_permis.1.feature1'), t('teaser.sans_permis.1.feature2')] },
+    { name: t('step.sans_permis.sp_formule.opt.tiers_plus.label'), price: '26€', badge: t('teaser.badge.des'), logoPool: [logoMma, logoMaaf, logoMacif, logoAbeille], features: [t('teaser.sans_permis.2.feature1'), t('teaser.sans_permis.2.feature2')] },
+    { name: t('step.sans_permis.sp_formule.opt.tous_risques.label'), price: '39€', badge: t('teaser.badge.des'), logoPool: [logoAxa, logoAllianz, logoGroupama, logoGenerali], features: [t('teaser.sans_permis.3.feature1'), t('teaser.sans_permis.3.feature2')] },
   ]},
   // Auto temporaire : « Sur devis » (décision du 3 octobre 2026). Les anciens
   // prix (6/26/67€) étaient des tarifs pour 1, 7 et 30 jours affichés en
   // « /mois », et ces durées ne correspondent pas aux options du formulaire
   // (1-3 j, 4-15 j, 16-90 j).
-  auto_temporaire: { label: 'Auto temporaire', prices: [
-    { name: 'Au tiers', logoPool: [logoWilov, logoOrnikar, logoLeocare, logoGoodflair], features: ['RC obligatoire', 'Défense recours'] },
-    { name: 'Tiers étendu', logoPool: [logoLeocare, logoOrnikar, logoWilov, logoLolivier], features: ['Tiers + vol/incendie'] },
-    { name: 'Tous risques', logoPool: [logoAllianz, logoAxa, logoMacif, logoLeocare], features: ['Tous dommages au véhicule'] },
+  auto_temporaire: { label: t('teaser.auto_temporaire.label'), prices: [
+    { name: t('step.auto_temporaire.at_formule.opt.tiers.label'), logoPool: [logoWilov, logoOrnikar, logoLeocare, logoGoodflair], features: [t('teaser.auto_temporaire.1.feature1'), t('teaser.auto_temporaire.1.feature2')] },
+    { name: t('step.auto_temporaire.at_formule.opt.tiers_plus.label'), logoPool: [logoLeocare, logoOrnikar, logoWilov, logoLolivier], features: [t('teaser.auto_temporaire.2.feature1')] },
+    { name: t('step.auto_temporaire.at_formule.opt.tous_risques.label'), logoPool: [logoAllianz, logoAxa, logoMacif, logoLeocare], features: [t('teaser.auto_temporaire.3.feature1')] },
   ]},
-  flotte: { label: 'Flotte Auto', prices: [
-    { name: 'Essentielle', price: '29€', badge: '/véh.', logoPool: [logoMacif, logoMaaf, logoMma, logoMatmut], features: ['Tiers étendu flotte', 'Gestion centralisée', 'Conducteurs interchangeables'] },
-    { name: 'Confort', price: '49€', badge: '/véh.', logoPool: [logoAllianz, logoGroupama, logoGenerali, logoAbeille], features: ['Tiers + vol/incendie', 'Bris de glace', 'Assistance Europe'] },
-    { name: 'Premium', price: '79€', badge: '/véh.', logoPool: [logoAxa, logoAllianz, logoGenerali, logoMaaf], features: ['Tous risques flotte', 'Bonus mutualisé', 'Véhicule de prêt'] },
+  flotte: { label: t('teaser.flotte.label'), prices: [
+    { name: t('teaser.flotte.1.name'), price: '29€', badge: t('teaser.badge.parVehicule'), logoPool: [logoMacif, logoMaaf, logoMma, logoMatmut], features: [t('teaser.flotte.1.feature1'), t('teaser.flotte.1.feature2'), t('teaser.flotte.1.feature3')] },
+    { name: t('teaser.flotte.2.name'), price: '49€', badge: t('teaser.badge.parVehicule'), logoPool: [logoAllianz, logoGroupama, logoGenerali, logoAbeille], features: [t('teaser.flotte.2.feature1'), t('teaser.flotte.2.feature2'), t('teaser.flotte.2.feature3')] },
+    { name: t('teaser.flotte.3.name'), price: '79€', badge: t('teaser.badge.parVehicule'), logoPool: [logoAxa, logoAllianz, logoGenerali, logoMaaf], features: [t('teaser.flotte.3.feature1'), t('teaser.flotte.3.feature2'), t('teaser.flotte.3.feature3')] },
   ]},
-  cyber: { label: 'Cyber-risques', prices: [
-    { name: 'TPE', price: '29€', badge: 'Dès', logoPool: [logoAon, logoApril, logoSollyAzar, logoMma], features: ['Cyber-extorsion', 'Restauration données', 'Plafond 100 K€'] },
-    { name: 'PME', price: '67€', badge: 'Dès', logoPool: [logoAllianz, logoMma, logoMaaf, logoGenerali], features: ['Atteintes aux données', 'Frais juridiques RGPD', 'Plafond 500 K€'] },
-    { name: 'ETI', price: '119€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: ['Couverture étendue', 'Cellule de crise 24/7', 'Plafond 2 M€'] },
+  cyber: { label: t('teaser.cyber.label'), prices: [
+    { name: t('teaser.cyber.1.name'), price: '29€', badge: t('teaser.badge.des'), logoPool: [logoAon, logoApril, logoSollyAzar, logoMma], features: [t('teaser.cyber.1.feature1'), t('teaser.cyber.1.feature2'), t('teaser.cyber.1.feature3')] },
+    { name: t('teaser.cyber.2.name'), price: '67€', badge: t('teaser.badge.des'), logoPool: [logoAllianz, logoMma, logoMaaf, logoGenerali], features: [t('teaser.cyber.2.feature1'), t('teaser.cyber.2.feature2'), t('teaser.cyber.2.feature3')] },
+    { name: t('teaser.cyber.3.name'), price: '119€', badge: t('teaser.badge.des'), logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: [t('teaser.cyber.3.feature1'), t('teaser.cyber.3.feature2'), t('teaser.cyber.3.feature3')] },
   ]},
-  decennale: { label: 'Décennale', prices: [
-    { name: 'Artisan', price: '67€', badge: 'Dès', logoPool: [logoSollyAzar, logoMaaf, logoAssu2000, logoMma], features: ['Couverture 10 ans', 'Activités principales', 'Attestation décennale'] },
-    { name: 'Entreprise', price: '112€', badge: 'Dès', logoPool: [logoMma, logoMaaf, logoGenerali, logoAllianz], features: ['Multi-activités', 'Sous-traitance incluse', 'RC pro associée'] },
-    { name: 'Premium', price: '172€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: ['Tous métiers BTP', 'Dommages avant réception', 'Protection juridique'] },
+  decennale: { label: t('teaser.decennale.label'), prices: [
+    { name: t('teaser.decennale.1.name'), price: '67€', badge: t('teaser.badge.des'), logoPool: [logoSollyAzar, logoMaaf, logoAssu2000, logoMma], features: [t('teaser.decennale.1.feature1'), t('teaser.decennale.1.feature2'), t('teaser.decennale.1.feature3')] },
+    { name: t('teaser.decennale.2.name'), price: '112€', badge: t('teaser.badge.des'), logoPool: [logoMma, logoMaaf, logoGenerali, logoAllianz], features: [t('teaser.decennale.2.feature1'), t('teaser.decennale.2.feature2'), t('teaser.decennale.2.feature3')] },
+    { name: t('teaser.decennale.3.name'), price: '172€', badge: t('teaser.badge.des'), logoPool: [logoAxa, logoAllianz, logoGenerali, logoAbeille], features: [t('teaser.decennale.3.feature1'), t('teaser.decennale.3.feature2'), t('teaser.decennale.3.feature3')] },
   ]},
-  protection_juridique: { label: 'Protection juridique', prices: [
-    { name: 'Essentielle', price: '7€', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoMatmut, logoMaaf], features: ['Litiges consommation', 'Voisinage', 'Conseils juridiques'] },
-    { name: 'Confort', price: '12€', badge: 'Dès', logoPool: [logoAllianz, logoGroupama, logoMma, logoAbeille], features: ['Vie privée + travail', 'Frais d\'avocat', 'Médiation incluse'] },
-    { name: 'Premium (avocat libre choix)', price: '19€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoAllianz, logoMaaf], features: ['Tous domaines', 'Plafond 30 000€', 'Avocat libre choix'] },
+  protection_juridique: { label: t('teaser.protection_juridique.label'), prices: [
+    { name: t('step.protection_juridique.pj_formule.opt.essentielle.label'), price: '7€', badge: t('teaser.badge.des'), logoPool: [logoMaif, logoMacif, logoMatmut, logoMaaf], features: [t('teaser.protection_juridique.1.feature1'), t('teaser.protection_juridique.1.feature2'), t('teaser.protection_juridique.1.feature3')] },
+    { name: t('step.protection_juridique.pj_formule.opt.confort.label'), price: '12€', badge: t('teaser.badge.des'), logoPool: [logoAllianz, logoGroupama, logoMma, logoAbeille], features: [t('teaser.protection_juridique.2.feature1'), t('teaser.protection_juridique.2.feature2'), t('teaser.protection_juridique.2.feature3')] },
+    { name: t('step.protection_juridique.pj_formule.opt.premium.label'), price: '19€', badge: t('teaser.badge.des'), logoPool: [logoAxa, logoGenerali, logoAllianz, logoMaaf], features: [t('teaser.protection_juridique.3.feature1'), t('teaser.protection_juridique.3.feature2'), t('teaser.protection_juridique.3.feature3')] },
   ]},
-  mutuelle_entreprise: { label: 'Mutuelle entreprise', prices: [
-    { name: 'Socle ANI (minimum légal)', price: '17€', badge: '/salarié', logoPool: [logoAlanNew, logoMutuelleGenerale, logoMgen, logoAcheel], features: ['Socle ANI obligatoire', 'Hospitalisation 100% BR', 'Dentaire 125%'] },
-    { name: 'Intermédiaire (confort)', price: '29€', badge: '/salarié', logoPool: [logoHarmonie, logoMalakoff, logoAg2r, logoApril], features: ['Socle ANI + renforts', 'Optique 200€/an', 'Médecines douces'] },
-    { name: 'Premium (optique/dentaire renforcés)', price: '49€', badge: '/salarié', logoPool: [logoAxa, logoAllianz, logoGenerali, logoMetlife], features: ['Couverture étendue', 'Dentaire 400%'] },
+  mutuelle_entreprise: { label: t('teaser.mutuelle_entreprise.label'), prices: [
+    { name: t('step.mutuelle_entreprise.me_niveau.opt.socle_anim.label'), price: '17€', badge: t('teaser.badge.parSalarie'), logoPool: [logoAlanNew, logoMutuelleGenerale, logoMgen, logoAcheel], features: [t('teaser.mutuelle_entreprise.1.feature1'), t('teaser.mutuelle_entreprise.1.feature2'), t('teaser.mutuelle_entreprise.1.feature3')] },
+    { name: t('step.mutuelle_entreprise.me_niveau.opt.intermediaire.label'), price: '29€', badge: t('teaser.badge.parSalarie'), logoPool: [logoHarmonie, logoMalakoff, logoAg2r, logoApril], features: [t('teaser.mutuelle_entreprise.2.feature1'), t('teaser.mutuelle_entreprise.2.feature2'), t('teaser.mutuelle_entreprise.2.feature3')] },
+    { name: t('step.mutuelle_entreprise.me_niveau.opt.premium.label'), price: '49€', badge: t('teaser.badge.parSalarie'), logoPool: [logoAxa, logoAllianz, logoGenerali, logoMetlife], features: [t('teaser.mutuelle_entreprise.3.feature1'), t('teaser.mutuelle_entreprise.3.feature2')] },
   ]},
-};
+});

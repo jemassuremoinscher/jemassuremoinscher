@@ -58,7 +58,7 @@ const vite = await createServer({
 
 const problems = [];
 try {
-  const { teaserPrices, ANIMAUX_POOL } = await vite.ssrLoadModule(path.join(rootDir, "src/components/forms/teaserPrices.ts"));
+  const { buildTeaserPrices, ANIMAUX_POOL } = await vite.ssrLoadModule(path.join(rootDir, "src/components/forms/teaserPrices.ts"));
   const { buildStepConfigs } = await vite.ssrLoadModule(path.join(rootDir, "src/components/forms/stepConfigs.ts"));
   const fr = (await vite.ssrLoadModule(path.join(rootDir, "src/i18n/fr.ts"))).default;
   const t = (key, vars) => {
@@ -67,6 +67,8 @@ try {
     return raw;
   };
   const configs = buildStepConfigs(t);
+  // Vignettes en français (clés i18n résolues par fr.ts).
+  const teaserPrices = buildTeaserPrices(t);
   const logoName = (src) => path.basename(String(src)).replace(/\.(png|webp|jpg|jpeg|svg|avif)(\?.*)?$/, "");
 
   // (a)
