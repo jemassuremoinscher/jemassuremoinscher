@@ -1616,314 +1616,55 @@ La **meilleure assurance auto en 2026** dépend de votre profil et de vos priori
   },
   {
     id: "12",
-    title: "Top 10 Meilleures Mutuelles Santé 2026 : Comparatif Complet",
+    title: "Mutuelle santé 2026 : les critères pour bien choisir",
     slug: "top-10-meilleures-mutuelles-sante-2026",
-    description: "Classement des meilleures mutuelles santé 2026 : tarifs, remboursements, avis. Trouvez la mutuelle la moins chère avec les meilleurs remboursements optique et dentaire.",
+    description: "Mutuelle santé : les critères pour comparer les offres (remboursements, plafonds, délais de carence, exclusions, services), sans classement ni note.",
     category: "Mutuelle Santé",
     date: "5 janvier 2026",
     readTime: "11 min",
     author: "L'équipe d'experts Jemassuremoinscher",
-    tags: ["meilleure mutuelle 2026", "comparatif mutuelle santé", "mutuelle pas cher", "remboursement optique"],
+    tags: ["mutuelle santé 2026", "comparatif mutuelle santé", "choisir sa mutuelle", "remboursement optique"],
     content: `
-# Top 10 Meilleures Mutuelles Santé 2026
+# Mutuelle santé 2026 : les critères pour bien choisir
 
-Choisir la **meilleure mutuelle santé en 2026** peut vous faire économiser jusqu\'à 600€ par an tout en améliorant vos remboursements. Découvrez notre classement exclusif.
+Il n'existe pas de mutuelle santé meilleure que les autres pour tout le monde : la bonne mutuelle est celle dont les garanties correspondent à vos dépenses de santé, à un prix que vous jugez acceptable.
 
-## 🏥 Classement des Meilleures Mutuelles 2026
+## Critères pour choisir sa mutuelle santé
 
-### 1. Alan - La Mutuelle Nouvelle Génération
-**Note : 9.5/10 ⭐**
+Plutôt qu'un classement de mutuelles, voici les points à comparer d'un devis à l'autre, à garanties et composition du foyer équivalentes :
 
-**Prix moyen :** 45€/mois (personne seule)
+- **Les remboursements par poste** : hospitalisation, soins courants, optique, dentaire, aides auditives, médecines douces. Ils sont exprimés en pourcentage de la base de remboursement de la Sécurité sociale (BR) ou en forfait.
+- **Les plafonds** : montant maximal remboursé par an ou par période, par exemple pour l'optique ou les séances de médecines douces.
+- **Les délais de carence** : période qui suit la souscription pendant laquelle certains soins ne sont pas remboursés.
+- **Les exclusions** : ce que le contrat ne couvre pas, détaillé dans les conditions générales.
+- **Le tiers payant** : avance des frais ou non chez les professionnels de santé.
+- **Les services** : téléconsultation, réseau de soins partenaire, assistance, selon le contrat.
+- **Le prix** : à comparer seulement à garanties équivalentes.
 
-**Points forts :**
-- Application ultra-intuitive
-- Remboursement en 24h
-- [Tiers](/glossaire/tiers)-payant généralisé
-- Service client réactif (chat direct)
-- Transparence totale des tarifs
+## Estimer vos besoins avant de comparer
 
-**Remboursements clés :**
-- Optique : 400€/an
-- Dentaire : 300% BR
-- Ostéo : 50€ x 6 séances
+- Estimez vos dépenses de santé annuelles : lunettes, soins dentaires, consultations, médecines douces.
+- Comparez les remboursements sur les postes que vous utilisez réellement.
+- Vérifiez les délais de carence et les plafonds annuels.
+- Lisez les exclusions de garantie.
 
-**Pour qui ?** Actifs connectés et familles
+## Pièges à éviter
 
-### 2. Harmonie Mutuelle - Le Leader Français
-**Note : 9.2/10**
+- Choisir uniquement sur le prix mensuel.
+- Négliger les plafonds annuels.
+- Oublier d'anticiper vos besoins futurs (enfants, lunettes, soins dentaires).
 
-**Prix moyen :** 52€/mois
+## ❓ Questions fréquentes
 
-**Points forts :**
-- Réseau de 500 agences
-- Remboursements généreux
-- Services prévention inclus
-- Garantie senior avantageuse
-
-**Remboursements clés :**
-- Optique : 450€/an
-- Dentaire : 350% BR
-- Hospitalisation : chambre individuelle
-
-**Pour qui ?** Tous profils, surtout seniors
-
-### 3. Malakoff Humanis - Excellence Entreprise
-**Note : 9.0/10**
-
-**Prix moyen :** 48€/mois
-
-**Points forts :**
-- Expertise entreprise
-- Plate-forme digitale complète
-- Médecine douce bien couverte
-- Coaching santé inclus
-
-**Remboursements clés :**
-- Optique : 380€/an
-- Dentaire : 300% BR
-- Psychologue : 40€ x 8 séances
-
-**Pour qui ?** Salariés et TNS
-
-### 4. April - Le Spécialiste Senior
-**Note : 8.9/10**
-
-**Prix moyen :** 55€/mois (senior)
-
-**Points forts :**
-- Expertise seniors
-- Pas de questionnaire médical
-- Téléconsultation illimitée
-- Assistance 24/7
-
-**Remboursements clés :**
-- Optique : 420€ tous les 2 ans
-- Dentaire : 400% BR implants
-- Hospitalisation : forfait 60€/jour
-
-**Pour qui ?** Retraités et +60 ans
-
-### 5. Mutuelle Générale - Rapport Qualité/Prix
-**Note : 8.7/10**
-
-**Prix moyen :** 40€/mois
-
-**Points forts :**
-- Tarifs attractifs
-- Sans engagement
-- Formules modulables
-- Gestion en ligne simple
-
-**Remboursements clés :**
-- Optique : 350€/an
-- Dentaire : 250% BR
-- Ostéo : 40€ x 5 séances
-
-**Pour qui ?** Budgets serrés
-
-### 6. MGEN - La Mutuelle des Enseignants
-**Note : 8.8/10**
-
-**Prix moyen :** 43€/mois
-
-**Points forts :**
-- Tarifs préférentiels fonctionnaires
-- Réseau de soins partenaires
-- Action sociale développée
-- Historique solide
-
-**Remboursements clés :**
-- Optique : 400€/an
-- Dentaire : 300% BR
-- Cures thermales : 500€
-
-**Pour qui ?** Enseignants et fonctionnaires
-
-### 7. Swiss Life - Premium et Personnalisé
-**Note : 8.6/10**
-
-**Prix moyen :** 58€/mois
-
-**Points forts :**
-- Garanties haut de gamme
-- Service conciergerie
-- Réseau partenaires premium
-- Garanties internationales
-
-**Remboursements clés :**
-- Optique : 500€/an
-- Dentaire : 400% BR
-- Médecines douces : illimité
-
-**Pour qui ?** Hauts revenus
-
-### 8. AG2R La Mondiale - Solidité et Fiabilité
-**Note : 8.5/10**
-
-**Prix moyen :** 50€/mois
-
-**Points forts :**
-- Groupe solide
-- Réseau étendu
-- Services prévention
-- Accompagnement personnalisé
-
-**Remboursements clés :**
-- Optique : 380€/an
-- Dentaire : 280% BR
-- Hospitalisation complète
-
-**Pour qui ?** Recherche de sécurité
-
-### 9. Assurpeople - L\'Alternative Économique
-**Note : 8.3/10**
-
-**Prix moyen :** 38€/mois
-
-**Points forts :**
-- Prix très compétitifs
-- Souscription 100% en ligne
-- Sans frais de dossier
-- Résiliation facile
-
-**Remboursements clés :**
-- Optique : 300€/an
-- Dentaire : 200% BR
-- Ostéo : 35€ x 4 séances
-
-**Pour qui ?** Jeunes actifs
-
-### 10. Cardif - Assurance Vie et Santé
-**Note : 8.2/10**
-
-**Prix moyen :** 47€/mois
-
-**Points forts :**
-- Groupe BNP Paribas
-- Pack famille avantageux
-- Tiers-payant étendu
-- Application mobile
-
-**Remboursements clés :**
-- Optique : 360€/an
-- Dentaire : 250% BR
-- Maternité : forfait 800€
-
-**Pour qui ?** Familles
-
-## 💰 Comparatif des Prix 2026
-
-| Mutuelle | Solo | Couple | Famille |
-|----------|------|--------|---------|
-| Assurpeople | 38€ | 72€ | 105€ |
-| Mutuelle Générale | 40€ | 76€ | 110€ |
-| MGEN | 43€ | 82€ | 118€ |
-| Alan | 45€ | 85€ | 125€ |
-| Cardif | 47€ | 89€ | 130€ |
-| Malakoff Humanis | 48€ | 91€ | 135€ |
-| AG2R | 50€ | 95€ | 140€ |
-| Harmonie Mutuelle | 52€ | 99€ | 145€ |
-| April (senior) | 55€ | 105€ | - |
-| Swiss Life | 58€ | 110€ | 160€ |
-
-*Tarifs moyens pour formule intermédiaire*
-
-## 🎯 Choisir Selon Vos Besoins
-
-### Par profil
-
-**Jeune actif (18-30 ans) :**
-→ Alan, Assurpeople, Mutuelle Générale
-
-**Famille avec enfants :**
-→ Harmonie Mutuelle, Malakoff Humanis, Cardif
-
-**Senior (+60 ans) :**
-→ April, Harmonie Mutuelle, AG2R
-
-**Fonctionnaire :**
-→ MGEN, Harmonie Mutuelle
-
-**TNS/Indépendant :**
-→ Malakoff Humanis, Alan, Swiss Life
-
-### Par besoin prioritaire
-
-**Optique/Dentaire :**
-1. Swiss Life (500€)
-2. Harmonie Mutuelle (450€)
-3. April (420€)
-
-**Médecines douces :**
-1. Swiss Life (illimité)
-2. Malakoff Humanis (8 séances)
-3. Alan (6 séances)
-
-**Hospitalisation :**
-1. Harmonie Mutuelle (chambre seule)
-2. April (forfait 60€/j)
-3. AG2R (complète)
-
-## 📊 Méthodologie de Notation
-
-**Nos 5 critères d\'évaluation :**
-
-1. **Rapport qualité/prix** (30%)
-2. **Niveau de remboursement** (25%)
-3. **Services inclus** (20%)
-4. **Facilité de gestion** (15%)
-5. **Avis clients** (10%)
-
-## 💡 Conseils d\'Expert 2026
-
-### ✅ Les bons réflexes
-
-- Estimer vos dépenses santé annuelles
-- Comparer les remboursements sur l\'optique
-- Vérifier les délais de carence
-- Tester le service client
-- Lire les exclusions de garantie
-
-### ❌ Pièges à éviter
-
-- Choisir uniquement sur le prix mensuel
-- Négliger les plafonds annuels
-- Oublier de déclarer son conjoint
-- Ne pas anticiper ses futurs besoins
-- Rester chez le même assureur sans comparer
-
-## 🔥 Innovations 2026
-
-**Nouveautés mutuelles santé :**
-
-1. **Téléconsultation illimitée** incluse partout
-2. **IA pour orientation médicale** instantanée
-3. **Remboursement instantané** via app
-4. **Coaching santé personnalisé** (IA)
-5. **Services concierge santé** (prise RDV)
-
-## ❓ Questions Fréquentes
-
-**Quelle est la mutuelle la moins chère en 2026 ?**
-Assurpeople propose les tarifs les plus bas à partir de 38€/mois avec des garanties correctes.
-
-**Quelle mutuelle rembourse le mieux l\'optique ?**
-Swiss Life (500€/an) et Harmonie Mutuelle (450€/an) sont les plus généreuses.
+**Quelle est la meilleure mutuelle santé en 2026 ?**
+Aucune mutuelle n'est la meilleure pour tous : comparez les remboursements, les plafonds, les délais de carence et les exclusions au regard de vos propres dépenses de santé.
 
 **Puis-je changer de mutuelle facilement ?**
 Oui, la loi Chatel permet de résilier à la date anniversaire avec 2 mois de préavis.
 
-**Combien coûte une bonne mutuelle famille ?**
-Entre 110€ et 145€/mois pour une famille (2 adultes + 2 enfants) avec garanties complètes.
-
 ## Conclusion
 
-La **meilleure mutuelle santé 2026** dépend de vos besoins spécifiques. Alan domine pour l\'innovation, Harmonie Mutuelle pour les garanties complètes, et Assurpeople pour les budgets serrés.
-
-**Notre conseil :** Simulez vos remboursements annuels avant de choisir. L\'économie moyenne en comparant : 450€/an.
-
-**Trouvez votre mutuelle idéale en 2 minutes.** Comparez gratuitement les meilleures offres 2026.
+Pour comparer deux mutuelles, regardez d'abord les postes de dépense qui vous concernent, puis le prix à garanties équivalentes. Un conseiller peut vous aider à lire les tableaux de garanties et à comparer les propositions adaptées à votre situation.
     `
   },
   {
@@ -2324,299 +2065,49 @@ Comparez au moins 3 offres adaptées à votre profil. Le meilleur assureur pour 
   },
   {
     id: "9",
-    title: "Top mutuelles santé 2026 : Le classement complet",
+    title: "Mutuelle santé 2026 : comment comparer les offres",
     slug: "top-mutuelles-sante-2026",
-    description: "Notre sélection des meilleures mutuelles santé 2026. Comparatif détaillé des remboursements, tarifs et services pour choisir la meilleure complémentaire.",
+    description: "Comment comparer les mutuelles santé : remboursements par poste, plafonds, délais de carence, exclusions et services, selon votre situation.",
     category: "Guides Pratiques",
     date: "28 décembre 2026",
     readTime: "11 min",
     author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["mutuelle santé", "comparatif", "remboursements", "complémentaire santé"],
     content: `
-# Top Mutuelles Santé 2026 : Notre Sélection Experte
+# Mutuelle santé 2026 : comment comparer les offres
 
-Les mutuelles santé évoluent chaque année avec de nouvelles garanties, des services digitaux et une meilleure prise en charge. Découvrez notre classement 2026 pour trouver la complémentaire santé idéale.
+Les garanties des mutuelles santé varient d'un contrat à l'autre et d'une formule à l'autre. Plutôt que de chercher un classement, comparez les contrats sur les mêmes critères, en partant de vos propres besoins.
 
-## Les 5 meilleures mutuelles 2026
+## Critères pour choisir sa mutuelle santé
 
-### 1. Alan - La révolution digitale
+Plutôt qu'un classement de mutuelles, voici les points à comparer d'un devis à l'autre, à garanties et composition du foyer équivalentes :
 
-**Note : 9.5/10**
+- **Les remboursements par poste** : hospitalisation, soins courants, optique, dentaire, aides auditives, médecines douces. Ils sont exprimés en pourcentage de la base de remboursement de la Sécurité sociale (BR) ou en forfait.
+- **Les plafonds** : montant maximal remboursé par an ou par période, par exemple pour l'optique ou les séances de médecines douces.
+- **Les délais de carence** : période qui suit la souscription pendant laquelle certains soins ne sont pas remboursés.
+- **Les exclusions** : ce que le contrat ne couvre pas, détaillé dans les conditions générales.
+- **Le tiers payant** : avance des frais ou non chez les professionnels de santé.
+- **Les services** : téléconsultation, réseau de soins partenaire, assistance, selon le contrat.
+- **Le prix** : à comparer seulement à garanties équivalentes.
 
-**Points forts :**
-- 100% digitale, ultra simple
-- Remboursements en 24h
-- Application au top
-- Pas de questionnaire médical
-- Téléconsultation illimitée gratuite
+## Comparer selon votre situation
 
-**Tarifs moyens :**
-- Solo 25 ans : 45€/mois
-- Solo 40 ans : 75€/mois
-- Famille 4 personnes : 220€/mois
-
-**Remboursements 2026 :**
-- Optique : 450€/an
-- Dentaire : 500€/an
-- Hospitalisation : 100% + chambre particulière
-- Médecines douces : 250€/an
-
-**Pour qui ?**
-Parfait pour les jeunes actifs et freelances qui veulent une gestion 100% mobile.
-
-### 2. Harmonie Mutuelle - La plus complète
-
-**Note : 9.2/10**
-
-**Points forts :**
-- Réseau de soins étendu
-- [[Tiers](/glossaire/tiers) payant](/glossaire/tiers-payant) généralisé
-- Services prévention santé
-- Application mobile performante
-- Espace santé digital
-
-**Tarifs moyens :**
-- Solo 25 ans : 52€/mois
-- Solo 40 ans : 85€/mois
-- Famille 4 personnes : 245€/mois
-
-**Remboursements 2026 :**
-- Optique : 500€/an
-- Dentaire : 600€/an
-- Hospitalisation : 150% BR
-- Médecines douces : 300€/an
-
-**Pour qui ?**
-Idéal pour ceux qui veulent une mutuelle historique avec services étendus.
-
-### 3. Malakoff Humanis - La professionnelle
-
-**Note : 9.0/10**
-
-**Points forts :**
-- Spécialiste TNS et entreprises
-- Garanties modulables
-- Service client réactif
-- Réseau partenaires large
-- Prévention active
-
-**Tarifs moyens :**
-- Solo 25 ans : 48€/mois
-- Solo 40 ans : 80€/mois
-- Famille 4 personnes : 230€/mois
-
-**Remboursements 2026 :**
-- Optique : 400€/an
-- Dentaire : 550€/an
-- Hospitalisation : 120% BR
-- Médecines douces : 200€/an
-
-**Pour qui ?**
-Parfait pour les indépendants et chefs d'entreprise.
-
-### 4. April - Le meilleur rapport qualité-prix
-
-**Note : 8.8/10**
-
-**Points forts :**
-- Tarifs très compétitifs
-- Garanties ajustables
-- Pas de [délai de carence](/glossaire/delai-de-carence)
-- Services digitaux
-- Réseau de soins avantageux
-
-**Tarifs moyens :**
-- Solo 25 ans : 38€/mois
-- Solo 40 ans : 65€/mois
-- Famille 4 personnes : 190€/mois
-
-**Remboursements 2026 :**
-- Optique : 350€/an
-- Dentaire : 450€/an
-- Hospitalisation : 100% BR
-- Médecines douces : 150€/an
-
-**Pour qui ?**
-Idéal pour les budgets serrés sans compromis sur l'essentiel.
-
-### 5. Swiss Life - La premium
-
-**Note : 8.7/10**
-
-**Points forts :**
-- Garanties haut de gamme
-- Service conciergerie santé
-- Réseau médical premium
-- Remboursements excellents
-- Services prévention
-
-**Tarifs moyens :**
-- Solo 25 ans : 68€/mois
-- Solo 40 ans : 110€/mois
-- Famille 4 personnes : 310€/mois
-
-**Remboursements 2026 :**
-- Optique : 600€/an
-- Dentaire : 800€/an
-- Hospitalisation : 200% BR
-- Médecines douces : 400€/an
-
-**Pour qui ?**
-Pour ceux qui veulent le meilleur sans regarder le prix.
-
-## Comparatif détaillé des garanties
-
-### Optique (remboursement maximum)
-
-| Mutuelle | Monture | Verres | Lentilles | Fréquence |
-|----------|---------|--------|-----------|-----------|
-| Alan | 150€ | 300€ | 150€/an | Tous les 2 ans |
-| Harmonie | 200€ | 350€ | 200€/an | Tous les 2 ans |
-| Malakoff | 150€ | 250€ | 150€/an | Tous les 2 ans |
-| April | 120€ | 230€ | 100€/an | Tous les 2 ans |
-| Swiss Life | 250€ | 400€ | 300€/an | Tous les ans |
-
-### Dentaire (prothèses et orthodontie)
-
-| Mutuelle | Couronne | Implant | Orthodontie adulte |
-|----------|----------|---------|-------------------|
-| Alan | 500€ | Non | 300€/an |
-| Harmonie | 600€ | 500€ | 400€/an |
-| Malakoff | 550€ | 400€ | 350€/an |
-| April | 450€ | Non | 250€/an |
-| Swiss Life | 800€ | 800€ | 600€/an |
-
-### Hospitalisation
-
-| Mutuelle | Chambre particulière | Forfait journalier | Dépassements |
-|----------|---------------------|-------------------|--------------|
-| Alan | ✅ Illimité | 100€/jour | 150% |
-| Harmonie | ✅ Illimité | 120€/jour | 200% |
-| Malakoff | ✅ Illimité | 100€/jour | 150% |
-| April | ✅ 60 jours | 80€/jour | 100% |
-| Swiss Life | ✅ Illimité | 150€/jour | 250% |
-
-## Nouveautés 2026
-
-### Téléconsultation généralisée
-Toutes les mutuelles proposent désormais :
-- Consultations vidéo illimitées
-- Médecins disponibles 24/7
-- Sans avance de frais
-- Application dédiée
-
-### Santé mentale renforcée
-Prise en charge psychologue :
-- Alan : 8 séances/an
-- Harmonie : 10 séances/an
-- Malakoff : 6 séances/an
-- April : 4 séances/an
-- Swiss Life : 12 séances/an
-
-### Services prévention
-Nouveaux services inclus :
-- Bilan de santé annuel
-- Coaching nutrition
-- Suivi vaccinal
-- Dépistages gratuits
-
-## Comment choisir selon votre profil ?
-
-### Jeune actif (20-30 ans)
-**Besoins prioritaires :**
-- Consultations courantes
-- Optique occasionnelle
-- Prix abordable
-
-**Recommandation :** April ou Alan
-**Budget :** 35-50€/mois
-
-### Famille avec enfants
-**Besoins prioritaires :**
-- Orthodontie
-- Pédiatrie
-- Optique fréquente
-
-**Recommandation :** Harmonie Mutuelle
-**Budget :** 200-250€/mois pour 4
-
-### Senior (60+ ans)
-**Besoins prioritaires :**
-- Hospitalisation
-- Audioprothèses
-- Spécialistes
-
-**Recommandation :** Swiss Life
-**Budget :** 150-200€/mois
-
-### Indépendant / TNS
-**Besoins prioritaires :**
-- Déduction fiscale Madelin
-- Arrêt de travail
-- Garanties pro
-
-**Recommandation :** Malakoff Humanis
-**Budget :** 80-120€/mois
-
-## 7 astuces pour économiser
-
-### 1. Adaptez vos garanties
-Ne payez que ce dont vous avez besoin :
-- Pas de lunettes ? Baissez l'optique
-- Dents saines ? Dentaire minimum
-- Bonne santé ? Hospitalisation suffit
-
-**Économie : 20-30€/mois**
-
-### 2. Comparez chaque année
-Les tarifs évoluent, les nouveaux entrants sont compétitifs.
-
-**Économie : 200-400€/an**
-
-### 3. Profitez de la portabilité
-À la fin de votre contrat groupe, gardez-le 12 mois gratuitement !
-
-**Économie : 600-1200€**
-
-### 4. Négociez en groupe
-Contrat collectif famille ou association.
-
-**Économie : 15-25%**
-
-### 5. Utilisez le tiers payant
-Évitez d'avancer les frais dans le réseau de soins.
-
-### 6. Téléconsultez
-Service gratuit compris dans votre mutuelle.
-
-**Économie : 200€/an en consultations**
-
-### 7. Profitez des services inclus
-- Coaching santé
-- Prévention
-- Aides au quotidien
+- **Jeune actif** : regardez surtout les consultations courantes et l'optique occasionnelle.
+- **Famille avec enfants** : regardez l'orthodontie, la pédiatrie et l'optique.
+- **Senior** : regardez l'hospitalisation, les aides auditives et les consultations de spécialistes.
+- **Travailleur indépendant** : regardez aussi les garanties proposées en cas d'arrêt de travail, souvent dans un contrat de prévoyance distinct.
 
 ## Erreurs à éviter
 
-❌ Prendre la moins chère sans vérifier
-❌ Négliger les délais de carence
-❌ Oublier de comparer les plafonds
-❌ Ignorer le réseau de soins
-❌ Ne pas tester l'application
-❌ Sous-estimer ses besoins futurs
+- ❌ Prendre la moins chère sans vérifier les garanties.
+- ❌ Négliger les délais de carence.
+- ❌ Oublier de comparer les plafonds.
+- ❌ Ignorer le réseau de soins.
+- ❌ Sous-estimer ses besoins futurs.
 
-## Verdict 2026
+## Notre conseil
 
-**Meilleure innovation :** Alan
-**Plus complète :** Harmonie Mutuelle
-**Meilleur rapport qualité-prix :** April
-**Spécialiste indépendants :** Malakoff Humanis
-**Premium :** Swiss Life
-
-**Notre conseil :**
-Choisissez selon vos besoins réels, pas selon la pub. Une mutuelle à 40€/mois qui couvre bien vaut mieux qu'une à 80€/mois avec des garanties inutiles pour vous.
-
-**Comparez maintenant et trouvez la mutuelle parfaite.**
+Choisissez selon vos besoins réels : une mutuelle qui rembourse bien les postes que vous utilisez vaut mieux qu'une formule chargée de garanties dont vous n'avez pas l'usage. Un conseiller peut vous aider à comparer les propositions adaptées à votre profil.
     `
   },
   {
