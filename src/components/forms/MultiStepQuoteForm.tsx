@@ -645,6 +645,11 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
             animate="center"
             transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="flex-1 flex flex-col"
+            // data-funnel-* : lus par le test E2E des tunnels (npm run qa:funnels).
+            data-funnel-step={step.id}
+            data-funnel-step-type={step.type}
+            data-funnel-step-index={currentStep}
+            data-funnel-field={step.field || ''}
           >
                 {/* Arthur retire du tunnel (confine a la home et aux pages
                     marketing) : plus de mascotte ni de bulle ici. */}
@@ -834,6 +839,7 @@ function CardSelectStep({ options, selected, onSelect, microLoading, showUnsureB
           return (
             <motion.button
               key={option.value}
+              data-funnel-option={option.value}
               onClick={() => onSelect(option.value)}
               whileTap={{ scale: 0.96 }}
               initial={{ opacity: 0, y: 20 }}
@@ -1081,6 +1087,7 @@ function InputStep({ step, value, onChange, onSubmit, activeHint, onFocus, onBlu
       </motion.div>
       <Button
         onClick={handleSubmit}
+        data-funnel-continue
         size="lg"
         className="btn-glow w-full rounded-full font-bold text-base h-12 bg-primary hover:bg-primary/90 active:scale-[0.96] active:brightness-90 transition-all duration-75"
       >
@@ -1155,6 +1162,7 @@ function VehicleSelectStep({ step, formData, onSelect }: {
               animate={{ opacity: 1 }}
               transition={{ delay: Math.min(idx * 0.02, 0.3) }}
               onClick={() => onSelect(step.field!, item)}
+              data-funnel-vehicle={item}
               className="w-full text-left px-4 py-3 text-sm font-medium text-foreground hover:bg-primary/5 hover:text-primary transition-colors border-b border-border/20 last:border-b-0"
             >
               {item}
@@ -1285,6 +1293,24 @@ function ContactStep({
 }) {
   const { t } = useLanguage();
   const termsRef = useRef<HTMLDivElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
+
+  // À l'arrivée sur l'étape contact, le bouton d'envoi doit être visible sans
+  // que le visiteur ait à défiler : sinon on fait défiler juste assez pour
+  // l'afficher au-dessus des barres fixes du bas (navigation mobile).
+  useEffect(() => {
+    const id = window.setTimeout(() => {
+      const btn = submitRef.current;
+      if (!btn) return;
+      const rect = btn.getBoundingClientRect();
+      const bottomBar = window.innerWidth < 768 ? 96 : 24;
+      const limit = window.innerHeight - bottomBar;
+      if (rect.top < 72 || rect.bottom > limit) {
+        window.scrollBy({ top: rect.bottom - limit, behavior: 'smooth' });
+      }
+    }, 350);
+    return () => window.clearTimeout(id);
+  }, []);
 
   useEffect(() => {
     if (!errors.acceptTerms || !termsRef.current) return;
@@ -1394,13 +1420,6 @@ function ContactStep({
         {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
       </div>
 
-      {/* Trust badge */}
-      <div className="rounded-xl bg-primary/5 border border-primary/15 px-3 py-2.5">
-        <p className="text-xs text-muted-foreground leading-snug">
-          🔒 0 spam. Vos données sont en sécurité. Un conseiller vous rappelle uniquement pour étudier votre demande et, si vous changez d'assurance, gérer la résiliation de votre ancien contrat.
-        </p>
-      </div>
-
       {/* Terms */}
       <div ref={termsRef} className="flex items-start gap-2 pt-1">
         <Checkbox
@@ -1420,7 +1439,9 @@ function ContactStep({
 
       {/* Submit */}
       <Button
+        ref={submitRef}
         onClick={onSubmit}
+        data-funnel-submit
         disabled={isSubmitting}
         size="lg"
         className="btn-glow w-full rounded-full font-bold text-base h-13 bg-secondary hover:bg-secondary/90 text-secondary-foreground active:scale-[0.97] transition-transform"
@@ -1435,6 +1456,14 @@ function ContactStep({
       <p className="text-[11px] text-muted-foreground text-center">
         {t('form.dataProtected')}
       </p>
+
+      {/* Trust badge : sous le bouton, pour que celui-ci reste visible sans
+          défilement à l'arrivée sur l'étape (contrôlé par npm run qa:funnels). */}
+      <div className="rounded-xl bg-primary/5 border border-primary/15 px-3 py-2.5">
+        <p className="text-xs text-muted-foreground leading-snug">
+          🔒 0 spam. Vos données sont en sécurité. Un conseiller vous rappelle uniquement pour étudier votre demande et, si vous changez d'assurance, gérer la résiliation de votre ancien contrat.
+        </p>
+      </div>
 
       <div className="h-px bg-border/40" />
       {/* Teaser prices */}
