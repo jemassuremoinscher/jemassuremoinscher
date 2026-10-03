@@ -18,7 +18,9 @@
  * (e) pour vélo, camping-car, sans permis, auto temporaire, protection
  *     juridique et mutuelle entreprise, une garantie hors du libellé de la
  *     formule (ex. casse dans « Vol uniquement », durée fixe en auto temporaire) ;
- * (f) une vignette promet de l'immédiateté (« Couverture immédiate »…).
+ * (f) une vignette promet de l'immédiateté (« Couverture immédiate »…) ;
+ * (g) un produit mélange vignettes avec prix et « Sur devis », ou un produit
+ *     « Sur devis » (animaux, trottinette, auto temporaire) affiche un prix.
  *
  * Décisions du 3 octobre 2026. Lancé par npm run build.
  */
@@ -145,6 +147,15 @@ try {
       if (/vol uniquement/i.test(p.name) && /responsabilit/i.test(feats)) problems.push(`(e) ${type} / ${p.name} : responsabilité civile hors formule`);
       if (type === "auto_temporaire" && /\b\d+\s*jours?\b|jour par jour/i.test(`${p.name} ${feats}`)) problems.push(`(e) auto_temporaire / ${p.name} : durée fixe (${feats})`);
     }
+  }
+
+  // (g) Homogénéité : dans un produit, les trois vignettes ont toutes un prix
+  // ou sont toutes « Sur devis » ; produits obligatoirement « Sur devis ».
+  const SUR_DEVIS = ["animaux", "trottinette", "auto_temporaire"];
+  for (const [type, entry] of Object.entries(teaserPrices)) {
+    const withPrice = entry.prices.filter((p) => !!p.price).length;
+    if (withPrice !== 0 && withPrice !== entry.prices.length) problems.push(`(g) ${type} : vignettes mélangées prix / « Sur devis »`);
+    if (SUR_DEVIS.includes(type) && withPrice > 0) problems.push(`(g) ${type} : doit être entièrement « Sur devis »`);
   }
 
   // (f) Aucune promesse d'immédiateté dans les vignettes.

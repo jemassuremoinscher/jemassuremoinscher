@@ -46,6 +46,7 @@ const FUNNELS = [
   { key: "moto-50cc", path: "/assurance-scooter-50cc", type: "moto", prefer: { engineSize: "50" } },
   { key: "auto", path: "/assurance-auto", type: "auto" },
   { key: "comparateur", path: "/comparateur", type: "habitation", prefer: { insuranceType: "habitation" } },
+  { key: "auto-temporaire", path: "/assurance-auto-temporaire", type: "auto_temporaire" },
 ];
 const PERF_PAGES = ["/assurance-animaux", "/assurance-trottinette", "/assurance-velo", "/assurance-scooter-50cc", "/landing/trottinette"];
 const TROTTINETTE_NOTE =
@@ -248,6 +249,10 @@ async function runFunnel(browser, base, funnel, vp, pools) {
     r.contact = { names: c.names, modes: c.modes, highlights: c.highlights, logos: c.logos.map((l) => logoKey(l.src)), submitInView: c.submitInView };
     if (c.names.length !== 3) r.problems.push(`${c.names.length} vignettes au lieu de 3`);
     if (new Set(c.modes).size > 1) r.problems.push(`vignettes mélangées prix / sur devis : ${c.modes.join(", ")}`);
+    // Produits sans prix publié : trois « Sur devis » attendus.
+    if (["animaux", "trottinette", "auto_temporaire"].includes(funnel.type) && c.modes.some((m) => m !== "devis")) {
+      r.problems.push(`${funnel.type} : trois « Sur devis » attendus (${c.modes.join(", ")})`);
+    }
     const expectedHighlight = chosenFormuleIndex ?? 0;
     const hi = c.highlights.indexOf(true);
     if (c.highlights.filter(Boolean).length !== 1 || hi !== expectedHighlight) r.problems.push(`vignette mise en avant ${hi} (attendue ${expectedHighlight})`);

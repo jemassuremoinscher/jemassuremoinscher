@@ -154,10 +154,14 @@ export const teaserPrices: Record<string, { label: string; prices: TeaserTier[] 
     { name: 'Tiers + vol / incendie', price: '26€', badge: 'Dès', logoPool: [logoMma, logoMaaf, logoMacif, logoAbeille], features: ['Tout de la formule Au tiers', 'Vol et incendie'] },
     { name: 'Tous risques', price: '39€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGroupama, logoGenerali], features: ['Tous dommages', 'Vol et incendie'] },
   ]},
+  // Auto temporaire : « Sur devis » (décision du 3 octobre 2026). Les anciens
+  // prix (6/26/67€) étaient des tarifs pour 1, 7 et 30 jours affichés en
+  // « /mois », et ces durées ne correspondent pas aux options du formulaire
+  // (1-3 j, 4-15 j, 16-90 j).
   auto_temporaire: { label: 'Auto temporaire', prices: [
-    { name: 'Au tiers', price: '6€', badge: 'Dès', logoPool: [logoWilov, logoOrnikar, logoLeocare, logoGoodflair], features: ['RC obligatoire', 'Défense recours'] },
-    { name: 'Tiers étendu', price: '26€', badge: 'Dès', logoPool: [logoLeocare, logoOrnikar, logoWilov, logoLolivier], features: ['Tiers + vol/incendie'] },
-    { name: 'Tous risques', price: '67€', badge: 'Dès', logoPool: [logoAllianz, logoAxa, logoMacif, logoLeocare], features: ['Tous dommages au véhicule'] },
+    { name: 'Au tiers', logoPool: [logoWilov, logoOrnikar, logoLeocare, logoGoodflair], features: ['RC obligatoire', 'Défense recours'] },
+    { name: 'Tiers étendu', logoPool: [logoLeocare, logoOrnikar, logoWilov, logoLolivier], features: ['Tiers + vol/incendie'] },
+    { name: 'Tous risques', logoPool: [logoAllianz, logoAxa, logoMacif, logoLeocare], features: ['Tous dommages au véhicule'] },
   ]},
   flotte: { label: 'Flotte Auto', prices: [
     { name: 'Essentielle', price: '29€', badge: '/véh.', logoPool: [logoMacif, logoMaaf, logoMma, logoMatmut], features: ['Tiers étendu flotte', 'Gestion centralisée', 'Conducteurs interchangeables'] },
