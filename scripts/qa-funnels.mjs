@@ -71,7 +71,9 @@ const loadPools = async () => {
     logLevel: "silent",
   });
   try {
-    const { teaserPrices } = await vite.ssrLoadModule(path.join(rootDir, "src/components/forms/teaserPrices.ts"));
+    const { buildTeaserPrices } = await vite.ssrLoadModule(path.join(rootDir, "src/components/forms/teaserPrices.ts"));
+    // Seuls les logos servent ici : les textes peuvent rester des clés.
+    const teaserPrices = buildTeaserPrices((k) => k);
     const pools = {};
     for (const [type, entry] of Object.entries(teaserPrices)) {
       pools[type] = new Set(entry.prices.flatMap((p) => p.logoPool.map(logoKey)));
@@ -171,6 +173,16 @@ async function newInstrumentedPage(browser, vp) {
 
 // ─── Parcours d'un tunnel MultiStepQuoteForm ────────────────────────────────
 const FILL = { postalCode: "75011", age: "35", vehicleYear: "2018", activityDescription: "Activité de test pour la QA" };
+const DUMP_TEXT = process.env.QA_DUMP_TEXT === "1";
+const dumpStepText = (stepEl) =>
+  stepEl.evaluate((root) => ({
+    text: root.innerText.replace(/\s+/g, " ").trim(),
+    attrs: [...root.querySelectorAll("[aria-label],[placeholder],[alt],[title]")]
+      .filter((e) => !e.hasAttribute("data-teaser-logo"))
+      .map((e) => ["aria-label", "placeholder", "alt", "title"].filter((a) => e.hasAttribute(a)).map((a) => `${a}=${e.getAttribute(a)}`).join(" "))
+      .filter(Boolean),
+  }));
+
 async function runFunnel(browser, base, funnel, vp, pools) {
   const { context, page, log } = await newInstrumentedPage(browser, vp);
   const r = { funnel: funnel.key, viewport: vp.name, steps: [], problems: [], contact: null };
@@ -189,6 +201,9 @@ async function runFunnel(browser, base, funnel, vp, pools) {
       const field = (await stepEl.getAttribute("data-funnel-field")) || "";
       const index = Number(await stepEl.getAttribute("data-funnel-step-index"));
       r.steps.push(`${index}:${id}`);
+      // QA_DUMP_TEXT=1 : texte visible et attributs de chaque étape (contrôle
+      // « rendu français identique au mot près » du chantier i18n).
+      if (DUMP_TEXT) (r.stepTexts ||= []).push({ step: id, ...(await dumpStepText(stepEl)) });
       if (type === "contact") break;
       if (type === "callback") { r.problems.push(`étape callback inattendue (${id})`); break; }
       if (type === "card-select") {
@@ -223,6 +238,7 @@ async function runFunnel(browser, base, funnel, vp, pools) {
     await page.waitForSelector("[data-teaser-card]", { timeout: 15000 });
     // Laisse le temps au défilement automatique de l'étape contact (~350 ms + smooth).
     await page.waitForTimeout(1500);
+    if (DUMP_TEXT) r.stepTexts.push({ step: "contact (vignettes affichées)", ...(await dumpStepText(page.locator("[data-funnel-step]").first())) });
     await page.screenshot({ path: path.join(outDir, `${funnel.key}-${vp.name}-contact.png`), fullPage: false });
     const c = await page.evaluate(() => {
       const cards = [...document.querySelectorAll("[data-teaser-card]")];
