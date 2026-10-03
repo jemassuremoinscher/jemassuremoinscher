@@ -160,29 +160,48 @@ const SNAPSHOTS = [
   { route: "/comparatif/alan-vs-april", file: "comparatif-alan-vs-april.html" },
 ];
 
-// Référence un asset hashé Vite : /assets/nom-<hash>.ext
-const ASSET_RE = /\/assets\/([a-zA-Z0-9._-]+?)-([\w-]{8,})\.(js|css|png|jpe?g|webp|svg|avif|woff2?|ico)/g;
+// Référence un asset hashé Vite : /assets/nom-<hash>.ext, hash de 8 caractères
+// exactement (alphabet base64url). Le nom est pris en entier (motif gourmand) :
+// l'ancien motif, non gourmand avec un hash de 8 caractères ou plus, coupait
+// « arthur-bike-CzY18xfj.png » en « arthur » + « bike-CzY18xfj » ; toutes les
+// mascottes arthur-*.webp (33), arthur-*.png (4), leurs modules .js (24) et
+// les cover.jpg (5) partageaient alors une seule clé, et chaque capture
+// recevait la dernière trouvée (ex. arthur-waving au lieu d'arthur-bike sur
+// /assurance-velo) jusqu'au rendu React. Corrigé le 2026-10-03.
+const ASSET_RE = /\/assets\/([a-zA-Z0-9._-]+)-([A-Za-z0-9_-]{8})\.(js|css|png|jpe?g|webp|svg|avif|woff2?|ico)/g;
+const FILE_RE = /^(.+)-([A-Za-z0-9_-]{8})(\.[a-zA-Z0-9]+)$/;
 
 const buildCurrentAssetMap = async () => {
   const assetsDir = path.join(distDir, "assets");
-  const map = new Map(); // "nom.ext" -> "nom-hash.ext" (build courant)
-  if (!existsSync(assetsDir)) return map;
-  const files = await readdir(assetsDir);
-  for (const file of files) {
-    const m = file.match(/^(.+?)-([\w-]{8,})(\.[a-zA-Z0-9]+)$/);
+  const files = new Set(); // fichiers du build courant
+  const byName = new Map(); // "nom.ext" -> ["nom-hash.ext", …] (build courant)
+  if (!existsSync(assetsDir)) return { files, byName };
+  for (const file of await readdir(assetsDir)) {
+    files.add(file);
+    const m = file.match(FILE_RE);
     if (m) {
       const [, base, , ext] = m;
-      map.set(`${base}${ext}`, file);
+      const key = `${base}${ext}`;
+      byName.set(key, [...(byName.get(key) || []), file]);
     }
   }
-  return map;
+  return { files, byName };
 };
 
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-const remapAssets = (html, currentMap) => {
+const remapAssets = (html, current) => {
   let working = html;
   const removed = [];
+  // Fichier encore présent (même hash : contenu inchangé) → référence gardée.
+  // Sinon : un seul fichier du même nom → nouvelle référence ; plusieurs
+  // (même nom, sources différentes) → ambigu, ancienne référence gardée.
+  const resolve = (base, hash, ext) => {
+    if (current.files.has(`${base}-${hash}.${ext}`)) return { file: `${base}-${hash}.${ext}` };
+    const candidates = current.byName.get(`${base}.${ext}`) || [];
+    if (candidates.length === 1) return { file: candidates[0] };
+    return { file: null, ambiguous: candidates.length > 1 };
+  };
 
   // Chunk JS/CSS référencé par un snapshot mais absent du build courant (ex. le chunk
   // "charts", supprimé de vite.config.ts le 2026-09-13 alors que 53 snapshots le
@@ -192,12 +211,12 @@ const remapAssets = (html, currentMap) => {
   // <script>/<link> entière.
   const stale = new Map();
   for (const m of html.matchAll(ASSET_RE)) {
-    const [, base, , ext] = m;
-    if ((ext === "js" || ext === "css") && !currentMap.has(`${base}.${ext}`)) stale.set(`${base}.${ext}`, { base, ext });
+    const [, base, hash, ext] = m;
+    if ((ext === "js" || ext === "css") && !resolve(base, hash, ext).file && !resolve(base, hash, ext).ambiguous) stale.set(`${base}-${hash}.${ext}`, { base, hash, ext });
   }
-  for (const [key, { base, ext }] of stale) {
+  for (const [key, { base, hash, ext }] of stale) {
     const tagRe = new RegExp(
-      `<(?:script|link)\\b[^>]*\\b(?:src|href)="/assets/${escapeRe(base)}-[\\w-]{8,}\\.${ext}"[^>]*>(?:\\s*</script>)?`,
+      `<(?:script|link)\\b[^>]*\\b(?:src|href)="/assets/${escapeRe(base)}-${escapeRe(hash)}\\.${ext}"[^>]*>(?:\\s*</script>)?`,
       "g"
     );
     const before = working.length;
@@ -208,17 +227,16 @@ const remapAssets = (html, currentMap) => {
     if (working.length === before) removed.push(`${key} (référence hors balise, conservée)`);
   }
 
-  // Autres références absentes du build (images, polices…) : on garde l'ancienne
-  // référence plutôt que de casser le lien, et on la signale.
+  // Autres références absentes du build (images, polices…) ou ambiguës : on
+  // garde l'ancienne référence plutôt que de casser le lien, et on la signale.
   const missing = [];
-  const remapped = working.replace(ASSET_RE, (full, base, _oldHash, ext) => {
-    const key = `${base}.${ext}`;
-    const current = currentMap.get(key);
-    if (!current) {
-      missing.push(key);
+  const remapped = working.replace(ASSET_RE, (full, base, hash, ext) => {
+    const r = resolve(base, hash, ext);
+    if (!r.file) {
+      missing.push(`${base}-${hash}.${ext}${r.ambiguous ? " (nom ambigu)" : ""}`);
       return full;
     }
-    return `/assets/${current}`;
+    return `/assets/${r.file}`;
   });
   return { remapped, missing, removed };
 };

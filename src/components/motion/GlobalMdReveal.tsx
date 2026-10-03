@@ -66,6 +66,9 @@ const GlobalMdReveal = () => {
       if (el.hasAttribute("data-no-reveal")) return;
       // Skip if ancestor opts out
       if (el.closest("[data-no-reveal]")) return;
+      // Haut de page (ArthurHero, data-hero) : jamais en fondu, ni lui ni le
+      // bloc qui le contient — il doit être visible dès le premier affichage.
+      if (el.matches("[data-hero]") || el.querySelector("[data-hero]")) return;
 
       const variant = el.getAttribute("data-reveal") || "up";
       el.classList.add("md-reveal");

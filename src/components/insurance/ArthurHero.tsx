@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Zap, PiggyBank, BadgeCheck } from "lucide-react";
 import { ORIAS_NUMBER } from "@/config/site";
@@ -39,10 +40,22 @@ const ArthurHero = ({
   reviewsLabel = `n° ${ORIAS_NUMBER} · courtier indépendant`,
   showReviewsCard = true,
 }: ArthurHeroProps) => {
+  // Image du haut de page préchargée dès le <head> (captures prerender
+  // comprises) : sinon le navigateur ne la découvre qu'en lisant le <body>.
+  // Titre et mascotte s'affichent sans fondu (décision du 3 octobre 2026) :
+  // un élément qui apparaît en fondu n'est pas retenu comme LCP. data-hero :
+  // GlobalMdReveal n'anime pas le bloc qui contient le haut de page.
+  const preload = (
+    <Helmet>
+      <link rel="preload" as="image" href={imageSrc} {...{ fetchpriority: "high" }} />
+    </Helmet>
+  );
+
   // Legacy fallback (landing templates) — keep simple speech bubble layout
   if (!title) {
     return (
-      <div className="relative flex flex-col items-center mb-8 px-4 animate-fade-in">
+      <div data-hero className="relative flex flex-col items-center mb-8 px-4">
+        {preload}
         <div className="relative z-10 flex items-end gap-3">
           <img
             src={imageSrc}
@@ -66,7 +79,8 @@ const ArthurHero = ({
   }
 
   return (
-    <div className="relative w-full">
+    <div data-hero className="relative w-full">
+      {preload}
       {/* Hero card — violet background, asymmetric 70/30 */}
       <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-primary via-primary to-[hsl(265,85%,45%)] shadow-elevation-3">
         {/* Ambient blobs */}
@@ -88,7 +102,7 @@ const ArthurHero = ({
 
         <div className="relative grid md:grid-cols-[7fr_3fr] gap-6 md:gap-4 items-center px-6 py-10 md:px-10 md:py-12 lg:py-14">
           {/* LEFT — text + CTA */}
-          <div className="text-left animate-fade-in">
+          <div className="text-left">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-white leading-tight tracking-tight text-balance">
               {title}
             </h1>
@@ -113,7 +127,7 @@ const ArthurHero = ({
           </div>
 
           {/* RIGHT — Arthur */}
-          <div className="relative flex justify-center md:justify-end items-end animate-fade-in-delay">
+          <div className="relative flex justify-center md:justify-end items-end">
             <div className="relative">
               <div
                 aria-hidden="true"
