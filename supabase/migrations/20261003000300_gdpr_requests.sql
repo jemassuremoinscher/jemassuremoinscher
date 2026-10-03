@@ -8,6 +8,9 @@
 --
 -- Écriture par la fonction (service_role) uniquement ; lecture réservée aux
 -- administrateurs connectés.
+--
+-- Renommée le 3 octobre 2026 (ancien nom 20261002000100_gdpr_requests.sql)
+-- pour passer après les migrations déjà appliquées sur main.
 
 CREATE TABLE IF NOT EXISTS public.gdpr_requests (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
