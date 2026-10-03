@@ -2069,7 +2069,9 @@ Comparez au moins 3 offres adaptées à votre profil. Le meilleur assureur pour 
     slug: "top-mutuelles-sante-2026",
     description: "Comment comparer les mutuelles santé : remboursements par poste, plafonds, délais de carence, exclusions et services, selon votre situation.",
     category: "Guides Pratiques",
-    date: "28 décembre 2026",
+    // Date servie : spreadDates["9"] (12 mars 2026). L'URL existe depuis le
+    // 9 mars 2026 ; « 28 décembre 2026 » venait de cf6b8368 (2024 → 2026).
+    date: "12 mars 2026",
     readTime: "11 min",
     author: "L'équipe d'experts Jemassuremoinscher",
     tags: ["mutuelle santé", "comparatif", "remboursements", "complémentaire santé"],
