@@ -169,8 +169,8 @@ const AnimauxPillar = ({ onCtaClick }: AnimauxPillarProps) => (
     </p>
     <p>
       Les espèces couvertes varient aussi : l'un des contrats accepte certains nouveaux animaux de compagnie (furet,
-      lapin, cobaye, chinchilla, perroquet), avec leurs propres limites d'âge, alors qu'un autre ne couvre que les
-      chiens et les chats. Les règles de détention et d'identification de ces animaux, et ce que prévoit ce contrat,
+      lapin, cobaye, chinchilla, perroquet), avec leurs propres limites d'âge, alors que les deux autres ne couvrent
+      que les chiens et les chats. Les règles de détention et d'identification de ces animaux, et ce que prévoit ce contrat,
       sont détaillées dans notre page <Link to="/assurance-nac">assurance NAC</Link>.
     </p>
     <p>
