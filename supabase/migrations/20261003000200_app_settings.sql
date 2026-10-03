@@ -8,8 +8,9 @@
 --                        set_mfa_mode() (migration 20261003000400_mfa_phase1),
 --                        qui imposent leurs contrôles (admin, session aal2,
 --                        deux facteurs vérifiés pour "enforce").
---   languages_enabled  : tableau non vide de codes parmi fr, en, it ;
---                        défaut ["fr","en"] (italien caché).
+--   languages_enabled  : tableau non vide de codes parmi fr, en, it,
+--                        contenant toujours fr ; défaut ["fr","en"] (italien
+--                        caché).
 --   callback_languages : même format ; défaut ["fr"].
 --
 -- Lecture publique (anon, authenticated) limitée aux deux réglages de
@@ -40,6 +41,13 @@ ALTER TABLE public.app_settings ADD CONSTRAINT app_settings_languages_check CHEC
     AND jsonb_array_length(value) > 0
     AND value <@ '["fr","en","it"]'::jsonb
   )
+);
+
+-- Le français ne peut pas être retiré des langues proposées (contrainte
+-- ajoutée par Claude en base le 3 octobre 2026, reprise ici à l'identique).
+ALTER TABLE public.app_settings DROP CONSTRAINT IF EXISTS app_settings_languages_fr_required;
+ALTER TABLE public.app_settings ADD CONSTRAINT app_settings_languages_fr_required CHECK (
+  key <> 'languages_enabled' OR value @> '["fr"]'::jsonb
 );
 
 ALTER TABLE public.app_settings ENABLE ROW LEVEL SECURITY;
