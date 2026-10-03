@@ -30,7 +30,10 @@ const stamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
 const outDir = path.join(rootDir, "docs", "qa", `${stamp}${argBase ? "-prod" : "-local"}`);
 mkdirSync(outDir, { recursive: true });
 
-const FORBIDDEN = [/meilleur prix/i, /temps réel/i, /\bgaranti\b/i, /immédiat/i];
+// « Meilleur prix » n'est interdit que comme BADGE de vignette (décision du
+// 3 octobre 2026) : contrôlé sur les vignettes seulement (TEASER_FORBIDDEN).
+const FORBIDDEN = [/temps réel/i, /\bgaranti\b/i, /immédiat/i];
+const TEASER_FORBIDDEN = [/meilleur prix/i];
 const VIEWPORTS = [
   { name: "mobile", width: 390, height: 844, isMobile: true, hasTouch: true },
   { name: "desktop", width: 1280, height: 800, isMobile: false, hasTouch: false },
@@ -233,6 +236,7 @@ async function runFunnel(browser, base, funnel, vp, pools) {
         submitInView: !!rect && rect.top >= 0 && rect.bottom <= window.innerHeight
           && !!submit.contains(document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2)),
         funnelText: container.innerText,
+        teaserText: cards.map((c) => c.innerText).join(" | "),
       };
     });
     // Logos lazy : on les fait charger (défilement) avant de lire naturalWidth.
@@ -258,6 +262,7 @@ async function runFunnel(browser, base, funnel, vp, pools) {
     if (funnel.type === "animaux" && new Set(c.logos.map((l) => logoKey(l.src))).size !== c.logos.length) r.problems.push("logos animaux non distincts");
     if (!c.submitInView) r.problems.push("bouton d'envoi hors du viewport (ou recouvert) à l'arrivée sur l'étape contact");
     for (const re of FORBIDDEN) if (re.test(c.funnelText)) r.problems.push(`texte interdit dans le tunnel : ${re}`);
+    for (const re of TEASER_FORBIDDEN) if (re.test(c.teaserText)) r.problems.push(`badge interdit sur une vignette : ${re}`);
     // Envoi (écritures simulées)
     await page.fill("#msf-name", "Test QA Tunnel");
     await page.fill("#msf-email", "qa-funnels@example.test");

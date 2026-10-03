@@ -5,7 +5,9 @@
  *     teaserPrices. Le comparateur délègue au produit choisi (ses étapes sont
  *     remplacées par celles du produit, cf. MultiStepQuoteForm) : on vérifie
  *     donc que chaque type proposé par son étape « type » a une entrée ;
- * (b) une vignette contient « Meilleur prix » ;
+ * (b) la vignette affiche un BADGE « Meilleur prix » (champ badge d'une vignette
+ *     ou badge rendu par FlipPriceCard.tsx). Décision du 3 octobre 2026 : la
+ *     règle ne concerne que ce badge ; « meilleur prix » reste permis ailleurs ;
  * (c) un pool animaux contient un assureur non spécialisé, ou les trois
  *     vignettes animaux n'utilisent pas le même pool de 6 logos (trois logos
  *     affichés toujours différents) ;
@@ -16,6 +18,7 @@
  * Décisions du 3 octobre 2026. Lancé par npm run build.
  */
 import path from "node:path";
+import { readFileSync } from "node:fs";
 
 const rootDir = process.cwd();
 
@@ -70,12 +73,15 @@ try {
     if (!teaserPrices[type]) problems.push(`(a) ${type} : étape contact sans entrée dans teaserPrices`);
   }
 
-  // (b)
+  // (b) badge de vignette uniquement
   for (const [type, entry] of Object.entries(teaserPrices)) {
     for (const p of entry.prices) {
-      if (/meilleur prix/i.test(JSON.stringify(p))) problems.push(`(b) ${type} / ${p.name} : « Meilleur prix »`);
+      if (/meilleur prix/i.test(String(p.badge || ""))) problems.push(`(b) ${type} / ${p.name} : badge « Meilleur prix »`);
     }
   }
+  const flipSource = readFileSync(path.join(rootDir, "src/components/forms/FlipPriceCard.tsx"), "utf8")
+    .replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*$/gm, "");
+  if (/meilleur prix/i.test(flipSource)) problems.push("(b) FlipPriceCard.tsx : badge « Meilleur prix » rendu sur une vignette");
 
   // (c)
   const animaux = teaserPrices.animaux?.prices || [];
