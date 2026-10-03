@@ -56,11 +56,11 @@ export const TROTTINETTE_TABLE_NOTE =
   "Ce tableau décrit le contrat d'entrée de gamme mis en avant sur cette page (document d'information d'un contrat du marché, 2025). Les garanties vol, casse et assistance dépendent de l'assureur : un conseiller vous présente ce que chaque contrat inclut ou exclut.";
 
 /**
- * Table app_settings (réglages publics : 'languages_enabled', plus tard
- * 'callback_languages'). false tant que la migration proposée
- * (20261003000200_app_settings.sql, branche revue/mfa-phase1 ; copie dans docs/i18n/migrations-proposees/app_settings.sql) n'est pas appliquée :
- * le site utilise alors les valeurs par défaut sans interroger la base (une
- * requête vers une table absente renvoie un 404 journalisé en console).
- * Passer à true une fois la migration appliquée.
+ * Table app_settings (réglages publics : 'languages_enabled',
+ * 'callback_languages'), appliquée en base le 3 octobre 2026
+ * (20261003000200_app_settings.sql). true : le site lit 'languages_enabled'
+ * (lecture anonyme autorisée par la politique RLS, réponse 200). Repasser à
+ * false seulement si la table disparaît : une requête vers une table absente
+ * renvoie un 404 journalisé en console.
  */
-export const APP_SETTINGS_AVAILABLE = false;
+export const APP_SETTINGS_AVAILABLE = true;
