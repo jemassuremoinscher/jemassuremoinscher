@@ -124,7 +124,9 @@ const resolveChromium = (chromium) => {
 // erreur. Chaque occurrence ignorée est listée dans le rapport.
 const IGNORED = [
   { kind: "console", pattern: /^Framing 'https:\/\/www\.google\.com\/' violates the following report-only Content Security Policy directive: "frame-ancestors 'self'"/, reason: "alerte CSP report-only de l'iframe reCAPTCHA (Google)" },
-  { kind: "request", pattern: /^POST https:\/\/csp\.withgoogle\.com\/csp\/frame-ancestors\/.* — net::ERR_BLOCKED_BY_ORB$/, reason: "rapport CSP de Google bloqué par ORB" },
+  // Rapports CSP envoyés par Google à csp.withgoogle.com (tous chemins /csp/* :
+  // frame-ancestors, script-inclusions…), bloqués par ORB (décision du 3 octobre 2026).
+  { kind: "request", pattern: /^POST https:\/\/csp\.withgoogle\.com\/csp\/.* — net::ERR_BLOCKED_BY_ORB$/, reason: "rapport CSP de Google (csp.withgoogle.com/csp/*) bloqué par ORB" },
   { kind: "request", pattern: /^POST https:\/\/www\.google\.com\/recaptcha\/api2\/clr\?.* — net::ERR_ABORTED$/, reason: "annulation de la télémétrie reCAPTCHA api2/clr" },
 ];
 const ignoredBy = (kind, text) => IGNORED.find((i) => i.kind === kind && i.pattern.test(text));
