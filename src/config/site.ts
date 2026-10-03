@@ -46,9 +46,11 @@ export const GOOGLE_REVIEW_WRITE_URL = "https://g.page/r/CVVFJisN4h4iEAE/review"
 export const TROTTINETTE_RC_PRICE_MONTHLY = "2,90€/mois";
 export const TROTTINETTE_RC_PRICE_ANNUAL = "33€/an";
 /**
- * Vol non couvert par l'IPID e-Trottineur (05/2025) : Paul ajoutera une
- * option plus tard. Ligne conservée dans le tableau de garanties avec cette
- * valeur exacte (ni "Option" ni "Incluse", sur demande explicite) — une
- * seule constante pour la remplacer d'un coup quand l'option existera.
+ * Vol non couvert par l'IPID e-Trottineur (05/2025), contrat d'entrée de gamme
+ * décrit par le tableau de garanties ; d'autres assureurs le proposent
+ * (décision du 3 octobre 2026). Une seule constante, reprise par le tableau.
  */
-export const TROTTINETTE_VOL_STATUS = "Non incluse. Option à venir.";
+export const TROTTINETTE_VOL_STATUS = "Non incluse dans ce contrat ; proposée par d'autres assureurs, selon leurs conditions";
+/** Note affichée sous le tableau de garanties trottinette. */
+export const TROTTINETTE_TABLE_NOTE =
+  "Ce tableau décrit le contrat d'entrée de gamme mis en avant sur cette page (document d'information d'un contrat du marché, 2025). Les garanties vol, casse et assistance dépendent de l'assureur : un conseiller vous présente ce que chaque contrat inclut ou exclut.";

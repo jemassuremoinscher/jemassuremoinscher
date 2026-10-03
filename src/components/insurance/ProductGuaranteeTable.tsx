@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { TROTTINETTE_RC_PRICE_MONTHLY, TROTTINETTE_VOL_STATUS } from "@/config/site";
+import { TROTTINETTE_RC_PRICE_MONTHLY, TROTTINETTE_TABLE_NOTE, TROTTINETTE_VOL_STATUS } from "@/config/site";
 
 /**
  * ProductGuaranteeTable
@@ -53,6 +53,8 @@ interface ProductTableData {
   rows: GuaranteeRow[];
   /** Note légale / source */
   footnote?: string;
+  /** Note affichée juste sous le tableau (portée du tableau). */
+  note?: string;
 }
 
 const DATA: Partial<Record<ProductKey, ProductTableData>> = {
@@ -310,8 +312,9 @@ const DATA: Partial<Record<ProductKey, ProductTableData>> = {
     // Lignes vérifiées contre l'IPID e-Trottineur + fiche produit April
     // (05/2025), seule source disponible — chantier 2026-09-30. Casse,
     // vandalisme et couverture Europe retirées : non mentionnées par ce
-    // document. Vol : conservé à la demande de Paul (option à venir), valeur
-    // exacte imposée (ni "Option" ni "Incluse") via TROTTINETTE_VOL_STATUS.
+    // document. Vol : non inclus dans ce contrat, proposé par d'autres
+    // assureurs (TROTTINETTE_VOL_STATUS) ; note sous le tableau : le tableau
+    // décrit le seul contrat d'entrée de gamme (TROTTINETTE_TABLE_NOTE).
     rows: [
       { name: "Responsabilité civile obligatoire (100 M€ dommages matériels)", values: { solo: "Incluse", famille: "Incluse" } },
       { name: "Garantie Mobilité (forfait 10€, une fois, carence 30 j)", values: { solo: "Incluse", famille: "Incluse" } },
@@ -319,6 +322,7 @@ const DATA: Partial<Record<ProductKey, ProductTableData>> = {
       { name: "Protection du conducteur (individuelle accident)", values: { solo: "Option", famille: "Option" } },
       { name: "Vol", values: { solo: TROTTINETTE_VOL_STATUS, famille: TROTTINETTE_VOL_STATUS } },
     ],
+    note: TROTTINETTE_TABLE_NOTE,
     footnote: "Garanties vérifiées sur l'IPID e-Trottineur et la fiche produit April (mai 2025), seule source disponible à ce jour. RC obligatoire depuis 2019 (décret n°2019-1082).",
   },
   "scooter-50cc": {
@@ -489,6 +493,12 @@ const ProductGuaranteeTable = ({ product }: ProductGuaranteeTableProps) => {
             </div>
           ))}
         </div>
+
+        {data.note && (
+          <p className="text-sm text-muted-foreground mt-4" data-guarantee-table-note>
+            {data.note}
+          </p>
+        )}
 
         {data.footnote && (
           <p className="text-xs text-muted-foreground mt-4 italic">{data.footnote}</p>

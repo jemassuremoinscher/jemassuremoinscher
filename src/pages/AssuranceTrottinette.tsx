@@ -88,12 +88,12 @@ const AssuranceTrottinette = () => {
     {
       question: "Combien coûte une assurance trottinette électrique ?",
       answer:
-        `À partir de ${TROTTINETTE_RC_PRICE_MONTHLY} pour la formule Solo (responsabilité civile, garantie Mobilité et défense pénale et recours inclus). Sur une base annuelle, comptez ${TROTTINETTE_RC_PRICE_ANNUAL}. La formule Famille (souscripteur + conjoint et enfants) et la protection du conducteur sont disponibles en option ; le vol n'est pas couvert à ce jour par ce contrat.`,
+        `À partir de ${TROTTINETTE_RC_PRICE_MONTHLY} pour la formule Solo (responsabilité civile, garantie Mobilité et défense pénale et recours inclus). Sur une base annuelle, comptez ${TROTTINETTE_RC_PRICE_ANNUAL}. La formule Famille (souscripteur + conjoint et enfants) et la protection du conducteur sont disponibles en option ; le vol n'est pas inclus dans ce contrat, d'autres assureurs le proposent selon leurs conditions.`,
     },
     {
       question: "Que couvre une assurance trottinette électrique ?",
       answer:
-        "La formule Solo couvre la responsabilité civile (dommages matériels causés aux tiers), une garantie Mobilité forfaitaire et la défense pénale et recours en cas de litige. La formule Famille étend cette couverture au conjoint et aux enfants. La protection corporelle du conducteur reste une option. Le vol n'est pas couvert par ce contrat à ce jour (option à venir).",
+        "La formule Solo couvre la responsabilité civile (dommages matériels causés aux tiers), une garantie Mobilité forfaitaire et la défense pénale et recours en cas de litige. La formule Famille étend cette couverture au conjoint et aux enfants. La protection corporelle du conducteur reste une option. Le vol n'est pas inclus dans ce contrat ; d'autres assureurs le proposent, selon leurs conditions. La casse et l'assistance dépendent aussi de l'assureur.",
     },
     {
       question: "Mon assurance habitation couvre-t-elle ma trottinette ?",
