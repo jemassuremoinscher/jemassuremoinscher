@@ -1442,24 +1442,6 @@ const en: Record<string, string> = {
   'partnersComponent.autoScroll': 'Auto-scrolling carousel. Hover to pause.',
 
   // Landing Common
-  'landing.urgency': 'Only 12 spots left today',
-  'landing.no1': 'N°1',
-  'landing.inFrance': 'in France',
-  'landing.upTo': 'up to',
-  'landing.compare': 'Compare',
-  'landing.perYear': '/year',
-  'landing.savingsAvg': 'Avg. savings',
-  'landing.forQuote': 'For the quote',
-  'landing.whyChooseUs': 'Why choose us for your',
-  'landing.freeNoCommitment': '100% free and no commitment',
-  'landing.expertCallback': 'Dedicated expert, quick callback from an advisor',
-  'landing.savingsGuaranteed': 'Savings guaranteed or refunded',
-  'landing.customerReviews': 'Customer reviews',
-  'landing.sslSecure': 'SSL Secure',
-  'landing.servicePremium': 'Premium Service',
-  'landing.reviews': 'reviews',
-  'landing.avgSavingsLabel': 'Avg. savings',
-  'landing.forQuoteLabel': 'For the quote',
 
   // Mentions Légales
   'mentionsLegales.title': 'Legal Notice',

@@ -1437,23 +1437,6 @@ const fr: Record<string, string> = {
   'partnersComponent.titleEnd': 'partenaires',
   'partnersComponent.autoScroll': 'Le carrousel défile automatiquement. Passez la souris dessus pour mettre en pause.',
 
-  // Landing Pages Common
-  'landing.urgency': 'Plus que 12 places aujourd\'hui',
-  'landing.no1': 'N°1',
-  'landing.inFrance': 'en France',
-  'landing.upTo': "jusqu'à",
-  'landing.compare': 'Comparez',
-  'landing.perYear': '/an',
-  'landing.savingsAvg': 'Économie moy.',
-  'landing.forQuote': 'Pour le devis',
-  'landing.whyChooseUs': 'Pourquoi nous choisir pour votre',
-  'landing.freeNoCommitment': '100% gratuit et sans engagement',
-  'landing.expertCallback': 'Expert dédié, rappel rapide par un conseiller',
-  'landing.savingsGuaranteed': 'Économies garanties ou remboursé',
-  'landing.customerReviews': 'Avis clients',
-  'landing.sslSecure': 'SSL Sécurisé',
-  'landing.servicePremium': 'Service Premium',
-
   // Mentions Légales
   'mentionsLegales.title': 'Mentions Légales',
   'mentionsLegales.editeur': 'Éditeur du site',
@@ -1707,8 +1690,6 @@ const fr: Record<string, string> = {
 
 
   // Landing Pages - Common
-  'landing.reviews': 'avis',
-  'landing.avgSavingsLabel': 'Économie moy.',
 
 
   // Blog page extras
