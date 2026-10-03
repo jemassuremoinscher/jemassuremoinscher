@@ -94,7 +94,7 @@ const refConfigs: Record<string, DynamicGreetingConfig> = {
     mascotAlt: "Arthur — assurance habitation économique",
     ctaLink: "/comparateur?step=1&type=habitation",
     ctaText: "Mon prix habitation →",
-    badgeText: <>Dès <span className="text-accent">3€/mois</span> — souscription en ligne</>,
+    badgeText: <>Souscription <span className="text-accent">en ligne</span></>,
   },
   "sante": {
     title: (
