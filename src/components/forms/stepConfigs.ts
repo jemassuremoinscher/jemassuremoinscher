@@ -12,6 +12,7 @@ import mascotInjured from '@/assets/mascotte/arthur-injured.webp';
 import mascotBusiness from '@/assets/mascotte/arthur-business.webp';
 import mascotDetective from '@/assets/mascotte/arthur-detective.webp';
 import mascotThumbsUp from '@/assets/mascotte/arthur-thumbs-up.webp';
+import { TROTTINETTE_RC_PRICE_MONTHLY } from '@/config/site';
 
 export interface StepOption {
   value: string;
@@ -632,9 +633,12 @@ export const buildStepConfigs = (t: TFn): Record<InsuranceType, FormStep[]> => {
         { value: 'sup_1500', label: 'Plus de 1 500 €', icon: ShieldPlus },
       ]},
       { id: 'trot_formule', type: 'card-select', title: 'Quelles garanties recherchez-vous ?', field: 'coverageLevel', arthurHint: 'Le niveau de garantie choisi détermine l\'étendue de votre protection.', options: [
-        { value: 'rc', label: 'Responsabilité civile seule', description: 'Minimum légal obligatoire — dès 2,90 €/mois', icon: Shield },
-        { value: 'rc_vol', label: 'RC + Vol', description: 'Avec antivol homologué', icon: ShieldCheck },
-        { value: 'tous_risques', label: 'Tous risques + Assistance', description: 'RC, vol, casse, vandalisme, dépannage', icon: ShieldPlus },
+        // Trois choix gardés (le conseiller a besoin du choix du visiteur) mais
+        // sans promettre que vol, casse ou assistance sont inclus chez un
+        // assureur donné (décision du 3 octobre 2026).
+        { value: 'rc', label: 'Responsabilité civile seule', description: `Minimum légal obligatoire, dès ${TROTTINETTE_RC_PRICE_MONTHLY}`, icon: Shield },
+        { value: 'rc_vol', label: 'RC + Vol', description: "Selon l'assureur, avec antivol homologué", icon: ShieldCheck },
+        { value: 'tous_risques', label: 'Tous risques', description: "Vol, casse, vandalisme, assistance : selon l'assureur", icon: ShieldPlus },
       ]},
       { id: 'trot_antivol', type: 'card-select', title: 'Utilisez-vous un antivol ?', subtitle: 'Un antivol homologué SRA conditionne la garantie vol.', field: 'antitheftDevice', arthurHint: 'Un antivol homologué peut réduire votre tarif.', options: [
         { value: 'sra', label: 'Oui, antivol homologué SRA', icon: Lock },
