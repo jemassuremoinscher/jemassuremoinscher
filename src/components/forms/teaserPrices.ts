@@ -55,6 +55,10 @@ import logoAComme from '@/assets/logos/a-comme-assure.png';
 // ─── Teaser Prices by insurance type ─────────────────────────────────────────
 // Note: `logoPool` is rotated per session in ContactStep so two consecutive
 // devis don't show the same insurers. Prices reflect realistic FR market 2026.
+// Assureurs spécialisés dans l'animal, seuls autorisés dans les vignettes
+// animaux (vérifié par scripts/verify-teasers.mjs et le test E2E).
+export const ANIMAUX_POOL = [logoSantevet, logoAcheel, logoFidanimo, logoBulleBleue, logoAnimauxSante, logoGoodflair];
+
 export type TeaserTier = { name: string; price?: string; badge?: string; logoPool: string[]; features: string[] };
 export const teaserPrices: Record<string, { label: string; prices: TeaserTier[] }> = {
   auto: { label: 'Assurance Auto', prices: [
@@ -83,11 +87,13 @@ export const teaserPrices: Record<string, { label: string; prices: TeaserTier[] 
     { name: 'Complète', price: '19€', badge: 'Dès', logoPool: [logoGenerali, logoAxa, logoAllianz, logoMetlife], features: ['Décès et PTIA', 'Invalidité (IPT, IPP)', 'Incapacité de travail (ITT)', 'Perte d\'emploi en option'] },
   ]},
   animaux: { label: 'Assurance Animaux', prices: [
-    // Aucun prix ni taux/plafond animaux tant que le chantier animaux n'a pas
-    // les documents publiés par les assureurs (décision de Paul) : "Sur devis".
-    { name: 'Accident', logoPool: [logoAcheel, logoSantevet, logoFidanimo, logoBulleBleue, logoAnimauxSante], features: ['Frais vétérinaires accident', 'Chirurgie d\'urgence', 'Hospitalisation'] },
-    { name: 'Confort', logoPool: [logoAllianz, logoSantevet, logoFidanimo, logoBulleBleue, logoAcheel], features: ['Accidents et maladies', 'Taux et plafond selon le contrat', 'Vaccins inclus'] },
-    { name: 'Intégrale', logoPool: [logoAxa, logoSantevet, logoBulleBleue, logoAnimauxSante, logoGenerali], features: ['Accidents et maladies', 'Taux et plafond selon le contrat', 'Prévention et stérilisation'] },
+    // Aucun prix ni taux/plafond animaux (décision de Paul) : « Sur devis ».
+    // Même pool ordonné de 6 assureurs spécialisés pour les 3 vignettes :
+    // pool[(rotationSeed + i*7) % 6] donne trois logos toujours différents.
+    // Noms = libellés de step.animaux.formule.opt.*.label (fr).
+    { name: 'Accidents', logoPool: ANIMAUX_POOL, features: ['Frais vétérinaires liés à un accident'] },
+    { name: 'Maladie + Accident', logoPool: ANIMAUX_POOL, features: ['Accidents et maladies', 'Taux, plafond et franchise selon le contrat', 'Délais de carence selon le contrat'] },
+    { name: 'Intégrale', logoPool: ANIMAUX_POOL, features: ['Accidents et maladies', 'Prévention (forfait ou option) selon le contrat', 'Exclusions : maladies préexistantes, congénitales ou héréditaires selon le contrat'] },
   ]},
   vie: { label: 'Assurance Vie', prices: [
     { name: 'Essentielle', price: '0€ frais', badge: 'Dès', logoPool: [logoSwisslife, logoCardif, logoLcl, logoApril], features: ['Fonds euros sécurisé', 'Versements libres', 'Frais d\'entrée 0%'] },
