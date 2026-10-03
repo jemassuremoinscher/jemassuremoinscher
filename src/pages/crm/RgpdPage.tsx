@@ -1,9 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Shield, Download, Trash2, Search } from "lucide-react";
+import { Shield, Download, Search, FlaskConical } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 type Row = {
   id: string;
@@ -14,10 +21,42 @@ type Row = {
   created_at: string;
 };
 
+// Réponse de la fonction gdpr-contact en mode simulation (phase 1 : aucun
+// effacement réel n'est possible depuis cette page).
+type Simulation = {
+  found: boolean;
+  manual_review: boolean;
+  manual_reasons: string[];
+  truncated: string[];
+  tables: { table: string; count: number; planned_action: string }[];
+  storage_files: { count: number; planned_action: string };
+};
+
+const invokeGdpr = async (action: "export" | "simulate", email: string) => {
+  const { data, error } = await supabase.functions.invoke("gdpr-contact", {
+    body: { action, email },
+  });
+  if (error) {
+    // Le message utile est dans le corps JSON de la réponse d'erreur.
+    let message = error.message;
+    try {
+      const body = await (error as { context?: Response }).context?.json();
+      if (body?.error) message = body.error;
+    } catch {
+      /* corps illisible : message générique */
+    }
+    throw new Error(message);
+  }
+  return data;
+};
+
 export default function RgpdPage() {
   const [rows, setRows] = useState<Row[]>([]);
   const [q, setQ] = useState("");
   const [loading, setLoading] = useState(true);
+  const [freeEmail, setFreeEmail] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [simulation, setSimulation] = useState<{ email: string; result: Simulation } | null>(null);
 
   const load = async () => {
     const { data } = await supabase
@@ -53,30 +92,42 @@ export default function RgpdPage() {
   );
 
   const exportData = async (email: string) => {
-    const { data: contact } = await supabase
-      .from("contacts")
-      .select("*, deals(*), documents:deals(documents(*))")
-      .eq("email", email)
-      .maybeSingle();
-    const blob = new Blob([JSON.stringify(contact, null, 2)], {
-      type: "application/json",
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `rgpd-${email}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-    toast.success("Export téléchargé");
+    if (!email.trim()) return;
+    setBusy(true);
+    try {
+      const data = await invokeGdpr("export", email);
+      if (!data?.found) {
+        toast.info("Aucune donnée trouvée pour cet email");
+        return;
+      }
+      const blob = new Blob([JSON.stringify(data, null, 2)], {
+        type: "application/json",
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `rgpd-${email.trim().toLowerCase()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      toast.success("Export téléchargé");
+    } catch (e) {
+      toast.error(`Export impossible : ${e instanceof Error ? e.message : String(e)}`);
+    } finally {
+      setBusy(false);
+    }
   };
 
-  const forget = async (id: string, email: string) => {
-    if (!confirm(`Supprimer définitivement toutes les données de ${email} ?`))
-      return;
-    const { error } = await supabase.from("contacts").delete().eq("id", id);
-    if (error) return toast.error("Erreur");
-    toast.success("Données supprimées");
-    load();
+  const simulateErasure = async (email: string) => {
+    if (!email.trim()) return;
+    setBusy(true);
+    try {
+      const result = (await invokeGdpr("simulate", email)) as Simulation;
+      setSimulation({ email: email.trim().toLowerCase(), result });
+    } catch (e) {
+      toast.error(`Simulation impossible : ${e instanceof Error ? e.message : String(e)}`);
+    } finally {
+      setBusy(false);
+    }
   };
 
   return (
@@ -90,7 +141,8 @@ export default function RgpdPage() {
             RGPD & Conformité
           </h1>
           <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-            Droit d'accès et droit à l'oubli des contacts
+            Droit d'accès (export) et simulation du droit à l'effacement. Aucune donnée n'est
+            supprimée depuis cette page.
           </p>
         </div>
       </div>
@@ -119,6 +171,36 @@ export default function RgpdPage() {
           </div>
         </div>
       </div>
+
+      <form
+        className="mt-6 flex flex-wrap items-center gap-2"
+        onSubmit={(e) => {
+          e.preventDefault();
+          simulateErasure(freeEmail);
+        }}
+      >
+        <Input
+          type="email"
+          value={freeEmail}
+          onChange={(e) => setFreeEmail(e.target.value)}
+          placeholder="Email de la personne (même sans fiche contact)"
+          className="max-w-md rounded-full"
+        />
+        <Button
+          type="button"
+          variant="outline"
+          disabled={busy || !freeEmail.trim()}
+          onClick={() => exportData(freeEmail)}
+          className="rounded-full"
+        >
+          <Download className="mr-1 h-3.5 w-3.5" />
+          Export
+        </Button>
+        <Button type="submit" variant="outline" disabled={busy || !freeEmail.trim()} className="rounded-full">
+          <FlaskConical className="mr-1 h-3.5 w-3.5" />
+          Simuler l'effacement
+        </Button>
+      </form>
 
       <div className="mt-6 flex items-center gap-2">
         <div className="relative flex-1 max-w-md">
@@ -172,6 +254,7 @@ export default function RgpdPage() {
                     <Button
                       size="sm"
                       variant="outline"
+                      disabled={busy}
                       onClick={() => exportData(r.email)}
                       className="rounded-full"
                     >
@@ -181,11 +264,12 @@ export default function RgpdPage() {
                     <Button
                       size="sm"
                       variant="outline"
-                      onClick={() => forget(r.id, r.email)}
-                      className="rounded-full border-red-200 text-red-600 hover:bg-red-50 dark:hover:bg-red-950/40"
+                      disabled={busy}
+                      onClick={() => simulateErasure(r.email)}
+                      className="rounded-full"
                     >
-                      <Trash2 className="mr-1 h-3.5 w-3.5" />
-                      Oublier
+                      <FlaskConical className="mr-1 h-3.5 w-3.5" />
+                      Simuler l'effacement
                     </Button>
                   </div>
                 </td>
@@ -206,6 +290,60 @@ export default function RgpdPage() {
           </div>
         )}
       </div>
+
+      <Dialog open={!!simulation} onOpenChange={(open) => !open && setSimulation(null)}>
+        <DialogContent className="max-w-xl">
+          <DialogHeader>
+            <DialogTitle>Simulation d'effacement</DialogTitle>
+            <DialogDescription>
+              {simulation?.email} : simulation uniquement, aucune donnée n'a été modifiée ni supprimée.
+            </DialogDescription>
+          </DialogHeader>
+          {simulation && !simulation.result.found && (
+            <p className="text-sm text-slate-600 dark:text-slate-300">Aucune donnée trouvée pour cet email.</p>
+          )}
+          {simulation?.result.found && (
+            <div className="space-y-3 text-sm">
+              {simulation.result.manual_review && (
+                <div className="rounded-2xl bg-amber-50 px-3 py-2 text-amber-800">
+                  <div className="font-medium">Traitement manuel</div>
+                  <div>{simulation.result.manual_reasons.join(" ; ")}. Rien ne serait effacé automatiquement.</div>
+                </div>
+              )}
+              {simulation.result.truncated.length > 0 && (
+                <div className="rounded-2xl bg-red-50 px-3 py-2 text-red-700">
+                  Recherche tronquée sur : {simulation.result.truncated.join(", ")}.
+                </div>
+              )}
+              <table className="w-full">
+                <thead className="text-left text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                  <tr>
+                    <th className="py-1">Table</th>
+                    <th className="py-1 text-right">Lignes</th>
+                    <th className="py-1 pl-4">Action prévue (phase 2)</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 dark:divide-[#362B54]">
+                  {simulation.result.tables.map((t) => (
+                    <tr key={t.table}>
+                      <td className="py-1 font-mono text-xs">{t.table}</td>
+                      <td className="py-1 text-right">{t.count}</td>
+                      <td className="py-1 pl-4">{t.planned_action}</td>
+                    </tr>
+                  ))}
+                  {simulation.result.storage_files.count > 0 && (
+                    <tr>
+                      <td className="py-1 font-mono text-xs">fichiers (crm-documents)</td>
+                      <td className="py-1 text-right">{simulation.result.storage_files.count}</td>
+                      <td className="py-1 pl-4">{simulation.result.storage_files.planned_action}</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
