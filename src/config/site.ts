@@ -58,7 +58,7 @@ export const TROTTINETTE_TABLE_NOTE =
 /**
  * Table app_settings (réglages publics : 'languages_enabled', plus tard
  * 'callback_languages'). false tant que la migration proposée
- * (docs/i18n/migrations-proposees/app_settings.sql) n'est pas appliquée :
+ * (20261003000200_app_settings.sql, branche revue/mfa-phase1 ; copie dans docs/i18n/migrations-proposees/app_settings.sql) n'est pas appliquée :
  * le site utilise alors les valeurs par défaut sans interroger la base (une
  * requête vers une table absente renvoie un 404 journalisé en console).
  * Passer à true une fois la migration appliquée.

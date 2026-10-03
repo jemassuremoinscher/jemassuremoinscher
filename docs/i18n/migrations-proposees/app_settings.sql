@@ -1,41 +1,43 @@
--- PROPOSITION — NON APPLIQUÉE (chantier i18n, étape 1, 3 octobre 2026).
--- À valider par Paul, puis à déplacer dans supabase/migrations/ avec un
--- horodatage postérieur à la dernière migration appliquée, et à appliquer.
+-- REMPLACÉE (3 octobre 2026) par la migration unique
+-- supabase/migrations/20261003000200_app_settings.sql de la branche
+-- revue/mfa-phase1, recopiée ci-dessous à l'identique. NON APPLIQUÉE.
 -- Après application : passer APP_SETTINGS_AVAILABLE à true dans
--- src/config/site.ts (sinon le site garde les valeurs par défaut sans
--- interroger la base).
+-- src/config/site.ts.
+
+-- Réglages du site : table app_settings UNIQUE (3 octobre 2026).
 --
--- Réglages publics du site, lus par le navigateur avec la clé anon :
---   languages_enabled  : langues proposées par le bouton de langue ;
---                        défaut ["fr","en"] (l'italien reste caché tant
---                        que Paul ne l'ajoute pas).
---   callback_languages : langues dans lesquelles un conseiller peut
---                        rappeler (étape 5) ; défaut ["fr"].
--- Lecture : tout le monde, uniquement pour les clés publiques listées dans
--- la politique. Écriture : administrateurs seulement.
+-- Remplace les deux définitions incompatibles proposées auparavant :
+-- value text (branche revue/mfa-phase1) et value jsonb (proposition i18n).
+-- Valeur toujours en jsonb. Réglages connus et contraintes :
+--   mfa_mode           : "off" | "warn" | "enforce" (chaîne JSON), défaut "off".
+--                        Lu et écrit uniquement par get_mfa_mode() et
+--                        set_mfa_mode() (migration 20261003000400_mfa_phase1),
+--                        qui imposent leurs contrôles (admin, session aal2,
+--                        deux facteurs vérifiés pour "enforce").
+--   languages_enabled  : tableau non vide de codes parmi fr, en, it ;
+--                        défaut ["fr","en"] (italien caché).
+--   callback_languages : même format ; défaut ["fr"].
+--
+-- Lecture publique (anon, authenticated) limitée aux deux réglages de
+-- langue. Lecture complète et écriture des réglages de langue : admin
+-- (has_role). mfa_mode n'est jamais écrit directement depuis le client :
+-- seulement par set_mfa_mode() (SECURITY DEFINER), pour que ses contrôles
+-- ne puissent pas être contournés.
+-- Idempotente : peut être appliquée deux fois.
 
 CREATE TABLE IF NOT EXISTS public.app_settings (
-  key         text PRIMARY KEY,
-  value       jsonb NOT NULL,
-  description text,
-  updated_at  timestamptz NOT NULL DEFAULT now(),
-  updated_by  uuid REFERENCES auth.users(id) ON DELETE SET NULL
+  key        text PRIMARY KEY,
+  value      jsonb NOT NULL,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  updated_by uuid
 );
 
-ALTER TABLE public.app_settings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.app_settings DROP CONSTRAINT IF EXISTS app_settings_mfa_mode_check;
+ALTER TABLE public.app_settings ADD CONSTRAINT app_settings_mfa_mode_check CHECK (
+  key <> 'mfa_mode'
+  OR (jsonb_typeof(value) = 'string' AND value #>> '{}' IN ('off', 'warn', 'enforce'))
+);
 
-DROP POLICY IF EXISTS "app_settings lecture publique" ON public.app_settings;
-CREATE POLICY "app_settings lecture publique" ON public.app_settings
-  FOR SELECT TO anon, authenticated
-  USING (key IN ('languages_enabled', 'callback_languages'));
-
-DROP POLICY IF EXISTS "app_settings admin" ON public.app_settings;
-CREATE POLICY "app_settings admin" ON public.app_settings
-  FOR ALL TO authenticated
-  USING (public.has_role(auth.uid(), 'admin'))
-  WITH CHECK (public.has_role(auth.uid(), 'admin'));
-
--- Valeur : tableau JSON de codes de langue parmi fr, en, it.
 ALTER TABLE public.app_settings DROP CONSTRAINT IF EXISTS app_settings_languages_check;
 ALTER TABLE public.app_settings ADD CONSTRAINT app_settings_languages_check CHECK (
   key NOT IN ('languages_enabled', 'callback_languages')
@@ -46,9 +48,41 @@ ALTER TABLE public.app_settings ADD CONSTRAINT app_settings_languages_check CHEC
   )
 );
 
-INSERT INTO public.app_settings (key, value, description) VALUES
-  ('languages_enabled', '["fr","en"]', 'Langues proposées par le bouton de langue du site (fr toujours inclus).'),
-  ('callback_languages', '["fr"]', 'Langues dans lesquelles un conseiller peut rappeler un prospect.')
-ON CONFLICT (key) DO NOTHING;
+ALTER TABLE public.app_settings ENABLE ROW LEVEL SECURITY;
 
-GRANT SELECT ON public.app_settings TO anon, authenticated;
+REVOKE ALL ON public.app_settings FROM anon, authenticated;
+GRANT SELECT ON public.app_settings TO anon;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.app_settings TO authenticated;
+GRANT ALL ON public.app_settings TO service_role;
+
+DROP POLICY IF EXISTS "app_settings lecture publique des langues" ON public.app_settings;
+CREATE POLICY "app_settings lecture publique des langues" ON public.app_settings
+  FOR SELECT TO anon, authenticated
+  USING (key IN ('languages_enabled', 'callback_languages'));
+
+DROP POLICY IF EXISTS "app_settings lecture admin" ON public.app_settings;
+CREATE POLICY "app_settings lecture admin" ON public.app_settings
+  FOR SELECT TO authenticated
+  USING (public.has_role(auth.uid(), 'admin'::app_role));
+
+DROP POLICY IF EXISTS "app_settings ajout admin" ON public.app_settings;
+CREATE POLICY "app_settings ajout admin" ON public.app_settings
+  FOR INSERT TO authenticated
+  WITH CHECK (public.has_role(auth.uid(), 'admin'::app_role) AND key <> 'mfa_mode');
+
+DROP POLICY IF EXISTS "app_settings modification admin" ON public.app_settings;
+CREATE POLICY "app_settings modification admin" ON public.app_settings
+  FOR UPDATE TO authenticated
+  USING (public.has_role(auth.uid(), 'admin'::app_role) AND key <> 'mfa_mode')
+  WITH CHECK (public.has_role(auth.uid(), 'admin'::app_role) AND key <> 'mfa_mode');
+
+DROP POLICY IF EXISTS "app_settings suppression admin" ON public.app_settings;
+CREATE POLICY "app_settings suppression admin" ON public.app_settings
+  FOR DELETE TO authenticated
+  USING (public.has_role(auth.uid(), 'admin'::app_role) AND key <> 'mfa_mode');
+
+INSERT INTO public.app_settings (key, value) VALUES
+  ('mfa_mode', '"off"'),
+  ('languages_enabled', '["fr","en"]'),
+  ('callback_languages', '["fr"]')
+ON CONFLICT (key) DO NOTHING;
