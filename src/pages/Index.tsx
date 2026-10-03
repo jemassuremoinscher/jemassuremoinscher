@@ -327,7 +327,6 @@ const Index = () => {
           <li><Link to="/blog/loi-hamon-2026-resilier-assurance-3-clics">Loi Hamon 2026 : résilier son assurance en 3 clics</Link></li>
           <li><Link to="/blog/loi-lemoine-2026">Loi Lemoine 2026 : changer d'assurance emprunteur</Link></li>
           <li><Link to="/blog/guide-choisir-assurance-auto-2026">Guide complet assurance auto 2026</Link></li>
-          <li><Link to="/blog/top-10-meilleures-mutuelles-sante-2026">Top 10 mutuelles santé 2026</Link></li>
           <li><Link to="/blog/comparatif-habitation-2026">Comparatif assurance habitation 2026</Link></li>
           <li><Link to="/blog/meilleure-assurance-auto-2026-comparatif">Meilleure assurance auto 2026</Link></li>
           <li><Link to="/blog/assurance-jeune-conducteur-2026-moins-cher">Assurance jeune conducteur moins cher</Link></li>

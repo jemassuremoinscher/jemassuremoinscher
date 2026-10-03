@@ -32,8 +32,10 @@ const PILLARS = [
   {
     icon: BookOpen,
     title: "Nos sources",
-    body:
-      "Chaque chiffre publié s'appuie sur des sources officielles, datées et vérifiables.",
+    // Phrase « Chaque chiffre publié s'appuie sur des sources officielles,
+    // datées et vérifiables » retirée (décision du 3 octobre 2026) : des
+    // articles contiennent encore des chiffres non sourcés.
+    body: "",
     bullets: [
       "Légifrance (lois Hamon, Chatel, Lemoine, Code des assurances)",
       "France Assureurs et ACPR pour les statistiques de marché",
@@ -78,7 +80,7 @@ const ExpertiseEEAT = () => {
                 <p.icon className="h-5 w-5" aria-hidden="true" />
               </span>
               <h3 className="text-lg font-bold text-foreground mb-2">{p.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-3">{p.body}</p>
+              {p.body && <p className="text-sm text-muted-foreground leading-relaxed mb-3">{p.body}</p>}
               <ul className="space-y-1.5">
                 {p.bullets.map((b, i) => (
                   <li key={i} className="text-sm text-muted-foreground leading-relaxed pl-4 relative">
