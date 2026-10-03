@@ -263,6 +263,24 @@ async function runFunnel(browser, base, funnel, vp, pools) {
     if (!c.submitInView) r.problems.push("bouton d'envoi hors du viewport (ou recouvert) à l'arrivée sur l'étape contact");
     for (const re of FORBIDDEN) if (re.test(c.funnelText)) r.problems.push(`texte interdit dans le tunnel : ${re}`);
     for (const re of TEASER_FORBIDDEN) if (re.test(c.teaserText)) r.problems.push(`badge interdit sur une vignette : ${re}`);
+    // Garanties affichées au verso des vignettes (même règle que
+    // verify-teasers (e)/(f)) : on retourne chaque carte et on lit son texte.
+    const cards = page.locator("[data-teaser-card]");
+    for (let i = 0; i < (await cards.count()); i += 1) {
+      const card = cards.nth(i);
+      const name = await card.getAttribute("data-teaser-card");
+      await card.click();
+      await page.waitForTimeout(350);
+      const back = await card.innerText();
+      if (/imm[ée]diat/i.test(back)) r.problems.push(`vignette « ${name} » : promesse d'immédiateté`);
+      if (/^au tiers|\bseule\b|\buniquement\b/i.test(name) && /\b(casse|incendie|dommages|bris de glace|assistance)\b/i.test(back.replace(name, ""))) {
+        r.problems.push(`vignette « ${name} » : garantie hors formule au verso`);
+      }
+      await card.click();
+      await page.waitForTimeout(350);
+    }
+    await page.locator("#msf-name").scrollIntoViewIfNeeded();
+
     // Envoi (écritures simulées)
     await page.fill("#msf-name", "Test QA Tunnel");
     await page.fill("#msf-email", "qa-funnels@example.test");

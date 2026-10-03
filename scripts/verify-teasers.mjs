@@ -15,6 +15,11 @@
  *     options de son étape « formule » (ids des niches : table
  *     FORMULE_STEP_ID, ex. « trot_formule », « velo_formule », « me_niveau »).
  *
+ * (e) pour vélo, camping-car, sans permis, auto temporaire, protection
+ *     juridique et mutuelle entreprise, une garantie hors du libellé de la
+ *     formule (ex. casse dans « Vol uniquement », durée fixe en auto temporaire) ;
+ * (f) une vignette promet de l'immédiateté (« Couverture immédiate »…).
+ *
  * Décisions du 3 octobre 2026. Lancé par npm run build.
  */
 import path from "node:path";
@@ -123,12 +128,37 @@ try {
       problems.push(`(d) ${type} : vignettes [${names.join(" | ")}] ≠ étape ${formule.id} [${labels.join(" | ")}]`);
     }
   }
+
+  // (e) Garanties alignées sur le libellé de la formule pour les 6 produits
+  // renommés (décision du 3 octobre 2026) : une formule « Au tiers »,
+  // « … seule » ou « … uniquement » ne liste ni casse, ni incendie, ni
+  // dommages, ni bris de glace, ni assistance ; « Vol uniquement » ne liste
+  // pas non plus la responsabilité civile ; l'auto temporaire ne parle pas de
+  // durées fixes (ses formules ne sont pas des durées).
+  const ALIGNED = ["velo", "camping_car", "sans_permis", "auto_temporaire", "protection_juridique", "mutuelle_entreprise"];
+  for (const type of ALIGNED) {
+    for (const p of teaserPrices[type]?.prices || []) {
+      const feats = p.features.join(" | ");
+      if (/^au tiers|\bseule\b|\buniquement\b/i.test(p.name) && /\b(casse|incendie|dommages|bris de glace|assistance)\b/i.test(feats)) {
+        problems.push(`(e) ${type} / ${p.name} : garantie hors formule (${feats})`);
+      }
+      if (/vol uniquement/i.test(p.name) && /responsabilit/i.test(feats)) problems.push(`(e) ${type} / ${p.name} : responsabilité civile hors formule`);
+      if (type === "auto_temporaire" && /\b\d+\s*jours?\b|jour par jour/i.test(`${p.name} ${feats}`)) problems.push(`(e) auto_temporaire / ${p.name} : durée fixe (${feats})`);
+    }
+  }
+
+  // (f) Aucune promesse d'immédiateté dans les vignettes.
+  for (const [type, entry] of Object.entries(teaserPrices)) {
+    for (const p of entry.prices) {
+      if (/imm[ée]diat/i.test(`${p.name} ${p.features.join(" ")}`)) problems.push(`(f) ${type} / ${p.name} : promesse d'immédiateté`);
+    }
+  }
 } finally {
   await vite.close();
 }
 
 if (problems.length === 0) {
-  console.log("[verify-teasers] OK — vignettes conformes (entrées, « Meilleur prix », pool animaux, noms des formules).");
+  console.log("[verify-teasers] OK — vignettes conformes (entrées, badge « Meilleur prix », pool animaux, noms et garanties des formules, immédiateté).");
   process.exit(0);
 }
 console.error(`[verify-teasers] ÉCHEC — ${problems.length} problème(s) :\n${problems.map((p) => `  - ${p}`).join("\n")}`);

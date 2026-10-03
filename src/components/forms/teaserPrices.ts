@@ -140,24 +140,24 @@ export const teaserPrices: Record<string, { label: string; prices: TeaserTier[] 
     { name: 'Tous risques', logoPool: [logoApril], features: ['Tout de la formule RC + Vol', 'Casse et vandalisme : selon l\'assureur', 'Assistance : selon l\'assureur'] },
   ]},
   velo: { label: 'Assurance Vélo', prices: [
-    { name: 'Vol uniquement', price: '3€', badge: 'Dès', logoPool: [logoAcheel, logoLuko, logoLeocare, logoNeo], features: ['Vol avec effraction', 'Casse accidentelle', 'Assistance dépannage'] },
-    { name: 'Vol + Casse', price: '7€', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoAllianz, logoMaaf], features: ['Vol partout en France', 'Casse + chute', 'Accessoires inclus', 'Responsabilité civile'] },
-    { name: 'Tous risques + Assistance', price: '11€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoGroupama, logoAbeille], features: ['Vol en tous lieux Europe', 'Tous dommages', 'Vélo de prêt', 'Assistance 0 km'] },
+    { name: 'Vol uniquement', price: '3€', badge: 'Dès', logoPool: [logoAcheel, logoLuko, logoLeocare, logoNeo], features: ['Vol avec effraction'] },
+    { name: 'Vol + Casse', price: '7€', badge: 'Dès', logoPool: [logoMaif, logoMacif, logoAllianz, logoMaaf], features: ['Vol partout en France', 'Casse + chute'] },
+    { name: 'Tous risques + Assistance', price: '11€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoGroupama, logoAbeille], features: ['Vol en tous lieux Europe', 'Tous dommages', 'Assistance 0 km'] },
   ]},
   camping_car: { label: 'Camping-car', prices: [
-    { name: 'Au tiers', price: '21€', badge: 'Dès', logoPool: [logoMacif, logoMaif, logoMaaf, logoMma], features: ['Responsabilité civile', 'Défense recours', 'Assistance Europe'] },
-    { name: 'Tiers étendu (vol/incendie)', price: '34€', badge: 'Dès', logoPool: [logoAllianz, logoGroupama, logoMatmut, logoAbeille], features: ['Vol et incendie', 'Bris de glace', 'Contenu 3 000€', 'Hivernage inclus'] },
-    { name: 'Tous risques', price: '54€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoGmf, logoAllianz], features: ['Tous dommages', 'Auvent et accessoires', 'Contenu 8 000€', 'Assistance 0 km Europe'] },
+    { name: 'Au tiers', price: '21€', badge: 'Dès', logoPool: [logoMacif, logoMaif, logoMaaf, logoMma], features: ['Responsabilité civile', 'Défense recours'] },
+    { name: 'Tiers étendu (vol/incendie)', price: '34€', badge: 'Dès', logoPool: [logoAllianz, logoGroupama, logoMatmut, logoAbeille], features: ['Tout de la formule Au tiers', 'Vol et incendie'] },
+    { name: 'Tous risques', price: '54€', badge: 'Dès', logoPool: [logoAxa, logoGenerali, logoGmf, logoAllianz], features: ['Tout de la formule Tiers étendu', 'Tous dommages'] },
   ]},
   sans_permis: { label: 'Voiture sans permis', prices: [
-    { name: 'Au tiers (obligatoire)', price: '17€', badge: 'Dès', logoPool: [logoSollyAzar, logoAssu2000, logoAComme, logoAmaguiz], features: ['Responsabilité civile', 'Défense recours', 'Assistance 25 km'] },
-    { name: 'Tiers + vol / incendie', price: '26€', badge: 'Dès', logoPool: [logoMma, logoMaaf, logoMacif, logoAbeille], features: ['Vol et incendie', 'Bris de glace', 'Catastrophes naturelles'] },
-    { name: 'Tous risques', price: '39€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGroupama, logoGenerali], features: ['Tous dommages', 'Vol et incendie', 'Véhicule de prêt'] },
+    { name: 'Au tiers (obligatoire)', price: '17€', badge: 'Dès', logoPool: [logoSollyAzar, logoAssu2000, logoAComme, logoAmaguiz], features: ['Responsabilité civile', 'Défense recours'] },
+    { name: 'Tiers + vol / incendie', price: '26€', badge: 'Dès', logoPool: [logoMma, logoMaaf, logoMacif, logoAbeille], features: ['Tout de la formule Au tiers', 'Vol et incendie'] },
+    { name: 'Tous risques', price: '39€', badge: 'Dès', logoPool: [logoAxa, logoAllianz, logoGroupama, logoGenerali], features: ['Tous dommages', 'Vol et incendie'] },
   ]},
   auto_temporaire: { label: 'Auto temporaire', prices: [
-    { name: 'Au tiers', price: '6€', badge: 'Dès', logoPool: [logoWilov, logoOrnikar, logoLeocare, logoGoodflair], features: ['RC obligatoire', 'Défense recours', 'Couverture immédiate'] },
-    { name: 'Tiers étendu', price: '26€', badge: 'Dès', logoPool: [logoLeocare, logoOrnikar, logoWilov, logoLolivier], features: ['Tiers + vol/incendie', 'Bris de glace', 'Activation en ligne'] },
-    { name: 'Tous risques', price: '67€', badge: 'Dès', logoPool: [logoAllianz, logoAxa, logoMacif, logoLeocare], features: ['Tous risques', 'Assistance 0 km', 'Modulable jour par jour'] },
+    { name: 'Au tiers', price: '6€', badge: 'Dès', logoPool: [logoWilov, logoOrnikar, logoLeocare, logoGoodflair], features: ['RC obligatoire', 'Défense recours'] },
+    { name: 'Tiers étendu', price: '26€', badge: 'Dès', logoPool: [logoLeocare, logoOrnikar, logoWilov, logoLolivier], features: ['Tiers + vol/incendie'] },
+    { name: 'Tous risques', price: '67€', badge: 'Dès', logoPool: [logoAllianz, logoAxa, logoMacif, logoLeocare], features: ['Tous dommages au véhicule'] },
   ]},
   flotte: { label: 'Flotte Auto', prices: [
     { name: 'Essentielle', price: '29€', badge: '/véh.', logoPool: [logoMacif, logoMaaf, logoMma, logoMatmut], features: ['Tiers étendu flotte', 'Gestion centralisée', 'Conducteurs interchangeables'] },
@@ -182,6 +182,6 @@ export const teaserPrices: Record<string, { label: string; prices: TeaserTier[] 
   mutuelle_entreprise: { label: 'Mutuelle entreprise', prices: [
     { name: 'Socle ANI (minimum légal)', price: '17€', badge: '/salarié', logoPool: [logoAlanNew, logoMutuelleGenerale, logoMgen, logoAcheel], features: ['Socle ANI obligatoire', 'Hospitalisation 100% BR', 'Dentaire 125%'] },
     { name: 'Intermédiaire (confort)', price: '29€', badge: '/salarié', logoPool: [logoHarmonie, logoMalakoff, logoAg2r, logoApril], features: ['Socle ANI + renforts', 'Optique 200€/an', 'Médecines douces'] },
-    { name: 'Premium (optique/dentaire renforcés)', price: '49€', badge: '/salarié', logoPool: [logoAxa, logoAllianz, logoGenerali, logoMetlife], features: ['Couverture étendue', 'Dentaire 400%', 'Chambre particulière'] },
+    { name: 'Premium (optique/dentaire renforcés)', price: '49€', badge: '/salarié', logoPool: [logoAxa, logoAllianz, logoGenerali, logoMetlife], features: ['Couverture étendue', 'Dentaire 400%'] },
   ]},
 };
