@@ -15,6 +15,10 @@ export interface FlipPriceCardProps {
 }
 
 /**
+ * Pas de badge « Meilleur prix » : superlatif sans source (retiré le
+ * 3 octobre 2026, tous produits). La carte mise en avant (highlight) est
+ * seulement encadrée.
+ *
  * Click/tap to flip the card and reveal the formula's main coverages.
  * Pure CSS 3D flip — no external lib. Keyboard accessible (Enter/Space).
  * Tracks flips and detail-views per insurance category for engagement analytics.
@@ -89,6 +93,10 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
         aria-pressed={flipped}
         aria-expanded={flipped}
         aria-label={`Formule ${name} — ${flipped ? "voir le prix" : "voir les garanties incluses"}`}
+        // Lus par le test E2E des tunnels (npm run qa:funnels).
+        data-teaser-card={name}
+        data-teaser-mode={hasPrice ? "prix" : "devis"}
+        data-teaser-highlight={highlight ? "true" : "false"}
         className={`absolute inset-0 w-full h-full rounded-xl border-2 p-3 touch-manipulation select-none cursor-pointer [-webkit-tap-highlight-color:transparent] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-all duration-300 hover:-translate-y-0.5 ${
           highlight
             ? "border-primary bg-primary/5 shadow-[var(--shadow-card)]"
@@ -97,13 +105,8 @@ const FlipPriceCard = ({ name, price, badge, logo, features, highlight, insuranc
       >
         {!flipped ? (
           <div className="h-full text-center flex flex-col items-center justify-between">
-            {highlight && hasPrice && (
-              <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap shadow-md">
-                Meilleur prix
-              </span>
-            )}
             <div className="flex flex-col items-center gap-1 mt-1">
-              <img src={logo} alt={name} width={68} height={28} className="h-7 max-w-[68px] object-contain" loading="lazy" />
+              <img src={logo} data-teaser-logo alt={name} width={68} height={28} className="h-7 max-w-[68px] object-contain" loading="lazy" />
               <p className="text-xs font-bold text-foreground leading-tight">{name}</p>
             </div>
 
