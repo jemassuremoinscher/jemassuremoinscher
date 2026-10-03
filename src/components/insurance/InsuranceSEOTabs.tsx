@@ -12,10 +12,12 @@ interface InsuranceSEOTabsProps {
   faqTitle: string;
   faqs: FAQ[];
   showGuarantees?: boolean;
+  /** Voir InsuranceFAQ.answersInDom. */
+  answersInDom?: boolean;
   children?: ReactNode;
 }
 
-const InsuranceSEOTabs = ({ faqTitle, faqs, showGuarantees = true, children }: InsuranceSEOTabsProps) => {
+const InsuranceSEOTabs = ({ faqTitle, faqs, showGuarantees = true, answersInDom, children }: InsuranceSEOTabsProps) => {
   const { t } = useLanguage();
   const [active, setActive] = useState<"faq" | "guarantees">("faq");
   const tabs = [
@@ -48,7 +50,7 @@ const InsuranceSEOTabs = ({ faqTitle, faqs, showGuarantees = true, children }: I
       <div className="pt-6">
         {active === "faq" && (
           <div className="animate-fade-in">
-            <InsuranceFAQ title={faqTitle} faqs={faqs} />
+            <InsuranceFAQ title={faqTitle} faqs={faqs} answersInDom={answersInDom} />
             {children}
           </div>
         )}

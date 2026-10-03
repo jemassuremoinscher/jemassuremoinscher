@@ -15,9 +15,12 @@ interface FAQItem {
 interface InsuranceFAQProps {
   title?: string;
   faqs: FAQItem[];
+  /** Garde les réponses dans le HTML (et la capture prerender) même repliées,
+   *  pour qu'elles correspondent au JSON-LD FAQPage de la page. */
+  answersInDom?: boolean;
 }
 
-const InsuranceFAQ = ({ title, faqs }: InsuranceFAQProps) => {
+const InsuranceFAQ = ({ title, faqs, answersInDom }: InsuranceFAQProps) => {
   const { t } = useLanguage();
   const displayTitle = title || t('insuranceFaq.defaultTitle');
 
@@ -36,7 +39,10 @@ const InsuranceFAQ = ({ title, faqs }: InsuranceFAQProps) => {
                 <AccordionTrigger className="text-left font-semibold hover:no-underline py-4">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-4 leading-relaxed">
+                <AccordionContent
+                  forceMount={answersInDom || undefined}
+                  className={`text-muted-foreground pb-4 leading-relaxed${answersInDom ? " [[data-state=closed]>&]:hidden" : ""}`}
+                >
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

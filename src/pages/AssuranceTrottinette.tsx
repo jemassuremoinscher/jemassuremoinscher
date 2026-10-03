@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
-import { Shield, Euro, Clock, ShieldAlert } from "lucide-react";
+import { Shield, Euro, Clock } from "lucide-react";
 import { useRef } from "react";
 import SEOOptimized from "@/components/SEOOptimized";
 import { addServiceSchema, addFAQSchema, addHowToSchema, addInsuranceProductSchema, addSpeakableSchema } from "@/utils/seoUtils";
@@ -19,12 +19,15 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { MultiStepQuoteForm } from "@/components/forms/MultiStepQuoteForm";
 import TrottinetteStatsAnswers from "@/components/insurance/TrottinetteStatsAnswers";
 import ProductGuaranteeTable from "@/components/insurance/ProductGuaranteeTable";
+import TrottinetteGuide, { TrottinetteSources, TROTTINETTE_SOURCES } from "@/components/insurance/TrottinetteGuide";
 import { TROTTINETTE_RC_PRICE_MONTHLY, TROTTINETTE_RC_PRICE_ANNUAL } from "@/config/site";
 
 // Schema WebPage avec citation de la source des statistiques du bloc
 // "Trottinette électrique en France : les chiffres" (TrottinetteStatsAnswers)
 // — même pattern que veloStatsWebPageSchema (src/pages/AssuranceVelo.tsx) et
-// le webPageSchema de la home. URL vérifiée le 2026-09-09.
+// le webPageSchema de la home. URL vérifiée le 2026-09-09. Fiches
+// Service-Public des sections réglementaires (TrottinetteGuide) ajoutées le
+// 2026-10-03.
 const trottinetteStatsWebPageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -32,9 +35,10 @@ const trottinetteStatsWebPageSchema = {
   "url": "https://www.jemassuremoinscher.fr/assurance-trottinette",
   "name": "Assurance trottinette électrique : comparateur EDPM",
   "inLanguage": "fr-FR",
-  "dateModified": "2026-09-09",
+  "dateModified": "2026-10-03",
   "citation": [
     { "@type": "CreativeWork", "name": "ONISR — Bilan 2025 de la sécurité routière", "url": "https://www.onisr.securite-routiere.gouv.fr/en/road-safety-performance/annual-road-safety-reports/2025-road-safety-annual-report" },
+    ...TROTTINETTE_SOURCES.map((s) => ({ "@type": "CreativeWork", "name": `Service-Public.fr — ${s.title}`, "url": s.url })),
   ],
   // Speakable ajouté le 2026-09-14 (infrastructure addSpeakableSchema,
   // seoUtils.ts) : cible le H1 et le H2 du bloc réponses courtes sourcées.
@@ -55,35 +59,40 @@ const AssuranceTrottinette = () => {
     areaServed: "France",
   });
 
+  // Mêmes étapes que la section visible « Comment s'assurer en 3 étapes »
+  // (TrottinetteGuide).
   const howToSchema = addHowToSchema({
-    name: "Comment assurer sa trottinette électrique en ligne",
-    description: "Guide étape par étape pour comparer et souscrire une assurance trottinette électrique (EDPM) en 2 minutes",
-    totalTime: "PT2M",
+    name: "Comment s'assurer en 3 étapes",
+    description: "Les vérifications à faire avant d'assurer une trottinette électrique (EDPM), d'après Service-Public.fr.",
     steps: [
       {
-        name: "Renseignez votre trottinette",
-        text: "Indiquez la marque, le modèle, la puissance et la valeur d'achat de votre trottinette électrique.",
+        name: "Vérifiez votre contrat habitation",
+        text: "S'il ne prévoit pas les EDPM, il vous faut une extension de garantie ou une assurance spécifique.",
       },
       {
-        name: "Choisissez vos garanties",
-        text: "Responsabilité civile obligatoire, garantie Mobilité, défense pénale et recours, protection du conducteur en option : sélectionnez le niveau de couverture adapté.",
+        name: "Vérifiez votre trottinette",
+        text: "25 km/h maximum, pas de débridage, équipements obligatoires présents : l'assureur peut exiger ces conditions.",
       },
       {
-        name: "Comparez les offres",
-        text: "Recevez instantanément plusieurs devis d'assureurs partenaires spécialistes des EDPM.",
-      },
-      {
-        name: "Souscrivez en ligne",
-        text: "Validez l'offre choisie et recevez votre attestation d'assurance par email.",
+        name: "Choisissez vos garanties et comparez",
+        text: "La responsabilité civile est le minimum obligatoire ; dommages matériels, vol, accidents de la vie et protection juridique sont facultatifs. Faites votre demande avec le formulaire de cette page.",
       },
     ],
   });
 
+  // Réponses reprises des fiches Service-Public lues le 3 octobre 2026 (voir
+  // TrottinetteGuide) ; prix et garanties : constantes de src/config/site.ts.
+  // Le même tableau alimente la FAQ visible et le JSON-LD FAQPage.
   const faqs = [
     {
       question: "L'assurance trottinette électrique est-elle obligatoire ?",
       answer:
-        "Oui. Depuis 2019, tout engin de déplacement personnel motorisé (EDPM) — dont la trottinette électrique — doit être couvert par une assurance responsabilité civile, comme un véhicule terrestre à moteur. Rouler sans assurance est un délit passible de 3 750€ d'amende.",
+        "Oui. La trottinette électrique est un engin de déplacement personnel motorisé (EDPM), assimilé à un véhicule terrestre à moteur : une assurance responsabilité civile est obligatoire, même si sa vitesse est limitée à 25 km/h. Elle couvre les dommages que vous causez à d'autres personnes.",
+    },
+    {
+      question: "Quelle amende pour une trottinette électrique sans assurance ?",
+      answer:
+        "Circuler sans assurance est un délit puni d'une amende pouvant aller jusqu'à 3 750 €, avec immobilisation et mise en fourrière possibles. Sous conditions (notamment une première infraction, commise par une personne majeure), une amende forfaitaire de 750 € peut s'appliquer, ramenée à 600 € en cas de paiement immédiat ou dans les 15 jours.",
     },
     {
       question: "Combien coûte une assurance trottinette électrique ?",
@@ -98,7 +107,32 @@ const AssuranceTrottinette = () => {
     {
       question: "Mon assurance habitation couvre-t-elle ma trottinette ?",
       answer:
-        "Non pour la circulation. La RC vie privée de l'habitation ne couvre pas les EDPM en usage routier. Une assurance trottinette dédiée est indispensable dès que vous circulez sur la voie publique.",
+        "Pas toujours. Votre assurance habitation ne couvre pas automatiquement les trottinettes électriques. Si votre contrat ne le prévoit pas, vous devez souscrire une extension de garantie ou une assurance spécifique EDPM.",
+    },
+    {
+      question: "Où peut-on rouler en trottinette électrique ?",
+      answer:
+        "En agglomération, sur la piste cyclable lorsqu'elle existe ; à défaut, sur les routes limitées à 50 km/h, ou dans les aires piétonnes à 6 km/h sans gêner les piétons. Le trottoir est interdit, sauf autorisation du maire. Rouler hors des zones autorisées expose à une amende de 135 €.",
+    },
+    {
+      question: "Le casque est-il obligatoire en trottinette électrique ?",
+      answer:
+        "Il est obligatoire, avec un équipement rétro-réfléchissant, à Paris et dans plusieurs départements, dont les Hauts-de-Seine, la Seine-Saint-Denis, le Val-de-Marne, les Alpes-Maritimes et l'Yonne (liste non exhaustive). Ailleurs, l'équipement rétro-réfléchissant est obligatoire la nuit ou quand la visibilité est insuffisante. Hors agglomération, sur les routes limitées à 80 km/h où la circulation est autorisée, le casque est obligatoire. Il l'est aussi si l'engin est requalifié en cyclomoteur.",
+    },
+    {
+      question: "Que se passe-t-il si ma trottinette est débridée ?",
+      answer:
+        "Au-delà de 25 km/h, ou si elle a été débridée, la trottinette est requalifiée en cyclomoteur : l'immatriculation, une assurance deux-roues motorisé et le port du casque deviennent notamment obligatoires. L'assureur peut aussi exiger que l'engin soit bridé avant d'accepter de le garantir.",
+    },
+    {
+      question: "Suis-je couvert si je tombe seul, sans tiers en cause ?",
+      answer:
+        "La responsabilité civile couvre les dommages causés aux autres. Après une chute seule, les dommages matériels de votre trottinette ou de votre casque ne sont pris en charge que si vous avez souscrit une assurance personnelle couvrant ces risques : assurance dommages, garantie accidents de la vie ou extension de votre assurance habitation.",
+    },
+    {
+      question: "Que faire en cas de vol de ma trottinette ?",
+      answer:
+        "Portez plainte au commissariat ou à la gendarmerie, ou en ligne si vous ne connaissez pas l'auteur, et conservez le récépissé. La garantie vol est facultative : elle n'est pas incluse dans le contrat décrit sur cette page ; d'autres assureurs la proposent, selon leurs conditions.",
     },
   ];
 
@@ -120,8 +154,8 @@ const AssuranceTrottinette = () => {
   return (
     <div className="min-h-screen">
       <SEOOptimized
-        title={`Assurance Trottinette Électrique 2026 : Comparateur EDPM dès ${TROTTINETTE_RC_PRICE_MONTHLY}`}
-        description="Comparez les meilleures assurances trottinette électrique (EDPM). Responsabilité civile obligatoire, garantie Mobilité, défense pénale et recours. Devis gratuit en 2 minutes."
+        title={`Assurance trottinette électrique dès ${TROTTINETTE_RC_PRICE_MONTHLY} | Devis`}
+        description={`Assurance trottinette électrique (EDPM) : obligation, amende sans assurance, règles de circulation, vol. Formule Solo dès ${TROTTINETTE_RC_PRICE_MONTHLY}, devis en ligne.`}
         keyword="assurance trottinette électrique"
         keywords="assurance trottinette électrique, assurance EDPM, RC trottinette, comparateur assurance trottinette"
         canonical="https://www.jemassuremoinscher.fr/assurance-trottinette"
@@ -161,10 +195,10 @@ const AssuranceTrottinette = () => {
               Comment trouver la <span className="text-primary">meilleure assurance trottinette électrique</span> en 2026 ?
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Depuis le <Link to="/glossaire/edpm" className="text-primary hover:underline font-medium"><strong>décret n°2019-1082</strong></Link>, toute trottinette électrique circulant sur la voie publique doit être couverte par une <strong>assurance responsabilité civile</strong>, comme un scooter. Rouler sans assurance est un <strong>délit puni de 3 750€ d'amende</strong>. Le contrat comparé ici couvre la <strong>responsabilité civile</strong> dès {TROTTINETTE_RC_PRICE_MONTHLY} en formule Solo, avec la <strong>garantie Mobilité</strong> et la <strong>défense pénale et recours</strong> ; la formule <strong>Famille</strong> (souscripteur + conjoint et enfants) et la <strong>protection du conducteur</strong> sont disponibles en option.
+              La trottinette électrique est un <Link to="/glossaire/edpm" className="text-primary hover:underline font-medium"><strong>engin de déplacement personnel motorisé (EDPM)</strong></Link>, assimilé à un véhicule terrestre à moteur : une <strong>assurance de responsabilité civile</strong> est obligatoire, même si sa vitesse maximale est limitée à 25 km/h. Rouler sans assurance est un <strong>délit puni d'une amende pouvant aller jusqu'à 3 750 €</strong>. Le contrat comparé ici couvre la <strong>responsabilité civile</strong> dès {TROTTINETTE_RC_PRICE_MONTHLY} en formule Solo, avec la <strong>garantie Mobilité</strong> et la <strong>défense pénale et recours</strong> ; la formule <strong>Famille</strong> (souscripteur + conjoint et enfants) et la <strong>protection du conducteur</strong> sont disponibles en option.
             </p>
             <ul className="text-sm text-muted-foreground mt-4 space-y-1.5 list-none pl-0">
-              <li>✓ Vérifier que votre trottinette respecte les <strong>25 km/h</strong> maximum (au-delà = homologation moto obligatoire)</li>
+              <li>✓ Vérifier que votre trottinette respecte les <strong>25 km/h</strong> maximum (au-delà, elle est requalifiée en cyclomoteur)</li>
               <li>✓ Comparer les formules Solo et Famille selon qui doit être couvert</li>
               <li>✓ En savoir plus sur la <Link to="/blog/trottinette-electrique-sans-assurance-delit-amende-2026" className="text-primary hover:underline font-medium">réglementation EDPM détaillée</Link></li>
             </ul>
@@ -200,35 +234,11 @@ const AssuranceTrottinette = () => {
 
           <CourtierValueCards product="trottinette" />
 
-          {/* Procédure sinistre : résumé factuel (déclaration, justificatifs)
-              repris de l'article de blog existant, sans ses statistiques non
-              sourcées ("65 000 volées/an" etc., trouvées non sourcées lors de
-              l'audit du 2026-09-13) — uniquement la partie procédurale
-              vérifiable. Lien rendu proéminent (encart dédié), plutôt que noyé
-              dans la grille "Articles conseils" ci-dessous où il reste aussi. */}
-          <section className="max-w-4xl mx-auto mb-12">
-            <Card className="p-6 md:p-8 border-2 border-primary/30 bg-primary/[0.03]">
-              <div className="flex items-start gap-4">
-                <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <ShieldAlert className="h-5 w-5" aria-hidden="true" />
-                </span>
-                <div>
-                  <h2 className="text-lg md:text-xl font-bold text-foreground mb-2">
-                    Victime d'un vol de trottinette ?
-                  </h2>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    Déposez plainte au commissariat ou à la gendarmerie dès la découverte du vol, puis déclarez le sinistre à votre assureur dans les <strong>48 heures</strong>. Conservez la <strong>facture d'achat</strong> de votre trottinette et la preuve que l'<strong>antivol homologué</strong> était fixé à un point fixe : ce sont les justificatifs les plus souvent réclamés — leur absence est la première cause de refus d'indemnisation.
-                  </p>
-                  <Link
-                    to="/blog/assurance-trottinette-vol-garantie-2026"
-                    className="inline-flex items-center gap-1.5 font-semibold text-primary hover:underline"
-                  >
-                    Lire le guide complet : les conditions pour être vraiment remboursé →
-                  </Link>
-                </div>
-              </div>
-            </Card>
-          </section>
+          {/* Sections réglementaires sourcées (Service-Public.fr, 3 octobre
+              2026). Remplacent l'encart « Victime d'un vol » dont le délai de
+              48 heures et la « première cause de refus » n'étaient pas
+              sourcés : la procédure de plainte est reprise de F1435. */}
+          <TrottinetteGuide onCtaClick={scrollToForm} />
 
           {/* Ressources & maillage interne trottinette */}
           <section className="max-w-5xl mx-auto mb-12" aria-labelledby="trottinette-resources">
@@ -269,7 +279,10 @@ const AssuranceTrottinette = () => {
           <InsuranceSEOTabs
             faqTitle="Questions fréquentes sur l'assurance trottinette électrique"
             faqs={faqs}
+            answersInDom
           />
+
+          <TrottinetteSources />
 
           {/* Zone 4 & 5 — Confiance + Maillage + EnBref + CTA */}
           <InsuranceBottomHub
