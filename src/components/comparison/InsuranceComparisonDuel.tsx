@@ -10,18 +10,12 @@ export default function InsuranceComparisonDuel({ duel }: Props) {
 
   // Aucune affirmation chiffrée ni classement appliqué à un assureur nommé
   // sans source datée (décision du 3 octobre 2026) : avis et encadré de gain
-  // neutres, sans prix ni « gagnant ».
+  // neutres, sans prix ni « gagnant ». Ligne « Prix moyen » retirée du
+  // tableau (même décision).
   const verdict =
     "Ces deux contrats se comparent sur le prix, la franchise, l'assistance et le délai de remboursement. Ces éléments dépendent de votre profil, de votre véhicule et de la formule choisie : vérifiez-les sur un devis à votre nom avant de choisir.";
 
   const rows: { label: string; valueA: React.ReactNode; valueB: React.ReactNode; winnerA: boolean; winnerB: boolean }[] = [
-    {
-      label: "Prix moyen",
-      valueA: <span className="font-bold">{a.prixMoyen}€<span className="text-xs font-normal text-muted-foreground">/an</span></span>,
-      valueB: <span className="font-bold">{b.prixMoyen}€<span className="text-xs font-normal text-muted-foreground">/an</span></span>,
-      winnerA: a.prixMoyen <= b.prixMoyen,
-      winnerB: b.prixMoyen < a.prixMoyen,
-    },
     {
       label: "Franchise",
       valueA: <span>{a.franchise}€</span>,

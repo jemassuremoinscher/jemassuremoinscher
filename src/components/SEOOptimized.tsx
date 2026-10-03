@@ -53,6 +53,26 @@ const resolveDynamicTokens = (text: string): string => {
 };
 
 /**
+ * Retire du <head> les balises statiques (index.html, captures) que Helmet
+ * double avec les siennes (data-rh="true") : canonical, description, og:*,
+ * twitter:*, hreflang. Sans ce nettoyage, la page porte deux meta description
+ * et deux canonical. Exportée pour les pages qui utilisent Helmet directement
+ * (DuelPage).
+ */
+export const removeStaticHeadDuplicates = () => {
+  const removeStatic = (selector: string) => {
+    document.head.querySelectorAll(selector).forEach((el) => {
+      if (!el.hasAttribute("data-rh")) el.parentNode?.removeChild(el);
+    });
+  };
+  removeStatic('link[rel="canonical"]');
+  removeStatic('meta[name="description"]');
+  removeStatic('meta[property^="og:"]');
+  removeStatic('meta[name^="twitter:"]');
+  removeStatic('link[rel="alternate"][hreflang]');
+};
+
+/**
  * SEOOptimized — react-helmet-async based SEO component.
  * 
  * Usage:
@@ -95,19 +115,7 @@ const SEOOptimized = ({
   const resolvedOgDescription = resolveDynamicTokens(override?.og_description || ogDescription || resolvedDescription);
 
   useEffect(() => {
-    // Remove pre-rendered canonical/description/title duplicates from static HTML
-    // (SSG injects them in <head>; Helmet adds its own with data-rh="true",
-    // resulting in duplicates that confuse Google.)
-    const removeStatic = (selector: string) => {
-      document.head.querySelectorAll(selector).forEach((el) => {
-        if (!el.hasAttribute("data-rh")) el.parentNode?.removeChild(el);
-      });
-    };
-    removeStatic('link[rel="canonical"]');
-    removeStatic('meta[name="description"]');
-    removeStatic('meta[property^="og:"]');
-    removeStatic('meta[name^="twitter:"]');
-    removeStatic('link[rel="alternate"][hreflang]');
+    removeStaticHeadDuplicates();
 
     let isActive = true;
 
