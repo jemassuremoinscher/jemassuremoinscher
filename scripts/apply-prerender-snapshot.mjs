@@ -66,6 +66,7 @@ const SNAPSHOTS = [
   { route: "/assurance-chiot", file: "assurance-chiot.html" },
   { route: "/assurance-chaton", file: "assurance-chaton.html" },
   { route: "/assurance-nac", file: "assurance-nac.html" },
+  { route: "/assurance-chat-appartement", file: "assurance-chat-appartement.html" },
   { route: "/assurance-vie", file: "assurance-vie.html" },
   { route: "/assurance-expatries", file: "assurance-expatries.html" },
   { route: "/assurance-mrp", file: "assurance-mrp.html" },
