@@ -2014,7 +2014,7 @@ const en: Record<string, string> = {
   "step.animaux.formule.opt.maladie_accident.label": "Illness + Accident",
   "step.animaux.formule.opt.maladie_accident.description": "Consultations and care included",
   "step.animaux.formule.opt.integrale.label": "Comprehensive",
-  "step.animaux.formule.opt.integrale.description": "Prevention, vaccines and sterilisation",
+  "step.animaux.formule.opt.integrale.description": "Accidents, illnesses and prevention options depending on the policy",
   "step.animaux.age_animal.title": "How old is your pet?",
   "step.animaux.age_animal.subtitle": "Age affects available coverages and exclusions.",
   "step.animaux.age_animal.opt.junior.label": "Under 2 years",

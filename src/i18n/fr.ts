@@ -2007,7 +2007,7 @@ const fr: Record<string, string> = {
   "step.animaux.formule.opt.maladie_accident.label": "Maladie + Accident",
   "step.animaux.formule.opt.maladie_accident.description": "Consultations et soins inclus",
   "step.animaux.formule.opt.integrale.label": "Intégrale",
-  "step.animaux.formule.opt.integrale.description": "Prévention, vaccins et stérilisation",
+  "step.animaux.formule.opt.integrale.description": "Accidents, maladies et options de prévention selon le contrat",
   "step.animaux.age_animal.title": "Quel âge a votre animal ?",
   "step.animaux.age_animal.subtitle": "L'âge influence les garanties disponibles et les exclusions.",
   "step.animaux.age_animal.opt.junior.label": "Moins de 2 ans",
