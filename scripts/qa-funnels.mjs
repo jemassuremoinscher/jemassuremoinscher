@@ -115,11 +115,22 @@ const resolveChromium = (chromium) => {
   return null;
 };
 
+// ─── Bruit tiers ignoré (liste explicite, décision du 3 octobre 2026) ────────
+// Seuls ces motifs, propres à l'iframe reCAPTCHA de Google, sont ignorés ;
+// tout le reste (console, pageerror, requête en échec ou annulée) est une
+// erreur. Chaque occurrence ignorée est listée dans le rapport.
+const IGNORED = [
+  { kind: "console", pattern: /^Framing 'https:\/\/www\.google\.com\/' violates the following report-only Content Security Policy directive: "frame-ancestors 'self'"/, reason: "alerte CSP report-only de l'iframe reCAPTCHA (Google)" },
+  { kind: "request", pattern: /^POST https:\/\/csp\.withgoogle\.com\/csp\/frame-ancestors\/.* — net::ERR_BLOCKED_BY_ORB$/, reason: "rapport CSP de Google bloqué par ORB" },
+  { kind: "request", pattern: /^POST https:\/\/www\.google\.com\/recaptcha\/api2\/clr\?.* — net::ERR_ABORTED$/, reason: "annulation de la télémétrie reCAPTCHA api2/clr" },
+];
+const ignoredBy = (kind, text) => IGNORED.find((i) => i.kind === kind && i.pattern.test(text));
+
 // ─── Contexte instrumenté : écritures simulées, erreurs collectées ───────────
 const isWrite = (req) => /\/(rest|functions)\/v1\//.test(req.url()) && !["GET", "HEAD", "OPTIONS"].includes(req.method());
 async function newInstrumentedPage(browser, vp) {
   const context = await browser.newContext({ viewport: { width: vp.width, height: vp.height }, isMobile: vp.isMobile, hasTouch: vp.hasTouch, locale: "fr-FR" });
-  const log = { consoleErrors: [], pageErrors: [], failed: [], aborted: [], simulated: [] };
+  const log = { consoleErrors: [], pageErrors: [], failed: [], ignored: [], simulated: [] };
   await context.route(/\/(rest|functions)\/v1\//, async (route) => {
     const req = route.request();
     if (!isWrite(req)) return route.continue();
@@ -131,14 +142,20 @@ async function newInstrumentedPage(browser, vp) {
     });
   });
   const page = await context.newPage();
-  page.on("console", (m) => { if (m.type() === "error") log.consoleErrors.push(m.text().slice(0, 300)); });
+  page.on("console", (m) => {
+    if (m.type() !== "error") return;
+    const text = m.text();
+    const ig = ignoredBy("console", text);
+    if (ig) log.ignored.push(`${ig.reason} : ${text.slice(0, 160)}`);
+    else log.consoleErrors.push(text.slice(0, 300));
+  });
   page.on("pageerror", (e) => log.pageErrors.push(String(e?.message || e).slice(0, 300)));
   page.on("requestfailed", (r) => {
     if (isWrite(r)) return;
-    const err = r.failure()?.errorText || "échec";
-    // ERR_ABORTED = requête annulée par le navigateur (ex. télémétrie reCAPTCHA
-    // interrompue) : listée à part, pas comptée comme un échec.
-    (err === "net::ERR_ABORTED" ? log.aborted : log.failed).push(`${r.method()} ${r.url().slice(0, 160)} — ${err}`);
+    const line = `${r.method()} ${r.url()} — ${r.failure()?.errorText || "échec"}`;
+    const ig = ignoredBy("request", line);
+    if (ig) log.ignored.push(`${ig.reason} : ${line.slice(0, 160)}`);
+    else log.failed.push(line.slice(0, 260));
   });
   page.on("response", (r) => {
     if (r.status() >= 400 && !isWrite(r.request())) log.failed.push(`${r.request().method()} ${r.url().slice(0, 160)} — HTTP ${r.status()}`);
@@ -332,7 +349,7 @@ function finish(r, log) {
   r.consoleErrors = log.consoleErrors;
   r.pageErrors = log.pageErrors;
   r.failed = [...new Set(log.failed)];
-  r.aborted = [...new Set(log.aborted)];
+  r.ignored = [...new Set(log.ignored)];
   if (log.consoleErrors.length) r.problems.push(`${log.consoleErrors.length} erreur(s) console`);
   if (log.pageErrors.length) r.problems.push(`${log.pageErrors.length} pageerror`);
   if (r.failed.length) r.problems.push(`${r.failed.length} requête(s) en échec`);
@@ -415,10 +432,10 @@ const main = async () => {
       ? [`### ${r.funnel} (${r.viewport})`, ...r.consoleErrors.map((e) => `- console : ${e}`), ...r.pageErrors.map((e) => `- pageerror : ${e}`), ...r.failed.map((e) => `- requête : ${e}`), ""]
       : []),
     "",
-    "## Requêtes annulées par le navigateur (ERR_ABORTED, non comptées comme échecs)",
+    "## Bruit tiers ignoré (liste IGNORED du script, non compté comme erreur)",
     "",
-    ...results.flatMap((r) => r.aborted?.length
-      ? [`- ${r.funnel} (${r.viewport}) : ${r.aborted.join(" ; ")}`]
+    ...results.flatMap((r) => r.ignored?.length
+      ? [`- ${r.funnel} (${r.viewport}) : ${r.ignored.join(" ; ")}`]
       : []),
   ].join("\n");
   writeFileSync(path.join(outDir, "rapport.md"), md);
