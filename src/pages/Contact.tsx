@@ -135,6 +135,7 @@ const Contact = () => {
                   onCtaClick={() => {
                     document.getElementById('contact-prenom')?.focus();
                   }}
+                  showSavingsCard={false}
                 />
               </div>
             </div>

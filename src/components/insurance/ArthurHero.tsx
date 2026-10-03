@@ -22,6 +22,10 @@ interface ArthurHeroProps {
   /** Second stat card. false quand la page affiche déjà une mention ORIAS
    * dans son hero ou son bandeau de confiance — évite le doublon. */
   showReviewsCard?: boolean;
+  /** Première carte (savingsValue / savingsLabel, par défaut « Économisez en
+   * comparant les offres »). false pour la masquer (ex. /contact : pas de
+   * promesse d'économie). */
+  showSavingsCard?: boolean;
 }
 
 const ArthurHero = ({
@@ -38,6 +42,7 @@ const ArthurHero = ({
   reviewsValue = "ORIAS",
   reviewsLabel = `n° ${ORIAS_NUMBER} · courtier indépendant`,
   showReviewsCard = true,
+  showSavingsCard = true,
 }: ArthurHeroProps) => {
   // Legacy fallback (landing templates) — keep simple speech bubble layout
   if (!title) {
@@ -135,8 +140,10 @@ const ArthurHero = ({
       </div>
 
       {/* Floating stats card */}
+      {(showSavingsCard || showReviewsCard) && (
       <div className="relative -mt-6 mx-3 md:mx-10 z-10">
-        <div className={`grid gap-2 md:gap-4 rounded-2xl bg-card border border-border/40 shadow-elevation-3 p-4 md:px-6 md:py-4 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-12px_hsl(var(--primary)/0.35)] transition-all duration-250 ${showReviewsCard ? "grid-cols-2" : "grid-cols-1"}`}>
+        <div className={`grid gap-2 md:gap-4 rounded-2xl bg-card border border-border/40 shadow-elevation-3 p-4 md:px-6 md:py-4 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_-12px_hsl(var(--primary)/0.35)] transition-all duration-250 ${showReviewsCard && showSavingsCard ? "grid-cols-2" : "grid-cols-1"}`}>
+          {showSavingsCard && (
           <div className="flex items-center gap-3 px-2">
             <div className="hidden sm:flex h-10 w-10 rounded-full bg-accent/15 items-center justify-center flex-shrink-0">
               <PiggyBank className="h-5 w-5 text-accent" aria-hidden="true" />
@@ -146,8 +153,9 @@ const ArthurHero = ({
               <div className="text-[11px] md:text-xs text-muted-foreground leading-tight">{savingsLabel}</div>
             </div>
           </div>
+          )}
           {showReviewsCard && (
-            <div className="flex items-center gap-3 px-2 border-l border-border/40">
+            <div className={`flex items-center gap-3 px-2 ${showSavingsCard ? "border-l border-border/40" : ""}`}>
               <div className="hidden sm:flex h-10 w-10 rounded-full bg-primary/10 items-center justify-center flex-shrink-0">
                 <BadgeCheck className="h-5 w-5 text-primary" aria-hidden="true" />
               </div>
@@ -159,6 +167,7 @@ const ArthurHero = ({
           )}
         </div>
       </div>
+      )}
     </div>
   );
 };
