@@ -364,7 +364,7 @@ const Header = () => {
           <nav className="p-4 space-y-6" role="navigation" aria-label="Navigation mobile principale">
             {/* Language Toggle - Mobile */}
             <div className="flex items-center justify-end gap-3 mb-2 px-4">
-              <LanguageToggle />
+              <LanguageToggle tone="onLight" />
             </div>
             
 
