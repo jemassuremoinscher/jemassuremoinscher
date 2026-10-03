@@ -72,13 +72,6 @@ import logoAComme from '@/assets/logos/a-comme-assure.png';
 import { invokeSendQuoteEmail, preloadRecaptcha } from "@/lib/recaptcha";
 import { reportSiteError } from "@/lib/siteErrorLog";
 
-// Partner logos to show during searching animation
-const partnerNames = [
-  'AXA', 'Allianz', 'MAIF', 'MACIF', 'Groupama', 'Generali',
-  'Direct Assurance', 'MMA', 'MAAF', 'Matmut', 'GMF', 'Abeille',
-  'April', 'Alan', 'Swiss Life', 'AG2R', 'Harmonie', 'MGEN',
-];
-
 const contactSchema = z.object({
   fullName: z.string().trim().min(2, 'Minimum 2 caractères').max(100),
   email: z.string().trim().email('Email invalide'),
@@ -190,7 +183,6 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [searchProgress, setSearchProgress] = useState(0);
-  const [currentPartner, setCurrentPartner] = useState(0);
   const [microLoading, setMicroLoading] = useState(false);
   const [transitionScreen, setTransitionScreen] = useState<string | null>(null);
   const { activeHint, startTracking, stopTracking, dismissHint } = useFieldTracking();
@@ -329,7 +321,6 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
   useEffect(() => {
     if (step.type !== 'searching') return;
     setSearchProgress(0);
-    setCurrentPartner(0);
 
     const progressInterval = setInterval(() => {
       setSearchProgress(prev => {
@@ -341,17 +332,12 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
       });
     }, 60);
 
-    const partnerInterval = setInterval(() => {
-      setCurrentPartner(prev => (prev + 1) % partnerNames.length);
-    }, 200);
-
     const timer = setTimeout(() => {
       goNext();
     }, 3200);
 
     return () => {
       clearInterval(progressInterval);
-      clearInterval(partnerInterval);
       clearTimeout(timer);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -775,10 +761,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
                 )}
 
                 {step.type === 'searching' && (
-                  <SearchingStep
-                    progress={searchProgress}
-                    currentPartner={partnerNames[currentPartner]}
-                  />
+                  <SearchingStep progress={searchProgress} />
                 )}
 
                 {step.type === 'contact' && (
@@ -1226,7 +1209,9 @@ function VehicleSelectStep({ step, formData, onSelect }: {
 }
 
 // ─── Searching Step ──────────────────────────────────────────────────────────
-function SearchingStep({ progress, currentPartner }: { progress: number; currentPartner: string }) {
+// Texte neutre (décision du 3 octobre 2026) : aucun nom d'assureur qui défile
+// ni « temps réel » — un conseiller étudie ensuite la demande.
+function SearchingStep({ progress }: { progress: number }) {
   const { t } = useLanguage();
   return (
     <div className="flex flex-col items-center gap-6 py-4">
@@ -1248,19 +1233,7 @@ function SearchingStep({ progress, currentPartner }: { progress: number; current
         </span>
       </div>
 
-      {/* Current partner being analyzed */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentPartner}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.15 }}
-          className="text-sm text-muted-foreground font-medium"
-        >
-          {t('form.searching.analysing')} <span className="text-foreground font-semibold">{currentPartner}</span>…
-        </motion.div>
-      </AnimatePresence>
+      <p className="text-sm text-muted-foreground font-medium">{t('form.searching.preparing')}</p>
 
       {/* Progress bar */}
       <div className="w-full max-w-xs h-2 bg-muted/50 rounded-full overflow-hidden">
@@ -1271,7 +1244,6 @@ function SearchingStep({ progress, currentPartner }: { progress: number; current
         />
       </div>
 
-      <p className="text-xs text-muted-foreground">{t('form.searching.realtime')}</p>
     </div>
   );
 }
