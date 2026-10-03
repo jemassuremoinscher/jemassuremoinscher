@@ -271,7 +271,7 @@ function AdminSection({ mode, onModeChanged }: { mode: MfaMode; onModeChanged: (
     if (error) {
       setUnavailable(
         error.code === "PGRST202"
-          ? "Réglage indisponible : la migration 20261002000200_mfa_phase1.sql n'est pas appliquée. Le mode reste « Désactivé »."
+          ? "Réglage indisponible : les migrations 20261003000200_app_settings.sql et 20261003000400_mfa_phase1.sql ne sont pas appliquées. Le mode reste « Désactivé »."
           : `Lecture impossible : ${error.message}`,
       );
       return;

@@ -4,9 +4,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 
 // Double authentification, phase 1 : état du compte connecté et mode global
-// (app_settings.mfa_mode via get_mfa_mode(), migration
-// 20261002000200_mfa_phase1.sql). Si la migration n'est pas appliquée ou si
-// l'appel échoue, le mode vaut 'off' : rien ne s'active.
+// (app_settings.mfa_mode via get_mfa_mode(), migrations
+// 20261003000200_app_settings.sql et 20261003000400_mfa_phase1.sql). Si elles
+// ne sont pas appliquées ou si l'appel échoue, le mode vaut 'off' : rien ne
+// s'active.
 
 export type MfaMode = "off" | "warn" | "enforce";
 export type Aal = "aal1" | "aal2" | null;

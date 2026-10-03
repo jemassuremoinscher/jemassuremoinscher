@@ -1,5 +1,10 @@
 -- Double authentification (TOTP), PHASE 1 : réglage et journalisation.
 --
+-- Dépend de 20261003000200_app_settings.sql (table app_settings unique,
+-- value jsonb ; réglage mfa_mode = chaîne JSON "off" par défaut). Renommée
+-- le 3 octobre 2026 (ancien nom 20261002000200_mfa_phase1.sql) pour passer
+-- après les migrations déjà appliquées sur main.
+--
 -- - app_settings.mfa_mode : 'off' (défaut), 'warn' ou 'enforce'. Rien ne
 --   s'active tant qu'un admin ne change pas ce réglage depuis
 --   /admin/securite (et Paul doit d'abord confirmer que la TOTP est activée
@@ -12,26 +17,11 @@
 --   RLS aal2) et la vérification dans les Edge Functions relèvent de la
 --   phase 2, par une migration distincte.
 --
--- AUCUNE politique RLS n'est créée ni modifiée : les deux tables ont la RLS
--- activée sans politique (accès service_role uniquement) et ne sont lues ou
--- écrites qu'au travers des fonctions SECURITY DEFINER ci-dessous.
-
-CREATE TABLE IF NOT EXISTS public.app_settings (
-  key text PRIMARY KEY,
-  value text NOT NULL,
-  updated_at timestamptz NOT NULL DEFAULT now(),
-  updated_by uuid,
-  CONSTRAINT app_settings_mfa_mode_check
-    CHECK (key <> 'mfa_mode' OR value IN ('off', 'warn', 'enforce'))
-);
-
-ALTER TABLE public.app_settings ENABLE ROW LEVEL SECURITY;
-REVOKE ALL ON public.app_settings FROM anon, authenticated;
-GRANT ALL ON public.app_settings TO service_role;
-
-INSERT INTO public.app_settings (key, value)
-VALUES ('mfa_mode', 'off')
-ON CONFLICT (key) DO NOTHING;
+-- AUCUNE politique RLS n'est créée ni modifiée ici. mfa_access_log a la RLS
+-- activée sans politique (accès service_role uniquement) ; app_settings a ses
+-- politiques dans 20261003000200_app_settings.sql, qui interdisent d'écrire
+-- mfa_mode depuis le client. mfa_mode n'est lu ou écrit qu'au travers des
+-- fonctions SECURITY DEFINER ci-dessous.
 
 CREATE TABLE IF NOT EXISTS public.mfa_access_log (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -55,7 +45,7 @@ CREATE OR REPLACE FUNCTION public.get_mfa_mode()
  STABLE SECURITY DEFINER
  SET search_path TO 'public'
 AS $function$
-  SELECT COALESCE((SELECT value FROM public.app_settings WHERE key = 'mfa_mode'), 'off');
+  SELECT COALESCE((SELECT value #>> '{}' FROM public.app_settings WHERE key = 'mfa_mode'), 'off');
 $function$;
 
 REVOKE EXECUTE ON FUNCTION public.get_mfa_mode() FROM PUBLIC, anon;
@@ -94,7 +84,7 @@ BEGIN
   END IF;
 
   INSERT INTO public.app_settings (key, value, updated_at, updated_by)
-  VALUES ('mfa_mode', p_mode, now(), auth.uid())
+  VALUES ('mfa_mode', to_jsonb(p_mode), now(), auth.uid())
   ON CONFLICT (key) DO UPDATE
     SET value = EXCLUDED.value, updated_at = now(), updated_by = auth.uid();
   RETURN p_mode;
