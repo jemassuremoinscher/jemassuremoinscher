@@ -210,6 +210,9 @@ export default function RegionalDataWidget({
                   {/* Nom */}
                   <div className="flex-1 min-w-0">
                     <p className="font-semibold text-foreground text-sm truncate">{insurer.name}</p>
+                    {i === 0 && (
+                      <p className="text-xs text-primary font-medium">Meilleur prix</p>
+                    )}
                   </div>
 
                   {/* Prix */}

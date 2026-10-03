@@ -50,7 +50,7 @@ const AssuranceTrottinette = () => {
   const serviceSchema = addServiceSchema({
     name: "Comparateur Assurance Trottinette Électrique",
     description:
-      `Comparez les offres d'assurance trottinette électrique (EDPM) en France. Responsabilité civile obligatoire dès ${TROTTINETTE_RC_PRICE_MONTHLY}. Devis gratuit en 2 minutes.`,
+      `Comparez les meilleures offres d'assurance trottinette électrique (EDPM) en France. Responsabilité civile obligatoire dès ${TROTTINETTE_RC_PRICE_MONTHLY}. Devis gratuit en 2 minutes.`,
     provider: "jemassuremoinscher.fr",
     areaServed: "France",
   });
@@ -121,7 +121,7 @@ const AssuranceTrottinette = () => {
     <div className="min-h-screen">
       <SEOOptimized
         title={`Assurance Trottinette Électrique 2026 : Comparateur EDPM dès ${TROTTINETTE_RC_PRICE_MONTHLY}`}
-        description="Comparez les assurances trottinette électrique (EDPM). Responsabilité civile obligatoire, garantie Mobilité, défense pénale et recours. Devis gratuit en 2 minutes."
+        description="Comparez les meilleures assurances trottinette électrique (EDPM). Responsabilité civile obligatoire, garantie Mobilité, défense pénale et recours. Devis gratuit en 2 minutes."
         keyword="assurance trottinette électrique"
         keywords="assurance trottinette électrique, assurance EDPM, RC trottinette, comparateur assurance trottinette"
         canonical="https://www.jemassuremoinscher.fr/assurance-trottinette"
@@ -158,7 +158,7 @@ const AssuranceTrottinette = () => {
           {/* H2 above-the-fold */}
           <section className="max-w-4xl mx-auto mb-10 prose prose-sm md:prose-base max-w-none">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Comment choisir son <span className="text-primary">assurance trottinette électrique</span> en 2026 ?
+              Comment trouver la <span className="text-primary">meilleure assurance trottinette électrique</span> en 2026 ?
             </h2>
             <p className="text-muted-foreground leading-relaxed">
               Depuis le <Link to="/glossaire/edpm" className="text-primary hover:underline font-medium"><strong>décret n°2019-1082</strong></Link>, toute trottinette électrique circulant sur la voie publique doit être couverte par une <strong>assurance responsabilité civile</strong>, comme un scooter. Rouler sans assurance est un <strong>délit puni de 3 750€ d'amende</strong>. Le contrat comparé ici couvre la <strong>responsabilité civile</strong> dès {TROTTINETTE_RC_PRICE_MONTHLY} en formule Solo, avec la <strong>garantie Mobilité</strong> et la <strong>défense pénale et recours</strong> ; la formule <strong>Famille</strong> (souscripteur + conjoint et enfants) et la <strong>protection du conducteur</strong> sont disponibles en option.
