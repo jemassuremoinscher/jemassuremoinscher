@@ -16,6 +16,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import arthurThinking from "@/assets/mascotte/arthur-thinking.webp";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ArthurHero from "@/components/insurance/ArthurHero";
+import FrenchOnlyNotice from "@/components/i18n/FrenchOnlyNotice";
 
 const convertToISO = (frenchDate: string): string => {
   const months: Record<string, string> = {
@@ -100,6 +101,7 @@ const Blog = () => {
       <Breadcrumbs items={[{ label: "Blog" }]} />
 
       <main id="main-content">
+        <FrenchOnlyNotice variant="blog" className="w-[calc(100%-2rem)] max-w-6xl mx-auto mt-6" />
         <section className="relative pt-6 pb-10 md:pt-8 md:pb-14">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">

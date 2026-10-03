@@ -20,6 +20,7 @@ import { trackMetaLead } from "@/utils/metaPixelTracking";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { normalizeInsuranceTypeStrict } from "@/utils/insuranceTypeNormalizer";
 import { invokeSendQuoteEmail } from "@/lib/recaptcha";
+import ResidencyNotice from "@/components/i18n/ResidencyNotice";
 
 const COVERAGE_OPTIONS: Record<string, { value: string; labelKey: string }[]> = {
   auto: [
@@ -265,6 +266,7 @@ export const QuoteRequestForm = () => {
 
         <Card className="p-8">
           <Form {...form}>
+            <ResidencyNotice className="mb-3" />
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <input ref={honeypotRef} type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0 }} />
               

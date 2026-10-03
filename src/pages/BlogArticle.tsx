@@ -29,6 +29,7 @@ import RelatedArticles from "@/components/blog/RelatedArticles";
 import BlogArticleArthur from "@/components/blog/BlogArticleArthur";
 import SmartConversionWidget, { detectCategory } from "@/components/blog/SmartConversionWidget";
 import BarometreOptin from "@/components/BarometreOptin";
+import FrenchOnlyNotice from "@/components/i18n/FrenchOnlyNotice";
 
 const BlogArticle = () => {
   const { t } = useLanguage();
@@ -168,6 +169,7 @@ const BlogArticle = () => {
       <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: article.title }]} />
 
       <main>
+        <FrenchOnlyNotice variant="article" className="w-[calc(100%-2rem)] max-w-4xl mx-auto my-6" />
         {/* Hero Header */}
         <section className="bg-gradient-to-br from-primary via-primary/90 to-primary/80">
           <div className="container mx-auto px-4 py-10 md:py-16">

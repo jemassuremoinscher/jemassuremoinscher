@@ -20,6 +20,7 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { normalizeInsuranceType } from "@/utils/insuranceTypeNormalizer";
 import { invokeSendQuoteEmail } from "@/lib/recaptcha";
+import ResidencyNotice from "@/components/i18n/ResidencyNotice";
 
 const subscriptionSchema = z.object({
   fullName: z.string().trim().min(2, "Le nom doit contenir au moins 2 caractères").max(100, "Le nom ne peut pas dépasser 100 caractères"),
@@ -135,6 +136,7 @@ export const SubscriptionModal = ({ open, onOpenChange, offerDetails }: Subscrip
             </div>
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 pb-2">
+              <ResidencyNotice />
               <div className="space-y-1.5">
                 <Label htmlFor="fullName" className="text-sm">{t('subModal.fullName')}</Label>
                 <Input id="fullName" placeholder="Jean Dupont" {...register("fullName")} disabled={isSubmitting} className="h-9" />

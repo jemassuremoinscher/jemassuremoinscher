@@ -17,6 +17,7 @@ import geoContent from '@/data/geo-content.json';
 import { invokeSendQuoteEmail, preloadRecaptcha } from '@/lib/recaptcha';
 import { reportSiteError } from '@/lib/siteErrorLog';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import ResidencyNotice from "@/components/i18n/ResidencyNotice";
 
 // Même règle que validate_contact_callback() en base : 6 à 30 caractères.
 // Caractères admis : chiffres, espaces, +, point, tiret.
@@ -161,6 +162,7 @@ const Contact = () => {
                 <p className="text-muted-foreground mb-8">{t('contactPage.formDesc')}</p>
 
                 {/* reCAPTCHA préchargé au premier champ touché, pas au chargement de la page. */}
+                <ResidencyNotice className="mb-3" />
                 <form onSubmit={handleSubmit} onFocus={preloadRecaptcha} className="grid md:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="contact-prenom" className="sr-only">{t('contactPage.firstName')}</label>

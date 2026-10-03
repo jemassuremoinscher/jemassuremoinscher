@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { invokeSendQuoteEmail } from "@/lib/recaptcha";
+import ResidencyNotice from "@/components/i18n/ResidencyNotice";
 
 interface Message { role: "user" | "assistant"; content: string; }
 interface TransferDialogProps { isOpen: boolean; onClose: () => void; messages: Message[]; }
@@ -46,6 +47,7 @@ export const TransferDialog = ({ isOpen, onClose, messages }: TransferDialogProp
           <DialogTitle>{t('transfer.title')}</DialogTitle>
           <DialogDescription>{t('transfer.desc')}</DialogDescription>
         </DialogHeader>
+        <ResidencyNotice className="mb-3" />
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
           <div className="space-y-2"><Label htmlFor="name">{t('transfer.fullName')}</Label><Input id="name" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="Jean Dupont" /></div>
           <div className="space-y-2"><Label htmlFor="email">{t('transfer.email')}</Label><Input id="email" type="email" required value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="jean.dupont@example.com" /></div>

@@ -29,6 +29,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { invokeSendQuoteEmail, preloadRecaptcha } from "@/lib/recaptcha";
 import { teaserPrices } from './teaserPrices';
 import { reportSiteError } from "@/lib/siteErrorLog";
+import ResidencyNotice from "@/components/i18n/ResidencyNotice";
 
 const contactSchema = z.object({
   fullName: z.string().trim().min(2, 'Minimum 2 caractères').max(100),
@@ -531,6 +532,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
 
   return (
     <div className={`w-full max-w-2xl mx-auto ${className}`} id="quote-form">
+      <ResidencyNotice className="mb-2 justify-center" />
       {/* Glass container */}
       <div className={`relative rounded-[2rem] bg-card/80 backdrop-blur-xl border border-border/50 shadow-[var(--shadow-lg)] overflow-hidden ${fixedHeight ? 'flex flex-col h-[640px]' : ''}`}>
 

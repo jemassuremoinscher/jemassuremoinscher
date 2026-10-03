@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Shield, Lock, FileCheck, X, ShieldCheck, Instagram, Linkedin, Facebook } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import ResidencyNotice from "@/components/i18n/ResidencyNotice";
 import {
   Dialog,
   DialogContent,
@@ -204,6 +205,8 @@ const Footer = () => {
             </div>
 
           </div>
+
+          <ResidencyNotice tone="onDark" className="justify-center mt-4" />
 
           {/* Copyright */}
           <p className="text-[11px] text-primary-foreground/30 text-center mt-4">

@@ -12,6 +12,7 @@ import { glossaryTerms } from "@/data/glossaryTerms";
 import { NB_ASSUREURS_LABEL } from "@/config/site";
 import { addBreadcrumbSchema } from "@/utils/seoUtils";
 import { useLanguage } from "@/contexts/LanguageContext";
+import FrenchOnlyNotice from "@/components/i18n/FrenchOnlyNotice";
 
 const normalizeGlossaryMarkdownHeadings = (markdown: string) => markdown.replace(/^#\s+/gm, "## ");
 
@@ -103,6 +104,7 @@ description={glossarySeoMeta[term.slug]?.description || `${term.definition.subst
 
       <main className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
+          <FrenchOnlyNotice variant="glossary" className="mb-6" />
           <Button
             variant="ghost"
             onClick={() => navigate("/glossaire")}

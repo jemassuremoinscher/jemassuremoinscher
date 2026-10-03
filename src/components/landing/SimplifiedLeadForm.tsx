@@ -14,6 +14,7 @@ import { useHoneypot } from '@/hooks/useHoneypot';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { normalizeInsuranceTypeStrict } from '@/utils/insuranceTypeNormalizer';
 import { invokeSendQuoteEmail } from "@/lib/recaptcha";
+import ResidencyNotice from "@/components/i18n/ResidencyNotice";
 
 const simplifiedLeadSchema = z.object({
   fullName: z.string().trim().min(2, 'Nom requis').max(100),
@@ -105,6 +106,7 @@ export const SimplifiedLeadForm = ({ insuranceType, insuranceLabel }: Simplified
         <h2 className="text-2xl md:text-3xl font-bold mb-2">{t('leadForm.getQuote')} {insuranceLabel}</h2>
         <p className="text-sm text-muted-foreground"><Sparkles className="inline h-4 w-4 mr-1" />{t('leadForm.formSpeed')}</p>
       </div>
+      <ResidencyNotice className="mb-3" />
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <input ref={honeypotRef} type="text" name="website" autoComplete="off" tabIndex={-1} aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0 }} />
         <div>

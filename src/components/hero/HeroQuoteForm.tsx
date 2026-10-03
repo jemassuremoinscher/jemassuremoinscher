@@ -5,6 +5,7 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 import { useLanguage } from "@/contexts/LanguageContext";
+import ResidencyNotice from "@/components/i18n/ResidencyNotice";
 
 const ZapIcon = () => (
   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -58,6 +59,7 @@ export const HeroQuoteForm = () => {
       className="bg-white rounded-2xl shadow-2xl p-5 md:p-7 space-y-4 border border-white/40"
       aria-label={t("a11y.hero.quoteForm")}
     >
+      <ResidencyNotice />
       {/* Type */}
       <div className="space-y-1.5">
         <label htmlFor="hero-type" className="text-sm font-semibold text-foreground">
