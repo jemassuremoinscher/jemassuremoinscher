@@ -61,7 +61,7 @@ export const SimplifiedLeadForm = ({ insuranceType, insuranceLabel }: Simplified
       const leadId = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : undefined;
       const { error } = await supabase.from('insurance_quotes').insert({ ...(leadId ? { id: leadId } : {}), insurance_type: canonicalType, full_name: data.fullName, email: data.email, phone: data.phone, quote_data: { source: `landing_${canonicalType}`, source_page: sourcePage, utm_data: utmData }, status: 'pending' });
       if (error) throw error;
-      const { error: emailError } = await invokeSendQuoteEmail({ leadId, name: data.fullName, email: data.email, phone: data.phone, type: insuranceType, details: { source: `landing_${insuranceType}`, source_page: sourcePage, utm: utmData }, estimatedPrice: 35 });
+      const { error: emailError } = await invokeSendQuoteEmail({ leadId, name: data.fullName, email: data.email, phone: data.phone, type: insuranceType, details: { source: `landing_${insuranceType}`, source_page: sourcePage, utm: utmData }, estimatedPrice: 0 });
       if (emailError) console.error("Error sending email:", emailError);
       trackConversion(`landing_${insuranceType}`);
       trackEvent('quote_request', { category: 'landing_page', label: `landing_${insuranceType}`, insurance_type: insuranceType });

@@ -455,7 +455,7 @@ export const MultiStepQuoteForm = ({ insuranceType, onComplete, className = '', 
           phone: contactData.phone,
           type: insType,
           details: { ...formData, source_page: sourcePage },
-          estimatedPrice: 35,
+          estimatedPrice: 0,
         },).catch(console.error);
 
       setIsSuccess(true);
