@@ -1338,15 +1338,21 @@ function ContactStep({
     const category = formData.vehicleBrand ? categoryMap[formData.vehicleBrand] || null : null;
     return priceMultiplier(age, category);
   }, [resolvedType, formData.age, formData.vehicleBrand]);
-  const prices = useMemo(
-    () => rawPrices.map((p, i) => {
+  // Trois logos différents (décision du 3 octobre 2026) : chaque vignette
+  // prend, dans son pool après rotation, le premier logo pas encore affiché.
+  // Même calcul dans scripts/verify-teasers.mjs (pickTeaserLogos).
+  const prices = useMemo(() => {
+    const used = new Set<string>();
+    return rawPrices.map((p, i) => {
       const pool = (p.logoPool || []).filter(Boolean);
-      const logo = pool.length ? pool[(rotationSeed + i * 7) % pool.length] : '';
+      const start = pool.length ? (rotationSeed + i * 7) % pool.length : 0;
+      const rotated = pool.slice(start).concat(pool.slice(0, start));
+      const logo = rotated.find((l) => !used.has(l)) ?? rotated[0] ?? '';
+      used.add(logo);
       const price = mult !== 1 ? applyMultiplierToPrice(p.price, mult) : p.price;
       return { ...p, logo, price };
-    }),
-    [rawPrices, rotationSeed, mult]
-  );
+    });
+  }, [rawPrices, rotationSeed, mult]);
 
   if (isSuccess) {
     return (

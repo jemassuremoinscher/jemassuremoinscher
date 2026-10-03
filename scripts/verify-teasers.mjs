@@ -19,6 +19,8 @@
  *     juridique et mutuelle entreprise, une garantie hors du libellé de la
  *     formule (ex. casse dans « Vol uniquement », durée fixe en auto temporaire) ;
  * (f) une vignette promet de l'immédiateté (« Couverture immédiate »…) ;
+ * (h) trois vignettes d'un produit n'affichent pas trois logos d'assureurs
+ *     différents (tous produits, sauf trottinette : logo April seul) ;
  * (g) un produit mélange vignettes avec prix et « Sur devis », ou un produit
  *     « Sur devis » (animaux, trottinette, auto temporaire) affiche un prix.
  *
@@ -146,6 +148,36 @@ try {
       }
       if (/vol uniquement/i.test(p.name) && /responsabilit/i.test(feats)) problems.push(`(e) ${type} / ${p.name} : responsabilité civile hors formule`);
       if (type === "auto_temporaire" && /\b\d+\s*jours?\b|jour par jour/i.test(`${p.name} ${feats}`)) problems.push(`(e) auto_temporaire / ${p.name} : durée fixe (${feats})`);
+    }
+  }
+
+  // (h) Trois logos différents pour TOUS les produits, pour chacune des 997
+  // valeurs de rotationSeed, avec le calcul de MultiStepQuoteForm (premier logo
+  // du pool tourné qui n'est pas déjà affiché). Deux fichiers du même
+  // assureur (ex. macif / macif-new) comptent comme un seul logo.
+  // Exception : trottinette, logo April seul par décision de Paul (3 octobre
+  // 2026), en attendant qu'il valide d'autres assureurs.
+  const LOGO_EXEMPT = new Set(["trottinette"]);
+  const insurerKey = (src) => logoName(src).replace(/-(new|moto)$/, "").replace(/^alan-new$/, "alan");
+  const pickTeaserLogos = (prices, seed) => {
+    const used = new Set();
+    return prices.map((p, i) => {
+      const pool = p.logoPool.filter(Boolean);
+      const start = pool.length ? (seed + i * 7) % pool.length : 0;
+      const rotated = pool.slice(start).concat(pool.slice(0, start));
+      const logo = rotated.find((l) => !used.has(l)) ?? rotated[0] ?? "";
+      used.add(logo);
+      return logo;
+    });
+  };
+  for (const [type, entry] of Object.entries(teaserPrices)) {
+    if (LOGO_EXEMPT.has(type)) continue;
+    for (let seed = 0; seed < 997; seed += 1) {
+      const shown = pickTeaserLogos(entry.prices, seed).map(insurerKey);
+      if (new Set(shown).size !== shown.length) {
+        problems.push(`(h) ${type} : logos en double pour rotationSeed=${seed} (${shown.join(", ")})`);
+        break;
+      }
     }
   }
 

@@ -266,7 +266,12 @@ async function runFunnel(browser, base, funnel, vp, pools) {
       if (!(l.w > 0)) r.problems.push(`logo non chargé : ${l.src}`);
       if (!pool.has(logoKey(l.src))) r.problems.push(`logo hors pool ${funnel.type} : ${logoKey(l.src)}`);
     }
-    if (funnel.type === "animaux" && new Set(c.logos.map((l) => logoKey(l.src))).size !== c.logos.length) r.problems.push("logos animaux non distincts");
+    // Trois logos d'assureurs différents pour tous les produits (decision du
+    // 3 octobre 2026), sauf trottinette (logo April seul, en attente de Paul).
+    const insurer = (src) => logoKey(src).replace(/-(new|moto)$/, "");
+    if (funnel.type !== "trottinette" && new Set(c.logos.map((l) => insurer(l.src))).size !== c.logos.length) {
+      r.problems.push(`logos non distincts (${c.logos.map((l) => insurer(l.src)).join(", ")})`);
+    }
     if (!c.submitInView) r.problems.push("bouton d'envoi hors du viewport (ou recouvert) à l'arrivée sur l'étape contact");
     for (const re of FORBIDDEN) if (re.test(c.funnelText)) r.problems.push(`texte interdit dans le tunnel : ${re}`);
     for (const re of TEASER_FORBIDDEN) if (re.test(c.teaserText)) r.problems.push(`badge interdit sur une vignette : ${re}`);
