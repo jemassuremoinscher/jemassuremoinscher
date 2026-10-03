@@ -34,7 +34,7 @@ const refConfigs: Record<string, DynamicGreetingConfig> = {
     mascotAlt: "Arthur en voiture — assurance jeune conducteur pas chère",
     ctaLink: "/comparateur?step=1&profile=jeune",
     ctaText: "Mon prix jeune conducteur →",
-    badgeText: <>Jusqu'à <span className="text-accent">-40%</span> pour les permis probatoires</>,
+    badgeText: <>Permis probatoire : <span className="text-accent">économisez</span> en comparant les offres</>,
   },
   "malusse": {
     title: (
@@ -64,7 +64,7 @@ const refConfigs: Record<string, DynamicGreetingConfig> = {
     mascotAlt: "Arthur — assurance senior avantageuse",
     ctaLink: "/comparateur?step=1&profile=senior",
     ctaText: "Mon prix senior →",
-    badgeText: <>Jusqu'à <span className="text-accent">-30%</span> grâce à votre expérience</>,
+    badgeText: <><span className="text-accent">Économisez</span> en comparant les offres</>,
   },
   "famille": {
     title: (
@@ -154,7 +154,7 @@ const refConfigs: Record<string, DynamicGreetingConfig> = {
     mascotAlt: "Arthur — assurance professionnelle RC Pro",
     ctaLink: "/comparateur?step=1&type=rc-pro",
     ctaText: "Mon prix pro →",
-    badgeText: <>RC Pro dès <span className="text-accent">15€/mois</span></>,
+    badgeText: <>RC Pro : <span className="text-accent">économisez</span> en comparant les offres</>,
   },
 };
 
