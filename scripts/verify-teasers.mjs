@@ -10,7 +10,8 @@
  *     vignettes animaux n'utilisent pas le même pool de 6 logos (trois logos
  *     affichés toujours différents) ;
  * (d) les noms des vignettes d'un produit diffèrent des libellés (fr) des
- *     options de son étape « formule » (« trot_formule » pour la trottinette).
+ *     options de son étape « formule » (ids des niches : table
+ *     FORMULE_STEP_ID, ex. « trot_formule », « velo_formule », « me_niveau »).
  *
  * Décisions du 3 octobre 2026. Lancé par npm run build.
  */
@@ -96,9 +97,19 @@ try {
     }
   }
 
-  // (d)
+  // (d) Étape « formule » de chaque produit. Les niches ont des ids
+  // différents : table explicite (décision du 3 octobre 2026).
+  const FORMULE_STEP_ID = {
+    trottinette: "trot_formule",
+    velo: "velo_formule",
+    camping_car: "cc_formule",
+    sans_permis: "sp_formule",
+    auto_temporaire: "at_formule",
+    protection_juridique: "pj_formule",
+    mutuelle_entreprise: "me_niveau",
+  };
   for (const [type, steps] of Object.entries(configs)) {
-    const formule = steps.find((s) => s.id === (type === "trottinette" ? "trot_formule" : "formule"));
+    const formule = steps.find((s) => s.id === (FORMULE_STEP_ID[type] || "formule"));
     if (!formule || !teaserPrices[type]) continue;
     const labels = (formule.options || []).map((o) => o.label);
     const names = teaserPrices[type].prices.map((p) => p.name);

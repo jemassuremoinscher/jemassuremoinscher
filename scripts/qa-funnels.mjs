@@ -158,6 +158,7 @@ async function runFunnel(browser, base, funnel, vp, pools) {
     await page.waitForSelector("[data-funnel-step]", { timeout: 30000 });
     await page.locator("[data-funnel-step]").first().scrollIntoViewIfNeeded();
     let chosenFormuleIndex = null;
+    let chosenFormuleLabel = null;
     for (let guard = 0; guard < 40; guard += 1) {
       const stepEl = page.locator("[data-funnel-step]").first();
       const id = await stepEl.getAttribute("data-funnel-step");
@@ -174,7 +175,10 @@ async function runFunnel(browser, base, funnel, vp, pools) {
         let pick = 0;
         if (funnel.prefer?.[field] && values.includes(funnel.prefer[field])) pick = values.indexOf(funnel.prefer[field]);
         else if (field === "coverageLevel" && values.length > 1) pick = 1;
-        if (field === "coverageLevel") chosenFormuleIndex = pick;
+        if (field === "coverageLevel") {
+          chosenFormuleIndex = pick;
+          chosenFormuleLabel = await options.nth(pick).getAttribute("data-funnel-option-label");
+        }
         await options.nth(pick).click();
       } else if (type === "input") {
         const input = stepEl.locator("input").first();
@@ -224,6 +228,11 @@ async function runFunnel(browser, base, funnel, vp, pools) {
     const expectedHighlight = chosenFormuleIndex ?? 0;
     const hi = c.highlights.indexOf(true);
     if (c.highlights.filter(Boolean).length !== 1 || hi !== expectedHighlight) r.problems.push(`vignette mise en avant ${hi} (attendue ${expectedHighlight})`);
+    // Noms des vignettes = libellés de l'étape formule (règle (d) du verrou) :
+    // la vignette mise en avant porte le libellé de la formule choisie.
+    if (chosenFormuleLabel !== null && c.names[hi] !== chosenFormuleLabel) {
+      r.problems.push(`vignette mise en avant « ${c.names[hi]} » ≠ formule choisie « ${chosenFormuleLabel} »`);
+    }
     const pool = pools[funnel.type] || new Set();
     for (const l of c.logos) {
       if (!(l.w > 0)) r.problems.push(`logo non chargé : ${l.src}`);
