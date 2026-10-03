@@ -27,3 +27,6 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Rapports et captures de npm run qa:funnels (régénérés à chaque lancement)
+docs/qa/
